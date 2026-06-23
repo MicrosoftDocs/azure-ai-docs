@@ -211,6 +211,9 @@ items:
     - name: Deploy and use Claude models
       displayName: Deploy and use Claude models in Foundry
       href: ../../foundry-models/how-to/use-foundry-models-claude.md
+    - name: Deploy Claude with Bicep or Terraform
+      displayName: Deploy Claude with Bicep or Terraform
+      href: /azure/developer/ai/how-to/deploy-claude-foundry?context=/azure/foundry/context/context
   - name: FLUX models
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md

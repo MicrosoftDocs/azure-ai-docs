@@ -264,9 +264,9 @@ In this quickstart, you:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md)
+> [Evaluate your hosted agent](../../observability/quickstarts/quickstart-evaluate-hosted-agent.md)
 
-Customize your agent with additional capabilities:
+[Manage the hosted agent lifecycle](../how-to/manage-hosted-agent.md), or customize your agent with additional capabilities:
 
 - [Add web search](../how-to/tools/web-search.md) to ground responses in real-time public web results.
 - [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
@@ -274,15 +274,17 @@ Customize your agent with additional capabilities:
 - [Add file search](../how-to/tools/file-search.md) to search your documents
 - [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code
 - See the [tool catalog](../concepts/tool-catalog.md) for the full list.
+- [Deploy your own code as a hosted agent](quickstart-deploy-own-code.md) to bring existing Python agent logic to Foundry Agent Service.
+- [Build a toolbox and use it with a hosted agent](../how-to/tools/toolbox.md) to combine tools behind one managed endpoint.
 
 Use the Microsoft Foundry Skill in your coding agent to standardize deployment,
 evaluation, and troubleshooting workflows.
 
 - [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md)
-
 ## Related content
 
 * [What are hosted agents?](../concepts/hosted-agents.md)
+* [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)

@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/25/2026
+ms.date: 06/18/2026
 ms.custom: include
 ---
 
@@ -35,8 +35,9 @@ The following HTTP response headers indicate that a specific request spilled ove
 
 - `x-ms-spillover-from-deployment`: Contains the PTU deployment name. The presence of this header indicates that the request is a spillover request.
 - `x-ms-deployment-name`: Contains the name of the deployment that serves the request. If the request spills over, the deployment name is the name of the standard deployment.
+- `x-ms-spillover-error` is returned on any request that spills over, and it contains the response code from the provisioned deployment that triggered the spillover (for example 429, 500, or 503). It is present whether or not the spillover attempt ultimately succeeds. 
 
-For a request that spills over, if the standard deployment request fails for any reason, the original PTU response is returned to the caller. The response includes an `x-ms-spillover-error` header that contains the response code of the spillover request (such as `429` or `500`) so that the caller knows the reason for the failed spillover.
+For a request that spills over, if the standard deployment also fails to serve it, the standard deployment's response (including status code and body) is returned to the caller. The `x-ms-spillover-from-deployment` and `x-ms-spillover-error` headers are still present, so the caller can distinguish a spillover failure from a direct standard-deployment failure. 
 
 ## Monitor spillover usage
 
@@ -50,25 +51,23 @@ The following Azure Monitor metrics chart provides an example of the split of re
 
     :::image type="content" source="../media/provisioned/spillover-metrics-menu.png" alt-text="A screenshot showing the metrics for a basic spillover example in the Azure portal." lightbox="../media/provisioned/spillover-metrics-menu.png":::
 
-1. Select **Apply splitting** and apply the `ModelDeploymentName` split and `StatusCode` splits to the `Azure OpenAI Requests` metric. This shows a chart with the `200` (success) and `429` (too many requests) response codes generated for your resource.
+1. Select **Apply splitting** and apply the `ModelDeploymentName` split and `StatusCode` splits to the `Azure OpenAI Requests` metric. This shows a chart with the `200` (success) and `400` (error code) generated for your resource. The count for the error code is currently zero in the chart.
 
     :::image type="content" source="../media/provisioned/add-splitting.png" alt-text="A screenshot showing the menu for adding splits in the Azure portal." lightbox="../media/provisioned/add-splitting.png":::
 
-    Be sure to add the model deployments you want to view when applying the `ModelDeploymentName` split.
+1. Select **Add filter**. In the filter box, set the **Property** to `ModelDeploymentName` and set the **Values** to the model deployments you want to view.
 
-    :::image type="content" source="../media/provisioned/model-filter.png" alt-text="A screenshot showing the available model filters." lightbox="../media/provisioned/model-filter.png":::
+    :::image type="content" source="../media/provisioned/model-filter.png" alt-text="A screenshot showing a filter with model deployments selected." lightbox="../media/provisioned/model-filter.png":::
 
-    The following example shows an instance where a spike in requests sent to the provisioned throughput deployment generates `429` error codes. Shortly after, spillover occurs and requests begin going to the pay-as-you-go deployment used for spillover, generating `200` responses for that deployment.
+    Each request that the provisioned deployment cannot serve (returning `429`, `500`, or `503`) is immediately redirected to the pay-as-you-go deployment used for spillover, where it is processed and counted as a `200` response (**gpt-4.1, 200 = 954**). The provisioned deployment line (**gpt-4.1-ptum, 200 = 46**) reflects only requests it served directly, since spilled-over requests are not counted as `429`s on the provisioned deployment. To distinguish spillover traffic from direct traffic on the standard deployment, apply the `IsSpillover` split, as shown in the next section.
 
     :::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the metrics for visualizing spillover." lightbox="../media/provisioned/spillover-chart-simplified.png":::
 
-    > [!NOTE]
-    > As requests go to the pay-as-you-go deployment, they still generate 429 response codes on the provisioned deployment before being redirected.
-    > :::image type="content" source="../media/provisioned/spillover-chart-errors.png" alt-text="A screenshot showing the response codes from a provisioned deployment." lightbox="../media/provisioned/spillover-chart-errors.png":::
-
 ### View spillover metrics
 
-Applying the `IsSpillover` split lets you view the requests to your deployment that are being redirected to your spillover deployment. Following from the previous example, you can see how the `429` responses from the primary deployment match the `200` response codes generated by the spillover deployment.
+Applying the `IsSpillover` split lets you view which requests on your standard deployment arrived via spillover from a provisioned deployment. Spilled-over requests appear as records on the standard deployment with `IsSpillover = True` and their final status code (typically `200`). They are not double-counted as `429`s on the provisioned deployment. 
+
+In the following chart, the spilled-over request appears as **IsSpillover=True, gpt-4.1, 200 = 954** on the standard deployment only. The provisioned deployment has no `IsSpillover=True` record.
 
 :::image type="content" source="../media/provisioned/spillover-chart.png" alt-text="A screenshot showing the spillover split in Azure portal." lightbox="../media/provisioned/spillover-chart.png":::
 
