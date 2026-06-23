@@ -102,7 +102,7 @@ Tracing data is stored in Application Insights and follows your workspace's data
 
 | Issue | Solution |
 | ----- | -------- |
-| Not using Foundry hosted agents and traces aren't showing | This quickstart covers hosted agents only. For tracing agents hosted outside of Foundry, see [Register an external agent](/azure/foundry/agents/how-to/register-external-agent). |
+| Not using Foundry hosted agents and traces aren't showing | This quickstart covers hosted agents only. For tracing agents hosted outside of Foundry, see [Register an external agent](../../agents/how-to/register-external-agent.md). |
 | No traces appear after invoking agent | Confirm Application Insights is connected to your Foundry project. If it isn't enabled, see [Set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md). Verify the agent responded successfully with `azd ai agent invoke`. |
 | Traces appear but spans are missing input/output data attributes | Enable content recording by setting the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` in your agent configuration. |
 | `AuthorizationFailed` when viewing traces | You need the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource. |
