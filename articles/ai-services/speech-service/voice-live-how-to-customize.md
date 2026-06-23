@@ -73,7 +73,7 @@ Example session configuration with custom speech models. In this example when th
 
 ### MAI-Transcribe model (preview)
 
-You can use the MAI-Transcribe model for input audio transcription in Voice Live. MAI-Transcribe is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a focus on high accuracy and high efficiency. For more information about the model, see [MAI-Transcribe in Azure Speech](./mai-transcribe.md).
+Use the MAI-Transcribe model for input audio transcription in Voice Live. MAI-Transcribe is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a focus on high accuracy and high efficiency. For more information about the model, see [MAI-Transcribe in Azure Speech](./mai-transcribe.md).
 
 To use MAI-Transcribe, set the `model` field to `mai-transcribe` in the `input_audio_transcription` configuration:
 
