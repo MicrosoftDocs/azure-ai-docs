@@ -181,7 +181,7 @@ Before production rollout, validate the following:
 - Assuming API key authentication provides the same governance granularity as Entra ID with RBAC. See [Role-based access control for Microsoft Foundry](rbac-foundry.md) for proper configuration.
 - Skipping region availability validation for required models and services. See [Feature availability across cloud regions](../reference/region-support.md).
 - Migrating assistants or AOAI workflows without a documented fallback path in Foundry (classic) portal. See [Migrate to the new Foundry Agent Service](../agents/how-to/migrate.md).
-- Assuming all GA features work behind a virtual network. Some features, including Traces and Workflow Agents, don't yet fully support network isolation. Hosted Agents require public access to Azure Container Registry. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
+- Assuming all GA features work behind a virtual network. Some features, including Traces and Workflow Agents, don't yet fully support network isolation. For Hosted Agents, a private Azure Container Registry is supported only for Foundry projects created after June 25, 2026; projects created before that date require public access to the registry. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
 
 ## Next steps
 

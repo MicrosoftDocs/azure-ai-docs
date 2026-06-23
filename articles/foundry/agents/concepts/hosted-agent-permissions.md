@@ -190,7 +190,7 @@ If the creator of the project has the ability to assign the `Foundry User` role 
 Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/registries/write` permission at the scope of the resource group.
 
 > [!NOTE]
-> For Hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
+> For Hosted agents, support for the container registry behind a private network (private endpoint with public network access disabled) depends on when the Foundry project was created. Projects created after June 25, 2026 support a private registry. Projects created before that date require the registry to be reachable over its public endpoint. Existing projects aren't affected. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 >
 > The registry's `azureADAuthenticationAsArmPolicy` policy status must be set to `enabled`. This setting allows ACR to accept Microsoft Entra tokens scoped to Azure Resource Manager. To check or update the status, use [`az acr config authentication-as-arm`](/cli/azure/acr/config/authentication-as-arm).
 
