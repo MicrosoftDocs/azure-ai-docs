@@ -65,7 +65,7 @@ Capability hosts operate at two distinct scopes:
 3. **Project-level capability host** - Defines which BYO resources Agent Service uses for that specific project.
 
 > [!IMPORTANT]
-> The project-level capability host is what Agent Service reads to determine which storage, conversation, and vector store resources to use for a project. There is no automatic inheritance of BYO resource configuration from the account capability host to the project. Even if the account capability host references connections, Agent Service will not use them for a project unless those connections are explicitly referenced in a project capability host.
+> The project-level capability host is what Agent Service reads to determine which storage, conversation, and vector store resources to use for a project. There's no automatic inheritance of BYO resource configuration from the account capability host to the project. Even if the account capability host references connections, Agent Service doesn't use them for a project unless those connections are explicitly referenced in a project capability host.
 
 ## Understand capability host constraints
 
@@ -214,7 +214,7 @@ Use these steps to confirm that capability hosts are configured correctly:
    ```
 
 3. Test your configuration by creating a test agent and running a conversation. Confirm that:
-   - Conversations appear in your Azure Cosmos DB
+   - Conversations appear in your Azure Cosmos DB.
    - Uploaded files appear in your Azure Storage account
    - Vector data appears in your Azure AI Search index
 
@@ -223,7 +223,7 @@ Use these steps to confirm that capability hosts are configured correctly:
 ## Delete capability hosts
 
 > [!WARNING]
-> Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete the project and account capability host, agents in your project will no longer have access to the files, conversations, and vector stores it previously did.
+> Deleting a capability host affects all agents that depend on it. Make sure you understand the impact before proceeding. For example, if you delete the project and account capability host, agents in your project no longer have access to the files, conversations, and vector stores they previously accessed.
 
 ### Delete an account-level capability host
 
