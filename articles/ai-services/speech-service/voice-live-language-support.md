@@ -23,7 +23,7 @@ The Voice Live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used Voice Live speech input is processed either with one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`), by `azure speech to text` models, or by `mai-transcribe`.
+Depending on the model you use, the Voice Live API processes speech input by using one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`), `azure speech to text` models, or `mai-transcribe`.
 
 ### Azure speech to text supported languages
 
