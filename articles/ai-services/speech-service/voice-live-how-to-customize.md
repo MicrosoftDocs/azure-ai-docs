@@ -69,7 +69,7 @@ Example session configuration with custom speech models. In this example when th
 > [!NOTE]
 > In order to use a custom speech model with Voice Live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice Live API. If you trained the model on a different Microsoft Foundry or Azure Speech in Foundry Tools resource you have to copy the model to the resource you are using to call the Voice Live API.
 > You pay separately for custom speech training and model hosting.
-> Custom speech is only supported in azure-speech model.
+> Custom speech is only supported in `azure-speech` model.
 
 ### MAI-Transcribe model (preview)
 
