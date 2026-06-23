@@ -81,7 +81,7 @@ To configure a single or multiple languages not supported by the multimodal mode
 
 ### MAI Transcribe supported languages (preview)
 
-MAI Transcribe (`mai-transcribe`) is an alternative transcription model that can be paired with any text-based chat model.
+MAI Transcribe (`mai-transcribe`) is an alternative transcription model that you can pair with any text-based chat model.
 If you configure `mai-transcribe` in voice live, the default used model is `mai-transcribe-1.5`.
 
 [!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
