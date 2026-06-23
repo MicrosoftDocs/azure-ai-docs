@@ -21,7 +21,7 @@ With batch transcriptions, you submit [audio data](batch-transcription-audio-dat
 Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors.
 
 > [!TIP]
-> A transcription request can contain URIs for one or more audio files. It is best to separate short and long audio files into different requests, since long audio files require more processing time and may even be retried multiple times due to insufficient computing resources, which prolongs the overall completion time of that request. However, bundling many long audio files together in a single request is a good way to save time.
+> If you need consistent fast speed for audio files less than 2 hours long and less than 300 MB in size, consider using the [fast transcription API](./fast-transcription-create.md) instead. 
 
 ## Prerequisites
 
@@ -44,7 +44,7 @@ To create a batch transcription job, use the [Transcriptions - Submit](/rest/api
 For more information, see [Request configuration options](#request-configuration-options).
 
 > [!TIP]
-> If you need consistent fast speed for audio files less than 2 hours long and less than 300 MB in size, consider using the [fast transcription API](./fast-transcription-create.md) instead. 
+> A transcription request can contain URIs for one or more audio files. It is best to separate short and long audio files into different requests, since long audio files require more processing time and may even be retried multiple times due to insufficient computing resources, which prolongs the overall completion time of that request. However, bundling many long audio files together in a single request is a good way to save time.
 
 
 Make an HTTP POST request that uses the URI as shown in the following [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) example.
