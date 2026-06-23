@@ -181,7 +181,7 @@ For speech input customization options such as phrase list and custom speech, se
 
 ### MAI Transcribe (preview)
 
-MAI Transcribe is a transcription model that can be used as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`). Enable it by setting `input_audio_transcription.model` to `mai-transcribe` in a `session.update` message:
+MAI Transcribe is a transcription model that you can use as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`). Enable it by setting `input_audio_transcription.model` to `mai-transcribe` in a `session.update` message:
 
 ```json
 {
