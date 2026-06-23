@@ -3,7 +3,7 @@ title: Enable telemetry and tracing for Voice Live
 titleSuffix: Foundry Tools
 description: Learn how to enable OpenTelemetry tracing for Voice Live SDK sessions to monitor performance, diagnose latency, and export traces to Azure Monitor.
 manager: mcleans
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 04/28/2026
 author: PatrickFarley

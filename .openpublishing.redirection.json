@@ -1395,6 +1395,16 @@
       "source_path": "articles/foundry/openai/gpt-realtime-translate.md",
       "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-translate",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/speech-service/multi-device-conversation.md",
+      "redirect_url": "/azure/ai-services/speech-service/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/speech-service/quickstarts/multi-device-conversation.md",
+      "redirect_url": "/azure/ai-services/speech-service/",
+      "redirect_document_id": false
     }
   ]
 }

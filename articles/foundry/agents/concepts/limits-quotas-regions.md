@@ -38,6 +38,10 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 > [!TIP]
 > Model availability can change over time. To verify what you can deploy for your project and region, use the Foundry portal model experience.
 
+### Sovereign clouds
+
+Foundry Agent Service is also available in Azure Government (US Gov Virginia and US Gov Arizona) with a subset of agent types and tools. For the full list of supported features, see [Foundry Agent Service feature availability in Azure Government](./azure-government.md).
+
 ## Troubleshooting
 
 ### A model or version isn't available in your region
