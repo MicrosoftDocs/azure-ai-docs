@@ -42,7 +42,7 @@ Before you begin, you need:
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 * An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your Foundry project. To set it up, see [Set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md).
-* The [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource connected to your project.
+* The [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource connected to your project. If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader).
 
 ## Step 1: Invoke your agent
 
@@ -103,7 +103,7 @@ Tracing data is stored in Application Insights and follows your workspace's data
 | Issue | Solution |
 | ----- | -------- |
 | No traces appear after invoking agent | Confirm Application Insights is connected to your project (see prerequisites). Wait 2–5 minutes for ingestion. Verify the agent responded successfully with `azd ai agent invoke`. |
-| `AuthorizationFailed` when viewing traces | You need the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource. |
+| `AuthorizationFailed` when viewing traces | You need the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource. If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
 | Traces appear but are missing tool call spans | Ensure your agent uses tool-calling (not just text generation). Agents using Microsoft Agent Framework emit tool spans automatically. |
 | `AuthenticationError` or `DefaultAzureCredential` failure | Refresh credentials with `azd auth logout` and then `azd auth login`. |
 | Traces take longer than 5 minutes to appear | Check the Application Insights resource health in the Azure portal. Ingestion delays can occur during high load. |

@@ -49,7 +49,7 @@ To view trace data, make sure your account has access to the connected Applicati
 1. Select **Access control (IAM)**.
 1. Assign an appropriate role to your user or group.
 
-    If you use log-based queries, start by granting the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
+    If you use log-based queries, start by granting the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also grant the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader).
 
 ## Security and privacy
 
@@ -615,7 +615,7 @@ Traces typically appear within 2–5 minutes after agent execution. If traces st
 | You don't see LangChain or LangGraph spans | The Microsoft OpenTelemetry distro isn't initialized or LangChain instrumentation isn't enabled | Confirm you call `use_microsoft_opentelemetry(...)` with `"langchain": {"enabled": True}` before running your agent. |
 | LangChain spans appear but tool calls are missing | Tools aren't bound to the model or tool node isn't configured | Verify tools are passed to `bind_tools()` on the model and that tool nodes are added to your graph. |
 | Traces appear but are incomplete or missing spans | Content recording is disabled, the GenAI semantic convention opt-in isn't set, or some operations aren't instrumented | For LangChain and LangGraph, set `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=SPAN_AND_EVENT`, `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental`, and `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true` during development. For custom operations, add manual spans using the OpenTelemetry SDK. |
-| You see authorization errors when you query telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
+| You see authorization errors when you query telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
 | Sensitive content appears in traces | Content recording is enabled and prompts, tool arguments, or outputs include sensitive data | Disable content recording in production and redact sensitive data before it enters telemetry. |
 
 ## Related content
