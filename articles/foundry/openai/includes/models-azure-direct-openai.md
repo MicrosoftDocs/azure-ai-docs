@@ -7,6 +7,7 @@ ms.date: 05/28/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
+ai-usage: ai-assisted
 ---
 
 ## Azure OpenAI in Microsoft Foundry models
@@ -201,9 +202,12 @@ For model availability across all regions, grouped by deployment category, see [
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments) | 32,768 | May 31, 2024 |
-| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
-| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 300,000 (standard deployments) <br> - 128,000 (provisioned managed and batch deployments) | 32,768 | May 31, 2024 |
+| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard deployments) <br> - 128,000 (provisioned managed and batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard deployments) <br> - 128,000 (provisioned managed and batch deployments)  | 32,768 | May 31, 2024 |
+
+> [!NOTE]
+> Provisioned managed deployments of GPT-4.1 series models support context lengths less than 128,000 tokens. A request that exceeds this limit returns an HTTP 400 error. To handle long-context requests on a provisioned deployment, enable [spillover](../how-to/spillover-traffic-management.md), which routes those requests to a corresponding standard deployment.
 
 ### Known issue
 
