@@ -133,8 +133,8 @@ items:
   - name: Deployment overview
     displayName: Deployment overview for Microsoft Foundry Models
     href: ../../concepts/deployments-overview.md
-  - name: Instant models (preview)
-    displayName: Instant models in Microsoft Foundry (preview)
+  - name: Instant access models (preview)
+    displayName: Instant access to models in Microsoft Foundry (preview)
     href: ../../concepts/instant-models.md
   - name: Managed compute overview (preview)
     displayName: Managed compute deployment for open-source AI models in Foundry
