@@ -4,11 +4,11 @@ description: Include file
 ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: include
-ms.date: 01/05/2026
-ms.author: jburchel
+ms.date: 06/15/2026
+ms.author: lajanuar
 ms.reviewer: maanavd
 reviewer: maanavdalal
-author: jonburchel
+author: laujan
 ai-usage: ai-assisted
 ---
 
@@ -346,4 +346,4 @@ await whisperModel.unload();
 References:
 
 - [Transcribe audio files with Foundry Local](../../how-to/how-to-transcribe-audio.md)
-- [Audio Transcription Sample (GitHub)](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/audio-transcription-foundry-local)
+- [Audio Transcription Sample (GitHub)](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/javascript/foundry-local/audio-transcription-foundry-local)

@@ -3,7 +3,7 @@ title: Use personal voice in your application
 titleSuffix: Foundry Tools
 description: Learn how to integrate personal voice in your application.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026
@@ -31,6 +31,7 @@ This table shows the advantages of the different base models:
 | **DragonLatestNeural** | Good similarity to the recording. | 500ms |
 | **DragonHDOmniLatestNeural** | Natural prosody, style and paralinguistics control. For example: <br/> `[laughter] Don't worry—we'll get you a table, no problem! [Sad] Don't worry—we'll get you a table, no problem!` <br/> See [the supported styles and paralinguistics](./high-definition-voices.md#supported-styles-for-dragon-hd-omni). | 300ms |
 | **MAI-Voice-1** | Highly expressive and natural, now only available in en-US. | 1500ms |
+| **MAI-Voice-2** | High-fidelity, expressive. Supports multilingual synthesis across [more than 10 languages](./mai-voices.md#prebuilt-voices-1).  | 1600ms |
 | **PhoenixLatestNeural** | Accurate pronunciation, lower latency. | 200ms |
 
   > [!NOTE]

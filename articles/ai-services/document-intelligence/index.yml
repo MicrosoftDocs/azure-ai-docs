@@ -6,7 +6,7 @@ summary: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft
 metadata:
   title: Document Intelligence documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
   description: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry tool that uses machine-learning models to extract key-value pairs, text, and tables from your documents. Document Intelligence analyzes your forms and documents, extracts text and data, maps field relationships as key-value pairs, and returns a structured JSON output. You quickly get accurate results that are tailored to your specific content without excessive manual intervention or extensive data science expertise. Use Document Intelligence to automate your data processing in applications and workflows, enhance data-driven strategies, and enrich document search capabilities.
-  ms.service: azure-ai-document-intelligence
+  ms.service: azure-document-intelligence-foundry-tools
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
@@ -27,10 +27,14 @@ landingContent:
             url: overview.md
           - text: Document Intelligence FAQ
             url: faq.yml
+          - text: Version lifecycle and retirement
+            url: overview.md#version-support-and-retirement
       - linkListType: whats-new
         links:
           - text: What's new in Azure Document Intelligence?
             url: whats-new.md
+          - text: "Retirement notice: v3.0 API retires March 30, 2029"
+            url: versioning/migration-guide-overview.md
 
   #Card 2
    - title: Document Intelligence models

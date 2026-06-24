@@ -3,12 +3,13 @@ title: What Is Azure Document Intelligence in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Azure Document Intelligence in Foundry Tools is a machine-learning based OCR and intelligent document processing service to automate extraction of key data from forms and documents.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 06/04/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
+ai-usage: ai-assisted
 ---
 
 
@@ -16,7 +17,7 @@ monikerRange: '<=doc-intel-4.0.0'
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
-
+<!-- markdownlint-disable MD025 -->
 # What is Azure Document Intelligence in Foundry Tools?
 
  :::moniker range="doc-intel-4.0.0"
@@ -46,7 +47,7 @@ Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](..
 >
 > * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
 > * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
-> * To avoid production disruption, migrate now to **Azure Document Intelligence 2024-11-30 v4.0**. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
+> * To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before these retirement dates. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
 
 Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
 
@@ -65,30 +66,20 @@ Document analysis (general extraction) models enable text extraction from forms 
 
 :::moniker range="doc-intel-4.0.0"
 
- :::row:::
-    :::column:::
-    [Read](#read) | Extract printed and handwritten text.
-    :::column-end:::
-    :::column span="":::
-     [Layout](#layout) | Extract text, tables, and document structure.
-    :::column-end:::
-   :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Read](#read) | Extract printed and handwritten text. |
+| [Layout](#layout) | Extract text, tables, and document structure. |
 
 :::moniker-end
 
 :::moniker range="<=doc-intel-3.1.0"
 
- :::row:::
-    :::column:::
-    [Read](#read) | Extract printed </br>and handwritten text.
-    :::column-end:::
-    :::column span="":::
-     [Layout](#layout) | Extract text, tables, </br>and document structure.
-    :::column-end:::
-    :::column span="":::
-     [General document](#general-document-deprecated-in-2023-10-31-preview) | Extract text, structure, and </br>key-value pairs.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Read](#read) | Extract printed and handwritten text. |
+| [Layout](#layout) | Extract text, tables, and document structure. |
+| [General document](#general-document-deprecated-in-2023-10-31-preview) | Extract text, structure, and key-value pairs. |
 
 :::moniker-end
 
@@ -100,120 +91,58 @@ You can use prebuilt models to add intelligent document processing to your apps 
 
 ### Financial services and legal
 
- :::row:::
-    :::column span="":::
-     [Bank statement](#bank-statement) | Extract account information and details from bank statements.
-    :::column-end:::
-    :::column span="":::
-     [Check](#check) | Extract relevant information from checks.
-    :::column-end:::
-    :::column span="":::
-     [Contract](#contract-model) | Extract agreement and party details.
-    :::column-end:::
- :::row-end:::
- :::row:::
-     :::column span="":::
-     [Credit card](#credit-card-model) | Extract payment card information.
-     :::column-end:::
-     :::column span="":::
-     [Invoice](#invoice) | Extract customer and vendor details.
-    :::column-end:::
-    :::column span="":::
-     [Pay stub](#pay-stub) | Extract pay stub details.
-    :::column-end:::
-    :::column span="":::
-     [Receipt](#receipt) | Extract sales transaction details.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Bank statement](#bank-statement) | Extract account information and details from bank statements. |
+| [Check](#check) | Extract relevant information from checks. |
+| [Contract](#contract-model) | Extract agreement and party details. |
+| [Credit card](#credit-card-model) | Extract payment card information. |
+| [Invoice](#invoice) | Extract customer and vendor details. |
+| [Pay stub](#pay-stub) | Extract pay stub details. |
+| [Receipt](#receipt) | Extract sales transaction details. |
 
 ### US tax
 
- :::row:::
-    :::column span="":::
-     [Unified US tax](#unified-us-tax-forms) | Extract from any US tax forms supported.
-    :::column-end:::
-    :::column span="":::
-     [US tax W-2](#us-tax-w-2-model) | Extract taxable compensation details.
-    :::column-end:::
-    :::column span="":::
-     [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details.
-    :::column-end:::
-    :::column span="":::
-     [US tax 1099](#us-tax-1099-and-variations-forms) | Extract 1099 variation details.
-    :::column-end:::
-    :::column span="":::
-     [US tax 1040](#us-tax-1040-and-variations-forms) |  Extract 1040 variation details.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Unified US tax](#unified-us-tax-forms) | Extract from any US tax forms supported. |
+| [US tax W-2](#us-tax-w-2-model) | Extract taxable compensation details. |
+| [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details. |
+| [US tax 1099](#us-tax-1099-and-variations-forms) | Extract 1099 variation details. |
+| [US tax 1040](#us-tax-1040-and-variations-forms) | Extract 1040 variation details. |
 
 ### US mortgage
 
- :::row:::
-    :::column span="":::
-     [US mortgage 1003](#us-mortgage-1003-form) | Extract loan application details.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage 1004](#us-mortgage-1004-form) | Extract information from appraisal.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage 1005](#us-mortgage-1005-form) | Extract information from validation of employment.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage 1008](#us-mortgage-1008-form) | Extract loan transmittal details.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage disclosure](#us-mortgage-disclosure-form) | Extract final closing loan terms.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [US mortgage 1003](#us-mortgage-1003-form) | Extract loan application details. |
+| [US mortgage 1004](#us-mortgage-1004-form) | Extract information from appraisal. |
+| [US mortgage 1005](#us-mortgage-1005-form) | Extract information from validation of employment. |
+| [US mortgage 1008](#us-mortgage-1008-form) | Extract loan transmittal details. |
+| [US mortgage disclosure](#us-mortgage-disclosure-form) | Extract final closing loan terms. |
 
 ### Personal identification
 
- :::row:::
-    :::column span="":::
-     [Health insurance card](#health-insurance-card) | Extract insurance coverage details.
-    :::column-end:::
-     :::column span="":::
-     [Identity](#identity-id) | Extract verification details.
-    :::column-end:::
-        :::column span="":::
-     [Marriage certificate](#marriage-certificate-model) | Extract certified marriage information.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Health insurance card](#health-insurance-card) | Extract insurance coverage details. |
+| [Identity](#identity-id) | Extract verification details. |
+| [Marriage certificate](#marriage-certificate-model) | Extract certified marriage information. |
 
 :::moniker-end
 
 :::moniker range="<=doc-intel-3.1.0"
 
-:::row:::
-   :::column span="":::
-    [Invoice](#invoice) | Extract customer </br>and vendor details.
-   :::column-end:::
-   :::column span="":::
-    [Receipt](#receipt) | Extract sales </br>transaction details.
-   :::column-end:::
-   :::column span="":::
-    [Identity](#identity-id) | Extract identification </br>and verification details.
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-    [Health insurance card](#health-insurance-card) | Extract health insurance details.
-   :::column-end:::
-   :::column span="":::
-    [Business card](#business-card) | Extract business contact details.
-   :::column-end:::
-   :::column span="":::
-    [Contract](#contract-model) | Extract agreement</br> and party details.
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-    [US tax W-2](#us-tax-w-2-model) | Extract taxable </br>compensation details.
-   :::column-end:::
-   :::column span="":::
-    [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details.
-   :::column-end:::
-:::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Invoice](#invoice) | Extract customer and vendor details. |
+| [Receipt](#receipt) | Extract sales transaction details. |
+| [Identity](#identity-id) | Extract identification and verification details. |
+| [Health insurance card](#health-insurance-card) | Extract health insurance details. |
+| [Business card](#business-card) | Extract business contact details. |
+| [Contract](#contract-model) | Extract agreement and party details. |
+| [US tax W-2](#us-tax-w-2-model) | Extract taxable compensation details. |
+| [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details. |
 
 :::moniker-end
 
@@ -225,27 +154,29 @@ Custom models are trained by using your labeled datasets to extract distinct dat
 
 ✔️ Document field extraction models are trained to extract labeled fields from documents.
 
-:::row:::
-   :::column span="":::
-    [Custom neural](#custom-neural) | Extract data from mixed-type documents.
-   :::column-end:::
-   :::column span="":::
-    [Custom template](#custom-template) | Extract data from static layouts.
-   :::column-end:::
-   :::column span="":::
-    [Custom composed](#custom-composed) | Extract data by using a collection of models.
-   :::column-end:::
-:::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Custom neural](#custom-neural) | Extract data from mixed-type documents. |
+| [Custom template](#custom-template) | Extract data from static layouts. |
+| [Custom composed](#custom-composed) | Extract data by using a collection of models. |
 
 ### Custom classification models
 
 ✔️ Custom classifiers identify document types before invoking an extraction model.
 
-:::row:::
-   :::column span="":::
-    [Custom classifier](#custom-classification-model) | Identify designated document types (classes) before invoking an extraction model.
-   :::column-end:::
-:::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Custom classifier](#custom-classification-model) | Identify designated document types (classes) before invoking an extraction model. |
+
+## Field type extraction
+
+Document Intelligence returns extracted field values as strongly typed data. Each field in the extraction response carries a value type—such as **string**, **number**, **integer**, **date**, **time**, **phoneNumber**, **currency**, or **address**—that determines how the raw text is normalized and surfaced in the API response.
+
+* **Prebuilt models**: For prebuilt models such as **prebuilt-invoice** or **prebuilt-receipt**, field schemas are defined and maintained by Microsoft. Common fields are mapped to specific types—for example, **InvoiceDate** is returned as a **date** type and **SubTotal** as a **currency** type—so normalization happens automatically without any configuration.
+
+* **Custom models**: When you train a custom extraction model, you define the field schema. For each labeled field, you explicitly assign a type (**string**, **number**, **integer**, or **date**). The model then uses that type definition to auto-normalize extracted values during inference.
+
+For the full field schema reference, see [Document Intelligence supported schema](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga).
 
 ## Add-on capabilities
 
@@ -623,10 +554,11 @@ Azure Document Intelligence is a cloud-based [Foundry Tools](../../ai-services/i
 
  >[!TIP]
  >
- > For an enhanced experience and advanced model quality, try the [Document Intelligence v3.0 Studio](https://formrecognizer.appliedai.azure.com/studio):
+ > For an enhanced experience and advanced model quality, try the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) for v4.0:
 
- >   * The v3.0 Studio supports any model trained with v2.1 labeled data.
- >   * For more information about migrating from v2.1 to v3.0, see the API migration guide.
+ >   * The Studio supports any model trained with v2.1 labeled data.
+ >   * For more information about migrating from v2.1 to v4.0, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
+ >   * **Note**: The v3.0 API (`2022-08-31`) reaches end of support on March 30, 2029. Migrate v3.0 workloads to v4.0 before that date.
 
 To learn more about each model and browse the API references, use the links in the following table.
 
@@ -644,6 +576,19 @@ To learn more about each model and browse the API references, use the links in t
 ## Data privacy and security
 
  As with all Foundry Tools, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
+
+## Version support and retirement
+
+The following table summarizes Document Intelligence API version support:
+
+| Version | Status | End of support |
+|---------|--------|---------------|
+| v4.0 (2024-11-30) | GA — current | No announced date |
+| v3.1 (2023-07-31) | GA — previous | No announced date |
+| v3.0 (2022-08-31) | GA — retiring | March 30, 2029 |
+| v2.1 | GA — retiring | September 15, 2027 |
+
+To avoid production disruption, migrate to v4.0 before the retirement dates above. For migration guidance, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
 
 ## Related content
 

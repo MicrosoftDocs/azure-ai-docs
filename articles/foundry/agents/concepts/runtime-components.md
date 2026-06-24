@@ -1,7 +1,7 @@
 ---
 title: "Build with agents, conversations, and responses in Foundry Agent Service"
 description: "Learn how to create agents, manage conversations, and generate responses in Microsoft Foundry Agent Service with code examples in Python, C#, JavaScript, Java, and REST API."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article

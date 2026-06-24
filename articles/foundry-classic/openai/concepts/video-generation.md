@@ -3,7 +3,7 @@ title: "Sora video generation overview (preview) (classic)"
 description: "Learn about Sora, an AI model for generating realistic and imaginative video scenes from text instructions, including safety, limitations, and supported features. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

@@ -3,7 +3,7 @@
     {
       "source_path": "articles/foundry/agents/how-to/publish-agent.md",
       "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/foundry/agents/concepts/agent-catalog.md",
@@ -18,6 +18,11 @@
     {
       "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
       "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/authoring-reference-preview.md",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/evals",
       "redirect_document_id": false
     },
     {
@@ -1302,6 +1307,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/agents/how-to/tools/knowledge-retrieval.md",
+      "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
       "redirect_document_id": true
@@ -1364,12 +1374,12 @@
     {
       "source_path": "articles/ai-services/reference/sdk-package-resources.md",
       "redirect_url": "/azure/foundry/how-to/develop/sdk-overview",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/ai-services/reference/rest-api-resources.md",
       "redirect_url": "/azure/foundry/reference/foundry-project",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/foundry-classic/openai/how-to/business-continuity-disaster-recovery.md",
@@ -1389,6 +1399,16 @@
     {
       "source_path": "articles/foundry/openai/gpt-realtime-translate.md",
       "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-translate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/speech-service/multi-device-conversation.md",
+      "redirect_url": "/azure/ai-services/speech-service/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/speech-service/quickstarts/multi-device-conversation.md",
+      "redirect_url": "/azure/ai-services/speech-service/",
       "redirect_document_id": false
     }
   ]

@@ -20,13 +20,13 @@ When you're using the `Ocp-Apim-Subscription-Key` header, only your resource key
 'Ocp-Apim-Subscription-Key': 'YourSpeechResourceKey'
 ```
 
-When you're using the `Authorization: Bearer` header, you need to make a request to the `issueToken` endpoint. In this request, you exchange your resource key for an access token that's valid for 10 minutes.
+If you use the STS bearer-token flow with `Authorization: Bearer`, first make a request to the `issueToken` endpoint. In this request, you exchange your resource key for an access token that's valid for 10 minutes.
 
 Another option is to use Microsoft Entra authentication that also uses the `Authorization: Bearer` header, but with a token issued via Microsoft Entra ID. See [Use Microsoft Entra authentication](#use-microsoft-entra-authentication).
 
-### How to get an access token
+### How to get an STS access token
 
-To get an access token, you need to make a request to the `issueToken` endpoint by using `Ocp-Apim-Subscription-Key` and your resource key.
+To get an STS access token, make a request to the `issueToken` endpoint by using `Ocp-Apim-Subscription-Key` and your resource key.
 
 The `issueToken` endpoint has this format:
 

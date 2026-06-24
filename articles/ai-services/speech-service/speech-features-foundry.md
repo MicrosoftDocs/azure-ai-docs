@@ -3,7 +3,7 @@ title: Azure Speech features in Microsoft Foundry - Speech service
 titleSuffix: Foundry Tools
 description: Try Azure Speech features in Microsoft Foundry using a simple web interface.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 01/09/2026

@@ -1,7 +1,7 @@
 ---
 title: "Quotas and limits for Microsoft Foundry Agent Service"
 description: "Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models."
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry
@@ -37,6 +37,10 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 
 > [!TIP]
 > Model availability can change over time. To verify what you can deploy for your project and region, use the Foundry portal model experience.
+
+### Sovereign clouds
+
+Foundry Agent Service is also available in Azure Government (US Gov Virginia and US Gov Arizona) with a subset of agent types and tools. For the full list of supported features, see [Foundry Agent Service feature availability in Azure Government](./azure-government.md).
 
 ## Troubleshooting
 

@@ -6,7 +6,7 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.author: pafarley
 ms.reviewer: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 05/21/2026
@@ -145,9 +145,6 @@ Example:
 | Previous neural voice | Omni version voice name                |
 |------------------------|----------------------------------------|
 | de-DE-ConradNeural     | de-DE-Conrad:DragonHDOmniLatestNeural  |
-
-Check out the full [Dragon HD Omni voice list](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/Blog-Samples/Introducing-Dragon-HD-Omni/dragonhdomni_voice_list.json).
-
 
 ### Dragon HD Flash voices
 

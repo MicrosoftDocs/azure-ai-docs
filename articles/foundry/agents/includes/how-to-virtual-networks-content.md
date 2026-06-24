@@ -6,7 +6,7 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/26/2026
+ms.date: 06/05/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -150,12 +150,14 @@ az role assignment create \
 - **The Foundry resource must be deployed in the same region as the virtual network (VNet)**. Other Azure resources, such as Azure Cosmos DB, Azure AI Search, and Azure Storage, can be deployed in different regions. Consider the cost implications of cross-region deployments.
 - **Region availability**:
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+  - For the virtual network IP range, you may use any Private Class A, B or C IP range. Private Class A IP address ranges (10.x.x.x) are only supported in the following regions: Australia East, Brazil South, Canada East, East US, East US 2, France Central, Germany West Central, Italy North, Japan East, South Africa North, South Central US, South India, Spain Central, Sweden Central, UAE North, UK South, West US, West US 3. Use Class B (172.16.x.x) or C (192.168.x.x) ranges for other regions. You may not use any other IP range that overlaps to the list above or uses public IP ranges.
 - **Azure Blob Storage**: Using Azure Blob Storage files with the File Search tool isn't supported.
 - **Code Interpreter file limitations**: In a private network (BYO) configuration, Code Interpreter only works in scenarios that don't involve file uploads or downloads. The tool can't retrieve files from the storage account in this setup. If you need to use files with Code Interpreter, you must use the SDK to create a container explicitly with the required files and then pass the `container_id` to Code Interpreter. This workaround is only available through the SDK; the Foundry portal UI doesn't support it.
 - **Grounding with Bing Search**: Only the following regions are supported: West Europe, Canada East, Switzerland North, Spain Central, UAE North, Korea Central, Poland Central, Southeast Asia, West US, West US 2, West US 3, East US, East US 2, Central US, South India, Japan East, UK South, France Central, Norway East, Australia East, Canada Central, Sweden Central, South Africa North, Italy North, Brazil South
 - **Delete network injection**: If you want to delete your Foundry resource and Standard Agent with secured network setup, delete your Foundry resource and virtual network last. Before deleting the virtual network, delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your Foundry resource.
 - **Hosted agent virtual network injection**: For Hosted agents, the virtual network configuration (network injection) must be included when you first create the Foundry account. Adding network injection to an existing Foundry account after creation isn't supported for Hosted agents. 
 - **Hosted agent container registry behind a private network**: For Hosted agents, the Azure Container Registry (ACR) that stores the agent's container image can't currently be placed behind a private network (private endpoint with public network access disabled). The ACR must be reachable over its public endpoint for the platform to pull the image.
+- **IP Overlap**: Ensure that the address spaces for the used VNET does not overlap with any existing networks in your Azure environment or reserved IP ranges like the following: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, `100.100.224.0/19`, `100.64.0.0/11`. This includes all address space(s) you have in your VNET, if you have more than one, and peered VNETs.
 
 
 ## Architecture diagram

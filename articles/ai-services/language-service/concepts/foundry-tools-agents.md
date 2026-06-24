@@ -3,7 +3,7 @@ title: Azure Language in Foundry Tools - tools and agents
 titleSuffix: Foundry Tools
 description: Learn how Azure Language in Foundry Tools integrates with Microsoft Foundry, including Model Context Protocol (MCP) server endpoints, intent routing agents, and exact question answering agents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 02/06/2026

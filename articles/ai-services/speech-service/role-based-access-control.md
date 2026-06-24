@@ -3,7 +3,7 @@ title: Role-based access control for Speech resources
 titleSuffix: Foundry Tools
 description: Learn how to assign access roles for an AI Speech resource.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 12/19/2025

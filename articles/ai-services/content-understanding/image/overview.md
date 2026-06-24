@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how to use Azure Content Understanding in Foundry Tools image solutions
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/31/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ms.custom:
   - build-2025

@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: "Introduction to disclosure design guidelines and assessing disclosure level for avatars."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted

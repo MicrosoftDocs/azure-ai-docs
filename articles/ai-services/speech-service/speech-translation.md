@@ -3,7 +3,7 @@ title: Speech translation overview - Speech service
 titleSuffix: Foundry Tools
 description: With speech translation, you can add end-to-end, real-time, multi-language translation of speech to your applications, tools, and devices.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026

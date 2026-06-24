@@ -3,7 +3,7 @@ title: Back up and recover your conversational language understanding models
 titleSuffix: Foundry Tools
 description: Learn how to save and recover your conversational language understanding models.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025
@@ -16,7 +16,7 @@ When you create a Language resource in the Azure portal, you specify a region fo
 
 If your app or business depends on the use of a `CLU` model, we recommend that you create a replica of your project into another supported region. So that if a regional outage occurs, you can then access your model in the other fail-over region where you replicated your project.
 
-Replicating a project means that you export your project metadata and assets and import them into a new project. This action only makes a copy of your project settings, intents, entities, and utterances. You still need to [train](../how-to/train-model.md) and [deploy](../how-to/deploy-model.md) the models to be available for use with [runtime APIs](https://aka.ms/clu-apis).
+Replicating a project means that you export your project metadata and assets and import them into a new project. This action only makes a copy of your project settings, intents, entities, and utterances. You still need to [train](../how-to/build-train-deploy-model.md#train-your-model) and [deploy](../how-to/build-train-deploy-model.md#deploy-your-model) the models to be available for use with [runtime APIs](https://aka.ms/clu-apis).
 
 
 In this article, you learn to use the export and import APIs to replicate your project from one resource to another existing in different supported geographical regions. We also provide guidance for keeping your projects in sync and the changes needed to your runtime consumption.

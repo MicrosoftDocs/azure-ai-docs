@@ -7,6 +7,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Once your model is fine-tuned, you can deploy the model and use it in your own application.
@@ -340,7 +341,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completion
 
 ## [CLI](#tab/cli)
 
-Azure CLI is only for control plane operations such as resource creation and [model deployment](/cli/azure/cognitiveservices/account/deployment). For inference operations, use the [REST API](/azure/ai-foundry/openai/reference-preview-latest), or the [language based SDKs](../supported-languages.md).
+Azure CLI is only for control plane operations such as resource creation and [model deployment](/cli/azure/cognitiveservices/account/deployment). For inference operations, use the [REST API](/rest/api/microsoft-foundry/?view=rest-microsoft-foundry-v1-preview&preserve-view=true), or the [language based SDKs](../supported-languages.md).
 
 ---
 

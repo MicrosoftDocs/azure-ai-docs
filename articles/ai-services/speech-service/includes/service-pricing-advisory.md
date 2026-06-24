@@ -2,7 +2,7 @@
 title: Speech service
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 12/02/2019

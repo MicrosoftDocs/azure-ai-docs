@@ -2,7 +2,7 @@
 title: 'Create and manage Azure OpenAI in Microsoft Foundry Models deployments in the Azure portal'
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure portal to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

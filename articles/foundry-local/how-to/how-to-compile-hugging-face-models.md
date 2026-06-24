@@ -1,23 +1,23 @@
 ---
-title: "Compile Hugging Face models to run on Foundry Local"
+title: "Compile Hugging Face models and run on Foundry Local"
 titleSuffix: Foundry Local
 description: "Learn how to compile and run Hugging Face models with Foundry Local."
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-author: jonburchel
+author: laujan
 reviewer: samuel100
-ms.date: 01/06/2026
+ms.date: 06/15/2026
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-local-sdk
 ---
 
-# Compile Hugging Face models to run on Foundry Local
+# Compile Hugging Face models and run on Foundry Local
 
-Foundry Local runs ONNX models on your device. Use [Olive](https://microsoft.github.io/Olive/) to convert and optimize models from Hugging Face (Safetensors or PyTorch) into ONNX so you can run them with Foundry Local.
+Foundry Local runs ONNX models on your device. Use [Olive](https://microsoft.github.io/Olive/) to convert and optimize models from Hugging Face (`Safetensors` or `PyTorch`) into ONNX so you can run them with Foundry Local.
 
 > [!IMPORTANT]
 > The Olive CLI and optimization settings change over time, and a single command line example might not work for every model, device, or execution provider.
@@ -68,10 +68,10 @@ hf auth login
 
 ## Compile the model
 
-This section walks through a manual compilation. The Olive `optimize` command downloads, converts, quantizes, and optimizes the model.
+This section walks through a manual compilation. The Olive `optimize` command can download, convert, quantize, and optimize the model.
 
 > [!NOTE]
-> This is a manual example that might require adjustments for different models or hardware targets.
+> The following script is a manual example that might require adjustments for different models or hardware targets.
 
 1. Run the Olive `optimize` command:
 
@@ -133,7 +133,7 @@ This section walks through a manual compilation. The Olive `optimize` command do
 
 ::: zone pivot="programming-language-csharp"
 
-Use the Foundry Local C# SDK to load and run your compiled model with the native chat completions API. This approach doesn't require a REST server — the SDK communicates directly with the runtime.
+Use the Foundry Local C# SDK to load and run your compiled model with the native chat completions API. This approach doesn't require a REST server—the SDK communicates directly with the runtime.
 
 ### Prerequisites
 

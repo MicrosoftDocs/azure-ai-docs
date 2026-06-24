@@ -3,7 +3,7 @@ title: Send a Named Entity Recognition (NER) request to your custom model
 description: Learn how to send requests for custom NER.
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025
@@ -22,7 +22,7 @@ You can query the deployment programmatically using the [Prediction API](/rest/a
 
 You can retrieve up-to-date information about your projects, make any necessary changes, and oversee project management tasks efficiently through the Microsoft Foundry.
 
-[!INCLUDE [Test model](../../includes/custom/language-studio/test-model.md)]
+[!INCLUDE [Test model](../../includes/custom/foundry/test-model.md)]
 
 :::image type="content" source="../media/test-model-results.png" alt-text="A screenshot showing the model test results." lightbox="../media/test-model-results.png":::
 

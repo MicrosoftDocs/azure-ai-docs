@@ -1,11 +1,12 @@
 ---
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 01/22/2026
 ms.author: fasantia
 author: santiagxf
+ai-usage: ai-assisted
 ---
 
 # [Python](#tab/python)
@@ -227,7 +228,7 @@ Reference: [OpenAI Java SDK](https://github.com/openai/openai-java) and [Default
 
 # [REST](#tab/rest)
 
-Explore the API design in the reference section to see which parameters are available. Indicate the authentication token in the header `Authorization`. For example, the [Chat completion](../../openai/latest.md#create-chat-completion) reference section details how to use the `/chat/completions` route to generate predictions based on chat-formatted instructions. The path `/models` is included in the root of the URL:
+Explore the API design in the reference section to see which parameters are available. Indicate the authentication token in the header `Authorization`. For example, the [Chat completion](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true) reference section details how to use the `/chat/completions` route to generate predictions based on chat-formatted instructions. The path `/models` is included in the root of the URL:
 
 __Request__
 
@@ -292,6 +293,6 @@ az account get-access-token --resource https://cognitiveservices.azure.com --que
 
 This command outputs an access token that you can store in the `$AZURE_OPENAI_AUTH_TOKEN` environment variable.
 
-Reference: [Chat Completions API](../../openai/latest.md#create-chat-completion)
+Reference: [Chat Completions API](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true)
 
 ---

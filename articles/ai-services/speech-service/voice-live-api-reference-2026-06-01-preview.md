@@ -2,8 +2,8 @@
 title: Voice Live API Reference 2026-06-01-preview
 titleSuffix: Foundry Tools
 description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-06-01-preview.
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: reference
 ms.date: 05/25/2026
 author: PatrickFarley
@@ -25,6 +25,7 @@ The API uses JSON-formatted events sent over WebSocket connections to manage con
 This API version adds the following capabilities on top of [2026-04-10](./voice-live-api-reference-2026-04-10.md):
 
 - **`azure-realtime-native` voice type**: A new structured voice object used exclusively with the `azure-realtime` model. The voice is specified as `{"type": "azure-realtime-native", "name": "<voice>"}` where `<voice>` is one of `aarti`, `andrew`, `ava` (default), `denise`, `elsa`, `florian`, `francisca`, `meera`, `ximena`, `xiaoxiao`, or `yunxi`.
+- **Client-side echo cancellation reference** (preview): The `input_audio_echo_cancellation` object now supports a `reference_source` property (`"server"` | `"client"`) and a `channels` property (`1` | `2`). Setting `reference_source` to `"client"` and `channels` to `2` lets you send interleaved stereo PCM16 audio with mic on channel 0 and speaker-playback reference on channel 1 so the server EC model uses your actual played-back audio instead of the internal TTS loopback. Requires the `client_ec_reference` preview feature flag. See [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings).
 - **Streaming text input client events**: New `input_text.delta` and `input_text.done` client events let you stream text input into a conversation item incrementally, similar to how audio is streamed with `input_audio_buffer.append`.
 - **Smart end-of-turn detection**: New audio-based EOU detection variant with `"model": "smart_end_of_turn_detection"`. It operates directly on the input audio stream and exposes the `threshold_level` (`low`, `medium`, `high`, `default`) and `timeout_ms` properties.
 - **Parallel tool calls**: New optional `parallel_tool_calls` boolean on the session object (default `true`). Set to `false` to require the model to issue tool calls sequentially.
@@ -112,7 +113,7 @@ Update the session's configuration. This event can be sent at any time to modify
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 300,
+      "prefix_padding_ms": 420,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -570,7 +571,7 @@ Unlike most other client events, the server doesn't send a confirmation response
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `input_audio_buffer.append`. |
-| audio | string | Base64-encoded audio bytes. This value must be in the format specified by the `input_audio_format` field in the session configuration. |
+| audio | string | Base64-encoded audio bytes. This value must be in the format specified by the `input_audio_format` field in the session configuration. When `channels` is `2` in the echo cancellation settings, the audio must be interleaved stereo PCM16 (`[mic₀, ref₀, mic₁, ref₁, …]`) and each chunk must have a byte length divisible by 4. |
 
 ### input_audio_buffer.clear
 
@@ -708,7 +709,7 @@ Sent when a new session is successfully established. This is the first event rec
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 300,
+      "prefix_padding_ms": 420,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -2618,7 +2619,7 @@ Configuration for input audio transcription.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `mai-transcribe-1`.<br>Supported with **all other models** and **agents**: `azure-speech` and `mai-transcribe-1` |
+| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `mai-transcribe`.<br>Supported with **all other models** and **agents**: `azure-speech` and `mai-transcribe` |
 | language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
@@ -2651,10 +2652,51 @@ Configuration for input audio noise reduction.
 
 Echo cancellation configuration for server-side audio processing.
 
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | Must be `"server_echo_cancellation"` |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| type | string | Yes | — | Must be `"server_echo_cancellation"` |
+| reference_source | [EchoCancellationReferenceSource](#echocancellationreferencesource) | No | `"server"` | Source of the echo reference signal. `"server"` uses the internal TTS loopback (existing behavior). `"client"` uses channel 1 of the stereo input stream as the reference, bypassing the internal loopback. **Preview.** Requires the `client_ec_reference` feature flag. |
+| channels | integer | No | `1` | Number of audio channels in the input stream. `1` = mono (existing behavior). `2` = interleaved stereo PCM16 where channel 0 is the microphone and channel 1 is the echo reference. Must be `1` or `2`. **Preview.** Requires `reference_source: "client"` and `input_audio_format: "pcm16"`. |
 
+> [!NOTE]
+> `reference_source` and `channels` are available starting with API version `2026-06-01-preview` and require the `client_ec_reference` preview feature flag. To enable the flag, append `&features=client_ec_reference:true` to your WebSocket URL. The `reference_source` and `channels` values must be consistent: `"client"` / `2` and `"server"` / `1` are the only valid combinations. Changing `channels` or `reference_source` mid-session is not supported. Additionally, `input_audio_format` and `input_audio_sampling_rate` can't change mid-session.
+
+#### Valid combinations for client-side echo cancellation reference
+
+| `reference_source` | `channels` | Valid | Behavior / Error |
+|--------------------|------------|-------|------------------|
+| `"server"` (default) | `1` (default) | Yes | Existing behavior with internal TTS loopback used as reference. No stereo input required. |
+| `"server"` | `2` | No | Error `invalid_ec_channels_requires_client`. Stereo input is only meaningful with client-supplied EC reference. |
+| `"client"` | `1` | No | Error `invalid_ec_reference_channels`. Client reference audio must be provided via the stereo channel. |
+| `"client"` | `2` | Yes | New behavior with channel 1 of the stereo input used as the echo reference. Send interleaved stereo PCM16: `[mic₀, ref₀, mic₁, ref₁, …]`. |
+
+#### Example — client-side echo cancellation reference
+
+```json
+{
+  "type": "session.update",
+  "session": {
+    "input_audio_format": "pcm16",
+    "input_audio_echo_cancellation": {
+      "type": "server_echo_cancellation",
+      "reference_source": "client",
+      "channels": 2
+    }
+  }
+}
+```
+
+> [!TIP]
+> Stereo input roughly doubles input bandwidth. At 24 kHz PCM16, expect approximately 94 KB/s of raw audio before base64 encoding (~125 KB/s after encoding). The reference channel is stripped before billing measurement and has no impact on audio billing.
+
+#### EchoCancellationReferenceSource
+
+Source of the echo cancellation reference signal.
+
+| Value | Description |
+|-------|-------------|
+| `"server"` | Default. The server uses its internal TTS loopback as the reference signal. |
+| `"client"` | The server uses channel 1 of the stereo input stream as the reference signal. The client is responsible for supplying the actual speaker-playback audio as the second channel. |
 ### Voice Configuration
 
 #### RealtimeVoice
@@ -2781,7 +2823,7 @@ Base VAD-based turn detection.
 |-------|------|-------------|
 | type | string | Must be `"server_vad"` |
 | threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 400) |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
@@ -2808,7 +2850,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
@@ -2826,7 +2868,7 @@ Azure semantic VAD (default variant).
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
@@ -3673,6 +3715,8 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | input_audio_sampling_rate | integer | The sampling rate for the input audio. |
 | input_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the input audio. |
 | output_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the output audio. |
+| input_audio_noise_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction.<br><br>This property is nullable. |
+| input_audio_echo_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation.<br><br>This property is nullable. |
 | input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The settings for audio input transcription.<br><br>This property is nullable. |
 | turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session.<br><br>This property is nullable. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |

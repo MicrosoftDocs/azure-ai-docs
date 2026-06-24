@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: With exploration, Personalizer is able to continuously deliver good results, even as user behavior changes. Choosing an exploration setting is a business decision about the proportion of user interactions to explore with, in order to improve the model.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: concept-article
 ms.date: 01/19/2024

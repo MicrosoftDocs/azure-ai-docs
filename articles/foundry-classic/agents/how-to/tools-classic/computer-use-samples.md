@@ -2,7 +2,7 @@
 title: "How to use the Computer Use Tool (classic)"
 description: "Find code samples and instructions for using the Computer Use model in the Foundry Agent Service. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

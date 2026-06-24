@@ -3,11 +3,12 @@ title: Document layout analysis - Document Intelligence
 titleSuffix: Foundry Tools
 description: Extract text, tables, selections, titles, section headings, page headers, page footers, and more with the layout analysis model from Document Intelligence.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD051 -->
@@ -571,6 +572,10 @@ poller = document_intelligence_client.begin_analyze_document(
 
 :::moniker range="doc-intel-3.0.0"
 [!INCLUDE [applies to v3.0](../includes/applies-to-v30.md)]
+
+> [!IMPORTANT]
+>
+> Azure Document Intelligence v3.0 API (`2022-08-31`) reaches end of support on **March 30, 2029**. To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before this date. For migration guidance, see the [Document Intelligence migration guide](../versioning/migration-guide-overview.md).
 :::moniker-end
 
 :::moniker range="doc-intel-2.1.0"
@@ -1245,6 +1250,7 @@ The layout API also extracts selection marks from documents. Extracted selection
 ### Migration guide
 
 * To learn how to use the v3.1 version in your applications and workflows, follow the steps in the [Document Intelligence v3.1 migration guide](../v3-1-migration-guide.md).
+* If you're using v3.0, migrate to v4.0 before **March 30, 2029**. Use the [Document Intelligence migration guide](../versioning/migration-guide-overview.md) and the [v4.0 quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true).
 
 :::moniker-end
 

@@ -3,7 +3,7 @@ title: Summarize text with the conversation summarization API
 titleSuffix: Foundry Tools
 description: This article shows you how to summarize chat logs with the conversation summarization API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

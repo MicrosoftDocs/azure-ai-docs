@@ -2,7 +2,7 @@
 title: "Use SharePoint content with agent API"
 description: "Learn how to ground Microsoft Foundry agents with SharePoint content using the agent API. Connect to SharePoint sites or folders, use identity passthrough, and keep enterprise access controls intact."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

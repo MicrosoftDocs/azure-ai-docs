@@ -2,7 +2,7 @@
 title: "Connect agents to Microsoft Fabric with Fabric IQ (preview)"
 description: "Learn how to connect your Microsoft Foundry agent to Fabric IQ, a Microsoft Fabric workload that unifies business data through an enterprise ontology and AI agents so your agents can reason over your data in shared semantic context."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -72,7 +72,7 @@ Fabric IQ exposes different MCP endpoint URLs depending on the type of Fabric it
 | Fabric item type | `server_url` pattern | Supported authentication |
 |---|---|---|
 | **Power BI semantic model** | `https://{host}/v1/mcp/fabricaihub/integrations/m365` | BYO Entra app, managed OAuth |
-| **Ontology** | `https://{host}/v1/mcp/dataPlane/workspaces/{workspaceId}/items/{itemId}/ontologyEndpoint` | BYO Entra app |
+| **Ontology** | `https://{host}/v1/mcp/dataPlane/workspaces/{workspaceId}/items/{itemId}/ontologyEndpoint` | BYO Entra app, managed OAuth |
 | **Data agent** | `https://{host}/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent` | BYO Entra app, managed OAuth |
 
 Replace the placeholders as follows:
@@ -82,6 +82,9 @@ Replace the placeholders as follows:
 - `{itemId}` / `{dataAgentId}` — The GUID of the specific Fabric item
 
 You can find the workspace and item GUIDs in the Microsoft Fabric portal: open your workspace, select the item, and copy the IDs from the browser URL.
+
+> [!NOTE]
+> Among the Fabric IQ item types, only the **data agent** MCP endpoint supports long-running operations through [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Ontology and Power BI semantic model endpoints run synchronously and are subject to the standard tool-call timeout. Because the data agent endpoint is an MCP server, you run it in background mode the same way as any other MCP tool — set `background` to `true` and poll the response until it completes. For code samples, see [Long-running operations](model-context-protocol.md#long-running-operations-preview).
 
 > [!TIP]
 > For **Power BI semantic models**, we highly recommend using the latest models such as `gpt-5.4` or `opus 4.7`. Semantic model queries involve complex measure and hierarchy reasoning that benefits significantly from the improved reasoning capability of newer models.
@@ -351,7 +354,7 @@ Fabric IQ uses Microsoft Entra ID delegated authentication (On-Behalf-Of, OBO). 
 
 The authentication method available depends on the Fabric item type:
 
-- **Ontology** — BYO Entra app only. You must register a dedicated Entra application with Power BI delegated permissions.
+- **Ontology** - BYO Entra app or managed OAuth. To use BYO Entra app, register a dedicated Entra application with Power BI delegated permissions.
 - **Data agent** — BYO Entra app (with data agent scopes) or managed OAuth.
 - **Power BI semantic model** — BYO Entra app or managed OAuth.
 

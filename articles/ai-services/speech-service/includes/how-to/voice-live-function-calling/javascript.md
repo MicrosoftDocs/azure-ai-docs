@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -362,7 +362,7 @@ class FunctionCallingAssistant {
       turnDetection: {
         type: "server_vad",
         threshold: 0.5,
-        prefixPaddingInMs: 300,
+        prefixPaddingInMs: 400,
         silenceDurationInMs: 500,
       },
       inputAudioEchoCancellation: {

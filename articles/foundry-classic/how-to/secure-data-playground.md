@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: meerakurup 
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 # Customer intent: As an administrator, I want to make sure that my data is handled securely when used in the playground chat.
 ---

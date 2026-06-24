@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
 author: PatrickFarley 
 ms.author: paulhsu
-manager: nitinme
+manager: mcleans
 ms.date: 03/31/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools

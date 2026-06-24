@@ -3,7 +3,7 @@ title: How to send requests to orchestration workflow
 titleSuffix: Foundry Tools
 description: Learn about sending requests for orchestration workflow.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

@@ -1,19 +1,19 @@
 ---
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 03/29/2026
+ms.date: 06/15/2026
 ---
 
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/rust/tutorial-chat-assistant
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/rust/foundry-local/tutorial-chat-assistant
 ```
 
 ## Install packages
@@ -26,7 +26,7 @@ The Foundry Local SDK provides a model catalog that lists all available models. 
 
 - Open `src/main.rs` and replace its contents with the following code to initialize the SDK and select a model:
 
-    :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-chat-assistant/src/main.rs" id="init":::
+    :::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-chat-assistant/src/main.rs" id="init":::
 
     The `get_model` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `download` method fetches the model weights to your local cache, and `load` makes the model ready for inference.
 
@@ -36,7 +36,7 @@ A system prompt sets the assistant's personality and behavior. It's the first me
 
 Add a system prompt to shape how the assistant responds:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-chat-assistant/src/main.rs" id="system_prompt":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-chat-assistant/src/main.rs" id="system_prompt":::
 
 > [!TIP]
 > Experiment with different system prompts to change the assistant's behavior. For example, you can instruct it to respond as a pirate, a teacher, or a domain expert.
@@ -52,7 +52,7 @@ Add a conversation loop that:
 - Sends the complete history to the model.
 - Appends the assistant's response to the history for the next turn.
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-chat-assistant/src/main.rs" id="conversation_loop":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-chat-assistant/src/main.rs" id="conversation_loop":::
 
 Each call to `complete_chat` receives the full message history. This is how the model "remembers" previous turns — it doesn't store state between calls.
 
@@ -62,7 +62,7 @@ Streaming prints each token as it's generated, which makes the assistant feel mo
 
 Update the conversation loop to use streaming:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-chat-assistant/src/main.rs" id="streaming":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-chat-assistant/src/main.rs" id="streaming":::
 
 The streaming version accumulates the full response so it can be added to the conversation history after the stream completes.
 
@@ -70,7 +70,7 @@ The streaming version accumulates the full response so it can be added to the co
 
 Replace the contents of `src/main.rs` with the following complete code:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-chat-assistant/src/main.rs" id="complete_code":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-chat-assistant/src/main.rs" id="complete_code":::
 
 Run the chat assistant:
 

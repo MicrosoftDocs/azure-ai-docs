@@ -53,7 +53,7 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
   - [Configure guided guardrail set-up for an agent (preview)](guardrails/guided-set-up.md)
 - Foundry Models and platform
   - [Govern model router deployments with Azure Policy](how-to/model-router-policy.md)
-  - [Instant models in Microsoft Foundry (preview)](concepts/instant-models.md)
+  - [Instant access to models in Microsoft Foundry (preview)](concepts/instant-models.md)
   - [Region availability for Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 
 ## Updated articles

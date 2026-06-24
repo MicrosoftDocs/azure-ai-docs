@@ -3,7 +3,7 @@ title: Performance evaluations for Embedded Speech - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to evaluate performance of embedded speech models on your target devices.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026

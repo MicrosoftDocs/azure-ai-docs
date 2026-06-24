@@ -1,11 +1,11 @@
 ---
 title: "How to configure guardrails and controls in Microsoft Foundry"
 description: "Create, configure, and manage guardrails and controls for model deployments and agents in Microsoft Foundry using the portal or REST API."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-content-safety
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 06/10/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -15,6 +15,7 @@ ms.custom: azure-ai-guardrails, doc-kit-assisted
 ---
 
 # How to configure guardrails and controls in Microsoft Foundry
+
 Learn to create, configure, and manage guardrails for your model deployments and agents in Microsoft Foundry using the Foundry portal or the REST API.
 
 For background on guardrails concepts, risks, and intervention points, see [Guardrails and controls overview](guardrails-overview.md).
@@ -229,6 +230,9 @@ Preview API versions include the latest features but may have breaking changes. 
 
 The following code snippets show how to view guardrail annotations in different programming languages.
 
+> [!NOTE]
+> These examples use the Completions API. To detect and handle filtered content when you call the Responses API, see [Handle guardrails and content filtering](../openai/how-to/responses.md#handle-guardrails-and-content-filtering).
+
 ### Install dependencies
 
 Before running the code examples, install the required libraries:
@@ -388,7 +392,7 @@ main();
 }
 ```
 
-For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../openai/reference.md). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
+For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2024-10-21&preserve-view=true). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
 
 ## Document embedding in prompts
 

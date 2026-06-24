@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.date: 12/6/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 recommendations: false
@@ -39,7 +39,7 @@ A Marketing Manager at an environmentally conscious company can use prompt engin
 
 - [Prompt engineering techniques](./prompt-engineering.md)
 - [System messages](./advanced-prompt-engineering.md)
-- [15 tips to become a better prompt engineer for generative AI](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/15-tips-to-become-a-better-prompt-engineer-for-generative-ai/ba-p/3882935)
+- [15 tips to become a better prompt engineer for generative AI](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/15-tips-to-become-a-better-prompt-engineer-for-generative-ai/3882935)
 - [The basics of prompt engineering (video)](https://www.youtube.com/watch?v=e7w6QV1NX1c)
 
 ## RAG (Retrieval Augmented Generation)
@@ -72,7 +72,7 @@ A corporate HR department is looking to provide an intelligent assistant that an
 
 ### Definition
 
-[Fine-tuning](../how-to/fine-tuning.md), specifically [supervised fine-tuning](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tuning-now-available-with-azure-openai-service/ba-p/3954693?lightbox-message-images-3954693=516596iC5D02C785903595A) in this context, is an iterative process that adapts an existing large language model to a provided training set in order to improve performance, teach the model new skills, or reduce latency. This approach is used when the model needs to learn and generalize over specific topics, particularly when these topics are generally small in scope.
+[Fine-tuning](../how-to/fine-tuning.md), specifically [supervised fine-tuning](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/fine-tuning-now-available-with-azure-openai-service/3954693) in this context, is an iterative process that adapts an existing large language model to a provided training set in order to improve performance, teach the model new skills, or reduce latency. This approach is used when the model needs to learn and generalize over specific topics, particularly when these topics are generally small in scope.
 
 Fine-tuning requires the use of high-quality training data, in a [special example based format](../how-to/fine-tuning.md#example-file-format), to create the new fine-tuned Large Language Model. By focusing on specific topics, fine-tuning allows the model to provide more accurate and relevant responses within those areas of focus.
 

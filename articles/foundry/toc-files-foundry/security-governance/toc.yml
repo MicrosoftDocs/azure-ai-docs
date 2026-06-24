@@ -15,6 +15,9 @@ items:
 # Network Security
 - name: Network security
   items:
+  - name: Choose a networking option
+    displayName: networking options, BYO VNet, managed VNet, private link, public, decision, compare
+    href: ../../agents/concepts/networking-options.md
   - name: Configure network isolation
     displayName: custom dns
     href: ../../how-to/configure-private-link.md

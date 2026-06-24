@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description:  Learn how to use evaluations with Azure OpenAI - REST
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 07/28/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

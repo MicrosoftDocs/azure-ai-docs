@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use compressed input audio the Speech SDK and CLI. 
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026

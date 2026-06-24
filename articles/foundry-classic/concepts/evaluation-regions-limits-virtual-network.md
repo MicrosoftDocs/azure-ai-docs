@@ -22,11 +22,11 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 ## Bring your own storage
 
-You can  use your own storage account to run evaluations.
+You can use your own storage account to run evaluations for your Foundry project, whether the project is configured with a virtual network or without one.
 
-You can either use a Bicep template or [manually create and provision access](../how-to/evaluations-storage-account.md) to your storage account in the Azure portal. To use a Bicep template, follow these steps.
-1. Create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
-1. Make sure the connected storage account has access to all projects.
-1. If you connected your storage account by using Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
+For projects without a virtual network, you can either use a Bicep template or [manually create and provision access](../how-to/evaluations-storage-account.md) to your storage account in the Azure portal. For projects with a virtual network, the storage setup is already included in the [setup template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup). To use the non-virtual-network Bicep template, follow these steps.
+1. Create and connect your storage account to your Foundry project at the resource or project level. You can [use a Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
+1. Make sure the connected storage account has access to the account and project.
+1. If you connected your storage account by using Microsoft Entra ID, make sure to give the managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
 
 [!INCLUDE [evaluation-regions-limits-virtual-network 2](../../foundry/includes/concepts-evaluation-regions-limits-virtual-network-2.md)]

@@ -3,11 +3,12 @@ title: General key-value extraction - Document Intelligence
 titleSuffix: Foundry Tools
 description: Extract key-value pairs, tables, selection marks, and text from your documents with Document Intelligence.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD033 -->
@@ -23,6 +24,8 @@ ms.author: lajanuar
 >|----------  |---------|--------|
 >|`Layout` model with the optional query string parameter **`features=keyValuePairs`** enabled.|&bullet; v4:2024-11-30</br>&bullet; v3.1:2023-07-31 (GA) |**`prebuilt-layout`**|
 >|General document model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)</br>&bullet; v2.1 (GA)|**`prebuilt-document`**|
+>
+> **Note**: Azure AI Document Intelligence v3.0 API (`2022-08-31`) reaches end of support on **March 30, 2029**. Migrate v3.0 workloads to the generally available v4.0 API (`2024-11-30`) before this date. In v4.x, the general document (`prebuilt-document`) capability is replaced by the Layout model with `features=keyValuePairs`. See the [Document Intelligence migration guide](../versioning/migration-guide-overview.md) for guidance.
 
 :::moniker-end
 
@@ -71,6 +74,10 @@ Document Intelligence v3.1 supports the following tools, applications, and libra
 
 ::: moniker range="doc-intel-3.0.0"
 
+> [!IMPORTANT]
+>
+> Azure Document Intelligence v3.0 API (`2022-08-31`) reaches end of support on **March 30, 2029**. To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before this date. For general document extraction in v4.0, use the Layout model (`features=keyValuePairs`). For migration guidance, see the [Document Intelligence migration guide](../versioning/migration-guide-overview.md).
+
 Document Intelligence v3.0 supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
@@ -97,7 +104,7 @@ You need the following resources:
  :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
 > [!NOTE]
-> Document Intelligence Studio and the general document model are available with the v3.0 API.
+> Document Intelligence Studio supports v3.0 and v3.1 general document. **Note**: v3.0 retires March 30, 2029. In v4.x, the general document capability is superseded by the Layout model with `features=keyValuePairs`.
 
 1. On the [Document Intelligence Studio home page](https://documentintelligence.ai.azure.com/studio), select **General documents**.
 
@@ -139,6 +146,8 @@ Keys can also exist in isolation when the model detects that a key exists, with 
 ## Next steps
 
 * Follow our [**Document Intelligence v3.1 migration guide**](../v3-1-migration-guide.md) to learn how to use the v3.1 version in your applications and workflows.
+
+* Migrate v3.0 workloads to v4.0 before **March 30, 2029**. For general document extraction in v4.0, use `prebuilt-layout` with `features=keyValuePairs`. See the [Document Intelligence migration guide](../versioning/migration-guide-overview.md).
 
 * Explore our [**REST API**](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP).
   

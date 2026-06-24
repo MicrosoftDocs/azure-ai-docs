@@ -48,6 +48,6 @@ For more information about quota, see [Microsoft Foundry Models quotas and limit
 
 - [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
 - [Deployment types for Foundry Models](../concepts/deployment-types.md)
-- [Instant models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy models using Azure CLI and Bicep](../how-to/create-model-deployments.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)

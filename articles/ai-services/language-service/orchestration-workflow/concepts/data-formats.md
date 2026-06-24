@@ -3,7 +3,7 @@ title: Orchestration workflow data formats
 titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by orchestration workflow.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

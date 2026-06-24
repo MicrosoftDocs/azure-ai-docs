@@ -1,10 +1,10 @@
 ---
-title: Use Azure AI Content Safety middleware with LangChain
-description: "Learn how to use Azure AI Content Safety middleware in LangChain agents with the langchain-azure-ai package."
+title: Use Foundry Content Safety middleware with LangChain
+description: "Learn how to use Foundry Content Safety middleware in LangChain agents with the langchain-azure-ai package."
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/24/2026
+ms.date: 06/19/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasantia
@@ -15,10 +15,9 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai middleware so that I can add content moderation, prompt shielding, groundedness detection, and protected material scanning to my LangChain agents.
 ---
 
-# Use Azure AI Content Safety middleware with LangChain
+# Use Foundry Content Safety middleware with LangChain
 
-Use the `langchain-azure-ai` package to add Azure Content Safety in Foundry Tools
-capabilities to your LangChain agents. You learn how to apply content
+Use the `langchain-azure-ai` package to add Azure Content Safety in Foundry Tools capabilities to your LangChain agents. You learn how to apply content
 moderation, prompt shielding, groundedness detection, and protected material
 scanning as middleware in your agent graphs.
 
@@ -124,7 +123,7 @@ agent = create_agent(
     model=model,
     system_prompt=(
         "You are a helpful assistant for demonstrating "
-        "Azure AI Content Safety middleware."
+        "Foundry Content Safety middleware."
     ),
     middleware=[
         AzureContentModerationMiddleware(
@@ -184,7 +183,7 @@ agent = create_agent(
     model=model,
     system_prompt=(
         "You are a helpful assistant for demonstrating "
-        "Azure AI Content Safety middleware."
+        "Foundry Content Safety middleware."
     ),
     middleware=[
         AzureContentModerationMiddleware(

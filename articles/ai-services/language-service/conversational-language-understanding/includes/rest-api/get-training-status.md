@@ -1,6 +1,6 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/18/2025
@@ -65,7 +65,7 @@ Once you send the request, you get the following response. Keep polling this end
 |---------|----------|--|
 | `modelLabel` |The model name| `Model1` |
 | `trainingConfigVersion` | The training configuration version. By default, the [latest version](../../../concepts/model-lifecycle.md#custom-features) is used. | `2022-05-01` |
-| `trainingMode` | Your selected [training mode](../../how-to/train-model.md#training-modes).  | `standard` |
+| `trainingMode` | Your selected [training mode](../../how-to/build-train-deploy-model.md#training-modes).  | `standard` |
 | `startDateTime` | The time training started  |`2022-04-14T10:23:04.2598544Z`|
 | `status` | The status of the training job | `running`|
 |`estimatedEndDateTime` | Estimated time for the training job to finish| `2022-04-14T10:29:38.2598544Z`|

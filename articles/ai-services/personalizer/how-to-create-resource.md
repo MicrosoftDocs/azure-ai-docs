@@ -3,7 +3,7 @@ title: Create Personalizer resource
 description: In this article, learn how to create a personalizer resource in the Azure portal for each feedback loop. 
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: how-to
 ms.date: 01/19/2024 

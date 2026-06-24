@@ -81,5 +81,5 @@ If each QnA pair has its own prompt (like Q1A1 with P1 and Q2A1 with P2), the up
 
 ## Next steps
 
-* [Custom question answering quickstart](../quickstart/sdk.md?pivots=studio)
+* [Custom question answering quickstart](../quickstart/sdk.md?pivots=foundry)
 * [Update Sources API reference](/rest/api/questionanswering/question-answering-projects/update-sources)

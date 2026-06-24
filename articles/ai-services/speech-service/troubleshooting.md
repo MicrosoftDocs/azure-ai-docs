@@ -3,7 +3,7 @@ title: Troubleshoot the Speech SDK - Speech service
 titleSuffix: Foundry Tools
 description: This article provides information to help you solve issues you might encounter when you use the Speech SDK.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: troubleshooting
 ms.date: 02/25/2026

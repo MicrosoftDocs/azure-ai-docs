@@ -3,7 +3,7 @@ title: "Migrate to Azure Language from Language Understanding (LUIS) or QnA Make
 titleSuffix: Foundry Tools
 description: Use this article to learn if you need to migrate your applications from Language Understanding (LUIS), QnA Maker, and Text Analytics.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 02/09/2026
@@ -38,18 +38,18 @@ If you're using Language Understanding (LUIS), you can [import your Language Und
 
 1. Create a CLU project and import data
 
-   * Create a CLU project and import the prepared data by using Language Studio or the CLU authoring APIs.
+   * Create a CLU project and import the prepared data by using Microsoft Foundry or the CLU authoring APIs.
    * [CLU quickstart (REST API)](../conversational-language-understanding/quickstart.md?pivots=rest-api) provides instructions on creating a CLU project and importing data.
 
 1. Train the model
 
    * Start a training job to build the CLU model from the imported data.
-   * [Train and evaluate a CLU model](../conversational-language-understanding/how-to/train-model.md) provides details on training and evaluating your CLU model.
+   * [Train and evaluate a CLU model](../conversational-language-understanding/how-to/build-train-deploy-model.md#train-your-model) provides details on training and evaluating your CLU model.
 
 1. Test the model
 
    * Send test utterances to the CLU prediction endpoint and verify intent and entity results.
-   * [Conversational Language Understanding overview](../conversational-language-understanding/how-to/call-api.md) provides details on querying your CLU model.
+   * [Conversational Language Understanding overview](../conversational-language-understanding/how-to/build-train-deploy-model.md#send-prediction-requests-to-a-deployment) provides details on querying your CLU model.
 
 ## How do I migrate to Azure Language if I'm using QnA Maker?
 

@@ -3,7 +3,7 @@ title: Azure Translator in Foundry Tools response codes and messages
 titleSuffix: Foundry Tools
 description: Understand response status and error code messages for the Azure Translator operations.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

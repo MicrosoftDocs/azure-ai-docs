@@ -3,7 +3,7 @@ title: "GPT Realtime Whisper overview"
 description: "Learn about GPT Realtime Whisper, a streaming transcription model for low-latency real-time captioning and monitoring of live audio."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

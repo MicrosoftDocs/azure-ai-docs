@@ -3,7 +3,7 @@ title: Create a Blob Knowledge Source for Agentic Retrieval
 description: Learn how to create a blob knowledge source in Azure AI Search that ingests content from Azure Blob Storage or ADLS Gen2 for agentic retrieval.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 06/04/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -49,7 +49,7 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + A blob container with [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + If the knowledge source specifies an Azure OpenAI model for embeddings or image verbalization, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
@@ -568,11 +568,11 @@ If you're satisfied with the knowledge source, [add it to a knowledge base](agen
 
 After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source. This knowledge source supports optional configurations for document-level permissions enforcement and document-embedded image surfacing.
 
-### Enforce document-level permissions
+### Enforce document-level permissions (preview)
 
 To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
-### Surface document-embedded images
+### Surface document-embedded images (preview)
 
 To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
@@ -580,10 +580,20 @@ To surface document-embedded images (such as diagrams or scans) in answer synthe
 
 [!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
+## Known errors
+
+When you create this knowledge source with `contentExtractionMode` set to `standard`, you might get the following error.
+
+```json
+Failed to create custom analyzer 'azs_tmp': BadRequest - {"error":{"code":"InvalidRequest","message":"Invalid request.","innererror":{"code":"DefaultsNotSet","message":"Defaults have not yet been set. Call 'PATCH /contentunderstanding/defaults' first."}}}
+```
+
+To resolve the error, define the default values as instructed in the [Content Understanding prerequisites](/azure/ai-services/content-understanding/tutorial/create-custom-analyzer?tabs=portal%2Cdocument&pivots=programming-language-rest#prerequisites). Afterwards, you can proceed with creating the knowledge source.
+
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
-+ [Blob knowledge source Python sample](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
++ [Python sample: Azure AI Search blob knowledge source](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)

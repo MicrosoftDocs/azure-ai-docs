@@ -6,7 +6,7 @@ reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.date: 04/25/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -92,11 +92,11 @@ For tool configuration syntax and authentication options for each tool type, see
 
   ```bash
   # If you previously installed individual extensions, uninstall them first.
-  azd ext uninstall azure.ai.foundry
+  azd ext uninstall microsoft.foundry
 
   # Install the unified bundle (provides azd ai agent, connection, inspector,
   # project, routine, skill, and toolbox).
-  azd ext install azure.ai.foundry
+  azd ext install microsoft.foundry
   ```
 
 > [!IMPORTANT]
@@ -331,7 +331,7 @@ Publishing a new toolbox creates its first version. That version becomes the def
 
 :::zone pivot="azd"
 
-With the unified `azure.ai.foundry` extension bundle (see [Prerequisites](#prerequisites)), create a toolbox in two steps:
+With the unified `microsoft.foundry` extension bundle (see [Prerequisites](#prerequisites)), create a toolbox in two steps:
 
 1. Use `azd ai connection create` to register each project connection that the toolbox references (one call per credential record).
 2. Use `azd ai toolbox create --from-file <toolbox.yaml>` to create the toolbox. The YAML references connections by name and never embeds credentials.
@@ -1571,7 +1571,7 @@ For OAuth (managed connector, custom app registration), agent identity, or user 
 }
 ```
 
-The connection's `authType` determines the authentication flow. Supported connection auth types for MCP include `CustomKeys`, `OAuth2` (managed or custom), `AgenticIdentity`, and `UserEntraToken`. See the [azd tab](#model-context-protocol-mcp) for connection configuration examples for each auth type.
+The connection's `authType` determines the authentication flow. Supported connection auth types for MCP include `CustomKeys`, `OAuth2` (managed or custom), `AgenticIdentityToken`, and `UserEntraToken`. See the [azd tab](#model-context-protocol-mcp) for connection configuration examples for each auth type.
 
 :::zone-end
 
@@ -1733,7 +1733,7 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 > [!IMPORTANT]
 > - Web Search uses Grounding with Bing Search and Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and Grounding with Bing Custom Search. When you use Grounding with Bing Search and Grounding with Bing Custom Search, data transfers occur outside compliance and geographic boundaries.
-> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
+> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/en-us/bing/apis) for details.
 > - See the [management section](./web-search.md#administrator-control-for-the-web-search-tool) for information about how Azure admins can manage access to use of web search.
 
 Use this pattern to add web search. No project connection is required for the web search with Grounding with Bing. To use a Grounding with custom Bing Search instance, add a `web_search.custom_search_configuration` object pointing to your Grounding with Bing Custom Search connection.
@@ -2173,7 +2173,7 @@ The response returns a list of files with their names and IDs.
 
 **Step 2: Download the file using the File API**
 
-Use the file name returned from Step 1 to download the file via the [File API download endpoint](/azure/foundry/openai/latest#download-file).
+Use the file name returned from Step 1 to download the file via the [File API download endpoint](/rest/api/microsoft-foundry/azureopenai/files?view=rest-microsoft-foundry-v1&preserve-view=true).
 
 ### [File Search](file-search.md)
 
@@ -3108,6 +3108,8 @@ Guardrail configuration isn't yet available in the VS Code extension. Use the RE
 
 Attach [skills](skills.md) to a toolbox version to make them available to agents through the toolbox MCP endpoint. Each skill reference specifies the skill name and an optional version. Omit `version` to use the skill's `default_version`; pin a `version` string to use an immutable snapshot.
 
+A toolbox version can contain tools, skills, or both. The following examples create a toolbox version that contains a single skill reference. To add skills to a toolbox that already has tools, include the same `tools` you used in [Step 1](#step-1-create-a-toolbox-version) along with the `skills` array.
+
 > [!IMPORTANT]
 > Skills attached to a toolbox must exist in the same Foundry project. Cross-project references aren't supported.
 
@@ -3173,14 +3175,15 @@ print(f"Created toolbox version: {toolbox_version.id}")
 
 ```csharp
 #pragma warning disable AAIP001
-var skillRef = new ToolboxSkillReference("greeting");
-// To pin: new ToolboxSkillReference("greeting") { Version = "v1" }
+// Reuse the AgentToolboxes client (toolboxClient) from Step 1.
+ToolboxSkillReference skillRef = new("greeting");
+// To pin a version: new ToolboxSkillReference("greeting") { Version = "v1" }
 
-AgentsToolboxVersion toolboxVersion = toolboxesClient.CreateToolboxVersion(
-    toolboxName: "my-toolbox",
-    description: "Toolbox with a skill reference",
+ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+    name: "my-toolbox",
     tools: [],
-    skills: [skillRef]
+    skills: [skillRef],
+    description: "Toolbox with a skill reference"
 );
 Console.WriteLine($"Created toolbox version: {toolboxVersion.Id}");
 ```
@@ -3299,20 +3302,55 @@ Skills appear as MCP resources with URIs in the format `skill://{name}`.
 
 ### Consume skills from an agent (Microsoft Agent Framework, .NET)
 
-In .NET, use `AgentSkillsProviderBuilder().UseMcpSkills(mcpClient)` from the Microsoft Agent Framework SDK to discover MCP-based skills from a toolbox endpoint and inject them as `AIContextProviders` on the agent. The agent then loads each skill's instructions at runtime when the model decides it's relevant.
+In .NET, use `AgentSkillsProviderBuilder().UseMcpSkills(mcpClient)` from the Microsoft Agent Framework SDK to discover MCP-based skills from a toolbox endpoint and inject them as `AIContextProviders` on the agent. The agent then loads each skill's instructions at runtime when the model decides it's relevant. The following `Program.cs` hosts the agent with the Responses hosting layer (`AddFoundryResponses` and `MapFoundryResponses`).
 
 ```csharp
-using var httpClient = new HttpClient(new BearerTokenHandler(credential, "https://ai.azure.com/.default")
-{
-    InnerHandler = new HttpClientHandler(),
-});
+using System.Net.Http.Headers;
+using Azure.AI.Projects;
+using Azure.Core;
+using Azure.Identity;
+using DotNetEnv;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
+using Microsoft.Extensions.AI;
+using ModelContextProtocol.Client;
 
-await using McpClient mcpClient = await McpClient.CreateAsync(
+// Load .env file if present (for local development).
+Env.TraversePath().Load();
+
+string projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT environment variable is not set.");
+
+string deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+    ?? throw new InvalidOperationException("AZURE_AI_MODEL_DEPLOYMENT_NAME environment variable is not set.");
+
+string toolboxName = Environment.GetEnvironmentVariable("TOOLBOX_NAME")
+    ?? throw new InvalidOperationException("TOOLBOX_NAME environment variable is not set.");
+
+// Build the Foundry Toolbox MCP URL from the project endpoint and toolbox name.
+string toolboxMcpServerUrl = $"{projectEndpoint.TrimEnd('/')}/toolboxes/{toolboxName}/mcp?api-version=v1";
+
+TokenCredential credential = new DefaultAzureCredential();
+
+// HttpClient that attaches a fresh Foundry bearer token to every request.
+// CheckCertificateRevocationList = true satisfies CA5399.
+using var httpClient = new HttpClient(
+    new BearerTokenHandler(credential, "https://ai.azure.com/.default")
+    {
+        CheckCertificateRevocationList = true,
+    });
+
+Console.WriteLine($"Connecting to Foundry Toolbox '{toolboxName}' MCP server...");
+
+// Connect to the Foundry Toolbox MCP endpoint.
+// The Foundry-Features: Toolboxes=V1Preview opt-in header is required while the
+// toolbox MCP surface is in preview.
+await using var mcpClient = await McpClient.CreateAsync(
     new HttpClientTransport(
         new HttpClientTransportOptions
         {
             Endpoint = new Uri(toolboxMcpServerUrl),
-            Name = "foundry_toolbox",
+            Name = toolboxName,
             TransportMode = HttpTransportMode.StreamableHttp,
             AdditionalHeaders = new Dictionary<string, string>
             {
@@ -3321,29 +3359,51 @@ await using McpClient mcpClient = await McpClient.CreateAsync(
         },
         httpClient));
 
+// AgentSkillsProvider implements progressive disclosure over the MCP-discovered skills:
+// names and descriptions are advertised in the system prompt, and the full skill body
+// (and any supplementary resources) is loaded on demand when the model decides it is
+// relevant.
 var skillsProvider = new AgentSkillsProviderBuilder()
     .UseMcpSkills(mcpClient)
     .Build();
 
-AIProjectClient aiProjectClient = new(new Uri(endpoint), credential);
-
-AIAgent agent = aiProjectClient.AsAIAgent(
-    options: new ChatClientAgentOptions
+AIAgent agent = new AIProjectClient(new Uri(projectEndpoint), credential)
+    .AsAIAgent(new ChatClientAgentOptions
     {
-        Name = "ToolboxMcpSkillsAgent",
-        ChatOptions = new()
+        Name = "foundry-toolbox-mcp-skills",
+        Description = "Agent that discovers MCP-based skills from a Foundry Toolbox and exposes them via AgentSkillsProvider.",
+        ChatOptions = new ChatOptions
         {
-            ModelId = deploymentName,
-            Instructions = "You are a helpful assistant. Use available skills to answer the user.",
+            ModelId = deployment,
+            Instructions = "You are a helpful assistant.",
         },
         AIContextProviders = [skillsProvider],
     });
+
+var builder = AgentHost.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.RegisterProtocol("responses", endpoints => endpoints.MapFoundryResponses());
+
+var app = builder.Build();
+app.Run();
+
+// HttpClientHandler that attaches a fresh Foundry bearer token to every outgoing request.
+internal sealed class BearerTokenHandler(TokenCredential credential, string scope) : HttpClientHandler
+{
+    private readonly TokenRequestContext _tokenContext = new([scope]);
+
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        AccessToken token = await credential.GetTokenAsync(this._tokenContext, cancellationToken).ConfigureAwait(false);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Token);
+        return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
+    }
+}
 ```
 
-For the complete implementation, including the `BearerTokenHandler` that attaches a fresh Foundry bearer token to each request, see the [Foundry Toolbox MCP Skills sample](https://github.com/microsoft/agent-framework/blob/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step26_FoundryToolboxMcpSkills/Program.cs) in the Microsoft Agent Framework repository.
+For the complete sample, including project files and deployment steps, see the [Skills in Toolbox sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework/foundry-toolbox-mcp-skills).
 
 :::zone-end
-
 
 ## Virtual network support
 

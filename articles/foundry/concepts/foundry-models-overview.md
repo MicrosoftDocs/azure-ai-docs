@@ -14,7 +14,7 @@ ms.reviewer: rasavage
 reviewer: rsavage2
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 #customer intent: As a developer, I want to explore the Microsoft Foundry model catalog so that I can find and evaluate AI models for my application.
 ---
 
@@ -247,7 +247,7 @@ AI models evolve fast, and when a new version or a new model with updated capabi
  
 ## Related content
 
-- [Instant models in Microsoft Foundry (preview)](instant-models.md)
+- [Instant access to models in Microsoft Foundry (preview)](instant-models.md)
 - [Data, privacy, and security for Models sold by Azure in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
 - [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md)
 

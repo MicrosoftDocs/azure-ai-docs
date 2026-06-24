@@ -7,7 +7,7 @@ ms.date: 05/18/2026
 ms.topic: overview
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: doc-kit-assisted
+ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -29,13 +29,13 @@ The agent optimizer runs a closed-loop evaluation and improvement cycle:
 1. **Rank and recommend.** The optimizer ranks results by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance, and marks the best candidate with ★.
 1. **Deploy the winner.** A single command promotes the winning candidate and saves its configuration to your agent's environment.
 
-The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#install-the-cli-extension)). The run takes 5 to 20 minutes depending on dataset size.
+The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#prerequisites)). The run takes 5 to 20 minutes depending on dataset size.
 
 > [!WARNING]
 > During optimization, the optimizer evaluates your agent by invoking it against every task in your dataset. If your agent calls external tools—such as APIs, databases, or third-party services—those calls execute during each evaluation run. To avoid unintended side effects (charges, state mutations, or rate limiting), consider using test endpoints or mocking tool implementations during optimization.
 
 > [!TIP]
-> For the best results, generate a dataset tailored to your agent with `azd ai agent eval init` before running optimization. The optimizer auto-detects the generated `eval.yaml`. For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
+> For the best results, generate a dataset tailored to your agent with `azd ai agent eval generate` before running optimization. The optimizer auto-detects the generated `eval.yaml`. For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
 
 <!-- :::image type="content" source="media/agent-optimizer-architecture.svg" alt-text="Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup, and the agent optimizer evaluates, generates candidates, and ranks them."::: -->
 
@@ -65,7 +65,10 @@ The optimizer improves tool descriptions and parameter descriptions to help the 
 
 The optimizer evaluates your agent across multiple model deployments in a single run to find the best quality-to-cost trade-off. For example, it can determine whether `gpt-4.1-mini` handles your workload at lower cost or whether `gpt-4.1` provides a quality improvement that justifies the extra token cost.
 
-**When it activates:** Model selection runs when you include `optimization_config.model` in your `eval.yaml` with a list of model deployments to evaluate. The optimizer scores each model option against the same dataset and shows the trade-offs.
+**When it activates:** Model selection runs when you include
+`optimization_config.model_search_space` in your `eval.yaml` with a list of
+model deployments to evaluate. The optimizer scores each model option against
+the same dataset and shows the trade-offs.
 
 > [!NOTE]
 > If the model list includes your agent's current model deployment, it is automatically removed from the candidates (the baseline already represents that model). If no models remain after this removal, you receive a validation error.
@@ -76,7 +79,7 @@ Configure model candidates in your `eval.yaml`:
 # eval.yaml
 options:
   optimization_config:
-    model:
+    model_search_space:
       - gpt-4.1
       - gpt-4.1-mini
       - gpt-4o
@@ -86,15 +89,9 @@ You can combine model selection with instruction and skill optimization in the s
 
 ## Config resolution
 
-When your agent starts, the `load_config()` function checks three sources in order:
+When your agent starts, the `load_config()` function checks several sources in order: inline JSON during candidate evaluation, the resolver API for a fetched candidate, the local `.agent_configs/` directory after you apply a candidate, and finally `None` when no config source is present.
 
-| Priority | Source | Environment variables | When it's used |
-| ---------- | -------- | ---------------------- | ---------------- |
-| 1 | Inline JSON | `OPTIMIZATION_CONFIG` | After deploying directly through the API |
-| 2 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | After `azd ai agent optimize apply` writes config locally |
-| 3 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
-
-Your agent always works with or without optimization. You don't need feature flags or conditional logic. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md).
+Your agent always works with or without optimization. You don't need feature flags or conditional logic. Call `load_config()` and use the values it returns. For the full resolution order and implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md#configuration-resolution-order).
 
 ## What gets optimized
 
@@ -124,36 +121,37 @@ options:
 ```
 
 > [!IMPORTANT]
-> The optimization model must be from the supported list above. If you don't specify `optimization_model`, the optimizer falls back to the eval model. In that case, the eval model must also be a supported optimization model.
+> You must specify `optimization_model`, and the optimization model must be
+> from the supported list above.
 
 ## Understand optimization results
 
 This section describes the results table structure, how scores are computed, what score improvements mean, and how to diagnose common issues.
 
 > [!TIP]
-> You can also view optimization results in the [Azure AI Foundry portal](https://ai.azure.com). Navigate to your project, select **Agents**, choose your agent, and then select the **Optimize** tab to see score comparisons, charts, and deployment options.
+> You can also view optimization results in the [Foundry portal](https://ai.azure.com). Navigate to your project, select **Agents**, choose your agent, and then select the **Optimize** tab to see score comparisons, charts, and deployment options.
 
 After an optimization run completes, you see a results table:
 
 ```
 Results:
-  Candidate              Score    Pass  Eval
-  ──────────────────── ─────── ───────  ──────
-  baseline                0.76     83%  View
-  candidate_1             0.78     73%  View
-  candidate_2             0.79     78%  View
-  candidate_3             0.77     71%  View
-  candidate_4 ★           0.80     80%  View
+  Candidate              Score  Eval  Strategy
+  ──────────────────── ───────  ────  ────────
+  baseline                0.93  View
+  candidate_1             0.90  View  skill_policy-reviewer
+  candidate_2 ★           0.94  View  skill_policy-reviewer, tools
+  candidate_3             0.94  View  skill_policy-reviewer, system_prompt, tools
+  candidate_4             0.93  View  skill_policy-reviewer, tools
 
   Candidate IDs:
-      baseline             cand_abc123...
-      candidate_1          cand_def456...
-      candidate_2          cand_ghi789...
-      candidate_3          cand_jkl012...
-    ★ candidate_4          cand_mno345...
+      baseline             cand_a8a951...
+      candidate_1          cand_8d5c85...
+    ★ candidate_2          cand_a0ea2e...
+      candidate_3          cand_2ae7bb...
+      candidate_4          cand_0f6485...
 
   Apply the best candidate locally, then deploy:
-    azd ai agent optimize apply --candidate cand_mno345...
+    azd ai agent optimize apply --candidate cand_a0ea2e...
     azd deploy
 ```
 
@@ -163,8 +161,8 @@ Results:
 | -------- | ------------- |
 | **Candidate** | Name of the configuration. `baseline` is your current agent before optimization. |
 | **Score** | Composite score across all tasks and criteria, ranging from 0.0 to 1.0. |
-| **Pass** | Percentage of evaluator scores that meet the pass threshold. |
-| **Eval** | Link to the evaluation job in the Azure AI Foundry portal. |
+| **Eval** | Link to the evaluation job in the Foundry portal. |
+| **Strategy** | Mutation targets included in the candidate, such as `skill_policy-reviewer, tools`. |
 
 The ★ marks the candidate with the highest composite score. This is the recommended candidate to deploy.
 
@@ -195,31 +193,11 @@ Optimized instructions are often longer and more detailed, which can increase re
 - Whether the cost increase fits your budget
 - Whether responses are unnecessarily verbose or adding value with the extra length
 
-### Pass rate
-
-Pass rate is computed from each evaluator's pass threshold. For each evaluator score:
-
-- If the evaluator's raw score is **less than** its configured threshold, the result is a **fail**.
-- If the evaluator's raw score is **equal to or greater than** the threshold, the result is a **pass**.
-- For evaluators where lower is better, the logic is reversed (score *above* threshold is a fail).
-
-The pass rate percentage shown in results is the proportion of evaluator scores that passed across all tasks.
-
-### All scores are zero
-
-If all candidates (including baseline) score 0.00, the likely cause is a missing eval model. The eval model scores agent responses against criteria and must be deployed in your Foundry project.
-
-```bash
-azd ai agent optimize --eval-model gpt-4.1-mini
-```
-
-> [!IMPORTANT]
-> If the eval model isn't deployed, all scores are zero with no error message. Always verify that your eval model exists in the project.
-
 ## Limitations and availability
 
-- The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability).
+- The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability), except Norway East.
 - The agent optimizer is supported for hosted agents that use the [Responses protocol](hosted-agents.md#protocols-responses-invocations-and-invocations-websocket).
+
 
 ## Related content
 

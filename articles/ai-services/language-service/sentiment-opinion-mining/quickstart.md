@@ -3,7 +3,7 @@ title: "Quickstart: Use the Sentiment Analysis client library and REST API"
 titleSuffix: Foundry Tools
 description: Use this quickstart to start using the Sentiment Analysis API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 11/18/2025

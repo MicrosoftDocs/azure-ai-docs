@@ -98,7 +98,7 @@ The Responses API supports the following models:
 - `o3` (Version: `2025-04-16`)
 - `o4-mini` (Version: `2025-04-16`)
 
-Not every model is available in every supported region. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability. For the full set of request and response parameters, see the [Responses API reference documentation](../reference-preview-latest.md).
+Not every model is available in every supported region. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability. For the full set of request and response parameters, see the [Responses API reference documentation](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 
 > [!NOTE]
 > Not currently supported:
@@ -1375,6 +1375,296 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ---
 
+## Handle guardrails and content filtering
+
+Guardrails (content filters) are applied at the deployment level and run automatically on every Responses API call, so they protect both the input you send and the output the model generates. You configure guardrails separately. For more information, see [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md). This section shows how to detect and handle guardrail results when you call the Responses API.
+
+The Responses API surfaces guardrail results differently from chat completions. Instead of the `prompt_filter_results` and `content_filter_results` fields that chat completions return, the response object includes a top-level `content_filters` array. Each entry describes one filter result.
+
+| Field | Description |
+| --- | --- |
+| `blocked` | Whether the content was blocked. |
+| `source_type` | Whether the result applies to the `prompt` (input) or the `completion` (output). |
+| `content_filter_results` | The category results, such as `hate`, `sexual`, `violence`, and `self_harm` with severity levels, plus optional categories such as `jailbreak`, `indirect_attack`, `protected_material_text`, and `protected_material_code`. |
+| `content_filter_offsets` | The character offsets that the result applies to. |
+
+> [!NOTE]
+> The `content_filters` array is a Microsoft Foundry extension that isn't part of the base OpenAI response schema, so the SDKs don't expose a typed property for it. Read it as a raw or extra field, as shown in the following examples.
+
+### Detect blocked input
+
+When guardrails block your input, the API returns an HTTP 400 error with the code `content_filter`. Catch this error to handle blocked prompts gracefully.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI, BadRequestError
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+# A blocked prompt raises BadRequestError with the code "content_filter"
+try:
+    response = client.responses.create(
+        model="MODEL_NAME",
+        input="This is a test."
+    )
+    print(response.output_text)
+except BadRequestError as error:
+    if error.code == "content_filter":
+        print("The prompt was blocked by a guardrail.")
+    else:
+        raise
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using OpenAI.Responses;
+using System.ClientModel;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("This is a test.") }
+};
+
+// A blocked prompt throws ClientResultException with HTTP 400
+try
+{
+    ResponseResult response = await openAIClient.CreateResponseAsync(options);
+    Console.WriteLine(response.GetOutputText());
+}
+catch (ClientResultException error) when (error.Status == 400)
+{
+    Console.WriteLine("The prompt was blocked by a guardrail.");
+}
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI, APIError } from "openai";
+
+const openai = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+// A blocked prompt throws APIError with the code "content_filter"
+try {
+  const response = await openai.responses.create({
+    model: "MODEL_NAME",
+    input: "This is a test."
+  });
+  console.log(response.output_text);
+} catch (error) {
+  if (error instanceof APIError && error.code === "content_filter") {
+    console.log("The prompt was blocked by a guardrail.");
+  } else {
+    throw error;
+  }
+}
+```
+
+# [Java](#tab/java)
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.AzureApiKeyCredential;
+import com.openai.errors.BadRequestException;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseCreateParams params = ResponseCreateParams.builder()
+    .model("MODEL_NAME")
+    .input("This is a test.")
+    .build();
+
+// A blocked prompt throws BadRequestException (HTTP 400)
+try {
+    Response response = openAIClient.responses().create(params);
+    System.out.println(response.outputText());
+} catch (BadRequestException error) {
+    System.out.println("The prompt was blocked by a guardrail.");
+}
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "This is a test."
+  }'
+```
+
+When guardrails block the input, the API returns HTTP 400 with the code `content_filter`:
+
+```json
+{
+  "error": {
+    "code": "content_filter",
+    "message": "The response was filtered due to the prompt triggering content management policy."
+  }
+}
+```
+
+---
+
+### Read guardrail annotations
+
+When a request succeeds, read the `content_filters` array from the response to inspect the guardrail results for the input and output.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="This is a test."
+)
+
+# content_filters is an Azure extension, so read it from model_extra
+content_filters = response.model_extra.get("content_filters", [])
+for result in content_filters:
+    print(f"Source: {result['source_type']}, Blocked: {result['blocked']}")
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using OpenAI.Responses;
+using System.ClientModel;
+using System.ClientModel.Primitives;
+using System.Text.Json;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("This is a test.") }
+};
+
+// content_filters has no typed property, so parse it from the raw response
+ClientResult<ResponseResult> result = await openAIClient.CreateResponseAsync(options);
+using JsonDocument doc = JsonDocument.Parse(result.GetRawResponse().Content);
+if (doc.RootElement.TryGetProperty("content_filters", out JsonElement filters))
+{
+    foreach (JsonElement filter in filters.EnumerateArray())
+    {
+        string source = filter.GetProperty("source_type").GetString()!;
+        bool blocked = filter.GetProperty("blocked").GetBoolean();
+        Console.WriteLine($"Source: {source}, Blocked: {blocked}");
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+
+const openai = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+const response = await openai.responses.create({
+  model: "MODEL_NAME",
+  input: "This is a test."
+});
+
+// content_filters is an Azure extension not in the typed response
+const contentFilters = response.content_filters ?? [];
+for (const result of contentFilters) {
+  console.log(`Source: ${result.source_type}, Blocked: ${result.blocked}`);
+}
+```
+
+# [Java](#tab/java)
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.AzureApiKeyCredential;
+import com.openai.core.JsonValue;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseCreateParams params = ResponseCreateParams.builder()
+    .model("MODEL_NAME")
+    .input("This is a test.")
+    .build();
+Response response = openAIClient.responses().create(params);
+
+// content_filters has no typed accessor, so read it from additional properties
+JsonValue contentFilters = response._additionalProperties().get("content_filters");
+System.out.println(contentFilters);
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "This is a test."
+  }'
+```
+
+The `content_filters` array appears on the response object:
+
+```json
+{
+  "id": "resp_<id>",
+  "content_filters": [
+    {
+      "source_type": "prompt",
+      "blocked": false,
+      "content_filter_results": {
+        "hate": { "filtered": false, "severity": "safe" },
+        "self_harm": { "filtered": false, "severity": "safe" },
+        "sexual": { "filtered": false, "severity": "safe" },
+        "violence": { "filtered": false, "severity": "safe" }
+      }
+    }
+  ]
+}
+```
+
+---
+
+To learn more about guardrail categories and severity levels, see [Guardrails overview](../../guardrails/guardrails-overview.md) and [Work with annotations](../../guardrails/how-to-create-guardrails.md#work-with-annotations).
+
 ## Code Interpreter
 
 The Code Interpreter tool enables models to write and execute Python code in a secure, sandboxed environment. It supports a range of advanced tasks, including:
@@ -1673,7 +1963,7 @@ You can provide an image as input to a request in any of the following ways:
 
 - A fully qualified URL to an image file
 - A Base64-encoded data URI
-- A file ID created with the [Files API](../reference-preview-latest.md)
+- A file ID created with the [Files API](/rest/api/microsoft-foundry/azureopenai/files?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 
 ### Image URL
 
@@ -3966,5 +4256,5 @@ Computer use with Playwright has moved to the [dedicated computer use model guid
 - [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
 - [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [API version lifecycle](../api-version-lifecycle.md)
-- [Azure OpenAI REST API reference](../latest.md)
+- [Azure OpenAI REST API reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md)

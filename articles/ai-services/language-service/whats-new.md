@@ -3,7 +3,7 @@ title: What's new in Azure Language in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: whats-new
 ms.date: 05/19/2026
@@ -15,6 +15,9 @@ ms.author: lajanuar
 Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## June 2026
+
+> [!NOTE]
+> For a deeper look at the PII detection updates announced at Microsoft Build, check out the [What's new in Azure Language in Foundry Tools](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/what%E2%80%99s-new-in-azure-language-in-foundry-tools/4521343) blog post.
 
 * **Text PII detection generally available (`2026-05-01`)**. The GA API delivers quality improvements across common entity types. The following capabilities, previously in preview, are now generally available:
 
@@ -178,7 +181,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 ## June 2025
 
-**New version of the Conversational Language Understanding (CLU) training configuration**. This new version is aimed at minimizing over-predictions of the [None intent](conversational-language-understanding/concepts/none-intent.md)—particularly in multilingual contexts—is now available via the REST API using **trainingConfigVersion 2025-07-01-preview**. For more information, *see* [Train your model: request body data](conversational-language-understanding/how-to/train-model.md?tabs=rest-api#request-body).
+**New version of the Conversational Language Understanding (CLU) training configuration**. This new version is aimed at minimizing over-predictions of the [None intent](conversational-language-understanding/concepts/none-intent.md)—particularly in multilingual contexts—is now available via the REST API using **trainingConfigVersion 2025-07-01-preview**. For more information, *see* [Train your model: request body data](conversational-language-understanding/how-to/build-train-deploy-model.md?tabs=rest-api#request-body).
 
 **Updated [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) accelerator project**. The update includes a new routing strategy—**TRIAGE_AGENT**. This strategy uses an agent hosted on Foundry Agent Service. It utilizes Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as tools to triage user intent for downstream agent routing. Additionally, these tools help deliver precise answers to specific questions. For more information, *see* [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)
 

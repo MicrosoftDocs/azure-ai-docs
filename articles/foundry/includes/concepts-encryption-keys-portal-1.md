@@ -1,9 +1,9 @@
 ---
 title: Include file
 description: Include file
-author: jonburchel
+author: s-polly
 ms.reviewer: deeikele
-ms.author: jburchel
+ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/04/2026

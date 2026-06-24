@@ -2,7 +2,7 @@
 title: "Connect to MCP Server Endpoints for agents"
 description: "Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -1097,9 +1097,210 @@ This catalog-based setup creates the MCP tool for use by agents without requirin
 > [!TIP]
 > **Toolbox versioning**: Foundry Toolboxes support versioning, so you can iterate on a new version without affecting production agents. Use the **consumer endpoint** (`{project_endpoint}/toolboxes/{name}/mcp?api-version=v1`) for production agents - it always serves the promoted default version. Use the **version-specific endpoint** (`{project_endpoint}/toolboxes/{name}/versions/{version}/mcp?api-version=v1`) to test before promoting. Keep `server_label` unique per agent, even when switching Toolbox versions. For details, see [Promote a version to default](toolbox.md#promote-a-version-to-default).
 
+## Long-running operations (preview)
+
+Some MCP servers expose tools that take longer than the standard synchronous timeout to return a result. To support these operations, run the agent in [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Background mode runs the response asynchronously, so the MCP tool call can continue without holding an open connection, and you poll for the response status until it completes. This approach lets MCP tool calls exceed the 100-second non-streaming timeout described in [Known limitations](#known-limitations).
+
+> [!NOTE]
+> Long-running MCP operations are in preview. Preview features are provided without a service-level agreement and aren't recommended for production workloads. Behavior and supported models can change.
+
+### Requirements for the MCP server
+
+The agent runtime relies on the MCP server to run the operation asynchronously and report progress. The server must:
+
+- Implement the [Model Context Protocol tasks capability](https://modelcontextprotocol.io/specification) so a tool call can return a task reference instead of blocking until the work finishes.
+- Return a related task identifier in the tool result metadata (the `io.modelcontextprotocol/related-task` field with a `taskId`) when it starts a long-running operation.
+- Expose a way for the runtime to poll the task status and retrieve the final result after the task completes.
+- Be reachable as a remote MCP endpoint, the same as any other MCP tool. Local MCP servers must be self-hosted to provide a remote endpoint. See [Host a local MCP server](#host-a-local-mcp-server).
+
+When the agent runtime calls a tool that starts a long-running operation, the server returns the task reference and the runtime keeps the response in the background. The runtime starts the response, returns immediately with a response `id` and a `status` of `queued`, and collects the result when the task finishes. You poll the response `id` until `status` becomes `completed`, then read the final output.
+
+Background mode for long-running MCP operations is supported only with the following models:
+
+- `gpt-5.5`
+- `gpt-5.5-pro`
+- `gpt-5.4`
+- `gpt-5.4-pro`
+- `gpt-5.4-mini`
+- `gpt-5.4-nano`
+
+If your agent uses a model that isn't in this list, MCP tool calls run synchronously and are subject to the 100-second timeout.
+
+The following examples invoke an agent that's already configured with an MCP tool, set `background` to `true`, and poll until the response completes. Replace the placeholder values with your own.
+
+:::zone pivot="python"
+
+```python
+from time import sleep
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_mcp_agent_name"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Start a background response. It returns immediately with status "queued".
+response = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="Run the long-running task and summarize the result.",
+    background=True,
+)
+
+# Poll the response ID until the MCP tool call completes.
+while response.status in ("queued", "in_progress"):
+    sleep(5)
+    response = openai.responses.retrieve(response.id)
+
+print(response.output_text)
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_mcp_agent_name";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
+
+// Start a background response. It returns immediately with status "queued".
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    new CreateResponseOptions
+    {
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "Run the long-running task and summarize the result.") },
+        Background = true,
+    });
+
+// Poll the response ID until the MCP tool call completes.
+while (response.Status is "queued" or "in_progress")
+{
+    await Task.Delay(5000);
+    response = await responsesClient.RetrieveResponseAsync(response.Id);
+}
+Console.WriteLine(response.GetOutputText());
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_mcp_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = project.getOpenAIClient();
+
+// Start a background response. It returns immediately with status "queued".
+let response = await openai.responses.create({
+  input: "Run the long-running task and summarize the result.",
+  background: true,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+
+// Poll the response ID until the MCP tool call completes.
+while (response.status === "queued" || response.status === "in_progress") {
+  await new Promise((r) => setTimeout(r, 5000));
+  response = await openai.responses.retrieve(response.id);
+}
+console.log(response.output_text);
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_mcp_agent_name";
+
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+AgentReference agentRef = new AgentReference(agentName);
+
+// Start a background response. It returns immediately with status "queued".
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions()
+        .setAgentReference(agentRef)
+        .setBackground(true),
+    ResponseCreateParams.builder()
+        .input("Run the long-running task and summarize the result."));
+
+// Poll the response ID until the MCP tool call completes.
+while (response.status().equals("queued") || response.status().equals("in_progress")) {
+    Thread.sleep(5000);
+    response = responsesClient.getAzureResponse(response.id());
+}
+System.out.println(response.output());
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+Create a background response. The request returns immediately with a response `id` and a `status` of `queued`:
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-mcp"},
+    "input": "Run the long-running task and summarize the result.",
+    "background": true
+  }'
+```
+
+Copy the response `id` from the result, then poll it until `status` is `completed`:
+
+```bash
+curl "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses/$RESPONSE_ID" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+When `status` is `completed`, the `output` array contains the MCP tool call result and the final assistant message.
+
+:::zone-end
+
 ## Known limitations
 
-- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, run the agent in [background mode](#long-running-operations-preview) with a supported model, optimize the server-side logic, or break the operation into smaller steps.
 - **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
 - **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but aren't internally validated.
 

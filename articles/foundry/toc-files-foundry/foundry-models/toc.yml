@@ -133,8 +133,8 @@ items:
   - name: Deployment overview
     displayName: Deployment overview for Microsoft Foundry Models
     href: ../../concepts/deployments-overview.md
-  - name: Instant models (preview)
-    displayName: Instant models in Microsoft Foundry (preview)
+  - name: Instant access models (preview)
+    displayName: Instant access to models in Microsoft Foundry (preview)
     href: ../../concepts/instant-models.md
   - name: Managed compute overview (preview)
     displayName: Managed compute deployment for open-source AI models in Foundry
@@ -204,11 +204,33 @@ items:
     displayName: MAI image models in Foundry
     href: ../../foundry-models/how-to/use-foundry-models-mai.md
   - name: Claude models
-    displayName: Claude in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+    items:
+    - name: Claude models in Foundry
+      displayName: Overview of Claude models in Foundry
+      href: ../../foundry-models/concepts/claude-models.md
+    - name: Deploy and use Claude models
+      displayName: Deploy and use Claude models in Foundry
+      href: ../../foundry-models/how-to/use-foundry-models-claude.md
+    - name: Deploy Claude with Bicep or Terraform
+      displayName: Deploy Claude with Bicep or Terraform
+      href: /azure/developer/ai/how-to/deploy-claude-foundry?context=/azure/foundry/context/context
   - name: FLUX models
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
+  - name: Healthcare AI models
+    items:
+    - name: AI models for healthcare
+      displayName: Premium healthcare AI models in Foundry
+      href: ../../how-to/healthcare-ai/healthcare-ai-models.md
+    - name: Deploy MedImageInsight premium model
+      displayName: Deploy MedImageInsight premium healthcare AI model in Foundry
+      href: ../../how-to/healthcare-ai/deploy-medimageinsight-premium.md
+    - name: Deploy CXRReportGen premium model
+      displayName: Deploy CXRReportGen premium healthcare AI model in Foundry
+      href: ../../how-to/healthcare-ai/deploy-cxrreportgen-premium.md
+    - name: Fine-tune a healthcare AI premium model
+      displayName: Customize a premium healthcare AI model by fine-tuning it in Foundry
+      href: ../../how-to/healthcare-ai/fine-tune-premium-healthcare-models.md
 
 - name: Develop with AI models
   items:
@@ -244,6 +266,12 @@ items:
       - name: WebSocket mode
         displayName: Use the Azure OpenAI Responses API in WebSocket mode
         href: ../../openai/how-to/websockets.md
+      - name: Shell tool
+        displayName: Use the shell tool with the Azure OpenAI Responses API
+        href: ../../openai/how-to/shells.md
+      - name: Skills
+        displayName: Use skills with the Azure OpenAI Responses API
+        href: ../../openai/how-to/skills.md
     - name: Predicted outputs
       displayName: How to use predicted outputs with Azure OpenAI in Microsoft Foundry Models
       href: ../../openai/how-to/predicted-outputs.md
@@ -256,9 +284,6 @@ items:
     - name: Work with reasoning models in Foundry Models
       displayName: How to use reasoning models with Microsoft Foundry Models
       href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
-    - name: Work with Multimodal models
-      displayName: How to use image and audio in chat completions with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-multi-modal.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
     - name: Work with embeddings in Azure OpenAI

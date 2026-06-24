@@ -3,7 +3,7 @@ title: Speech translation quickstart - Speech service
 titleSuffix: Foundry Tools
 description: In this quickstart, you translate speech from one language to text in another language. 
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart

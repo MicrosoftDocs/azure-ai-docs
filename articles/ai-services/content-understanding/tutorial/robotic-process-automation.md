@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn to build a robotic process automation solution with Content Understanding
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: tutorial
 ms.custom:
   - ignite-2025

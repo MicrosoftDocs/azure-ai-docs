@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -311,7 +311,7 @@ public sealed class FunctionCallingClient
             TurnDetection = new AzureSemanticVadTurnDetection
             {
                 Threshold = 0.5f,
-                PrefixPadding = TimeSpan.FromMilliseconds(300),
+                PrefixPadding = TimeSpan.FromMilliseconds(420),
                 SilenceDuration = TimeSpan.FromMilliseconds(500),
             },
             InputAudioEchoCancellation = new AudioEchoCancellation(),

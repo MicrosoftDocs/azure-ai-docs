@@ -2,8 +2,8 @@
 title: Voice Live API Reference 2026-04-10
 titleSuffix: Foundry Tools
 description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-04-10.
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: reference
 ms.date: 04/30/2026
 author: PatrickFarley
@@ -96,7 +96,7 @@ Update the session's configuration. This event can be sent at any time to modify
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 300,
+      "prefix_padding_ms": 420,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -654,7 +654,7 @@ Sent when a new session is successfully established. This is the first event rec
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 300,
+      "prefix_padding_ms": 420,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -2564,7 +2564,7 @@ Configuration for input audio transcription.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `mai-transcribe-1`.<br>Supported with **all other models** and **agents**: `azure-speech` and `mai-transcribe-1` |
+| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `mai-transcribe`.<br>Supported with **all other models** and **agents**: `azure-speech` and `mai-transcribe` |
 | language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
@@ -2707,7 +2707,7 @@ Base VAD-based turn detection.
 |-------|------|-------------|
 | type | string | Must be `"server_vad"` |
 | threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 400) |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
@@ -2734,7 +2734,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
@@ -2752,7 +2752,7 @@ Azure semantic VAD (default variant).
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |

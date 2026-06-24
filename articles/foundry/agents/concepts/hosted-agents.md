@@ -3,8 +3,8 @@ title: "Hosted agents in Foundry Agent Service (preview)"
 description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 03/05/2026
-ms.manager: nitinme
+ms.date: 06/22/2026
+ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -31,7 +31,13 @@ Choose Hosted agents over prompt-based agents when you need to:
 You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Microsoft Entra ID (agent identity), and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
 
 > [!IMPORTANT]
-> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. If you use Hosted Agents with any third-party servers, agents, code, or models that aren't Foundry Models sold by Azure ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs. Review all data shared with and received from Third-Party Systems. Be aware of third-party practices for handling, sharing, retention, and location of data. It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications. Microsoft has no responsibility to you or others in relation to use of Third-Party Systems, and you're responsible for implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems.
+> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations.
+>
+> If you use Hosted Agent with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs.
+>
+> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices. It is your responsibility to manage whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../responsible-ai/agents/transparency-note.md#what-is-a-transparency-note). 
 
 ## Key concepts
 
@@ -128,7 +134,7 @@ A session ID identifies a logical session with persisted state, including $HOME 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: Sessions persist for up to 30 days. The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state.
+- **Session lifetime**: The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state. A session is permanently deleted after 30 days of inactivity.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -157,7 +163,7 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 Treat a Hosted agent like production application code.
 
 > [!IMPORTANT]
-> If you use Foundry Agent Service to host agents that interact with third-party models, servers, or agents, you do so at your own risk. We recommend reviewing all data being shared with third-party models, servers, or agents and understanding third-party practices for retention and location of data. It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
+> Use third-party systems at your own risk, and always implement appropriate responsible AI mitigations. It is your responsibility to manage all data that may flow outside of your organization’s compliance and geographic boundaries. [Learn more](#how-it-works). 
 
 - **Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 - **Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
@@ -178,6 +184,8 @@ Hosted agents provide built-in observability. The platform automatically injects
 For configuration and analysis guidance, see [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md).
 
 ### Toolbox in Foundry 
+> [!IMPORTANT]
+> Adding tools directly to hosted agent's definition is not supported. We recommend using toolboxes in Foundry.
 
 Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). We recommend customers using toolbox in Foundry for connecting tools in Hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based and more. 
 
@@ -194,6 +202,10 @@ Hosted agent sandboxes support the following CPU and memory combinations:
 | 0.5 vCPU | 1 GiB |
 | 1 vCPU | 2 GiB |
 | 2 vCPU | 4 GiB |
+
+### Session storage
+
+Each session has a persistent `$HOME`. Its contents are preserved when compute is deprovisioned after 15 minutes of inactivity, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
 
 ### Scaling and right-sizing
 

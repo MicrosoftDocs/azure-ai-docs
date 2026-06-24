@@ -2,7 +2,7 @@
 title: Get batch transcription results - Speech service
 titleSuffix: Foundry Tools
 description: With batch transcription, the Speech service transcribes the audio data and stores the results in a storage container. You can then retrieve the results from the storage container.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools

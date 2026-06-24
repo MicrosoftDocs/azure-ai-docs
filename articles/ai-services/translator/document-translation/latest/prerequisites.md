@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the prerequisites and setup required to use the Document Translation API, including Azure resources, authentication methods, and infrastructure requirements for different translation processes.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: checklist
 ms.date: 06/02/2026

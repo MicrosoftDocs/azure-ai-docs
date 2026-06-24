@@ -3,8 +3,8 @@ title: What's new in Document Intelligence
 titleSuffix: Foundry Tools
 description: Learn the latest updates to the Azure Document Intelligence in Foundry Tools.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: whats-new
 ms.date: 11/18/2025
 ms.author: lajanuar
@@ -28,7 +28,7 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 >
 > * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
 > * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
-> * To avoid production disruption, migrate now to **Azure Document Intelligence 2024-11-30 v4.0**. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
+> * To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before these retirement dates. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
 
 ## March 2026
 
@@ -74,7 +74,7 @@ For more information, *see* client libraries for the following supported program
 * [Batch API](concept-batch-analysis.md)
   * Batch API now supports all models, including all read, layout, prebuilt verticals, and custom models.
   * Batch API supports LIST function to allow users to list batch jobs within past seven days.
-  * Batch API supports DELETE function to explicitly delete batch job for GDPR and privacy compliance.
+  * Batch API supports DELETE function to explicitly delete batch job for privacy compliance.
   * GetAnalyzeBatchResult supports resultId in response to LIST all resultIds.
 
 * Searchable PDF. The [prebuilt read](prebuilt/read.md) model now supports images formats (JPEG/JPG, PNG, BMP, TIFF, HEIF)  and language expansion to include Chinese, Japanese, and Korean for  [PDF output](prebuilt/read.md#searchable-pdf).

@@ -4,7 +4,7 @@ description: "Build and deploy a real-time voice agent on Foundry Agent Service 
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

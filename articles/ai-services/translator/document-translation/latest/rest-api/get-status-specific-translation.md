@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Retrieve the overall status and document summary for a specific batch translation job using the Document Translation REST API.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

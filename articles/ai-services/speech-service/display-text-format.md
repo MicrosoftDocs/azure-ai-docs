@@ -3,7 +3,7 @@ title: Display text formatting with speech to text - Speech service
 titleSuffix: Foundry Tools
 description: An overview of key concepts for display text formatting with speech to text.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: concept-article

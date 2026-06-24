@@ -1,6 +1,6 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/18/2025
@@ -8,7 +8,7 @@ ms.author: lajanuar
 ---
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Microsoft Foundry portal. 
+> * If you already have an Azure Language in Foundry Tools or multi-service resource, you can continue to use those existing Language resources within the Microsoft Foundry portal. 
 > * For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
 > * We highly recommended that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 
@@ -23,7 +23,7 @@ ms.author: lajanuar
 
 ## Get started with Foundry
 
-To complete this quickstart, you need a Conversational Language Understanding (CLU) fine-tuning task project that includes a [defined schema](../../how-to/build-schema.md) and [labeled utterances](../../how-to/tag-utterances.md). 
+To complete this quickstart, you need a Conversational Language Understanding (CLU) fine-tuning task project that includes a [defined schema](../../how-to/build-train-deploy-model.md#build-your-fine-tuning-schema) and [labeled utterances](../../how-to/build-train-deploy-model.md#label-your-utterances). 
 
 You can download our [**sample project file**](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json), which comes preconfigured with both a schema and labeled utterances. This project enables the prediction of user intent for commands such as reading emails, deleting emails, and attaching documents to emails.
 
@@ -67,7 +67,7 @@ The top section of Azure Language playground is where you can view and select th
 
 ## Train your model
 
-After project creation, the next steps are [schema construction](../../how-to/build-schema.md) and [utterance labeling](../../how-to/tag-utterances.md). For this quickstart, these steps are preconfigured in the sample project. Therefore, you can go ahead and initiate a training job by selecting **Train model** from the **Getting Started** menu to generate your model.
+After project creation, the next steps are [schema construction](../../how-to/build-train-deploy-model.md#build-your-fine-tuning-schema) and [utterance labeling](../../how-to/build-train-deploy-model.md#label-your-utterances). For this quickstart, these steps are preconfigured in the sample project. Therefore, you can go ahead and initiate a training job by selecting **Train model** from the **Getting Started** menu to generate your model.
 
   :::image type="content" source="../../media/quickstarts/getting-started-menu.png" alt-text="Screenshot of the getting started with fine-tuning menu in the Foundry.":::
 
@@ -75,7 +75,7 @@ After project creation, the next steps are [schema construction](../../how-to/bu
 
     :::image type="content" source="../../media/quickstarts/train-your-model-button.png" alt-text="Screenshot of the train your model button in the Foundry.":::
 
-1. Complete the **Select a mode** form by completing the **Model name** field and selecting a **Training mode**. For this quickstart, select the free **Standard training** mode. For more information, *see* [Training modes](../../how-to/train-model.md#training-modes).
+1. Complete the **Select a mode** form by completing the **Model name** field and selecting a **Training mode**. For this quickstart, select the free **Standard training** mode. For more information, *see* [Training modes](../../how-to/build-train-deploy-model.md#training-modes).
 
 1. Choose a **Training version** from the drop-down menu, then select the **Next** button.
 

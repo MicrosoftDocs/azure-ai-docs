@@ -1,13 +1,14 @@
 ---
-manager: nitinme
+manager: mcleans
 author: goergenj
 ms.author: jagoerge
 ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 01/13/2026
+ai-usage: ai-assisted
 ---
 
-[Reference documentation](/python/api/overview/azure/ai-transcription-readme) | [Package (PyPi)](https://pypi.org/project/azure-ai-transcription/) | [GitHub Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples)
+[!INCLUDE [Reference links](transcription-sdk-reference-python.md)]
 
 ## Prerequisites
 
@@ -249,7 +250,7 @@ Reference: [`TranscriptionDiarizationOptions`](/python/api/azure-ai-transcriptio
 
 ### Phrase list
 
-A phrase list boosts recognition accuracy for domain-specific terms, proper nouns, and uncommon words. Set `biasing_weight` between `1.0` and `20.0` to control how strongly the phrases are favored (higher values increase the bias).
+A phrase list boosts recognition accuracy for domain-specific terms, proper nouns, and uncommon words. Set `biasing_weight` between `0.0` and `2.0` to control how strongly the phrases are favored (higher values increase the bias).
 
 ```python
 from azure.core.credentials import AzureKeyCredential
@@ -267,7 +268,7 @@ client = TranscriptionClient(
 with open(audio_file_path, "rb") as audio_file:
     phrase_list = PhraseListProperties(
         phrases=["Contoso", "Jessie", "Rehaan"],
-        biasing_weight=5.0,  # Weight between 1.0 and 20.0
+        biasing_weight=1.5,  # Weight between 0.0 and 2.0
     )
     options = TranscriptionOptions(locales=["en-US"], phrase_list=phrase_list)
     result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))

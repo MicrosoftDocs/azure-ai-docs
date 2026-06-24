@@ -4,7 +4,7 @@ metadata:
   titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about the text to speech service.
   author: PatrickFarley
-  manager: nitinme
+  manager: mcleans
   ms.service: azure-speech-foundry-tools
   ms.topic: faq
   ms.date: 02/25/2026

@@ -2,7 +2,7 @@
 title: Azure AI SDK for Swift
 titleSuffix: Foundry Tools
 description: Provides an overview with links to available Azure AI client libraries for Swift.
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: reference
 ms.date: 03/06/2024

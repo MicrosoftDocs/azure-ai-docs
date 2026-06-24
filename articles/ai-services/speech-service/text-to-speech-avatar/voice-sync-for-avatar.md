@@ -2,7 +2,7 @@
 title: Voice sync for avatar - Speech service
 titleSuffix: Azure AI services
 description: Introduction to voice sync for avatar
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 4/29/2026

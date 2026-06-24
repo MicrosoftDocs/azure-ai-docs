@@ -1,6 +1,6 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 02/03/2026
@@ -19,9 +19,9 @@ ms.author: lajanuar
 [!INCLUDE [Foundry prerequisites](../../../includes/microsoft-foundry/prerequisites.md)]
 * A [**Conversational language understanding (CQA)**](../../../conversational-language-understanding/overview.md) or [**Custom question answering (CQA)**](../../../question-answering/overview.md) project created in the Foundry.
 
-## Migrate an existing orchestration workflow from Language Studio
+## Migrate an existing orchestration workflow
 
-If you have an existing orchestration workflow in Language Studio that you want to use in Foundry, you have two migration options:
+If you have an existing orchestration workflow project that you want to use in Foundry, you have two migration options:
 
 ### Option 1: Connect your Language resource to a Foundry Hub (recommended)
 
@@ -37,7 +37,7 @@ If you want to use a new Foundry resource, import your projects individually. To
 > [!IMPORTANT]
 > The import order matters. If you import the orchestration workflow before its dependent CLU and CQA tasks, the task linkages aren't preserved. You must then manually relink the tasks in the **Configure orchestration** section.
 
-For detailed migration steps, see [Migrate from Language Studio to Microsoft Foundry](../../../migration-studio-to-foundry.md).
+For detailed migration steps, see [Migrate from Azure Language to Microsoft Foundry](../../../migration-studio-to-foundry.md).
 
 ## Get started
 
@@ -159,6 +159,3 @@ If you no longer need your project, you can delete it from the Foundry.
 1. Select **Management center**.
 
 1. Select **Delete project**.
-
-
-

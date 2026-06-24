@@ -2,9 +2,9 @@
 title: Query-Time ACL and RBAC Enforcement
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.
 ms.reviewer: magottei
+ms.date: 06/08/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -34,9 +34,9 @@ This article explains how to set up queries that use permission metadata to filt
 - Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container in ADLS Gen2 if you're using RBAC scope.
 
 - Depending on the data source:
-  + For ADLS Gen2 data sources, you must have configured access control lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level.
-  + For Azure Blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
-  + For SharePoint data sources, you must have configured access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). 
+  - For ADLS Gen2 data sources, you must have configured access control lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level.
+  - For Azure Blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
+  - For SharePoint data sources, you must have configured access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md).
 
 - Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
 
@@ -45,10 +45,10 @@ This article explains how to set up queries that use permission metadata to filt
 - If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
 
 - Document visibility requires both:
-  - the calling application’s RBAC role (Authorization header)  
-  - the user identity carried by **x-ms-query-source-authorization**
- 
-- Initial ACL-based queries may experience higher latency compared to subsequent requests, due to caching and permission resolution overhead.
+  - The calling application's RBAC role (Authorization header).
+  - The user identity carried by **x-ms-query-source-authorization**.
+
+- Initial ACL-based queries might experience higher latency compared to subsequent requests, due to caching and permission resolution overhead.
 
 ## ACL entry limits per data source
 
@@ -60,10 +60,9 @@ Azure Data Lake Storage Gen2 (ADLS Gen2):
 Each file or directory can have up to [32 ACL entries permissions](/azure/storage/blobs/data-lake-storage-access-control). In this context, an entry means a single principal (user or group) with a specific permission set. Example: assigning "Everyone" read access and "Azure users" execute access would count as two ACL entries.
 
 SharePoint in Microsoft 365:
-SharePoint data source in search supports up to 1,000 permission entries per file. Each entry represents a unique user or group assignment in the item’s permission list. This is distinct from the overall [unique permission scopes limits](/office365/servicedescriptions/sharepoint-online-service-description/sharepoint-online-limits#unique-security-scopes-per-list-or-library) per list or library, which governs how many items can have unique permissions.
+SharePoint data source in search supports up to 1,000 permission entries per file. Each entry represents a unique user or group assignment in the item's permission list. This is distinct from the overall [unique permission scopes limits](/office365/servicedescriptions/sharepoint-online-service-description/sharepoint-online-limits#unique-security-scopes-per-list-or-library) per list or library, which governs how many items can have unique permissions.
 
-These limits determine how granularly Azure AI Search can honor item-level permissions when indexing or filtering search results. If an item exceeds these ACL entry limits, permissions beyond the limit may not be enforced at query time.
-
+These limits determine how granularly Azure AI Search can honor item-level permissions when indexing or filtering search results. If an item exceeds these ACL entry limits, permissions beyond the limit might not be enforced at query time.
 
 ## How query-time enforcement works
 
@@ -87,7 +86,7 @@ Internally, Azure AI Search dynamically constructs security filters based on the
 For Azure RBAC, permissions are lists of resource ID strings. There must be an Azure role assignment (Storage Blob Data Reader) on the data source that grants access to the security principal token in the authorization header. The filter excludes documents if there's no role assignment for the principal behind the access token on the request.
 
 ### 3. Results filtering
-  
+
 The security filter efficiently matches the userIds, groupIds, and rbacScope from the request against each list of ACLs in every document in the search index to limit the results returned to ones the user has access to. It's important to note that each filter is applied independently and a document is considered authorized if any filter succeeds. For example, if a user has access to a document through userIds but not through groupIds, the document is still considered valid and returned to the user.
 
 ## SharePoint groups at query time
@@ -144,7 +143,7 @@ Content-Type: application/json
 
 Debugging queries that include permission metadata can be problematic because search results are specific to each user. As a developer or administrator, you might need elevated permissions to return results regardless of the permission metadata so that you can investigate problems with queries returning unauthorized content.
 
-To investigate, you must be able to: 
+To investigate, you must be able to:
 
 - View the set of documents that the end user is able to view based on that user's permissions.
 
@@ -180,7 +179,7 @@ x-ms-enable-elevated-read: true
 
 ### Important ACL functionality behavior change in specific preview API versions
 
-Before REST API version `2025-11-01-preview`, earlier preview versions `2025-05-01-preview` and `2025-08-01-preview` returned all documents when using a service API key or authorized Entra roles, even if no user token was provided. Applications that didn’t validate the presence of a user token could inadvertently expose results to end users if not implemented correctly or following best practices.
+Before REST API version `2025-11-01-preview`, earlier preview versions `2025-05-01-preview` and `2025-08-01-preview` returned all documents when using a service API key or authorized Entra roles, even if no user token was provided. Applications that didn't validate the presence of a user token could inadvertently expose results to end users if not implemented correctly or following best practices.
 
 Starting in November 2025, this behavior changed:
 
@@ -188,16 +187,12 @@ Starting in November 2025, this behavior changed:
 - If the user token is omitted, ACL-protected content isn't returned.
 - To view all documents for troubleshooting, you must explicitly include the elevated-read header when using REST API version `2026-05-01-preview`.
 
-This update helps keep content protected when applications don’t enforce best practices for token validation.
+This update helps keep content protected when applications don't enforce best practices for token validation.
 
-## See also
+## Related content
 
-- [Tutorial: Index ADLS Gen2 permission metadata](tutorial-adls-gen2-indexer-acls.md) 
-
-- [Indexing ACLs and RBAC using the push API in Azure AI Search](search-index-access-control-lists-and-rbac-push-api.md)
-
-- [Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights](search-indexer-access-control-lists-and-role-based-access.md) 
-
-- [Use a Blob indexer to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md)
-
-- [Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights](search-indexer-sharepoint-access-control-lists.md)
+- [Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results (preview)](tutorial-adls-gen2-indexer-acls.md)
+- [Indexing document access control lists (ACLs) using the push REST APIs (preview)](search-index-access-control-lists-and-rbac-push-api.md)
+- [Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights (preview)](search-indexer-access-control-lists-and-role-based-access.md)
+- [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md)
+- [Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights (preview)](search-indexer-sharepoint-access-control-lists.md)

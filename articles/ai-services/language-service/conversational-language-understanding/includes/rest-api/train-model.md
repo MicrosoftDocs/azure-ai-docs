@@ -1,6 +1,6 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/18/2025
@@ -51,8 +51,8 @@ Use the following object in your request. The model will be named after the valu
 |---------|-----|----|---------|
 |`modelLabel`    | `{MODEL-NAME}`|Your Model name.   | `Model1` |
 | `trainingConfigVersion` |`{CONFIG-VERSION}`| The training configuration model version. By default, the latest [model version](../../../concepts/model-lifecycle.md#custom-features) is used. | `2022-05-01` |
-| `trainingMode` |`{TRAINING-MODE}`| The training mode to be used for training. Supported modes are **Standard training**, faster training, but only available for English and **Advanced training** supported for other languages and multilingual projects, but involves longer training times. Learn more about [training modes](../../how-to/train-model.md#training-modes). | `standard` |
-| `kind` | `percentage` |  Split methods. Possible Values are `percentage` or `manual`. See [how to train a model](../../how-to/train-model.md#data-splitting) for more information. |`percentage`|
+| `trainingMode` |`{TRAINING-MODE}`| The training mode to be used for training. Supported modes are **Standard training**, faster training, but only available for English and **Advanced training** supported for other languages and multilingual projects, but involves longer training times. Learn more about [training modes](../../how-to/build-train-deploy-model.md#training-modes). | `standard` |
+| `kind` | `percentage` |  Split methods. Possible Values are `percentage` or `manual`. See [how to train a model](../../how-to/build-train-deploy-model.md#data-splitting) for more information. |`percentage`|
 | `trainingSplitPercentage` | `80`| Percentage of your tagged data to be included in the training set. Recommended value is `80`. | `80`|
 | `testingSplitPercentage` | `20` | Percentage of your tagged data to be included in the testing set. Recommended value is `20`.   | `20` |
 

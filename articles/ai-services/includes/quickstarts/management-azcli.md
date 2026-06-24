@@ -2,7 +2,7 @@
 title: Create a Foundry resource using the Azure CLI
 titleSuffix: Foundry Tools
 description: Get started with Foundry Tools by using Azure CLI commands to create a Foundry resource.
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 keywords: Foundry Tools, cognitive intelligence, cognitive solutions, ai services
 ms.topic: quickstart

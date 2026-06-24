@@ -1,9 +1,9 @@
 ---
 title: "How-to: Copy custom analyzers using the Content Understanding REST API"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to copy custom analyzers with Content Understanding using the REST API.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 01/29/2026
 ms.author: pafarley

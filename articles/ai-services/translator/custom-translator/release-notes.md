@@ -3,7 +3,7 @@ title: "Release notes - Custom Translator"
 titleSuffix: Foundry Tools
 description: Custom Translator releases, improvements, bug fixes, and known issues.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.date: 06/02/2026
 ms.author: lajanuar

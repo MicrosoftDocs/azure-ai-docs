@@ -2,7 +2,7 @@
 title: 'Create and manage Azure OpenAI in Microsoft Foundry Models deployments with the Azure CLI'
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure CLI to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: devx-track-azurecli

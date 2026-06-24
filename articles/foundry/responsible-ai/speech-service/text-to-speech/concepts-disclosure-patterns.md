@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: "Design patterns and best practices for disclosure."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 11/21/2025
 ---

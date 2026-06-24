@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use this quickstart to start using Text Analytics for health.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 12/15/2025

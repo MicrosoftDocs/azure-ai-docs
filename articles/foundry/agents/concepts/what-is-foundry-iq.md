@@ -3,7 +3,7 @@ title: What is Foundry IQ?
 description: Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents.
 author: haileytap
 ms.author: haileytapia
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article

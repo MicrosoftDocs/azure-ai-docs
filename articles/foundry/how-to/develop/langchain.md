@@ -77,7 +77,8 @@ Use this map to pick the right namespace for your solution:
 | Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
 | Retrievers | `langchain_azure_ai.retrievers` | Run retrieval over Azure-backed indexes and stores. |
 | Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. [See detailed examples](langchain-memory.md). |
-| Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps. |
+| Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps; or an entire project Toolbox. [See detailed examples](langchain-toolbox.md) |
+| Foundry Toolbox | `langchain_azure_ai.tools` | Load managed tools and skills from a Foundry Toolbox through a single MCP endpoint. [See detailed examples](langchain-toolbox.md). |
 | Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. [See detailed examples](langchain-traces.md). |
 | Query constructors | `langchain_azure_ai.query_constructors` | Build backend-specific query filters for retrieval scenarios. |
 
@@ -178,6 +179,7 @@ Start with these guides in this documentation set:
 - [Use Foundry Models with LangChain and LangGraph](langchain-models.md)
 - [Use Foundry Content Safety middleware](langchain-middleware.md)
 - [Use Foundry Agent Service with LangGraph](langchain-agents.md)
+- [Use Foundry Toolbox with LangChain](langchain-toolbox.md)
 - [Host LangGraph agents as Foundry hosted agents](langchain-hosted-agents.md)
 - [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
 - [Use Foundry Observability to trace apps](langchain-traces.md)
