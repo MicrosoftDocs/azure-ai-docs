@@ -52,6 +52,13 @@ This prebuilt doesn't require a language model or embedding model.
 
 This prebuilt doesn't require a language model or embedding model.
 
+#### `prebuilt-digitalParse`
+ 
+- Extracts text from digital documents and returns it as clean markdown.
+- Reads only digitally generated content. For scanned or image-based documents, please use `prebuilt-read` or `prebuilt-layout`.
+
+This prebuilt doesn't require a language model or embedding model.
+
 ### Base analyzers
 
 Base analyzers provide fundamental content processing capabilities specific to a content type. Use them primarily as a parent to inherit from when [creating custom analyzers](../tutorial/create-custom-analyzer.md). When you create a custom analyzer, include one of these base analyzers by using the `baseAnalyzerId` property. 
