@@ -40,10 +40,6 @@ Preview APIs are periodically deprecated. If you're using a preview API version,
 
 > [!IMPORTANT]
 > Custom extraction and classification models you train by using a preview API version are tied to that preview API version's lifecycle and base model. When the preview API version retires, custom models trained on it retire as well. As part of API migration, retrain the model using the latest GA API version.
->
-> A custom model originally trained with a preview API version might continue to work when you call it by using the latest generally available (GA) API version. However, the model is still tied to the preview API version it was trained on and remains subject to that version's retirement lifecycle.
->
-> To continue using a custom model after a preview API version retires, retrain the model by using the latest GA API version.
 
 ### Analysis features
 
