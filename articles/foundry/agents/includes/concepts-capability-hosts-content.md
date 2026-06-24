@@ -155,7 +155,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-Reference: [Foundry account management REST API](/rest/api/aifoundry/accountmanagement/operation-groups)
+Reference: [Foundry account management REST API](/rest/api/microsoftfoundry/accountmanagement/operation-groups)
 
 **Project capability host**
 
@@ -175,7 +175,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-Reference: [Project Capability Hosts - Create or update](/rest/api/aifoundry/accountmanagement/operation-groups)
+Reference: [Project Capability Hosts - Create or update](/rest/api/microsoftfoundry/accountmanagement/project-capability-hosts/create-or-update)
 
 ### Optional: account-level connections with project capability hosts
 

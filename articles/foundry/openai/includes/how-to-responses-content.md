@@ -101,7 +101,7 @@ The Responses API supports the following models:
 - `o3` (Version: `2025-04-16`)
 - `o4-mini` (Version: `2025-04-16`)
 
-Not every model is available in every supported region. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability. For the full set of request and response parameters, see the [Responses API reference documentation](../reference-preview-latest.md).
+Not every model is available in every supported region. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability. For the full set of request and response parameters, see the [Responses API reference documentation](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 
 > [!NOTE]
 > Not currently supported:
@@ -1966,7 +1966,7 @@ You can provide an image as input to a request in any of the following ways:
 
 - A fully qualified URL to an image file
 - A Base64-encoded data URI
-- A file ID created with the [Files API](../reference-preview-latest.md)
+- A file ID created with the [Files API](/rest/api/microsoft-foundry/azureopenai/files?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 
 ### Image URL
 
@@ -4259,5 +4259,5 @@ Computer use with Playwright has moved to the [dedicated computer use model guid
 - [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
 - [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [API version lifecycle](../api-version-lifecycle.md)
-- [Azure OpenAI REST API reference](../latest.md)
+- [Azure OpenAI REST API reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md)
