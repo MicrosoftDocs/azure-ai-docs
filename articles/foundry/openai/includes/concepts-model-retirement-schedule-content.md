@@ -158,8 +158,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | Mistral-Large-3 | 1 | GA | — | — |
-| mistral-document-ai-2505 | 1 | GA | 2026-05-31 | mistral-document-ai-2512 |
-| mistral-document-ai-2512 | 1 | GA | — | — |
+| mistral-document-ai-2505 | 1 | GA | 2026-07-15 | mistral-document-ai-2512, mistral-ocr-4-0 |
+| mistral-document-ai-2512 | 1 | GA | — | mistral-ocr-4-0 |
 
 ### MoonshotAI
 

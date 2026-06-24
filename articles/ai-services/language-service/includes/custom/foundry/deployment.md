@@ -6,20 +6,20 @@ ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-To deploy your model from within Azure Language Studio:
+To deploy your model from within Microsoft Foundry:
 
 1. Select **Deploying a model** from the left side menu.
 
 2. Select **Add deployment** to start a new deployment job.
 
-    :::image type="content" source="../../../media/custom/language-studio/deploy-model.png" alt-text="A screenshot showing the deployment button" lightbox="../../../media/custom/language-studio/deploy-model.png":::
+    :::image type="content" source="../../../media/custom/foundry/deploy-model.png" alt-text="A screenshot showing the deployment button" lightbox="../../../media/custom/foundry/deploy-model.png":::
 
 3. Select **Create new deployment** to create a new deployment and assign a trained model from the dropdown below. You can also Overwrite an existing deployment by selecting this option and select the trained model you want to assign to it from the dropdown below.
 
     > [!NOTE]
     > Overwriting an existing deployment doesn't require changes to your [prediction API](https://aka.ms/ct-runtime-swagger) call but the results you get will be based on the newly assigned model.
 
-    :::image type="content" source="../../../media/custom/language-studio/add-deployment.png" alt-text="A screenshot showing the deployment screen" lightbox="../../../media/custom/language-studio/add-deployment.png":::
+    :::image type="content" source="../../../media/custom/foundry/add-deployment.png" alt-text="A screenshot showing the deployment screen" lightbox="../../../media/custom/foundry/add-deployment.png":::
 
 4. Select **Deploy** to start the deployment job.
 

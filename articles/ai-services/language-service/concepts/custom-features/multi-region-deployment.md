@@ -59,7 +59,7 @@ Some regions are only available for deployment and not for authoring projects.
 
 Learn how to deploy models for:
 
-* [Conversational language understanding](../../conversational-language-understanding/how-to/deploy-model.md)
+* [Conversational language understanding](../../conversational-language-understanding/how-to/build-train-deploy-model.md#deploy-your-model)
 * [Custom text classification](../../custom-text-classification/how-to/deploy-model.md)
 * [Custom NER](../../custom-named-entity-recognition/how-to/deploy-model.md)
 * [Orchestration workflow](../../orchestration-workflow/how-to/deploy-model.md)

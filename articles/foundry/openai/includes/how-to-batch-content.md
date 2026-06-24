@@ -45,15 +45,11 @@ Key use cases include:
 
 [!INCLUDE [Global batch](model-matrix/global-batch.md)]
 
-To access `gpt-5` and `o3`, you need to register. For more information, see the [reasoning models guide](../how-to/reasoning.md).
-
 # [Data Zone Batch](#tab/datazone-batch)
 
 ### Data zone batch model availability
 
 [!INCLUDE [Data zone batch](model-matrix/global-batch-datazone.md)]
-
-To access `gpt-5` and `o3`, you need to register. For more information, see the [reasoning models guide](../how-to/reasoning.md).
 
 ---
 

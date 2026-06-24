@@ -11,10 +11,16 @@ items:
     href: ../../agents/quickstarts/quickstart-hosted-agent.md
   - name: Quickstart - Build a toolbox and use with a hosted agent
     href: ../../agents/quickstarts/quickstart-toolbox-agent.md
-  - name: Quickstart - Deploy your own code as a hosted agent
-    href: ../../agents/quickstarts/quickstart-deploy-own-code.md
+  - name: Quickstart - Add Foundry IQ to a hosted agent with a toolbox
+    href: ../../agents/quickstarts/quickstart-foundry-iq-hosted-agent.md
+  - name: Quickstart - Give a hosted agent persistent memory
+    href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
   - name: Quickstart - Evaluate a Hosted agent
     href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
+  - name: "Quickstart: Optimize a hosted agent"
+    href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
+  - name: Quickstart - Deploy your own code as a hosted agent
+    href: ../../agents/quickstarts/quickstart-deploy-own-code.md
   - name: "Quickstart: Trace your hosted agent"
     href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
 
@@ -210,8 +216,6 @@ items:
     items:
     - name: Agent optimization overview
       href: ../../agents/concepts/agent-optimizer-overview.md
-    - name: "Quickstart: Optimize a hosted agent"
-      href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
     - name: Make your agent optimization-ready
       href: ../../agents/how-to/make-agent-optimizer-ready.md
     - name: Create a custom evaluation dataset

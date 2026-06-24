@@ -67,4 +67,4 @@ To get started implementing entity slot filling in your applications, see [Build
 ## Related content
 
 * [Build multi-turn model](../how-to/build-multi-turn-model.md)
-* [Build a fine-tuning schema](../how-to/build-schema.md)
+* [Build a fine-tuning schema](../how-to/build-train-deploy-model.md#build-your-fine-tuning-schema)
