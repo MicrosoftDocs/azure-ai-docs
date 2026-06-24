@@ -55,7 +55,7 @@ This prebuilt doesn't require a language model or embedding model.
 #### `prebuilt-digitalParse`
  
 - Extracts text from digital documents and returns it as clean markdown.
-- Reads only digitally generated content. For scanned or image-based documents, please use `prebuilt-read` or `prebuilt-layout`.
+- Reads only digitally generated content. For scanned or image-based documents, use `prebuilt-read` or `prebuilt-layout`.
 
 This prebuilt doesn't require a language model or embedding model.
 
