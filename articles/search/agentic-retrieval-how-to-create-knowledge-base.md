@@ -107,6 +107,9 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 
 ### [**Use roles**](#tab/rbac)
 
+> [!IMPORTANT]
+> Before using Microsoft Entra ID credentials, [enable role-based access control](search-security-enable-roles.md) on your Azure AI Search service. By default, search services are created in API key-only authentication mode. Microsoft Entra ID tokens—including those issued by `DefaultAzureCredential`—are rejected with a `403 Forbidden` error until role-based access is enabled on the service.
+
 ::: zone pivot="csharp"
 
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
