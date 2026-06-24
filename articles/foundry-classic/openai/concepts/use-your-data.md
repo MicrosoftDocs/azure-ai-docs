@@ -9,6 +9,7 @@ author: aahill
 ms.author: aahi
 ms.date: 02/06/2026
 recommendations: false
+ai-usage: ai-assisted
 ms.custom: references_regions, ignite-2024
 ---
 
@@ -575,7 +576,7 @@ When you chat with a model, providing a history of the chat will help the model 
 
 #### Function Calling
 
-Some Azure OpenAI models allow you to define [tools and tool_choice parameters](../how-to/function-calling.md) to enable function calling. You can set up function calling through [REST API](../reference.md#chat-completions) `/chat/completions`. If both `tools` and [data sources](../references/on-your-data.md#request-body) are in the request, the following policy is applied.
+Some Azure OpenAI models allow you to define [tools and tool_choice parameters](../how-to/function-calling.md) to enable function calling. You can set up function calling through [REST API](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true) `/chat/completions`. If both `tools` and [data sources](../references/on-your-data.md#request-body) are in the request, the following policy is applied.
 1. If `tool_choice` is `none`, the tools are ignored, and only the data sources are used to generate the answer.
 1. Otherwise, if `tool_choice` is not specified, or specified as `auto` or an object, the data sources are ignored, and the response will contain the selected functions name and the arguments, if any. Even if the model decides no function is selected, the data sources are still ignored.
 

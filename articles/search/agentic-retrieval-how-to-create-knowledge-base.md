@@ -109,6 +109,8 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 
 ::: zone pivot="csharp"
 
+1. [Enable role-based access control on Azure AI Search](search-security-enable-roles.md).
+
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
 1. On your model provider, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
@@ -127,6 +129,8 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 
 ::: zone pivot="python"
 
+1. [Enable role-based access control on Azure AI Search](search-security-enable-roles.md).
+
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
 1. On your model provider, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
@@ -142,6 +146,8 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 ::: zone-end
 
 ::: zone pivot="rest"
+
+1. [Enable role-based access control on Azure AI Search](search-security-enable-roles.md).
 
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 

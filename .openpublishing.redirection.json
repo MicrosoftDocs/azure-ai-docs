@@ -21,6 +21,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry-classic/openai/authoring-reference-preview.md",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/evals",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/context/context.yml",
       "redirect_url": "/previous-versions/azure/ai-services/luis",
       "redirect_document_id": false

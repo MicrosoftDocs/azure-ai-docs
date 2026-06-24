@@ -2173,7 +2173,7 @@ The response returns a list of files with their names and IDs.
 
 **Step 2: Download the file using the File API**
 
-Use the file name returned from Step 1 to download the file via the [File API download endpoint](/azure/foundry/openai/latest#download-file).
+Use the file name returned from Step 1 to download the file via the [File API download endpoint](/rest/api/microsoft-foundry/azureopenai/files?view=rest-microsoft-foundry-v1&preserve-view=true).
 
 ### [File Search](file-search.md)
 
