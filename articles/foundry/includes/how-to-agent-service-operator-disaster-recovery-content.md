@@ -511,7 +511,7 @@ When other recovery options aren't available, you can perform a complete reset o
 
 1. Remove the *delete* lock from the Foundry account.
 
-1. Delete the project's capability host by sending a [`Project Capability Hosts - Delete`](/rest/api/aifoundry/accountmanagement/project-capability-hosts/delete) API request for the project that you're resetting.
+1. Delete the project's capability host by sending a [`Project Capability Hosts - Delete`](/rest/api/microsoftfoundry/accountmanagement/project-capability-hosts/delete) API request for the project that you're resetting.
 
    > [!WARNING]
    > This operation permanently orphans all agent data:
@@ -524,7 +524,7 @@ When other recovery options aren't available, you can perform a complete reset o
 
 1. Reapply the *delete* lock to the Foundry account.
 
-1. Re-create the project's capability host by using infrastructure as code or a [`Project Capability Hosts - Create`](/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update) API request.
+1. Re-create the project's capability host by using infrastructure as code or a [`Project Capability Hosts - Create`](/rest/api/microsoftfoundry/accountmanagement/project-capability-hosts/create-or-update) API request.
 
    Before you re-create the capability host, ensure that:
 

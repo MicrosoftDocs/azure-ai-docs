@@ -1362,22 +1362,22 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
-      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---messages",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/threads",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
-      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread-and-run",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/threads",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
-      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/threads",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
-      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---assistants",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/threads",
       "redirect_document_id": false
     },
     {
@@ -1637,7 +1637,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/authoring-reference-preview.md",
-      "redirect_url": "/azure/ai-foundry/openai/authoring-reference-preview",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/evals",
       "redirect_document_id": false
     },
     {

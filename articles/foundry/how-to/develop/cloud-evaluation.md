@@ -12,8 +12,8 @@ ms.date: 06/02/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 ai-usage: ai-assisted
+# customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 ---
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK
@@ -938,7 +938,7 @@ Retrieve and evaluate Foundry agent responses by response IDs using the `azure_a
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
 
-A **response ID** is a unique identifier returned each time a Foundry agent generates a response. You can collect response IDs from agent interactions by using the [Responses API](/rest/api/aifoundry) or from your application's trace logs. Provide the IDs inline as file content, or upload them as a dataset (see [Prepare input data](#uploading-evaluation-data)).
+A **response ID** is a unique identifier returned each time a Foundry agent generates a response. You can collect response IDs from agent interactions by using the [Responses API](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1&preserve-view=true) or from your application's trace logs. Provide the IDs inline as file content, or upload them as a dataset (see [Prepare input data](#uploading-evaluation-data)).
 
 ### Collect response IDs
 

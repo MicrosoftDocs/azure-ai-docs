@@ -159,7 +159,7 @@ The new Foundry portal supports Agents v2. Existing assistants and v1 agents are
 
 Yes. Foundry provides support across portal, APIs, SDKs, and CLI for GA-supported scenarios.
 
-To get started, see [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md) and [Microsoft Foundry API](/rest/api/aifoundry/).
+To get started, see [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md) and [Microsoft Foundry API](/rest/api/microsoft-foundry/).
 
 ### Is GA the final state of Microsoft Foundry?
 
