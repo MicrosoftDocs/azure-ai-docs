@@ -10,6 +10,7 @@ ms.date: 02/17/2026
 author: aahill
 ms.author: aahi
 recommendations: false
+ai-usage: ai-assisted
 
 ---
 
@@ -203,6 +204,6 @@ After you submit tool outputs, the **Run** will enter the `queued` state before 
 
 ## See also
 
-* [Assistants API Reference](../reference-preview.md#list---assistants)
+* [Assistants API Reference](/rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 * Learn more about how to use Assistants with our [How-to guide on Assistants](../how-to/assistant.md).
 * [Azure OpenAI Assistants API samples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants)

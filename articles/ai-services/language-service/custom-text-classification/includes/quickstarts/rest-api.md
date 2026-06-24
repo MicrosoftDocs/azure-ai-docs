@@ -7,11 +7,10 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
+<!-- markdownlint-disable MD041 -->
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-
-
 
 ## Create a new Azure Language in Foundry Tools resource and Azure storage account
 
@@ -24,19 +23,13 @@ Before you can use custom text classification, you'll need to create a Language 
 
 [!INCLUDE [create a new resource from the Azure portal](../resource-creation-azure-portal.md)]
 
-
-
 ## Upload sample data to blob container
 
 [!INCLUDE [Uploading sample data for custom tex classification](blob-storage-upload.md)]
 
-
-
 ### Get your resource keys and endpoint
 
 [!INCLUDE [Get keys and endpoint Azure portal](../get-keys-endpoint-azure.md)]
-
-
 
 ## Create a custom text classification project
 
@@ -46,13 +39,9 @@ Once your resource and storage container are configured, create a new custom tex
 
 [!INCLUDE [Import a project using the REST API](../rest-api/import-project.md)]
 
-
-
 ### Get import job Status
 
  [!INCLUDE [get import project status](../rest-api/get-import-status.md)]
-
-
 
 ## Train your model
 
@@ -64,31 +53,23 @@ After your project has been imported, you can start training your model.
 
 [!INCLUDE [train model](../rest-api/train-model.md)]
 
-
-
 ### Get training job status
 
 Training could take sometime between 10 and 30 minutes. You can use the following request to keep polling the status of the training job until it's successfully completed.
 
 [!INCLUDE [get training model status](../rest-api/get-training-status.md)]
 
-
-
 ## Deploy your model
 
-Generally after training a model you would review it's [evaluation details](../../how-to/view-model-evaluation.md) and [make improvements](../../how-to/view-model-evaluation.md) if necessary. In this quickstart, you will just deploy your model, and make it available for you to try in Language Studio, or you can call the [prediction API](https://aka.ms/ct-runtime-swagger).
+Generally after training a model you would review it's [evaluation details](../../how-to/view-model-evaluation.md) and [make improvements](../../how-to/view-model-evaluation.md) if necessary. In this quickstart, you will just deploy your model and make it available for you to try in Microsoft Foundry, or you can call the [prediction API](https://aka.ms/ct-runtime-swagger).
 
 ### Submit deployment job
 
 [!INCLUDE [deploy model](../rest-api/deploy-model.md)]
 
-
-
 ### Get deployment job status
 
 [!INCLUDE [get deployment status](../rest-api/get-deployment-status.md)]
-
-
 
 ## Classify text
 
@@ -98,14 +79,9 @@ After your model is deployed successfully, you can start using it to classify yo
 
 [!INCLUDE [submit a text classification task using the REST API](../rest-api/submit-task.md)]
 
-
-
 ### Get task results
 
 [!INCLUDE [get text classification task results](../rest-api/get-results.md)]
-
-
-
 
 ## Clean up resources
 

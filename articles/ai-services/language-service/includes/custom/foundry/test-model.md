@@ -7,10 +7,11 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-To test your deployed models from within the [Language Studio](https://aka.ms/LanguageStudio):
+To test your deployed models from within [Microsoft Foundry](https://ai.azure.com/):
+
 1. Select **Testing deployments** from the left side menu.
 
-2. Select the deployment you want to test. You can only test models that are assigned to deployments. 
+2. Select the deployment you want to test. You can only test models that are assigned to deployments.
 
 3. For multilingual projects, from the language dropdown, select the language of the text you're testing.
 

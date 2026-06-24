@@ -29,28 +29,28 @@ If you need sample data, we've provided some for [text summarization](https://gi
 
 ## Upload sample data to blob container
 
-[!INCLUDE [Uploading sample data for custom Summarization](../../../includes/custom/language-studio/upload-data-to-storage.md)]
+[!INCLUDE [Uploading sample data for custom Summarization](../../../includes/custom/foundry/upload-data-to-storage.md)]
 
 ## Train your model
 
 After you create a project, you go ahead and start training your model.
 
-[!INCLUDE [Train a model using Language Studio](../../../includes/custom/language-studio/train-your-model.md)]
+[!INCLUDE [Train a model using Microsoft Foundry](../../../includes/custom/foundry/train-your-model.md)]
 
 ## Deploy your model
 
-Generally after training a model you would review its [evaluation details](../../custom/how-to/test-evaluate.md) and make improvements if necessary. In this quickstart, you will just deploy your model, and make it available for you to try in Language studio.
+Generally after training a model you would review its [evaluation details](../../custom/how-to/test-evaluate.md) and make improvements if necessary. In this quickstart, you will just deploy your model, and make it available for you to try in Microsoft Foundry.
 
-[!INCLUDE [Deploy a model using Language Studio](../../../includes/custom/language-studio/deployment.md)]
+[!INCLUDE [Deploy a model using Microsoft Foundry](../../../includes/custom/foundry/deployment.md)]
 
 ## Test your model
 
- For this quickstart, you will use the [Language Studio](https://aka.ms/LanguageStudio) to submit the custom summarization task and visualize the results. In the sample dataset you downloaded earlier, you can find some test documents that you can use in this step.
+ For this quickstart, you will use Microsoft Foundry to submit the custom summarization task and visualize the results. In the sample dataset you downloaded earlier, you can find some test documents that you can use in this step.
 
-[!INCLUDE [Test a model using Language Studio](../../../includes/custom/language-studio/test-model.md)]
+[!INCLUDE [Test a model using Microsoft Foundry](../../../includes/custom/foundry/test-model.md)]
 
-:::image type="content" source="../../../media/custom/language-studio/test-model-results.png" alt-text="A screenshot showing the model test results." lightbox="../../../media/custom/language-studio/test-model-results.png":::
+:::image type="content" source="../../../media/custom/foundry/test-model-results.png" alt-text="A screenshot showing the model test results." lightbox="../../../media/custom/foundry/test-model-results.png":::
 
 ## Clean up resources
 
-[!INCLUDE [Delete project using Language Studio](../../../includes/custom/language-studio/delete-project.md)]
+[!INCLUDE [Delete project using Microsoft Foundry](../../../includes/custom/foundry/delete-project.md)]

@@ -177,6 +177,11 @@ In this quickstart, you:
 - Consumed the toolbox from a Python hosted agent that connects over the Model Context Protocol.
 - Ran the agent locally and deployed it to Foundry Agent Service.
 
+## Next step
+
+> [!div class="nextstepaction"]
+> [Add a Foundry IQ knowledge base to a hosted agent](quickstart-foundry-iq-hosted-agent.md)
+
 ## Related content
 
 - [What are hosted agents?](../concepts/hosted-agents.md)

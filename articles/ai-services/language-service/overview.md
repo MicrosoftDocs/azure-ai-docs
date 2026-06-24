@@ -58,15 +58,13 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 [Custom named entity recognition (CNER)](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
 
-:::image type="content" source="media/studio-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/studio-examples/custom-named-entity-recognition.png":::
+:::image type="content" source="media/foundry-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/foundry-examples/custom-named-entity-recognition.png":::
 
 ### Prebuilt NER
 
 [Prebuilt named entity recognition (NER)](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
 
 :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry." lightbox="media/overview/named-entity-recognition.png":::
-
-
 
 ### Text analytics for health
 

@@ -358,24 +358,9 @@ items:
         - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
-        - name: Build a fine-tuning schema
-          href: conversational-language-understanding/how-to/build-schema.md
-          displayName: design, intents, entities, conversational model
-        - name: Label utterances
-          href: conversational-language-understanding/how-to/tag-utterances.md
-          displayName: labeling, tag utterances, training data, annotation/
-        - name: Train a model
-          href: conversational-language-understanding/how-to/train-model.md
-          displayName: training, clu training, conversational model training
-        - name: View your model's performance
-          href: conversational-language-understanding/how-to/view-model-evaluation.md
-          displayName: evaluation, performance metrics, clu accuracy, testing
-        - name: Deploy a model
-          href: conversational-language-understanding/how-to/deploy-model.md
-          displayName: deployment, clu, production
-        - name: Call the API and make predictions
-          href: conversational-language-understanding/how-to/call-api.md
-          displayName: predictions, clu api, intent recognition, entity extraction
+        - name: Build, train, and deploy a model
+          href: conversational-language-understanding/how-to/build-train-deploy-model.md
+          displayName: design, intents, entities, labeling, tag utterances, training data, annotation, clu training, evaluation, performance metrics, deployment, production, predictions, clu api, intent recognition, entity extraction
         - name: Back up and recover your models
           href: conversational-language-understanding/how-to/fail-over.md
           displayName: disaster recovery, failover, clu
@@ -449,12 +434,12 @@ items:
         displayName: virtual assistant, chatbot, knowledge base, deployment
       - name: Export/import/refresh
         href: question-answering/how-to/export-import-refresh.md
+      - name: Move projects
+        href: question-answering/how-to/migrate-knowledge-base.md
       - name: Use smart URL refresh
         href: question-answering/how-to/smart-url-refresh.md
       - name: Encrypt data at rest
         href: question-answering/how-to/encrypt-data-at-rest.md
-      - name: Move projects
-        href: question-answering/how-to/migrate-knowledge-base.md
       - name: Add chit-chat
         href: question-answering/how-to/chit-chat.md
       - name: Change default answer
@@ -552,6 +537,9 @@ items:
       - name: Label data
         href: custom-text-classification/how-to/tag-data.md
         displayName: tag data, annotate text, training data
+      - name: Use autolabeling
+        href: custom-text-classification/how-to/use-autolabeling.md
+        displayName: autolabeling, GPT labeling, automatic labeling
       - name: Train a model
         href: custom-text-classification/how-to/train-model.md
         displayName: training, classifier, build model

@@ -34,7 +34,10 @@ items:
     href: ../../agents/concepts/standard-agent-setup.md
   - name: Use your own Azure resources
     href: ../../agents/how-to/use-your-own-resources.md
-  - name: Virtual networks
+  - name: Choose a networking option
+    displayName: networking options, BYO VNet, managed VNet, private link, public, decision, compare
+    href: ../../agents/concepts/networking-options.md
+  - name: Set up private networking
     href: ../../agents/how-to/virtual-networks.md
   - name: Networking deep dive
     displayName: VNet, subnet, IP allocation, data proxy, micro VM, Hosted agent, prompt agent
