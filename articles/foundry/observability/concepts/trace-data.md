@@ -67,7 +67,7 @@ After you disable tracing:
 ## Where data is stored
 
 - The Application Insights resource connected to the Foundry project stores trace data. 
-- Your Application Insights and Log Analytics configuration governs data retention and storage. 
+- Your Application Insights and Log Analytics configuration governs data retention and storage. For more infomation, see [Manage data retention in a Log Analytics workspace](/azure/azure-monitor/logs/data-retention-configure). 
 
 ## Data sharing considerations
 
