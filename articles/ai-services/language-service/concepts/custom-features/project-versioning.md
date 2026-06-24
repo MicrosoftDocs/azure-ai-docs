@@ -55,7 +55,7 @@ In conversational language understanding, the data being saved to the snapshot a
 
 ## Next steps
 Learn how to load or export model data for:
-* [Conversational language understanding](../../conversational-language-understanding/how-to/view-model-evaluation.md#export-model-data)
+* [Conversational language understanding](../../conversational-language-understanding/how-to/build-train-deploy-model.md#export-model-data)
 * [Custom text classification](../../custom-text-classification/how-to/view-model-evaluation.md)
 * [Custom NER](../../custom-named-entity-recognition/how-to/view-model-evaluation.md)
 * [Orchestration workflow](../../orchestration-workflow/how-to/view-model-evaluation.md)
