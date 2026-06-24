@@ -9,13 +9,15 @@ ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 11/18/2025
 ---
-# Create and deploy a CQA agent
+<!-- markdownlint-disable MD025 -->
+
+# Create and deploy a custom question answering agent in Microsoft Foundry
 
 This article gives you clear steps and important tips for building and deploying a CQA agent. Whether you're new to this process or updating your skills, this guide helps you set up and launch your agent successfully.
 
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Microsoft Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource, you can continue to use those existing Language resources within the Microsoft Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
 > * In Foundry, a fine-tuning task serves as your workspace for your CQA solutions. Previously, a **fine-tuning task** was referred to as a **CQA project**. You might encounter both terms used interchangeably in older CQA documentation.
 > * We highly recommend that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 >
@@ -28,8 +30,8 @@ Before you get started, you need the following resources and permissions:
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Foundry Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
 
   [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
-*   A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
-*   An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
+* A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
 * A Foundry project created in the Foundry with a **deployed CQA knowledge base**. For more information, *see* [Create and deploy a CQA project](create-test-deploy.md)
 
 ## Step 1: Get started
@@ -43,7 +45,6 @@ Let's begin:
 1. Once signed in, you can create or access your existing projects within Foundry.
 
 1. If you're not already in your Foundry project with your deployed CQA knowledge base, select it now.
-
 
 ## Step 2: Deploy an OpenAI model in Foundry (required)
 
@@ -91,19 +92,19 @@ A custom key serves as an enhanced security credential for your agent.
 
    * **Custom keys**. Select **+ Add key value pairs** and complete the two fields as follows:
 
-    * **First field**. Complete this field with the following key name:
+       * **First field**. Complete this field with the following key name:
 
       ```text
       Ocp-Apim-Subscription-Key
-
       ```
-    * **Second field**. Complete this field with the key value from your Azure portal **Foundry** or **Language** resource used to create your CQA knowledge base. Make sure to check the **is secret** box.
+
+       * **Second field**. Complete this field with the key value from your Azure portal **Foundry** or **Language** resource used to create your CQA knowledge base. Make sure to check the **is secret** box.
 
         :::image type="content" source="../media/agents/connect-custom-resource.png" alt-text="Screenshot of the connect a custom resource window in the Foundry.":::
 
-    * Next, add a **Connection name**.
+       * Next, add a **Connection name**.
 
-    * Finally, select the **Add connection** button.
+       * Finally, select the **Add connection** button.
 
 1. Your new Custom key connection is listed on the **Manage connected resources in this project** page.
 
@@ -150,7 +151,6 @@ The agents playground provides a sandbox to test and configure a deployed agent�
 
       :::image type="content" source="../media/agents/agents-playground.png" alt-text="Screenshot of the agents playground in Foundry.":::
 
-
 That's it! The agent creation and deployment processes are complete. You now know how to deploy a CQA agent using your own custom knowledge base.
 
 ## Clean up resources
@@ -161,5 +161,4 @@ To clean up and remove an Azure AI resource, you can delete either the individua
 
 > [!div class="nextstepaction"]
 > [Learn about CQA supported languages](../language-support.md)
-
-
+> [Learn about CQA supported languages](../language-support.md)

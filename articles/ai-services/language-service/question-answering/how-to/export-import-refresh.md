@@ -8,6 +8,7 @@ ms.author: lajanuar
 recommendations: false
 ms.date: 04/20/2026
 ---
+<!-- markdownlint-disable MD025 -->
 # Export-import-refresh in custom question answering
 
 You might want to create a copy of your custom question answering project or related question and answer pairs for several reasons:

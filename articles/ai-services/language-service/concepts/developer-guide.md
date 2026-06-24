@@ -15,9 +15,24 @@ Use this article to find information on integrating Azure Language SDK and REST 
 
 ## Development options
 
-The Language provides support through a REST API, and client libraries in several languages.
+Language service supports development through Microsoft Foundry, REST APIs, and client libraries in several languages.
 
-# [Client library (Azure SDK)](#tab/language-studio)
+# [Microsoft Foundry](#tab/foundry)
+
+## Microsoft Foundry
+
+Microsoft Foundry provides a guided development experience for building, testing, and deploying Language solutions without writing initial integration code. You can use Foundry to configure resources, create and manage projects, and validate model behavior before integrating with SDK or REST-based production workflows.
+
+To get started with feature-specific Foundry workflows, see:
+
+* [Custom text classification quickstart](../custom-text-classification/quickstart.md)
+* [Custom named entity recognition quickstart](../custom-named-entity-recognition/quickstart.md)
+* [Conversational language understanding quickstart](../conversational-language-understanding/quickstart.md)
+* [Question answering quickstart](../question-answering/quickstart/sdk.md)
+
+---
+
+# [Client libraries (Azure SDK)](#tab/azure-sdk)
 
 ## Client libraries (Azure SDK)
 
@@ -68,7 +83,7 @@ As you use these features in your application, use the following documentation a
 
 The `Azure.AI.Language.Conversations` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
-* [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=azure-sdk#send-a-conversational-language-understanding-request)
+* [Conversational language understanding](../conversational-language-understanding/how-to/build-train-deploy-model.md#send-prediction-requests-to-a-deployment)
 * [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
 * [Conversation summarization (Python only)](../summarization/quickstart.md?tabs=conversation-summarization&pivots=programming-language-python)
 * [Personally Identifying Information (PII) detection for conversations](../personally-identifiable-information/how-to-call-for-conversations.md?tabs=client-libraries#examples)
@@ -95,6 +110,8 @@ As you use these features in your application, use the following documentation a
 | [C#/.NET → v1.0.0](https://www.nuget.org/packages/Azure.AI.Language.QuestionAnswering/1.0.0#readme-body-tab) | [C# documentation](/dotnet/api/overview/azure/ai.language.questionanswering-readme)        |  [C# samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitivelanguage/Azure.AI.Language.QuestionAnswering)        |
 | [Python → v1.0.0](https://pypi.org/project/azure-ai-language-questionanswering/1.0.0/) | [Python documentation](/python/api/overview/azure/ai-language-questionanswering-readme)        | [Python samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitivelanguage/azure-ai-language-questionanswering) |
 
+---
+
 # [REST API](#tab/rest-api)
 
 ## REST API
@@ -112,7 +129,7 @@ For more information, *see* the [reference documentation](/rest/api/language/).
 ### Conversation analysis runtime API
 
 The conversation analysis runtime API enables you to send requests to custom models you create for the following features:
-* [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=REST-APIs#send-a-conversational-language-understanding-request)
+* [Conversational language understanding](../conversational-language-understanding/how-to/build-train-deploy-model.md#send-prediction-requests-to-a-deployment)
 * [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
 
 It additionally enables you to use the following features, without creating any models:

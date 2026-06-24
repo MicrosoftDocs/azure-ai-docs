@@ -5,11 +5,11 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/18/2025
 ---
-This quickstart guides you through the essential steps needed to create, test, and deploy a custom question answering (CQA) project in the Microsoft Foundry. Whether you're transitioning from Language Studio or starting from scratch, this quickstart is for you. It provides clear and actionable instructions to achieve a fast and successful CQA project deployment.
+This quickstart guides you through the essential steps needed to create, test, and deploy a custom question answering (CQA) project in Microsoft Foundry. It provides clear, actionable instructions for a fast and successful CQA deployment.
 
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-foundry-portal.md).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource, you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-foundry-portal.md).
 > * We highly recommend that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 >
 
@@ -21,8 +21,8 @@ Before you get started, you need the following resources and permissions:
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Foundry Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
 
   [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
-*   A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
-*   An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
+* A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
 * A Foundry project created in the Foundry. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Get started
@@ -98,7 +98,6 @@ A CQA knowledge base is a structured set of question-and-answer pairs optimized 
 
     :::image type="content" source="../media/agents/inspection-interface.png" alt-text="Screenshot of the inspection interface in the Foundry.":::
 
-
 ## Deploy your knowledge base
 
 Deploying a CQA knowledge base means publishing your curated question-and-answer content as a live, searchable endpoint. This process moves your project from a testing phase to a production environment enabling client applications to use it for various projects and solutions, including chatbots.
@@ -110,8 +109,3 @@ Deploying a CQA knowledge base means publishing your curated question-and-answer
 1. After deployment is complete, your deployed project is listed in the **Deploy knowledge base** window.
 
 That's it! Your Custom Question Answering (CQA) knowledge base provides a natural language interface to your data, allowing users to interact with information in a conversational manner. By deploying this solution, you can create advanced chatbots and interactive agents that comprehend user questions, supply precise answers, and adjust to changing informational requirements.
-
-
-
-
-
