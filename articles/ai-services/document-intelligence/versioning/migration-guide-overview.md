@@ -39,8 +39,7 @@ For guidance on updating your application code to use the v4.0 SDKs, see the lan
 Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2024-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v4-0.md). Earlier v3.x API versions will be retired on published schedules; v3.0 retires March 30, 2029.
 
 > [!IMPORTANT]
->
-> Custom extraction and classification models you train by using a preview API version are tied to that preview API version's lifecycle. When the preview API version retires, custom models trained on it retire as well.
+> Custom extraction and classification models you train by using a preview API version are tied to that preview API version's lifecycle and base model. When the preview API version retires, custom models trained on it retire as well. As part of API migration, retrain the model using the latest GA API version.
 >
 > A custom model originally trained with a preview API version might continue to work when you call it by using the latest generally available (GA) API version. However, the model is still tied to the preview API version it was trained on and remains subject to that version's retirement lifecycle.
 >
