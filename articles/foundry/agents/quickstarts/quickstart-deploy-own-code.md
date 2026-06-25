@@ -47,7 +47,7 @@ my-agent/
 
 ## Choose your framework
 
-The hosting library you add in [Step 1](#step-1-add-the-hosting-library) handles the protocol--the HTTP server, health checks, and request and response schemas. It doesn't depend on a specific agent framework, so your agent logic can use any Python packages you prefer.
+The hosting library you add in [Step 1](#step-1-add-the-hosting-library) handles the protocol - the HTTP server, health checks, and request and response schemas. It doesn't depend on a specific agent framework, so your agent logic can use any Python packages you prefer.
 
 To use a framework, add its packages to `requirements.txt` next to the hosting library, then call the framework from the handler in `main.py`. The following table lists common choices and a sample for each.
 
@@ -65,16 +65,16 @@ Each sample's `requirements.txt` lists the exact package versions. For the full 
 
 ## Start from a sample in Visual Studio Code
 
-To begin from a working framework template instead of your own code, use the sample gallery in the Microsoft Foundry Toolkit for Visual Studio Code:
+To start from a working framework template instead of your own code, use the sample gallery in the Microsoft Foundry Toolkit for Visual Studio Code:
 
 1. In the Visual Studio Code Activity Bar, select the **Foundry Toolkit** icon.
 1. Under **Developer Tools** > **Agent Dev Tools**, select **Create Agent**.
 1. Under **Create in code with full control**, select **Use a sample**.
-1. On the **Create Hosted Agent from Sample** page, use the filters to narrow the gallery:
+1. On **Create Hosted Agent from Sample**, use the filters to narrow the gallery:
     - For **Framework**, select **Bring Your Own**, **LangGraph**, **Copilot SDK**, or **Agent Framework**.
     - For **Protocol Type**, select **Responses API** or **Invocations API**.
-1. Select a sample, then select **Next**.
-1. Enter an agent name, select your Foundry project, then select **Create**.
+1. Select a sample, and then select **Next**.
+1. Enter an agent name, select your Foundry project, and then select **Create**.
 
 The toolkit scaffolds the sample into a new workspace and sets up a one-click **F5** debug experience. To install dependencies, test locally, and deploy from Visual Studio Code, follow the Visual Studio Code steps in [Deploy your first hosted agent](quickstart-hosted-agent.md).
 
@@ -87,7 +87,7 @@ Select the tab that matches your agent's interaction pattern. **Responses** mana
 
 ## Step 1: Add the hosting library
 
-Add the protocol library to your `requirements.txt`. The library handles the HTTP server, health checks, and protocol compliance, independent of the agent framework you use. If you use a framework, add its packages to the same file--see [Choose your framework](#choose-your-framework).
+Add the protocol library to your `requirements.txt`. The library handles the HTTP server, health checks, and protocol compliance, independent of the agent framework you use. If you use a framework, add its packages to the same file - see [Choose your framework](#choose-your-framework).
 
 # [Responses](#tab/responses)
 
@@ -175,7 +175,7 @@ if __name__ == "__main__":
 ---
 
 > [!NOTE]
-> These examples echo user input to demonstrate the hosting wrapper. Replace the marked block with your own agent logic--model calls, RAG, or a framework like LangGraph or the GitHub Copilot SDK. For complete examples, see the [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own) and [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/bring-your-own).
+> These examples echo user input to demonstrate the hosting wrapper. Replace the marked block with your own agent logic - model calls, RAG, or a framework like LangGraph or the GitHub Copilot SDK. For complete examples, see the [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own) and [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/bring-your-own).
 
 ## Step 3: Initialize the project
 
