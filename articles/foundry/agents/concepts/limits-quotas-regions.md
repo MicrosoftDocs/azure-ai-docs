@@ -74,7 +74,22 @@ Foundry Agent Service enforces limits in two places:
 - **Agent Service limits.** Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
 - **Model limits.** Quotas and rate limits for the model deployments your agents call.
 
-If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](runtime-components.md). If you're using file search, see [Vector stores for file search](vector-stores.md).
+The artifacts these limits govern are stored in either Microsoft-managed storage or your own Azure resources, depending on your setup. See [Where Agent Service stores your data](#where-agent-service-stores-your-data) next.
+
+## Where Agent Service stores your data
+
+Where your agent data lives depends on which setup option you choose. The setup option also determines which resources the quotas and limits in this article apply to.
+
+- **Basic setup** stores agent state in secure, Microsoft-managed storage that's logically separated. This is the default when you don't configure your own resources.
+- **Standard setup** stores agent state in customer-managed, single-tenant Azure resources in your own subscription, which gives you full control over data residency and access.
+
+| Data type | Basic setup | Standard setup |
+| --- | --- | --- |
+| Files, uploads, and attachments | Microsoft-managed storage | Azure Storage (Blob Storage) |
+| Vector stores, embeddings, and retrieval indexes | Microsoft-managed vector search | Azure AI Search |
+| Threads, conversation history, messages, and agent definitions | Microsoft-managed storage | Azure Cosmos DB |
+
+[Capability hosts](capability-hosts.md) tell Agent Service where to store and process file uploads, vector stores, and conversation history. To store agent data in your own resources, see [Standard agent setup](standard-agent-setup.md).
 
 ## Default quotas and limits for the service
 
@@ -147,6 +162,8 @@ The limits in this article are default values for Foundry Agent Service. If your
 ## Related content
 
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
+- [Capability hosts](capability-hosts.md)
+- [Standard agent setup](standard-agent-setup.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
 - [Monitor Foundry Agent Service](../../observability/how-to/how-to-monitor-agents-dashboard.md)
