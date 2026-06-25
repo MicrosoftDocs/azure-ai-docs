@@ -388,7 +388,7 @@ my-mcp-server-ks-header-value1: {{mcp-server-header-value}}
 
 Each header pair must include exactly one name control header and one matching value control header. Header names and values must be valid HTTP request headers. If a query-time header uses the same target header name as a `storedHeaders` entry, the query-time value overrides the stored value for that request.
 
-### Tool properties
+### Configure tools
 
 Each entry in the `tools` array specifies an allowed MCP tool and optional output parsing behavior. For the complete schema, see [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
@@ -396,11 +396,11 @@ Each entry in the `tools` array specifies an allowed MCP tool and optional outpu
 
 By default, the retrieval engine applies automatic heuristics (`auto`) to convert raw MCP tool output into rankable documents. You can override this behavior per tool using the `outputParsing` property.
 
-# [auto](#tab/auto)
+#### Auto
 
 The `auto` mode requires no configuration. The retrieval engine applies heuristics to parse the tool output.
 
-# [json](#tab/json)
+#### JSON
 
 The `json` mode extracts documents from a specific location in the JSON output using a JSONPath expression. Use this mode when your tool returns a structured JSON response with a predictable array field.
 
@@ -416,7 +416,7 @@ The `json` mode extracts documents from a specific location in the JSON output u
 
 For the complete `jsonParameters` schema, see [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
-# [split](#tab/split)
+#### Split
 
 The `split` mode chunks large text, HTML, or Markdown output into smaller segments. Use this mode when a tool returns long-form content. This mode supports the same parameters as the [Text Split skill](cognitive-search-skill-textsplit.md#skill-parameters).
 
@@ -431,11 +431,9 @@ The `split` mode chunks large text, HTML, or Markdown output into smaller segmen
 }
 ```
 
-# [none](#tab/none)
+#### None
 
 The `none` mode requires no configuration. The entire tool output is treated as a single document. Use this mode when the raw output doesn't require splitting or structured extraction.
-
----
 
 ## Assign to a knowledge base
 
