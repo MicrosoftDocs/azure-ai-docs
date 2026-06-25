@@ -304,6 +304,8 @@ api-key: {{api-key}}
 
 ::: zone-end
 
+For the complete knowledge source request schema, see [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+
 ## Assign to a knowledge base
 
 If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).

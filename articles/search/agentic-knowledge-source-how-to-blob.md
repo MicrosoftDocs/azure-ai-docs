@@ -490,6 +490,8 @@ Content-Type: application/json
 > [!NOTE]
 > Document-level permissions enforcement using `ingestionPermissionOptions` requires the 2026-05-01-preview API version. 2026-04-01 doesn't support this feature.
 
+For the complete knowledge source request schema, see [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+
 ## Check ingestion status
 
 [!INCLUDE [Check ingestion status](includes/how-tos/knowledge-source-status.md)]

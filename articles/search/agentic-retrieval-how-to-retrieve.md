@@ -325,6 +325,8 @@ Authorization: Bearer {{accessToken}}
 
 :::zone-end
 
+For the complete retrieve request schema, see [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+
 ### Include images in retrieve responses (preview)
 
 For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition.
