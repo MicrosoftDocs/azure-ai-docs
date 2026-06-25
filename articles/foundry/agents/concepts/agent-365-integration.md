@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Microsoft Agent 365 integration with Foundry
 
-[Microsoft Agent 365](/microsoft-agent-365/overview) is Microsoft's enterprise control plane for AI agents. It treats agents as first-class Microsoft Entra identities (through Entra Agent ID) so organizations can apply authentication, authorization, and lifecycle governance directly to agent identity objects. It gives IT teams a single place to observe, govern, and secure every agent across an organization, regardless of where that agent was built or acquired. Microsoft Foundry agents integrate with Agent 365 so organizations can apply consistent identity, security, and lifecycle management policies to agents built in Foundry.
+[Microsoft Agent 365](/microsoft-agent-365/overview) is Microsoft's enterprise control plane for AI agents. It treats agents as first-class Microsoft Entra identities (through Entra Agent ID), so organizations can apply authentication, authorization, and lifecycle governance directly to agent identity objects. It gives IT teams a single place to observe, govern, and secure every agent across an organization, regardless of where that agent was built or acquired. Microsoft Foundry agents integrate with Agent 365 so organizations can apply consistent identity, security, and lifecycle management policies to agents built in Foundry.
 
 This article explains what Agent 365 provides, how it connects to Foundry, and how data flows between the two platforms. It also explains when you need additional setup for hosted agent telemetry.
 
@@ -25,10 +25,10 @@ Agent 365 is built on five pillars:
 | Capability | Description |
 | --- | --- |
 | **Registry** | Provides a complete inventory of all agents in the organization, including agents built in Foundry and Copilot Studio, agents registered by administrators, and shadow agents discovered in the tenant. The registry also tracks ownership details that support governance and attestation workflows. |
-| **Access control** | Brings agents under management and limits their access to only the resources they need by using Microsoft Entra identity-based authorization controls, including role-based and attribute-based access control (RBAC and ABAC), plus risk-based Conditional Access policies. |
+| **Access control** | Brings agents under management and limits access to only required resources by using Microsoft Entra identity-based authorization. Supports role-based and attribute-based access control (RBAC and ABAC), plus risk-based Conditional Access policies. |
 | **Visualization** | Enables organizations to explore connections between agents, people, and data, and to monitor agent behavior and performance in real time. |
 | **Interoperability** | Equips agents with access to Microsoft 365 apps and organizational data so they can participate in real workflows. Agents can also connect to Work IQ for organizational context. |
-| **Security** | Protects agents from threats and vulnerabilities by integrating with Microsoft Defender for threat detection and behavior monitoring, and with Microsoft Purview for data protection and compliance controls on agent activity and data. |
+| **Security** | Protects agents from threats and vulnerabilities through Microsoft Defender for threat detection and behavior monitoring, and Microsoft Purview for data protection and compliance controls on agent activity and data. |
 
 For the full list of Agent 365 capabilities and prerequisites, see the [Agent 365 overview](/microsoft-agent-365/overview).
 
