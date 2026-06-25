@@ -225,7 +225,7 @@ Compare the observed peaks against the cpu and memory you allocated. If sustaine
 Hosted agents support deployment within network-isolated Foundry resources and can use a customer-provided Azure Virtual Network for outbound traffic. This enables agents in network-isolated Foundry deployments to reach private resources such as databases or internal APIs. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
 
 > [!NOTE]
-> The Azure Container Registry holding your agent image must currently remain reachable over its public endpoint. Private-network-secured ACR isn't currently supported.
+> Foundry projects created after June 25, 2026 support a private (network-secured) Azure Container Registry for your agent image. Projects created before that date require the registry to remain reachable over its public endpoint. Existing projects aren't affected. For more information, see [Limitations](../how-to/virtual-networks.md#limitations).
 
 ## Limits, pricing, and availability (preview)
 
