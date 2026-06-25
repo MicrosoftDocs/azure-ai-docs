@@ -55,7 +55,7 @@ If you use `azd` or the VS Code extension, the tooling handles most RBAC assignm
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
 
 > [!IMPORTANT]
-> The Azure Container Registry that holds your Hosted agent's container image must currently be reachable over its public endpoint. Placing the registry behind a private network (private endpoint with public network access disabled) isn't currently supported for Hosted agents — the platform can't pull the image. For the full list of network constraints, see [Limitations](virtual-networks.md#limitations).
+> Support for placing your Hosted agent's Azure Container Registry behind a private network (private endpoint with public network access disabled) depends on when the Foundry project was created. Projects created after June 25, 2026 support a private registry. Projects created before that date require the registry to be reachable over its public endpoint so the platform can pull the image. Existing projects aren't affected. For the full list of network constraints, see [Limitations](virtual-networks.md#limitations).
 
 ## Container requirements
 
