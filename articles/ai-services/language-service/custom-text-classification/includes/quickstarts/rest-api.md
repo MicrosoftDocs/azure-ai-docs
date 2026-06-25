@@ -45,7 +45,7 @@ Once your resource and storage container are configured, create a new custom tex
 
 ## Train your model
 
-Typically after you create a project, you go ahead and start [tagging the documents](../../how-to/tag-data.md) you have in the container connected to your project. For this quickstart, you have imported a sample tagged dataset and initialized your project with the sample JSON tags file.
+Typically after you create a project, you go ahead and start [tagging the documents](../../how-to/build-train-deploy-model.md#label-your-data) you have in the container connected to your project. For this quickstart, you have imported a sample tagged dataset and initialized your project with the sample JSON tags file.
 
 ### Start training your model
 
@@ -61,7 +61,7 @@ Training could take sometime between 10 and 30 minutes. You can use the followin
 
 ## Deploy your model
 
-Generally after training a model you would review it's [evaluation details](../../how-to/view-model-evaluation.md) and [make improvements](../../how-to/view-model-evaluation.md) if necessary. In this quickstart, you will just deploy your model and make it available for you to try in Microsoft Foundry, or you can call the [prediction API](https://aka.ms/ct-runtime-swagger).
+Generally after training a model you would review it's [evaluation details](../../how-to/build-train-deploy-model.md#view-model-details) and [make improvements](../../how-to/build-train-deploy-model.md#view-model-details) if necessary. In this quickstart, you will just deploy your model and make it available for you to try in Microsoft Foundry, or you can call the [prediction API](https://aka.ms/ct-runtime-swagger).
 
 ### Submit deployment job
 

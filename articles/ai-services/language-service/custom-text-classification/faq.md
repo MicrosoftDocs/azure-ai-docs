@@ -29,7 +29,7 @@ See the [language support](./language-support.md) article.
 
 ## How many tagged files are needed?
 
-Generally, diverse and representative [tagged data](how-to/tag-data.md) leads to better results, given that the tagging is done precisely, consistently and completely. There's no set number of tagged classes that make every model perform well. Performance is highly dependent on your schema and the ambiguity of your schema. Ambiguous classes need more tags. Performance also depends on the quality of your tagging. The recommended number of tagged instances per class is 50. 
+Generally, diverse and representative [tagged data](how-to/build-train-deploy-model.md#label-your-data) leads to better results, given that the tagging is done precisely, consistently and completely. There's no set number of tagged classes that make every model perform well. Performance is highly dependent on your schema and the ambiguity of your schema. Ambiguous classes need more tags. Performance also depends on the quality of your tagging. The recommended number of tagged instances per class is 50. 
 
 ## Training is taking a long time, is it to be expected?
 
@@ -37,36 +37,37 @@ The training process can take some time. As a rough estimate, the expected train
 
 ## How do I build my custom model programmatically?
 
-You can use the [REST API Reference Documentation](/rest/api/aifoundry) to build your custom models. Follow this [quickstart](quickstart.md?pivots=rest-api) to get started with creating a project and creating a model through APIs for examples of how to call the Authoring API. 
+You can use the [REST API Reference Documentation](/rest/api/language/) to build your custom models. Follow this [quickstart](quickstart.md?pivots=rest-api) to get started with creating a project and creating a model through APIs for examples of how to call the Authoring API. 
 
 When you're ready to start [using your model to make predictions](#how-do-i-use-my-trained-model-to-make-predictions), you can use the REST API, or the client library.
 
 ## What is the recommended CI/CD process?
 
-You can train multiple models on the same dataset within the same project. After you train your model successfully, you can [view its evaluation](how-to/view-model-evaluation.md). You can [deploy and test](quickstart.md#deploy-your-model) your model within [Microsoft Foundry](https://ai.azure.com/). You can add or remove tags from your data and train a **new** model and test it as well. View [service limits](service-limits.md)to learn about maximum number of trained models with the same project. When you [tag your data](how-to/tag-data.md#label-your-data), you can determine how your dataset is split into training and testing sets.
+You can train multiple models on the same dataset within the same project. After you train your model successfully, you can [view its evaluation](how-to/build-train-deploy-model.md#view-model-details). You can [deploy and test](quickstart.md#deploy-your-model) your model within [Microsoft Foundry](https://ai.azure.com/). You can add or remove tags from your data and train a **new** model and test it as well. View [service limits](service-limits.md)to learn about maximum number of trained models with the same project. When you [tag your data](how-to/build-train-deploy-model.md#label-your-data), you can determine how your dataset is split into training and testing sets.
 
 ## Does a low or high model score guarantee bad or good performance in production?
 
 Model evaluation may not always be comprehensive, depending on: 
+
 * If the **test set** is too small, the good/bad scores aren't representative of model's actual performance. Also if a specific class is missing or under-represented in your test set it affects model performance.
 * **Data diversity** if your data only covers few scenarios/examples of the text you expect in production, your model isn't exposed to all possible scenarios and might perform poorly on the scenarios it isn't trained on.
 * **Data representation** if the dataset used to train the model isn't representative of the data that would be introduced to the model in production, model performance is affected greatly.
 
-See the [data selection and schema design](how-to/design-schema.md) article.
+See the [data selection and schema design](how-to/build-train-deploy-model.md#prepare-your-data-and-define-a-schema) article.
 
 ## How do I improve model performance?
 
-* View the model [confusion matrix](how-to/view-model-evaluation.md), if you notice that a certain class is frequently classified incorrectly, consider adding more tagged instances for this class. If you notice that two classes are frequently classified as each other, it means the schema is ambiguous, consider merging them both into one class for better performance.
+* View the model [confusion matrix](how-to/build-train-deploy-model.md#view-model-details), if you notice that a certain class is frequently classified incorrectly, consider adding more tagged instances for this class. If you notice that two classes are frequently classified as each other, it means the schema is ambiguous, consider merging them both into one class for better performance.
 
-*  [Examine Data distribution](concepts/evaluation-metrics.md) If one of the classes has many more tagged instances than the others, your model may be biased towards this class. Add more data to the other classes or remove most of the examples from the dominating class. 
+* [Examine Data distribution](concepts/evaluation-metrics.md) If one of the classes has many more tagged instances than the others, your model may be biased towards this class. Add more data to the other classes or remove most of the examples from the dominating class. 
 
-* Review the [data selection and schema design](how-to/design-schema.md) article.
+* Review the [data selection and schema design](how-to/build-train-deploy-model.md#prepare-your-data-and-define-a-schema) article.
 
-* [Review your test set](how-to/view-model-evaluation.md) to see predicted and tagged classes side-by-side. Then you can get a better idea of your model performance, and decide if any changes in the schema or the tags are necessary.
+* [Review your test set](how-to/build-train-deploy-model.md#view-model-details) to see predicted and tagged classes side-by-side. Then you can get a better idea of your model performance, and decide if any changes in the schema or the tags are necessary.
 
 ## When I retrain my model, I get different results. Why?
 
-* When you [tag your data](how-to/tag-data.md#label-your-data), you can determine how your dataset is split into training and testing sets. You can also have your data split randomly into training and testing sets. However, there's no guarantee that the reflected model evaluation is on the same test set, so results aren't comparable.
+* When you [tag your data](how-to/build-train-deploy-model.md#label-your-data), you can determine how your dataset is split into training and testing sets. You can also have your data split randomly into training and testing sets. However, there's no guarantee that the reflected model evaluation is on the same test set, so results aren't comparable.
 
 * If you're retraining the same model, your test set is the same, but you might notice a slight change in predictions made by the model. It's because the trained model isn't robust enough, which is a factor of how representative and distinct your data is, and the quality of your tagged data. 
 
@@ -80,7 +81,7 @@ You need to [deploy your model](quickstart.md#deploy-your-model) before you can 
 
 ## How do I use my trained model to make predictions?
 
-After deploying your model, you [call the prediction API](how-to/call-api.md), using either the [REST API](how-to/call-api.md?tabs=rest-api) or [client libraries](how-to/call-api.md?tabs=client).
+After deploying your model, you [call the prediction API](how-to/build-train-deploy-model.md#send-prediction-requests), using either the [REST API](how-to/build-train-deploy-model.md#send-prediction-requests) or [client libraries](how-to/build-train-deploy-model.md#send-prediction-requests).
 
 ## Data privacy and security
 
@@ -88,7 +89,7 @@ For more information, *see* [Data, privacy, and security for Azure Language in F
 
 ## How to clone my project?
 
-To clone your project, you need to use the export API  to export the project assets, and then import them into a new project. See [REST API Reference Documentation](/rest/api/aifoundry) for both operations.
+To clone your project, you need to use the export API  to export the project assets, and then import them into a new project. See [REST API Reference Documentation](/rest/api/language/) for both operations.
 
 ## Next steps
 
