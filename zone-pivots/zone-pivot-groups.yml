@@ -2020,6 +2020,26 @@ groups:
     title: Azure Developer CLI
   - id: vscode
     title: VS Code
+# Owner: johmil
+- id: hosted-agent-deploy-clients
+  title: Deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azd
+    title: Azure Developer CLI
+  - id: python
+    title: Python SDK
+  - id: rest
+    title: REST API
+# Owner: johmil
+- id: hosted-agent-network-method
+  title: Setup method
+  prompt: Choose a setup method
+  pivots:
+  - id: templates
+    title: Portal or templates
+  - id: azd
+    title: Azure Developer CLI
 # Owner: eamono
 - id: hosted-agent-manage-method
   title: Management method

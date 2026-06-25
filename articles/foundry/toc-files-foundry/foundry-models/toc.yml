@@ -1,5 +1,5 @@
 items:
-- name: Foundry Models overview
+- name: Overview
   displayName: Microsoft Foundry Models overview
   href: ../../concepts/foundry-models-overview.md
 
@@ -32,13 +32,11 @@ items:
     - name: GPT-5 vs GPT-4.1
       displayName: GPT-5 vs GPT-4.1 - choosing the right model for your use case
       href: ../../foundry-models/how-to/model-choice-guide.md
-    - name: Explore the model playgrounds
+    - name: Model playgrounds
       displayName: Microsoft Foundry Playgrounds
       href: ../../concepts/concept-playgrounds.md
     # - name: Benchmark model in catalog
     #   href: 
-    - name: Optimization model upgrade
-      href: ../../observability/how-to/optimization-model-upgrade.md
     # - name: Link to running custom evaluations on models
     #   href:
 
@@ -56,19 +54,19 @@ items:
     - name: Upgrade or switch models with Ask AI
       displayName: Upgrade or switch models with Ask AI (preview)
       href: ../../observability/how-to/optimization-model-upgrade.md
-    - name: Foundry Models lifecycle and support policy
+    - name: Lifecycle and support policy
       displayName: Foundry Models lifecycle and support policy
       href: ../../openai/concepts/model-retirements.md
-    - name: Foundry Models lifecycle and support policy (government)
+    - name: Lifecycle and support policy (government)
       displayName: Foundry Models lifecycle and support policy (government)
       href: ../../openai/concepts/model-retirements-gov.md
-    - name: Model retirement schedule for Foundry Models
+    - name: Retirement schedule
       displayName: Model retirement schedule for Microsoft Foundry Models
       href: ../../openai/concepts/model-retirement-schedule.md
-    - name: Model retirement schedule for Foundry Models (government)
+    - name: Retirement schedule (government)
       displayName: Model retirement schedule for Microsoft Foundry Models (government)
       href: ../../openai/concepts/model-retirement-schedule-gov.md
-    - name: Retired Foundry Models
+    - name: Retired models
       displayName: Retired Azure OpenAI models in Microsoft Foundry
       href: ../../openai/concepts/retired-models.md
 
@@ -116,7 +114,7 @@ items:
   - name: Automate Azure OpenAI deployments with quota
     displayName: Automate Azure OpenAI deployments with quota in Microsoft Foundry
     href: ../../openai/how-to/automate-quota-deployments.md
-  - name: Foundry Model quotas and limits
+  - name: Foundry Models quotas and limits
     displayName: Microsoft Foundry Models quotas and limits
     href: ../../foundry-models/quotas-limits.md
   - name: Azure OpenAI quotas and limits
@@ -133,13 +131,13 @@ items:
 
 - name: Offers, deployment types, and pricing
   items:
-  - name: Deployment overview
+  - name: Overview
     displayName: Deployment overview for Microsoft Foundry Models
     href: ../../concepts/deployments-overview.md
   - name: Instant access models (preview)
     displayName: Instant access to models in Microsoft Foundry (preview)
     href: ../../concepts/instant-models.md
-  - name: Managed compute overview (preview)
+  - name: Managed compute (preview)
     displayName: Managed compute deployment for open-source AI models in Foundry
     href: ../../concepts/managed-compute-overview.md
   - name: Deployment types
@@ -156,12 +154,12 @@ items:
     href: ../../openai/concepts/priority-processing.md
   - name: Provisioned throughput
     items:
-    - name: "Quickstart: Create a provisioned throughput deployment"
-      displayName: Create a provisioned throughput deployment
-      href: ../../openai/provisioned-quickstart.md
-    - name: What is provisioned throughput?
+    - name: Overview
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
+    - name: Quickstart
+      displayName: Create a provisioned throughput deployment
+      href: ../../openai/provisioned-quickstart.md
     - name: Determine PTU sizing for a workload
       displayName: Determine PTU sizing for a workload
       href: ../../openai/how-to/provisioned-throughput-sizing.md
@@ -175,27 +173,24 @@ items:
       displayName: Manage traffic with spillover for provisioned deployments
       href: ../../openai/how-to/spillover-traffic-management.md
   - name: Plan and manage costs
-    displayName: Plan and manage costs for Microsoft Foundry
+    displayName: Plan and manage costs
     href: ../../concepts/manage-costs.md
 
 - name: Model deployment
   items:
-  - name: Deploy Foundry Models in the portal
+  - name: Deploy in the portal
     displayName: Deploy Microsoft Foundry Models in the Foundry portal
     href: ../../foundry-models/how-to/deploy-foundry-models.md
-  - name: Deploy Foundry Models using code
+  - name: Deploy using code
     displayName: Deploy models using Azure CLI and Bicep
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Upgrade GitHub Models to Foundry Models
+  - name: Upgrade from GitHub Models
     displayName: Upgrade from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
-  - name: Deploy models with Managed Compute (preview)
+  - name: Deploy with managed compute (preview)
     displayName: Deploy open-source AI models with managed compute in Foundry
     href: ../../how-to/deploy-models-managed.md
-  - name: Explore the model playgrounds
-    displayName: Microsoft Foundry Playgrounds
-    href: ../../concepts/concept-playgrounds.md
-  - name: Troubleshoot deployments and monitoring
+  - name: Troubleshoot deployments
     displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
     href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
 
@@ -208,7 +203,7 @@ items:
     href: ../../foundry-models/how-to/use-foundry-models-mai.md
   - name: Claude models
     items:
-    - name: Claude models in Foundry
+    - name: Overview
       displayName: Overview of Claude models in Foundry
       href: ../../foundry-models/concepts/claude-models.md
     - name: Deploy and use Claude models
@@ -222,7 +217,7 @@ items:
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
   - name: Healthcare AI models
     items:
-    - name: AI models for healthcare
+    - name: Overview
       displayName: Premium healthcare AI models in Foundry
       href: ../../how-to/healthcare-ai/healthcare-ai-models.md
     - name: Deploy MedImageInsight premium model
@@ -237,7 +232,7 @@ items:
 
 - name: Develop with AI models
   items:
-  - name: Endpoints for Microsoft Foundry Models
+  - name: Endpoints
     href: ../../foundry-models/concepts/endpoints.md
   - name: Chat completions and Responses APIs
     items:
@@ -281,21 +276,21 @@ items:
     - name: Prompt caching
       displayName: Prompt caching with Azure OpenAI in Microsoft Foundry Models
       href: ../../openai/how-to/prompt-caching.md
-    - name: Work with Azure OpenAI reasoning models
+    - name: Reasoning models (Azure OpenAI)
       displayName: Azure OpenAI reasoning models
       href: ../../openai/how-to/reasoning.md
-    - name: Work with reasoning models in Foundry Models
+    - name: Reasoning models (Foundry Models)
       displayName: How to use reasoning models with Microsoft Foundry Models
       href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
-    - name: Work with embeddings in Azure OpenAI
+    - name: Embeddings (Azure OpenAI)
       displayName: Learn how to generate embeddings
       href: ../../openai/how-to/embeddings.md
-    - name: Work with text embeddings in Foundry Models
+    - name: Text embeddings (Foundry Models)
       displayName: How to generate embeddings with Microsoft Foundry Models
       href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
-    - name: Generate image embeddings
+    - name: Image embeddings
       displayName: How to generate image embeddings with Microsoft Foundry Models service
       href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
     - name: Embeddings tutorial
@@ -326,7 +321,7 @@ items:
     - name: Image prompt transformation
       displayName: Prompt transformation
       href: ../../openai/concepts/prompt-transformation.md
-    - name: How to use image to text models
+    - name: Image to text models
       displayName: How to use image-to-text models in the model catalog
       href: ../../../foundry-classic/how-to/use-image-models.md?context=/azure/foundry/context/context
     - name: Video generation 
@@ -383,10 +378,10 @@ items:
     - name: Realtime API migration from Preview to GA
       displayName: Migration from Preview to GA version of Realtime API
       href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
-    - name: GPT Realtime Translate overview
+    - name: GPT Realtime Translate
       displayName: GPT Realtime Translate real-time translation model
       href: ../../openai/concepts/gpt-realtime-translate.md
-    - name: GPT Realtime Whisper overview
+    - name: GPT Realtime Whisper
       displayName: GPT Realtime Whisper streaming transcription model
       href: ../../openai/concepts/gpt-realtime-whisper.md
 
@@ -407,7 +402,7 @@ items:
     displayName: finetuning, fine-tuning  
 
   # Data Preparation
-  - name: Synthetic Data Generation
+  - name: Synthetic data generation
     href: ../../fine-tuning/data-generation.md
     displayName: finetuning, fine-tuning         
 
@@ -432,6 +427,19 @@ items:
     displayName: finetuning, fine-tuning 
   - name: Fine-tuning cost management
     href: ../../openai/how-to/fine-tuning-cost-management.md
+
+- name: Development best practices
+  items:
+  - name: Prompt engineering techniques
+    href: ../../openai/concepts/prompt-engineering.md
+  - name: Get started with DeepSeek-R1 reasoning model
+    href: ../../foundry-models/tutorials/get-started-deepseek-r1.md
+  - name: System message design
+    href: ../../openai/concepts/advanced-prompt-engineering.md
+  - name: Performance and latency
+    href: ../../openai/how-to/latency.md
+  - name: Integrate with your applications
+    href: ../../how-to/integrate-with-other-apps.md
 
 
 # - name: Foundry Models FAQ
