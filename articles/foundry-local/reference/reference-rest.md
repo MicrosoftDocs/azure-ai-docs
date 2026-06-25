@@ -311,7 +311,8 @@ Download a model from the catalog to local storage.
   - `Name` (string)
     The model name.
   - `ProviderType` (string, optional)  
-    The provider type (for example, `"AzureFoundryLocal"`, `"HuggingFace"`).
+    The provider type. Use the `providerType` value returned by `GET /foundry/list` (for example,
+    `"AzureFoundry"` or `"HuggingFace"`).
   - `Path` (string, optional)  
     Remote path to the model files. For example, in a Hugging Face repository, this is the path to the model files.
   - `PromptTemplate` (`Dictionary<string, string>`, optional)  
@@ -369,7 +370,7 @@ Note that the version suffix must be supplied in the model name.
 {
   "model": {
     "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
-    "ProviderType": "AzureFoundryLocal",
+    "ProviderType": "AzureFoundry",
     "Name": "Phi-4-mini-instruct-generic-cpu:4",
     "Publisher": "",
     "PromptTemplate": {
