@@ -1,6 +1,6 @@
 ---
-title: "Hosted agents in Foundry Agent Service (preview)"
-description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
+title: "Hosted agents in Foundry Agent Service"
+description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
 ms.date: 06/22/2026
@@ -227,11 +227,9 @@ Hosted agents support deployment within network-isolated Foundry resources and c
 > [!NOTE]
 > Foundry projects created after June 25, 2026 support a private (network-secured) Azure Container Registry for your agent image. Projects created before that date require the registry to remain reachable over its public endpoint. Existing projects aren't affected. For more information, see [Limitations](../how-to/virtual-networks.md#limitations).
 
-## Limits, pricing, and availability (preview)
+## Limits, pricing, and availability
 
-Hosted agents are currently in preview.
-
-### Limitations during preview
+### Limitations
 
 | Limit | Scope | Default Value | Adjustable |
 | --------- | ------ | ----- | ------- |
