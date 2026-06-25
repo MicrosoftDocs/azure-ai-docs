@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 > [!NOTE]
 > Hosted agents are currently in preview.
 
-In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service. Your code can use any agent framework--such as Microsoft Agent Framework, LangGraph, the GitHub Copilot SDK, or the OpenAI Agents SDK--or plain Python that calls a model directly.
+In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service. Your code can use any agent framework - such as Microsoft Agent Framework, LangGraph, the GitHub Copilot SDK, or the OpenAI Agents SDK - or plain Python that calls a model directly.
 
 ## Prerequisites
 
