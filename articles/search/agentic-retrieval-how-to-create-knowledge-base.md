@@ -589,99 +589,7 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-### Knowledge base properties
-
-Pass the following properties to create a knowledge base.
-
-::: zone pivot="csharp"
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `Name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `KnowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
-| `Description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
-| `RetrievalInstructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query. Include this prompt when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | No |
-| `AnswerInstructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | No |
-| `OutputMode` | Valid values are `AnswerSynthesis` for an LLM-formulated answer or `ExtractedData` for full search results that you can pass to an LLM as a downstream step. | String | No |
-| `Models` | Required for web knowledge sources. Optional for other knowledge source types. Specifies a [supported LLM](#supported-models) for query planning or answer synthesis. Get connection details from the Microsoft Foundry portal or a command-line request, and then provide them by using the [KnowledgeBaseAzureOpenAIModel class](/dotnet/api/azure.search.documents.indexes.models.knowledgebaseazureopenaimodel?view=azure-dotnet-preview&preserve-view=true). You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
-| `RetrievalReasoningEffort` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-
-# [2026-04-01](#tab/2026-04-01)
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `Name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `KnowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). You must specify generally available knowledge source types. | Array | Yes |
-| `Description` | A description of the knowledge base. | String | No |
-| `Models` | Required for web knowledge sources. Specifies a [supported LLM](#supported-models) used to summarize and preprocess web content before it can be included in retrieval results. Get connection details from the Microsoft Foundry portal or a command-line request, and then provide them by using the [KnowledgeBaseAzureOpenAIModel class](/dotnet/api/azure.search.documents.indexes.models.knowledgebaseazureopenaimodel?view=azure-dotnet&preserve-view=true). You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-
----
-
-::: zone-end
-
-::: zone pivot="python"
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
-| `retrieval_instructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query. Include this prompt when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Pass instructions directly to the LLM. It's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | No |
-| `answer_instructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | No |
-| `output_mode` | Valid values are `answerSynthesis` for an LLM-formulated answer or `extractedData` for full search results that you can pass to an LLM as a downstream step. | String | No |
-| `knowledge_sources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
-| `models` | Required for web knowledge sources. Optional for other knowledge source types. Specifies a [supported LLM](#supported-models) for query planning or answer synthesis. Get connection details from the Microsoft Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-| `retrieval_reasoning_effort` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
-
-# [2026-04-01](#tab/2026-04-01)
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `description` | A description of the knowledge base. | String | No |
-| `knowledge_sources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). You must specify generally available knowledge source types. | Array | Yes |
-| `models` | Required for web knowledge sources. Specifies a [supported LLM](#supported-models) used to summarize and preprocess web content before it can be included in retrieval results. Get connection details from the Microsoft Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-
----
-
-::: zone-end
-
-::: zone pivot="rest"
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
-| `retrievalInstructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query. Include this prompt when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. You pass instructions directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | No |
-| `answerInstructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | No |
-| `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer or `extractedData` for full search results that you can pass to an LLM as a downstream step. | String | No |
-| `knowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
-| `models` | Required for web knowledge sources. Optional for other knowledge source types. Specifies a [supported LLM](#supported-models) for query planning or answer synthesis. Get connection details from the Microsoft Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-| `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
-
-# [2026-04-01](#tab/2026-04-01)
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `description` | A description of the knowledge base. | String | No |
-| `knowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). You must specify generally available knowledge source types. | Array | Yes |
-| `models` | Required for web knowledge sources. Specifies a [supported LLM](#supported-models) used to summarize and preprocess web content before it can be included in retrieval results. Get connection details from the Microsoft Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-
----
-
-::: zone-end
+For the complete knowledge base request schema, see [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 ### Configure CORS for browser-based retrieve calls (preview)
 
@@ -778,12 +686,7 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-`corsOptions` accepts the following properties.
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `allowedOrigins` | Lists the origins that can call the knowledge base from a browser. For production applications, use an explicit list of origins. You can use `"*"` to allow all origins, but this setting isn't recommended for production. | Array | Yes |
-| `maxAgeInSeconds` | Controls how long browsers can cache the preflight response. When omitted, the preflight cache duration defaults to 300 seconds. | Integer | No |
+For the complete knowledge base request schema, see [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 ## Query a knowledge base
 
