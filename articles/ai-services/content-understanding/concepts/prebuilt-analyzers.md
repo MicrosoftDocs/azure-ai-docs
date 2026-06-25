@@ -33,13 +33,6 @@ Content Understanding provides several categories of analyzers to support differ
 
 Content extraction analyzers focus on optical character recognition and layout analysis. These analyzers are built on top of `prebuilt-document` and provide progressively richer extraction capabilities.
 
-#### `prebuilt-read`
-
-* Extracts content elements such as words, paragraphs, formulas, and barcodes from documents.
-* Provides basic optical character recognition (OCR) capabilities.
-* Provides foundational text extraction without layout analysis.
-
-This prebuilt doesn't require a language model or embedding model.
 
 #### `prebuilt-layout`
 
@@ -52,10 +45,19 @@ This prebuilt doesn't require a language model or embedding model.
 
 This prebuilt doesn't require a language model or embedding model.
 
+#### `prebuilt-read`
+
+* Extracts content elements such as words, paragraphs, formulas, and barcodes from documents.
+* Provides basic optical character recognition (OCR) capabilities.
+* Provides foundational text extraction without layout analysis.
+
+This prebuilt doesn't require a language model or embedding model.
+
+
 #### `prebuilt-digitalParse`
  
-- Extracts text from digital documents and returns it as clean markdown.
-- Reads only digitally generated content. For scanned or image-based documents, please use `prebuilt-read` or `prebuilt-layout`.
+- Extracts machine-readable content from documents by directly analyzing the file’s internal structure and encoding.
+- For scanned or image-based documents, please use `prebuilt-read` or `prebuilt-layout`.
 
 This prebuilt doesn't require a language model or embedding model.
 
