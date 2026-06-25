@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Microsoft Agent 365 integration with Foundry
 
-[Microsoft Agent 365](/microsoft-agent-365/overview) is Microsoft's enterprise control plane for AI agents. It treats agents as first-class Microsoft Entra identities (through Entra Agent ID), so organizations can apply authentication, authorization, and lifecycle governance directly to agent identity objects. It gives IT teams a single place to observe, govern, and secure every agent across an organization, regardless of where that agent was built or acquired. Microsoft Foundry agents integrate with Agent 365 so organizations can apply consistent identity, security, and lifecycle management policies to agents built in Foundry.
+[Microsoft Agent 365](/microsoft-agent-365/overview) is Microsoft's enterprise control plane for AI agents. It treats agents as first-class Microsoft Entra identities through Entra Agent ID. This identity model lets organizations apply authentication, authorization, and lifecycle governance directly to agent identity objects. Agent 365 gives IT teams a single place to observe, govern, and secure every agent across an organization, regardless of where that agent was built or acquired. Microsoft Foundry agents integrate with Agent 365 so organizations can apply consistent identity, security, and lifecycle management policies to agents built in Foundry.
 
 This article explains what Agent 365 provides, how it connects to Foundry, and how data flows between the two platforms. It also explains when you need additional setup for hosted agent telemetry.
 
@@ -32,7 +32,7 @@ Agent 365 is built on five pillars:
 
 For the full list of Agent 365 capabilities and prerequisites, see the [Agent 365 overview](/microsoft-agent-365/overview).
 
-With this identity model, organizations can apply governance workflows such as periodic access reviews, lifecycle policies for provisioning and deprovisioning, and owner attestation for high-impact agents.
+With the Entra Agent ID model, organizations can apply governance workflows such as periodic access reviews, lifecycle policies for provisioning and deprovisioning, and owner attestation for high-impact agents.
 
 ## How Foundry integrates with Agent 365
 
