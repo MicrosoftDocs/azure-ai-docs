@@ -57,7 +57,7 @@ This prebuilt doesn't require a language model or embedding model.
 #### `prebuilt-digitalParse`
  
 - Extracts machine-readable content from documents by directly analyzing the file’s internal structure and encoding.
-- For scanned or image-based documents, please use `prebuilt-read` or `prebuilt-layout`.
+- For scanned or image-based documents, use `prebuilt-read` or `prebuilt-layout`.
 
 This prebuilt doesn't require a language model or embedding model.
 
