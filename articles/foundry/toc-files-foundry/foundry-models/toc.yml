@@ -14,6 +14,9 @@ items:
   - name: Foundry Models sold from partners and community
     displayName: Foundry Models from partners and community
     href: ../../foundry-models/concepts/models-from-partners.md
+  - name: Hugging Face models in Foundry
+    displayName: Hugging Face models in Microsoft Foundry (preview)
+    href: ../../foundry-models/how-to/hugging-face-models.md
 
   - name: Benchmark models
     items:
