@@ -3,7 +3,7 @@ title: "Quickstart: Deploy your own code as a hosted agent"
 description: "Take your existing Python agent code, add one hosting library, and deploy to Foundry Agent Service with the Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 06/16/2026
+ms.date: 06/25/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -15,7 +15,10 @@ ai-usage: ai-assisted
 
 # Quickstart: Deploy your own code as a hosted agent
 
-In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service.
+> [!NOTE]
+> Hosted agents are currently in preview.
+
+In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service. Your code can use any agent framework - such as Microsoft Agent Framework, LangGraph, the GitHub Copilot SDK, or the OpenAI Agents SDK - or plain Python that calls a model directly.
 
 ## Prerequisites
 
@@ -32,6 +35,7 @@ Before you begin, you need:
 
 * Your existing agent code in a local directory.
 * [Python 3.13 or later](https://www.python.org/downloads/).
+* (Optional) To start from a sample in Visual Studio Code, install [Visual Studio Code](https://code.visualstudio.com/) and the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk).
 
 Your project directory should contain at minimum:
 
@@ -40,6 +44,39 @@ my-agent/
 ├── main.py              # Your agent entry point
 └── requirements.txt     # Python dependencies
 ```
+
+## Choose your framework
+
+The hosting library you add in [Step 1](#step-1-add-the-hosting-library) handles the protocol - the HTTP server, health checks, and request and response schemas. It doesn't depend on a specific agent framework, so your agent logic can use any Python packages you prefer.
+
+To use a framework, add its packages to `requirements.txt` next to the hosting library, then call the framework from the handler in `main.py`. The following table lists common choices and a sample for each.
+
+| Framework | Packages to add to `requirements.txt` | Sample |
+| --------- | ------------------------------------- | ------ |
+| Plain Python (call a model directly) | `azure-ai-projects` | [hello-world](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/hello-world) |
+| LangGraph | `langgraph`, `langchain-azure-ai` | [langgraph-chat](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/langgraph-chat) |
+| GitHub Copilot SDK | `github-copilot-sdk` | [github-copilot](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot) |
+| OpenAI Agents SDK | `openai-agents` | [openai-agents-sdk](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/openai-agents-sdk) |
+
+Each sample's `requirements.txt` lists the exact package versions. For the full set of bring-your-own samples, see the [samples folder](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own).
+
+> [!NOTE]
+> Microsoft Agent Framework has a built-in hosting integration that uses its own package. To deploy a Microsoft Agent Framework agent, see [Deploy your first hosted agent](quickstart-hosted-agent.md).
+
+## Start from a sample in Visual Studio Code
+
+To start from a working framework template instead of your own code, use the sample gallery in the Microsoft Foundry Toolkit for Visual Studio Code:
+
+1. In the Visual Studio Code Activity Bar, select the **Foundry Toolkit** icon.
+1. Under **Developer Tools** > **Agent Dev Tools**, select **Create Agent**.
+1. Under **Create in code with full control**, select **Use a sample**.
+1. On **Create Hosted Agent from Sample**, use the filters to narrow the gallery:
+    - For **Framework**, select **Bring Your Own**, **LangGraph**, **Copilot SDK**, or **Agent Framework**.
+    - For **Protocol Type**, select **Responses API** or **Invocations API**.
+1. Select a sample, and then select **Next**.
+1. Enter an agent name, select your Foundry project, and then select **Create**.
+
+The toolkit scaffolds the sample into a new workspace and sets up a one-click **F5** debug experience. To install dependencies, test locally, and deploy from Visual Studio Code, follow the Visual Studio Code steps in [Deploy your first hosted agent](quickstart-hosted-agent.md).
 
 ## Choose your protocol
 
@@ -50,7 +87,7 @@ Select the tab that matches your agent's interaction pattern. **Responses** mana
 
 ## Step 1: Add the hosting library
 
-Add the protocol library to your `requirements.txt`. The library handles the HTTP server, health checks, and protocol compliance.
+Add the protocol library to your `requirements.txt`. The library handles the HTTP server, health checks, and protocol compliance, independent of the agent framework you use. If you use a framework, add its packages to the same file - see [Choose your framework](#choose-your-framework).
 
 # [Responses](#tab/responses)
 
@@ -138,7 +175,7 @@ if __name__ == "__main__":
 ---
 
 > [!NOTE]
-> These examples echo user input to demonstrate the hosting wrapper. Replace the marked block with your model calls, RAG logic, or any agent framework code. For production patterns, see the [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own) and [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/bring-your-own).
+> These examples echo user input to demonstrate the hosting wrapper. Replace the marked block with your own agent logic - model calls, RAG, or a framework like LangGraph or the GitHub Copilot SDK. For complete examples, see the [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own) and [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/bring-your-own).
 
 ## Step 3: Initialize the project
 
@@ -258,4 +295,5 @@ In this quickstart, you:
 * [Deploy a hosted agent from a container](../how-to/deploy-hosted-agent.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
+* [Bring-your-own framework samples (LangGraph, GitHub Copilot SDK, and more)](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own)
 * [C# hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents)

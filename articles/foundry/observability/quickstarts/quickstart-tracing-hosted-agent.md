@@ -42,7 +42,7 @@ Before you begin, you need:
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 * An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your Foundry project. To set it up, see [Set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md).
-* The [Log Analytics Reader role](https://learn.microsoft.com/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource connected to your project.
+* The [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource connected to your project. If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader).
 
 ## Step 1: Invoke your agent
 
@@ -105,8 +105,8 @@ Tracing data is stored in Application Insights and follows your workspace's data
 | Not using Foundry hosted agents and traces aren't showing | This quickstart covers hosted agents only. For tracing agents hosted outside of Foundry, see [Register an external agent](../../agents/how-to/register-external-agent.md). |
 | No traces appear after invoking agent | Confirm Application Insights is connected to your Foundry project. If it isn't enabled, see [Set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md). Verify the agent responded successfully with `azd ai agent invoke`. |
 | Traces appear but spans are missing input/output data attributes | Enable content recording by setting the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` in your agent configuration. |
-| `AuthorizationFailed` when viewing traces | You need the [Log Analytics Reader role](https://learn.microsoft.com/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource. |
-| Traces appear but are missing tool call spans | Verify your agent defines tools and the model invokes them during the request. If using Microsoft Agent Framework, confirm tools are registered with the `Agent` constructor via the `tools` parameter. See [Add tools to your agent](https://learn.microsoft.com/agent-framework/get-started/add-tools). |
+| `AuthorizationFailed` when viewing traces | You need the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource. If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
+| Traces appear but are missing tool call spans | Verify your agent defines tools and the model invokes them during the request. If using Microsoft Agent Framework, confirm tools are registered with the `Agent` constructor via the `tools` parameter. See [Add tools to your agent](/agent-framework/get-started/add-tools). |
 | `AuthenticationError` or `DefaultAzureCredential` failure | Refresh credentials with `azd auth logout` and then `azd auth login`. |
 
 ## What you learned

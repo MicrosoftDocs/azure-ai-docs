@@ -53,7 +53,7 @@ items:
 - name: Monitor
   items:
   - name: Diagnostic logging
-    href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry/context/context
+    href: ../../how-to/diagnostic-logging.md
   - name: Configure Agent 365 data collection
     href: ../../agents/how-to/configure-agent-365-data-collection.md
   - name: Plan and manage costs

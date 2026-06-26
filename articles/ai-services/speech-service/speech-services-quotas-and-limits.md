@@ -7,7 +7,7 @@ ms.author: jagoerge
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 01/30/2026
+ms.date: 06/26/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for Azure Speech in Foundry Tools so that I can decide how to use the features in my application.
 ---
@@ -74,6 +74,8 @@ These limits apply to concurrent real-time speech-to-text requests and speech tr
 | Maximum requests per minute | Not applicable | 600 |
 
 #### Batch transcription
+
+The following limits aren't adjustable. For more information on latency in batch transcription, see [Best practices for improving performance](batch-transcription.md#best-practices-for-improving-performance).
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |

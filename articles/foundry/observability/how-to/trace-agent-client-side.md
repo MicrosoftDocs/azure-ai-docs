@@ -31,7 +31,7 @@ In this article, you learn how to:
 - A [Foundry project](../../how-to/create-projects.md) with an [Application Insights resource connected](trace-agent-setup.md#connect-application-insights-to-your-foundry-project).
 - An AI model deployed to the project. Note the deployment name.
 - [Azure CLI](/cli/azure/install-azure-cli) installed. Sign in by running `az login`.
-- Contributor or higher role on the Foundry project. To view traces, you also need [Log Analytics Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the connected Application Insights resource. For more information, see [Role-based access control in Foundry](../../concepts/rbac-foundry.md).
+- Contributor or higher role on the Foundry project. To view traces, you also need [Log Analytics Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the connected Application Insights resource. If those Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). For more information, see [Role-based access control in Foundry](../../concepts/rbac-foundry.md).
 - The following environment variables set with your own values:
 
   | Variable | Description |
@@ -539,7 +539,7 @@ Client-side tracing can capture sensitive information. Follow these practices to
 | --- | --- |
 | Tracing doesn't produce any spans | Verify `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING` is set to `true` **before** calling `AIProjectInstrumentor().instrument()` (Python) or before creating the tracer provider (C#). |
 | Message content doesn't appear in spans | Set `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` to `true`. |
-| Traces don't appear in Azure Monitor | Verify the Application Insights connection string is correct and the resource is accessible. Check that your account has the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
+| Traces don't appear in Azure Monitor | Verify the Application Insights connection string is correct and the resource is accessible. Check that your account has the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
 | Client-side and server-side spans aren't correlated | (Python) Verify trace context propagation is enabled and that OpenAI clients are obtained via `get_openai_client()` **after** instrumentation. |
 | Traces appear with a delay | Traces typically take 2-5 minutes to appear in the Foundry portal and Azure Monitor. Wait and refresh. |
 

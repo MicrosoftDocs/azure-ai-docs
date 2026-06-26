@@ -1,22 +1,47 @@
 items:
-# Development Setup
-
+# Set up
 - name: Set up your developer environment
   href: ../../how-to/develop/install-cli-sdk.md
-- name: Use the Microsoft Foundry Skill in coding agents
-  href: ../../how-to/develop/use-microsoft-foundry-skill.md
-- name: Work in VS Code
-  href: ../../how-to/develop/get-started-projects-vs-code.md
-- name: Configure Claude Code with Microsoft Foundry
-  href: ../../foundry-models/how-to/configure-claude-code.md
-- name: Configure Claude Desktop with Microsoft Foundry
-  href: ../../foundry-models/how-to/configure-claude-desktop.md
-
-# Getting Started with Development
-- name: Start with an AI template
-  href: ../../how-to/develop/ai-template-get-started.md
 - name: Playgrounds and quick evaluation
   href: ../../concepts/concept-playgrounds.md
+
+# Build tools
+- name: Azure Developer CLI
+  items:
+  - name: Overview
+    href: ../../agents/concepts/cli-agent-development.md
+  - name: Install the Foundry extensions
+    href: ../../agents/how-to/install-cli-foundry-extensions.md
+  - name: Set the project context
+    href: ../../agents/how-to/cli-project-context.md
+- name: Coding agents
+  items:
+  - name: Build with AI and coding agents
+    href: ../../how-to/develop/use-microsoft-foundry-skill.md
+  - name: Best practices for coding agents
+    href: ../../agents/how-to/use-cli-with-coding-agents.md
+  - name: Work in VS Code
+    href: ../../how-to/develop/get-started-projects-vs-code.md
+  - name: Use declarative agent workflows in the VS Code extension
+    href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
+  - name: Use hosted agent workflows in the VS Code extension
+    href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
+  - name: Configure Claude Code with Microsoft Foundry
+    href: ../../foundry-models/how-to/configure-claude-code.md
+  - name: Configure Claude Desktop with Microsoft Foundry
+    href: ../../foundry-models/how-to/configure-claude-desktop.md
+
+# SDKs and APIs
+- name: SDKs and APIs
+  href: ../api-sdk/toc.yml
+
+# Samples and templates
+- name: Start from a template
+  href: ../../how-to/develop/ai-template-get-started.md
+- name: Foundry samples on GitHub
+  href: https://github.com/microsoft-foundry/foundry-samples
+
+# Frameworks
 - name: Develop with LangChain and LangGraph
   items:
   - name: Get started with LangChain and LangGraph in Foundry
@@ -36,14 +61,6 @@ items:
   - name: Trace with Foundry Observability
     href: ../../how-to/develop/langchain-traces.md
 
-# Agent Tools
-- name: Agent development tools
-  items:
-  - name: Use declarative agent workflows in the Visual Studio Code extension
-    href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
-  - name: Use Hosted agent workflows in the Visual Studio Code extension
-    href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
-
 # MCP Server
 - name: Foundry MCP Server (preview)
   items:
@@ -55,9 +72,9 @@ items:
     href: ../../mcp/available-tools.md
 
 # Fireworks
-- name: Fireworks on Foundry 
+- name: Fireworks on Foundry
   items:
   - name: Use Fireworks models
     href: ../../how-to/fireworks/enable-fireworks-models.md
-  - name: Import custom models with Fireworks 
+  - name: Import custom models with Fireworks
     href: ../../how-to/fireworks/import-custom-models.md

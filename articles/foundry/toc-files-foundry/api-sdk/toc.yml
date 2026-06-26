@@ -66,7 +66,7 @@ items:
           - name: 2025-04-01-preview - image and audio
             href: ../../openai/reference-preview.md
   
-  - name: REST API (resource creation & deployment)
+  - name: REST API (resource creation and deployment)
     href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
 
 # Reference Documentation

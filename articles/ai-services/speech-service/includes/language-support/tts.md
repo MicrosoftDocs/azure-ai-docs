@@ -158,6 +158,8 @@ ai-usage: ai-assisted
 | `en-IN` | English (India) | Standard | `en-IN-NeerjaNeural` (Female) | **Styles**<br/>`cheerful`, `empathetic`, `newscast`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-IN` | English (India) | Standard | `en-IN-PrabhatNeural` (Male) |  | ❌ |
 | `en-IN` | English (India) | Standard | `en-IN-RehaanNeural` (Male) |  | ❌ |
+| `en-IN` | English (India) | Neural HD | `en-IN-Diya:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
+| `en-IN` | English (India) | Neural HD | `en-IN-Neerja:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `en-KE` | English (Kenya) | Standard | `en-KE-AsiliaNeural` (Female) |  | ❌ |
 | `en-KE` | English (Kenya) | Standard | `en-KE-ChilembaNeural` (Male) |  | ❌ |
 | `en-NG` | English (Nigeria) | Standard | `en-NG-EzinneNeural` (Female) |  | ❌ |

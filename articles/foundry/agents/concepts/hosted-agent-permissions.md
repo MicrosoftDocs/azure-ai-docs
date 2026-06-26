@@ -440,7 +440,7 @@ Accessing agent telemetry data requires read permissions on the Application Insi
 
 Assign [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) at the Application Insights resource scope. The `*/read` permissions in this role access the underlying Log Analytics workspace data without requiring a separate workspace-scoped assignment.
 
-If you need to work against the Log Analytics workspace directly, also assign [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#log-analytics-reader) at the workspace scope.
+If you need to work against the Log Analytics workspace directly, also assign [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#log-analytics-reader) at the workspace scope. If the workspace tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) to read the protected tables.
 
 | Built-in role | Scope | Can assignee access agent telemetry data? |
 | --- | --- | --- |
@@ -452,6 +452,7 @@ If you need to work against the Log Analytics workspace directly, also assign [L
 | Foundry Owner | Application Insights | ✗ No |
 | Monitoring Reader | Application Insights | ✔ Yes |
 | Log Analytics Reader | Log Analytics Workspace | ✔ Yes (from workspace directly) |
+| Privileged Monitoring Data Reader | Log Analytics Workspace | ✔ Yes (required for [protected tables](/azure/azure-monitor/logs/protected-tables-configure)) |
 
 #### Cost display in billing currency
 
