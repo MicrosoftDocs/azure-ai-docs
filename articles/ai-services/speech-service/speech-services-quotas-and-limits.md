@@ -7,7 +7,7 @@ ms.author: jagoerge
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 06/25/2026
+ms.date: 06/26/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for Azure Speech in Foundry Tools so that I can decide how to use the features in my application.
 ---
