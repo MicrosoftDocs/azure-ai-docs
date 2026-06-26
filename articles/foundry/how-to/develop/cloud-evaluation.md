@@ -1169,7 +1169,7 @@ pip install "azure-ai-agentserver-core[tracing]"
 In addition to the general [prerequisites](#prerequisites), trace evaluation requires:
 
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your Foundry project. See [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md).
-- The project's managed identity must have the **Log Analytics Reader** role on both the Application Insights resource and its linked Log Analytics workspace.
+- The project's managed identity must have the **Log Analytics Reader** role on both the Application Insights resource and its linked Log Analytics workspace. If the tables that store your traces are [protected](/azure/azure-monitor/logs/protected-tables-configure) (their protection level is set to **Protected**), also assign the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role at the same scopes so the service can read the protected trace tables.
 - The `azure-monitor-query` Python package (only needed if you collect trace IDs manually).
 
 ```bash
