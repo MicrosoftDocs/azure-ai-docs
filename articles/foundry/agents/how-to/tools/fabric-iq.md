@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 05/10/2026
+ms.date: 06/26/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -40,7 +40,7 @@ When you connect your Foundry agent to Fabric IQ by registering it as a server-s
 ## Prerequisites
 
 > [!NOTE]
-> Virtual network (VNet) integration is not supported. Your Foundry project must not use a VNet-restricted endpoint.
+> Virtual network (VNet) support depends on the Fabric item type. For details, see [Virtual network support](#virtual-network-support).
 
 > [!IMPORTANT]
 > Fabric IQ isn't available in regions where Power BI is the only Fabric workload. Confirm your Fabric workspace is in a region that supports the full Fabric stack — see [Microsoft Fabric region availability](/fabric/admin/region-availability#power-bi).
@@ -82,6 +82,9 @@ Replace the placeholders as follows:
 - `{itemId}` / `{dataAgentId}` — The GUID of the specific Fabric item
 
 You can find the workspace and item GUIDs in the Microsoft Fabric portal: open your workspace, select the item, and copy the IDs from the browser URL.
+
+> [!NOTE]
+> If the data agent's workspace uses a [workspace-level private link](#virtual-network-support), replace `api.fabric.microsoft.com` with the workspace-specific host. See [Connect to a data agent over a workspace-level private link](#connect-to-a-data-agent-over-a-workspace-level-private-link).
 
 > [!NOTE]
 > Among the Fabric IQ item types, only the **data agent** MCP endpoint supports long-running operations through [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Ontology and Power BI semantic model endpoints run synchronously and are subject to the standard tool-call timeout. Because the data agent endpoint is an MCP server, you run it in background mode the same way as any other MCP tool — set `background` to `true` and poll the response until it completes. For code samples, see [Long-running operations](model-context-protocol.md#long-running-operations-preview).
@@ -405,6 +408,78 @@ After Foundry creates the connection, it displays an OAuth redirect URL. Add thi
 1. Under **Redirect URIs**, paste the OAuth redirect URL from Foundry.
 1. Select **Configure**.
 
+## Virtual network support
+
+Virtual network (VNet) support through Azure Private Link depends on the Fabric item type you connect to.
+
+| Fabric item type | Virtual network support |
+| --- | --- |
+| Ontology | Tenant-level private link |
+| Data agent | Tenant-level and workspace-level private link |
+| Power BI semantic model | Public access only |
+
+[Tenant-level private links](/fabric/security/security-private-links-overview) apply network restrictions across your whole tenant and don't change the `server_url` you configure. Data agent items also support [workspace-level private links](/fabric/security/security-workspace-level-private-links-overview), which isolate a single workspace and require a workspace-specific endpoint and a dedicated Foundry connection, as described in the next section. Power BI semantic models support public access only.
+
+### Connect to a data agent over a workspace-level private link
+
+When a workspace blocks public access through a [workspace-level private link](/fabric/security/security-workspace-level-private-links-set-up), its data agent is no longer reachable at the shared `api.fabric.microsoft.com` host. Use the workspace-specific private endpoint instead, and create a Foundry connection that forwards the signed-in user's Entra token to that endpoint.
+
+#### Build the workspace private endpoint URL
+
+Replace the `api.fabric.microsoft.com` host in the data agent `server_url` with the workspace fully qualified domain name (FQDN):
+
+`https://{workspaceId}.z{xy}.w.api.fabric.microsoft.com/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent`
+
+Where:
+
+- `{workspaceId}` is the workspace ID with the dashes removed.
+- `z` is a literal part of the host name.
+- `{xy}` is the first two characters of the workspace ID.
+
+For example, for workspace ID `1234567890abcdef1234567890abcdef`, the host is `1234567890abcdef1234567890abcdef.z12.w.api.fabric.microsoft.com`. For more information, see [Connecting to workspaces](/fabric/security/security-workspace-level-private-links-overview#connecting-to-workspaces).
+
+#### Create the Foundry connection
+
+Create a remote tool connection that uses user Entra token (On-Behalf-Of) authentication and targets the workspace private endpoint. Set the audience to the Power BI API resource `https://analysis.windows.net/powerbi/api`, which authorizes data agent execution through the `DataAgent.Execute.All` scope.
+
+# [azd](#tab/azd)
+
+Add the connection to the `resources` section of your `azure.yaml` file, then run `azd provision`:
+
+```yaml
+resources:
+  - kind: connection
+    name: fabriciq-dataagent-vnet
+    category: RemoteTool
+    authType: UserEntraToken
+    audience: https://analysis.windows.net/powerbi/api
+    target: https://{workspaceId}.z{xy}.w.api.fabric.microsoft.com/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent
+```
+
+# [REST API](#tab/rest-api)
+
+Send a PUT request to the connections API. Replace the placeholders with your subscription, resource group, Foundry account, and project names, and supply a Microsoft Entra access token for Azure Resource Manager.
+
+```http
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/projects/{project-name}/connections/fabriciq-dataagent-vnet?api-version=2025-10-01-preview
+Authorization: Bearer {arm-access-token}
+Content-Type: application/json
+
+{
+  "properties": {
+    "category": "RemoteTool",
+    "authType": "UserEntraToken",
+    "target": "https://{workspaceId}.z{xy}.w.api.fabric.microsoft.com/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent",
+    "audience": "https://analysis.windows.net/powerbi/api",
+    "isSharedToAll": true
+  }
+}
+```
+
+---
+
+After you create the connection, reference it from your agent tool definition through its `project_connection_id`. The connection's `target` already points to the workspace private endpoint, so requests route over the workspace-level private link.
+
 ## Data governance and compliance
 
 Fabric IQ processes requests within the Microsoft Fabric compliance boundary for your workspace's region. The following commitments apply when you route agent queries through Fabric IQ.
@@ -435,7 +510,7 @@ A Global Administrator must grant tenant-wide admin consent for the Entra app re
 
 ### Restrict network access
 
-To restrict agent traffic to your private network, configure Foundry Agent Service with a virtual network. See [Private networking for agents](../virtual-networks.md) for setup instructions.
+To restrict agent traffic to your private network, configure Foundry Agent Service with a virtual network. See [Private networking for agents](../virtual-networks.md) for setup instructions. For the Fabric-side network options that each item type supports, see [Virtual network support](#virtual-network-support).
 
 ### Publish Fabric items before use
 
