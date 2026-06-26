@@ -6,8 +6,9 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/03/2026
+ms.date: 06/26/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 Before creating a provisioned deployment, estimate how many provisioned throughput units (PTUs) your workload needs. This article provides the per-model throughput parameters you need and shows how to calculate PTU requirements using sizing formulas or the Foundry capacity calculator.
@@ -171,14 +172,14 @@ This section lists other Foundry Models sold by Azure, not including the Azure O
 
 ### Fireworks on Microsoft Foundry models
 
-The following Fireworks on Microsoft Foundry models support provisioned throughput.
+The following Fireworks on Microsoft Foundry models support both Global and US Data Zone provisioned throughput.
 
-|Topic|**DeepSeek v3.1**|**DeepSeek V4 Flash**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM-5.1**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.6**|**Llama 3.1 8B Instruct**|**Ministral 3 3B Instruct 2512**|**Qwen 3.5 9B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|Global provisioned minimum deployment|200|100|400|200|200|200|400|200|200|200|40|40|40|40|450|200|
-|Global provisioned scale increment|100|50|200|100|100|100|200|100|100|100|20|20|20|20|225|100|
-|Input TPM per PTU|2,100|2,800|200|5,400|2,200|6,000|900|2,500|1,400|4,000|57,800|25,400|10,700|17,800|37,253|4,032|
-|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
+|Topic|**DeepSeek v3.1**|**DeepSeek v3.2**|**DeepSeek V4 Flash**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM 5**|**GLM-5.1**|**GLM 5.2**|**gpt-oss-120b**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**Kimi K2.7 Code**|**MiniMax M2.5**|**Ministral 3 3B Instruct 2512**|**Nemotron Super 120B**|**Qwen 3.5 9B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|**Qwen 3.6 27B**|**Qwen 3.6 35B A3B**|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Minimum deployment|200|300|100|400|200|200|200|300|400|400|40|200|200|200|200|200|400|40|100|40|40|100|100|40|40|
+|Scale increment|100|150|50|200|100|100|100|150|200|200|20|100|100|100|100|100|200|20|50|20|20|50|50|20|20|
+|Input TPM per PTU|2,100|3,000|2,800|200|5,400|2,200|6,000|600|900|300|13,500|2,500|1,400|1,060|4,000|2,000|5,300|25,400|4,850|10,700|17,800|5,600|4,250|7,700|31,000|
+|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
 
 <sup>1</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
