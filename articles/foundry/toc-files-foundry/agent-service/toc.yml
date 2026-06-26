@@ -1,219 +1,129 @@
 items:
-- name: Getting started
-  items: 
-  - name: What is the Foundry Agent service
-    href: ../../agents/overview.md
-  - name: Quickstart - Create a prompt agent
-    href: ../../agents/quickstarts/prompt-agent.md
-  - name: Quickstart - Build agents using the Responses API
-    href: ../../agents/quickstarts/responses-api.md
-  - name: Quickstart - Deploy a Hosted agent
-    href: ../../agents/quickstarts/quickstart-hosted-agent.md
-  - name: Quickstart - Build a toolbox and use with a hosted agent
-    href: ../../agents/quickstarts/quickstart-toolbox-agent.md
-  - name: Quickstart - Add Foundry IQ to a hosted agent with a toolbox
-    href: ../../agents/quickstarts/quickstart-foundry-iq-hosted-agent.md
-  - name: Quickstart - Give a hosted agent persistent memory
-    href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
-  - name: Quickstart - Evaluate a Hosted agent
-    href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
-  - name: "Quickstart: Optimize a hosted agent"
-    href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
-  - name: Quickstart - Deploy your own code as a hosted agent
-    href: ../../agents/quickstarts/quickstart-deploy-own-code.md
-  - name: "Quickstart: Trace your hosted agent"
-    href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
-
-
-# Concepts
-- name: Concepts
+- name: Overview
   items:
+  - name: What is Foundry Agent Service?
+    href: ../../agents/overview.md
+  - name: Choose how to build
+    href: ../../concepts/choose-build-approach.md
   - name: Agent development lifecycle
     href: ../../agents/concepts/development-lifecycle.md
+  - name: Quickstarts
+    href: ../../quickstarts/quickstarts.md
+
+- name: Concepts
+  items:
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
   - name: Routines (preview)
     href: ../../agents/concepts/routines.md
-  - name: Hosted agents
-    href: ../../agents/concepts/hosted-agents.md
-  - name: Create a workflow
+  - name: Workflows
     href: ../../agents/concepts/workflow.md
-  - name: Agent applications
-    href: ../../agents/how-to/agent-applications.md
-  - name: Retrieval Augmented Generation (RAG) overview
-    href: ../../concepts/retrieval-augmented-generation.md
-  - name: Vector stores for file search
-    href: ../../agents/concepts/vector-stores.md
-- name: Build your agent
+
+- name: Prompt agents
   items:
-  - name: Agent runtime components
-    href: ../../agents/concepts/runtime-components.md
-  - name: Configure an agent
-    href: ../../agents/how-to/configure-agent.md
-  - name: Use connected Foundry models
-    href: ../../agents/how-to/connected-models.md
-  - name: Agent tools
+  - name: Quickstarts
     items:
-    - name: Tools overview
+    - name: Create an agent
+      href: ../../agents/quickstarts/prompt-agent.md
+    - name: Use the Responses API
+      href: ../../agents/quickstarts/responses-api.md
+  - name: Build
+    items:
+    - name: Configure an agent
+      href: ../../agents/how-to/configure-agent.md
+    - name: Use connected Foundry models
+      href: ../../agents/how-to/connected-models.md
+    - name: Use structured inputs
+      href: ../../agents/how-to/structured-inputs.md
+    - name: Add tools and knowledge
       href: ../../agents/concepts/tool-catalog.md
-    - name: Best practices
-      href: ../../agents/concepts/tool-best-practice.md
-    - name: Create a private tool catalog (preview)
-      href: ../../agents/how-to/private-tool-catalog.md
-  - name: Toolbox (preview)
-    href: ../../agents/how-to/tools/toolbox.md
+    - name: Agent applications
+      href: ../../agents/how-to/agent-applications.md
+  - name: Deploy and share
     items:
-    - name: Tool search (preview)
-      href: ../../agents/how-to/tools/tool-search.md
-  - name: Skills (preview)
-    href: ../../agents/how-to/tools/skills.md
-  - name: Structured inputs
-    href: ../../agents/how-to/structured-inputs.md
-  - name: Azure AI Search
-    href: ../../agents/how-to/tools/ai-search.md
-  - name: Browser automation (preview)
+    - name: Publish to Microsoft 365 Copilot and Teams
+      href: ../../agents/how-to/publish-copilot.md
+    - name: Publish with a virtual network
+      href: ../../agents/how-to/publish-copilot-virtual-network.md
+    - name: Agent 365
+      href: ../../agents/how-to/agent-365.md
+    - name: Agent 365 integration
+      href: ../../agents/concepts/agent-365-integration.md
+    - name: Grant Agent 365 observability permissions
+      href: ../../agents/how-to/grant-agent-365-permissions.md
+    - name: Enable incoming A2A (preview)
+      href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
+    - name: Use routines (preview)
+      href: ../../agents/how-to/use-routines.md
+  - name: Migrate
     items:
-    - name: Browser automation overview
-      href: ../../agents/how-to/tools/browser-automation.md
-    - name: Quickstart - Deploy a Hosted agent with browser automation
-      href: ../../agents/how-to/tools/browser-automation-hosted-agent-quickstart.md
-  - name: Code interpreter
-    href: ../../agents/how-to/tools/code-interpreter.md
-  - name: File search
-    href: ../../agents/how-to/tools/file-search.md
-  - name: Function calling
-    href: ../../agents/how-to/tools/function-calling.md
-  - name: Voice integration 
-    items:
-    - name: Quickstart - Talk to prompt agents with voice
-      href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
-    - name: How to enable voice for prompt agents
-      href: ../../../ai-services/speech-service/how-to-voice-agent-integration.md
-  - name: Web search capabilities
-    items:
-    - name: Web search overview
-      href: ../../agents/how-to/tools/web-overview.md
-    - name: Web search tool
-      href: ../../agents/how-to/tools/web-search.md
-    - name: Grounding with Bing tools
-      href: ../../agents/how-to/tools/bing-tools.md
-  - name: Microsoft IQ
-    items:
-    - name: Foundry IQ
-      items:
-      - name: What is Foundry IQ?
-        href: ../../agents/concepts/what-is-foundry-iq.md
-      - name: FAQ
-        href: ../../agents/concepts/foundry-iq-faq.yml
-      - name: Connect knowledge base to agents
-        href: ../../agents/how-to/foundry-iq-connect.md
-    - name: Fabric IQ (preview)
-      href: ../../agents/how-to/tools/fabric-iq.md
-    - name: Work IQ (preview)
-      href: ../../agents/how-to/tools/work-iq.md
-  - name: Model Context Protocol (MCP)
-    items:
-    - name: Connect to MCP server
-      href: ../../agents/how-to/tools/model-context-protocol.md
-    - name: Managed MCP servers (preview)
-      href: ../../agents/how-to/tools/connectors.md
-    - name: MCP authentication
-      href: ../../agents/how-to/mcp-authentication.md
-    - name: Build your own MCP server
-      href: ../../mcp/build-your-own-mcp-server.md
-  - name: Additional tools
-    items:
-    - name: Agent2Agent (A2A) (preview)
-      href: ../../agents/how-to/tools/agent-to-agent.md
-    - name: Agent2Agent (A2A) authentication (preview)
-      href: ../../agents/concepts/agent-to-agent-authentication.md
-    - name: Azure Functions
-      href: ../../agents/how-to/tools/azure-functions.md
-    - name: Computer Use (preview)
-      href: ../../agents/how-to/tools/computer-use.md
-    - name: Custom code interpreter (preview)
-      href: ../../agents/how-to/tools/custom-code-interpreter.md
-    - name: Fabric data agent (preview)
-      href: ../../agents/how-to/tools/fabric.md
-    - name: Foundry Tools
-      items:
-      - name: Azure Speech in Foundry Tools
-        href: ../../agents/how-to/tools/azure-ai-speech.md
-      - name: Azure Language in Foundry Tools
-        items:
-        - name: Azure Language tools and agents
-          href: /azure/ai-services/language-service/concepts/foundry-tools-agents?context=/azure/foundry/context/context
-        - name: Try CLU multi-turn conversations
-          href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?context=/azure/foundry/context/context
-        - name: Detect Personally Identifiable Information (PII)
-          href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?context=/azure/foundry/context/context
-        - name: Try Azure Language detection
-          href: /azure/ai-services/language-service/language-detection/quickstart?context=/azure/foundry/context/context
-      - name: Azure Translator in Foundry Tools
-        items:
-        - name: Azure text translation
-          href: /azure/ai-services/translator/text-translation/overview?context=/azure/foundry/context/context
-        - name: Azure document translation
-          href: /azure/ai-services/translator/document-translation/overview?context=/azure/foundry/context/context
-    - name: Image generation (preview)
-      href: ../../agents/how-to/tools/image-generation.md
-    - name: Memory (preview)
-      items:
-      - name: What is memory?
-        href: ../../agents/concepts/what-is-memory.md
-      - name: Create and use memory
-        href: ../../agents/how-to/memory-usage.md
-    - name: OpenAPI tool
-      href: ../../agents/how-to/tools/openapi.md
-    - name: SharePoint (preview)
-      href: ../../agents/how-to/tools/sharepoint.md
-# Deploy and Share
-- name: Deploy and share
+    - name: Migrate prompt agents to the new agent service
+      href: ../../agents/how-to/migrate.md
+    - name: Migrate from agent applications to the new agent model
+      href: ../../agents/how-to/migrate-agent-applications.md
+    - name: Disable creation of classic agents
+      href: ../../agents/how-to/disable-classic-agents.md
+
+- name: Hosted agents
   items:
-  - name: Hosted agents
+  - name: Concepts
     items:
-    - name: Deploy a Hosted agent
-      href: ../../agents/how-to/deploy-hosted-agent.md
-    - name: Deploy a Hosted agent from source code (preview)
+    - name: Overview
+      href: ../../agents/concepts/hosted-agents.md
+    - name: Runtime components
+      href: ../../agents/concepts/runtime-components.md
+    - name: Runtime contract
+      href: ../../agents/concepts/hosted-agent-contract.md
+  - name: Quickstarts
+    items:
+    - name: Deploy your first agent
+      href: ../../agents/quickstarts/quickstart-hosted-agent.md
+    - name: Build and use a toolbox
+      href: ../../agents/quickstarts/quickstart-toolbox-agent.md
+    - name: Add Foundry IQ with a toolbox
+      href: ../../agents/quickstarts/quickstart-foundry-iq-hosted-agent.md
+    - name: Add persistent memory
+      href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
+    - name: Evaluate an agent
+      href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
+    - name: Optimize an agent
+      href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
+    - name: Trace an agent
+      href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
+    - name: Deploy your own code
+      href: ../../agents/quickstarts/quickstart-deploy-own-code.md
+  - name: Develop
+    items:
+    - name: Set up a project
+      href: ../../agents/how-to/init-agent-project.md
+    - name: Configure environment variables
+      href: ../../agents/how-to/configure-hosted-agent-env-variables.md
+    - name: Set the model
+      href: ../../agents/how-to/update-hosted-agent-model.md
+    - name: Add a protocol adapter
+      href: ../../agents/how-to/add-protocol-adapter.md
+    - name: Host LangGraph agents
+      href: ../../how-to/develop/langchain-hosted-agents.md
+    - name: Deploy from source code (preview)
       href: ../../agents/how-to/deploy-hosted-agent-code.md
-    - name: Add a content safety guardrail to a Hosted agent
-      href: ../../agents/how-to/add-hosted-agent-guardrails.md
-    - name: Manage Hosted agent lifecycle
-      href: ../../agents/how-to/manage-hosted-agent.md
-    - name: Manage Hosted agent sessions
-      href: ../../agents/how-to/manage-hosted-sessions.md
-    - name: Deploy a Hosted voice agent (preview)
-      href: ../../agents/how-to/build-voice-agent.md
-  - name: Publish to Microsoft 365 Copilot and Teams
-    href: ../../agents/how-to/publish-copilot.md
-  - name: Publish to Microsoft 365 Copilot and Teams with a virtual network
-    href: ../../agents/how-to/publish-copilot-virtual-network.md
-  - name: Agent 365
-    href: ../../agents/how-to/agent-365.md
-  - name: Enable incoming A2A (preview)
-    href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
-  - name: Automate agents with routines (preview)
-    href: ../../agents/how-to/use-routines.md
-# Monitor and Evaluate
-- name: Monitor and evaluate
-  items:
-  - name: Trace agents
+  - name: Run, test, and debug
     items:
-    - name: Trace agent overview
-      href: ../../observability/concepts/trace-agent-concept.md
-    - name: Set up tracing
-      href: ../../observability/how-to/trace-agent-setup.md
-    - name: Add client-side tracing
-      href: ../../observability/how-to/trace-agent-client-side.md
-    - name: Tracing integrations
-      href: ../../observability/how-to/trace-agent-framework.md
-    - name: Review agent interactions with Trace Replay
-      href: ../../observability/how-to/trace-agent-replay.md
-  - name: Run agent evaluations with the Azure Developer CLI
-    displayName: azd cli
-    href: ../../observability/how-to/azure-developer-cli-evaluation.md
-  - name: Optimize hosted agents (preview)
-    items:
+    - name: Run locally
+      href: ../../agents/how-to/run-hosted-agent-locally.md
+    - name: Invoke
+      href: ../../agents/how-to/invoke-hosted-agent.md
+    - name: Inspect locally
+      href: ../../agents/how-to/agent-inspector.md
+    - name: Test
+      href: ../../agents/how-to/test-hosted-agent.md
+    - name: Debug
+      href: ../../agents/how-to/debug-hosted-agent.md
+    - name: Diagnose with agent doctor
+      href: ../../agents/how-to/agent-doctor.md
+    - name: View logs
+      href: ../../agents/how-to/monitor-hosted-agent-logs.md
+    - name: Pass isolation keys
+      href: ../../agents/how-to/pass-isolation-keys.md
     - name: Agent optimization overview
       href: ../../agents/concepts/agent-optimizer-overview.md
     - name: Make your agent optimization-ready
@@ -222,28 +132,43 @@ items:
       href: ../../agents/how-to/create-optimizer-dataset.md
     - name: Optimize agent instructions and skills
       href: ../../agents/how-to/optimize-agent-targets.md
-  - name: Optimize agent prompts
-    href: ../../observability/how-to/prompt-optimizer.md
-  - name: Monitor agents in the dashboard
-    href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+    - name: Optimize agent prompts
+      href: ../../observability/how-to/prompt-optimizer.md
+    - name: Monitor agents in the dashboard
+      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+  - name: Deploy and operate
+    items:
+    - name: Deploy
+      href: ../../agents/how-to/deploy-hosted-agent.md
+    - name: Deploy a voice agent (preview)
+      href: ../../agents/how-to/build-voice-agent.md
+    - name: Add a content safety guardrail
+      href: ../../agents/how-to/add-hosted-agent-guardrails.md
+    - name: Manage lifecycle
+      href: ../../agents/how-to/manage-hosted-agent.md
+    - name: Sessions
+      href: ../../agents/how-to/manage-hosted-sessions.md
+  - name: Ship to production
+    items:
+    - name: Set up CI/CD
+      href: ../../agents/how-to/set-up-ci-cd-cli.md
+    - name: Deploy with a private container registry (ACR)
+      href: ../../agents/how-to/deploy-hosted-agent-private-azure-container-registry.md
+    - name: Update endpoint and card
+      href: ../../agents/how-to/update-agent-endpoint-cli.md
+    - name: Migrate to public preview
+      href: ../../agents/how-to/migrate-hosted-agent-preview.md
+  - name: Reference
+    items:
+    - name: Permissions
+      href: ../../agents/concepts/hosted-agent-permissions.md
+    - name: agent.yaml schema
+      href: ../../agents/concepts/agent-yaml-reference.md
+    - name: azure.yaml schema
+      href: ../../agents/concepts/azure-yaml-reference.md
+    - name: Infrastructure (Bicep)
+      href: ../../agents/concepts/cli-infrastructure.md
 
-  - name: Evaluate agent quality
-    href: ../../observability/how-to/evaluate-agent.md
-  - name: Microsoft Agent 365 integration
-    href: ../../agents/concepts/agent-365-integration.md
-  - name: Grant Agent 365 observability permissions
-    href: ../../agents/how-to/grant-agent-365-permissions.md
-- name: Migrate
-  items:
-  - name: Migrate prompt agents to the new agent service
-    href: ../../agents/how-to/migrate.md
-  - name: Migrate Hosted agents to the new public preview
-    href: ../../agents/how-to/migrate-hosted-agent-preview.md
-  - name: Migrate from Agent Applications to the new agent model
-    href: ../../agents/how-to/migrate-agent-applications.md
-  - name: Disable creation of classic agents
-    href: ../../agents/how-to/disable-classic-agents.md
-# Reference
 - name: Reference
   items:
   - name: Quotas, limits, and region support
@@ -251,11 +176,7 @@ items:
   - name: Feature availability in Azure Government
     href: ../../agents/concepts/azure-government.md
     displayName: sovereign cloud, USGov, Azure Government, parity, Agent Service
-  - name: Hosted agent permissions reference
-    href: ../../agents/concepts/hosted-agent-permissions.md
-  - name: FAQ
-    href: ../../agents/faq.yml
   - name: Capability hosts
     href: ../../agents/concepts/capability-hosts.md
-  - name: Tool governance
-    href: ../../agents/how-to/tools/governance.md
+  - name: FAQ
+    href: ../../agents/faq.yml

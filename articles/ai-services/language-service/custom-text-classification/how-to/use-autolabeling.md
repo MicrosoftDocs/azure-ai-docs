@@ -14,16 +14,16 @@ ms.author: lajanuar
 
 # Use autolabeling for custom text classification
 
-[Labeling process](tag-data.md) is an important part of preparing your dataset. Since this process requires much time and effort, you can use the autolabeling feature to automatically label your documents with the classes you want to categorize them into. You can currently start autolabeling jobs based on a model using GPT models where you may immediately trigger an autolabeling job without any prior model training. This feature can save you the time and effort of manually labeling your documents.
+[Labeling process](build-train-deploy-model.md#label-your-data) is an important part of preparing your dataset. Since this process requires much time and effort, you can use the autolabeling feature to automatically label your documents with the classes you want to categorize them into. You can currently start autolabeling jobs based on a model using GPT models where you may immediately trigger an autolabeling job without any prior model training. This feature can save you the time and effort of manually labeling your documents.
 
 ## Prerequisites
 
 Before you can use autolabeling with GPT, you need:
 
 * A successfully [created project](create-project.md) with a configured Azure blob storage account.
-* Text data [uploaded](design-schema.md#data-preparation) to your storage account.
+* Text data [uploaded](build-train-deploy-model.md#data-preparation) to your storage account.
 * Class names that are meaningful. The GPT models label documents based on the names of the classes you've provided.
-* [Labeled data](tag-data.md) isn't required.
+* [Labeled data](build-train-deploy-model.md#label-your-data) isn't required.
 * An Azure OpenAI [resource and deployment](../../../../ai-foundry/openai/how-to/create-resource.md).
 
 ---
@@ -86,4 +86,4 @@ After you accept or reject the labels for the autolabeled documents, select **Sa
 
 ## Next steps
 
-* Learn more about [labeling your data](tag-data.md).
+* Learn more about [labeling your data](build-train-deploy-model.md#label-your-data).

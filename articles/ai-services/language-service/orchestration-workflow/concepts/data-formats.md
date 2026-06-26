@@ -96,4 +96,4 @@ If you upload a tags file, it should follow this format.
 
 ## Next steps
 * You can import your labeled data into your project directly. Learn how to [import project](../how-to/create-project.md)
-* See the [how-to article](../how-to/tag-utterances.md) more information about labeling your data. When you're done labeling your data, you can [train your model](../how-to/train-model.md).  
+* See the [how-to article](../how-to/build-train-deploy-model.md#label-your-utterances) more information about labeling your data. When you're done labeling your data, you can [train your model](../how-to/build-train-deploy-model.md#train-your-model).  

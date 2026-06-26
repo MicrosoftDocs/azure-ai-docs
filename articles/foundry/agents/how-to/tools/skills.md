@@ -335,20 +335,16 @@ console.log(`Created skill: ${skillVersion.name} version: ${skillVersion.version
 
 :::zone pivot="azd"
 
-Use the `azure.ai.skills` [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) extension (Preview).
+Use the `azd ai skill` commands from the [Azure Developer CLI Foundry extensions](../install-cli-foundry-extensions.md).
 
 **Prerequisites:**
 
 ```pwsh
 azd extension install microsoft.foundry
-azd extension install azure.ai.skills          # while in Preview, build from source if not in the public registry
-az login
+azd auth login
 
-$PE = "https://<account>.services.ai.azure.com/api/projects/<project>"
-azd ai agent project set --endpoint $PE
+azd ai project set "https://<account>.services.ai.azure.com/api/projects/<project>"
 ```
-
-Endpoint resolution order: `-p` flag → azd env `AZURE_AI_PROJECT_ENDPOINT` → global config `extensions.ai-skills.project.context.endpoint` (falls back to `extensions.ai-agents.project.context.endpoint`) → env var `FOUNDRY_PROJECT_ENDPOINT`.
 
 **Create the first version** with inline metadata:
 
@@ -356,7 +352,7 @@ Endpoint resolution order: `-p` flag → azd env `AZURE_AI_PROJECT_ENDPOINT` →
 azd ai skill create greeting `
   --description "Generate a personalized greeting for the user." `
   --instructions "You are a friendly greeting assistant. Keep greetings brief and warm." `
-  -p $PE --no-prompt -o json
+  --no-prompt
 ```
 
 Or from a `SKILL.md` file. The `name:` field in the file must equal the positional argument:
@@ -372,19 +368,19 @@ You are a friendly greeting assistant. Keep greetings brief and warm.
 ```
 
 ```pwsh
-azd ai skill create greeting --file ./SKILL.md -p $PE --no-prompt -o json
+azd ai skill create greeting --file ./SKILL.md --no-prompt
 ```
 
 **Add a new version** to an existing skill (auto-promoted to `default_version`):
 
 ```pwsh
-azd ai skill update greeting --file ./SKILL.md -p $PE --no-prompt -o json
+azd ai skill update greeting --file ./SKILL.md --no-prompt
 
 # Or with inline flags:
 azd ai skill update greeting `
   --description "Updated description." `
   --instructions "Updated instructions." `
-  -p $PE --no-prompt -o json
+  --no-prompt
 ```
 
 :::zone-end
@@ -490,13 +486,13 @@ mkdir skill-src\assets
 Compress-Archive -Path skill-src\* -DestinationPath greeting.zip -Force
 
 # Upload as a new skill
-azd ai skill create greeting --file ./greeting.zip -p $PE --no-prompt -o json
+azd ai skill create greeting --file ./greeting.zip --no-prompt
 ```
 
 `azd ai skill update` rejects `.zip`. To replace an existing skill with a new package, use `create --force` — this deletes the existing skill and **all of its versions** first, then uploads v1 from the new zip:
 
 ```pwsh
-azd ai skill create greeting --file ./greeting-v2.zip --force -p $PE --no-prompt -o json
+azd ai skill create greeting --file ./greeting-v2.zip --force --no-prompt
 ```
 
 :::zone-end
@@ -583,7 +579,7 @@ for await (const skill of skills) {
 :::zone pivot="azd"
 
 ```pwsh
-azd ai skill list -p $PE -o table
+azd ai skill list -o table
 ```
 
 :::zone-end
@@ -668,7 +664,7 @@ console.log(`${skill.name}: ${skill.description}`);
 :::zone pivot="azd"
 
 ```pwsh
-azd ai skill show greeting -p $PE -o json
+azd ai skill show greeting
 ```
 
 :::zone-end
@@ -756,16 +752,16 @@ Default mode extracts the skill into a directory (defaults to `./.agents/skills/
 
 ```pwsh
 # Default version
-azd ai skill download greeting --output-dir ./downloaded -p $PE --no-prompt -o json
+azd ai skill download greeting --output-dir ./downloaded --no-prompt
 
 # A specific version
-azd ai skill download greeting --version 2 --output-dir ./downloaded-v2 -p $PE --no-prompt -o json
+azd ai skill download greeting --version 2 --output-dir ./downloaded-v2 --no-prompt
 ```
 
 Raw mode keeps the original `.zip` archive untouched:
 
 ```pwsh
-azd ai skill download greeting --raw --output-dir ./downloaded-raw -p $PE --no-prompt -o json
+azd ai skill download greeting --raw --output-dir ./downloaded-raw --no-prompt
 ```
 
 Pass `--force` to overwrite existing files in the output directory.
@@ -834,7 +830,7 @@ console.log(`Deleted: ${result.name} (${result.deleted})`);
 :::zone pivot="azd"
 
 ```pwsh
-azd ai skill delete greeting -p $PE --force
+azd ai skill delete greeting --force
 ```
 
 :::zone-end
@@ -1056,7 +1052,7 @@ console.log(`New default version: ${result.default_version}`);
 :::zone pivot="azd"
 
 ```pwsh
-azd ai skill update greeting --set-default-version v2 -p $PE --no-prompt -o json
+azd ai skill update greeting --set-default-version v2 --no-prompt
 ```
 
 `--set-default-version` is a metadata-only repoint — no upload, no new version. Use it to roll back (or forward) without touching skill content.

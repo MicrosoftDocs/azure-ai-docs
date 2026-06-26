@@ -17,7 +17,7 @@ When you create a Language resource, you specify a region for it to be created i
 
 If your app or business depends on the use of a custom text classification model, we recommend that you create a replica of your project into another supported region. So that if a regional outage occurs, you can then access your model in the other fail-over region where you replicated your project.
 
-Replicating a project means that you export your project metadata and assets and import them into a new project. Replication only makes a copy of your project settings and tagged data. You still need to [train](./how-to/train-model.md) and [deploy](how-to/deploy-model.md) the models to be available for use with [prediction APIs](https://aka.ms/ct-runtime-swagger).
+Replicating a project means that you export your project metadata and assets and import them into a new project. Replication only makes a copy of your project settings and tagged data. You still need to [train](./how-to/build-train-deploy-model.md#train-your-model) and [deploy](how-to/build-train-deploy-model.md#deploy-your-model) the models to be available for use with [prediction APIs](https://aka.ms/ct-runtime-swagger).
 
 In this article, you learn to how to use the export and import APIs to replicate your project from one resource to another existing in different supported geographical regions. We also provide guidance for keeping your projects in sync and the updates needed for your runtime consumption.
 

@@ -1,6 +1,6 @@
 items:
 # Overview and Governance
-- name: Responsible AI overview
+- name: Overview
   href: ../../responsible-use-of-ai-overview.md
 - name: Limited access
   href: ../../../ai-services/cognitive-services-limited-access.md
@@ -10,7 +10,7 @@ items:
   items:
   - name: Overview
     href: ../../responsible-ai/openai/overview.md
-  - name : Transparency note
+  - name: Transparency note
     href: ../../responsible-ai/openai/transparency-note.md
   - name: Limited access
     href: ../../responsible-ai/openai/limited-access.md

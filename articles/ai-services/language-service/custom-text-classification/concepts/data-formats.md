@@ -13,7 +13,7 @@ ms.custom: language-service-custom-classification
 ---
 # Accepted data formats
 
-If you're trying to import your data into custom text classification, it has to follow a specific format. If you don't have data to import, you can [create your project](../how-to/create-project.md) and use Microsoft Foundry to [label your documents](../how-to/tag-data.md).
+If you're trying to import your data into custom text classification, it has to follow a specific format. If you don't have data to import, you can [create your project](../how-to/create-project.md) and use Microsoft Foundry to [label your documents](../how-to/build-train-deploy-model.md#label-your-data).
 
 ## Labels file format
 
@@ -70,7 +70,7 @@ Your Labels file should be in the `json` format to enable you to [import](../how
 | classes | [] | Array containing all the classes you have in the project.| [] |
 | documents | [] | Array containing all the documents in your project and the classes labeled for this document. | [] |
 | location | `{DOCUMENT-NAME}` |  The location of the documents in the storage container. Since all the documents are in the root of the container, this value should be the document name.|`doc1.txt`|
-| dataset | `{DATASET}` |  The test set to which this file goes to when split before training. See [How to train a model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+| dataset | `{DATASET}` |  The test set to which this file goes to when split before training. See [How to train a model](../how-to/build-train-deploy-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
 
 
 # [Single label classification](#tab/single-classification)
@@ -128,7 +128,7 @@ Your Labels file should be in the `json` format to enable you to [import](../how
 | classes | [] | Array containing all the classes you have in the project.| [] |
 | documents | [] | Array containing all the documents in your project and which class this document belongs to. | [] |
 | location | `{DOCUMENT-NAME}` |  The location of the documents in the storage container. Since all the documents are in the root of the container, use the document name.|`doc1.txt`|
-| dataset | `{DATASET}` |  The test set to which this file goes to when split before training. See [How to train a model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+| dataset | `{DATASET}` |  The test set to which this file goes to when split before training. See [How to train a model](../how-to/build-train-deploy-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
 
 
 ---
@@ -136,4 +136,4 @@ Your Labels file should be in the `json` format to enable you to [import](../how
 ## Next steps
 
 * You can import your labeled data into your project directly. See [How to create a project](../how-to/create-project.md#import-a-custom-text-classification-project-rest-api) to learn more about importing projects.
-* See the [how-to article](../how-to/tag-data.md) more information about labeling your data. When you're done labeling your data, you can [train your model](../how-to/train-model.md).  
+* See the [how-to article](../how-to/build-train-deploy-model.md#label-your-data) more information about labeling your data. When you're done labeling your data, you can [train your model](../how-to/build-train-deploy-model.md#train-your-model).  
