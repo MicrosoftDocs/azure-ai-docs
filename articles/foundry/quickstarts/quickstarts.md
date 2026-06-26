@@ -37,6 +37,10 @@ Get hands-on with Microsoft Foundry. Each quickstart takes you from zero to a wo
 | [Deploy a hosted agent](../agents/quickstarts/quickstart-hosted-agent.md) | Deploy a containerized agent with the Azure Developer CLI or the Microsoft Foundry Toolkit for Visual Studio Code. |
 | [Deploy your own code as a hosted agent](../agents/quickstarts/quickstart-deploy-own-code.md) | Add one hosting library to your existing Python agent and deploy it. |
 | [Build a toolbox and use it with a hosted agent](../agents/quickstarts/quickstart-toolbox-agent.md) | Combine web search and the Microsoft Learn MCP server, then use the toolbox from a hosted agent. |
+| [Give a hosted agent persistent memory](../agents/quickstarts/quickstart-memory-hosted-agent.md) | Provision a Foundry memory store and deploy a Python hosted agent that remembers facts about each user across sessions. |
+| [Add a Foundry IQ knowledge base to a hosted agent](../agents/quickstarts/quickstart-foundry-iq-hosted-agent.md) | Ground a hosted agent in a Foundry IQ knowledge base exposed through a toolbox. |
+| [Optimize a hosted agent](../agents/quickstarts/quickstart-optimize-hosted-agent.md) | Run the agent optimizer to automatically improve a hosted agent's instructions, then deploy the winning candidate. |
+| [Create a CI/CD pipeline](../agents/quickstarts/set-up-cicd-hosted-agent.md) | Establish a Continuous Integration and Continuous Deployment (CI/CD) pipeline for a hosted agent in Microsoft Foundry project.  |
 
 ## Evaluate and trace
 
