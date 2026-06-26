@@ -15,9 +15,6 @@ ai-usage: ai-assisted
 
 # Quickstart: Deploy your own code as a hosted agent
 
-> [!NOTE]
-> Hosted agents are currently in preview.
-
 In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service.
 
 ## Prerequisites

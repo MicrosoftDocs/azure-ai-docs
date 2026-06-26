@@ -39,7 +39,7 @@ Before you begin, you need:
 * Your Azure subscription must be on the allow list for the agent optimizer. Contact your Microsoft representative to request access.
 
 > [!NOTE]
-> Hosted agents and the agent optimizer are currently in preview.
+> The agent optimizer is currently in preview.
 
 ## Step 1: Create the project
 

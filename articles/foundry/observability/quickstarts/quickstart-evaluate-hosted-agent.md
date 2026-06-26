@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # Quickstart: Evaluate your hosted agent
 
 > [!NOTE]
-> Hosted agents and the Azure Developer CLI evaluation experience are currently in preview.
+> The Azure Developer CLI evaluation experience is currently in preview.
 
 In this quickstart, you evaluate the hosted agent you deployed in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md). You provide a test dataset, choose evaluators, run an evaluation against the deployed agent, and review the scores. Each step shows three ways to do the same task: the Azure Developer CLI (`azd`), the Microsoft Foundry portal, and the Python SDK.
 

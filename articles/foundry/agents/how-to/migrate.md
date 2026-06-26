@@ -145,7 +145,7 @@ The new agents provide the following benefits:
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
 - **Background mode**. Support for long-running tools (like image-generation), and durable streams (supports disconnect/reconnect scenarios)
 - **Future-proof.** New features and model support are only added to the new agents.
-- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and Hosted agents (preview).
+- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and Hosted agents.
 
 **Enterprise readiness**
 

@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 Foundry Agent Service enforces quotas and limits on agent artifacts, file uploads, messages, and tool registrations. Understanding these limits helps you design applications that scale without hitting service boundaries. This article lists default limits, supported regions, compatible models, and guidance for handling limit errors.
 
 > [!NOTE]
-> Foundry Agent Service is generally available (GA). Some sub-features, such as [Hosted agents](../concepts/hosted-agents.md), are in public preview and might have different constraints.
+> Foundry Agent Service is generally available (GA). Some sub-features are in public preview and might have different constraints.
 
 ## Prerequisites
 

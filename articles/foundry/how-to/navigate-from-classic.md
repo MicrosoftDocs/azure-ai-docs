@@ -142,7 +142,7 @@ These features are available only in the current Foundry portal:
 | Agent memory | Preview |
 | Agent publishing to M365/Teams | GA |
 | Foundry IQ | Preview |
-| Hosted agents | Preview |
+| Hosted agents | GA |
 | A2A protocol | Preview |
 | Foundry Control Plane | Preview |
 

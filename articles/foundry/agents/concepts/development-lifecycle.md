@@ -46,7 +46,7 @@ There are three types of agents:
 
 - **Workflow**: Use workflows to build a more advanced workflow that orchestrates a sequence of actions or coordinates multiple agents. Workflows have their own interface in the portal, but the same lifecycle applies. For details, see [Build a workflow in Microsoft Foundry](./workflow.md).
 
-- **Hosted (preview)**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit Hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are Hosted agents?](./hosted-agents.md)
+- **Hosted**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit Hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are Hosted agents?](./hosted-agents.md)
 
 Create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code.md).
 

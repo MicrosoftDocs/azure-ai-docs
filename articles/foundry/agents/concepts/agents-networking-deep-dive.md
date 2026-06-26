@@ -133,7 +133,7 @@ Revision limits per Hosted agent:
 
 - **100 active revisions** per agent.
 - **1,000 total revisions** per agent name. Oldest inactive revisions are automatically purged when the active limit is reached.
-- Approximately **200 Hosted agents** per Foundry instance (preview).
+- Approximately **200 Hosted agents** per Foundry instance.
 
 The 200 hosted-agent limit is separate from the ~250 project cap, which applies instance-wide across all agent types.
 

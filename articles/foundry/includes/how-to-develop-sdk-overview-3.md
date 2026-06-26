@@ -12,11 +12,11 @@ ms.custom: include
 
 ## Agent Framework
 
-[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK (Python and .NET) for building agents and multi-agent systems in code. It's the recommended path for [Hosted agents (preview)](../agents/overview.md#hosted-agents-preview) on Microsoft Foundry.
+[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK (Python and .NET) for building agents and multi-agent systems in code. It's the recommended path for [Hosted agents](../agents/overview.md#hosted-agents) on Microsoft Foundry.
 
 ### Run your code as a Hosted agent
 
-The main story for code-based agents in Foundry is [Hosted agents (preview)](../agents/overview.md#hosted-agents-preview). Write your agent with Agent Framework, package it as a container image or zip of your source code, and let Foundry run it with a managed endpoint, automatic scaling on isolated Micro VMs, a dedicated Microsoft Entra agent identity, session-level state, and end-to-end observability.
+The main story for code-based agents in Foundry is [Hosted agents](../agents/overview.md#hosted-agents). Write your agent with Agent Framework, package it as a container image or zip of your source code, and let Foundry run it with a managed endpoint, automatic scaling on isolated Micro VMs, a dedicated Microsoft Entra agent identity, session-level state, and end-to-end observability.
 
 Hosted agents are the recommended path when you want a Foundry-managed, network-addressable endpoint that other apps or agents can call. See [Deploy your first Hosted agent](../agents/quickstarts/quickstart-hosted-agent.md).
 

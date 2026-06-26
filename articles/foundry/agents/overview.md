@@ -71,7 +71,7 @@ Choose your path based on what you're trying to do:
 There are two main agent types in Agent Service:
 
 * [Prompt agents](#prompt-agents) — author in portal or code, fully managed runtime.
-* [Hosted agents (preview)](#hosted-agents-preview) — your agent code, run by Foundry.
+* [Hosted agents](#hosted-agents) — your agent code, run by Foundry.
 
 ### Prompt agents
 
@@ -84,14 +84,11 @@ Two paths to get started:
 
 **Best for**: Getting started fast, internal tools, production agents that don't need custom orchestration logic, and teams that want a managed runtime without infrastructure overhead.
 
-### Hosted agents (preview)
+### Hosted agents
 
 [Hosted agents](concepts/hosted-agents.md) are code-based agents you build with [Agent Framework](https://github.com/microsoft/agent-framework), [LangGraph](https://github.com/langchain-ai/langgraph), the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), the [Anthropic Agent SDK](https://github.com/anthropics/anthropic-sdk-python), the [GitHub Copilot SDK](https://github.com/github/copilot-sdk), or your own code. Ship your agent as either a container image or a zip of your source code — Foundry builds the image for you when you bring a zip — and Foundry runs it with a managed endpoint, automatic scaling, a dedicated Microsoft Entra identity, session-level state persistence, and end-to-end observability.
 
 Under the hood, your agent code calls the **Responses API** on your Foundry project endpoint for model inference and tool orchestration, which gives you access to Foundry models from the catalog and a unified set of platform tools — standard OpenAI tools like file search, code interpreter, and web search, plus Foundry-exclusive tools like SharePoint, WorkIQ, and Fabric IQ.
-
-> [!NOTE]
-> Hosted agents are currently in public preview.
 
 **Best for**: Agents that call into your own custom code; secondarily, custom orchestration logic, multi-agent systems, and custom protocols (webhooks, voice, AG-UI) where you want full control over agent logic while letting Foundry handle hosting, scaling, and identity.
 
@@ -99,7 +96,7 @@ If you'd rather keep running your agent code outside of Foundry — for example,
 
 ### Compare agent types
 
-| | Prompt agents | Hosted agents (preview) |
+| | Prompt agents | Hosted agents |
 | --- | --- | --- |
 | **Authoring surface** | Portal, SDK, or REST | Agent Framework, LangGraph, OpenAI Agents SDK, Anthropic Agent SDK, GitHub Copilot SDK, custom code |
 | **Foundry models + platform tools** | Yes | Yes (via the Responses API on the Foundry project endpoint) |
