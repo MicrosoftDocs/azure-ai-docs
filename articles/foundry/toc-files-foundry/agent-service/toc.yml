@@ -92,6 +92,8 @@ items:
       href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
     - name: Deploy your own code
       href: ../../agents/quickstarts/quickstart-deploy-own-code.md
+    - name: Continuous integration and deployment
+      href: ../../agents/quickstarts/set-up-cicd-hosted-agent.md
   - name: Develop
     items:
     - name: Set up a project
