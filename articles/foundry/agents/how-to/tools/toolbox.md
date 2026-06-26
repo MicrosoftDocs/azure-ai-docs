@@ -1,11 +1,11 @@
 ---
-title: "Curate intent-based toolbox in Foundry (preview)"
+title: "Curate intent-based toolbox in Foundry"
 description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, Azure AI Search, file search, code interpreter tool and more to hosted agents through a single managed endpoint."
 author: jonburchel
 reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
-ms.date: 04/25/2026
+ms.date: 06/25/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -15,8 +15,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-foundry-toolbox
 ---
 
-# Curate intent-based toolbox in Foundry (preview)
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+# Curate intent-based toolbox in Foundry
 
 A single agent can depend on multiple tools - APIs, Model Context Protocol (MCP) servers, connectors, and flows - each with its own authentication model and owning team. As you scale across an organization, teams re-implement the same tools independently, credentials get duplicated, governance becomes inconsistent, and there's little visibility into what tools exist or who's using them. Developers stall, not because the models aren't capable, but because tool integration becomes the bottleneck.
 
@@ -106,7 +105,7 @@ project = AIProjectClient(
 )
 
 # Create toolbox version with web search and MCP tools
-toolbox_version = project.beta.toolboxes.create_toolbox_version(
+toolbox_version = project.toolboxes.create_toolbox_version(
     toolbox_name="my-toolbox",
     description="Toolbox with web search and an MCP server",
     tools=[
@@ -197,7 +196,7 @@ const projectEndpoint = "https://<your-foundry-account>.services.ai.azure.com/ap
 
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 
-const toolboxVersion = await project.beta.toolboxes.createVersion(
+const toolboxVersion = await project.toolboxes.createVersion(
   "my-toolbox",
   [
     {
@@ -345,9 +344,6 @@ Two endpoint patterns exist depending on your role:
 | **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
 | **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. The first version you create is automatically set as the default. |
 
-> [!IMPORTANT]
-> Every request to the toolbox MCP endpoint must include the header `Foundry-Features: Toolboxes=V1Preview`. Calls that omit this header fail. Include it in all HTTP clients, MCP transports, and SDK wrappers that call the toolbox endpoint.
-
 > [!NOTE]
 > The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
 
@@ -391,7 +387,6 @@ url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<na
 token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
 headers = {
     "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Toolboxes=V1Preview",
 }
 
 async def verify_toolbox():
@@ -431,7 +426,6 @@ Use the version-specific endpoint (`/versions/{version}/mcp`) to validate a vers
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
 ```
@@ -442,7 +436,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","method":"notifications/initialized"}
 ```
@@ -453,7 +446,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
@@ -464,7 +456,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<TOOL_NAME>","arguments":{}}}
 ```
@@ -497,7 +488,6 @@ const transport = new StreamableHTTPClientTransport(
     requestInit: {
       headers: {
         Authorization: `Bearer ${token.token}`,
-        "Foundry-Features": "Toolboxes=V1Preview",
       },
     },
   },
@@ -592,7 +582,6 @@ See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete
 FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
 FOUNDRY_AGENT_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
 TOOLBOX_NAME=agent-tools
-FOUNDRY_AGENT_TOOLBOX_FEATURES=Toolboxes=V1Preview
 AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 ```
 
@@ -618,7 +607,6 @@ Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to 
 ```
 FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
 FOUNDRY_AGENT_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
-FOUNDRY_AGENT_TOOLBOX_FEATURES=Toolboxes=V1Preview
 AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 ```
 
@@ -630,7 +618,6 @@ credential = DefaultAzureCredential()
 token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
 http_client = httpx.AsyncClient(
     auth=_ToolboxAuth(token_provider),
-    headers={"Foundry-Features": "Toolboxes=V1Preview"},
     timeout=120.0,
 )
 
@@ -775,7 +762,7 @@ Use Foundry Toolkit to scaffold a Hosted agent sample that's already wired to yo
 1. In the Command Palette, choose a project folder when prompted.
 1. Open the generated `README.md` and follow the setup, local run, and deployment steps for the scaffold.
 
-The generated project includes the Hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps. The scaffolded agent handles the `Foundry-Features: Toolboxes=V1Preview` header for you.
+The generated project includes the Hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps.
 
 If you want to integrate a toolbox into an existing Hosted agent project instead of generating a new sample, use the copied endpoint from Step 2 with the Python or .NET patterns in this section.
 
@@ -955,7 +942,7 @@ Set `require_approval` when you create a toolbox version. The MCP tool examples 
 from azure.ai.projects.models import MCPTool
 
 # Set require_approval on an MCP tool
-toolbox_version = project.beta.toolboxes.create_toolbox_version(
+toolbox_version = project.toolboxes.create_toolbox_version(
     toolbox_name="my-toolbox",
     tools=[
         MCPTool(
@@ -1060,7 +1047,7 @@ Each create call produces a new version. If the toolbox doesn't exist yet, the p
 
 ```python
 # Create a new toolbox version
-toolbox_version = project.beta.toolboxes.create_toolbox_version(
+toolbox_version = project.toolboxes.create_toolbox_version(
     toolbox_name="my-toolbox",
     description="Updated tools v2",
     tools=[...],
@@ -1102,7 +1089,7 @@ Content-Type: application/json
 :::zone pivot="javascript"
 
 ```javascript
-const toolboxVersion = await project.beta.toolboxes.createVersion(
+const toolboxVersion = await project.toolboxes.createVersion(
   "my-toolbox",
   [/* tools array */],
   { description: "Updated tools v2" },
@@ -1132,7 +1119,7 @@ The response is a `ToolboxVersionObject` containing the new `version` identifier
 
 ```python
 # List all toolbox versions
-versions = list(project.beta.toolboxes.list_toolbox_versions(toolbox_name="my-toolbox"))
+versions = list(project.toolboxes.list_toolbox_versions(toolbox_name="my-toolbox"))
 for v in versions:
     print(f"{v.version} — created {v.created_at}")
 ```
@@ -1166,7 +1153,7 @@ Authorization: Bearer {token}
 :::zone pivot="javascript"
 
 ```javascript
-const versions = project.beta.toolboxes.listVersions("my-toolbox");
+const versions = project.toolboxes.listVersions("my-toolbox");
 for await (const v of versions) {
   console.log(`${v.version} — created ${v.createdAt}`);
 }
@@ -1192,7 +1179,7 @@ This operation isn't supported with azd. To list toolbox versions, use the **Pyt
 
 ```python
 # Get a specific toolbox version
-version_obj = project.beta.toolboxes.get_toolbox_version(
+version_obj = project.toolboxes.get_toolbox_version(
     toolbox_name="my-toolbox",
     version="<version_id>",
 )
@@ -1224,7 +1211,7 @@ Authorization: Bearer {token}
 :::zone pivot="javascript"
 
 ```javascript
-const versionObj = await project.beta.toolboxes.getVersion(
+const versionObj = await project.toolboxes.getVersion(
   "my-toolbox",
   "<version_id>",
 );
@@ -1253,7 +1240,7 @@ The MCP endpoint always serves the `default_version`. To switch which version is
 
 ```python
 # Promote a version to default
-toolbox = project.beta.toolboxes.update(
+toolbox = project.toolboxes.update(
     toolbox_name="my-toolbox",
     default_version="<version_id>",
 )
@@ -1292,7 +1279,7 @@ Content-Type: application/json
 :::zone pivot="javascript"
 
 ```javascript
-const toolbox = await project.beta.toolboxes.update(
+const toolbox = await project.toolboxes.update(
   "my-toolbox",
   "<version_id>",
 );
@@ -1319,7 +1306,7 @@ This operation isn't supported with azd. To promote a version to default, use th
 
 ```python
 # Delete a toolbox version
-project.beta.toolboxes.delete_toolbox_version(
+project.toolboxes.delete_toolbox_version(
     toolbox_name="my-toolbox",
     version="<version_id>",
 )
@@ -1350,7 +1337,7 @@ Authorization: Bearer {token}
 :::zone pivot="javascript"
 
 ```javascript
-await project.beta.toolboxes.deleteVersion(
+await project.toolboxes.deleteVersion(
   "my-toolbox",
   "<version_id>",
 );

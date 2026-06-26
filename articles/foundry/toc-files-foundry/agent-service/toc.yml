@@ -39,7 +39,7 @@ items:
       href: ../../agents/concepts/tool-best-practice.md
     - name: Create a private tool catalog (preview)
       href: ../../agents/how-to/private-tool-catalog.md
-  - name: Toolbox (preview)
+  - name: Toolbox
     href: ../../agents/how-to/tools/toolbox.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
