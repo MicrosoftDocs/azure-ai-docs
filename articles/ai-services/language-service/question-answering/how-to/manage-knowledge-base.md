@@ -1,81 +1,74 @@
 ---
 title: Manage projects - custom question answering
-description: Custom question answering allows you to manage projects by providing access to the project settings and content.
+description: Manage custom question answering projects in Microsoft Foundry, including sources, project settings, and project lifecycle tasks.
 ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 06/18/2026
 ms.custom: language-service-question-answering
 ---
-# Create and manage project settings
+<!-- markdownlint-disable MD025 -->
 
-Custom question answering allows you to manage your projects by providing access to the project settings and data sources. If you haven't created a custom question answering project before we recommend starting with the [getting started article](create-test-deploy.md).
+# Manage projects in custom question answering
+
+Use Microsoft Foundry to manage your custom question answering (CQA) projects, including project settings, sources, and project lifecycle operations.
+
+If you haven't created a CQA project yet, start with [Create, test, and deploy a CQA knowledge base](create-test-deploy.md).
 
 ## Prerequisites
 
-> * If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-> * A [Language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled in the Azure portal. Remember your Microsoft Entra ID, Subscription, and language resource name you selected when you created the resource.
+* If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+* A [Foundry resource](../../../multi-service-resource.md) or [Language resource](https://aka.ms/create-language-resource).
+* A Foundry project that contains a CQA fine-tuning task. For setup instructions, see [Create, test, and deploy a CQA knowledge base](create-test-deploy.md).
 
 ## Create a project
 
-1. Sign in to the [Language Studio](https://language.azure.com/) portal with your Azure credentials.
-
-2. Open the [question answering](https://language.azure.com/languageStudio/questionAnswering/projects) page.
-
-3. Select **create new project**.
-
-4. If you're creating the first project associated with your language resource, you have the option of creating future projects with multiple languages for the same resource. If you choose to explicitly set the language to a single language in your first project, you will not be able to modify this setting later and all subsequent projects for that resource will use the language selected during the creation of your first project.
-
-    > [!div class="mx-imgBorder"]
-    > ![Screenshot of language selection UI.](../media/manage-knowledge-base/choose-language-option.png)
-
-5. Enter basic project settings:
-
-    |Setting| Value|
-    |-------|------|
-    |**Name** | Enter your unique project name here|
-    |**Description** | Enter a description for your project |
-    |**Source language** | Whether or not this value is greyed out, is dependent on the selection that was made when the first project associated with the language resource was created.  |
-    |**Default answer** | The default answer the system will send if there was no answer found for the question. You can change this at any time in Project settings.
+To create a project in Foundry, follow [Create, test, and deploy a CQA knowledge base](create-test-deploy.md).
 
 ## Manage projects
 
-From the main custom question answering page in Language Studio you can:
+In Foundry, you can:
 
-- Create projects
-- Delete projects
-- Export existing projects for backup or to migrate to other language resources
-- Import projects. (The expected file format is a `.zip` file containing a project that was exported in `excel` or `.tsv` format).
-- Projects can be ordered by either **Last modified** or **Last published** date.
+* Create projects.
+* Delete projects.
+* Deploy or redeploy projects.
+* Open projects for source management and testing.
+
+For backup and restore operations, see [Export-import-refresh in custom question answering](./export-import-refresh.md).
 
 ## Manage sources
 
-1. Select **Manage sources** in the left pane.
+1. Open your CQA fine-tuning task in Foundry.
+1. From **Getting Started**, select **Manage sources**.
+1. Add and maintain your sources:
 
-1.  There are three types of sources: **URLS**, **Files**, and **Chitchat**
+   |Goal|Action|
+   |--|--|
+   |Add source|Select **Add source** and choose **URLs**, **Files**, or **Chit-chat**.|
+   |Delete source|Select one or more sources, then delete them.|
+   |Classify file structure|For uploaded files, choose **Auto-detect** or **Unstructured content** based on source format.|
 
-       |Goal|Action|
-       |--|--|
-       |Add Source|You can add new sources and FAQ content to your project by selecting **Add source** > and choosing **URLs**, **Files**, or **Chitchat**|
-       |Delete Source|You can delete existing sources by selecting to the left of the source, which will cause a blue circle with a checkmark to appear > select the trash can icon. |
-       |Mark content as unstructured|If you want to mark the uploaded file content as unstructured select **Unstructured content** from the dropdown when adding the source.|
-       |Auto-detect| Allow question and answering to attempt to determine if content is structured versus unstructured.|
+For URL-specific updates, see [Use smart URL refresh with a project](./smart-url-refresh.md).
 
 ## Manage large projects
 
-From the **Edit project page** you can:
+From the CQA authoring experience, you can:
 
-* **Search project**: You can search the project by typing in the text box at the top of question answer panel. Hit enter to search on the question, answer, or metadata content.
+* Search by question, answer, and metadata.
+* Review large datasets incrementally.
+* Validate behavior using **Test knowledge base** before deployment.
 
-* **Pagination**: Quickly move through data sources to manage large projects. Page numbers appear at the bottom of the UI and are sometimes off screen.
+## Delete a project
 
-## Delete project
+Deleting a project is permanent and can't be undone.
 
-Deleting a project is a permanent operation. It can't be undone. Before deleting a project, you should export the project from the main custom question answering page within Language Studio.
+Before you delete a project, export it for backup by using [Export-import-refresh in custom question answering](./export-import-refresh.md).
 
-If you share your project with collaborators and then later delete it, everyone loses access to the project.
+If you share a project with collaborators and then delete it, they lose access immediately.
 
 ## Next steps
 
-* [Configure resources](./configure-resources.md)
+* [Create, test, and deploy a CQA knowledge base](./create-test-deploy.md)
+* [Export-import-refresh in custom question answering](./export-import-refresh.md)
+* [Configure your environment for Azure AI resources](./configure-azure-resources.md)

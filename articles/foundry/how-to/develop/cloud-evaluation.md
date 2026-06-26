@@ -8,12 +8,12 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 06/26/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 ai-usage: ai-assisted
+# customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 ---
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK
@@ -171,7 +171,7 @@ data_id = project_client.datasets.upload_file(
 
 ### Provide data inline
 
-For quick experimentation with small test sets, provide data directly in the evaluation request using `file_content`.
+For quick experimentation with small test sets—or for scenarios that require inline data, such as agent response evaluation—provide data directly in the evaluation request using `file_content`. For agent response evaluations, `file_content` is the only supported source type.
 
 ```python
 source = SourceFileContent(
@@ -194,6 +194,19 @@ source = SourceFileContent(
 ```
 
 Pass `source` as the `"source"` field in your data source configuration when creating a run. The scenario sections that follow use `file_id` by default.
+
+### Source type support by scenario
+
+Not all scenarios support both source types. The following matrix shows which source type each scenario supports.
+
+| Scenario | `file_id` | `file_content` |
+|----------|-----------|----------------|
+| Dataset (`jsonl`) | Yes | Yes |
+| CSV (`csv`) | Yes | Yes |
+| Model or agent target | Yes | Yes |
+| Agent response (`azure_ai_responses`) | No | Yes |
+| Trace (`azure_ai_traces`) | N/A | N/A |
+| Synthetic data (preview) | N/A | N/A |
 
 ## Dataset evaluation
 
@@ -938,7 +951,10 @@ Retrieve and evaluate Foundry agent responses by response IDs using the `azure_a
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
 
-A **response ID** is a unique identifier returned each time a Foundry agent generates a response. You can collect response IDs from agent interactions by using the [Responses API](/rest/api/aifoundry) or from your application's trace logs. Provide the IDs inline as file content, or upload them as a dataset (see [Prepare input data](#uploading-evaluation-data)).
+A **response ID** is a unique identifier returned each time a Foundry agent generates a response. You can collect response IDs from agent interactions by using the [Responses API](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1&preserve-view=true) or from your application's trace logs. Provide the IDs inline as file content.
+
+> [!IMPORTANT]
+> Agent response evaluations (`azure_ai_responses`) support only `file_content` for providing response IDs. The `file_id` source type isn't supported and returns a `400 Bad Request` error.
 
 ### Collect response IDs
 
@@ -2508,6 +2524,12 @@ If the evaluation fails with a schema or data mapping error:
 - Verify your JSONL file has one valid JSON object per line.
 - Confirm that field names in `data_mapping` match the field names in your JSONL file exactly (case-sensitive).
 - Check that `item_schema` properties match the fields in your dataset.
+
+### HTTP 400 error when you use file_id with agent response evaluations
+
+Agent response evaluations (`azure_ai_responses`) support only inline data through `file_content`. If you provide response IDs by using `file_id`, the request returns a `400 Bad Request` error.
+
+**Resolution:** Switch to `file_content` and provide the response IDs inline.
 
 ### Rate limit errors
 

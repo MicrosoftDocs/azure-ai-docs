@@ -15,9 +15,9 @@ To address this scenario, you might need to downsample your training set. Or you
 * Get rid of a certain percentage of the training data randomly.
 * Analyze the dataset and remove overrepresented duplicate entries, which is a more systematic manner.
 
-To add to the training set, in Language Studio, on the **Data labeling** tab, select **Suggest utterances**. Conversational Language Understanding sends a call to [Azure OpenAI](../../../../ai-foundry/openai/overview.md) to generate similar utterances.
+To add to the training set, in Microsoft Foundry, on the **Data labeling** tab, select **Suggest utterances**. Conversational Language Understanding sends a call to [Azure OpenAI](../../../../ai-foundry/openai/overview.md) to generate similar utterances.
 
-:::image type="content" source="../media/suggest-utterances.png" alt-text="Screenshot that shows an utterance suggestion in Language Studio." lightbox="../media/suggest-utterances.png":::
+:::image type="content" source="../media/suggest-utterances.png" alt-text="Screenshot that shows an utterance suggestion in Microsoft Foundry." lightbox="../media/suggest-utterances.png":::
 
 You should also look for unintended "patterns" in the training set. For example, look to see if the training set for a particular intent is all lowercase or starts with a particular phrase. In such cases, the model you train might learn these unintended biases in the training set instead of being able to generalize.
 

@@ -913,7 +913,7 @@ curl -X PUT "https://management.azure.com/subscriptions/{subscriptionId}/resourc
 > [!IMPORTANT]
 > Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
 
-For the full API specification, see [Project Connections REST API reference](/rest/api/aifoundry/accountmanagement/project-connections?view=rest-aifoundry-accountmanagement-2025-06-01&preserve-view=true).
+For the full API specification, see [Project Connections REST API reference](/rest/api/microsoftfoundry/accountmanagement/project-connections?view=rest-microsoftfoundry-accountmanagement-2025-06-01&preserve-view=true).
 
 #### [Bicep](#tab/bicep)
 
@@ -978,7 +978,7 @@ Console.WriteLine(connection.Id);
 ## Related content
 
 - [Add a new connection to your project](../../../how-to/connections-add.md)
-- [Project Connections REST API reference](/rest/api/aifoundry/accountmanagement/project-connections?view=rest-aifoundry-accountmanagement-2025-06-01&preserve-view=true)
+- [Project Connections REST API reference](/rest/api/microsoftfoundry/accountmanagement/project-connections?view=rest-microsoftfoundry-accountmanagement-2025-06-01&preserve-view=true)
 - [Connect a Foundry IQ knowledge base to Foundry Agent Service](../foundry-iq-connect.md)
 - [Tool best practices](../../concepts/tool-best-practice.md)
 - [Create a vector search index in Azure AI Search](../../../../search/search-get-started-portal-import-vectors.md)

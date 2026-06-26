@@ -189,7 +189,7 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements. Keep these considerations in mind:
 
-- Microsoft Purview Data Security Policies apply to interactions that use Microsoft Entra ID user-context authentication against Foundry's managed inference endpoint (`/chat/completions`). To learn more, see [AzureUserSecurityContext](../openai/latest.md#azureusersecuritycontext).
+- Microsoft Purview Data Security Policies apply to interactions that use Microsoft Entra ID user-context authentication against Foundry's managed inference endpoint (`/chat/completions`). To learn more, see [AzureUserSecurityContext](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true).
 
 - For all other authentication scenarios, user interactions are visible in Microsoft Purview Audit and DSPM for AI activity explorer classifications, but aren't enforced by data security policies.
 

@@ -91,9 +91,6 @@ For tool configuration syntax and authentication options for each tool type, see
 - **Azure Developer CLI**: [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`, 1.25 or later) and the unified Foundry CLI extension bundle:
 
   ```bash
-  # If you previously installed individual extensions, uninstall them first.
-  azd ext uninstall microsoft.foundry
-
   # Install the unified bundle (provides azd ai agent, connection, inspector,
   # project, routine, skill, and toolbox).
   azd ext install microsoft.foundry
@@ -2173,7 +2170,7 @@ The response returns a list of files with their names and IDs.
 
 **Step 2: Download the file using the File API**
 
-Use the file name returned from Step 1 to download the file via the [File API download endpoint](/azure/foundry/openai/latest#download-file).
+Use the file name returned from Step 1 to download the file via the [File API download endpoint](/rest/api/microsoft-foundry/azureopenai/files?view=rest-microsoft-foundry-v1&preserve-view=true).
 
 ### [File Search](file-search.md)
 

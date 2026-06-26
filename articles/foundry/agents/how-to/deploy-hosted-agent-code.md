@@ -122,6 +122,9 @@ Before you start, pick a value for `code_configuration.dependency_resolution`. T
 
 For bundled mode, see [Package the zip manually](#package-the-zip-manually) for the local build commands.
 
+> [!IMPORTANT]
+> **Private virtual network prerequisite for `bundled` deployments:** If your project is secured with a private virtual network, allow an outbound network connection in your network policy to the Debian package endpoint `deb.debian.org` before you deploy with `bundled` dependency resolution. Without this outbound path, provisioning can't download the packages it needs and the deployment fails. For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).
+
 ## Deploy using the Azure Developer CLI or VS Code
 
 The Azure Developer CLI (`azd`) and the Foundry Toolkit for VS Code automate the full source-code deployment lifecycle—they package your source into a zip, compute the SHA-256, upload it, poll for `active`, and configure role-based access control for you. These tools are the recommended path for most customers, and the fastest inner loop.
@@ -379,7 +382,7 @@ For a complete runnable example, see the [.NET hosted-agent samples](https://git
 
 # [REST API](#tab/rest)
 
-Use the [REST API](https://ai.azure.com/api-reference/agents) for direct HTTP-based deployments or custom tooling. The sections walk through a first deployment in order: set up variables, build a zip, create the agent, poll until `active`, and invoke it. Update, version, download, and log-streaming endpoints are grouped under [Ongoing operations](#ongoing-operations).
+You can use the [REST API](https://ai.azure.com/api-reference/agents) for direct HTTP-based deployments or custom tooling. The sections walk through a first deployment in order: set up variables, build a zip, create the agent, poll until `active`, and invoke it. Update, version, download, and log-streaming endpoints are grouped under [Ongoing operations](#ongoing-operations).
 
 ### Set up variables
 
@@ -729,6 +732,7 @@ For the supported `cpu` and `memory` combinations, see [Sandbox sizes](../concep
 | `424 session_not_ready` on invoke | Container started but `/readiness` didn't return HTTP 200 within the timeout | Stream logs with [`:logstream`](#stream-container-logs), fix the readiness probe or startup error, redeploy. |
 | `409 conflict` on DELETE agent (`Agent has active sessions`) | Open sessions block deletion | Wait for sessions to go idle, or append `&force=true` to cascade-delete sessions. |
 | Version stuck in `creating` (>10 min, remote build) | Server build failed or couldn't resolve `requirements.txt` | Switch to `dependency_resolution: bundled` and prebuild locally. |
+| `bundled` deployment fails in a private virtual network | Outbound network is blocked, so required packages can't be downloaded | Allow an outbound connection in your network policy to `deb.debian.org`, then redeploy. |
 | Version transitions to `failed` | Bad zip layout, syntax error, or (`remote_build`) a restore/compile failure | Read the version's `error` object first—`error.code` classifies the failure and `error.message` contains the underlying restore or compile error line (pip for Python, NuGet for .NET) plus a troubleshooting link. Verify the [folder structure](#package-the-zip-manually). Use [`:logstream`](#stream-container-logs) only after the container starts. |
 | `ModuleNotFoundError` at runtime | `packages/` missing, contains raw `.whl` files, or has Windows binaries | Rebuild with `pip install --target packages/ --platform manylinux2014_x86_64 --only-binary=:all:`. |
 | `409 AgentNotCodeBased` on download | Agent is image-based | Use the [container-based deploy doc](deploy-hosted-agent.md). |

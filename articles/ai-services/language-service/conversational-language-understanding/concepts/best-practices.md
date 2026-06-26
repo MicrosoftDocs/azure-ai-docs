@@ -45,7 +45,7 @@ You also want to avoid mixing different schema designs. Don't build half of your
 
 ## Use standard training before advanced training
 
-[Standard training](../how-to/train-model.md#training-modes) is free and faster than advanced training. It can help you quickly understand the effect of changing your training set or schema while you build the model. After you're satisfied with the schema, consider using advanced training to get the best model quality.
+[Standard training](../how-to/build-train-deploy-model.md#training-modes) is free and faster than advanced training. It can help you quickly understand the effect of changing your training set or schema while you build the model. After you're satisfied with the schema, consider using advanced training to get the best model quality.
 
 ## Use the evaluation feature
 

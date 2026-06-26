@@ -12,7 +12,7 @@ ms.custom: language-service-clu
 ---
 # Evaluation metrics for conversational language understanding models
 
-Your [dataset is split](../how-to/train-model.md#data-splitting) into two parts: a set for training and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process to make sure that the model is tested on new data.
+Your [dataset is split](../how-to/build-train-deploy-model.md#data-splitting) into two parts: a set for training and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process to make sure that the model is tested on new data.
 
 Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user-defined intents and entities for utterances in the test set. Then the process compares them with the provided tags to establish a baseline of truth. The results are returned so that you can review the model's performance. For evaluation, conversational language understanding uses the following metrics:
 
@@ -172,4 +172,4 @@ After you train your model, you see some guidance and recommendations on how to 
 
 ## Related content
 
-* [Train a model](../how-to/train-model.md)
+* [Train a model](../how-to/build-train-deploy-model.md#train-your-model)

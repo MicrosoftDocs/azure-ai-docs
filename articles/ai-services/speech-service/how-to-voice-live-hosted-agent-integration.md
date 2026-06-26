@@ -2,7 +2,7 @@
 title: Use Voice Live with hosted agents
 titleSuffix: Foundry Tools
 description: Learn how to integrate Voice Live with Microsoft Foundry hosted agents using both the Responses and Invocations protocols.
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 05/14/2026
 author: PatrickFarley

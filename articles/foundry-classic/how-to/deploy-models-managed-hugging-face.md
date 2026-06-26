@@ -17,6 +17,9 @@ ms.custom: doc-kit-assisted, references_regions
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
+> [!TIP]
+> If you're using the new Foundry portal experience, see [Deploy Hugging Face models in Microsoft Foundry (preview)](../../foundry/foundry-models/how-to/hugging-face-models.md) instead.
+
 Microsoft has partnered with Hugging Face to bring open-source models from Hugging Face Hub to the Foundry model catalog. Hugging Face is the creator of Transformers, a widely popular library for building large language models. The Hugging Face Hub has thousands of open-source models. The integration with Microsoft Foundry enables you to deploy open-source models of your choice to secure and scalable inference infrastructure on Azure.
 
 You can search from thousands of Transformers models in the model catalog and deploy models to managed compute endpoints (also called managed online endpoints). Once deployed, the managed online endpoint provides a secure REST API to score your model in real time.

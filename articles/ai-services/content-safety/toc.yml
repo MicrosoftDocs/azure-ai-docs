@@ -93,6 +93,8 @@ items:
     href: how-to/embedded-content-safety.md
   - name: Encryption of data at rest
     href: how-to/encrypt-data-at-rest.md
+  - name: Migrate from Azure Content Moderator to Azure AI Content Safety
+    href: ../content-moderator/content-moderator.md?context=/azure/ai-services/content-safety/context/context
   - name: Migrate from public preview to GA
     href: how-to/migrate-to-general-availability.md
   - name: Enterprise readiness
