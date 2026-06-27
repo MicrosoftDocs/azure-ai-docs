@@ -1,6 +1,21 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/how-to/text-summarization.md",
+      "redirect_url": "/azure/ai-services/language-service/summarization/how-to/summarize",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/how-to/document-summarization.md",
+      "redirect_url": "/azure/ai-services/language-service/summarization/how-to/summarize",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/how-to/conversation-summarization.md",
+      "redirect_url": "/azure/ai-services/language-service/summarization/how-to/summarize",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/language-service/orchestration-workflow/how-to/build-schema.md",
       "redirect_url": "/azure/ai-services/language-service/orchestration-workflow/how-to/build-train-deploy-model",
       "redirect_document_id": false

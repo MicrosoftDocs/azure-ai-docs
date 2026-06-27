@@ -733,12 +733,9 @@ items:
       href: summarization/language-support.md
     - name: How-to guides
       items:
-      - name: Call the conversation summarization API
-        href: summarization/how-to/conversation-summarization.md
-      - name: Call the text summarization API
-        href: summarization/how-to/text-summarization.md
-      - name: Call the document summarization API
-        href: summarization/how-to/document-summarization.md
+      - name: Summarize text, documents, and conversations
+        href: summarization/how-to/summarize.md
+        displayName: text summarization, document summarization, conversation summarization, extractive, abstractive, query-focused
       - name: Use containers
         items:
         - name: Use Docker Containers
