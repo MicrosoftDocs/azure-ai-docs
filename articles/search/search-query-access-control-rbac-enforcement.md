@@ -33,16 +33,20 @@ This article explains how to set up queries that use permission metadata to filt
 
 - Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container in ADLS Gen2 if you're using RBAC scope.
 
+- For ACL-based enforcement with custom ingestion, store `userIds` and `groupIds` as Microsoft Entra object IDs (GUIDs) in filterable fields. At query time, the service matches the identities in `x-ms-query-source-authorization` against those stored IDs. For schema details, see [Indexing document access control lists (ACLs) using the push REST APIs](search-index-access-control-lists-and-rbac-push-api.md).
+
 - Depending on the data source:
   - For ADLS Gen2 data sources, you must have configured access control lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level.
   - For Azure Blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
-  - For SharePoint data sources, you must have configured access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md).
+  - For SharePoint data sources, you must have configured access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). Group-based permissions, including Microsoft 365 Groups, are supported when ingested as Entra object IDs, and group expansion occurs at query time through Microsoft Graph.
 
 - Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
 
 ## Limitations
 
 - If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
+
+- When source-system permissions change (for example, in SharePoint or custom repositories), ACL values in the index remain unchanged until affected content is reindexed. Plan change detection and refresh policies to minimize stale authorization decisions.
 
 - Document visibility requires both:
   - The calling application's RBAC role (Authorization header).
@@ -74,8 +78,8 @@ The end-user application includes a query access token as part of the search que
 
 | Permission type | Source |
 | - | - |
-| userIds | `oid` from `x-ms-query-source-authorization` token |
-| groupIds | Group membership fetched using the [Microsoft Graph](/graph/api/resources/groups-overview) API |
+| userIds | Microsoft Entra object ID (`oid`) from `x-ms-query-source-authorization` |
+| groupIds | Microsoft Entra group object IDs, including security groups and Microsoft 365 Groups. Group membership is resolved through [Microsoft Graph](/graph/api/resources/groups-overview). |
 | SharePoint site groups | SharePoint site group memberships for the calling user, fetched from SharePoint by using the registered application on the index. Group IDs are stored in `groupIds` with the `spg:` prefix. Requires the [SharePoint groups configuration](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support). Preview, starting in the 2026-05-01-preview REST API. |
 | rbacScope | Permissions the user from `x-ms-query-source-authorization` has on a storage container |
 

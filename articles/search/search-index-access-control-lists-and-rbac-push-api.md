@@ -35,6 +35,8 @@ This article explains how to use the push REST API to index document-level permi
 
 - Content with ACL metadata from [Microsoft Entra ID](/entra/fundamentals/whatis) or another POSIX-style ACL system.
 
+- For ACL fields `userIds` and `groupIds`, use Microsoft Entra object IDs (GUIDs), not UPNs or email addresses. Stable object IDs help ensure reliable identity matching at query time, even if directory attributes change.
+
 - The [latest preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview Azure SDK package providing equivalent features.
 
 - An index schema with `permissionFilterOption` enabled, plus `permissionFilter` field attributes that store document permissions.
@@ -50,6 +52,8 @@ This article explains how to use the push REST API to index document-level permi
 - Only one field of each `permissionFilter` type (one each of `groupIds`, `userIds`, and `rbacScope`) can exist in an index.
 
 - Each `permissionFilter` field should have `filterable` set to `true`.
+
+- Query-time permission enforcement reflects the ACL values last written to the index. If source permissions change, those updates aren't reflected until you reingest or update the affected documents. Schedule incremental reingestion or partial updates to keep ACLs current.
 
 - This functionality is currently not supported in the Azure portal.
 
@@ -74,6 +78,8 @@ Here's a basic example schema that includes all `permissionFilter` types:
   "permissionFilterOption": "enabled"
 }
 ```
+
+For enterprise repositories such as SharePoint Online, resolve document-level or folder-level permissions to Entra user and group object IDs during ingestion before calling the push API, and store those IDs in the corresponding permission fields.
 
 ## REST API indexing example
 
@@ -108,7 +114,7 @@ POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/
 
 ## ACL access resolution rules
 
-This section explains how document access is determined for a user based on the ACL values assigned to each document. The key rule is that *a user only needs to match one ACL type to gain access to the document*. For example, if a document has fields for `userIds`, `groupIds`, and `rbacScope`, the user can access the document by matching any one of these ACL fields.
+This section explains how document access is determined for a user based on the ACL values assigned to each document. For ACL-based filtering, `userIds` should contain Entra user object IDs and `groupIds` should contain Entra group object IDs, including Microsoft 365 Groups. Authorization matches the querying user's Entra object ID and group memberships at query time. For details on how caller identities are provided, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md). The key rule is that *a user only needs to match one ACL type to gain access to the document*. For example, if a document has fields for `userIds`, `groupIds`, and `rbacScope`, the user can access the document by matching any one of these ACL fields.
 
 ### Special ACL values "all" and "none"
 
