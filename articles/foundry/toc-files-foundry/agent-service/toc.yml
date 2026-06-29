@@ -138,7 +138,11 @@ items:
       href: ../../agents/how-to/agent-doctor.md
     - name: View logs
       href: ../../agents/how-to/monitor-hosted-agent-logs.md
-    - name: Pass isolation keys
+    - name: Isolate sessions per user
+      href: ../../agents/how-to/isolate-sessions-per-user.md
+    - name: Multiplex users in one session
+      href: ../../agents/how-to/multiplex-session-users.md
+    - name: Pass isolation keys (protocol 1.0.0)
       href: ../../agents/how-to/pass-isolation-keys.md
     - name: Agent optimization overview
       href: ../../agents/concepts/agent-optimizer-overview.md

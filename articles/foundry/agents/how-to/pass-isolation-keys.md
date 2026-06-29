@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 # Pass isolation keys to a hosted agent
 
+> [!IMPORTANT]
+> This article describes the isolation-key model, which applies to hosted agents on container protocol version 1.0.0. Protocol 1.0.0 is deprecated. For the current model - where the platform isolates each user's sessions automatically - see [Isolate hosted agent sessions per user](isolate-sessions-per-user.md).
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

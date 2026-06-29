@@ -131,4 +131,4 @@ For a comprehensive debugging workflow, see [Debug a hosted agent](debug-hosted-
 
 - [Debug a hosted agent](debug-hosted-agent.md) for step-by-step diagnostic workflows.
 - [Test a hosted agent](test-hosted-agent.md) for validation strategies before production.
-- [Pass isolation keys to a hosted agent](pass-isolation-keys.md) for logs in isolated sessions.
+- [Isolate hosted agent sessions per user](isolate-sessions-per-user.md) for logs in isolated sessions.

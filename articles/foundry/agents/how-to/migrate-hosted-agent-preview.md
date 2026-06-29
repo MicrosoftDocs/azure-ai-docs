@@ -412,6 +412,26 @@ ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")
 ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
 ```
 
+## Container protocol 2.0.0
+
+Container protocol version 2.0.0 changes how per-request identity reaches your container and downstream calls. Version 1.0.0 is deprecated. After the deprecation period, the platform blocks requests to agents that still run on protocol 1.0.0.
+
+Protocol 2.0.0 also lets one session safely serve multiple users. On 1.0.0, a session is tied to a single caller's identity, so concurrent users on the same session can interfere with each other. On 2.0.0, each request carries its own user context, so a session can serve many users without their identities racing.
+
+| Aspect | Protocol 1.0.0 (deprecated) | Protocol 2.0.0 (current) |
+|--------|-----------------------------|--------------------------|
+| **Outbound identity** | The platform propagates identity automatically; the container does nothing. | The container receives a per-request `x-agent-foundry-call-id` header and forwards it on outbound calls to Foundry services. |
+| **Per-user data** | Scoped through isolation keys. | Scoped by the `x-agent-user-id` header that the platform injects. |
+| **Multiple users per session** | Not supported - a session is tied to one caller's identity. | Supported - each request carries its own user context. |
+
+To migrate:
+
+1. Set the container protocol version to `2.0.0` in your `agent.yaml`.
+1. Forward the per-request `x-agent-foundry-call-id` header on outbound calls to Foundry services (Storage, Toolbox, and other agents). The official SDK adapters do this automatically when you call those services through their clients. If you make raw HTTP calls yourself, read `x-agent-foundry-call-id` from the inbound request and add it, unchanged, to your outbound request. Don't parse the value - the platform resolves the caller's identity from it.
+1. To partition data your container stores per user, read the `x-agent-user-id` header. For a worked example, see [Multiplex multiple users in one hosted agent session](multiplex-session-users.md).
+
+For the full set of platform headers and environment variables, see [Hosted agent runtime contract](../concepts/hosted-agent-contract.md).
+
 ## Removed APIs
 
 The following APIs from the initial preview aren't available in the refreshed preview:
