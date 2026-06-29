@@ -440,7 +440,7 @@ For example, for workspace ID `1234567890abcdef1234567890abcdef`, the host is `1
 
 #### Create the Foundry connection
 
-Create a remote tool connection that uses user Entra token (On-Behalf-Of) authentication and targets the workspace private endpoint. Set the audience to the Power BI API resource `https://analysis.windows.net/powerbi/api`, which authorizes data agent execution through the `DataAgent.Execute.All` scope.
+Create a remote tool connection that uses Microsoft Entra ID On-Behalf-Of (OBO) authentication with the user's token and connects through the workspace private endpoint. Configure the audience as the Power BI API resource `https://analysis.windows.net/powerbi/api`, which authorizes data agent execution using the `DataAgent.Execute.All` permission scope.
 
 # [azd](#tab/azd)
 
