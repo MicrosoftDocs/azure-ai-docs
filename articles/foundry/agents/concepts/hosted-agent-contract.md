@@ -300,9 +300,53 @@ The platform injects environment variables into your container at startup. Your 
 | Variable | Purpose |
 | -------- | ------- |
 | `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint for API calls |
+| `FOUNDRY_AGENT_ID` | The agent's stable identifier (GUID). Use it for per-agent routing, telemetry, or storage partitioning. |
 | `FOUNDRY_AGENT_NAME` | The agent's name |
 | `FOUNDRY_AGENT_VERSION` | The agent's version |
 | `FOUNDRY_AGENT_SESSION_ID` | The current session ID |
+
+## Platform request headers (container protocol 2.0.0)
+
+These headers apply only to hosted agents on container protocol version 2.0.0. On protocol 2.0.0, the platform injects them on every request to your protocol endpoints, for both the Responses and Invocations protocols. They aren't sent to infrastructure endpoints such as the health probe. Treat their values as opaque, and read but don't override them.
+
+| Header | Purpose |
+| ------ | ------- |
+| `x-agent-user-id` | Global, per-user identifier for the current caller. Use it as the primary partition key for per-user data your container stores; it's for your container's own use and isn't forwarded outbound. The same user yields the same value across agents. |
+| `x-agent-foundry-call-id` | Per-request identifier. Forward it unchanged on outbound calls to Foundry services (Storage, Toolbox, and other agents); the platform resolves the caller's identity from it. The official SDK adapters forward it automatically when you call those services through their clients. |
+
+Both headers are trustworthy - the platform generates them from verified identity - and neither is guaranteed when you run locally, so handle missing values gracefully.
+
+For how protocol 2.0.0 changes identity propagation, see [Migrate hosted agents to the refreshed public preview](../how-to/migrate-hosted-agent-preview.md#container-protocol-200).
+
+### Example: partition stored data per session
+
+When your container persists user-owned data, key it by the session (and, for shared sessions, the user) so one caller can't read another's data. The [note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent) does this by deriving a per-session file path under `$HOME`, where files are also reachable through the [Session Files API](../how-to/manage-hosted-sessions.md#session-file-operations):
+
+### [Python](#tab/python)
+
+```python
+# note_store.py - one JSONL file per session, stored under $HOME.
+def _get_file_path(session_id: str) -> str:
+    safe_id = "".join(c if c.isalnum() or c in "-_" else "_" for c in session_id)
+    base_dir = os.environ.get("HOME", os.getcwd())
+    return os.path.join(base_dir, f"notes_{safe_id}.jsonl")
+```
+
+### [C#](#tab/csharp)
+```csharp
+// NoteStore.cs - one JSONL file per session, stored under $HOME.
+private static string GetFilePath(string sessionId)
+{
+    var safeId = string.Join("_", sessionId.Split(Path.GetInvalidFileNameChars()));
+    var baseDir = Environment.GetEnvironmentVariable("HOME")
+        ?? Directory.GetCurrentDirectory();
+    return Path.Combine(baseDir, $"notes_{safeId}.jsonl");
+}
+```
+
+---
+
+When more than one user can share a session, add `x-agent-user-id` to the key. See [Multiplex multiple users in one hosted agent session](../how-to/multiplex-session-users.md#partition-per-user-data-inside-your-container).
 
 ## Related content
 

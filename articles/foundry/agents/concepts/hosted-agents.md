@@ -209,7 +209,7 @@ Each session has a persistent `$HOME`. Its contents are preserved when compute i
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region, which varies by region and is adjustable through a quota request. For per-region defaults, see [Hosted agent session quotas](limits-quotas-regions.md#hosted-agent-session-quotas).
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
@@ -233,9 +233,7 @@ Hosted agents are currently in preview.
 
 ### Limitations during preview
 
-| Limit | Scope | Default Value | Adjustable |
-| --------- | ------ | ----- | ------- |
-| Maximum active concurrent sessions | per subscription per region | 50 | Yes, with quota requests to Microsoft Support |
+Hosted agents have a per-subscription concurrent-session quota that varies by region and is adjustable through a quota request. For per-region defaults, see [Hosted agent session quotas](limits-quotas-regions.md#hosted-agent-session-quotas).
 
 ### Pricing
 

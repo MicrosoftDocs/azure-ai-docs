@@ -53,7 +53,7 @@ A hosted agent project provisions several Azure resources. You can disable publi
 | Azure Container Registry | Yes | `publicNetworkAccess: Disabled`. Build, push, and pull happen over the private endpoint. |
 | Application Insights | Yes, through an Azure Monitor Private Link Scope | Telemetry ingestion routes through the private link scope. |
 | Azure Storage | Yes | Blob, Files, and Queue services sit behind private endpoints. |
-| Agent endpoint itself | No, in this preview | The deployed agent endpoint URL stays publicly addressable. Isolation is done with Foundry isolation keys. See [Pass isolation keys](pass-isolation-keys.md). |
+| Agent endpoint itself | No, in this preview | The deployed agent endpoint URL stays publicly addressable. Each user's sessions are isolated by their identity. See [Isolate hosted agent sessions per user](isolate-sessions-per-user.md). |
 
 If you need the agent endpoint itself to be private, that's a platform-side feature outside the scope of this extension today.
 
@@ -227,14 +227,14 @@ For registry-specific details, see [Deploy a hosted agent with a private Azure C
 ## Known limitations
 
 * No first-class CLI flag. All VNet wiring is manual Bicep customization plus operational discipline for runner placement, DNS, and RBAC.
-* The agent endpoint stays public in this preview. Tenant isolation on a public endpoint is done with [isolation keys](pass-isolation-keys.md), not network privacy.
+* The agent endpoint stays public in this preview. Tenant isolation on a public endpoint is done by [isolating sessions per user](isolate-sessions-per-user.md), not network privacy.
 * Region constraints apply. Hosted agents are available in a fixed set of regions. The VNet, ACR, and Foundry account should all live in, or peer to, one of those regions. Run `azd ai agent doctor` to validate.
 * DNS is the most common failure mode. Confirm private DNS resolution end to end, for example with `nslookup <endpoint>` from the runner or development VM, before you assume the issue is RBAC.
 
 ## Related content
 
 * [Deploy a hosted agent with a private Azure Container Registry](deploy-hosted-agent-private-azure-container-registry.md)
-* [Pass isolation keys to a hosted agent](pass-isolation-keys.md)
+* [Isolate hosted agent sessions per user](isolate-sessions-per-user.md)
 * [Hosted agent infrastructure with the Azure Developer CLI](../concepts/cli-infrastructure.md)
 * [Diagnose a project with agent doctor](agent-doctor.md)
 

@@ -135,7 +135,9 @@ Supported authentication options for MCP servers and other tool connections incl
 - OAuth identity passthrough (On-Behalf-Of)
 - Unauthenticated access, where appropriate
 
-### Toolbox (preview)
+These authentication options also apply when connecting remote MCP servers, with credentials and scopes managed in the tool configuration.
+
+### Toolbox
 
 [Toolbox](how-to/tools/toolbox.md) lets you define a curated set of tools once, manage them centrally in Foundry, and expose them through a single MCP-compatible endpoint. Any MCP-compatible agent runtime or client can consume a toolbox, regardless of the framework you use. Toolbox versioning gives you explicit control over when changes take effect — create a new version, test it, and promote it to default when you're ready.
 

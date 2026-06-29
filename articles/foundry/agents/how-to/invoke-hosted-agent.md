@@ -176,6 +176,6 @@ When you need to see exactly what the server returned, including response header
 
 ## Related content
 
-- [Pass isolation keys to a hosted agent](pass-isolation-keys.md) for header-based isolation in multi-tenant agents.
+- [Isolate hosted agent sessions per user](isolate-sessions-per-user.md) for per-user isolation in multi-tenant agents.
 - [Run a hosted agent locally with the Azure Developer CLI](run-hosted-agent-locally.md) to start your agent for local development.
 - [Monitor hosted agent logs with the Azure Developer CLI](monitor-hosted-agent-logs.md) to inspect deployed agent behavior.

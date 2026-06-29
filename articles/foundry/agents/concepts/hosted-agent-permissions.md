@@ -432,6 +432,14 @@ Interacting with the agent requires the calling user or service principal to hav
 | Foundry Account Owner | Foundry project | ✗ No |
 | Foundry Owner | Foundry project | ✔ Yes |
 
+### Delegate the end-user identity
+
+A middle-tier service that authenticates its own end users can scope a session to a specific end user by sending the `x-ms-user-identity` header. To send that header, the calling identity must hold the following data plane permission on the agent:
+
+`Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action`
+
+A caller that sends `x-ms-user-identity` without this permission receives a `403`. For how to use delegated identity, see [Isolate hosted agent sessions per user](../how-to/isolate-sessions-per-user.md#isolate-sessions-for-your-own-users).
+
 ## Agent observability
 
 ### Viewing telemetry data

@@ -757,6 +757,8 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-go
+    title: Go
   - id: programmer-tool-spx
     title: Speech CLI
 - id: programming-languages-csharp-python
