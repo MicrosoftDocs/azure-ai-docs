@@ -34,10 +34,7 @@ items:
     href: ../../agents/concepts/standard-agent-setup.md
   - name: Use your own Azure resources
     href: ../../agents/how-to/use-your-own-resources.md
-  - name: Choose a networking option
-    displayName: networking options, BYO VNet, managed VNet, private link, public, decision, compare
-    href: ../../agents/concepts/networking-options.md
-  - name: Set up private networking
+  - name: Virtual networks
     href: ../../agents/how-to/virtual-networks.md
   - name: Networking deep dive
     displayName: VNet, subnet, IP allocation, data proxy, micro VM, Hosted agent, prompt agent
@@ -71,4 +68,5 @@ items:
 - name: Plan and manage costs
   displayName: Plan and manage costs for Microsoft Foundry
   href: ../../concepts/manage-costs.md
-  
+- name: Claude consumption units billing
+  href: ../../concepts/claude-consumption-units-billing.md
