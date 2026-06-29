@@ -23,6 +23,9 @@ You can verify current assignments by using [Check access for a user to a single
 
 If the user who created the project can assign roles (for example, by having the Azure **Owner** role at subscription or resource group scope), both assignments are added automatically.
 
+> [!TIP]
+> If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
+
 To assign these roles manually, use the following quick steps.
 
 ### Assign a role to your user principal
@@ -61,7 +64,8 @@ For Foundry resources, use additional built-in roles to follow least-privilege a
 
 |Role|Description|
 |---|---|
-|**Foundry User**|Grants reader access to Foundry project, Foundry resource, and data actions for your Foundry project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. Least privilege access role in Foundry.|
+|**Foundry Agent Consumer**|Grants access to interact with agent endpoints in a Foundry project. Least-privilege access role for principals that only need to interact with agents.|
+|**Foundry User**|Grants reader access to Foundry project, Foundry resource, and data actions for your Foundry project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. Least-privilege access role for developers building and testing agents.|
 |**Foundry Project Manager**|Lets you perform management actions on Foundry projects, build and develop with projects, and conditionally assign the Foundry User role to other user principals.|
 |**Foundry Account Owner**|Grants full access to manage projects and resources, and lets you conditionally assign the Foundry User, ACR, and monitoring roles to other user principals.|
 |**Foundry Owner**|Grants full access to manage projects and resources and build and develop with projects. Lets you conditionally assign the Foundry User, ACR, and monitoring roles. Highly privileged self-serve role designed for digital natives.|

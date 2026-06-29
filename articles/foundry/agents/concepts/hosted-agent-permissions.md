@@ -43,6 +43,7 @@ This article references the following built-in roles. For information about cust
 | [Owner][role-owner] | Full permissions to create and manage Azure resources |
 | [Contributor][role-contributor] | Create and manage Azure resources |
 | [Role Based Access Control Administrator][role-rbac-admin] | Create role assignments on Azure resources |
+| [Foundry Agent Consumer][role-agent-consumer] | Interact with agent endpoints (least-privilege role for consumers) |
 | [Foundry User][role-ai-user] | Create agents, perform model inference, and interact with agents |
 | [Foundry Project Manager][role-project-manager] | Manage projects, create agents, perform model inference, interact with agents, and create role assignments |
 | [Foundry Account Owner][role-account-owner] | Create deployments, manage projects, and handle account-level resources. Create role assignments for control plane operations only. Can't perform data plane operations such as creating or interacting with agents. |
@@ -104,11 +105,11 @@ The diagram above shows how resources are organized hierarchically and which rol
 Each Hosted agent deployment requires these Azure resources to be properly configured:
 
 - **A Foundry account**
-    - A role assignment allows the project managed identity to access the account for model access. `Foundry User` is the recommended built-in role.
+    - A role assignment allows the project managed identity to access the account for model access. `Foundry User` is the recommended built-in role for the project managed identity.
 - **A model deployment (in the account)**
 - **A Foundry project (in the account)**
     - The project has a managed identity. The project also gets an agent blueprint and agent identity when its first agent is created.
-    - Role assignments allow client users or principals to interact with agents in the project at runtime. `Foundry User` is the recommended built-in role.
+    - Role assignments allow client users or principals to interact with agents in the project at runtime. `Foundry Agent Consumer` is the recommended built-in role for consumers that only need to interact with agents.
     - Some advanced scenarios might require explicit role assignments for the agent identity on the project. For more information, see [Explicit project-level access](#explicit-project-level-access).
 - **A Hosted agent (in the project)**
     - The agent automatically gets an agent blueprint and agent identity.
@@ -417,20 +418,25 @@ For step-by-step guidance on publishing to Teams or M365 Copilot, see [Publish a
 
 ## Agent interaction
 
-Interacting with the agent requires the calling user or service principal to have a data plane permission. To interact with an _agent application_, they need `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` at the scope of the agent application.
+Interacting with the agent requires the calling user or service principal to have a data plane permission:
 
-<!-- TODO: Add endpoint interaction permission when available
-- To interact with an _agent endpoint_, they need `Microsoft.CognitiveServices/accounts/AIServices/endpoints/interact/action` at the scope of the Foundry project.
--->
+- To interact with an _agent endpoint_, they need `Microsoft.CognitiveServices/accounts/AIServices/endpoints/interact/action` at the scope of the Foundry project or at the scope of the specific agent. This permission covers all runtime interactions with the agent, including but not limited to Responses API calls.
+- To interact with an _agent application_, they need `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` at the scope of the agent application.
 
-| Built-in role | Scope | Can assignee interact with the agent? |
-| --- | --- | --- |
-| Owner | Foundry project | ✗ No |
-| Contributor | Foundry project | ✗ No |
-| Foundry User | Foundry project | ✔ Yes |
-| Foundry Project Manager | Foundry project | ✔ Yes |
-| Foundry Account Owner | Foundry project | ✗ No |
-| Foundry Owner | Foundry project | ✔ Yes |
+> [!TIP]
+> [Foundry Agent Consumer][role-agent-consumer] is the least-privilege built-in role for users and service principals that interact with agent endpoints. Use this role instead of `Foundry User` when the principal doesn't need to create or modify agents.
+
+| Built-in role | Scope | Can assignee interact with agent endpoints? | Can assignee interact with agent applications? |
+| --- | --- | --- | --- |
+| Owner | Foundry project | ✗ No | ✗ No |
+| Contributor | Foundry project | ✗ No | ✗ No |
+| Foundry Agent Consumer | Foundry project or agent | ✔ Yes | ✗ No |
+| Foundry User | Foundry project | ✔ Yes | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes | ✔ Yes |
+
+You can also assign roles at the scope of a specific agent rather than the entire project. For details, see [Agent-scope role assignments](../../concepts/rbac-foundry.md#agent-scope-role-assignments).
 
 ## Agent observability
 
@@ -547,6 +553,7 @@ Account-level capabilities aren't proxied by the project endpoint. These capabil
 [foundry-rbac]: ../../concepts/rbac-foundry.md
 [agent-identity]: ./agent-identity.md
 
+[role-agent-consumer]: /azure/ai-foundry/concepts/rbac-foundry#foundry-agent-consumer
 [role-owner]: /azure/role-based-access-control/built-in-roles#owner
 [role-contributor]: /azure/role-based-access-control/built-in-roles#contributor
 [role-rbac-admin]: /azure/role-based-access-control/built-in-roles#role-based-access-control-administrator

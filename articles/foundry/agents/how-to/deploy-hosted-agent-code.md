@@ -86,9 +86,11 @@ After a language end-of-life date, you can still create, update, and run hosted 
 
 ### Required permissions
 
-You need **Foundry Project Manager** at project scope to deploy a Hosted agent. This role grants the data-plane permissions to create and update agents, plus the ability to assign **Foundry User** to the platform-created agent identity that your running code uses to call models and tools.
+You need the **Foundry Project Manager** role at the project scope to deploy a hosted agent. This role grants the data-plane permissions to create and update agents, plus the ability to create role assignments for the platform-created agent identity if needed. For a detailed breakdown of the permissions involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
-Your agent runs as a platform-assigned managed identity that's separate from your user identity. That identity needs **Foundry User** to call models from inside the container. If you deploy with `azd` or the Foundry Toolkit for Visual Code, the tooling assigns this role automatically. If you deploy with REST, grant it yourself—see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+Your agent runs as a platform-assigned managed identity that's separate from your user identity. This identity can access model inferencing through the project endpoint and session storage by default. For external resources (for example, your own Azure Storage), assign RBAC roles manually to the agent's Microsoft Entra ID. For more information, see [Agent access beyond defaults](../concepts/hosted-agent-permissions.md#agent-access-beyond-defaults).
 
 For REST calls, include the preview feature header on mutating requests (Create, Update, Delete) while the feature is in preview:
 
@@ -725,7 +727,7 @@ For the supported `cpu` and `memory` combinations, see [Sandbox sizes](../concep
 | Symptom | Likely cause | Fix |
 | --- | --- | --- |
 | `401 Unauthorized` | Missing or wrong-scope token | Acquire a token with `--resource https://ai.azure.com`. |
-| `403 Forbidden` | Caller lacks Role Based Access Control on the project | Grant **Foundry User** (or higher) at project scope. |
+| `403 Forbidden` | Caller lacks Role Based Access Control on the project | Grant **Foundry Agent Consumer** (to invoke only) or **Foundry User** (to also develop) at project scope. |
 | `409 conflict` on Create (`Agent '<name>' already exists`) | Agent name already exists | Use Update (POST `/agents/{name}`), or pick a new name. |
 | `400 bad_request` (`CPU and Memory must be specified as a valid resource tier`) on Create or Update | `cpu`/`memory` aren't one of the supported tiers | Set `cpu` and `memory` to a valid pair from [Sandbox sizes](../concepts/hosted-agents.md#sandbox-sizes). |
 | `400 bad_request` (`Agent version is still being provisioned`) on invoke | A new version is mid-deploy and the active version is being swapped in | Poll the version `status` until `active`, then retry. |

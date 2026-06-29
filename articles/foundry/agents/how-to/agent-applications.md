@@ -55,7 +55,10 @@ Because the identity changes, **permissions don't transfer automatically**. When
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
 - [Foundry Project Manager role](../../concepts/rbac-foundry.md) on the Foundry resource scope to publish agents
-- [Foundry User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol (or a custom role with the `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` permission)
+
+> [!NOTE]
+> The **Foundry Agent Consumer** role is designed for interacting with agent endpoints and doesn't grant access to invoke Agent Applications. Agent Applications use a different permission path (`Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action`). Use the **Foundry User** role or a custom role that includes this permission.
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
@@ -365,7 +368,10 @@ To roll out an agent with a different name, you must:
 
 ## Grant users access to invoke a published agent
 
-After you publish an agent, callers need the **Foundry User** role (or a custom role that includes the `Microsoft.CognitiveServices/accounts/projects/applications/invoke/action` permission) on the **Agent Application** resource. This role assignment is scoped to the individual Agent Application, so you can grant access to a single published agent without giving users access to your entire Foundry project or other agents.
+After you publish an agent, callers need the **Foundry User** role (or a custom role that includes the `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` permission) on the **Agent Application** resource. This role assignment is scoped to the individual Agent Application, so you can grant access to a single published agent without giving users access to your entire Foundry project or other agents.
+
+> [!NOTE]
+> The **Foundry Agent Consumer** role is designed for direct agent endpoint interactions and doesn't grant access to Agent Applications. Use **Foundry User** or a custom role with the required permission for Agent Application access.
 
 > [!IMPORTANT]
 > Agent Application RBAC is managed through Azure Resource Manager, not through the Entra agent identity. The Entra agent identity that the published agent receives is for the agent's *own* outbound calls to tools and resources. To control who can *invoke* the published agent, assign Azure RBAC roles on the Agent Application ARM resource by using the Azure portal, Azure CLI, or REST API.
