@@ -587,8 +587,6 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-For the complete knowledge base request schema, see [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
-
 ### Configure CORS for browser-based retrieve calls (preview)
 
 > [!IMPORTANT]
@@ -684,7 +682,7 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-For the complete knowledge base request schema, see [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+**Reference:** [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ## Query a knowledge base
 
