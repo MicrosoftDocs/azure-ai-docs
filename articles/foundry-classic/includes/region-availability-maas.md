@@ -22,7 +22,7 @@ ms.custom:
 
 ### Global Standard deployment
 
-All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) use the **Global Standard** deployment type. For more details in deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
+All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) use the **Global Standard** deployment type. For more details about deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
 
 | Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |-------------------|---------|-------------------------------------|---------|
@@ -33,7 +33,7 @@ All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) use t
 
 ### Data Zone Standard (US) deployment
 
-**Hosted on Azure** version of the following models are also available for **Data Zone Standard (US)** deployment. Your Foundry project or hub must also be in the region listed in the table for you to deploy the model. 
+**Hosted on Azure** versions of the following models are also available for **Data Zone Standard (US)** deployment. Your Foundry project or hub must also be in the region listed in the table for you to deploy the model. 
 For more details in deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
 
 | Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
