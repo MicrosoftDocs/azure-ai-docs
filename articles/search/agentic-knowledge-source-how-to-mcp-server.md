@@ -390,7 +390,9 @@ Each header pair must include exactly one name control header and one matching v
 
 ### Configure tools
 
-Each entry in the `tools` array specifies an allowed MCP tool and optional output parsing behavior. For the complete schema, see [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+Each entry in the `tools` array specifies an allowed MCP tool and optional output parsing behavior.
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ### Output parsing modes
 
