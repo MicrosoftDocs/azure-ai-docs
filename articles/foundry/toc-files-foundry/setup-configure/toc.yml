@@ -69,4 +69,4 @@ items:
   displayName: Plan and manage costs for Microsoft Foundry
   href: ../../concepts/manage-costs.md
 - name: Claude consumption units billing
-  href: ../../concepts/claude-consumption-units-billing.md
+  href: ../../foundry-models/concepts/claude-models-billing.md
