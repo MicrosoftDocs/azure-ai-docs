@@ -33,7 +33,7 @@ This article explains how to set up queries that use permission metadata to filt
 
 - Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container in ADLS Gen2 if you're using RBAC scope.
 
-- For ACL-based enforcement with custom ingestion, store `userIds` and `groupIds` as Microsoft Entra object IDs (GUIDs) in filterable fields. At query time, the service matches the identities in `x-ms-query-source-authorization` against those stored IDs. For schema details, see [Indexing document access control lists (ACLs) using the push REST APIs](search-index-access-control-lists-and-rbac-push-api.md).
+- For ACL-based enforcement with custom ingestion, store `userIds` and `groupIds` as Microsoft Entra object IDs (GUIDs) in filterable fields. At query time, the service matches the identities in `x-ms-query-source-authorization` against those stored IDs. For schema details, see [Indexing document access control lists (ACLs) using the push REST APIs (preview)](search-index-access-control-lists-and-rbac-push-api.md).
 
 - Depending on the data source:
   - For ADLS Gen2 data sources, you must have configured access control lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level.
@@ -46,7 +46,7 @@ This article explains how to set up queries that use permission metadata to filt
 
 - If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
 
-- When source-system permissions change (for example, in SharePoint or custom repositories), ACL values in the index remain unchanged until affected content is reindexed. Plan change detection and refresh policies to minimize stale authorization decisions.
+- When source-system permissions change, such as in SharePoint or custom repositories, ACL values in the index remain unchanged until affected content is reindexed. Plan change detection and refresh policies to minimize stale authorization decisions.
 
 - Document visibility requires both:
   - The calling application's RBAC role (Authorization header).
