@@ -318,7 +318,7 @@ Traces and metrics appear in the linked Application Insights resource alongside 
 | Maximum WebSocket frame size | 1 MB | Enforced by the platform proxy (close code `1009`). |
 | Maximum connection duration | ~10 minutes (preview) | Platform sends close code `1001` on shutdown drain. Reconnect with the same `agent_session_id`. |
 | Sandbox resources | Up to 2 vCPU / 4 GiB | At least 1 vCPU / 2 GiB recommended for voice. |
-| Maximum concurrent sessions | 50 per subscription per region | Adjustable through a quota request. |
+| Maximum concurrent sessions | Varies by region (typically 25–50 per subscription). | Adjustable through a quota request. See [hosted agent session quotas](../concepts/limits-quotas-regions.md#hosted-agent-session-quotas). |
 | Session idle timeout | 15 minutes | Compute is deprovisioned; session state is persisted. |
 
 The platform doesn't replay missed frames. Your container is responsible for any application-level resume protocol.
