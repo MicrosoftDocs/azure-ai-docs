@@ -20,13 +20,27 @@ ms.custom:
 
 [!INCLUDE [claude-versions-description](../../foundry/foundry-models/includes/claude-versions-description.md)]
 
-| Model             | Offer Availability Region  | Hub/Project Region for Deployment<sup>1</sup>  | Hub/Project Region for Fine tuning  |
-|-------------------|---------|-------------------------------------|---------|
-| Claude Fable <br> Claude Mythos 5<sup>2</sup> <br> Claude Mythos Preview<sup>2</sup> <br> Claude Opus 4.8 <br> Claude Opus 4.7 <br> Claude Opus 4.6 <br> Claude Opus 4.5 <br> Claude Opus 4.1 <br> Claude Sonnet 4.6 <br> Claude Sonnet 4.5 <br> Claude Haiku 4.5 | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central    | Not available |
+### Global Standard deployment
 
-<sup>1</sup> All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) use the **Global Standard** deployment type. Claude Opus 4.8 and Claude Haiku 4.5 (**Hosted on Azure** version of these models) are also available for **Data Zone Standard (US)** deployment. Your Foundry project or hub must also be in one of the regions listed in the table for you to deploy the model. For more details in deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
+All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) use the **Global Standard** deployment type. For more details in deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
+
+| Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|-------------------|---------|-------------------------------------|---------|
+| Claude Fable <br> Claude Mythos 5<sup>1</sup> <br> Claude Mythos Preview<sup>1</sup> <br> Claude Opus 4.8 <br> Claude Opus 4.7 <br> Claude Opus 4.6 <br> Claude Opus 4.5 <br> Claude Opus 4.1 <br> Claude Sonnet 4.6 <br> Claude Sonnet 4.5 <br> Claude Haiku 4.5 | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central    | Not available |
+
+
+<sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](../../foundry/foundry-models/includes/claude-mythos-preview-restriction.md)]
+
+### Data Zone Standard (US) deployment
+
+**Hosted on Azure** version of the following models are also available for **Data Zone Standard (US)** deployment. Your Foundry project or hub must also be in one of the regions listed in the table for you to deploy the model. 
+For more details in deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
+
+| Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|-------------------|---------|-------------------------------------|---------|
+|  Claude Opus 4.8 <br> Claude Haiku 4.5 | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central    | Not available |
+
  
-<sup>2</sup> [!INCLUDE [claude-mythos-preview-restriction](../../foundry/foundry-models/includes/claude-mythos-preview-restriction.md)]
 
 ### Cohere models
 
