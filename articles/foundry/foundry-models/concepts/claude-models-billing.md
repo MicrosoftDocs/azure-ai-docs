@@ -148,11 +148,11 @@ No. CCU is a change in billing format, not in price. Your cost is driven by Anth
 
 ### Do I need to do anything when Claude models become generally available in Foundry?
 
-No. New deployments are billed in CCU automatically. Existing deployments continue on their current plan without interruption. To move an existing workload to CCU, create a new deployment in Foundry.
+No. The system automatically bills new deployments in CCU. Existing deployments continue on their current plan without interruption. To move an existing workload to CCU, create a new deployment in Foundry.
 
 ### Where do I see per-model usage if my invoice only shows CCU?
 
-Per-model token and request detail is available in the **Monitoring tab** of the Microsoft Foundry portal for operational and sizing visibility.
+You can see per-model token and request detail in the **Monitoring tab** of the Microsoft Foundry portal for operational and sizing visibility.
 
 ### How does CCU interact with MACC?
 

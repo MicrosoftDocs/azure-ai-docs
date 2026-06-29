@@ -19,7 +19,7 @@ Deploy a Claude model by following these steps in the Foundry portal:
 
 1. Go to the **Model catalog** section in the Foundry portal.
 
-1. Select a Claude model and review its details in the model card. By default you land on the **Hosted on Azure** (version 2) version of the model, if the model is available in both versions. You can confirm the version that's open by looking for the **Hosted on** information in the **Quick facts** pane of the model card.
+1. Select a Claude model and review its details in the model card. By default, you land on the **Hosted on Azure** (version 2) version of the model, if the model is available in both versions. You can confirm the version that's open by looking for the **Hosted on** information in the **Quick facts** pane of the model card.
 
     > [!TIP]
     > If your selected Claude model is available in both versions, the model card contains a link that takes you to the alternate version of the model.
@@ -36,6 +36,6 @@ Deploy a Claude model by following these steps in the Foundry portal:
    - Select the **Region scope**: **Global** (available for all Claude models and versions) or **Data Zone** (if available for your model and version combination). 
    - The Foundry portal automatically selects the Foundry resource associated with your project as the **Connected AI resource**. Select **Customize** to change the connection if needed. The project and resource must be in one of the supported regions of deployment for the model.
 
-1. Select **Deploy** to create your deployment. The model's deployment details page opens up while the deployment is being created.
+1. Select **Deploy** to create your deployment. The model's deployment details page opens while the deployment is being created.
 
 1. When the deployment completes, the model is ready for use. You can also use the [Foundry Playgrounds](../../concepts/concept-playgrounds.md) to interactively test the model.

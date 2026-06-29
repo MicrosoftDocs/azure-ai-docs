@@ -17,9 +17,9 @@ Deploy a Claude model by following these steps in the Foundry portal:
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
-1. From the Foundry portal homepage, select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. From the Foundry portal homepage, select **Discover** in the upper-right navigation, and then select **Models** in the left pane.
 
-1. Select a Claude model and review its details in the model card. If the model is available in both versions, by default you land on the **Hosted on Azure** (version 2) version of the model.  You can confirm the version that's open by looking for the **Hosted on** information in the **Quick facts** pane of the model card.
+1. Select a Claude model and review its details in the model card. If the model is available in both versions, you land on the **Hosted on Azure** (version 2) version of the model by default. You can confirm the version that's open by looking for the **Hosted on** information in the **Quick facts** pane of the model card.
 
     > [!TIP]
     > If your selected Claude model is available in both versions, the model card contains a link that takes you to the alternate version of the model.
@@ -36,7 +36,7 @@ Deploy a Claude model by following these steps in the Foundry portal:
 
 1. Configure other deployment settings:
 
-   - By default, the deployment uses the model name. You can modify this name before deploying. During inference, the deployment name is used in the `model` parameter to route requests to this particular deployment.
+   - By default, the deployment uses the model name. You can modify this name before deploying. During inference, use the deployment name in the `model` parameter to route requests to this particular deployment.
    - Select the **Region scope**: **Global** (available for all Claude models and versions) or **Data Zone** (if available for your model and version combination). 
 
 1. Select **Deploy** to create your deployment.
