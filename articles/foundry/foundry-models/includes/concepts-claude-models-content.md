@@ -208,7 +208,7 @@ As listed in the following table, to increase your quota beyond the default limi
 | claude-opus-4-1   | N/A                        | Yes                                           | Global Standard         | 40  | 40,000 |
 | claude-sonnet-4-6 | N/A                        | Yes                                           | Global Standard         | 80  | 80,000 |
 | claude-sonnet-4-5 | N/A                        | Yes                                           | Global Standard         | 80  | 80,000 |
-| claude-haiku-4-5  | N/A                        | Yes                                           | Global Standard         | 80  | 80,000 |
+| claude-haiku-4-5  | Yes                        | Yes                                           | Global Standard         | 80  | 80,000 |
 
 # [Enterprise and MCA-E](#tab/enterprise)
 
@@ -225,7 +225,7 @@ As listed in the following table, to increase your quota beyond the default limi
 | claude-opus-4-1   | N/A                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
 | claude-sonnet-4-6 | N/A                        | Yes                                           | Global Standard         | 4,000 | 4,000,000 |
 | claude-sonnet-4-5 | N/A                        | Yes                                           | Global Standard         | 4,000 | 4,000,000 |
-| claude-haiku-4-5  | N/A                        | Yes                                           | Global Standard         | 4,000 | 4,000,000 |
+| claude-haiku-4-5  |Yes                       | Yes                                           | Global Standard         | 4,000 | 4,000,000 |
 
 # [Free Trial](#tab/free)
 
@@ -242,7 +242,7 @@ As listed in the following table, to increase your quota beyond the default limi
 | claude-opus-4-1   | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
 | claude-sonnet-4-6 | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
 | claude-sonnet-4-5 | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-haiku-4-5  | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
+| claude-haiku-4-5  | Yes                        | Yes                                           | Global Standard         | 0   | 0    |
 
 ---
 
