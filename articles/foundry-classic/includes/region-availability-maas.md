@@ -33,12 +33,12 @@ All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) use t
 
 ### Data Zone Standard (US) deployment
 
-**Hosted on Azure** version of the following models are also available for **Data Zone Standard (US)** deployment. Your Foundry project or hub must also be in one of the regions listed in the table for you to deploy the model. 
+**Hosted on Azure** version of the following models are also available for **Data Zone Standard (US)** deployment. Your Foundry project or hub must also be in the region listed in the table for you to deploy the model. 
 For more details in deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
 
 | Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |-------------------|---------|-------------------------------------|---------|
-|  Claude Opus 4.8 <br> Claude Haiku 4.5 | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central    | Not available |
+|  Claude Opus 4.8 <br> Claude Haiku 4.5 | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2  | Not available |
 
  
 
