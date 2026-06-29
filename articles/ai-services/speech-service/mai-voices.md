@@ -29,11 +29,21 @@ Speech offers the following MAI-Voice models:
 | MAI-Voice-1 | Six prebuilt English (US) voices | Emotionally rich, highly expressive, consistent persona quality, SSML style control | Conversational AI, creative applications, long-form narration |
 | MAI-Voice-2 | Multilingual prebuilt voices across 10+ languages | High-fidelity expressive synthesis, multilingual, voice prompting (gated), long-form and multi-speaker generation | Multilingual conversational AI, expressive long-form content, multi-speaker scenarios |
 
-## MAI-Voice-1
+## Model details
+
+#### [MAI-Voice-1](#tab/mai-voice-1)
 
 MAI-Voice-1 is optimized for expressive, conversational, and long-form scenarios in English (US).
 
-### Key features
+#### [MAI-Voice-2](#tab/mai-voice-2)
+
+MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that supports multilingual synthesis across more than 10 languages. It extends the MAI-Voice family with multilingual coverage, voice prompting (gated), long-form generation, and multi-speaker generation.
+
+---
+
+## Key features
+
+#### [MAI-Voice-1](#tab/mai-voice-1)
 
 | Key features | Description |
 |---|---|
@@ -44,12 +54,38 @@ MAI-Voice-1 is optimized for expressive, conversational, and long-form scenarios
 | High fidelity audio | The model produces high-quality neural speech with natural prosody and clarity suitable for production-grade applications. |
 | Real-time synthesis | MAI-Voice-1 supports real-time speech synthesis by using the Speech SDK and APIs. |
 
-### Prerequisites
+#### [MAI-Voice-2](#tab/mai-voice-2)
+
+| Key features | Description |
+|---|---|
+| High-fidelity natural synthesis | Produces highly natural voice output with expressive control. |
+| Multilingual support | Supports synthesis across more than 10 languages with locale-specific prebuilt voices. |
+| Expressive SSML control | Supports `mstts:express-as` with `style` and `styledegree` for fine-grained expressive control (for example, `happiness`). |
+| Voice prompting (gated) | Supports voice prompting with short reference clips (10–120 seconds), subject to gated access approval and consent safeguards. |
+| Long-form generation | Optimized for long-form narration with stable persona quality across extended content. |
+| Multi-speaker generation | Supports multi-speaker scenarios within a single synthesis flow. |
+| Out-of-scope note | The model prioritizes naturalness and expressivity over latency-critical scenarios. |
+
+---
+
+## Prerequisites
+
+#### [MAI-Voice-1](#tab/mai-voice-1)
 
 - An Azure account. [Create one for free](https://azure.microsoft.com/free/).
 - A Speech resource in a region that supports MAI-Voice-1 ([region support](https://learn.microsoft.com/azure/cognitive-services/speech-service/regions)).
 
-### SSML examples
+#### [MAI-Voice-2](#tab/mai-voice-2)
+
+- An Azure account. [Create](https://azure.microsoft.com/pricing/purchase-options/azure-account) one for free.
+- Create a Speech resource in a [region](regions.md#regions) that supports MAI-Voice-2.
+- For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
+
+---
+
+## SSML examples
+
+#### [MAI-Voice-1](#tab/mai-voice-1)
 
 **Basic SSML**
 
@@ -67,65 +103,7 @@ Submit this SSML to the Speech REST API or SDK to receive synthesized audio.
 
 Reference: Speech Synthesis Markup Language (SSML) | `<voice>` element
 
-### Voice prompting (gated access)
-
-Steps to Access:
-
-To access personal voice (voice cloning) using MAI-Voice-1:
-
-1. Apply for gated access via Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
-1. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
-1. Upload audio consent and prompt to create a personal voice.
-1. Synthesize given text using the created voice and MAI-Voice-1 model using the following SSML:
-
-```xml
-<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
-  <voice name='MAI-voice-1'>
-    <mstts:ttsembedding speakerProfileId='your speaker profile ID here'>
-      I'm happy to hear that you find me amazing and that I have made your trip planning easier and more fun.
-    </mstts:ttsembedding>
-  </voice>
-</speak>
-```
-
-### Prebuilt voices
-
-| Voice ID | Gender | Recommended use case |
-|---|---|---|
-| en-us-Jasper:MAI-Voice-1 | Male | General Conversation, Sales, Emotional styles |
-| en-us-June:MAI-Voice-1 | Female | General Conversation, Customer Service, Professional, Emotional styles |
-| en-us-Grant:MAI-Voice-1 | Male | General Conversation, Professional, Emotional styles |
-| en-us-Iris:MAI-Voice-1 | Female | General Conversation, Narration, Emotional styles |
-| en-us-Reed:MAI-Voice-1 | Male | General Conversation |
-| en-us-Joy:MAI-Voice-1 | Female | General Conversation |
-
-Usage: Available for third-party developers. Microsoft holds full licensing rights for commercial use.
-
----
-
-## MAI-Voice-2
-
-MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that supports multilingual synthesis across more than 10 languages. It extends the MAI-Voice family with multilingual coverage, voice prompting (gated), long-form generation, and multi-speaker generation.
-
-### Key features
-
-| Key features | Description |
-|---|---|
-| High-fidelity natural synthesis | Produces highly natural voice output with expressive control. |
-| Multilingual support | Supports synthesis across more than 10 languages with locale-specific prebuilt voices. |
-| Expressive SSML control | Supports `mstts:express-as` with `style` and `styledegree` for fine-grained expressive control (for example, `happiness`). |
-| Voice prompting (gated) | Supports voice prompting with short reference clips (10–120 seconds), subject to gated access approval and consent safeguards. |
-| Long-form generation | Optimized for long-form narration with stable persona quality across extended content. |
-| Multi-speaker generation | Supports multi-speaker scenarios within a single synthesis flow. |
-| Out-of-scope note | The model prioritizes naturalness and expressivity over latency-critical scenarios. |
-
-### Prerequisites
-
-- An Azure account. [Create](https://azure.microsoft.com/pricing/purchase-options/azure-account) one for free.
-- Create a Speech resource in a [region](regions.md#regions) that supports MAI-Voice-2.
-- For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
-
-### SSML examples
+#### [MAI-Voice-2](#tab/mai-voice-2)
 
 **Basic multilingual SSML**
 
@@ -153,7 +131,30 @@ MAI-Voice-2 supports expressive styles by using `style` and `styledegree` attrib
 </speak>
 ```
 
-### Voice prompting (gated access)
+---
+
+## Voice prompting (gated access)
+
+#### [MAI-Voice-1](#tab/mai-voice-1)
+
+To access personal voice (voice cloning) using MAI-Voice-1:
+
+1. Apply for gated access via Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
+1. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
+1. Upload audio consent and prompt to create a personal voice.
+1. Synthesize given text using the created voice and MAI-Voice-1 model using the following SSML:
+
+```xml
+<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
+  <voice name='MAI-voice-1'>
+    <mstts:ttsembedding speakerProfileId='your speaker profile ID here'>
+      I'm happy to hear that you find me amazing and that I have made your trip planning easier and more fun.
+    </mstts:ttsembedding>
+  </voice>
+</speak>
+```
+
+#### [MAI-Voice-2](#tab/mai-voice-2)
 
 Voice prompting (personal voice cloning) by using MAI-Voice-2 is gated and requires Microsoft approval plus consent safeguards.
 
@@ -164,7 +165,22 @@ Steps to access:
 1. Use the Personal Voice APIs to create the voice profile.
 1. Synthesize by using the approved voice profile and MAI-Voice-2 model.
 
-### Prebuilt voices
+---
+
+## Prebuilt voices
+
+#### [MAI-Voice-1](#tab/mai-voice-1)
+
+| Voice ID | Gender | Recommended use case |
+|---|---|---|
+| en-us-Jasper:MAI-Voice-1 | Male | General Conversation, Sales, Emotional styles |
+| en-us-June:MAI-Voice-1 | Female | General Conversation, Customer Service, Professional, Emotional styles |
+| en-us-Grant:MAI-Voice-1 | Male | General Conversation, Professional, Emotional styles |
+| en-us-Iris:MAI-Voice-1 | Female | General Conversation, Narration, Emotional styles |
+| en-us-Reed:MAI-Voice-1 | Male | General Conversation |
+| en-us-Joy:MAI-Voice-1 | Female | General Conversation |
+
+#### [MAI-Voice-2](#tab/mai-voice-2)
 
 MAI-Voice-2 provides locale-specific prebuilt voices across multiple languages.
 
@@ -219,6 +235,8 @@ MAI-Voice-2 provides locale-specific prebuilt voices across multiple languages.
 
 > [!NOTE]
 > The voices listed in the preceding table are the currently published MAI-Voice-2 prebuilt voices. The model card indicates support across 10+ languages. Microsoft adds more locales and voices as they become generally available.
+
+---
 
 Usage: Available for third-party developers. Microsoft holds full licensing rights for commercial use.
 
