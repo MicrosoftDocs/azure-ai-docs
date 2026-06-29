@@ -211,6 +211,8 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 
 ::: zone-end
 
+---
+
 > [!IMPORTANT]
 > Code snippets in this article use API keys. If you use role-based authentication, update each request accordingly. In a request that specifies both approaches, the API key takes precedence.
 
@@ -681,8 +683,6 @@ api-key: {{search-api-key}}
 ```
 
 ::: zone-end
-
-**Reference:** [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ## Query a knowledge base
 
