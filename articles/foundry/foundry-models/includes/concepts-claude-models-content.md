@@ -20,14 +20,14 @@ To deploy and call a Claude model, see [Deploy and use Claude models in Microsof
 
 ## How Claude models are hosted and billed
 
-Microsoft Foundry offers Claude models in two versions: **Hosted on Azure** and **Hosted on Anthropic infrastructure (preview)**. Not every model is available in both versions. A model's lifecycle stage, such as Preview or Generally available, can differ between the two versions. For per-model availability and lifecycle status, see [Available Claude models](#available-claude-models).
+Microsoft Foundry offers Claude models in two versions: **Hosted on Azure** and **Hosted on Anthropic infrastructure**. Not every model is available in both versions. A model's lifecycle stage, such as Preview or Generally available, can differ between the two versions. For per-model availability and lifecycle status, see [Available Claude models](#available-claude-models).
 
 > [!NOTE]
 > You access Claude models in Microsoft Foundry through [Foundry Models from partners and community](../concepts/models-from-partners.md). Models from partners and community that Anthropic sells and operates are Non-Microsoft Products under the Product Terms. Claude models in Foundry require an Azure Marketplace subscription. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md) before you deploy.
 
 Claude models that are **Hosted on Azure** run on Azure infrastructure end-to-end and are Generally available (GA). 
 
-Claude models that are **Hosted on Anthropic infrastructure (preview)** run on Anthropic's infrastructure (outside of Azure) and are in preview. 
+Claude models that are **Hosted on Anthropic infrastructure** run on Anthropic's infrastructure (outside of Azure). 
 
 To learn how data is processed when you use Claude models in Foundry, see [Data, privacy, and security for Claude models in Microsoft Foundry](../../responsible-ai/claude-models/data-privacy.md).
 
@@ -74,12 +74,12 @@ The following table compares model availability for both versions of Claude mode
 
 ## API overview
 
-The following table lists the APIs that you can use to interact with both the **Hosted on Azure** and **Hosted on Anthropic infrastructure (preview)** versions of Claude models in Foundry.
+The following table lists the APIs that you can use to interact with both the **Hosted on Azure** and **Hosted on Anthropic infrastructure** versions of Claude models in Foundry.
 
 Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
 
 > [!TIP]
-> The *Hosted on Anthropic infrastructure (preview) version* of Claude models in Foundry supports more APIs than the ones listed in this table. You can see them on the [Claude API docs: API overview](https://platform.claude.com/docs/en/api/overview#available-apis) page.
+> The *Hosted on Anthropic infrastructure version* of Claude models in Foundry supports more APIs than the ones listed in this table. You can see them on the [Claude API docs: API overview](https://platform.claude.com/docs/en/api/overview#available-apis) page.
 
 | API | Description |
 |---|---|
@@ -94,10 +94,10 @@ Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the fol
 
 Claude models in Foundry expose *core capabilities* for processing, analyzing, and generating content, and *tools* that let Claude interact with external systems, execute code, and perform automated tasks. 
 
-The following table summarizes capabilities available for both the **Hosted on Azure** and **Hosted on Anthropic infrastructure (preview)** versions of Claude models in Foundry, including core capabilities and tools.
+The following table summarizes capabilities available for both the **Hosted on Azure** and **Hosted on Anthropic infrastructure** versions of Claude models in Foundry, including core capabilities and tools.
 
 > [!TIP]
-> The *Hosted on Anthropic infrastructure (preview) version* of Claude models in Foundry supports more capabilities than the ones listed in this table. You can see them on the [Claude API docs: Features overview](https://docs.claude.com/en/docs/build-with-claude/overview) page.
+> The *Hosted on Anthropic infrastructure version* of Claude models in Foundry supports more capabilities than the ones listed in this table. You can see them on the [Claude API docs: Features overview](https://docs.claude.com/en/docs/build-with-claude/overview) page.
 
 | Feature | Description |
 |---|---|
