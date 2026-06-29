@@ -40,7 +40,7 @@ To learn how Claude consumption units (CCU) bill Claude models in Microsoft Foun
 The following table compares model availability for both versions of Claude models in Foundry. For details on the features referenced in the table, see the [Capabilities](#capabilities) section.
 
 > [!WARNING]
-> 1M context beta on **Claude Sonnet 4.5** were retired on April 30, 2026.
+> 1M context beta on **Claude Sonnet 4.5** was retired on April 30, 2026.
 >
 > Starting May 1, 2026:
 > - Requests **greater than 200K tokens** that include the `context-1m-2025-08-07` beta header on Sonnet 4.5 return an error.
