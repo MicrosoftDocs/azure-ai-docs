@@ -182,14 +182,15 @@ az rest --method GET \
     --resource "${RESOURCE}"
 ```
 
-:::zone-end
+By default, [draft versions (preview)](#create-a-draft-version-preview) are excluded from the list. To include them, add the `include_drafts=true` query parameter:
 
-:::zone pivot="python"
-
-```python
-for version in project.agents.list_versions(agent_name="my-agent"):
-    print(f"Version: {version.version}, Status: {version['status']}")
+```bash
+az rest --method GET \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}&include_drafts=true" \
+    --resource "${RESOURCE}"
 ```
+
+:::zone-end
 
 :::zone-end
 
@@ -252,6 +253,58 @@ Replace `responses` with `invocations` if your agent uses the Invocations protoc
 :::zone pivot="azd"
 
 New versions are created automatically when you run `azd deploy` with updated code or configuration.
+
+:::zone-end
+
+### Create a draft version (preview)
+
+> [!NOTE]
+> Draft versions are in preview. Preview features are provided without a service-level agreement and aren't recommended for production workloads. Behavior can change. Draft creation must be enabled for your subscription; until it's enabled, a request with `draft` set to `true` creates a normal release version instead.
+
+A *draft version* is an experimental version that you can create and test without affecting how your agent serves production traffic. Drafts let you iterate on a new image, resource allocation, or configuration before you promote the change to a regular release version.
+
+Draft versions differ from regular release versions in the following ways:
+
+- **Separate version identifier**: A draft is assigned a `draft-{timestamp}` version string (for example, `draft-1719600000000`) instead of an auto-incremented integer, so it never advances your release version numbering.
+- **Excluded from default listings**: Drafts don't appear when you [list versions](#list-all-versions-of-an-agent) unless you pass `include_drafts=true`.
+- **Excluded from implicit routing**: A draft is never resolved as the agent's latest version, so it doesn't receive traffic automatically.
+- **Can't be a traffic-routing target**: You can't pin a traffic-routing rule to a draft version. Requests to route traffic to a draft are rejected.
+
+To create a draft version, set `draft` to `true` in the request body:
+
+:::zone pivot="rest"
+
+```bash
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --body '{
+        "draft": true,
+        "definition": {
+            "kind": "hosted",
+            "image": "myregistry.azurecr.io/my-agent:experimental",
+            "cpu": "1",
+            "memory": "2Gi",
+            "container_protocol_versions": [
+                {"protocol": "responses", "version": "1.0.0"}
+            ]
+        }
+    }'
+```
+
+The response `version` field contains the assigned `draft-{timestamp}` identifier. Use that identifier to [get](#get-a-specific-version) or [delete](#delete-a-specific-version) the draft, or to test it directly. When you're satisfied with the change, create a regular (non-draft) version to promote it to a release.
+
+:::zone-end
+
+:::zone pivot="python"
+
+Draft versions are currently available through the REST API only. Switch to the **REST** tab for an example, and call the same `${BASE_URL}/agents/${AGENT_NAME}/versions` endpoint with `"draft": true` in the request body.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Draft versions are currently available through the REST API only. Switch to the **REST** tab for an example.
 
 :::zone-end
 
