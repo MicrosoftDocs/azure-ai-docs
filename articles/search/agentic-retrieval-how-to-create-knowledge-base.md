@@ -105,7 +105,7 @@ Use one of the following LLMs from Azure OpenAI in Foundry Models. Azure OpenAI 
 
 Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We recommend Microsoft Entra ID for authentication and role-based access for authorization. To assign roles, you must be an **Owner or User Access Administrator**. If you can't use roles, use key-based authentication instead.
 
-### Use roles
+### [**Use roles**](#tab/rbac)
 
 ::: zone pivot="csharp"
 
@@ -164,7 +164,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 
 ::: zone-end
 
-### Use keys
+### [**Use keys**](#tab/keys)
 
 ::: zone pivot="csharp"
 

@@ -396,11 +396,11 @@ Each entry in the `tools` array specifies an allowed MCP tool and optional outpu
 
 By default, the retrieval engine applies automatic heuristics (`auto`) to convert raw MCP tool output into rankable documents. You can override this behavior per tool using the `outputParsing` property.
 
-#### Auto
+# [auto](#tab/auto)
 
 The `auto` mode requires no configuration. The retrieval engine applies heuristics to parse the tool output.
 
-#### JSON
+# [json](#tab/json)
 
 The `json` mode extracts documents from a specific location in the JSON output using a JSONPath expression. Use this mode when your tool returns a structured JSON response with a predictable array field.
 
@@ -414,9 +414,9 @@ The `json` mode extracts documents from a specific location in the JSON output u
 }
 ```
 
-For the complete `jsonParameters` schema, see [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
-#### Split
+# [split](#tab/split)
 
 The `split` mode chunks large text, HTML, or Markdown output into smaller segments. Use this mode when a tool returns long-form content. This mode supports the same parameters as the [Text Split skill](cognitive-search-skill-textsplit.md#skill-parameters).
 
@@ -431,7 +431,7 @@ The `split` mode chunks large text, HTML, or Markdown output into smaller segmen
 }
 ```
 
-#### None
+# [none](#tab/none)
 
 The `none` mode requires no configuration. The entire tool output is treated as a single document. Use this mode when the raw output doesn't require splitting or structured extraction.
 
