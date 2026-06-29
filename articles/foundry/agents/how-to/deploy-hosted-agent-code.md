@@ -91,6 +91,17 @@ Before you start, pick a value for `code_configuration.dependency_resolution`. T
 
 For bundled mode, see [Package the zip manually](#package-the-zip-manually) for the local build commands.
 
+> [!IMPORTANT]
+> **Private virtual network prerequisite for `bundled` deployments:** If your project is secured with a private virtual network, allow outbound connections in your network policy to the following endpoints before you deploy with `bundled` dependency resolution:
+>
+> - `mcr.microsoft.com`
+> - `agent365.svc.cloud.microsoft`
+> - `deb.debian.org`
+> - `packages.microsoft.com`
+> - `*.login.microsoft.com`
+>
+> Without these outbound paths, provisioning can't download the packages it needs and the deployment fails. For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).
+
 ## Deploy using the REST API
 
 Use the [REST API](https://ai.azure.com/api-reference/agents) for direct HTTP-based deployments or custom tooling. The sections below walk through a first deployment in order: set up variables, build a zip, create the agent, poll until `active`, and invoke it. Update, version, download, and log-streaming endpoints are grouped under [Ongoing operations](#ongoing-operations).
@@ -430,6 +441,7 @@ Use `--self-contained true` if you want to ship the .NET runtime in the zip. The
 | `424 session_not_ready` on invoke | Container started but `/readiness` didn't return HTTP 200 within the timeout | Stream logs with [`:logstream`](#stream-container-logs), fix the readiness probe or startup error, redeploy. |
 | `409 conflict` on DELETE agent (`Agent has active sessions`) | Open sessions block deletion | Wait for sessions to go idle, or append `&force=true` to cascade-delete sessions. |
 | Version stuck in `creating` (>10 min, remote build) | Server build failed or couldn't resolve `requirements.txt` | Switch to `dependency_resolution: bundled` and prebuild locally. |
+| `bundled` deployment fails in a private virtual network | Outbound network is blocked, so required packages can't be downloaded | Allow outbound connections in your network policy to the endpoints in the [`bundled` private virtual network prerequisite](#choose-how-dependencies-are-resolved), then redeploy. |
 | Version transitions to `failed` | Bad zip layout, syntax error, or (`remote_build`) a restore/compile failure | Read the version's `error` object first—`error.code` classifies the failure and `error.message` contains the underlying restore or compile error line (pip for Python, NuGet for .NET) plus a troubleshooting link. Verify the [folder structure](#package-the-zip-manually). Use [`:logstream`](#stream-container-logs) only after the container starts. |
 | `ModuleNotFoundError` at runtime | `packages/` missing, contains raw `.whl` files, or has Windows binaries | Rebuild with `pip install --target packages/ --platform manylinux2014_x86_64 --only-binary=:all:`. |
 | `409 AgentNotCodeBased` on download | Agent is image-based | Use the [container-based deploy doc](deploy-hosted-agent.md). |
