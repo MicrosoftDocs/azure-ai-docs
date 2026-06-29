@@ -333,13 +333,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 
 # [Asia Pacific](#tab/az-apac)
 
-| **Model** | **Version** | **australiaeast** | **japaneast** | **koreacentral** | **southeastasia** | **southindia** |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.3-codex | 2026-02-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
+Not available
 
 # [Middle East & Africa](#tab/az-mea)
 
