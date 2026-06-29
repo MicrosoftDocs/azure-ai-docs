@@ -344,6 +344,11 @@ Two endpoint patterns exist depending on your role:
 | **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
 | **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. The first version you create is automatically set as the default. |
 
+Replace the placeholders with your own values:
+
+- `{project_endpoint}` is your Foundry project endpoint, in the form `https://<account>.services.ai.azure.com/api/projects/<project>`. Copy it from your project's **Overview** page in the [Foundry portal](https://ai.azure.com/), or from the **Endpoint URL** column in the **Toolboxes** view of Foundry Toolkit for Visual Studio Code.
+- `{toolbox_name}` and `{version}` are the values returned when you created the toolbox version in [Step 1](#step-1-create-a-toolbox-version).
+
 > [!NOTE]
 > The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
 
