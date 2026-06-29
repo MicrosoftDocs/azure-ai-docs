@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 06/18/2026
+ms.date: 06/29/2026
 ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As someone setting up Foundry Agent Service, I want to compare the networking options so that I can choose the one that meets my isolation, connectivity, and compliance goals.
@@ -46,6 +46,8 @@ The two decisions are connected. When you isolate egress in a virtual network, i
 
 With public egress, adding a private endpoint secures only the inbound path: callers reach the Foundry endpoint privately, but agent egress isn't isolated.
 
+With BYO virtual network, you can bring your own data resources or use platform-managed data resources. For more information, see [Bring-your-own virtual network requirements](#bring-your-own-virtual-network-requirements).
+
 > [!NOTE]
 > Network isolation applies at the Foundry account and project level. It covers hosted agents, prompt agents, and the other Foundry resources in the account. The two agent types consume network resources differently inside an isolated setup. For details, see [Deep dive into Foundry Agent Service networking](agents-networking-deep-dive.md).
 
@@ -58,7 +60,8 @@ The following table maps common goals to a recommended option and a deployment t
 | Fastest path to a working agent, no isolation | Public, Microsoft-managed storage | [Deploy your first hosted agent quickstart](../quickstarts/quickstart-hosted-agent.md) (Azure Developer CLI or VS Code) |
 | Keep agent data in your own Azure resources, no isolation | Public, bring-your-own storage (standard) | [`41-standard-agent-setup`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/41-standard-agent-setup) |
 | Restrict who can call the endpoint, public egress is acceptable | Public egress with a private endpoint | [`10-private-network-basic`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/10-private-network-basic) |
-| Full isolation with no public egress, you control the network | BYO virtual network (network-secured standard) | [`15-private-network-standard-agent-setup`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup) |
+| Full isolation with no public egress, you control the network and want to bring your own data resources | BYO virtual network with bring-your-own data resources (network-secured standard) | [`15-private-network-standard-agent-setup`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup) |
+| Full isolation with no public egress, you control the network but don't want to manage data resources | BYO virtual network with platform-managed data resources | [`11-private-network-basic-vnet`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/11-private-network-basic-vnet) |
 | Full isolation, but you can't manage IP ranges or your IP space overlaps | Managed virtual network | [`18-managed-virtual-network`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network) |
 | Full isolation behind an API gateway | BYO virtual network with Azure API Management | [`16-private-network-standard-agent-apim-setup`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup) |
 | Reach on-premises resources from agents | BYO virtual network plus VPN or ExpressRoute | [`15-private-network-standard-agent-setup`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup) plus [Access on-premises resources](../../how-to/access-on-premises-resources.md) |
@@ -73,8 +76,10 @@ When you choose BYO virtual network, plan for these requirements before you depl
 
 - **A dedicated, delegated subnet.** Delegate a subnet to `Microsoft.App/environments`. The subnet can't be shared by more than one Foundry resource. Size it for the scale you expect; see [Plan your subnet size](#plan-your-subnet-size).
 - **RFC 1918 address space only.** Use `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`. Public and CGNAT ranges aren't supported. Class A (`10.x`) ranges are only available in certain regions.
-- **Bring-your-own data resources.** Standard, network-secured setups require your own Azure Storage, Azure AI Search, and Azure Cosmos DB so all agent data stays in your tenant.
-- **Private endpoints and Private DNS zones** for the Foundry account and each data resource, so name resolution stays inside the virtual network.
+- **Your choice of data resources.** With BYO virtual network, you choose how agent data resources (Azure Storage, Azure AI Search, and Azure Cosmos DB) are provided:
+  - **Platform-managed data resources.** Use multitenant, platform-managed data resources so you don't bring or configure your own. Choose this option when your agents don't need customer-managed data resources—for example, many hosted-agent scenarios—or when you want to avoid capacity planning for resources like Azure Cosmos DB. This option removes the need to set up data resources you don't use.
+  - **Bring-your-own data resources.** Use your own Azure Storage, Azure AI Search, and Azure Cosmos DB so all agent data stays in your tenant. Choose this option when you need agent data in resources you own and manage.
+- **Private endpoints and Private DNS zones** for the Foundry account, and for each data resource you bring, so name resolution stays inside the virtual network.
 - **Same region for the Foundry resource and the virtual network.** Other resources can be in different regions, with cross-region cost implications.
 
 > [!IMPORTANT]
