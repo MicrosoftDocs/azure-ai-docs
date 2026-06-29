@@ -20,10 +20,10 @@ To deploy and call a Claude model, see [Deploy and use Claude models in Microsof
 
 ## How Claude models are hosted and billed
 
-Claude models in Microsoft Foundry are offered as two versions: **Hosted on Azure** or **Hosted on Anthropic infrastructure (preview)**  deployments. Not every model is available in both versions, and a model's lifecycle stage (for example, Preview or Generally available) can differ between the two versions. For per-model availability and lifecycle status, see [Available Claude models](#available-claude-models).
+Microsoft Foundry offers Claude models in two versions: **Hosted on Azure** and **Hosted on Anthropic infrastructure (preview)**. Not every model is available in both versions. A model's lifecycle stage, such as Preview or Generally available, can differ between the two versions. For per-model availability and lifecycle status, see [Available Claude models](#available-claude-models).
 
 > [!NOTE]
-> Claude models in Microsoft Foundry are offered through [Foundry Models from partners and community](../concepts/models-from-partners.md). Models from partners and community that are sold by and operated by Anthropic are Non-Microsoft Products under the Product Terms. Claude models in Foundry require an Azure Marketplace subscription. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md) before you deploy.
+> You access Claude models in Microsoft Foundry through [Foundry Models from partners and community](../concepts/models-from-partners.md). Models from partners and community that Anthropic sells and operates are Non-Microsoft Products under the Product Terms. Claude models in Foundry require an Azure Marketplace subscription. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md) before you deploy.
 
 Claude models that are **Hosted on Azure** run on Azure infrastructure end-to-end and are Generally available (GA). 
 
@@ -48,7 +48,7 @@ The following table compares model availability for both versions of Claude mode
 >
 > To migrate, remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** or **Claude Opus 4.7** for higher-intelligence workloads.
 
-| Model | Availibility | Context window / Max output | Key capabilities | Best for |
+| Model | Availability | Context window / Max output | Key capabilities | Best for |
 |---|---|---|---|---|
 | `claude-mythos-5`<sup>1</sup> | Hosted on Anthropic: Gated research preview | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only</li></ul> | <ul><li>Biology and life sciences</li><li>Cybersecurity (defensive use cases prioritized): vulnerability discovery, attack-surface auditing, red teaming, threat intelligence</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
 | `claude-fable-5` | Hosted on Anthropic: Preview | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases and multi-day project context</li><li>Longer independent work than any prior Claude model</li><li>Self verification</li><li>Sub-agent orchestration</li><li>Refusal `stop_reason` on dual-use safeguard policies<sup>2</sup></li></ul> | <ul><li>Cybersecurity</li><li>Autonomous coding</li><li>Long-running agents</li><li>Coding and agents, with deeper reasoning for enterprise workflows</li></ul> |
@@ -92,7 +92,7 @@ Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the fol
 
 <!-- PLACEHOLDER: When [TO VERIFY: Scarlett] is available, update the capabilities table and any model-specific parameter tables in this section. -->
 
-Claude models in Foundry expose *core capabilities* (for processing, analyzing, and generating content) and *tools* that let Claude interact with external systems, execute code, and perform automated tasks. 
+Claude models in Foundry expose *core capabilities* for processing, analyzing, and generating content, and *tools* that let Claude interact with external systems, execute code, and perform automated tasks. 
 
 The following table summarizes capabilities available for both the **Hosted on Azure** and **Hosted on Anthropic infrastructure (preview)** versions of Claude models in Foundry, including core capabilities and tools.
 
@@ -166,14 +166,14 @@ For more information on the different deployment types, see [Deployment types fo
 
 ### Quotas and rate limits
 
-Deployment quota is managed at the subscription level. Quota is shared across resources and regions instead of being allocated separately per resource or region.
+Subscription-level management handles the deployment quota. Resources and regions share the quota instead of allocating it separately for each resource or region.
 
 - All Global Standard deployments of the same model and version in a subscription draw from one shared quota pool across all regions.
 - All Data Zone Standard deployments of the same model and version in a subscription draw from a shared quota pool within each data zone (for example, US).
  
-To learn more about quota management for Foundry Models, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md#microsoft-foundry-models-quotas-and-limits).
+For more information about quota management for Foundry Models, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md#microsoft-foundry-models-quotas-and-limits).
 
-Rate limits for Claude models in Foundry are measured in Requests Per Minute (RPM) and uncached input Tokens Per Minute (ITPM).
+Claude models in Foundry measure rate limits in Requests Per Minute (RPM) and uncached input Tokens Per Minute (ITPM).
 
 **What counts towards ITPM?**
 
@@ -185,11 +185,11 @@ Rate limits for Claude models in Foundry are measured in Requests Per Minute (RP
 
 - Output tokens (including tokens read from cache) don't count towards uiTPM. 
 
-For more information on rate limits and cache, see [Claude API Docs: Rate limits](https://platform.claude.com/docs/en/api/rate-limits#rate-limits).
+For more information about rate limits and cache, see [Claude API Docs: Rate limits](https://platform.claude.com/docs/en/api/rate-limits#rate-limits).
 
 ### Rate limits by subscription type
 
-Rate limits depend on your Azure subscription type. The **Version 2: Hosted on Azure** and **Version 1: Hosted on Anthropic infrastructure** columns indicate whether quota is available for that model and deployment type combination. **Yes** means quota is available; **N/A** means the model and version combination don't have quota for that deployment type.
+Your Azure subscription type determines your rate limits. The **Version 2: Hosted on Azure** and **Version 1: Hosted on Anthropic infrastructure** columns indicate whether quota is available for that model and deployment type combination. **Yes** means quota is available. **N/A** means the model and version combination don't have quota for that deployment type.
 
 As listed in the following table, to increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 

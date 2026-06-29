@@ -21,7 +21,7 @@ After you deploy a Claude model, interact with it to generate text responses:
     - [Messages API](https://docs.claude.com/en/api/messages): Send a structured list of input messages with text or image content. The model generates the next message in the conversation.
     - [Token Count API](https://docs.claude.com/en/api/messages-count-tokens): Count the number of tokens in a message.
     
-To learn more about the supported APIs, see [Claude models in Microsoft Foundry](../concepts/claude-models.md)
+To learn more about the supported APIs, see [Claude models in Microsoft Foundry](../concepts/claude-models.md).
 
 ### Send messages with authentication
 
