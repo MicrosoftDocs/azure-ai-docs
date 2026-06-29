@@ -3,7 +3,7 @@ title: US Labor Force Statistics
 description: Learn how to use the US Labor Force Statistics dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 06/29/2026
 ---
 
 # US Labor Force Statistics
@@ -290,6 +290,33 @@ display(spark.sql('SELECT * FROM source LIMIT 10'))
 ```
 
 <!-- nbend -->
+
+---
+
+### Azure SQL Database
+
+[Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly with [data virtualization](https://learn.microsoft.com/en-us/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas). Use `OPENROWSET` to read the Parquet files over HTTPS.
+
+#### Query in place
+
+```sql
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'abs://laborstatisticscontainer@azureopendatastorage.blob.core.windows.net/lfs/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
+
+#### Persist into a table (optional)
+
+```sql
+SELECT *
+INTO dbo.UsLaborForceStatistics_Local
+FROM OPENROWSET(
+    BULK 'abs://laborstatisticscontainer@azureopendatastorage.blob.core.windows.net/lfs/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
 
 ---
 

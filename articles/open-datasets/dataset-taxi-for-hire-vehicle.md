@@ -3,7 +3,7 @@ title: NYC Taxi and Limousine for-hire vehicle dataset
 description: Learn how to use the NYC Taxi and Limousine for-hire vehicle (VHF) dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 06/29/2026
 ---
 
 # NYC Taxi & Limousine Commission - For-Hire Vehicle (FHV) trip records
@@ -242,6 +242,33 @@ df.createOrReplaceTempView('source')
 # Display top 10 rows
 print('Displaying top 10 rows: ')
 display(spark.sql('SELECT * FROM source LIMIT 10'))
+```
+
+---
+
+### Azure SQL Database
+
+[Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly with [data virtualization](https://learn.microsoft.com/en-us/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas). Use `OPENROWSET` to read the Parquet files over HTTPS.
+
+#### Query in place
+
+```sql
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'abs://nyctlc@azureopendatastorage.blob.core.windows.net/fhv/puYear=2018/puMonth=6/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
+
+#### Persist into a table (optional)
+
+```sql
+SELECT *
+INTO dbo.NycTaxiForHireVehicle_Local
+FROM OPENROWSET(
+    BULK 'abs://nyctlc@azureopendatastorage.blob.core.windows.net/fhv/puYear=2018/puMonth=6/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
 ```
 
 ---
