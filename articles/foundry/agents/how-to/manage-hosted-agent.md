@@ -182,7 +182,7 @@ az rest --method GET \
     --resource "${RESOURCE}"
 ```
 
-By default, [draft versions (preview)](#create-a-draft-version-preview) are excluded from the list. To include them, add the `include_drafts=true` query parameter:
+By default, the list excludes [draft versions (preview)](#create-a-draft-version-preview). To include them, add the `include_drafts=true` query parameter:
 
 ```bash
 az rest --method GET \
@@ -191,6 +191,13 @@ az rest --method GET \
 ```
 
 :::zone-end
+
+:::zone pivot="python"
+
+```python
+for version in project.agents.list_versions(agent_name="my-agent"):
+    print(f"Version: {version.version}, Status: {version['status']}")
+```
 
 :::zone-end
 
