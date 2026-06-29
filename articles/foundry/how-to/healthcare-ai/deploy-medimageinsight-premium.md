@@ -82,7 +82,8 @@ Content-Type: application/json
 ```python
 import requests
 
-url = "https://<your-endpoint>/providers/microsoft/v2/embed"
+base = "https://<your-endpoint>"
+url = f"{base.rstrip('/')}/providers/microsoft/v2/embed"
 headers = {"Authorization": "Bearer <your-api-key>"}
 
 resp = requests.post(

@@ -83,7 +83,8 @@ import base64
 from pathlib import Path
 import requests
 
-url = "https://<your-endpoint>/providers/microsoft/v1/inference"
+base = "https://<your-endpoint>"
+url = f"{base.rstrip('/')}/providers/microsoft/v1/inference"
 headers = {
     "Authorization": "Bearer <your-api-key>",
     "Content-Type": "application/json",
