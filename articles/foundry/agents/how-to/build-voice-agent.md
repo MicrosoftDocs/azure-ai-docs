@@ -19,7 +19,7 @@ Hosted agents in Foundry Agent Service support real-time voice workloads through
 For background on hosted agents and the available protocols, see [What are hosted agents?](../concepts/hosted-agents.md). For general container packaging and deployment steps, see [Deploy a hosted agent](deploy-hosted-agent.md).
 
 > [!IMPORTANT]
-> Hosted agents and the `invocations_ws` protocol are in public preview. The `invocations_ws` protocol is currently available only in **North Central US**. Features and limits can change.
+> The `invocations_ws` protocol is in public preview. The `invocations_ws` protocol is currently available only in **North Central US**. Features and limits can change.
 
 ## When to use the WebSocket protocol
 
