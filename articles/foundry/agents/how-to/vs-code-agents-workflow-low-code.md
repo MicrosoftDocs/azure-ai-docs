@@ -32,7 +32,8 @@ After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstart
 To view and edit a declarative agent workflow in VS Code for the Web, first navigate to the workflow in the Foundry portal:
 
 1. In the Foundry portal, open your project that contains the workflow.
-1. Select the **Workflows** tab from the left-hand menu.
+1. Select the **Agents** tab from the left-hand menu.
+1. Select the ***Workflows** tab from the opened page. 
 1. Select the workflow you want to open.
 
 Then choose one of the following options to open the workflow in VS Code for the Web.
