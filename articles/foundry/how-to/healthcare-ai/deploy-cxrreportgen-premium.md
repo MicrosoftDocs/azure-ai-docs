@@ -5,7 +5,7 @@ description: Deploy CxrReportGen Premium in Microsoft Foundry and send a test re
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 06/10/2026
+ms.date: 06/29/2026
 ms.reviewer: mehmetoez
 reviewer: mertoezdev
 ms.author: mopeakande
@@ -61,12 +61,12 @@ After deployment succeeds, you can validate the endpoint by sending a test reque
 
 ### Sample request payload
 
-CXRReportGen Premium exposes a `POST /v1/inference` endpoint that accepts a flat JSON body.
+CXRReportGen Premium exposes a `POST /providers/microsoft/v1/inference` endpoint that accepts a flat JSON body.
 
 # [REST](#tab/rest)
 
 ```http
-POST https://<your-endpoint>/v1/inference
+POST https://<your-endpoint>/providers/microsoft/v1/inference
 Authorization: Bearer <your-api-key>
 Content-Type: application/json
 
@@ -83,7 +83,7 @@ import base64
 from pathlib import Path
 import requests
 
-url = "https://<your-endpoint>/v1/inference"
+url = "https://<your-endpoint>/providers/microsoft/v1/inference"
 headers = {
     "Authorization": "Bearer <your-api-key>",
     "Content-Type": "application/json",

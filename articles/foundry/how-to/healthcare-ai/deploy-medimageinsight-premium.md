@@ -5,7 +5,7 @@ description: Deploy MedImageInsight Premium in Microsoft Foundry and send a test
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 06/10/2026
+ms.date: 06/29/2026
 ms.reviewer: mehmetoez
 reviewer: mertoezdev
 ms.author: mopeakande
@@ -62,12 +62,12 @@ After deployment succeeds, you can validate the endpoint by sending test request
 
 ### Sample request payload
 
-Send a `POST` to `/v2/embed` on your deployment URL. Use the `texts` field for text inputs or the `images` field for images encoded as base64 data URIs.
+Send a `POST` to `/providers/microsoft/v2/embed` on your deployment URL. Use the `texts` field for text inputs or the `images` field for images encoded as base64 data URIs.
 
 # [REST](#tab/rest)
 
 ```http
-POST https://<your-endpoint>/v2/embed
+POST https://<your-endpoint>/providers/microsoft/v2/embed
 Authorization: Bearer <your-api-key>
 Content-Type: application/json
 
@@ -82,7 +82,7 @@ Content-Type: application/json
 ```python
 import requests
 
-url = "https://<your-endpoint>/v2/embed"
+url = "https://<your-endpoint>/providers/microsoft/v2/embed"
 headers = {"Authorization": "Bearer <your-api-key>"}
 
 resp = requests.post(
