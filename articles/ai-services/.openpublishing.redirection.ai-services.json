@@ -1,6 +1,16 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/export-import-refresh.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/manage-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/smart-url-refresh.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/manage-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/language-service/summarization/how-to/text-summarization.md",
       "redirect_url": "/azure/ai-services/language-service/summarization/how-to/summarize",
       "redirect_document_id": false

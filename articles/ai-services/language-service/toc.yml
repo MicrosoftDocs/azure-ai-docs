@@ -322,6 +322,32 @@ items:
         - name: Try multi-turn conversations
           href: conversational-language-understanding/how-to/quickstart-multi-turn-conversations.md
           displayName: slot-filling, intent, entities, entity, association, foundry
+    - name: How-to guides
+      items:
+        - name: Build, train, and deploy a model
+          href: conversational-language-understanding/how-to/build-train-deploy-model.md
+          displayName: design, intents, entities, labeling, tag utterances, training data, annotation, clu training, evaluation, performance metrics, deployment, production, predictions, clu api, intent recognition, entity extraction
+        - name: Build a multi-turn conversation model
+          href:  conversational-language-understanding/how-to/build-multi-turn-model.md
+          displayName: slot-filling, intent, entities, entity, association, foundry
+        - name: Create a fine-tuning task project
+          href: conversational-language-understanding/how-to/create-project.md
+          displayName: creation, clu project, setup  
+        - name: Use containers
+          items:
+          - name: Use Docker Containers
+            href: conversational-language-understanding/how-to/use-containers.md
+            displayName: containerization, container deployment, clu containers
+          - name: Configure containers
+            href: concepts/configure-containers.md
+            displayName: container setup
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
+        - name: Back up and recover your models
+          href: conversational-language-understanding/how-to/fail-over.md
+          displayName: disaster recovery, failover, clu      
     - name: Language support
       href: conversational-language-understanding/language-support.md
       displayName: clu languages, supported languages, multilingual, international support
@@ -338,32 +364,7 @@ items:
         href: /azure/ai-foundry/responsible-ai/clu/clu-characteristics-and-limitations?context=/azure/ai-services/language-service/context/context
       - name: Data, privacy, and security
         href: /azure/ai-foundry/responsible-ai/clu/clu-data-privacy-security?context=/azure/ai-services/language-service/context/context
-    - name: How-to guides
-      items:
-        - name: Build a multi-turn conversation model
-          href:  conversational-language-understanding/how-to/build-multi-turn-model.md
-          displayName: slot-filling, intent, entities, entity, association, foundry
-        - name: Use containers
-          items:
-          - name: Use Docker Containers
-            href: conversational-language-understanding/how-to/use-containers.md
-            displayName: containerization, container deployment, clu containers
-          - name: Configure containers
-            href: concepts/configure-containers.md
-            displayName: container setup
-          - name: Use container instances
-            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-          - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
-        - name: Create a fine-tuning task project
-          href: conversational-language-understanding/how-to/create-project.md
-          displayName: creation, clu project, setup
-        - name: Build, train, and deploy a model
-          href: conversational-language-understanding/how-to/build-train-deploy-model.md
-          displayName: design, intents, entities, labeling, tag utterances, training data, annotation, clu training, evaluation, performance metrics, deployment, production, predictions, clu api, intent recognition, entity extraction
-        - name: Back up and recover your models
-          href: conversational-language-understanding/how-to/fail-over.md
-          displayName: disaster recovery, failover, clu
+    
     - name: Concepts
       items:
         - name: Multi-turn conversations
@@ -411,6 +412,41 @@ items:
       displayName: custom question answering, faq, knowledge base
     - name: Quickstart
       href: question-answering/quickstart/sdk.md
+    - name: How-to guides
+      items:
+      - name: Manage projects
+        href: question-answering/how-to/manage-knowledge-base.md
+      - name: Create, test, and deploy a knowledge base
+        href: question-answering/how-to/create-test-deploy.md
+        displayName: knowledge base, test deploy
+      - name: Deploy a CQA agent
+        href: question-answering/how-to/deploy-agent.md
+        displayName: virtual assistant, chatbot, knowledge base, deployment
+      - name: Move projects
+        href: question-answering/how-to/migrate-knowledge-base.md
+      - name: Encrypt data at rest
+        href: question-answering/how-to/encrypt-data-at-rest.md
+      - name: Add chit-chat
+        href: question-answering/how-to/chit-chat.md
+      - name: Change default answer
+        href: question-answering/how-to/change-default-answer.md
+      - name: Configure your environment and Azure resources
+        href: question-answering/how-to/configure-azure-resources.md
+        displayName: configuration, fine-tuning, azure ai foundry, azure portal
+      - name: Analytics
+        href: question-answering/how-to/analytics.md
+      - name: Network isolation and private endpoints
+        href: question-answering/how-to/network-isolation.md
+      - name: Authoring API
+        href: question-answering/how-to/authoring.md
+      - name: Prebuilt API
+        href: question-answering/how-to/prebuilt.md
+      - name: Project Best practices
+        href: question-answering/how-to/best-practices.md
+      - name: Troubleshooting
+        href: question-answering/how-to/troubleshooting.md
+      - name: Connect to Azure OpenAI
+        href: question-answering/how-to/azure-openai-integration.md  
     - name: Language support
       href: question-answering/language-support.md
     - name: Responsible use of AI
@@ -424,45 +460,6 @@ items:
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/language-service/data-privacy-security-question-answering.md
         displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Create, test, and deploy a knowledge base
-        href: question-answering/how-to/create-test-deploy.md
-        displayName: knowledge base, test deploy
-      - name: Deploy a CQA agent
-        href: question-answering/how-to/deploy-agent.md
-        displayName: virtual assistant, chatbot, knowledge base, deployment
-      - name: Export/import/refresh
-        href: question-answering/how-to/export-import-refresh.md
-      - name: Move projects
-        href: question-answering/how-to/migrate-knowledge-base.md
-      - name: Use smart URL refresh
-        href: question-answering/how-to/smart-url-refresh.md
-      - name: Encrypt data at rest
-        href: question-answering/how-to/encrypt-data-at-rest.md
-      - name: Add chit-chat
-        href: question-answering/how-to/chit-chat.md
-      - name: Change default answer
-        href: question-answering/how-to/change-default-answer.md
-      - name: Configure your environment and Azure resources
-        href: question-answering/how-to/configure-azure-resources.md
-        displayName: configuration, fine-tuning, azure ai foundry, azure portal
-      - name: Analytics
-        href: question-answering/how-to/analytics.md
-      - name: Manage projects
-        href: question-answering/how-to/manage-knowledge-base.md
-      - name: Network isolation and private endpoints
-        href: question-answering/how-to/network-isolation.md
-      - name: Authoring API
-        href: question-answering/how-to/authoring.md
-      - name: Prebuilt API
-        href: question-answering/how-to/prebuilt.md
-      - name: Project Best practices
-        href: question-answering/how-to/best-practices.md
-      - name: Troubleshooting
-        href: question-answering/how-to/troubleshooting.md
-      - name: Connect to Azure OpenAI
-        href: question-answering/how-to/azure-openai-integration.md
     - name: Concepts
       items:
       - name: Development lifecycle
@@ -506,6 +503,23 @@ items:
     - name: Quickstart
       href: custom-text-classification/quickstart.md
       displayName: ctc setup
+    - name: How-to guides
+      items:
+      - name: Build, train, and deploy a model
+        href: custom-text-classification/how-to/build-train-deploy-model.md
+        displayName: schema design, data selection, label data, tag data, annotate text, training data, train model, classifier, build model, model performance, evaluation, metrics, accuracy, precision, recall, deploy model, deployment, classify text, classification, prediction
+      - name: Create projects
+        href: custom-text-classification/how-to/create-project.md
+        displayName: project creation, setup project
+      - name: Use autolabeling
+        href: custom-text-classification/how-to/use-autolabeling.md
+        displayName: autolabeling, GPT labeling, automatic labeling
+      - name: Back up and recover your models
+        href: custom-text-classification/fail-over.md
+        displayName: backup, disaster recovery, failover
+      - name: Deploy to multiple regions
+        href: concepts/custom-features/multi-region-deployment.md
+        displayName: multi-region, global deployment, regional distribution  
     - name: Language support
       href: custom-text-classification/language-support.md
       displayName: ctc languages, multilingual
@@ -526,23 +540,7 @@ items:
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/language-service/custom-text-classification-data-privacy-security.md
         displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Create projects
-        href: custom-text-classification/how-to/create-project.md
-        displayName: project creation, setup project
-      - name: Build, train, and deploy a model
-        href: custom-text-classification/how-to/build-train-deploy-model.md
-        displayName: schema design, data selection, label data, tag data, annotate text, training data, train model, classifier, build model, model performance, evaluation, metrics, accuracy, precision, recall, deploy model, deployment, classify text, classification, prediction
-      - name: Use autolabeling
-        href: custom-text-classification/how-to/use-autolabeling.md
-        displayName: autolabeling, GPT labeling, automatic labeling
-      - name: Back up and recover your models
-        href: custom-text-classification/fail-over.md
-        displayName: backup, disaster recovery, failover
-      - name: Deploy to multiple regions
-        href: concepts/custom-features/multi-region-deployment.md
-        displayName: multi-region, global deployment, regional distribution
+    
     - name: Concepts
       items:
       - name: Evaluation metrics
@@ -575,6 +573,11 @@ items:
       displayName: entity linking,knowledge base linking, disambiguation
     - name: Quickstart
       href: entity-linking/quickstart.md
+    - name: How-to guides
+      items:
+        - name: How to call the API
+          href: entity-linking/how-to/call-api.md
+          displayName: entity linking, entity recognition  
     - name: Language support
       href: entity-linking/language-support.md
     - name: Responsible use of AI
@@ -585,11 +588,7 @@ items:
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
         displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-        - name: How to call the API
-          href: entity-linking/how-to/call-api.md
-          displayName: entity linking, entity recognition
+    
 
   - name: Key phrase extraction
     items:
@@ -598,19 +597,6 @@ items:
       displayName: key phrase extraction,keyword extraction, key terms
     - name: Quickstart
       href: key-phrase-extraction/quickstart.md
-    - name: Language support
-      href: key-phrase-extraction/language-support.md
-    - name: Responsible use of AI
-      items:
-      - name: Transparency note for key phrase extraction
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction.md
-        displayName: Transparency note for key phrase extraction, key phrase extraction transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
     - name: How-to guides
       items:
       - name: Call key phrase extraction
@@ -626,7 +612,20 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context  
+    - name: Language support
+      href: key-phrase-extraction/language-support.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for key phrase extraction
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction.md
+        displayName: Transparency note for key phrase extraction, key phrase extraction transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+        displayName: Data privacy, logging, data retention
     - name: Tutorials
       items:
       - name: Integrate Power BI
@@ -640,19 +639,19 @@ items:
       displayName: workflow orchestration, orchestration introduction, orchestration overview
     - name: Quickstart
       href: orchestration-workflow/quickstart.md
+    - name: How-to guides
+      items:
+        - name: Build, train, and deploy a model
+          href: orchestration-workflow/how-to/build-train-deploy-model.md
+          displayName: build schema, schema design, intents, label utterances, tag utterances, training data, train model, build model, model performance, evaluation, metrics, accuracy, deploy model, deployment, get predictions, call api, prediction, query model
+        - name: Create project
+          href: orchestration-workflow/how-to/create-project.md
+        - name: Back up and recover your models
+          href: conversational-language-understanding/how-to/fail-over.md  
     - name: FAQ
       href: orchestration-workflow/faq.md
     - name: Language support
       href: orchestration-workflow/language-support.md
-    - name: How-to guides
-      items:
-        - name: Create project
-          href: orchestration-workflow/how-to/create-project.md
-        - name: Build, train, and deploy a model
-          href: orchestration-workflow/how-to/build-train-deploy-model.md
-          displayName: build schema, schema design, intents, label utterances, tag utterances, training data, train model, build model, model performance, evaluation, metrics, accuracy, deploy model, deployment, get predictions, call api, prediction, query model
-        - name: Back up and recover your models
-          href: conversational-language-understanding/how-to/fail-over.md
     - name: Concepts
       items:
         - name: Evaluation metrics
@@ -688,19 +687,6 @@ items:
         displayName: sentiment analysis introduction, opinion mining overview, sentiment detection
       - name: Quickstart
         href: sentiment-opinion-mining/quickstart.md
-      - name: Language support
-        href: sentiment-opinion-mining/language-support.md
-      - name: Responsible use of AI
-        items:
-        - name: Transparency note for sentiment analysis and opinion mining
-          href: ../../ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis.md
-          displayName: Transparency note for sentiment analysis, opinion mining transparency, Responsible AI, Responsible use of AI
-        - name: Integration and responsible use
-          href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-          displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-        - name: Data, privacy, and security
-          href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-          displayName: Data privacy, logging, data retention
       - name: How-to guides
         items:
         - name: Call Sentiment Analysis and Opinion Mining
@@ -716,7 +702,20 @@ items:
           - name: Use containers in disconnected environments
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context  
+      - name: Language support
+        href: sentiment-opinion-mining/language-support.md
+      - name: Responsible use of AI
+        items:
+        - name: Transparency note for sentiment analysis and opinion mining
+          href: ../../ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis.md
+          displayName: Transparency note for sentiment analysis, opinion mining transparency, Responsible AI, Responsible use of AI
+        - name: Integration and responsible use
+          href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+          displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+        - name: Data, privacy, and security
+          href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+          displayName: Data privacy, logging, data retention
       - name: Tutorials
         items:
         - name: Use Flask to translate text, analyze sentiment, and synthesize speech
@@ -729,8 +728,6 @@ items:
       displayName: summarization,native document
     - name: Quickstart
       href: summarization/quickstart.md
-    - name: Language support
-      href: summarization/language-support.md
     - name: How-to guides
       items:
       - name: Summarize text, documents, and conversations
@@ -747,20 +744,22 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
-      - name: Responsible use of AI
-        items:
-        - name: Transparency note for summarization
-          href: ../../ai-foundry/responsible-ai/language-service/transparency-note-extractive-summarization.md
-          displayName: Transparency note for summarization, summarization transparency, Responsible AI, Responsible use of AI
-        - name: Integration and responsible use
-          href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use-summarization.md
-          displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-        - name: Characteristics and limitations
-          href: ../../ai-foundry/responsible-ai/language-service/characteristics-and-limitations-summarization.md
-        - name: Data, privacy, and security
-          href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-          displayName: Data privacy, logging, data retention
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context  
+    - name: Language support
+      href: summarization/language-support.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for summarization
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-extractive-summarization.md
+        displayName: Transparency note for summarization, summarization transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use-summarization.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Characteristics and limitations
+        href: ../../ai-foundry/responsible-ai/language-service/characteristics-and-limitations-summarization.md
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+        displayName: Data privacy, logging, data retention
 
 - name: Azure Language concepts
   items:

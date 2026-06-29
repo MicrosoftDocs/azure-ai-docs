@@ -14,7 +14,7 @@ ms.custom: language-service-question-answering
 
 Use this guide to move custom question answering (CQA) projects by exporting from one environment and importing into another.
 
-For the complete backup and restore workflow, including refresh operations, see [Export-import-refresh in custom question answering](./export-import-refresh.md).
+For the complete backup and restore workflow, including refresh operations, see [Export, import, and refresh a project](./manage-knowledge-base.md#export-import-and-refresh-a-project).
 
 ## Export a project
 
@@ -22,7 +22,7 @@ For the complete backup and restore workflow, including refresh operations, see 
 1. Go to the export operation for your project assets.
 1. Save the exported package to a secure location.
 
-For detailed steps and API options, see [Export-import-refresh in custom question answering](./export-import-refresh.md#export-import-refresh-in-custom-question-answering).
+For detailed steps and API options, see [Export, import, and refresh a project](./manage-knowledge-base.md#export-import-and-refresh-a-project).
 
 ## Import a project
 
@@ -30,9 +30,9 @@ For detailed steps and API options, see [Export-import-refresh in custom questio
 1. Start the import operation and select the previously exported package.
 1. Validate imported sources and settings before deployment.
 
-For detailed steps and API options, see [Export-import-refresh in custom question answering](./export-import-refresh.md#import-a-project-programmatically).
+For detailed steps and API options, see [Import a project programmatically](./manage-knowledge-base.md#import-a-project-programmatically).
 
 ## Next steps
 
-* [Export-import-refresh in custom question answering](./export-import-refresh.md)
+* [Export, import, and refresh a project](./manage-knowledge-base.md#export-import-and-refresh-a-project)
 * [Create, test, and deploy a CQA knowledge base](./create-test-deploy.md)
