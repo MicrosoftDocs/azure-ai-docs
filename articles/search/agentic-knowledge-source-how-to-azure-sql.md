@@ -321,7 +321,7 @@ Content-Type: application/json
 
 ::: zone-end
 
-Use `indexedSqlParameters` to identify the SQL table or view to ingest and to define the column mappings that become fields in the generated index. For views, specify the high-water-mark column used for change detection. For the complete schema, see [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+Use `indexedSqlParameters` to identify the SQL table or view to ingest and to define the column mappings that become fields in the generated index. For views, specify the high-water-mark column used for change detection.
 
 ### Column mapping
 
