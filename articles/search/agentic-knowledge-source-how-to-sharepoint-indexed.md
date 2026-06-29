@@ -277,57 +277,6 @@ Content-Type: application/json
 
 ::: zone-end
 
-### Source-specific properties
-
-The following properties apply to indexed SharePoint knowledge sources.
-
-::: zone pivot="csharp"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `Description` | A description of the knowledge source. | String | Yes | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `IndexedSharePointKnowledgeSourceParameters` | Parameters specific to indexed SharePoint knowledge sources: `ConnectionString`, `ContainerName`, and `Query`. | Object | No | No |
-| `ConnectionString` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
-| `ContainerName` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
-| `Query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
-
-::: zone-end
-
-::: zone pivot="python"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `indexed_share_point_parameters` | Parameters specific to indexed SharePoint knowledge sources: `connection_string`, `container_name`, and `query`. | Object | No | No |
-| `connection_string` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
-| `container_name` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
-| `query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
-
-::: zone-end
-
-::: zone pivot="rest"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `indexedSharePoint` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `indexedSharePointParameters` | Parameters specific to indexed SharePoint knowledge sources: `connectionString`, `containerName`, and `query`. | Object | No | Yes |
-| `connectionString` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
-| `containerName` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
-| `query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
-
-::: zone-end
-
-### Ingestion parameters properties
-
-[!INCLUDE [preview ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
-
 ## Check ingestion status
 
 [!INCLUDE [Check ingestion status](includes/how-tos/knowledge-source-status.md)]

@@ -304,53 +304,6 @@ api-key: {{api-key}}
 
 ::: zone-end
 
-### Source-specific properties
-
-The following properties apply to web knowledge sources.
-
-::: zone pivot="csharp"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `Description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description. | String | Yes | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `WebParameters` | Parameters specific to Web Knowledge Source. Currently, this is only `Domains`. | Object | Yes | No |
-| `Domains` | Domains to allow or block from the search space. By default, the knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) to search the entire public internet. When you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search) to restrict results to the specified domains. In both cases, Bing Custom Search is the search provider. | Object | Yes | No |
-| `AllowedDomains` | Domains to include in the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `IncludeSubpages` to `true` or `false`. | Array | Yes | No |
-| `BlockedDomains` | Domains to exclude from the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `IncludeSubpages` to `true` or `false`. | Array | Yes | No |
-
-::: zone-end
-
-::: zone pivot="python"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description. | String | Yes | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `web_parameters` | Parameters specific to Web Knowledge Source. Currently, this is only `domains`. | Object | Yes | No |
-| `domains` | Domains to allow or block from the search space. By default, the knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) to search the entire public internet. When you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search) to restrict results to the specified domains. In both cases, Bing Custom Search is the search provider. | Object | Yes | No |
-| `allowed_domains` | Domains to include in the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `include_subpages` to `true` or `false`. | Array | Yes | No |
-| `blocked_domains` | Domains to exclude from the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `include_subpages` to `true` or `false`. | Array | Yes | No |
-
-::: zone-end
-
-::: zone pivot="rest"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `web` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `webParameters` | Parameters specific to Web Knowledge Source. Currently, this is only `domains`. | Object | Yes | No |
-| `domains` | Domains to allow or block from the search space. By default, the knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) to search the entire public internet. When you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search) to restrict results to the specified domains. In both cases, Bing Custom Search is the search provider. | Object | Yes | No |
-| `allowedDomains` | Domains to include in the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | Yes | No |
-| `blockedDomains` | Domains to exclude from the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | Yes | No |
-
-::: zone-end
-
 ## Assign to a knowledge base
 
 If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
