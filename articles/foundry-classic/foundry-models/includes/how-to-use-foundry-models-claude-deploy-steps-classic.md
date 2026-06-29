@@ -32,7 +32,7 @@ Deploy a Claude model by following these steps in the Foundry portal:
 
 1. Configure other deployment settings:
 
-   - By default, the deployment uses the model name. You can modify this name before deploying. During inference, the deployment name is used in the `model` parameter to route requests to this particular deployment.
+   - By default, the deployment uses the model name. You can modify this name before deploying. During inference, use the deployment name in the `model` parameter to route requests to this particular deployment.
    - Select the **Region scope**: **Global** (available for all Claude models and versions) or **Data Zone** (if available for your model and version combination). 
    - The Foundry portal automatically selects the Foundry resource associated with your project as the **Connected AI resource**. Select **Customize** to change the connection if needed. The project and resource must be in one of the supported regions of deployment for the model.
 
