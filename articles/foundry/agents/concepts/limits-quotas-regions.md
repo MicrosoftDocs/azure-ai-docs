@@ -91,6 +91,8 @@ Where your agent data lives depends on which setup option you choose. The setup 
 
 [Capability hosts](capability-hosts.md) tell Agent Service where to store and process file uploads, vector stores, and conversation history. To store agent data in your own resources, see [Standard agent setup](standard-agent-setup.md).
 
+Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview).
+
 ## Default quotas and limits for the service
 
 The following table lists default limits enforced by the Agent Service. These limits apply to all Foundry projects regardless of subscription type or region.
