@@ -1,0 +1,71 @@
+From bd7f2e90938b16a7d65b1d828f88a3cb0db624fb Mon Sep 17 00:00:00 2001
+From: Jagatjeet <jagatjit@gmail.com>
+Date: Tue, 30 Jun 2026 11:00:56 +0530
+Subject: [PATCH 1/2] Add release notes for June 26 and February 3 updates
+
+---
+ ...machine-learning-ci-image-release-notes.md | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/articles/machine-learning/azure-machine-learning-ci-image-release-notes.md b/articles/machine-learning/azure-machine-learning-ci-image-release-notes.md
+index 7edafad4cf1..6c01a9391f8 100644
+--- a/articles/machine-learning/azure-machine-learning-ci-image-release-notes.md
++++ b/articles/machine-learning/azure-machine-learning-ci-image-release-notes.md
+@@ -30,6 +30,34 @@ Azure Machine Learning checks and validates any machine learning packages that m
+ 
+ Main updates provided with each image version are described in the below sections.
+ 
++##  June 26, 2026
++
++Image Version: `26.06.15`
++
++Release Notes:
++
++SDK Version: `1.61.0`
++
++Jupyter-core: '5.7.2'
++
++Nvidia-Driver: '580.159.03'
++
++CUDA: '13.0'
++
++##  February 3, 2026
++
++Image Version: `26.01.05`
++
++Release Notes:
++
++SDK Version: `1.61.0`
++
++Jupyter-core: '5.7.2'
++
++Nvidia-Driver: '535.274.02'
++
++CUDA: '12.2'
++
+ ##  February 11, 2025
+ 
+ Image Version: `25.01.31`
+
+From c36ad34186846f12e9ea4c2c0a79e81707e03062 Mon Sep 17 00:00:00 2001
+From: Jagatjeet <jagatjit@gmail.com>
+Date: Tue, 30 Jun 2026 15:05:23 +0530
+Subject: [PATCH 2/2] Add tundra API entry for Compute instance access
+
+Added a new entry for Compute instance with UDP access for tundra API.
+---
+ .../machine-learning/how-to-access-azureml-behind-firewall.md    | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/articles/machine-learning/how-to-access-azureml-behind-firewall.md b/articles/machine-learning/how-to-access-azureml-behind-firewall.md
+index d2c3cc0eb8b..92d03e6d3db 100644
+--- a/articles/machine-learning/how-to-access-azureml-behind-firewall.md
++++ b/articles/machine-learning/how-to-access-azureml-behind-firewall.md
+@@ -407,6 +407,7 @@ __Azure Machine Learning compute instance and compute cluster hosts__
+ | Compute instance | `*.instances.azureml.net` | TCP | 443 |
+ | Compute instance | `*.instances.azureml.ms` | TCP | 443, 8787, 18881 |
+ | Compute instance | `<region>.tundra.azureml.ms` | UDP | 5831 |
++| Compute instance | `*.tundra.<region>.api.azureml.ms` | UDP | 5831 |
+ | Compute instance | `*.<region>.batch.azure.com` | ANY | 443 |
+ | Compute instance | `*.<region>.service.batch.azure.com` | ANY | 443 | 
+ | Microsoft storage access | `*.blob.core.windows.net` | TCP | 443 |
