@@ -354,5 +354,6 @@ If you experience connectivity problems after setting up a private endpoint, try
 
 ## Next steps
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#private-endpoints) — role requirements for private endpoint configuration.
 - [Create a Foundry project](create-projects.md)
 - [Learn more about Foundry](../what-is-foundry.md)

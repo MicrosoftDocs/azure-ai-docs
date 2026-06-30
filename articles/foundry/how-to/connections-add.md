@@ -117,5 +117,6 @@ For more on how to set private endpoints to your connected resources, see the fo
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#configure-connections-and-integrations) — role requirements for connections and integrations.
 - [Role-based access control in Foundry](../concepts/rbac-foundry.md)
 - [Configure network isolation](configure-private-link.md)
