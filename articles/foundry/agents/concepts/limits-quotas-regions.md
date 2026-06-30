@@ -89,7 +89,7 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum number of messages per thread | 100,000 |
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
-| Maximum number of active agent revisions per agent | 1000
+| Maximum number of valid agent revisions per agent | 1000
 
 The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Rate limiting for model calls is applied at the model deployment level; see [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits. Hosted agents also have a per-subscription concurrent-session quota that the platform enforces; see the next section.
 
