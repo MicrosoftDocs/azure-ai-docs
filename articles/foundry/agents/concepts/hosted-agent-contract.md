@@ -316,7 +316,7 @@ These headers apply only to hosted agents on container protocol version 2.0.0. O
 
 Both headers are trustworthy - the platform generates them from verified identity - and neither is guaranteed when you run locally, so handle missing values gracefully.
 
-For how protocol 2.0.0 changes identity propagation, see [Migrate hosted agents to the refreshed public preview](../how-to/migrate-hosted-agent-preview.md#container-protocol-200).
+For how protocol 2.0.0 changes identity propagation, see [Migrate hosted agents](../how-to/migrate-hosted-agent-preview.md#container-protocol-200).
 
 ### Example: partition stored data per session
 

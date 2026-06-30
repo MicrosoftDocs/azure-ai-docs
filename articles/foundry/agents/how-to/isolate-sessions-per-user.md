@@ -181,7 +181,7 @@ Agents on container protocol version 1.0.0 use the earlier isolation-key model, 
 Upgrade to protocol 2.0.0 to get the automatic per-user isolation described earlier in this article. Protocol 2.0.0 requires the AgentServer SDK that supports it - [`azure-ai-agentserver-core`](https://pypi.org/project/azure-ai-agentserver-core/) 2.0.0b7 or later for Python, or [`Azure.AI.AgentServer.Core`](https://www.nuget.org/packages/Azure.AI.AgentServer.Core) 1.0.0-beta.26 or later for .NET. Earlier versions use protocol 1.0.0; update them as part of the upgrade.
 
 - If you remain on protocol 1.0.0 for now, see [Pass isolation keys to a hosted agent](pass-isolation-keys.md) for how isolation keys work.
-- To upgrade, see [Migrate hosted agents to the refreshed public preview](migrate-hosted-agent-preview.md).
+- To upgrade, see [Migrate hosted agents](migrate-hosted-agent-preview.md).
 
 ## Troubleshoot isolation
 

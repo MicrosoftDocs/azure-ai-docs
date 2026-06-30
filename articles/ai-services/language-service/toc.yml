@@ -351,9 +351,36 @@ items:
     - name: Language support
       href: conversational-language-understanding/language-support.md
       displayName: clu languages, supported languages, multilingual, international support
+    - name: Concepts
+      items:
+        - name: Choosing between conversational apps
+          href: conversational-language-understanding/concepts/app-architecture.md
+          displayName: architecture, clu, qna, comparison
+        - name: Best practices
+          href: conversational-language-understanding/concepts/best-practices.md
+          displayName: recommendations, guidelines, optimization
+        - name: Entity components
+          href: conversational-language-understanding/concepts/entity-components.md
+          displayName: entities, extraction, ner components, learned, list, prebuilt, regex
+        - name: Multi-turn conversations
+          href: conversational-language-understanding/concepts/multi-turn-conversations.md
+          displayName: slot-filling, intent, entities, entity, association, foundry
+        - name: Evaluation metrics and data formats
+          href: conversational-language-understanding/concepts/evaluation-metrics.md
+          displayName: evaluation metrics, precision, recall, f1, confusion matrix, none intent, confidence threshold, data formats, json
+        - name: Multilingual projects
+          href: conversational-language-understanding/concepts/multiple-languages.md
+          displayName: multiple languages, international, localization
+        - name: Deploy to multiple regions
+          href: concepts/custom-features/multi-region-deployment.md
     - name: FAQ
       href: conversational-language-understanding/faq.md
       displayName: frequently asked questions, troubleshooting, common issues
+    - name: Tutorials
+      items:
+        - name: Use Bot Framework
+          href: conversational-language-understanding/tutorials/bot-framework.md
+          displayName: integration, chatbot, conversational, bot, clu
     - name: Responsible use of AI
       items:
       - name: Transparency note for CLU
@@ -364,37 +391,6 @@ items:
         href: /azure/ai-foundry/responsible-ai/clu/clu-characteristics-and-limitations?context=/azure/ai-services/language-service/context/context
       - name: Data, privacy, and security
         href: /azure/ai-foundry/responsible-ai/clu/clu-data-privacy-security?context=/azure/ai-services/language-service/context/context
-    
-    - name: Concepts
-      items:
-        - name: Multi-turn conversations
-          href:  conversational-language-understanding/concepts/multi-turn-conversations.md
-          displayName: slot-filling, intent, entities, entity, association, foundry
-        - name: Best practices
-          href: conversational-language-understanding/concepts/best-practices.md
-          displayName: recommendations, guidelines, optimization
-        - name: Multilingual projects
-          href: conversational-language-understanding/concepts/multiple-languages.md
-          displayName: multiple languages, international, localization
-        - name: Entity components
-          href: conversational-language-understanding/concepts/entity-components.md
-          displayName: entities, extraction, ner components
-        - name: Evaluation metrics
-          href: conversational-language-understanding/concepts/evaluation-metrics.md
-        - name: Data formats
-          href: conversational-language-understanding/concepts/data-formats.md
-        - name: None intent
-          href: conversational-language-understanding/concepts/none-intent.md
-        - name: Deploy to multiple regions
-          href: concepts/custom-features/multi-region-deployment.md
-        - name: Choosing between conversational apps
-          href: conversational-language-understanding/concepts/app-architecture.md
-          displayName: architecture, clu, qna, comparison
-    - name: Tutorials
-      items:
-        - name: Use Bot Framework
-          href: conversational-language-understanding/tutorials/bot-framework.md
-          displayName: integration, chatbot, conversational, bot, clu
     - name: Reference
       items:
       - name: Prebuilt component reference
@@ -449,24 +445,11 @@ items:
         href: question-answering/how-to/azure-openai-integration.md  
     - name: Language support
       href: question-answering/language-support.md
-    - name: Responsible use of AI
-      items:
-      - name: Transparency note for custom question answering
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-question-answering.md
-        displayName: Transparency note for custom question answering, custom question answering transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use-question-answering.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy-security-question-answering.md
-        displayName: Data privacy, logging, data retention
     - name: Concepts
       items:
       - name: Development lifecycle
         href: question-answering/concepts/project-development-lifecycle.md
-      - name: Resource planning
-        href: question-answering/concepts/azure-resources.md
-      - name: App planning
+      - name: Plan your app
         href: question-answering/concepts/plan.md
       - name: Precise answering
         href: question-answering/concepts/precise-answering.md
@@ -486,6 +469,17 @@ items:
         href: question-answering/tutorials/adding-synonyms.md
       - name: Multiple domains
         href: question-answering/tutorials/multiple-domains.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for custom question answering
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-question-answering.md
+        displayName: Transparency note for custom question answering, custom question answering transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use-question-answering.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy-security-question-answering.md
+        displayName: Data privacy, logging, data retention
     - name: Reference
       items:
       - name: General
@@ -523,9 +517,22 @@ items:
     - name: Language support
       href: custom-text-classification/language-support.md
       displayName: ctc languages, multilingual
+    - name: Concepts
+      items:
+      - name: Evaluation metrics and data formats
+        href: custom-text-classification/concepts/evaluation-metrics.md
+        displayName: performance evaluation, accuracy, f1 score, confusion matrix, data formats, labels file, json, data representation
+      - name: Project versioning
+        href: concepts/custom-features/project-versioning.md
+        displayName: version control, model versions
     - name: FAQ
       href: custom-text-classification/faq.md
       displayName: ctc faq, troubleshooting
+    - name: Tutorials
+      items:
+      - name: Triage incoming emails with Power Automate
+        href: custom-text-classification/tutorials/triage-email.md
+        displayName: power automate, email classification, automation
     - name: Responsible use of AI
       items:
       - name: Transparency note for custom text classification
@@ -540,23 +547,6 @@ items:
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/language-service/custom-text-classification-data-privacy-security.md
         displayName: Data privacy, logging, data retention
-    
-    - name: Concepts
-      items:
-      - name: Evaluation metrics
-        href: custom-text-classification/concepts/evaluation-metrics.md
-        displayName: performance evaluation, accuracy, f1 score, confusion matrix
-      - name: Accepted data formats
-        href: custom-text-classification/concepts/data-formats.md
-        displayName: data representation
-      - name: Project versioning
-        href: concepts/custom-features/project-versioning.md
-        displayName: version control, model versions
-    - name: Tutorials
-      items:
-      - name: Triage incoming emails with Power Automate
-        href: custom-text-classification/tutorials/triage-email.md
-        displayName: power automate, email classification, automation
     - name: Reference
       items:
       - name: Glossary
@@ -615,6 +605,11 @@ items:
           href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context  
     - name: Language support
       href: key-phrase-extraction/language-support.md
+    - name: Tutorials
+      items:
+      - name: Integrate Power BI
+        href: key-phrase-extraction/tutorials/integrate-power-bi.md
+        displayName: business intelligence, data visualization
     - name: Responsible use of AI
       items:
       - name: Transparency note for key phrase extraction
@@ -626,11 +621,6 @@ items:
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
         displayName: Data privacy, logging, data retention
-    - name: Tutorials
-      items:
-      - name: Integrate Power BI
-        href: key-phrase-extraction/tutorials/integrate-power-bi.md
-        displayName: business intelligence, data visualization
 
   - name: Orchestration workflow
     items:
@@ -648,26 +638,25 @@ items:
           href: orchestration-workflow/how-to/create-project.md
         - name: Back up and recover your models
           href: conversational-language-understanding/how-to/fail-over.md  
-    - name: FAQ
-      href: orchestration-workflow/faq.md
     - name: Language support
       href: orchestration-workflow/language-support.md
     - name: Concepts
       items:
-        - name: Evaluation metrics
+        - name: Evaluation metrics and data formats
           href: orchestration-workflow/concepts/evaluation-metrics.md
+          displayName: performance evaluation, accuracy, f1 score, confusion matrix, data formats, json, utterance format
         - name: Back up and recover your models
           href: orchestration-workflow/concepts/fail-over.md
         - name: None intent
           href: orchestration-workflow/concepts/none-intent.md
-        - name: Data formats
-          href: orchestration-workflow/concepts/data-formats.md
         - name: Deploy to multiple regions
           href: concepts/custom-features/multi-region-deployment.md
         - name: Project versioning
           href: concepts/custom-features/project-versioning.md
         - name: Choosing between conversational apps
           href: conversational-language-understanding/concepts/app-architecture.md
+    - name: FAQ
+      href: orchestration-workflow/faq.md
     - name: Tutorials
       items:
         - name: Connect CLU and custom question answering
@@ -705,6 +694,10 @@ items:
             href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context  
       - name: Language support
         href: sentiment-opinion-mining/language-support.md
+      - name: Tutorials
+        items:
+        - name: Use Flask to translate text, analyze sentiment, and synthesize speech
+          href: /training/modules/python-flask-build-ai-web-app/
       - name: Responsible use of AI
         items:
         - name: Transparency note for sentiment analysis and opinion mining
@@ -716,10 +709,6 @@ items:
         - name: Data, privacy, and security
           href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
           displayName: Data privacy, logging, data retention
-      - name: Tutorials
-        items:
-        - name: Use Flask to translate text, analyze sentiment, and synthesize speech
-          href: /training/modules/python-flask-build-ai-web-app/
 
   - name: Summarization
     items:

@@ -4,7 +4,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 To get your project details, submit a `GET` request by using the following URL and headers. Replace the placeholder values with your own values.

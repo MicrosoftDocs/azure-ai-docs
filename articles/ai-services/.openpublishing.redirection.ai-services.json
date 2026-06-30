@@ -1,6 +1,31 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/concepts/azure-resources.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/concepts/plan",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/orchestration-workflow/concepts/data-formats.md",
+      "redirect_url": "/azure/ai-services/language-service/orchestration-workflow/concepts/evaluation-metrics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-classification/concepts/data-formats.md",
+      "redirect_url": "/azure/ai-services/language-service/custom-text-classification/concepts/evaluation-metrics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/concepts/data-formats.md",
+      "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/concepts/evaluation-metrics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/concepts/none-intent.md",
+      "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/concepts/evaluation-metrics",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/export-import-refresh.md",
       "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/manage-knowledge-base",
       "redirect_document_id": false

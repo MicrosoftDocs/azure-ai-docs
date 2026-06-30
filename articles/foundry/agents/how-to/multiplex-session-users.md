@@ -25,7 +25,7 @@ This article shows you how to pool sessions across users from your middle tier, 
 
 ## Prerequisites
 
-- A hosted agent that uses container protocol version 2.0.0. To upgrade, see [Migrate hosted agents to the refreshed public preview](migrate-hosted-agent-preview.md).
+- A hosted agent that uses container protocol version 2.0.0. To upgrade, see [Migrate hosted agents](migrate-hosted-agent-preview.md).
 - The `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission assigned to your middle-tier service's identity. Without it, the `x-ms-user-identity` header is rejected with a `403`.
 - The Azure AI Projects client library for the middle tier, and the Azure AI AgentServer SDK for the container ([`azure-ai-agentserver-core`](https://pypi.org/project/azure-ai-agentserver-core/) 2.0.0b7+ for Python, or [`Azure.AI.AgentServer.Core`](https://www.nuget.org/packages/Azure.AI.AgentServer.Core) 1.0.0-beta.26+ for .NET).
 - A deployed agent to test against. Isolation isn't enforced for local runs.
@@ -139,5 +139,5 @@ Sending a legacy isolation header on a protocol 2.0.0 path returns an error, bec
 - [Isolate hosted agent sessions per user](isolate-sessions-per-user.md) for the default, per-caller isolation model.
 - [Note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent) for a container that persists user-owned data per session (Python and C#).
 - [Quotas and limits for Foundry Agent Service](../concepts/limits-quotas-regions.md) for regional concurrent-session limits.
-- [Migrate hosted agents to the refreshed public preview](migrate-hosted-agent-preview.md) to move a container to protocol 2.0.0.
+- [Migrate hosted agents](migrate-hosted-agent-preview.md) to move a container to protocol 2.0.0.
 - [Hosted agent runtime contract](../concepts/hosted-agent-contract.md) for the platform headers and environment variables a container receives.

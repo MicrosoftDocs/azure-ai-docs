@@ -7,7 +7,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---
@@ -66,7 +66,7 @@ Once your resource and storage container are configured, create a new custom tex
 
 ## Import a custom text classification project (REST API)
 
-If you already labeled data, you can use it to get started with the service. Make sure that your labeled data follows the [accepted data formats](../concepts/data-formats.md).
+If you already labeled data, use it to get started with the service. Make sure that your labeled data follows the [accepted data formats](../concepts/evaluation-metrics.md#accepted-data-formats).
 
 [!INCLUDE [Import project](../includes/rest-api/import-project.md)]
 

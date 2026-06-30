@@ -1,14 +1,17 @@
 items:
+
 - name: Identity
   items:
   # Access Control
   - name: Authentication and authorization
     href: ../../concepts/authentication-authorization-foundry.md
-  - name: Disable preview features
-    href: ../../how-to/disable-preview-features.md
   - name: Role-based access control
     displayName: RBAC, roles, permissions
     href: ../../concepts/rbac-foundry.md
+  - name: Elevated-role tasks
+    href: ../../concepts/administrator-guide.md
+  - name: Disable preview features
+    href: ../../how-to/disable-preview-features.md
   - name: Configure keyless authentication
     href: ../../foundry-models/how-to/configure-entra-id.md
 

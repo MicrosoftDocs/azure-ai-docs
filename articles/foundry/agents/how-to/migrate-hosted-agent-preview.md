@@ -1,9 +1,9 @@
 ---
-title: "Migrate hosted agents to the refreshed public preview"
-description: "Migrate your hosted agents from the initial public preview to the refreshed public preview, including API, SDK, CLI, protocol library, and identity model changes."
+title: "Migrate hosted agents to the latest version"
+description: "Migrate your hosted agents from the initial public preview to the latest version, including API, SDK, CLI, protocol library, and identity model changes."
 author: aahill
 ms.author: aahi
-ms.date: 04/15/2026
+ms.date: 06/30/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -11,9 +11,9 @@ ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Migrate hosted agents to the refreshed public preview
+# Migrate hosted agents to the latest version
 
-This article walks you through migrating Hosted agents from the initial public preview to the refreshed public preview of Foundry Agent Service. The refreshed preview introduces a new hosting backend, protocol libraries, identity model, and management APIs.
+This article shows you how to migrate hosted agents from the initial public preview to the latest version of Foundry Agent Service. The latest version introduces a new hosting backend, protocol libraries, identity model, and management APIs.
 
 > [!IMPORTANT]
 > The initial public preview hosting backend is being retired. You must redeploy your agents using the new model described in this article. Existing agent deployments on the old backend won't be migrated automatically and will be supported only until May 22, 2026. 
@@ -22,7 +22,7 @@ This guide applies to you if you deployed a Hosted agent before April 2026 using
 
 ## What changed
 
-The refreshed preview updates the existing platform with a session-based sandbox model. Key changes:
+The latest version updates the existing platform with a session-based sandbox model. Key changes:
 
 - **Automatic compute lifecycle** — No manual start, stop, or replica management. The platform provisions compute when a request arrives and deprovisions it after 15 minutes of inactivity. See [CLI command mapping](#cli-command-mapping).
 - **Session-based isolation** — Each session gets its own sandbox with persistent `$HOME` and `/files` storage across turns and idle periods.
@@ -56,7 +56,7 @@ For a task-by-task summary, see the [Migration checklist](#migration-checklist) 
 
 ## Protocol library and framework migration
 
-The initial preview used framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) that wrapped your agent code. The refreshed preview replaces these with protocol-specific libraries and updated framework integration packages.
+The initial preview used framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) that wrapped your agent code. The latest version replaces these packages with protocol-specific libraries and updated framework integration packages.
 
 Your migration path depends on which framework you use:
 
@@ -68,7 +68,7 @@ Your migration path depends on which framework you use:
 
 #### Protocol libraries (all users)
 
-| Initial preview package | Refreshed preview replacement |
+| Initial preview package | Latest version replacement |
 |-------------------------|-------------------------------|
 | `azure-ai-agentserver-core` | `azure-ai-agentserver-core` 2.0.0b1 — still required, now installed automatically as a dependency of the protocol packages |
 | `azure-ai-agentserver-agentframework` | Removed — see Agent Framework or protocol library paths below |
@@ -78,9 +78,9 @@ Your migration path depends on which framework you use:
 
 #### Agent Framework packages (Agent Framework users only)
 
-The Agent Framework packages were also updated for the refreshed preview:
+The Agent Framework packages are also updated for the latest version:
 
-| Initial preview | Refreshed preview |
+| Initial preview | Latest version |
 |-----------------|-------------------|
 | `agent-framework` (single package) | `agent-framework-core`, `agent-framework-openai`, `agent-framework-foundry`, `agent-framework-orchestrations` |
 | `AzureAIAgentClient` | `FoundryChatClient` (from `agent_framework.foundry`) |
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     from_agent_framework(agent).run()
 ```
 
-**Refreshed preview**:
+**Latest version**:
 
 ```python
 import os
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     from_langgraph(graph).run()
 ```
 
-**Refreshed preview**:
+**Latest version**:
 
 ```python
 import asyncio
@@ -408,7 +408,7 @@ The protocol version format changed from `"v1"` to semver `"1.0.0"`:
 # Initial preview
 ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")
 
-# Refreshed preview
+# Latest version
 ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
 ```
 
@@ -434,7 +434,7 @@ For the full set of platform headers and environment variables, see [Hosted agen
 
 ## Removed APIs
 
-The following APIs from the initial preview aren't available in the refreshed preview:
+The following APIs from the initial preview aren't available in the latest version:
 
 | Removed API | Reason |
 |-------------|--------|
@@ -449,7 +449,7 @@ The following APIs from the initial preview aren't available in the refreshed pr
 
 ## CLI command mapping
 
-| Initial preview CLI | Refreshed preview equivalent |
+| Initial preview CLI | Latest version equivalent |
 |---------------------|------------------------------|
 | `az cognitiveservices agent start --name X --agent-version 1` | Removed — compute starts automatically on first request |
 | `az cognitiveservices agent stop --name X --agent-version 1` | Removed — compute stops automatically after idle timeout |
@@ -464,7 +464,7 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 
 ## SDK method changes
 
-| Initial preview | Refreshed preview |
+| Initial preview | Latest version |
 |-----------------|-------------------|
 | `pip install "azure-ai-projects>=2.0.0"` | `pip install "azure-ai-projects>=2.1.0"` |
 | `project.get_openai_client()` with `extra_body={"agent_reference": {"name": ..., "type": "agent_reference"}}` | `project.get_openai_client(agent_name="my-agent")` — client is pre-bound, no `extra_body` needed |
@@ -477,7 +477,7 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 
 ## Agent invocation changes
 
-In the initial preview, you routed to agents through a shared project endpoint by passing an `agent_reference` in the request body. In the refreshed preview, each agent gets a dedicated endpoint and the SDK binds to it automatically.
+In the initial preview, you routed to agents through a shared project endpoint by passing an `agent_reference` in the request body. In the latest version, each agent gets a dedicated endpoint and the SDK binds to it automatically.
 
 **Initial preview**:
 
@@ -489,7 +489,7 @@ response = openai_client.responses.create(
 )
 ```
 
-**Refreshed preview**:
+**Latest version**:
 
 ```python
 openai_client = project.get_openai_client(agent_name="my-agent")
@@ -521,7 +521,7 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 ```
 
 > [!IMPORTANT]
-> REST calls to Hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header during preview. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
+> REST calls to Hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
 
 Active endpoints depend on the protocols you declare in your agent version definition. The Responses and Conversations routes live under the OpenAI-compatible namespace at `{project_endpoint}/agents/{name}/endpoint/protocols/openai/{responses|conversations}`, while Invocations, Activity, and A2A route directly at `{project_endpoint}/agents/{name}/endpoint/protocols/{invocations|activityprotocol|a2a}`.
 
@@ -529,7 +529,7 @@ Active endpoints depend on the protocols you declare in your agent version defin
 
 The agent lifecycle states changed from a manual state machine to automatic provisioning statuses:
 
-| Initial preview state | Refreshed preview status |
+| Initial preview state | Latest version status |
 |-----------------------|--------------------------|
 | `Stopped` (initial) | Not applicable — no stopped state |
 | `Starting` → `Started` | `creating` → `active` |
@@ -541,7 +541,7 @@ The agent lifecycle states changed from a manual state machine to automatic prov
 
 The identity model changed significantly:
 
-| Aspect | Initial preview | Refreshed preview |
+| Aspect | Initial preview | Latest version |
 |--------|-----------------|-------------------|
 | **Unpublished agent runtime identity** | Project managed identity (shared) | Dedicated Entra agent identity (per agent) |
 | **When dedicated identity is created** | At publish time only | At deploy time (every agent) |
@@ -560,7 +560,7 @@ The identity model changed significantly:
 
 ### Updated commands
 
-| Initial preview | Refreshed preview |
+| Initial preview | Latest version |
 |-----------------|-------------------|
 | `azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic` | `azd ai agent init` (interactive template selection) |
 | `azd ai agent init --project-id /subscriptions/.../projects/...` | Same syntax, still supported |
@@ -583,7 +583,7 @@ The identity model changed significantly:
 
 ## Log streaming changes
 
-| Aspect | Initial preview | Refreshed preview |
+| Aspect | Initial preview | Latest version |
 |--------|-----------------|-------------------|
 | **Endpoint** | `.../versions/{v}/containers/default:logstream` | `.../versions/{v}/sessions/{sessionId}:logstream` |
 | **Response format** | Plain text (chunked) | Server-Sent Events (SSE) with JSON payloads |
@@ -594,7 +594,7 @@ The identity model changed significantly:
 
 ## Known gaps
 
-The following capabilities from the initial preview aren't yet available in the refreshed preview:
+The following capabilities from the initial preview aren't yet available in the latest version:
 
 | Feature | Status | Workaround |
 |---------|--------|------------|

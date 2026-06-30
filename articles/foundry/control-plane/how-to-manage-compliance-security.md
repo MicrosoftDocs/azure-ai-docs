@@ -221,5 +221,6 @@ Repeat the preceding steps for other Azure subscriptions, as appropriate.
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#manage-compliance-and-monitoring) — role requirements for compliance and monitoring tasks.
 - [What is Azure Policy?](/azure/governance/policy/overview)
 - [Microsoft Defender for Cloud documentation](/azure/defender-for-cloud/)

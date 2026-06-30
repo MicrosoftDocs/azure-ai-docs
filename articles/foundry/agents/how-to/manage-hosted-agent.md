@@ -17,7 +17,7 @@ zone_pivot_groups: hosted-agent-manage-method
 
 This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
 
-The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). There are no manual start or stop operations.
+The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
 
 ## Prerequisites
 
@@ -288,6 +288,58 @@ def wait_for_version_active(project, agent_name, agent_version, max_attempts=60)
             raise RuntimeError(f"Version provisioning failed: {dict(version)}")
     raise RuntimeError("Timed out waiting for version to become active")
 ```
+
+:::zone-end
+
+## Disable or enable an agent
+
+Disable an agent to take its endpoint offline without deleting the agent or any of its versions. While disabled, the agent rejects requests, but its configuration and versions remain intact. Enable the agent again whenever you're ready to resume serving requests. Disabling is reversible, which makes it the preferred way to take an agent out of service temporarily.
+
+### Disable an agent
+
+:::zone pivot="rest"
+
+```bash
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}:disable?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+Not supported as a standalone command. Use the REST API.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Not supported as a standalone command. Use the REST API.
+
+:::zone-end
+
+### Enable an agent
+
+:::zone pivot="rest"
+
+```bash
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}:enable?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+Not supported as a standalone command. Use the REST API.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Not supported as a standalone command. Use the REST API.
 
 :::zone-end
 
