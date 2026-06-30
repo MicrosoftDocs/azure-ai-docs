@@ -139,7 +139,7 @@ MAI-Voice-2 supports expressive styles by using `style` and `styledegree` attrib
 
 To access personal voice (voice cloning) using MAI-Voice-1:
 
-1. Apply for gated access via Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
+1. Apply for gated access through Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
 1. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
 1. Upload audio consent and prompt to create a personal voice.
 1. Synthesize given text by using the created voice and MAI-Voice-1 model with the following SSML:
