@@ -29,8 +29,8 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
-| gpt-4o | 2024-11-20 | GA | 2026-10-01 | gpt-5.1 |
-| gpt-4o-mini | 2024-07-18 | GA | 2026-10-01 | gpt-4.1-mini |
+| gpt-4o | 2024-11-20 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4o-mini | 2024-07-18 | Deprecated | 2026-10-01 | gpt-4.1-mini |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-10-15 | — |
