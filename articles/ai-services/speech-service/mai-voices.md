@@ -74,10 +74,11 @@ MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that s
 
 - An Azure account. [Create one for free](https://azure.microsoft.com/free/).
 - A Speech resource in a region that supports MAI-Voice-1 ([region support](https://learn.microsoft.com/azure/cognitive-services/speech-service/regions)).
+- For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
 
 #### [MAI-Voice-2](#tab/mai-voice-2)
 
-- An Azure account. [Create](https://azure.microsoft.com/pricing/purchase-options/azure-account) one for free.
+- An Azure account. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account).
 - A Speech resource in a [region](regions.md#regions) that supports MAI-Voice-2.
 - For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
 
@@ -156,9 +157,7 @@ To access personal voice (voice cloning) by using MAI-Voice-1:
 
 #### [MAI-Voice-2](#tab/mai-voice-2)
 
-Voice prompting (personal voice cloning) by using MAI-Voice-2 is gated and requires Microsoft approval plus consent safeguards.
-
-Steps to access:
+To access personal voice (voice cloning) by using MAI-Voice-2:
 
 1. Apply for limited access approval through Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
 1. Upload consent audio and reference prompt (10–120 seconds).
