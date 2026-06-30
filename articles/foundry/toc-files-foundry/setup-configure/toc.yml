@@ -68,5 +68,7 @@ items:
 - name: Plan and manage costs
   displayName: Plan and manage costs for Microsoft Foundry
   href: ../../concepts/manage-costs.md
+- name: Consolidated view in Azure portal
+  href: ../../concepts/foundry-consolidated-view.md
 - name: Claude consumption units billing
   href: ../../foundry-models/concepts/claude-models-billing.md
