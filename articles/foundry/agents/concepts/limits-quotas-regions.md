@@ -117,7 +117,7 @@ When you exceed a limit, the Agent Service returns an error. Handle these errors
 | Message content too large | 400 | `content_size_exceeded` | Use file search for large content |
 | Too many tools | 400 | `tool_limit_exceeded` | Remove unused tools |
 | Rate limit exceeded | 429 | `rate_limit_exceeded` | Implement exponential backoff |
-| Too many valid agent revisions | 400 | 'UserError' | Delete older versions before creating new ones |
+| Too many valid agent revisions | 400 | `UserError` | Delete older versions before creating new ones |
 
 For example:
 
