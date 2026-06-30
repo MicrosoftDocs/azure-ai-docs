@@ -89,6 +89,7 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum number of messages per thread | 100,000 |
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
+| Maximum number of active agent revisions per agent | 1000
 
 The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Rate limiting for model calls is applied at the model deployment level; see [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits. Hosted agents also have a per-subscription concurrent-session quota that the platform enforces; see the next section.
 
@@ -116,6 +117,7 @@ When you exceed a limit, the Agent Service returns an error. Handle these errors
 | Message content too large | 400 | `content_size_exceeded` | Use file search for large content |
 | Too many tools | 400 | `tool_limit_exceeded` | Remove unused tools |
 | Rate limit exceeded | 429 | `rate_limit_exceeded` | Implement exponential backoff |
+| Too many valid agent revisions | 400 | 'UserError' | Delete older versions before creating new ones |
 
 For example:
 
@@ -125,6 +127,7 @@ For example:
 - **Message content size.** Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap.** Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 - **Rate limit exceeded.** API calls to the model deployment are throttled. Implement exponential backoff with jitter.
+- **Number of valid Agent Revisions Exceeded** The limit applies to the number of versions that currently exist for the agent. When you delete versions you no longer need, they are permanently removed and free up capacity immediately — so you can create new versions again.
 
 For file search scenarios, see [Vector stores for file search](vector-stores.md) for guidance on managing vector store growth.
 
