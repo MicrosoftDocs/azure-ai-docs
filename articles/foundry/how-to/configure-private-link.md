@@ -222,8 +222,6 @@ When creating a new Foundry resource, follow these steps:
 1. Continue through the forms to create the project. When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
 
 > [!NOTE]
-> The ability to create a Foundry resource with virtual network injection in the Azure portal only appears if you have first selected bring-your-own resources for Storage, Search, and CosmosDB AND if you have selected public network access as disabled. We do not support virutal network injection with managed resources, also known as the Basic Agent set-up, or when you have public network access as enabled.
->
 > Private endpoints to Azure AI Search, Azure Storage, and Azure CosmosDB are NOT auto-created when you deploy your Foundry resource. Please ensure to create private endpoints to these resources separately in their resource pages in the Azure portal.
 
 ### Agent tools with network isolation
