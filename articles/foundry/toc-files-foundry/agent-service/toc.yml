@@ -176,7 +176,7 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent-private-azure-container-registry.md
     - name: Update endpoint and card
       href: ../../agents/how-to/update-agent-endpoint-cli.md
-    - name: Migrate to public preview
+    - name: Migrate to the latest version
       href: ../../agents/how-to/migrate-hosted-agent-preview.md
   - name: Reference
     items:
