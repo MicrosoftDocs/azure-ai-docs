@@ -163,4 +163,4 @@ To remove the server configuration:
 
 * [Foundry MCP Server security and best practices](security-best-practices.md)
 * [Foundry MCP Server tools and example prompts](available-tools.md)
-* [MCP certification in Microsoft Copilot Studio](/microsoft-copilot-studio/mcp-certification)
+* [Microsoft MCP server certification overview](/microsoft-copilot-studio/mcp-certification)
