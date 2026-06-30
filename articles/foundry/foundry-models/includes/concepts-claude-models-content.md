@@ -164,7 +164,7 @@ Use this section to understand where you can deploy Claude models, how quota is 
 Claude models in Foundry are available for the following deployment types:
 
 - **Global Standard**: All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) are available in **East US2** and **Sweden Central**.
-- **Data Zone Standard (US)**: `claude-sonnet-5`,`claude-opus-4-8`, `claude-haiku-4-5`.
+- **Data Zone Standard (US)**: `claude-sonnet-5`, `claude-opus-4-8`, `claude-haiku-4-5`.
 
 For more information on the different deployment types, see [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
 
