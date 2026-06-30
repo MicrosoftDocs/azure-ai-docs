@@ -256,5 +256,6 @@ When you're done, delete Azure resources created by the template to avoid ongoin
 - [Get started with Foundry MCP Server (preview) using Visual Studio Code](get-started.md)
 - [Foundry MCP Server best practices and security guidance](security-best-practices.md)
 - [Explore available tools and example prompts for Foundry MCP Server (preview)](available-tools.md)
+- [MCP certification in Microsoft Copilot Studio](/microsoft-copilot-studio/mcp-certification)
 - [Add environments and deployments in Azure API Center](/azure/api-center/configure-environments-deployments)
 - [Azure Functions Python developer guide](/azure/azure-functions/functions-reference-python)

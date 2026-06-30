@@ -281,3 +281,4 @@ For more troubleshooting guidance, see [Foundry MCP Server security and best pra
 - Get started with [Foundry MCP Server](get-started.md)
 - Learn how to [build your own MCP server](build-your-own-mcp-server.md)
 - Review [security best practices for MCP servers](security-best-practices.md)
+- Review [MCP certification in Microsoft Copilot Studio](/microsoft-copilot-studio/mcp-certification)
