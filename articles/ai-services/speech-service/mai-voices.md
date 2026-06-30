@@ -142,7 +142,7 @@ To access personal voice (voice cloning) using MAI-Voice-1:
 1. Apply for gated access via Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
 1. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
 1. Upload audio consent and prompt to create a personal voice.
-1. Synthesize given text using the created voice and MAI-Voice-1 model using the following SSML:
+1. Synthesize given text by using the created voice and MAI-Voice-1 model with the following SSML:
 
 ```xml
 <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
