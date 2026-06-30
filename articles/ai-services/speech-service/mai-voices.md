@@ -78,7 +78,7 @@ MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that s
 #### [MAI-Voice-2](#tab/mai-voice-2)
 
 - An Azure account. [Create](https://azure.microsoft.com/pricing/purchase-options/azure-account) one for free.
-- Create a Speech resource in a [region](regions.md#regions) that supports MAI-Voice-2.
+- A Speech resource in a [region](regions.md#regions) that supports MAI-Voice-2.
 - For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
 
 ---
@@ -89,7 +89,7 @@ MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that s
 
 **Basic SSML**
 
-The following SSML synthesizes a greeting using the `en-US-Jasper:MAI-Voice-1` voice.
+The following SSML synthesizes a greeting by using the `en-US-Jasper:MAI-Voice-1` voice.
 
 ```xml
 <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
@@ -137,12 +137,12 @@ MAI-Voice-2 supports expressive styles by using `style` and `styledegree` attrib
 
 #### [MAI-Voice-1](#tab/mai-voice-1)
 
-To access personal voice (voice cloning) using MAI-Voice-1:
+To access personal voice (voice cloning) by using MAI-Voice-1:
 
-1. Apply for gated access via Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
+1. Apply for gated access through Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
 1. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
 1. Upload audio consent and prompt to create a personal voice.
-1. Synthesize given text using the created voice and MAI-Voice-1 model using the following SSML:
+1. Synthesize given text by using the created voice and MAI-Voice-1 model with the following SSML:
 
 ```xml
 <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
