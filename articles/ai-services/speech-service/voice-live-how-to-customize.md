@@ -26,9 +26,6 @@ Voice Live provides multiple options to optimize performance and quality by usin
 
 ## Speech input customization
 
-> [!NOTE]
-> The speech input customization options in this section (phrase list and custom speech) are only available with the `azure-speech` transcription model. They aren't supported with `mai-transcribe-1`.
-
 ### Phrase list
 
 Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message.
@@ -45,7 +42,7 @@ Use phrase list for lightweight just-in-time customization on audio input. To co
 ```
 
 > [!NOTE]
-> Phrase list currently doesn't support gpt-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
+> Phrase list currently doesn't support whisper-1, gpt-4o-transcribe, gpt-4o-mini-transcribe, and gpt-4o-transcribe-diarize. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ### Custom speech configuration
 
@@ -72,25 +69,26 @@ Example session configuration with custom speech models. In this example when th
 > [!NOTE]
 > In order to use a custom speech model with Voice Live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice Live API. If you trained the model on a different Microsoft Foundry or Azure Speech in Foundry Tools resource you have to copy the model to the resource you are using to call the Voice Live API.
 > You pay separately for custom speech training and model hosting.
+> Custom speech is only supported in `azure-speech` model.
 
-### MAI-Transcribe-1 model (preview)
+### MAI-Transcribe model (preview)
 
-You can use the MAI-Transcribe-1 model for input audio transcription in Voice Live. MAI-Transcribe-1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a focus on high accuracy and high efficiency. For more information about the model, see [MAI-Transcribe-1 in Azure Speech](./mai-transcribe.md).
+Use the MAI-Transcribe model for input audio transcription in Voice Live. MAI-Transcribe is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a focus on high accuracy and high efficiency. For more information about the model, see [MAI-Transcribe in Azure Speech](./mai-transcribe.md).
 
-To use MAI-Transcribe-1, set the `model` field to `mai-transcribe-1` in the `input_audio_transcription` configuration:
+To use MAI-Transcribe, set the `model` field to `mai-transcribe` in the `input_audio_transcription` configuration:
 
 ```json
 {
   "session": {
     "input_audio_transcription": {
-      "model": "mai-transcribe-1"
+      "model": "mai-transcribe"
     }
   }
 }
 ```
 
 > [!NOTE]
-> When you use the MAI-Transcribe-1 model, some transcription features aren't supported. See the [Feature availability](./llm-speech.md#feature-availability) table.
+> When you use the MAI-Transcribe model, some transcription features aren't supported. See the [Feature availability](./llm-speech.md#feature-availability) table.
 
 ## Speech output customization
 

@@ -13,7 +13,7 @@ ms.custom: language-service-custom-classification
 ---
 # Evaluation metrics
 
-Your [dataset is split](../how-to/train-model.md#data-splitting) into two parts: a set for training, and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process, to make sure that the model is tested on new data.
+You [split your dataset](../how-to/build-train-deploy-model.md#data-splitting) into two parts: a set for training and a set for testing. Use the training set to train the model. Use the testing set as a test for the model after training to calculate the model performance and evaluation. The training process doesn't introduce the testing set to the model, so the model is tested on new data.
 
 Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined classes for documents in the test set, and compares them with the provided data tags (which establishes a baseline of truth). The results are returned so you can review the model's performance. For evaluation, custom text classification uses the following metrics:
 
@@ -151,4 +151,4 @@ Similarly,
 
 ## Next steps
 
-* [Train a model](../how-to/train-model.md)
+* [Train a model](../how-to/build-train-deploy-model.md#train-your-model)

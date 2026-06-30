@@ -8,13 +8,15 @@ ms.author: lajanuar
 ms.date: 04/20/2026
 ms.custom: language-service-question-answering, mode-other
 ---
-# Create, test, and deploy: CQA knowledge base
+<!-- markdownlint-disable MD025 -->
 
-This guide walks you through the essential steps needed to create, test, and deploy a custom question answering (CQA) knowledge base in the Microsoft Foundry. Whether you're transitioning from Language Studio or starting from scratch, this guide is for you. It provides clear and actionable instructions to achieve a fast and successful CQA deployment in the Foundry.
+# Create, test, and deploy your custom question answering knowledge base
+
+This guide walks you through the essential steps needed to create, test, and deploy a custom question answering (CQA) knowledge base in Microsoft Foundry. It provides clear and actionable instructions for a fast and successful CQA deployment.
 
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource, you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
 > * In Foundry, a fine-tuning task serves as your workspace for your CQA solutions. Previously, a **fine-tuning task** was referred to as a **CQA project**. You might encounter both terms used interchangeably in older CQA documentation.
 > * We highly recommend that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 >
@@ -27,8 +29,8 @@ Before you get started, you need the following resources and permissions:
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Foundry Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
 
   [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
-*   A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
-*   An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
+* A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
 * A Foundry project created in the Foundry. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Get started
@@ -63,7 +65,6 @@ In the Foundry, a fine-tuning task serves as your workspace for your CQA solutio
 
 1. Select the **Create** button.
 
-
 ## Add a CQA knowledge base source
 
 A CQA knowledge base is a structured set of question-and-answer pairs optimized for conversational AI. The knowledge base uses natural language processing to interpret user queries and return context-aware, accurate answers from a specific dataset.
@@ -90,10 +91,9 @@ A CQA knowledge base is a structured set of question-and-answer pairs optimized 
 
 1. Finally, select the **Add URLs** button.
 
-    The extraction process requires a short amount of time to analyze the document and detect questions and answers. During this step, the service evaluates whether the content is structured or unstructured.<br>
+     The extraction process requires a short amount of time to analyze the document and detect questions and answers. During this step, the service evaluates whether the content is structured or unstructured.
 
     Once the source is successfully added, you can edit its contents and include added custom question-and-answer pairs.
-
 
 1. Once the source is successfully added, it appears in the **Manage sources** window. There you have the option to edit its contents and include additional custom question-and-answer pairs.
 
@@ -105,9 +105,7 @@ A CQA knowledge base is a structured set of question-and-answer pairs optimized 
 
 1. In the main window,  Enter the question **How do I set up my Surface Book?** and then select the **Run** button. Answers are returned using the question-and-answer pairs that were automatically detected and taken from the source URL:
 
-
     :::image type="content" source="../media/agents/test-knowledge-base.png" alt-text="Screenshot of the inspection interface response in the Foundry." lightbox="../media/agents/test-knowledge-base.png":::
-
 
 ## Deploy your knowledge base
 

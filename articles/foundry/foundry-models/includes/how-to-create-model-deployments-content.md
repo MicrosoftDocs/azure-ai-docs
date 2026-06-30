@@ -146,7 +146,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/aifoundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
 
 **Inference keys**
 
@@ -272,7 +272,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/aifoundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
 
 **Inference keys**
 

@@ -7,7 +7,7 @@ ms.reviewer: ambadal
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 06/11/2026
+ms.date: 06/23/2026
 ms.custom:
   - classic-and-new
   - doc-kit-assisted
@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 
-# Claude models in Microsoft Foundry (preview) (classic)
+# Claude models in Microsoft Foundry (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/concepts/claude-models.md)
 

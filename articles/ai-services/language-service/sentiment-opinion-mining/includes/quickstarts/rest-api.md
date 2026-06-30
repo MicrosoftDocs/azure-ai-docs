@@ -37,20 +37,20 @@ In a code editor, create a new file named `test_sentiment_payload.json` and copy
 
 ```json
 {
-	"kind": "SentimentAnalysis",
-	"parameters": {
-		"modelVersion": "latest",
-		"opinionMining": "True"
-	},
-	"analysisInput":{
-		"documents":[
-			{
-				"id":"1",
-				"language":"en",
-				"text": "The food and service were unacceptable. The concierge was nice, however."
-			}
-		]
-	}
+ "kind": "SentimentAnalysis",
+ "parameters": {
+  "modelVersion": "latest",
+  "opinionMining": "True"
+ },
+ "analysisInput":{
+  "documents":[
+   {
+    "id":"1",
+    "language":"en",
+    "text": "The food and service were unacceptable. The concierge was nice, however."
+   }
+  ]
+ }
 } 
 ```
 
@@ -63,12 +63,12 @@ Save `test_sentiment_payload.json` somewhere on your computer. For example, your
 
 Use the following commands to send the API request using the program you're using. Copy the command into your terminal, and run it.
 
-|parameter  |Description  |
-|---------|---------|
-|`-X POST <endpoint>`     | Specifies your endpoint for accessing the API.        |
-|`-H Content-Type: application/json`     | The content type for sending JSON data.          |
-|`-H "Ocp-Apim-Subscription-Key:<key>`    | Specifies the key for accessing the API.        |
-|`-d <documents>`     | The JSON file containing the documents you want to send.         |
+| parameter | Description |
+| --- | --- |
+| `-X POST <endpoint>` | Specifies your endpoint for accessing the API. |
+| `-H Content-Type: application/json` | The content type for sending JSON data. |
+| `-H "Ocp-Apim-Subscription-Key:<key>` | Specifies the key for accessing the API. |
+| `-d <documents>` | The JSON file containing the documents you want to send. |
 
 # [Windows](#tab/windows)
 
@@ -120,105 +120,105 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2023-04-15-pr
 
 ```json
 {
-	"kind": "SentimentAnalysisResults",
-	"results": {
-		"documents": [{
-			"id": "1",
-			"sentiment": "mixed",
-			"confidenceScores": {
-				"positive": 0.47,
-				"neutral": 0.0,
-				"negative": 0.52
-			},
-			"sentences": [{
-				"sentiment": "negative",
-				"confidenceScores": {
-					"positive": 0.0,
-					"neutral": 0.0,
-					"negative": 0.99
-				},
-				"offset": 0,
-				"length": 40,
-				"text": "The food and service were unacceptable. ",
-				"targets": [{
-					"sentiment": "negative",
-					"confidenceScores": {
-						"positive": 0.0,
-						"negative": 1.0
-					},
-					"offset": 4,
-					"length": 4,
-					"text": "food",
-					"relations": [{
-						"relationType": "assessment",
-						"ref": "#/documents/0/sentences/0/assessments/0"
-					}]
-				}, {
-					"sentiment": "negative",
-					"confidenceScores": {
-						"positive": 0.0,
-						"negative": 1.0
-					},
-					"offset": 13,
-					"length": 7,
-					"text": "service",
-					"relations": [{
-						"relationType": "assessment",
-						"ref": "#/documents/0/sentences/0/assessments/0"
-					}]
-				}],
-				"assessments": [{
-					"sentiment": "negative",
-					"confidenceScores": {
-						"positive": 0.0,
-						"negative": 1.0
-					},
-					"offset": 26,
-					"length": 12,
-					"text": "unacceptable",
-					"isNegated": false
-				}]
-			}, {
-				"sentiment": "positive",
-				"confidenceScores": {
-					"positive": 0.94,
-					"neutral": 0.01,
-					"negative": 0.05
-				},
-				"offset": 40,
-				"length": 32,
-				"text": "The concierge was nice, however.",
-				"targets": [{
-					"sentiment": "positive",
-					"confidenceScores": {
-						"positive": 1.0,
-						"negative": 0.0
-					},
-					"offset": 44,
-					"length": 9,
-					"text": "concierge",
-					"relations": [{
-						"relationType": "assessment",
-						"ref": "#/documents/0/sentences/1/assessments/0"
-					}]
-				}],
-				"assessments": [{
-					"sentiment": "positive",
-					"confidenceScores": {
-						"positive": 1.0,
-						"negative": 0.0
-					},
-					"offset": 58,
-					"length": 4,
-					"text": "nice",
-					"isNegated": false
-				}]
-			}],
-			"warnings": []
-		}],
-		"errors": [],
-		"modelVersion": "2022-06-01"
-	}
+ "kind": "SentimentAnalysisResults",
+ "results": {
+  "documents": [{
+   "id": "1",
+   "sentiment": "mixed",
+   "confidenceScores": {
+    "positive": 0.47,
+    "neutral": 0.0,
+    "negative": 0.52
+   },
+   "sentences": [{
+    "sentiment": "negative",
+    "confidenceScores": {
+     "positive": 0.0,
+     "neutral": 0.0,
+     "negative": 0.99
+    },
+    "offset": 0,
+    "length": 40,
+    "text": "The food and service were unacceptable. ",
+    "targets": [{
+     "sentiment": "negative",
+     "confidenceScores": {
+      "positive": 0.0,
+      "negative": 1.0
+     },
+     "offset": 4,
+     "length": 4,
+     "text": "food",
+     "relations": [{
+      "relationType": "assessment",
+      "ref": "#/documents/0/sentences/0/assessments/0"
+     }]
+    }, {
+     "sentiment": "negative",
+     "confidenceScores": {
+      "positive": 0.0,
+      "negative": 1.0
+     },
+     "offset": 13,
+     "length": 7,
+     "text": "service",
+     "relations": [{
+      "relationType": "assessment",
+      "ref": "#/documents/0/sentences/0/assessments/0"
+     }]
+    }],
+    "assessments": [{
+     "sentiment": "negative",
+     "confidenceScores": {
+      "positive": 0.0,
+      "negative": 1.0
+     },
+     "offset": 26,
+     "length": 12,
+     "text": "unacceptable",
+     "isNegated": false
+    }]
+   }, {
+    "sentiment": "positive",
+    "confidenceScores": {
+     "positive": 0.94,
+     "neutral": 0.01,
+     "negative": 0.05
+    },
+    "offset": 40,
+    "length": 32,
+    "text": "The concierge was nice, however.",
+    "targets": [{
+     "sentiment": "positive",
+     "confidenceScores": {
+      "positive": 1.0,
+      "negative": 0.0
+     },
+     "offset": 44,
+     "length": 9,
+     "text": "concierge",
+     "relations": [{
+      "relationType": "assessment",
+      "ref": "#/documents/0/sentences/1/assessments/0"
+     }]
+    }],
+    "assessments": [{
+     "sentiment": "positive",
+     "confidenceScores": {
+      "positive": 1.0,
+      "negative": 0.0
+     },
+     "offset": 58,
+     "length": 4,
+     "text": "nice",
+     "isNegated": false
+    }]
+   }],
+   "warnings": []
+  }],
+  "errors": [],
+  "modelVersion": "2022-06-01"
+ }
 }
 ```
 

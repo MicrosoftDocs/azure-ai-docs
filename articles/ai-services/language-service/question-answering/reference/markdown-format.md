@@ -29,12 +29,12 @@ A new line between two sentences.|`\n\n`|`How can I create a bot with \n\n custo
 |Headers from h1 to h6, the number of `#` denotes which header. One `#` is the h1.|`\n# text \n## text \n### text \n####text \n#####text` |`## Creating a bot \n ...text.... \n### Important news\n ...text... \n### Related Information\n ....text...`<br><br>`\n# my h1 \n## my h2\n### my h3 \n#### my h4 \n##### my h5`|
 |Italics |`*text*`|`How do I create a bot with *custom question answering*?`|
 |Strong (bold)|`**text**`|`How do I create a bot with **custom question answering***?`|
-|URL for link|`[text](https://www.my.com)`|`How do I create a bot with [custom question answering](https://language.cognitive.azure.com/)?`|
+|URL for link|`[text](https://www.my.com)`|`How do I create a bot with [custom question answering](https://ai.azure.com/home/)?`|
 |*URL for public image|`![text](https://www.my.com/image.png)`|`How can I create a bot with ![custom question answering](path-to-your-image.png)`|
 |Strikethrough|`~~text~~`|`some ~~questions~~ questions need to be asked`|
 |Bold and italics|`***text***`|`How can I create a ***custom question answering**** bot?`|
-|Bold URL for link|`[**text**](https://www.my.com)`|`How do I create a bot with [**custom question answering**](https://language.cognitive.azure.com/)?`|
-|Italics URL for link|`[*text*](https://www.my.com)`|`How do I create a bot with [*custom question answering*](https://language.cognitive.azure.com/)?`|
+|Bold URL for link|`[**text**](https://www.my.com)`|`How do I create a bot with [**custom question answering**](https://ai.azure.com/home/)?`|
+|Italics URL for link|`[*text*](https://www.my.com)`|`How do I create a bot with [*custom question answering*](https://ai.azure.com/home/)?`|
 |Escape markdown symbols|`\*text\*`|`How do I create a bot with \*custom question answering*\*?`|
 |Ordered list|`\n 1. item1 \n 1. item2`|`This is an ordered list: \n 1. List item 1 \n 1. List item 2`<br>The preceding example uses automatic numbering built into markdown.<br>`This is an ordered list: \n 1. List item 1 \n 2. List item 2`<br>The preceding example uses explicit numbering.|
 |Unordered list|`\n * item1 \n * item2`<br>`or`<br>`\n - item1 \n - item2`|`This is an unordered list: \n * List item 1 \n * List item 2`|

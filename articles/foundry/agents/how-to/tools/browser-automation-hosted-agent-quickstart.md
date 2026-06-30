@@ -42,8 +42,8 @@ To use the browser automation tool, you first need to create a [Playwright works
 ## Step 2: Deploy the sample hosted agent 
 
 To get started with browser automation tool in hosted agents, we have two samples –
-- [Microsoft Agent Framework](https://github.com/microsoft-foundry/foundry-samples-pr/tree/main/samples/python/hosted-agents/agent-framework/responses/14-browser-automation-agent)
-- [Bring-your-own Framework](https://github.com/microsoft-foundry/foundry-samples-pr/tree/main/samples/python/hosted-agents/bring-your-own/responses/browser-automation)
+- [Microsoft Agent Framework](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework/responses/14-browser-automation-agent)
+- [Bring-your-own Framework](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/browser-automation)
 
 You can use any one of these depending on which framework you want to use to build your hosted agent.
 

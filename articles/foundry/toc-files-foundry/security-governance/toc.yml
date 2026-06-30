@@ -15,6 +15,9 @@ items:
 # Network Security
 - name: Network security
   items:
+  - name: Choose a networking option
+    displayName: networking options, BYO VNet, managed VNet, private link, public, decision, compare
+    href: ../../agents/concepts/networking-options.md
   - name: Configure network isolation
     displayName: custom dns
     href: ../../how-to/configure-private-link.md
@@ -50,7 +53,7 @@ items:
 - name: Monitor
   items:
   - name: Diagnostic logging
-    href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry/context/context
+    href: ../../how-to/diagnostic-logging.md
   - name: Configure Agent 365 data collection
     href: ../../agents/how-to/configure-agent-365-data-collection.md
   - name: Plan and manage costs

@@ -82,6 +82,6 @@ If you already labeled data, you can use it to get started with the service. Mak
 
 ## Next steps
 
-* You should plan the [project schema](design-schema.md) used to label your data.
+* You should plan the [project schema](build-train-deploy-model.md#prepare-your-data-and-define-a-schema) used to label your data.
 
-* After your project is created, you can start [labeling your data](tag-data.md). Labeling informs your text classification model how to interpret text and is used for training and evaluation.
+* After your project is created, you can start [labeling your data](build-train-deploy-model.md#label-your-data). Labeling informs your text classification model how to interpret text and is used for training and evaluation.

@@ -109,7 +109,7 @@ If you're [importing a project](../how-to/create-project.md#import-an-existing-f
 | `language` | `{LANGUAGE-CODE}` |  A string specifying the language code for the utterances, synonyms, and regular expressions used in your project. If your project is a multilingual project, choose the [language code](../language-support.md) of most the utterances. |`en-us`|
 | `intents` | `[]` | Array that contains all the intents you have in the project. These intents are classified from your utterances.| `[]` |
 | `entities` | `[]` | Array that contains all the entities in your project. These entities are extracted from your utterances. Every entity can have other optional components defined with them: list, prebuilt, or regex. | `[]` |
-| `dataset` | `{DATASET}` |  The test set that this utterance is assigned to when the data is split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+| `dataset` | `{DATASET}` |  The test set that this utterance is assigned to when the data is split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/build-train-deploy-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
 | `category` | ` ` |  The type of entity associated with the span of text specified. | `Entity1`|
 | `offset` | ` ` |  The inclusive character position of the start of the entity.      |`5`|
 | `length` | ` ` |  The character length of the entity.      |`5`|
@@ -122,7 +122,7 @@ If you're [importing a project](../how-to/create-project.md#import-an-existing-f
 
 ## Utterance file format
 
-Conversational language understanding offers the option to upload your utterances directly to the project rather than typing them in one by one. You can find this option on the [data labeling](../how-to/tag-utterances.md) page for your project.
+Conversational language understanding offers the option to upload your utterances directly to the project rather than typing them in one by one. You can find this option on the [data labeling](../how-to/build-train-deploy-model.md#label-your-utterances) page for your project.
 
 ```json
 [
@@ -165,7 +165,7 @@ Conversational language understanding offers the option to upload your utterance
 |---------|---------|----------|--|
 |`text`|`{Utterance-Text}`|Your utterance text.|Testing|
 | `language` | `{LANGUAGE-CODE}` |  A string that specifies the language code for the utterances used in your project. If your project is a multilingual project, choose the language code of most of the utterances. For more information about supported language codes, see [Language support](../language-support.md). |`en-us`|
-| `dataset` | `{DATASET}` |  The test set that this utterance is assigned to when the data is split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+| `dataset` | `{DATASET}` |  The test set that this utterance is assigned to when the data is split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/build-train-deploy-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
 |`intent`|`{intent}`|The assigned intent.| intent1|
 |`entity`|`{entity}`|The entity to be extracted.| entity1|
 | `category` | ` ` |  The type of entity associated with the span of text specified. | `Entity1`|
@@ -175,4 +175,4 @@ Conversational language understanding offers the option to upload your utterance
 ## Related content
 
 * For more information on importing your labeled data into your project directly, see [Import project](../how-to/create-project.md#import-an-existing-foundry-project).
-* For more information about labeling your data, see [Label your utterances](../how-to/tag-utterances.md). After you label your data, you can [train your model](../how-to/train-model.md).
+* For more information about labeling your data, see [Label your utterances](../how-to/build-train-deploy-model.md#label-your-utterances). After you label your data, you can [train your model](../how-to/build-train-deploy-model.md#train-your-model).

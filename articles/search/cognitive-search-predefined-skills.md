@@ -7,7 +7,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: reference
-ms.date: 11/04/2025
+ms.date: 06/25/2026
 ms.update-cycle: 365-days
 ---
 
@@ -53,6 +53,7 @@ These skills are billed at the Standard rate.
 | [PII Detection](cognitive-search-skill-pii-detection.md)  | This skill uses a pretrained model to extract personal information from a given text. The skill also gives various options for masking the detected personal information entities in the text.  | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Sentiment](cognitive-search-skill-sentiment-v3.md)  | This skill uses a pretrained model to assign sentiment labels (such as "negative", "neutral" and "positive") based on the highest confidence score found by the service at a sentence and document-level on a record by record basis. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Text Translation](cognitive-search-skill-text-translation.md) | This skill uses a pretrained model to translate the input text into various languages for normalization or localization use cases. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Custom Entity Lookup](cognitive-search-skill-custom-entity-lookup.md) | Extends an AI enrichment pipeline by detecting user-defined entities. | None, unless your solution uses a metered Azure service. |
 
 ### Azure-hosted model or resource
 
@@ -75,7 +76,6 @@ For guidance on creating a custom skill, see [Define a custom interface](cogniti
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
 | [AML](cognitive-search-aml-skill.md) | Extends an AI enrichment pipeline with a Foundry or Azure Machine Learning model. | None, unless your solution uses a metered Azure service. |
-| [Custom Entity Lookup](cognitive-search-skill-custom-entity-lookup.md) | Extends an AI enrichment pipeline by detecting user-defined entities. | None, unless your solution uses a metered Azure service. |
 | [Web API](cognitive-search-custom-skill-web-api.md) | Extends an AI enrichment pipeline by making an HTTP call into a custom Web API. | None, unless your solution uses a metered Azure service. |
 
 ## Utility skills

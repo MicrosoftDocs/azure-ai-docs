@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 Foundry Agent Service enforces quotas and limits on agent artifacts, file uploads, messages, and tool registrations. Understanding these limits helps you design applications that scale without hitting service boundaries. This article lists default limits, supported regions, compatible models, and guidance for handling limit errors.
 
 > [!NOTE]
-> Foundry Agent Service is generally available (GA). Some sub-features, such as [Hosted agents](../concepts/hosted-agents.md), are in public preview and might have different constraints.
+> Foundry Agent Service is generally available (GA). Some sub-features are in public preview and might have different constraints.
 
 ## Prerequisites
 
@@ -37,6 +37,10 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 
 > [!TIP]
 > Model availability can change over time. To verify what you can deploy for your project and region, use the Foundry portal model experience.
+
+### Sovereign clouds
+
+Foundry Agent Service is also available in Azure Government (US Gov Virginia and US Gov Arizona) with a subset of agent types and tools. For the full list of supported features, see [Foundry Agent Service feature availability in Azure Government](./azure-government.md).
 
 ## Troubleshooting
 
@@ -86,7 +90,19 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits.
+The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Rate limiting for model calls is applied at the model deployment level; see [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits. Hosted agents also have a per-subscription concurrent-session quota that the platform enforces; see the next section.
+
+## Hosted agent session quotas
+
+Hosted agents have a default limit on concurrent sessions per subscription, per region. The default varies by region and is adjustable through a quota request. Common defaults:
+
+| Default concurrent sessions per subscription | Regions |
+| --- | --- |
+| 50 | East US 2, Sweden Central, UK South, Australia East, North Central US, Canada Central, South Africa North, West Central US |
+| 25 | East US, West US, Germany West Central, France Central, Japan East, Canada East, South India, Switzerland North, West US 3, Norway East, Southeast Asia, Korea Central, Poland Central, Central US, Brazil South, Spain Central |
+| 15 | South Central US, UAE North, Italy North, West Europe, Japan West, Switzerland West, UK West |
+
+Regions without an explicit override use a base default of 15. To raise your limit, request a quota increase. For bring-your-own VNet deployments, size your subnet to your quota; see [Subnet size and concurrent sessions](agents-networking-deep-dive.md#subnet-size-and-concurrent-sessions).
 
 ## Limit error reference
 

@@ -41,7 +41,7 @@ See the [language support](./language-support.md) article.
 
 ## How do I get more accurate results for my project?
 
-Take a look at the [recommended guidelines](./how-to/build-schema.md#guidelines-and-recommendations) for information on improving accuracy.
+Take a look at the [recommended guidelines](./how-to/build-train-deploy-model.md#guidelines-and-recommendations) for information on improving accuracy.
 
 ## How do I get predictions in different languages?
 
@@ -87,7 +87,7 @@ Yes, only for predictions, and samples are available for [Python](https://aka.ms
 |Standard training     | Faster training times for quicker model iteration.        | Can only train projects in English.        | Included in your [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).        |
 |Advanced training     | Slower training times using fine-tuned neural network transformer models.        | Can train [multilingual projects](language-support.md#multi-lingual-option).         | May incur [added charges](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
 
-For more information, *see* [training modes](how-to/train-model.md#training-modes).
+For more information, *see* [training modes](how-to/build-train-deploy-model.md#training-modes).
 
 ## Are there APIs for this feature?
 

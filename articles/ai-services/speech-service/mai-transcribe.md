@@ -142,7 +142,7 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 
 ### Use MAI-Transcribe with Voice Live
 
-You can also use the MAI-Transcribe model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-1-model-preview).
+You can also use the MAI-Transcribe model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-model-preview).
 
 
 ## Related content

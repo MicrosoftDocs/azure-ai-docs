@@ -364,7 +364,7 @@ az rest --method PUT \
 
 Replace the placeholders with values for your environment. For other resource types, change the `serviceResourceId` and `subresourceTarget` values accordingly. Common subresource targets include `blob` for Azure Storage, `searchService` for Azure AI Search, and `vault` for Azure Key Vault.
 
-For more information, follow the instructions in the [outbound rules CLI](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network/update-outbound-rules-cli/outbound-rule-cli.md) file in the foundry-samples repository.
+For more information, follow the instructions in the [outbound rules CLI](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network) file in the foundry-samples repository.
 
 ---
 
