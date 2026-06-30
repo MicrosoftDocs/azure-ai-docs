@@ -74,7 +74,7 @@ Foundry Agent Service enforces limits in two places:
 - **Agent Service limits.** Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
 - **Model limits.** Quotas and rate limits for the model deployments your agents call.
 
-The artifacts these limits govern are stored in either Microsoft-managed storage or your own Azure resources, depending on your setup. See [Where Agent Service stores your data](#where-agent-service-stores-your-data) next.
+The artifacts these limits govern are stored in either Microsoft-managed storage or your own Azure resources, depending on your setup.
 
 ## Where Agent Service stores your data
 
