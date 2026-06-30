@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/24/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
@@ -49,7 +49,7 @@ Consider the following guidelines when building your schema:
 
 After you build your schema, add training and testing utterances to your project in Microsoft Foundry. The utterances should be similar to what your users use when interacting with the project. When you add an utterance, you assign which intent it belongs to.
 
-Adding utterances is a crucial step in the project development lifecycle; this data is used in the next step when training your model so the model can learn from the added data. If you already have utterances, you can directly [import them into your project](create-project.md#import-an-orchestration-workflow-project-rest-api), but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md). Labeled data informs the model how to interpret text and is used for training and evaluation.
+Adding utterances is a crucial step in the project development lifecycle; this data is used in the next step when training your model so the model can learn from the added data. If you already have utterances, you can directly [import them into your project](create-project.md#import-an-orchestration-workflow-project-rest-api), but you need to make sure that your data follows the [accepted data format](../concepts/evaluation-metrics.md#accepted-data-formats). Labeled data informs the model how to interpret text and is used for training and evaluation.
 
 ### How to add utterances
 
@@ -61,7 +61,7 @@ Use the following steps to add utterances in Foundry:
 
 1. Use the **Training set** and **Testing set** views to manage your data. For more information about [training and testing sets](#data-splitting) and how they're used for model training and evaluation, see the linked article.
 
-1. From the **Select intent** dropdown menu, select one of the intents. Type your utterance, and then press `Enter` to add it. You can also upload utterances directly by selecting **Upload utterance file** from the top menu. Make sure the utterances follow the [accepted format](../concepts/data-formats.md#utterance-format).
+1. From the **Select intent** dropdown menu, select one of the intents. Type your utterance, and then press `Enter` to add it. You can also upload utterances directly by selecting **Upload utterance file** from the top menu. Make sure the utterances follow the [accepted format](../concepts/evaluation-metrics.md#utterance-format).
 
    > [!Note]
    > If you plan to use **Automatically split the testing set from training data**, add all your utterances to the training set.
