@@ -346,7 +346,7 @@ private static string GetFilePath(string sessionId)
 
 ---
 
-When more than one user can share a session, add `x-agent-user-id` to the key. See [Multiplex multiple users in one hosted agent session](../how-to/multiplex-session-users.md#partition-per-user-data-inside-your-container).
+When more than one user can share a session, add `x-agent-user-id` to the key. See [Multiplex multiple users in one hosted agent session](../how-to/multiplex-session-users.md#partition-per-user-data-your-container-stores).
 
 ## Related content
 
