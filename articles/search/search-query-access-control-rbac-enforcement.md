@@ -38,7 +38,8 @@ This article explains how to set up queries that use permission metadata to filt
 - Depending on the data source:
   - For ADLS Gen2 data sources, you must have configured access control lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level.
   - For Azure Blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
-  - For SharePoint data sources, you must configure access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). Group-based permissions, including Microsoft 365 Groups, are supported when ingested as Entra object IDs. Group expansion occurs at query time through Microsoft Graph.
+  - For SharePoint data sources, you must configure access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). You can also use an [indexed SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-indexed.md) and configure it to [enforce document-level permissions](agentic-knowledge-source-how-to-sharepoint-indexed.md#enforce-document-level-permissions). Group-based permissions, including Microsoft 365 Groups, are supported when ingested as Entra object IDs. Group expansion occurs at query time through Microsoft Graph.
+  - 
 
 - Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
 
@@ -46,7 +47,10 @@ This article explains how to set up queries that use permission metadata to filt
 
 - If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
 
-- When source-system permissions change, such as in SharePoint or custom repositories, ACL values in the index remain unchanged until affected content is reindexed. Plan change detection and refresh policies to minimize stale authorization decisions.
+- ACL freshness depends on the ingestion method. To avoid stale authorization decisions, plan for how each source propagates permission changes to the index:
+  - A scheduled [SharePoint indexer](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content) refreshes item-level permission changes on each run. Changes to a parent scope (site, library, list, or folder) that are inherited by child items require a resync.
+  - An [ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) requires a resync to refresh ACLs.
+  - Custom or push ingestion requires you to reingest the affected documents.
 
 - Document visibility requires both:
   - The calling application's RBAC role (Authorization header).

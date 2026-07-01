@@ -112,11 +112,10 @@ POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/
 
 ## ACL access resolution rules
 
-This section explains how document access is determined for a user based on the ACL values assigned to each document.
+This section explains how the system determines a user's document access based on the permission fields on each document. These fields are either ACLs (`userIds` and `groupIds`, where `groupIds` includes security groups and Microsoft 365 Groups) or an RBAC scope (`rbacScope`). Azure evaluates the RBAC scope and the ACLs in a defined order, consistent with the [ADLS Gen2 permission model](/azure/storage/blobs/data-lake-storage-access-control-model#how-permissions-are-evaluated).
 
-For ACL-based filtering, `userIds` should contain Microsoft Entra user object IDs, and `groupIds` should contain Microsoft Entra group object IDs, including Microsoft 365 Groups. Authorization matches the querying user's Microsoft Entra object ID and group memberships at query time. For information about how caller identities are provided, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
+A user gains access by satisfying one of the following fields: a matching `userIds` or `groupIds` entry, or a qualifying Azure role assignment for the `rbacScope`. For information about how caller identities are provided at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
-The key rule is that *a user only needs to match one ACL type to gain access to the document*. For example, if a document has fields for `userIds`, `groupIds`, and `rbacScope`, the user can access the document by matching any one of these ACL fields.
 
 ### Special ACL values "all" and "none"
 
