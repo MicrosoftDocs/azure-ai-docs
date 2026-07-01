@@ -116,7 +116,6 @@ This section explains how the system determines a user's document access based o
 
 A user gains access by satisfying one of the following fields: a matching `userIds` or `groupIds` entry, or a qualifying Azure role assignment for the `rbacScope`. For information about how caller identities are provided at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
-
 ### Special ACL values "all" and "none"
 
 ACL fields, such as `userIds` and `groupIds`, typically contain lists of GUIDs (Globally Unique Identifiers) that identify users and groups with access to the document. Two special string values, "all" and "none", are supported for these ACL field types. These values act as broad filters to control access at the global level, as shown in the following table.
