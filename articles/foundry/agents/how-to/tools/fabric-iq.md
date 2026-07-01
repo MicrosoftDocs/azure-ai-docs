@@ -458,7 +458,7 @@ resources:
 
 # [REST API](#tab/rest-api)
 
-Send a PUT request to the connections API. Replace the placeholders with your subscription, resource group, Foundry account, and project names, and supply a Microsoft Entra access token for Azure Resource Manager.
+Send a PUT request to the connections API. Replace the placeholders with your subscription, resource group, Foundry account, and project names. Supply a Microsoft Entra access token for Azure Resource Manager.
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/projects/{project-name}/connections/fabriciq-dataagent-vnet?api-version=2025-10-01-preview
