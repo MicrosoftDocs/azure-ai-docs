@@ -299,7 +299,7 @@ az rest --method POST \
     }'
 ```
 
-The response `version` field contains the assigned `draft-{timestamp}` identifier. Use that identifier to [get](#get-a-specific-version) or [delete](#delete-a-specific-version) the draft, or to test it directly. When you're satisfied with the change, create a regular (non-draft) version to promote it to a release.
+The response `version` field contains the assigned `draft-{timestamp}` identifier. Use that identifier to [get](#get-a-specific-version) or [delete](#delete-a-specific-version) the draft, or to test it directly. When you're satisfied with the change, promote it by creating a new version with the same image and configuration but with `draft` omitted (or set to `false`). The new version receives a regular auto-incremented version number and becomes eligible for traffic routing.
 
 :::zone-end
 
