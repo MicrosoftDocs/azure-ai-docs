@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 06/30/2026
 ms.reviewer: meerakurup
 ms.author: scottpolly 
 author: s-polly 
@@ -245,6 +245,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | OpenAPI tool | ✅ Supported | Through your VNet subnet |
 | Azure Functions | ✅ Supported | Through your VNet subnet |
 | Agent-to-Agent (A2A) | ✅ Supported | Through your VNet subnet |
+| Fabric IQ | ⚠️ Partial | Via MCP. Support depends on the Fabric item type: data agents support tenant-level and workspace-level private link, ontologies support tenant-level private link, and Power BI semantic models support public access only. See [Virtual network support](../agents/how-to/tools/fabric-iq.md#virtual-network-support). |
 | Fabric Data Agent | ❌ Not supported | Fabric resource must have public network access enabled (Workspace-level private link Fabric unsupported) |
 | Logic Apps | ❌ Not supported | Under development |
 | File Search | ❌ Not supported | Under development |
