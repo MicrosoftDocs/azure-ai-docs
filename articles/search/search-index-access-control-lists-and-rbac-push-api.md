@@ -131,19 +131,19 @@ Because a user needs to match only one field type, the special value "all" grant
 
 ### Access control example
 
-This example illustrates how the document access rules are resolved based on the specific document ACL field values. For readability, this scenario uses ACL aliases such as "user1," "group1," instead of GUIDs.
+This example illustrates how the document access rules are resolved based on the specific document permission field values. For readability, this scenario uses ACL aliases such as "user1," "group1," instead of GUIDs.
 
 | Document # | userIds | groupIds | RBAC Scope | Permitted users list | Note |
 | --- | --- | --- | --- | --- | --- |
 | 1 | `["none"]` | `[]` | Empty | No users have access | The values `["none"]` and `[]` behave exactly the same |
-| 2 | `["none"]` | `[]` | scope/to/container1 | Users with RBAC permissions to container1 | The value of "none" doesn't block access by matching other ACL fields |
+| 2 | `["none"]` | `[]` | scope/to/container1 | Users with RBAC permissions to container1 | The value of "none" doesn't block access by matching other permission fields |
 | 3 | `["none"]` | `["group1", "group2"]` | Empty | Members of group1 or group2 | |
 | 4 | `["all"]` | `["none"]` | Empty | Any user | Any querying user matches the ACL filter "all", so all users have access |
 | 5 | `["all"]` | `["group1", "group2"]` | scope/to/container1 | Any user | Since all users match the "all" filter for userID, the groupID and RBAC filters don't have any impact |
 | 6 | `["user1", "user2"]` | `["group1"]` | Empty | User1, user2, or any member of group1 | |
 | 7 | `["user1", "user2"]` | `[]` | Empty | User1 or user2 | |
 
-## See also
+## Related content
 
 - [Connect to Azure AI Search using roles](search-security-rbac.md)
 - [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
