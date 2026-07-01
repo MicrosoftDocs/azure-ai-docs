@@ -124,7 +124,7 @@ For bundled mode, see [Package the zip manually](#package-the-zip-manually) for 
 
 ### Firewall requirements for private virtual networks
 
-If your project is secured with a private virtual network, allow outbound connections in your network policy to the following endpoints before you deploy.
+If you secure your project with a private virtual network, update your network policy to allow outbound connections to the following endpoints before you deploy.
 
 All source-code deployments require outbound access to:
 
