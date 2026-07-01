@@ -422,7 +422,7 @@ Virtual network (VNet) support through Azure Private Link depends on the Fabric 
 
 ### Connect to a data agent over a workspace-level private link
 
-When a workspace blocks public access through a [workspace-level private link](/fabric/security/security-workspace-level-private-links-set-up), its data agent is no longer reachable at the shared `api.fabric.microsoft.com` host. Use the workspace-specific private endpoint instead, and create a Foundry connection that forwards the signed-in user's Entra token to that endpoint.
+When a workspace blocks public access through a [workspace-level private link](/fabric/security/security-workspace-level-private-links-set-up), you can't reach its data agent at the shared `api.fabric.microsoft.com` host. Use the workspace-specific private endpoint instead, and create a Foundry connection that forwards the signed-in user's Entra token to that endpoint.
 
 #### Build the workspace private endpoint URL
 
