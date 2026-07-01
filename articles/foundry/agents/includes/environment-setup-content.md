@@ -24,6 +24,7 @@ Creating your first agent is a two-step process:
 | Create an account and project                                          | Foundry Account Owner           |
 | [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
 | Create and edit agents                                                 | Foundry User                    |
+| Interact with agent endpoints (without creating or editing agents)     | Foundry Agent Consumer          |
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
