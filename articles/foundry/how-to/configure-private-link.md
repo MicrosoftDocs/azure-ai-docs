@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 06/30/2026
 ms.reviewer: meerakurup
 ms.author: scottpolly 
 author: s-polly 
@@ -222,8 +222,6 @@ When creating a new Foundry resource, follow these steps:
 1. Continue through the forms to create the project. When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
 
 > [!NOTE]
-> The ability to create a Foundry resource with virtual network injection in the Azure portal only appears if you have first selected bring-your-own resources for Storage, Search, and CosmosDB AND if you have selected public network access as disabled. We do not support virutal network injection with managed resources, also known as the Basic Agent set-up, or when you have public network access as enabled.
->
 > Private endpoints to Azure AI Search, Azure Storage, and Azure CosmosDB are NOT auto-created when you deploy your Foundry resource. Please ensure to create private endpoints to these resources separately in their resource pages in the Azure portal.
 
 ### Agent tools with network isolation
@@ -247,6 +245,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | OpenAPI tool | ✅ Supported | Through your VNet subnet |
 | Azure Functions | ✅ Supported | Through your VNet subnet |
 | Agent-to-Agent (A2A) | ✅ Supported | Through your VNet subnet |
+| Fabric IQ | ⚠️ Partial | Via MCP. Support depends on the Fabric item type: data agents support tenant-level and workspace-level private link, ontologies support tenant-level private link, and Power BI semantic models support public access only. See [Virtual network support](../agents/how-to/tools/fabric-iq.md#virtual-network-support). |
 | Fabric Data Agent | ❌ Not supported | Fabric resource must have public network access enabled (Workspace-level private link Fabric unsupported) |
 | Logic Apps | ❌ Not supported | Under development |
 | File Search | ❌ Not supported | Under development |
@@ -306,7 +305,7 @@ For more Agent Service network isolation limitations, see [How to use a virtual 
 
 - **Private AI Search with private Foundry agent tool**: If you are using your public network access disabled AI Search as an Agent tool with a network isolated Foundry resource, ensure you are using the new Foundry Portal to build your new agents. This scenario is not supported with the older version of the Agent service in the classic Foundry portal.
 - **Publishing Agents to Teams/M365**: You can publish your agent to Teams and M365 when your Foundry resource has public network access disabled. There are additional set-up requirements for this experience. For more information, please follow [this blog post on building custom engine agents when your Foundry resource is private](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-agents-and-custom-engine-agents-through-the-corporate-firewall/4502218).
-- **Hosted Agents with private Azure Container Registry**: If you would like to deploy hosted agents on Foundry, ensure your Azure Container Registry has public network access enabled. Public network access disabled with private endpoint Azure Container Registry is not yet supported with a private Foundry set-up. Hosted agents can be deployed on a private Foundry that was set-up using the existing networking templates. You do not need to redeploy your private and VNET injected Foundry.
+- **Hosted Agents with private Azure Container Registry**: Foundry projects created after June 25, 2026, support a private (network-secured) Azure Container Registry, with public network access disabled and a private endpoint. Projects created before that date require the registry to be reachable over its public endpoint. Existing projects aren't affected and continue to use public network access. You can deploy hosted agents on a private Foundry that you set up by using the existing networking templates. You don't need to redeploy your private and virtual network injected Foundry.
 - **Changing or updating outbound networking**: You cannot update your outbound networking settings currently. If you have a subnet delegated for your Foundry resource, you cannot change the delegated subnet to a new one. You cannot take your existing Foundry deployment and add outbound virtual network injection. You must redeploy Foundry to add outbound networking. 
 
 ### Firewall allowlisting
@@ -356,5 +355,6 @@ If you experience connectivity problems after setting up a private endpoint, try
 
 ## Next steps
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#private-endpoints) — role requirements for private endpoint configuration.
 - [Create a Foundry project](create-projects.md)
 - [Learn more about Foundry](../what-is-foundry.md)

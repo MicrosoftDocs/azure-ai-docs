@@ -60,7 +60,7 @@ Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can 
 
 ### How do I check my subscription's quota tier?
 
-You can currently check you quota tier with the [control plane API](/rest/api/aifoundry/accountmanagement/quota-tiers/get?view=rest-aifoundry-accountmanagement-2025-10-01-preview&tabs=HTTP&preserve-view=true):
+You can currently check you quota tier with the [control plane API](/rest/api/microsoftfoundry/accountmanagement/quota-tiers/get?view=rest-microsoftfoundry-accountmanagement-2025-10-01-preview&tabs=HTTP&preserve-view=true):
 
 # [Bash](#tab/bash)
 

@@ -1,9 +1,9 @@
 ---
-title: "Hosted agents in Foundry Agent Service (preview)"
-description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
+title: "Hosted agents in Foundry Agent Service"
+description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 06/12/2026
+ms.date: 06/22/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -31,7 +31,13 @@ Choose Hosted agents over prompt-based agents when you need to:
 You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Microsoft Entra ID (agent identity), and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
 
 > [!IMPORTANT]
-> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. If you use Hosted Agent with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs. We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices.  It is your responsibility to manage whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned. You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Azure OpenAI transparency note](../../responsible-ai/agents/transparency-note.md#what-is-a-transparency-note). 
+> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations.
+>
+> If you use Hosted Agent with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs.
+>
+> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices. It is your responsibility to manage whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../responsible-ai/agents/transparency-note.md#what-is-a-transparency-note). 
 
 ## Key concepts
 
@@ -104,11 +110,9 @@ Two identities are involved:
 | **Microsoft Entra ID** (agent identity, per-agent) | Created automatically at deploy time | The identity the agent container authenticates with at runtime. Used for model invocation, tool access, and downstream Azure services. |
 | **Project managed identity** (project-wide) | System-assigned on the Foundry project | Used by the platform for infrastructure operations (for example, Container Registry Repository Reader on the container registry). Not the agent's runtime identity. |
 
-When you deploy with azd, the required RBAC role (Foundry User at account scope) is assigned to the agent's Microsoft Entra ID automatically. For external resources (for example, your own Azure Storage), you assign RBAC manually to the agent's Microsoft Entra ID.
+The agent identity can access model inferencing through the project endpoint and session storage by default. For external resources (for example, your own Azure Storage), assign RBAC roles manually to the agent's Microsoft Entra ID. For more information, see [Agent access beyond defaults](hosted-agent-permissions.md#agent-access-beyond-defaults).
 
-[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-
-When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can operate in two identity modes depending on how they are invoked:
+When integrated via Microsoft 365 channels (for example, Teams), hosted agents can operate in two identity modes depending on how they're invoked:
 
 - **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services on behalf of the user using the user’s delegated permissions, subject to Microsoft Entra ID tenant policies.
 
@@ -157,7 +161,7 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 Treat a Hosted agent like production application code.
 
 > [!IMPORTANT]
-> If you use Foundry Agent Service to host agents that interact with third-party models, servers, or agents, you do so at your own risk. We recommend reviewing all data being shared with third-party models, servers, or agents and understanding third-party practices for retention and location of data. It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
+> Use third-party systems at your own risk, and always implement appropriate responsible AI mitigations. It is your responsibility to manage all data that may flow outside of your organization’s compliance and geographic boundaries. [Learn more](#how-it-works). 
 
 - **Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 - **Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
@@ -203,7 +207,7 @@ Each session has a persistent `$HOME`. Its contents are preserved when compute i
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
@@ -219,17 +223,9 @@ Compare the observed peaks against the cpu and memory you allocated. If sustaine
 Hosted agents support deployment within network-isolated Foundry resources and can use a customer-provided Azure Virtual Network for outbound traffic. This enables agents in network-isolated Foundry deployments to reach private resources such as databases or internal APIs. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
 
 > [!NOTE]
-> The Azure Container Registry holding your agent image must currently remain reachable over its public endpoint. Private-network-secured ACR isn't currently supported.
+> Foundry projects created after June 25, 2026 support a private (network-secured) Azure Container Registry for your agent image. Projects created before that date require the registry to remain reachable over its public endpoint. Existing projects aren't affected. For more information, see [Limitations](../how-to/virtual-networks.md#limitations).
 
-## Limits, pricing, and availability (preview)
-
-Hosted agents are currently in preview.
-
-### Limitations during preview
-
-| Limit | Scope | Default Value | Adjustable |
-| --------- | ------ | ----- | ------- |
-| Maximum active concurrent sessions | per subscription per region | 50 | Yes, with quota requests to Microsoft Support |
+## Limits, pricing, and availability
 
 ### Pricing
 

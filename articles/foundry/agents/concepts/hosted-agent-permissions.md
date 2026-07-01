@@ -43,6 +43,7 @@ This article references the following built-in roles. For information about cust
 | [Owner][role-owner] | Full permissions to create and manage Azure resources |
 | [Contributor][role-contributor] | Create and manage Azure resources |
 | [Role Based Access Control Administrator][role-rbac-admin] | Create role assignments on Azure resources |
+| [Foundry Agent Consumer][role-agent-consumer] | Interact with agent endpoints (least-privilege role for consumers) |
 | [Foundry User][role-ai-user] | Create agents, perform model inference, and interact with agents |
 | [Foundry Project Manager][role-project-manager] | Manage projects, create agents, perform model inference, interact with agents, and create role assignments |
 | [Foundry Account Owner][role-account-owner] | Create deployments, manage projects, and handle account-level resources. Create role assignments for control plane operations only. Can't perform data plane operations such as creating or interacting with agents. |
@@ -104,11 +105,11 @@ The diagram above shows how resources are organized hierarchically and which rol
 Each Hosted agent deployment requires these Azure resources to be properly configured:
 
 - **A Foundry account**
-    - A role assignment allows the project managed identity to access the account for model access. `Foundry User` is the recommended built-in role.
+    - A role assignment allows the project managed identity to access the account for model access. `Foundry User` is the recommended built-in role for the project managed identity.
 - **A model deployment (in the account)**
 - **A Foundry project (in the account)**
     - The project has a managed identity. The project also gets an agent blueprint and agent identity when its first agent is created.
-    - Role assignments allow client users or principals to interact with agents in the project at runtime. `Foundry User` is the recommended built-in role.
+    - Role assignments allow client users or principals to interact with agents in the project at runtime. `Foundry Agent Consumer` is the recommended built-in role for consumers that only need to interact with agents.
     - Some advanced scenarios might require explicit role assignments for the agent identity on the project. For more information, see [Explicit project-level access](#explicit-project-level-access).
 - **A Hosted agent (in the project)**
     - The agent automatically gets an agent blueprint and agent identity.
@@ -190,7 +191,7 @@ If the creator of the project has the ability to assign the `Foundry User` role 
 Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/registries/write` permission at the scope of the resource group.
 
 > [!NOTE]
-> For Hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
+> For Hosted agents, support for the container registry behind a private network (private endpoint with public network access disabled) depends on when the Foundry project was created. Projects created after June 25, 2026 support a private registry. Projects created before that date require the registry to be reachable over its public endpoint. Existing projects aren't affected. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 >
 > The registry's `azureADAuthenticationAsArmPolicy` policy status must be set to `enabled`. This setting allows ACR to accept Microsoft Entra tokens scoped to Azure Resource Manager. To check or update the status, use [`az acr config authentication-as-arm`](/cli/azure/acr/config/authentication-as-arm).
 
@@ -417,20 +418,33 @@ For step-by-step guidance on publishing to Teams or M365 Copilot, see [Publish a
 
 ## Agent interaction
 
-Interacting with the agent requires the calling user or service principal to have a data plane permission. To interact with an _agent application_, they need `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` at the scope of the agent application.
+Interacting with the agent requires the calling user or service principal to have a data plane permission:
 
-<!-- TODO: Add endpoint interaction permission when available
-- To interact with an _agent endpoint_, they need `Microsoft.CognitiveServices/accounts/AIServices/endpoints/interact/action` at the scope of the Foundry project.
--->
+- To interact with an _agent endpoint_, they need `Microsoft.CognitiveServices/accounts/AIServices/endpoints/interact/action` at the scope of the Foundry project or at the scope of the specific agent. This permission covers all runtime interactions with the agent, including but not limited to Responses API calls.
+- To interact with an _agent application_, they need `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` at the scope of the agent application.
 
-| Built-in role | Scope | Can assignee interact with the agent? |
-| --- | --- | --- |
-| Owner | Foundry project | ✗ No |
-| Contributor | Foundry project | ✗ No |
-| Foundry User | Foundry project | ✔ Yes |
-| Foundry Project Manager | Foundry project | ✔ Yes |
-| Foundry Account Owner | Foundry project | ✗ No |
-| Foundry Owner | Foundry project | ✔ Yes |
+> [!TIP]
+> [Foundry Agent Consumer][role-agent-consumer] is the least-privilege built-in role for users and service principals that interact with agent endpoints. Use this role instead of `Foundry User` when the principal doesn't need to create or modify agents.
+
+| Built-in role | Scope | Can assignee interact with agent endpoints? | Can assignee interact with agent applications? |
+| --- | --- | --- | --- |
+| Owner | Foundry project | ✗ No | ✗ No |
+| Contributor | Foundry project | ✗ No | ✗ No |
+| Foundry Agent Consumer | Foundry project or agent | ✔ Yes | ✗ No |
+| Foundry User | Foundry project | ✔ Yes | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes | ✔ Yes |
+
+You can also assign roles at the scope of a specific agent rather than the entire project. For details, see [Agent-scope role assignments](../../concepts/rbac-foundry.md#agent-scope-role-assignments).
+
+### Delegate the end-user identity
+
+A middle-tier service that authenticates its own end users can scope a session to a specific end user by sending the `x-ms-user-identity` header. To send that header, the calling identity must hold the following data plane permission on the agent:
+
+`Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action`
+
+A caller that sends `x-ms-user-identity` without this permission receives a `403`. For how to use delegated identity, see [Isolate hosted agent sessions per user](../how-to/isolate-sessions-per-user.md#isolate-sessions-for-your-own-users).
 
 ## Agent observability
 
@@ -440,7 +454,7 @@ Accessing agent telemetry data requires read permissions on the Application Insi
 
 Assign [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) at the Application Insights resource scope. The `*/read` permissions in this role access the underlying Log Analytics workspace data without requiring a separate workspace-scoped assignment.
 
-If you need to work against the Log Analytics workspace directly, also assign [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#log-analytics-reader) at the workspace scope.
+If you need to work against the Log Analytics workspace directly, also assign [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#log-analytics-reader) at the workspace scope. If the workspace tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) to read the protected tables.
 
 | Built-in role | Scope | Can assignee access agent telemetry data? |
 | --- | --- | --- |
@@ -452,6 +466,7 @@ If you need to work against the Log Analytics workspace directly, also assign [L
 | Foundry Owner | Application Insights | ✗ No |
 | Monitoring Reader | Application Insights | ✔ Yes |
 | Log Analytics Reader | Log Analytics Workspace | ✔ Yes (from workspace directly) |
+| Privileged Monitoring Data Reader | Log Analytics Workspace | ✔ Yes (required for [protected tables](/azure/azure-monitor/logs/protected-tables-configure)) |
 
 #### Cost display in billing currency
 
@@ -546,6 +561,7 @@ Account-level capabilities aren't proxied by the project endpoint. These capabil
 [foundry-rbac]: ../../concepts/rbac-foundry.md
 [agent-identity]: ./agent-identity.md
 
+[role-agent-consumer]: /azure/ai-foundry/concepts/rbac-foundry#foundry-agent-consumer
 [role-owner]: /azure/role-based-access-control/built-in-roles#owner
 [role-contributor]: /azure/role-based-access-control/built-in-roles#contributor
 [role-rbac-admin]: /azure/role-based-access-control/built-in-roles#role-based-access-control-administrator

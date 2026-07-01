@@ -877,7 +877,7 @@ Before running the following commands, make sure you have the following prerequi
 To disable the `web_search` tool for all accounts in a subscription:
 
 ```bash
-az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
+az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
 ```
 
 This command disables web search across all accounts in the specified subscription.
@@ -887,7 +887,7 @@ This command disables web search across all accounts in the specified subscripti
 To enable the `web_search` tool:
 
 ```bash
-az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
+az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
 ```
 
 This command enables Bing web search functionality for all accounts in the subscription.

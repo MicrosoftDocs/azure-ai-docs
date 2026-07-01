@@ -1262,7 +1262,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-info.md",
-      "redirect_url": "/rest/api/aifoundry/model-inference/get-model-info/get-model-info",
+      "redirect_url": "/rest/api/microsoft-foundry/modelinference/",
       "redirect_document_id": false
     },
     {
@@ -1272,17 +1272,17 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-embeddings.md",
-      "redirect_url": "/rest/api/aifoundry/model-inference/get-embeddings/get-embeddings",
+      "redirect_url": "/rest/api/microsoft-foundry/modelinference/",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md",
-      "redirect_url": "/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions",
+      "redirect_url": "/rest/api/microsoft-foundry/modelinference/",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-images-embeddings.md",
-      "redirect_url": "/rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings",
+      "redirect_url": "/rest/api/microsoft-foundry/modelinference/",
       "redirect_document_id": false
     },
     {
@@ -3187,8 +3187,13 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/authoring-reference-preview.md",
-      "redirect_url": "/azure/foundry/openai/authoring-reference-preview",
-      "redirect_document_id": true
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/evals",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/openai/authoring-reference-preview.md",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/evals",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/azure-government.md",
@@ -3707,8 +3712,13 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/latest.md",
-      "redirect_url": "/azure/foundry/openai/latest",
-      "redirect_document_id": true
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/chat",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/openai/latest.md",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/chat",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/monitor-openai-reference.md",

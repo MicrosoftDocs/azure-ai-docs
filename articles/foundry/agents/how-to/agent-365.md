@@ -19,11 +19,11 @@ Publish a Foundry Hosted agent as an autopilot in Microsoft Agent 365 so an admi
 For an overview of how Foundry integrates with A365, supported agent types, data collection, and data residency, see [Microsoft Agent 365 integration with Foundry](../concepts/agent-365-integration.md).
 
 > [!IMPORTANT]
-> This flow uses Hosted agents, which are currently in preview. Review [Hosted agents in Foundry Agent Service (preview)](../concepts/hosted-agents.md) before you start.
+> This flow uses Hosted agents. Review [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md) before you start.
 
 ## Prerequisites
 
-Microsoft Agent 365 is generally available. This how-to uses Hosted agents, which are currently in preview.
+Microsoft Agent 365 is generally available.
 
 - **Licensing:**
   - Microsoft 365 licensing that supports Microsoft Agent 365. Agent 365 works best with Microsoft E5, and at least one user in your organization must have a qualifying [Microsoft Agent 365 license](https://www.microsoft.com/microsoft-agent-365#plans-and-pricing) such as Microsoft 365 Copilot.
@@ -40,7 +40,7 @@ Microsoft Agent 365 is generally available. This how-to uses Hosted agents, whic
 - **Microsoft 365 admin permissions:**
   - **AI Administrator** or **Global Administrator** in the Microsoft 365 admin center to approve pending agent requests.
 - **Tenant and service setup:**
-  - Use a region that supports Hosted agents. For the current supported regions, see [Hosted agents in Foundry Agent Service (preview)](../concepts/hosted-agents.md#region-availability).
+  - Use a region that supports Hosted agents. For the current supported regions, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#region-availability).
   - If the `Microsoft.BotService` resource provider isn't already registered in your subscription, register it:
 
     ```azurecli

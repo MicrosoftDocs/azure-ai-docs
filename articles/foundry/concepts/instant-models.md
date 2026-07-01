@@ -4,7 +4,7 @@ description: "Learn about instant access in Microsoft Foundry, which let you cal
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
-ms.date: 05/18/2026
+ms.date: 06/23/2026
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
@@ -30,6 +30,16 @@ Instant access to models lets you call any supported model by name — no deploy
 
 With instant access, the workflow is simple — use a supported instant model name in your code. No deployment needed. The same API, SDK, and client you already use for deployments works with instant access models. No second SDK, no separate client, no configuration changes.
 
+Support for instant access continues to expand over time. Examples of model names you might use include:
+
+* `gpt-chat-latest`
+* `gpt-5.1-codex-max`
+* `gpt-5.2-codex`
+* `gpt-5.3-codex`
+* `gpt-5.5`
+
+The exact set changes frequently. See [Supported models](#supported-models) for ways to see the full list.
+
 # [Python](#tab/python)
 
 The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` (a deployed model) with the name of any instant access model, such as `chat-gpt-latest`.
@@ -44,32 +54,41 @@ The only change from deployment-based code is the `model` parameter. In the code
 
 # [TypeScript](#tab/typescript)
 
-The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+The only change from deployment-based code is the `model` parameter. In the following code, replace `"gpt-5-mini"` with the name of any instant model.
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
 
 # [Java](#tab/java)
 
-The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+The only change from deployment-based code is the `model` parameter. In the following code, replace `"gpt-5-mini"` with the name of any instant model.
 
 :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/agents/CreateResponse.java":::
 
 # [REST API](#tab/rest)
 
-The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+The only change from deployment-based code is the `model` parameter. In the following code, replace `"gpt-5-mini"` with the name of any instant model.  
 Also replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
 
 # [Foundry portal](#tab/portal)
 
-1. On the Home page of your project, select **Test in playground**. (This might instead be labeled **Explore playgrounds**).
-    
-    <!-- :::image type="content" source="../media/instant-models/playground.png" alt-text="Screenshot of Test in playground card with description to test models and get API key and endpoint."::: -->
-
+1. On the Home page of your project, select **Test in playground**. (This option might instead be labeled **Explore playgrounds**.)
 1. Use the **Model** dropdown in the playground to switch among deployed and instant access models.
 
 ---
+
+## Playground for instant access models
+
+To reach the playground for instant access models, use one of these paths:
+
+1. From **Home**, select **Playground**.
+1. From **Home**, select **Catalog**, and then select **Playground**.
+1. From a model details page, select **Playground**.
+
+:::image type="content" source="media/instant-models/playground-navigation-paths-flowchart.png" alt-text="Diagram of navigation paths from Home to Playground, including Catalog and Model routes.":::
+
+When you're in a playground, use the **Model** dropdown to switch to other instant access or deployed models.
 
 
 ### Why instant access matters
@@ -82,7 +101,14 @@ Deployments aren't going away. They remain the right choice when you need reserv
 
 ## Supported models
 
-New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
+New models support instant access by default when they're released. The product team considers support for additional models based on customer demand. The list grows over time, and examples of models you might see include:
+* `chat-gpt-latest`
+* `gpt-5.1-codex`
+* `gpt-5.1-codex-mini`
+* `gpt-5.1-codex-max`
+* `gpt-5.2-codex`
+* `gpt-5.3-codex`
+* `gpt-5.5`
 
 To see all models that support instant access:
 

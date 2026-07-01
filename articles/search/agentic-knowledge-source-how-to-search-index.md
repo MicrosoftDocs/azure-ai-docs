@@ -279,59 +279,6 @@ Content-Type: application/json
 
 ::: zone-end
 
-### Source-specific properties
-
-The following properties apply to search index knowledge sources.
-
-::: zone pivot="csharp"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `Description` | A description of the knowledge source. | String | Yes | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `SearchIndexParameters` | Parameters specific to search index knowledge sources: `SearchIndexName`, `SemanticConfigurationName`, `SourceDataFields`, `SearchFields`, and `BaseFilter` (2026-05-01-preview only). | Object | Yes | Yes |
-| `SearchIndexName` | The name of the existing search index. | String | Yes | Yes |
-| `SemanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
-| `SourceDataFields` | The index fields returned when you specify `IncludeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
-| `SearchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
-| `BaseFilter` | A default filter expression persisted on the knowledge source that applies to every retrieve request. At retrieve time, the value is AND-composed with the request's `FilterAddOn`. Available in the 2026-05-01-preview API only. | String | Yes | No |
-
-::: zone-end
-
-::: zone pivot="python"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `search_index_parameters` | Parameters specific to search index knowledge sources: `search_index_name`, `semantic_configuration_name`, `source_data_fields`, `search_fields`, and `base_filter` (2026-05-01-preview only). | Object | Yes | Yes |
-| `search_index_name` | The name of the existing search index. | String | Yes | Yes |
-| `semantic_configuration_name` | Overrides the default semantic configuration for the search index. | String | Yes | No |
-| `source_data_fields` | The index fields returned when you specify `include_reference_source_data` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
-| `search_fields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
-| `base_filter` | A default filter expression persisted on the knowledge source that applies to every retrieve request. At retrieve time, the value is AND-composed with the request's `filter_add_on`. Available in the 2026-05-01-preview API only. | String | Yes | No |
-
-::: zone-end
-
-::: zone pivot="rest"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `searchIndex` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `searchIndexParameters` | Parameters specific to search index knowledge sources: `searchIndexName`, `semanticConfigurationName`, `sourceDataFields`, `searchFields`, and `baseFilter` (2026-05-01-preview only). | Object | Yes | Yes |
-| `searchIndexName` | The name of the existing search index. | String | Yes | Yes |
-| `semanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
-| `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
-| `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
-| `baseFilter` | A default filter expression persisted on the knowledge source that applies to every retrieve request. At retrieve time, the value is AND-composed with the request's `filterAddOn`. Available in the 2026-05-01-preview API only. | String | Yes | No |
-
-::: zone-end
-
 ### Persist a base filter on a knowledge source (preview)
 
 > [!IMPORTANT]

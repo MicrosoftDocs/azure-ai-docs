@@ -55,7 +55,7 @@ Global provisioned throughput deployments of base and custom models are availabl
 >
 > Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
-While in preview, **Fireworks requires an administrator to enable the service** within your Azure subscription.
+While Fireworks on Foundry is generally available, **an administrator must enable the service** within your Azure subscription. The Azure **Preview features** portal enables customers to turn on the service by using the following steps.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 

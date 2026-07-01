@@ -3,7 +3,7 @@ title: Supported Regions
 description: Learn about the regions that offer Azure AI Search and the features available in each region.
 author: mattwojo
 ms.author: mattwoj
-ms.date: 06/05/2026
+ms.date: 06/25/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ai-usage: ai-assisted
@@ -22,7 +22,7 @@ When you create an Azure AI Search service, your region selection might depend o
 
 | Feature | Description | Availability |
 |---------|-------------|--------------|
-| [AI enrichment](cognitive-search-concept-intro.md) | Refers to [built-in skills](cognitive-search-predefined-skills.md) that make internal calls to Foundry Tools for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with a [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) in the same physical region. You can bypass region requirements by using [identity-based connections](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection). | Regional support is noted in this article. |
+| [AI enrichment](cognitive-search-concept-intro.md) | Refers to [built-in skills](cognitive-search-predefined-skills.md) that make internal calls to Foundry Tools for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with a [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) in the same physical region. You can bypass region requirements by using [identity-based connections](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection).  For the purposes of region availability in this article, AI enrichment refers only to built-in AI skills that use an [Azure AI Search-managed / Foundry-attached resource for billing](cognitive-search-predefined-skills.md#foundry-resource). It doesn't include [custom skills](cognitive-search-predefined-skills.md#custom-skills), or [customer-hosted AI workloads](cognitive-search-predefined-skills.md#azure-hosted-model-or-resource). | Regional support is noted in this article. |
 | [Availability zones](/azure/reliability/reliability-ai-search#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high availability within the same geo. | Regional support is noted in this article. |
 | [Agentic retrieval](agentic-retrieval-overview.md) | Uses the agentic retrieval engine designed for conversational search. | Regional support is noted in this article. |
 | [Confidential computing](search-security-best-practices.md#optional-enable-confidential-computing) | Deploys your search service on confidential VMs to process data in a hardware-based trusted execution environment.<p>Confidential computing disables or restricts certain features, including agentic retrieval, semantic ranker, query rewrite, and skillset execution. | Regional support is noted in this article. |
