@@ -83,11 +83,9 @@ Replace the placeholders as follows:
 
 You can find the workspace and item GUIDs in the Microsoft Fabric portal: open your workspace, select the item, and copy the IDs from the browser URL.
 
-> [!NOTE]
-> If the data agent's workspace uses a [workspace-level private link](#virtual-network-support), replace `api.fabric.microsoft.com` with the workspace-specific host. See [Connect to a data agent over a workspace-level private link](#connect-to-a-data-agent-over-a-workspace-level-private-link).
+If the data agent's workspace uses a [workspace-level private link](#virtual-network-support), replace `api.fabric.microsoft.com` with the workspace-specific host. See [Connect to a data agent over a workspace-level private link](#connect-to-a-data-agent-over-a-workspace-level-private-link).
 
-> [!NOTE]
-> Among the Fabric IQ item types, only the **data agent** MCP endpoint supports long-running operations through [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Ontology and Power BI semantic model endpoints run synchronously and are subject to the standard tool-call timeout. Because the data agent endpoint is an MCP server, you run it in background mode the same way as any other MCP tool — set `background` to `true` and poll the response until it completes. For code samples, see [Long-running operations](model-context-protocol.md#long-running-operations-preview).
+Among the Fabric IQ item types, only the **data agent** MCP endpoint supports long-running operations through [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Ontology and Power BI semantic model endpoints run synchronously and are subject to the standard tool-call timeout. Because the data agent endpoint is an MCP server, you run it in background mode the same way as any other MCP tool — set `background` to `true` and poll the response until it completes. For code samples, see [Long-running operations](model-context-protocol.md#long-running-operations-preview).
 
 > [!TIP]
 > For **Power BI semantic models**, we highly recommend using the latest models such as `gpt-5.4` or `opus 4.7`. Semantic model queries involve complex measure and hierarchy reasoning that benefits significantly from the improved reasoning capability of newer models.
@@ -112,8 +110,7 @@ For **`server_label`**, use any short lowercase identifier with hyphens, for exa
 
 Use Foundry Toolkit for Visual Studio Code to add an existing Fabric IQ connection to a toolbox, then connect your agent to the published toolbox endpoint.
 
-> [!NOTE]
-> Adding a Fabric IQ (OneLake Catalog) connection from Foundry Toolkit isn't directly supported yet. Open this toolbox in the Foundry portal to create the connection, then return to Foundry Toolkit. The connection appears in the **Configured** list.
+Adding a Fabric IQ (OneLake Catalog) connection from Foundry Toolkit isn't directly supported yet. Open this toolbox in the Foundry portal to create the connection, then return to Foundry Toolkit. The connection appears in the **Configured** list.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -252,8 +249,7 @@ Content-Type: application/json
 
 The response includes metadata about the agent execution and a `text` field in `content` with the synthesized answer.
 
-> [!NOTE]
-> Use token scope `https://ai.azure.com/.default` when getting the bearer token.
+Use token scope `https://ai.azure.com/.default` when getting the bearer token.
 
 :::zone-end
 
@@ -396,8 +392,7 @@ In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go t
 
 Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save** to create the connection.
 
-> [!NOTE]
-> For data agent connections using BYO Entra, use the `DataAgent.Execute.All` delegated permission instead of the Power BI scopes listed above. Add `https://analysis.windows.net/powerbi/api/DataAgent.Execute.All` as the scope in the Foundry connection, and grant admin consent for that permission in your app registration.
+For data agent connections using BYO Entra, use the `DataAgent.Execute.All` delegated permission instead of the Power BI scopes listed above. Add `https://analysis.windows.net/powerbi/api/DataAgent.Execute.All` as the scope in the Foundry connection, and grant admin consent for that permission in your app registration.
 
 #### Add the redirect URI to your app registration
 
@@ -505,8 +500,7 @@ A Global Administrator must grant tenant-wide admin consent for the Entra app re
 1. Select **API permissions**.
 1. Select **Grant admin consent for {your-organization}** and approve. Each listed permission shows a green checkmark when consent is granted.
 
-> [!NOTE]
-> DataAgent.Execute.All also requires admin consent. If you use this permission for data agent connections, follow the same process.
+`DataAgent.Execute.All` also requires admin consent. If you use this permission for data agent connections, follow the same process.
 
 ### Restrict network access
 
