@@ -139,7 +139,7 @@ The 200 hosted-agent limit is separate from the ~250 project cap, which applies 
 
 ### Outbound connectivity
 
-Each Hosted agent runs in a Micro VM attached to your delegated subnet with a dedicated network interface and uses its own IP for outbound communication. Tool calls always route through the single-tenant data proxy.
+Each Hosted agent runs in a Micro VM attached to your delegated subnet with a dedicated network interface and uses its own IP for outbound communication. Tool calls always route through the single-tenant data proxy. For source-code agent deployments, the provisioning step also requires outbound access to specific endpoints. See [Firewall requirements for private virtual networks](../how-to/deploy-hosted-agent-code.md#firewall-requirements-for-private-virtual-networks).
 
 ### Performance and scaling
 
