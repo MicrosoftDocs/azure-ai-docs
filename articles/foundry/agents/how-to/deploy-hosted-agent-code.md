@@ -131,7 +131,7 @@ All source-code deployments require outbound access to:
 - `mcr.microsoft.com`
 - `*.login.microsoft.com`
 
-`bundled` dependency resolution also requires:
+The `bundled` dependency resolution also requires outbound access to:
 
 - `deb.debian.org`
 - `packages.microsoft.com`
