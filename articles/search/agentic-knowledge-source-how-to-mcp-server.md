@@ -212,21 +212,6 @@ Prefer: return=representation
 
 ::: zone-end
 
-### Source-specific properties
-
-The following properties apply to MCP Server knowledge sources.
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `mcpServer` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `mcpServerParameters` | Parameters specific to MCP Server knowledge sources: `serverURL`, `authentication`, and `tools`. | Object | No | Yes |
-| `serverURL` | The URL of the MCP server. | String | No | Yes |
-| `authentication` | Authentication credentials for the MCP server. If omitted, requests are sent without authentication. For supported authentication options, see [Authentication options](#authentication-options). | Object | Yes | No |
-| `tools` | An array of tools to allow from the MCP server. Must contain at least one entry. Each tool name must be unique within the list and must match a tool exposed by the MCP server. The knowledge source doesn't automatically allow all MCP server tools, so you must explicitly list each tool that is allowed. For supported tool properties, see [Tool properties](#tool-properties). | Array | Yes | Yes |
-
 ### Authentication options
 
 If your MCP server requires authentication, use one of the following options.
@@ -403,16 +388,9 @@ my-mcp-server-ks-header-value1: {{mcp-server-header-value}}
 
 Each header pair must include exactly one name control header and one matching value control header. Header names and values must be valid HTTP request headers. If a query-time header uses the same target header name as a `storedHeaders` entry, the query-time value overrides the stored value for that request.
 
-### Tool properties
+### Configure tools
 
-Each entry in the `tools` array is an `McpServerTool` object with the following properties.
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the MCP tool to invoke. Must match a tool name exposed by the MCP server. | String | No | Yes |
-| `outputParsing` | Controls how the tool's raw output is parsed into rankable documents. Defaults to `auto`. For supported output parsing modes, see [Output parsing modes](#output-parsing-modes). | Object | No | No |
-| `inclusionMode` | Controls whether the tool's results are included only when ranked highly (`reranked`) or always regardless of relevance score (`always`). Defaults to `reranked`. | String | Yes | No |
-| `maxOutputTokens` | Maximum number of tokens to retain from the tool output before ranking. Defaults to 10,000. | Integer | No | No |
+Each entry in the `tools` array specifies an allowed MCP tool and optional output parsing behavior.
 
 ### Output parsing modes
 
@@ -435,11 +413,6 @@ The `json` mode extracts documents from a specific location in the JSON output u
   }
 }
 ```
-
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `documentsPath` | A [JSONPath](https://goessner.net/articles/JsonPath/) expression that resolves to an array in the tool output. Each element in the array becomes a rankable document. | String | Yes |
-| `includeContext` | Whether to include the full JSON response alongside each extracted document as additional context. Defaults to `false`. | Boolean | No |
 
 # [split](#tab/split)
 

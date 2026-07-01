@@ -15,9 +15,6 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 # Quickstart: Deploy your first hosted agent
 
-> [!NOTE]
-> Hosted agents are currently in preview.
-
 ## Prerequisites
 
 Before you begin, you need:

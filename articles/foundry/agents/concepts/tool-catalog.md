@@ -61,7 +61,7 @@ The most common custom tool options include:
 
 For the complete list of custom tool options, see [All custom tools](#all-custom-tools).
 
-### Toolbox (preview)
+### Toolbox
 
 A *toolbox* is a curated bundle of tools - such as web search, Azure AI Search, code interpreter, file search, MCP servers, and OpenAPI tools - that you configure once and expose as a single MCP-compatible endpoint. Instead of attaching each tool individually to every agent definition, define the collection in a toolbox and connect any agent to the toolbox endpoint. Because a toolbox exposes an MCP-compatible endpoint, any MCP-capable runtime can consume it - including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and custom code.
 
@@ -272,7 +272,7 @@ The following table lists all custom tool options for connecting your own capabi
 | [Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md) | Connect your agent to tools hosted on an MCP server endpoint. |
 | [OpenAPI tool](../how-to/tools/openapi.md) | Connect your agent to external APIs using an OpenAPI 3.0 or 3.1 specification. |
 | [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md) | Connect your agent to other agents through A2A-compatible endpoints. |
-| [Toolbox (preview)](../how-to/tools/toolbox.md) | Bundle multiple tools into a single MCP endpoint for reuse across agents. |
+| [Toolbox](../how-to/tools/toolbox.md) | Bundle multiple tools into a single MCP endpoint for reuse across agents. |
 
 ## Key concepts
 
@@ -366,7 +366,7 @@ Use these checks to resolve common issues:
 ## Related content
 
 - [Tool best practices for Foundry Agent Service](tool-best-practice.md)
-- [Create and use a Foundry Toolbox (preview)](../how-to/tools/toolbox.md)
+- [Create and use a Foundry Toolbox](../how-to/tools/toolbox.md)
 - [Set up MCP server authentication](../how-to/mcp-authentication.md)
 - [Govern MCP tools by using an AI gateway](../how-to/tools/governance.md)
 - [Create a private tool catalog](../how-to/private-tool-catalog.md)

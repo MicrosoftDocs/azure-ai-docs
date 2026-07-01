@@ -1,6 +1,6 @@
 ---
-title: "Hosted agents in Foundry Agent Service (preview)"
-description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
+title: "Hosted agents in Foundry Agent Service"
+description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
 ms.date: 06/22/2026
@@ -209,7 +209,7 @@ Each session has a persistent `$HOME`. Its contents are preserved when compute i
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
@@ -225,17 +225,9 @@ Compare the observed peaks against the cpu and memory you allocated. If sustaine
 Hosted agents support deployment within network-isolated Foundry resources and can use a customer-provided Azure Virtual Network for outbound traffic. This enables agents in network-isolated Foundry deployments to reach private resources such as databases or internal APIs. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
 
 > [!NOTE]
-> The Azure Container Registry holding your agent image must currently remain reachable over its public endpoint. Private-network-secured ACR isn't currently supported.
+> Foundry projects created after June 25, 2026 support a private (network-secured) Azure Container Registry for your agent image. Projects created before that date require the registry to remain reachable over its public endpoint. Existing projects aren't affected. For more information, see [Limitations](../how-to/virtual-networks.md#limitations).
 
-## Limits, pricing, and availability (preview)
-
-Hosted agents are currently in preview.
-
-### Limitations during preview
-
-| Limit | Scope | Default Value | Adjustable |
-| --------- | ------ | ----- | ------- |
-| Maximum active concurrent sessions | per subscription per region | 50 | Yes, with quota requests to Microsoft Support |
+## Limits, pricing, and availability
 
 ### Pricing
 

@@ -25,7 +25,7 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 - A [Foundry project](../../how-to/create-projects.md) with at least one [agent](../../agents/overview.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
 - Python 3.9 or later (required for Python SDK steps).
-- Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
+- Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If those Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure) (protection level set to **Protected**), also assign the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) to read that data.
 
 ## Connect Application Insights
 
@@ -367,7 +367,7 @@ To view the full sample code, see:
 | Issue | Cause | Resolution |
 |---|---|---|
 | Dashboard charts are empty | No recent traffic, time range excludes data, or ingestion delay | Generate new agent traffic, expand the time range, and refresh after a few minutes. |
-| You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
+| You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
 | Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Foundry User** role. |
 | Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
 

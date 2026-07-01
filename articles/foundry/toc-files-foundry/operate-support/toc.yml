@@ -1,8 +1,8 @@
 items:
-- name: What's new in Microsoft Foundry
+- name: What's new
   href: ../../whats-new-foundry.md
 # Service Status and Support
-- name: Use Microsoft Foundry with a screen reader
+- name: Use with a screen reader
   href: ../../tutorials/screen-reader.md
 - name: Known issues
   href: ../../reference/foundry-known-issues.md

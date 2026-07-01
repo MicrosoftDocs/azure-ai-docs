@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Govern agent infrastructure as a Microsoft Entra administrator
 
-As a Microsoft Entra administrator, you might need to take action on Microsoft Foundry agents in your tenant. Before you do, understand that Foundry gives you **infrastructure actions**, not just runtime governance. When you stop or delete an agent, you operate on Azure resources. These resources might serve multiple tenants or teams.
+As a Microsoft Entra administrator, you might need to take action on Microsoft Foundry agents in your tenant. Before you take action, understand that Foundry provides **infrastructure actions**, not just runtime governance. When you disable, stop, or delete an agent, you operate on Azure resources. These resources might serve multiple tenants or teams.
 
 This article helps you:
 - Get the access you need
@@ -24,7 +24,7 @@ This article helps you:
 The guidance here focuses on infrastructure-level governance of agents built with [Foundry Agent Service](../agents/overview.md) as a fallback for situations that require direct administrative action.
 
 > [!IMPORTANT]
-> Always prefer **Stop** over **Delete** when you need to take action against an agent. Stopping is reversible. Deletion permanently removes Azure resources and can affect other tenants.
+> Always prefer disabling a Foundry agent, or stopping an agent application, over deletion when you need to take action against an agent. Disabling and stopping are reversible. Deletion permanently removes Azure resources and can affect other tenants.
 
 ## Prerequisites
 
@@ -63,7 +63,7 @@ For a full description of agent lifecycle operations, see [Manage agents in Foun
 
 ### Infrastructure actions vs. admin center actions
 
-The actions available in the Foundry Control Plane are **infrastructure operations** on Azure resources. They're different from the **Block** and **Unblock** actions you might be familiar with in Microsoft 365 Admin Center.
+The actions available in Foundry are **infrastructure operations** on Azure resources. They're different from the **Block** and **Unblock** actions you might be familiar with in Microsoft 365 Admin Center.
 
 **Block actions** in Microsoft 365 Admin Center and Teams Admin Center affect agent visibility to users:
 - **Scope**: Only affects agent projection in Teams and Microsoft 365 Copilot
@@ -71,13 +71,14 @@ The actions available in the Foundry Control Plane are **infrastructure operatio
 - **Foundry Access**: The agent remains fully functional in Foundry portal and other integration points
 - **Infrastructure**: No impact on underlying Azure resources or compute
 
-**Infrastructure actions** in Foundry Control Plane affect the agent's underlying resources:
-- [**Stop** and **Start**](how-to-manage-agents.md#start-and-stop-agents) operate on individual deployments by deallocating or provisioning compute. They affect the underlying Azure infrastructure and make the agent unavailable across all channels (Teams, Microsoft 365 Copilot, Foundry, APIs).
-- **Delete** permanently removes Azure resources. For published agents, deletion includes the agent application and its deployments. This action can't be undone.
+**Infrastructure actions** in Foundry affect the agent's underlying resources:
+- **Disable** and **Enable** take a Foundry agent's endpoint offline or bring it back online. The agent and its versions remain intact, but while disabled the agent rejects requests across all channels (Teams, Microsoft 365 Copilot, Foundry, APIs).
+- [**Stop** and **Start**](how-to-manage-agents.md#start-and-stop-agents) deallocate or provision the compute behind an agent application's deployments. The application and its deployments remain intact, but while stopped the agent rejects requests across all channels (Teams, Microsoft 365 Copilot, Foundry, APIs).
+- **Delete** permanently removes Azure resources. For agent applications, deletion includes the application and its deployments. This action can't be undone.
 
 If an agent application serves a multitenant scenario, infrastructure actions affect **all consumers** of that agent, not just your tenant's users.
 
-Always prefer **Stop** over **Delete**. Stopping preserves the option to restart later. Delete should be a last resort, used only after you coordinate with resource owners and confirm the agent should never run again.
+Always prefer disabling a Foundry agent, or stopping an agent application, over deletion. These actions preserve the option to resume later. Delete should be a last resort, used only after you coordinate with resource owners and confirm the agent should never run again.
 
 ## Identify the Foundry resource type for an agent
 
@@ -182,11 +183,23 @@ This two-step process ensures you remove both the specific permissions you grant
 
 After you elevate your access, assign yourself the minimum role needed for your action. Don't stay at root scope longer than necessary.
 
-| Action | Minimum built-in role for Foundry agent objects | Minimum built-in role for Agent applications |
-|---|---|---|
-| View | [Foundry User]<br/>(**Reader** isn't sufficient) | [Reader](/azure/role-based-access-control/built-in-roles/general#reader) |
-| Stop/Start | _Not supported_ | [Foundry Owner] |
-| Delete | [Foundry User] | [Foundry Owner] |
+# [Foundry agent](#tab/foundry-agent)
+
+| Action | Minimum built-in role |
+|---|---|
+| View | [Foundry User]<br/>(**Reader** isn't sufficient) |
+| Disable or enable | [Foundry User] |
+| Delete | [Foundry User] |
+
+# [Agent application](#tab/agent-application)
+
+| Action | Minimum built-in role |
+|---|---|
+| View | [Reader](/azure/role-based-access-control/built-in-roles/general#reader) |
+| Stop or start | [Foundry Owner] |
+| Delete | [Foundry Owner] |
+
+---
 
 [Foundry User]: /azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-user
 [Foundry Owner]: /azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner
@@ -197,95 +210,108 @@ If your organization uses PIM, consider creating eligible assignments instead of
 
 ## Take action on an agent
 
-When you need to intervene, choose the least disruptive action for your situation. Your choice of action and agent type determines which interface you use to manage the agent. Use the tabs in each section to identify the right interface for your scenario.
+When you need to intervene, choose the least disruptive action for your situation. For Foundry agents, the preferred action is to disable the agent endpoint, which takes it offline without deleting anything. You can enable it again later. For agent applications, the equivalent action is to stop the application's deployments. Your choice of action and agent type determines which interface you use. Use the tabs in each section to identify the right interface for your scenario.
 
-# [Microsoft 365 Admin Center](#tab/microsoft-365-admin-center)
+# [Foundry agent](#tab/foundry-agent)
 
-Microsoft 365 Admin Center includes Foundry agents in your full agent inventory. You can conveniently stop and start agent applications directly from the registry entry.
+For Foundry agents, disable and enable the agent endpoint through the REST API or the Azure CLI. The Foundry portal supports deletion. Microsoft 365 Admin Center doesn't include actions for Foundry agents.
 
-| Agent type | Supported actions in Microsoft 365 Admin Center |
+| Interface | Supported actions |
 | --- | --- |
-| Agent applications | Stop, Start |
-| Foundry agents | _None - use another interface_ |
+| Microsoft 365 Admin Center | _Not available_ |
+| Foundry portal | Delete |
+| REST API or CLI | Disable, Enable, Delete |
 
-# [Foundry portal](#tab/foundry-portal)
+# [Agent application](#tab/agent-application)
 
-The Foundry portal provides a web-based interface for managing Foundry resources.
+For agent applications, stop and start the application's deployments through any of the supported interfaces.
 
-| Agent type | Supported actions in the portal |
+| Interface | Supported actions |
 | --- | --- |
-| Agent applications | Stop, Start, Delete |
-| Foundry agents | Delete _(Stop and Start aren't supported)_|
-
-# [REST API](#tab/rest-api)
-
-The REST API lets you manage Foundry programmatically. This approach is useful when you need to act across multiple deployments or automate lifecycle operations.
-
-| Agent type | Supported actions in the portal |
-| --- | --- |
-| Agent applications | Stop, Start, Delete |
-| Foundry agents | Delete _(Stop and Start aren't supported)_ |
-
-The examples use `az rest` commands to simplify authentication. The easiest way to run these commands is through [Azure Cloud Shell](/azure/cloud-shell/overview). Cloud Shell requires no installation and uses your current Azure sign-in session. If you prefer to work locally, [install the Azure CLI](/cli/azure/install-azure-cli) and [sign in](/cli/azure/authenticate-azure-cli) first.
-
-For each REST API example, replace the placeholder values with your own subscription, resource group, Foundry account, project, and other resource names.
+| Microsoft 365 Admin Center | Stop, Start |
+| Foundry portal | Stop, Start, Delete |
+| REST API or CLI | Stop, Start, Delete |
 
 ---
 
-### Stop an agent
+The REST API examples use `az rest` commands to simplify authentication. The easiest way to run these commands is through [Azure Cloud Shell](/azure/cloud-shell/overview). Cloud Shell requires no installation and uses your current Azure sign-in session. If you prefer to work locally, [install the Azure CLI](/cli/azure/install-azure-cli) and [sign in](/cli/azure/authenticate-azure-cli) first.
 
-Stopping an agent is the preferred approach for most situations. Stopping disables the agent without destroying resources. You can restart the agent later. 
+For each REST API example, replace the placeholder values with your own subscription, resource group, Foundry account, project, and other resource names.
 
-# [Agent application](#tab/agent-application/microsoft-365-admin-center)
+<a id="stop-an-agent"></a>
+### Disable or stop an agent
+
+Take an agent offline without deleting it. For Foundry agents, disable the agent endpoint. For agent applications, stop the application's deployments. Both approaches are reversible and preserve the underlying resources.
+
+# [Microsoft 365 Admin Center](#tab/microsoft-365-admin-center/foundry-agent)
+
+Microsoft 365 Admin Center doesn't currently include disable and enable actions for Foundry agents. To disable or enable a Foundry agent, use the **REST API** tab.
+
+# [Microsoft 365 Admin Center](#tab/microsoft-365-admin-center/agent-application)
 
 When you open the agent details page for a Foundry agent application, Microsoft 365 Admin Center automatically checks if you have the necessary permissions to manage the agent. If you do, a **Stop** or **Start** button is available at the top of the page, based on the current state of the application. If you don't see these buttons but are a Global Administrator, follow the prompt to automatically elevate your access and grant yourself the Foundry Owner role over the agent application.
 
 If your agent application is currently running, select **Stop** to stop it. This action stops every agent deployment associated with the application. The agent application and its deployments still exist. You can start them again later.
 
-When you're ready to start the agent application again, select **Start**. This action starts the agent application's most recent deployment. If you need to start other deployments, use the REST API.
+When you're ready to start the agent application again, select **Start**. This action starts the agent application's most recent deployment. To start other deployments, use the REST API.
 
 If you elevated your access, make sure to [remove it when you're done](#remove-elevated-access).
 
-# [Foundry agent](#tab/foundry-agent/microsoft-365-admin-center)
+# [Foundry portal](#tab/foundry-portal/foundry-agent)
 
-The Foundry agent resource type doesn't have a stop API. For agent resources that can't continue to run, consider deletion.
+The Foundry portal doesn't currently include disable and enable actions for Foundry agents. To disable or enable a Foundry agent, use the **REST API** tab.
 
-# [Agent application](#tab/agent-application/foundry-portal)
+# [Foundry portal](#tab/foundry-portal/agent-application)
 
 For the full stop procedure in the portal, see [Start and stop agents](how-to-manage-agents.md#start-and-stop-agents).
 
-# [Foundry agent](#tab/foundry-agent/foundry-portal)
+# [REST API](#tab/rest-api/foundry-agent)
 
-The Foundry agent resource type doesn't have a stop API. For agent resources that can't continue to run, consider deletion.
+Disable a Foundry agent to take its endpoint offline. The agent and its versions remain intact, and you can enable the agent again later. This action uses the Foundry data-plane API. For the full procedure, see [Disable or enable an agent](../agents/how-to/manage-hosted-agent.md#disable-or-enable-an-agent).
 
-# [Agent application](#tab/agent-application/rest-api)
+To disable an agent, send a POST request to the agent's `:disable` action:
+
+```azurecli
+az rest --method POST \
+  --uri "https://{accountName}.services.ai.azure.com/api/projects/{projectName}/agents/{agentName}:disable?api-version=v1" \
+  --resource https://ai.azure.com
+```
+
+To enable the agent again, call the `:enable` action:
+
+```azurecli
+az rest --method POST \
+  --uri "https://{accountName}.services.ai.azure.com/api/projects/{projectName}/agents/{agentName}:enable?api-version=v1" \
+  --resource https://ai.azure.com
+```
+
+> [!NOTE]
+> Foundry data-plane requests require the `--resource https://ai.azure.com` parameter so that `az rest` requests an access token for the correct audience.
+
+# [REST API](#tab/rest-api/agent-application)
 
 To fully stop an agent application, you need to stop each of its deployments. Stopping a deployment deallocates the underlying compute resources, but the deployment and application still exist and can be restarted later.
 
 First, list the deployments for your agent application:
 
 ```azurecli
-az rest --method get \
+az rest --method GET \
   --uri "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{applicationName}/agentdeployments?api-version=2025-10-01-preview"
 ```
 
 Then, for each deployment, run the stop command:
 
 ```azurecli
-az rest --method post \
+az rest --method POST \
   --uri "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{applicationName}/agentdeployments/{deploymentName}/stop?api-version=2025-10-01-preview"
 ```
 
 When you're ready to start the agent application again, you can start a deployment with this command:
 
 ```azurecli
-az rest --method post \
+az rest --method POST \
   --uri "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{applicationName}/agentdeployments/{deploymentName}/start?api-version=2025-10-01-preview"
 ```
-
-# [Foundry agent](#tab/foundry-agent/rest-api)
-
-The Foundry agent resource type doesn't have a stop API. For agent resources that can't continue to run, consider deletion.
 
 ---
 
@@ -293,19 +319,15 @@ The Foundry agent resource type doesn't have a stop API. For agent resources tha
 
 Deletion permanently removes agent resources and can't be undone. Before you delete, verify that no other tenants or teams depend on the agent, and confirm that the resource owners agree with permanent removal.
 
-# [Agent application](#tab/agent-application/microsoft-365-admin-center)
+# [Microsoft 365 Admin Center](#tab/microsoft-365-admin-center/foundry-agent)
 
-Deleting Foundry agents isn't supported in Microsoft 365 Admin Center. Use another interface to delete if truly necessary.
+Microsoft 365 Admin Center doesn't support deleting Foundry agents. Use another interface to delete if truly necessary.
 
-# [Foundry agent](#tab/foundry-agent/microsoft-365-admin-center)
+# [Microsoft 365 Admin Center](#tab/microsoft-365-admin-center/agent-application)
 
-Deleting Foundry agents isn't supported in Microsoft 365 Admin Center. Use another interface to delete if truly necessary.
+Microsoft 365 Admin Center doesn't support deleting agent applications. Use another interface to delete if truly necessary.
 
-# [Agent application](#tab/agent-application/foundry-portal)
-
-The Foundry portal doesn't currently provide a way to directly delete agent applications. If you need to remove just the application object, use the REST API.
-
-# [Foundry agent](#tab/foundry-agent/foundry-portal)
+# [Foundry portal](#tab/foundry-portal/foundry-agent)
 
 To delete an agent:
 
@@ -318,9 +340,26 @@ To delete an agent:
 To delete an individual agent version, select the version through the dropdown next to the **Save** button. Then, within the same dropdown, select **Delete current version**.
 
 > [!CAUTION]
-> Deleting an agent permanently removes the resource. If the agent serves multiple tenants, this action affects all of them. Always prefer stopping a deployment over deleting it.
+> Deleting an agent permanently removes the resource. If you route traffic to the deleted agent, clients see errors. If the agent serves multiple tenants, this action affects all of them. Always prefer disabling the agent over deleting it.
 
-# [Agent application](#tab/agent-application/rest-api)
+# [Foundry portal](#tab/foundry-portal/agent-application)
+
+The Foundry portal doesn't currently provide a way to directly delete agent applications. To remove just the application object, use the REST API.
+
+# [REST API](#tab/rest-api/foundry-agent)
+
+If you're sure you need to delete a Foundry agent, use this command:
+
+```azurecli
+az rest --method DELETE \
+  --resource "https://ai.azure.com/" \
+  --uri "https://{accountName}.services.ai.azure.com/api/projects/{projectName}/agents/{agentName}?api-version=v1"
+```
+
+> [!CAUTION]
+> Deleting an agent permanently removes the resource. If you route traffic to the deleted agent, clients see errors. If the agent serves multiple tenants, this action affects all of them. Always prefer disabling the agent over deleting it.
+
+# [REST API](#tab/rest-api/agent-application)
 
 When you use the agent application model, you can delete the entire application or individual deployments. Deleting the application removes all deployments and the application itself. Deleting a deployment only removes that deployment, but the application and other deployments remain.
 
@@ -329,44 +368,31 @@ When you use the agent application model, you can delete the entire application 
 To delete the entire agent application, run the following command:
 
 ```azurecli
-az rest --method delete \
+az rest --method DELETE \
   --uri "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{applicationName}?api-version=2025-10-01-preview"
 ```
 
 > [!CAUTION]
-> Deleting an agent application permanently removes the Azure resource and all its deployments. If the agent serves multiple tenants, this action affects all of them. Always prefer stopping a deployment over deleting it.
+> Deleting an agent application permanently removes the Azure resource and all its deployments. If you route traffic to the deleted application, clients see errors. If the agent serves multiple tenants, this action affects all of them. Always prefer stopping a deployment over deleting it.
 
 #### Delete a specific deployment within an agent application
 
 If you just want to delete a specific deployment, first obtain the deployment name from the list of deployments for the application:
 
 ```azurecli
-az rest --method get \
+az rest --method GET \
   --uri "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{applicationName}/agentdeployments?api-version=2025-10-01-preview"
 ```
 
 Then, run this command to delete that deployment:
 
 ```azurecli
-az rest --method delete \
+az rest --method DELETE \
   --uri "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{applicationName}/agentdeployments/{deploymentName}?api-version=2025-10-01-preview"
 ```
 
 > [!CAUTION]
-> Deleting a deployment permanently removes the Azure resource. If application traffic is being routed to a deleted deployment, clients see errors. If the agent serves multiple tenants, this action affects all of them. Always prefer stopping a deployment over deleting it.
-
-# [Foundry agent](#tab/foundry-agent/rest-api)
-
-If you're sure you need to delete a Foundry agent, use this command:
-
-```azurecli
-az rest --method delete \
-  --resource "https://ai.azure.com/" \
-  --uri "https://{accountName}.services.ai.azure.com/api/projects/{projectName}/agents/{agentName}?api-version=2025-11-15-preview"
-```
-
-> [!CAUTION]
-> Deleting an agent permanently removes the resource. If the agent serves multiple tenants, this action affects all of them. Always prefer stopping a deployment over deleting it.
+> Deleting a deployment permanently removes the Azure resource. If you route traffic to a deleted deployment, clients see errors. If the agent serves multiple tenants, this action affects all of them. Always prefer stopping a deployment over deleting it.
 
 ---
 
@@ -377,3 +403,5 @@ az rest --method delete \
 - [What is Microsoft Foundry Control Plane?](overview.md)
 - [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md)
 - [Agent applications in Microsoft Foundry](../agents/how-to/agent-applications.md)
+- [Migrate from agent applications to Foundry agents](../agents/how-to/migrate-agent-applications.md)
+- [Manage hosted agents in Microsoft Foundry](../agents/how-to/manage-hosted-agent.md)

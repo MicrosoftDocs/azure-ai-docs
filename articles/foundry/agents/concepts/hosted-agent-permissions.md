@@ -190,7 +190,7 @@ If the creator of the project has the ability to assign the `Foundry User` role 
 Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/registries/write` permission at the scope of the resource group.
 
 > [!NOTE]
-> For Hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
+> For Hosted agents, support for the container registry behind a private network (private endpoint with public network access disabled) depends on when the Foundry project was created. Projects created after June 25, 2026 support a private registry. Projects created before that date require the registry to be reachable over its public endpoint. Existing projects aren't affected. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 >
 > The registry's `azureADAuthenticationAsArmPolicy` policy status must be set to `enabled`. This setting allows ACR to accept Microsoft Entra tokens scoped to Azure Resource Manager. To check or update the status, use [`az acr config authentication-as-arm`](/cli/azure/acr/config/authentication-as-arm).
 
@@ -432,6 +432,14 @@ Interacting with the agent requires the calling user or service principal to hav
 | Foundry Account Owner | Foundry project | ✗ No |
 | Foundry Owner | Foundry project | ✔ Yes |
 
+### Delegate the end-user identity
+
+A middle-tier service that authenticates its own end users can scope a session to a specific end user by sending the `x-ms-user-identity` header. To send that header, the calling identity must hold the following data plane permission on the agent:
+
+`Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action`
+
+A caller that sends `x-ms-user-identity` without this permission receives a `403`. For how to use delegated identity, see [Isolate hosted agent sessions per user](../how-to/isolate-sessions-per-user.md#isolate-sessions-for-your-own-users).
+
 ## Agent observability
 
 ### Viewing telemetry data
@@ -440,7 +448,7 @@ Accessing agent telemetry data requires read permissions on the Application Insi
 
 Assign [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) at the Application Insights resource scope. The `*/read` permissions in this role access the underlying Log Analytics workspace data without requiring a separate workspace-scoped assignment.
 
-If you need to work against the Log Analytics workspace directly, also assign [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#log-analytics-reader) at the workspace scope.
+If you need to work against the Log Analytics workspace directly, also assign [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#log-analytics-reader) at the workspace scope. If the workspace tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) to read the protected tables.
 
 | Built-in role | Scope | Can assignee access agent telemetry data? |
 | --- | --- | --- |
@@ -452,6 +460,7 @@ If you need to work against the Log Analytics workspace directly, also assign [L
 | Foundry Owner | Application Insights | ✗ No |
 | Monitoring Reader | Application Insights | ✔ Yes |
 | Log Analytics Reader | Log Analytics Workspace | ✔ Yes (from workspace directly) |
+| Privileged Monitoring Data Reader | Log Analytics Workspace | ✔ Yes (required for [protected tables](/azure/azure-monitor/logs/protected-tables-configure)) |
 
 #### Cost display in billing currency
 

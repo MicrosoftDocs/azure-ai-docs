@@ -1,0 +1,90 @@
+items:
+# Fundamentals
+- name: Rate limits and regions
+  href: ../../concepts/evaluation-regions-limits-virtual-network.md
+- name: Safety evaluations transparency note
+  href: ../../concepts/safety-evaluations-transparency-note.md
+
+# Evaluation Types and Tools
+- name: Supported evaluators
+  items:
+   - name: Overview
+     href: ../../concepts/built-in-evaluators.md
+   - name: General purpose evaluators
+     href: ../../concepts/evaluation-evaluators/general-purpose-evaluators.md
+   - name: Textual similarity evaluators
+     href: ../../concepts/evaluation-evaluators/textual-similarity-evaluators.md
+   - name: Retrieval Augmented Generation (RAG) evaluators
+     href: ../../concepts/evaluation-evaluators/rag-evaluators.md
+   - name: Risk and safety evaluators
+     href: ../../concepts/evaluation-evaluators/risk-safety-evaluators.md
+   - name: Agent evaluators
+     href: ../../concepts/evaluation-evaluators/agent-evaluators.md
+   - name: Azure OpenAI evaluators
+     href: ../../concepts/evaluation-evaluators/azure-openai-graders.md
+   - name: Rubric evaluators
+     href: ../../concepts/evaluation-evaluators/rubric-evaluators.md
+   - name: Custom evaluators
+     href: ../../concepts/evaluation-evaluators/custom-evaluators.md
+
+# Run evaluations
+- name: Run evaluations
+  items:
+   - name: Quickstart
+     href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
+   - name: Evaluate agents
+     href: ../../observability/how-to/evaluate-agent.md
+   - name: Run evaluations from the SDK
+     href: ../../how-to/develop/cloud-evaluation.md
+   - name: Generate a synthetic evaluation dataset
+     href: ../../observability/how-to/evaluation-dataset-synthetic.md
+     displayName: code,accuracy,metrics
+   - name: Run evaluations from the portal
+     href: ../../how-to/evaluate-generative-ai-app.md
+   - name: View evaluation results in the portal
+     href: ../../how-to/evaluate-results.md
+     displayName: accuracy,metrics
+   - name: Analyze evaluation results
+     href: ../../observability/how-to/cluster-analysis.md
+   - name: Run agent evaluations with the Azure Developer CLI
+     displayName: azd cli
+     href: ../../observability/how-to/azure-developer-cli-evaluation.md
+   - name: Run benchmark evaluations
+     href: ../../observability/how-to/benchmark-evaluations.md
+   - name: Set up human evaluation
+     href: ../../observability/how-to/human-evaluation.md
+
+# Optimization
+- name: Optimization
+  items:
+   - name: Optimize agent prompts
+     href: ../../observability/how-to/prompt-optimizer.md
+   - name: Optimize hosted agents (preview)
+     items:
+     - name: Overview
+       href: ../../agents/concepts/agent-optimizer-overview.md
+     - name: Quickstart
+       href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
+     - name: Make your agent optimization-ready
+       href: ../../agents/how-to/make-agent-optimizer-ready.md
+     - name: Create a custom evaluation dataset
+       href: ../../agents/how-to/create-optimizer-dataset.md
+     - name: Optimize agent instructions and skills
+       href: ../../agents/how-to/optimize-agent-targets.md
+
+# Security Testing
+- name: AI red teaming
+  items:
+   - name: Overview
+     href: ../../concepts/ai-red-teaming-agent.md
+   - name: Run red teaming scans in the cloud
+     href: ../../how-to/develop/run-ai-red-teaming-cloud.md
+   - name: Run red teaming scans locally
+     href: ../../how-to/develop/run-scans-ai-red-teaming-agent.md
+
+- name: Evaluations in CI/CD pipelines
+  items:
+   - name: Run evaluations in GitHub Actions
+     href: ../../how-to/evaluation-github-action.md
+   - name: Run evaluations in Azure DevOps
+     href: ../../how-to/evaluation-azure-devops.md

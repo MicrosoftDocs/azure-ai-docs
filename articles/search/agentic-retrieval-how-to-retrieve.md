@@ -325,43 +325,6 @@ Authorization: Bearer {{accessToken}}
 
 :::zone-end
 
-### Request parameters
-
-Pass the following parameters to call the retrieve action.
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `messages` | Contains the chat conversation history sent to the agentic retrieval pipeline. The LLM determines the query from the conversation history. The message format is similar to Azure OpenAI APIs. Supported only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium. | Object | Yes | No |
-| `messages.role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
-| `messages.content` | The message or prompt sent to the LLM. Must be text. | Array | Yes | No |
-| `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. For a usage example, see [Inspect model names in activity logs](#inspect-model-names-in-activity-logs). | Boolean | Yes | No |
-| `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. If `maxOutputSize` is also set, both constraints apply, and whichever limit is reached first wins. The service can return fewer documents than this parameter's value if fewer results survive ranking, thresholding, or deduplication. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. If `maxOutputDocuments` is also set, both constraints apply, and whichever limit is reached first wins. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
-| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
-| `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
-| `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
-| `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. This parameter is independent of `failOnError`. To require a source to always run and fail the request if it errors, set both to `true`. | Boolean | Yes | No |
-| `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` and an error message that identifies the knowledge source that couldn't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`, which means the pipeline favors availability and returns results from other sources when one fails. Independent of `alwaysQuerySource`, which controls whether the source is attempted at all; `failOnError` controls what happens when that attempt fails. For a usage example, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
-| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Use `50` for cross-region compatibility because some preview regions cap this per-source parameter at 50. Doesn't control the final number of grounding documents returned to the caller. The service can return fewer documents when fewer matches are available or when internal limits apply. For a usage example, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
-| `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. For a usage example, see [Set references for each knowledge source](#set-references-for-each-knowledge-source). | Boolean | Yes | No |
-| `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. For a usage example, see [Set references for each knowledge source](#set-references-for-each-knowledge-source). | Boolean | Yes | No |
-| `knowledgeSourceParams.rerankerThreshold` | Minimum reranker score that a candidate document must have to be included in the result set for this source. | Number | Yes | No |
-| `knowledgeSourceParams.filterAddOn` | OData filter appended to the persisted `baseFilter` (if any) for search index knowledge sources, narrowing the source query at request time. For filter syntax and examples, see [Filter search index knowledge sources at query time](#filter-search-index-knowledge-sources-at-query-time). | String | Yes | No |
-
-# [2026-04-01](#tab/2026-04-01)
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `intents` | A list of search intents sent to the agentic retrieval pipeline. Each intent specifies a query type and a search string. | Array | Yes | Yes |
-| `intents.type` | The query type. The only valid value is `semantic`. | String | Yes | Yes |
-| `intents.search` | The search string for the query. | String | Yes | Yes |
-| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
-
----
-
 ### Include images in retrieve responses (preview)
 
 For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition.
@@ -620,9 +583,9 @@ The following table shows which knowledge sources require ingestion-time configu
 
 | Knowledge source | Requires `ingestionPermissionOptions` | How permissions are enforced |
 |---|---|---|
-| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes, ACLs, or Microsoft Purview matched against user identity. |
-| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested document Microsoft Purview sensitivity labels matched against user identity. |
-| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs or Microsoft Purview sensitivity labels matched against user identity. |
+| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md) | ✅ | Ingested RBAC scopes, ACLs, or Microsoft Purview matched against user identity. |
+| [OneLake](agentic-knowledge-source-how-to-onelake.md) | ✅ | Ingested document Microsoft Purview sensitivity labels matched against user identity. |
+| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) | ✅ | Ingested SharePoint ACLs or Microsoft Purview sensitivity labels matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
 | [Fabric Data Agent](agentic-knowledge-source-how-to-fabric-data-agent.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the data agent on their behalf. |
 | [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the ontology item on their behalf. |

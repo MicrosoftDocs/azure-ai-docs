@@ -502,6 +502,7 @@ Published agents use a publisher-pays model: the publisher (the Foundry project 
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#publish-agents) — role requirements for publishing agents.
 - Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Learn about [Hosted agents](../concepts/hosted-agents.md)
 - Learn how to [publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
