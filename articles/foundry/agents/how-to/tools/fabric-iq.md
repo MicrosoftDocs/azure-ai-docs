@@ -41,7 +41,7 @@ When you connect your Foundry agent to Fabric IQ by registering it as a server-s
 
 - Virtual network (VNet) support depends on the Fabric item type. For details, see [Virtual network support](#virtual-network-support).
 
-- Fabric IQ isn't available in regions where Power BI is the only Fabric workload. Confirm your Fabric workspace is in a region that supports the full Fabric stack — see [Microsoft Fabric region availability](/fabric/admin/region-availability#power-bi).
+- Fabric IQ isn't available in regions where Power BI is the only Fabric workload. Confirm your Fabric workspace is in a region that supports the full Fabric stack. For more information, see [Microsoft Fabric region availability](/fabric/admin/region-availability#power-bi).
 
 Before you begin, make sure you have:
 
