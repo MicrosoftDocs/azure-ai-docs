@@ -130,10 +130,7 @@ Because a user needs to match only one field type, the special value "all" grant
 
 ### Access control example
 
-This example illustrates how document access rules are resolved based on
-permission field values in `userIds`, `groupIds`, and `rbacScope`. For
-readability, this scenario uses ACL aliases such as "user1," "group1," instead
-of GUIDs. In production, use Microsoft Entra object IDs (GUIDs).
+This example illustrates how document access rules are resolved based on permission field values in `userIds`, `groupIds`, and `rbacScope`. For readability, this scenario uses ACL aliases such as "user1," "group1," instead of GUIDs. In production, use Microsoft Entra object IDs (GUIDs).
 
 | Document # | userIds | groupIds | RBAC Scope | Permitted users list | Note |
 | --- | --- | --- | --- | --- | --- |
