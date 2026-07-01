@@ -137,7 +137,7 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
+    AgentEndpointConfig,
     AgentEndpointProtocol,
     FixedRatioVersionSelectionRule,
     VersionSelector,
@@ -155,7 +155,7 @@ project_client = AIProjectClient(
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
+    endpoint_config = AgentEndpointConfig(
         version_selector=VersionSelector(
             version_selection_rules=[
                 FixedRatioVersionSelectionRule(agent_version="2", traffic_percentage=100),
@@ -210,7 +210,7 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
+    AgentEndpointConfig,
     AgentEndpointProtocol,
     EntraAuthorizationScheme,
     BotServiceRbacAuthorizationScheme,
@@ -229,7 +229,7 @@ project_client = AIProjectClient(
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
+    endpoint_config = AgentEndpointConfig(
         protocols=[
             AgentEndpointProtocol.RESPONSES,
             AgentEndpointProtocol.ACTIVITY,
