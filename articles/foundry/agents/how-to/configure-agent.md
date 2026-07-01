@@ -361,7 +361,7 @@ Content-Type: application/json
 </details>
 
 <details>
-<summary>AgentEndpoint properties</summary>
+<summary>AgentEndpointConfig properties</summary>
 
 | Property | Type | Description |
 | --- | --- | --- |
