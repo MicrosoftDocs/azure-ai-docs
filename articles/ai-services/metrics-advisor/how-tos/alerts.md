@@ -113,7 +113,7 @@ As mentioned, if accessing the endpoint needs to be authenticated by a certifica
 **Step4.** Receive anomaly notification
 When a notification is pushed through a web hook, you can  fetch incidents data by calling the "callBackUrl" in Webhook Request. Details for this API:
 
--   [Azure AI Foundry REST API references](/rest/api/aifoundry/)
+-   [Azure AI Foundry REST API references](/rest/api/microsoft-foundry/)
 
 By using web hook and Azure Logic Apps, it's possible to send email notification **without an SMTP server configured**. Refer to the tutorial of [enable anomaly notification in Metrics Advisor](../tutorials/enable-anomaly-notification.md#send-notifications-with-azure-logic-apps-teams-and-smtp) for detailed steps.
 

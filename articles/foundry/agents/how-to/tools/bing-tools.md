@@ -564,7 +564,7 @@ Response: Euler's identity is considered one of the most elegant equations in ma
 URL Citation: [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
 ```
 
-For Bing Custom Search, use `FoundryAITool.CreateBingCustomSearchTool(...)` with a `BingCustomSearchToolOptions` instance. For the full sample, see [Agent_Step18_BingCustomSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step18_BingCustomSearch).
+For Bing Custom Search, use `FoundryAITool.CreateBingCustomSearchTool(...)` with a `BingCustomSearchToolOptions` instance. For the full sample, see [Agent_Step18_BingCustomSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step18_BingCustomSearch).
 
 ---
 
