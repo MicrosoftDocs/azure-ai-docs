@@ -75,7 +75,7 @@ Install the Foundry SDK:
 pip install "azure-ai-projects>=2.0.0" azure-identity
 ```
 
-Set two environment variables, then create the project client. Set `FOUNDRY_PROJECT_ENDPOINT` to your project endpoint and `FOUNDRY_MODEL_NAME` to a chat-completion deployment to use as the judge model. The following code samples assume you run them in this context:
+Set two environment variables, and then create the project client. Set `FOUNDRY_PROJECT_ENDPOINT` to your project endpoint and `FOUNDRY_MODEL_NAME` to a chat-completion deployment to use as the judge model. The following code samples assume you run them in this context:
 
 ```python
 import os
