@@ -145,7 +145,7 @@ Run the plugin commands inside Claude Code.
 
 ---
 
-#### [Install just the Foundry Skill](#tab/foundry-skill-alone)
+### Install just the Foundry Skill
 
 If your host already has MCP server configuration and you only need the skill
 content, install the `microsoft-foundry` skill directly:

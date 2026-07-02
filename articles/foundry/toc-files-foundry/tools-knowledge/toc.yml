@@ -100,13 +100,13 @@ items:
 # Toolbox and skills
 - name: Toolbox and skills
   items:
-  - name: Toolbox (preview)
+  - name: Toolbox
     href: ../../agents/how-to/tools/toolbox.md
   - name: Tool search (preview)
     href: ../../agents/how-to/tools/tool-search.md
   - name: Skills (preview)
     href: ../../agents/how-to/tools/skills.md
-  - name: Create a private tool catalog (preview)
+  - name: Create a private tool catalog
     href: ../../agents/how-to/private-tool-catalog.md
 
 # Knowledge and retrieval

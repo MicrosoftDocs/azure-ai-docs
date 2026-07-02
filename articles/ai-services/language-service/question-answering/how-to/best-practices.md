@@ -6,7 +6,7 @@ ms.topic: how-to
 author: laujan
 ms.author: lajanuar
 recommendations: false
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ---
 # Project best practices
 

@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
-ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
+ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 06/02/2026
 zone_pivot_groups: programming-languages-set-two-with-js-spx
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Improve recognition accuracy with phrase list
 
-A phrase list is a list of words or phrases provided ahead of time to help improve their recognition. Adding a phrase to a phrase list increases its importance, thus making it more likely to be recognized.
+A phrase list is a list of words or phrases you provide ahead of time to help improve their recognition. When you add a phrase to a phrase list, you increase its importance, so the system is more likely to recognize it.
 
 > [!IMPORTANT]
 > Phrase list is a **runtime recognition feature** applied at the endpoint level. It works with:
@@ -32,19 +32,19 @@ Examples of phrases include:
 * Words or acronyms unique to your industry or organization
 
 Phrase lists are simple and lightweight:
-- **Just-in-time**: A phrase list is provided just before starting the speech recognition, eliminating the need to train a custom model. 
+- **Just-in-time**: You provide a phrase list just before starting the speech recognition, so you don't need to train a custom model.
 - **Lightweight**: You don't need a large data set. Provide a word or phrase to boost its recognition.
 
-You can use phrase lists with the [Speech Studio](speech-studio-overview.md), [Speech SDK](quickstarts/setup-platform.md), or [Speech Command Line Interface (CLI)](spx-overview.md). It's supported with [Real-time transcription](./how-to-recognize-speech.md) and [Fast transcription API](./fast-transcription-create.md). The [Batch transcription API](batch-transcription.md) doesn't support phrase lists.
+You can use phrase lists with the [Speech Studio](speech-studio-overview.md), [Speech SDK](quickstarts/setup-platform.md), or [Speech Command Line Interface (CLI)](spx-overview.md). They're supported with [Real-time transcription](./how-to-recognize-speech.md) and [Fast transcription API](./fast-transcription-create.md). The [Batch transcription API](batch-transcription.md) doesn't support phrase lists.
 
-You can use phrase lists with both base (standard) endpoints and [custom speech](custom-speech-overview.md) endpoints. Phrase list is applied at runtime and doesn't require model training. There are some situations where training a custom model that includes phrases is likely the best option to improve accuracy. For example, in the following cases you would use custom speech instead:
+You can use phrase lists with both base (standard) endpoints and [custom speech](custom-speech-overview.md) endpoints. You apply the phrase list at runtime and it doesn't require model training. Some situations call for training a custom model that includes phrases to improve accuracy. For example, use custom speech in the following cases:
 - If you need to use a large list of phrases. A phrase list shouldn't have more than 500 phrases.
 
 ## Phrase list weight
 
-When using the Speech SDK with Real-time transcription, you can control the weight of phrase list phrases relative to the default dictionary. This setting determines how much influence the phrase list has on speech-to-text results.
+When you use the Speech SDK with real-time transcription, you can control the weight of phrase list phrases relative to the default dictionary. This setting determines how much influence the phrase list has on speech-to-text results.
 
-The phrase list weight can be set within a range of `0.0` to `2.0`:
+Set the phrase list weight within a range of `0.0` to `2.0`:
 - **0.0**: Disables the phrase list
 - **1.0**: Default weight (standard influence)
 - **2.0**: Maximum weight (highest influence)
@@ -53,33 +53,33 @@ A higher weight increases the likelihood that phrases from your list are recogni
 
 ## Try it in Speech Studio
 
-You can use [Speech Studio](speech-studio-overview.md) to test how phrase list would help improve recognition for your audio. To implement a phrase list with your application in production, you use the Speech SDK or Speech CLI. 
+Use [Speech Studio](speech-studio-overview.md) to test how a phrase list improves recognition for your audio. To implement a phrase list with your application in production, use the Speech SDK or Speech CLI.
 
-For example, let's say that you want the Speech service to recognize this sentence:
+For example, suppose you want the Speech service to recognize this sentence:
 "Hi Rehaan, I'm Jessie from Contoso bank."
 
 You might find that a phrase is incorrectly recognized as:
 "Hi **everyone**, I'm **Jesse** from **can't do so bank**."
 
-In the previous scenario, you would want to add "Rehaan", "Jessie", and "Contoso" to your phrase list. Then the names should be recognized correctly. 
+In the previous scenario, you want to add "Rehaan", "Jessie", and "Contoso" to your phrase list. Then the names are recognized correctly.
 
-Now try Speech Studio to see how phrase list can improve recognition accuracy.
+Now try Speech Studio to see how a phrase list can improve recognition accuracy.
 
 > [!NOTE]
-> You can be prompted to select your Azure subscription and Speech resource, and then acknowledge billing for your region. 
+> You might be prompted to select your Azure subscription and Speech resource, and then acknowledge billing for your region.
 
 1. Go to **Real-time Speech to text** in [Speech Studio](https://aka.ms/speechstudio/speechtotexttool). 
-1. You test speech recognition by uploading an audio file or recording audio with a microphone. For example, select **record audio with a microphone** and then say "Hi Rehaan, I'm Jessie from Contoso bank. " Then select the red button to stop recording. 
-1. You should see the transcription result in the **Test results** text box. If "Rehaan", "Jessie", or "Contoso" were recognized incorrectly, you can add the terms to a phrase list in the next step.
+1. Test speech recognition by uploading an audio file or recording audio by using a microphone. For example, select **record audio with a microphone** and then say "Hi Rehaan, I'm Jessie from Contoso bank. " Then select the red button to stop recording.
+1. You see the transcription result in the **Test results** text box. If "Rehaan", "Jessie", or "Contoso" are recognized incorrectly, add the terms to a phrase list in the next step.
 1. Select **Show advanced options** and turn on **Phrase list**. 
-1. Enter "Contoso;Jessie;Rehaan" in the phrase list text box. Multiple phrases need to be separated by a semicolon.
+1. Enter "Contoso;Jessie;Rehaan" in the phrase list text box. Separate multiple phrases with a semicolon.
     :::image type="content" source="./media/custom-speech/phrase-list-after-zoom.png" alt-text="Screenshot of a phrase list applied in Speech Studio." lightbox="./media/custom-speech/phrase-list-after-full.png":::
-1. Use the microphone to test recognition again. Otherwise you can select the retry arrow next to your audio file to rerun your audio. The terms "Rehaan", "Jessie", or "Contoso" should be recognized. 
+1. Use the microphone to test recognition again. Otherwise, select the retry arrow next to your audio file to rerun your audio. The terms "Rehaan", "Jessie", or "Contoso" should be recognized.
 
 ## Implement phrase list in real-time transcription
 
 ::: zone pivot="programming-language-csharp"
-With the [Speech SDK](speech-sdk.md) you can add phrases individually and then run speech recognition. 
+By using the [Speech SDK](speech-sdk.md), you can add phrases one at a time and then run speech recognition.
 
 ```csharp
 var phraseList = PhraseListGrammar.FromRecognizer(recognizer);
@@ -91,7 +91,7 @@ phraselist.SetWeight(weight);
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
-With the [Speech SDK](speech-sdk.md) you can add phrases individually and then run speech recognition. 
+By using the [Speech SDK](speech-sdk.md), you can add phrases one at a time and then run speech recognition.
 
 ```cpp
 auto phraseListGrammar = PhraseListGrammar::FromRecognizer(recognizer);
@@ -103,7 +103,7 @@ phraselist->SetWeight(weight);
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
-With the [Speech SDK](speech-sdk.md) you can add phrases individually and then run speech recognition. 
+By using the [Speech SDK](speech-sdk.md), you can add phrases one at a time and then run speech recognition.
 
 ```java
 PhraseListGrammar phraseList = PhraseListGrammar.fromRecognizer(recognizer);
@@ -115,7 +115,7 @@ phraseList.setWeight(weight);
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
-With the [Speech SDK](speech-sdk.md) you can add phrases individually and then run speech recognition. 
+By using the [Speech SDK](speech-sdk.md), you can add phrases one at a time and then run speech recognition.
 
 ```javascript
 const phraseList = sdk.PhraseListGrammar.fromRecognizer(recognizer);
@@ -127,7 +127,7 @@ phraseList.setWeight(weight);
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
-With the [Speech SDK](speech-sdk.md) you can add phrases individually and then run speech recognition. 
+By using the [Speech SDK](speech-sdk.md), you can add phrases one at a time and then run speech recognition.
 
 ```Python
 phrase_list_grammar = speechsdk.PhraseListGrammar.from_recognizer(reco)
@@ -138,8 +138,25 @@ phraseList.setWeight(weight)
 ```
 ::: zone-end
 
+::: zone pivot="programming-language-go"
+By using the [Speech SDK](speech-sdk.md), you can add phrases one at a time and then run speech recognition.
+
+```go
+phraseListGrammar, err := speech.NewPhraseListGrammarFromRecognizer(recognizer)
+if err != nil {
+  // Handle error.
+}
+defer phraseListGrammar.Close()
+
+phraseListGrammar.AddPhrase("Contoso")
+phraseListGrammar.AddPhrase("Jessie")
+phraseListGrammar.AddPhrase("Rehaan")
+phraseListGrammar.SetWeight(weight)
+```
+::: zone-end
+
 ::: zone pivot="programmer-tool-spx"
-With the [Speech CLI](spx-overview.md) you can include a phrase list in-line or with a text file along with the recognize command.
+By using the [Speech CLI](spx-overview.md), you can include a phrase list in-line or with a text file along with the `recognize` command.
 
 
 # [Terminal](#tab/terminal)
@@ -151,7 +168,7 @@ spx recognize --microphone --phrases "Contoso;Jessie;Rehaan;"
 spx recognize --file "your\path\to\audio.wav" --phrases "Contoso;Jessie;Rehaan;"
 ```
 
-You can also add a phrase list using a text file that contains one phrase per line.
+You can also add a phrase list by using a text file that contains one phrase per line.
 
 ```console
 spx recognize --microphone --phrases @phrases.txt
@@ -167,7 +184,7 @@ spx --% recognize --microphone --phrases "Contoso;Jessie;Rehaan;"
 spx --% recognize --file "your\path\to\audio.wav" --phrases "Contoso;Jessie;Rehaan;"
 ```
 
-You can also add a phrase list using a text file that contains one phrase per line.
+You can also add a phrase list by using a text file that contains one phrase per line.
 
 ```powershell
 spx --% recognize --microphone --phrases @phrases.txt
@@ -178,10 +195,10 @@ spx --% recognize --file "your\path\to\audio.wav" --phrases @phrases.txt
 
 ::: zone-end
 
-Allowed characters include locale-specific letters and digits, white space characters, and special characters such as +, \-, $, :, (, ), {, }, \_, ., ?, @, \\, ’, &, \#, %, \^, \*, \`, \<, \>, ;, \/. Other special characters are removed internally from the phrase.
+Allowed characters include locale-specific letters and digits, white space characters, and special characters such as +, \-, $, :, (, ), {, }, \_, ., ?, @, \\, ’, &, \#, %, \^, \*, \`, \<, \>, ;, \/. The system removes other special characters from the phrase.
 
 ## Implement phrase list in fast transcription
-You can add a list of phrases in fast transcription via [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe)
+You can add a list of phrases in fast transcription through the [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe).
 
 ```azurecli-interactive
 curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \

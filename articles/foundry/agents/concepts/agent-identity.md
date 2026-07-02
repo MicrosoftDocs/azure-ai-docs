@@ -183,12 +183,12 @@ To find the distinct agent identity blueprint and agent identity, go to your age
 
 Deployment tools like the Azure Developer CLI (azd) provide limited automation for agent identity permissions:
 
-- **Development**: azd automatically assigns Foundry User to the shared project agent identity for unpublished agents
+- **Development**: azd automatically assigns Foundry User to the shared project agent identity for unpublished agents. The default case for hosted agents doesn't require this assignment, but azd applies it for broader compatibility.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - **Production**: Published agents receive distinct identities that require manual role assignments
 
-azd does not configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for Hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
+azd doesn't configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
 
 ## Tool authentication
 

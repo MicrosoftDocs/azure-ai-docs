@@ -4,7 +4,7 @@ description: "Deploy Claude models in Microsoft Foundry and integrate powerful A
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 04/23/2026
 ms.custom:
   - ignite-2024, dev-focus, pilot-ai-workflow-jan-2026
   - classic-and-new
@@ -19,10 +19,14 @@ ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Deploy and use Claude models in Microsoft Foundry (preview) (classic)
+# Deploy and use Claude models in Microsoft Foundry (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/use-foundry-models-claude.md)
 
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 
 [!INCLUDE [use-foundry-models-claude 1](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-1.md)]
+
+[!INCLUDE [how-to-use-foundry-models-claude-deploy-steps-classic](../includes/how-to-use-foundry-models-claude-deploy-steps-classic.md)]
+
+[!INCLUDE [how-to-use-foundry-models-claude-2](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-2.md)]

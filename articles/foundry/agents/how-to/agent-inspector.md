@@ -87,4 +87,4 @@ The inspector doesn't modify your agent code or `agent.yaml`. It's purely a runt
 
 - [Run a hosted agent locally with the Azure Developer CLI](run-hosted-agent-locally.md) to start the local agent.
 - [Invoke a hosted agent with the Azure Developer CLI](invoke-hosted-agent.md) for terminal-based local and deployed invocation.
-- [Pass isolation keys to a hosted agent](pass-isolation-keys.md) to test isolation against a deployed agent.
+- [Isolate hosted agent sessions per user](isolate-sessions-per-user.md) to test isolation against a deployed agent.

@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/24/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
@@ -71,7 +71,7 @@ When you define the testing set, make sure to include example documents that are
 
 ## Label your data
 
-Before training your model, label your documents with the classes you want to categorize them into. Data labeling is a crucial step in the development lifecycle. Use this data in the next step when training your model so that your model can learn from the labeled data. If you already labeled your data, you can directly [import](create-project.md) it into your project. Make sure your data follows the [accepted data format](../concepts/data-formats.md).
+Before training your model, label your documents with the classes you want to categorize them into. Data labeling is a crucial step in the development lifecycle. Use this data in the next step when training your model so that your model can learn from the labeled data. If you already labeled your data, you can directly [import](create-project.md) it into your project. Make sure your data follows the [accepted data format](../concepts/evaluation-metrics.md#accepted-data-formats).
 
 ### Data labeling guidelines
 

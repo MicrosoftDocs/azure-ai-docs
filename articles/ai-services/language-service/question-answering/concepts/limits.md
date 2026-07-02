@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: limits-and-quotas
-ms.date: 04/20/2026
+ms.date: 06/30/2026
 ---
 
 # Project limits and boundaries

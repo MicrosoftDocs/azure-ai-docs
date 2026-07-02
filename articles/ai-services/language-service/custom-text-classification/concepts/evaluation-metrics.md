@@ -1,17 +1,22 @@
 ---
-title: Custom text classification evaluation metrics
+title: Custom text classification model concepts
 titleSuffix: Foundry Tools
-description: Learn about evaluation metrics in custom text classification.
+description: "Learn core concepts for custom text classification models: evaluation metrics and accepted data formats."
 #services: cognitive-services
 author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-# Evaluation metrics
+<!-- markdownlint-disable MD025 -->
+# Custom text classification model concepts
+
+This article covers core concepts for building custom text classification models, including how model performance is measured and the data formats that custom text classification accepts.
+
+## Evaluation metrics
 
 You [split your dataset](../how-to/build-train-deploy-model.md#data-splitting) into two parts: a set for training and a set for testing. Use the training set to train the model. Use the testing set as a test for the model after training to calculate the model performance and evaluation. The training process doesn't introduce the testing set to the model, so the model is tested on new data.
 
@@ -149,6 +154,130 @@ Similarly,
 * The *false Negative* of the model is the sum of *false negatives* for all classes.
 
 
+## Accepted data formats
+
+To import your data into custom text classification, it must follow a specific format. If you don't have data to import, you can [create your project](../how-to/create-project.md) and use Microsoft Foundry to [label your documents](../how-to/build-train-deploy-model.md#label-your-data).
+
+### Labels file format
+
+To [import](../how-to/create-project.md#import-a-custom-text-classification-project-rest-api) your labels into a project, your Labels file should be in the `json` format.
+
+# [Multi label classification](#tab/multi-classification)
+
+```json
+{
+    "projectFileVersion": "2022-05-01",
+    "stringIndexType": "Utf16CodeUnit",
+    "metadata": {
+        "projectKind": "CustomMultiLabelClassification",
+        "storageInputContainerName": "{CONTAINER-NAME}",
+        "projectName": "{PROJECT-NAME}",
+        "multilingual": false,
+        "description": "Project-description",
+        "language": "en-us"
+    },
+    "assets": {
+        "projectKind": "CustomMultiLabelClassification",
+        "classes": [
+            {
+                "category": "Class1"
+            },
+            {
+                "category": "Class2"
+            }
+        ],
+        "documents": [
+            {
+                "location": "{DOCUMENT-NAME}",
+                "language": "{LANGUAGE-CODE}",
+                "dataset": "{DATASET}",
+                "classes": [
+                    {
+                        "category": "Class1"
+                    },
+                    {
+                        "category": "Class2"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+|Key  |Placeholder  |Value  | Example |
+|---------|---------|----------|--|
+| multilingual | `true`| A boolean value that enables you to have documents in multiple languages in your dataset. When you deploy your model, you can query the model in any supported language (not necessarily included in your training documents). See [language support](../language-support.md#multi-lingual-option) to learn more about multilingual support. | `true`|
+|projectName|`{PROJECT-NAME}`|Project name|myproject|
+| storageInputContainerName|`{CONTAINER-NAME}`|Container name|`mycontainer`|
+| classes | [] | Array containing all the classes you have in the project.| [] |
+| documents | [] | Array containing all the documents in your project and the classes labeled for this document. | [] |
+| location | `{DOCUMENT-NAME}` |  The location of the documents in the storage container. Since all the documents are in the root of the container, this value should be the document name.|`doc1.txt`|
+| dataset | `{DATASET}` |  The test set to which this file goes when split before training. See [How to train a model](../how-to/build-train-deploy-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+
+
+# [Single label classification](#tab/single-classification)
+
+```json
+{
+    
+    "projectFileVersion": "2022-05-01",
+    "stringIndexType": "Utf16CodeUnit",
+    "metadata": {
+        "projectKind": "CustomSingleLabelClassification",
+        "storageInputContainerName": "{CONTAINER-NAME}",
+        "settings": {},
+        "projectName": "{PROJECT-NAME}",
+        "multilingual": false,
+        "description": "Project-description",
+        "language": "en-us"
+    },
+    "assets": {
+        "projectKind": "CustomSingleLabelClassification",
+        "classes": [
+            {
+                "category": "Class1"
+            },
+            {
+                "category": "Class2"
+            }
+        ],
+        "documents": [
+            {
+                "location": "{DOCUMENT-NAME}",
+                "language": "{LANGUAGE-CODE}",
+                "dataset": "{DATASET}",
+                "class": {
+                    "category": "Class2"
+                }
+            },
+            {
+                "location": "{DOCUMENT-NAME}",
+                "language": "{LANGUAGE-CODE}",
+                "dataset": "{DATASET}",
+                "class": {
+                    "category": "Class1"
+                }
+            }
+        ]
+    }
+}
+```
+|Key  |Placeholder  |Value  | Example |
+|---------|---------|----------|--|
+|projectName|`{PROJECT-NAME}`|Project name|myproject|
+| storageInputContainerName|`{CONTAINER-NAME}`|Container name|`mycontainer`|
+| multilingual | `true`| A boolean value that enables you to have documents in multiple languages in your dataset. When you deploy your model, you can query the model in any supported language (not necessarily included in your training documents). See [language support](../language-support.md#multi-lingual-option) to learn more about multilingual support. | `true`|
+| classes | [] | Array containing all the classes you have in the project.| [] |
+| documents | [] | Array containing all the documents in your project and which class this document belongs to. | [] |
+| location | `{DOCUMENT-NAME}` |  The location of the documents in the storage container. Since all the documents are in the root of the container, use the document name.|`doc1.txt`|
+| dataset | `{DATASET}` |  The test set to which this file goes when split before training. See [How to train a model](../how-to/build-train-deploy-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+
+
+---
+
 ## Next steps
 
 * [Train a model](../how-to/build-train-deploy-model.md#train-your-model)
+* You can import your labeled data into your project directly. See [How to create a project](../how-to/create-project.md#import-a-custom-text-classification-project-rest-api) to learn more about importing projects.
+* See the [how-to article](../how-to/build-train-deploy-model.md#label-your-data) for more information about labeling your data.

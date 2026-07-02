@@ -3,7 +3,7 @@ title: "Quickstart: Deploy your own code as a hosted agent"
 description: "Take your existing Python agent code, add one hosting library, and deploy to Foundry Agent Service with the Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 06/25/2026
+ms.date: 06/30/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -14,9 +14,6 @@ ai-usage: ai-assisted
 ---
 
 # Quickstart: Deploy your own code as a hosted agent
-
-> [!NOTE]
-> Hosted agents are currently in preview.
 
 In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service. Your code can use any agent framework - such as Microsoft Agent Framework, LangGraph, the GitHub Copilot SDK, or the OpenAI Agents SDK - or plain Python that calls a model directly.
 

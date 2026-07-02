@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: mode-other
 ---
@@ -69,11 +69,11 @@ Yes, you can use [orchestration workflow](../orchestration-workflow/overview.md)
 
 ## How do I handle out of scope or domain utterances that aren't relevant to my intents?
 
-Add any out of scope utterances to the [none intent](./concepts/none-intent.md).
+Add any out-of-scope utterances to the [none intent](./concepts/evaluation-metrics.md#none-intent).
 
 ## How do I control the none intent?
 
-You can control the none intent threshold from UI through the project settings, by changing the none intent threshold value. The values can be between 0.0 and 1.0. Also, you can change this threshold from the APIs by changing the *confidenceThreshold* in settings object. Learn more about [none intent](./concepts/none-intent.md#none-score-threshold)
+You can control the none intent threshold from the UI through the project settings by changing the none intent threshold value. Set the values between 0.0 and 1.0. Also, you can change this threshold from the APIs by changing the *confidenceThreshold* in the settings object. For more information, see [none intent](./concepts/evaluation-metrics.md#none-score-threshold).
 
 ## Is there any SDK support?
 

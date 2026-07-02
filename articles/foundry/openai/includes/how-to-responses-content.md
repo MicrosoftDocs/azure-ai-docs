@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/20/2026
+ms.date: 06/30/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -32,7 +32,8 @@ Before you run the examples in this article, confirm that your resource region s
 - australiaeast
 - brazilsouth
 - canadacentral
-- canadaeast  
+- canadaeast
+- centralus
 - eastus
 - eastus2
 - francecentral

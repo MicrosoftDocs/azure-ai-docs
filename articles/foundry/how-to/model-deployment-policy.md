@@ -83,13 +83,17 @@ Use Azure CLI to find the built-in policy definition and assign it at a scope.
        },
        "allowedAssetIds": {
           "value": [
-             "azureml://registries/azure-openai/models/gpt-35-turbo/versions/3"
+             "azureml://registries/azure-openai/models/gpt-5/",
+             "azureml://registries/azure-openai/models/gpt-5.2/versions/1"
           ]
        }
     }
     ```
 
     Expected result: a JSON file that matches your approved publisher names and model IDs.
+
+    > [!IMPORTANT]
+    > Each asset ID is matched as a prefix. An ID without a trailing slash also matches other models whose names begin with the same characters - for example, `azureml://registries/azure-openai/models/gpt-5` matches GPT-5 and also GPT-5.2 and GPT-5.4. Add a trailing slash (`/`) to limit the match to that specific model only - for example, `azureml://registries/azure-openai/models/gpt-5/` matches only GPT-5 (all of its versions) and excludes GPT-5.2 and GPT-5.4. To allow just one version, use the full asset ID, including the version (for example, `azureml://registries/azure-openai/models/gpt-5.2/versions/1`).
 
     > [!IMPORTANT]
     > The parameter names in this example must match the policy definition you assign. If they differ in your tenant, update the JSON keys to match the policy definition parameters.
@@ -149,10 +153,10 @@ Reference:
      To get the model asset ID strings and model publisher names, use the following steps:
 
      1. Go to the [model catalog](https://ai.azure.com/explore/models).
-     1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
+     1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-5.2/versions/1` for the GPT-5.2 model.
 
         > [!IMPORTANT]
-        > The model ID value must be an exact match for the model. If the model ID isn't an exact match, the policy doesn't work as expected.
+        > Each asset ID is matched as a prefix. An ID without a trailing slash also matches other models whose names begin with the same characters - for example, `azureml://registries/azure-openai/models/gpt-5` matches GPT-5 and also GPT-5.2 and GPT-5.4. Add a trailing slash (`/`) to limit the match to that specific model only - for example, `azureml://registries/azure-openai/models/gpt-5/` matches only GPT-5 (all of its versions). To allow just one version, use the full asset ID, including the version.
 
      1. Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
      1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't on the list of allowed models.

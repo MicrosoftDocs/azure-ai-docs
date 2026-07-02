@@ -171,6 +171,205 @@ The WebSocket control channel is required for the initial SDP exchange. After ne
 > [!NOTE]
 > Avatar configurations are currently unsupported with side-band control.
 
+---
+
+## Standalone browser sample
+
+This sample shows a simple standalone app that uses Voice Live WebRTC. Enter your Cognitive Services endpoint and API key, and then connect.
+
+<details>
+<summary><strong>End-to-end sample (click to expand)</strong></summary>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Live WebRTC - Starter</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 700px; margin: 0 auto; }
+    h1 { color: #1a1a2e; }
+    label { display: block; margin-bottom: 4px; font-weight: 500; font-size: 14px; }
+    input { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+    button { padding: 12px 24px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; margin-right: 8px; }
+    .btn-connect { background: #10b981; color: white; }
+    .btn-disconnect { background: #ef4444; color: white; }
+    .status { padding: 10px; background: white; border-radius: 8px; margin-bottom: 16px; font-weight: 500; }
+    .log { font-family: monospace; font-size: 12px; background: #1a1a2e; color: #10b981; padding: 12px; border-radius: 6px; height: 300px; overflow-y: auto; white-space: pre-wrap; }
+    .section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎙️ Voice Live WebRTC - Starter Example</h1>
+    <p style="color:#666;">Minimal working example. Edit the fields below and click Connect.</p>
+
+    <div class="section">
+      <label>Endpoint</label>
+      <input type="text" id="endpoint" value="wss://westus2.api.cognitive.microsoft.com/voice-live/realtime/calls" />
+      <label>API Key</label>
+      <input type="password" id="apiKey" placeholder="Enter your API key here" />
+      <label>Model</label>
+      <input type="text" id="model" value="azure-realtime" />
+      <label>Voice</label>
+      <input type="text" id="voice" value="ava" />
+      <p style="color:#666;font-size:12px;margin:-8px 0 12px;">Try these voices (name only): aarti, andrew, ava, denise, diya, elsa, florian, francisca, meera, xiaoxiao, yunxi, ximena.</p>
+      <label>API Version</label>
+      <input type="text" id="apiVersion" value="2026-01-01-preview" />
+    </div>
+
+    <div class="section">
+      <button class="btn-connect" onclick="connect()">🎤 Connect</button>
+      <button class="btn-disconnect" onclick="disconnect()">🔌 Disconnect</button>
+      <div class="status" id="status">Disconnected</div>
+    </div>
+
+    <div class="section">
+      <h3 style="margin-top:0;">Event Log</h3>
+      <div class="log" id="log"></div>
+    </div>
+  </div>
+
+  <script>
+    let pc = null, signalWs = null, localStream = null, audioEl = null;
+
+    function log(msg) {
+      const el = document.getElementById('log');
+      el.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg + '\n' + el.textContent;
+    }
+
+    function setStatus(s) { document.getElementById('status').textContent = s; }
+
+    // Pick a voice config that matches the selected model. The azure-realtime model
+    // uses native voices; other models use Azure standard voices.
+    function buildVoiceConfig(model, voice) {
+      if (model === 'azure-realtime') {
+        return { type: 'azure-realtime-native', name: voice || 'diya' };
+      }
+      return { type: 'azure-standard', name: voice || 'en-US-AvaNeural' };
+    }
+
+    async function connect() {
+      const endpoint = document.getElementById('endpoint').value;
+      const apiKey = document.getElementById('apiKey').value;
+      const model = document.getElementById('model').value;
+      const voice = document.getElementById('voice').value;
+      const apiVersion = document.getElementById('apiVersion').value;
+      if (!apiKey) { alert('Please enter your API key'); return; }
+
+      setStatus('Connecting...');
+      log('Starting WebRTC connection...');
+
+      try {
+        // 1. Create peer connection
+        pc = new RTCPeerConnection();
+
+        pc.onconnectionstatechange = () => {
+          log('WebRTC: ' + pc.connectionState);
+          if (pc.connectionState === 'connected') setStatus('Connected ✅ — Speak into your mic!');
+          if (pc.connectionState === 'failed') disconnect();
+        };
+
+        // 2. Audio output
+        audioEl = document.createElement('audio');
+        audioEl.autoplay = true;
+        document.body.appendChild(audioEl);
+        pc.ontrack = (e) => { audioEl.srcObject = e.streams[0]; log('Remote audio track received'); };
+
+        // 3. Microphone
+        localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        localStream.getTracks().forEach(t => pc.addTrack(t, localStream));
+        log('Microphone connected');
+
+        // 4. Data channel
+        const dc = pc.createDataChannel('voice-live-events');
+        dc.onopen = () => log('📡 Data channel open');
+        dc.onmessage = (e) => {
+          try {
+            const msg = JSON.parse(e.data);
+            log('DC: ' + msg.type);
+          } catch {}
+        };
+
+        // 5. SDP offer
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+        await new Promise(r => {
+          if (pc.iceGatheringState === 'complete') r();
+          else pc.onicegatheringstatechange = () => { if (pc.iceGatheringState === 'complete') r(); };
+          setTimeout(r, 3000);
+        });
+        log('SDP offer created');
+
+        // 6. WebSocket signaling
+        const wsUrl = endpoint + '?api-version=' + encodeURIComponent(apiVersion) + '&model=' + encodeURIComponent(model) + '&api-key=' + encodeURIComponent(apiKey);
+        signalWs = new WebSocket(wsUrl, ['realtime']);
+        await new Promise((resolve, reject) => {
+          signalWs.onopen = () => { log('WebSocket connected'); resolve(); };
+          signalWs.onerror = () => reject(new Error('WebSocket failed'));
+          setTimeout(() => reject(new Error('Timeout')), 10000);
+        });
+
+        // 7. Send SDP offer with session config
+        const sdpMsg = {
+          type: 'rtc.call.sdp.create',
+          sdp_offer: pc.localDescription.sdp,
+          session: {
+            modalities: ["text", "audio"],
+            instructions: "You are a helpful assistant. Respond concisely.",
+            voice: buildVoiceConfig(model, voice),
+            turn_detection: { type: "server_vad", threshold: 0.5, prefix_padding_ms: 300, silence_duration_ms: 500 }
+          }
+        };
+        signalWs.send(JSON.stringify(sdpMsg));
+        log('Sent rtc.call.sdp.create with session config');
+
+        // 8. Wait for SDP answer
+        const answer = await new Promise((resolve, reject) => {
+          signalWs.onmessage = (e) => {
+            const msg = JSON.parse(e.data);
+            log('WS: ' + msg.type);
+            if (msg.type === 'rtc.call.sdp.created') resolve(msg);
+            else if (msg.type === 'error' || msg.type === 'rtc.call.error') reject(new Error(msg.error?.message || 'Error'));
+          };
+          setTimeout(() => reject(new Error('Timeout')), 30000);
+        });
+
+        // 9. Set remote SDP — audio flows after this!
+        await pc.setRemoteDescription({ type: 'answer', sdp: answer.sdp_answer });
+        log('🎉 WebRTC connected! SDP answer set.');
+
+        // 10. Ongoing WebSocket events
+        signalWs.onmessage = (e) => {
+          try { const msg = JSON.parse(e.data); log('WS: ' + msg.type); } catch {}
+        };
+        signalWs.onclose = () => log('WebSocket closed');
+
+      } catch (e) {
+        log('Error: ' + e.message);
+        setStatus('Error: ' + e.message);
+        disconnect();
+      }
+    }
+
+    function disconnect() {
+      if (localStream) { localStream.getTracks().forEach(t => t.stop()); localStream = null; }
+      if (pc) { pc.close(); pc = null; }
+      if (signalWs) { signalWs.close(); signalWs = null; }
+      if (audioEl) { audioEl.remove(); audioEl = null; }
+      setStatus('Disconnected');
+      log('Disconnected');
+    }
+  </script>
+</body>
+</html>
+```
+
+</details>
+
 ## Event routing
 
 When using WebRTC, a Voice Live WebRTC session establishes three communication channels:

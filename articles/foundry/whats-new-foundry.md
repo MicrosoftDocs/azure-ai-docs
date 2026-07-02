@@ -72,7 +72,7 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
 - Foundry Agent Service
   - [Connect to an A2A agent endpoint from Foundry Agent Service](agents/how-to/tools/agent-to-agent.md)
   - [Deploy a hosted agent](agents/how-to/deploy-hosted-agent.md)
-  - [Hosted agents in Foundry Agent Service (preview)](agents/concepts/hosted-agents.md)
+  - [Hosted agents in Foundry Agent Service](agents/concepts/hosted-agents.md)
   - [Tool support by model and region](agents/concepts/tool-best-practice.md)
   - [Use skills with Microsoft Foundry agents (preview)](agents/how-to/tools/skills.md)
   - [Automate browser tasks with Foundry agents](agents/how-to/tools/browser-automation.md)

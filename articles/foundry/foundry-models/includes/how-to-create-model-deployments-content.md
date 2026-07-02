@@ -292,6 +292,7 @@ az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#deploy-and-manage-models) — role requirements for model deployment and quota management.
 - [Generate text responses with Foundry Models](../how-to/generate-responses.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
 - [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)

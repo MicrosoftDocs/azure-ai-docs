@@ -9,11 +9,12 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 05/09/2024
+ms.date: 06/30/2026
 ms.custom:
   - sfi-image-nochange
   - sfi-ropc-nochange
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Enable trace and collect feedback for a flow deployment (preview)
@@ -21,35 +22,36 @@ ms.update-cycle: 365-days
 [!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 > [!NOTE]
-> This feature is currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> This feature is currently in public preview. This preview is provided without a service-level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-After deploying a Generative AI APP in production, APP developers seek to enhance their understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback play critical roles.
+After deploying a generative AI app in production, app developers seek to enhance their understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback play critical roles.
 
-In this article, you'll learn to enable trace, collect aggregated metrics, and user feedback during inference time of your flow deployment.
+In this article, you learn how to enable trace, collect aggregated metrics, and gather user feedback during inference time of your flow deployment.
 
 ## Prerequisites
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](../how-to-configure-cli.md).
 - An Azure Machine Learning workspace. If you don't have one, use the steps in the [Quickstart: Create workspace resources article](../quickstart-create-resources.md) to create one.
 - An Application Insights. Usually a machine learning workspace has a default linked Application Insights. If you want to use a new one, you can [create an Application Insights resource](/azure/azure-monitor/app/create-workspace-resource).
+- Python 3.9 or later, if you plan to use the Python code samples in this article.
 - Learn [how to build and test a flow in the prompt flow](get-started-prompt-flow.md).
-- Have basic understanding on managed online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way that frees you from the overhead of setting up and managing the underlying deployment infrastructure. For more information on managed online endpoints, see [Online endpoints and deployments for real-time inference](../concept-endpoints-online.md#online-endpoints).
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the owner or contributor role for the Azure Machine Learning workspace, or a custom role allowing "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/". If you use studio to create/manage online endpoints/deployments, you need another permission "Microsoft.Resources/deployments/write" from the resource group owner. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
+- Have a basic understanding of managed online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way that frees you from the overhead of setting up and managing the underlying deployment infrastructure. For more information on managed online endpoints, see [Online endpoints and deployments for real-time inference](../concept-endpoints-online.md#online-endpoints).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the owner or contributor role for the Azure Machine Learning workspace, or a custom role allowing "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/". If you use studio to create and manage online endpoints and deployments, you need another permission "Microsoft.Resources/deployments/write" from the resource group owner. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
 
 ## Deploy a flow for real-time inference
 
-After you test your flow properly, either a flex flow or a DAG flow, you can deploy the flow in production. In this article, we use [deploy a flow to Azure Machine Learning managed online endpoints](./how-to-deploy-to-code.md) as example. For flex flows, you need to [prepare the `flow.flex.yaml` file instead of `flow.dag.yaml`](https://microsoft.github.io/promptflow/how-to-guides/develop-a-flex-flow/index.html).
+After you test your flow properly, either a flex flow or a DAG flow, you can deploy the flow in production. In this article, use [deploy a flow to Azure Machine Learning managed online endpoints](./how-to-deploy-to-code.md) as an example. For flex flows, you need to [prepare the `flow.flex.yaml` file instead of `flow.dag.yaml`](https://microsoft.github.io/promptflow/how-to-guides/develop-a-flex-flow/index.html).
 
-You can also [deploy to other platforms, such as Docker container, Kubernetes cluster, etc.](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
+You can also [deploy to other platforms, such as Docker container, Kubernetes cluster, and more](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
 
-> [!NOTE]
-> You need to use the latest prompt flow base image to deploy the flow, so that it support the tracing and feedback collection API.
+> [!IMPORTANT]
+> Prompt flow container images no longer receive updates, including security and package updates. If you're planning a new deployment, see the [Prompt flow migration guide](migrate-prompt-flow-to-agent-framework.md) for supported alternatives.
 
 ## Enable trace and collect system metrics for your deployment
 
-If you're using studio UI to deploy, then you can turn-on **Application Insights diagnostics** in Advanced settings -> Deployment step in the deploy wizard, in which way the tracing data and system metrics are collected to workspace linked Application Insights.
+If you use the studio UI to deploy, turn on **Application Insights diagnostics** in Advanced settings > Deployment step in the deploy wizard. This setting collects tracing data and system metrics to the workspace linked Application Insights.
 
-If you're using SDK or CLI, you can add a property `app_insights_enabled: true` in the deployment yaml file that will collect data to workspace linked Application Insights. You can also specify other Application Insights by an environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING` in the deployment yaml file as following. You can find the connection string of your Application Insights in the Overview page in Azure portal.
+If you use SDK or CLI, add the property `app_insights_enabled: true` in the deployment YAML file to collect data to the workspace linked Application Insights. You can also specify another Application Insights by using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING` in the deployment YAML file as shown in the following example. You can find the connection string of your Application Insights in the **Overview** page in Azure portal.
 
 ```yaml
 # below is the property in deployment yaml
@@ -61,19 +63,19 @@ environment_variables:
 ```
 
 > [!NOTE]
-> If you only set `app_insights_enabled: true` but your workspace does not have a linked Application Insights, your deployment will not fail but there will be no data collected.
+> If you set `app_insights_enabled: true` but your workspace doesn't have a linked Application Insights, your deployment doesn't fail but no data is collected.
 >
-> If you specify both `app_insights_enabled: true` and the above environment variable at the same time, the tracing data and metrics will be sent to workspace linked Application Insights. Hence, if you want to specify a different Application Insights, you only need to keep the environment variable.
+> If you specify both `app_insights_enabled: true` and the preceding environment variable at the same time, the tracing data and metrics are sent to the workspace linked Application Insights. To specify a different Application Insights, keep only the environment variable.
 > 
-> If you deploy to other platforms, you can also use the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING: <connection_string>` to collect trace data and metrics to speicifed Application Insights.
+> If you deploy to other platforms, you can also use the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING: <connection_string>` to collect trace data and metrics to the specified Application Insights.
 
 ## View tracing data in Application Insights
 
-Traces record specific events or the state of an application during execution. It can include data about function calls, variable values, system events and more. Traces help break down an application's components into discrete inputs and outputs, which is crucial for debugging and understanding an application. To learn more, see [OpenTelemetry traces](https://opentelemetry.io/docs/concepts/signals/traces/) on traces. The trace data follows [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
+Traces record specific events or the state of an application during execution. They can include data about function calls, variable values, system events, and more. Traces help break down an application's components into discrete inputs and outputs, which is crucial for debugging and understanding an application. To learn more, see [OpenTelemetry traces](https://opentelemetry.io/docs/concepts/signals/traces/). The trace data follows [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
 
-You can view the detailed trace in the specified Application Insights. The following screenshot shows an example of an event of a deployed flow containing multiple nodes. In Application Insights -> Investigate -> Transaction search, and you can select each node to view its detailed trace. 
+You can view the detailed trace in the specified Application Insights. The following screenshot shows an example of an event of a deployed flow containing multiple nodes. In Application Insights, select **Search** under the **Investigate** category in the resource menu. Select each node to view its detailed trace.
 
-The **Dependency** type events record calls from your deployments. The name of that event is the name of the flow folder. Learn more about [Transaction search and diagnostics in Application Insights](/azure/azure-monitor/app/transaction-search-and-diagnostics).
+The **Dependency** type events record calls from your deployments. The name of that event is the name of the flow folder. To learn more, see [Transaction search and diagnostics in Application Insights](/azure/azure-monitor/app/transaction-search-and-diagnostics).
 
 :::image type="content" source="./media/how-to-enable-trace-feedback-for-deployment/tracing-app-insights.png" alt-text="Screenshot of tracing data in application insights. " lightbox = "./media/how-to-enable-trace-feedback-for-deployment/tracing-app-insights.png":::
 
@@ -93,7 +95,7 @@ The **Dependency** type events record calls from your deployments. The name of t
 
 You can find the workspace default Application Insights in your workspace overview page in Azure portal.
 
-Open the Application Insights, and select **Usage and estimated costs** from the left navigation. Select **Custom metrics (Preview)**, and select **With dimensions**, and save the change.
+Open Application Insights, and select **Usage and estimated cost** from the left navigation. Under **Send custom metrics to Azure Metric Store**, select **With dimensions**, and save the change.
 
 :::image type="content" source="./media/how-to-enable-trace-feedback-for-deployment/enable-multidimensional-metrics.png" alt-text="Screenshot of enable multidimensional metrics. " lightbox = "./media/how-to-enable-trace-feedback-for-deployment/enable-multidimensional-metrics.png":::
 
@@ -104,15 +106,14 @@ Select **Metrics** tab in the left navigation. Select **promptflow standard metr
 
 ## Collect feedback and send to Application Insights
 
-Prompt flow serving provides a new `/feedback` API to help customer collect the feedback, the feedback payload can be any json format data, PF serving just helps customer save the feedback data to a trace span. Data will be saved to the trace exporter target customer configured. It also supports OpenTelemetry standard trace context propagation, saying it respects the trace context set in the request header and use that as the request parent span context. You can leverage the distributed tracing functionality to correlate the Feedback trace to its chat request trace. 
+Prompt flow serving provides a new `/feedback` API to help you collect feedback. The feedback payload can be any JSON format data. PF serving just helps you save the feedback data to a trace span. The data is saved to the trace exporter target you configure. It also supports OpenTelemetry standard trace context propagation, so it respects the trace context set in the request header and uses that context as the request parent span context. You can leverage the distributed tracing functionality to correlate the feedback trace to its chat request trace. 
 
-Following is sample code showing how to score a flow deployed managed endpoint enabled tracing and send the feedback to the same trace span of scoring request. The flow has inputs `question` and `chat_hisotry`, and output `answer`. After scoring the endpoint, we collect a feedback and send to Application Insights specified when deploying the flow. You need to fill in the `api_key` value or modify the code according to your use case.
+The following sample code shows how to score a flow deployed managed endpoint enabled tracing and send the feedback to the same trace span of scoring request. The flow has inputs `question` and `chat_history`, and output `answer`. After scoring the endpoint, you collect feedback and send it to Application Insights specified when deploying the flow. You need to fill in the `api_key` value or modify the code according to your use case.
 
 ```python
 import urllib.request
 import json
 import os
-import ssl
 from opentelemetry import trace, context
 from opentelemetry.baggage.propagation import W3CBaggagePropagator
 from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
@@ -183,9 +184,9 @@ You can view the trace of the request along with feedback in Application Insight
 
 ## Advanced usage: Export trace to custom OpenTelemetry collector service
 
-In some cases, you might want to export the trace data to your deployed OTel collector service, enabled by setting "OTEL_EXPORTER_OTLP_ENDPOINT". Use this exporter when you want to customize our own span processing logic and your own trace persistent target.
+In some cases, you might want to export the trace data to your deployed OTel collector service. Enable this export by setting `OTEL_EXPORTER_OTLP_ENDPOINT`. Use this exporter when you want to customize your own span processing logic and your own trace persistent target.
 
 ## Next steps
 
-- [Troubleshoot errors of managed online endpoints](./how-to-troubleshoot-prompt-flow-deployment.md).
-- [Deploy a flow to other platforms, such as Docker](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
+- [Migrate prompt flow to Microsoft Agent Framework](migrate-prompt-flow-to-agent-framework.md)
+- [Troubleshoot errors of managed online endpoints](./how-to-troubleshoot-prompt-flow-deployment.md)

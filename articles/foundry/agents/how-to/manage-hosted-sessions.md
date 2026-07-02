@@ -312,6 +312,18 @@ How the key is set depends on the agent endpoint's authorization scheme, which y
 - **`Entra` (default).** The platform derives the isolation key from the caller's Microsoft Entra token. The `x-ms-user-isolation-key` header is accepted but ignored. Each authenticated caller automatically gets their own scope.
 - **`Header`.** The platform reads the isolation key from the `x-ms-user-isolation-key` request header. Send a stable string per session owner (for example, an end-user or tenant identifier) on every session request, including invocations and file operations. Requests without the header fail. The platform doesn't validate the value, so your client is responsible for choosing the right key for each call.
 
+For information about how the platform automatically isolates each caller's sessions and how to extend that isolation to your own application's users, see [Isolate hosted agent sessions per user](isolate-sessions-per-user.md).
+
+## View and manage sessions across users
+
+By default, each caller sees and manages only the sessions that belong to their own identity. List, get, and delete operations return or affect only that caller's sessions.
+
+An administrator or automation that needs to work with every session on an agent - for debugging, cost analysis, or incident response - needs the **Foundry User** role on the Foundry project. This role carries the `sessions/read` and `sessions/write` data actions for cross-user access. By using that role, the same list, get, and delete operations return and act on all sessions on the agent, regardless of which identity created them.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+Grant the Foundry User role only to identities that need cross-user session access. Regular callers keep the default, own-sessions-only scope.
+
 ## Create a session explicitly (advanced)
 
 Create a session in advance only when you need to:
@@ -476,6 +488,8 @@ Session management isn't currently available as a standalone command. Use the RE
 ## Session file operations
 
 Upload and download files to agent session sandboxes. Each file is scoped to a specific session. The maximum file size for upload is 50 MB.
+
+A container can also write files directly into the session sandbox (under `$HOME`) and have them appear through these APIs. For an example, see the [note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent), which persists one notes file per session.
 
 > [!NOTE]
 > The Python SDK uses `session_id` as the keyword for `upload_session_file`, and `agent_session_id` for `get_session_files`, `download_session_file`, and `delete_session_file`. Use the keyword name shown in each example.
@@ -642,3 +656,4 @@ azd ai agent files remove --file data.csv
 - [Deploy a Hosted agent](deploy-hosted-agent.md)
 - [Manage Hosted agents](manage-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
+- [Note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent) for a container that writes per-session files visible through the Session Files API.

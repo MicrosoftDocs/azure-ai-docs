@@ -490,68 +490,6 @@ Content-Type: application/json
 > [!NOTE]
 > Document-level permissions enforcement using `ingestionPermissionOptions` requires the 2026-05-01-preview API version. 2026-04-01 doesn't support this feature.
 
-### Source-specific properties
-
-The following properties apply to blob knowledge sources.
-
-::: zone pivot="csharp"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `Description` | A description of the knowledge source. | String | Yes | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `AzureBlobParameters` | Parameters specific to blob knowledge sources: `ConnectionString`, `ContainerName`, `FolderPath`, and `IsADLSGen2`. | Object |  | No |
-| `ConnectionString` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
-| `ContainerName` | The name of the blob storage container. | String | No | Yes |
-| `FolderPath` | A folder within the container. | String | No | No |
-| `IsADLSGen2` | The default is `False`. Set to `True` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
-
-::: zone-end
-
-::: zone pivot="python"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `azure_blob_parameters` | Parameters specific to blob knowledge sources: `connection_string`, `container_name`, `folder_path`, and `is_adls_gen2`. | Object |  | No |
-| `connection_string` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
-| `container_name` | The name of the blob storage container. | String | No | Yes |
-| `folder_path` | A folder within the container. | String | No | No |
-| `is_adls_gen2` | The default is `False`. Set to `True` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
-
-::: zone-end
-
-::: zone pivot="rest"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object |  | No |
-| `connectionString` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
-| `containerName` | The name of the blob storage container. | String | No | Yes |
-| `folderPath` | A folder within the container. | String | No | No |
-| `isADLSGen2` | The default is `false`. Set to `true` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
-
-::: zone-end
-
-### Ingestion parameters properties
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
-[!INCLUDE [preview ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
-
-# [2026-04-01](#tab/2026-04-01)
-
-[!INCLUDE [GA ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-ga.md)]
-
----
-
 ## Check ingestion status
 
 [!INCLUDE [Check ingestion status](includes/how-tos/knowledge-source-status.md)]

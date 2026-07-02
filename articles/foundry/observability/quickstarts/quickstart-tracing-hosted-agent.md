@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 # Quickstart: Trace your hosted agent
 
 > [!NOTE]
-> Hosted agents and tracing are currently in preview.
+> Tracing is currently in preview.
 
 In this quickstart, you view end-to-end traces for the hosted agent you deployed in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md). You invoke your agent to generate trace data and review traces in the Foundry portal.
 

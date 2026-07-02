@@ -191,53 +191,6 @@ Content-Type: application/json
 
 ::: zone-end
 
-### Source-specific properties
-
-The following properties apply to remote SharePoint knowledge sources.
-
-::: zone pivot="csharp"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `Description` | A description of the knowledge source. | String | Yes | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `RemoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `FilterExpression`, `ResourceMetadata`, and `ContainerTypeId`. | Object | No | No |
-| `FilterExpression` | An expression written in the SharePoint [KQL](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), which is used to specify sites and paths to content. | String | Yes | No |
-| `ResourceMetadata` | An array of standard metadata fields: author, file name, creation date, content type, and file type. | Array | Yes | No |
-| `ContainerTypeId` | Container ID for the SharePoint Embedded connection. When unspecified, SharePoint Online is used. | String | Yes | No |
-
-::: zone-end
-
-::: zone pivot="python"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `remote_share_point_parameters` | Parameters specific to remote SharePoint knowledge sources: `filter_expression`, `resource_metadata`, and `container_type_id`. | Object | No | No |
-| `filter_expression` | An expression written in the SharePoint [KQL](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), which is used to specify sites and paths to content. | String | Yes | No |
-| `resource_metadata` | An array of standard metadata fields: author, file name, creation date, content type, and file type. | Array | Yes | No |
-| `container_type_id` | Container ID for the SharePoint Embedded connection. When unspecified, SharePoint Online is used. | String | Yes | No |
-
-::: zone-end
-
-::: zone pivot="rest"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `remoteSharePoint` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No | No |
-| `filterExpression` | An expression written in the SharePoint [KQL](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), which is used to specify sites and paths to content. | String | Yes | No |
-| `resourceMetadata` | An array of standard metadata fields: author, file name, creation date, content type, and file type. | Array | Yes | No |
-| `containerTypeId` | Container ID for the SharePoint Embedded connection. When unspecified, SharePoint Online is used. | String | Yes | No |
-
-::: zone-end
-
 ### Filter expression examples
 
 Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). For queryable properties, see [Queryable](/graph/connecting-external-content-manage-schema#queryable).

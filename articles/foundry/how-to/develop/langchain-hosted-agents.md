@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 Use the `langchain_azure_ai.agents.hosting` package to expose a compiled
 LangGraph graph through the protocols for Microsoft Foundry
-[hosted agents](../../agents/overview.md#hosted-agents-preview). The hosting
+[hosted agents](../../agents/overview.md#hosted-agents). The hosting
 package lets you keep your LangChain and LangGraph agent logic in code while
 Foundry manages the hosted runtime, sessions, scale, identity, and protocol
 endpoints.

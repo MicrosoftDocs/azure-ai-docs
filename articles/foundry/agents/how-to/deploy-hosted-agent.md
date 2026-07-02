@@ -40,18 +40,13 @@ Every Hosted agent deployment follows this sequence:
 
 ### Required permissions
 
-You need **Foundry Project Manager** at project scope to create and deploy Hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the **Foundry User** role to the platform-created agent identity. The agent identity needs **Foundry User** on the project to access models and artifacts at runtime.
+You need the **Foundry Project Manager** role at the project scope to deploy a hosted agent. This role grants the data-plane permissions to create and update agents, plus the ability to create role assignments for the platform-created agent identity if needed. For a detailed breakdown of the permissions involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
-If you use `azd` or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
+The platform creates a dedicated Microsoft Entra agent identity for each hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. The agent identity can access model inferencing through the project endpoint and session storage by default. For external resources (for example, your own Azure Storage), assign RBAC roles manually to the agent's Microsoft Entra ID. For more information, see [Agent access beyond defaults](../concepts/hosted-agent-permissions.md#agent-access-beyond-defaults).
 
-- **Container Registry Repository Reader** for the project managed identity (image pulls)
-- **Foundry User** for the platform-created agent identity (runtime model and tool access)
-
-> [!NOTE]
-> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Foundry User** to that identity--which is why **Foundry Project Manager** is recommended over **Foundry User** alone.
-> * While `azd` and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+If you use `azd` or the VS Code extension, the tooling handles most RBAC assignments automatically, including **Container Registry Repository Reader** for the project managed identity (image pulls).
 
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
 

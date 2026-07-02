@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/23/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -102,7 +102,7 @@ After you create your entities, you can come back and edit them. You can edit en
 
 After you build a schema for your fine-tuning task, you add training utterances to your project. The utterances should be similar to what your users use when they interact with the project. When you add an utterance, you assign which intent it belongs to. After the utterance is added, label the words within your utterance that you want to extract as entities.
 
-Data labeling is a crucial step in the CLU trained development lifecycle. This data is used in the next step when you train your model so that your model can learn from the labeled data. If you already labeled utterances, you can directly [import them into your project](create-project.md#import-an-existing-foundry-project), if your data follows the [accepted data format](../concepts/data-formats.md). Labeled data informs the model about how to interpret text and is used for training and evaluation.
+Data labeling is a crucial step in the CLU trained development lifecycle. Use this data in the next step when you train your model so that your model can learn from the labeled data. If you already labeled utterances, you can directly [import them into your project](create-project.md#import-an-existing-foundry-project) if your data follows the [accepted data format](../concepts/evaluation-metrics.md#data-formats). Labeled data informs the model about how to interpret text and is used for training and evaluation.
 
 > [!TIP]
 > Use the **Quick Deploy** option to implement custom CLU intent routing, which is powered by your own large language model deployment without adding or labeling any training data.
@@ -134,7 +134,7 @@ Use the following steps to label your utterances:
 
 1. Go to your project page in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
 
-1. On the left pane, select **Manage data**. On this page, you can add your utterances and label them. You can also upload your utterances directly by selecting **Upload utterance file** from the top menu. Make sure to follow the [accepted format](../concepts/data-formats.md#utterance-file-format).
+1. On the left pane, select **Manage data**. On this page, you can add your utterances and label them. You can also upload your utterances directly by selecting **Upload utterance file** from the top menu. Make sure to follow the [accepted format](../concepts/evaluation-metrics.md#utterance-file-format).
 
 1. By using the top tabs, you can change the view to **Training set** or **Testing set**. Learn more about [training and testing sets](#data-splitting) and how they're used for model training and evaluation.
 
