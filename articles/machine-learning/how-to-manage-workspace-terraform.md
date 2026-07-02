@@ -9,9 +9,10 @@ ms.custom: devx-track-terraform
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
-ms.date: 06/13/2025
+ms.date: 07/02/2026
 ms.topic: how-to
 ms.tool: terraform
+ai-usage: ai-assisted
 ---
 
 # Manage Azure Machine Learning workspaces by using Terraform
@@ -24,6 +25,7 @@ A Terraform configuration file is a document that defines the resources needed f
 
 - An Azure subscription with a free or paid version of Azure Machine Learning. If you don't have an Azure subscription, [create a free account before you begin](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Terraform installed and configured according to the instructions in [Quickstart: Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
+- The Terraform AzureRM provider version 4.0 or later. For guidance on upgrading from v3.x, see [Azure Resource Manager: 4.0 Upgrade Guide](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/4.0-upgrade-guide).
 <!--- [Azure CLI](/cli/azure/install-azure-cli) installed.-->
 
 ## Limitations
@@ -91,27 +93,30 @@ resource "azurerm_virtual_network" "default" {
 }
 
 resource "azurerm_subnet" "snet-training" {
-  name                                           = "snet-training"
-  resource_group_name                            = azurerm_resource_group.default.name
-  virtual_network_name                           = azurerm_virtual_network.default.name
-  address_prefixes                               = var.training_subnet_address_space
-  enforce_private_link_endpoint_network_policies = true
+  name                 = "snet-training"
+  resource_group_name  = azurerm_resource_group.default.name
+  virtual_network_name = azurerm_virtual_network.default.name
+  address_prefixes     = var.training_subnet_address_space
+
+  private_endpoint_network_policies = "Enabled"
 }
 
 resource "azurerm_subnet" "snet-aks" {
-  name                                           = "snet-aks"
-  resource_group_name                            = azurerm_resource_group.default.name
-  virtual_network_name                           = azurerm_virtual_network.default.name
-  address_prefixes                               = var.aks_subnet_address_space
-  enforce_private_link_endpoint_network_policies = true
+  name                 = "snet-aks"
+  resource_group_name  = azurerm_resource_group.default.name
+  virtual_network_name = azurerm_virtual_network.default.name
+  address_prefixes     = var.aks_subnet_address_space
+
+  private_endpoint_network_policies = "Enabled"
 }
 
 resource "azurerm_subnet" "snet-workspace" {
-  name                                           = "snet-workspace"
-  resource_group_name                            = azurerm_resource_group.default.name
-  virtual_network_name                           = azurerm_virtual_network.default.name
-  address_prefixes                               = var.ml_subnet_address_space
-  enforce_private_link_endpoint_network_policies = true
+  name                 = "snet-workspace"
+  resource_group_name  = azurerm_resource_group.default.name
+  virtual_network_name = azurerm_virtual_network.default.name
+  address_prefixes     = var.ml_subnet_address_space
+
+  private_endpoint_network_policies = "Enabled"
 }
 ```
 
