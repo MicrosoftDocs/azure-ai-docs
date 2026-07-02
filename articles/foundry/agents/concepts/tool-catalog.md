@@ -280,7 +280,7 @@ Use these definitions to keep terminology consistent:
 
 | Term | Meaning |
 | --------- | --------- |
-| Foundry Tools | The portal experience where you discover, configure, and manage tools for agents and workflows. |
+| Foundry Tools | The portal experience where you discover, configure, and manage tools for agents. |
 | Tool catalog | The browsable list of available tools, including public and organizational tools. |
 | Private tool catalog | An organization-scoped catalog for tools that only users in your organization can discover and configure. |
 | MCP server | A server that exposes tools by using the Model Context Protocol (MCP). |
@@ -310,7 +310,7 @@ The MCP tool can pass custom headers that a remote MCP server might require for 
 
 ## Discover and manage tools in the portal
 
-In the Foundry portal, go to your project and select **Build** > **Tools** to open Foundry Tools. From there, you can browse the tool catalog, configure tools, and add them to agents or workflows. If you need tools that are only visible within your organization, create a [private tool catalog](../how-to/private-tool-catalog.md).
+In the Foundry portal, go to your project and select **Build** > **Tools** to open Foundry Tools. From there, you can browse the tool catalog, configure tools, and add them to agents. If you need tools that are only visible within your organization, create a [private tool catalog](../how-to/private-tool-catalog.md).
 
 To explore tools while you build, use the Agents playground. For more information, see [Microsoft Foundry Playgrounds](../../concepts/concept-playgrounds.md).
 
@@ -341,9 +341,9 @@ When you select a tool, Foundry Tools shows the setup details you need to config
 
 ### Manage configured tools
 
-In your tools list, you can find the tools you configured, along with details such as endpoints and authentication settings. You can also add tools to agents and workflows.
+In your tools list, you can find the tools you configured, along with details such as endpoints and authentication settings. You can also add tools to agents.
 
-Before you delete a tool, check which agents or workflows use it. Deleting a tool can break runs that depend on it.
+Before you delete a tool, check which agents use it. Deleting a tool can break runs that depend on it.
 
 <!--
 :::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the Foundry portal." lightbox="../media/tool-catalog/tool-view.png" :::
