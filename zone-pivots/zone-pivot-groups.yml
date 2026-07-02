@@ -26,6 +26,15 @@ groups:
     title: REST API
   - id: azd
     title: Azure Developer CLI
+# Owner: taochen
+- id: microsoft-agent-framewok
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: .NET
 - id: programming-languages-portal-cli-ps
 # Owner: eur
   title: Programming languages

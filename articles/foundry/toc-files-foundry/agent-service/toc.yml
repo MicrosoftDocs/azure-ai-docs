@@ -118,6 +118,8 @@ items:
       href: ../../agents/how-to/update-hosted-agent-model.md
     - name: Add a protocol adapter
       href: ../../agents/how-to/add-protocol-adapter.md
+    - name: Host Microsoft Agent Framework agents
+      href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
       href: ../../how-to/develop/langchain-hosted-agents.md
     - name: Deploy from source code (preview)
