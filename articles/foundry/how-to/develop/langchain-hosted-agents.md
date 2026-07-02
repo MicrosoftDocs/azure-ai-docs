@@ -69,12 +69,12 @@ Set the project endpoint and model deployment name for local development:
 
 ```bash
 export FOUNDRY_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
-export AZURE_AI_MODEL_DEPLOYMENT_NAME="gpt-4.1"
+export FOUNDRY_MODEL_NAME="gpt-4.1"
 ```
 
 When the same code runs as a Hosted agent in Foundry, the platform injects
 `FOUNDRY_PROJECT_ENDPOINT`. If you use `azd ai agent init` with a sample
-manifest, the generated project also uses `AZURE_AI_MODEL_DEPLOYMENT_NAME` for
+manifest, the generated project also uses `FOUNDRY_MODEL_NAME` for
 the selected model deployment.
 
 ## Responses protocol
@@ -103,7 +103,7 @@ _AZURE_AI_SCOPE = "https://ai.azure.com/.default"
 
 def build_chat_model() -> ChatOpenAI:
     project_endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"].rstrip("/")
-    deployment = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1")
+    deployment = os.environ.get("FOUNDRY_MODEL_NAME", "gpt-4.1")
     credential = DefaultAzureCredential()
     project = AIProjectClient(endpoint=project_endpoint, credential=credential)
     openai_client = project.get_openai_client()
@@ -442,7 +442,7 @@ the agent, including:
 
 - `FOUNDRY_PROJECT_ENDPOINT`: The endpoint URL for the Foundry project where
   the agent is deployed.
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The model deployment name selected during
+- `FOUNDRY_MODEL_NAME`: The model deployment name selected during
   `azd ai agent init`.
 - `APPLICATIONINSIGHTS_CONNECTION_STRING`: The connection string for the
   project's Application Insights instance.
@@ -481,7 +481,7 @@ conversation state.
 
 ### The model can't be reached in the hosted container
 
-Confirm that the Hosted agent version includes `AZURE_AI_MODEL_DEPLOYMENT_NAME`,
+Confirm that the Hosted agent version includes `FOUNDRY_MODEL_NAME`,
 and that the agent identity has permission to call the Foundry project. The
 platform sets `FOUNDRY_PROJECT_ENDPOINT`; your code should read that variable
 when running in Foundry.

@@ -110,8 +110,8 @@ For the full protocol specification, see [Hosted agent runtime contract](hosted-
 
 ```yaml
 environment_variables:
-  - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
-    value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+  - name: FOUNDRY_MODEL_NAME
+    value: ${FOUNDRY_MODEL_NAME}
 ```
 
 The `${ }` syntax references `azd` environment variables from `.azure/<env>/.env`.
@@ -198,8 +198,8 @@ template:
     - protocol: responses
       version: 1.0.0
   environment_variables:
-    - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
-      value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+    - name: FOUNDRY_MODEL_NAME
+      value: ${FOUNDRY_MODEL_NAME}
     - name: TOOLBOX_ENDPOINT
       value: ${TOOLBOX_ENDPOINT}
 

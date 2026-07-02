@@ -80,7 +80,7 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
 _endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-_model = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
+_model = os.environ["FOUNDRY_MODEL_NAME"]
 
 _project_client = AIProjectClient(
     endpoint=_endpoint, credential=DefaultAzureCredential()
@@ -132,8 +132,8 @@ ResponsesServer.Run<MyHandler>(configure: builder =>
 {
     var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
         ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
-    var model = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME")
-        ?? throw new InvalidOperationException("AZURE_AI_MODEL_DEPLOYMENT_NAME is not set.");
+    var model = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME")
+        ?? throw new InvalidOperationException("FOUNDRY_MODEL_NAME is not set.");
 
     var projectClient = new AIProjectClient(
         new Uri(endpoint), new DefaultAzureCredential());

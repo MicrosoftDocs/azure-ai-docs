@@ -36,7 +36,7 @@ An environment is a named configuration, such as `dev`, `staging`, or `prod`, th
 | `azd deploy` | Builds your container, pushes it to Azure, and creates the hosted agent version. |
 | `azd up` | Combines `provision` and `deploy` in one command. |
 | `azd down` | Deletes all provisioned resources. |
-| `azd env set` | Sets an environment variable, for example `azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1`. |
+| `azd env set` | Sets an environment variable, for example `azd env set FOUNDRY_MODEL_NAME=gpt-4.1`. |
 
 ## Minimal example
 
