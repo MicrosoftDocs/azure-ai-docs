@@ -38,11 +38,11 @@ A Terraform configuration file is a document that defines the resources needed f
 
 ## Create the workspace
 
-Create a file named *main.tf* that has the following code.
+Create a file named *main.tf* that contains the following code.
 
 :::code language="terraform" source="~/terraform/quickstart/101-machine-learning/main.tf":::
 
-Declare the Azure provider in a file named *providers.tf* that has the following code.
+Declare the Azure provider in a file named *providers.tf* that contains the following code.
 
 :::code language="terraform" source="~/terraform/quickstart/101-machine-learning/providers.tf":::
 
@@ -69,7 +69,7 @@ Define the following workspace configuration in a file called *workspace.tf*:
 
 The following configuration creates a workspace in an isolated network environment by using Azure Private Link endpoints. The template includes [private Domain Name System (DNS) zones](/azure/dns/private-dns-privatednszone) to resolve domain names within the virtual network.
 
-If you use private link endpoints for both Azure Container Registry and Azure Machine Learning, you can't use Container Registry tasks for building [environment](/python/api/azure-ai-ml/azure.ai.ml.entities.environment) images. Instead you must build images by using an Azure Machine Learning compute cluster.
+If you use private link endpoints for both Azure Container Registry and Azure Machine Learning, you can't use Container Registry tasks for building [environment](/python/api/azure-ai-ml/azure.ai.ml.entities.environment) images. Instead, you must build images by using an Azure Machine Learning compute cluster.
 
 To configure the cluster name to use, set the [image_build_compute_name](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/machine_learning_workspace) argument. You can also [allow public access](./how-to-configure-private-link.md?tabs=python#enable-public-access) to a workspace that has a private link endpoint by using the [public_network_access_enabled](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/machine_learning_workspace) argument.
 
