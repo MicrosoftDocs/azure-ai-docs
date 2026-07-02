@@ -8,9 +8,10 @@ ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 06/13/2025
+ms.date: 07/02/2026
 ms.topic: troubleshooting
 ms.custom: devx-track-python
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-1 || azureml-api-2'
 ---
 
@@ -121,7 +122,7 @@ for your jobs or model deployments while using system-managed environments.
 System vulnerabilities in an environment are usually introduced from the base image. For example, vulnerabilities marked as "Ubuntu" or "Debian" are from the system level of the environment–the base Docker image. If the base image is from a third-party issuer, check if the latest version has fixes for the flagged vulnerabilities. Most common sources for the base images in Azure Machine Learning are:
 
 - Microsoft Artifact Registry (MAR) also known as Microsoft Container Registry (mcr.microsoft.com). 
-    - Images can be listed from MAR homepage, calling _catalog API, or [/tags/list](https://mcr.microsoft.com/v2/azureml/openmpi4.1.0-ubuntu20.04/tags/list)_
+    - Images can be listed from MAR homepage, calling _catalog API, or [/tags/list](https://mcr.microsoft.com/v2/azureml/openmpi4.1.0-ubuntu22.04/tags/list)_
     - Source and release notes for training base images from Azure Machine Learning can be found in [Azure/AzureML-Containers](https://github.com/Azure/AzureML-Containers)
 - NVIDIA (nvcr.io, or [Nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
 
@@ -138,7 +139,7 @@ Vulnerabilities can also be from installed Python packages on top of the system-
 To search for known Python vulnerabilities and solutions, see [GitHub Advisory Database](https://github.com/advisories). To address Python vulnerabilities, update the package to the version that has fixes for the flagged issue:
 
 ```
-pip install -u my_package=={good.version}
+pip install "my_package==<good.version>"
 ```
 
 If you're using a conda environment, update the reference in the conda dependencies file.
@@ -249,7 +250,7 @@ from azureml.core import Environment
 myenv = Environment(name="myenv")
 # Specify docker steps as a string.
 dockerfile = r'''
-FROM mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
+FROM mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04
 RUN echo "Hello from custom container!"
 '''
 
@@ -300,7 +301,7 @@ Choose which Docker option you'd like to use to build your environment. Then set
 from azureml.core import Environment
 myenv = Environment(name="myEnv")
 dockerfile = r'''
-FROM mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
+FROM mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04
 RUN echo "Hello from custom container!"
 '''
 myenv.docker.base_dockerfile = dockerfile
@@ -563,7 +564,7 @@ Instead of specifying these attributes in the `DockerSection` of your environmen
 Shorten your Dockerfile to get it under this limit
  
 **Resources**
-* See [best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+* See [best practices](https://docs.docker.com/build/building/best-practices/)
 
 ## *Docker build context issues*
 ### Missing Docker build context location
@@ -593,7 +594,7 @@ Ensure that you include a path for your build context
 :::moniker-end
 
 **Resources**
-* [Understand build context](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context)
+* [Understand build context](https://docs.docker.com/build/concepts/context/)
 
 ### Missing Dockerfile path
 <!--issueDescription-->
@@ -625,7 +626,7 @@ Specify a Dockerfile path
 :::moniker-end
 
 **Resources**
-* [Understand build context](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context)
+* [Understand build context](https://docs.docker.com/build/concepts/context/)
 
 :::moniker range="azureml-api-1"
 
@@ -652,7 +653,7 @@ If you specified any of the above-listed properties in your environment definiti
 * If you're using a Docker build context and want to specify conda dependencies, your conda specification should reside in your build context directory
 
 **Resources**
-* [Understand build context](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context)
+* [Understand build context](https://docs.docker.com/build/concepts/context/)
 * Python SDK v1 [Environment Class](https://aka.ms/azureml/environment/environment-class-v1)
 
 :::moniker-end
@@ -680,7 +681,7 @@ The following are accepted location types:
     
 **Resources**
 * See [DockerBuildContext Class](/python/api/azureml-core/azureml.core.environment.dockerbuildcontext)
-* [Understand build context](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context)
+* [Understand build context](https://docs.docker.com/build/concepts/context/)
 
 :::moniker-end
 
@@ -708,7 +709,7 @@ For scenarios in which you're storing your Docker build context in a storage acc
 **Resources**
 * See [DockerBuildContext Class](/python/api/azureml-core/azureml.core.environment.dockerbuildcontext)
 * [Python SDK/Azure CLI v2 sample](https://aka.ms/azureml/environment/create-env-build-context-v2)
-* [Understand build context](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context)
+* [Understand build context](https://docs.docker.com/build/concepts/context/)
 
 :::moniker-end
 
@@ -829,7 +830,7 @@ from azureml.core.environment import CondaDependencies
 
 myenv = Environment(name="myenv")
 conda_dep = CondaDependencies()
-conda_dep.add_conda_package("python==3.8")
+conda_dep.add_conda_package("python==3.11")
 env.python.conda_dependencies = conda_dep
 ```
 :::moniker-end
@@ -839,7 +840,7 @@ If you're using a YAML for your conda specification, include Python as a depende
 ```yaml
 name: project_environment
 dependencies:
-  - python=3.8
+  - python=3.11
   - pip:
       - azureml-defaults
 channels:
@@ -871,7 +872,7 @@ channels:
 Choose which Python version you want to use, and remove all other versions 
 
 ```python
-myenv.python.conda_dependencies.remove_conda_package("python=3.8")
+myenv.python.conda_dependencies.remove_conda_package("python=3.11")
 ```
 
 :::moniker-end
@@ -929,7 +930,7 @@ Specify a [python version](https://aka.ms/azureml/environment/python-versions) t
 Use correct syntax to specify a Python version using the SDK
 
 ```python
-myenv.python.conda_dependencies.add_conda_package("python=3.8")
+myenv.python.conda_dependencies.add_conda_package("python=3.11")
 ```
 
 :::moniker-end
@@ -939,7 +940,7 @@ Use correct syntax to specify a Python version in a conda YAML
 ```yaml
 name: project_environment
 dependencies:
-  - python=3.8
+  - python=3.11
   - pip:
       - azureml-defaults
 channels:
@@ -980,7 +981,7 @@ from azureml.core.environment import CondaDependencies
 
 env = Environment(name="env")
 conda_dep = CondaDependencies()
-conda_dep.add_conda_package("python==3.8")
+conda_dep.add_conda_package("python==3.11")
 env.python.conda_dependencies = conda_dep
 ```
 
@@ -1026,7 +1027,7 @@ Ensure that `conda_dependencies` is a JSONified version of the conda dependencie
         "conda-forge"
     ],
     "dependencies": [
-        "python=3.8",
+        "python=3.11",
         {
             "pip": [
                 "azureml-defaults"
@@ -1044,7 +1045,7 @@ from azureml.core.environment import CondaDependencies
 
 env = Environment(name="env")
 conda_dep = CondaDependencies()
-conda_dep.add_conda_package("python==3.8")
+conda_dep.add_conda_package("python==3.11")
 env.python.conda_dependencies = conda_dep
 ```
 
@@ -1103,7 +1104,7 @@ If you're using a YAML for your conda specification, include the conda channel(s
 ```yaml
 name: project_environment
 dependencies:
-  - python=3.8
+  - python=3.11
   - pip:
       - azureml-defaults
 channels:
@@ -1149,7 +1150,7 @@ from azureml.core.environment import CondaDependencies
 env = Environment(name="env")
 env.python.base_conda_environment = None
 conda_dep = CondaDependencies()
-conda_dep.add_conda_package("python==3.8")
+conda_dep.add_conda_package("python==3.11")
 env.python.conda_dependencies = conda_dep
 ```
 
@@ -1198,7 +1199,7 @@ Include version numbers when adding packages to your conda specification
 from azureml.core.environment import CondaDependencies
 
 conda_dep = CondaDependencies()
-conda_dep.add_conda_package("numpy==1.24.1")
+conda_dep.add_conda_package("numpy>=1.26")
 ```
 
 :::moniker-end
@@ -1208,9 +1209,9 @@ If you're using a YAML for your conda specification, specify versions for your d
 ```yaml
 name: project_environment
 dependencies:
-  - python=3.8
+  - python=3.11
   - pip:
-      - numpy=1.24.1
+      - numpy=1.26
 channels:
   - anaconda
   - conda-forge
@@ -1240,7 +1241,7 @@ For reproducibility, you should specify and pin pip as a dependency in your cond
 Specify pip as a dependency, along with its version
 
 ```python
-env.python.conda_dependencies.add_conda_package("pip==22.3.1")
+env.python.conda_dependencies.add_conda_package("pip>=24.0")
 ```
 
 :::moniker-end
@@ -1250,10 +1251,10 @@ If you're using a YAML for your conda specification, specify pip as a dependency
 ```yaml
 name: project_environment
 dependencies:
-  - python=3.8
-  - pip=22.3.1
+  - python=3.11
+  - pip>=24.0
   - pip:
-      - numpy=1.24.1
+      - numpy>=1.26
 channels:
   - anaconda
   - conda-forge
@@ -1282,7 +1283,7 @@ If you don't specify a pip version, a different version might be used on subsequ
 Specify a pip version in your conda dependencies
 
 ```python
-env.python.conda_dependencies.add_conda_package("pip==22.3.1")
+env.python.conda_dependencies.add_conda_package("pip>=24.0")
 ```
 
 :::moniker-end
@@ -1292,10 +1293,10 @@ If you're using a YAML for your conda specification, specify a version for pip
 ```yaml
 name: project_environment
 dependencies:
-  - python=3.8
-  - pip=22.3.1
+  - python=3.11
+  - pip>=24.0
   - pip:
-      - numpy=1.24.1
+      - numpy>=1.26
 channels:
   - anaconda
   - conda-forge
@@ -1559,7 +1560,7 @@ This issue can happen when conda package resolution takes too long to complete.
 
 **Potential causes:**
 * There's a large number of packages listed in your conda specification and unnecessary packages are included
-* You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.8)
+* You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.16)
 * You listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
 
 **Affected areas (symptoms):**
@@ -1578,7 +1579,7 @@ This issue can happen when conda package resolution fails due to available memor
 
 **Potential causes:**
 * There's a large number of packages listed in your conda specification and unnecessary packages are included
-* You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.8)
+* You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.16)
 * You listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
 
 **Affected areas (symptoms):**
@@ -1616,8 +1617,8 @@ channels:
   - conda-forge
   - anaconda
 dependencies:
-  - python=3.8
-  - tensorflow=2.8
+  - python=3.11
+  - tensorflow=2.16
 Name: my_environment
 ```
 
@@ -1648,7 +1649,7 @@ channels:
   - conda-forge
   - anaconda
 dependencies:
-  - python=3.8
+  - python=3.11
   - pip:
     - dataclasses
 Name: my_environment
@@ -1681,8 +1682,8 @@ channels:
   - conda-forge
   - anaconda
 dependencies:
-  - python = 3.8
-  - tensorflow = 2.8
+  - python = 3.11
+  - tensorflow = 2.16
 Name: my_environment
 ```
 
@@ -1829,7 +1830,7 @@ This issue can happen when the conda command isn't recognized during conda envir
 **Troubleshooting steps**
 
 Ensure that you have a conda installation step in your Dockerfile before trying to execute any conda commands
-* Review this [list of conda installers](https://docs.conda.io/en/latest/miniconda.html) to determine what you need for your scenario
+* Review this [list of conda installers](https://docs.anaconda.com/miniconda/) to determine what you need for your scenario
 
 If you tried installing conda and are experiencing this issue, ensure that you added conda to your path
 * Review this [example](https://stackoverflow.com/questions/58269375/how-to-install-packages-with-miniconda-in-dockerfile) for guidance
