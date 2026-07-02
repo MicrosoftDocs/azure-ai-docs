@@ -12,6 +12,8 @@ ms.custom:
 
 # Create a skillset in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 :::image type="content" source="media/cognitive-search-defining-skillset/indexer-stages-skillset.png" alt-text="Diagram showing the indexer stages, with Skillset Execution as the third stage of five.":::
 
 A skillset defines operations that generate vector and textual content and structure from documents that contain images or raw content. Examples are chunking skills, embedding (vectorization) skills, image verbalization, and other processes like optical character recognition (OCR) for images, entity recognition for undifferentiated text, and text translation. A skillset executes after raw content is extracted from an external data source, and after [field mappings](search-indexer-field-mappings.md) are processed.

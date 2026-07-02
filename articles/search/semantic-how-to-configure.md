@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Configure semantic ranker and return captions in search results
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Semantic ranking iterates over an initial result set, applying an L2 ranking methodology that promotes the most semantically relevant results to the top of the stack. You can also get semantic captions, with highlights over the most relevant terms and phrases, and [semantic answers](semantic-answers.md).
 
 This article explains how to configure a search index for semantic reranking.

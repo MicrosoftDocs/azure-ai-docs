@@ -13,6 +13,8 @@ ms.custom:
 
 # Make indexer connections to Azure Storage as a trusted service
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, indexers that access Azure blobs can use the [trusted service exception](/azure/storage/common/storage-network-security#exceptions) to securely access blobs. This mechanism offers customers who are unable to grant [indexer access using IP firewall rules](search-indexer-howto-access-ip-restricted.md) a simple, secure, and free alternative for accessing data in storage accounts.
 
 > [!NOTE]

@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Custom Web API skill in an Azure AI Search enrichment pipeline
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Custom Web API** skill allows you to extend AI enrichment by calling out to a Web API endpoint providing custom operations. Similar to built-in skills, a **Custom Web API** skill has inputs and outputs. Depending on the inputs, your Web API receives a JSON payload when the indexer runs, and outputs a JSON payload as a response, along with a success status code. The response is expected to have the outputs specified by your custom skill. Any other response is considered an error and no enrichments are performed. The structure of the JSON payload is described further down in this document.
 
 The **Custom Web API** skill is also used in the implementation of [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) feature. If Azure OpenAI is [configured for role-based access](/azure/ai-services/openai/how-to/use-your-data-securely#configure-azure-openai) and you get `403 Forbidden` calls when creating the vector index, verify that Azure AI Search has a [system assigned identity](search-how-to-managed-identities.md#create-a-system-managed-identity) and runs as a [trusted service](/azure/ai-services/openai/how-to/use-your-data-securely#enable-trusted-service) on Azure OpenAI. 

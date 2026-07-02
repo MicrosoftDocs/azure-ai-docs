@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 #	Text Merge cognitive skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Text Merge** skill consolidates text from an array of strings into a single field. 
 
 > [!NOTE]

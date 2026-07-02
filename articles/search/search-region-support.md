@@ -14,6 +14,8 @@ ms.custom:
 
 # Azure AI Search regions list
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region.
 
 ## Features subject to regional availability

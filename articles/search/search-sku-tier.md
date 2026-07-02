@@ -10,6 +10,8 @@ ms.date: 06/02/2026
 
 # Choose a pricing model and service tier in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 When you [create a search service](search-create-service-portal.md), you must choose a pricing model and service tier. Azure AI Search offers two pricing models, each suited to different workload patterns, with associated service tiers that determine capacity and features:
 
 | Pricing model | Best for | How you're billed |

@@ -17,6 +17,8 @@ ms.devlang: csharp
 
 # Step 2 - Create and load the search index
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Continue to build your search-enabled website by following these steps:
 
 - Create a new index

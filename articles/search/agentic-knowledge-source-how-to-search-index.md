@@ -10,6 +10,8 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a search index knowledge source
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 > [!IMPORTANT]
