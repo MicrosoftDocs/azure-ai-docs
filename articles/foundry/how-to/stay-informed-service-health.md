@@ -32,16 +32,16 @@ Azure Service Health tracks the health of the Azure services that your Foundry r
 
 In the **Service issues** pane of the Service Health portal, you can see a map and list of events that might affect your services, based on your subscription or tenant access.
 
-:::image type="content" source="../media/how-to/stay-informed-service-health/service-issues.png" alt-text="Screenshot of the Service issues pane in the Azure portal, showing a map and list of events that might affect your services." lightbox="../media/how-to/stay-informed-service-health/service-issues.png":::
+:::image type="content" source="media/service-health/service-health-alerts.png" alt-text="Screenshot of the Service issues pane in the Azure portal, showing a map and list of events that might affect your services." lightbox="media/service-health/service-health-alerts.png":::
 
 Create a Service Health alert so you're notified automatically when a relevant event occurs:
 
 1. Go to the [Azure portal](https://portal.azure.com) and search for **Service Health**.
-1. On the **Service Health** page, select **Health alerts** in the left menu, and then select **Add service health alert**.
-1. Under **Scope**, select the subscriptions, regions, and services that host your Foundry resources. Include the **Azure OpenAI**, **Foundry Models**, and **Foundry Agent Service** services, and the regions where your model deployments run.
-1. Under **Alert condition**, select the event types you want to be notified about, such as **Service issue**, **Planned maintenance**, **Health advisories**, and **Security advisories**.
-1. Under **Actions**, select or create an [action group](/azure/azure-monitor/alerts/action-groups) that defines who gets notified and how (for example, email, SMS, or a webhook to your incident-management system).
-1. Add **Alert rule details**, such as a name and resource group, and then select **Create alert rule**.
+2. On the **Service Health** page, select **Health alerts** in the left menu, and then select **Add service health alert**.
+3. Under **Scope**, select the subscriptions, regions, and services that host your Foundry resources. Include the **Azure OpenAI**, **Foundry Models**, and **Foundry Agent Service** services, and the regions where your model deployments run.
+4. Under **Alert condition**, select the event types you want to be notified about, such as **Service issue**, **Planned maintenance**, **Health advisories**, and **Security advisories**.
+5. Under **Actions**, select or create an [action group](/azure/azure-monitor/alerts/action-groups) that defines who gets notified and how (for example, email, SMS, or a webhook to your incident-management system).
+6. Add **Alert rule details**, such as a name and resource group, and then select **Create alert rule**.
 
 For more information, see [Create Service Health alerts in the Azure portal](/azure/service-health/alerts-activity-log-service-notifications-portal) and [Service Health overview](/azure/service-health/service-health-overview).
 
