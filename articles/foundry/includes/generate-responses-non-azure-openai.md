@@ -163,7 +163,7 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-identity</artifactId>
-            <version>1.15.4</version>
+            <version>1.18.4</version>
         </dependency>
     </dependencies>
     ```

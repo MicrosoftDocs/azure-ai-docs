@@ -63,7 +63,7 @@ dotnet add package Azure.Identity
 # [JavaScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects@2.0.0
+npm install @azure/ai-projects
 npm install @azure/identity
 ```
 
@@ -73,12 +73,12 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.15.4</version>
+    <version>1.18.4</version>
 </dependency>
 ```
 

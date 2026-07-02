@@ -101,7 +101,7 @@ The [Azure AI Projects client library for JavaScript](/javascript/api/overview/a
 
 Run this command to install the JavaScript packages for Foundry projects.
 ```bash
-npm install @azure/ai-projects @azure/identity dotenv
+npm install @azure/ai-projects @azure/identity openai dotenv
 ```
 ::: zone-end
 
