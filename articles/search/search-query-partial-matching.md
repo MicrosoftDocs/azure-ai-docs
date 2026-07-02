@@ -37,6 +37,9 @@ For regular expression, wildcard, and fuzzy search, analyzers aren't used at que
 > [!NOTE]
 > When a partial query string includes characters, such as slashes in a URL fragment, you might need to add escape characters. In JSON, a forward slash `/` is escaped with a backward slash `\`. As such, `search=/.*microsoft.com\/azure\/.*/` is the syntax for the URL fragment "microsoft.com/azure/".
 
+> [!NOTE]
+> Because regular expression, wildcard, and fuzzy query terms bypass analysis, they're matched against the literal tokens in the index, so the case of your query term matters if your analyzer lowercases content (which most analyzers, including the default standard analyzer, do). A query like `Contoso*` can return zero results against lowercased tokens even though `contoso*` matches successfully. Don't rely on the query engine to normalize the case of these terms for you; lowercase wildcard, prefix, and regex query terms in your application before sending the request. For more information, see [Effect of an analyzer on wildcard queries](query-lucene-syntax.md#effect-of-an-analyzer-on-wildcard-queries).
+
 ## Solving partial/pattern search problems
 
 When you need to search on fragments or patterns or special characters, you can override the default analyzer with a custom analyzer that operates under simpler tokenization rules, retaining the entire string in the index.
