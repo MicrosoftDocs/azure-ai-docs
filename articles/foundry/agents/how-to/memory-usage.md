@@ -328,7 +328,7 @@ console.log(
 
 ```java
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.MemoryStoresClient;
+import com.azure.ai.agents.BetaMemoryStoresClient;
 import com.azure.ai.agents.models.MemoryStoreDefaultDefinition;
 import com.azure.ai.agents.models.MemoryStoreDefaultOptions;
 import com.azure.ai.agents.models.MemoryStoreDetails;
@@ -339,10 +339,11 @@ String chatModel = System.getenv("MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME");
 String embeddingModel =
   System.getenv("MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME");
 
-MemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
+BetaMemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
   .credential(new DefaultAzureCredentialBuilder().build())
   .endpoint(projectEndpoint)
-  .buildMemoryStoresClient();
+  .beta()
+  .buildBetaMemoryStoresClient();
 
 String memoryStoreName = "my_memory_store";
 

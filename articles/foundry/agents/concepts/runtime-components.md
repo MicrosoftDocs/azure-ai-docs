@@ -1870,7 +1870,7 @@ console.log(`Memory store: ${memoryStore.name}`);
 
 ```java
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.MemoryStoresClient;
+import com.azure.ai.agents.BetaMemoryStoresClient;
 import com.azure.ai.agents.models.MemoryStoreDefaultDefinition;
 import com.azure.ai.agents.models.MemoryStoreDetails;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -1878,10 +1878,11 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 String projectEndpoint = "your_project_endpoint";
 
 // Create memory stores client
-MemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
+BetaMemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint)
-    .buildMemoryStoresClient();
+    .beta()
+    .buildBetaMemoryStoresClient();
 
 // Create a memory store
 MemoryStoreDefaultDefinition definition =
