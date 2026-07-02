@@ -23,8 +23,8 @@ ai-usage: ai-assisted
 # Build a workflow in Microsoft Foundry
 
 > [!IMPORTANT]
-> Workflows in Microsoft Foundry are being retired 1 October 2026.
-> If you're looking to build new workflows, we recommend using Microsoft Agent Framework. If you're migrating existing workflows, see the [Migration guide](#migration-guide) section of this article for all supported paths.
+> Microsoft Foundry is retiring workflows on 1 October 2026.
+> If you're looking to build new workflows, use Microsoft Agent Framework. To migrate existing workflows, see the [Migration guide](#migration-guide) section of this article for all supported paths.
 
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
@@ -334,7 +334,7 @@ To delete a workflow you no longer need:
 
 ## Migration guide
 
-Foundry is moving workflow authoring to a code-first model. Visual workflows aren't disappearing as a capability—the orchestration patterns you built visually (sequential and group-chat coordination, branching logic, and human-in-the-loop steps) are all expressible in code and configuration, so you keep them when you migrate. After 1 October 2026, the visual designer and in-portal workflow execution are no longer supported, but Foundry continues to run YAML-based workflow definitions when you deploy them as a [hosted agent](hosted-agents.md).
+Foundry is moving workflow authoring to a code-first model. Visual workflows aren't disappearing as a capability. The orchestration patterns you built visually (sequential and group-chat coordination, branching logic, and human-in-the-loop steps) are all expressible in code and configuration, so you keep them when you migrate. After 1 October 2026, the visual designer and in-portal workflow execution aren't supported, but Foundry continues to run YAML-based workflow definitions when you deploy them as a [hosted agent](hosted-agents.md).
 
 Pick the path that matches how you want to build. Most teams should start with Microsoft Agent Framework.
 
@@ -356,7 +356,7 @@ The Agent Inspector in the Foundry AI Toolkit for Visual Studio Code lets you vi
 
 ### Option 1: Microsoft Agent Framework (recommended)
 
-Microsoft Agent Framework is the recommended path for most workflows. The orchestration you built visually maps directly onto Agent Framework, which supports the same patterns through **declarative YAML** or **code-first** authoring. In many cases you can bring your exported workflow YAML into an Agent Framework project and run it with minimal changes, then keep iterating in Visual Studio Code instead of the portal. Because workflows are no longer a separate agent type, you run the result by [deploying it as a hosted agent](hosted-agents.md)—the same managed runtime that hosts your other code-based agents.
+Use Microsoft Agent Framework for most workflows. The orchestration you build visually maps directly onto Agent Framework, which supports the same patterns through **declarative YAML** or **code-first** authoring. In many cases, you can bring your exported workflow YAML into an Agent Framework project and run it with minimal changes. Then, keep iterating in Visual Studio Code instead of the portal. Because workflows are no longer a separate agent type, you run the result by [deploying it as a hosted agent](hosted-agents.md)—the same managed runtime that hosts your other code-based agents.
 
 - Build and run workflows: [Microsoft Agent Framework workflows](/agent-framework/workflows/)
 - Reuse your exported YAML with declarative workflows: [Declarative workflows overview](/agent-framework/workflows/declarative?pivots=programming-language-python)
@@ -364,14 +364,14 @@ Microsoft Agent Framework is the recommended path for most workflows. The orches
 
 ### Option 2: Azure Logic Apps
 
-If a visual designer is the main reason you use workflows, Azure Logic Apps gives you a fully featured, low-code canvas for orchestration and can call Foundry agents as steps. Logic Apps lets you combine deterministic steps—connectors, conditions, approvals, and hundreds of prebuilt actions—with the probabilistic reasoning of Foundry agents in the same run. You can adopt agents incrementally and enrich processes you already have, instead of rebuilding them from scratch.
+If a visual designer is the main reason you use workflows, Azure Logic Apps gives you a fully featured, low-code canvas for orchestration and can call Foundry agents as steps. Logic Apps lets you combine deterministic steps - connectors, conditions, approvals, and hundreds of prebuilt actions - with the probabilistic reasoning of Foundry agents in the same run. You can adopt agents incrementally and enrich processes you already have, instead of rebuilding them from scratch.
 
 - Build automated workflows with the visual designer: [Azure Logic Apps overview](/azure/logic-apps/logic-apps-overview)
 - Call and orchestrate Foundry agents from a workflow: [Run automated workflows from Foundry agents](/azure/logic-apps/add-agent-action-create-run-workflow?pivots=portal)
 
 ### Option 3: Connect agents directly with A2A
 
-For lightweight scenarios where one agent just needs to call another—without a formal, multi-step workflow—expose an agent as an agent-to-agent (A2A) endpoint and call it directly. This keeps the calling agent in control while it delegates a task to a specialized agent. For more information, see [Enable an incoming A2A endpoint on a Foundry agent](../how-to/enable-agent-to-agent-endpoint.md).
+For lightweight scenarios where one agent just needs to call another - without a formal, multistep workflow - expose an agent as an agent-to-agent (A2A) endpoint and call it directly. This approach keeps the calling agent in control while it delegates a task to a specialized agent. For more information, see [Enable an incoming A2A endpoint on a Foundry agent](../how-to/enable-agent-to-agent-endpoint.md).
 
 ## Related content
 

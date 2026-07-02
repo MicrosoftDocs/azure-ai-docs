@@ -273,7 +273,7 @@ Content-Type: application/json
 
 #### 3. Verify deployment is running
 
-Prompt agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version — if the version is stopped, the deployment is also stopped. 
+Prompt agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version - if the version is stopped, the deployment is also stopped. 
 
 To check the current state, get the deployment resource and inspect property `state`:
 ```
