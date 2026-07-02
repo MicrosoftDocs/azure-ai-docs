@@ -18,7 +18,7 @@ Production workloads depend on reliable service availability and consistent mode
 You can use two complementary tools:
 
 - **[Azure Service Health](/azure/service-health/)** notifies you about service issues, planned maintenance, and health advisories that affect the Azure services and regions that your resources run in.
-- **Azure Monitor metric alerts** notify you when metrics from your model deployments cross a threshold that you set, so you can detect regressions in your own traffic before they affect users.
+- **[Azure Monitor metric alerts](/azure/azure-monitor/alerts/alerts-overview/)** notify you when metrics from your model deployments cross a threshold that you set, so you can detect regressions in your own traffic before they affect users.
 
 ## Prerequisites
 
