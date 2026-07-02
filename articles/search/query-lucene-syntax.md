@@ -178,7 +178,7 @@ If you were to use the en.lucene (English Lucene) analyzer, it would apply aggre
 On the other side, the Microsoft analyzers (in this case, the en.microsoft analyzer) are a bit more advanced and use lemmatization instead of stemming. This means that all generated tokens should be valid English words. For example, `terminate`, `terminates`, and `termination` will mostly stay whole in the index, and would be a preferable choice for scenarios that depend a lot on wildcards and fuzzy search.
 
 > [!NOTE]
-> Wildcard, prefix, and regex query terms are matched against the literal tokens in the index. Because most analyzers lowercase indexed content, an uppercase term like `Contoso*` can fail to match a token like `contoso`. It's recommended that you lowercase these query terms in your application, based on the case-folding behavior of the analyzer assigned to the field.
+> Wildcard, prefix, and regex query terms match against the literal tokens in the index. Because most analyzers lowercase indexed content, an uppercase term like `Contoso*` can fail to match a token like `contoso`. Lowercase these query terms in your application, based on the case-folding behavior of the analyzer assigned to the field.
 
 ## Scoring wildcard and regex queries
 
