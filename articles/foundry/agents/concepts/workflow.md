@@ -1,5 +1,5 @@
 ---
-title: "Build a workflow in Microsoft Foundry"
+title: "Build a workflow in Microsoft Foundry (Preview)"
 description: "Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code."
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
@@ -18,12 +18,12 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.
 ---
 
+# Build a workflow in Microsoft Foundry (Preview)
 
-
-# Build a workflow in Microsoft Foundry
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!IMPORTANT]
-> Microsoft Foundry is retiring workflows on 1 October 2026.
+> Microsoft Foundry is retiring workflows on December 1, 2026.
 > If you're looking to build new workflows, use Microsoft Agent Framework. To migrate existing workflows, see the [Migration guide](#migration-guide) section of this article for all supported paths.
 
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
@@ -334,7 +334,7 @@ To delete a workflow you no longer need:
 
 ## Migration guide
 
-Foundry is moving workflow authoring to a code-first model. Visual workflows aren't disappearing as a capability. The orchestration patterns you built visually (sequential and group-chat coordination, branching logic, and human-in-the-loop steps) are all expressible in code and configuration, so you keep them when you migrate. After 1 October 2026, the visual designer and in-portal workflow execution aren't supported, but Foundry continues to run YAML-based workflow definitions when you deploy them as a [hosted agent](hosted-agents.md).
+Foundry is moving workflow authoring to a code-first model. Visual workflows aren't disappearing as a capability. The orchestration patterns you built visually (sequential and group-chat coordination, branching logic, and human-in-the-loop steps) are all expressible in code and configuration, so you keep them when you migrate. After December 1, 2026, the visual designer and in-portal workflow execution aren't supported, but Foundry continues to run YAML-based workflow definitions when you deploy them as a [hosted agent](hosted-agents.md).
 
 Pick the path that matches how you want to build. Most teams should start with Microsoft Agent Framework.
 
