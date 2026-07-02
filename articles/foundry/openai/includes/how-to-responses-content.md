@@ -53,6 +53,7 @@ Before you run the examples in this article, confirm that your resource region s
 - switzerlandnorth
 - uaenorth
 - uksouth
+- westeurope
 - westus
 - westus3
 

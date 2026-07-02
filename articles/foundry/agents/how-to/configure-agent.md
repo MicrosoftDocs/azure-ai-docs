@@ -31,7 +31,7 @@ This article shows you how to select the active version, enable protocols, set a
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
-- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents. Principals that only interact with agents (without creating or editing them) should use the [Foundry Agent Consumer role](../../concepts/rbac-foundry.md) instead.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
@@ -85,7 +85,7 @@ You can configure inbound authentication on the agent endpoint:
 
 | Scheme type | Description | Isolation key source |
 |-------------|-------------|----------------------|
-| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Foundry User** role on the Foundry project. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
+| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Foundry Agent Consumer** role (or higher, such as **Foundry User**) on the Foundry project or agent scope. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
 | **`BotService`** | Azure Bot Service channel authorization. Used when publishing to M365/Teams. Configured automatically during the channel publish flow. | N/A |
 | **`BotServiceRbac`** | Azure Bot Service authorization combined with Azure RBAC. Use when you need Bot Service channel auth with additional RBAC enforcement. | N/A |
 

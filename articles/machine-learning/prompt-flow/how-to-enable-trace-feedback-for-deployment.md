@@ -14,6 +14,7 @@ ms.custom:
   - sfi-image-nochange
   - sfi-ropc-nochange
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Enable trace and collect feedback for a flow deployment (preview)
@@ -32,6 +33,7 @@ In this article, you learn how to enable trace, collect aggregated metrics, and 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](../how-to-configure-cli.md).
 - An Azure Machine Learning workspace. If you don't have one, use the steps in the [Quickstart: Create workspace resources article](../quickstart-create-resources.md) to create one.
 - An Application Insights. Usually a machine learning workspace has a default linked Application Insights. If you want to use a new one, you can [create an Application Insights resource](/azure/azure-monitor/app/create-workspace-resource).
+- Python 3.9 or later, if you plan to use the Python code samples in this article.
 - Learn [how to build and test a flow in the prompt flow](get-started-prompt-flow.md).
 - Have a basic understanding of managed online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way that frees you from the overhead of setting up and managing the underlying deployment infrastructure. For more information on managed online endpoints, see [Online endpoints and deployments for real-time inference](../concept-endpoints-online.md#online-endpoints).
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the owner or contributor role for the Azure Machine Learning workspace, or a custom role allowing "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/". If you use studio to create and manage online endpoints and deployments, you need another permission "Microsoft.Resources/deployments/write" from the resource group owner. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
@@ -42,8 +44,8 @@ After you test your flow properly, either a flex flow or a DAG flow, you can dep
 
 You can also [deploy to other platforms, such as Docker container, Kubernetes cluster, and more](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
 
-> [!NOTE]
-> Use the latest prompt flow base image to deploy the flow, so it supports the tracing and feedback collection API.
+> [!IMPORTANT]
+> Prompt flow container images no longer receive updates, including security and package updates. If you're planning a new deployment, see the [Prompt flow migration guide](migrate-prompt-flow-to-agent-framework.md) for supported alternatives.
 
 ## Enable trace and collect system metrics for your deployment
 
@@ -71,7 +73,7 @@ environment_variables:
 
 Traces record specific events or the state of an application during execution. They can include data about function calls, variable values, system events, and more. Traces help break down an application's components into discrete inputs and outputs, which is crucial for debugging and understanding an application. To learn more, see [OpenTelemetry traces](https://opentelemetry.io/docs/concepts/signals/traces/). The trace data follows [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
 
-You can view the detailed trace in the specified Application Insights. The following screenshot shows an example of an event of a deployed flow containing multiple nodes. In Application Insights -> Investigate -> Transaction search, you can select each node to view its detailed trace. 
+You can view the detailed trace in the specified Application Insights. The following screenshot shows an example of an event of a deployed flow containing multiple nodes. In Application Insights, select **Search** under the **Investigate** category in the resource menu. Select each node to view its detailed trace.
 
 The **Dependency** type events record calls from your deployments. The name of that event is the name of the flow folder. To learn more, see [Transaction search and diagnostics in Application Insights](/azure/azure-monitor/app/transaction-search-and-diagnostics).
 
@@ -93,7 +95,7 @@ The **Dependency** type events record calls from your deployments. The name of t
 
 You can find the workspace default Application Insights in your workspace overview page in Azure portal.
 
-Open the Application Insights, and select **Usage and estimated costs** from the left navigation. Select **Custom metrics (Preview)**, and select **With dimensions**, and save the change.
+Open Application Insights, and select **Usage and estimated cost** from the left navigation. Under **Send custom metrics to Azure Metric Store**, select **With dimensions**, and save the change.
 
 :::image type="content" source="./media/how-to-enable-trace-feedback-for-deployment/enable-multidimensional-metrics.png" alt-text="Screenshot of enable multidimensional metrics. " lightbox = "./media/how-to-enable-trace-feedback-for-deployment/enable-multidimensional-metrics.png":::
 
@@ -106,13 +108,12 @@ Select **Metrics** tab in the left navigation. Select **promptflow standard metr
 
 Prompt flow serving provides a new `/feedback` API to help you collect feedback. The feedback payload can be any JSON format data. PF serving just helps you save the feedback data to a trace span. The data is saved to the trace exporter target you configure. It also supports OpenTelemetry standard trace context propagation, so it respects the trace context set in the request header and uses that context as the request parent span context. You can leverage the distributed tracing functionality to correlate the feedback trace to its chat request trace. 
 
-The following sample code shows how to score a flow deployed managed endpoint enabled tracing and send the feedback to the same trace span of scoring request. The flow has inputs `question` and `chat_hisotry`, and output `answer`. After scoring the endpoint, you collect a feedback and send it to Application Insights specified when deploying the flow. You need to fill in the `api_key` value or modify the code according to your use case.
+The following sample code shows how to score a flow deployed managed endpoint enabled tracing and send the feedback to the same trace span of scoring request. The flow has inputs `question` and `chat_history`, and output `answer`. After scoring the endpoint, you collect feedback and send it to Application Insights specified when deploying the flow. You need to fill in the `api_key` value or modify the code according to your use case.
 
 ```python
 import urllib.request
 import json
 import os
-import ssl
 from opentelemetry import trace, context
 from opentelemetry.baggage.propagation import W3CBaggagePropagator
 from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
@@ -187,5 +188,5 @@ In some cases, you might want to export the trace data to your deployed OTel col
 
 ## Next steps
 
-- [Troubleshoot errors of managed online endpoints](./how-to-troubleshoot-prompt-flow-deployment.md).
-- [Deploy a flow to other platforms, such as Docker](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
+- [Migrate prompt flow to Microsoft Agent Framework](migrate-prompt-flow-to-agent-framework.md)
+- [Troubleshoot errors of managed online endpoints](./how-to-troubleshoot-prompt-flow-deployment.md)
