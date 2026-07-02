@@ -1,6 +1,6 @@
 ---
 title: "Stay informed about service health regressions"
-description: "Learn how to set up Azure Service Health and Azure Monitor alerts to detect service health issues and model performance regressions like errors, latency, and time to first token in Microsoft Foundry."
+description: "Learn how to set up Azure Service Health and Azure Monitor alerts to detect service health issues and model performance regressions such as errors, latency, and time to first token in Microsoft Foundry."
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: deeikele
@@ -13,11 +13,11 @@ ai-usage: ai-assisted
 
 # Stay informed about service health regressions
 
-Production workloads depend on reliable service availability and consistent model performance. This article explains how to stay informed about two kinds of problems in Microsoft Foundry: platform-level service health events such as outages and planned maintenance, and workload-level performance regressions such as an increase in errors, or higher latency.
+Production workloads depend on reliable service availability and consistent model performance. This article explains how to stay informed about two kinds of problems in Microsoft Foundry: platform-level service health events such as outages and planned maintenance, and workload-level performance regressions such as an increase in errors or higher latency.
 
 You can use two complementary tools:
 
-- **[Azure Service Health](/azure/service-health/)** notifies you about service issues, planned maintenance, and health advisories that affect the Azure services and regions your resources run in.
+- **[Azure Service Health](/azure/service-health/)** notifies you about service issues, planned maintenance, and health advisories that affect the Azure services and regions that your resources run in.
 - **Azure Monitor metric alerts** notify you when metrics from your model deployments cross a threshold that you set, so you can detect regressions in your own traffic before they affect users.
 
 ## Prerequisites
@@ -85,7 +85,7 @@ Detecting an outage or a regression is only the first step. The right mitigation
 
 | What you observe | Likely cause | Mitigation options |
 |------------------|--------------|--------------------|
-| A rise in `5xx` errors and a drop in `ModelAvailabilityRate` | The service can't process requests, for example because of a backend or regional issue. | Check your Service Health and Resource Health alerts to confirm the scope of the incident. Global Standard and Data Zone deployments distribute inference processing across multiple regions, which adds resilience to single-region inference outages, or capacity constraints, but they don't replace a multiregional failover plan. Because the layer that processes API requests is regional to your Azure resource, an outage in the service requires you to fail over to another region to restore operations. Design a multiregional topology in advance so you can redirect traffic quickly. |
+| A rise in `5xx` errors and a drop in `ModelAvailabilityRate` | The service can't process requests, for example because of a backend or regional issue. | Check your Service Health and Resource Health alerts to confirm the scope of the incident. Global Standard and Data Zone deployments distribute inference processing across multiple regions, which adds resilience to single-region inference outages or capacity constraints, but they don't replace a multiregional failover plan. Because the layer that processes API requests is regional to your Azure resource, an outage in the service requires you to fail over to another region to restore operations. Design a multiregional topology in advance so you can redirect traffic quickly. |
 | Sustained `429` throttling errors | Your traffic exceeds the rate limits (TPM or RPM) of your deployment, or the shared Standard capacity pool is temporarily constrained. | Retry with exponential backoff and honor the `Retry-After` header, distribute traffic across deployments or regions with an [Azure API Management AI gateway](../configuration/enable-ai-api-management-gateway-portal.md), or request a quota increase. For predictable throughput, move the workload to a [Provisioned Throughput managed (PTU-M)](../openai/concepts/provisioned-throughput.md) deployment, which provides dedicated capacity that isn't subject to shared-pool throttling. |
 | An increase in latency (`TimeToResponse` or `NormalizedTimeBetweenTokens`) | Variability in the shared Standard capacity pool, or requests processed by distant capacity. | For workloads where latency is a core requirement, use a [Provisioned Throughput (PTU)](../openai/concepts/provisioned-throughput.md) deployment, which provides dedicated capacity and a latency SLA. A regional Standard deployment close to your users can also reduce network latency. Global Standard and Data Zone deployments optimize for availability rather than latency and can increase latency variability, so choose them based on your availability and data-residency needs rather than as a latency-reduction lever. |
 
