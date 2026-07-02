@@ -396,7 +396,7 @@ embed_model = init_embeddings("azure_ai:text-embedding-3-small")
 **What this snippet does:** Creates an embeddings model client by using the
 `init_embeddings` convenience method.
 
-All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `FOUNDRY_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
+All Foundry models supporting OpenAI-compatible APIs can be used with the client, but you need to deploy them to your Foundry resource first. Using `project_endpoint` (environment variable `FOUNDRY_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
 
 Or create the embeddings client with `AzureAIOpenAIApiEmbeddingsModel`.
 
