@@ -439,7 +439,11 @@ Session management isn't currently available as a standalone command. Use the RE
 
 ## Stop a session
 
-Stopping a session terminates its running compute while preserving the persistent filesystem volume. Unlike deleting a session, the session is retained and can be resumed by a later invocation. Stopping a session that's already stopped succeeds without error. When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the stop to the calling identity.
+Stopping a session terminates its running compute while preserving the persistent filesystem volume. Unlike deleting a session, the session is retained and can be resumed by a later invocation.
+
+Stopping a session that's already stopped succeeds without error.
+
+When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the stop to the calling identity.
 
 :::zone pivot="rest"
 
@@ -469,9 +473,7 @@ project.beta.agents.stop_session(
 
 :::zone pivot="azd"
 
-```bash
-azd ai agent sessions stop <session-id>
-```
+Session management isn't currently available as a standalone command. Use the REST API or SDK.
 
 :::zone-end
 
