@@ -40,6 +40,10 @@ In this article, you learn how to:
 | Update skill default version | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
 | Attach skills to a toolbox | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
 
+## Limitations
+
+Skills don't support private networking. The Skills API isn't accessible over a private endpoint, so you can't create, manage, or download skills from a Foundry resource that has public network access disabled.
+
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
