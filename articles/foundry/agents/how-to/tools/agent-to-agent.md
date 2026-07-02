@@ -332,7 +332,7 @@ The top-level agent delegates the weather question to the `WeatherAgent` sub-age
 Le temps à Amsterdam est nuageux avec une température maximale de 15 °C.
 ```
 
-For the full sample, see [Agent_Step11_AsFunctionTool](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step11_AsFunctionTool).
+For the full sample, see [Agent_Step11_AsFunctionTool](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step11_AsFunctionTool).
 
 ---
 
