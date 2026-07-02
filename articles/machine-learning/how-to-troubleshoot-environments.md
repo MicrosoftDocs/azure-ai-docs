@@ -122,7 +122,7 @@ for your jobs or model deployments while using system-managed environments.
 System vulnerabilities in an environment are usually introduced from the base image. For example, vulnerabilities marked as "Ubuntu" or "Debian" are from the system level of the environment–the base Docker image. If the base image is from a third-party issuer, check if the latest version has fixes for the flagged vulnerabilities. Most common sources for the base images in Azure Machine Learning are:
 
 - Microsoft Artifact Registry (MAR) also known as Microsoft Container Registry (mcr.microsoft.com). 
-    - Images can be listed from MAR homepage, calling _catalog API, or [/tags/list](https://mcr.microsoft.com/v2/azureml/openmpi4.1.0-ubuntu22.04/tags/list)_
+    - You can list images from the MAR homepage, call the _catalog API_, or use the [/tags/list](https://mcr.microsoft.com/v2/azureml/openmpi4.1.0-ubuntu22.04/tags/list) endpoint.
     - Source and release notes for training base images from Azure Machine Learning can be found in [Azure/AzureML-Containers](https://github.com/Azure/AzureML-Containers)
 - NVIDIA (nvcr.io, or [Nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
 
@@ -564,7 +564,7 @@ Instead of specifying these attributes in the `DockerSection` of your environmen
 Shorten your Dockerfile to get it under this limit
  
 **Resources**
-* See [best practices](https://docs.docker.com/build/building/best-practices/)
+* See [best practices](https://docs.docker.com/build/building/best-practices/).
 
 ## *Docker build context issues*
 ### Missing Docker build context location
@@ -594,7 +594,7 @@ Ensure that you include a path for your build context
 :::moniker-end
 
 **Resources**
-* [Understand build context](https://docs.docker.com/build/concepts/context/)
+* [Understand build context](https://docs.docker.com/build/concepts/context/).
 
 ### Missing Dockerfile path
 <!--issueDescription-->
@@ -626,7 +626,7 @@ Specify a Dockerfile path
 :::moniker-end
 
 **Resources**
-* [Understand build context](https://docs.docker.com/build/concepts/context/)
+* [Understand build context](https://docs.docker.com/build/concepts/context/).
 
 :::moniker range="azureml-api-1"
 
@@ -1560,7 +1560,7 @@ This issue can happen when conda package resolution takes too long to complete.
 
 **Potential causes:**
 * There's a large number of packages listed in your conda specification and unnecessary packages are included
-* You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.16)
+* You didn't pin your dependencies (you included `tensorflow` instead of `tensorflow=2.16`).
 * You listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
 
 **Affected areas (symptoms):**
@@ -1579,7 +1579,7 @@ This issue can happen when conda package resolution fails due to available memor
 
 **Potential causes:**
 * There's a large number of packages listed in your conda specification and unnecessary packages are included
-* You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.16)
+* You didn't pin your dependencies (you included `tensorflow` instead of `tensorflow=2.16`).
 * You listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
 
 **Affected areas (symptoms):**
@@ -1830,7 +1830,7 @@ This issue can happen when the conda command isn't recognized during conda envir
 **Troubleshooting steps**
 
 Ensure that you have a conda installation step in your Dockerfile before trying to execute any conda commands
-* Review this [list of conda installers](https://docs.anaconda.com/miniconda/) to determine what you need for your scenario
+* Review this [list of conda installers](https://docs.anaconda.com/miniconda/) to determine what you need for your scenario.
 
 If you tried installing conda and are experiencing this issue, ensure that you added conda to your path
 * Review this [example](https://stackoverflow.com/questions/58269375/how-to-install-packages-with-miniconda-in-dockerfile) for guidance
