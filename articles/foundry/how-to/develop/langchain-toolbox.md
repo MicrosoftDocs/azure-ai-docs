@@ -54,7 +54,7 @@ Set your environment variables:
 import os
 
 # Project endpoint (recommended)
-os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+os.environ["FOUNDRY_PROJECT_ENDPOINT"] = (
     "https://<resource>.services.ai.azure.com/api/projects/<project>"
 )
 
@@ -81,14 +81,14 @@ model = init_chat_model("azure_ai:gpt-4.1")
 
 Use `AzureAIProjectToolbox` from the namespace `langchain_azure_ai.tools` to
 connect to a toolbox. The integration detects the project connection when you
-set the `AZURE_AI_PROJECT_ENDPOINT` environment variable. Microsoft Entra ID
+set the `FOUNDRY_PROJECT_ENDPOINT` environment variable. Microsoft Entra ID
 is the default authentication method.
 
 ```python
 from langchain_azure_ai.tools import AzureAIProjectToolbox
 
 toolbox = AzureAIProjectToolbox(
-    project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     toolbox_name="my-toolbox",
 )
 ```
@@ -111,7 +111,7 @@ fresh MCP session, loads the tools, and returns them.
 ```python
 async def main():
     toolbox = AzureAIProjectToolbox(
-        project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+        project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
         toolbox_name="my-toolbox",
     )
 

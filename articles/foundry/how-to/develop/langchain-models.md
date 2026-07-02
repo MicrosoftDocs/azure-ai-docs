@@ -57,7 +57,7 @@ Set one of the following connection patterns:
 import os
 
 # Option 1: Project endpoint (recommended)
-os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+os.environ["FOUNDRY_PROJECT_ENDPOINT"] = (
 	"https://<resource>.services.ai.azure.com/api/projects/<project>"
 )
 
@@ -85,7 +85,7 @@ model = init_chat_model("azure_ai:gpt-4.1")
 > [!IMPORTANT]
 > Using `init_chat_model` requires `langchain>=1.2.13`. If you can't update your version, [configure clients directly](#configure-clients-directly).
 
-All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
+All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `FOUNDRY_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
 
 **What this snippet does:** Creates a chat model client by using the
 `init_chat_model` convenience method. The client routes to the specified model
@@ -166,7 +166,7 @@ from azure.identity import DefaultAzureCredential
 from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 
 model = AzureAIOpenAIApiChatModel(
-	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+	project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
 	credential=DefaultAzureCredential(),
 	model="Mistral-Large-3",
 )
@@ -181,7 +181,7 @@ from azure.identity import DefaultAzureCredential
 from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 
 model = AzureAIOpenAIApiChatModel(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
     model="Mistral-Large-3",
     use_responses_api=False
@@ -200,7 +200,7 @@ from azure.identity.aio import DefaultAzureCredential as DefaultAzureCredentialA
 from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 
 model = AzureAIOpenAIApiChatModel(
-	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+	project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
 	credential=DefaultAzureCredentialAsync(),
 	model="gpt-4.1",
 )
@@ -292,7 +292,7 @@ from azure.identity import DefaultAzureCredential
 
 # Create clients to call Foundry API
 project = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 openai = project.get_openai_client()
@@ -396,7 +396,7 @@ embed_model = init_embeddings("azure_ai:text-embedding-3-small")
 **What this snippet does:** Creates an embeddings model client by using the
 `init_embeddings` convenience method.
 
-All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
+All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `FOUNDRY_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
 
 Or create the embeddings client with `AzureAIOpenAIApiEmbeddingsModel`.
 
@@ -407,7 +407,7 @@ from azure.identity import DefaultAzureCredential
 from langchain_azure_ai.embeddings import AzureAIOpenAIApiEmbeddingsModel
 
 embed_model = AzureAIOpenAIApiEmbeddingsModel(
-	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+	project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
 	credential=DefaultAzureCredential(),
 	model="text-embedding-3-large",
 )
@@ -497,7 +497,7 @@ You can configure the following environment variables. These values can also be 
 
 | Variable | Role | Example | Parameter in constructor |
 |----------|------|---------|--------------------------|
-| `AZURE_AI_PROJECT_ENDPOINT` | Foundry project endpoint. Use of the project endpoint requires Microsoft Entra ID authentication (recommended). | `https://contoso.services.ai.azure.com/api/projects/my-project` | `project_endpoint` |
+| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint. Use of the project endpoint requires Microsoft Entra ID authentication (recommended). | `https://contoso.services.ai.azure.com/api/projects/my-project` | `project_endpoint` |
 | `AZURE_OPENAI_ENDPOINT` | Root for OpenAI resources.  | `https://contoso.openai.azure.com` | None. |
 | `OPENAI_BASE_URL` | Direct OpenAI-compatible endpoint used for model calls. | `https://contoso.services.ai.azure.com/openai/v1` | `endpoint` |
 | `OPENAI_API_KEY` or `AZURE_OPENAI_API_KEY` | API key used with `OPENAI_BASE_URL` or `AZURE_OPENAI_ENDPOINT` for key-based authentication. | `<your-api-key>` | `credential` |
