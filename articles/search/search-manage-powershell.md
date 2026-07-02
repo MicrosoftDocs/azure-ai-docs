@@ -15,6 +15,8 @@ ms.custom:
 
 # Manage your Azure AI Search service using PowerShell
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can run PowerShell cmdlets and scripts on Windows, Linux, or in Azure Cloud Shell to create and configure Azure AI Search.
 
 Use the [**Az.Search** module](/powershell/module/az.search/) to perform the following tasks:

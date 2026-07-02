@@ -12,6 +12,8 @@ ms.custom:
 
 # Create a knowledge store using REST
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!NOTE]
 > *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 

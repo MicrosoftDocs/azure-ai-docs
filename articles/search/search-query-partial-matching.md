@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A *partial term search* refers to queries consisting of term fragments, where instead of a whole term, you might have just the beginning, middle, or end of term (sometimes referred to as prefix, infix, or suffix queries). A partial term search might include a combination of fragments, often with special characters such as hyphens, dashes, or slashes that are part of the query string. Common use-cases include parts of a phone number, URL, codes, or hyphenated compound words.
 
 Partial terms and special characters can be problematic if the index doesn't have a token representing the text fragment you want to search for. During the [lexical analysis phase](search-lucene-query-architecture.md#stage-2-lexical-analysis) of keyword indexing (assuming the default standard analyzer), special characters are discarded, compound words are split up, and whitespace is deleted. If you're searching for a text fragment that was modified during lexical analysis, the query fails because no match is found. Consider this example: a phone number like `+1 (425) 703-6214` (tokenized as `"1"`, `"425"`, `"703"`, `"6214"`) won't show up in a `"3-62"` query because that content doesn't actually exist in the index.

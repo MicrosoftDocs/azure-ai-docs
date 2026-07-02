@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Agentic retrieval in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 > [!IMPORTANT]

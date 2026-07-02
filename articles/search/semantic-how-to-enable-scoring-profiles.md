@@ -10,6 +10,8 @@ ai-usage: ai-assisted
 
 # Use scoring profiles with semantic ranker in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can apply a [scoring profile](index-add-scoring-profiles.md) over [semantically ranked search results](semantic-search-overview.md), where the scoring profile is processed last.
 
 To ensure the scoring profile provides the determining score, the semantic ranker adds a response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.reRankerBoostedScore`, results are sorted by `@search.reRankerBoostedScore`.

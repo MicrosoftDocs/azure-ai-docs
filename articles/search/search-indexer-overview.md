@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Indexers in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 An *indexer* in Azure AI Search is a crawler that extracts textual data from cloud data sources and populates a search index using field-to-field mappings between source data and a search index. This approach is sometimes referred to as a 'pull model' because the search service pulls data in without you having to write any code that adds data to an index. 
 
 Indexers also drive [skillset execution and AI enrichment](cognitive-search-concept-intro.md), where you can configure skills to integrate extra processing of content en route to an index. A few examples are OCR over image files, text split skill for data chunking, and calling embedding models to generate vectors for vector search.

@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >

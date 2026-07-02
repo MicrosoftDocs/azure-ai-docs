@@ -49,7 +49,7 @@ Create the toolbox, then copy the MCP endpoint it returns. You set that endpoint
 First, point the toolbox commands at the Foundry project you selected during initialization. Reuse the endpoint that initialization already stored in your `azd` environment:
 
 ```bash
-azd env set FOUNDRY_PROJECT_ENDPOINT "$(azd env get-value AZURE_AI_PROJECT_ENDPOINT)"
+azd env set FOUNDRY_PROJECT_ENDPOINT "$(azd env get-value FOUNDRY_PROJECT_ENDPOINT)"
 ```
 
 :::zone pivot="azd"
@@ -99,7 +99,7 @@ azd provision
 1. Point the local agent at your toolbox by setting these values in the `.env` file in `src/toolbox-agent`. Paste the endpoint you copied in [Step 2](#step-2-create-the-toolbox):
 
     ```
-    AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+    FOUNDRY_MODEL_NAME=<your-model-deployment-name>
     TOOLBOX_ENDPOINT=<versioned-endpoint-from-step-2>
     ```
 
