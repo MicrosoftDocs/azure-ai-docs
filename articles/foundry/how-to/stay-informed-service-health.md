@@ -15,9 +15,9 @@ ai-usage: ai-assisted
 
 Production workloads depend on reliable service availability and consistent model performance. This article explains how to stay informed about two kinds of problems in Microsoft Foundry: platform-level service health events such as outages and planned maintenance, and workload-level performance regressions such as an increase in errors or higher latency.
 
-You can use two complementary tools:
+Use two complementary tools:
 
-- **[Azure Service Health](/azure/service-health/)** notifies you about service issues, planned maintenance, and health advisories that affect the Azure services and regions that your resources run in.
+- **[Azure Service Health](/azure/service-health/)** notifies you about service problems, planned maintenance, and health advisories that affect the Azure services and regions that your resources run in.
 - **[Azure Monitor metric alerts](/azure/azure-monitor/alerts/alerts-overview/)** notify you when metrics from your model deployments cross a threshold that you set, so you can detect regressions in your own traffic before they affect users.
 
 ## Prerequisites
@@ -49,7 +49,7 @@ To check the current health of an individual resource, use [Azure Resource Healt
 
 ## Detect model performance regressions
 
-Service Health covers platform-wide events, but it doesn't detect regressions that are specific to your workload, such as a gradual increase in errors or latency. To catch those, set up Azure Monitor metric alerts on the metrics that your model deployments emit.
+Service Health covers platform-wide events, but it doesn't detect regressions that are specific to your workload, such as a gradual increase in errors or latency. To catch those regressions, set up Azure Monitor metric alerts on the metrics that your model deployments emit.
 
 The following metrics are most useful for detecting performance regressions:
 
