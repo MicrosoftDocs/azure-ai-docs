@@ -387,7 +387,7 @@ Response: Based on the documents in SharePoint ...
 URL Citation: [Whistleblower Policy](https://contoso.sharepoint.com/sites/policies/Documents/whistleblower-policy.pdf)
 ```
 
-For the full sample, see [Agent_Step19_SharePoint](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step19_SharePoint).
+For the full sample, see [Agent_Step19_SharePoint](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step19_SharePoint).
 
 ---
 
