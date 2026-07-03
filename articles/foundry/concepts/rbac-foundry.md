@@ -71,6 +71,9 @@ In the Foundry portal, manage permissions by:
 # [Azure portal](#tab/portal)
 You can manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)**.
 
+# [Azure CLI](#tab/cli)
+You can assign and remove roles by using the Azure CLI.
+
 For example, the following command assigns the Foundry User role to `joe@contoso.com` for resource group `this-rg` in subscription `00000000-0000-0000-0000-000000000000`:
 
 ```azurecli
@@ -78,6 +81,8 @@ az role assignment create --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --assign
 ```
 
 [!INCLUDE [role-rename-note-code](../includes/role-rename-note-code.md)]
+
+---
 
 ### Agent-scope role assignments
 
@@ -87,12 +92,12 @@ Roles can be assigned at the scope of a specific agent rather than the entire pr
 /subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>
 ```
 
-For example, to assign the `Foundry Agent Consumer` role to a service principal at the scope of a specific agent using the Azure CLI:
+For example, the following command assigns the Foundry Agent Consumer role (role definition ID `eed3b665-ab3a-47b6-8f48-c9382fb1dad6`) to a service principal at the scope of a specific agent.
 
 ```azurecli
 az role assignment create \
     --assignee "<principalId>" \
-    --role "Foundry Agent Consumer" \
+    --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
     --scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>"
 ```
 
