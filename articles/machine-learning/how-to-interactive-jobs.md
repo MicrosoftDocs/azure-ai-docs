@@ -222,7 +222,7 @@ It might take a few minutes to start the job and the training applications speci
     
 - To connect via SSH to the container where the job is running, run the command `az ml job connect-ssh --name <job-name> --node-index <compute node index> --private-key-file-path <path to private key> --resource-group <your resource group name> --workspace-name <your workspace name>`. To set up the Azure Machine Learning CLI, follow this [guide](./how-to-configure-cli.md). 
   
-For reference documentation, see [JobOperations](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations?view=azure-python).
+For reference documentation, see [JobOperations](/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations?view=azure-python&preserve-view=true).
 
 You can access the applications only when they're in **Running** status and only the **job owner** is authorized to access the applications. If you're training on multiple nodes, you can pick the specific node you want to interact with by passing in the node index.
 
