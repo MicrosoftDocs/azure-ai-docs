@@ -52,7 +52,6 @@ Not all Foundry agent types support the full set of Agent 365 integration featur
 | --- | --- | --- | --- |
 | **[Prompt agent](../quickstarts/prompt-agent.md)** | ✅ | ✅ | ✅ |
 | **[Hosted agent](hosted-agents.md)** | ✅ | ✅ | Supported using A365 SDK |
-| **[Workflow agent](workflow.md)** | ✅ | ❌ | ❌ |
 
 Hosted agent telemetry export requires explicit configuration in your hosted agent and Microsoft Entra permissions for the Agent 365 observability service. For the procedure, see [Grant Agent 365 observability permissions](../how-to/grant-agent-365-permissions.md).
 

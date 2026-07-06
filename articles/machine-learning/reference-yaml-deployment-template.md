@@ -9,7 +9,7 @@ ms.topic: reference
 ms.custom: cliv2, update-code
 author: s-polly
 ms.author: scottpolly
-ms.date: 01/12/2026
+ms.date: 05/12/2026
 ms.reviewer: sehan
 ai-usage: ai-assisted
 ---
@@ -30,6 +30,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `name` | string | **Required.** Name of the deployment template. | | |
 | `version` | string or integer | Version of the deployment template. | | |
 | `description` | string | Description of the deployment template. | | |
+| `display_name` | string | Display name of the deployment template. Used by UI surfaces (such as the Foundry portal) to present a friendly label to consumers when they choose a deployment template. | | |
 | `tags` | object | Dictionary of tags for the deployment template. | | |
 | `type` | string | Type of the deployment template. | | |
 | `deployment_template_type` | string | **Required.** The deployment template type. "Managed" is the only currently allowed value. | | |
@@ -96,6 +97,7 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template
 version: 1
 description: Deployment template with environment variables and health probes
+display_name: My deployment template
 deployment_template_type: Managed
 environment: azureml://registries/azureml/environments/minimal-ubuntu20.04-py38-cpu-inference/versions/latest
 environment_variables:
@@ -140,6 +142,25 @@ scoring_path: /score
 scoring_port: 5001
 ```
 
+## YAML: with allowed instance types (list)
+
+```yml
+$schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.json
+name: my-deployment-template-multi
+version: 1
+description: Deployment template that allows multiple instance types
+deployment_template_type: Managed
+environment: azureml://registries/my-registry/environments/my-environment/versions/1
+instance_count: 1
+default_instance_type: Standard_DS3_v2
+allowed_instance_types:
+  - Standard_DS3_v2
+  - Standard_DS4_v2
+  - Standard_DS5_v2
+scoring_path: /score
+scoring_port: 5001
+```
+
 ## YAML: with model mount path
 
 ```yml
@@ -159,3 +180,8 @@ model_mount_path: /var/azureml-app/models
 ## Next steps
 
 - [Install and use the CLI (v2)](how-to-configure-cli.md)
+- [What are deployment templates?](concept-deployment-template.md)
+- [Manage models with deployment templates](how-to-manage-models-deployment-templates.md)
+- [Deploy models that use deployment templates](how-to-deploy-models-deployment-template.md)
+- [CLI (v2) model YAML schema](reference-yaml-model.md)
+- [CLI (v2) managed online deployment YAML schema](reference-yaml-deployment-managed-online.md)

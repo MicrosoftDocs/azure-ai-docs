@@ -114,7 +114,7 @@ You can use GitHub Actions with Azure Developer CLI (`azd`) to deploy and valida
              azd env set AZURE_LOCATION "${{ vars.AZURE_LOCATION }}"
              azd env set FOUNDRY_PROJECT_ENDPOINT "${{ vars.FOUNDRY_PROJECT_ENDPOINT }}"
              azd env set AZURE_AI_PROJECT_ID "${{ vars.AZURE_AI_PROJECT_ID }}"
-             azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "${{ vars.AZURE_AI_MODEL_DEPLOYMENT_NAME }}"
+             azd env set FOUNDRY_MODEL_NAME "${{ vars.FOUNDRY_MODEL_NAME }}"
 
              azd env get-values
 
@@ -157,7 +157,7 @@ You can use GitHub Actions with Azure Developer CLI (`azd`) to deploy and valida
    * `AZURE_LOCATION`
    * `FOUNDRY_PROJECT_ENDPOINT`
    * `AZURE_AI_PROJECT_ID`
-   * `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+   * `FOUNDRY_MODEL_NAME`
 
     Except for `AZURE_CLIENT_ID`, which comes from your OIDC application registration, you can find these values in your project `.azure/<project-name>/.env` file. You can also get the project endpoint, project ID, and model deployment name from the corresponding agent details page in the Foundry portal.
 

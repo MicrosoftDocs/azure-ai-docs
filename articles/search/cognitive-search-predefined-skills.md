@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Skills for extra processing during indexing (Azure AI Search)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes the skills in Azure AI Search that you can include in a [skillset](cognitive-search-working-with-skillsets.md) to access external processing.
 
 A *skill* is an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes existing enrichments. The output is usually text-based for use in [full-text search](search-lucene-query-architecture.md) or vectors for use in [vector search](vector-search-overview.md).

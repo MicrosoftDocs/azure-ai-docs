@@ -14,6 +14,8 @@ ms.custom:
 
 # Service limits in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Maximum limits on storage, workloads, and quantities of indexes and other objects depend on the pricing model of your Azure AI Search service.
 
 Azure AI Search supports two pricing models, each with associated service tiers. The tier you select impacts the service limits outlined in this guidance.

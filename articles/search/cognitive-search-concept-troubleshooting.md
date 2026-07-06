@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Tips for AI enrichment in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article contains tips to help you get started with AI enrichment and skillsets used during indexing.
 
 ## Tip 1: Start simple and start small

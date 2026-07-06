@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Entity Linking cognitive skill (v3)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Entity Linking** skill (v3) returns a list of recognized entities with links to articles in a well-known knowledge base (Wikipedia).
 
 > [!NOTE]

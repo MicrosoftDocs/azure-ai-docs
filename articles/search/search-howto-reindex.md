@@ -13,6 +13,8 @@ ms.update-cycle: 180-days
 
 # Update or rebuild an index in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to update an existing index in Azure AI Search with schema changes or content changes through incremental indexing.
 
 > [!TIP]

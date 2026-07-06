@@ -449,6 +449,46 @@ Session management isn't currently available as a standalone command. Use the RE
 
 :::zone-end
 
+## Stop a session
+
+Stopping a session terminates its running compute while preserving the persistent filesystem volume. Unlike deleting a session, the session is retained and you can resume it later.
+
+Stopping a session that's already stopped succeeds without error.
+
+When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the stop to the calling identity.
+
+:::zone pivot="rest"
+
+```bash
+SESSION_ID="<session-id>"
+ISOLATION_KEY="user-123"
+
+az rest --method POST \
+    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}:stop?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --headers "x-ms-user-isolation-key=${ISOLATION_KEY}" "Foundry-Features=HostedAgents=V1Preview"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+project.beta.agents.stop_session(
+    agent_name="my-agent",
+    session_id="<session-id>",
+    isolation_key="user-123",
+)
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Session management isn't currently available as a standalone command. Use the REST API or SDK.
+
+:::zone-end
+
 ## Delete a session
 
 Deleting a session terminates the sandbox and releases its resources. When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the delete to the calling identity.

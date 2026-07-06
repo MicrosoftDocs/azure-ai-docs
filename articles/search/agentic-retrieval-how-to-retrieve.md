@@ -10,6 +10,8 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Query a knowledge base using the retrieve action or MCP endpoint
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 > [!IMPORTANT]
@@ -23,7 +25,11 @@ zone_pivot_groups: search-csharp-python-rest
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
-This article explains how to call both retrieval methods with optional permissions enforcement. It covers the retrieve action first and the MCP endpoint later because the MCP tool result currently differs from the REST and SDK response shape. To set up a pipeline that connects Azure AI Search to Foundry Agent Service via MCP, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
+This article explains how to call both retrieval methods with optional permissions enforcement. It covers the retrieve action first and the MCP endpoint later because the MCP tool result currently differs from the REST and SDK response shape. Use `2026-05-01-preview` for the full feature set, including `messages`, answer synthesis, configurable reasoning effort, and sensitivity label metadata in retrieve responses.
+
+If you're moving from `2025-11-01-preview`, you can update directly to `2026-05-01-preview` because the request and response shapes remain compatible. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
+
+To set up a pipeline that connects Azure AI Search to Foundry Agent Service via MCP, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
 ## Prerequisites
 
@@ -67,8 +73,7 @@ This article explains how to call both retrieval methods with optional permissio
 
 You specify the retrieve action on a knowledge base. The request body includes the query input and an optional list of knowledge sources to target.
 
-> [!IMPORTANT]
-> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
+The `2026-04-01` API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. Use `2026-05-01-preview` for full functionality.
 
 :::zone pivot="csharp"
 
@@ -532,8 +537,7 @@ filter_add_on="(status eq 'published' or status eq 'internal') and created ge 20
 
 ## Enforce permissions at query time (preview)
 
-> [!IMPORTANT]
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+Changes to access permissions that you set outside of `2026-05-01-preview` can take time to appear in `2026-05-01-preview` retrieval results.
 
 If your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user only sees the documents they're authorized to access. You enable this filtering by passing the end user's identity on the retrieve request. Without the identity token, results from permission-enabled knowledge sources are returned unfiltered.
 
@@ -557,8 +561,7 @@ The following table shows which knowledge sources require ingestion-time configu
 | [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the ontology item on their behalf. |
 | [Work IQ](agentic-knowledge-source-how-to-work-iq.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Work IQ–scoped token and queries Work IQ on their behalf. |
 
-> [!IMPORTANT]
-> If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
+If you don't configure `ingestionPermissionOptions` when you create the indexed knowledge source, the index doesn't contain permission metadata. The system returns results unfiltered, regardless of the header. To fix this problem, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
 
 ### Query-time authorization
 
@@ -743,9 +746,7 @@ Key points:
   + The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
 
 + The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
-
-    > [!IMPORTANT]
-    > A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
+  + A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -907,8 +908,7 @@ Here's an example of the references array:
 
 ## Inspect sensitivity label metadata in the response (preview)
 
-> [!IMPORTANT]
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+The same timing behavior described in [Enforce permissions at query time](#enforce-permissions-at-query-time-preview) applies here: changes to access permissions that were set outside of `2026-05-01-preview` can take time to appear in `2026-05-01-preview` retrieve responses.
 
 When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
 

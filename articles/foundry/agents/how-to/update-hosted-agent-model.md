@@ -41,7 +41,7 @@ When selecting a model, consider:
 There is no dedicated command for updating the model yet. Start by updating the model deployment name in your azd environment:
 
 ```bash
-azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1
+azd env set FOUNDRY_MODEL_NAME=gpt-4.1
 ```
 
 ## Update agent YAML
@@ -54,8 +54,8 @@ If your project has an `agent.yaml` definition, update the environment variable 
 
 ```yaml
 environment_variables:
-  - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
-    value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+  - name: FOUNDRY_MODEL_NAME
+    value: ${FOUNDRY_MODEL_NAME}
 ```
 
 The model `resources` section in a definition doesn't need to change. The environment variable controls which deployment is used at runtime.
@@ -72,8 +72,8 @@ resources:
 
 template:
   environment_variables:
-    - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
-      value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+    - name: FOUNDRY_MODEL_NAME
+      value: ${FOUNDRY_MODEL_NAME}
 ```
 
 ## Update Azure YAML
@@ -113,11 +113,11 @@ You can configure different models for development and production using azd envi
 ```bash
 # Development environment -- use a cheaper model
 azd env select dev
-azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
+azd env set FOUNDRY_MODEL_NAME=gpt-4.1-mini
 
 # Production environment -- use a more capable model
 azd env select prod
-azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1
+azd env set FOUNDRY_MODEL_NAME=gpt-4.1
 ```
 
 Each environment maintains its own set of variables in `.azure/<env-name>/.env`.

@@ -14,6 +14,12 @@ items:
   items:
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
+  - name: Agent 365
+    items:
+    - name: Microsoft Agent 365 integration
+      href: ../../agents/concepts/agent-365-integration.md
+    - name: Grant Agent 365 observability permissions
+      href: ../../agents/how-to/grant-agent-365-permissions.md
   - name: Routines (preview)
     href: ../../agents/concepts/routines.md
   - name: Workflows
@@ -29,14 +35,16 @@ items:
       href: ../../agents/quickstarts/responses-api.md
   - name: Build
     items:
-    - name: Configure an agent
-      href: ../../agents/how-to/configure-agent.md
     - name: Use connected Foundry models
       href: ../../agents/how-to/connected-models.md
     - name: Use structured inputs
       href: ../../agents/how-to/structured-inputs.md
     - name: Add tools and knowledge
       href: ../../agents/concepts/tool-catalog.md
+    - name: Agent applications
+      href: ../../agents/how-to/agent-applications.md
+    - name: Configure an agent
+      href: ../../agents/how-to/configure-agent.md
     - name: Best practices
       href: ../../agents/concepts/tool-best-practice.md
     - name: Create a private tool catalog (preview)
@@ -53,18 +61,8 @@ items:
     href: ../../agents/how-to/tools/file-search.md
   - name: Function calling
     href: ../../agents/how-to/tools/function-calling.md
-  - name: Voice integration (preview)  
+  - name: Deploy and share
     items:
-    - name: Publish to Microsoft 365 Copilot and Teams
-      href: ../../agents/how-to/publish-copilot.md
-    - name: Publish with a virtual network
-      href: ../../agents/how-to/publish-copilot-virtual-network.md
-    - name: Agent 365
-      href: ../../agents/how-to/agent-365.md
-    - name: Agent 365 integration
-      href: ../../agents/concepts/agent-365-integration.md
-    - name: Grant Agent 365 observability permissions
-      href: ../../agents/how-to/grant-agent-365-permissions.md
     - name: Enable incoming A2A (preview)
       href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
     - name: Use routines (preview)
@@ -118,6 +116,8 @@ items:
       href: ../../agents/how-to/update-hosted-agent-model.md
     - name: Add a protocol adapter
       href: ../../agents/how-to/add-protocol-adapter.md
+    - name: Host Microsoft Agent Framework agents
+      href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
       href: ../../how-to/develop/langchain-hosted-agents.md
     - name: Deploy from source code (preview)
@@ -134,6 +134,8 @@ items:
       href: ../../agents/how-to/test-hosted-agent.md
     - name: Debug
       href: ../../agents/how-to/debug-hosted-agent.md
+    - name: Configure an agent
+      href: ../../agents/how-to/configure-agent.md
     - name: Diagnose with agent doctor
       href: ../../agents/how-to/agent-doctor.md
     - name: View logs
@@ -168,6 +170,12 @@ items:
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Sessions
       href: ../../agents/how-to/manage-hosted-sessions.md
+  - name: Migrate
+    items:
+    - name: Migrate from agent applications to the new agent model
+      href: ../../agents/how-to/migrate-agent-applications.md
+    - name: Disable creation of classic agents
+      href: ../../agents/how-to/disable-classic-agents.md
   - name: Ship to production
     items:
     - name: Set up CI/CD
@@ -188,6 +196,15 @@ items:
       href: ../../agents/concepts/azure-yaml-reference.md
     - name: Infrastructure (Bicep)
       href: ../../agents/concepts/cli-infrastructure.md
+
+- name: Publish and share
+  items:
+  - name: Publish agents to Microsoft 365 Copilot and Microsoft Teams
+    href: ../../agents/how-to/publish-copilot.md
+  - name: Publish with a virtual network
+    href: ../../agents/how-to/publish-copilot-virtual-network.md
+  - name: Publish as an autopilot
+    href: ../../agents/how-to/agent-365.md
 
 - name: Reference
   items:

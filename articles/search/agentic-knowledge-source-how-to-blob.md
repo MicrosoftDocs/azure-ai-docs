@@ -10,6 +10,8 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a blob knowledge source from Azure Blob Storage or ADLS Gen2
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 > [!IMPORTANT]

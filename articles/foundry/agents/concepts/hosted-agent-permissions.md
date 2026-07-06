@@ -561,14 +561,14 @@ Account-level capabilities aren't proxied by the project endpoint. These capabil
 [foundry-rbac]: ../../concepts/rbac-foundry.md
 [agent-identity]: ./agent-identity.md
 
-[role-agent-consumer]: /azure/ai-foundry/concepts/rbac-foundry#foundry-agent-consumer
+[role-agent-consumer]: ../../concepts/rbac-foundry.md#built-in-roles
 [role-owner]: /azure/role-based-access-control/built-in-roles#owner
 [role-contributor]: /azure/role-based-access-control/built-in-roles#contributor
 [role-rbac-admin]: /azure/role-based-access-control/built-in-roles#role-based-access-control-administrator
-[role-ai-user]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-user
-[role-project-manager]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-project-manager
-[role-account-owner]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-account-owner
-[role-ai-owner]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-owner
+[role-ai-user]: ../../concepts/rbac-foundry.md#built-in-roles
+[role-project-manager]: ../../concepts/rbac-foundry.md#built-in-roles
+[role-account-owner]: ../../concepts/rbac-foundry.md#built-in-roles
+[role-ai-owner]: ../../concepts/rbac-foundry.md#built-in-roles
 [role-acr-reader]: /azure/role-based-access-control/built-in-roles#container-registry-repository-reader
 [role-acr-writer]: /azure/role-based-access-control/built-in-roles#container-registry-repository-writer
 [role-acrpull]: /azure/role-based-access-control/built-in-roles#acrpull
