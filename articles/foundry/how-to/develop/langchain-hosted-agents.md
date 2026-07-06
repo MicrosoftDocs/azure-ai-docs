@@ -343,14 +343,14 @@ state, override `build_input` instead of flattening the request to text.
 
 ## Deploy
 
-You can deploy with the Azure Developer CLI or the Foundry Toolkit Visual Studio Code extension. The Azure Developer CLI flow uses sample `azure.yaml` files and Docker; the extension flow provides a guided deployment experience in Visual Studio Code.
+You can deploy by using the Azure Developer CLI or the Foundry Toolkit Visual Studio Code extension. The Azure Developer CLI flow uses sample `azure.yaml` files and Docker. The extension flow provides a guided deployment experience in Visual Studio Code.
 
 Hosted agent deployment requires the **Foundry Project Manager** role on the
 project. For details, see [Deploy a Hosted agent](../../agents/how-to/deploy-hosted-agent.md#required-permissions).
 
 ### Deploy with Azure Developer CLI
 
-The `langchain-azure-ai` source repository includes Hosted agent samples that can be run and deployed with the Azure Developer CLI. The flow uses each sample's `azure.yaml`, `Dockerfile`, and `main.py`. For details about the hosted-agent configuration in `azure.yaml`, see [Author azure.yaml for hosted agents](../../agents/how-to/author-azure-yaml.md).
+The `langchain-azure-ai` source repository includes Hosted agent samples that you can run and deploy by using the Azure Developer CLI. The flow uses each sample's `azure.yaml`, `Dockerfile`, and `main.py`. For details about the hosted-agent configuration in `azure.yaml`, see [Author azure.yaml for hosted agents](../../agents/how-to/author-azure-yaml.md).
 
 Install the AI agent extension and sign in before you initialize a sample:
 

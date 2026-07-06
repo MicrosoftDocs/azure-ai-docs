@@ -46,7 +46,7 @@ Always use the full ARM resource ID for `rai_policy_name`, not the bare policy n
 
 ## Add a guardrail with the Azure Developer CLI
 
-When you use `azd`, you declare the guardrail on the `azure.ai.agent` service in `azure.yaml`. Set `rai_config.rai_policy_name` to the full ARM resource ID of the RAI policy.
+When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `azure.yaml`. Set `rai_config.rai_policy_name` to the full ARM resource ID of the RAI policy.
 
 1. In your `azure.yaml`, add `rai_config` to the agent service:
 
