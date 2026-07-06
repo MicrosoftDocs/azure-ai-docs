@@ -1715,26 +1715,28 @@ The MCP endpoint requires authentication via custom headers. You have two option
 
 ## Review the MCP response
 
-When an MCP client invokes `knowledge_base_retrieve`, it receives an MCP tool result instead of the retrieve action's `response`, `activity`, and `references` envelope. Today, the payload you should expect is `result.content[]`.
+When an MCP client invokes `knowledge_base_retrieve`, it receives an MCP tool result instead of the retrieve action's `response`, `activity`, and `references` envelope. Many MCP clients surface that tool result under a top-level `result` object, so the payload you should expect is `result.content[]`.
 
 ```json
 {
-  "content": [
-    {
-      "type": "text",
-      "text": "[{\"ref_id\":\"0\",\"title\":\"Urban Structure\",\"terms\":\"Location of Phoenix, Grid of City Blocks, Phoenix Metropolitan Area at Night\",\"content\":\"<content chunk redacted>\"}]"
-    }
-  ]
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"ref_id\":\"0\",\"title\":\"Urban Structure\",\"terms\":\"Location of Phoenix, Grid of City Blocks, Phoenix Metropolitan Area at Night\",\"content\":\"<content chunk redacted>\"}]"
+      }
+    ]
+  }
 }
 ```
 
 Key points:
 
-+ `content[]` contains the MCP tool output returned by the knowledge base.
++ `result.content[]` contains the MCP tool output returned by the knowledge base.
 
-+ `content[].type` is `text`.
++ `result.content[].type` is `text`.
 
-+ `content[].text` contains the retrieved grounding data as a JSON-encoded string.
++ `result.content[].text` contains the retrieved grounding data as a JSON-encoded string.
 
 + Unlike the retrieve action, the current MCP response doesn't return separate `activity` or `references` arrays, and it doesn't populate `resource` entries for the returned content.
 
