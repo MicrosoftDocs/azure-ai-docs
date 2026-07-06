@@ -373,7 +373,7 @@ The MCP endpoint requires authentication via custom headers. You have two option
 
 Each MCP client configures custom headers differently. For example:
 
-+ In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
++ In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
 
 + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
 
@@ -570,7 +570,7 @@ filter_add_on="(status eq 'published' or status eq 'internal') and created ge 20
 
 ## Enforce permissions at query time (preview)
 
-Changes to access permissions that were set outside of `2026-05-01-preview` can take time to appear in `2026-05-01-preview` retrieval results.
+Changes to access permissions that you set outside of `2026-05-01-preview` can take time to appear in `2026-05-01-preview` retrieval results.
 
 If your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user only sees the documents they're authorized to access. You enable this filtering by passing the end user's identity on the retrieve request. Without the identity token, results from permission-enabled knowledge sources are returned unfiltered.
 
@@ -594,7 +594,7 @@ The following table shows which knowledge sources require ingestion-time configu
 | [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the ontology item on their behalf. |
 | [Work IQ](agentic-knowledge-source-how-to-work-iq.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Work IQ–scoped token and queries Work IQ on their behalf. |
 
-If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
+If you don't configure `ingestionPermissionOptions` when you create the indexed knowledge source, the index doesn't contain permission metadata. The system returns results unfiltered, regardless of the header. To fix this problem, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
 
 ### Query-time authorization
 
