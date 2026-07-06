@@ -5,7 +5,7 @@ description: "Learn about agent applications in Microsoft Foundry, configure aut
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 03/03/2026
+ms.date: 06/19/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -18,7 +18,7 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 > [!NOTE]
 > This article describes the legacy publishing experience. For the new agent publishing model, see [Migrate from agent applications to the new agent endpoint and publishing experience](migrate-agent-applications.md).
 
-Publishing promotes an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use."
+Publishing moves an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use."
 
 This article shows you how to publish an agent, configure its authentication and permissions, invoke your Agent Application using the Responses API protocol, and update your Agent Application as you roll out new agent versions. After publishing, you can invoke your Agent Application using the Responses or Activity protocol.
 
@@ -55,7 +55,10 @@ Because the identity changes, **permissions don't transfer automatically**. When
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
 - [Foundry Project Manager role](../../concepts/rbac-foundry.md) on the Foundry resource scope to publish agents
-- [Foundry User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol (or a custom role with the `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` permission)
+
+> [!NOTE]
+> The **Foundry Agent Consumer** role is designed for interacting with agent endpoints and doesn't grant access to invoke Agent Applications. Agent Applications use a different permission path (`Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action`). Use the **Foundry User** role or a custom role that includes this permission.
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
@@ -206,7 +209,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 
 **Required fields**:
 
-- `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for Hosted agents.
+- `deploymentType`: The deployment mode. Use `Managed` for prompt agents. Use `Hosted` for Hosted agents.
 - `agents`: The agent name and version to deploy.
 - `protocols`: The protocol the deployment exposes. For responses, set `protocol` as `Responses` and `version` as `1.0`. 
 
@@ -215,7 +218,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 - `minReplicas`: Sets the minimum number of replicas
 - `maxReplicas`: Sets the maximum number of replicas
 
-##### Prompt and workflow agents
+##### Prompt agents
 ```
 PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
 Authorization: Bearer {{token}}
@@ -270,7 +273,7 @@ Content-Type: application/json
 
 #### 3. Verify deployment is running
 
-Prompt and workflow agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version — if the version is stopped, the deployment is also stopped. 
+Prompt agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version - if the version is stopped, the deployment is also stopped. 
 
 To check the current state, get the deployment resource and inspect property `state`:
 ```
@@ -365,7 +368,10 @@ To roll out an agent with a different name, you must:
 
 ## Grant users access to invoke a published agent
 
-After you publish an agent, callers need the **Foundry User** role (or a custom role that includes the `Microsoft.CognitiveServices/accounts/projects/applications/invoke/action` permission) on the **Agent Application** resource. This role assignment is scoped to the individual Agent Application, so you can grant access to a single published agent without giving users access to your entire Foundry project or other agents.
+After you publish an agent, callers need the **Foundry User** role (or a custom role that includes the `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` permission) on the **Agent Application** resource. This role assignment is scoped to the individual Agent Application, so you can grant access to a single published agent without giving users access to your entire Foundry project or other agents.
+
+> [!NOTE]
+> The **Foundry Agent Consumer** role is designed for direct agent endpoint interactions and doesn't grant access to Agent Applications. Use **Foundry User** or a custom role with the required permission for Agent Application access.
 
 > [!IMPORTANT]
 > Agent Application RBAC is managed through Azure Resource Manager, not through the Entra agent identity. The Entra agent identity that the published agent receives is for the agent's *own* outbound calls to tools and resources. To control who can *invoke* the published agent, assign Azure RBAC roles on the Agent Application ARM resource by using the Azure portal, Azure CLI, or REST API.
@@ -502,6 +508,7 @@ Published agents use a publisher-pays model: the publisher (the Foundry project 
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#publish-agents) — role requirements for publishing agents.
 - Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Learn about [Hosted agents](../concepts/hosted-agents.md)
 - Learn how to [publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)

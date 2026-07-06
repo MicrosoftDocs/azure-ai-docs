@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## About reasoning models
@@ -88,4 +89,4 @@ response = client.chat.completions.create(
 )
 ```
 
-For the complete list of supported parameters, see the [Chat completions API reference](../../openai/latest.md#create-chat-completion).
+For the complete list of supported parameters, see the [Chat completions API reference](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true).

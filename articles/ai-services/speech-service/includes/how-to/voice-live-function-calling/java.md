@@ -310,7 +310,7 @@ public final class FunctionCallingQuickstart {
         ServerVadTurnDetection vad =
             new ServerVadTurnDetection()
                 .setThreshold(0.5)
-                .setPrefixPaddingMs(300)
+                .setPrefixPaddingMs(400)
                 .setSilenceDurationMs(500)
                 .setInterruptResponse(true)
                 .setAutoTruncate(true)

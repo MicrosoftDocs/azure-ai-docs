@@ -261,5 +261,5 @@ We can now correlate the document `id` of the response payload's JSON data to th
 
 ## Next steps
 
-* Use more [Azure AI containers](../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)
 * [Key phrase extraction overview](../overview.md)

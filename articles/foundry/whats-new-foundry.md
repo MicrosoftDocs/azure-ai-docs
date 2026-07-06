@@ -53,7 +53,7 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
   - [Configure guided guardrail set-up for an agent (preview)](guardrails/guided-set-up.md)
 - Foundry Models and platform
   - [Govern model router deployments with Azure Policy](how-to/model-router-policy.md)
-  - [Instant models in Microsoft Foundry (preview)](concepts/instant-models.md)
+  - [Instant access to models in Microsoft Foundry (preview)](concepts/instant-models.md)
   - [Region availability for Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 
 ## Updated articles
@@ -72,7 +72,7 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
 - Foundry Agent Service
   - [Connect to an A2A agent endpoint from Foundry Agent Service](agents/how-to/tools/agent-to-agent.md)
   - [Deploy a hosted agent](agents/how-to/deploy-hosted-agent.md)
-  - [Hosted agents in Foundry Agent Service (preview)](agents/concepts/hosted-agents.md)
+  - [Hosted agents in Foundry Agent Service](agents/concepts/hosted-agents.md)
   - [Tool support by model and region](agents/concepts/tool-best-practice.md)
   - [Use skills with Microsoft Foundry agents (preview)](agents/how-to/tools/skills.md)
   - [Automate browser tasks with Foundry agents](agents/how-to/tools/browser-automation.md)

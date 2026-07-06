@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Document Layout skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Document Layout** skill uses the [layout model](/azure/ai-services/document-intelligence/concept-layout) from Azure Document Intelligence in Foundry Tools to analyze a document, detect its structure and characteristics, and produce a syntactical representation in Markdown or text format. This skill supports text and image extraction, the latter of which includes location metadata that preserves image position within a document. Image proximity to related content is beneficial in retrieval-augmented generation (RAG) and [multimodal search](multimodal-search-overview.md) scenarios.
 
 For transactions that exceed 20 documents per indexer per day, this skill requires you to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your skillset. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).

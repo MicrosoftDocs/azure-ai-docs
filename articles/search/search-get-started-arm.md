@@ -16,6 +16,8 @@ ms.update-cycle: 365-days
 
 # Quickstart: Deploy Azure AI Search using an Azure Resource Manager template
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this quickstart, you use an Azure Resource Manager (ARM) template to deploy an Azure AI Search service in the Azure portal.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]

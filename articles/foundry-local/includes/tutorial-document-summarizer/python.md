@@ -1,20 +1,20 @@
 ---
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 06/01/2026
+ms.date: 06/15/2026
 ---
 
 - [Python 3.11](https://www.python.org/downloads/) or later installed.
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/python/tutorial-document-summarizer
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/python/foundry-local/tutorial-document-summarizer
 ```
 
 ## Install packages
@@ -48,7 +48,7 @@ maintained alongside production code so they stay accurate as the application ev
 
 Now create a file called `main.py` and add the following code to read the document:
 
-:::code language="python" source="~/foundry-local-main/samples/python/tutorial-document-summarizer/src/app.py" id="file_reading":::
+:::code language="python" source="~/foundry-local-main/samples/python/foundry-local/tutorial-document-summarizer/src/app.py" id="file_reading":::
 
 The script accepts an optional file path as a command-line argument and falls back to `document.txt` if none is provided. The `Path.read_text` method reads the entire file into a string.
 
@@ -58,7 +58,7 @@ Initialize the Foundry Local SDK, load a model, and send the document content al
 
 Replace the contents of `main.py` with the following code:
 
-:::code language="python" source="~/foundry-local-main/samples/python/tutorial-document-summarizer/src/app.py" id="summarization":::
+:::code language="python" source="~/foundry-local-main/samples/python/foundry-local/tutorial-document-summarizer/src/app.py" id="summarization":::
 
 The `get_model` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `download` method fetches the model weights to your local cache (and skips the download if they're already cached), and `load` makes the model ready for inference. The system prompt tells the model to produce bullet-point summaries focused on key ideas.
 
@@ -132,7 +132,7 @@ Each file is read, paired with the same system prompt, and sent to the model ind
 
 Create a file named `main.py` and add the following complete code:
 
-:::code language="python" source="~/foundry-local-main/samples/python/tutorial-document-summarizer/src/app.py" id="complete_code":::
+:::code language="python" source="~/foundry-local-main/samples/python/foundry-local/tutorial-document-summarizer/src/app.py" id="complete_code":::
 
 Summarize a single file:
 

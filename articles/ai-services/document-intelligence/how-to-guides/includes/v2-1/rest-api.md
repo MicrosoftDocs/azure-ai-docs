@@ -974,7 +974,7 @@ https://cognitiveservice/formrecognizer/v2.1/prebuilt/documentId/analyzeResults/
 In the following example, the string after `analyzeResults/` is the result ID:
 
 ```output
-https://westus.api.cognitive.microsoft.com/formrecognizer/v2.1/prebuilt/idDocument/analyzeResults/3bc1d6e0-e24c-41d2-8c50-14e9edc336d1
+https://westus.api.cognitive.microsoft.com/formrecognizer/v2.1/prebuilt/idDocument/analyzeResults/aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 ### Get the Analyze ID Document result
@@ -1203,7 +1203,7 @@ https://<endpoint>/formrecognizer/v2.1/custom/models/<modelId>
 In the following example, as part of the URL, the string after `models/` is the model ID.
 
 ```output
-https://westus.api.cognitive.microsoft.com/formrecognizer/v2.1/custom/models/77d8ecad-b8c1-427e-ac20-a3fe4af503e9
+https://westus.api.cognitive.microsoft.com/formrecognizer/v2.1/custom/models/bbbbcccc-1111-dddd-2222-eeee3333ffff
 ```
 
 ### Train a model with labels
@@ -1240,7 +1240,7 @@ https://<endpoint>/formrecognizer/v2.1/custom/models/<modelId>
 In the following example, as part of the URL, the string after `models/` is the model ID.
 
 ```output
-https://westus.api.cognitive.microsoft.com/formrecognizer/v2.1/custom/models/62e79d93-78a7-4d18-85be-9540dbb8e792
+https://westus.api.cognitive.microsoft.com/formrecognizer/v2.1/custom/models/ccccdddd-2222-eeee-3333-ffff4444aaaa
 ```
 
 After you start the train operation, use [Get Custom Model](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) to check the training status. Pass the model ID into the API request to check the training status:

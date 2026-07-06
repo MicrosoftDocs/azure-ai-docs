@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Design patterns for multitenant SaaS applications and Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A multitenant application is one that provides the same services and capabilities to any number of tenants who can't see or share the data of any other tenant. This article discusses tenant isolation strategies for multitenant applications built with Azure AI Search.
 
 ## Azure AI Search concepts

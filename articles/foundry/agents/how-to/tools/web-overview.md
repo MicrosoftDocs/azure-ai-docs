@@ -52,7 +52,7 @@ Before using any web grounding tool, ensure you have:
 > The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search or Grounding with Bing Custom Search. When you use these services, your data flows outside the Azure compliance and Geo boundary. This also means use of these services waives all elevated Government Community Cloud security and compliance commitments, including data sovereignty and screened/citizenship-based support, as applicable.
 
 > [!NOTE]
-> Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing). Azure admins can restrict access to these tools. For details, see [Administrator control for the Web Search tool](./web-search.md#administrator-control-for-the-web-search-tool).
+> Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing details](https://www.microsoft.com/en-us/bing/apis). Azure admins can restrict access to these tools. For details, see [Administrator control for the Web Search tool](./web-search.md#administrator-control-for-the-web-search-tool).
 
 ## Determine the best tool for your use cases
 
@@ -97,7 +97,7 @@ Use [Web Search](./web-search.md). This tool lets you define an allow-list or bl
 
 ### Are there additional costs for web grounding?
 
-Yes. Web Search, Grounding with Bing Search, and Grounding with Bing Custom Search (preview) incur costs beyond standard Azure OpenAI usage. See [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing).
+Yes. Web Search, Grounding with Bing Search, and Grounding with Bing Custom Search (preview) incur costs beyond standard Azure OpenAI usage. See [pricing details](https://www.microsoft.com/en-us/bing/apis).
 
 ## Troubleshooting
 
@@ -107,7 +107,7 @@ Yes. Web Search, Grounding with Bing Search, and Grounding with Bing Custom Sear
 | No citations in response | The model generated a response without using search results. | Add explicit instructions to always cite sources. Use `tool_choice="required"` to ensure tool invocation. |
 | Search results aren't relevant | Query formulation didn't capture user intent. | Improve agent instructions to guide query construction. For Bing tools, adjust `market` and `set_lang` parameters. |
 | Tool blocked by administrator | Your organization disabled web grounding tools. | Contact your Azure administrator to enable access. See [administrator control](./web-search.md#administrator-control-for-the-web-search-tool). |
-| Unexpected costs | Web grounding tools have usage-based pricing. | Review [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing) and implement rate limiting if needed. |
+| Unexpected costs | Web grounding tools have usage-based pricing. | Review [pricing details](https://www.microsoft.com/en-us/bing/apis) and implement rate limiting if needed. |
 
 ## Related content
 
@@ -115,4 +115,4 @@ Yes. Web Search, Grounding with Bing Search, and Grounding with Bing Custom Sear
 - [Use Grounding with Bing Search and Grounding with Bing Custom Search](./bing-tools.md)
 - [Best practices for using tools in Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Agent environment setup](../../../agents/environment-setup.md)
-- [Web grounding pricing](https://www.microsoft.com/bing/apis/grounding-pricing)
+- [Web grounding pricing](https://www.microsoft.com/en-us/bing/apis)

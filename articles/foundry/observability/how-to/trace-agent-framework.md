@@ -49,7 +49,7 @@ To view trace data, make sure your account has access to the connected Applicati
 1. Select **Access control (IAM)**.
 1. Assign an appropriate role to your user or group.
 
-    If you use log-based queries, start by granting the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
+    If you use log-based queries, start by granting the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also grant the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader).
 
 ## Security and privacy
 
@@ -94,6 +94,30 @@ When you deploy an agent to Foundry using one of the hosted agent server package
 - Enriches all spans with project, agent name, agent version, and agent ID attributes so the Foundry UI can query and display them.
 
 No additional configuration is required. Install the relevant `openinference-*` instrumentation package for your framework and traces appear in the Foundry portal automatically.
+
+### Microsoft Agent Framework agents hosted outside of Foundry
+
+If your Microsoft Agent Framework agent isn't deployed with a Foundry hosted agent server package, configure Azure Monitor export and agent framework instrumentation with the [Microsoft OpenTelemetry distro](https://pypi.org/project/microsoft-opentelemetry/). The distro can enable the Azure Monitor exporter and add agent identity attributes to spans:
+
+```python
+from microsoft.opentelemetry import use_microsoft_opentelemetry
+
+use_microsoft_opentelemetry(
+    enable_azure_monitor=True,
+    azure_monitor_connection_string="...",
+    sampling_ratio=1.0,
+    enable_sensitive_data=True,
+    instrumentation_options={
+        "agent-framework": {
+            "enabled": True,
+            "agent_id": "ms-imagination-agent",
+            "agent_name": "ms-imagination-agent",
+        },
+    },
+)
+```
+
+Set `azure_monitor_connection_string` to the Application Insights resource connected to your Foundry project. To capture prompt and completion content during development, set `enable_sensitive_data=True`.
 
 ### LangChain agents hosted outside of Foundry
 
@@ -591,7 +615,7 @@ Traces typically appear within 2–5 minutes after agent execution. If traces st
 | You don't see LangChain or LangGraph spans | The Microsoft OpenTelemetry distro isn't initialized or LangChain instrumentation isn't enabled | Confirm you call `use_microsoft_opentelemetry(...)` with `"langchain": {"enabled": True}` before running your agent. |
 | LangChain spans appear but tool calls are missing | Tools aren't bound to the model or tool node isn't configured | Verify tools are passed to `bind_tools()` on the model and that tool nodes are added to your graph. |
 | Traces appear but are incomplete or missing spans | Content recording is disabled, the GenAI semantic convention opt-in isn't set, or some operations aren't instrumented | For LangChain and LangGraph, set `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=SPAN_AND_EVENT`, `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental`, and `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true` during development. For custom operations, add manual spans using the OpenTelemetry SDK. |
-| You see authorization errors when you query telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
+| You see authorization errors when you query telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
 | Sensitive content appears in traces | Content recording is enabled and prompts, tool arguments, or outputs include sensitive data | Disable content recording in production and redact sensitive data before it enters telemetry. |
 
 ## Related content

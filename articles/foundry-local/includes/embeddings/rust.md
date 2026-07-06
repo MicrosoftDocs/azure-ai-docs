@@ -3,7 +3,7 @@ title: Include file
 description: Include file
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/24/2026
+ms.date: 06/15/2026
 ms.author: natke
 author: natke
 ai-usage: ai-assisted
@@ -16,11 +16,11 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/rust/embeddings
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/rust/foundry-local/embeddings
 ```
 
 ## Install packages
@@ -31,7 +31,7 @@ cd Foundry-Local/samples/rust/embeddings
 
 Replace the contents of `main.rs` with the following code:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/embeddings/src/main.rs" id="complete_code":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/embeddings/src/main.rs" id="complete_code":::
 
 Run the code by using the following command:
 

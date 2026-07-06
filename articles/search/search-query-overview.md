@@ -9,6 +9,8 @@ ms.update-cycle: 365-days
 
 # Querying in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports query constructs for a broad range of scenarios, from free-form text search, to highly specified query patterns, to vector search. All queries execute over a search index that stores searchable content.
 
 <a name="types-of-queries"></a>

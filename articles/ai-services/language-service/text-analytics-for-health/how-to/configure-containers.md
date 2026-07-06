@@ -78,4 +78,4 @@ The exact syntax of the host mount location varies depending on the host operati
 ## Next steps
 
 * Review [How to install and run containers](use-containers.md)
-* Use more [Azure AI containers](../../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

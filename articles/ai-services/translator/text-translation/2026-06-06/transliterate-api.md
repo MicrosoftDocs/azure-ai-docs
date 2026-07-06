@@ -12,12 +12,6 @@ ms.author: lajanuar
 
 # Transliterate (2026-06-06)
 
-> [!IMPORTANT]
->
-> * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-
 The Text transliteration API maps your source language script or alphabet to a target language script or alphabet. Unlike translation, transliteration doesn't return the meaning, only the way the text is written.
 
 ## Request URL

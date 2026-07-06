@@ -1,19 +1,19 @@
 ---
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 03/29/2026
+ms.date: 06/15/2026
 ---
 
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/rust/tutorial-tool-calling
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/rust/foundry-local/tutorial-tool-calling
 ```
 
 ## Install packages
@@ -32,13 +32,13 @@ Tool calling lets the model request that your code runs a function and returns t
 
 1. Open `src/main.rs` and add the following tool definitions:
 
-    :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-tool-calling/src/main.rs" id="tool_definitions":::
+    :::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-tool-calling/src/main.rs" id="tool_definitions":::
 
     Each tool definition includes a `name`, a `description` that helps the model decide when to use it, and a `parameters` schema that describes the expected input.
 
 1. Add the Rust functions that implement each tool:
 
-    :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-tool-calling/src/main.rs" id="tool_definitions":::
+    :::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-tool-calling/src/main.rs" id="tool_definitions":::
 
     The model doesn't run these functions directly. It returns a tool call request with the function name and arguments, and your code executes the function.
 
@@ -46,7 +46,7 @@ Tool calling lets the model request that your code runs a function and returns t
 
 Initialize the Foundry Local SDK, load a model, and send a message that the model can answer by calling a tool.
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-tool-calling/src/main.rs" id="init":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-tool-calling/src/main.rs" id="init":::
 
 When the model determines that a tool is needed, the response contains `tool_calls` instead of a regular text message. The next step shows how to detect and handle these calls.
 
@@ -54,7 +54,7 @@ When the model determines that a tool is needed, the response contains `tool_cal
 
 After the model responds with a tool call, you extract the function name and arguments, run the function, and send the result back.
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-tool-calling/src/main.rs" id="tool_loop":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-tool-calling/src/main.rs" id="tool_loop":::
 
 The key steps in the tool calling loop are:
 
@@ -69,7 +69,7 @@ Here's the complete application that combines tool definitions, SDK initializati
 
 Replace the contents of `src/main.rs` with the following complete code:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-tool-calling/src/main.rs" id="complete_code":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-tool-calling/src/main.rs" id="complete_code":::
 
 Run the tool-calling assistant:
 

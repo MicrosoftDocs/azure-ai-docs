@@ -1,8 +1,8 @@
 ---
 title: "Add Microsoft Foundry to a network security perimeter"
 description: "Quickly learn how to associate a Microsoft Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management."
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: meerakurup
 ms.date: 05/12/2026
 ms.topic: how-to

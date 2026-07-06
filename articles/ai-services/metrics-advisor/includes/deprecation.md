@@ -10,7 +10,7 @@ ms.author: nitinme
 ---
 
 > [!IMPORTANT]
-> Starting on 21 September 2023 you won’t be able to create new Metrics Advisor resources. As of 31 March 2026 the Metrics Advisor portal has been disabled. The Metrics Advisor service is being retired no later than 1 October 2026.
+> Azure AI Metrics Advisor has been retired as of 18 May 2026.
 >
 > We recommend the following alternatives:
 > 1. [Azure Monitor](/azure/azure-monitor/fundamentals/overview), as an official Azure 3P product, anomaly detection and analysis capabilities are provided through multiple interfaces, e.g., [Detect and analyze anomalies with KQL in Azure Monitor](/azure/azure-monitor/logs/kql-machine-learning-azure-monitor).

@@ -13,6 +13,8 @@ ms.custom:
 
 # Import data wizard in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Import data** wizard in the Azure portal provides a no-code path to a queryable search index. It connects to a supported data source, configures optional AI enrichment and vectorization, infers an index schema, and loads content into the index. You can use the wizard for keyword search, RAG, and multimodal RAG.
 
 The wizard supports:

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Optimize costs for the Serverless pricing model in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports two pricing models, each designed for different workload patterns:
 
 - **Dedicated**: Fixed pricing measured by Search Units (SUs). You select a service tier, and you're billed hourly based on provisioned units.
@@ -55,7 +57,7 @@ Different operations have different cost profiles:
 
 ### Monitor compute usage
 
-The Compute Unit (CU) cost of every request is returned in the `x-ms-request-charge` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in [Azure Monitor](/azure/azure-monitor/fundamentals/overview).
+Monitoring compute consumption helps you identify expensive operations, optimize query patterns, and estimate costs. The Compute Unit (CU) cost of every request is returned in the `x-ms-request-charge` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in Azure Monitor. For more guidance on the types of monitoring data available and methods for analyzing that data, see [Monitor Azure AI Search](/azure/azure-monitor/fundamentals/overview).
 
 - **Header**: `x-ms-request-charge: <value>`
 - **Value**: A floating-point number representing the CUs consumed.
@@ -68,16 +70,62 @@ Content-Type: application/json
 x-ms-request-charge: 12.45
 ```
 
-This value represents the compute consumed by the request and can be used to identify high-cost query patterns. In this example, the query consumed 12.45 mCU per minute.
+In this example, the request consumed 12.45 compute units. You can use this value to identify high-cost operations and compare the relative cost of different query patterns.
 
-You can also use the metrics in the portal to understand the historical consumption. See [Monitoring Data Reference](monitor-azure-cognitive-search-data-reference.md#supported-metrics-for-microsoftsearchsearchservices).
+To review historical compute consumption for a serverless search service, use the Azure Monitor metrics in the [Azure portal](https://portal.azure.com/):
 
-Additionally, you can use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes.
+1. Navigate to your search service.
+1. Select **Metrics**.
+1. Select **+ Add metric**.
+1. From the metric list, select **Compute units usage**.
+1. Use the chart to analyze usage trends and identify periods of increased compute consumption.
 
-> [!NOTE]
-> The Azure pricing calculator and SU-based capacity-planning worksheets don't apply to the Serverless pricing model services. To estimate Serverless costs, index a representative sample of your data, run typical queries, and inspect the `x-ms-request-charge` header to measure actual CU consumption per operation type. Extrapolate to your expected volume using telemetry and the Azure portal to estimate costs.
-> The aggregate usage is measured each minute, converting from mCU to CU (divide by 1000) and from CU/min to CU/h (divide by 60), and then emitted to the meter each minute. If a minute has no usage, nothing is emitted.
-> To calculate the full CU/h amount that appears on the bill, usage is measured per minute and rounded up to the nearest 0.25 CU/minute, with 60 of these per minute segments added up over the period of an hour to calculate the full CU/h amount that appears on the bill. CU costs are consistent - the same request on the same data produces similar CU consumption. The relative cost of different operation types follows this general pattern: keyword search (low) < vector search (higher) < hybrid search (combined cost of both).
+Monitoring aggregate usage helps you understand overall service costs and identify workloads that consume the most compute resources. For descriptions of available monitoring metrics, see [Monitoring Data Reference](monitor-azure-cognitive-search-data-reference.md#supported-metrics-for-microsoftsearchsearchservices). You can use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes. 
+
+:::image type="content" source="media/serverless/serverless-monitoring-metrics.png" alt-text="Screenshot of the metrics monitoring dashboard for serverless Compute Units in the Azure Portal.":::
+
+#### Configure alerts for compute usage
+
+You can create an alert rule to be notified when compute consumption reaches a specified threshold in the Azure portal.
+
+1. Go to **Alerts** in your search service.
+1. Select **+ Create alert rule**.
+1. Under **Condition**, choose **Compute units usage** as the signal.
+1. Define the alert logic. For example, trigger when total usage is greater than a specified value.
+1. Configure **Actions**, such as email, SMS, or webhook notifications.
+1. Complete the remaining steps and select **Review + create**.
+
+Alerts help you proactively respond to unexpected usage spikes and manage costs.
+
+:::image type="content" source="media/serverless/serverless-monitoring-alert-rule.png" alt-text="Screenshot of creating an alert rule in the Azure Portal.":::
+
+#### Estimate serverless costs
+
+The Azure pricing calculator and search unit (SU)-based capacity planning guidance don't apply to services that use the serverless pricing model.
+
+To estimate serverless costs:
+
+1. Index representative sample data.
+1. Run typical indexing and query workloads.
+1. Record the `x-ms-request-charge` value returned for each operation.
+1. Use Azure Monitor metrics to measure aggregate usage over time.
+1. Extrapolate costs based on expected production traffic.
+
+Because the same request executed against the same data generally produces similar compute consumption, representative workloads can provide a reliable basis for cost estimation.
+
+Serverless usage is measured continuously and aggregated for billing. Compute consumption is tracked throughout each minute and emitted only when compute resources are used.
+
+When estimating costs, use request charge values to understand the cost of individual operations and Azure Monitor metrics to understand overall service consumption patterns.
+
+Billing is based on aggregate compute usage rather than individual requests. Usage is measured in one-minute intervals and rounded up to the nearest 0.25 CU per minute. These one-minute usage intervals accumulate over the course of an hour to determine the billable CU/hour amount. Internally, usage aggregates from milli-compute units (mCU) to compute units (CU) and converts into the hourly usage reported for billing.
+
+Different operations consume different amounts of compute. In general:
+
+- Keyword searches typically use the least compute resources.
+- Vector searches typically use more compute resources than keyword searches.
+- Hybrid searches combine keyword and vector search execution, so they typically use more compute resources than either technique alone.
+
+Actual compute consumption depends on factors such as query complexity, index size, data volume, vector configuration, and the number of results returned. Monitoring request charges and aggregate usage metrics can help you identify optimization opportunities and better predict production costs.
 
 ## Reduce compute costs through optimization
 

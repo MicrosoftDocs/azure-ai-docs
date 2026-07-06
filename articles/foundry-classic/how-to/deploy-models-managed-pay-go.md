@@ -4,8 +4,9 @@ description: "Learn how to deploy protected AI Models from partners and communit
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.custom:
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 4/09/2026
+ms.date: 06/16/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -123,6 +124,7 @@ The following sections list the supported models for managed compute deployment 
 
 | Model | Task |
 |--|--|
+| [bosonai-higgs-audio-3-instruct](https://ai.azure.com/explore/models/bosonai-higgs-audio-3-instruct/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Chat completion |
 | [bosonai-higgs-audio-v3-stt](https://ai.azure.com/explore/models/bosonai-higgs-audio-v3-stt/version/2/registry/azureml-bosonai-p/?cid=learnDocs) | Automatic speech recognition |
 | [Higgs-Audio-v2.5](https://ai.azure.com/explore/models/Higgs-Audio-v2.5/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Audio generation |
 
@@ -148,11 +150,26 @@ The following sections list the supported models for managed compute deployment 
 |--|--|
 | [Mercury](https://ai.azure.com/explore/models/Mercury/version/1/registry/azureml-inceptionlabs/?cid=learnDocs) | Chat completion, Text generation, Summarization |
 
+### Insilico Medicine
+
+| Model | Task |
+|--|--|
+| [LFM2-2.6B-InsilicoMMAI-Chem-SSRS-1.1](https://ai.azure.com/explore/models/LFM2-2.6B-InsilicoMMAI-Chem-SSRS-1.1/version/1/registry/azureml-insilicomedicine-p/?cid=learnDocs) | Chat completion |
+
 ### NTT Data Corporation
 
 | Model | Task |
 |--|--|
 | [tsuzumi2](https://ai.azure.com/explore/models/tsuzumi2/version/2/registry/azureml-nttdatacorp-p/?cid=learnDocs) | Chat completion |
+
+### Nixtla
+
+| Model | Task |
+|--|--|
+| [TimeGPT-1](https://ai.azure.com/explore/models/TimeGPT-1/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
+| [TimeGPT-1-long-horizon](https://ai.azure.com/explore/models/TimeGPT-1-long-horizon/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
+| [TimeGPT-2.1](https://ai.azure.com/explore/models/TimeGPT-2.1/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
+| [TimeGPT-2-mini](https://ai.azure.com/explore/models/TimeGPT-2-mini/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
 
 ### NVIDIA
 
@@ -166,6 +183,7 @@ Some special things to note about NIMs are:
 
 | Model | Task |
 |--|--|
+| [NVIDIA-Nemotron-3-Ultra-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Ultra-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Question answering, Summarization, Text generation, Text summarization |
 | [NVIDIA-Nemotron-3-Super-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Super-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Question answering, Summarization, Text generation, Text summarization |
 | [Openfold3_1_2_0-NIM-microservice](https://ai.azure.com/explore/models/Openfold3_1_2_0-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Biomolecular complex structure prediction |
 | [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |

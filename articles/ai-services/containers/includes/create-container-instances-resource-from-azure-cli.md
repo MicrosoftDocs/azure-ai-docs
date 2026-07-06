@@ -78,6 +78,6 @@ The output of the command is `Running...` if valid, after sometime the output ch
 [azure-container-create]: /cli/azure/container#az_container_create
 [template-format]: /azure/templates/Microsoft.ContainerInstance/2018-10-01/containerGroups#template-format
 [aci-yaml-ref]: /azure/container-instances/container-instances-reference-yaml
-[repositories-and-images]: ../../cognitive-services-container-support.md
+[repositories-and-images]: ../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
 [location-to-resource]: /azure/container-instances/container-instances-region-availability
 [secure-values]: /azure/container-instances/container-instances-environment-variables#secure-values

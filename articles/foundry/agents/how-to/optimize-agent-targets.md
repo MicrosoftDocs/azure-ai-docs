@@ -40,13 +40,16 @@ The optimizer needs to know which deployed hosted agent to target. It resolves t
 | Priority | Source | Example |
 | -------- | ------ | ------- |
 | 1 (highest) | `--agent` CLI flag | `azd ai agent optimize --agent my-support-agent` |
-| 2 | `agent.name` field in `eval.yaml` | `agent:\n  name: my-support-agent` |
-| 3 (default) | `name` field in `agent.yaml` | `name: my-support-agent` |
+| 2 (default) | Current `azd` environment and the `name` field in local `agent.yaml` | `name: my-support-agent` |
+| 3 | `agent.name` field in `eval.yaml` | `agent:\n  name: my-support-agent` |
 
-In most cases, you don't need to specify the agent name explicitly. The CLI reads it from your project's `agent.yaml` file. Use the `--agent` flag when you have multiple agents in your project or want to override the default:
+In most cases, you don't need to specify the agent name explicitly. The CLI
+uses your current `azd` environment and your project's local `agent.yaml` file
+to detect the local agent. Use the `--agent` flag when you have multiple agents
+in your project or want to override the default:
 
 ```bash
-azd ai agent optimize --agent my-support-agent
+azd ai agent optimize
 ```
 
 > [!NOTE]
@@ -76,7 +79,8 @@ With a custom config:
 agent:
   name: my-agent
 
-dataset_file: ./eval.jsonl
+dataset:
+  local_uri: ./eval.jsonl
 
 evaluators:
   - builtin.task_adherence
@@ -84,12 +88,15 @@ evaluators:
 options:
   eval_model: gpt-4.1-mini
   optimization_model: gpt-5.1
-  max_iterations: 5
+  max_candidates: 5
 ```
 
 ```bash
 azd ai agent optimize --config eval.yaml
 ```
+
+When `dataset` includes `local_uri` and doesn't include `name` or `version`,
+the optimizer treats the dataset as a local file.
 
 ### What gets changed
 
@@ -119,17 +126,20 @@ You are a helpful coding assistant. Follow these guidelines:
 5. Handle edge cases in code examples
 ```
 
-### Max iterations
+### Max candidates
 
-The `max_iterations` option controls how many candidate instruction sets are generated. Each iteration produces one candidate.
+The `max_candidates` option sets the expected number of candidate instruction
+sets for the optimization run. The optimizer typically returns after it reaches
+that count, unless the run stops early because of an error or another stopping
+condition.
 
-| Max iterations | Candidates | Time | Best for |
+| Max candidates | Candidates | Time | Best for |
 | ---------------- | ----------- | ------ | ---------- |
-| 4 (default) | 4 | 5 to 10 min | Quick experiments |
-| 5 | 5 | 10 to 15 min | Good balance |
-| 10 | 10 | 20 to 30 min | Thorough exploration |
+| 2 | 2 | 5 to 10 min | Quick experiments |
+| 5 (default) | 5 | 20 to 30 min | Good balance |
+| 10 | 10 | 30 to 60 min | Thorough exploration |
 
-Higher values explore more variations but take longer. The optimizer learns from earlier iterations, so later candidates tend to score higher.
+Higher values explore more variations but take longer. The optimizer learns from earlier candidates, so later candidates tend to score higher.
 
 > [!NOTE]
 > Times are approximate for a dataset of 3 to 10 tasks. Larger datasets or slower eval models increase run duration.
@@ -143,22 +153,24 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 ```
 
 > [!IMPORTANT]
-> If the eval model isn't deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
+> Always verify that your eval model is deployed in the project before you run
+> optimization.
 
 ### Optimization model (reflection)
 
-The optimization model (also called "reflection model") generates candidate configurations — improved instructions, skills, and tool descriptions. It analyzes baseline results and produces improved variants. It must be deployed in your Foundry project.
+You must specify the deployed optimization model that generates candidate
+configurations. Supported optimization models include the gpt-5 family and
+DeepSeek models. For the current list and model roles, see
+[Models](../concepts/agent-optimizer-overview.md#models).
 
-Supported models: `gpt-5`, `gpt-5.1`, `gpt-5.3`.
-
-Specify the optimization model in your config file or via CLI:
+Specify the optimization model in your config file:
 
 ```yaml
 options:
   optimization_model: gpt-5.1
 ```
 
-Or via CLI flag:
+Or use the CLI flag:
 
 ```bash
 azd ai agent optimize --optimize-model gpt-5.1
@@ -206,7 +218,8 @@ With a config file:
 agent:
   name: my-agent
 
-dataset_file: ./eval.jsonl
+dataset:
+  local_uri: ./eval.jsonl
 
 evaluators:
   - builtin.task_adherence
@@ -214,7 +227,7 @@ evaluators:
 options:
   eval_model: gpt-4.1-mini
   optimization_model: gpt-5.1
-  max_iterations: 5
+  max_candidates: 5
 ```
 
 ```bash
@@ -276,7 +289,7 @@ Your tool implementation code stays the same. Only the definitions the model see
 
 ## Optimize model selection
 
-The optimizer evaluates your agent across multiple model deployments to find the best quality-to-cost trade-off. Each model runs against the same dataset, so you can compare results directly. Model optimization activates when you specify model candidates in `optimization_config`.
+The optimizer evaluates your agent across multiple model deployments to find the best quality-to-cost trade-off. Each model runs against the same dataset, so you can compare results directly. Model optimization activates when you specify model candidates in `optimization_config.model_search_space`.
 
 ### Configure model candidates
 
@@ -287,7 +300,8 @@ Specify the models to evaluate in your `eval.yaml`:
 agent:
   name: my-agent
 
-dataset_file: ./eval.jsonl
+dataset:
+  local_uri: ./eval.jsonl
 
 evaluators:
   - builtin.task_adherence
@@ -295,15 +309,16 @@ evaluators:
 options:
   eval_model: gpt-4.1-mini
   optimization_model: gpt-5.1
-  max_iterations: 5
+  max_candidates: 5
   optimization_config:
-    model:
+    # Target model candidates for optimization.
+    model_search_space:
       - gpt-4.1
       - gpt-4.1-mini
       - gpt-4o
 ```
 
-Each model listed under `optimization_config.model` must be deployed in your Foundry project.
+Each model listed under `optimization_config.model_search_space` must be deployed in your Foundry project.
 
 ### Run model optimization
 
@@ -322,7 +337,8 @@ When your baseline includes instructions, skills, and model candidates, the opti
 agent:
   name: my-agent
 
-dataset_file: ./eval.jsonl
+dataset:
+  local_uri: ./eval.jsonl
 
 evaluators:
   - builtin.task_adherence
@@ -331,9 +347,12 @@ evaluators:
 options:
   eval_model: gpt-4.1-mini
   optimization_model: gpt-5.1
-  max_iterations: 5
+  max_candidates: 5
+  # Free-form per-attribute overrides sent to the optimization service.
+  # Each key is an attribute name; the value is a JSON-encoded payload.
   optimization_config:
-    model:
+    # Target model candidates for optimization.
+    model_search_space:
       - gpt-4.1
       - gpt-5
 ```
@@ -344,19 +363,7 @@ This produces candidates that combine improved instructions with different model
 
 ## Interpret results
 
-After optimization completes, review the results table. For detailed scoring guidance, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
-
-Key thresholds:
-
-| Improvement | Interpretation |
-| ------------- | --------------- |
-| Less than 0.03 | Noise. Not meaningful. |
-| 0.03 to 0.10 | Moderate. Worth deploying. |
-| 0.10 to 0.20 | Significant improvement. |
-| Greater than 0.20 | Major improvement. |
-
-> [!TIP]
-> To view optimization results in more detail, open the [Azure AI Foundry portal](https://ai.azure.com). Navigate to your project, select **Agents**, choose your agent, and then select the **Optimize** tab. The portal shows score comparisons, score-versus-token charts, and a **Deploy best candidate** button.
+After optimization completes, review the results table. The ★ marks the best candidate. For the results table columns, scoring details, score-improvement thresholds, and the portal view, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
 
 ## Deploy the winner
 
@@ -387,8 +394,7 @@ If all candidates score lower than the baseline, don't deploy any candidate. The
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| All scores are 0.00 | Eval model not deployed | Deploy the eval model in your Foundry project, or use `--eval-model` to specify one that exists |
-| `optimize` returns 403 | Subscription not on allow list | Contact your Microsoft representative to request access |
+| `optimize` returns 400 | Subscription not on allow list | Contact your Microsoft representative to request access |
 | `"agent.yaml does not declare any protocols"` | Invalid `agent.yaml` format | Use flat format: `kind: hosted` at top level with `protocols:` list |
 | Job stuck at "running" | Service issue | Cancel with `azd ai agent optimize cancel <id>` and retry |
 | No candidate IDs in output | Job still running | Wait for completion or use `--watch` |

@@ -149,4 +149,4 @@ Once the container is up and running, you can validate its operation by sending 
 
 * See the [content safety containers overview](./container-overview.md)
 * Review [configure containers](./install-run-container.md) for configuration settings
-* Use more [Azure AI containers](../../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

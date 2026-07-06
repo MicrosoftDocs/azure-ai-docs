@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Relevance in keyword search (BM25 scoring)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains the BM25 relevance scoring algorithm used to compute search scores for [full text search](search-lucene-query-architecture.md). BM25 relevance applies to full text search only. Filter queries, autocomplete and suggested queries, wildcard search, and fuzzy search queries aren't scored or ranked for relevance.
 
 ## Scoring algorithms used in full text search
