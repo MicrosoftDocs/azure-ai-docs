@@ -919,9 +919,9 @@ print(response.model_dump_json(indent=2))
 
 | Model | Region | Limited access |
 |---|---|---|
-| `gpt-5.6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Limited access by invitation only during private preview release. |
-| `gpt-5.6-terra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Limited access by invitation only during private preview release. |
-| `gpt-5.6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Limited access by invitation only during private preview release. |
+| `gpt-5.6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
+| `gpt-5.6-terra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
+| `gpt-5.6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-chat-latest` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `gpt-5.5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.4-mini` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central | No access request needed. |

@@ -22,7 +22,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Models | Description |
 | -- | -- |
-| [GPT-5.6 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-56) | **NEW** `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna` **Limited Preview** |
+| [GPT-5.6 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-56) | **NEW** `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna` **Preview** |
 | [GPT-chat-latest (preview)](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-chat-latest) | **NEW** `gpt-chat-latest` **Preview** |
 | [GPT-5.5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-55) | **NEW** `gpt-5.5` |
 | [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
@@ -64,9 +64,9 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
 | --- | :--- | :--- | :--- | :---: |
-| `gpt-5.6-sol` (2026-06-25) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 br><br>Input: 922,000<br>Output: 128,000 | 128,000 | December 2025 |
-| `gpt-5.6-terra` (2026-06-25) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 br><br>Input: 922,000<br>Output: 128,000 | 128,000 | December 2025 |
-| `gpt-5.6-luna` (2026-06-25) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 br><br>Input: 922,000<br>Output: 128,000 | 128,000 | December 2025 |
+| `gpt-5.6-sol` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 br><br>Input: 922,000<br>Output: 128,000 | 128,000 | December 2025 |
+| `gpt-5.6-terra` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 br><br>Input: 922,000<br>Output: 128,000 | 128,000 | December 2025 |
+| `gpt-5.6-luna` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 br><br>Input: 922,000<br>Output: 128,000 | 128,000 | December 2025 |
 
 > [!NOTE]
 > Some [quota tiers](../quotas-limits.md) will require quota requests for `gpt-5.6-sol` and `gpt-5.6-terra` to be able to deploy these models. Tier 5 and Tier 6 subscriptions have quota by default.
