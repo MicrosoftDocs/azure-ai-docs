@@ -55,7 +55,7 @@ The Language provides three namespaces for using the available features. Dependi
 The `Azure.AI.TextAnalytics` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Custom named entity recognition](../custom-named-entity-recognition/how-to/call-api.md?tabs=client)
-* [Custom text classification](../custom-text-classification/how-to/call-api.md#send-a-text-classification-request-to-your-model-rest-api)
+* [Custom text classification](../custom-text-classification/how-to/build-train-deploy-model.md#send-prediction-requests)
 * [Document summarization](../summarization/quickstart.md)
 * [Entity linking](../entity-linking/quickstart.md)
 * [Key phrase extraction](../key-phrase-extraction/quickstart.md)
@@ -84,7 +84,7 @@ As you use these features in your application, use the following documentation a
 The `Azure.AI.Language.Conversations` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Conversational language understanding](../conversational-language-understanding/how-to/build-train-deploy-model.md#send-prediction-requests-to-a-deployment)
-* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
+* [Orchestration workflow](../orchestration-workflow/how-to/build-train-deploy-model.md#send-prediction-requests)
 * [Conversation summarization (Python only)](../summarization/quickstart.md?tabs=conversation-summarization&pivots=programming-language-python)
 * [Personally Identifying Information (PII) detection for conversations](../personally-identifiable-information/how-to-call-for-conversations.md?tabs=client-libraries#examples)
 
@@ -130,7 +130,7 @@ For more information, *see* the [reference documentation](/rest/api/language/).
 
 The conversation analysis runtime API enables you to send requests to custom models you create for the following features:
 * [Conversational language understanding](../conversational-language-understanding/how-to/build-train-deploy-model.md#send-prediction-requests-to-a-deployment)
-* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
+* [Orchestration workflow](../orchestration-workflow/how-to/build-train-deploy-model.md#send-prediction-requests)
 
 It additionally enables you to use the following features, without creating any models:
 * [Conversation summarization](../summarization/quickstart.md?pivots=rest-api&tabs=conversation-summarization)

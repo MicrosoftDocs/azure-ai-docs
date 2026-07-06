@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Shape search results or modify search results composition in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains search results composition and how to shape full text search results to fit your scenarios. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
 
 + Number of matches found in the index (`count`)

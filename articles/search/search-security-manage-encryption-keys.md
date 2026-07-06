@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Configure customer-managed keys for Azure AI Search encrypted data
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Enabling customer‑managed keys (CMK) adds additional security on top of the default encryption at rest when using [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). When you enable CMK, you control the encryption keys used to protect your data, including the ability to:
 
 - Rotate keys on a customer‑defined schedule

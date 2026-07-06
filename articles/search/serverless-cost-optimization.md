@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Optimize costs for the Serverless pricing model in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports two pricing models, each designed for different workload patterns:
 
 - **Dedicated**: Fixed pricing measured by Search Units (SUs). You select a service tier, and you're billed hourly based on provisioned units.

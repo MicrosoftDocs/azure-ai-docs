@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Filters for keyword search in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A *filter* provides value-based criteria for including or excluding content before query execution for keyword search, or before or after query execution for vector search. Filters are applied to nonvector fields, but can be used in vector search if documents include nonvector fields. For example, for indexes organized around chunked content, you might have parent-level fields or metadata fields that can be filtered.
 
 This article explains filtering for keyword search. For more information about vectors, see [Add a filter in a vector query](vector-search-filters.md).

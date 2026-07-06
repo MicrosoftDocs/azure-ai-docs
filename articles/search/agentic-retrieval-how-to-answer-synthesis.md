@@ -10,6 +10,8 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Use answer synthesis for citation-backed responses in Azure AI Search (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 > [!IMPORTANT]

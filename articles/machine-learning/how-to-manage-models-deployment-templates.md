@@ -634,10 +634,13 @@ $schema: https://azuremlschemas.azureedge.net/latest/model.schema.json
 name: my-model
 version: 1
 type: custom_model
-description: Model with a default deployment template
+description: Model with default and allowed deployment templates
 path: ./model
 default_deployment_template:
   asset_id: azureml://registries/<your-registry>/deploymenttemplates/my-deployment-template/versions/1
+allowed_deployment_templates:
+  - asset_id: azureml://registries/<your-registry>/deploymenttemplates/my-deployment-template/labels/latest
+  - asset_id: azureml://registries/<your-registry>/deploymenttemplates/my-deployment-template2/labels/latest
 ```
 
 Create the model in the registry:
@@ -647,9 +650,6 @@ az ml model create -f model.yml --registry-name <your-registry>
 ```
 
 For the full model schema, see [CLI (v2) model YAML schema](reference-yaml-model.md).
-
-> [!NOTE]
-> Setting `allowed_deployment_templates` (the override allow-list) isn't supported in the Azure CLI yet. To define the allow-list, use the **REST** tab. This example sets only `default_deployment_template`.
 
 # [Python SDK](#tab/python)
 
@@ -664,12 +664,13 @@ model = Model(
     default_deployment_template={
         "asset_id": "azureml://registries/<your-registry>/deploymenttemplates/my-deployment-template/versions/1",
     },
+    allowed_deployment_templates=[
+        {"asset_id": "azureml://registries/<your-registry>/deploymenttemplates/my-deployment-template/labels/latest"},
+        {"asset_id": "azureml://registries/<your-registry>/deploymenttemplates/my-deployment-template2/labels/latest"},
+    ],
 )
 registry_client.models.create_or_update(model)
 ```
-
-> [!NOTE]
-> Setting `allowed_deployment_templates` (the override allow-list) isn't supported in the Python SDK yet. To define the allow-list, use the **REST** tab. This example sets only `default_deployment_template`.
 
 ---
 

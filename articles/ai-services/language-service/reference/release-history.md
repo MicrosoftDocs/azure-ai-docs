@@ -207,7 +207,7 @@ Azure Language is a robust cloud-based service that offers advanced natural lang
 
 ## June 2022
 
-* v1.0 client libraries for [conversational language understanding](../conversational-language-understanding/how-to/build-train-deploy-model.md#send-prediction-requests-to-a-deployment) and [orchestration workflow](../orchestration-workflow/how-to/call-api.md) are Generally Available for the following languages:
+* v1.0 client libraries for [conversational language understanding](../conversational-language-understanding/how-to/build-train-deploy-model.md#send-prediction-requests-to-a-deployment) and [orchestration workflow](../orchestration-workflow/how-to/build-train-deploy-model.md#send-prediction-requests) are Generally Available for the following languages:
   * [C#](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.Language.Conversations_1.0.0/sdk/cognitivelanguage/Azure.AI.Language.Conversations)
   * [Python](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-language-conversations_1.0.0/sdk/cognitivelanguage/azure-ai-language-conversations)
 * v1.1.0b1 client library for [conversation summarization](../summarization/quickstart.md?tabs=conversation-summarization&pivots=programming-language-python) is available as a preview for:

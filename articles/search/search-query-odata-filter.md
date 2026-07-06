@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # OData $filter syntax in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, the **$filter** parameter specifies inclusion or exclusion criteria for returning matches in search results. This article describes the OData syntax of **$filter** and provides examples.
 
 Field path construction and constants are described in the [OData language overview in Azure AI Search](query-odata-filter-orderby-syntax.md). For more information about filter scenarios, see [Filters in Azure AI Search](search-filters.md).

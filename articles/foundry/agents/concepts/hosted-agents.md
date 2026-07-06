@@ -1,6 +1,6 @@
 ---
-title: "Hosted agents in Foundry Agent Service (preview)"
-description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
+title: "Hosted agents in Foundry Agent Service"
+description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
 ms.date: 06/22/2026
@@ -110,11 +110,9 @@ Two identities are involved:
 | **Microsoft Entra ID** (agent identity, per-agent) | Created automatically at deploy time | The identity the agent container authenticates with at runtime. Used for model invocation, tool access, and downstream Azure services. |
 | **Project managed identity** (project-wide) | System-assigned on the Foundry project | Used by the platform for infrastructure operations (for example, Container Registry Repository Reader on the container registry). Not the agent's runtime identity. |
 
-When you deploy with azd, the required RBAC role (Foundry User at account scope) is assigned to the agent's Microsoft Entra ID automatically. For external resources (for example, your own Azure Storage), you assign RBAC manually to the agent's Microsoft Entra ID.
+The agent identity can access model inferencing through the project endpoint and session storage by default. For external resources (for example, your own Azure Storage), assign RBAC roles manually to the agent's Microsoft Entra ID. For more information, see [Agent access beyond defaults](hosted-agent-permissions.md#agent-access-beyond-defaults).
 
-[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-
-When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can operate in two identity modes depending on how they are invoked:
+When integrated via Microsoft 365 channels (for example, Teams), hosted agents can operate in two identity modes depending on how they're invoked:
 
 - **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services on behalf of the user using the user’s delegated permissions, subject to Microsoft Entra ID tenant policies.
 
@@ -209,7 +207,7 @@ Each session has a persistent `$HOME`. Its contents are preserved when compute i
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
@@ -225,17 +223,9 @@ Compare the observed peaks against the cpu and memory you allocated. If sustaine
 Hosted agents support deployment within network-isolated Foundry resources and can use a customer-provided Azure Virtual Network for outbound traffic. This enables agents in network-isolated Foundry deployments to reach private resources such as databases or internal APIs. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
 
 > [!NOTE]
-> The Azure Container Registry holding your agent image must currently remain reachable over its public endpoint. Private-network-secured ACR isn't currently supported.
+> Foundry projects created after June 25, 2026 support a private (network-secured) Azure Container Registry for your agent image. Projects created before that date require the registry to remain reachable over its public endpoint. Existing projects aren't affected. For more information, see [Limitations](../how-to/virtual-networks.md#limitations).
 
-## Limits, pricing, and availability (preview)
-
-Hosted agents are currently in preview.
-
-### Limitations during preview
-
-| Limit | Scope | Default Value | Adjustable |
-| --------- | ------ | ----- | ------- |
-| Maximum active concurrent sessions | per subscription per region | 50 | Yes, with quota requests to Microsoft Support |
+## Limits, pricing, and availability
 
 ### Pricing
 

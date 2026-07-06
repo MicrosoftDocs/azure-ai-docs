@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Delete documents in a search index
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to delete whole documents from a search index on Azure AI Search using REST APIs or Azure SDKs. It covers these tasks:
 
 + Understand when manual deletion is required

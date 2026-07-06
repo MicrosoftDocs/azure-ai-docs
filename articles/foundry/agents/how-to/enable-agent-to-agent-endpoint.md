@@ -230,7 +230,7 @@ The response contains the agent card with the description and skills you configu
 
 ## Configure authentication for incoming requests
 
-Incoming A2A requests require Microsoft Entra ID authentication. Key-based authentication and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Foundry User** role (or higher) on the Foundry project that hosts your agent.
+Incoming A2A requests require Microsoft Entra ID authentication. Key-based authentication and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Foundry Agent Consumer** role (or higher) on the Foundry project that hosts your agent.
 
 Two authentication patterns are supported:
 
@@ -242,7 +242,7 @@ The calling agent passes through the end user's identity. Your agent receives a 
 
 The calling agent authenticates with its own identity—either the platform-assigned agent identity, a service principal, or a managed identity. Your agent sees the calling service's identity, not an individual user. This pattern is appropriate for backend agent-to-agent workflows where individual user context isn't required.
 
-To grant a calling identity access, assign the **Foundry User** role on the Foundry project that hosts your agent. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+To grant a calling identity access, assign the **Foundry Agent Consumer** role on the Foundry project that hosts your agent. This role provides least-privilege access for interacting with agent endpoints. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 
 ## Supported A2A transports
 

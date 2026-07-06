@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Extract, chunk, and embed multimodal content with the Document Layout skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this tutorial, you'll build a multimodal indexer pipeline that performs these tasks:
 
 > [!div class="checklist"]
