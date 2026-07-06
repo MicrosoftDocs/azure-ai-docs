@@ -1353,7 +1353,7 @@ This operation isn't supported with the Azure Developer CLI. To delete a toolbox
 
 Choose the tool type and authentication pattern that match your scenario. Select the tab for your preferred SDK or deployment method.
 
-Each tool's **azd** tab below shows the declarative `agent.yaml` manifest consumed by `azd ai agent init`. To create a toolbox imperatively (without an agent project), use the [generic four-step `azd ai toolbox create --from-file` workflow](#step-1-create-a-toolbox-version) and apply the per-tool data shown in the following sections.
+Each tool's **azd** tab below shows declarative toolbox YAML. To create a toolbox imperatively without an agent project, use the [generic four-step `azd ai toolbox create --from-file` workflow](#step-1-create-a-toolbox-version) and apply the per-tool data shown in the following sections. To deploy a toolbox with a hosted agent, model it as an `azure.ai.toolbox` service in `azure.yaml` and wire the agent to it with `uses:` or `toolboxes:`.
 
 ### Multiple tool types
 

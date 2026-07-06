@@ -37,14 +37,19 @@ Initialize a hosted agent from the Foundry toolbox sample, which connects to a t
 
 ```bash
 mkdir my-toolbox-agent && cd my-toolbox-agent
-azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/agent.manifest.yaml" --src src/toolbox-agent
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/azure.yaml" --src src/toolbox-agent
 ```
 
 Follow the prompts to select your project and an existing model deployment. When you're prompted to **Select container resource allocation**, choose **1 core, 2Gi memory**. The agent's container image needs more than the default tier. The `--src` flag scaffolds the agent into `src/toolbox-agent`.
 
+> [!NOTE]
+> Agent manifests (`agent.manifest.yaml`) and standalone agent definitions (`agent.yaml`) are deprecated. As of the Foundry `azd` extensions (`azure.ai.agents` 1.0.0-beta.1), all hosted agent configuration lives in a single `azure.yaml`. See [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md).
+
 ## Step 2: Create the toolbox
 
 Create the toolbox, then copy the MCP endpoint it returns. You set that endpoint as an environment variable in later steps.
+
+The sample's `azure.yaml` defines the toolbox as an `azure.ai.toolbox` service and wires it to the hosted agent service with `uses:`. If you change the toolbox configuration, edit the toolbox service in `azure.yaml`, not `src/toolbox-agent/agent.yaml`.
 
 First, point the toolbox commands at the Foundry project you selected during initialization. Reuse the endpoint that initialization already stored in your `azd` environment:
 
@@ -88,7 +93,7 @@ https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/my-tool
 
 ## Step 3: Provision Azure resources
 
-The agent reads the toolbox's MCP endpoint from the `TOOLBOX_ENDPOINT` environment variable, which `src/toolbox-agent/agent.yaml` resolves from your `azd` environment. You set that value in the next steps. Provision the agent's Azure resources:
+The agent reads the toolbox's MCP endpoint from the `TOOLBOX_ENDPOINT` environment variable, which `azure.yaml` resolves from your `azd` environment. You set that value in the next steps. Provision the agent's Azure resources:
 
 ```bash
 azd provision
@@ -122,7 +127,7 @@ azd provision
 
 ## Step 5: Deploy to Foundry Agent Service
 
-Store the endpoint you copied in [Step 2](#step-2-create-the-toolbox) in your `azd` environment, which `agent.yaml` resolves at deploy time. Then build and deploy the agent container:
+Store the endpoint you copied in [Step 2](#step-2-create-the-toolbox) in your `azd` environment, which `azure.yaml` resolves at deploy time. Then build and deploy the agent container:
 
 ```bash
 azd env set TOOLBOX_ENDPOINT "<versioned-endpoint-from-step-2>"
