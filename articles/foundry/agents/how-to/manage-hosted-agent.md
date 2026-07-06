@@ -220,10 +220,12 @@ az rest --method POST \
     --body '{
         "definition": {
             "kind": "hosted",
-            "image": "myregistry.azurecr.io/my-agent:v2",
+            "container_configuration": {
+                "image": "myregistry.azurecr.io/my-agent:v2"
+            },
             "cpu": "1",
             "memory": "2Gi",
-            "container_protocol_versions": [
+            "protocol_versions": [
                 {"protocol": "responses", "version": "1.0.0"}
             ]
         }
@@ -237,15 +239,17 @@ Replace `responses` with `invocations` if your agent uses the Invocations protoc
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord
+from azure.ai.projects.models import ContainerConfiguration, HostedAgentDefinition, ProtocolVersionRecord
 
 agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         cpu="1",
         memory="2Gi",
-        image="myregistry.azurecr.io/my-agent:v2",
-        container_protocol_versions=[
+        container_configuration=ContainerConfiguration(
+            image="myregistry.azurecr.io/my-agent:v2"
+        ),
+        protocol_versions=[
             ProtocolVersionRecord(protocol="responses", version="1.0.0"),
         ],
     ),
@@ -289,10 +293,12 @@ az rest --method POST \
         "draft": true,
         "definition": {
             "kind": "hosted",
-            "image": "myregistry.azurecr.io/my-agent:experimental",
+            "container_configuration": {
+                "image": "myregistry.azurecr.io/my-agent:experimental"
+            },
             "cpu": "1",
             "memory": "2Gi",
-            "container_protocol_versions": [
+            "protocol_versions": [
                 {"protocol": "responses", "version": "1.0.0"}
             ]
         }
