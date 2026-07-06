@@ -3,7 +3,7 @@ title: Create a Fabric Ontology Knowledge Source
 description: Learn how to create a Fabric Ontology knowledge source, which connects a Microsoft Fabric ontology to an agentic retrieval pipeline in Azure AI Search for ontology-backed answers.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/06/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -202,7 +202,7 @@ Fabric Ontology knowledge sources return results in the `sourceData` object of e
 - `fabricAnswer`: The ontology's natural-language answer.
 - `fabricRawData`: The structured data that grounded the answer, returned in CSV format.
 
-The following example shows a retrieve response containing a Fabric Ontology knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
+The following example shows a retrieve response containing a Fabric Ontology knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the retrieve response](agentic-retrieval-how-to-retrieve.md#review-the-retrieve-response).
 
 > [!TIP]
 > To receive `sourceData` for references, set `includeReferenceSourceData` to `true` on the knowledge source entry within `knowledgeSourceParams` on the retrieve request.
