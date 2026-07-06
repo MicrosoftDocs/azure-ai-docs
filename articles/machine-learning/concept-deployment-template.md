@@ -25,7 +25,7 @@ A *deployment template* is a reusable, registry-scoped artifact that packages th
 Deployment templates help you separate the concerns of model authoring from model consumption:
 
 - **Reusability.** Author a deployment template once and reuse it across many models in the registry, or across many versions of the same model.
-- **Guardrails.** Restrict the instance types that consumers can use by setting `allowed_instance_types` on the template, and restrict which deployment templates a consumer can apply by setting `allowed_deployment_templates` on the model.
+- **Guardrails.** Restrict the instance types that consumers can use by setting `allowed_instance_types` on the template, and publish a curated set of deployment templates for consumers by setting `allowed_deployment_templates` on the model.
 - **Consistency.** Every consumer who deploys the model gets the same environment image, scoring port, probes, and request settings, which reduces drift across deployments.
 - **Decoupled lifecycle.** Update a deployment template version without changing the model artifact, then point the model's `default_deployment_template` to the new version when you want consumers to pick it up.
 
@@ -41,7 +41,7 @@ A deployment template has the following characteristics:
 A model that uses deployment templates has two related fields:
 
 - `default_deployment_template` — the deployment template that's applied when a consumer deploys the model without specifying an override.
-- `allowed_deployment_templates` — an optional list of deployment templates that consumers can choose from as overrides. When set, an override at deployment time must reference one that matches the patterns of these templates.
+- `allowed_deployment_templates` — an optional, curated list of deployment templates that the model author recommends consumers use as overrides.
 
 A deployment that references a model with a `default_deployment_template` can override it by setting `properties."azureml.deploymentTemplateOverride"` to the registry asset URI of the override template.
 

@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Load data into a search index in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to import documents into a predefined search index using REST APIs, Azure SDKs, or the Azure portal.
 
 > [!TIP]

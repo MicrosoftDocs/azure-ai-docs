@@ -115,7 +115,7 @@ The sample workflow project creates an .env file with the necessary environment 
 ```
 FOUNDRY_PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
 
-AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+FOUNDRY_MODEL_NAME=<your-model-deployment-name>
 ```
 
 > [!IMPORTANT]
@@ -162,21 +162,21 @@ The sample workflow project creates an .env file with the necessary environment 
 
    ```powershell
    $env:FOUNDRY_PROJECT_ENDPOINT="https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>"
-   $env:AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"
+   $env:FOUNDRY_MODEL_NAME="your-deployment-name"
    ```
 
    #### [Windows (command prompt)](#tab/windows-command-prompt)
 
    ```dos
    set FOUNDRY_PROJECT_ENDPOINT=https://your-resource-name.openai.azure.com/
-   set AZURE_AI_MODEL_DEPLOYMENT_NAME=your-deployment-name
+   set FOUNDRY_MODEL_NAME=your-deployment-name
    ```
 
    #### [macOS/Linux (Bash)](#tab/macos-linux-bash)
 
    ```bash
    export FOUNDRY_PROJECT_ENDPOINT="https://your-resource-name.openai.azure.com/"
-   export AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"
+   export FOUNDRY_MODEL_NAME="your-deployment-name"
    ```
 
     ---

@@ -329,7 +329,7 @@ def main():
         config.skills.extend(load_skills_from_dir(Path(config.skills_dir)))
 
     model = config.model or os.environ.get(
-        "AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1-mini"
+        "FOUNDRY_MODEL_NAME", "gpt-4.1-mini"
     )
     instructions = config.compose_instructions()
 

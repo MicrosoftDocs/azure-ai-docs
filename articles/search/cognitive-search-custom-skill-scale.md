@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Efficiently scale out a custom skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Custom skills are web APIs that implement a specific interface. A custom skill can be implemented on any publicly addressable resource. The most common implementations for custom skills are:
 
 + Azure Functions for custom logic skills

@@ -2,6 +2,8 @@ items:
 - name: What's new
   href: ../../whats-new-foundry.md
 # Service Status and Support
+- name: Service Health alerts
+  href: ../../how-to/stay-informed-service-health.md
 - name: Use with a screen reader
   href: ../../tutorials/screen-reader.md
 - name: Known issues

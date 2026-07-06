@@ -88,18 +88,6 @@ Among the Fabric IQ item types, only the **data agent** MCP endpoint supports lo
 > [!TIP]
 > For **Power BI semantic models**, we highly recommend using the latest models such as `gpt-5.4` or `opus 4.7`. Semantic model queries involve complex measure and hierarchy reasoning that benefits significantly from the improved reasoning capability of newer models.
 
-> [!IMPORTANT]
-> For **Power BI semantic models**, we recommend restricting the tool surface with `allowed_tools` so the agent reasons over the schema and runs queries directly instead of pre-generating DAX. Set `allowed_tools` to:
->
-> - `GetInstructions`
-> - `DiscoverArtifacts`
-> - `GetReportMetadata`
-> - `GetSemanticModelSchema`
-> - `ExecuteQuery`
-> - `ValueSearch`
->
-> Omit `GenerateQuery`. This list lets the agent discover artifacts, inspect the semantic model schema, execute queries, and search for values, without an intermediate query-generation step.
-
 For **`server_label`**, use any short lowercase identifier with hyphens, for example `fabriciq-ontology`. This label appears in approval prompts when the model calls the tool.
 
 ### Add the Fabric IQ tool to your agent

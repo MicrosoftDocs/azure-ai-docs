@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Configure customer-managed keys across different tenants
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes a cross-tenant scenario where a service provider hosts Azure AI Search in their own tenant and enables [customer-managed key (CMK) encryption](search-security-manage-encryption-keys.md) using a multitenant Microsoft Entra application.
 
 In this configuration, the customer uses Azure Key Vault in their own tenant to manage their encryption key. The service provider has no access to this key.

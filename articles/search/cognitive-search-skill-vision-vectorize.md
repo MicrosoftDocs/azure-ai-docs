@@ -12,6 +12,8 @@ ms.date: 01/16/2026
 
 # Azure Vision multimodal embeddings skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
 > This skill is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update](/rest/api/searchservice/skillsets/create-or-update) (REST API) supports this feature.
 

@@ -68,7 +68,7 @@ To start from a working framework template instead of your own code, use the sam
 1. Under **Developer Tools** > **Agent Dev Tools**, select **Create Agent**.
 1. Under **Create in code with full control**, select **Use a sample**.
 1. On **Create Hosted Agent from Sample**, use the filters to narrow the gallery:
-    - For **Framework**, select **Bring Your Own**, **LangGraph**, **Copilot SDK**, or **Agent Framework**.
+    - For **Framework**, select **Agent Framework**, **Bring Your Own**, **LangGraph**, or **Copilot SDK**.
     - For **Protocol Type**, select **Responses API** or **Invocations API**.
 1. Select a sample, and then select **Next**.
 1. Enter an agent name, select your Foundry project, and then select **Create**.

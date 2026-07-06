@@ -10,6 +10,8 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create an indexed SharePoint knowledge source (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 > [!IMPORTANT]

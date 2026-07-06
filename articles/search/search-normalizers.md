@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Text normalization for case-insensitive filtering, faceting and sorting
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, a *normalizer* is a component that pre-processes text for keyword matching over fields marked as "filterable", "facetable", or "sortable". In contrast with full text "searchable" fields that are paired with [text analyzers](search-analyzers.md), content that's created for filter-facet-sort operations doesn't undergo analysis or tokenization. Omission of text analysis can produce unexpected results when casing and character differences show up, which is why you need a normalizer to homogenize variations in your content.
 
 By applying a normalizer, you can achieve light text transformations that improve results:

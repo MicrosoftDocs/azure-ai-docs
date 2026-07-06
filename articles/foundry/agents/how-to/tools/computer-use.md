@@ -577,7 +577,7 @@ After the action loop completes, the final agent reply describes the page it rea
 Response: I searched for "OpenAI news" in the address bar. The top results include articles from OpenAI's blog, TechCrunch, and The Verge ...
 ```
 
-For the full screenshot helper implementation and end-to-end action loop, see [Agent_Step15_ComputerUse](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step15_ComputerUse).
+For the full screenshot helper implementation and end-to-end action loop, see [Agent_Step15_ComputerUse](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step15_ComputerUse).
 
 ---
 

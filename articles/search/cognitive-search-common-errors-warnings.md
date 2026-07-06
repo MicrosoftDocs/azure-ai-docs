@@ -11,6 +11,8 @@ ms.update-cycle: 180-days
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article provides information and solutions to common errors and warnings you might encounter during indexing and AI enrichment in Azure AI Search.
 
 Indexing stops when the error count exceeds ['maxFailedItems'](cognitive-search-concept-troubleshooting.md#tip-2-see-what-works-even-if-there-are-some-failures). 

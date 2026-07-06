@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Map enriched output to fields in a search index (output field mappings)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 :::image type="content" source="media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.png" alt-text="Diagram of the Indexer Stages with Output Field Mappings highlighted.":::
 
 This article explains how to set up *output field mappings*, which define a data path between in-memory data generated during [skillset processing](cognitive-search-concept-intro.md) and target fields in a search index. During indexer execution, skill-generated information exists only in memory. To persist this information in a search index, you must tell the indexer where to send the data.

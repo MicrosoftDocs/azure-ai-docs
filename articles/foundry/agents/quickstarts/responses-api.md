@@ -467,7 +467,7 @@ Because Agent Framework agents created here are ephemeral, no service-side clean
 
 ::: zone pivot="csharp"
 
-- [Agents with Foundry samples (.NET)](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry)
+- [Agents with Foundry samples (.NET)](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry)
 
 ::: zone-end
 

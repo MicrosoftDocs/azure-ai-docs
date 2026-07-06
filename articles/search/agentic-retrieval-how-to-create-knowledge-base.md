@@ -10,6 +10,8 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a knowledge base in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 > [!IMPORTANT]
