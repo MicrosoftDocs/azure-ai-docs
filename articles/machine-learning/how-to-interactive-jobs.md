@@ -22,7 +22,7 @@ ms.custom:
 
 # Debug jobs and monitor training progress
 
-Machine learning model training is an iterative process that requires significant experimentation. By using the Azure Machine Learning interactive job experience, data scientists can use the Azure Machine Learning Python SDK, Azure Machine Learning CLI, or the Azure Studio to access the container where their job is running. Once users access the job container, they can iterate on training scripts, monitor training progress, and debug the job remotely, just as they typically do on their local machines. You can interact with jobs through different training applications, including JupyterLab, TensorBoard, VS Code, or by connecting to the job container directly via SSH.  
+Machine learning model training is an iterative process that requires significant experimentation. By using the Azure Machine Learning interactive job experience, data scientists can use the Azure Machine Learning Python SDK, Azure Machine Learning CLI, or Azure Machine Learning studio to access the container where their job is running. Once users access the job container, they can iterate on training scripts, monitor training progress, and debug the job remotely, just as they typically do on their local machines. You can interact with jobs through different training applications, including JupyterLab, TensorBoard, VS Code, or by connecting to the job container directly via SSH.  
 
 Azure Machine Learning supports interactive training on **Azure Machine Learning Compute Clusters** and **Azure Arc-enabled Kubernetes Cluster**.
 
@@ -33,6 +33,7 @@ Azure Machine Learning supports interactive training on **Azure Machine Learning
 - Make sure your job environment has the `openssh-server` and `ipykernel ~=6.0` packages installed. All Azure Machine Learning curated training environments have these packages installed by default.
 - You can't enable interactive applications on distributed training runs where the distribution type is anything other than PyTorch, TensorFlow, or MPI. Custom distributed training setup (configuring multinode training without using the preceding distribution frameworks) isn't currently supported.
 - To use SSH, you need an SSH key pair. Use the `ssh-keygen -f "<filepath>"` command to generate a public and private key pair.
+- To attach a debugger to a running job, install `debugpy` in your job environment. See [Attach a debugger to a job](#attach-a-debugger-to-a-job).
    
 ## Interact with your job container
 
@@ -125,7 +126,7 @@ By specifying interactive applications at job creation, you can connect directly
 # [Azure CLI](#tab/azurecli)
 
 1. Create a job YAML file named `job.yaml` using the sample content. Replace `your compute name` with your own value. If you want to use a custom environment, see [this tutorial](how-to-manage-environments-v2.md) for examples on how to create a custom environment. 
-   ```dotnetcli
+   ```yaml
    code: src 
    command: 
      python train.py 
@@ -217,20 +218,20 @@ When you select the applications in the panel, you open a new tab for the applic
 It might take a few minutes to start the job and the training applications specified during job creation.
 
 # [Python SDK](#tab/python)
-- After you submit the job, use `ml_client.jobs.show_services("<job name>", <compute node index>)` to view the interactive service endpoints.
+- After you submit the job, use `ml_client.jobs.show_services("<job name>", node_index=<compute node index>)` to view the interactive service endpoints.
     
-- To connect via SSH to the container where the job is running, run the command `az ml job connect-ssh --name <job-name> --node-index <compute node index> --private-key-file-path <path to private key>`. To set up the Azure Machine Learning CLI, follow this [guide](./how-to-configure-cli.md). 
+- To connect via SSH to the container where the job is running, run the command `az ml job connect-ssh --name <job-name> --node-index <compute node index> --private-key-file-path <path to private key> --resource-group <your resource group name> --workspace-name <your workspace name>`. To set up the Azure Machine Learning CLI, follow this [guide](./how-to-configure-cli.md). 
   
-You can find the reference documentation for the SDK [here](./index.yml).
+For reference documentation, see [JobOperations](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations?view=azure-python).
 
 You can access the applications only when they're in **Running** status and only the **job owner** is authorized to access the applications. If you're training on multiple nodes, you can pick the specific node you want to interact with by passing in the node index.
 
 # [Azure CLI](#tab/azurecli)
-- When the job is **running**, run the command `az ml job show-services --name <job name> --node-index <compute node index>` to get the URL to the applications. The endpoint URL shows under `services` in the output. For VS Code, you must copy and paste the provided URL in your browser. 
+- When the job is **running**, run the command `az ml job show-services --name <job name> --node-index <compute node index> --resource-group <your resource group name> --workspace-name <your workspace name>` to get the URL to the applications. The endpoint URL shows under `services` in the output. For VS Code, you must copy and paste the provided URL in your browser. 
 
-- To connect via SSH to the container where the job is running, run the command `az ml job connect-ssh --name <job-name> --node-index <compute node index> --private-key-file-path <path to private key>`. 
+- To connect via SSH to the container where the job is running, run the command `az ml job connect-ssh --name <job-name> --node-index <compute node index> --private-key-file-path <path to private key> --resource-group <your resource group name> --workspace-name <your workspace name>`. 
 
-You can find the reference documentation for these commands [here](/cli/azure/ml).
+For reference documentation, see [az ml job](/cli/azure/ml/job).
 
 You can access the applications only when they're in **Running** status and only the **job owner** is authorized to access the applications. If you're training on multiple nodes, you can pick the specific node you want to interact with by passing in the node index.
 
@@ -256,7 +257,7 @@ When you select the endpoints to interact with your job, you're taken to the use
   :::image type="content" source="./media/interactive-jobs/tensorboard-open.png" alt-text="Screenshot of interactive jobs tensorboard panel when first opened. This information varies depending upon customer data":::
 
 ### End job
-When you're done with the interactive training, you can go to the job details page to cancel the job. Canceling the job releases the compute resource. Alternatively, use `az ml job cancel -n <your job name>` in the CLI or `ml_client.jobs.begin_cancel("<job name>")` in the SDK. 
+When you're done with the interactive training, you can go to the job details page to cancel the job. Canceling the job releases the compute resource. Alternatively, use `az ml job cancel --name <your job name> --resource-group <your resource group name> --workspace-name <your workspace name>` in the CLI or `ml_client.jobs.begin_cancel("<job name>")` in the SDK. 
 
 :::image type="content" source="./media/interactive-jobs/cancel-job.png" alt-text="Screenshot of interactive jobs cancel job option and its location for user selection":::
 
