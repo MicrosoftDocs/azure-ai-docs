@@ -6,10 +6,10 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-ms.date: 01/06/2026
-author: jonburchel
+ms.date: 06/15/2026
+author: laujan
 reviewer: samuel100
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-local-sdk
@@ -17,7 +17,7 @@ zone_pivot_groups: foundry-local-sdk
     
 # Transcribe recorded audio files with Foundry Local
 
-Use Foundry Local's native audio transcription API to convert a local audio file into text. In this article, you create a console application that downloads a Whisper model, loads it, and streams transcription output.
+Use Foundry Local's native audio transcription API and convert a local audio file into text. In this article, you create a console application that downloads a Whisper model, loads it, and streams transcription output.
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/audio-transcription/csharp.md)]
@@ -37,5 +37,5 @@ Use Foundry Local's native audio transcription API to convert a local audio file
 - [Use native chat completions API with Foundry Local](how-to-use-native-chat-completions.md)
 - [Use chat completions via REST server with Foundry Local](how-to-integrate-with-inference-sdks.md)
 - [Use Foundry Local with LangChain](how-to-use-langchain-with-foundry-local.md)
-- [Compile Hugging Face models to run on Foundry Local](how-to-compile-hugging-face-models.md)
+- [Compile Hugging Face models and run on Foundry Local](how-to-compile-hugging-face-models.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)

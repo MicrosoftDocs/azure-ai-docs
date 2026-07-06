@@ -9,6 +9,8 @@ ms.update-cycle: 180-days
 
 # Relevance in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The true measure of relevance is *how well* a retrieved set of results meets your customer and user information needs. In this article, learn about:
 
 + The main strategies for producing relevant results in Azure AI Search

@@ -4,8 +4,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.date: 05/12/2026
 ms.reviewer: meerakurup
-ms.author: jburchel
-author: jonburchel
+ms.author: scottpolly
+author: s-polly
 description: "Secure your Microsoft Foundry projects with managed virtual networks. Learn to enable outbound isolation and private endpoints for enhanced data protection."
 ms.topic: how-to
 ai-usage: ai-assisted

@@ -10,8 +10,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 01/06/2026
 ms.reviewer: meerakurup 
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Microsoft Foundry.
 ---

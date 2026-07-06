@@ -5,7 +5,7 @@ description: Learn how to evaluate the quality of your Voice Live voice agents u
 manager: mcleans
 author: solarrezaei
 ms.author: solarrezaei
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 05/19/2026
 ms.custom: references_regions

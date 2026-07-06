@@ -1,10 +1,10 @@
 ---
-title: "Data, privacy, and security for use of Anthropic Claude models in Microsoft Foundry (preview) (classic)"
-description: "This document details issues for data, privacy, and security for Anthropic Claude models in Microsoft Foundry in Public Preview. (classic)"
+title: "Data, privacy, and security for use of Anthropic Claude models in Microsoft Foundry (classic)"
+description: "This document details issues for data, privacy, and security for Anthropic Claude models in Microsoft Foundry. (classic)"
 ms.service: microsoft-foundry
 ms.subservice: foundry-content-safety
 ms.topic: how-to
-ms.date: 04/20/2026
+ms.date: 06/23/2026
 ms.custom:
   - ignite-2024
   - classic-and-new
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Data, privacy, and security for Claude models in Microsoft Foundry (preview) (classic)
+# Data, privacy, and security for Claude models in Microsoft Foundry (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/claude-models/data-privacy.md)
 

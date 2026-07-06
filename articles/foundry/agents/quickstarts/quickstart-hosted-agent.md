@@ -1,29 +1,26 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit for Visual Studio Code extension."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI, Microsoft Foundry Toolkit for Visual Studio Code extension, or Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
-ms.date: 05/23/2026
+ms.date: 07/01/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
-zone_pivot_groups: hosted-agent-deploy-method
+zone_pivot_groups: hosted-agent-quickstart-method
 ---
 
 # Quickstart: Deploy your first hosted agent
-
-> [!NOTE]
-> Hosted agents are currently in preview.
 
 ## Prerequisites
 
 Before you begin, you need:
 
 * An Azure subscription--[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* If you have existing Foundry Project, you need `Foundry Project Manager` at project scope. If you need to create a new Foundry Project, you need `Owner` role at resource group scope. For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+* If you have an existing Foundry project, you need `Foundry Project Manager` at project scope. If you need to create a new Foundry project, you need the `Owner` role at resource group scope. For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 * [Python 3.13 or later](https://www.python.org/downloads/).
 
 :::zone pivot="azd"
@@ -41,6 +38,22 @@ Before you begin, you need:
 
 * [Visual Studio Code](https://code.visualstudio.com/).
 * [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk).
+
+:::zone-end
+
+:::zone pivot="foundry-skills"
+
+* A coding agent host with the
+  [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md)
+  installed.
+* [Azure CLI](/cli/azure/install-azure-cli) and
+  [Azure Developer CLI (AZD)](/azure/developer/azure-developer-cli/install-azd)
+  installed and authenticated:
+
+    ```bash
+    az login
+    azd auth login
+    ```
 
 :::zone-end
 
@@ -210,6 +223,84 @@ When deployment completes, the agent appears under **Hosted Agents (Preview)** i
 
 :::zone-end
 
+:::zone pivot="foundry-skills"
+
+## Step 1: Open a workspace with the Foundry Skill
+
+Open an empty folder in your coding agent host, such as GitHub Copilot in Visual
+Studio Code, Copilot CLI, or Claude Code. Confirm that the `microsoft-foundry`
+skill is available before you ask the coding agent to create Azure resources.
+
+If the skill isn't available, follow
+[Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md).
+
+## Step 2: Ask the skill to create the hosted agent
+
+Ask your coding agent to use the skill for the complete hosted-agent workflow:
+
+```text
+Use the Microsoft Foundry Skill hosted-agent quick-start workflow to create my
+first hosted agent end to end. Verify my environment first, and stop if I need
+to sign in myself. Use Python 3.13, Agent Framework, the Responses API, the
+Basic sample, and code deployment. Create a new Foundry project unless I provide
+an existing project. Use the model deployment from the Basic sample unless I
+provide an existing deployment. Test the agent locally, deploy it to Foundry
+Agent Service, and invoke it with: "Write a haiku about deploying cloud
+applications."
+```
+
+The coding agent should inspect the available Foundry tools when MCP tools are
+available, load the hosted agent quick-start workflow, and ask for or default
+missing values such as the subscription, region, project name, and whether to use
+an existing Foundry project.
+
+## Step 3: Review and approve the plan
+
+1. Review the plan, files, commands, Azure resources, and role assignments the
+   coding agent proposes.
+1. To match this quickstart, choose **Python 3.13**, **Agent Framework**,
+   **Responses API**, **Basic** sample code, and **Code** deployment.
+1. Approve cost-bearing resource creation only after you verify the subscription,
+   region, resource group, model deployment, and quota.
+1. If the coding agent asks you to authenticate, run `az login` and
+   `azd auth login` yourself, and then ask the coding agent to continue.
+
+## Step 4: Let the skill scaffold and test the agent
+
+Let the coding agent create the hosted agent project, provision resources when
+you choose a new Foundry project, write local environment values, prepare the
+local environment, and run a local smoke test. For Python agents, the skill
+workflow uses `azd ai agent run` to install dependencies during the first local
+run.
+
+The workflow should also add the project guidance file required by the coding
+agent host and sanity-check the generated project configuration before the local
+test.
+
+If your coding agent host can't keep a local server running for the smoke test,
+use the Azure Developer CLI tab in this article for the local test commands. You
+can continue to deployment only after you decide to validate the agent remotely
+instead.
+
+## Step 5: Deploy and invoke the hosted agent
+
+After the local smoke test succeeds, ask your coding agent to finish the
+deployment and remote validation:
+
+```text
+Continue with the Microsoft Foundry Skill workflow. Deploy the hosted agent to
+Foundry Agent Service, show the deployment status and playground link, and invoke
+it remotely with: "Write a haiku about deploying cloud applications." If the
+skill workflow requires evaluation suite generation before the final summary,
+submit the generation job and show me the follow-up eval command.
+```
+
+When the workflow completes, the coding agent should show the hosted agent name,
+version, deployment status, endpoint, playground link, resources created, the
+response to the test prompt, and any evaluation follow-up command.
+
+:::zone-end
+
 ## Clean up resources
 
 Delete the resources when you're finished so you stop incurring charges.
@@ -237,6 +328,36 @@ azd down
 
 :::zone-end
 
+:::zone pivot="foundry-skills"
+
+The Microsoft Foundry Skill doesn't delete resources by itself. It can help your
+coding agent identify the resources that this quickstart created and choose the
+right cleanup method. You or your coding agent still run the cleanup command
+after you review and approve it.
+
+1. In the hosted agent project folder, ask your coding agent to review cleanup:
+
+    ```text
+    Use the Microsoft Foundry Skill to identify the Azure resources created for
+    this quickstart. Confirm whether azd down is the right cleanup method for
+    this project, and show me the resources before any deletion command runs.
+    ```
+
+1. If the hosted agent project was created with `azd` and the resource group
+   contains only quickstart resources, run:
+
+    ```
+    azd down
+    ```
+
+1. Approve deletion only after you verify the resource group and resources that
+   the command lists.
+
+If your coding agent can't run cleanup commands, use the Azure Developer CLI tab
+in this article or delete the resource group from the Azure portal.
+
+:::zone-end
+
 ## Troubleshooting
 
 | Issue | Solution |
@@ -248,6 +369,8 @@ azd down
 | `Connection refused` on local run | Ensure no other process is using port 8088. |
 | `azd ai agent init` fails | Run `azd version` to verify 1.25.0 or later. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). Run `azd ext list` and upgrade the agent extension with `azd ext upgrade azure.ai.agents` to get 0.1.34-preview or later. |
 | Microsoft Foundry Toolkit extension not found | Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) from the Marketplace and switch to the prerelease channel. |
+| Coding agent doesn't load the Microsoft Foundry Skill | Install or reload the skill by following [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md). |
+| Coding agent can't run the local smoke test | Use the Azure Developer CLI or VS Code tab in this article for local testing. Continue to remote validation only after you review why local validation isn't available. |
 | Local run fails on Windows ARM64 with build errors for `aiohttp`, `grpcio`, `cryptography`, or `httptools` | Prebuilt arm64 wheels aren't published for these packages, and source builds require Microsoft C++ Build Tools. As a workaround, skip Step 3 and validate the agent remotely with `azd deploy` followed by `azd ai agent invoke`. |
 
 For the full permission and role-assignment matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
@@ -259,30 +382,18 @@ In this quickstart, you:
 * Scaffolded a hosted agent project from the Basic agent sample.
 * Tested the agent locally.
 * Deployed the agent to Foundry Agent Service.
-* Sent test prompts from both the CLI (or VS Code) and the Foundry playground.
+* Sent test prompts from Azure Developer CLI, VS Code, or a coding agent that
+  uses the Microsoft Foundry Skill.
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
-> [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md)
-
-Customize your agent with additional capabilities:
-
-- [Add web search](../how-to/tools/web-search.md) to ground responses in real-time public web results.
-- [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
-- [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic
-- [Add file search](../how-to/tools/file-search.md) to search your documents
-- [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code
-- See the [tool catalog](../concepts/tool-catalog.md) for the full list.
-
-Use the Microsoft Foundry Skill in your coding agent to standardize deployment,
-evaluation, and troubleshooting workflows.
-
-- [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md)
+> [Build a toolbox and use it with a hosted agent](quickstart-toolbox-agent.md)
 
 ## Related content
 
 * [What are hosted agents?](../concepts/hosted-agents.md)
+* [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)

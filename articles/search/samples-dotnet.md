@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # C# samples for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn about C# code samples that demonstrate the functionality and workflow of an Azure AI Search solution. These samples use the [Azure AI Search client library](/dotnet/api/overview/azure/search) for the [Azure SDK for .NET](/dotnet/azure/), which you can explore through the following links.
 
 | Target | Link |

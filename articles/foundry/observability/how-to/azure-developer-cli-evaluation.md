@@ -83,7 +83,7 @@ azd deploy
 After deployment completes, verify the agent is invokable:
 
 ```bash
-azd ai agent status
+azd ai agent show
 ```
 
 The hosted agent must be deployed and invokable before you initialize evaluation assets.
@@ -95,6 +95,10 @@ Set up an evaluation suite to measure quality and impact in one step with `azd a
 ```
 
 To evaluate a prompt-based agent, skip the hosted-agent creation and deployment commands. Continue to the next section after you confirm that the prompt-based agent exists in the Foundry project and is available as an evaluation target.
+
+> [!NOTE]
+> Target-based evaluation invokes your hosted agent directly. It works with agents that use the responses or invocations protocol with synchronous, non-streaming execution. To evaluate agents that use the A2A or Activity protocol, or other execution patterns such as long-running or streaming, evaluate the traces your agent emits instead. See [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
+
 
 ## Initialize evaluation assets
 
@@ -156,7 +160,7 @@ azd ai agent eval generate \
   --max-samples 100
 ```
 
-`--output` is optional and defaults to `eval.yaml` in the agent project root. Use `--output <path>` to write the config to a different location.
+`--out-file` is optional and defaults to `eval.yaml` in the agent project root. Use `--out-file <path>` to write the config to a different location.
 
 To use an existing dataset and selected evaluators:
 
@@ -167,7 +171,7 @@ azd ai agent eval generate \
   --max-samples 50 \
   --evaluator builtin.intent_resolution \
   --evaluator support-quality \
-  --output eval.yaml
+  --out-file eval.yaml
 ```
 
 Replace `./tests/support-golden.jsonl` with the path to your own evaluation dataset.
@@ -282,17 +286,12 @@ Show the latest run:
 azd ai agent eval show
 ```
 
-With no flags, `eval show` defaults to the most recently completed evaluation run.
+With no flags, `eval show` defaults to the most recent evaluation and lists its runs.
 
-Show a specific run by its run ID. Copy the ID from the `azd ai agent eval list` output:
-
-```text
-ID                                         Status     Agent              Date
-run-a1b2c3d4-e5f6-7890-abcd-ef1234567890   completed  reservation-agent  2026-05-20
-```
+To show the details of a specific run, pass the eval ID as an argument and the run ID with `--eval-run-id`. Copy the eval ID from the `azd ai agent eval list` output and the run ID from the `azd ai agent eval show <eval-id>` output:
 
 ```bash
-azd ai agent eval show --eval-id run-a1b2c3d4-e5f6-7890-abcd-ef1234567890
+azd ai agent eval show <eval-id> --eval-run-id <run-id>
 ```
 
 Use the run output to answer:
@@ -325,7 +324,7 @@ To update what an evaluation run uses, choose the path that matches the type of 
 | Change | How to update |
 |---|---|
 | Change thresholds, evaluator references, output settings, or other recipe fields | Edit `eval.yaml`, then run `azd ai agent eval run --config eval.yaml`. |
-| Use a different local or registered dataset | Edit the dataset reference in `eval.yaml`, or rerun `azd ai agent eval generate --dataset <path-or-name> --output eval.yaml`. |
+| Use a different local or registered dataset | Edit the dataset reference in `eval.yaml`, or rerun `azd ai agent eval generate --dataset <path-or-name> --out-file eval.yaml`. |
 | Add or change evaluator references | Edit `eval.yaml`, or rerun `azd ai agent eval generate` with repeatable `--evaluator` values. |
 | Register local edits to a generated dataset or evaluator rubric | Run `azd ai agent eval update`, review the detected changes, and confirm the version-reference update in `eval.yaml`. |
 | Start over from the default generated setup | Run `azd ai agent eval generate --reset-defaults`. |

@@ -320,7 +320,7 @@ The agent response text is printed to the console, grounded in the Fabric worksp
 Response: The connected Fabric workspace contains the following datasets ...
 ```
 
-For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step20_MicrosoftFabric).
+For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step20_MicrosoftFabric).
 
 ---
 

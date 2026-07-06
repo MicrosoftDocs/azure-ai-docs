@@ -7,7 +7,7 @@ ms.date: 05/18/2026
 ms.topic: overview
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: doc-kit-assisted
+ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -29,7 +29,7 @@ The agent optimizer runs a closed-loop evaluation and improvement cycle:
 1. **Rank and recommend.** The optimizer ranks results by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance, and marks the best candidate with ★.
 1. **Deploy the winner.** A single command promotes the winning candidate and saves its configuration to your agent's environment.
 
-The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#install-the-cli-extension)). The run takes 5 to 20 minutes depending on dataset size.
+The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#prerequisites)). The run takes 5 to 20 minutes depending on dataset size.
 
 > [!WARNING]
 > During optimization, the optimizer evaluates your agent by invoking it against every task in your dataset. If your agent calls external tools—such as APIs, databases, or third-party services—those calls execute during each evaluation run. To avoid unintended side effects (charges, state mutations, or rate limiting), consider using test endpoints or mocking tool implementations during optimization.
@@ -195,7 +195,7 @@ Optimized instructions are often longer and more detailed, which can increase re
 
 ## Limitations and availability
 
-- The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability).
+- The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability), except Norway East.
 - The agent optimizer is supported for hosted agents that use the [Responses protocol](hosted-agents.md#protocols-responses-invocations-and-invocations-websocket).
 
 

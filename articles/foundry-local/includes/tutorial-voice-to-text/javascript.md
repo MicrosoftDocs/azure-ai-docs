@@ -1,9 +1,9 @@
 ---
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 03/29/2026
+ms.date: 06/15/2026
 ---
 
 ## Install packages

@@ -28,13 +28,13 @@ This article walks through the process of managing quota for your Microsoft Foun
 
 [!INCLUDE [quota 1](../includes/how-to-quota-1.md)]
 
-## Quota for instant models (preview)
+## Quota for instant access (preview)
 
-[Instant models](../concepts/instant-models.md) draw from a per-model **global quota** pool that is separate from the regional quota you manage for deployments. When you create a Global Standard deployment, it reserves a portion of your global quota. Instant models use whatever global quota remains unreserved.
+[Instant access models](../concepts/instant-models.md) draw from a per-model **global quota** pool that is separate from the regional quota you manage for deployments. When you create a Global Standard deployment, it reserves a portion of your global quota. Instant access models use whatever global quota remains unreserved.
 
 You don't need to allocate or partition global quota — it's shared automatically across all instant model usage in your subscription. If instant model requests are throttled, you can request a global quota increase or create a deployment with reserved capacity.
 
-For details on how global and regional quota interact, see [Instant models — Global quota](../concepts/instant-models.md#how-quota-is-consumed).
+For details on how global and regional quota interact, see [Instant access — Global quota](../concepts/instant-models.md#how-quota-is-consumed).
 
 ## View and request quotas in Foundry portal
 
@@ -64,7 +64,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 ## Related content
 
-- [Instant models in Microsoft Foundry (preview)](../concepts/instant-models.md)
+- [Instant access in Microsoft Foundry (preview)](../concepts/instant-models.md)
 - [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md)
 - [Azure OpenAI quotas and limits](../openai/quotas-limits.md)
 - [Manage Azure OpenAI Service quota](../../foundry-classic/openai/how-to/quota.md)

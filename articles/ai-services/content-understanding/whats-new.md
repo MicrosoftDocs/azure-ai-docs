@@ -64,7 +64,7 @@ The Content Understanding document loader for LangChain is now available in the 
 
 ### Microsoft Agent Framework integration (preview)
 
-Content Understanding is now available as a package for Microsoft Agent Framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
+Content Understanding is now available as a package for the Microsoft Agent Framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
 
 ### SDK updates: `to_llm_input()` helper (preview)
 

@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Chunk large documents for RAG and vector search in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of chat completion and embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) text-embedding-3-small model is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit.
 
 Chat completion models have the same input token restrictions, so chunking is helpful for [retrieval augmented generation (RAG)](retrieval-augmented-generation-overview.md) or [agentic retrieval](agentic-retrieval-overview.md) as well. Partitioning your content into chunks helps you meet input token requirements and prevents data loss due to truncation.

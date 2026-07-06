@@ -16,6 +16,8 @@ ms.update-cycle: 365-days
 
 # Quickstart: Deploy Azure AI Search using Bicep
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this quickstart, you use a Bicep file to deploy an Azure AI Search service in the Azure portal.
 
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]

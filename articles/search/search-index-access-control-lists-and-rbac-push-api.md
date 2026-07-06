@@ -10,6 +10,8 @@ ai-usage: ai-assisted
 
 # Indexing document access control lists (ACLs) using the push REST APIs (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
@@ -33,7 +35,7 @@ This article explains how to use the push REST API to index document-level permi
 
 ## Prerequisites
 
-- Content with ACL metadata from [Microsoft Entra ID](/entra/fundamentals/whatis) or another POSIX-style ACL system.
+- Content with ACL metadata from [Microsoft Entra ID](/entra/fundamentals/whatis) or another POSIX-style ACL system. For `userIds` and `groupIds` ACL fields, use Microsoft Entra object IDs (GUIDs), not UPNs or email addresses. Stable object IDs ensure reliable identity matching at query time, even if directory attributes change.
 
 - The [latest preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview Azure SDK package providing equivalent features.
 
@@ -50,6 +52,8 @@ This article explains how to use the push REST API to index document-level permi
 - Only one field of each `permissionFilter` type (one each of `groupIds`, `userIds`, and `rbacScope`) can exist in an index.
 
 - Each `permissionFilter` field should have `filterable` set to `true`.
+
+- Query-time permission enforcement reflects the ACL values last written to the index. If source permissions change, those updates aren't reflected until you reingest or update the affected documents. Schedule incremental reingestion or partial updates to keep ACLs current.
 
 - This functionality is currently not supported in the Azure portal.
 
@@ -74,6 +78,8 @@ Here's a basic example schema that includes all `permissionFilter` types:
   "permissionFilterOption": "enabled"
 }
 ```
+
+For enterprise repositories, such as SharePoint Online, resolve document-level or folder-level permissions to Microsoft Entra user and group object IDs during ingestion before calling the push API. You should then store those IDs in the corresponding permission fields.
 
 ## REST API indexing example
 
@@ -108,7 +114,9 @@ POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/
 
 ## ACL access resolution rules
 
-This section explains how document access is determined for a user based on the ACL values assigned to each document. The key rule is that *a user only needs to match one ACL type to gain access to the document*. For example, if a document has fields for `userIds`, `groupIds`, and `rbacScope`, the user can access the document by matching any one of these ACL fields.
+This section explains how the system determines a user's document access based on the permission fields on each document. These fields are either ACLs (`userIds` and `groupIds`, where `groupIds` includes security groups and Microsoft 365 Groups) or an RBAC scope (`rbacScope`). Azure evaluates the RBAC scope and the ACLs in a defined order, consistent with the [ADLS Gen2 permission model](/azure/storage/blobs/data-lake-storage-access-control-model#how-permissions-are-evaluated).
+
+A user gains access by satisfying one of the following fields: a matching `userIds` or `groupIds` entry, or a qualifying Azure role assignment for the `rbacScope`. For information about how caller identities are provided at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ### Special ACL values "all" and "none"
 
@@ -124,19 +132,19 @@ Because a user needs to match only one field type, the special value "all" grant
 
 ### Access control example
 
-This example illustrates how the document access rules are resolved based on the specific document ACL field values. For readability, this scenario uses ACL aliases such as "user1," "group1," instead of GUIDs.
+This example illustrates how document access rules are resolved based on permission field values in `userIds`, `groupIds`, and `rbacScope`. For readability, this scenario uses aliases such as "user1" and "group1" instead of GUIDs; in production, use Microsoft Entra object IDs (GUIDs).
 
 | Document # | userIds | groupIds | RBAC Scope | Permitted users list | Note |
 | --- | --- | --- | --- | --- | --- |
 | 1 | `["none"]` | `[]` | Empty | No users have access | The values `["none"]` and `[]` behave exactly the same |
-| 2 | `["none"]` | `[]` | scope/to/container1 | Users with RBAC permissions to container1 | The value of "none" doesn't block access by matching other ACL fields |
+| 2 | `["none"]` | `[]` | scope/to/container1 | Users with RBAC permissions to container1 | The value of "none" doesn't block access when other permission fields (`groupIds` or `rbacScope`) grant access |
 | 3 | `["none"]` | `["group1", "group2"]` | Empty | Members of group1 or group2 | |
 | 4 | `["all"]` | `["none"]` | Empty | Any user | Any querying user matches the ACL filter "all", so all users have access |
 | 5 | `["all"]` | `["group1", "group2"]` | scope/to/container1 | Any user | Since all users match the "all" filter for userID, the groupID and RBAC filters don't have any impact |
 | 6 | `["user1", "user2"]` | `["group1"]` | Empty | User1, user2, or any member of group1 | |
 | 7 | `["user1", "user2"]` | `[]` | Empty | User1 or user2 | |
 
-## See also
+## Related content
 
 - [Connect to Azure AI Search using roles](search-security-rbac.md)
 - [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)

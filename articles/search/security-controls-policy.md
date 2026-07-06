@@ -11,6 +11,8 @@ ms.custom:
 ---
 # Azure Policy Regulatory Compliance controls for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you're using [Azure Policy](/azure/governance/policy/overview) to enforce the recommendations in
 [Microsoft cloud security benchmark](/azure/security/benchmarks/introduction), then you probably already know
 that you can create policies for identifying and fixing noncompliant services. These policies might

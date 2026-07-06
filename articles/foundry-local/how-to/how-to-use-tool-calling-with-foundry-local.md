@@ -10,7 +10,7 @@ ms.reviewer: metang
 author: natke
 reviewer: metang
 zone_pivot_groups: foundry-local-sdk
-ms.date: 11/17/2025
+ms.date: 06/15/2026
 ---
 
 # How to use tool calling with Foundry Local

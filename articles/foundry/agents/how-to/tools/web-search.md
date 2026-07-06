@@ -471,7 +471,7 @@ Title: National Weather Service – Seattle
 URL: https://www.weather.gov/sew/
 ```
 
-The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries to the `tools` array. For more, see the [Agent Framework Foundry samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry).
+The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries to the `tools` array. For more, see the [Agent Framework Foundry samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry).
 
 ---
 
@@ -729,12 +729,11 @@ curl --request POST \
     "tools": [
       {
         "type": "web_search",
-        "custom_search_configuration": [
+        "custom_search_configuration":
           {
             "project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
             "instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'",
           }
-        ]
       }
     ]
   }'

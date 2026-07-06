@@ -127,7 +127,7 @@ When the agent invokes the A2A endpoint, Agent Service uses the project's manage
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry User** role on the project.
+> To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry Agent Consumer** role on the project. Prefer this role for least-privilege access. The **Foundry User** role also works but is intended for developers building agents and includes permissions beyond what consumers need.
 
 OAuth identity passthrough enables your agent to act on behalf of individual users. Use this method when actions should be scoped to each user's permissions, such as accessing their personal files, repositories, or other protected resources.
 

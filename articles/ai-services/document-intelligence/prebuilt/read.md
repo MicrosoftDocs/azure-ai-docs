@@ -8,6 +8,7 @@ ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD033 -->
@@ -431,6 +432,10 @@ Find more samples on GitHub:
 
 ::: moniker range="doc-intel-3.0.0"
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
+
+> [!IMPORTANT]
+>
+> Azure Document Intelligence v3.0 API (`2022-08-31`) reaches end of support on **March 30, 2029**. To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before this date. For migration guidance, see the [Document Intelligence migration guide](../versioning/migration-guide-overview.md).
 ::: moniker-end
 
 ::: moniker range="<=doc-intel-3.1.0"
@@ -770,5 +775,11 @@ Explore our REST API:
 Find more samples on GitHub:
    > [!div class="nextstepaction"]
    > [Read model.](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/v3.1(2023-07-31-GA)/Python(v3.1)/Read_model)
+
+::: moniker-end
+
+::: moniker range="doc-intel-3.0.0"
+
+Migrate v3.0 workloads to v4.0 before **March 30, 2029**. For migration steps, see the [Document Intelligence migration guide](../versioning/migration-guide-overview.md).
 
 ::: moniker-end

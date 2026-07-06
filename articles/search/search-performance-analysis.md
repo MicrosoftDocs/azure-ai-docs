@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Analyze performance in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes the tools, behaviors, and approaches for analyzing query and indexing performance in Azure AI Search.
 
 This article applies to [classic search](search-what-is-azure-search.md#what-is-classic-search), full-text search scenarios only.
