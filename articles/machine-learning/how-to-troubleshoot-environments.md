@@ -653,7 +653,7 @@ If you specified any of the above-listed properties in your environment definiti
 * If you're using a Docker build context and want to specify conda dependencies, your conda specification should reside in your build context directory
 
 **Resources**
-* [Understand build context](https://docs.docker.com/build/concepts/context/)
+* [Understand build context](https://docs.docker.com/build/concepts/context/).
 * Python SDK v1 [Environment Class](https://aka.ms/azureml/environment/environment-class-v1)
 
 :::moniker-end
@@ -681,7 +681,7 @@ The following are accepted location types:
     
 **Resources**
 * See [DockerBuildContext Class](/python/api/azureml-core/azureml.core.environment.dockerbuildcontext)
-* [Understand build context](https://docs.docker.com/build/concepts/context/)
+* [Understand build context](https://docs.docker.com/build/concepts/context/).
 
 :::moniker-end
 
@@ -709,7 +709,7 @@ For scenarios in which you're storing your Docker build context in a storage acc
 **Resources**
 * See [DockerBuildContext Class](/python/api/azureml-core/azureml.core.environment.dockerbuildcontext)
 * [Python SDK/Azure CLI v2 sample](https://aka.ms/azureml/environment/create-env-build-context-v2)
-* [Understand build context](https://docs.docker.com/build/concepts/context/)
+* [Understand build context](https://docs.docker.com/build/concepts/context/).
 
 :::moniker-end
 
