@@ -71,7 +71,7 @@ A *search index knowledge source* connects an existing Azure AI Search index, in
 
 ## Limitations
 
-`semanticConfigurationName` identifies which semantic fields agentic retrieval uses for semantic ranking. It doesn't make retrieve requests honor the underlying index's scoring profiles, including `defaultScoringProfile`, and retrieve responses don't surface `@search.rerankerBoostedScore`.
+Agentic retrieval doesn't make retrieve requests honor the underlying index's scoring profiles, including `defaultScoringProfile`, and retrieve responses don't surface `@search.rerankerBoostedScore`.
 
 ## Check for existing knowledge sources
 
