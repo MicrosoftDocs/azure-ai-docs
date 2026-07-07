@@ -1195,10 +1195,10 @@ The following walkthrough uses a [GitHub Copilot SDK sample](https://github.com/
 
 ### Step 1: Initialize the agent project
 
-Scaffold the project from the sample manifest:
+Scaffold the project from the sample's `azure.yaml`:
 
 ```bash
-azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot/agent.manifest.yaml
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot/azure.yaml
 ```
 
 Set the required GitHub token:
@@ -1207,16 +1207,17 @@ Set the required GitHub token:
 azd env set GITHUB_TOKEN="github_pat_..."
 ```
 
-The scaffolded project includes `main.py`, configuration files, and a sample `joke` skill:
+The scaffolded project includes a root `azure.yaml`, agent code, configuration files, and a sample `joke` skill:
 
 ```
-├── main.py                  ← agent code that loads skills via CopilotClient
-├── agent.yaml
-├── agent.manifest.yaml
-├── requirements.txt
-└── skills/
-    └── joke/
-        └── SKILL.md         ← bundled sample skill
+|-- azure.yaml
+`-- src/
+    `-- <agent-name>/
+        |-- main.py          # agent code that loads skills via CopilotClient
+        |-- requirements.txt
+        `-- skills/
+            `-- joke/
+                `-- SKILL.md # bundled sample skill
 ```
 
 In `main.py`, the `skill_directories` parameter tells the Copilot SDK where to find skill files. Any `SKILL.md` in a subdirectory of `skills/` is loaded as extra instructions when a session starts.
@@ -1234,15 +1235,16 @@ If you haven't stored the greeting skill in Foundry yet, copy the skill content 
 The project now includes both skills:
 
 ```
-├── main.py
-├── agent.yaml
-├── agent.manifest.yaml
-├── requirements.txt
-└── skills/
-    ├── greeting/
-    │   └── SKILL.md         ← your greeting skill
-    └── joke/
-        └── SKILL.md
+|-- azure.yaml
+`-- src/
+    `-- <agent-name>/
+        |-- main.py
+        |-- requirements.txt
+        `-- skills/
+            |-- greeting/
+            |   `-- SKILL.md # your greeting skill
+            `-- joke/
+                `-- SKILL.md
 ```
 
 ### Step 3: Run and test locally

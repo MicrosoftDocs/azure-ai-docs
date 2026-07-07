@@ -32,7 +32,7 @@ There are three ways to begin a project. Pick the path that matches your situati
 | --- | --- | --- | --- |
 | Best for | New agents, learning the tooling. | Existing agent code you want to host on Foundry. | Agents already running in a Foundry project. |
 | Command | `azd ai agent init` in an empty directory. | `azd ai agent init` in a directory with existing code. | `azd ai agent init`, then select an existing project. |
-| What you get | A full scaffolded project: agent code, `agent.yaml`, `azure.yaml`, Bicep infrastructure, and a Dockerfile. | A generated `agent.yaml`, `azure.yaml`, Bicep infrastructure, and a Dockerfile wrapping your code. | `azure.yaml` and Bicep infrastructure wired to your existing Foundry project. |
+| What you get | A full scaffolded project: a single `azure.yaml`, agent source under `src/<agent-name>/`, and a Dockerfile for container deployment. Infrastructure is bicep-less by default and can be ejected later. | A generated `azure.yaml` service entry and, for container deployment, a Dockerfile wrapping your code. Infrastructure is bicep-less by default and can be ejected later. | An `azure.yaml` wired to your existing Foundry project. Infrastructure is bicep-less by default and can be ejected later. |
 | Code changes | None. Ready to run. | Might need a protocol adapter. | None. |
 
 ## Initialize from a template
@@ -52,17 +52,20 @@ The wizard walks you through the following choices.
 | Foundry project | Select an existing project or create a new one. If you create one, you also choose a region. |
 | Model deployment | Select an existing model deployment, or one is created from template defaults. |
 
-The agent name is derived from the template. The CLI creates an `azd` environment named `<directory>-dev` and configures it with details from your selected Foundry project. Each template includes agent source code, a `Dockerfile`, and an `agent.manifest.yaml` that describes the agent's configuration and resource dependencies.
+The agent name comes from the template. The CLI creates an `azd` environment named `<directory>-dev` and configures it with details from your selected Foundry project. Each template includes agent source code, a `Dockerfile`, and an `azure.yaml` file that acts as the unified project manifest for the `azd` project and hosted agent configuration.
 
-### Initialize from a manifest URL
+### Initialize from an azure.yaml URL
 
-If you have a specific agent sample, point directly to its manifest:
+If you have a specific agent sample, point `-m` to the sample's `azure.yaml`. The CLI adopts that file as the project manifest and downloads the referenced agent source.
 
 ```bash
-azd ai agent init -m https://github.com/org/repo/blob/main/agent.manifest.yaml
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic/azure.yaml
 ```
 
-This command downloads the agent code referenced by the manifest and scaffolds the project around it.
+> [!NOTE]
+> Agent manifests (`agent.manifest.yaml`) and standalone agent definitions (`agent.yaml`) are deprecated. As of the Foundry `azd` extensions (`azure.ai.agents` 1.0.0-beta.1), all hosted agent configuration lives in a single `azure.yaml`. See [Author azure.yaml for hosted agents](author-azure-yaml.md).
+
+The `-m` option still accepts a legacy agent manifest URL, but current samples publish a unified `azure.yaml`.
 
 ### Specify a model
 
@@ -78,6 +81,20 @@ Or use an existing model deployment in your Foundry project:
 azd ai agent init --model-deployment my-deployment
 ```
 
+### Choose a deploy mode
+
+By default, `azd ai agent init` uses code deployment for Python and .NET projects. Code deployment uploads your source as a ZIP package. To scaffold a container-based project instead, pass `--deploy-mode container`:
+
+```bash
+azd ai agent init --deploy-mode container
+```
+
+To deploy a prebuilt container image, pass `--image` and `--agent-name`. This option skips template and language selection, code scaffolding, Dockerfile generation, and Azure Container Registry setup.
+
+```bash
+azd ai agent init --agent-name my-agent --image myregistry.azurecr.io/my-agent:v1
+```
+
 ### Browse templates noninteractively
 
 To inspect the catalog before you scaffold, or to drive `azd ai agent init` from a script, list the catalog:
@@ -86,7 +103,7 @@ To inspect the catalog before you scaffold, or to drive `azd ai agent init` from
 # Everything in the catalog
 azd ai agent sample list
 
-# Just the featured Python agent manifests
+# Just the featured Python agent samples
 azd ai agent sample list --featured-only --language python --type agent
 
 # Full azd templates only, as JSON for scripting
@@ -96,7 +113,7 @@ azd ai agent sample list --type azd --output json
 Each entry includes a ready-to-run `initCommand` that you copy and run in the directory you want to scaffold into.
 
 > [!TIP]
-> When you reuse a manifest under a different Foundry agent identity, pass `--agent-name <new-name>` on `azd ai agent init` so the new project doesn't collide with the manifest's default name.
+> When you reuse a sample under a different Foundry agent identity, pass `--agent-name <new-name>` on `azd ai agent init` so the name written to `azure.yaml` doesn't collide with the sample default name.
 
 ## Initialize from existing code
 
@@ -107,7 +124,7 @@ cd my-agent/
 azd ai agent init
 ```
 
-The CLI detects the existing files and generates the deployment scaffolding (`agent.yaml`, `azure.yaml`, Bicep templates, and a Dockerfile) around them, without overwriting your code.
+The CLI detects the existing files and generates an `azure.yaml` service entry around them without overwriting your code. For container deployment, it also adds a Dockerfile. Infrastructure remains bicep-less by default unless you eject infrastructure as code later.
 
 Your agent code must meet the [hosted agent runtime contract](../concepts/hosted-agent-contract.md):
 
@@ -142,24 +159,20 @@ After `init` completes, your project directory contains the following structure:
 
 ```
 .
-|-- azure.yaml                  # azd project configuration
-|-- infra/                      # Bicep infrastructure-as-code
-|   |-- main.bicep              # Main deployment template
-|   |-- main.parameters.json    # Parameter bindings to azd env vars
-|   \-- core/                   # Reusable Bicep modules
+|-- azure.yaml                  # Unified azd project and hosted agent configuration
 |-- src/
 |   \-- <agent-name>/
-|       |-- agent.yaml          # Agent definition (generated from manifest)
 |       |-- Dockerfile          # Container build definition
 |       \-- ...                 # Agent source code
-\-- .azure/                     # Environment configuration
+|-- .azure/                     # Environment configuration
+\-- infra/                      # Optional IaC, created only after you eject infrastructure
 ```
 
-Templates and samples publish an `agent.manifest.yaml`, a parameterized template. During init, parameter values are resolved and an `agent.yaml` definition is generated in your project. You work with `agent.yaml` going forward.
+Templates and samples publish a unified `azure.yaml` at the project root. During init, `azd` adopts or generates that file. You work with `azure.yaml` going forward. Infrastructure is bicep-less by default. Eject infrastructure only when you need to manage the generated IaC files directly.
 
 ## Related content
 
 * [Quickstart: Deploy your first hosted agent](../quickstarts/quickstart-hosted-agent.md)
-* [agent.yaml schema reference](../concepts/agent-yaml-reference.md)
+* [Author azure.yaml for hosted agents](author-azure-yaml.md)
 * [azure.yaml reference for hosted agents](../concepts/azure-yaml-reference.md)
 * [Hosted agent infrastructure with the Azure Developer CLI](../concepts/cli-infrastructure.md)

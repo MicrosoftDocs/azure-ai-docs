@@ -47,10 +47,10 @@ Initialize a new project from the optimization sample template:
 
 ```bash
 mkdir my-agent && cd my-agent
-azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/agent.manifest.yaml .
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/azure.yaml .
 ```
 
-The interactive flow prompts for your Azure subscription, region, and model deployment settings. It generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure files.
+The interactive flow prompts for your Azure subscription, region, and model deployment settings. It adopts `azure.yaml` for hosted-agent configuration and generates `.agent_configs/baseline/`, the evaluation dataset, and infrastructure files.
 
 > [!TIP]
 > If you already have an existing agent project, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md) to add optimization support.
@@ -103,7 +103,7 @@ The CLI prompts you to select an optimization model. To skip the prompt, pass it
 azd ai agent optimize --max-candidates 2 --optimize-model gpt-5
 ```
 
-The CLI detects your agent from `agent.yaml` and uses the generated `eval.yaml` automatically. With two candidates, optimization typically completes in about 8 minutes. Real-time progress is shown:
+The CLI detects your agent from `azure.yaml` and uses the generated `eval.yaml` automatically. With two candidates, optimization typically completes in about 8 minutes. Real-time progress is shown:
 
 ```output
 Optimizing agent "customer-support-py"...
@@ -120,14 +120,14 @@ The *eval model* scores each response (any chat-completion model works). The *op
 
 ## Step 4: Deploy the winner
 
-The ★ in the output indicates the best candidate. Apply the optimized config locally, then deploy:
+The star (*) in the output indicates the best candidate. Apply the optimized config locally, then deploy:
 
 ```bash
 azd ai agent optimize apply --candidate <candidate-id>
 azd deploy
 ```
 
-The `apply` command downloads the optimized configuration into `.agent_configs/<candidate_id>/` and updates your `agent.yaml` to use the new instructions. The `deploy` command pushes the optimized agent live using code deploy.
+The `apply` command downloads the optimized configuration into `.agent_configs/<candidate_id>/` and updates your `azure.yaml` to use the new instructions. The `deploy` command pushes the optimized agent live using code deploy.
 
 Invoke your agent to verify the improvement:
 
