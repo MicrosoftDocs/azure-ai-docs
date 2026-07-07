@@ -1700,7 +1700,7 @@ The API version you specify determines what the connection returns. With `2026-0
 
 ### Authenticate to the MCP endpoint
 
-The MCP endpoint requires authentication via custom headers. You have two options:
+The MCP endpoint requires authentication through custom headers. You have two options:
 
 + **(Recommended)** Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
 
@@ -1709,7 +1709,7 @@ The MCP endpoint requires authentication via custom headers. You have two option
 > [!TIP]
 > Each MCP client configures custom headers differently. For example:
 >
-> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
+> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
 >
 > + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
 
