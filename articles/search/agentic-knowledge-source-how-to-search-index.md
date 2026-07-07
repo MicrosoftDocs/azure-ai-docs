@@ -23,7 +23,7 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-A *search index knowledge source* connects an existing Azure AI Search index, including its indexed text and vectors, to an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md). `semanticConfigurationName` identifies which semantic fields agentic retrieval uses for semantic ranking. It doesn't make retrieve requests honor the underlying index's scoring profiles, including `defaultScoringProfile`, and retrieve responses don't surface `@search.rerankerBoostedScore`.
+A *search index knowledge source* connects an existing Azure AI Search index, including its indexed text and vectors, to an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
 ### Usage support
 
@@ -68,6 +68,10 @@ A *search index knowledge source* connects an existing Azure AI Search index, in
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
 ::: zone-end
+
+## Limitations
+
+`semanticConfigurationName` identifies which semantic fields agentic retrieval uses for semantic ranking. It doesn't make retrieve requests honor the underlying index's scoring profiles, including `defaultScoringProfile`, and retrieve responses don't surface `@search.rerankerBoostedScore`.
 
 ## Check for existing knowledge sources
 

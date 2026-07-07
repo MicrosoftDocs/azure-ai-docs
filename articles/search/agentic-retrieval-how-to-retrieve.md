@@ -23,7 +23,7 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents. For search index knowledge sources, retrieve uses the knowledge source's semantic configuration, but it doesn't apply the underlying index's scoring profiles, including `defaultScoringProfile`, and retrieve responses don't surface `@search.rerankerBoostedScore`.
+In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
 This article explains how to call both retrieval methods with optional permissions enforcement. It covers the retrieve action first and the MCP endpoint later because the MCP tool result currently differs from the REST and SDK response shape. Use `2026-05-01-preview` for the full feature set, including `messages`, answer synthesis, configurable reasoning effort, and sensitivity label metadata in retrieve responses.
 
@@ -68,6 +68,10 @@ To set up a pipeline that connects Azure AI Search to Foundry Agent Service via 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
 ::: zone-end
+
+## Limitations
+
+For search index knowledge sources, retrieve uses the knowledge source's semantic configuration, but it doesn't apply the underlying index's scoring profiles, including `defaultScoringProfile`. Retrieve responses also don't surface `@search.rerankerBoostedScore`.
 
 ## Call the retrieve action
 
