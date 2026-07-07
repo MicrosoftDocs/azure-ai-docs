@@ -123,7 +123,7 @@ After deployment finishes, verify that all resources are configured correctly:
 
 1. **Confirm subnet delegation**: In the Azure portal, navigate to your VNet > **Subnets** and verify the agent subnet shows delegation to `Microsoft.App/environments`.
 1. **Check public network access**: Open each resource (Foundry, Azure AI Search, Azure Storage, Azure Cosmos DB) and confirm **Public network access** is set to **Disabled**.
-1. **Validate private endpoint DNS resolution**: From a machine connected to the VNet, run `nslookup` against each endpoint listed in the [DNS zone configurations summary](#dns-zone-configurations-summary). Verify that each name resolves to a private IP address (10.x, 172.16-31.x, or 192.168.x).
+1. **Validate private endpoint DNS resolution**: From a machine connected to the VNet, run `nslookup` against each endpoint listed in the [DNS zone configurations summary](#dns-zone-configurations-summary). 
 1. **Test agent connectivity**: Access your Foundry project from within the VNet (see [Access your secured agents](#access-your-secured-agents)) and confirm you can create and run an agent.
 1. **Configure Role assignments**: Run the following commands to assign the required roles. The first grants Managed Identity Operator on the user-assigned managed identity, and the second grants Network Contributor on the remote VNet for cross-tenant access. 
 
@@ -142,7 +142,11 @@ az role assignment create \
 
 ## Limitations 
 
-- **Subnet IP address limitation**: Both subnets must have IP ranges within valid RFC1918 private IPv4 ranges: `10.0.0.0/8`, `172.16-31.0.0/12`, or `192.168.0.0/16`. Public IP and CGNAT address ranges `100.64.0.0`–`100.127.255.255` are not supported. 
+- **VNET and subnet IP address limitation**:
+  - Your agent service delegated subnet must have IP ranges within valid RFC1918 private IPv4 ranges: `10.0.0.0/8`, `172.16-31.0.0/12`, or `192.168.0.0/16` also known as Private Class A, Class B, and Class C IP ranges.
+  - Private Class A IP address ranges (`10.0.0.0/8`) are only supported in the following regions: Australia East, Brazil South, Canada East, East US, East US 2, France Central, Germany West Central, Italy North, Japan East, South Africa North, South Central US, South India, Spain Central, Sweden Central, UAE North, UK South, West US, West US 3. Use Class B (`172.16.x.x`) or C (`192.168.x.x`) ranges to deploy Agent service in other regions. 
+  - Public IP ranges like `44.x.x.x` and CGNAT address ranges `100.64.0.0`–`100.127.255.255` are not supported for agent service delegated subnet. 
+  - Ensure that the address spaces of your VNET does not overlap with any existing networks in your Azure environment or reserved IP ranges like the following: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, `100.100.224.0/19`, `100.64.0.0/11`. This includes all address space(s) you have in your VNET, and if you have more than one, and peered VNETs. 
 - **Agent subnet exclusivity**: The agent subnet can't be shared by multiple Foundry resources. Each Foundry resource must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environments`. For more on subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
 - **Agent subnet egress firewall allowlisting**: If you're integrating an Azure Firewall with your private network secured standard agent, allow list the Fully Qualified Domain Names (FQDNs) listed under **Managed Identity** in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag **AzureActiveDirectory**.
@@ -151,14 +155,12 @@ az role assignment create \
 - **The Foundry resource must be deployed in the same region as the virtual network (VNet)**. Other Azure resources, such as Azure Cosmos DB, Azure AI Search, and Azure Storage, can be deployed in different regions. Consider the cost implications of cross-region deployments.
 - **Region availability**:
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-  - For the virtual network IP range, you may use any Private Class A, B or C IP range. Private Class A IP address ranges (10.x.x.x) are only supported in the following regions: Australia East, Brazil South, Canada East, East US, East US 2, France Central, Germany West Central, Italy North, Japan East, South Africa North, South Central US, South India, Spain Central, Sweden Central, UAE North, UK South, West US, West US 3. Use Class B (172.16.x.x) or C (192.168.x.x) ranges for other regions. You may not use any other IP range that overlaps to the list above or uses public IP ranges.
 - **Azure Blob Storage**: Using Azure Blob Storage files with the File Search tool isn't supported.
 - **Code Interpreter file limitations**: In a private network (BYO) configuration, Code Interpreter only works in scenarios that don't involve file uploads or downloads. The tool can't retrieve files from the storage account in this setup. If you need to use files with Code Interpreter, you must use the SDK to create a container explicitly with the required files and then pass the `container_id` to Code Interpreter. This workaround is only available through the SDK; the Foundry portal UI doesn't support it.
 - **Grounding with Bing Search**: Only the following regions are supported: West Europe, Canada East, Switzerland North, Spain Central, UAE North, Korea Central, Poland Central, Southeast Asia, West US, West US 2, West US 3, East US, East US 2, Central US, South India, Japan East, UK South, France Central, Norway East, Australia East, Canada Central, Sweden Central, South Africa North, Italy North, Brazil South
 - **Delete network injection**: If you want to delete your Foundry resource and Standard Agent with secured network setup, delete your Foundry resource and virtual network last. Before deleting the virtual network, delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your Foundry resource.
 - **Hosted agent virtual network injection**: For Hosted agents, the virtual network configuration (network injection) must be included when you first create the Foundry account. Adding network injection to an existing Foundry account after creation isn't supported for Hosted agents. 
 - **Hosted agent container registry behind a private network**: For Hosted agents, support for an Azure Container Registry (ACR) behind a private network (private endpoint with public network access disabled) depends on when the Foundry project was created. Projects created after June 25, 2026 support a private ACR. Projects created before that date require the ACR to be reachable over its public endpoint so the platform can pull the image. Existing projects aren't affected and continue to use public network access.
-- **IP Overlap**: Ensure that the address spaces for the used VNET does not overlap with any existing networks in your Azure environment or reserved IP ranges like the following: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, `100.100.224.0/19`, `100.64.0.0/11`. This includes all address space(s) you have in your VNET, if you have more than one, and peered VNETs.
 
 
 ## Architecture diagram
@@ -237,7 +239,7 @@ Refer to this guide to resolve errors during or after a Standard Agent deploymen
 
 `"Provided subnet must be of the proper address space. Please provide a subnet which has address space in the range of 172 or 192."` 
 
-**Solution**: You aren't using a proper IP range for your delegated agent subnet. Verify that you're using a valid private IP address space. Valid RFC1918 ranges include `10.0.0.0/8`, `172.16-31.0.0/12`, and `192.168.0.0/16`. The error message text might not list all valid ranges.
+**Solution**: You aren't using a proper IP range for your delegated agent subnet. Verify that you're using a valid private IP address space. Valid RFC1918 ranges include `10.0.0.0/8`, `172.16-31.0.0/12`, and `192.168.0.0/16`. More details are in [limitations](#limitations) above. 
 
 `"Subscripton is not registered with the required resource providers, please register with the resource providers Microsoft.App and Microsoft.ContainerService."` 
 
