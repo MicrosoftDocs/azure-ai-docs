@@ -4,14 +4,14 @@ description: "Learn how to use prompt engineering to optimize your work with Azu
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 12/6/2025
+ms.date: 05/13/2026
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
   - doc-kit-assisted
-manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+manager: mcleans
+author: alvinashcraft
+ms.author: aashcraft
 
 recommendations: false
 ai-usage: ai-assisted

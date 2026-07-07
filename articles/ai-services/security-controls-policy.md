@@ -5,7 +5,7 @@ ms.date: 10/02/2025
 ms.topic: sample
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.custom: subject-policy-compliancecontrols
 ---
 

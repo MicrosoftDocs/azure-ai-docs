@@ -129,7 +129,7 @@ InfiniBand can help you attain this linear scaling by enabling low-latency, GPU-
 
 These VMs communicate over the low-latency and high-bandwidth InfiniBand network, which performs better than Ethernet-based connectivity. SR-IOV for InfiniBand enables near bare-metal performance for any MPI library, as used by many distributed training frameworks and tools like NVIDIA Collective Communications Library (NCCL).
 
-These Stock Keeping Units (SKUs) are intended to meet the needs of computationally intensive, GPU-accelerated machine-learning workloads. For more information, see [Accelerating Distributed Training in Azure Machine Learning with SR-IOV](https://techcommunity.microsoft.com/t5/azure-ai/accelerating-distributed-training-in-azure-machine-learning/ba-p/1059050).
+These Stock Keeping Units (SKUs) are intended to meet the needs of computationally intensive, GPU-accelerated machine-learning workloads. For more information, see [Accelerating Distributed Training in Azure Machine Learning with SR-IOV](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/accelerating-distributed-training-in-azure-machine-learning-service-using-sr-iov/1059050).
 
 Typically, only VM SKUs with *r* in their names, referring to RDMA, contain the required InfiniBand hardware. For instance, the VM SKU `Standard_NC24rs_v3` is InfiniBand-enabled, but `Standard_NC24s_v3` isn't. The specs for these two SKUs are largely the same except for the InfiniBand capabilities. Both SKUs have 24 cores, 448-GB RAM, 4 GPUs of the same SKU, and so on. For more information about RDMA- and InfiniBand-enabled machine SKUs, see [High performance compute](/azure/virtual-machines/sizes-hpc#rdma-capable-instances).
 

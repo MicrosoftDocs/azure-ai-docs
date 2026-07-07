@@ -13,11 +13,13 @@ ms.date: 02/23/2026
 
 # Java samples for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn about Java code samples that demonstrate the functionality and workflow of an Azure AI Search solution. These samples use the [Azure AI Search client library](/java/api/overview/azure/search-documents-readme) for the [Azure SDK for Java](/azure/developer/java/sdk), which you can explore through the following links.
 
 | Target | Link |
 |--|--|
-| Package download | [search.maven.org/artifact/com.azure/azure-search-documents](https://search.maven.org/artifact/com.azure/azure-search-documents) |
+| Package download | [search.maven.org/artifact/com.azure/azure-search-documents](https://central.sonatype.com/artifact/com.azure/azure-search-documents) |
 | API reference | [com.azure.search.documents](/java/api/com.azure.search.documents)  |
 | API test cases | [github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents/src/test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents/src/test) |
 | Source code | [github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents)  |

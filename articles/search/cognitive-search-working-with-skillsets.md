@@ -5,9 +5,12 @@ ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 01/26/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ---
 
 # Skillset concepts in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This article is for developers who need a deeper understanding of skillset composition, and assumes familiarity with the high-level concepts of [AI enrichment](cognitive-search-concept-intro.md) or how AI is applied in Azure AI Search to transform raw content during indexing.
 
@@ -191,7 +194,7 @@ The root node for all enrichments is `"/document"`. When you're working with blo
 
 When source content consists of large chunks of text, it's helpful to break it into smaller components for [integrated vectorization](vector-search-integrated-vectorization.md), or for greater accuracy of language, sentiment, and key phrase detection. There are two grains available: pages and sentences. A page consists of approximately 5,000 characters.
 
-An alternative to chunking with the Split skill is through the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), but that skill is out of scope for this article.
+An alternative to chunking with the Split skill is through the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), but that skill is out of scope for this article.
 
 When chunking is required, the Split skill is typically first in a skillset.
 

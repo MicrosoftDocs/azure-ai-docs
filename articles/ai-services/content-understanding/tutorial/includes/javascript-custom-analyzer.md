@@ -1,9 +1,9 @@
 ---
 title: "Tutorial: Create a custom analyzer using the Content Understanding JavaScript SDK"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to create a custom analyzer with Content Understanding using the JavaScript SDK.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 03/16/2026
 ms.author: lahlouchu
@@ -148,7 +148,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
         embedding: "text-embedding-3-large", // Required when using field_schema and prebuilt-document base analyzer
     },
 };
@@ -266,7 +266,7 @@ const classifierAnalyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 
@@ -331,7 +331,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 
@@ -448,7 +448,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 
@@ -561,7 +561,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 

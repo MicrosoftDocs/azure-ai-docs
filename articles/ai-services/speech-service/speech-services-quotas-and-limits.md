@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: This article provides a quick reference, a detailed description, and best practices for the quotas and limits in Azure Speech.
 author: goergenj
 ms.author: jagoerge
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 01/30/2026
+ms.date: 06/26/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for Azure Speech in Foundry Tools so that I can decide how to use the features in my application.
 ---
@@ -39,14 +39,14 @@ The following table summarizes the quotas and limits for Voice Live per Azure Sp
 
 Avatars used in Voice Live follow the quotas and limits described in [Real-time text-to-speech avatar](#real-time-text-to-speech-avatar) later in this article.
 
-### LLM speech (preview) quotas and limits per resource
+### LLM speech quotas and limits per resource
 
 The following table summarizes the quotas and limits for large language model (LLM) speech per Azure Speech resource. At this time, these limits aren't adjustable.
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
 | Maximum audio input file size | Not applicable | < 500 MB |
-| Maximum audio length | Not applicable | < 5hrs per file (<2hrs per file with diarization enabled)|
+| Maximum audio length | Not applicable | < 5 hours per file |
 | Maximum requests per minute | Not applicable | 600 |
 
 ### Speech-to-text quotas and limits per resource
@@ -70,10 +70,12 @@ These limits apply to concurrent real-time speech-to-text requests and speech tr
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
 | Maximum audio input file size | Not applicable | < 500 MB |
-| Maximum audio length | Not applicable | < 5hrs per file (<2hrs per file with diarization enabled) |
+| Maximum audio length | Not applicable | < 5 hours per file |
 | Maximum requests per minute | Not applicable | 600 |
 
 #### Batch transcription
+
+The following limits aren't adjustable. For more information on latency in batch transcription, see [Best practices for improving performance](batch-transcription.md#best-practices-for-improving-performance).
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |

@@ -1,13 +1,13 @@
 ---
 title: "Azure OpenAI in Microsoft Foundry Models performance & latency (classic)"
 description: "Learn about performance and latency with Azure OpenAI (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 02/23/2026
-author: mrbullwinkle 
-ms.author: mbullwin
+author: alvinashcraft 
+ms.author: aashcraft
 recommendations: false
 ms.custom:
   - classic-and-new

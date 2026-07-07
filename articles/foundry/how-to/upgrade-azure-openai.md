@@ -4,8 +4,9 @@ description: "Upgrade your Azure OpenAI resource to Microsoft Foundry to access 
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 01/07/2026
+ms.date: 05/20/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.custom:
   - dev-focus
@@ -24,7 +25,7 @@ When you upgrade your Azure OpenAI resource to a Foundry resource, you get acces
 
 |Feature|Azure OpenAI|Foundry|
 |---|---|---|
-|Models sold directly by Azure|Azure OpenAI only|Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft|
+|Foundry Models sold by Azure|Azure OpenAI only|Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft|
 |Partner and community models sold through Marketplace - Stability, Cohere, and others||✅|
 |Azure OpenAI API - batch, stored completions, fine-tuning, evaluation, and more|✅|✅|
 |Agent service||✅|
@@ -71,11 +72,13 @@ Azure resource limits and organizational configurations might require extra step
 |---|---|
 |User principal lacks account or write permissions|Get a privileged Azure RBAC role to manage top-level Azure resource. For example, **Owner**, **Contributor**, or **Azure AI Administrator**.|
 |Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource by using templates or Azure portal.|
-|No permissions to create agents, while you're the owner or contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include **Azure AI User**, **Azure AI Project Manager**, or **Azure AI Owner** roles. **Owner** and **Contributor** roles only grant access to management operations in Azure such as managing deployments.|
+|No permissions to create agents, while you're the owner or contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include **Foundry User**, **Foundry Project Manager**, or **Foundry Owner** roles. **Owner** and **Contributor** roles only grant access to management operations in Azure such as managing deployments.|
 |An Azure Policy conflict occurred.|Your organization might put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
 |Exceeded number of Azure OpenAI instances of 30 per subscription per region when rolling back.|Delete an Azure OpenAI resource or upgrade it to the Foundry. Then retry rolling back your current resource.|
 |Exceeded number of AIServices instances of 100 per subscription per region.|Delete a Foundry resource you might not use in this subscription. Then retry upgrading your current resource.|
 |I can't access my resource over the private network|See [private networking configuration](#private-network-configuration) for the required steps.|
+
+[!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 [!INCLUDE [upgrade-azure-openai 4](../includes/how-to-upgrade-azure-openai-4.md)]
 

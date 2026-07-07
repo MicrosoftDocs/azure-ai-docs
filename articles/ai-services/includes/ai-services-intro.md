@@ -1,7 +1,7 @@
 ---
  title: include file
  description: include file
- ms.service: azure-ai-services
+ ms.service: foundry-tools
  ms.topic: include
  ms.date: 10/02/2025
  ms.custom: include

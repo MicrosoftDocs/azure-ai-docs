@@ -24,7 +24,7 @@ You can reuse your existing model deployments and quota from Foundry Tools or Az
 
 ### SDK usage with hub-based projects
 
-Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry.md#choosing-a-project) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
+Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry.md#foundry-portal) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
 
 If you want to continue using your hub-based project and connection string, you need to: 
 * Use the connection string for your project located under **Connection string** in the overview of your project. 
@@ -38,7 +38,7 @@ If you want to continue using your hub-based project and connection string, you 
 ### Azure Cosmos DB for NoSQL to store conversations
 
 - Your existing Azure Cosmos DB for NoSQL account used in a [standard setup](#choose-basic-or-standard-agent-setup) must have a total throughput limit of at least 3000 RU/s. Both provisioned throughput and serverless are supported.
-- Three containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s
+- Three to five containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s. Three are created during capability host provisioning, and up to two more are created dynamically when you create agents that use the Responses API.
 
 > [!NOTE]
 > * Make sure your Azure OpenAI resource and Foundry account and project are in the same region. 
@@ -46,7 +46,9 @@ If you want to continue using your hub-based project and connection string, you 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Azure CLI](/cli/azure/install-azure-cli) (version 2.64 or later).
-* Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
+* Ensure that the individual creating the account and project has the **Foundry Account Owner** role at the subscription scope
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 * If configuring a [standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Foundry, see [RBAC in Foundry](../../concepts/rbac-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
@@ -151,9 +153,12 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
 
 An Azure Cosmos DB for NoSQL account is created for each Foundry account.
 
-For every project under a Foundry account, three containers are deployed within the same Cosmos DB account. Each container requires a minimum of 1000 RU/s.
+For every project under a Foundry account, three to five containers are deployed within the same Cosmos DB account. Each container requires a minimum of 1000 RU/s. Container names are prefixed with the project ID:
 
-For example, if two projects are deployed under the same Foundry account, the Cosmos DB account must be configured with at least 6000 RU/s (3 containers × 1000 RU/s × 2 projects) to ensure sufficient throughput.
+- `<project-id>-thread-message-store`, `<project-id>-system-thread-message-store`, and `<project-id>-agent-entity-store` are created during capability host provisioning.
+- `<project-id>-agent-definitions-v1` and `<project-id>-run-state-v1` are created dynamically when the project's first agent that uses the Responses API is invoked.
+
+For example, if two projects are deployed under the same Foundry account and both use Responses API agents, the Cosmos DB account must be configured with at least 10,000 RU/s (5 containers × 1000 RU/s × 2 projects) to ensure sufficient throughput. If projects use only classic agents (Assistants API), 6,000 RU/s is sufficient.
 
 Both provisioned throughput and serverless modes are supported.
 

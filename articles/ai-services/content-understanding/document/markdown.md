@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Description of the supported Markdown elements returned as part of the Content Understanding Document response and how to use the response in your applications.
 author: PatrickFarley 
 ms.author: paulhsu
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
 ms.custom:
   - build-2025

@@ -3,7 +3,7 @@ title: "Batch analysis and processing"
 titleSuffix: Foundry Tools
 description: Learn about the Document Intelligence Batch analysis API
 author: laujan
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: lajanuar

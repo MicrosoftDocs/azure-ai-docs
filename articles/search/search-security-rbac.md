@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Connect to Azure AI Search using roles
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports [role-based access control](/azure/role-based-access-control/role-assignments-steps) through Microsoft Entra ID. Role-based access is optional but recommended. The alternative is [key-based authentication](search-security-api-keys.md), which is the default.
 
 If you assign multiple roles to a security principal, permissions are combined. Role assignments apply across all tools and client libraries. You can assign roles using any [supported approach](/azure/role-based-access-control/role-assignments-steps#step-5-assign-role).
@@ -302,7 +304,7 @@ This approach assumes Visual Studio Code with the [REST Client extension](https:
 1. Send a request that uses the variables you specify. For the Search Index Data Reader role, you can send a query using any [supported API version](/rest/api/searchservice/search-service-api-versions).
 
    ```http
-   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2025-09-01 HTTP/1.1
+   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2026-04-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 

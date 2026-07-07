@@ -1,4 +1,4 @@
----
+﻿---
 title: "Quickstart: Vector Search in the Azure portal"
 description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
 author: mattwojo
@@ -12,6 +12,8 @@ ms.date: 03/13/2026
 ---
 
 # Quickstart: Vector search in the Azure portal
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 In this quickstart, you use the **Import data** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize the chunks at indexing and query time.
 
@@ -134,7 +136,9 @@ The Microsoft Foundry model catalog provides embedding models for text vectoriza
 
 On the parent resource of your Microsoft Foundry project:
 
-+ Assign **Azure AI Project Manager** to the managed identity of your search service.
++ Assign **Foundry Project Manager** to the managed identity of your search service.
+
+  [!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 ### [**Azure AI multi-service**](#tab/vision-access)
 
@@ -453,7 +457,7 @@ When the wizard completes the configuration, it creates the following objects:
 | Object | Description |
 |--|--|
 | Data source | Represents a connection to your chosen data source. |
-| Index | Contains vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) so that you can use preview features. |
+| Index | Contains vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) so that you can use preview features. |
 | Skillset | Contains the following skills and configuration:<br><ul><li>The [Text Split skill](cognitive-search-skill-textsplit.md) for chunking.</li><li>The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) for vectorization.</li><li>The [index projections](index-projections-concept-intro.md) configuration, which maps data from one document in the data source to its corresponding chunks in a "child" index.</li></ul> |
 | Indexer | Drives the indexing pipeline, with field mappings and output field mappings (if applicable). |
 

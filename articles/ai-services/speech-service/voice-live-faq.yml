@@ -5,8 +5,8 @@ metadata:
   description: Get answers to frequently asked questions about the Voice Live API in Azure Speech in Foundry Tools.
   author: PatrickFarley
   reviewers: pafarley
-  manager: nitinme
-  ms.service: azure-ai-speech
+  manager: mcleans
+  ms.service: azure-speech-foundry-tools
   ms.topic: faq
   ms.date: 03/31/2026
   ms.author: pafarley
@@ -159,11 +159,7 @@ sections:
       - question: |
           Can you modify or disable the content filtering in Voice Live API?
         answer: |
-          No. If you need custom content filtering, you can use the bring-your-own-model (PREVIEW) feature.
-      - question: |
-          Does Voice Live API support WebRTC?
-        answer: |
-          WebRTC is currently not supported.
+          No. If you need custom content filtering, you can use the bring-your-own-model feature.
       - question: |
           Is SIP supported?
         answer: |

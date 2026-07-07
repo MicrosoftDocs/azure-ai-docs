@@ -5,15 +5,18 @@ ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 09/23/2025
+ms.date: 04/27/2026
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
 ms.devlang: csharp
+ai-usage: ai-assisted
 ---
 
 # Step 3 - Deploy the search-enabled .NET website
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Deploy the search-enabled website as an Azure Static Web Apps site. This deployment includes both the React app for the web pages, and the Function app for search operations.  
 

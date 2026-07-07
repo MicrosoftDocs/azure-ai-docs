@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Migrate from Azure Content Understanding in Foundry Tools Preview to GA, including API changes and best practices.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ms.date: 01/29/2026
 ai-usage: ai-assisted
@@ -20,6 +20,8 @@ ms.custom:
 The Azure Content Understanding API has reached general availability (GA). It introduces several new capabilities and updates to features that were released in earlier preview API versions. The [What's new](../whats-new.md) page provides an overview of all the changes in the `2025-11-01` Content Understanding GA API version.
 
 This article highlights changes needed to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
+
+For supported REST API versions and operations, use the [Content Understanding REST API reference](/rest/api/contentunderstanding/operation-groups). The version selector on Learn shows currently published reference versions.
 
 ## Prerequisites
 
@@ -71,14 +73,11 @@ For example, the schema from step 1 is updated to:
   },
   "fieldSchema": {/*...*/},
   "models": {
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-3-large"
   }
 }
 ```
-
-> [!TIP]
-> To more closely match preview behavior, use a GPT-4o `2024-08-06` generative deployment. For new analyzers, we recommend GPT-4.1 for Content Understanding.
 
 ### Step 3: Create a new analyzer
 
@@ -136,7 +135,7 @@ You need to delete the existing analyzer to reuse the name.
 - The field extraction method is optional. When the method isn't set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
 - There's added support for confidence scores and source grounding for fields in document analyzers that have the method set to generate.
 - There are now increased field limits to 1,000 fields per analyzer.
-- For documents, classification and segmentation supports up to 200 distinct types.
+- For documents, classification and segmentation support up to 200 distinct types.
 
 ### Deprecated features
 

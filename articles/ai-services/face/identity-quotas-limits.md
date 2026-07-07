@@ -3,9 +3,9 @@ title: Azure Face service quotas and limits
 titleSuffix: Foundry Tools
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Face service in Azure Vision in Foundry Tools.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: limits-and-quotas

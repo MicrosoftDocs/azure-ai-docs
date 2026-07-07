@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: An overview of the features, capabilities, and restrictions for keyword recognition by using the Speech SDK.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026
 ms.reviewer: jagoerge

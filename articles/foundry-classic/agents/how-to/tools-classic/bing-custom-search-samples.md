@@ -2,9 +2,11 @@
 title: "How to use the Custom Bing Search with Foundry Agent Service tool (classic)"
 description: "Find samples to ground Microsoft Foundry Agents using Custom Bing Search results. (classic)"
 ai-usage: ai-assisted
-author: alvinashcraft
-ms.author: aashcraft
-manager: nitinme
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
+manager: mcleans
 ms.date: 03/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

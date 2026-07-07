@@ -1,9 +1,9 @@
 ---
 title: "Tutorial: Create a custom analyzer using the Content Understanding REST API"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to create a custom analyzer with Content Understanding using the REST API.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 01/30/2026
 ms.author: paulhsu
@@ -34,7 +34,7 @@ Create a JSON file named `receipt.json` with the following content:
   "description": "Sample receipt analyzer",
   "baseAnalyzerId": "prebuilt-document",
   "models": {
-      "completion": "gpt-4.1",
+      "completion": "gpt-5.2",
       "embedding": "text-embedding-3-large"
 
     },
@@ -85,7 +85,7 @@ Create a JSON file named `categorize.json` with the following content:
 
   //Specify the model the analyzer should use. This is one of the supported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
   "models": {
-      "completion": "gpt-4.1"
+      "completion": "gpt-5.2"
     },
   "config": {
     // Enable splitting of the input into segments. Set this property to false if you only expect a single document within the input file. When specified and enableSegment=false, the whole content will be classified into one of the categories.
@@ -132,7 +132,7 @@ Create a JSON file named `request_body.json` with the following content:
   "description": "Sample image analyzer for charts and graphs",
   "baseAnalyzerId": "prebuilt-image",
   "models": {
-      "completion": "gpt-4.1"
+      "completion": "gpt-5.2"
     },
  "fieldSchema": {
     "fields": {
@@ -199,7 +199,7 @@ Create a JSON file named `request_body.json` with the following content:
   "description": "Sample product demo video analyzer",
   "baseAnalyzerId": "prebuilt-video",
   "models": {
-      "completion": "gpt-4.1"
+      "completion": "gpt-5.2"
     },
   "config": {
     "locales": ["en-US", "fr-FR"],

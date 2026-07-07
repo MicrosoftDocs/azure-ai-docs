@@ -1,10 +1,11 @@
 ---
 title: "Configure managed virtual network for Microsoft Foundry projects (preview) (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.date: 02/25/2026
 ms.reviewer: meerakurup
-ms.author: jburchel
-author: jonburchel
+ms.author: scottpolly
+author: s-polly
 description: "Secure your Microsoft Foundry projects with managed virtual networks. Learn to enable outbound isolation and private endpoints for enhanced data protection. (classic)"
 ms.topic: how-to
 ai-usage: ai-assisted

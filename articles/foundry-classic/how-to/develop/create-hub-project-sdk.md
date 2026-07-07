@@ -2,6 +2,7 @@
 title: "How to create a hub using the Azure Machine Learning SDK/CLI (classic)"
 description: "This article provides instructions on how to create a Microsoft Foundry hub using the Azure Machine Learning SDK and Azure CLI extension. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom: build-2024, devx-track-azurecli, dev-focus
 ms.topic: how-to
 ms.date: 12/23/2025

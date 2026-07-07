@@ -1,8 +1,8 @@
 ---
 title: Create a Vision resource
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 02/13/2023
 ms.author: pafarley

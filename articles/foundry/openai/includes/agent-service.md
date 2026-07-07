@@ -1,6 +1,6 @@
 ---
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.custom:
 ms.topic: include
 ms.date: 02/13/2026

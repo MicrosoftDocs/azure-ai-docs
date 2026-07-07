@@ -1,13 +1,13 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/06/2025
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ai-usage: ai-assisted
 ---
 
@@ -542,7 +542,7 @@ Follow these steps to create a console application and install the Voice Live SD
                 var turnDetectionConfig = new ServerVadTurnDetection
                 {
                     Threshold = 0.5f,
-                    PrefixPadding = TimeSpan.FromMilliseconds(300),
+                    PrefixPadding = TimeSpan.FromMilliseconds(400),
                     SilenceDuration = TimeSpan.FromMilliseconds(500)
                 };
     

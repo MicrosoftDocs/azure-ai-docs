@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.reviewer: nitinme
 ms.service: microsoft-foundry
 ms.topic: include
@@ -29,7 +29,7 @@ Universal required mitigations must be implemented to maintain CCC coverage for 
 
 |**Category**|**Required Mitigation**|**Effective Date**|
 |---|---|---|
-| Metaprompt | The customer offering must include a metaprompt directing the model to prevent copyright infringement in its output, for example, the sample metaprompt, "To Avoid Copyright Infringements" at: [System message framework and template recommendations for Large Language Models(LLMs)](/azure/ai-foundry/openai/concepts/system-message)|December 1, 2023|
+| Metaprompt | The customer offering must include a metaprompt directing the model to prevent copyright infringement in its output, for example, the sample system message component, "Protected Material – Text" at: [Safety system message templates](/azure/foundry/openai/concepts/safety-system-message-templates). |December 1, 2023|
 | Testing and Evaluation Report | The customer offering must have been subjected to evaluations (e.g., guided red teaming, systematic measurement, or other equivalent approach) by the customer using tests designed to detect the output of third-party content. Significant ongoing reproduction of third-party content determined through evaluation must be addressed. The report of results and mitigations must be retained by the customer and provided to Microsoft in the event of a claim. Customer is under no obligation to conduct direct testing of Microsoft services to maintain CCC coverage. More information on guided red teaming is at: [Red teaming large language models (LLMs)](/azure/ai-foundry/openai/concepts/red-teaming). More information on systematic measurement is at: [Overview of Responsible AI practices for Azure OpenAI models - Foundry Tools - Microsoft Learn.](../openai/overview.md) |December 1, 2023|
 
 ## Additional Required Mitigations Per Azure OpenAI Use Case

@@ -2,7 +2,7 @@
 title: 'Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models and Microsoft Foundry'
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI in the image generation playground in Microsoft Foundry.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:
@@ -23,7 +23,7 @@ Use this guide to get started generating images with Azure OpenAI in your browse
 
 Browse to [Foundry](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
-From the Foundry landing page, create or select a new project. Navigate to the **Models + endpoints** page on the left nav. Select **Deploy model** and then choose one of the GPT-Image-1 series models from the list. Complete the deployment process. 
+From the Foundry landing page, create or select a new project. Navigate to the **Models + endpoints** page on the left nav. Select **Deploy model** and then choose one of the image generation models from the list. Complete the deployment process. 
 
 On the model's page, select **Open in playground**.
 

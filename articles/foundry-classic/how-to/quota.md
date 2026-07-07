@@ -2,7 +2,7 @@
 title: "Manage and increase quotas for resources (classic)"
 description: "Learn how to view, manage, and request increases for model deployment quotas in Microsoft Foundry, including token-per-minute and provisioned throughput allocations. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -14,7 +14,7 @@ ms.reviewer: haakar
 reviewer: haakar
 ms.author: mopeakande
 author: msakande 
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 # Customer intent: As a Microsoft Foundry user, I want to know how to manage and increase quotas for resources with Microsoft Foundry.
 ROBOTS: NOINDEX, NOFOLLOW

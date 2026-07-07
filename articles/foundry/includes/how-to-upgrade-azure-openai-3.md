@@ -41,8 +41,6 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: Use Foundry portal**
-
 1. Select the project in the Foundry (classic) portal.
 1. Select **Management Center** in the lower left of your screen.
 1. On your resource overview page, find the rollback option.
@@ -60,8 +58,6 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 
 # [Azure Bicep](#tab/bicep)
 
-**Option 2: Use an Azure Bicep template**
-  
 To roll back, convert your template configuration back to `OpenAI` as kind.
 
   ```bicep

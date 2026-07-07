@@ -5,8 +5,9 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 04/01/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: reference
 ms.custom:
   - classic-and-new
@@ -98,6 +99,15 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
 
 > [!NOTE]
 > These evaluators use LLM-as-judge scoring and incur model inference costs per evaluation call. Scoring reliability might vary for very short responses (under approximately 20 tokens). Both evaluators currently support English-language responses.
+
+## Conversation-level evaluation
+
+Coherence can evaluate full conversations when you set `evaluation_level="conversation"` on the evaluation run. In this mode, the evaluator assesses logical flow across the entire conversation rather than individual responses.
+
+Use conversation-level coherence evaluation when you want to measure whether the agent maintains consistent reasoning and topic flow across multiple turns. The evaluator considers how well ideas connect across the full interaction, not just within a single response.
+
+> [!NOTE]
+> Conversation-level evaluation requires the `messages` field in your data mapping, which should contain the full conversation array in OpenAI message format.
 
 ## Related content
 

@@ -2,6 +2,7 @@
 title: "Generate Synthetic and Simulated Data for Evaluation (classic)"
 description: "This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - ignite-2023
   - build-2024

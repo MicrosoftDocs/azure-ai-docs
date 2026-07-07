@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # How to model relational SQL data for import and indexing in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search accepts a flat rowset as input to the [indexing pipeline](search-what-is-an-index.md). If your source data originates from joined tables in a SQL Server relational database, this article explains how to construct the rowset, and how to model a parent-child relationship in an Azure AI Search index.
 
 As an illustration, we refer to a hypothetical hotels database, based on [demo data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels). Assume the database consists of a `Hotels$` table with 50 hotels, and a `Rooms$` table with rooms of varying types, rates, and amenities, for a total of 750 rooms. There's a one-to-many relationship between the tables. In our approach, a view provides the query that returns 50 rows, one row per hotel, with associated room detail embedded into each row.

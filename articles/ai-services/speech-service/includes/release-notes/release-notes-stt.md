@@ -1,12 +1,39 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 03/06/2026
+ms.date: 05/22/2026
 ms.author: pafarley
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
+
+### May 2026 release
+
+#### Custom speech fine-tuning in the Microsoft Foundry (new) portal
+
+The custom speech fine-tuning workflow is now documented for the Microsoft Foundry (new) portal. The wizard-driven experience walks you through project creation, data upload, data inspection, model training, evaluation, and endpoint deployment. For more information, see [Create a custom speech project](../../how-to-custom-speech-create-project.md).
+
+#### LLM Speech API Generally Availability
+
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+
+#### Speech Transcription SDK general availability
+
+The Speech Transcription SDK is now generally available (version 1.0.0) for C#, Python, Java, and JavaScript/TypeScript. The SDK provides a unified client for the Fast Transcription and LLM Speech capabilities of the Speech service. For more information, see [What is the Speech Transcription SDK?](../../transcription-sdk.md).
+
+### April 2026 release
+
+#### Post-stream refinement (public preview)
+
+Post-stream refinement is now available in public preview for real-time speech to text. When enabled, the service runs a second recognition pass in parallel with real-time streaming to improve final transcript accuracy. Intermediate results remain low-latency; only the final result for each segment is replaced with a more accurate version. Set the `SpeechServiceResponse_PostProcessingOption` property to `PostRefinement` to enable it. For more information, see [How to use post-processing](../../how-to-post-processing.md) and [How to recognize speech](../../how-to-recognize-speech.md).
+
+#### Improved pronunciation assessment model
+
+We've updated the pronunciation assessment model for `de-DE`, improving the Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+
+The updated model is ready to use through the API and the Microsoft Foundry playground.
 
 ### March 2026 release
 

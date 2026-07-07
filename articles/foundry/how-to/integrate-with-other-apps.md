@@ -4,6 +4,7 @@ description: "Learn how to choose a Microsoft Foundry integration pattern, retri
 ms.topic: how-to
 ms.date: 04/08/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley

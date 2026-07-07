@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: nisi
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 

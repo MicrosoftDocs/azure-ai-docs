@@ -4,13 +4,14 @@ titleSuffix: Microsoft Foundry
 description: Learn how to create your own customized model with Microsoft Foundry by using the OpenAI Python SDK.
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 ms.date: 09/01/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025, classic-and-new
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -20,7 +21,9 @@ ms.custom:
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 - You need the following Python libraries: `os`, `json`, `requests`, `openai`.
 - You need the OpenAI Python library.
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
+- Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../../../foundry-classic/openai/how-to/role-based-access-control.md).  
 
 ### Supported models
@@ -96,6 +99,9 @@ The next step is to either choose existing prepared training data or upload new 
 - [From Azure Blob Storage or a web location (import)](/rest/api/azureopenai/files/import)
 
 For large data files, we recommend that you import from Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
+
+> [!IMPORTANT]
+> Importing from Azure Blob Storage requires the storage account to have **public network access enabled**. If your organization's policies don't allow public access on storage accounts, use the [local file upload](/rest/api/azureopenai/files/upload) method instead.
 
 The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs:
 
@@ -191,7 +197,7 @@ Select the training tier based on your use case and budget:
 
 - **Global**: Provides more affordable pricing compared to Standard by using capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
-- **Developer (preview)**: Provides significant cost savings by using idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier might be automatically preempted and resumed later. There are no guarantees for data residency either. Ideal for experimentation and price-sensitive workloads.
+- **Developer**: Provides significant cost savings by using idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier might be automatically preempted and resumed later. There are no guarantees for data residency either. Ideal for experimentation and price-sensitive workloads.
 
 ```python
 import openai

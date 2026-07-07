@@ -36,7 +36,7 @@ landingContent:
     linkLists:
       - linkListType: concept
         links:
-          - text: Foundry Models sold directly by Azure
+          - text: Foundry Models sold by Azure
             url: foundry-models/concepts/models-sold-directly-by-azure.md
           - text: Azure OpenAI in Foundry Models
             url: ../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md

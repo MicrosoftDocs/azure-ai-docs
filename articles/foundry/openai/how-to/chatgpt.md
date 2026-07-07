@@ -1,8 +1,8 @@
 ---
 title: "Work with chat completion models"
 description: "Learn about the options for how to use models with the chat completions API"
-author: mrbullwinkle #dereklegenzoff
-ms.author: mbullwin #delegenz
+author: alvinashcraft #dereklegenzoff
+ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:
@@ -11,7 +11,7 @@ ms.custom:
   - doc-kit-assisted
 ms.topic: how-to
 ms.date: 03/04/2026
-manager: nitinme
+manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 zone_pivot_groups: openai-chat-completions

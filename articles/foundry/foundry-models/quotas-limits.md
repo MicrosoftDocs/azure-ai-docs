@@ -4,13 +4,13 @@ description: "Learn about quotas, rate limits, and best practices for Foundry Mo
 ai-usage: ai-assisted
 author: msakande
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.custom:
   - ignite-2024, github-universe-2024
   - classic-and-new
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 02/20/2026
+ms.date: 05/12/2026
 ms.author: mopeakande
 ms.reviewer: haakar
 reviewer: haakar

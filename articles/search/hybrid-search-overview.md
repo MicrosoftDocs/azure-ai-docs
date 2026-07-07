@@ -10,6 +10,8 @@ ms.date: 02/19/2026
 
 # Hybrid search using vectors and full text in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Hybrid search is a single query request configured for both full-text and vector queries. It runs against a search index that contains searchable, plain-text content and generated embeddings. For query purposes, hybrid search:
 
 + Is a single query request that includes both `search` and `vectors` query parameters.
@@ -41,7 +43,7 @@ Hybrid search relies on a search index that contains fields of various [data typ
 A representative hybrid query might look like the following. For brevity, the vector queries have placeholder values.
 
 ```http
-POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01
+POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2026-04-01
 content-type: application/JSON
 
 {
@@ -140,4 +142,4 @@ A response from the query might look like the following JSON.
 
 + [Create a hybrid query](hybrid-search-how-to-query.md)
 + [Relevance scoring in hybrid search](hybrid-search-ranking.md)
-+ [Outperform vector search with hybrid retrieval and ranking (Tech blog)](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167)
++ [Outperform vector search with hybrid retrieval and ranking (Tech blog)](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167)

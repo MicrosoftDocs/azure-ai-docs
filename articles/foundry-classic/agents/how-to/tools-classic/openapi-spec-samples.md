@@ -1,9 +1,11 @@
 ---
 title: "OpenAPI spec code samples (classic)"
 description: "Find code samples to use OpenAPI tools with agents. (classic)"
-author: alvinashcraft
-ms.author: aashcraft
-manager: nitinme
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
+manager: mcleans
 ms.date: 03/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

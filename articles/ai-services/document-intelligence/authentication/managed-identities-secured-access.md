@@ -3,8 +3,8 @@ title: "Configure secure access with managed identities and virtual networks"
 titleSuffix: Foundry Tools
 description: Learn how to configure secure communications between Document Intelligence and other Azure Services.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: vikurpad

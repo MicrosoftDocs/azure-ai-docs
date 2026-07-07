@@ -5,7 +5,7 @@ description: Learn about how to use the Responsible AI scorecard to share respon
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
-ms.topic: conceptual
+ms.topic: article
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: mesameki

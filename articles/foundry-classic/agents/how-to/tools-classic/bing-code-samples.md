@@ -2,13 +2,15 @@
 title: "Grounding with Bing Search code samples (classic)"
 description: "Find code samples to ground Azure AI Agents using Bing Search results. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-bing-grounding-code
 ms.custom: azure-ai-agents-code
 ---

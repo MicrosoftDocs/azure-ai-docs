@@ -1,9 +1,9 @@
 ---
 title: "Tutorial: Create a custom analyzer using the Content Understanding TypeScript SDK"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to create a custom analyzer with Content Understanding using the TypeScript SDK.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 03/16/2026
 ms.author: lahlouchu
@@ -156,7 +156,7 @@ const analyzer: ContentAnalyzer = {
     config,
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
         embedding: "text-embedding-3-large", // Required when using field_schema and prebuilt-document base analyzer
     },
 } as unknown as ContentAnalyzer;
@@ -274,7 +274,7 @@ const classifierAnalyzer: ContentAnalyzer = {
         },
     } as unknown as ContentAnalyzerConfig,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 
@@ -342,7 +342,7 @@ const analyzer: ContentAnalyzer = {
         + " and graphs",
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 
@@ -459,7 +459,7 @@ const analyzer: ContentAnalyzer = {
     config,
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 
@@ -576,7 +576,7 @@ const analyzer: ContentAnalyzer = {
     config,
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 

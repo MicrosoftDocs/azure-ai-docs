@@ -2,6 +2,7 @@
 title: "Run AI Red Teaming Agent Locally (Azure AI Evaluation SDK)"
 description: "Learn how to use the AI Red Teaming Agent to run a local automated scan of a Generative AI application with the Azure AI Evaluation SDK."
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - references_regions

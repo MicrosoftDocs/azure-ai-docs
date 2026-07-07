@@ -11,6 +11,8 @@ ms.custom: sfi-ropc-nochange
 
 # Create a shared private link for a SQL managed instance from Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to configure an indexer in Azure AI Search for a private connection to a SQL managed instance that runs within a virtual network. The private connection is through a [shared private link](search-indexer-howto-access-private.md) and Azure Private Link.
 
 On a private connection to a managed instance, the fully qualified domain name (FQDN) of the instance must include the [DNS Zone](/azure/azure-sql/managed-instance/connectivity-architecture-overview#virtual-cluster-connectivity-architecture). Currently, only the Azure AI Search Management REST API provides a `dnsZonePrefix` parameter for accepting the DNS zone specification.
@@ -131,7 +133,7 @@ This article assumes a [REST client](search-get-started-text.md) and uses the RE
     Provide the connection string that you copied earlier with an Initial Catalog set to your database name.
 
     ```http
-    POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
+    POST https://myservice.search.windows.net/datasources?api-version=2026-04-01
      Content-Type: application/json
      api-key: admin-key
      {
@@ -156,7 +158,7 @@ This article assumes a [REST client](search-get-started-text.md) and uses the RE
    [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private execution environment that's specific to your search service, or a multitenant environment hosted by Microsoft and used to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
 
    ```http
-    POST https://myservice.search.windows.net/indexers?api-version=2025-09-01
+    POST https://myservice.search.windows.net/indexers?api-version=2026-04-01
      Content-Type: application/json
      api-key: admin-key
        {

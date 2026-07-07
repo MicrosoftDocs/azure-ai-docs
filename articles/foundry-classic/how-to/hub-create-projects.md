@@ -6,6 +6,7 @@ ms.author: sgilley
 ms.reviewer: deeikele
 ms.date: 12/29/2025
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.custom:
   - build-2025

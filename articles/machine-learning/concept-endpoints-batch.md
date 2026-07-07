@@ -27,7 +27,7 @@ Batch endpoints receive pointers to data and run jobs asynchronously to process 
 > * You want to operationalize machine learning pipelines and reuse components.
 > * You need to perform inference over large amounts of data, distributed in multiple files.
 > * You don't have low latency requirements.
-> * Your model's inputs are stored in an Storage Account or in an Azure Machine learning data asset.
+> * Your model's inputs are stored in a storage account or in an Azure Machine Learning data asset.
 > * You can take advantage of parallelization.
 
 ## Batch deployments
@@ -53,7 +53,7 @@ Use __Model deployment__ when:
 > * You don't have low latency requirements.
 > * You can take advantage of parallelization.
 
-The main benefit of model deployments is that you can use the same assets that are deployed for real-time inferencing to online endpoints, but now, you get to run them at scale in batch. If your model requires simple preprocessing or post-processing, you can [author an scoring script](how-to-batch-scoring-script.md) that performs the data transformations required.
+The main benefit of model deployments is that you can use the same assets that are deployed for real-time inferencing to online endpoints, but now, you get to run them at scale in batch. If your model requires simple preprocessing or post-processing, you can [author a scoring script](how-to-batch-scoring-script.md) that performs the data transformations required.
 
 To create a model deployment in a batch endpoint, you need to specify the following elements:
 
@@ -109,7 +109,7 @@ You can add, remove, and update deployments without affecting the endpoint itsel
 
 ## Flexible data sources and storage
 
-Batch endpoints read and write data directly from storage. You can specify Azure Machine Learning datastores, Azure Machine Learning data assets, or Storage Accounts as inputs. For more information on the supported input options and how to specify them, see [Create jobs and input data to batch endpoints](how-to-access-data-batch-endpoints-jobs.md).
+Batch endpoints read and write data directly from storage. You can specify Azure Machine Learning datastores, Azure Machine Learning data assets, or storage accounts as inputs. For more information on the supported input options and how to specify them, see [Create jobs and input data to batch endpoints](how-to-access-data-batch-endpoints-jobs.md).
 
 ## Security
 

@@ -11,10 +11,10 @@ metadata:
     - build-2025
   ms.topic: landing-page
   ms.reviewer: samkemp
-  ms.author: jburchel
+  ms.author: lajanuar
   reviewer: samuel100
-  author: jonburchel
-  ms.date: 01/05/2026
+  author: laujan
+  ms.date: 06/15/2026
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -57,6 +57,8 @@ landingContent:
             url: how-to/how-to-integrate-with-inference-sdks.md
           - text: Transcribe audio files
             url: how-to/how-to-transcribe-audio.md
+          - text: Live transcribe audio from a microphone
+            url: how-to/how-to-live-transcribe-audio.md
           - text: Integrate with LangChain
             url: how-to/how-to-use-langchain-with-foundry-local.md
           - text: Compile Hugging Face models to run on Foundry Local

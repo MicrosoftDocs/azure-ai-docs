@@ -18,7 +18,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
 
 By using the prompt flow Azure OpenAI GPT-4 Turbo with Vision tool, you can use your Azure OpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them.
 

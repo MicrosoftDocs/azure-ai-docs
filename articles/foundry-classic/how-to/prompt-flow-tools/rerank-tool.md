@@ -18,7 +18,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 
 The prompt flow Rerank tool improves the search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with the [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
 
 ## Prerequisites
 

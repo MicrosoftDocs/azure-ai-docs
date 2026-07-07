@@ -3,7 +3,7 @@ title: Entity categories list recognized by Personally Identifiable Information 
 titleSuffix: Foundry Tools
 description: View a list of entity types the PII feature can detect and identify within unstructured text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

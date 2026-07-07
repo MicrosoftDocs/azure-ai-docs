@@ -3,9 +3,9 @@ title: "Data Filtering - Custom Translator"
 titleSuffix: Foundry Tools
 description: When you submit documents to be used for training a custom system, the documents undergo a series of processing and filtering steps.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator

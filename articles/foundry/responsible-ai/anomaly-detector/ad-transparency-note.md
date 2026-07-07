@@ -2,9 +2,9 @@
 title: "Anomaly Detector Transparency Note"
 titleSuffix: Foundry Tools
 description: "Understanding the use cases of Anomaly Detector"
-author: mrbullwinkle
-ms.author: mbullwin
-manager: nitinme
+author: alvinashcraft
+ms.author: aashcraft
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: concept-article
 ms.date: 02/21/2024

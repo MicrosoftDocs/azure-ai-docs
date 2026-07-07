@@ -1,7 +1,7 @@
 ---
 title: 'Legal and regulatory considerations'
 description: include 
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure

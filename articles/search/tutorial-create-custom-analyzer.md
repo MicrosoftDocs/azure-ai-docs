@@ -12,6 +12,8 @@ ms.date: 11/21/2025
 
 # Tutorial: Create a custom analyzer for phone numbers
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In search solutions, strings that have complex patterns or special characters can be challenging to work with because the [default analyzer](search-analyzers.md) strips out or misinterprets meaningful parts of a pattern. This results in a poor search experience where users can't find the information they expect. Phone numbers are a classic example of strings that are difficult to analyze. They come in various formats and include special characters that the default analyzer ignores.
 
 With phone numbers as its subject, this tutorial uses the [Search Service REST APIs](/rest/api/searchservice/) to solve patterned data problems using a [custom analyzer](index-add-custom-analyzers.md). This approach can be used as is for phone numbers or adapted for fields with the same characteristics (patterned with special characters), such as URLs, emails, postal codes, and dates.
@@ -65,7 +67,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -101,7 +103,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http
     ### Load documents
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -155,7 +157,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http  
     ### Search for a phone number
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -197,7 +199,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
    ```http  
    ### Search for a phone number
-   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2026-04-01  HTTP/1.1
    Content-Type: application/json
    api-key: {{apiKey}}
 
@@ -264,7 +266,7 @@ Call the Analyze API using the following request:
 
 ```http
 ### Test analyzer
-POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -449,7 +451,7 @@ All of the tokens in the output column exist in the index. If your query include
 
    ```http
    ### Delete the index
-   DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2025-09-01 HTTP/1.1
+   DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2026-04-01 HTTP/1.1
    api-key: {{apiKey}}
     ```
 
@@ -457,7 +459,7 @@ All of the tokens in the output column exist in the index. If your query include
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
     
@@ -527,7 +529,7 @@ After you recreate the index, test the analyzer using the following request:
 
 ```http
 ### Test custom analyzer
-POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}} 
 

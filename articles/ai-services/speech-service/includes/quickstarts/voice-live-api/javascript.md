@@ -1,13 +1,13 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 3/2/2026
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ai-usage: ai-assisted
 ---
 
@@ -640,7 +640,7 @@ The sample connects to Voice Live and configures the session with these fields:
           turnDetection: {
             type: "server_vad",
             threshold: 0.5,
-            prefixPaddingInMs: 300,
+            prefixPaddingInMs: 400,
             silenceDurationInMs: 500,
           },
           inputAudioEchoCancellation: { type: "server_echo_cancellation" },

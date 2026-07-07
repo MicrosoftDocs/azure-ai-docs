@@ -3,8 +3,8 @@ title: "Get speech recognition results - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to get speech recognition results.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley

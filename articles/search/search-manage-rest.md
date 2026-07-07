@@ -7,11 +7,13 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 04/24/2026
 ms.update-cycle: 365-days
 ---
 
 # Manage your Azure AI Search service using REST APIs
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Learn how to create and configure an Azure AI Search service using the [Management REST APIs](/rest/api/searchmanagement/). Only the Management REST APIs are guaranteed to provide early access to [preview features](/rest/api/searchmanagement/management-api-versions).
 
@@ -25,7 +27,6 @@ The Management REST API is available in stable and preview versions. Be sure to 
 > * [Configure confidential computing](#configure-confidential-computing)
 > * [Enable Azure role-based access control for data plane](#enable-rbac)
 > * [Enforce a customer-managed key policy](#enforce-cmk)
-> * [Disable semantic ranker](#disable-semantic-ranker)
 > * [Disable workloads that push data to external resources](#disable-external-access)
 > * [Create a query key](#create-query-api-keys)
 > * [Regenerate an admin key](#regenerate-admin-api-keys)
@@ -291,26 +292,6 @@ PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegro
             "encryptionWithCmk": {
                 "enforcement": "Enabled"
             }
-        }
-    }
-```
-
-## Disable semantic ranker
-
-[Semantic ranker is enabled](semantic-how-to-enable-disable.md) by default at the free plan that allows up to 1,000 requests per month at no charge. You can lock down the feature at the service level to prevent usage.
-
-```http
-### Disable semantic ranker
-@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
-@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
-
-PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
-     Content-type: application/json
-     Authorization: Bearer {{token}}
-     
-     {
-        "properties": {
-            "semanticSearch": "Disabled"
         }
     }
 ```

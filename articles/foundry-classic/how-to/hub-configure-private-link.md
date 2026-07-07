@@ -4,6 +4,7 @@ title: "How to configure a private link for a Microsoft Foundry hub (classic)"
 description: "Learn how to configure a private link for Microsoft Foundry hubs. A private link is used to secure communication with the Microsoft Foundry hub. (classic)"
 manager: mcleans
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom: 
     - ignite-2023
     - devx-track-azurecli
@@ -14,8 +15,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: meerakurup
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---

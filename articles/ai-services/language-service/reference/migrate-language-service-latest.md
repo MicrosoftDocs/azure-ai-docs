@@ -3,7 +3,7 @@ title: Migrate from Text Analytics API to Azure Language Service API
 titleSuffix: Foundry Tools
 description: Learn how to move your Text Analytics applications to use the latest version of Azure Language service.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 01/15/2026

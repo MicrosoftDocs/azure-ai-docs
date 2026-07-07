@@ -1,10 +1,11 @@
 ---
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 11/19/2025
 ---
+
 
 Set up default model deployments for your Content Understanding resource. By setting defaults, you create a connection to the Microsoft Foundry models you use for Content Understanding requests. Choose one of the following methods:
 
@@ -17,6 +18,9 @@ Set up default model deployments for your Content Understanding resource. By set
 1. Select the Foundry resource that you want to use and select **Next** > **Save**.
 
    Make sure that the **Enable autodeployment for required models if no defaults are available** checkbox is selected. This selection ensures your resource is fully set up with the required `GPT-4.1`, `GPT-4.1-mini`, and `text-embedding-3-large` models. Different prebuilt analyzers require different models.
+
+   [!INCLUDE [gpt-4x-deprecation-notice](gpt-4x-deprecation-notice.md)]
+
 
 By taking these steps, you set up a connection between Content Understanding and Foundry models in your Foundry resource.
 
@@ -36,7 +40,7 @@ By taking these steps, you set up a connection between Content Understanding and
      -H "Content-Type: application/json" \
      -d '{
            "modelDeployments": {
-             "gpt-4.1": "{myGPT41Deployment}",
+             "gpt-5.2": "{myGPT52Deployment}",
              "gpt-4.1-mini": "{myGPT41MiniDeployment}",
              "text-embedding-3-large": "{myEmbeddingDeployment}"
            }

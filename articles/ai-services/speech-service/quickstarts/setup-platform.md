@@ -3,8 +3,8 @@ title: Install the Speech SDK
 titleSuffix: Foundry Tools
 description: In this quickstart, you learn how to install the Speech SDK for your preferred programming language.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 01/30/2026
 ms.author: pafarley

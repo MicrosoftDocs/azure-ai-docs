@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -13,7 +13,7 @@ Azure OpenAI webhooks enable your applications to receive real-time notification
 
 ## Prerequisites
 
-- Azure CLI installed and signed in. For example: `az --version` and `az login`. See <https://learn.microsoft.com/cli/azure/install-azure-cli>.
+- Azure CLI installed and signed in. For example: `az --version` and `az login`. See [How to install the Azure CLI](/cli/azure/install-azure-cli).
 - An Azure OpenAI resource endpoint (for example, `https://{resource}.openai.azure.com/`) and an API key available as `AZURE_OPENAI_API_KEY`.
 
 Install the required Python packages:
@@ -28,7 +28,7 @@ A webhook server is an application that listens for and processes automated mess
 
 ### Create the webhook listener application
 
-Create a file called app.py with the following Flask application that receives and processes webhook events:
+Create a file called `app.py` with the following Flask application that receives and processes webhook events:
 
 ```python
 from flask import Flask, request, Response
@@ -92,7 +92,7 @@ requests
 
 ## Create an Azure web app
 
-Deploy your webhook server using [`az webapp up`](/cli/azure/webapp?view=azure-cli-latest#az-webapp-up). The command must be run from the folder where the `app.py` code for your application is located.
+Deploy your webhook server using [`az webapp up`](/cli/azure/webapp?view=azure-cli-latest&preserve-view=true#az-webapp-up). The command must be run from the folder where the `app.py` code for your application is located.
 
 ```bash
 az webapp up --name unique-webhook-handler-name --resource-group myResourceGroup --runtime "PYTHON:3.12"

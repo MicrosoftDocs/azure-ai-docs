@@ -1,11 +1,12 @@
 ---
 title: "Use a screen reader with Microsoft Foundry (classic)"
-description: "This quickstart guides you in how to get oriented and navigate Microsoft Foundry with a screen reader. (classic)"
+description: "Learn how to get oriented and navigate Microsoft Foundry with a screen reader. (classic)"
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
-ms.date: 03/24/2026
+ms.date: 05/20/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
@@ -14,6 +15,7 @@ ms.custom:
   - build-2024
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
@@ -178,8 +180,6 @@ After you complete the steps in this article, verify the following outcomes:
 ## Technical support for customers with disabilities
 
 [!INCLUDE [screen-reader-tech-support](../../foundry/includes/screen-reader-tech-support.md)]
-
-If you're a government, commercial, or enterprise customer, contact the Enterprise Disability Answer Desk.
 
 ## Related content
 

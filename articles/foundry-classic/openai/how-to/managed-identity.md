@@ -5,8 +5,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to 
 ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ms.custom: devx-track-azurecli
 ---

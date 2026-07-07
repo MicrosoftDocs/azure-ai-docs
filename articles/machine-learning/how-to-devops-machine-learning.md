@@ -8,7 +8,7 @@ ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 02/10/2026
+ms.date: 04/20/2026
 ms.topic: how-to
 ms.custom: devops-pipelines-deploy, dev-focus
 ai-usage: ai-assisted
@@ -220,6 +220,9 @@ jobs:
 
 In step 5, you added a job to submit an Azure Machine Learning job. In this step, you add another job that waits for the Azure Machine Learning job to complete. 
 
+> [!IMPORTANT]
+> Both wait mechanisms in this step (the `AzureMLJobWaitTask@1` task on the Azure Resource Manager tab and the `InvokeRESTAPI@1` webhook registration on the Generic tab) depend on Azure Machine Learning sending a `RunTerminated` notification back to Azure DevOps when the job finishes. This notification path is currently under investigation and might not complete as expected, causing the `WaitFor*` server job to time out instead of reflecting the Azure Machine Learning job status. If you encounter this behavior, poll the job status from an agent job by using `az ml job show --query status` until a terminal state (`Completed`, `Failed`, or `Canceled`) is returned, and exit the task with a matching status.
+
 
 # [Using an Azure Resource Manager service connection](#tab/arm)
 
@@ -284,13 +287,16 @@ If you're using the generic service connection, you can't use the task provided 
 
 ## Step 7: Submit the pipeline and verify your pipeline run
 
-Select **Save and run**. The pipeline waits for the Azure Machine Learning job to complete and ends the task under `WaitForJobCompletion` with the same status as the Azure Machine Learning job. For example:
+Select **Save and run**. When the wait mechanism in Step 6 works as designed, the pipeline waits for the Azure Machine Learning job to complete and ends the task under `WaitForJobCompletion` with the same status as the Azure Machine Learning job. For example:
 
 - Azure Machine Learning job `Succeeded` == Azure DevOps Task under `WaitForJobCompletion` job `Succeeded`
 
 - Azure Machine Learning job `Failed` == Azure DevOps Task under `WaitForJobCompletion` job `Failed`
 
 - Azure Machine Learning job `Cancelled` == Azure DevOps Task under `WaitForJobCompletion` job `Cancelled`
+
+> [!NOTE]
+> Because of the issue called out in Step 6, the `WaitFor*` job might time out rather than reflect the Azure Machine Learning job status. Use Azure Machine Learning studio to confirm the actual job outcome until the notification path is restored.
 
  
 > [!TIP]

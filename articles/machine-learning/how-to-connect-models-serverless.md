@@ -30,7 +30,7 @@ The need to consume a standard deployment in a different workspace than the one 
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - An [Azure Machine Learning workspace](quickstart-create-resources.md) where you want to consume the existing deployment.
 

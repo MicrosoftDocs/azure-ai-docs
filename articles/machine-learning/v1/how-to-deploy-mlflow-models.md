@@ -55,7 +55,7 @@ For more MLflow and Azure Machine Learning functionality integrations, see [MLfl
 
 To deploy your MLflow model to an Azure Machine Learning web service, your model must be set up with the [MLflow Tracking URI to connect with Azure Machine Learning](how-to-use-mlflow.md). 
 
-For the deployment to Azure Container Instances, you don't need to define any deployment configuration. The service defaults to an Azure Container Instances deployment when a configuration isn't provided. You can register and deploy the model in one step with MLflow's [deploy](https://www.mlflow.org/docs/latest/python_api/mlflow.azureml.html#mlflow.azureml.deploy) method for Azure Machine Learning.
+For the deployment to Azure Container Instances, you don't need to define any deployment configuration. The service defaults to an Azure Container Instances deployment when a configuration isn't provided. You can register and deploy the model in one step with MLflow's [deploy](https://www.mlflow.org/docs/latest/api_reference/python_api/mlflow.deployments.html) method for Azure Machine Learning.
 
 ```python
 from mlflow.deployments import get_deploy_client

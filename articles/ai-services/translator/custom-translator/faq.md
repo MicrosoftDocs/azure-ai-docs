@@ -3,9 +3,9 @@ title: "Frequently asked questions - Custom Translator"
 titleSuffix: Foundry Tools
 description: This article contains answers to frequently asked questions about the Custom Translator.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: faq
 ms.custom: cogserv-non-critical-translator

@@ -2,7 +2,7 @@
 title: Azure Face API error codes
 description: Error codes returned from Face API services.
 author: PatrickFarley
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 365-days
 ms.topic: reference

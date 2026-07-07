@@ -3,14 +3,17 @@ title: 'Tutorial: Debug Skillsets'
 description: Practice creating and completing a debug session on an Azure AI Search skillset. This tutorial provides a buggy sample skillset that you resolve in a debug session.
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 03/31/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Fix a skillset using Debug Sessions
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 In Azure AI Search, a skillset coordinates the actions of skills that analyze, transform, or create searchable content. Frequently, the output of one skill becomes the input of another. When inputs depend on outputs, mistakes in skillset definitions and field associations can result in missed operations and data.
 

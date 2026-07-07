@@ -2,8 +2,8 @@
 title: Real-time synthesis for text to speech avatar - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use text to speech avatar with real-time synthesis.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 03/31/2026
 ai-usage: ai-assisted
@@ -60,7 +60,7 @@ Real-time avatar works on these platforms and browsers:
 
 ## Select text to speech language and voice
 
-Speech service supports many [languages and voices](../language-support.md?tabs=tts). See the full list or try them in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
+Speech service supports many [languages and voices](../language-support.md?tabs=tts). 
 
 To match your input text and use a specific voice, set the `SpeechSynthesisLanguage` or `SpeechSynthesisVoiceName` properties in the `SpeechConfig` object:
 
@@ -68,7 +68,7 @@ To match your input text and use a specific voice, set the `SpeechSynthesisLangu
 const speechConfig = SpeechSDK.SpeechConfig.fromSubscription("YourSpeechKey", "YourSpeechRegion");
 // Set either the `SpeechSynthesisVoiceName` or `SpeechSynthesisLanguage`.
 speechConfig.speechSynthesisLanguage = "en-US";
-speechConfig.speechSynthesisVoiceName = "en-US-AvaMultilingualNeural";   
+speechConfig.speechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural";   
 ```
 
 All neural voices are multilingual and fluent in their own language and English. For example, if you select **es-ES-ElviraNeural** and enter English text, the avatar speaks English with a Spanish accent.
@@ -111,9 +111,9 @@ First, create a WebRTC peer connection object. WebRTC is peer-to-peer and relies
 Sample request to fetch ICE info:
 
 ```HTTP
-GET /cognitiveservices/avatar/relay/token/v1 HTTP/1.1
+GET /tts/cognitiveservices/avatar/relay/token/v1 HTTP/1.1
 
-Host: westus2.tts.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 

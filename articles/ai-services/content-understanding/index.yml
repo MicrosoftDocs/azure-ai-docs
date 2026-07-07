@@ -7,8 +7,8 @@ metadata:
   description: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
   author: PatrickFarley 
   ms.author: pafarley
-  ms.date: 12/18/2025
-  ms.service: azure-ai-content-understanding
+  ms.date: 05/21/2026
+  ms.service: azure-content-understanding-foundry-tools
   ms.topic: landing-page
   ms.custom:
     - build-2025
@@ -71,6 +71,9 @@ conceptualContent:
         - itemType: concept
           text: Video
           url: video/overview.md
+        - itemType: concept
+          text: Face
+          url: face/overview.md
     - title: Tutorials
       links:
         - itemType: how-to-guide
@@ -102,6 +105,9 @@ conceptualContent:
           url: tutorial/build-person-directory.md
     - title: Resources
       links:
+        - itemType: how-to-guide
+          text: Bring your own cross-resource capacity
+          url: how-to/bring-your-own-cross-resource-capacity.md
         - itemType: reference
           text: Service limits
           url: service-limits.md
@@ -111,6 +117,15 @@ conceptualContent:
         - itemType: tutorial
           text: Azure Content Understanding Samples (Python)
           url: https://github.com/Azure-Samples/azure-ai-content-understanding-python
+        - itemType: concept
+          text: Pricing explainer
+          url: pricing-explainer.md
+        - itemType: how-to-guide
+          text: Secure communications
+          url: concepts/secure-communications.md
+        - itemType: how-to-guide
+          text: Disaster recovery
+          url: how-to/disaster-recovery.md
     - title: Reference
       links:
         - itemType: reference

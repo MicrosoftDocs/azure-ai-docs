@@ -6,9 +6,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: troubleshooting
-ms.date: 01/05/2026
-ms.author: jburchel
-author: jonburchel
+ms.date: 06/15/2026
+ms.author: lajanuar
+author: laujan
 reviewer: maanavdalal
 ms.reviewer: maanavd
 ai-usage: ai-assisted
@@ -58,7 +58,7 @@ Reference: [Foundry Local CLI Reference](./reference-cli.md)
 
 If you experience slow inference, consider the following strategies:
 
-- Stop any AI Toolkit for VS Code inference session before you run Foundry Local.
+- Stop any Foundry Toolkit for VS Code inference session before you run Foundry Local.
 - Use GPU acceleration when available.
 - Identify bottlenecks by monitoring memory usage during inference.
 - Try more quantized model variants (for example, INT8 instead of FP16).

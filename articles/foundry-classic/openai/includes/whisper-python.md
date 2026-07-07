@@ -1,7 +1,7 @@
 ---
 services: ai-services
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

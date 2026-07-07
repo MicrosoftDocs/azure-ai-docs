@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ckittel
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -28,7 +28,9 @@ Before you implement the disaster recovery procedures in this article, ensure yo
 - An Azure subscription with an active Microsoft Foundry account using Agent Service in [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup).
 - One of the following Azure RBAC roles at the subscription or resource group scope:
   - **Contributor** or **Owner** for creating and managing Foundry accounts, projects, and dependencies
-  - **Azure AI Project Manager** for managing Foundry projects
+  - **Foundry Project Manager** for managing Foundry projects
+
+    [!INCLUDE [role-rename-note](./role-rename-note.md)]
   - **Storage Account Contributor** for initiating Storage account failover
   - For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 - Agent definitions, knowledge assets, and tool bindings stored in source control for redeployment.
@@ -68,7 +70,7 @@ To reduce recovery time, automate the failover steps by using scripts or infrast
 
 ### Gateway routing
 
-It's always a good idea to have a level of abstraction between clients and APIs. Add a layer of indirection between your clients and the Agent Service. For more information, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
+It's always a good idea to have a level of abstraction between clients and APIs. Add a layer of indirection between your clients and the Agent Service. For more information, see [Azure AI Foundry REST API reference](https://ai.azure.com/api-reference/). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
 
 ## Complete regional outage
 

@@ -2,11 +2,12 @@
 title:  "Microsoft Foundry risk and safety evaluations Transparency Note"
 description: "Microsoft Foundry safety evaluations intended purpose, capabilities, limitations and how to achieve the best performance."
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - build-2024
 ms.topic: concept-article
-ms.date: 12/23/2025
+ms.date: 04/30/2026
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt

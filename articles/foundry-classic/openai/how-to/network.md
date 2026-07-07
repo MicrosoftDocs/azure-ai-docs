@@ -1,13 +1,13 @@
 ---
 title: "Securing Azure OpenAI inside a virtual network with private endpoints (classic)"
 description: "How to secure your Azure OpenAI resource inside a virtual network with private endpoints (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ---
 

@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Network isolation in prompt flow 
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 You can secure prompt flow using private networks. This article explains the requirements to use prompt flow in an environment secured by private networks.
 
 ## Involved services

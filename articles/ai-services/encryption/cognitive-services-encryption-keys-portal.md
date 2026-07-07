@@ -3,7 +3,7 @@ title: Customer-Managed Keys for Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about using customer-managed keys to improve data security with Foundry Tools.
 author: PatrickFarley
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: concept-article

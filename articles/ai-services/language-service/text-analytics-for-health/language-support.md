@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This article explains which natural languages are supported by the Text Analytics for health."
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

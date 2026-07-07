@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 5/19/2025
 ms.custom: include
@@ -145,7 +145,7 @@ Optionally, you can also select **Add my own test script** and provide your own 
 
 1. Optionally, you can add other custom speaking styles. The maximum number of custom styles varies by languages: `English (United States)` allows up to 10 custom styles, `Chinese (Mandarin, Simplified)` allows up to four custom styles, and `Japanese (Japan)` allows up to five custom styles.
 
-   1. Select **Add a custom style** and enter a custom style name of your choice. This name is used by your application within the `style` element of [Speech Synthesis Markup Language (SSML)](../../../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles). You can also use the custom style name as SSML by using the [Audio Content Creation](../../../../how-to-audio-content-creation.md) tool in [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation).
+   1. Select **Add a custom style** and enter a custom style name of your choice. This name is used by your application within the `style` element of [Speech Synthesis Markup Language (SSML)](../../../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles). You can also use the custom style name as SSML by using the [Audio Content Creation](../../../../how-to-audio-content-creation.md) tool in [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation).
    1. Select style samples as training data. Ensure that the training data for custom speaking styles comes from the same speaker as the data used to create the default style.
 
 1. Select **Next**.

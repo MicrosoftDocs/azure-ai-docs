@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to use Content Understanding APIs and SDKs to extract structured data from documents, images, audio, and video.
 author: PatrickFarley 
 ms.author: paulhsu
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: quickstart
 ms.custom:
   - build-2025

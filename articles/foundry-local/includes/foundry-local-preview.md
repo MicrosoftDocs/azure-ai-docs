@@ -1,11 +1,11 @@
 ---
 title: "include file"
 description: "include file"
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/19/2025
+ms.date: 06/15/2026
 ms.custom: include file
 ---
 

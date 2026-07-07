@@ -3,7 +3,7 @@ title: Multi-slot personalization
 description: Learn where and when to use single-slot and multi-slot personalization with the Personalizer Rank and Reward APIs.
 author: jcodella
 ms.author: jacodel
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: how-to
 ms.date: 01/19/2024

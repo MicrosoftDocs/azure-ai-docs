@@ -2,7 +2,7 @@
 title: "Configure keyless authentication with Microsoft Entra ID (classic)"
 description: "Learn how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Eliminate the need for API keys, enhance security with RBAC, and simplify compliance. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 01/22/2026
 ms.custom:

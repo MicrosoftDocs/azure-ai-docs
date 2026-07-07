@@ -1,9 +1,9 @@
 ---
 title: Include file
 description: Include file
-author: mrbullwinkle
+author: alvinashcraft
 ms.reviewer: sgilley
-ms.author: mbullwin
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026

@@ -3,13 +3,14 @@ title: Deploy a custom speech model - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to deploy custom speech models. 
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
+ai-usage: ai-assisted
 ---
 
 # Deploy a custom speech model
@@ -31,6 +32,16 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+1. After training completes, select the custom model to open its details page.
+1. Select the **Deployments** tab, and then select **Deploy** to open the **Deploy** pane.
+1. Enter a name for the deployment and optionally toggle **Content logging** on or off.
+1. Select **Deploy** to create the deployment.
+1. When the deployment is ready, it appears on the **Deployments** tab. Select the deployment to open it in the speech to text playground and test it.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
@@ -48,6 +59,7 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png":::
 
+---
 
 ::: zone-end
 
@@ -106,21 +118,21 @@ You receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
-    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
+    "logs": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
+    "restInteractive": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -154,12 +166,12 @@ To create an endpoint and deploy a model, use the [Endpoints_Create](/rest/api/s
 - Set the required `displayName` property. This name appears in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 - Optionally, set the `loggingEnabled` property within `properties`. Set this property to `true` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
-Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourResourceName` with your Speech resource name, and set the request body properties as previously described.
 
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -167,31 +179,31 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
   "displayName": "My Endpoint",
   "description": "My Endpoint Description",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "locale": "en-US",
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints"
 ```
 
 You receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
-    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
+    "logs": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
+    "restInteractive": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -253,21 +265,21 @@ You receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
-    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
+    "logs": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
+    "restInteractive": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -295,35 +307,35 @@ To redeploy the custom endpoint with a new model, use the [Endpoints_Update](/re
 
 - Set the `model` property to the URI of the model that you want deployed to the endpoint.
 
-Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourResourceName` with your Speech resource name, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
 
 ```azurecli-interactive
 curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/YourEndpointId"
 ```
 
 You receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
-    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
+    "logs": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
+    "restInteractive": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -387,31 +399,31 @@ The response body returns the locations of each log file with more details.
 
 To get logs for an endpoint, start by using the [Endpoints_Get](/rest/api/speechtotext/endpoints/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
 
-Make an HTTP GET request using the URI as shown in the following example. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the URI as shown in the following example. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourResourceName` with your Speech resource name.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/YourEndpointId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
-    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
+    "logs": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
+    "restInteractive": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -425,11 +437,11 @@ You receive a response body in the following format:
 }
 ```
 
-Make an HTTP GET request using the "logs" URI from the previous response body. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the "logs" URI from the previous response body. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourResourceName` with your Speech resource name.
 
 
 ```curl
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId/files/logs" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/YourEndpointId/files/logs" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 The response body returns the locations of each log file with more details.

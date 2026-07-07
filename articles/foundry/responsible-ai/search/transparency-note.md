@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: "Azure AI Search basics, use cases, and terms"
 author: haileytap
 ms.author: haileytapia
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 05/16/2025
@@ -360,7 +360,7 @@ The default scoring algorithm is from Bing and Microsoft Research and integrated
 
 Semantic ranker also offers answers, captions, and highlighting within the response. For example, if the model classifies a query as a question and is 70% confident in the answer, the model returns a semantic answer. Additionally, semantic captions provide the most relevant content within the results and provide a brief snippet highlighting the most relevant words or phrases within that snippet.
 
-Semantic ranker results are based off the data in the underlying search index, and the models provide relevance ranking, answers, and captions based on the information retrieved from the index. Prior to using semantic ranker in a production environment, it is important to do further testing and to ensure that the dataset is accurate and appropriate for the intended use case. For more information and examples of how to evaluate semantic ranker, see the [content and appendix here](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167).
+Semantic ranker results are based off the data in the underlying search index, and the models provide relevance ranking, answers, and captions based on the information retrieved from the index. Prior to using semantic ranker in a production environment, it is important to do further testing and to ensure that the dataset is accurate and appropriate for the intended use case. For more information and examples of how to evaluate semantic ranker, see the [content and appendix here](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167).
 
 ## System performance
 
@@ -418,7 +418,7 @@ To ensure optimal performance in their scenarios, customers should conduct their
 
  There may be cases where synthetic queries are incorrect, come with too many restrictions, or are too expensive. Query rewriting supports [a broad range of languages](/rest/api/searchservice/preview-api/search-documents#querylanguage) and attempts to rewrite user queries to maximize recall, it is required to specify the query language as  an input. Query rewriting is a part of Semantic Ranker (Azure AI Search feature to improve search relevance), which is a premium feature with an additional cost. This should be considered when projecting the overall expenses of your end-to-end solution. Query rewriting can only be used if you have semantic ranker enabled. 
 
-Prior to using query rewriting in a production environment (live version of your application), it is important to do further testing and to ensure that the synthetic queries are appropriate for the intended use case. For more information and examples of how to evaluate query rewriting, see the [content and appendix here](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/raising-the-bar-for-rag-excellence-query-rewriting-and-new-semantic-ranker/4302729). 
+Prior to using query rewriting in a production environment (live version of your application), it is important to do further testing and to ensure that the synthetic queries are appropriate for the intended use case. For more information and examples of how to evaluate query rewriting, see the [content and appendix here](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/raising-the-bar-for-rag-excellence-query-rewriting-and-new-semantic-ranker/4302729). 
 
 
 

@@ -6,6 +6,7 @@ ms.author: sgilley
 ms.reviewer: sgilley
 ms.date: 04/13/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: overview
 ai-usage: ai-assisted
 ms.custom:
@@ -32,7 +33,7 @@ This article covers the **Foundry (classic)** portal and APIs. For the current p
 
 ## Microsoft Foundry API and SDKs
 
-The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
+The [Microsoft Foundry API](/rest/api/microsoft-foundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
 
 - Python
 - C#
@@ -116,7 +117,7 @@ This table summarizes features available in the two project types:
 | Capability | [!INCLUDE [fdp](../foundry/includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
+| Foundry Models sold by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
 | Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
 | Models deployed on managed compute (e.g. HuggingFace) | | ✅ |
 | Foundry SDK and API | ✅ | Limited* |

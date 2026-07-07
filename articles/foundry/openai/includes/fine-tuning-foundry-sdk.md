@@ -4,11 +4,12 @@ titleSuffix: Microsoft Foundry
 description: Learn how to create your own customized model with Microsoft Foundry by using the Foundry Python SDK.
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 ms.date: 09/01/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
+ai-usage: ai-assisted
 ms.custom:
   - build-2025, classic-and-new
 ---
@@ -19,7 +20,9 @@ ms.custom:
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need a Foundry project resource. To create one, sign in to the [Foundry portal](https://ai.azure.com).
 - You need the following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
+- Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../../../foundry-classic/openai/how-to/role-based-access-control.md).
 
 ### Supported models
@@ -95,6 +98,9 @@ The next step is to either choose existing prepared training data or upload new 
 
 For large data files, we recommend that you import from Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
 
+> [!IMPORTANT]
+> Importing from Azure Blob Storage requires the storage account to have **public network access enabled**. If your organization's policies don't allow public access on storage accounts, use the [local file upload](/rest/api/azureopenai/files/upload) method instead.
+
 The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs:
 
 ```python
@@ -105,7 +111,7 @@ from azure.identity import DefaultAzureCredential
 # Load the OpenAI client by using the Foundry SDK
 client = AIProjectClient(
     credential=DefaultAzureCredential(),
-    endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+    endpoint=os.getenv("FOUNDRY_PROJECT_ENDPOINT"),
 ).get_openai_client()
 
 # Upload the training and validation dataset files to Microsoft Foundry with the SDK.

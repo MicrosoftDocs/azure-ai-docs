@@ -3,8 +3,8 @@ title: Document Intelligence US mortgage documents
 titleSuffix: Foundry Tools
 description: Use Document Intelligence prebuilt models to analyze and extract key fields from mortgage documents.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

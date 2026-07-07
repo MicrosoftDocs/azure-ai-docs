@@ -2,14 +2,15 @@
 title: Azure OpenAI Go support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI Go support
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 03/27/2025
+ai-usage: ai-assisted
 ---
 
-[Source code](https://github.com/openai/openai-go) | [Package (pkg.go.dev)](https://pkg.go.dev/github.com/openai/openai-go/v3) | [REST API reference documentation](../../latest.md) | [Package reference documentation](https://pkg.go.dev/github.com/openai/openai-go/v3#section-documentation) 
+[Source code](https://github.com/openai/openai-go) | [Package (pkg.go.dev)](https://pkg.go.dev/github.com/openai/openai-go/v3) | [REST API reference documentation](/rest/api/microsoft-foundry/?view=rest-microsoft-foundry-v1&preserve-view=true) | [Package reference documentation](https://pkg.go.dev/github.com/openai/openai-go/v3#section-documentation) 
 
 ## Azure OpenAI API version support
 

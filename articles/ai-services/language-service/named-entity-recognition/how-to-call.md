@@ -3,7 +3,7 @@ title: How to perform Named Entity Recognition (NER)
 titleSuffix: Foundry Tools
 description: This article shows you how to extract named entities from text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

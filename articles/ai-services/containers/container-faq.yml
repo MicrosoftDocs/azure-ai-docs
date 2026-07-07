@@ -5,8 +5,8 @@ metadata:
   description: Get answers to frequently asked questions.
   #services: cognitive-services
   author: aahill
-  manager: nitinme
-  ms.service: azure-ai-services
+  manager: mcleans
+  ms.service: foundry-tools
   ms.topic: faq
   ms.date: 08/15/2025
   ms.author: aahi
@@ -17,10 +17,10 @@ sections:
     questions:
       - question: What is available?
         answer: |
-          Foundry Tools containers allow developers to use the same intelligent APIs that are available in Azure, but with the [benefits](../cognitive-services-container-support.md#features-and-benefits) of containerization. Some containers are available as a gated preview that might require an application to access. Other containers are publicly available as an ungated preview, or are generally available. You can find a full list of containers and their availability in the [Container support in Foundry Tools](../cognitive-services-container-support.md) article. You can also view the containers in the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/catalog?search=azure%20AI).
+          Foundry Tools containers allow developers to use the same intelligent APIs that are available in Azure, but with the [benefits](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context#features-and-benefits) of containerization. Some containers are available as a gated preview that might require an application to access. Other containers are publicly available as an ungated preview, or are generally available. You can find a full list of containers and their availability in the [Container support in Foundry Tools](../cognitive-services-container-support.md) article. You can also view the containers in the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/catalog?search=azure%20AI).
       - question:  Is there any difference between the Foundry Tools cloud and the containers?
         answer: |
-          Foundry Tools containers are an alternative to the Foundry Tools cloud. Containers offer the same capabilities as the corresponding cloud services. Customers can deploy the containers on-premises or in Azure. The core AI technology, pricing tiers, API keys, and API signature are the same between the container and the corresponding cloud services. There are [features and benefits](../cognitive-services-container-support.md#features-and-benefits) for choosing containers over their cloud service equivalent.
+          Foundry Tools containers are an alternative to the Foundry Tools cloud. Containers offer the same capabilities as the corresponding cloud services. Customers can deploy the containers on-premises or in Azure. The core AI technology, pricing tiers, API keys, and API signature are the same between the container and the corresponding cloud services. There are [features and benefits](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context#features-and-benefits) for choosing containers over their cloud service equivalent.
       - question: How do I access and use a gated preview container?
         answer: |
           Previously, gated preview containers were hosted on the `containerpreview.azurecr.io` repository. As of September 22, 2020, these containers are hosted on the Microsoft Container Registry. Downloading them doesn't require you to use the `docker login` command. You can run a gated preview container if your Azure resource was created with the approved Azure subscription ID. You won't be able to run the container if your Azure subscription hasn't been approved after completion of the [request form](https://aka.ms/csgate).
@@ -96,7 +96,7 @@ sections:
 
       - question: How does billing work?
         answer: |
-          Customers are charged based on consumption, similar to the Foundry Tools cloud. The containers need to be configured to send metering data to Azure, and transactions are billed accordingly. Resources used across the hosted and on-premises services add to the single quota with tiered pricing, counting against both usages. For more information, see the billing section of the [container](../cognitive-services-container-support.md) you're using.
+          Customers are charged based on consumption, similar to the Foundry Tools cloud. The containers need to be configured to send metering data to Azure, and transactions are billed accordingly. Resources used across the hosted and on-premises services add to the single quota with tiered pricing, counting against both usages. For more information, see the billing section of the [container](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context) you're using.
 
           > [!IMPORTANT]
           > Foundry Tools containers are *not licensed* to run without being connected to Azure for metering. Customers need to enable the containers to always communicate billing information with the metering service. Foundry Tools containers don't send customer data to Microsoft.
@@ -133,7 +133,7 @@ sections:
 
       - question: What hardware is required to run these containers?
         answer: |
-          Foundry Tools containers are x64-based containers that can run any compatible Linux node, virtual machine, and edge device that supports x64 Linux Docker containers. They all require CPU processors. For more information, see the container requirements and recommendations section of the [container](../cognitive-services-container-support.md) you're using.
+          Foundry Tools containers are x64-based containers that can run any compatible Linux node, virtual machine, and edge device that supports x64 Linux Docker containers. They all require CPU processors. For more information, see the container requirements and recommendations section of the [container](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context) you're using.
 
       - question: Are these containers currently supported on Windows?
         answer: |

@@ -12,7 +12,9 @@ ms.custom: include
 
 ### Configure permissions to view costs
 
-To view Foundry costs, assign roles based on the task and scope. For cost reporting, assign the [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the required scope. Assign the [Azure AI User role](../concepts/rbac-foundry.md#built-in-roles) when users also need to inspect Foundry resources and usage context.
+To view Foundry costs, assign roles based on the task and scope. For cost reporting, assign the [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the required scope. Assign the [Foundry User role](../concepts/rbac-foundry.md#built-in-roles) when users also need to inspect Foundry resources and usage context.
+
+[!INCLUDE [role-rename-note](./role-rename-note.md)]
 
 If built-in roles don't meet your needs, you can create a custom role with least-privilege permissions. Validate role actions in your environment because available actions can evolve over time.
 
@@ -63,4 +65,4 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 > Validate custom role definitions in a nonproduction environment before broad rollout, and verify each action against your tenant's supported resource provider operations.
 
 > [!NOTE]
-> This custom role example doesn't grant access to Foundry resources by itself. Assign an additional role such as [Azure AI User](../concepts/rbac-foundry.md#built-in-roles) if users also need Foundry resource visibility.
+> This custom role example doesn't grant access to Foundry resources by itself. Assign an additional role such as [Foundry User](../concepts/rbac-foundry.md#built-in-roles) if users also need Foundry resource visibility.

@@ -3,7 +3,7 @@ title: "Cache the authentication token"
 titleSuffix: Azure AI services
 description: Learn how to cache the authentication token in the Immersive Reader app.
 author: sharmas
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to

@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to use Speech service with private endpoints provided by Azure Private Link.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/23/2026
 ms.reviewer: pafarley

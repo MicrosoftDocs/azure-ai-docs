@@ -3,6 +3,7 @@ title: "How to get started with an AI template"
 description: "Find, explore, and deploy AI solution templates from the Foundry portal to accelerate your development."
 keywords: ai templates, solution accelerators, foundry templates, code samples
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.custom:
   - classic-and-new
   - dev-focus
@@ -26,25 +27,23 @@ AI solution templates are prebuilt, task-specific templates that include customi
 > [!IMPORTANT]
 > Starter templates, manifests, code samples, and other resources made available by Microsoft or its partners ("samples") are designed to assist in accelerating development of agents and AI solutions for specific scenarios. Review all provided resources and carefully test output behavior in the context of your use case. AI responses might be inaccurate and AI actions should be monitored with human oversight. Learn more in the transparency documents for [Agent Service](../../responsible-ai/agents/transparency-note.md) and [Agent Framework](https://github.com/microsoft/agent-framework/blob/main/TRANSPARENCY_FAQ.md).  
 >
->Agents and AI solutions you create might be subject to legal and regulatory requirements, might require licenses, or might not be suitable for all industries, scenarios, or use cases. By using any sample, you acknowledge that Agents, AI solutions, or other output created using those samples are solely your responsibility, and that you will comply with all applicable laws, regulations, and relevant safety standards, terms of service, and codes of conduct.  
+> Agents and AI solutions you create might be subject to legal and regulatory requirements, might require licenses, or might not be suitable for all industries, scenarios, or use cases. By using any sample, you acknowledge that Agents, AI solutions, or other output created using those samples are solely your responsibility, and that you will comply with all applicable laws, regulations, and relevant safety standards, terms of service, and codes of conduct.
 
-Available templates:
+## Templates for common AI scenarios
 
-| Template | Popular customer use cases |
-|----------|----------------------------|
-| [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat) | Build interactive chat applications<br><br>[Baseline Microsoft Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/baseline-azure-ai-foundry-chat) |
-| [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents) | Create autonomous AI agents |
-| [Build agentic apps to unify data](https://github.com/microsoft/agentic-applications-for-unified-data-foundation-solution-accelerator/tree/main) | Embed analytics across applications with instant data visualization for:<br>• Sales performance analysis<br>• Customer insights and reporting<br>• Natural language analysis on structured data |
-| [Create a multi-agent release manager assistant](https://github.com/Azure-Samples/openai/tree/main/Agent_Based_Samples/release_manager) | Enable AI-powered release planning for:<br>• Cross-system release coordination<br>• Real-time dependency mapping and release health assessment<br>• Advanced visualization for retrieved insights<br>• Safe update mechanisms built into AI agents |
-| [Create a call center voice agent](https://github.com/Azure-Samples/call-center-voice-agent-accelerator) | Develop interactive voice agents for:<br>• Customer support<br>• Product catalog navigation<br>• Self-service solutions |
-| [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator) | Extract knowledge from conversations<br><br>[Build a conversation knowledge mining solution](/azure/architecture/ai-ml/idea/unlock-insights-from-conversational-data) |
-| [Multi-agent workflow automation](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | Automate complex workflows<br><br>[Build a multiple-agent workflow automation solution](/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation) |
-| [Multi-modal content processing](https://github.com/microsoft/content-processing-solution-accelerator) | Process diverse content types<br><br>[Extract and map information from unstructured content](/azure/architecture/ai-ml/idea/multi-modal-content-processing) |
-| [Generate documents from your data](https://github.com/microsoft/document-generation-solution-accelerator) | Create documents automatically<br><br>[Build a document generation system](/azure/architecture/ai-ml/idea/generate-documents-from-your-data) |
-| [Improve client meetings with agents](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator) | Enhance meeting productivity |
-| [Modernize your code with agents](https://github.com/microsoft/Modernize-your-code-solution-accelerator) | Update legacy code |
-| [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) | Create conversational experiences |
-| [Retrieve and summarize SharePoint data](https://github.com/microsoft/app-with-sharepoint-knowledge)  | Retrieve content from SharePoint sites |
+Speed up development by using these templates for common AI scenarios, including sample code and architecture guidance.
+
+| Scenario | GitHub repo | Documentation |
+|:---|:---|:---|
+| AI chat | [Sample code](https://github.com/Azure-Samples/get-started-with-ai-chat) | - [Architecture guidance: Baseline Microsoft Foundry chat](/azure/architecture/ai-ml/architecture/baseline-microsoft-foundry-chat)<br>- [GitHub README resources](https://github.com/Azure-Samples/get-started-with-ai-chat?tab=readme-ov-file#resources) |
+| AI agents | [Sample code](https://github.com/Azure-Samples/get-started-with-ai-agents) | - [GitHub README resources](https://github.com/Azure-Samples/get-started-with-ai-agents?tab=readme-ov-file#resources) |
+| Conversation insights | [Sample code](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator) | - [Architecture guidance: Conversation knowledge mining](/azure/architecture/ai-ml/idea/unlock-insights-from-conversational-data)<br>- [GitHub README resources](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator#resources) |
+| Multi-agent workflow automation | [Sample code](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | - [Architecture guidance: Build a multiple-agent workflow automation solution](/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation)<br>- [GitHub README resources](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator#resources) |
+| Multi-modal content processing | [Sample code](https://github.com/microsoft/content-processing-solution-accelerator) | - [Architecture guidance: Extract and map information from unstructured content](/azure/architecture/ai-ml/idea/multi-modal-content-processing)<br>- [GitHub README resources](https://github.com/microsoft/content-processing-solution-accelerator#resources) |
+| Document generation | [Sample code](https://github.com/microsoft/document-generation-solution-accelerator) | - [Architecture guidance: Build a document generation system](/azure/architecture/ai-ml/idea/generate-documents-from-your-data)<br>- [GitHub README resources](https://github.com/microsoft/document-generation-solution-accelerator#resources) |
+| Client meeting enhancement | [Sample code](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator) | - [GitHub README resources](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator#resources) |
+| Code modernization | [Sample code](https://github.com/microsoft/Modernize-your-code-solution-accelerator) | - [GitHub README resources](https://github.com/microsoft/Modernize-your-code-solution-accelerator#resources) |
+| Conversational agent | [Sample code](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) | - [GitHub README resources](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator#resources) |
 
 > [!TIP]
 > Each template includes a GitHub README with setup, deployment, and customization instructions. Start there for the fastest path forward.

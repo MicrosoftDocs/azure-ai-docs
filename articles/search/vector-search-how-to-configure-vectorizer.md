@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Configure a vectorizer in a search index
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, a *vectorizer* converts text or images into vectors during query execution, allowing you to submit plain-text queries against vector fields without computing embeddings yourself.
 
 A vectorizer is defined in a search index and assigned to vector fields through a vector profile. At query time, the vectorizer calls an embedding model to generate a vector from your query input. For more information, see [Using integrated vectorization in queries](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries).
@@ -133,7 +135,7 @@ To define a vectorizer and vector profile in an existing index:
 
     ```http
     ### Get index definition
-    GET https://my-search-service.search.windows.net/indexes/my-index?api-version=2025-09-01 HTTP/1.1
+    GET https://my-search-service.search.windows.net/indexes/my-index?api-version=2026-04-01 HTTP/1.1
     Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-admin-api-key>
     ```
     
@@ -141,7 +143,7 @@ To define a vectorizer and vector profile in an existing index:
 
    ```http
    ### Update index definition
-   PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2025-09-01 HTTP/1.1
+   PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2026-04-01 HTTP/1.1
    Content-Type: application/json
    Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-admin-api-key>
 
@@ -249,7 +251,7 @@ Use [Documents - Search Post](/rest/api/searchservice/documents/search-post) (RE
 
 ```http
 ### Test a vectorizer with a vector query
-POST https://my-search-service.search.windows.net/indexes/vector-nasa-ebook-txt/docs/search?api-version=2025-09-01 HTTP/1.1
+POST https://my-search-service.search.windows.net/indexes/vector-nasa-ebook-txt/docs/search?api-version=2026-04-01 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-query-api-key>
 

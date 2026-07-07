@@ -14,7 +14,7 @@ ms.custom: include
 
 Create a new Foundry project directly from the extension to organize your models and resources.
 
-1. Select the **plus** icon next to **Resources** in the **Resources** section of the Foundry extension view.
+1. Select **+ Create Project** in the **My Resources** section of the Microsoft Foundry Toolkit for Visual Studio Code extension view.
 
     You can either create a new resource group or select an existing one.
 1. To create a new resource group:
@@ -35,7 +35,7 @@ To deploy a model to the newly created project, select the **Deploy a model** bu
 
 ### Switch the default project
 
-When you open a project in the Foundry extension, that project is set as your default project. To switch your default project:
+When you open a project in the Microsoft Foundry Toolkit for Visual Studio Code extension, that project is set as your default project. To switch your default project:
 
 1. Right-click on the Foundry project and select the **Switch Default Project in Azure Extension** option.
 
@@ -48,15 +48,15 @@ The selected project now displays **Default** after the project name.
 
 ## Work with models
 
-The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../concepts/foundry-models-overview.md) directly in VS Code.
+The Microsoft Foundry Toolkit for Visual Studio Code extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../concepts/foundry-models-overview.md) directly in VS Code.
 
 ### Browse the model catalog
 
 The model catalog provides access to models from Microsoft, OpenAI, Meta, DeepSeek, and other providers. You can open the model catalog in several ways:
 
-- Run the **Foundry: Open Model Catalog** command from the command palette.
-- Select the **plus** icon next to **Models** in the **Resources** section of the Foundry extension view.
-- Select the **Model Catalog** link in the **Tools** section of the Foundry extension view.
+- Run the **Foundry Toolkit: Show model catalog** command from the command palette.
+- Select the **plus** icon next to **Models** in the **My Resources** section of the Microsoft Foundry Toolkit for Visual Studio Code extension view.
+- Select the **Model Catalog** link in the **Developer Tools** section of the Microsoft Foundry Toolkit for Visual Studio Code extension view.
 
 #### Open the model catalog from the command palette
 
@@ -64,7 +64,7 @@ Use the command palette to open the model catalog without navigating the extensi
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
-1. Enter **Foundry: Open Model Catalog** and press Enter.
+1. Enter **Foundry Toolkit: show model catalog** and press Enter.
 
 1. The **Model Catalog** page opens.
 
@@ -76,14 +76,14 @@ Use the command palette to open the model catalog without navigating the extensi
 
 #### Open the model catalog from the Resources section
 
-In the Foundry extension view, select the **plus** icon next to **Models** to open the model catalog.
+In the Microsoft Foundry Toolkit for Visual Studio Code extension view, select the **plus** icon next to **Models** to open the model catalog.
 
 > [!TIP]
 > You can also right-click on **Models** and select **Deploy new AI model** to go directly to the deployment flow.
 
 #### Open the model catalog from the Tools section
 
-In the **Tools** section of the Foundry extension view, double-click the **Model Catalog** link.
+In the **Developer Tools** section of the Microsoft Foundry Toolkit for Visual Studio Code extension view, double-click the **Model Catalog** link.
 
 ### Deploy a model from the model catalog
 
@@ -109,7 +109,7 @@ After you find a model in the catalog, deploy it to your Foundry project so you 
 
 ### View and manage deployed models
 
-Expand the **Models** section in the Foundry extension view to see all deployed models in your project.
+Expand the **Models** section in the Microsoft Foundry Toolkit for Visual Studio Code extension view to see all deployed models in your project.
 
 #### View model card information
 
@@ -149,7 +149,7 @@ The following screenshot shows a generated Python sample that makes a synchronou
 
 Use the model playground to chat interactively with your deployed model, adjust settings, and modify system instructions.
 
-To open the playground, double-click the **Model Playground** link in the **Tools** section of the Foundry extension view. Alternatively, right-click on your deployed model and select **Open in playground**.
+To open the playground, double-click the **Model Playground** link in the **Developer Tools** section of the Microsoft Foundry Toolkit for Visual Studio Code extension view. Alternatively, right-click on your deployed model and select **Open in playground**.
 
 1. The **Playground** page opens.
 
@@ -161,7 +161,7 @@ To open the playground, double-click the **Model Playground** link in the **Tool
 
 ## Troubleshoot common issues
 
-If you run into problems while using the Foundry extension, check the following common issues:
+If you run into problems while using the Microsoft Foundry Toolkit for Visual Studio Code extension, check the following common issues:
 
 | Issue | Resolution |
 | ----- | ---------- |
@@ -175,7 +175,7 @@ The Azure resources that you created in this article are billed to your Azure su
 
 ### Delete your models
 
-1. In the VS Code navigation bar, refresh the Foundry extension. In the **Resources** section, expand the **Models** subsection.
+1. In the VS Code navigation bar, refresh the Microsoft Foundry Toolkit for Visual Studio Code extension. In the **My Resources** section, expand the **Models** subsection.
 
 1. Right-click the deployed model you want to remove and select **Delete**.
 

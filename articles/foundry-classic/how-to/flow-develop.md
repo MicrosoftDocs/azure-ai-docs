@@ -20,7 +20,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 Prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 

@@ -57,7 +57,7 @@ Compute clusters can run jobs securely in a [virtual network environment](../how
 
 ## Limitations
 
-* Compute clusters can be created in a different region and VNet than your workspace. However, this functionality is only available using the SDK v2, CLI v2, or studio. For more information, see the [v2 version of secure training environments](../how-to-secure-training-vnet.md?view=azureml-api-2&preserve-view=true#compute-cluster-in-a-different-vnetregion-from-workspace).
+* Compute clusters can be created in a different region and VNet than your workspace. However, this functionality is only available using the SDK v2, CLI v2, or studio. For more information, see the [v2 version of secure training environments](../how-to-secure-training-vnet.md?view=azureml-api-2&preserve-view=true#compute-cluster-in-a-different-virtual-network-or-region-from-workspace).
 
 * We currently support only creation (and not updating) of clusters through [ARM templates](/azure/templates/microsoft.machinelearningservices/workspaces/computes). For updating compute, we recommend using the SDK, Azure CLI or UX for now.
 

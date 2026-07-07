@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Understand the pricing model for Azure Content Understanding in Foundry Tools, including what you're charged for, how to estimate costs, and pricing examples.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
 ms.date: 01/29/2026
 ai-usage: ai-assisted
@@ -77,9 +77,10 @@ The calculator provides accurate cost projections for your workload.
 
 ## Pricing example: Invoice field extraction
 
-Following the estimation approach, let's walk through a concrete example manually to demonstrate how the costs are calculated. You're processing invoices to extract structured data like vendor name, invoice number, total amount, and line items.
+Following the estimation approach, let's walk through a concrete example manually to demonstrate how the costs are calculated. 
 
-**Scenario**: You want to process 1,000 invoice pages using GPT-4o-mini with source grounding and confidence scores disabled. 
+**Scenario**: You're processing invoices to extract structured data like vendor name, invoice number, total amount, and line items.
+ You want to process 1,000 invoice pages with source grounding and confidence scores disabled. 
 
 **Step 1: Test with representative files**
 After testing representative files, you found the following average token usage per page:
@@ -93,13 +94,13 @@ For 1,000 pages, totals equal:
 - **Total contextualization tokens**: 1,000 pages × 1,000 = 1,000,000 tokens
 
 **Step 2: Calculate costs manually (instead of using the pricing calculator)**
-Using GPT-4o-mini global deployment with the following pricing assumptions:
+Using a global deployment with the following pricing assumptions:
 
 **Pricing assumptions** :
 - Content extraction: $5.00 per 1,000 pages
 - Contextualization: $1.00 per 1M tokens
-- GPT-4o-mini input tokens: $0.40 per 1M tokens
-- GPT-4o-mini output tokens: $1.60 per 1M tokens
+- Input tokens: $0.40 per 1M tokens
+- Output tokens: $1.60 per 1M tokens
 - Embeddings: $0.02 per 1,000 tokens. You're not using a knowledge base with training examples, so no embeddings charges apply. If you add labeled examples to improve accuracy, the system adds embedding token usage to embed the text from the input documents and completion input tokens to process example data added to the context window. 
 
 **Cost calculation**:
@@ -151,7 +152,7 @@ The following table shows which meter applies based on your file type and analys
   
 ### Generative capabilities
 
-The generative capabilities of Content Understanding use generative AI models to enhance the quality of the output. In the latest API version [**`2025-11-01`**], you can choose a generative model based on your use case (ex. GPT-4o or GPT-4o-mini). 
+The generative capabilities of Content Understanding use generative AI models to enhance the quality of the output. In the latest API version [**`2025-11-01`**], you can choose a generative model based on your use case. 
 
 When you use any generative capabilities, Content Understanding uses the Foundry models deployment you provide. The token usage for the completion or embeddings models is on that deployment. 
 
@@ -196,7 +197,7 @@ Token-based charges from Foundry models that power the actual field extraction, 
 - Confidence scores and source grounding
 - Analysis results and descriptions
 
-**Cost optimization**: Choose smaller models (GPT-4o-mini) or global deployments for significant savings.
+**Cost optimization**: Choose smaller models or global deployments for significant savings.
 
 #### Embeddings charges
 
@@ -259,7 +260,7 @@ No. Content Understanding uses the LLM deployments linked for all LLM and embedd
 
 
 ### How much can I save with smaller models?
-Choosing GPT-4o-mini instead of GPT-4o can reduce LLM costs by up to 80%. Global deployments provide additional savings. Content extraction and contextualization charges remain the same regardless of model choice.
+Choosing a -mini model instead of standard can reduce LLM costs by up to 80%. Global deployments provide additional savings. Content extraction and contextualization charges remain the same regardless of model choice.
 
 ### What increases token usage?
 Several features multiply token consumption:
@@ -273,7 +274,7 @@ Content Understanding doesn't charge for content extraction or contextualization
 
 ## Cost optimization tips
 
-- **Start with mini models** - GPT-4o-mini offers substantial savings for most extraction tasks
+- **Start with mini models** - Mini models offer substantial savings for most extraction tasks
 - **Use global deployments** when data residency and compliance allows   
 - **Enable advanced features selectively** - Only use source grounding and confidence scores when needed
 - **Test representative files** before scaling to understand actual token consumption

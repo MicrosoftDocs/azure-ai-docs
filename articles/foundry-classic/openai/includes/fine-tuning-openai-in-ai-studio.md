@@ -1,8 +1,8 @@
 ---
 title: Include file
 description: Include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.date: 02/27/2025
 ms.service: microsoft-foundry
 ms.topic: include
@@ -21,7 +21,9 @@ ms.custom:
 
   > [!NOTE]
   > The supported regions might vary if you use Azure OpenAI models in a Foundry project versus outside a project.
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
+- Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine tune) models, only AI Owners may deploy them.
+
+  [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models

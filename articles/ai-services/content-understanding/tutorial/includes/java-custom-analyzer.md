@@ -1,9 +1,9 @@
 ---
 title: "Tutorial: Create a custom analyzer using the Content Understanding Java SDK"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to create a custom analyzer with Content Understanding using the Java SDK.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 03/16/2026
 ms.author: lahlouchu
@@ -166,7 +166,7 @@ fieldSchema.setDescription(
 fieldSchema.setFields(fields);
 
 Map<String, String> models = new HashMap<>();
-models.put("completion", "gpt-4.1");
+models.put("completion", "gpt-5.2");
 models.put("embedding", "text-embedding-3-large"); // Required when using field_schema and prebuilt-document base analyzer
 
 ContentAnalyzer customAnalyzer =
@@ -291,7 +291,7 @@ categories.put("Bank_Statement",
 // Create the classifier
 Map<String, String> classifierModels =
     new HashMap<>();
-classifierModels.put("completion", "gpt-4.1");
+classifierModels.put("completion", "gpt-5.2");
 
 ContentAnalyzer classifier =
     new ContentAnalyzer()
@@ -367,7 +367,7 @@ fieldSchema.setDescription(
 fieldSchema.setFields(fields);
 
 Map<String, String> models = new HashMap<>();
-models.put("completion", "gpt-4.1");
+models.put("completion", "gpt-5.2");
 
 ContentAnalyzer customAnalyzer =
     new ContentAnalyzer()
@@ -501,7 +501,7 @@ fieldSchema.setDescription(
 fieldSchema.setFields(fields);
 
 Map<String, String> models = new HashMap<>();
-models.put("completion", "gpt-4.1");
+models.put("completion", "gpt-5.2");
 
 ContentAnalyzer customAnalyzer =
     new ContentAnalyzer()
@@ -629,7 +629,7 @@ fieldSchema.setDescription(
 fieldSchema.setFields(fields);
 
 Map<String, String> models = new HashMap<>();
-models.put("completion", "gpt-4.1");
+models.put("completion", "gpt-5.2");
 
 ContentAnalyzer customAnalyzer =
     new ContentAnalyzer()

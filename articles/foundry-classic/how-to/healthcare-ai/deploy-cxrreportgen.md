@@ -2,13 +2,13 @@
 title: "Deploy CXRReportGen Healthcare AI Model in Foundry (classic)"
 description: "Learn how to deploy and use the CXRReportGen healthcare AI model with Microsoft Foundry to generate grounded findings from chest X-ray studies. Follow step-by-step instructions to deploy, configure, and invoke the model endpoint. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.custom: dev-focus
 ai-usage: ai-assisted
@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
+[!INCLUDE [health-ai-models-meddev-disclaimer](includes/health-ai-models-meddev-disclaimer.md)]
 
 CXRReportGen is a multimodal model that generates grounded findings from chest X-ray studies. In this article, you learn how to deploy CXRReportGen as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
 
@@ -32,7 +32,7 @@ CXRReportGen generates a list of findings from a chest X-ray study and also perf
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 

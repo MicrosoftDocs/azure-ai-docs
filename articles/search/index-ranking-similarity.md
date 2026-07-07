@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Configure BM25 relevance scoring
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this article, learn how to configure the [BM25 relevance scoring algorithm](https://en.wikipedia.org/wiki/Okapi_BM25) used by Azure AI Search for full text search queries. It also explains how to enable BM25 on older search services.
 
 BM25 applies to:
@@ -40,7 +42,7 @@ BM25 ranking provides two parameters for tuning the relevance score calculation.
 1. Use a [Create or Update Index](/rest/api/searchservice/indexes/create) request to set BM25 parameters:
 
     ```http
-    PUT [service-name].search.windows.net/indexes/[index-name]?api-version=2025-09-01&allowIndexDowntime=true
+    PUT [service-name].search.windows.net/indexes/[index-name]?api-version=2026-04-01&allowIndexDowntime=true
     {
         "similarity": {
             "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
@@ -81,7 +83,7 @@ The following links describe the Similarity property in the Azure SDKs.
 You can also use the [REST API](/rest/api/searchservice/indexes/create). The following example creates a new index with the "similarity" property set to BM25:
 
 ```http
-PUT [service-name].search.windows.net/indexes/[index name]?api-version=2025-09-01
+PUT [service-name].search.windows.net/indexes/[index name]?api-version=2026-04-01
 {
     "name": "indexName",
     "fields": [

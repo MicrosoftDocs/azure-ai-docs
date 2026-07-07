@@ -3,10 +3,10 @@ title: Create orchestration workflow projects and use Azure resources
 titleSuffix: Foundry Tools
 description: Use this article to learn how to create projects in orchestration workflow
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
@@ -69,4 +69,4 @@ When you don't need your project anymore, you can delete your project using the 
 
 ## Next Steps
 
-[Build schema](./build-schema.md)
+[Build schema](./build-train-deploy-model.md#build-your-schema)

@@ -3,10 +3,10 @@ title: Summarization language support
 titleSuffix: Foundry Tools
 description: Learn about which languages are supported by document summarization.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-summarization, ignite-2023, build-2024
 ---

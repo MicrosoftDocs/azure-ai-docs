@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Enable or disable role-based access control in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to enable role-based access control (RBAC) for data plane operations on Azure AI Search. With RBAC enabled, you can use Microsoft Entra ID authentication instead of API keys.
 
 > [!IMPORTANT]

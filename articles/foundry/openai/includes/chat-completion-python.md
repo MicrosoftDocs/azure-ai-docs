@@ -2,13 +2,13 @@
 title: Work with the Chat Completion API 
 titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API. 
-author: mrbullwinkle #dereklegenzoff
-ms.author: mbullwin #delegenz
+author: alvinashcraft #dereklegenzoff
+ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 11/04/2025
-manager: nitinme
+manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 
@@ -219,14 +219,14 @@ Instructions:
 
 #### Use data for grounding
 
-You can also include relevant data or information in the system message to give the model extra context for the conversation. If you need to include only a small amount of information, you can hard code it in the system message. If you have a large amount of data that the model should be aware of, you can use [embeddings](../tutorials/embeddings.md?tabs=command-line) or a product like [Azure AI Search](https://techcommunity.microsoft.com/t5/ai-applied-ai-blog/revolutionize-your-enterprise-data-with-chatgpt-next-gen-apps-w/ba-p/3762087) to retrieve the most relevant information at query time.
+You can also include relevant data or information in the system message to give the model extra context for the conversation. If you need to include only a small amount of information, you can hard code it in the system message. If you have a large amount of data that the model should be aware of, you can use [embeddings](../tutorials/embeddings.md?tabs=command-line) or a product like [Azure AI Search](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/revolutionize-your-enterprise-data-with-chatgpt-next-gen-apps-w-azure-openai-and/3762087) to retrieve the most relevant information at query time.
 
 ```
 {"role": "system", "content": "Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI in Microsoft Foundry Models. Only answer questions using the context below and if you're not sure of an answer, you can say 'I don't know'.
 
 Context:
 - Azure OpenAI provides REST API access to OpenAI's powerful language models including the GPT-3, Codex and Embeddings model series.
-- Azure OpenAI gives customers advanced language AI with OpenAI GPT-4o, GPT-image-1, and Embeddings models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+- Azure OpenAI gives customers advanced language AI with OpenAI GPT-4o, GPT-image series, and Embeddings models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
 - At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes requiring applicants to show well-defined use cases, incorporating Microsoft’s principles for responsible AI use."
 },
 {"role": "user", "content": "What is Azure OpenAI?"}

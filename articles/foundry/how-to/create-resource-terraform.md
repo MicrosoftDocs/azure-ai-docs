@@ -2,8 +2,9 @@
 title: "Use Terraform to create Microsoft Foundry"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 05/13/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.reviewer: deeikele 
 ms.author: sgilley
 author: sdgilley
@@ -64,9 +65,15 @@ terraform output
 If you already configured a Foundry resource in the Azure portal, you can export that configuration as Terraform code. The export captures your current resource settings, including network rules, identity configuration, and project associations. Use the exported code as a starting point for managing the resource with Terraform.
 
 1. In the [Azure portal](https://portal.azure.com), go to your Foundry resource.
-1. In the left menu under **Automation**, select **Export template**.
-1. Select the **Terraform** tab to view the generated Terraform code.
-1. Select **Download** to save the file locally, or **Copy** to copy the code to your clipboard.
+1. In the left menu, expand **Automation**, and then select **Export template**.
+
+   :::image type="content" source="media/export-template/foundry-resource-export-template-menu.png" alt-text="Screenshot of a Foundry resource left menu with the Automation group expanded and Export template selected." lightbox="media/export-template/foundry-resource-export-template-menu.png":::
+
+1. Select the **Terraform** tab to view the generated Terraform code. Use the **AzureRM** or **AzApi** subtab to choose which provider format to export.
+
+   :::image type="content" source="media/export-template/foundry-export-template-terraform.png" alt-text="Screenshot of the Foundry Export template page with the Terraform tab selected, showing the Download, Open in VS Code, and Copy buttons above the AzureRM and AzApi subtabs and the generated Terraform code." lightbox="media/export-template/foundry-export-template-terraform.png":::
+
+1. Select **Download** to save the file locally, **Open in VS Code** to edit it directly, or **Copy** to copy the code to your clipboard.
 
 > [!NOTE]
 > The export might complete with warnings if some resource types don't support full export. Review the output and fill in any missing properties manually.
@@ -93,11 +100,13 @@ For production-ready Terraform configurations with enterprise security built in,
 
 ### Related security configurations
 
-When you customize your configuration, consider adding the following security settings:
+When you customize your configuration, consider adding the following security settings. Choose based on your governance requirements:
 
-- [Configure network isolation with private endpoints](configure-private-link.md)
-- [Set up customer-managed keys for encryption](../concepts/encryption-keys-portal.md)
-- [Configure role-based access control for Foundry](../concepts/rbac-foundry.md)
-- [Create custom Azure Policy definitions](custom-policy-definition.md)
+| Control | When to add it | Learn more |
+| --- | --- | --- |
+| **Private endpoints (network isolation)** | Your organization bans public endpoints, or you need to keep traffic on your virtual network for compliance (HIPAA, PCI, FedRAMP). | [Configure network isolation with private endpoints](configure-private-link.md) |
+| **Customer-managed keys (CMK) for encryption** | You must control the encryption-key lifecycle, rotation cadence, or revocation, or your data classification requires bring-your-own-key. | [Set up customer-managed keys for encryption](../concepts/encryption-keys-portal.md) |
+| **Role-based access control (RBAC)** | You need least-privilege access for builders versus administrators, or you grant access to multiple teams that share a Foundry resource. | [Configure role-based access control for Foundry](../concepts/rbac-foundry.md) |
+| **Custom Azure Policy definitions** | Your platform team enforces a security baseline (allowed regions, required tags, allowed SKUs, mandatory CMK or private link) across every Foundry resource the organization creates. | [Create custom Azure Policy definitions](custom-policy-definition.md) |
 
 [!INCLUDE [create-resource-terraform 2](../includes/how-to-create-resource-terraform-2.md)]

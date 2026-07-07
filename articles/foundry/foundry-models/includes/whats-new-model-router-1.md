@@ -6,9 +6,20 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/19/2026
 ms.custom: include
 ---
+
+
+## May 2026
+
+### Seven new models added
+
+Model router now supports 28 models. Version `2025-11-18` adds support for seven new models: `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.3-chat`, `gpt-5.5`, `claude-opus-4-7`, and `grok-4.1-fast-reasoning`. To use `claude-opus-4-7` in your model router deployment, you need to first deploy it to your Foundry resource (see [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?tabs=python)). `grok-4.1-fast-reasoning` model router support is in preview.
+
+### Increased quota limits
+
+Model router quota limits increased across Tier 1 through Tier 6 for both GlobalStandard and DataZoneStandard deployment types. For the updated limits, see [Quotas and limits](/azure/ai-foundry/openai/quotas-limits).
 
 ## March 2026
 

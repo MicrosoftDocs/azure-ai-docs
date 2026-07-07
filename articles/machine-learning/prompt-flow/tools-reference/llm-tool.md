@@ -18,12 +18,14 @@ ms.update-cycle: 365-days
 
 # LLM tool
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 The large language model (LLM) tool in prompt flow enables you to use widely used large language models like [OpenAI](https://platform.openai.com/), [Azure OpenAI in Microsoft Foundry Models](../../../ai-foundry/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
 
 Prompt flow provides several large language model APIs:
 
 - [Completion](https://platform.openai.com/docs/api-reference/completions): OpenAI's completion models generate text based on provided prompts.
-- [Chat](https://platform.openai.com/docs/api-reference/chat): OpenAI's chat models and the [Azure AI](https://aka.ms/azureai/modelinference) chat models facilitate interactive conversations with text-based inputs and responses.
+- [Chat](https://developers.openai.com/api/docs/guides/text): OpenAI's chat models and the [Azure AI](https://aka.ms/azureai/modelinference) chat models facilitate interactive conversations with text-based inputs and responses.
 
 The [Embeddings](https://platform.openai.com/docs/api-reference/embeddings) API isn't available in the LLM tool. Use the [embedding tool](embedding-tool.md) to generate embeddings with OpenAI or Azure OpenAI.
 

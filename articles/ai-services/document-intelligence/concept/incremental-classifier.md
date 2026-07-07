@@ -3,8 +3,8 @@ title: Use Document Intelligence incremental classifiers
 titleSuffix: Foundry Tools
 description: Incrementally train custom classifiers by adding new samples to existing classes or adding new classes.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: vikurpad
