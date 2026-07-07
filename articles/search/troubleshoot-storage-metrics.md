@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Troubleshoot storage and metric discrepancies in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article answers common questions about storage metrics that appear inconsistent across the Azure portal, REST APIs, and Azure SDKs.
 
 Storage values in Azure AI Search are collected periodically and might not reflect the real-time state. Therefore, short-term discrepancies are expected in most scenarios.

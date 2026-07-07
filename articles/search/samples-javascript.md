@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # JavaScript samples for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn about JavaScript code samples that demonstrate the functionality and workflow of an Azure AI Search solution. These samples use the [Azure AI Search client library](/javascript/api/overview/azure/search-documents-readme) for the [Azure SDK for JavaScript](/azure/developer/javascript/), which you can explore through the following links.
 
 | Target | Link |

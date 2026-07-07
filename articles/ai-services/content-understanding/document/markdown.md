@@ -236,7 +236,7 @@ Contact our support team at [support@contoso.com](mailto:support@contoso.com "Em
 
 See the [official documentation][docs] for detailed instructions.
 
-[docs]: https://docs.microsoft.com
+[docs]: https://learn.microsoft.com
 ```
 
 ## Annotations

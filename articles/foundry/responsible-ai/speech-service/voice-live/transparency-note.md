@@ -5,7 +5,7 @@ description: "This Transparency Note discusses Voice live and the key considerat
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 09/29/2025
 ---

@@ -9,6 +9,7 @@ ms.date: 09/01/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
+ai-usage: ai-assisted
 ms.custom:
   - build-2025, classic-and-new
 ---
@@ -110,7 +111,7 @@ from azure.identity import DefaultAzureCredential
 # Load the OpenAI client by using the Foundry SDK
 client = AIProjectClient(
     credential=DefaultAzureCredential(),
-    endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+    endpoint=os.getenv("FOUNDRY_PROJECT_ENDPOINT"),
 ).get_openai_client()
 
 # Upload the training and validation dataset files to Microsoft Foundry with the SDK.

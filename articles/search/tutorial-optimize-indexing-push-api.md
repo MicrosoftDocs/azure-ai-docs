@@ -13,6 +13,8 @@ ms.custom:
 
 # Tutorial: Optimize indexing using the push API
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports two basic methods for [importing data](search-what-is-data-import.md) into a search index: *pushing* your data into the index programmatically or *pulling* your data by pointing an [indexer](search-indexer-overview.md) to a supported data source.
 
 This tutorial explains how to efficiently index data using the [push model](search-what-is-data-import.md#pushing-data-to-an-index) by batching requests and using an exponential backoff retry strategy. You can download and run the [sample application](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/optimize-data-indexing/v11). This tutorial also explains the key aspects of the application and what factors to consider when indexing data.

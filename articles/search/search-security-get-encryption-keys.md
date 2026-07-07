@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Find encrypted objects and information
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, customer-managed encryption keys are created, stored, and managed in Azure Key Vault. If you need to determine whether an object is encrypted, or what key name or version is used in Azure Key Vault, use the REST API or an Azure SDK to retrieve the **encryptionKey** property from the object definition in your search service.
 
 Objects that aren't encrypted with a customer-managed key have an empty **encryptionKey** property. Otherwise, you might see a definition similar to the following example.

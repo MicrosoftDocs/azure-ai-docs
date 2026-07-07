@@ -19,9 +19,6 @@ ms.custom: language-service-pii
 
 The document PII playground in Azure AI Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. You can upload document files, configure redaction options, and review redacted output before integrating the feature into your application.
 
-> [!IMPORTANT]
-> Document-based PII is currently in preview and may change before general availability (GA).
-
 ## Prerequisites
 
 > [!TIP]

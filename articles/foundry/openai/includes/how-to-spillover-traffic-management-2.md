@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 06/18/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Enable spillover for select inference requests
@@ -24,7 +25,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
 
 A successful request returns HTTP status `200` with the chat completion response. If spillover occurs, the response includes the `x-ms-spillover-from-deployment` header.
 
-**Reference:** [Create chat completion](../latest.md#create-chat-completion)
+**Reference:** [Create chat completion](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true)
 
 > [!NOTE]
 > If the spillover capability is enabled for the deployment using the `spilloverDeploymentName` property and also enabled at the request level using the `x-ms-spillover-deployment` header, the system defaults to the setting of the deployment property. If you want to ensure that spillover is only enabled on a per-request basis, don't set the `spilloverDeploymentName` property on the provisioned deployment and only rely on the `x-ms-spillover-deployment` header on a per-request basis.
@@ -35,9 +36,9 @@ The following HTTP response headers indicate that a specific request spilled ove
 
 - `x-ms-spillover-from-deployment`: Contains the PTU deployment name. The presence of this header indicates that the request is a spillover request.
 - `x-ms-deployment-name`: Contains the name of the deployment that serves the request. If the request spills over, the deployment name is the name of the standard deployment.
-- `x-ms-spillover-error` is returned on any request that was spills over, and it contains the response code from the provisioned deployment that triggered the spillover (for example 429, 500, or 503). It is present whether or not the spillover attempt ultimately succeeds. 
+- `x-ms-spillover-error` is returned on any request that spills over, and it contains the response code from the provisioned deployment that triggered the spillover (for example 429, 500, or 503). It is present whether or not the spillover attempt ultimately succeeds. 
 
-For a request that spills over, if the standard deployment also fails to serve it, the standard deployment's response (including status code and body) is returned to the caller. `The x-ms-spillover-from-deployment` and `x-ms-spillover-error` headers are still present, so the caller can distinguish a spillover failure from a direct standard-deployment failure. 
+For a request that spills over, if the standard deployment also fails to serve it, the standard deployment's response (including status code and body) is returned to the caller. The `x-ms-spillover-from-deployment` and `x-ms-spillover-error` headers are still present, so the caller can distinguish a spillover failure from a direct standard-deployment failure. 
 
 ## Monitor spillover usage
 
@@ -59,7 +60,7 @@ The following Azure Monitor metrics chart provides an example of the split of re
 
     :::image type="content" source="../media/provisioned/model-filter.png" alt-text="A screenshot showing a filter with model deployments selected." lightbox="../media/provisioned/model-filter.png":::
 
-    The following example shows an instance where an increase in requests sent to the provisioned throughput deployment generates `429` (too many requests) response codes. Shortly after, spillover occurs and requests begin going to the pay-as-you-go deployment used for spillover, generating `200` responses for the pay-as-you-go deployment. Only the standard deployment in this chart (**gpt-4.1, 200 = 954**) shows the spike. The PTU deployment (**gpt-4.1-ptum, 200 = 46**) reflects only requests it served directly.
+    Each request that the provisioned deployment cannot serve (returning `429`, `500`, or `503`) is immediately redirected to the pay-as-you-go deployment used for spillover, where it is processed and counted as a `200` response (**gpt-4.1, 200 = 954**). The provisioned deployment line (**gpt-4.1-ptum, 200 = 46**) reflects only requests it served directly, since spilled-over requests are not counted as `429`s on the provisioned deployment. To distinguish spillover traffic from direct traffic on the standard deployment, apply the `IsSpillover` split, as shown in the next section.
 
     :::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the metrics for visualizing spillover." lightbox="../media/provisioned/spillover-chart-simplified.png":::
 

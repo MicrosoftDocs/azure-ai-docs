@@ -228,7 +228,7 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 > [!NOTE]
 > Agents are now identified using the agent name and agent version. They don't have a GUID called `AgentID` anymore.
 
-For additional agent types (workflow, hosted), see [Agent development lifecycle](./development-lifecycle.md).
+For additional agent types (hosted), see [Agent development lifecycle](./development-lifecycle.md).
 
 ## Create an agent with tools
 

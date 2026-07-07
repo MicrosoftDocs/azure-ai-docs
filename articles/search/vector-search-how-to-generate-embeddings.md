@@ -11,6 +11,8 @@ ms.date: 03/25/2026
 
 # Generate embeddings for search queries and documents
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search doesn't host embedding models, so you're responsible for creating vectors for query inputs and outputs. Choose one of the following approaches:
 
 | Approach | Description |

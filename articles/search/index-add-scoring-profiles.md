@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Add scoring profiles to boost search scores
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Scoring profiles are used to boost or suppress the ranking of matching documents based on user-defined criteria. In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. You can create scoring profiles based on:
 
 + Weighted string fields, where boosting is based on a match found in a designated field. For example, matches found in a "Subject" field are considered more relevant than the same match found in a "Description" field.

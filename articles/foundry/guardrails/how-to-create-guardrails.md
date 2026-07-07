@@ -392,7 +392,7 @@ main();
 }
 ```
 
-For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../openai/reference.md). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
+For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2024-10-21&preserve-view=true). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
 
 ## Document embedding in prompts
 
@@ -534,6 +534,7 @@ For full Responsible AI guidance, see the [Responsible AI Overview](../responsib
 
 ## Next steps
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#set-up-guardrails-and-policies) — role requirements for guardrails and policy management.
 - [Guardrails and controls overview](guardrails-overview.md)
 - [Intervention points and controls](intervention-points.md)
 - [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md)

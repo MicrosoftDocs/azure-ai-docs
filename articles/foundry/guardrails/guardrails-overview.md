@@ -67,7 +67,7 @@ The following table summarizes which risks are applicable to models and agents:
 | [Protected material for text](/azure/foundry/openai/concepts/content-filter-protected-material?tabs=text) | ✅ | ✅ |
 | [Groundedness (Preview)](/azure/foundry/openai/concepts/content-filter-groundedness) | ✅ | ❌ |
 | [Personally identifiable information (Preview)](/azure/foundry/openai/concepts/content-filter-personal-information) | ✅ | ✅ |
-| [Task Adherence (Preview)](/azure/foundry/guardrails/how-to-task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
+| [Task Adherence (Preview)](/azure/foundry/guardrails/task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
 
 ### Severity levels
 

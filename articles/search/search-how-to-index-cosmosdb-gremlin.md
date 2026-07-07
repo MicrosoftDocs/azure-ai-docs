@@ -13,6 +13,8 @@ ms.custom:
 
 # Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]

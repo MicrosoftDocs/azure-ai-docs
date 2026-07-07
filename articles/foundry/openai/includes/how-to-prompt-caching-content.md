@@ -7,6 +7,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/13/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Prompt caching reduces overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. In this context, *"prompt"* refers to the input you send to the model as part of your chat completions or response creation requests. Rather than reprocessing the same input tokens over and over again, the service retains a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. 
@@ -64,7 +65,7 @@ To take advantage of prompt caching, a request must meet both of these requireme
 
 Requests are routed based on a hash of the initial prefix of a prompt. The hash typically uses the first 256 tokens, though the exact length varies depending on the model.
 
-When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits show up as [`cached_tokens`](/azure/ai-foundry/openai/reference-preview#cached_tokens) under [`prompt_tokens_details`](/azure/ai-foundry/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
+When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits show up as [`cached_tokens`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) under [`prompt_tokens_details`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) in the chat completions response.
 
 ```json
 {

@@ -115,7 +115,7 @@ You should be directed to the autolabeling page displaying the autolabeling jobs
 
 ## Review the auto labeled documents
 
-When the autolabeling job is complete, you can see the output documents in the **Data labeling** page of Language Studio. Select **Review documents with autolabels** to view the documents with the **Auto labeled** filter applied.
+When the autolabeling job is complete, you can see the output documents in the **Data labeling** page of Microsoft Foundry. Select **Review documents with autolabels** to view the documents with the **Auto labeled** filter applied.
 
 :::image type="content" source="../media/open-autotag-files.png" alt-text="A screenshot showing the autolabeled documents" lightbox="../media/open-autotag-files.png":::
 

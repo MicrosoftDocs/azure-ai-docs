@@ -9,7 +9,10 @@ ms.custom:
   - ignite-2023
 ai-usage: ai-assisted
 ---
+
 # Fuzzy search to correct misspellings and typos
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Azure AI Search supports fuzzy search, a type of query that compensates for typos and misspelled terms in the input string. Fuzzy search scans for terms having a similar composition. Expanding search to cover near-matches has the effect of autocorrecting a typo when the discrepancy is just a few misplaced characters.
 

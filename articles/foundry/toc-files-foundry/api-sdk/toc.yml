@@ -34,37 +34,39 @@ items:
   - name: v1 API
     items:
     - name: v1 API
-      href: ../../openai/latest.md
+      href: /rest/api/microsoft-foundry/?view=rest-microsoft-foundry-v1&preserve-view=true
     - name: Chat
-      href: ../../openai/latest.md#create-chat-completion
+      href: /rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true
     - name: Embeddings
-      href: ../../openai/latest.md#create-embedding
-    - name: Evals (preview)
-      href: ../../openai/latest.md#list-evals
+      href: /rest/api/microsoft-foundry/azureopenai/embeddings?view=rest-microsoft-foundry-v1&preserve-view=true
+    - name: Evals
+      href: /rest/api/microsoft-foundry/azureopenai/evals?view=rest-microsoft-foundry-v1&preserve-view=true
     - name: Files
-      href: ../../openai/latest.md#create-file
+      href: /rest/api/microsoft-foundry/azureopenai/files?view=rest-microsoft-foundry-v1&preserve-view=true
     - name: Fine-tuning
-      href: ../../openai/latest.md#create-fine-tuning-job
+      href: /rest/api/microsoft-foundry/azureopenai/fine-tuning?view=rest-microsoft-foundry-v1&preserve-view=true
     - name: Models
-      href: ../../openai/latest.md#list-models
+      href: /rest/api/microsoft-foundry/azureopenai/models?view=rest-microsoft-foundry-v1&preserve-view=true
     - name: Responses
-      href: ../../openai/latest.md#create-response
+      href: /rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1&preserve-view=true
     - name: Vector stores
-      href: ../../openai/latest.md#list-vector-stores
+      href: /rest/api/microsoft-foundry/azureopenai/vector_stores?view=rest-microsoft-foundry-v1&preserve-view=true
+    - name: Image, audio, and video (preview)
+      href: ../../openai/reference-preview-latest.md
   - name: Previous versions
     items:
        - name:  2024-10-21 API reference
+         href: /rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2024-10-21&preserve-view=true
+       - name: 2024-10-21 image and audio reference
          href: ../../openai/reference.md
        - name: Preview APIs
          items:
-          - name: v1 Preview API
-            href: ../../openai/reference-preview-latest.md
-          - name: 2025-04-01-preview - Authoring 
-            href: ../../openai/authoring-reference-preview.md
-          - name: 2025-04-01-preview - Inference 
+          - name: 2025-04-01-preview API reference
+            href: /rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true
+          - name: 2025-04-01-preview - image and audio
             href: ../../openai/reference-preview.md
   
-  - name: REST API (resource creation & deployment)
+  - name: REST API (resource creation and deployment)
     href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
 
 # Reference Documentation

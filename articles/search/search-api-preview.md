@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Preview features in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article identifies all data plane and control plane features in preview. This list is helpful for checking feature status. It also explains how to call a preview REST API.
 
 Preview API versions are cumulative and roll up to the next preview. We recommend always using the latest preview APIs for full access to all preview features.

@@ -119,7 +119,7 @@ After the agent emits spans to Application Insights, register it in Foundry so t
 ### Install the SDK
 
 ```bash
-pip install azure-ai-projects>=2.2.0 azure-identity>=1.17.0
+pip install azure-ai-projects>=2.3.0 azure-identity>=1.17.0
 ```
 
 ### Create the registration
@@ -262,6 +262,14 @@ If `create_version()` fails, check the following items:
 > * Your identity has the **Foundry User** role (or higher) on the project.
 > * The `agent_name` value uses only alphanumeric characters, hyphens, and underscores.
 > * No existing agent with the same name and a different kind already exists. Use `project.agents.get()` to check.
+
+## Current limitations
+
+The following Foundry features aren't currently supported for external agents:
+
+- [Human evaluation](../../observability/how-to/human-evaluation.md) — Manual review workflows aren't available for externally registered agents.
+- [Convert agent traces into evaluation datasets](../../observability/how-to/traces-to-dataset.md) — Trace-to-dataset conversion isn't supported for external agents.
+- [AI red teaming](../../concepts/ai-red-teaming-agent.md) — Red teaming scans can't target external agents.
 
 ## Related content
 

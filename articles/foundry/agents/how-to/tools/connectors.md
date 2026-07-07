@@ -11,6 +11,7 @@ ms.author: zhuoqunli
 ms.custom:
   - dev-focus
   - doc-kit-assisted
+  - references_regions
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-connector-config
 ---
@@ -422,7 +423,7 @@ echo "serverURL: $SERVER_URL"
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool
+from azure.ai.projects.models import MCPTool, PromptAgentDefinition
 from azure.identity import DefaultAzureCredential
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
@@ -432,17 +433,21 @@ client = AIProjectClient(
     credential=DefaultAzureCredential()
 )
 
-agent = client.agents.create_agent(
-    model="gpt-4o",
-    name="my-connector-agent",
-    instructions="You are a helpful assistant.",
-    tools=MCPTool(
-        server_label=CONNECTION_NAME,
-        server_url=SERVER_URL,
-        project_connection_id=CONNECTION_NAME
-    ).definitions
+tool = MCPTool(
+    server_label=CONNECTION_NAME,
+    server_url=SERVER_URL,
+    project_connection_id=CONNECTION_NAME
 )
-print(f"Created agent: {agent.id}")
+
+agent = client.agents.create_version(
+    agent_name="my-connector-agent",
+    definition=PromptAgentDefinition(
+        model="gpt-4o",
+        instructions="You are a helpful assistant.",
+        tools=[tool],
+    ),
+)
+print(f"Created agent: {agent.name}, version: {agent.version}")
 ```
 
 For other languages and runtime options, see [Connect agents to MCP servers](model-context-protocol.md).
@@ -480,12 +485,11 @@ The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`az
 
 ```pwsh
 azd auth login
-az login
 
-# Install the agents extension from the azd source
+# Install the Foundry extensions for azd
 azd extension install microsoft.foundry
 
-$PE = "https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set "https://<account>.services.ai.azure.com/api/projects/<project>"
 ```
 
 > [!NOTE]
@@ -499,16 +503,14 @@ The connector name is the `annotations.name` value returned by the Foundry Tools
 
 ```pwsh
 azd ai connection create <connection-name> `
-  --connector-name <connector-name> `
-  -p $PE
+  --connector-name <connector-name>
 ```
 
 For example, to create a connection to the Box connector:
 
 ```pwsh
 azd ai connection create my-box-conn `
-  --connector-name box `
-  -p $PE
+  --connector-name box
 ```
 
 ### Step 3: Complete OAuth consent
@@ -516,7 +518,7 @@ azd ai connection create my-box-conn `
 The connection is created in an `Unauthenticated` state, and the consent URL is returned in the connection details at creation time. Inspect the connection to retrieve it:
 
 ```pwsh
-azd ai connection show my-box-conn -p $PE
+azd ai connection show my-box-conn
 ```
 
 Open the returned consent URL in a browser and sign in once. After consent is recorded, subsequent MCP calls succeed and `overallStatus` transitions to `Connected`.
@@ -545,8 +547,7 @@ $mcp = @{
 } | ConvertTo-Json -Depth 10 -Compress
 
 azd ai connection update my-outlook-conn `
-  --metadata "mcpserverConfigProperties=$mcp" `
-  -p $PE
+  --metadata "mcpserverConfigProperties=$mcp"
 ```
 
 > [!TIP]
@@ -566,8 +567,7 @@ connections:
 
 ```pwsh
 azd ai toolbox create my-toolbox `
-  --from-file .\my-toolbox.yaml `
-  -p $PE
+  --from-file .\my-toolbox.yaml
 ```
 
 For end-to-end agent scaffolding and deployment with `azd`, see [Create and use a Foundry Toolbox](toolbox.md).
@@ -576,13 +576,13 @@ For end-to-end agent scaffolding and deployment with `azd`, see [Create and use 
 
 ```pwsh
 # List connections in the project
-azd ai connection list -p $PE
+azd ai connection list
 
 # Show details for one connection
-azd ai connection show <connection-name> -p $PE
+azd ai connection show <connection-name>
 
 # Delete a connection
-azd ai connection delete <connection-name> -p $PE --force
+azd ai connection delete <connection-name> --force
 ```
 
 :::zone-end

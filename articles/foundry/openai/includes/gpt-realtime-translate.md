@@ -41,7 +41,6 @@ Use GPT Realtime Translate when you need:
 GPT Realtime Translate is available through the Realtime API. The connection and usage patterns are the same as for other realtime models:
 
 - [Use the GPT Realtime API via WebSockets](../how-to/realtime-audio-websockets.md)
-- [Use the GPT Realtime API via WebRTC](../how-to/realtime-audio-webrtc.md)
 
 ## Deployment and availability
 

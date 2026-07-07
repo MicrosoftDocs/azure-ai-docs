@@ -24,6 +24,7 @@ Creating your first agent is a two-step process:
 | Create an account and project                                          | Foundry Account Owner           |
 | [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
 | Create and edit agents                                                 | Foundry User                    |
+| Interact with agent endpoints (without creating or editing agents)     | Foundry Agent Consumer          |
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
@@ -139,5 +140,6 @@ After deployment completes (typically 5-10 minutes), verify that your resources 
 * [Create your first agent](../../quickstarts/get-started-code.md)
 
 * Explore more:
+    * [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#configure-agent-infrastructure) — role requirements for agent setup.
     * [Use your existing resources](../how-to/use-your-own-resources.md)
     * [Network secured agent setup](../how-to/virtual-networks.md)

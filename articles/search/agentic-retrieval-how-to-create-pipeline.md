@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Preview API usage](./includes/previews/agentic-retrieval-preview-api-usage.md)]
 
 > [!IMPORTANT]

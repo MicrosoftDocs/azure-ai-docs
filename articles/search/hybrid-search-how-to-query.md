@@ -12,6 +12,8 @@ ms.date: 04/24/2026
 
 # Create a hybrid query in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [Hybrid search](hybrid-search-overview.md) combines text (keyword) and vector queries in a single search request. Both queries execute in parallel. The results are merged and reordered by new search scores, using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) to return a unified result set. In many cases, [per benchmark tests](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167), hybrid queries with semantic ranking return the most relevant results.
 
 In this article, learn how to:

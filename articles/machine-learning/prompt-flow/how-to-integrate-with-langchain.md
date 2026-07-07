@@ -12,7 +12,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 10/23/2024
+ms.date: 06/30/2026
 ms.update-cycle: 365-days
 ---
 
@@ -39,7 +39,7 @@ Use the following process to convert your local LangChain code to a runnable Azu
 
 ### Convert credentials to a prompt flow connection
 
-Your LangChain code might [define environment variables](https://python.langchain.com/docs/integrations/platforms/microsoft) to store credentials, such as the AzureOpenAI API key necessary for invoking AzureOpenAI models. For example, the following code shows environmental variables being set for OpenAI API type, key, base, and version.
+Your LangChain code might [define environment variables](https://python.langchain.com/docs/integrations/platforms/microsoft) to store credentials, such as the AzureOpenAI API key necessary for invoking AzureOpenAI models. For example, the following code shows environment variables being set for OpenAI API type, key, base, and version.
 
 ```python
 os.environ["OPENAI_API_TYPE"] = "azure"
@@ -48,7 +48,7 @@ os.environ["OPENAI_API_BASE"] = "https://contosobamiopenai.openai.azure.com/"
 os.environ["OPENAI_API_KEY"] = "abc123abc123abc123abc123abc123ab"
 ```
 
-When you run an Azure Machine Learning prompt flow in the cloud, it's better not to expose credentials as environment variables. To securely store and manage credentials separately from your code, you should convert the environmental variables into a prompt flow connection.
+When you run an Azure Machine Learning prompt flow in the cloud, don't expose credentials as environment variables. To securely store and manage credentials separately from your code, convert the environment variables into a prompt flow connection.
 
 To create a connection that securely stores custom credentials such as your LLM API key or other required keys, follow these instructions:
 
@@ -65,23 +65,23 @@ To create a connection that securely stores custom credentials such as your LLM 
 
 1. Select **Save**.
 
-The custom connection can replace keys and credentials or corresponding environmental variables explicitly defined in your LangChain code. To use the custom connection in the flow, see [Configure connection](#configure-connection).
+The custom connection can replace keys and credentials or corresponding environment variables explicitly defined in your LangChain code. To use the custom connection in the flow, see [Configure connection](#configure-connection).
 
 ### Convert LangChain code to a runnable flow
 
 To create a flow, select **Create** on the **Prompt flow** page in Azure Machine Learning studio, and choose a flow type. On the flow authoring page, start your compute session before you author the flow. Select tool types at the top of the page to insert corresponding nodes into the flow. For detailed flow authoring instructions, see [Develop prompt flow](how-to-develop-a-standard-flow.md).
 
-All your LangChain code can directly run in Python nodes in your flow, as long as your compute session contains the `langchain` package dependency.
+You can run all your LangChain code directly in Python nodes in your flow, as long as your compute session contains the `langchain` package dependency.
 
-There are two ways to convert your LangChain code into an Azure Machine Learning prompt flow. The type of flow to implement depends on your use case.
+You can convert your LangChain code into an Azure Machine Learning prompt flow in two ways. The type of flow to implement depends on your use case.
 
-- For better experiment management, you can convert your code to use Azure Machine Learning Python and prompt tools in the flow. You extract the prompt template from your code into a prompt node, and put the remaining code in single or multiple Python nodes or tools. This option helps you easily tune prompts by running variants and lets you choose optimal prompts based on evaluation results.
+- For better experiment management, convert your code to use Azure Machine Learning Python and prompt tools in the flow. Extract the prompt template from your code into a prompt node, and put the remaining code in single or multiple Python nodes or tools. This option helps you easily tune prompts by running variants and lets you choose optimal prompts based on evaluation results.
 
   The following example shows a flow that uses both prompt nodes and Python nodes:
 
   :::image type="content" source="./media/how-to-integrate-with-langchain/flow-node-a-1.png" alt-text="Screenshot of flows highlighting the prompt button and system template. " lightbox = "./media/how-to-integrate-with-langchain/flow-node-a-1.png":::
 
-- For a simpler conversion process, you can call the LangChain LLM library directly from within Python nodes. All your code runs in Python nodes, including prompt definitions. This option supports faster batch testing based on larger datasets or other configurations.
+- For a simpler conversion process, call the LangChain LLM library directly from within Python nodes. All your code runs in Python nodes, including prompt definitions. This option supports faster batch testing based on larger datasets or other configurations.
 
   The following example shows a flow that uses Python nodes only:
 
@@ -89,7 +89,7 @@ There are two ways to convert your LangChain code into an Azure Machine Learning
 
 ### Configure connection
 
-After you structure your flow and move your code to specific tool nodes, you need to replace your original environment variables with the corresponding keys from your connection. To use the custom connection you created, follow these steps:
+After you structure your flow and move your code to specific tool nodes, replace your original environment variables with the corresponding keys from your connection. To use the custom connection you created, follow these steps:
 
 1. In your Python code, import the custom connection library by entering<br>`from promptflow.connections import CustomConnection`.
 
@@ -110,7 +110,7 @@ After you structure your flow and move your code to specific tool nodes, you nee
 
 ### Configure inputs and outputs
 
-Before you run the flow, configure the node inputs and outputs and the overall flow inputs and outputs. This step is crucial to ensure that all the required data passes properly through the flow and produces desired results. For more information, see [Flow inputs and outputs](how-to-develop-flow.md#flow-input-and-output).
+Before you run the flow, configure the node inputs and outputs and the overall flow inputs and outputs. This step ensures that all the required data passes properly through the flow and produces desired results. For more information, see [Flow inputs and outputs](how-to-develop-flow.md#flow-input-and-output).
 
 ## Related content
 

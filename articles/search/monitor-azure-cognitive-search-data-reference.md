@@ -10,6 +10,8 @@ ms.service: azure-ai-search
 
 # Azure AI Search monitoring data reference
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 
 See [Monitor Azure AI Search](monitor-azure-cognitive-search.md) for details on the data you can collect for Azure AI Search and how to use it.

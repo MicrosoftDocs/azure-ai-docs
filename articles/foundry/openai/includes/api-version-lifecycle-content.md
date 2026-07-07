@@ -7,6 +7,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/13/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 This article shows you how to use the v1 Azure OpenAI API. The v1 API simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
@@ -504,7 +505,7 @@ The following sections summarize changes between API versions.
 
 - [`GPT-image-1` support](/azure/ai-foundry/openai/how-to/dall-e)
 - [Reasoning summary for `o3` and `o4-mini`](/azure/ai-foundry/openai/how-to/reasoning)
-- [Evaluation API](/azure/ai-foundry/openai/authoring-reference-preview#evaluation---create)
+- [Evaluation API](/rest/api/microsoft-foundry/azureopenai/evals?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 
 ### Changes between 2025-03-01-preview and 2025-02-01-preview
 
@@ -547,7 +548,7 @@ The following sections summarize changes between API versions.
 ### Changes between 2024-05-01-preview and 2024-07-01-preview API specification
 
 - [Batch API support added](../how-to/batch.md).
-- [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17).
+- [Vector store chunking strategy parameters](/rest/api/microsoft-foundry/azureopenai/vector_stores?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 - `max_num_results` that the file search tool should output.
 
 ### Changes between 2024-04-01-preview and 2024-05-01-preview API specification

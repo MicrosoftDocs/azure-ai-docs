@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Create a vector query in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you have a [vector index](vector-search-how-to-create-index.md) in Azure AI Search, this article explains how to:
 
 > [!div class="checklist"]

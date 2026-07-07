@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Custom Web API vectorizer
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Custom Web API** vectorizer lets you configure search queries to call a web API endpoint that generates embeddings at query time. The required JSON payload structure for the endpoint is described later in this article. Your data is processed in the [geography](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 Although vectorizers are used at query time, you specify them in index definitions and reference them on vector fields through a vector profile. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).

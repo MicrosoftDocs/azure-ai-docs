@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Schedule an indexer in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Indexers can be configured to run on a schedule when you set the `schedule` property. Some situations where indexer scheduling is useful include:
 
 + Source data is changing over time, and you want the indexer to automatically process the difference.

@@ -6,15 +6,16 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 06/23/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.
 
 Capability hosts are sub-resources that you configure at both the Microsoft Foundry account and Foundry project scopes. They tell Foundry Agent Service where to store and process agent data, including:
-- **Conversation history (threads)** 
+- **Conversation history** 
 - **File uploads** 
 - **Vector stores** 
 
@@ -43,7 +44,7 @@ Creating capability hosts isn't required. If you want agents to use your own Azu
 
 ### Default behavior (Microsoft-managed resources)
 If you don't create capability hosts, Agent Service automatically uses Microsoft-managed Azure resources for:
-- Thread storage (conversation history, agent definitions)
+- Conversation storage (conversation history, agent definitions)
 - File storage (uploaded documents) 
 - Vector search (embeddings and retrieval)
 
@@ -64,7 +65,7 @@ Capability hosts operate at two distinct scopes:
 3. **Project-level capability host** - Defines which BYO resources Agent Service uses for that specific project.
 
 > [!IMPORTANT]
-> The project-level capability host is what Agent Service reads to determine which storage, thread, and vector store resources to use for a project. There is no automatic inheritance of BYO resource configuration from the account capability host to the project. Even if the account capability host references connections, Agent Service will not use them for a project unless those connections are explicitly referenced in a project capability host.
+> The project-level capability host is what Agent Service reads to determine which storage, conversation, and vector store resources to use for a project. There's no automatic inheritance of BYO resource configuration from the account capability host to the project. Even if the account capability host references connections, Agent Service doesn't use them for a project unless those connections are explicitly referenced in a project capability host.
 
 ## Understand capability host constraints
 
@@ -80,7 +81,7 @@ When creating capability hosts, be aware of these important constraints to avoid
 
 Capability hosts reference connection names that you create in your Foundry account and project. Before you configure a project capability host for standard agent setup, create connections for resources that store agent data:
 
-- **Thread storage**: Azure Cosmos DB connection
+- **Conversation storage**: Azure Cosmos DB connection
 - **File storage**: Azure Storage connection
 - **Vector store**: Azure AI Search connection
 
@@ -130,7 +131,7 @@ To use your own resources for agent data (standard agent setup), configure the p
 
 | Property | Purpose | Required Azure resource | Example connection name |
 |----------|---------|------------------------|------------------------|
-| `threadStorageConnections` | Stores agent definitions, conversation history and chat threads | Azure Cosmos DB | `"my-cosmosdb-connection"` |
+| `threadStorageConnections` | Stores agent definitions and conversation history | Azure Cosmos DB | `"my-cosmosdb-connection"` |
 | `vectorStoreConnections` | Handles vector storage for retrieval and search | Azure AI Search | `"my-ai-search-connection"` |
 | `storageConnections` | Manages file uploads and blob storage | Azure Storage Account | `"my-storage-connection"` |
 
@@ -154,7 +155,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-Reference: [Foundry account management REST API](/rest/api/aifoundry/accountmanagement/operation-groups)
+Reference: [Foundry account management REST API](/rest/api/microsoftfoundry/accountmanagement/operation-groups)
 
 **Project capability host**
 
@@ -174,7 +175,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-Reference: [Project Capability Hosts - Create or update](/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update)
+Reference: [Project Capability Hosts - Create or update](/rest/api/microsoftfoundry/accountmanagement/project-capability-hosts/create-or-update)
 
 ### Optional: account-level connections with project capability hosts
 
@@ -213,7 +214,7 @@ Use these steps to confirm that capability hosts are configured correctly:
    ```
 
 3. Test your configuration by creating a test agent and running a conversation. Confirm that:
-   - Conversation threads appear in your Azure Cosmos DB
+   - Conversations appear in your Azure Cosmos DB.
    - Uploaded files appear in your Azure Storage account
    - Vector data appears in your Azure AI Search index
 
@@ -222,7 +223,7 @@ Use these steps to confirm that capability hosts are configured correctly:
 ## Delete capability hosts
 
 > [!WARNING]
-> Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete the project and account capability host, agents in your project will no longer have access to the files, thread, and vector stores it previously did.
+> Deleting a capability host affects all agents that depend on it. Make sure you understand the impact before proceeding. For example, if you delete the project and account capability host, agents in your project no longer have access to the files, conversations, and vector stores they previously accessed.
 
 ### Delete an account-level capability host
 

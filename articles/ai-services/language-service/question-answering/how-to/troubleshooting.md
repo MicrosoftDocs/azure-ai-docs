@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: troubleshooting
-ms.date: 12/15/2025
+ms.date: 06/30/2026
 ---
 # Troubleshooting for custom question answering
 
@@ -19,7 +19,7 @@ The curated list of the most frequently asked questions regarding custom questio
 **Answer**:
 Throughput performance issues indicate you need to scale up your Azure AI Search. Consider adding a replica to your Azure AI Search and improve performance.
 
-Learn more about [pricing tiers](../Concepts/azure-resources.md).
+For more information, see [pricing tiers](../concepts/plan.md#pricing-tier-considerations).
 </details>
 
 ## Manage your project
@@ -36,7 +36,7 @@ It's possible that custom question answering can't autoextract some question-and
 <summary><b>How large a project can I create?</b></summary>
 
 **Answer**:
-The size of the project depends on the SKU of Azure search you choose when creating the QnA Maker service. Read [here](../concepts/azure-resources.md) for more details.
+The size of the project depends on the SKU of Azure search you choose when creating the QnA Maker service. For more details, see [Pricing tier considerations](../concepts/plan.md#pricing-tier-considerations).
 
 </details>
 

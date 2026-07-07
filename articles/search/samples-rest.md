@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # REST samples for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn about REST API samples that demonstrate the functionality and workflow of an Azure AI Search solution. These samples use the [Search Service REST APIs](/rest/api/searchservice).
 
 REST is the definitive programming interface for Azure AI Search, offering a language-agnostic way to interact with the service. For this reason, most examples in our documentation use the REST APIs to demonstrate and explain important concepts.

@@ -9,6 +9,8 @@ ai-usage: ai-assisted
 
 # What is a knowledge source?
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 > [!IMPORTANT]

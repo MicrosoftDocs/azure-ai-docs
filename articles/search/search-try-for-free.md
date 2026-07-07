@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Try Azure AI Search for free
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you're new to Azure, you can create an Azure free account to explore Azure AI Search and other services at no charge. The free account provides credits that you can use to create and test services for 30 days.
 
 This article explains how to maximize the value of your Azure free account to quickly and efficiently evaluate Azure AI Search.

@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Add a search service to a network security perimeter
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A [network security perimeter](/azure/private-link/network-security-perimeter-concepts) is a logical network boundary around your platform as a service (PaaS) resources that you deploy outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, [Azure Storage](/azure/storage/common/storage-network-security-perimeter), and [Azure OpenAI in Microsoft Foundry Models](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
 This article explains how to join an Azure AI Search service to a network security perimeter to control network access to your search service. By joining a network security perimeter, you can:

@@ -44,7 +44,7 @@ These custom roles only apply to Language resources.
 > * All prebuilt capabilities are accessible to all roles.
 > * *Owner* and *Contributor* roles take priority over the custom language roles.
 > * Microsoft Entra ID is only used with custom Language roles.
-> * If you're assigned as a *Contributor* on Azure, your role is shown as *Owner* in Language studio portal.
+> * If you're assigned as a *Contributor* on Azure, your role is shown as *Owner* in the Microsoft Foundry portal.
 
 
 ### Cognitive Services Language Reader
@@ -117,7 +117,7 @@ A user responsible for building and modifying an application as a collaborator i
 ### Cognitive Services Language Owner
 
 > [!NOTE]
-> If you're assigned as an Owner and Language Owner,* you considered a *Cognitive Services Language Owner* by Azure Language studio portal.
+> If you're assigned as an Owner and Language Owner,* you are considered a *Cognitive Services Language Owner* in the Microsoft Foundry portal.
 
 
 These users are the gatekeepers for Azure Language applications in production environments. They should have full access to any of the underlying functions and thus can view everything in the application and have direct access to edit any changes for both authoring and runtime environments

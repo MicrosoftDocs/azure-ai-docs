@@ -357,7 +357,7 @@ Response: The youngest employee is Alice Johnson, who is 28 years old.
 File Citation - File Id: file-abc123
 ```
 
-For the full sample, see [Agent_Step16_FileSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step16_FileSearch).
+For the full sample, see [Agent_Step16_FileSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step16_FileSearch).
 
 ---
 

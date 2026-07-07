@@ -5,8 +5,8 @@ ms.subservice: foundry-platform
 ms.reviewer: ckittel
 description: "Plan disaster recovery for Foundry Agent Service: limitations, readiness checklist, and recovery paths for platform outages and data loss. (classic)"
 #customer intent: As a developer, I want to automate the redeployment of agent definitions so that I can speed up disaster recovery processes.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.date: 02/23/2026
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot

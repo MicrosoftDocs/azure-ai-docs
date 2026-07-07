@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Make outbound connections through a shared private link
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to configure a *shared private link* for private, outbound connections from Azure AI Search to an Azure resource running in a virtual network. With a shared private link, the search service connects to a virtual network IP address instead of a public endpoint.
 
 Shared private link is a premium feature billed by usage. For details, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).

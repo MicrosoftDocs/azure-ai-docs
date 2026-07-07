@@ -71,7 +71,7 @@ The following code examples demonstrate how to:
 - [OpenAI JavaScript client](https://github.com/openai/openai-node)
 - [OpenAI .NET client](https://github.com/openai/openai-dotnet)
 - [DefaultAzureCredential class](/dotnet/api/azure.identity.defaultazurecredential)
-- [Chat completions API reference](../../openai/latest.md#create-chat-completion)
+- [Chat completions API reference](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
 Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).

@@ -161,6 +161,7 @@ Use the Azure CLI or Foundry portal to manage role assignments. The Python SDK d
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#create-and-configure-foundry-resources) — role requirements for creating resources and projects.
 - [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md)
 - [What is Foundry?](../what-is-foundry.md)
 - [Create resources using Bicep template](create-resource-template.md)

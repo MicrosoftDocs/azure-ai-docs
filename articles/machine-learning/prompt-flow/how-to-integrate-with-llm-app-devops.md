@@ -8,7 +8,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 11/01/2024
+ms.date: 06/30/2026
 ms.custom:
   - ignite-2023
   - build-2024
@@ -63,11 +63,11 @@ Azure Machine Learning provides a shared file system for all workspace users. Up
 
 ### Work with flow code files
 
-Once you create a flow in Azure Machine Learning studio, you can view, edit, and manage the flow files in the **Files** section of the flow authoring page. Any modifications you make to the files reflect directly in the file share storage.
+After you create a flow in Azure Machine Learning studio, you can view, edit, and manage the flow files in the **Files** section of the flow authoring page. Any modifications you make to the files directly update the file share storage.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-file-explorer.png" alt-text="Screenshot of a standard flow authoring page highlighting the Files pane." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-file-explorer.png":::
 
-The flow folder for an LLM-based flow contains the following key files.
+The flow folder for an LLM-based flow contains the following key files:
 
 - *flow.dag.yaml* is the primary flow definition file in YAML format. This file is integral to authoring and defining the prompt flow. The file includes information about inputs, outputs, nodes, tools, and variants the flow uses.
 
@@ -162,11 +162,11 @@ The return values are the test logs and outputs.
 <a name="submitting-runs-to-the-cloud-from-local-repository"></a>
 ### Submit runs to the cloud from a local repository
 
-Once you're satisfied with the results of your local testing, you can use the prompt flow CLI or SDK to submit runs to the cloud from the local repository. The following procedure and code are based on the [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification) in GitHub. You can clone the project repo or download the prompt flow code to your local machine.
+When you're satisfied with the results of your local testing, use the prompt flow CLI or SDK to submit runs to the cloud from the local repository. The following procedure and code are based on the [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification) in GitHub. You can clone the project repo or download the prompt flow code to your local machine.
 
 #### Install the prompt flow SDK 
 
-Install the Azure prompt flow SDK/CLI by running `pip install promptflow[azure] promptflow-tools`.
+Install the Azure prompt flow SDK and CLI by running `pip install promptflow[azure] promptflow-tools`.
 
 If you're using the demo project, get the SDK and other necessary packages by installing [requirements.txt](https://github.com/Azure/llmops-gha-demo/blob/main/promptflow/web-classification/requirements.txt) with<br>`pip install -r <path>/requirements.txt`.
 
@@ -383,7 +383,7 @@ eval_run = pf.runs.create_or_update(run=eval_run)
 
 ### View run results 
 
-Submitting the flow run to the cloud returns the cloud URL of the run. You can open the URL to view the run results in Azure Machine Learning studio. You can also run the following CLI or SDK commands to view run results.
+When you submit the flow run to the cloud, it returns the cloud URL of the run. Open the URL to view the run results in Azure Machine Learning studio. You can also run the following CLI or SDK commands to view run results.
 
 #### Stream the logs
 
@@ -435,9 +435,9 @@ pf.get_metrics("<evaluation-run-name>")
 
 ## Integrate with DevOps
 
-A combination of a local development environment and a version control system such as Git is typically most effective for iterative development. You can make modifications and test your code locally, then commit the changes to Git. This process creates an ongoing record of your changes and offers the ability to revert to earlier versions if necessary.
+For iterative development, use a local development environment combined with a version control system such as Git. You can make modifications and test your code locally, then commit the changes to Git. This process creates an ongoing record of your changes and offers the ability to revert to earlier versions if necessary.
 
-When you need to share flows across different environments, you can push them to a cloud-based code repository like GitHub or Azure Repos. This strategy lets you access the most recent code version from any location and provides tools for collaboration and code management.
+When you need to share flows across different environments, push them to a cloud-based code repository like GitHub or Azure Repos. This strategy lets you access the most recent code version from any location and provides tools for collaboration and code management.
 
 By following these practices, teams can create a seamless, efficient, and productive collaborative environment for prompt flow development.
 
@@ -445,9 +445,9 @@ For example end-to-end LLMOps pipelines that execute web classification flows, s
 
 ### Trigger flow runs in CI pipelines
 
-Once you successfully develop and test your flow and check it in as the initial version, you're ready for tuning and testing iterations. At this stage, you can trigger flow runs, including batch testing and evaluation runs, by using the prompt flow CLI to automate steps in your CI pipeline.
+After you develop and test your flow and check in the initial version, you're ready for tuning and testing iterations. At this stage, you can trigger flow runs, including batch testing and evaluation runs, by using the prompt flow CLI to automate steps in your CI pipeline.
 
-Throughout the lifecycle of your flow iterations, you can use the CLI to automate the following operations:
+Throughout the lifecycle of your flow iterations, use the CLI to automate the following operations:
 
 - Running the prompt flow after a pull request
 - Running prompt flow evaluation to ensure results are high quality
@@ -471,7 +471,7 @@ The last step in going to production is to deploy your flow as an online endpoin
 
 Collaboration among team members can be essential when developing a LLM-based application with prompt flow. Team members might be authoring and testing the same flow, working on different facets of the flow, or making iterative changes and enhancements concurrently. This collaboration requires an efficient and streamlined approach to sharing code, tracking modifications, managing versions, and integrating changes into the final project.
 
-The prompt flow SDK/CLI and the VS Code Prompt flow extension facilitate easy collaboration on code-based flow development within a source code repository. You can use a cloud-based source control system like GitHub or Azure Repos for tracking changes, managing versions, and integrating these modifications into the final project.
+The prompt flow SDK/CLI and the VS Code Prompt flow extension facilitate easy collaboration on code-based flow development within a source code repository. Use a cloud-based source control system like GitHub or Azure Repos for tracking changes, managing versions, and integrating these modifications into the final project.
 
 ### Follow collaborative development best practices
 

@@ -11,8 +11,8 @@ ms.topic: how-to
 #CustomerIntent: As a developer, I want to diagnose private endpoint connection issues so that I can securely access my Foundry project.
 ms.date: 02/02/2026
 ms.reviewer: meerakurup
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 ---
 

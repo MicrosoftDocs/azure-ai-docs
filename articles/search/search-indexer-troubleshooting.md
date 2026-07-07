@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Indexer troubleshooting guidance for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Occasionally, indexers run into problems that don't produce errors or that occur on other Azure services, such as during authentication or when connecting. This article focuses on troubleshooting indexer problems when there are no messages to guide you. It also provides troubleshooting for errors that come from non-search resources used during indexing. 
 
 > [!NOTE]

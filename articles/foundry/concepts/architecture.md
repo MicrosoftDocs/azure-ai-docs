@@ -64,7 +64,7 @@ Foundry supports two networking models for outbound isolation:
 | Model | How it works | Trade-off |
 | --- | --- | --- |
 | **Customer-managed VNet (BYO)** | You provide the VNet and a dedicated subnet delegated to `Microsoft.App/environments`. The platform injects into your subnet, enabling local communication with your private Azure resources. | Full control over network configuration; requires your own network management. |
-| **Managed VNet** (preview) | Foundry manages the VNet on your behalf. | Simpler setup; limits customization options. For details, see [Configure managed virtual network](../how-to/managed-virtual-network.md). |
+| **Managed VNet** | Foundry manages the VNet on your behalf. | Simpler setup; limits customization options. For details, see [Configure managed virtual network](../how-to/managed-virtual-network.md). |
 
 > [!NOTE]
 > Some network-isolated scenarios require the SDK or CLI instead of the portal. For example, deployments with private endpoints that block all public access aren't configurable through the portal UI. For details, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).

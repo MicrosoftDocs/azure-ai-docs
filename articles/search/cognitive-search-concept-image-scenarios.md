@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Extract text and information from images by using AI enrichment
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Images often contain useful information that's relevant in search scenarios. Azure AI Search doesn't query image content in real time, but you can extract information about an image during indexing and make that content searchable. To represent image content in a search index, you can use these approaches:
 
 + [Vectorize images](search-get-started-portal-image-search.md) to represent visual content as a searchable vector.

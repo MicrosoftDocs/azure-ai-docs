@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 # Quickstart: Deploy Azure AI Search service using Terraform
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article shows how to use Terraform to create an [Azure AI Search service](./search-what-is-azure-search.md) using [Terraform](/azure/developer/terraform/quickstart-configure).
 
 [!INCLUDE [Terraform abstract](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]

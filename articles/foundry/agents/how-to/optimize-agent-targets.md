@@ -40,13 +40,10 @@ The optimizer needs to know which deployed hosted agent to target. It resolves t
 | Priority | Source | Example |
 | -------- | ------ | ------- |
 | 1 (highest) | `--agent` CLI flag | `azd ai agent optimize --agent my-support-agent` |
-| 2 (default) | Current `azd` environment and the `name` field in local `agent.yaml` | `name: my-support-agent` |
+| 2 (default) | Current `azd` environment and the `name` field in the local `azure.ai.agent` service in `azure.yaml` | `name: my-support-agent` |
 | 3 | `agent.name` field in `eval.yaml` | `agent:\n  name: my-support-agent` |
 
-In most cases, you don't need to specify the agent name explicitly. The CLI
-uses your current `azd` environment and your project's local `agent.yaml` file
-to detect the local agent. Use the `--agent` flag when you have multiple agents
-in your project or want to override the default:
+In most cases, you don't need to specify the agent name explicitly. The CLI uses your current `azd` environment and your project's local `azure.yaml` file to detect the local agent. Use the `--agent` flag when you have multiple agents in your project or want to override the default:
 
 ```bash
 azd ai agent optimize
@@ -64,7 +61,7 @@ The optimizer rewrites and refines your agent's system prompt to improve perform
 1. **Baseline evaluation.** Your agent runs with its current instructions against every task in the dataset. The evaluator scores each response against the task's criteria.
 1. **Instruction generation.** The optimizer analyzes the baseline scores and generates alternative system prompts designed to improve weak areas while maintaining strong areas.
 1. **Candidate evaluation.** The optimizer injects each candidate instruction set into your agent through the `OPTIMIZATION_CANDIDATE_ID` environment variable and evaluates it against the same dataset.
-1. **Ranking.** The optimizer ranks candidates by composite score and marks the best candidate with ★.
+1. **Ranking.** The optimizer ranks candidates by composite score and marks the best candidate with an asterisk (`*`).
 
 ### Run instruction optimization
 
@@ -159,7 +156,7 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 ### Optimization model (reflection)
 
 You must specify the deployed optimization model that generates candidate
-configurations. Supported optimization models include the gpt-5 family and
+configurations. Supported optimization models include the GPT-5 family and
 DeepSeek models. For the current list and model roles, see
 [Models](../concepts/agent-optimizer-overview.md#models).
 
@@ -265,7 +262,7 @@ The optimizer improves tool descriptions and parameters in your `tools.json` fil
 ### How it works
 
 1. **Baseline evaluation.** The optimizer evaluates your agent against the dataset, including any tool calls it makes.
-1. **Tool analysis.** The optimizer identifies tool calls that fail or produce suboptimal results and analyzes the root cause—unclear descriptions, missing parameters, or ambiguous naming.
+1. **Tool analysis.** The optimizer identifies tool calls that fail or produce suboptimal results and analyzes the root cause: unclear descriptions, missing parameters, or ambiguous naming.
 1. **Description refinement.** The optimizer generates improved tool definitions with clearer descriptions, better parameter documentation, and more precise function names.
 1. **Evaluation.** The optimizer evaluates the agent with improved tool definitions against the dataset.
 
@@ -363,7 +360,7 @@ This produces candidates that combine improved instructions with different model
 
 ## Interpret results
 
-After optimization completes, review the results table. The ★ marks the best candidate. For the results table columns, scoring details, score-improvement thresholds, and the portal view, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
+After optimization completes, review the results table. An asterisk (`*`) marks the best candidate. For the results table columns, scoring details, score-improvement thresholds, and the portal view, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
 
 ## Deploy the winner
 
@@ -386,7 +383,7 @@ azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
 > [!WARNING]
-> Direct deploy updates the agent service without changing your local files. Use the `apply` → `deploy` workflow for production.
+> Direct deploy updates the agent service without changing your local files. Use the `apply` -> `deploy` workflow for production.
 
 If all candidates score lower than the baseline, don't deploy any candidate. The baseline configuration remains active.
 
@@ -395,7 +392,7 @@ If all candidates score lower than the baseline, don't deploy any candidate. The
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
 | `optimize` returns 400 | Subscription not on allow list | Contact your Microsoft representative to request access |
-| `"agent.yaml does not declare any protocols"` | Invalid `agent.yaml` format | Use flat format: `kind: hosted` at top level with `protocols:` list |
+| Protocol validation error | Invalid `azure.yaml` agent service | Ensure the `azure.ai.agent` service includes `kind: hosted` and a `protocols:` list |
 | Job stuck at "running" | Service issue | Cancel with `azd ai agent optimize cancel <id>` and retry |
 | No candidate IDs in output | Job still running | Wait for completion or use `--watch` |
 

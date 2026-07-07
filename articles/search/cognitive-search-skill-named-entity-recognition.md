@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 #	Named Entity Recognition cognitive skill (v2)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Named Entity Recognition** skill (v2) extracts named entities from text. Available entities include the types `person`, `location` and `organization`.
 
 > [!IMPORTANT]

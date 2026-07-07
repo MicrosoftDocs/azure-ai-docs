@@ -1590,7 +1590,7 @@ items:
               - name: Registry
                 href: reference-yaml-registry.md
       - name: Azure AI Model Inference API
-        href: /rest/api/aifoundry/modelinference
+        href: /rest/api/microsoft-foundry/modelinference
       - name: Azure PowerShell
         href: /powershell/module/az.machinelearningservices/
       - name: Service limits

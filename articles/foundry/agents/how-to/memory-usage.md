@@ -74,7 +74,7 @@ To configure role-based access:
 Install the required packages:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0" azure-identity
+pip install "azure-ai-projects>=2.3.0" azure-identity
 ```
 
 :::zone-end

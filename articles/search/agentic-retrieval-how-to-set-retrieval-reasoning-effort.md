@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Set the retrieval reasoning effort (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 > [!IMPORTANT]

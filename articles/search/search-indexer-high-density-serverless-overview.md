@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Indexer execution on Serverless and Standard 3 High Density (S3 HD)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes the indexer execution model that Azure AI Search uses for Serverless and Standard 3 High Density (S3 HD) search services. Both options have a service-level daily runtime quota that governs how much total indexer time you can use per 24-hour UTC window.
 
 > [!IMPORTANT]

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Index large data sets in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you need to index large or complex data sets in your search solution, this article explores strategies to accommodate long-running processes on Azure AI Search.
 
 These strategies assume familiarity with the [two basic approaches for importing data](search-what-is-data-import.md): *pushing* data into an index, or *pulling* in data from a supported data source using a [search indexer](search-indexer-overview.md). If your scenario involves computationally intensive [AI enrichment](cognitive-search-concept-intro.md), then indexers are required, given the skillset dependency on indexers.

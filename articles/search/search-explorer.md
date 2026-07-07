@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Quickstart: Use Search explorer to run queries in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this quickstart, you learn how to use **Search explorer**, a built-in query tool in the Azure portal for running queries against an Azure AI Search index. Use this tool to test a query or filter expression or to confirm whether content exists in the index.
 
 This quickstart uses an existing index to demonstrate Search explorer.

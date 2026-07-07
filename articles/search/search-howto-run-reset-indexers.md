@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Run or reset indexers, skills, or documents
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, there are several ways to run an indexer:
 
 + [Run immediately upon indexer creation](search-howto-create-indexers.md). This is the default unless you create the indexer in a "disabled" state.

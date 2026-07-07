@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Create a private endpoint for a secure connection to Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to configure a private connection to Azure AI Search so that it admits requests from clients in a virtual network instead of over a public internet connection.
 
 ## Prerequisites

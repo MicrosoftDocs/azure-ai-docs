@@ -4342,7 +4342,7 @@
     },
     {
       "source_path_from_root": "/articles/machine-learning/reference-model-inference-api.md",
-      "redirect_url": "/rest/api/aifoundry/modelinference",
+      "redirect_url": "/rest/api/microsoft-foundry/modelinference",
       "redirect_document_id": false
     },
     {

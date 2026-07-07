@@ -14,6 +14,8 @@ ms.custom:
 
 # Index content from SharePoint in Microsoft 365 (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!NOTE]
 > The SharePoint in Microsoft 365 indexer is in preview. It's offered "as-is" under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on a best-effort basis only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 >

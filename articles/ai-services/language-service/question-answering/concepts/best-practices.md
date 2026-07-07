@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: best-practice
-ms.date: 12/12/2025
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 # Custom question answering best practices

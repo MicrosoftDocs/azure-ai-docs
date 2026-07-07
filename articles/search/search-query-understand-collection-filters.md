@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Understand how OData collection filters work in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article provides background for developers who are writing advanced filters with complex lambda expressions. The article explains why the rules for collection filters exist by exploring how Azure AI Search executes these filters.
 
 When you build a [filter](query-odata-filter-orderby-syntax.md) on collection fields in Azure AI Search, you can use the [`any` and `all` operators](search-query-odata-collection-operators.md) together with **lambda expressions**. Lambda expressions are Boolean expressions that refer to a **range variable**. In filters that use a lambda expression, the `any` and `all` operators are analogous to a `for` loop in most programming languages, with the range variable taking the role of loop variable, and the lambda expression as the body of the loop. The range variable takes on the "current" value of the collection during iteration of the loop.

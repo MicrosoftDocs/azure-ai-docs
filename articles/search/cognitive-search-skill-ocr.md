@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 ---
 # OCR cognitive skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **optical character recognition (OCR)** skill recognizes printed and handwritten text in image files. This article is the reference documentation for the OCR skill. See [Extract text from images](cognitive-search-concept-image-scenarios.md) for usage instructions.
 
 The **OCR** skill uses the machine learning models provided by [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) API [v3.2](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/operations/5d986960601faab4bf452005). The **OCR** skill maps to the following functionality:

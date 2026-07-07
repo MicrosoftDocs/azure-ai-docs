@@ -12,6 +12,8 @@ ms.custom:
 
 # Authenticate to an Azure Function App using "Easy Auth" (Azure AI Search)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to set up an indexer connection to an Azure Function app using the [built-in authentication capabilities of Azure App Service](/azure/app-service/overview-authentication-authorization), also known as "Easy Auth." Azure Function apps are a great solution for hosting Custom Web APIs that an Azure AI Search service can use to enrich content ingested during an indexer run or, if you're using a custom embedding model for [integrated vectorization](vector-search-integrated-vectorization.md), vectorize content in a search query.
 
 You can use a system-assigned or user-assigned managed identity of the search service to authenticate against the Azure Function app. This approach requires setting up a Microsoft Entra ID application registration to use as the authentication provider for the Azure Function app, which is explained in this article.

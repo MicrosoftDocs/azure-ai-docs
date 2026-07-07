@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Reference a path to enriched nodes using context and source properties an Azure AI Search skillset
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 During skillset execution, the engine builds an in-memory [enrichment tree](cognitive-search-working-with-skillsets.md#enrichment-tree) that captures each enrichment, such as recognized entities or translated text. In this article, learn how to reference an enrichment node in the enrichment tree so that you can pass output to downstream skills or specify an output field mapping for a search index field. 
 
 This article uses examples to illustrate various scenarios. For the full syntax, see [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).

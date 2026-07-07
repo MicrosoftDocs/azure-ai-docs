@@ -15,6 +15,8 @@ ms.custom:
 
 # Vector index size and limits
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 For each vector field, Azure AI Search constructs an internal vector index using the algorithm parameters specified on the field. Because Azure AI Search imposes quotas on vector index size, you should know how to estimate and monitor vector size to ensure you stay under the limits.
 
 Internally, the physical data structures of a search index include:

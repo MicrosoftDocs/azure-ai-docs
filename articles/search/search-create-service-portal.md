@@ -15,6 +15,8 @@ ms.custom:
 
 # Create an Azure AI Search service in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [Azure AI Search](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
 
 The easiest way to create a search service is through the [Azure portal](https://portal.azure.com), which is covered in this article.

@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Add a custom skill to an Azure AI Search enrichment pipeline
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 An [AI enrichment pipeline](cognitive-search-concept-intro.md) can include both [built-in skills](cognitive-search-predefined-skills.md) and [custom skills](cognitive-search-custom-skill-web-api.md) that you create and publish. Your custom code executes outside the search service (for example, as an Azure function), but accepts inputs and sends outputs to the skillset just like any other skill. Your data is processed in the [geography](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 Custom skills might sound complex, but they can be simple to implement. If you have existing packages that provide pattern matching or classification models, content extracted from blobs can be passed to those models for processing. Because AI enrichment is Azure-based, your model should also be hosted on Azure. Common hosting options include [Azure Functions](cognitive-search-create-custom-skill-example.md) or [containers](https://github.com/Microsoft/SkillsExtractorCognitiveSearch).

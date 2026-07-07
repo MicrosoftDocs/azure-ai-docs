@@ -9,8 +9,9 @@ ms.topic: reference
 ms.custom: cliv2, build-2023, update-code
 author: s-polly
 ms.author: scottpolly
-ms.date: 10/19/2023
-ms.reviewer: jturuk
+ms.date: 05/12/2026
+ms.reviewer: sehan
+ai-usage: ai-assisted
 ---
 
 # CLI (v2) managed online deployment YAML schema
@@ -83,6 +84,8 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 
 The `az ml online-deployment` commands can be used for managing Azure Machine Learning managed online deployments.
 
+When the referenced model has a `default_deployment_template` set, infrastructure fields such as `environment`, `environment_variables`, `request_settings`, `liveness_probe`, and `readiness_probe` come from the deployment template, so you can omit them from the deployment YAML. The `instance_type` (and, for REST, the `sku` block) is still required on the deployment. To use a different deployment template than the model's default, set `properties."azureml.deploymentTemplateOverride"` to the registry asset URI of the override. For more information, see [Deploy models that use deployment templates](how-to-deploy-models-deployment-template.md).
+
 ## Examples
 
 Examples are available in the [examples GitHub repository](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online). Several are shown below.
@@ -153,6 +156,24 @@ data_collector:
            version: 1
 ```
 
+## YAML: with deployment template override
+
+```yml
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: blue
+endpoint_name: my-endpoint
+model: azureml://registries/my-registry/models/my-model/versions/1
+instance_type: Standard_DS3_v2
+instance_count: 1
+properties:
+  azureml.deploymentTemplateOverride: azureml://registries/my-registry/deploymenttemplates/my-template/versions/2
+```
+
 ## Next steps
 
 - [Install and use the CLI (v2)](how-to-configure-cli.md)
+- [What are deployment templates?](concept-deployment-template.md)
+- [Manage models with deployment templates](how-to-manage-models-deployment-templates.md)
+- [Deploy models that use deployment templates](how-to-deploy-models-deployment-template.md)
+- [CLI (v2) deployment template YAML schema](reference-yaml-deployment-template.md)
+- [CLI (v2) model YAML schema](reference-yaml-model.md)

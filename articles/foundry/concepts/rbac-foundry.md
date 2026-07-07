@@ -33,25 +33,25 @@ For more information about authentication and authorization in Microsoft Foundry
 
 Use the following table to see the permissions allowed for each built-in role in Microsoft Foundry. 
 
-|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|Publish agents|
-|---|---|---|---|---|---|---|---|
-|**Foundry User**|✘|✘|✔|✘|✔|✘|✘|
-|**Foundry Project Manager**|✘|✘|✔|✔ (only assign Foundry User role)|✔|✘|✔|
-|**Foundry Account Owner**|✔|✔|✘|✔ (assign Foundry User, ACR, and monitoring roles)|✔|✔|✘|
-|**Foundry Owner**|✔|✔|✔|✔ (assign Foundry User, ACR, and monitoring roles)|✔|✔|✔|
+|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|Publish agents|Interact with agent endpoints|
+|---|---|---|---|---|---|---|---|---|
+|**Foundry Agent Consumer**|✘|✘|✘|✘|✘|✘|✘|✔|
+|**Foundry User**|✘|✘|✔|✘|✔|✘|✘|✔|
+|**Foundry Project Manager**|✘|✘|✔|✔ (only assign Foundry User role)|✔|✘|✔|✔|
+|**Foundry Account Owner**|✔|✔|✘|✔ (assign Foundry User, ACR, and monitoring roles)|✔|✔|✘|✘|
+|**Foundry Owner**|✔|✔|✔|✔ (assign Foundry User, ACR, and monitoring roles)|✔|✔|✔|✔|
 
 [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 Use the following table to see the permissions allowed for each key Azure built-in roles (Owner, Contributor, Reader). 
 
-|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|Publish agents|
-|---|---|---|---|---|---|---|---|
-|**Owner**|✔|✔|✘|✔ (assign any role to any user)|✔|✔|✔|
-|**Contributor**|✔|✔|✘|✘|✔|✔|✘|
-|**Reader**|✘|✘|✘|✘|✔|✘|✘|
+|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|Publish agents|Interact with agent endpoints|
+|---|---|---|---|---|---|---|---|---|
+|**Owner**|✔|✔|✘|✔ (assign any role to any user)|✔|✔|✔|✘|
+|**Contributor**|✔|✔|✘|✘|✔|✔|✘|✘|
+|**Reader**|✘|✘|✘|✘|✔|✘|✘|✘|
 
 To publish agents, you need the **Foundry Project Manager** role (minimum) on the Foundry resource scope. For more information, see [Agent applications in Microsoft Foundry](../agents/how-to/agent-applications.md).
-
 
 
 [!INCLUDE [rbac-foundry 2](../includes/concepts-rbac-foundry-2.md)]
@@ -60,6 +60,7 @@ To publish agents, you need the **Foundry Project Manager** role (minimum) on th
 
 To manage roles in Foundry, you must have permission to assign and remove roles in Azure. The Azure built-in **Owner** role includes that permission. You can assign roles through the Foundry portal (Admin page), Azure portal IAM, or Azure CLI. You can remove roles by using Azure portal IAM or Azure CLI.
 
+# [Foundry portal](#tab/foundry)
 In the Foundry portal, manage permissions by:
 
 1. Open the **Admin** page in [Foundry](https://ai.azure.com), then select **Operate** > **Admin**.
@@ -67,7 +68,11 @@ In the Foundry portal, manage permissions by:
 1. Select **Add user** to manage project access. This action is available only if you have role-assignment permissions.
 1. Apply the same flow for Foundry resource-level access.
 
-You can manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or by using Azure CLI.
+# [Azure portal](#tab/portal)
+You can manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)**.
+
+# [Azure CLI](#tab/cli)
+You can assign and remove roles by using the Azure CLI.
 
 For example, the following command assigns the Foundry User role to `joe@contoso.com` for resource group `this-rg` in subscription `00000000-0000-0000-0000-000000000000`:
 
@@ -76,6 +81,27 @@ az role assignment create --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --assign
 ```
 
 [!INCLUDE [role-rename-note-code](../includes/role-rename-note-code.md)]
+
+---
+
+### Agent-scope role assignments
+
+Roles can be assigned at the scope of a specific agent rather than the entire project. This approach lets you grant access to one agent without granting access to all agents in the project. The scope URI for an agent follows this pattern:
+
+```
+/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>
+```
+
+For example, the following command assigns the Foundry Agent Consumer role (role definition ID `eed3b665-ab3a-47b6-8f48-c9382fb1dad6`) to a service principal at the scope of a specific agent.
+
+```azurecli
+az role assignment create \
+    --assignee "<principalId>" \
+    --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
+    --scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>"
+```
+
+Agent-scope assignments follow the same RBAC model as project-scope assignments. Any role that can be assigned at the project scope can also be assigned at the agent scope.
 
 [!INCLUDE [rbac-foundry 3](../includes/concepts-rbac-foundry-3.md)]
 
@@ -153,6 +179,7 @@ For the end-to-end deployment workflow, see [Deploy open-source models with mana
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md) — role requirements for all admin tasks, including [role assignment](../concepts/administrator-guide.md#assign-roles-to-team-members) and [agent infrastructure](../concepts/administrator-guide.md#configure-agent-infrastructure).
 - [Create a project](../how-to/create-projects.md).
 - [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access?tabs=default).
 - [Authentication and Authorization in Foundry](../concepts/authentication-authorization-foundry.md).

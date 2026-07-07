@@ -459,12 +459,6 @@ items:
           displayName: pronounce, learn language, assess pron, chatting
     - name: Azure OpenAI speech to speech chat
       href: openai-speech.md
-    - name: Multi-device conversation
-      items:
-        - name: Multi-device conversation overview
-          href: multi-device-conversation.md
-        - name: Multi-device conversation quickstart
-          href: quickstarts/multi-device-conversation.md
 - name: Infrastructure & security
   items:
     - name: Access control and authentication
