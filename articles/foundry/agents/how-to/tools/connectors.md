@@ -423,7 +423,7 @@ echo "serverURL: $SERVER_URL"
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool
+from azure.ai.projects.models import MCPTool, PromptAgentDefinition
 from azure.identity import DefaultAzureCredential
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
@@ -433,17 +433,21 @@ client = AIProjectClient(
     credential=DefaultAzureCredential()
 )
 
-agent = client.agents.create_agent(
-    model="gpt-4o",
-    name="my-connector-agent",
-    instructions="You are a helpful assistant.",
-    tools=MCPTool(
-        server_label=CONNECTION_NAME,
-        server_url=SERVER_URL,
-        project_connection_id=CONNECTION_NAME
-    ).definitions
+tool = MCPTool(
+    server_label=CONNECTION_NAME,
+    server_url=SERVER_URL,
+    project_connection_id=CONNECTION_NAME
 )
-print(f"Created agent: {agent.id}")
+
+agent = client.agents.create_version(
+    agent_name="my-connector-agent",
+    definition=PromptAgentDefinition(
+        model="gpt-4o",
+        instructions="You are a helpful assistant.",
+        tools=[tool],
+    ),
+)
+print(f"Created agent: {agent.name}, version: {agent.version}")
 ```
 
 For other languages and runtime options, see [Connect agents to MCP servers](model-context-protocol.md).

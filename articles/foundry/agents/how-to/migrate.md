@@ -29,7 +29,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 # [Python](#tab/python)
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.3.0"
 ```
 
 # [C#](#tab/csharp)

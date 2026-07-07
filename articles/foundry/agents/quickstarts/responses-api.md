@@ -3,7 +3,7 @@ title: "Quickstart: Build agents using the Responses API"
 description: "Call the Responses API on a Foundry project endpoint from your own code using the Agent Framework FoundryChatClient or the OpenAI SDK."
 author: aahill
 ms.author: aahi
-ms.date: 05/27/2026
+ms.date: 07/07/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart

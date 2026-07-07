@@ -224,7 +224,7 @@ from langgraph.prebuilt import create_react_agent
 
 
 FOUNDRY_PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-MODEL = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1")
+MODEL = os.environ.get("FOUNDRY_MODEL_NAME", "gpt-4.1")
 
 _token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
@@ -466,13 +466,13 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 
 | Initial preview | Latest version |
 |-----------------|-------------------|
-| `pip install "azure-ai-projects>=2.0.0"` | `pip install "azure-ai-projects>=2.1.0"` |
+| `pip install "azure-ai-projects>=2.0.0"` | `pip install "azure-ai-projects>=2.3.0"` |
 | `project.get_openai_client()` with `extra_body={"agent_reference": {"name": ..., "type": "agent_reference"}}` | `project.get_openai_client(agent_name="my-agent")` — client is pre-bound, no `extra_body` needed |
 | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")` | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")` |
 | `tools=[...]` in `HostedAgentDefinition` | Removed — use Foundry Toolbox MCP endpoint instead |
 | Not available | `project.beta.agents.create_session(agent_name, isolation_key=..., version_indicator=...)`, `.get_session()`, `.list_sessions()`, `.delete_session(isolation_key=...)` |
 | Not available | `project.beta.agents.download_session_file(path=...)`, `.get_session_files(path=...)`, `.delete_session_file(path=...)` |
-| Not available | `project.beta.agents.patch_agent_details()` for endpoint routing and traffic splitting |
+| Not available | `project.beta.agents.update_details()` for endpoint routing and traffic splitting |
 | Not available | `metadata={"enableVnextExperience": "true"}` parameter on `client.agents.create_version()` |
 
 ## Agent invocation changes

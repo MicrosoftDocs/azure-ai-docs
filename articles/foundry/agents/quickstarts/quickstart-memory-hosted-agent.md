@@ -3,7 +3,7 @@ title: "Quickstart: Give a hosted agent persistent memory"
 description: "Provision a Foundry memory store, then deploy a Python hosted agent that remembers facts about each user across sessions by using FoundryMemoryProvider."
 author: aahill
 ms.author: aahi
-ms.date: 06/18/2026
+ms.date: 07/07/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -143,7 +143,7 @@ The deployed agent answers with the remembered name and allergy.
 
 Delete the resources when you're finished so you stop incurring charges.
 
-Delete the memory store by using the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install azure-ai-projects azure-identity`):
+Delete the memory store by using the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install "azure-ai-projects>=2.3.0" azure-identity`):
 
 ```python
 import asyncio
