@@ -274,7 +274,7 @@ InvocationsServer.Run(handler: async (HttpContext httpContext) =>
 
 ---
 
-The full samples also include conversation-history hydration, error handling, telemetry, toolbox integration, and Dockerfile and `agent.yaml` setup.
+The full samples also include conversation-history hydration, error handling, telemetry, toolbox integration, and Dockerfile and `azure.yaml` setup.
 
 ## Health probe
 
