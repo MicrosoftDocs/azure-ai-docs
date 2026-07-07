@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 06/12/2026
+ms.date: 07/07/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -62,7 +62,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-5.5 | 2026-04-24 | GA | 2027-04-23 | — |
 | gpt-audio | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
-| gpt-audio-mini | 2025-10-06 | GA | 2026-07-23 | — |
+| gpt-audio-mini | 2025-10-06 | GA | 2026-09-21 | — |
 | gpt-audio-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-chat-latest | 2026-05-05 | Preview | 2026-11-05 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
@@ -72,13 +72,13 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-realtime-2 | 2026-05-06 | GA | 2027-05-06 | — |
-| gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
+| gpt-realtime-mini | 2025-10-06 | GA | 2026-09-21 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
-| o1 | 2024-12-17 | Deprecated | 2026-07-15 | — |
+| o1 | 2024-12-17 | Deprecated | 2026-09-16 | — |
 | o1-pro | 2025-03-19 | GA | 2026-09-18 | — |
 | o3 | 2025-04-16 | GA | 2026-10-16 | — |
 | o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
-| o3-mini | 2025-01-31 | Deprecated | 2026-08-02 | o4-mini |
+| o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
@@ -136,6 +136,9 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.1 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
+| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
+
 
 ### Meta
 
@@ -148,10 +151,11 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| model-router | 2025-05-19 | Preview | 2026-07-31 | — |
-| model-router | 2025-08-07 | Preview | 2026-07-31 | — |
+| model-router | 2025-05-19 | Preview | 2026-08-30 | — |
+| model-router | 2025-08-07 | Preview | 2026-08-30 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
-
+| MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
+| MAI-Image-2  | 2026-02-20 | Preview | 2026-08-15 | MAI-Image-2.5 |
 
 ### Mistral AI
 
@@ -216,13 +220,6 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | Cohere-embed-v3-english | 1 | GA | — | — |
 | Cohere-embed-v3-multilingual | 1 | GA | — | — |
 
-### DeepSeek
-
-| Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
-| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
-
 ### Fireworks
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
@@ -271,6 +268,13 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | Mistral-large | 1 | GA | — | — |
 | mistral-medium-2505 | 1 | GA | — | — |
 | mistral-small-2503 | 1 | GA | — | — |
+
+### Nixtla
+
+| Model | Version | Lifecycle | Retirement date | Replacement |
+|-------|---------|-----------|-----------------|-------------|
+| TimeGEN-1 | 1 | Deprecated | 2026-08-31 | TimeGPT-1, TimegGPT-2.1 |
+
 
 ### NTT Data
 

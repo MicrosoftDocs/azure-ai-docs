@@ -20,7 +20,7 @@ Use a centrally managed Azure Container Registry (ACR) when you deploy hosted ag
 
 ## Prerequisites
 
-- An initialized hosted agent project with an `agent.yaml` and `azure.yaml` scaffolded. For setup, see [Initialize an agent project](init-agent-project.md).
+- An initialized hosted agent project with an `azure.yaml` file. For setup, see [Initialize an agent project](init-agent-project.md).
 - The [azd Foundry extensions installed](install-cli-foundry-extensions.md).
 - An authenticated `azd` session.
 - Access to an existing Azure Container Registry.
@@ -41,7 +41,7 @@ Most teams want their hosted agent container images to come from a centrally man
 Bring your own ACR when one or more of these requirements apply:
 
 - **Compliance.** Images must live in a centrally audited registry your org already operates.
-- **Shared infra.** One ACR feeds many agent projects; new per-project registries aren't acceptable.
+- **Shared infrastructure.** One ACR feeds many agent projects; new per-project registries aren't acceptable.
 - **ABAC-mode registries.** Your enterprise ACR is configured with attribute-based access control, requiring specific roles.
 - **Pre-built images.** A separate CI pipeline builds the image with vulnerability scanning, supply-chain signing, and hardened base images. The agent project should consume that image as-is.
 
@@ -51,7 +51,7 @@ If none of those apply, leave the defaults alone. `azd ai agent init` creates a 
 
 When you run `azd ai agent init` against an existing Microsoft Foundry project, the extension scans the project for ACR connections and offers them as choices:
 
-- **0 ACR connections found.** You're prompted for an ACR login server, for example `myregistry.azurecr.io`. Leave the prompt blank to let `main.bicep` create a new registry on the next `azd provision`.
+- **0 ACR connections found.** You're prompted for an ACR authentication server, such as `myregistry.azurecr.io`. Leave the prompt blank to let `azd provision` create the project registry when your configuration requires one.
 - **1 ACR connection found.** It's selected automatically and shown in the output.
 - **2+ ACR connections found.** You pick one from a list.
 
@@ -59,10 +59,10 @@ Whatever is selected writes two env vars to your azd environment:
 
 | Environment variable | What it is |
 |---------|------------|
-| `AZURE_CONTAINER_REGISTRY_ENDPOINT` | Login server, for example `myregistry.azurecr.io` |
+| `AZURE_CONTAINER_REGISTRY_ENDPOINT` | Authentication server, for example `myregistry.azurecr.io` |
 | `AZURE_CONTAINER_REGISTRY_RESOURCE_ID` | Full ARM resource ID. Optional, but enables faster, scoped RBAC preflight checks. |
 
-You can also set these env vars yourself before `azd up`:
+You can also set these environment variables yourself before `azd up`:
 
 ```bash
 azd env set AZURE_CONTAINER_REGISTRY_ENDPOINT myregistry.azurecr.io
@@ -70,7 +70,7 @@ azd env set AZURE_CONTAINER_REGISTRY_RESOURCE_ID \
   /subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.ContainerRegistry/registries/myregistry
 ```
 
-When both are set, the Bicep templates skip creating a new ACR and the build path pushes directly to the existing one.
+When both are set, `azd` skips creating a new ACR and the build path pushes directly to the existing one.
 
 ## Build locally and push to an existing ACR
 
@@ -78,7 +78,7 @@ This workflow is the most common enterprise path: keep the default container bui
 
 1. Point at the existing ACR.
 
-   If you're about to run `azd ai agent init`, you can answer the ACR prompt with your registry's login server, and the env vars are written for you. If the project already exists, set them with `azd env set` as shown earlier.
+   If you're about to run `azd ai agent init`, you can answer the ACR prompt with your registry's sign-in server, and the environment variables are written for you. If the project already exists, set them with `azd env set` as shown earlier.
 
 1. Confirm developer RBAC.
 
@@ -108,42 +108,34 @@ This workflow is the most common enterprise path: keep the default container bui
 
 Use this workflow when a separate CI pipeline already builds, scans, signs, and pushes the image. The agent project consumes that image directly, with no Dockerfile and no local build.
 
-1. Set the `image:` field in `agent.yaml`.
+1. Set the `image` field in the `azure.ai.agent` service in `azure.yaml`.
 
    ```yaml
-   template:
-     kind: hosted
-     name: my-agent
-     image: myregistry.azurecr.io/agents/my-agent:1.2.3
-     protocols:
-       - protocol: responses
-         version: "1.0.0"
+   services:
+     my-agent:
+       host: azure.ai.agent
+       project: src/my-agent
+       kind: hosted
+       name: my-agent
+       image: myregistry.azurecr.io/agents/my-agent:1.2.3
+       protocols:
+         - protocol: responses
+           version: "2.0.0"
    ```
 
-   The `image:` value must be a valid container reference. The extension validates against `[registry/]repository[:tag|@digest]`. Both tags and SHA digests are accepted; pin to a digest (`@sha256:...`) for reproducible deploys.
+   The `image` value must be a valid container reference. Both tags and SHA digests are accepted. Pin to a digest (`@sha256:...`) for reproducible deploys.
 
-1. Decide build vs. pre-built at deploy time.
+   For a new project, provide the image during initialization instead:
 
-   The extension defaults to **building from a Dockerfile** even when `image:` is set. This behavior is deliberate. It prevents users with a leftover `image:` value from silently bypassing their Dockerfile.
+   ```bash
+   azd ai agent init --image myregistry.azurecr.io/agents/my-agent:1.2.3 --agent-name my-agent
+   ```
 
-   At `azd deploy` or `azd up` time:
-
-   - **Interactive mode.** You're prompted:
-
-     ```output
-     A container image is configured. How would you like to deploy?
-       > Build a new image for me
-         Create hosted agent from myregistry.azurecr.io/agents/my-agent:1.2.3
-     ```
-
-     Select the second option to deploy the pre-built image.
-
-   - **Non-interactive mode (`--no-prompt`).** The default selection, build, is used. If you want pre-built in CI, remove the `Dockerfile` from the service directory so the build path has nothing to package.
+   The `--image` option uses the prebuilt image path and skips code scaffolding, Dockerfile generation, and ACR setup.
 
 1. Run the deploy.
 
    ```bash
-   # Interactive: select "Create hosted agent from ..."
    azd deploy
 
    # Or run up end-to-end
@@ -186,6 +178,5 @@ See [Configure virtual networks](virtual-networks.md) for the network-side pictu
 
 ## Related content
 
-- [Azure infrastructure](../concepts/cli-infrastructure.md) to understand how the Bicep templates work, including existing-resource overrides.
 - [Deploy a hosted agent](deploy-hosted-agent.md) for the end-to-end deploy flow this article customizes.
 - [Configure virtual networks](virtual-networks.md) for private endpoints, self-hosted runners, and DNS for virtual-network-protected ACRs.

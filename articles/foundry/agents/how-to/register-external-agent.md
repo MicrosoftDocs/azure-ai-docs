@@ -119,7 +119,7 @@ After the agent emits spans to Application Insights, register it in Foundry so t
 ### Install the SDK
 
 ```bash
-pip install azure-ai-projects>=2.2.0 azure-identity>=1.17.0
+pip install azure-ai-projects>=2.3.0 azure-identity>=1.17.0
 ```
 
 ### Create the registration

@@ -120,7 +120,7 @@ az provider register --namespace Microsoft.ContainerRegistry
 **Causes and fixes:**
 
 - **Endpoint mismatch** -- Run `azd env get-values` and verify that `FOUNDRY_PROJECT_ENDPOINT` matches the endpoint shown in the Foundry portal.
-- **Model deployment name mismatch** -- The model deployment name in your `agent.yaml` must match the deployment name in your Foundry project. Check in the portal under **Deployments**.
+- **Model deployment name mismatch** -- The model deployment name configured in `azure.yaml` must match the deployment name in your Foundry project. Check in the portal under **Deployments**.
 - **Resources not provisioned** -- If you haven't run `azd up` yet, the cloud resources won't exist. Run `azd up` first, then test locally. The local agent still calls cloud-hosted models.
 
 ## Fix deployment issues
@@ -152,7 +152,7 @@ az provider register --namespace Microsoft.ContainerRegistry
 **Causes and fixes:**
 
 - **Health probe failing** -- Your container must respond to `GET /readiness` on port 8088 with a 200 status. Check logs with `azd ai agent monitor --follow`.
-- **Protocol mismatch** -- Ensure the protocol defined in `agent.yaml` matches what your code implements. If `agent.yaml` says `responses` but your code only handles `invocations`, or vice versa, requests fail.
+- **Protocol mismatch** -- Ensure the protocol defined in the `azure.ai.agent` service in `azure.yaml` matches what your code implements. If `azure.yaml` says `responses` but your code only handles `invocations`, or vice versa, requests fail.
 - **Container crashes** -- Check system logs for restart events: `azd ai agent monitor --type system`. Common causes include unhandled exceptions and out-of-memory issues. Increase container resources in `azure.yaml` if needed.
 
 ## Fix direct-command failures
@@ -219,7 +219,7 @@ Common log patterns include:
 |-------------|---------|
 | `Listening on 0.0.0.0:8088` | Agent started successfully. |
 | `AuthenticationError` | Credential or RBAC issue. Check managed identity. |
-| `ModelNotFound` | Model deployment name doesn't match `agent.yaml`. |
+| `ModelNotFound` | Model deployment name doesn't match `azure.yaml`. |
 | Container restart in system events | Crash loop. Check code errors or increase resource limits. |
 
 ## Diagnose routine failures

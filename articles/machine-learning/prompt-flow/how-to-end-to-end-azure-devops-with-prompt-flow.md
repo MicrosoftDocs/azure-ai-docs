@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 07/06/2026
 ms.custom:
   - cli-v2
   - sdk-v2

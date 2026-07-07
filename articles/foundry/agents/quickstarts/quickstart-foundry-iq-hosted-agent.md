@@ -34,7 +34,7 @@ This quickstart builds on the hosted-agent toolchain. Complete the [Prerequisite
 You also need:
 
 - An [Azure AI Search service](/azure/search/search-create-service-portal) that supports agentic retrieval. Enable a system-assigned managed identity on the service, and enable role-based access control. In the Azure portal, on the search service, go to **Settings** > **Keys**, and set **API Access control** to **Both** or **Role-based access control**.
-- A chat model deployment in your Foundry project, such as `gpt-4.1-mini`. The knowledge base uses the same model to synthesize answers.
+- A chat model deployment in your Foundry project, such as `gpt-5.4-mini`. The knowledge base uses the same model to synthesize answers.
 
 ### Required roles
 
@@ -56,10 +56,10 @@ Initialize a hosted agent from the Foundry IQ sample. The sample includes the ag
 ```powershell
 mkdir my-foundry-iq-agent
 cd my-foundry-iq-agent
-azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/17-foundry-iq-toolbox/agent.manifest.yaml"
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/17-foundry-iq-toolbox/azure.yaml"
 ```
 
-Follow the prompts to select your subscription, Foundry project, and a chat model deployment such as `gpt-4.1-mini`. If you don't have a project, the flow guides you through creating one. Initialization sets the selected project as the active project and copies the sample files into a new service directory, `src/agent-framework-foundry-iq-knowledge-base-responses/`.
+Follow the prompts to select your subscription, Foundry project, and a chat model deployment such as `gpt-5.4-mini`. If you don't have a project, the flow guides you through creating one. Initialization sets the selected project as the active project and copies the sample files into a new service directory, `src/agent-framework-foundry-iq-knowledge-base-responses/`.
 
 ## Step 2: Enable one-command provisioning
 

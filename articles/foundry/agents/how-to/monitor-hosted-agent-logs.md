@@ -96,7 +96,7 @@ Stream and inspect logs from your deployed Microsoft Foundry hosted agent for tr
 |---------|---------|--------|
 | `Listening on 0.0.0.0:8088` | Agent started successfully. | None needed. |
 | `AuthenticationError` | The agent's Entra Agent Identity can't authenticate. | Check RBAC roles. |
-| `ModelNotFound` | Model deployment name mismatch. | Verify deployment name in `agent.yaml` matches Foundry portal. |
+| `ModelNotFound` | Model deployment name mismatch. | Verify the deployment name in `azure.yaml` matches the Foundry portal. |
 | `ResourceNotFound` | Foundry endpoint mismatch. | Check `FOUNDRY_PROJECT_ENDPOINT` value. |
 | Container restart events in system logs | Crash loop. | Check code for unhandled exceptions; consider increasing container resource limits in `azure.yaml`. |
 | `TimeoutError` | Request took too long. | Check model responsiveness; increase timeout on invoke. |

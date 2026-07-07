@@ -191,7 +191,7 @@ For multiple environments, such as development, staging, and production:
 - `AZURE_ENV_NAME` -- azd environment name.
 - `AZURE_LOCATION` -- Azure region.
 
-Add agent-specific secrets, such as MCP API keys defined as `secret: true` parameters in `agent.yaml`, as more repository secrets. Map each one to an `azd` environment variable in the pipeline.
+Add agent-specific secrets, such as MCP API keys referenced from the `env` map for your `azure.ai.agent` service in `azure.yaml`, as more repository secrets. Map each one to an `azd` environment variable in the pipeline.
 
 ## Troubleshoot pipeline issues
 

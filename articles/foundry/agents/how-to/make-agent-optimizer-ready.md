@@ -37,19 +37,18 @@ Create the `.agent_configs/baseline/` directory at your project root. This direc
 
 ```
 my-agent/
-├── main.py
-├── agent.yaml
-├── azure.yaml
-├── requirements.txt
-└── .agent_configs/
-    ├── baseline/              ← your starting config
-    │   ├── metadata.yaml
-    │   ├── instructions.md
-    │   ├── tools.json
-    │   └── skills/
-    │       └── (initially empty)
-    └── <candidate_id>/        ← created by 'azd ai agent optimize apply'
-        └── (same layout as baseline/)
+|- main.py
+|- azure.yaml
+|- requirements.txt
+\- .agent_configs/
+   |- baseline/              <- your starting config
+   |  |- metadata.yaml
+   |  |- instructions.md
+   |  |- tools.json
+   |  \- skills/
+   |     \- (initially empty)
+   \- <candidate_id>/        <- created by 'azd ai agent optimize apply'
+      \- (same layout as baseline/)
 ```
 
 ### metadata.yaml
@@ -129,8 +128,8 @@ Skills use the open [Agent Skills](https://agentskills.io) format. Each skill is
 
 ```
 skills/
-└── policy-reviewer/
-    └── SKILL.md
+\-- policy-reviewer/
+    \-- SKILL.md
 ```
 
 A `SKILL.md` file has YAML frontmatter for metadata and markdown body for instructions:
@@ -260,7 +259,7 @@ azd deploy
 The `apply` command downloads the optimized `instructions.md`, `tools.json`, and `skills/` from the candidate and writes them into `.agent_configs/<candidate_id>/` in your project. On next startup, `load_config()` detects the candidate and uses the optimized configuration.
 
 > [!WARNING]
-> If you use `azd ai agent optimize deploy --candidate <id>` instead of `apply`, the optimized config deploys directly via the API without updating your local files. Use the `apply` → `deploy` workflow for production to maintain reproducibility.
+> If you use `azd ai agent optimize deploy --candidate <id>` instead of `apply`, the optimized config deploys directly via the API without updating your local files. Use the `apply` -> `deploy` workflow for production to maintain reproducibility.
 
 ## Complete example
 
@@ -314,7 +313,7 @@ def get_flight_alternatives(
     """Find cheaper flight alternatives for the given destination."""
     return json.dumps({
         "alternatives": [
-            {"option": "Flexible dates (±2 days)", "savings": "$200-800"},
+            {"option": "Flexible dates (+/-2 days)", "savings": "$200-800"},
             {"option": "Nearby alternate airport", "savings": "$100-400"},
         ],
     })
