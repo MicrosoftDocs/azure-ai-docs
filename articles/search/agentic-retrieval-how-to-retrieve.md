@@ -71,7 +71,7 @@ To set up a pipeline that connects Azure AI Search to Foundry Agent Service via 
 
 ## Limitations
 
-For search index knowledge sources, retrieve uses the knowledge source's semantic configuration, but it doesn't apply the underlying index's scoring profiles, including `defaultScoringProfile`. Retrieve responses also don't surface `@search.rerankerBoostedScore`.
+For search index knowledge sources, retrieve uses the knowledge source's semantic configuration, but it doesn't apply the underlying index's [scoring profiles](index-add-scoring-profiles.md), including `defaultScoringProfile`. Retrieve responses also don't surface `@search.rerankerBoostedScore`.
 
 ## Call the retrieve action
 
