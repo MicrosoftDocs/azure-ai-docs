@@ -3,7 +3,7 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/06/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -25,7 +25,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
-This article explains how to call both retrieval methods with optional permissions enforcement and interpret the three-pronged response. Use `2026-05-01-preview` for the full feature set, including `messages`, answer synthesis, configurable reasoning effort, and sensitivity label metadata in retrieve responses.
+This article explains how to call both retrieval methods with optional permissions enforcement. It covers the retrieve action first and the MCP endpoint later because the MCP tool result currently differs from the REST and SDK response shape. Use `2026-05-01-preview` for the full feature set, including `messages`, answer synthesis, configurable reasoning effort, and sensitivity label metadata in retrieve responses.
 
 If you're moving from `2025-11-01-preview`, you can update directly to `2026-05-01-preview` because the request and response shapes remain compatible. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
 
@@ -343,39 +343,6 @@ For knowledge sources that target a search index, all `searchable` fields are in
 If the index includes vector fields, you need a valid vectorizer definition so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
 
 For more information, see [Create an index for agentic retrieval](agentic-retrieval-how-to-create-index.md).
-
-## Call the MCP endpoint
-
-> [!IMPORTANT]
-> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
-
-[MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
-
-In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Claude](https://claude.ai), and [Cursor](https://cursor.com), can invoke this tool to query the knowledge base.
-
-### MCP endpoint format
-
-Each knowledge base has an MCP endpoint at the following URL.
-
-```
-https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
-```
-
-The API version you specify determines what the connection returns. With `2026-05-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
-
-### Authenticate to the MCP endpoint
-
-The MCP endpoint requires authentication via custom headers. You have two options:
-
-+ **(Recommended)** Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
-
-+ Pass an admin key in the `api-key` header. An admin key provides full read-write access to the search service, so use it with caution. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
-
-Each MCP client configures custom headers differently. For example:
-
-+ In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
-
-+ In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
 
 ## Filter search index knowledge sources at query time
 
@@ -1711,6 +1678,67 @@ Content-Type: application/json
 A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document exceeded the maximum output size. The references array and grounded response content are empty for that document. To retain more content, increase `maxOutputSizeInTokens`.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
+
+## Call the MCP endpoint
+
+> [!IMPORTANT]
+> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
+
+[MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
+
+In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Claude](https://claude.ai), and [Cursor](https://cursor.com), can invoke this tool to query the knowledge base.
+
+### MCP endpoint format
+
+Each knowledge base has an MCP endpoint at the following URL.
+
+```
+https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
+```
+
+The API version you specify determines what the connection returns. With `2026-05-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
+
+### Authenticate to the MCP endpoint
+
+The MCP endpoint requires authentication through custom headers. You have two options:
+
++ **(Recommended)** Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
+
++ Pass an admin key in the `api-key` header. An admin key provides full read-write access to the search service, so use it with caution. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
+
+> [!TIP]
+> Each MCP client configures custom headers differently. For example:
+>
+> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
+>
+> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
+
+## Review the MCP response
+
+When an MCP client invokes `knowledge_base_retrieve`, it receives an MCP tool result instead of the retrieve action's `response`, `activity`, and `references` envelope. Many MCP clients surface that tool result under a top-level `result` object, so the payload you should expect is `result.content[]`.
+
+```json
+{
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"ref_id\":\"0\",\"title\":\"Urban Structure\",\"terms\":\"Location of Phoenix, Grid of City Blocks, Phoenix Metropolitan Area at Night\",\"content\":\"<content chunk redacted>\"}]"
+      }
+    ]
+  }
+}
+```
+
+Key points:
+
++ `result.content[]` contains the MCP tool output returned by the knowledge base.
+
++ `result.content[].type` is `text`.
+
++ `result.content[].text` contains the retrieved grounding data as a JSON-encoded string.
+
++ Unlike the retrieve action, the current MCP response doesn't return separate `activity` or `references` arrays, and it doesn't populate `resource` entries for the returned content.
 
 ## Related content
 
