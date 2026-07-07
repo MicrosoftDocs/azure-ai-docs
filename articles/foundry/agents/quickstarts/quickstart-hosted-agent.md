@@ -64,7 +64,7 @@ Before you begin, you need:
 Initialize a new hosted agent using the basic [Agent Framework sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic) in an empty directory:
 
 ```
-azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic/agent.manifest.yaml" --deploy-mode code
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic/azure.yaml" --deploy-mode code
 ```
 
 The interactive flow prompts for:
@@ -74,11 +74,11 @@ The interactive flow prompts for:
 * **Tenant**: Select your Azure tenant
 * **Subscription**: Select your Azure subscription
 * **Location**: Select an Azure region
-* **Model**: Select the *default*, **gpt-4.1-mini**, or another model you can access.
+* **Model**: Select the *default*, **gpt-5.4-mini**, or another model you can access.
 * **Model Version**: Select the *default* option.
 * **Model SKU**: Select an option with available quota that isn't Batch, usually **Standard** or **GlobalStandard**
 * **Deployment capacity**: Select the *default*, **10**
-* **Deployment name**: Select the *default*, **gpt-4.1-mini**
+* **Deployment name**: Select the *default*, **gpt-5.4-mini**
 
 When complete, you should see **AI agent definition added to your azd project successfully!**. Change directory into newly created agent folder.
 
@@ -395,5 +395,6 @@ In this quickstart, you:
 * [What are hosted agents?](../concepts/hosted-agents.md)
 * [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
+* [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
