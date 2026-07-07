@@ -156,7 +156,7 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 ### Optimization model (reflection)
 
 You must specify the deployed optimization model that generates candidate
-configurations. Supported optimization models include the gpt-5 family and
+configurations. Supported optimization models include the GPT-5 family and
 DeepSeek models. For the current list and model roles, see
 [Models](../concepts/agent-optimizer-overview.md#models).
 
