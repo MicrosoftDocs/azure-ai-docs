@@ -3,7 +3,7 @@ title: Create a Search Index Knowledge Source
 description: Learn how to create a search index knowledge source, which specifies an index used by a knowledge base for agentic retrieval workloads.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/07/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -24,6 +24,9 @@ zone_pivot_groups: search-csharp-python-rest
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 A *search index knowledge source* connects an existing Azure AI Search index, including its indexed text and vectors, to an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
+
+> [!NOTE]
+> `semanticConfigurationName` identifies which semantic fields agentic retrieval uses for semantic ranking. It doesn't make retrieve requests honor the underlying index's scoring profiles, including `defaultScoringProfile`, and retrieve responses don't surface `@search.rerankerBoostedScore`.
 
 ### Usage support
 

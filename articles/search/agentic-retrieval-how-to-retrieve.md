@@ -3,7 +3,7 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/06/2026
+ms.date: 07/07/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -30,6 +30,9 @@ This article explains how to call both retrieval methods with optional permissio
 If you're moving from `2025-11-01-preview`, you can update directly to `2026-05-01-preview` because the request and response shapes remain compatible. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
 
 To set up a pipeline that connects Azure AI Search to Foundry Agent Service via MCP, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
+
+> [!NOTE]
+> For search index knowledge sources, retrieve uses the knowledge source's semantic configuration, but it doesn't apply the underlying index's scoring profiles, including `defaultScoringProfile`. Retrieve responses also don't surface `@search.rerankerBoostedScore`.
 
 ## Prerequisites
 
@@ -338,7 +341,9 @@ Image serving runs only when `outputMode` is `answerSynthesis` and requires the 
 
 ### Search index behavior
 
-For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. The implied query type is `semantic`, and there's no search mode.
+For knowledge sources that target a search index, the implied query type is `semantic`, and there's no search mode. Query execution uses the knowledge source definition, including `semanticConfigurationName`, `searchFields`, and `sourceDataFields`.
+
+Agentic retrieval doesn't accept `scoringProfile` or `scoringParameters` inputs. If you need recency bias for indexed knowledge sources, use [freshness-aware retrieval](agentic-retrieval-how-to-configure-freshness.md) instead of an index scoring profile.
 
 If the index includes vector fields, you need a valid vectorizer definition so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
 
@@ -744,6 +749,8 @@ Key points:
   + This portion of the response consists of 200 chunks or fewer, excluding any results that fail to meet the minimum threshold of a 2.5 reranker score.
 
   + The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
+
++ Retrieve responses don't include `@search.rerankerBoostedScore`.
 
 + The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
   + A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
