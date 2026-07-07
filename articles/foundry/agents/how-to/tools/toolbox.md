@@ -3047,6 +3047,7 @@ POST {endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
 Accept: application/json
+Foundry-Features: Skills=V1Preview
 
 {
   "description": "Toolbox with a skill reference",
