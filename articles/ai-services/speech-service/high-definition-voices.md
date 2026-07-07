@@ -25,7 +25,7 @@ Azure Speech offers two advanced HD voice models, each optimized for different u
 | Model | Voice Count | Key Characteristics | Best For |
 |-------|-------------|-------------------|----------|
 | **DragonHD** | 30+ fine-tuned voices | Professional quality, accurate pronunciation, multi-talker support | Enterprise applications requiring high-quality output |
-| **DragonHDOmni** | 700+ voices (all released voices + new AI-generated) | Styles support, multilingual, flexible to add new voices and styles.  | Diverse applications, content creation, broad persona variety |
+| **DragonHDOmni** | 500+ voices (all released voices) | Styles support, multilingual, flexible to add new voices and styles.  | Diverse applications, content creation, broad persona variety |
 
 ### Key features of HD voices
 
