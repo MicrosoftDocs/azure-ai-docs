@@ -68,7 +68,7 @@ Use `azd ai agent run` to start your Microsoft Foundry hosted agent on your loca
 
 ## Pass environment variables and secrets
 
-A local run reads the `environment_variables` declared in your `agent.yaml` and resolves any `${VAR}` placeholders from the active `azd` environment. To provide a value, such as an API key, set it as an `azd` environment variable and reference it in `agent.yaml`.
+A local run reads the `env` map declared in the `azure.ai.agent` service in `azure.yaml` and resolves any `${VAR}` placeholders from the active `azd` environment. To provide a value, such as an API key, set it as an `azd` environment variable and reference it in `azure.yaml`.
 
 1. Set the value in the active `azd` environment:
 
@@ -78,15 +78,17 @@ A local run reads the `environment_variables` declared in your `agent.yaml` and 
 
    `azd` stores environment values in `.azure/<env>/.env`. The `.azure` directory is gitignored by default, so these values stay out of source control.
 
-1. Reference the variable in `agent.yaml` so the local run injects it:
+1. Reference the variable in the `azure.ai.agent` service in `azure.yaml` so the local run injects it:
 
    ```yaml
-   environment_variables:
-     - name: OPENAI_KEY
-       value: ${OPENAI_KEY}
+   services:
+     my-agent:
+       host: azure.ai.agent
+       env:
+         OPENAI_KEY: ${OPENAI_KEY}
    ```
 
-For secrets that shouldn't live in a local `.env` file at all, store them in a Foundry project connection and reference them with a `${{connections.<name>.credentials.<field>}}` placeholder in `environment_variables`. The platform resolves the placeholder at runtime. For more information, see [Configure environment variables for a hosted agent](configure-hosted-agent-env-variables.md).
+For secrets that shouldn't live in a local `.env` file at all, store them in a Foundry project connection and reference them with a `${{connections.<name>.credentials.<field>}}` placeholder in the `env` map. The platform resolves the placeholder at runtime. For more information, see [Configure environment variables for a hosted agent](configure-hosted-agent-env-variables.md).
 
 ## Test with invoke
 
@@ -100,7 +102,7 @@ For secrets that shouldn't live in a local `.env` file at all, store them in a F
 
 ### Test protocols with invoke
 
-The protocol your agent uses is defined in `agent.yaml` under `protocols`. If your agent implements the `responses` protocol, `invoke` sends a standard Responses API request. If your agent uses the `invocations` protocol, the payload is whatever your agent code expects. Use `--input-file` (`-f`) to send a custom JSON body:
+The protocol your agent uses is defined in the `protocols` field of the `azure.ai.agent` service in `azure.yaml`. If your agent implements the `responses` protocol, `invoke` sends a standard Responses API request. If your agent uses the `invocations` protocol, the payload is whatever your agent code expects. Use `--input-file` (`-f`) to send a custom JSON body:
 
 ```bash
 azd ai agent invoke --local -f request.json

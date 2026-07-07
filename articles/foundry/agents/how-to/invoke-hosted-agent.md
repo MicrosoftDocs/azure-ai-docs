@@ -76,7 +76,7 @@ When you want to invoke a specific deployed agent without depending on the activ
 
 ## Choose a protocol
 
-The protocol used for invoke is determined by the `protocols` field in your `agent.yaml`.
+The protocol used for invoke is determined by the `protocols` field of the `azure.ai.agent` service in `azure.yaml`.
 
 - **`responses`** -- sends a standard OpenAI Responses API request with `{"input": "your message"}`. Conversation history is managed automatically.
 - **`invocations`** -- sends whatever payload your agent code expects. Use `--input-file` (`-f`) with a JSON file matching the schema your handler defines.

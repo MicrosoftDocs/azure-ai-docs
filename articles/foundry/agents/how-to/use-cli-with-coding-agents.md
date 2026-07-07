@@ -142,17 +142,19 @@ Use this shape when one repository's CI needs to call an agent owned by a differ
 
 ## Pass secrets to a local run
 
-To start the agent locally with secrets, set them as `azd` environment variables and reference them in `agent.yaml`. The values live in `.azure/<env>/.env`, which is gitignored by default.
+To start the agent locally with secrets, set them as `azd` environment variables and reference them from the `env` map for your `azure.ai.agent` service in `azure.yaml`. The values live in `.azure/<env>/.env`, which is gitignored by default.
 
 ```bash
 azd env set OPENAI_KEY "$AZURE_OPENAI_KEY"
 ```
 
 ```yaml
-# agent.yaml
-environment_variables:
-  - name: OPENAI_KEY
-    value: ${OPENAI_KEY}
+# azure.yaml
+services:
+  my-agent:
+    host: azure.ai.agent
+    env:
+      OPENAI_KEY: ${OPENAI_KEY}
 ```
 
 For secrets that shouldn't live in a local `.env` file, store them in a Foundry project connection and reference them with a `${{connections.<name>.credentials.<field>}}` placeholder. See [Run a hosted agent locally](run-hosted-agent-locally.md) for the full local-run surface.

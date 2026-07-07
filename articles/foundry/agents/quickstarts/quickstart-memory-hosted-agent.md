@@ -3,7 +3,7 @@ title: "Quickstart: Give a hosted agent persistent memory"
 description: "Provision a Foundry memory store, then deploy a Python hosted agent that remembers facts about each user across sessions by using FoundryMemoryProvider."
 author: aahill
 ms.author: aahi
-ms.date: 06/18/2026
+ms.date: 07/07/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -41,7 +41,7 @@ Initialize a hosted agent from the Foundry memory sample. Initialization copies 
 ```powershell
 mkdir my-memory-agent
 cd my-memory-agent
-azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/13-foundry-memory/agent.manifest.yaml"
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/13-foundry-memory/azure.yaml"
 ```
 
 Follow the prompts to select your subscription, project, and a model deployment. If you don't have a Foundry project, `azd ai agent init` guides you through creating one.
@@ -85,7 +85,7 @@ The hook is self-locating and idempotent. It runs correctly no matter which dire
 `azd provision` creates or reuses your Foundry project and chat model deployment. Then the `postprovision` hook:
 
 - Creates the memory store with the user-profile capability enabled and verifies it on the service.
-- Sets `MEMORY_STORE_NAME` so the agent reads and writes that store. The hook persists the name to your `azd` environment for local runs and into the agent's `agent.yaml` so `azd deploy` ships it to the container.
+- Sets `MEMORY_STORE_NAME` so the agent reads and writes that store. The hook persists the name to your `azd` environment for local runs and into the service environment in `azure.yaml` so `azd deploy` ships it to the container.
 
 The hook defaults the store name to `agent_framework_memory`. To use a different name, set it before you provision:
 
@@ -119,7 +119,7 @@ azd env set MEMORY_STORE_NAME "<your-store-name>"
 
 ## Step 5: Deploy to Foundry Agent Service
 
-Build and deploy the agent container. The `postprovision` hook already writes `MEMORY_STORE_NAME` into the agent's `agent.yaml`, so the deployed container reads the same store:
+Build and deploy the agent container. The `postprovision` hook already writes `MEMORY_STORE_NAME` into `azure.yaml`, so the deployed container reads the same store:
 
 ```powershell
 azd deploy
@@ -143,7 +143,7 @@ The deployed agent answers with the remembered name and allergy.
 
 Delete the resources when you're finished so you stop incurring charges.
 
-Delete the memory store by using the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install azure-ai-projects azure-identity`):
+To delete the memory store, use the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install "azure-ai-projects>=2.3.0" azure-identity`):
 
 ```python
 import asyncio
@@ -177,7 +177,7 @@ azd down
 
 | Issue | Solution |
 | ----- | -------- |
-| The deployed agent has no memory, or `MEMORY_STORE_NAME` is empty | Confirm the `postprovision` hook ran during `azd provision` and that the agent's `agent.yaml` has `MEMORY_STORE_NAME` set. Rerun `azd provision` to run the hook again. |
+| The deployed agent has no memory, or `MEMORY_STORE_NAME` is empty | Confirm the `postprovision` hook ran during `azd provision` and that `azure.yaml` has `MEMORY_STORE_NAME` set. Rerun `azd provision` to run the hook again. |
 | Memory writes fail with a `401` error and the store stays empty | Grant the **Cognitive Services OpenAI User** role on the Foundry project scope to your identity and to the deployed agent's runtime identity. |
 | `azd provision` fails with a permissions error | Confirm your identity has the project roles listed in the [Prerequisites](quickstart-hosted-agent.md#prerequisites). |
 | The agent doesn't recall a fact you shared | Allow a few seconds after storing a fact before you query, so the store finishes indexing the memory. |

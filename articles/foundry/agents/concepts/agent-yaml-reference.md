@@ -16,7 +16,10 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The [AgentSchema specification](https://microsoft.github.io/AgentSchema/) is an open standard for defining AI agents. When you build hosted agents, you primarily work with three top-level schema types: **AgentDefinition**, **AgentManifest**, and **ContainerAgent**. The schema isn't specific to one tool. The Azure Developer CLI (`azd`) and the Microsoft Foundry Toolkit for Visual Studio Code both use it.
+> [!NOTE]
+> Agent manifests (`agent.manifest.yaml`) and standalone agent definitions (`agent.yaml`) are deprecated. As of the Foundry `azd` extensions (`azure.ai.agents` 1.0.0-beta.1), all hosted agent configuration lives in a single `azure.yaml`. See [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md) and [azure.yaml reference for hosted agents](azure-yaml-reference.md).
+
+The [AgentSchema specification](https://microsoft.github.io/AgentSchema/) is an open standard for defining AI agents. When you build hosted agents, you primarily work with three top-level schema types: **AgentDefinition**, **AgentManifest**, and **ContainerAgent**. This legacy schema model for `AgentManifest`, `AgentDefinition`, `agent.manifest.yaml`, and `agent.yaml` is retained for reference and is superseded by `azure.yaml`. The schema isn't specific to one tool. The Azure Developer CLI (`azd`) and the Microsoft Foundry Toolkit for Visual Studio Code both use it.
 
 The schema appears in two file contexts with distinct naming conventions:
 
@@ -245,7 +248,8 @@ Substitution happens in two layers: manifest parameters resolve at init time, an
 
 ## Related content
 
-* [AgentSchema specification](https://microsoft.github.io/AgentSchema/)
+* [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
 * [azure.yaml reference for hosted agents](azure-yaml-reference.md)
+* [AgentSchema specification](https://microsoft.github.io/AgentSchema/)
 * [Hosted agent runtime contract](hosted-agent-contract.md)
 * [What are hosted agents?](hosted-agents.md)

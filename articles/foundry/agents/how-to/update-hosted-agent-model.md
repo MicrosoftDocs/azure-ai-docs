@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Change the AI model your hosted agent uses after initial deployment. You update the azd environment, adjust the relevant YAML files, and redeploy the Microsoft Foundry hosted agent.
+Change the AI model your hosted agent uses after initial deployment. Update the model deployment in `azure.yaml`, set the azd environment value that your agent reads at runtime, and redeploy the Microsoft Foundry hosted agent.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ When selecting a model, consider:
 
 | Factor | Guidance |
 |--------|----------|
-| **Task complexity** | Use larger models (for example, `gpt-4.1`) for complex reasoning, tool use, and multi-step tasks. Use smaller models (for example, `gpt-4.1-mini`) for simpler conversations and lower cost. |
+| **Task complexity** | Use larger models for complex reasoning, tool use, and multistep tasks. Use smaller models (for example, `gpt-5.4-mini`) for simpler conversations and lower cost. |
 | **Latency** | Smaller models respond faster. If your agent needs quick responses, prefer mini/nano variants. |
 | **Cost** | Model pricing varies significantly. Check the Azure AI pricing page for current rates. |
 | **Region availability** | Not all models are available in all regions. Verify availability in the Foundry portal before switching. |
@@ -41,57 +41,42 @@ When selecting a model, consider:
 There is no dedicated command for updating the model yet. Start by updating the model deployment name in your azd environment:
 
 ```bash
-azd env set FOUNDRY_MODEL_NAME=gpt-4.1
+azd env set FOUNDRY_MODEL_NAME=gpt-5.4-mini
 ```
 
-## Update agent YAML
+## Update azure.yaml
 
-Update the YAML file that defines your agent.
+Model selection for hosted agents is defined in two places in `azure.yaml`:
 
-### Update `agent.yaml`
+- The `azure.ai.project` service defines the model deployment in its `deployments` list.
+- The `azure.ai.agent` service defines the runtime environment variable that your agent code reads from the `env` map.
 
-If your project has an `agent.yaml` definition, update the environment variable reference to match:
-
-```yaml
-environment_variables:
-  - name: FOUNDRY_MODEL_NAME
-    value: ${FOUNDRY_MODEL_NAME}
-```
-
-The model `resources` section in a definition doesn't need to change. The environment variable controls which deployment is used at runtime.
-
-### Update `agent.manifest.yaml`
-
-If your project has an `agent.manifest.yaml` manifest, update both the `resources` section and the environment variable template:
+Update both entries to use the target deployment name:
 
 ```yaml
-resources:
-  - kind: model
-    name: chat
-    id: gpt-4.1
-
-template:
-  environment_variables:
-    - name: FOUNDRY_MODEL_NAME
-      value: ${FOUNDRY_MODEL_NAME}
-```
-
-## Update Azure YAML
-
-If your `azure.yaml` includes model deployment configuration, it will if you initialized with a manifest that declared a model resource. Update the `config.deployments` section:
-
-```yaml
-config:
+services:
+  ai-project:
+    host: azure.ai.project
     deployments:
-        - model:
-            format: OpenAI
-            name: gpt-4.1
-            version: "2025-04-14"
-          name: gpt-4.1
-          sku:
-            capacity: 10
-            name: GlobalBatch
+      - name: gpt-5.4-mini
+        model:
+          format: OpenAI
+          name: gpt-5.4-mini
+          version: "2026-03-17"
+        sku:
+          name: GlobalStandard
+          capacity: 10
+  my-agent:
+    host: azure.ai.agent
+    project: src/my-agent
+    kind: hosted
+    uses:
+      - ai-project
+    env:
+      FOUNDRY_MODEL_NAME: ${FOUNDRY_MODEL_NAME}
 ```
+
+The model deployment name in the azd environment should match the deployment name in `services.<project-service>.deployments[].name`.
 
 ## Redeploy the project
 
@@ -101,7 +86,7 @@ Run `azd up`:
 azd up
 ```
 
-Use `azd up`, not just `azd deploy`, if the new model needs to be provisioned. If the model deployment already exists in your Foundry project, `azd deploy` is sufficient.
+Use `azd up`, not just `azd deploy`, if the new model deployment needs to be provisioned. If the model deployment already exists in your Foundry project, `azd deploy` is sufficient.
 
 > [!TIP]
 > Run `azd env get-values` to see all current environment variables.
@@ -111,13 +96,13 @@ Use `azd up`, not just `azd deploy`, if the new model needs to be provisioned. I
 You can configure different models for development and production using azd environments:
 
 ```bash
-# Development environment -- use a cheaper model
+# Development environment
 azd env select dev
-azd env set FOUNDRY_MODEL_NAME=gpt-4.1-mini
+azd env set FOUNDRY_MODEL_NAME=<development-model-deployment>
 
-# Production environment -- use a more capable model
+# Production environment
 azd env select prod
-azd env set FOUNDRY_MODEL_NAME=gpt-4.1
+azd env set FOUNDRY_MODEL_NAME=<production-model-deployment>
 ```
 
 Each environment maintains its own set of variables in `.azure/<env-name>/.env`.

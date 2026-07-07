@@ -108,7 +108,7 @@ You can use GitHub Actions with Azure Developer CLI (`azd`) to deploy and valida
              azd env select "$AZD_ENV_NAME" || azd env new "$AZD_ENV_NAME" --no-prompt
 
              # Configure cloud resource parameters for the already deployed environment.
-             # Add or remove azd env values based on the parameters used by your azure.yaml and agent.yaml.
+             # Add or remove azd env values based on the parameters used by your azure.yaml.
              azd env set AZURE_SUBSCRIPTION_ID "${{ vars.AZURE_SUBSCRIPTION_ID }}"
              azd env set AZURE_TENANT_ID "${{ vars.AZURE_TENANT_ID }}"
              azd env set AZURE_LOCATION "${{ vars.AZURE_LOCATION }}"
