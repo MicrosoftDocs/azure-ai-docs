@@ -136,6 +136,9 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.1 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
+| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
+
 
 ### Meta
 
@@ -216,13 +219,6 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | Cohere-rerank-v3.5 | 1 | Deprecated | 2026-05-14 | Cohere-rerank-v4.0-pro, Cohere-rerank-v4.0-fast |
 | Cohere-embed-v3-english | 1 | GA | — | — |
 | Cohere-embed-v3-multilingual | 1 | GA | — | — |
-
-### DeepSeek
-
-| Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
-| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
 
 ### Fireworks
 
