@@ -695,7 +695,7 @@ x-ms-query-source-authorization: {{userAccessToken}}
 
 :::zone-end
 
-## Review the retrieve response
+## Review the response
 
 Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. The activity array contains details about the partial response as errors.
 

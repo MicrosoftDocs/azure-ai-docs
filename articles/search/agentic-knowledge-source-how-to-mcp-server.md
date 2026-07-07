@@ -3,7 +3,7 @@ title: Create an MCP Server Knowledge Source
 description: Learn how to create an MCP Server knowledge source for agentic retrieval in Azure AI Search, which connects to any external Model Context Protocol server.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/06/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -453,7 +453,7 @@ At query time, the large language model (LLM) configured in the knowledge base r
 
 MCP Server knowledge sources return per-document citations in the `references` array and per-invocation diagnostics in the `activity` array. If the knowledge source lists multiple tools and the model selects more than one, a separate activity record appears for each invocation.
 
-The following example shows a retrieve response containing an MCP Server knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the retrieve response](agentic-retrieval-how-to-retrieve.md#review-the-retrieve-response).
+The following example shows a retrieve response containing an MCP Server knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 > [!TIP]
 > To receive `sourceData` for references, set `includeReferenceSourceData` to `true` on the knowledge source entry within `knowledgeSourceParams` on the retrieve request.

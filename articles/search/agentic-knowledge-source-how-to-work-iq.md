@@ -3,7 +3,7 @@ title: Create a Work IQ Knowledge Source
 description: Learn how to create a Work IQ knowledge source to ground an agentic retrieval pipeline in Azure AI Search with organizational intelligence from Work IQ.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/06/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -228,7 +228,7 @@ Work IQ knowledge sources return results in the `references` array and query dia
 - `sourceData.extracts[].text`: Grounded text passages from Work IQ.
 - `attributions[].seeMoreWebUrl`: A link to the source document in Microsoft 365.
 
-The following example shows a retrieve response containing a Work IQ knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the retrieve response](agentic-retrieval-how-to-retrieve.md#review-the-retrieve-response).
+The following example shows a retrieve response containing a Work IQ knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 > [!TIP]
 > To receive `sourceData` for references, set `includeReferenceSourceData` to `true` on the knowledge source entry within `knowledgeSourceParams` on the retrieve request.
