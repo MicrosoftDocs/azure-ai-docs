@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 06/12/2026
+ms.date: 07/07/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -268,6 +268,13 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | Mistral-large | 1 | GA | — | — |
 | mistral-medium-2505 | 1 | GA | — | — |
 | mistral-small-2503 | 1 | GA | — | — |
+
+### Nixtla
+
+| Model | Version | Lifecycle | Retirement date | Replacement |
+|-------|---------|-----------|-----------------|-------------|
+| TimeGEN-1 | 1 | Deprecated | 2026-08-31 | TimeGPT-1, TimegGPT-2.1 |
+
 
 ### NTT Data
 
