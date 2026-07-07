@@ -433,9 +433,6 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
         "tables": [
           "... (tables omitted for brevity)"
         ],
-        "keyValuePairs": [
-          "... (key-value pairs omitted for brevity)"
-        ],
         "analyzerId": "prebuilt-invoice",
         "mimeType": "application/pdf"
       }

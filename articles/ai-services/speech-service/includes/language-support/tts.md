@@ -2,7 +2,7 @@
 author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
-ms.date: 6/18/2026
+ms.date: 6/29/2026
 ms.topic: include
 ms.author: pafarley
 ms.reviewer: pafarley
@@ -113,6 +113,7 @@ ai-usage: ai-assisted
 | `en-AU` | English (Australia) | Standard | `en-AU-TinaNeural` (Female) |  | ❌ |
 | `en-AU` | English (Australia) | Neural HD Omni | `en-au-cyanspark:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-AU` | English (Australia) | Standard | `en-AU-Isla:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `en-AU` | English (Australia) | Neural HD Omni | `en-au-siennatopaz:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-CA` | English (Canada) | Standard | `en-CA-ClaraNeural` (Female) |  | ❌ |
 | `en-CA` | English (Canada) | Standard | `en-CA-LiamNeural` (Male) |  | ❌ |
 | `en-GB` | English (United Kingdom) | Neural HD | `en-GB-Ada:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
@@ -158,8 +159,6 @@ ai-usage: ai-assisted
 | `en-IN` | English (India) | Standard | `en-IN-NeerjaNeural` (Female) | **Styles**<br/>`cheerful`, `empathetic`, `newscast`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-IN` | English (India) | Standard | `en-IN-PrabhatNeural` (Male) |  | ❌ |
 | `en-IN` | English (India) | Standard | `en-IN-RehaanNeural` (Male) |  | ❌ |
-| `en-IN` | English (India) | Neural HD | `en-IN-Diya:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-IN` | English (India) | Neural HD | `en-IN-Neerja:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `en-KE` | English (Kenya) | Standard | `en-KE-AsiliaNeural` (Female) |  | ❌ |
 | `en-KE` | English (Kenya) | Standard | `en-KE-ChilembaNeural` (Male) |  | ❌ |
 | `en-NG` | English (Nigeria) | Standard | `en-NG-EzinneNeural` (Female) |  | ❌ |
@@ -680,13 +679,14 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Yunfan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Xiaoyue:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Yunqi:DragonHDOmniLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Maroonallegro:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Peachgranite:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `assistant`, `calm`, `chat`, `chat-casual`, `cheerful`, `customerservice`, `disgruntled`, `excited`, `fearful`, `friendly`, `gentle`, `lyrical`, `newscast`, `poetry-reading`, `sad`, `serious`, `sorry`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunxiNeural` (Male) | **Styles**<br/>`angry`, `assistant`, `chat`, `cheerful`, `depressed`, `disgruntled`, `embarrassed`, `fearful`, `narration-relaxed`, `newscast`, `sad`, `serious`<br/>**Roles**<br/>`Boy`, `Narrator`, `YoungAdultMale` | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunjianNeural` (Male) | **Styles**<br/>`angry`, `cheerful`, `depressed`, `disgruntled`, `documentary-narration`, `narration-relaxed`, `sad`, `serious`, `sports-commentary`, `sports-commentary-excited`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoyiNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunyangNeural` (Male) | **Styles**<br/>`customerservice`, `narration-professional`, `newscast-casual`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaochenNeural` (Female) | **Styles**<br/>`livecommercial`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Lingqing:DragonHDFlashLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaochen:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`cheerful`, `debating`, `empathetic`, `live-commercial`, `poetry-reading`, `sad`, `sorry`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaochenMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaohan:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `complaining`, `fearful`, `gentle`, `sad`, `shy`, `strict`<br/>**Roles**<br/>Not supported | ❌ |
