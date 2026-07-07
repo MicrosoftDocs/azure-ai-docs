@@ -143,7 +143,7 @@ The deployed agent answers with the remembered name and allergy.
 
 Delete the resources when you're finished so you stop incurring charges.
 
-Delete the memory store by using the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install "azure-ai-projects>=2.3.0" azure-identity`):
+To delete the memory store, use the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install "azure-ai-projects>=2.3.0" azure-identity`):
 
 ```python
 import asyncio
