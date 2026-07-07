@@ -71,7 +71,7 @@ A *search index knowledge source* connects an existing Azure AI Search index, in
 
 ## Limitations
 
-Agentic retrieval doesn't make retrieve requests honor the underlying index's [scoring profiles](index-add-scoring-profiles.md), including `defaultScoringProfile`, and retrieve responses don't surface `@search.rerankerBoostedScore`.
+Agentic retrieval doesn't make retrieve requests honor the underlying index's [scoring profiles](index-add-scoring-profiles.md), including `defaultScoringProfile`. Retrieve responses don't surface `@search.rerankerBoostedScore`.
 
 ## Check for existing knowledge sources
 
