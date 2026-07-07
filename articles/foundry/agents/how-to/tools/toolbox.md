@@ -1443,6 +1443,9 @@ The following sections show each tool type's configuration in detail.
 
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
 
+> [!NOTE]
+> The toolbox MCP endpoint supports long-running operations through [MCP tasks](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks), which is in preview. To use long-running tools, make sure your agent harness supports [MCP tasks](https://modelcontextprotocol.io/extensions/tasks/overview).
+
 :::zone pivot="rest-api"
 
 **Key-based auth:**
