@@ -110,6 +110,8 @@ items:
     items:
     - name: Set up a project
       href: ../../agents/how-to/init-agent-project.md
+    - name: Author azure.yaml
+      href: ../../agents/how-to/author-azure-yaml.md
     - name: Configure environment variables
       href: ../../agents/how-to/configure-hosted-agent-env-variables.md
     - name: Set the model
@@ -190,10 +192,10 @@ items:
     items:
     - name: Permissions
       href: ../../agents/concepts/hosted-agent-permissions.md
-    - name: agent.yaml schema
-      href: ../../agents/concepts/agent-yaml-reference.md
     - name: azure.yaml schema
       href: ../../agents/concepts/azure-yaml-reference.md
+    - name: agent.yaml schema (legacy)
+      href: ../../agents/concepts/agent-yaml-reference.md
     - name: Infrastructure (Bicep)
       href: ../../agents/concepts/cli-infrastructure.md
 

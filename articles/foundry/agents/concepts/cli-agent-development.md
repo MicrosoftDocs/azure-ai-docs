@@ -28,7 +28,7 @@ The `azd ai` workflow follows the same lifecycle whether you build a small proto
 | ----- | ----------- | ------------------- |
 | Install | Install `azd` and the Foundry extensions. | [Set up your developer environment](../../how-to/develop/install-cli-sdk.md) |
 | Scaffold | Initialize a project from a template or your existing code. | [Quickstart: Deploy a hosted agent](../quickstarts/quickstart-hosted-agent.md) |
-| Define | Configure the model, instructions, and tools in `agent.yaml`. | [Hosted agent runtime contract](hosted-agent-contract.md) |
+| Define | Configure the agent, model deployment dependencies, protocols, tools, and environment in `azure.yaml`. | [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md) |
 | Develop | Write agent logic, add tools, and test locally. | [Tools overview](tool-catalog.md) |
 | Deploy | Provision infrastructure and deploy to Foundry. | [Deploy a hosted agent](../how-to/deploy-hosted-agent.md) |
 | Operate | Monitor logs, manage versions, and automate runs. | [Manage hosted agents](../how-to/manage-hosted-agent.md) |
@@ -47,24 +47,17 @@ Hosted agents give you full control over the runtime, framework, and tool integr
 
 ## Configuration files
 
-Three files define how an agent is built and deployed.
+A hosted agent project uses one `azure.yaml` file at the project root to declare both the agent and its provisioning and deployment model. The file uses a split-service model, where each named service has a `host` value such as `azure.ai.project`, `azure.ai.agent`, `azure.ai.connection`, `azure.ai.toolbox`, `azure.ai.skill`, or `azure.ai.routine`.
 
 | File | Purpose | Who maintains it |
 | ---- | ------- | ---------------- |
-| `agent.yaml` | Defines the agent's identity: model, instructions, tools, protocols, and environment variables. | You edit it directly. |
-| `agent.manifest.yaml` | A parameterized template of `agent.yaml` that template authors use. It contains `{{ parameter }}` placeholders that resolve during initialization. | Template authors create it. `azd ai agent init` reads it. |
-| `azure.yaml` | Defines how Azure resources are provisioned and deployed: services, infrastructure, and container settings. | Initialization generates it. You customize it as needed. |
+| `azure.yaml` | Declares the Foundry project, model deployments, hosted agent service, dependencies, protocols, tools, environment variables, container resources, and deployment settings. Agent identity, model, protocols, tools, and environment values live in the `azure.ai.agent` service. | Initialization generates it. You customize it as needed. |
 
-The key distinction is that `agent.yaml` describes *what* your agent is, while `azure.yaml` describes *how* it gets deployed.
-
-Resources that live on the Foundry project itself, such as connections, toolboxes, skills, and routines, are managed through direct `azd ai` commands rather than declared in `agent.yaml`.
+The `azure.ai.agent` service defines your hosted agent inline and uses `uses:` to reference other services, such as the project, connections, toolboxes, skills, and routines. There is no standalone `agent.yaml` or `agent.manifest.yaml` file in the current hosted-agent `azd` project model.
 
 ### Variable substitution
 
-You see two variable syntaxes in agent project files:
-
-* `${VAR_NAME}` is an `azd` environment variable placeholder. It resolves from `.azure/<env>/.env` at deploy time, so the same `agent.yaml` works across environments such as dev, staging, and production.
-* `{{ parameter }}` is a manifest template parameter. It resolves during `azd ai agent init` when a template is scaffolded into a concrete project.
+Use `${VAR_NAME}` in `azure.yaml` for values that differ by `azd` environment. The placeholder resolves from `.azure/<env>/.env` at deploy or run time, so the same `azure.yaml` works across environments such as dev, staging, and production.
 
 ## Where the CLI runs
 

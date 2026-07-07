@@ -37,7 +37,7 @@ You package your agent as a container image and push it to Azure Container Regis
 >
 > We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices. It is your responsibility to manage whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../responsible-ai/agents/transparency-note.md#what-is-a-transparency-note). 
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../responsible-ai/agents/transparency-note.md#what-is-a-transparency-note).
 
 ## Key concepts
 
@@ -101,7 +101,7 @@ The endpoint is available immediately after deployment—publishing isn't requir
 - **Invocations (WebSocket)**: wss://{account}.services.ai.azure.com/api/projects/agents/endpoint/protocols/invocations_ws?project_name={project}&agent_name={name}
 - **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
-Which endpoints are active depends on the protocols declared in the agent version definition (set in agent.yaml when using azd, or via container_protocol_versions when using the SDK).
+Which endpoints are active depends on the protocols declared in the agent version definition. Set this definition in the `azure.ai.agent` service in `azure.yaml` when using `azd`, or via `container_protocol_versions` when using the SDK.
 
 Two identities are involved:
 
@@ -161,7 +161,7 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 Treat a Hosted agent like production application code.
 
 > [!IMPORTANT]
-> Use third-party systems at your own risk, and always implement appropriate responsible AI mitigations. It is your responsibility to manage all data that may flow outside of your organization’s compliance and geographic boundaries. [Learn more](#how-it-works). 
+> Use third-party systems at your own risk, and always implement appropriate responsible AI mitigations. You're responsible for managing all data that might flow outside of your organization's compliance and geographic boundaries. [Learn more](#how-it-works).
 
 - **Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 - **Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
@@ -181,11 +181,11 @@ Hosted agents provide built-in observability. The platform automatically injects
 
 For configuration and analysis guidance, see [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md).
 
-### Toolbox in Foundry 
+### Toolbox in Foundry
 > [!IMPORTANT]
 > Adding tools directly to hosted agent's definition is not supported. We recommend using toolboxes in Foundry.
 
-Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). We recommend customers using toolbox in Foundry for connecting tools in Hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based and more. 
+Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint by using standard MCP client libraries. The platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). To connect tools in a hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based, and more, use the toolbox in Foundry.
 
 ### Language support
 
@@ -233,7 +233,7 @@ Managed hosting runtime billing is based on consumption of CPU and memory resour
 
 ### Region availability
 
-Hosted agents are currently available in the following regions: 
+Hosted agents are currently available in the following regions:
 
 - East US 2
 - North Central US
@@ -270,7 +270,7 @@ Hosted agents are currently available in the following regions:
 | Optimize agent instructions automatically | [Agent optimizer overview](agent-optimizer-overview.md) |
 | Evaluate agent performance | [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) |
 | Publish to Teams, Microsoft 365, or custom apps | [Agent applications](../how-to/agent-applications.md) |
-| Browse code samples | [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents) · [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents) |
+| Browse code samples | [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents) and [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents) |
 
 ## Related content
 
