@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 You can apply a [scoring profile](index-add-scoring-profiles.md) over [semantically ranked search results](semantic-search-overview.md), where the scoring profile is processed last.
 
-To ensure the scoring profile provides the determining score, the semantic ranker adds a response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.rerankerBoostedScore`, results are sorted by `@search.rerankerBoostedScore`. This behavior applies to semantic queries that you send directly to an index, such as `/docs/search`. Agentic retrieval doesn't apply index scoring profiles, including `defaultScoringProfile` on the underlying index, and retrieve responses don't surface `@search.rerankerBoostedScore`. For more information, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md) and [Query a knowledge base](agentic-retrieval-how-to-retrieve.md).
+To ensure the scoring profile provides the determining score, the semantic ranker adds a response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.rerankerBoostedScore`, results are sorted by `@search.rerankerBoostedScore`.
 
 ## Prerequisites
 
@@ -25,6 +25,8 @@ To ensure the scoring profile provides the determining score, the semantic ranke
 ## Limitations
 
 Boosting of semantically ranked results applies to scoring profile functions only. There's no boosting if the scoring profile consists only of weighted text fields.
+
+This behavior applies to semantic queries that you send directly to an index, such as `/docs/search`. Agentic retrieval doesn't apply index scoring profiles, including `defaultScoringProfile` on the underlying index, and retrieve responses don't surface `@search.rerankerBoostedScore`. For more information, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md) and [Query a knowledge base](agentic-retrieval-how-to-retrieve.md).
 
 ## How does semantic configuration with scoring profiles work?
 
