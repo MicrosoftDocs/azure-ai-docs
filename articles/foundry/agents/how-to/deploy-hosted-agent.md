@@ -75,7 +75,7 @@ The WebSocket protocol uses the identifier `invocations_ws` and ships in the sam
 > [!IMPORTANT]
 > The `invocations_ws` WebSocket protocol is in preview and is currently available only in **North Central US**.
 
-A single container can expose **multiple protocols simultaneously** by declaring them when you create the agent - in the `agent.yaml` file, SDK call, or REST API request - and importing the required libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
+A single container can expose **multiple protocols simultaneously** by declaring them when you create the agent - in the `protocols` field of the `azure.ai.agent` service in `azure.yaml`, an SDK call, or a REST API request - and importing the required libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
 <!--
 > [!TIP]
 > If you already have a Hosted agent that uses the **Responses** or **Invocations** protocol and you want to add real-time voice interaction without rewriting it as a WebSocket agent, see [Use Voice Live with hosted agents](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md).
@@ -135,7 +135,7 @@ Containers serve traffic on port **8088** locally. In production, the Foundry ga
 
 ### Platform-injected environment variables
 
-The Hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`. The `FOUNDRY_*` prefix is reserved for platform use.
+The Hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these variables without declaring them in the `env` map of the `azure.ai.agent` service in `azure.yaml` or in SDK and REST environment variable settings. The `FOUNDRY_*` prefix is reserved for platform use.
 
 | Variable | Purpose |
 |----------|---------|
@@ -146,16 +146,16 @@ The Hosted agent platform automatically injects environment variables into your 
 | `FOUNDRY_AGENT_SESSION_ID` | Session ID for the current request (hosted containers only) |
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Application Insights connection string for telemetry |
 
-Don't redeclare platform-injected variables in `agent.yaml` - they're set automatically.
+Don't redeclare platform-injected variables in `azure.yaml` - they're set automatically.
 
-Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
+Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `env` map of the `azure.ai.agent` service in `azure.yaml` or the SDK `create_version` call.
 
 > [!IMPORTANT]
 > When you deploy your hosted agent to Foundry Agent Service, the platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the Azure portal and navigate to Investigate > Transaction search or Performance. Use `azd ai agent monitor` for live console logs.  When AppInsights is enabled, this project logs traces to help monitor and evaluate user level interactions with agents. Project members provided with Log Analytics Reader role in AppInsights can view trace data, which might contain personal data and/or Customer Content. If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), members instead need the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role to view that trace data. Review what trace data is collected and who can view and use this data.  Additional Azure Monitor App Insights [pricing](https://azure.microsoft.com/pricing/details/monitor/) might apply. [Learn more](../../observability/concepts/trace-data.md#disable-tracing).
 
 ### Reference project connections in environment variables
 
-Instead of hard-coding secrets (API keys, tokens, endpoints) into `agent.yaml` or your image, pull them from a Foundry project connection at sandbox start. Any value in `environment_variables` can be a placeholder expression that the platform resolves before your container starts.
+Instead of hard-coding secrets (API keys, tokens, endpoints) into `azure.yaml` or your image, pull them from a Foundry project connection at sandbox start. Any value that you declare as an environment variable can be a placeholder expression that the platform resolves before your container starts.
 
 #### Placeholder syntax
 
@@ -176,14 +176,15 @@ The field name to use depends on the connection category:
 
 #### Example
 
-First, create a `CustomKeys` connection on the project that holds the secret. See [Add a new connection in Microsoft Foundry](../../how-to/connections-add.md). Then reference it from `agent.yaml`:
+First, create a `CustomKeys` connection on the project that holds the secret. See [Add a new connection in Microsoft Foundry](../../how-to/connections-add.md). Then reference it from the `env` map in the `azure.ai.agent` service in `azure.yaml`:
 
 ```yaml
-environment_variables:
-  - name: MODEL_DEPLOYMENT_NAME
-    value: gpt-5-mini
-  - name: GITHUB_TOKEN
-    value: ${{connections.agent-secrets.credentials.github_token}}
+services:
+  my-agent:
+    host: azure.ai.agent
+    env:
+      MODEL_DEPLOYMENT_NAME: gpt-5-mini
+      GITHUB_TOKEN: ${{connections.agent-secrets.credentials.github_token}}
 ```
 
 At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other env var:
@@ -199,7 +200,7 @@ A GET on the agent version returns the literal `${{...}}` text--the resolved sec
 
 - **Create the connection before you deploy the version.** If the connection or the referenced field is missing at sandbox start, the placeholder doesn't resolve and the variable is empty.
 - **Secrets are write-only.** GET on a connection returns `credentials: null`. Verify resolution by reading the env var from inside your running container, not by inspecting the connection.
-- **Record `CustomKeys` field names yourself.** The management API never echoes them back after creation. Keep them next to your agent source (for example, in IaC templates or alongside `agent.yaml`) so you can construct placeholders later without guessing.
+- **Record `CustomKeys` field names yourself.** The management API never echoes them back after creation. Keep them next to your agent source (for example, in IaC templates or alongside `azure.yaml`) so you can construct placeholders later without guessing.
 - **Foundry manages the backing secret name.** When you create the connection, Foundry stores the value in Key Vault under a name it chooses -- you can't reference a preexisting Key Vault secret by name. To attach your own Key Vault as the backing store, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 
 ## Package and test your agent locally
