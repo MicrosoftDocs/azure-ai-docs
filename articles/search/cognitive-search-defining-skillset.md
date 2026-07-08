@@ -3,7 +3,7 @@ title: Create a Skillset
 description: Learn about skillsets and create a skillset in Azure AI Search using REST APIs.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 07/07/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -22,21 +22,24 @@ This article explains how to create a skillset using [REST APIs](/rest/api/searc
 
 Rules for skillset definition include:
 
-+ Must have a unique name within the skillset collection. A skillset is a top-level resource that can be used by any indexer.
++ Must have a unique name within the skillset collection. A skillset is a top-level resource that any indexer can use.
 + Must have at least one skill. Three to five skills are typical. The maximum is 30.
 + A skillset can repeat skills of the same type. For example, a skillset can have multiple Shaper skills.
 + A skillset supports chained operations, looping, and branching.
 
-A skillset is attached to an indexer. To use the skillset, reference it in an [indexer](search-howto-create-indexers.md) and then run the indexer to import data, invoke skills processing, and send output to an [index](search-what-is-an-index.md). A skillset is high-level resource, but it's operational only within indexer processing. As a high-level resource, you can reference it in multiple indexers.
+Attach a skillset to an indexer. To use the skillset, reference it in an [indexer](search-howto-create-indexers.md) and then run the indexer to import data, invoke skills processing, and send output to an [index](search-what-is-an-index.md). A skillset is a high-level resource, but it's operational only within indexer processing. As a high-level resource, you can reference it in multiple indexers.
 
 > [!TIP]
-> Enable [enrichment caching](enrichment-cache-how-to-configure.md) to reuse the content you've already processed and lower the cost of development.
+> Enable [enrichment caching](enrichment-cache-how-to-configure.md) to reuse the content you already processed and lower the cost of development.
 
 ## Add a skillset definition
 
-Creating a skillset adds it to your search service. Updating a skillset fully overwrites an existing skillset with the contents of the request payload. A best practice for updates is to retrieve the skillset definition with a GET, modify it, and then update with PUT.
+When you create a skillset, you add it to your search service. When you update a skillset, you fully overwrite an existing skillset with the contents of the request payload. To update a skillset, retrieve the skillset definition by using GET, modify it, and then update it by using PUT.
 
-Start with the basic structure. In the [Create Skillset REST API](/rest/api/searchservice/skillsets/create), the body of the request is authored in JSON and has the following sections:
+> [!NOTE]
+> When you retrieve a skillset by using GET, the service returns `<redacted>` for all `httpHeaders` values in custom skills and `?code=<redacted>` for any `?code=` query parameter in the `uri`. To update the skillset without changing those values, set those fields to `<unchanged>` in the PUT request body. For full details, see [Custom Web API skill — Skill parameters](cognitive-search-custom-skill-web-api.md#skill-parameters).
+
+Start with the basic structure. In the [Create Skillset REST API](/rest/api/searchservice/skillsets/create), author the body of the request in JSON. It has the following sections:
 
 ```json
 {
@@ -70,7 +73,7 @@ After the name and description, a skillset has four main properties:
 
 + `cognitiveServices` is used for [billable skills](cognitive-search-predefined-skills.md) that call Foundry Tools APIs. Remove this section if you aren't using billable skills or Custom Entity Lookup. If you are, attach [a Foundry resource](cognitive-search-attach-cognitive-services.md).
 
-+ `knowledgeStore` (optional) specifies an Azure Storage account and settings for projecting skillset output into tables, blobs, and files in Azure Storage. Remove this section if you don't need it, otherwise [specify a knowledge store](knowledge-store-create-rest.md).
++ `knowledgeStore` (optional) specifies an Azure Storage account and settings for projecting skillset output into tables, blobs, and files in Azure Storage. Remove this section if you don't need it. Otherwise, [specify a knowledge store](knowledge-store-create-rest.md).
 
 + `encryptionKey` (optional) specifies an Azure Key Vault and [customer-managed keys](search-security-manage-encryption-keys.md) used to encrypt sensitive content (descriptions, connection strings, keys) in a skillset definition. Remove this property if you aren't using customer-managed encryption.
 
@@ -155,7 +158,7 @@ Each skill has a [context property](cognitive-search-working-with-skillsets.md#s
 ]
 ```
 
-The `context` property is usually set to one of the following examples:
+Set the `context` property to one of the following examples:
 
 | Context example | Description |
 |-----------------|-------------|
@@ -199,9 +202,9 @@ If the skill iterates over an array, both context and input source should includ
 
 ## Define outputs
 
-Each skill is designed to emit specific kinds of output, which are referenced by name in the skillset. A skill output has a `name` and an optional `targetName`.
+Each skill is designed to emit specific kinds of output, which the skillset references by name. A skill output has a `name` and an optional `targetName`.
 
-[Skill reference documentation](cognitive-search-predefined-skills.md) for each skill describes the outputs it can produce. The following example is from the Entity Recognition skill:
+The [Skill reference documentation](cognitive-search-predefined-skills.md) for each skill describes the outputs it can produce. The following example is from the Entity Recognition skill:
 
 ```json
 "outputs": [
@@ -222,7 +225,7 @@ Each skill is designed to emit specific kinds of output, which are referenced by
 
 + Skills can have multiple outputs. The `name` property identifies a specific output. For example, for Entity Recognition, output can be *persons*, *locations*, *organizations*, among others.
 
-+ The `targetName` property specifies the name you would like this node to have in the enriched document. This is useful if skill outputs have the same name. If you have multiple skills that return the same output, use `targetName` for name disambiguation in enrichment node paths. If the target name is unspecified, the name property is used for both.
++ The `targetName` property specifies the name you want this node to have in the enriched document. This property is useful if skill outputs have the same name. If you have multiple skills that return the same output, use `targetName` for name disambiguation in enrichment node paths. If you don't specify the target name, the name property is used for both.
 
 Some situations call for referencing each element of an array separately. For example, suppose you want to pass *each element* of `"/document/orgs"` separately to another skill. To do so, add an asterisk to the path: `"/document/orgs/*"`.
 
@@ -234,15 +237,15 @@ This section includes an example of a [custom skill](cognitive-search-custom-ski
 
 Although the custom skill executes code that is external to the pipeline, in a skills array, it's just another skill. Like the built-in skills, it has a type, context, inputs, and outputs. It also reads and writes to an enrichment tree, just as the built-in skills do. Notice that the `context` field is set to `"/document/orgs/*"` with an asterisk, meaning the enrichment step is called *for each* organization under `"/document/orgs"`.
 
-Output, such as the company description in this example, is generated for each organization that's identified. When referring to the node in a downstream step (for example, in key phrase extraction), you would use the path `"/document/orgs/*/companyDescription"` to do so. 
+Output, such as the company description in this example, is generated for each organization that's identified. When referring to the node in a downstream step (for example, in key phrase extraction), use the path `"/document/orgs/*/companyDescription"` to do so. 
 
 ```json
 {
   "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
   "description": "This skill calls an Azure function, which in turn calls custom code",
-  "uri": "https://indexer-e2e-webskill.azurewebsites.net/api/InvokeCode?code=foo",
+  "uri": "https://indexer-e2e-webskill.azurewebsites.net/api/InvokeCode?code=<YOUR-FUNCTION-KEY>",
   "httpHeaders": {
-      "Ocp-Apim-Subscription-Key": "foobar"
+      "Ocp-Apim-Subscription-Key": "<YOUR-APIM-KEY>"
   },
   "context": "/document/orgs/*",
   "inputs": [
@@ -262,7 +265,7 @@ Output, such as the company description in this example, is generated for each o
 
 ## Send output to a destination
 
-Although skill output can be optionally cached for reuse purposes, it's usually temporary and exists only while skill execution is in progress.
+Although you can optionally cache skill output for reuse, it's usually temporary and exists only while skill execution is in progress.
 
 + To send output to a field in a search index, [create an output field mapping](cognitive-search-output-field-mapping.md) in an indexer.
 
