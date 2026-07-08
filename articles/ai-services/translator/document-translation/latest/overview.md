@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 07/08/2026
 ms.author: lajanuar
 ms.custom: references_regions, pilot-ai-workflow-jan-2026
 recommendations: false
@@ -160,7 +160,14 @@ If you encounter unexpected behavior, errors, or performance issues, the followi
 
 ## Pricing
 
-* Document translations using **NMT models** are billed by the number of characters or images in the source document. For more information, see [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+You pay for document translation with Neural Machine Translation (NMT) models based on the content in the source document:
+
+* **Text documents**: You pay by the number of characters.
+* **Image-based content**: You pay by the number of images.
+
+You always pay as you go (PAYG) for document translation, even when you select a commitment tier for standard or custom translation. The D3 tier provides volume-based discounts specific to document translation and functions similarly to commitment tiers for cost savings at scale.
+
+For more information, see [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 
 ## Related content
 
