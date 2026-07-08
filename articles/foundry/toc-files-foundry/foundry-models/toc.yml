@@ -206,6 +206,9 @@ items:
     - name: Overview
       displayName: Overview of Claude models in Foundry
       href: ../../foundry-models/concepts/claude-models.md
+    - name: Compare hosting options
+      displayName: Compare Azure-hosted and Anthropic-hosted Claude models in Microsoft Foundry
+      href: ../../foundry-models/concepts/claude-models-hosting-comparison.md
     - name: Deploy and use Claude models
       displayName: Deploy and use Claude models in Foundry
       href: ../../foundry-models/how-to/use-foundry-models-claude.md
