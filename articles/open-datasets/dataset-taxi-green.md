@@ -267,7 +267,7 @@ display(spark.sql('SELECT * FROM source LIMIT 10'))
 
 ### Azure SQL Database
 
-[Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly by using [data virtualization](/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas&preserve-view=true) Use `OPENROWSET` to read the Parquet files over HTTPS.
+[Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly by using [data virtualization](/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas&preserve-view=true). Use `OPENROWSET` to read the Parquet files over HTTPS.
 
 #### Query in place
 
