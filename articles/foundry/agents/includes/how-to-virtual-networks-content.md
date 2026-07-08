@@ -239,7 +239,7 @@ Refer to this guide to resolve errors during or after a Standard Agent deploymen
 
 `"Provided subnet must be of the proper address space. Please provide a subnet which has address space in the range of 172 or 192."` 
 
-**Solution**: You aren't using a proper IP range for your delegated agent subnet. Verify that you're using a valid private IP address space. Valid RFC1918 ranges include `10.0.0.0/8`, `172.16-31.0.0/12`, and `192.168.0.0/16`. More details are in [limitations](#limitations) above. 
+**Solution**: You're not using a proper IP range for your delegated agent subnet. Verify that you're using a valid private IP address space. Valid RFC1918 ranges include `10.0.0.0/8`, `172.16-31.0.0/12`, and `192.168.0.0/16`. More details are in [limitations](#limitations) above.
 
 `"Subscripton is not registered with the required resource providers, please register with the resource providers Microsoft.App and Microsoft.ContainerService."` 
 
