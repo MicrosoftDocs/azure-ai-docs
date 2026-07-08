@@ -6,7 +6,7 @@ ms.service: foundry-tools
 ms.topic: include
 ms.date: 08/25/2022
 ms.author: aahi
-ms.manager: nitinme
+ms.manager: mcleans
 ms.custom: include
 ---
 

@@ -3,7 +3,7 @@ title: "Use an ONNX model with Windows ML - Custom Vision Service"
 titleSuffix: Foundry Tools
 description: Learn how to create a Windows UWP app that uses an ONNX model exported from Foundry Tools.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to

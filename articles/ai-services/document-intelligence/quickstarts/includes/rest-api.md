@@ -3,7 +3,7 @@ title: "Quickstart: Document Intelligence REST API"
 titleSuffix: Foundry Tools
 description: Form and document processing, data extraction, and analysis using Document Intelligence REST API v3.0
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025

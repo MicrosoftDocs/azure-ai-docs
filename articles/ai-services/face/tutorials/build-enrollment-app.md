@@ -3,7 +3,7 @@ title: Build a React Native app to add users to a Face service
 titleSuffix: Foundry Tools
 description: Learn how to set up your development environment and deploy a Face app to get consent from customers.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 #customer intent: As a developer, I want to build a React Native app to add users to a Face service so that I can obtain meaningful consent and high-quality face data.
 ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face

@@ -3,7 +3,7 @@ title: Document Intelligence v3.1 content
 description: include file
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025

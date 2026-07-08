@@ -2,7 +2,7 @@
 title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
-manager: nitinme
+manager: mcleans
 ms.date: 06/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -57,13 +57,14 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-pro | 2026-03-05 | - | - | - | - | - | ✅ | - | ✅ | - | - |
-| gpt-5.5 | 2026-04-24 | - | - | - | - | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-12-15 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-05-05 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
 | gpt-chat-latest | 2026-05-28 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | - | ✅ | - | - | - | ✅ |
@@ -75,9 +76,9 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-realtime-mini | 2025-12-15 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-translate | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-whisper | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
-| model-router | 2025-05-19 | - | - | - | - | - | ✅ | - | - | - | - |
-| model-router | 2025-08-07 | - | - | - | - | - | ✅ | - | - | - | - |
-| model-router | 2025-11-18 | - | - | - | - | - | ✅ | - | - | - | - |
+| model-router | 2025-05-19 | - | - | - | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | - | - | - | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-deep-research | 2025-06-26 | - | - | - | - | - | - | - | - | ✅ | - |
@@ -87,7 +88,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | sora-2 | 2025-10-06 | - | - | - | - | - | ✅ | - | - | - | - |
 | text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-ada-002 | 2 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Europe](#tab/az-europe)
 
@@ -128,13 +129,14 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-pro | 2026-03-05 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
-| gpt-5.5 | 2026-04-24 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-12-15 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-05-05 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-05-28 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
@@ -158,7 +160,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | sora-2 | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
+| text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 
 # [Asia Pacific](#tab/az-apac)
@@ -198,6 +200,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
 | gpt-realtime-1.5 | 2026-02-23 | - | - | - | - | ✅ |
 | gpt-realtime-2 | 2026-05-06 | - | - | - | - | ✅ |
@@ -205,13 +209,16 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-realtime-mini | 2025-12-15 | - | - | - | - | ✅ |
 | gpt-realtime-translate | 2026-05-06 | - | - | - | - | ✅ |
 | gpt-realtime-whisper | 2026-05-06 | - | - | - | - | ✅ |
+| model-router | 2025-05-19 | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | - | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | - | ✅ |
 | o4-mini | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | - | ✅ |
+| text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Middle East & Africa](#tab/az-mea)
 
@@ -244,6 +251,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ |
+| gpt-5.5 | 2026-04-24 | ✅ | ✅ |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | ✅ |
 | gpt-image-1-mini | 2025-10-06 | - | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | ✅ |
@@ -261,7 +270,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 ## Data Zone standard
 
-For **Data Zone** deployments, prompts and responses are processed anywhere within the Microsoft-specified data zone: United States (data processed anywhere within the US) or European Union (data processed within any EU member nation).
+For **Data Zone** deployments, Microsoft processes prompts and responses anywhere within the specified data zone: United States (data processed anywhere within the US), European Union (data processed within any EU member nation), or Asia Pacific (data processed within any Asia Pacific nation).
 
 # [Americas](#tab/az-americas)
 
@@ -285,9 +294,9 @@ For **Data Zone** deployments, prompts and responses are processed anywhere with
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | ✅ | - | - | - | ✅ |
-| model-router | 2025-05-19 | - | - | ✅ | - | - | - | - |
-| model-router | 2025-08-07 | - | - | ✅ | - | - | - | - |
-| model-router | 2025-11-18 | - | - | ✅ | - | - | - | - |
+| model-router | 2025-05-19 | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | - | - | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -312,7 +321,7 @@ For **Data Zone** deployments, prompts and responses are processed anywhere with
 | gpt-5-mini | 2025-08-07 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
 | gpt-5-nano | 2025-08-07 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | - | - | - | - | - | ✅ | - | - |
-| gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | ✅ | - | ✅ | - | - |
 | model-router | 2025-05-19 | - | - | - | - | - | - | ✅ | - | - |

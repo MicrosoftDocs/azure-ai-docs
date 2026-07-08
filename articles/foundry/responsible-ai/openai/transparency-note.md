@@ -3,7 +3,7 @@ title: "Transparency Note for Azure OpenAI in Microsoft Foundry Models"
 description: "Transparency Note for Azure OpenAI"
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

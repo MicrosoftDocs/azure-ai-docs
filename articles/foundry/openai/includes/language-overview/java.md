@@ -2,15 +2,16 @@
 title: Azure OpenAI Java support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI Java support
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 10/02/2025
+ai-usage: ai-assisted
 ---
 
 
-[Source code](https://github.com/openai/openai-java/blob/main/README.md) |[REST API reference documentation](../../latest.md) | [Package reference documentation](https://javadoc.io/doc/com.openai/openai-java/latest/index.html) | [Maven Central](https://central.sonatype.com/artifact/com.openai/openai-java/4.0.1)
+[Source code](https://github.com/openai/openai-java/blob/main/README.md) |[REST API reference documentation](/rest/api/microsoft-foundry/?view=rest-microsoft-foundry-v1&preserve-view=true) | [Package reference documentation](https://javadoc.io/doc/com.openai/openai-java/latest/index.html) | [Maven Central](https://central.sonatype.com/artifact/com.openai/openai-java/4.0.1)
 
 ## Azure OpenAI API version support
 

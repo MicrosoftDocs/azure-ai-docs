@@ -3,7 +3,7 @@ title: "What is a workspace and project? - Custom Translator"
 titleSuffix: Foundry Tools
 description: In This article, learn the differences between a workspace and a project as well as project categories and labels for the Custom Translator service.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.date: 06/02/2026
 ms.author: lajanuar

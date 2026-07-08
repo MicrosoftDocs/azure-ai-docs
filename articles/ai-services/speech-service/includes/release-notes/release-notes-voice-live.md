@@ -27,7 +27,7 @@ New GA feature:
 - [Telemetry and tracing](../../how-to-voice-live-telemetry.md) — built-in OpenTelemetry instrumentation for monitoring Voice Live sessions.
 
 New preview feature:
-- [MAI Transcribe-1](../../mai-transcribe.md) is available in preview as a speech recognition model option for Voice Live.
+- [MAI Transcribe](../../mai-transcribe.md) is available in preview as a speech recognition model option for Voice Live.
 
 Updated GA SDK versions:
 - Python `azure-ai-voicelive` 1.2.0

@@ -6,7 +6,7 @@ metadata:
   description: Learn about the changes you need to make to your code to swap back and forth between OpenAI and Azure OpenAI endpoints.
   author: alvinashcraft
   ms.author: aashcraft
-  manager: nitinme
+  manager: mcleans
   ms.date: 09/30/2025
   ms.service: microsoft-foundry
   ms.subservice: foundry-openai

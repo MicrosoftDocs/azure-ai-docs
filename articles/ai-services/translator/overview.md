@@ -2,7 +2,7 @@
 title: What is Azure Translator in Foundry Tools?
 titlesuffix: Foundry Tools
 description: Learn more about Azure Translator, a cloud-based neural machine translation solution that translates text across multiple languages and dialects.
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
 ms.date: 05/14/2026

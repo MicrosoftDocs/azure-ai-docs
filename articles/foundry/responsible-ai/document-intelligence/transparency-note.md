@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: "This document details some example use cases and tips for using Document Intelligence."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 10/15/2025
 ---

@@ -2,7 +2,7 @@
 title: "How to use the deep research tool (classic)"
 description: "Find code samples and instructions for using deep research in the Foundry Agent Service. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

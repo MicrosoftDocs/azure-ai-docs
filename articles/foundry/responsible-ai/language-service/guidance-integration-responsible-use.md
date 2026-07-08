@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Guidance for how to deploy Azure Language in Foundry Tools features responsibly, based on the knowledge and understanding from the team that created this product."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: best-practice
 ms.date: 04/01/2026

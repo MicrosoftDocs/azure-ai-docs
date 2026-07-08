@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Data and privacy for Custom Vision"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: concept-article
 ms.date: 07/07/2021

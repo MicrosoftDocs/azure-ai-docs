@@ -3,7 +3,7 @@ title: "Region availability for Foundry Models sold by Azure (classic)"
 description: "Find region availability, capabilities, and deployments types available for Microsoft Foundry Models sold by Azure, to inform their use in AI applications. (classic)"
 author: msakande
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 ms.date: 05/08/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference

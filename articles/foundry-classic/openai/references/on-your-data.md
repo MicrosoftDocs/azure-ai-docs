@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI On Your Data Python & REST API reference (classic)"
 description: "Learn how to use Azure OpenAI On Your Data Python & REST API. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: reference
@@ -9,6 +9,7 @@ ms.date: 02/06/2026
 author: aahill
 ms.author: aahi
 recommendations: false
+ai-usage: ai-assisted
 ms.custom: devx-track-python
 ---
 
@@ -61,7 +62,7 @@ The response body inherits the same schema of chat completions API response. The
 
 ## Chat message
 
-The response assistant message schema inherits from the chat completions assistant [chat message](../reference.md#chatmessage), and is extended with the property `context`.
+The response assistant message schema inherits from the chat completions assistant [chat message](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true), and is extended with the property `context`.
 
 |Name | Type | Required | Description |
 |--- | --- | --- | --- |

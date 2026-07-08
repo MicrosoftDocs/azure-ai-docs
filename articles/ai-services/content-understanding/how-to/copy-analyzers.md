@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Copy custom analyzers within a resource and across Azure resources.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools

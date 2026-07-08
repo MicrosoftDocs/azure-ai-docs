@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "The Transparency note discusses Azure Language in Foundry Tools and the key considerations for making use of this technology responsibly."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 04/01/2026

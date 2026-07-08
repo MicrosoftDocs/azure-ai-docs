@@ -3,7 +3,7 @@ title: Retrieval-Augmented Generation (RAG) with Azure Document Intelligence in 
 titleSuffix: Foundry Tools
 description: Introduction to how semantic chunking can help with Retrieval-Augmented Generation (RAG) implementation using Azure Document Intelligence in Foundry Tools Layout model.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025

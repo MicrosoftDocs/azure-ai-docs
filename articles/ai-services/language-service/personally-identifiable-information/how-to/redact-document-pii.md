@@ -3,7 +3,7 @@ title: Identify and extract Personally Identifiable Information (PII) from nativ
 titleSuffix: Foundry Tools
 description: This article shows you how to redact Personally Identifiable Information (PII) from native documents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

@@ -15,6 +15,8 @@ ms.custom:
 
 # Set up an indexer connection to Azure SQL Managed Instance using a managed identity
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes how to set up an Azure AI Search indexer connection to [SQL Managed Instance](/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview) using a managed identity instead of providing credentials in the connection string.
 
 You can use a system-assigned managed identity or a user-assigned managed identity. Managed identities are Microsoft Entra logins and require Azure role assignments to access data in SQL Managed Instance.

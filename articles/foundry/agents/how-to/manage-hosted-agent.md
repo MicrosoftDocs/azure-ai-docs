@@ -4,7 +4,7 @@ description: "View, monitor, and manage hosted agents in Foundry Agent Service b
 author: aahill
 ms.author: aahi
 ms.date: 04/09/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -17,7 +17,7 @@ zone_pivot_groups: hosted-agent-manage-method
 
 This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
 
-The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). There are no manual start or stop operations.
+The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
 
 ## Prerequisites
 
@@ -182,6 +182,14 @@ az rest --method GET \
     --resource "${RESOURCE}"
 ```
 
+By default, the list excludes [draft versions (preview)](#create-a-draft-version-preview). To include them, add the `include_drafts=true` query parameter:
+
+```bash
+az rest --method GET \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}&include_drafts=true" \
+    --resource "${RESOURCE}"
+```
+
 :::zone-end
 
 :::zone pivot="python"
@@ -255,6 +263,58 @@ New versions are created automatically when you run `azd deploy` with updated co
 
 :::zone-end
 
+### Create a draft version (preview)
+
+> [!NOTE]
+> Draft versions are in preview. Preview features are provided without a service-level agreement and aren't recommended for production workloads. Behavior can change. Draft creation must be enabled for your subscription; until it's enabled, a request with `draft` set to `true` creates a normal release version instead.
+
+A *draft version* is an experimental version that you can create and test without affecting how your agent serves production traffic. Drafts let you iterate on a new image, resource allocation, or configuration before you promote the change to a regular release version.
+
+Draft versions differ from regular release versions in the following ways:
+
+- **Separate version identifier**: A draft is assigned a `draft-{timestamp}` version string (for example, `draft-1719600000000`) instead of an auto-incremented integer, so it never advances your release version numbering.
+- **Excluded from default listings**: Drafts don't appear when you [list versions](#list-all-versions-of-an-agent) unless you pass `include_drafts=true`.
+- **Excluded from implicit routing**: A draft is never resolved as the agent's latest version, so it doesn't receive traffic automatically.
+- **Can't be a traffic-routing target**: You can't pin a traffic-routing rule to a draft version. Requests to route traffic to a draft are rejected.
+
+To create a draft version, set `draft` to `true` in the request body:
+
+:::zone pivot="rest"
+
+```bash
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --body '{
+        "draft": true,
+        "definition": {
+            "kind": "hosted",
+            "image": "myregistry.azurecr.io/my-agent:experimental",
+            "cpu": "1",
+            "memory": "2Gi",
+            "container_protocol_versions": [
+                {"protocol": "responses", "version": "1.0.0"}
+            ]
+        }
+    }'
+```
+
+The response `version` field contains the assigned `draft-{timestamp}` identifier. Use that identifier to [get](#get-a-specific-version) or [delete](#delete-a-specific-version) the draft, or to test it directly. When you're satisfied with the change, promote it by creating a new version with the same image and configuration but with `draft` omitted (or set to `false`). The new version receives a regular auto-incremented version number and becomes eligible for traffic routing.
+
+:::zone-end
+
+:::zone pivot="python"
+
+Draft versions are currently available through the REST API only. Switch to the **REST** tab for an example, and call the same `${BASE_URL}/agents/${AGENT_NAME}/versions` endpoint with `"draft": true` in the request body.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Draft versions are currently available through the REST API only. Switch to the **REST** tab for an example.
+
+:::zone-end
+
 ### Version status values
 
 After you create or update an agent version, poll the version endpoint until the status reaches `active`:
@@ -288,6 +348,58 @@ def wait_for_version_active(project, agent_name, agent_version, max_attempts=60)
             raise RuntimeError(f"Version provisioning failed: {dict(version)}")
     raise RuntimeError("Timed out waiting for version to become active")
 ```
+
+:::zone-end
+
+## Disable or enable an agent
+
+Disable an agent to take its endpoint offline without deleting the agent or any of its versions. While disabled, the agent rejects requests, but its configuration and versions remain intact. Enable the agent again whenever you're ready to resume serving requests. Disabling is reversible, which makes it the preferred way to take an agent out of service temporarily.
+
+### Disable an agent
+
+:::zone pivot="rest"
+
+```bash
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}:disable?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+Not supported as a standalone command. Use the REST API.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Not supported as a standalone command. Use the REST API.
+
+:::zone-end
+
+### Enable an agent
+
+:::zone pivot="rest"
+
+```bash
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}:enable?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+Not supported as a standalone command. Use the REST API.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Not supported as a standalone command. Use the REST API.
 
 :::zone-end
 

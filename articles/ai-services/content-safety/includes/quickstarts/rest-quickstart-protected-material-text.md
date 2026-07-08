@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Use use protected material detection for text with the REST API"
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include

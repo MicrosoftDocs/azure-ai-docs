@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.date: 3/11/2025

@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Automate agents with routines (preview)"
 description: "Create, manage, and monitor routines that automatically trigger agents on a schedule or at a specific time in Microsoft Foundry."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -73,7 +73,7 @@ For required and optional fields of each action type, see [Action fields](#actio
 - Install the `azure-ai-projects` SDK, version 2.2.0 or later (preview):
 
   ```bash
-  pip install "azure-ai-projects>=2.2.0"
+  pip install "azure-ai-projects>=2.3.0"
   ```
 
   Version 2.2.0 introduces the duration shorthand (`"30m"`, `"2h"`) for timer triggers.
@@ -116,7 +116,7 @@ For required and optional fields of each action type, see [Action fields](#actio
 
   ```bash
   azd auth login
-  export AZURE_AI_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+  export FOUNDRY_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
   ```
 
 :::zone-end

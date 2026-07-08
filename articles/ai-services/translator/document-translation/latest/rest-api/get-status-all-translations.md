@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Retrieve a list of all batch translation jobs submitted to your Document Translation resource and their current status.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

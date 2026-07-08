@@ -2,7 +2,7 @@
 title: "Use Azure Functions with Foundry Agent Service (classic)"
 description: "Learn how to build custom tools with code hosted in Azure Functions and integrate them with Microsoft Foundry agents. (classic)"
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

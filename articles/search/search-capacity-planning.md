@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Estimate and manage capacity of a search service
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search offers two pricing models that handle capacity differently:
 
 - **Dedicated**: Plan capacity by sizing replicas and partitions and selecting a service tier.

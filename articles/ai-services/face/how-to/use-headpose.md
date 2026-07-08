@@ -3,7 +3,7 @@ title: Use the HeadPose attribute
 titleSuffix: Foundry Tools
 description: Learn how to use the HeadPose attribute to automatically rotate the face rectangle in a video feed.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 #customer intent: As a developer, I want to use the HeadPose attribute to rotate face rectangles in a video feed.
 
 ms.service: azure-vision-foundry-tools

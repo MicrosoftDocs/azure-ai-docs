@@ -1,7 +1,7 @@
 ---
 title: include file
 description: include file
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: include
 ms.custom: include file

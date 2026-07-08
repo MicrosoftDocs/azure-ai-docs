@@ -3,7 +3,7 @@ title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 04/27/2026
+ms.date: 06/25/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -308,7 +308,7 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 - Supported networking configurations:
     - Public networking is supported for both API Management and self-hosted gateways.
     - For full network isolation:
-      - **API Management as your AI gateway**: Deploy Foundry and API Management together using [this GitHub template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
+      - **API Management as your AI gateway**: Deploy Foundry and API Management together using [this GitHub template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup).
       - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
 
 ## Related content

@@ -2,7 +2,7 @@
 title: Metrics Advisor REST API quickstart
 titleSuffix: Azure AI services
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025

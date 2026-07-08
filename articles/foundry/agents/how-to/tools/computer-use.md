@@ -2,7 +2,7 @@
 title: "Use the computer use tool for agents"
 description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, TypeScript, Java SDK, and REST API samples for Foundry Agent Service."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -577,7 +577,7 @@ After the action loop completes, the final agent reply describes the page it rea
 Response: I searched for "OpenAI news" in the address bar. The top results include articles from OpenAI's blog, TechCrunch, and The Verge ...
 ```
 
-For the full screenshot helper implementation and end-to-end action loop, see [Agent_Step15_ComputerUse](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step15_ComputerUse).
+For the full screenshot helper implementation and end-to-end action loop, see [Agent_Step15_ComputerUse](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step15_ComputerUse).
 
 ---
 

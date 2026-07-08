@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: The Swagger documentation can be used to auto-generate SDKs for many programming languages. 
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026

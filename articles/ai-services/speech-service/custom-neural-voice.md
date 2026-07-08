@@ -3,7 +3,7 @@ title: Custom voice overview - Speech service
 titleSuffix: Foundry Tools
 description: Custom voice is a text to speech feature that allows you to create a one-of-a-kind, customized, synthetic voice for your applications. You provide your own audio data as a sample.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026

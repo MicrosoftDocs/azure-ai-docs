@@ -3,7 +3,7 @@ title: About the Speech Transcription SDK - Speech service
 titleSuffix: Foundry Tools
 description: The Speech Transcription software development kit (SDK) exposes the LLM Speech and Fast Transcription capabilities of the Speech Service, making it easier to develop high quality transcription applications.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 05/27/2026

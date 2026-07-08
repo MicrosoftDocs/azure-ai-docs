@@ -1,7 +1,7 @@
 ---
 title: "How-to: Create and deploy an Azure OpenAI in Microsoft Foundry Models resource (classic)"
 description: "Learn how to get started with Azure OpenAI and create your first resource and deploy your first model in the Azure CLI or the Azure portal. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: devx-track-azurecli, build-2023, build-2023-dataai, devx-track-azurepowershell, innovation-engine

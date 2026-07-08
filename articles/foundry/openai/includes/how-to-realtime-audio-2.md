@@ -300,7 +300,7 @@ The following example json body sets up an MCP server:
 
 Here's an example of the event sequence for a simple text-in, audio-out conversation:
 
-When you connect to the `/realtime` endpoint, the server responds with a `session.created` event. The maximum session duration is 30 minutes.
+When you connect to the `/realtime` endpoint, the server responds with a `session.created` event. The maximum session duration is 60 minutes.
 
 ```json
 {
@@ -507,7 +507,7 @@ For more information about quotas, see [Azure OpenAI quotas and limits](../quota
 
 ### Session timeout
 
-Realtime sessions have a maximum duration of **30 minutes**. To handle long interactions:
+Realtime sessions have a maximum duration of **60 minutes**. To handle long interactions:
 - Monitor the `session.created` event's `expires_at` field.
 - Implement session renewal logic before timeout.
 - Save conversation context to restore state in a new session.

@@ -2,7 +2,7 @@
 title: "How to use Foundry Agent Service Computer Use Tool (classic)"
 description: "Learn how to use Foundry Agent Service Computer Use Tool (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

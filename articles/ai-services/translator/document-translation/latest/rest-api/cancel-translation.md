@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Cancel an asynchronous batch translation job that is queued or in progress using the Document Translation REST API.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

@@ -2,7 +2,7 @@
 title: "Get started: Azure Document Intelligence in Foundry Tools REST API v2.1"
 description: Use the Document Intelligence REST API v2.1 to create a forms processing app that extracts key/value pairs and table data from your custom documents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025

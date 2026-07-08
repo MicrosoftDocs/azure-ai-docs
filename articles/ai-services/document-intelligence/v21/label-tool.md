@@ -3,7 +3,7 @@ title: "How-to: Analyze documents, Label forms, train a model, and analyze forms
 titleSuffix: Foundry Tools
 description: How to use the Document Intelligence sample tool to analyze documents, invoices, receipts etc. Label and create a custom model to extract text, tables, selection marks, structure, and key-value pairs from documents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 10/01/2025

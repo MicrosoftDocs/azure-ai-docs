@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Use the Content Understanding Java SDK"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Get started with the Content Understanding Java SDK to extract structured data from documents, images, audio, and video files.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include

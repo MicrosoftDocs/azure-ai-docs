@@ -3,7 +3,7 @@ title: Migrate from Azure AI Content Safety public preview to GA
 description: Learn how to upgrade your app from the public preview version of Azure AI Content Safety to the GA version.
 titleSuffix: Azure AI services
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: upgrade-and-migration-article
 ms.date: 09/16/2025

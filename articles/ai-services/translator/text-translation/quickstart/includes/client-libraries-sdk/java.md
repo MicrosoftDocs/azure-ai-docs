@@ -2,7 +2,7 @@
 title: "Quickstart: Translator Text Java SDK"
 description: 'Text translation processing using the Java programming language'
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: include
 ms.date: 06/02/2026

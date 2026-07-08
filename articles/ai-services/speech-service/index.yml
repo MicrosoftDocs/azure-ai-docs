@@ -9,7 +9,7 @@ metadata:
   titleSuffix: Foundry Tools
   description: Recognize speech, synthesize speech, get real-time translations, transcribe conversations, or integrate speech into your bot experiences.
   author: PatrickFarley
-  manager: nitinme
+  manager: mcleans
   ms.service: azure-speech-foundry-tools
   ms.topic: hub-page
   ms.date: 02/25/2026

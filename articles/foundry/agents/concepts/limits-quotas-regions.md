@@ -1,7 +1,7 @@
 ---
 title: "Quotas and limits for Microsoft Foundry Agent Service"
 description: "Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models."
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 Foundry Agent Service enforces quotas and limits on agent artifacts, file uploads, messages, and tool registrations. Understanding these limits helps you design applications that scale without hitting service boundaries. This article lists default limits, supported regions, compatible models, and guidance for handling limit errors.
 
 > [!NOTE]
-> Foundry Agent Service is generally available (GA). Some sub-features, such as [Hosted agents](../concepts/hosted-agents.md), are in public preview and might have different constraints.
+> Foundry Agent Service is generally available (GA). Some sub-features are in public preview and might have different constraints.
 
 ## Prerequisites
 
@@ -37,6 +37,10 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 
 > [!TIP]
 > Model availability can change over time. To verify what you can deploy for your project and region, use the Foundry portal model experience.
+
+### Sovereign clouds
+
+Foundry Agent Service is also available in Azure Government (US Gov Virginia and US Gov Arizona) with a subset of agent types and tools. For the full list of supported features, see [Foundry Agent Service feature availability in Azure Government](./azure-government.md).
 
 ## Troubleshooting
 
@@ -70,7 +74,24 @@ Foundry Agent Service enforces limits in two places:
 - **Agent Service limits.** Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
 - **Model limits.** Quotas and rate limits for the model deployments your agents call.
 
-If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](runtime-components.md). If you're using file search, see [Vector stores for file search](vector-stores.md).
+The artifacts these limits govern are stored in either Microsoft-managed storage or your own Azure resources, depending on your setup.
+
+## Where Agent Service stores your data
+
+Where your agent data lives depends on which setup option you choose. The setup option also determines which resources the quotas and limits in this article apply to.
+
+- **Basic setup** stores agent state in secure, Microsoft-managed storage that's logically separated. This is the default when you don't configure your own resources.
+- **Standard setup** stores agent state in customer-managed, single-tenant Azure resources in your own subscription, which gives you full control over data residency and access.
+
+| Data type | Basic setup | Standard setup |
+| --- | --- | --- |
+| Files, uploads, and attachments | Microsoft-managed storage | Azure Storage (Blob Storage) |
+| Vector stores, embeddings, and retrieval indexes | Microsoft-managed vector search | Azure AI Search |
+| Threads, conversation history, messages, and agent definitions | Microsoft-managed storage | Azure Cosmos DB |
+
+[Capability hosts](capability-hosts.md) tell Agent Service where to store and process file uploads, vector stores, and conversation history. To store agent data in your own resources, see [Standard agent setup](standard-agent-setup.md).
+
+Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview).
 
 ## Default quotas and limits for the service
 
@@ -85,8 +106,9 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum number of messages per thread | 100,000 |
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
+| Maximum number of valid agent revisions per agent | 1,000 |
 
-The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits.
+The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Rate limiting for model calls is applied at the model deployment level; see [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits.
 
 ## Limit error reference
 
@@ -100,6 +122,7 @@ When you exceed a limit, the Agent Service returns an error. Handle these errors
 | Message content too large | 400 | `content_size_exceeded` | Use file search for large content |
 | Too many tools | 400 | `tool_limit_exceeded` | Remove unused tools |
 | Rate limit exceeded | 429 | `rate_limit_exceeded` | Implement exponential backoff |
+| Too many valid agent revisions | 400 | `UserError` | Delete older versions before creating new ones |
 
 For example:
 
@@ -109,6 +132,7 @@ For example:
 - **Message content size.** Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap.** Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 - **Rate limit exceeded.** API calls to the model deployment are throttled. Implement exponential backoff with jitter.
+- **Number of valid Agent Revisions Exceeded** The limit applies to the number of versions that currently exist for the agent. When you delete versions you no longer need, they are permanently removed and free up capacity immediately — so you can create new versions again.
 
 For file search scenarios, see [Vector stores for file search](vector-stores.md) for guidance on managing vector store growth.
 
@@ -143,6 +167,8 @@ The limits in this article are default values for Foundry Agent Service. If your
 ## Related content
 
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
+- [Capability hosts](capability-hosts.md)
+- [Standard agent setup](standard-agent-setup.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
 - [Monitor Foundry Agent Service](../../observability/how-to/how-to-monitor-agents-dashboard.md)

@@ -2,7 +2,7 @@
 title: "Customize Agent Behavior at Runtime with Structured Inputs"
 description: "Learn how to customize agent behavior at runtime using structured inputs. Define placeholders with handlebar templates, dynamically configure agent instructions and tools, and pass values at runtime to your agent."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -1524,7 +1524,7 @@ The `{{userFilter}}` template inside the `filter` expression is replaced with `b
 
 By using structured inputs, you can dynamically configure MCP server connections at runtime. You can set the server URL, authentication headers, and server label. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
 
-The following JSON shows the request body for the [Create Agent Version](/rest/api/aifoundry/aiproject#agents---create-agent-version) operation (`POST /agents?api-version=v1`). The agent definition includes MCP tool properties with handlebar template placeholders:
+The following JSON shows the request body for the [Create Agent Version](https://ai.azure.com/api-reference/agent-versions/create-agent-version-agents-create-agent-version-from-code/) operation (`POST /agents?api-version=v1`). The agent definition includes MCP tool properties with handlebar template placeholders:
 
 ```json
 {

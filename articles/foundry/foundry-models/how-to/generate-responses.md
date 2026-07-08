@@ -4,7 +4,7 @@ description: "Learn how to generate text responses from Foundry Models, such as 
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 06/04/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand

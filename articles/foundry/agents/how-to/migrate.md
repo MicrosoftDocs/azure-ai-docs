@@ -3,7 +3,7 @@ title: "Migrate to the new Foundry Agent Service"
 description: "Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns."
 author: aahill
 ms.author: aahi
-manager: nitinme
+manager: mcleans
 ms.date: 04/10/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -29,7 +29,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 # [Python](#tab/python)
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.3.0"
 ```
 
 # [C#](#tab/csharp)
@@ -145,7 +145,7 @@ The new agents provide the following benefits:
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
 - **Background mode**. Support for long-running tools (like image-generation), and durable streams (supports disconnect/reconnect scenarios)
 - **Future-proof.** New features and model support are only added to the new agents.
-- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and Hosted agents (preview).
+- **New agent types.** Create prompt-based agents and Hosted agents.
 
 **Enterprise readiness**
 
@@ -169,7 +169,7 @@ The following table summarizes the main API changes between the previous and cur
 | -------- | ------- | ------ |
 | Threads | Conversations | Supports streams of items, not just messages. |
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
-| Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and Hosted agents with stateful context by default for any Foundry model. |
+| Assistants / agents | Agents (new) | Support for enterprise-ready prompt and Hosted agents with stateful context by default for any Foundry model. |
 
 ## Agent tool availability
 
@@ -183,7 +183,7 @@ The following table compares agent tools available in classic agents and the new
 | Browser Automation | Yes (Public Preview) | Yes (Public Preview) |
 | Code Interpreter | Yes (GA) | Yes (GA) |
 | Computer Use | Yes (Public Preview) | Yes (Public Preview) |
-| Connected Agents | Yes (Public Preview) | No (Recommendation: Workflow and A2A tool) |
+| Connected Agents | Yes (Public Preview) | No (Recommendation: A2A tool) |
 | Deep Research | Yes (Public Preview) | No (Recommendation: Deep Research model with Web Search tool) |
 | Fabric Data Agent | Yes (Public Preview) | Yes (Public Preview) |
 | File Search | Yes (GA) | Yes (GA) |

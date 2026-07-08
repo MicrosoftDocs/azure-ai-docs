@@ -3,7 +3,7 @@ title: Preparing data and designing a schema for custom named entity recognition
 titleSuffix: Foundry Tools
 description: Learn about how to select and prepare data, to be successful in creating custom NER projects.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

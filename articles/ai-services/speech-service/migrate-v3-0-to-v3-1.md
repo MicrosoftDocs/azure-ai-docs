@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This document helps developers migrate code from v3.0 to v3.1 of the Speech to text REST API.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 10/28/2025

@@ -3,7 +3,7 @@ title: "Build and train a custom classifier -  Document Intelligence "
 titleSuffix: Foundry Tools
 description: Learn how to label, and build a custom document classification model.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025

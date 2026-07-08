@@ -3,7 +3,7 @@ title: 'Quickstart: Speech SDK for C++ (Windows) platform setup - Speech service
 titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for C++ on Windows desktop operating systems by using the Speech SDK.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 02/02/2024

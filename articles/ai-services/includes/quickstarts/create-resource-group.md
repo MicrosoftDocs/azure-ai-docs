@@ -1,7 +1,7 @@
 ---
 title: Create a resource group
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include
 ms.date: 09/01/2020

@@ -1,7 +1,7 @@
 ---
 title: Quota tier 4
 description: Quota tier limits for tier 4
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry

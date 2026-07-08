@@ -3,7 +3,7 @@ title: Azure AI containers frequently asked questions (FAQ) note
 titleSuffix: Foundry Tools
 description: Frequently asked questions note.
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include
 ms.date: 04/01/2020

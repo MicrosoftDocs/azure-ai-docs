@@ -54,8 +54,8 @@ import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-model_deployment = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment = os.environ["FOUNDRY_MODEL_NAME"]
 
 credential = DefaultAzureCredential()
 project_client = AIProjectClient(endpoint=endpoint, credential=credential)

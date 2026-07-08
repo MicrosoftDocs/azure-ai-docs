@@ -9,7 +9,7 @@ ms.author: mopeakande
 author: msakande
 ms.reviewer: malpande
 reviewer: mpande98
-manager: nitinme
+manager: mcleans
 ms.custom: references_regions, tool_generated
 ---
 

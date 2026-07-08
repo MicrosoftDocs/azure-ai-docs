@@ -3,7 +3,7 @@ title: Use Foundry Tools containers on-premises
 titleSuffix: Foundry Tools
 description: Learn how to use Docker containers to use Foundry Tools on-premises.
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: overview
 ms.date: 02/05/2026

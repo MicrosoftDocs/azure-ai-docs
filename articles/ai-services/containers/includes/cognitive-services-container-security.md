@@ -3,7 +3,7 @@ title: Container security
 titleSuffix: Foundry Tools
 description: Learn how to secure your container
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include
 ms.date: 12/17/2020

@@ -14,7 +14,7 @@ ms.reviewer: rasavage
 reviewer: rsavage2
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 #customer intent: As a developer, I want to explore the Microsoft Foundry model catalog so that I can find and evaluate AI models for my application.
 ---
 
@@ -166,7 +166,7 @@ Learn more about deploying models:
 
 ### Building generative AI apps with managed compute
 
-The *prompt flow* feature in Azure Machine Learning offers a great experience for prototyping. Use models deployed with managed compute in prompt flow with the [Open Model LLM tool](/azure/machine-learning/prompt-flow/tools-reference/open-model-llm-tool). You can also use the REST API exposed by managed compute in popular LLM tools like LangChain with the [Azure Machine Learning extension](https://python.langchain.com/docs/integrations/chat/azureml_chat_endpoint/).  
+The *prompt flow* feature in Azure Machine Learning offers a great experience for prototyping. Use models deployed with managed compute in prompt flow with the [Open Model LLM tool](/azure/machine-learning/prompt-flow/tools-reference/open-model-llm-tool). You can also use the REST API exposed by managed compute in popular LLM tools like LangChain with the [Azure Machine Learning extension](https://docs.langchain.com/oss/python/integrations/providers/azure_ai).  
 
 ### Content safety for models deployed as managed compute
 
@@ -247,7 +247,7 @@ AI models evolve fast, and when a new version or a new model with updated capabi
  
 ## Related content
 
-- [Instant models in Microsoft Foundry (preview)](instant-models.md)
+- [Instant access to models in Microsoft Foundry (preview)](instant-models.md)
 - [Data, privacy, and security for Models sold by Azure in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
 - [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md)
 

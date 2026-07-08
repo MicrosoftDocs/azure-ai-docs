@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 12/03/2025
 ms.reviewer: keli19
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 #customer intent: As a developer, I want to learn what it means to fine-tune a model.
 ---

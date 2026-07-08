@@ -37,19 +37,18 @@ Create the `.agent_configs/baseline/` directory at your project root. This direc
 
 ```
 my-agent/
-├── main.py
-├── agent.yaml
-├── azure.yaml
-├── requirements.txt
-└── .agent_configs/
-    ├── baseline/              ← your starting config
-    │   ├── metadata.yaml
-    │   ├── instructions.md
-    │   ├── tools.json
-    │   └── skills/
-    │       └── (initially empty)
-    └── <candidate_id>/        ← created by 'azd ai agent optimize apply'
-        └── (same layout as baseline/)
+|- main.py
+|- azure.yaml
+|- requirements.txt
+\- .agent_configs/
+   |- baseline/              <- your starting config
+   |  |- metadata.yaml
+   |  |- instructions.md
+   |  |- tools.json
+   |  \- skills/
+   |     \- (initially empty)
+   \- <candidate_id>/        <- created by 'azd ai agent optimize apply'
+      \- (same layout as baseline/)
 ```
 
 ### metadata.yaml
@@ -129,8 +128,8 @@ Skills use the open [Agent Skills](https://agentskills.io) format. Each skill is
 
 ```
 skills/
-└── policy-reviewer/
-    └── SKILL.md
+\-- policy-reviewer/
+    \-- SKILL.md
 ```
 
 A `SKILL.md` file has YAML frontmatter for metadata and markdown body for instructions:
@@ -166,14 +165,16 @@ from azure.ai.agentserver.optimization import load_config
 config = load_config()
 ```
 
-The `load_config()` function reads from `.agent_configs/` and returns an `OptimizationConfig` object. When no optimization candidate is active, it returns your baseline configuration.
+The `load_config()` function reads from `.agent_configs/` and returns an
+`OptimizationConfig` object. When no optimization candidate is active, it
+returns your baseline configuration. If no config source is found, it returns
+`None`.
 
 **Parameters:**
 
 | Parameter | Description |
 |-----------|-------------|
 | `config_dir` | Custom config directory path (defaults to `.agent_configs/`) |
-| `required` | If `False`, returns `None` instead of raising when no config is found (default: `True`) |
 
 **`OptimizationConfig` fields:**
 
@@ -208,6 +209,8 @@ config.apply_tool_descriptions(tools)
 ```
 
 The `apply_tool_descriptions()` method patches each tool function's metadata with the improved descriptions from the optimization config. This improves the model's accuracy when deciding which tool to call.
+
+If your tools aren't compatible with `apply_tool_descriptions()`, read the optimized definitions from `config.tool_definitions` and apply them to your own tool objects. Each definition includes both the optimized function description and the parameter descriptions, so map both onto your tools by function and parameter name.
 
 ### Load skills from a directory
 
@@ -256,7 +259,7 @@ azd deploy
 The `apply` command downloads the optimized `instructions.md`, `tools.json`, and `skills/` from the candidate and writes them into `.agent_configs/<candidate_id>/` in your project. On next startup, `load_config()` detects the candidate and uses the optimized configuration.
 
 > [!WARNING]
-> If you use `azd ai agent optimize deploy --candidate <id>` instead of `apply`, the optimized config deploys directly via the API without updating your local files. Use the `apply` → `deploy` workflow for production to maintain reproducibility.
+> If you use `azd ai agent optimize deploy --candidate <id>` instead of `apply`, the optimized config deploys directly via the API without updating your local files. Use the `apply` -> `deploy` workflow for production to maintain reproducibility.
 
 ## Complete example
 
@@ -310,7 +313,7 @@ def get_flight_alternatives(
     """Find cheaper flight alternatives for the given destination."""
     return json.dumps({
         "alternatives": [
-            {"option": "Flexible dates (±2 days)", "savings": "$200-800"},
+            {"option": "Flexible dates (+/-2 days)", "savings": "$200-800"},
             {"option": "Nearby alternate airport", "savings": "$100-400"},
         ],
     })
@@ -325,7 +328,7 @@ def main():
         config.skills.extend(load_skills_from_dir(Path(config.skills_dir)))
 
     model = config.model or os.environ.get(
-        "AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1-mini"
+        "FOUNDRY_MODEL_NAME", "gpt-4.1-mini"
     )
     instructions = config.compose_instructions()
 
@@ -379,8 +382,9 @@ The `load_config()` function resolves configuration using a priority chain (firs
 | Priority | Source | Environment variables | Description |
 |----------|--------|----------------------|-------------|
 | 1 | Inline JSON | `OPTIMIZATION_CONFIG` | Full config as a JSON string |
-| 2 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | Reads `baseline/` or a specific candidate directory |
-| 3 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
+| 2 | Resolver API | `OPTIMIZATION_CANDIDATE_ID`, `OPTIMIZATION_RESOLVE_ENDPOINT` | Fetches the candidate config from the optimization service and persists it to the local directory |
+| 3 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | Reads `baseline/` or a specific candidate directory |
+| 4 | No config | — | Returns `None` |
 
 ## Verify
 

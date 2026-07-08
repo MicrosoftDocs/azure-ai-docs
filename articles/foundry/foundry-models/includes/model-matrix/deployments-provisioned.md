@@ -2,7 +2,7 @@
 title: Model region availability for Provisioned deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Provisioned deployment options
-manager: nitinme
+manager: mcleans
 ms.date: 05/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -246,6 +246,7 @@ For **Standard/Regional** deployments, prompts and responses are processed in th
 | gpt-5.1 | 2025-11-13 | ✅ | - | - | - | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | - | - |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | - | - | - |
+| gpt-5.4-mini | 2026-03-17 | - | ✅ | - | ✅ | ✅ |
 | o1 | 2024-12-17 | - | ✅ | - | - | - |
 | o3 | 2025-04-16 | ✅ | - | - | - | - |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | - | ✅ |

@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Conditional cognitive skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Conditional** skill enables Azure AI Search scenarios that require a Boolean operation to determine the data to assign to an output. These scenarios include filtering, assigning a default value, and merging data based on a condition.
 
 The following pseudocode demonstrates what the conditional skill accomplishes:

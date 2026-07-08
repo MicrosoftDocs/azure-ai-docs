@@ -1,7 +1,7 @@
 ---
 title: Create a Vision resource
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include
 ms.date: 02/13/2023

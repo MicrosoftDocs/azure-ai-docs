@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Search indexes in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, a *search index* is your searchable content on a search service, available to the local search engine for indexing, agentic retrieval, full-text search, vector search, hybrid search, and filtered queries. An index is defined by a schema that's saved to your search service, with data ingestion following as a second step. Indexed content exists on your search service, apart from your primary external data stores, which is necessary for the millisecond response times expected in modern search applications. Except for remote agentic retrieval and indexer-driven indexing scenarios, the search service never connects to or queries your external source data.
 
 This article covers the key concepts for creating and managing a search index, including:

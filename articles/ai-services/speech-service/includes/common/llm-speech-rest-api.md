@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: goergenj
 ms.author: jagoerge
 ms.service: azure-speech-foundry-tools

@@ -1,6 +1,6 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/18/2025

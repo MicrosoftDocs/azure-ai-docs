@@ -5,7 +5,7 @@ author: jonburchel
 reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
-manager: nitinme
+manager: mcleans
 ms.date: 03/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

@@ -6,7 +6,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 05/22/2026
-manager: nitinme
+manager: mcleans
 author: msakande 
 ms.author: mopeakande 
 ms.reviewer: seramasu

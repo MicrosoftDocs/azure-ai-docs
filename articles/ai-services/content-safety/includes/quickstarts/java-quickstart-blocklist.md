@@ -2,7 +2,7 @@
 title: "Quickstart: Use a blocklist with Java"
 description: In this quickstart, get started using the Azure AI Content Safety Java SDK to create and use blocklists for text analysis.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include

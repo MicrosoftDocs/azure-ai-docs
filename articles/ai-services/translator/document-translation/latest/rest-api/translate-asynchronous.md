@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Submit an asynchronous batch document translation job to the Document Translation service using the REST API.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

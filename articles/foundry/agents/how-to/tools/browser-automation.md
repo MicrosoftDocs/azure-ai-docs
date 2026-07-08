@@ -2,7 +2,7 @@
 title: "Automate browser tasks with Foundry agents"
 description: "Automate web browsing tasks with the Browser Automation tool in Microsoft Foundry agents. Create isolated Playwright sessions for navigation and form filling."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -131,7 +131,7 @@ After you run a sample, verify the tool was called by using tracing in Microsoft
 > - This article assumes you already created the Playwright workspace connection. See the prerequisites section.
 
 :::zone pivot="python"
-## Use BrowserAutomationAgentTool with agents example
+## Use BrowserAutomationPreviewTool with agents example
 
 The following Python example demonstrates how to create an AI agent with browser automation capabilities. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 

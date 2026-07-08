@@ -11,6 +11,8 @@ ms.topic: concept-article
 
 # How to handle regional capacity constraints in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to capacity constraints. It also provides evaluation criteria for selecting an alternative region.
 
 ## Capacity constraint options

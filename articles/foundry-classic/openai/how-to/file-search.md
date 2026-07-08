@@ -2,7 +2,7 @@
 title: "How to use Azure OpenAI Assistants file search (classic)"
 description: "Learn how to use Assistants file search. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

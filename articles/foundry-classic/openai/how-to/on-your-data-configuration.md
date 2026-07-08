@@ -1,7 +1,7 @@
 ---
 title: "Network and access configuration for Azure OpenAI On Your Data (classic)"
 description: "Use this article to learn about configuring Azure OpenAI when using your data for text generation. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

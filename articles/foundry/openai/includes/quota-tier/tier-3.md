@@ -1,7 +1,7 @@
 ---
 title: Quota tier 3
 description: Quota tier limits for tier 3
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry

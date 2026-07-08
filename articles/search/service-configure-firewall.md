@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Configure network access and firewall rules for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to restrict *inbound* network access to a search service's public endpoint. You can configure IP firewall rules to allow access only from specific IP addresses, address ranges, or subnets. You can also enable exceptions for trusted Azure services.
 
 Firewall rules control which clients can send requests (queries, indexing, management operations) to your search service. They don't affect *outbound* connections from the search service to external resources. For outbound security, see [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md).

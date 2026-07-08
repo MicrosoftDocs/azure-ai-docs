@@ -27,10 +27,14 @@ landingContent:
             url: overview.md
           - text: Document Intelligence FAQ
             url: faq.yml
+          - text: Version lifecycle and retirement
+            url: overview.md#version-support-and-retirement
       - linkListType: whats-new
         links:
           - text: What's new in Azure Document Intelligence?
             url: whats-new.md
+          - text: "Retirement notice: v3.0 API retires March 30, 2029"
+            url: versioning/migration-guide-overview.md
 
   #Card 2
    - title: Document Intelligence models

@@ -3,7 +3,7 @@ title: "Use prediction endpoint to programmatically test images with classifier 
 titleSuffix: Foundry Tools
 description: Learn how to use the API to programmatically test images with your Custom Vision Service classifier.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
 ms.date: 11/14/2024

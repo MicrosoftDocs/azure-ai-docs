@@ -3,10 +3,10 @@ title: Orchestration workflows - Foundry Tools
 titleSuffix: Foundry Tools
 description: Customize an AI model to connect your Conversational Language Understanding and Custom question answering applications.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---

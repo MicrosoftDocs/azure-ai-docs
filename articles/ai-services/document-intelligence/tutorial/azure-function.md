@@ -3,7 +3,7 @@ title: "Tutorial: Use an Azure Function to process stored documents"
 titleSuffix: Foundry Tools
 description: This guide shows you how to use an Azure function to trigger the processing of documents that are uploaded to an Azure blob storage container.
 author: laujan
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: tutorial

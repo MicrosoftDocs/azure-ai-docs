@@ -3,7 +3,7 @@ title: What is the custom named entity recognition (CNER) feature in Azure Langu
 titleSuffix: Foundry Tools
 description: Customize an AI model to label and extract information from documents using Azure Language.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/30/2026

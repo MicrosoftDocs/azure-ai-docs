@@ -1,7 +1,7 @@
 ---
 title: "What is Foundry Agent Service? (classic)"
 description: "Learn what Foundry Agent Service is, how it works, and how to build production-ready agents in Microsoft Foundry. (classic)"
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry

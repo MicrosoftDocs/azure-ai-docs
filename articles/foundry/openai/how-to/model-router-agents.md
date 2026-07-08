@@ -3,7 +3,7 @@ title: "Use model router with Foundry agents"
 description: "Learn how model router selects the optimal model per request for your Foundry agents, reducing costs while maintaining quality across tool-calling, RAG, and multi-turn scenarios."
 author: sanjeev3
 ms.author: sajagtap
-ms.date: 05/22/2026
+ms.date: 06/18/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -42,6 +42,7 @@ Key benefits for agent workloads:
 - **Per-request optimization.** Different turns in the same conversation use different models based on complexity.
 - **Automatic cost efficiency.** Simple queries use inexpensive models; expensive models only activate when the prompt genuinely needs them.
 - **Tool-aware routing.** The router understands tool-calling patterns and selects models capable of structured invocations.
+- **Multi-agent flexibility.** Deploy multiple model router instances — each with a different model subset and routing mode — and assign each agent the deployment that fits its workload.
 - **Future-proof.** As new models become available, the router incorporates them without code changes.
 
 ## Supported tool types
@@ -112,6 +113,54 @@ Model router delivers cost savings by matching model capability to task demands:
 - **Net effect** — You pay frontier-model prices only for requests that genuinely require frontier-model capability.
 
 The exact savings depend on your workload mix. Workloads with a higher proportion of simple interactions (classification, lookup, basic Q&A) see larger savings.
+
+## Tailor model subsets per agent
+
+You can create multiple model router deployments, each with its own routing mode and model subset. Assign each agent the deployment that matches its workload. This pattern is useful when your agents have distinct cost, compliance, or capability requirements.
+
+| Deployment name | Routing mode | Model subset | Agent use case |
+| --- | --- | --- | --- |
+| `router-frontier` | Quality | gpt-5, gpt-5-chat, o4-mini | Research agent — complex reasoning and synthesis |
+| `router-balanced` | Balanced | gpt-5-mini, gpt-4.1, gpt-4.1-mini | General assistant — mixed-complexity conversations |
+| `router-efficient` | Cost | gpt-5-nano, gpt-4.1-nano | Triage agent — classification and simple Q&A |
+
+To set up each deployment with a specific model subset, see [Route to a model subset](model-router.md#optional-route-to-a-model-subset). To change the routing mode, see [Change the routing mode](model-router.md#optional-change-the-routing-mode).
+
+The following example creates three agents, each pointing to a different model router deployment:
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+project = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+# Research agent — uses a Quality-mode router with gpt-5 and o4-mini
+research_agent = project.agents.create_agent(
+    model="router-frontier",
+    name="research-agent",
+    instructions="You are a research assistant that synthesizes complex information.",
+)
+
+# General assistant — uses a Balanced-mode router with gpt-5-mini and gpt-4.1
+assistant_agent = project.agents.create_agent(
+    model="router-balanced",
+    name="assistant-agent",
+    instructions="You are a helpful assistant.",
+)
+
+# Triage agent — uses a Cost-mode router with gpt-5-nano and gpt-4.1-nano
+triage_agent = project.agents.create_agent(
+    model="router-efficient",
+    name="triage-agent",
+    instructions="You classify incoming requests and route them to the right team.",
+)
+```
+
+Each agent makes independent routing decisions within its assigned model pool. The research agent never uses a nano-tier model, and the triage agent never incurs frontier-model costs.
 
 ## Get started
 

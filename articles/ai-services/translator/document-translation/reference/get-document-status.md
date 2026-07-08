@@ -2,7 +2,7 @@
 title: Get document status method
 titleSuffix: Foundry Tools
 description: The get document status method returns the status for a specific document.
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator

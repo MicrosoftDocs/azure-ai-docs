@@ -3,7 +3,7 @@ title: Record video samples for custom text to speech avatar
 titleSuffix: Foundry Tools
 description: Learn how to prepare high-quality video samples for creating a custom text to speech avatar with Azure Speech in Foundry Tools, including recording environment, lighting, and data requirements.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: best-practice
 ms.date: 02/25/2026

@@ -1,12 +1,12 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
-Submit a **POST** request using the following URL, headers, and JSON body to import your labels file. Make sure that your labels file follow the [accepted format](../../concepts/data-formats.md).
+Submit a **POST** request using the following URL, headers, and JSON body to import your labels file. Make sure that your labels file follow the [accepted format](../../concepts/evaluation-metrics.md#accepted-data-formats).
 
 If a project with the same name already exists, the data of that project is replaced.
 
@@ -98,7 +98,7 @@ Use the following JSON in your request. Replace the placeholder values with your
 | classes | [] | Array containing all the classes you have in the project.| [] |
 | documents | [] | Array containing all the documents in your project and what the classes labeled for this document. | [] |
 | location | `{DOCUMENT-NAME}` |  The location of the documents in the storage container. Since all the documents are in the root of the container, it should be the document name.|`doc1.txt`|
-| dataset | `{DATASET}` |  The test set to which this document goes to when split before training. See [How to train a model](../../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.|`Train`|
+| dataset | `{DATASET}` |  The test set to which this document goes to when split before training. See [How to train a model](../../how-to/build-train-deploy-model.md#data-splitting). Possible values for this field are `Train` and `Test`.|`Train`|
 
 
 # [Single label classification](#tab/single-classification)
@@ -158,7 +158,7 @@ Use the following JSON in your request. Replace the placeholder values with your
 | classes | [] | Array containing all the classes you have in the project.| [] |
 | documents | [] | Array containing all the documents in your project and which class this document belongs to. | [] |
 | location | `{DOCUMENT-NAME}` |  The location of the documents in the storage container. Since all the documents are in the root of the container, it should be the document name.|`doc1.txt`|
-| dataset | `{DATASET}` |  The test set to which this document goes to when split before training. See [How to train a model](../../how-to/train-model.md#data-splitting) to learn more about data splitting. Possible values for this field are `Train` and `Test`.|`Train`|
+| dataset | `{DATASET}` |  The test set to which this document goes to when split before training. See [How to train a model](../../how-to/build-train-deploy-model.md#data-splitting) to learn more about data splitting. Possible values for this field are `Train` and `Test`.|`Train`|
 
 ---
 

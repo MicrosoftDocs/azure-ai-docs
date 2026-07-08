@@ -9,7 +9,7 @@ ms.date: 02/10/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: lebaro #amipatel
-manager: nitinme
+manager: mcleans
 reviewer: lebaro-msft #amibp
 ms.custom:
   - build-2025, pilot-ai-workflow-jan-2026

@@ -2,7 +2,7 @@
 title: "Agent development lifecycle"
 description: "Learn the agent development lifecycle in Microsoft Foundry, from creating and versioning to tracing, evaluation, publishing, and monitoring."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
@@ -28,7 +28,7 @@ This article is for developers who want to build, test, and ship production-read
 
 Use this lifecycle as a practical checklist while you build and ship an agent.
 
-1. **Choose an agent type**: Start with a prompt-based agent, a workflow, or a Hosted agent.
+1. **Choose an agent type**: Start with a prompt-based agent or a Hosted agent.
 1. **Create your agent and start testing**: Iterate in the playground or in code.
 1. **Add tools and data**: Attach tools for retrieval and actions, and validate the configuration before you save.
 1. **Save changes as versions**: Capture meaningful milestones and compare versions.
@@ -40,15 +40,13 @@ Use this lifecycle as a practical checklist while you build and ship an agent.
 
 ## Agent types in Microsoft Foundry
 
-There are three types of agents:
+There are two types of agents:
 
 - **Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines a Foundry model, instructions, tools, and natural language prompts to drive behavior. Extend it by attaching tools for knowledge and memory. Edit, version, test, evaluate, monitor, and publish prompt-based agents from the [Agents playground](../../concepts/concept-playgrounds.md) in the Foundry portal.
 
-- **Workflow**: Use workflows to build a more advanced workflow that orchestrates a sequence of actions or coordinates multiple agents. Workflows have their own interface in the portal, but the same lifecycle applies. For details, see [Build a workflow in Microsoft Foundry](./workflow.md).
+- **Hosted**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit Hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are Hosted agents?](./hosted-agents.md)
 
-- **Hosted (preview)**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit Hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are Hosted agents?](./hosted-agents.md)
-
-Create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code.md).
+Create prompt-based agents in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code.md).
 
 ## Creating a prompt-based agent
 
@@ -69,7 +67,7 @@ The agent building experience offers integrated experiences for each core step o
 
 ### Save changes as versions
 
-After you create the first version of a prompt-based agent or a workflow, save subsequent changes as new versions. You can test unsaved changes in the agent playground. But if you want to view conversation history, monitor your agent's performance, or run full evaluations, you need to save your changes.
+After you create the first version of a prompt-based agent, save subsequent changes as new versions. You can test unsaved changes in the agent playground. But if you want to view conversation history, monitor your agent's performance, or run full evaluations, you need to save your changes.
 
 Agent versioning provides the following capabilities for managing agent configurations and iterations. This system ensures that all changes are tracked, testable, and comparable across versions.
 
@@ -131,9 +129,9 @@ Treat your agent configuration like application code. Protect secrets and permis
 - Store secrets in a managed secret store and reference them through connections instead of hardcoding them in code, configuration files, or prompts. For guidance, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 - Before publishing, confirm that the agent identity and tool connections in the published agent application have only the access they need. For details, see [Agent identity concepts in Microsoft Foundry](./agent-identity.md).
 
-### Publish your agent or workflow
+### Publish your agent
 
-After you create an agent or workflow version that you're happy with, [publish it as an agent application](../how-to/agent-applications.md). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. Make any necessary updates and republish a new version at any time.
+After you create an agent version that you're happy with, [publish it as an agent application](../how-to/agent-applications.md). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. Make any necessary updates and republish a new version at any time.
 
 > [!IMPORTANT]
 > Permissions assigned to the project identity don't automatically transfer to the published agent. After publishing, reassign the necessary privileges to the agent application's identity.

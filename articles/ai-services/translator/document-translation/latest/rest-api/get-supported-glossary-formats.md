@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Retrieve the list of glossary formats supported by the Document Translation service.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

@@ -2,7 +2,7 @@
 title: Datazone standard model availability for priority processing
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for priority processing of model deployments
-manager: nitinme
+manager: mcleans
 ms.date: 05/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

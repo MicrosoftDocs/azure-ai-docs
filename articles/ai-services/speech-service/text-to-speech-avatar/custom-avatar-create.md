@@ -2,7 +2,7 @@
 title: How to create a custom text to speech avatar - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to create a custom text to speech avatar.
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.custom: references_regions

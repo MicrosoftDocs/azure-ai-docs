@@ -2,7 +2,7 @@
 title: Get translation status
 titleSuffix: Foundry Tools
 description: The get translation status method returns the status for a document translation request.
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator

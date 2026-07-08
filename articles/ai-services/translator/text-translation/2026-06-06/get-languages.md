@@ -3,7 +3,7 @@ title: Translator 2026-06-06 languages method
 titleSuffix: Foundry Tools
 description: The languages method displays the set of languages currently supported by Azure Translator in Foundry Tools 2026-06-06.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

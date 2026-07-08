@@ -4,7 +4,7 @@ description: "Build and deploy a real-time voice agent on Foundry Agent Service 
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -19,7 +19,7 @@ Hosted agents in Foundry Agent Service support real-time voice workloads through
 For background on hosted agents and the available protocols, see [What are hosted agents?](../concepts/hosted-agents.md). For general container packaging and deployment steps, see [Deploy a hosted agent](deploy-hosted-agent.md).
 
 > [!IMPORTANT]
-> Hosted agents and the `invocations_ws` protocol are in public preview. The `invocations_ws` protocol is currently available only in **North Central US**. Features and limits can change.
+> The `invocations_ws` protocol is in public preview. The `invocations_ws` protocol is currently available only in **North Central US**. Features and limits can change.
 
 ## When to use the WebSocket protocol
 
@@ -318,7 +318,6 @@ Traces and metrics appear in the linked Application Insights resource alongside 
 | Maximum WebSocket frame size | 1 MB | Enforced by the platform proxy (close code `1009`). |
 | Maximum connection duration | ~10 minutes (preview) | Platform sends close code `1001` on shutdown drain. Reconnect with the same `agent_session_id`. |
 | Sandbox resources | Up to 2 vCPU / 4 GiB | At least 1 vCPU / 2 GiB recommended for voice. |
-| Maximum concurrent sessions | 50 per subscription per region | Adjustable through a quota request. |
 | Session idle timeout | 15 minutes | Compute is deprovisioned; session state is persisted. |
 
 The platform doesn't replay missed frames. Your container is responsible for any application-level resume protocol.
