@@ -24,7 +24,7 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 > [!IMPORTANT]
 > **Data residency for all deployment types**: Data stored at rest remains in the designated Azure geography. However, inferencing data is processed as follows:
 > - **Global** types: May be processed in any Azure region
-> - **DataZone** types: Processed only within the Microsoft-specified data zone (US, EU, or Asia Pacific (APAC))
+> - **DataZone** types: The service processes data only within the Microsoft-specified data zone (US, EU, or Asia Pacific (APAC)).
 > - **Standard/Regional** types: Processed in the deployment region
 >
 > [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
@@ -62,7 +62,7 @@ Use the following criteria to select a deployment type:
 - **No restrictions**: Use Global Standard or Global Provisioned
 - **EU data zone**: Use DataZone Standard or DataZone Provisioned in an EU region
 - **US data zone**: Use DataZone Standard or DataZone Provisioned in a US region
-- ** APAC data zone**: Use DataZone Standard or DataZone Provisioned in an APAC region
+- **APAC data zone**: Use DataZone Standard or DataZone Provisioned in an APAC region.
 - **Single region only**: Use Standard or Regional Provisioned
 
 ### By workload pattern
@@ -100,7 +100,7 @@ For **Global** deployment types, prompts and responses might be processed in any
 
 The EU Data Zone processes data within regions located in countries covered by the [Azure EU Data Boundary](/privacy/eudb/eu-data-boundary-learn). As of May 2026, this includes regions in: France, Germany, Italy, Netherlands, Norway, Poland, Spain, Sweden, and Switzerland. Additional regions within the EU Data Boundary may be added without prior notice to improve capacity and availability.
 
-The APAC Data Zone processes data within regions located in Australia, Japan, Korea, Singapore, and India. Additional regions within the APAC Data Zone may be added without prior notice to improve capacity and availability.
+The APAC Data Zone processes data within regions located in Australia, Japan, Korea, Singapore, and India. Additional regions within the APAC Data Zone might be added without prior notice to improve capacity and availability.
 
 Learn more in the "Model region availability by deployment type" section of [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
