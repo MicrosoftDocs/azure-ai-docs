@@ -36,7 +36,7 @@ Realtime responses can include multiple output items per turn. Each item has a `
 | `commentary` | A promptable preamble, often used before longer reasoning. |
 | `final_answer` | The final answer after the model completes reasoning. |
 
-Preambles can reduce perceived latency—for example, "Let me think about that…"—and can also be used for tool announcements or silence fillers. If the model is interrupted during thinking, it discards the current chain of thought and starts a new turn.
+Preambles can reduce perceived latency. For example, the model might say, "Let me think about that..." They can also be used for tool announcements or silence fillers. If the model is interrupted during thinking, it discards the current chain of thought and starts a new turn.
 
 ### Instruction following
 
@@ -44,7 +44,7 @@ Instruction following is stricter than in earlier realtime models. If your syste
 
 ## Get started
 
-The connection and usage patterns for GPT Realtime 2.x are the same as for earlier versions—just deploy the new model and point your existing code at it. Choose the transport that fits your scenario:
+The connection and usage patterns for GPT Realtime 2.x are the same as for earlier versions. Deploy the new model and point your existing code to it. Choose the transport that fits your scenario:
 
 - [Use the GPT Realtime API via WebSockets](../how-to/realtime-audio-websockets.md)
 - [Use the GPT Realtime API via WebRTC](../how-to/realtime-audio-webrtc.md)

@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 ## Global standard
 
-For **Global deployments**, prompts and responses can be processed in any Azure region where the model is deployed.
+For **Global deployments**, Azure OpenAI can process prompts and responses in any Azure region where the model is deployed.
 
 # [Americas](#tab/az-americas)
 
@@ -349,7 +349,7 @@ Not available
 
 ## Standard/Regional
 
-For **Standard/Regional** deployments, prompts and responses are processed in the region associated with your deployment.
+For **Standard/Regional** deployments, Azure OpenAI processes prompts and responses in the region associated with your deployment.
 
 # [Americas](#tab/az-americas)
 
