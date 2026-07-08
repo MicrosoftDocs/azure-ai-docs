@@ -67,6 +67,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-audio-mini | 2025-12-15 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-05-05 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
 | gpt-chat-latest | 2026-05-28 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | - | ✅ | - | - | - | ✅ |
@@ -138,6 +139,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-audio-mini | 2025-12-15 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-05-05 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-05-28 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
@@ -202,6 +204,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
 | gpt-realtime-1.5 | 2026-02-23 | - | - | - | - | ✅ |
 | gpt-realtime-2 | 2026-05-06 | - | - | - | - | ✅ |
@@ -252,6 +255,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ |
+| gpt-chat-latest | 2026-06-24 | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | ✅ |
 | gpt-image-1-mini | 2025-10-06 | - | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | ✅ |

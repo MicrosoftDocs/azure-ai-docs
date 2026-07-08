@@ -84,3 +84,5 @@ items:
   href: ../../responsible-ai/openai/data-privacy.md
 - name: Data, privacy, and security for Claude models in Microsoft Foundry
   href: ../../responsible-ai/claude-models/data-privacy.md
+- name: Compare Azure-hosted and Anthropic-hosted Claude models
+  href: ../../foundry-models/concepts/claude-models-hosting-comparison.md

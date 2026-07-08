@@ -927,9 +927,9 @@ print(response.model_dump_json(indent=2))
 | `gpt-5.4` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5.3-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5.2-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `gpt-5.2`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5.2` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5.1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. | 
@@ -938,12 +938,12 @@ print(response.model_dump_json(indent=2))
 | `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `gpt-5-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
-| `o3-pro`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `o3-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `o4-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `o3` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard). | Access is no longer restricted for this model. |
-| `o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard). | Access is no longer restricted for this model. |
+| `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 
 ## API & feature support
 
