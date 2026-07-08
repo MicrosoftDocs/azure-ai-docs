@@ -1,5 +1,5 @@
 ---
-title: GPT Realtime 2.0 (preview)
+title: GPT Realtime 2.x (preview)
 description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
@@ -11,11 +11,11 @@ ms.custom: include
 ai-usage: ai-assisted
 ---
 
-GPT Realtime 2 is a speech-to-speech model with built-in reasoning. It accepts audio input and produces audio output. It's designed for low-latency, interactive voice experiences where you need stronger instruction following and reasoning than earlier realtime models.
+The GPT Realtime 2.x series models are speech-to-speech models with built-in reasoning. They accept audio input and produce audio output. They're designed for low-latency, interactive voice experiences where you need stronger instruction following and reasoning than earlier realtime models.
 
 [!INCLUDE [preview-feature](preview-feature.md)]
 
-## What's new in GPT Realtime 2
+## What's new in GPT Realtime 2.x
 
 - **Reasoning support** with an adjustable `reasoning.effort` control.
 - **Response phases** that distinguish preambles ("commentary") from the final answer ("final_answer").
@@ -44,7 +44,7 @@ Instruction following is stricter than in earlier realtime models. If your syste
 
 ## Get started
 
-The connection and usage patterns for GPT Realtime 2 are the same as for earlier versions—just deploy the new model and point your existing code at it. Choose the transport that fits your scenario:
+The connection and usage patterns for GPT Realtime 2.x are the same as for earlier versions—just deploy the new model and point your existing code at it. Choose the transport that fits your scenario:
 
 - [Use the GPT Realtime API via WebSockets](../how-to/realtime-audio-websockets.md)
 - [Use the GPT Realtime API via WebRTC](../how-to/realtime-audio-webrtc.md)
