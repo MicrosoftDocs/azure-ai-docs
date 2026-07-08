@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 ## Global Standard
 
-For **Global deployments**, Azure OpenAI can process prompts and responses in any Azure region where the model is deployed.
+For **global deployments**, Azure OpenAI can process prompts and responses in any Azure region where you deploy the model.
 
 #### Availability for Azure OpenAI in Foundry Models
 

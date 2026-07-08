@@ -125,7 +125,7 @@ The reasoning models, GPT-4, GPT-3, Codex models, and Azure OpenAI evaluation us
 
 There are three main approaches for in-context learning. These approaches vary based on the amount of task-specific data that is given to the model:
 
-**Few-shot:** In this case, a user includes several examples in the prompt that demonstrate the expected answer format and content. The following example shows a few-shot prompt that provides multiple examples:
+**Few-shot:** In this case, you include several examples in the prompt that demonstrate the expected answer format and content. The following example shows a few-shot prompt that provides multiple examples:
 
 ```
 Convert the questions to a command: 
@@ -146,7 +146,7 @@ A:
 ```
 The number of examples typically ranges from 0 to 100 depending on how many can fit in the maximum input length for a single prompt. Few-shot learning enables a major reduction in the amount of task-specific data required for accurate predictions.
 
-**One-shot:** This case is the same as the few-shot approach except that only one example is provided. The following example shows a one-shot prompt:
+**One-shot:** This case is the same as the few-shot approach except that you provide only one example. The following example shows a one-shot prompt:
 
 ```
 Convert the questions to a command:
@@ -329,7 +329,7 @@ Azure OpenAI evaluation is a text-only feature and can't be used with models tha
 
 #### Computer Use (Preview) use cases 
 
-The capabilities of Computer Use are best suited for developing agentic AI systems that can autonomously interact with GUIs. Specific use cases could include the following:
+The capabilities of Computer Use are best suited for developing agentic AI systems that can autonomously interact with GUIs. Specific use cases include the following options:
 
 * Automated Web Navigation and Interaction: Navigating  navigation of web-based interfaces autonomously to retrieve and present information from trusted sources, such as internal company resources or structured databases. The model follows predefined navigation rules to extract relevant data while ensuring compliance with security policies. 
 

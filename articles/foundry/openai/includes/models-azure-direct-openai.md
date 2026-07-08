@@ -210,7 +210,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ### Known issue
 
-A known issue is affecting all GPT-4.1 series models. Large tool or function call definitions that exceed 300,000 tokens result in failures, even though the 1 million token context limit of the models isn't reached.
+A known issue affects all GPT-4.1 series models. Large tool or function call definitions that exceed 300,000 tokens cause failures, even though the models' 1 million token context limit isn't reached.
 
 The errors can vary based on API call and underlying payload characteristics.
 
@@ -280,7 +280,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## GPT-4 and GPT-4 Turbo models
 
-These models can be used only with the Chat Completions API. See [Model versions](../../../foundry-classic/openai/concepts/model-versions.md) to learn how Azure OpenAI handles model version upgrades. See [Working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
+You can use these models only with the Chat Completions API. To learn how Azure OpenAI handles model version upgrades, see [Model versions](../../../foundry-classic/openai/concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-4 deployments, see [Working with models](../how-to/working-with-models.md).
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
@@ -320,7 +320,7 @@ OpenAI reports that testing shows that both the large and small third generation
 
 The third generation embeddings models support reducing the size of the embedding via a new `dimensions` parameter. Typically, larger embeddings are more expensive from a compute, memory, and storage perspective. When you can adjust the number of dimensions, you gain more control over overall cost and performance. The `dimensions` parameter isn't supported in all versions of the OpenAI 1.x Python library. To take advantage of this parameter, we recommend that you upgrade to the latest version: `pip install openai --upgrade`.
 
-OpenAI's MTEB benchmark testing found that even when the third generation model's dimensions are reduced to less than the 1,536 dimensions of `text-embedding-ada-002`, performance remains slightly better.
+OpenAI's MTEB benchmark testing found that even when the third-generation model's dimensions are reduced to less than the 1,536 dimensions of `text-embedding-ada-002`, performance remains slightly better.
 
 These models can be used only with Embedding API requests.
 
