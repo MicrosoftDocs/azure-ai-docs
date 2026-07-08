@@ -14,7 +14,7 @@ Microsoft Foundry provides customers with choices on the hosting structure that 
 Serverless API deployment in Microsoft Foundry includes three deployment categories: *standard* (pay-per-token), *provisioned* (reserved capacity), and *batch* (for asynchronous requests). Within these categories, you can choose global, data zone, or regional deployment types based on your compliance requirements.
 For all deployment types, data stored at rest remains in the designated Azure geography (Americas, Europe, Asia Pacific, and Middle East and Africa). However, inferencing data is processed as follows:
 - **Global** types: Might be processed in any Azure region where the model is deployed
-- **Data Zone** types: Processed anywhere within the Microsoft-specified data zone (US or EU)
+- **Data Zone** types: Processed anywhere within the Microsoft-specified data zone (US, EU, or Asia Pacific (APAC))
 - **Standard/Regional** types: Processed in the region associated with your deployment (not available for batch deployments)
 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Microsoft Foundry deployment types, including *batch* deployment types, see [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
