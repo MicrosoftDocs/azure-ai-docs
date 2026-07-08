@@ -64,7 +64,9 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-audio-mini | 2025-10-06 | GA | 2026-09-21 | — |
 | gpt-audio-mini | 2025-12-15 | GA | 2026-12-15 | — |
-| gpt-chat-latest | 2026-05-05 | Preview | 2026-11-05 | — |
+| gpt-chat-latest | 2026-05-05 | Preview | 2026-08-05 | — |
+| gpt-chat-latest | 2026-05-28 | Preview | 2026-08-28 | — |
+| gpt-chat-latest | 2026-06-24 | Preview | 2026-08-28 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2026-12-16 | — |
