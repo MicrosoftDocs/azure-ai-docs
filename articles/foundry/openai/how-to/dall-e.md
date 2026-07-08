@@ -143,6 +143,9 @@ For `gpt-image-2`, arbitrary resolutions are supported with the following constr
 - Aspect ratio up to 3:1.
 - Total pixel count between 655,360 and 8,294,400.
 
+> [!NOTE]
+> The constraints apply to the input size parameter - the generated output image is not guaranteed to satisfy the same constraints (e.g. the edges may not be a multiple of 16 pixels)
+
 #### Quality
 
 There are three options for image quality: `low`, `medium`, and `high`. Lower quality images can be generated faster.
