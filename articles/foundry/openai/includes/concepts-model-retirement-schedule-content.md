@@ -60,6 +60,9 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-5.4-nano | 2026-03-17 | GA | 2027-03-18 | — |
 | gpt-5.4-pro | 2026-03-05 | GA | 2027-03-06 | — |
 | gpt-5.5 | 2026-04-24 | GA | 2027-04-23 | — |
+| gpt-5.6-luna | 2026-07-09 | GA | 2027-07-08 | — |
+| gpt-5.6-sol | 2026-07-09 | GA | 2027-07-08 | — |
+| gpt-5.6-terra | 2026-07-09 | GA | 2027-07-08 | — |
 | gpt-audio | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-audio-mini | 2025-10-06 | GA | 2026-09-21 | — |
