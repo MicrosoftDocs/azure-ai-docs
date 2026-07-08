@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 06/08/2026
+ms.date: 07/07/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -35,7 +35,7 @@ All of these capabilities are available directly within your Foundry project, wi
 
 ## Region availability
 
-Data Zone Standard deployments of models via Fireworks on Foundry are available in the following [Azure regions](/azure/reliability/regions-list):
+Data Zone Standard and Data Zone Provisioned deployments of models via Fireworks on Foundry are available in the following [Azure regions](/azure/reliability/regions-list):
 
 * **East US** (eastus)
 * **East US 2** (eastus2)
@@ -44,7 +44,7 @@ Data Zone Standard deployments of models via Fireworks on Foundry are available 
 * **West US** (westus)
 * **West US 3** (westus3)
 
-Global provisioned throughput deployments of base and custom models are available in all global [Azure regions](/azure/reliability/regions-list) except for Azure Government cloud environments.
+Global Provisioned throughput deployments of base and custom models are available in all global [Azure regions](/azure/reliability/regions-list) except for Azure Government cloud environments. All catalog models that support Global Provisioned throughput also support Data Zone Provisioned throughput.
 
 ## Enable Fireworks on Foundry
 
@@ -96,7 +96,7 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 1. In the deployment window, configure the following settings:
 
    * **Deployment name**: Keep the default name or enter a custom name to identify the deployment.
-   * **Deployment type**: Select **Data Zone Standard** or **Global provisioned throughput**. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
+   * **Token Plan**: Select **Pay-per-token** -> Datazone Standard or **Provisioned Throughput** -> Datazone or Global. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
    * **Model version settings**: Select the model version for the deployment.
    * **Tokens per Minute Rate Limit**:  Set a custom tokens-per-minute limit to manage costs and control usage. The default value is based on the model's typical performance and cost profile.
    * **Guardrails**: Select **DefaultV2** or **Default** guardrail configuration. Models use the **Microsoft.DefaultV2** guardrail unless a different one is specified. For more information, see [Use guardrails to set boundaries on model outputs](../../guardrails/guardrails-overview.md).
@@ -110,25 +110,36 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
 ## Available catalog models
 
-The following Fireworks models are available in the Foundry model catalog:
+The following Fireworks models are available in the Foundry model catalog. In the Supported offers column, `PTU` includes both Global Provisioned throughput and Data Zone Provisioned throughput.
 
 | Model provider | Model name | Model ID | Type | Supported offers | Description |
 | --- | --- | --- | --- | --- | --- |
-| **DeepSeek** | DeepSeek v3.1 | `FW-DeepSeek-v3.1` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
-| **DeepSeek** | DeepSeek V4 Pro | `FW-DeepSeek-V4-Pro` | Chat completions | Per-Token and PTU | Flagship MoE model for frontier reasoning, coding, and long-context tasks. |
-| **Google** | Gemma 4 26B A4B IT | `FW-Gemma-4-26B-A4B-IT` | Chat completions | PTU | Instruction-tuned multimodal sparse model for efficient vision and language tasks. |
-| **Google** | Gemma 4 31B IT | `FW-Gemma-4-31B-IT` | Chat completions | PTU | Instruction-tuned multimodal dense model for vision, chat, and reasoning tasks. |
-| **Meta** | Llama 3.1 8B Instruct | `FW-Llama-3.1-8B-Instruct` | Chat completions | PTU | Compact instruction-tuned model for cost-efficient chat workloads. |
-| **Mistral AI** | Ministral 3 3B Instruct 2512 | `FW-Ministral-3-3B-Instruct-2512` | Chat completions | PTU | Small efficient model for lightweight chat and instruction-following tasks. |
-| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | Instruction-tuned model for chat workloads. |
-| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | Reasoning-focused model for multi-step problem solving. |
-| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Per-Token and PTU | Native multimodal agentic model for long-horizon coding and task orchestration. |
-| **Qwen** | Qwen 3.5 9B | `FW-Qwen3.5-9B` | Chat completions | PTU | Compact model for efficient chat and reasoning. |
-| **Qwen** | Qwen 3.5 35B A3B | `FW-Qwen3.5-35B-A3B` | Chat completions | PTU | Sparse mixture-of-experts model for efficient general-purpose tasks. |
-| **Qwen** | Qwen 3.5 112B A10B | `FW-Qwen3.5-112B-A10B` | Chat completions | PTU | Large sparse model for complex reasoning and generation tasks. |
-| **Qwen** | Qwen 3.5 397B | `FW-Qwen3.5-397B` | Chat completions | PTU | Large-scale model for advanced reasoning and generation. |
-| **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | Bilingual model for chat and reasoning tasks. |
-| **Zhipu AI** | GLM-5.1 | `FW-GLM-5.1` | Chat completions | PTU | Advanced bilingual model for chat, reasoning, and code. |
+| **DeepSeek** | DeepSeek V3.1 | `FW-DeepSeek-V3.1` | Chat completions | PTU | MoE language model with 163K context and function calling for chat and tool-use workloads. |
+| **DeepSeek** | DeepSeek V3.2 | `FW-DeepSeek-V3.2` | Chat completions | Pay-per-token and PTU | MoE model focused on efficient reasoning and agent performance. |
+| **DeepSeek** | DeepSeek V4 Flash | `FW-DeepSeek-V4-Flash` | Chat completions | PTU | Streamlined MoE model optimized for fast, cost-efficient reasoning and coding at 1M-token context scale. |
+| **DeepSeek** | DeepSeek V4 Pro | `FW-DeepSeek-V4-Pro` | Chat completions | Pay-per-token and PTU | Flagship 1.6T-parameter MoE model for frontier reasoning, coding, and long-context agentic workloads. |
+| **Google** | Gemma 4 26B A4B IT | `FW-Gemma-4-26B-A4B-IT` | Chat completions | PTU | Multimodal MoE instruction-tuned model with image input, function calling, and 256K context. |
+| **Google** | Gemma 4 31B IT | `FW-Gemma-4-31B-IT` | Chat completions | PTU | Multimodal dense instruction-tuned model with image input, function calling, and 256K context. |
+| **MiniMax** | MiniMax-M2.5 | `FW-MiniMax-M2.5` | Chat completions | Pay-per-token and PTU | MoE model for coding, agentic tool use, search, and office-work workflows. |
+| **Mistral AI** | Ministral 3 3B Instruct 2512 | `FW-Ministral-3-3B-Instruct-2512` | Chat completions | PTU | Compact 3B dense instruction-tuned model with vision input and 256K context. |
+| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | 1T-parameter MoE instruction model with 262K context, improved coding, and tool use. |
+| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | MoE reasoning model for step-by-step tool-using agents with 262K context. |
+| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Pay-per-token and PTU | Multimodal MoE agentic model with reasoning controls, tool use, and 262K context. |
+| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Pay-per-token and PTU | Open-source multimodal agentic model for long-horizon coding and task orchestration. |
+| **Moonshot AI** | Kimi K2.7 Code | `FW-Kimi-K2.7-Code` | Chat completions | Pay-per-token and PTU | Coding-focused multimodal agentic model for long-horizon software engineering workflows. |
+| **NVIDIA** | NVIDIA Nemotron 3 Super 120B A12B BF16 | `FW-Nemotron-3-Super-120B-A12B-BF16` | Chat completions | PTU | Hybrid LatentMoE model with 120B total parameters for agentic workflows, long-context reasoning, and tool use. |
+| **OpenAI** | OpenAI gpt-oss-120b | `FW-GPT-OSS-120B` | Chat completions | Pay-per-token and PTU | Open-weight MoE model for reasoning, agentic tasks, and developer use cases. |
+| **Qwen** | Qwen3 14B | `FW-Qwen3-14B` | Chat completions | PTU | Dense Qwen model with function calling and 40.9K context. |
+| **Qwen** | Qwen3.5 9B | `FW-Qwen3.5-9B` | Chat completions | PTU | Compact dense Qwen model with 262K context. |
+| **Qwen** | Qwen3.5 35B A3B | `FW-Qwen3.5-35B-A3B` | Chat completions | PTU | 35B-parameter MoE Qwen model with 262K context. |
+| **Qwen** | Qwen3.5 122B A10B | `FW-Qwen3.5-122B-A10B` | Chat completions | PTU | 122B-parameter MoE Qwen model with image input and 262K context. |
+| **Qwen** | Qwen3.5 397B A17B | `FW-Qwen3.5-397B-A17B` | Chat completions | PTU | 396B-parameter MoE Qwen model with image input and 262K context. |
+| **Qwen** | Qwen3.6 27B | `FW-Qwen3.6-27B` | Chat completions | PTU | 27B-parameter dense Qwen model with image input, function calling, and 262K context. |
+| **Qwen** | Qwen3.6 35B A3B | `FW-Qwen3.6-35B-A3B` | Chat completions | PTU | 35B-parameter MoE Qwen model with 262K context. |
+| **Z.ai** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | 352B-parameter MoE model for coding, reasoning, and agentic workflows. |
+| **Z.ai** | GLM-5 | `FW-GLM-5` | Chat completions | Pay-per-token and PTU | MoE model for complex systems engineering and long-horizon agentic tasks. |
+| **Z.ai** | GLM-5.1 | `FW-GLM-5.1` | Chat completions | Pay-per-token and PTU | MoE model for agentic engineering, coding, and long-horizon tasks. |
+| **Z.ai** | GLM-5.2 | `FW-GLM-5.2` | Chat completions | Pay-per-token and PTU | MoE model with 1M-token context and multi-effort coding capabilities for long-horizon tasks. |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
 
