@@ -23,9 +23,9 @@ Training duration varies depending on how much data you use. It takes about 10 c
 
 After you validate your data files, use them to build your custom voice model. When you create a custom voice, you can choose to train it with one of the following methods:
 
-- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language as your training data.
-
 - [Neural - HD Voice](?tabs=hdvoice#train-your-custom-voice-model): Create an HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
+
+- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language as your training data.
 
 - [Neural - multilingual](?tabs=multilingual#train-your-custom-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
 

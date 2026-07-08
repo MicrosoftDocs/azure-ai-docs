@@ -17,7 +17,7 @@ Make sure you install the correct version of the packages as shown here.
 1. Install the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** .
 
     ```
-    pip install azure-ai-projects>=2.0.0
+    pip install azure-ai-projects>=2.3.0
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.

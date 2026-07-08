@@ -38,7 +38,7 @@ For more details about deployment types, see [Deployment types for Microsoft Fou
 
 | Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |-------------------|---------|-------------------------------------|---------|
-| Claude Sonnet 5 <br> Claude Opus 4.8 <br> Claude Haiku 4.5 | US | East US 2  | Not available |
+| Claude Sonnet 5 <br> Claude Opus 4.8  | US | East US 2  | Not available |
 
  
 

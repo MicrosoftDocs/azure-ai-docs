@@ -25,9 +25,9 @@ Training duration varies depending on how much data you use. It takes about 10 c
 
 After you validate your data files, use them to build your custom voice model. When you create a custom voice, you can choose to train it with one of the following methods:
 
-- [Neural](?tabs=neural#create-a-voice-model): Create a voice in the same language of your training data.
-
 - [Neural - HD Voice](?tabs=hdvoice#create-a-voice-model): Create a HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
+
+- [Neural](?tabs=neural#create-a-voice-model): Create a voice in the same language as your training data.
 
 - [Neural - multi style](?tabs=multistyle#create-a-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
 
@@ -41,66 +41,15 @@ The language of the training data must be one of the [languages that are support
 
 ## Create a voice model
 
-# [Neural](#tab/neural)
-
-To create a neural voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
-
-- Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
-- Set the required `consentId` property. See [add voice talent consent](../../../../professional-voice-create-consent.md).
-- Set the required `trainingSetId` property. See [create a training set](../../../../professional-voice-create-training-set.md).
-- Set the required recipe `kind` property to `Default` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model) or [Neural - HD Voice](?tabs=hdvoice#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
-- Set the required `voiceName` property. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed. Use different names for different neural voice models.
-- Optionally, set the `description` property for the voice description. The voice description can be changed later.
-
-Make an HTTP PUT request using the URI as shown in the following [Models_Create](/rest/api/aiservices/speechapi/models/create) example. 
-- Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceName` with your Speech resource name.
-- Replace `JessicaModelId` with a model ID of your choice. The case sensitive ID will be used in the model's URI and can't be changed later. 
-
-```azurecli-interactive
-curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
-  "voiceName": "JessicaNeural",
-  "description": "Jessica voice",
-  "recipe": {
-    "kind": "Default"
-  },
-  "projectId": "ProjectId",
-  "consentId": "JessicaConsentId",
-  "trainingSetId": "JessicaTrainingSetId"
-} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/models/JessicaModelId?api-version=2026-01-01"
-```
-
-You should receive a response body in the following format:
-
-```json
-{
-  "id": "JessicaModelId",
-  "voiceName": "JessicaNeural",
-  "description": "Jessica voice",
-  "recipe": {
-    "kind": "Default",
-    "version": "V10.0"
-  },
-  "projectId": "ProjectId",
-  "consentId": "JessicaConsentId",
-  "trainingSetId": "JessicaTrainingSetId",
-  "locale": "en-US",
-  "engineVersion": "2023.07.04.0",
-  "status": "NotStarted",
-  "createdDateTime": "2023-04-01T05:30:00.000Z",
-  "lastActionDateTime": "2023-04-02T10:15:30.000Z"
-}
-```
-
 # [Neural - HD Voice](#tab/hdvoice)
 
-To create a HD voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
+To create an HD voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
 
 - Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
 - Set the required `consentId` property. See [add voice talent consent](../../../../professional-voice-create-consent.md).
 - Set the required `trainingSetId` property. See [create a training set](../../../../professional-voice-create-training-set.md).
-- Set the required recipe `kind` property to `HD` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model) or [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
-- Set the required `voiceName` property. The voice name must end with ":DragonHDLatestNeural" and can't be changed later. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed before the specific suffix. Use different names for different neural voice models.
+- Set the required recipe `kind` property to `HD` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model), [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model), or [Neural - multi style](?tabs=multistyle#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
+- Set the required `voiceName` property. The voice name automatically adds the Dragon HD suffix and can't be changed later. Choose a name carefully. The SDK and SSML input use the voice name in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice). Only letters, numbers, and a few punctuation characters are allowed before the specific suffix. Use different names for different neural voice models.
 - Optionally, set the `description` property for the voice description. The voice description can be changed later.
 
 Make an HTTP PUT request using the URI as shown in the following [Models_Create](/rest/api/aiservices/speechapi/models/create) example. 
@@ -110,7 +59,7 @@ Make an HTTP PUT request using the URI as shown in the following [Models_Create]
 
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
-  "voiceName": "Jessica:DragonHDLatestNeural",
+  "voiceName": "Jessica",
   "description": "Jessica HD voice",
   "recipe": {
     "kind": "HD"
@@ -131,6 +80,57 @@ You should receive a response body in the following format:
   "recipe": {
     "kind": "HD",
     "version": "V1.0"
+  },
+  "projectId": "ProjectId",
+  "consentId": "JessicaConsentId",
+  "trainingSetId": "JessicaTrainingSetId",
+  "locale": "en-US",
+  "engineVersion": "2023.07.04.0",
+  "status": "NotStarted",
+  "createdDateTime": "2023-04-01T05:30:00.000Z",
+  "lastActionDateTime": "2023-04-02T10:15:30.000Z"
+}
+```
+
+# [Neural](#tab/neural)
+
+To create a neural voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
+
+- Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
+- Set the required `consentId` property. See [add voice talent consent](../../../../professional-voice-create-consent.md).
+- Set the required `trainingSetId` property. See [create a training set](../../../../professional-voice-create-training-set.md).
+- Set the required recipe `kind` property to `Default` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model), [Neural - multi style](?tabs=multistyle#create-a-voice-model), or [Neural - HD Voice](?tabs=hdvoice#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
+- Set the required `voiceName` property. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed. Use different names for different neural voice models.
+- Optionally, set the `description` property for the voice description. The voice description can be changed later.
+
+Make an HTTP PUT request using the URI as shown in the following [Models_Create](/rest/api/aiservices/speechapi/models/create) example. 
+- Replace `YourResourceKey` with your Speech resource key.
+- Replace `YourResourceName` with your Speech resource name.
+- Replace `JessicaModelId` with a model ID of your choice. The case sensitive ID will be used in the model's URI and can't be changed later. 
+
+```azurecli-interactive
+curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
+  "voiceName": "Jessica",
+  "description": "Jessica voice",
+  "recipe": {
+    "kind": "Default"
+  },
+  "projectId": "ProjectId",
+  "consentId": "JessicaConsentId",
+  "trainingSetId": "JessicaTrainingSetId"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/models/JessicaModelId?api-version=2026-01-01"
+```
+
+You should receive a response body in the following format:
+
+```json
+{
+  "id": "JessicaModelId",
+  "voiceName": "Jessica",
+  "description": "Jessica voice",
+  "recipe": {
+    "kind": "Default",
+    "version": "V10.0"
   },
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
@@ -318,11 +318,11 @@ You should receive a response body in the following format.
 ```json
 {
   "id": "JessicaModelId",
-  "voiceName": "JessicaNeural",
+  "voiceName": "Jessica",
   "description": "Jessica voice",
   "recipe": {
     "kind": "Default",
-    "version": "V7.2023.03"
+    "version": "V9.0"
   },
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",

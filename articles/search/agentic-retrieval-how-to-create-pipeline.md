@@ -42,7 +42,9 @@ In this tutorial, you:
 :::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of the end-to-end agentic retrieval pipeline showing Azure AI Search integration with Foundry Agent Service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.svg":::
 
 > [!TIP]
-> Want to get started right away? Clone the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python notebook on GitHub. The notebook contains the code from this tutorial in a ready-to-run format.
+> + Want to get started right away? Clone the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python notebook on GitHub. The notebook contains the code from this tutorial in a ready-to-run format.
+>
+> + For a private deployment path that focuses on inbound and outbound private connectivity validation, see [Tutorial: Deploy private agentic retrieval for Foundry IQ](/azure/foundry/agents/how-to/foundry-iq-tutorial-private-overview).
 
 ## Prerequisites
 

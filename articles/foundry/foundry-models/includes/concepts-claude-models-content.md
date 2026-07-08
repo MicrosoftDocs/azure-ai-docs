@@ -29,6 +29,8 @@ Claude models that are **Hosted on Azure** run on Azure infrastructure end-to-en
 
 Claude models that are **Hosted on Anthropic infrastructure** run on Anthropic's infrastructure (outside of Azure). 
 
+To compare both hosting options across data residency, SLAs, support paths, compliance, and purchasing flow, see [Compare Azure-hosted and Anthropic-hosted Claude models](../concepts/claude-models-hosting-comparison.md).
+
 To learn how data is processed when you use Claude models in Foundry, see [Data, privacy, and security for Claude models in Microsoft Foundry](../../responsible-ai/claude-models/data-privacy.md).
 
 To learn how Claude consumption units (CCU) bill Claude models in Microsoft Foundry through Azure Marketplace, see [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md).
@@ -164,7 +166,7 @@ Use this section to understand where you can deploy Claude models, how quota is 
 Claude models in Foundry are available for the following deployment types:
 
 - **Global Standard**: All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) are available in **East US2** and **Sweden Central**.
-- **Data Zone Standard (US)**: `claude-sonnet-5`, `claude-opus-4-8`, `claude-haiku-4-5`.
+- **Data Zone Standard (US)**: `claude-sonnet-5`, `claude-opus-4-8`.
 
 For more information on the different deployment types, see [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
 
@@ -214,7 +216,7 @@ As listed in the following table, to increase your quota beyond the default limi
 | claude-sonnet-5   | Yes                        | N/A                                           | Data Zone Standard (US) | 40  | 40,000 |
 | claude-sonnet-4-6 | N/A                        | Yes                                           | Global Standard         | 80  | 80,000 |
 | claude-sonnet-4-5 | N/A                        | Yes                                           | Global Standard         | 80  | 80,000 |
-| claude-haiku-4-5  | Yes                        | Yes                                           | Global Standard         | 80  | 80,000 |
+| claude-haiku-4-5  | Yes                        | Yes                                           | Global Standard       | 80  | 80,000 |
 
 # [Enterprise and MCA-E](#tab/enterprise)
 

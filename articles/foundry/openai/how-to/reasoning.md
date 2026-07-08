@@ -915,32 +915,32 @@ print(response.model_dump_json(indent=2))
 ### Region availability
 
 | Model | Region | Limited access |
-|---|---|---|
-| `gpt-chat-latest` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central | No access request needed. |
-| `gpt-5.5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) |  No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default.|
-| `gpt-5.4-mini` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
-| `gpt-5.4-nano` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | No access request needed. |
+| --- | --- | --- |
+| `gpt-chat-latest` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `gpt-5.5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
+| `gpt-5.4-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `gpt-5.4-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `gpt-5.4-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5.4` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 | `gpt-5.3-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `gpt-5.2-codex`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `gpt-5.2`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model.  |
-| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  |  Access is no longer restricted for this model.   |
-| `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed.  |
-| `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | Access is no longer restricted for this model. |
-| `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | No access request needed. | 
-| `gpt-5-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | Access is no longer restricted for this model.  |
-| `gpt-5-codex` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | Access is no longer restricted for this model.    |
-| `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)   | Access is no longer restricted for this model.      |
-| `gpt-5-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  |  No access request needed.    |
-| `gpt-5-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  |  No access request needed. |
-| `o3-pro`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `codex-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)     | No access request needed.    |
-| `o4-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `o3` |  [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
-| `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).  | Access is no longer restricted for this model.   |
-|`o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).  | Access is no longer restricted for this model.  |
+| `gpt-5.2-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5.2` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5.1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. | 
+| `gpt-5-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `gpt-5-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `gpt-5-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `o3-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `o4-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `o3` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
+| `o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 
 ## API & feature support
 

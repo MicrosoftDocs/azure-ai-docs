@@ -96,7 +96,6 @@ For tool configuration syntax and authentication options for each tool type, see
   ```
 
 > [!IMPORTANT]
-> - Every request to the toolbox MCP endpoint must include the header `Foundry-Features: Toolboxes=V1Preview`. Calls that omit this header fail. Include it in all HTTP clients, MCP transports, and SDK wrappers that call the toolbox endpoint.
 > - A toolbox supports at most **one tool without a `name` field per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, set a unique `name` on each instance to differentiate them. Including two instances of the same type without a `name` returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
 > - Add a `description` to every tool in your toolbox to help the model select the right tool for each request.
 > - Carefully review each tool's documentation to learn more about individual tool setup, limitations, and warnings.
@@ -840,7 +839,7 @@ After you create the toolbox in [Step 1](#step-1-create-a-toolbox-version), retr
    TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/mcp?api-version=v1
    ```
 
-1. In your agent code, read `TOOLBOX_ENDPOINT` and connect to it with an MCP client. Use the Python or .NET integration patterns earlier in this section as a reference for the client setup, the `Foundry-Features: Toolboxes=V1Preview` header, and the Entra token (`https://ai.azure.com/.default` scope).
+1. In your agent code, read `TOOLBOX_ENDPOINT` and connect to it with an MCP client. Use the Python or .NET integration patterns earlier in this section as a reference for the client setup, and the Entra token (`https://ai.azure.com/.default` scope).
 
 :::zone-end
 
@@ -1443,6 +1442,9 @@ Use the `name` field to include multiple instances of the same tool type in one 
 The following sections show each tool type's configuration in detail.
 
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
+
+> [!NOTE]
+> The toolbox MCP endpoint supports long-running operations through [MCP tasks](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks), which is in preview. To use long-running tools, make sure your agent harness supports [MCP tasks](https://modelcontextprotocol.io/extensions/tasks/overview).
 
 :::zone pivot="rest-api"
 
@@ -2947,7 +2949,6 @@ print(f"Created version: {toolbox_version.version}")
 POST {endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {
   "description": "Toolbox with guardrail",
@@ -3046,7 +3047,7 @@ POST {endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
 Accept: application/json
-Foundry-Features: Toolboxes=V1Preview
+Foundry-Features: Skills=V1Preview
 
 {
   "description": "Toolbox with a skill reference",
@@ -3206,7 +3207,6 @@ async def list_skills():
     toolbox_url = "{endpoint}/toolboxes/my-toolbox/mcp?api-version=v1"
     headers = {
         "Authorization": f"Bearer {token}",
-        "Foundry-Features": "Toolboxes=V1Preview",
     }
     async with streamablehttp_client(toolbox_url, headers=headers) as (read, write, _):
         async with ClientSession(read, write) as session:
@@ -3267,8 +3267,6 @@ using var httpClient = new HttpClient(
 Console.WriteLine($"Connecting to Foundry Toolbox '{toolboxName}' MCP server...");
 
 // Connect to the Foundry Toolbox MCP endpoint.
-// The Foundry-Features: Toolboxes=V1Preview opt-in header is required while the
-// toolbox MCP surface is in preview.
 await using var mcpClient = await McpClient.CreateAsync(
     new HttpClientTransport(
         new HttpClientTransportOptions
@@ -3276,10 +3274,6 @@ await using var mcpClient = await McpClient.CreateAsync(
             Endpoint = new Uri(toolboxMcpServerUrl),
             Name = toolboxName,
             TransportMode = HttpTransportMode.StreamableHttp,
-            AdditionalHeaders = new Dictionary<string, string>
-            {
-                ["Foundry-Features"] = "Toolboxes=V1Preview",
-            },
         },
         httpClient));
 

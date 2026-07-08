@@ -10,7 +10,7 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
 
 Microsoft Foundry Models in the model catalog comprise two main categories, namely *Foundry Models sold by Azure* and *Foundry Models from partners and community*.
-This article lists a selection of Foundry Models from partners and community, along with their capabilities, deployment types, and regions of availability, excluding deprecated and retired models.
+This article lists a selection of Foundry Models from partners and community, along with their capabilities, deployment types, and regions of availability, **excluding deprecated and retired models**.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 
 > [!IMPORTANT]
