@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 06/03/2026
+ms.date: 06/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -75,6 +75,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-realtime | 2025-08-28 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-1.5 | 2026-02-23 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-2 | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-realtime-2.1 | 2026-07-07 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-realtime-2.1-mini | 2026-07-07 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-10-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-12-15 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-translate | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
@@ -150,6 +152,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-realtime | 2025-08-28 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-1.5 | 2026-02-23 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-2 | 2026-05-06 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-realtime-2.1 | 2026-07-07 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-realtime-2.1-mini | 2026-07-07 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-10-06 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-12-15 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-translate | 2026-05-06 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
@@ -214,6 +218,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
 | gpt-realtime-1.5 | 2026-02-23 | - | - | - | - | ✅ |
 | gpt-realtime-2 | 2026-05-06 | - | - | - | - | ✅ |
+| gpt-realtime-2.1 | 2026-07-07 | - | - | - | - | ✅ |
+| gpt-realtime-2.1-mini | 2026-07-07 | - | - | - | - | ✅ |
 | gpt-realtime-mini | 2025-10-06 | - | - | - | - | ✅ |
 | gpt-realtime-mini | 2025-12-15 | - | - | - | - | ✅ |
 | gpt-realtime-translate | 2026-05-06 | - | - | - | - | ✅ |
