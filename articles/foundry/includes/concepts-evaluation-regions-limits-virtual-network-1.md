@@ -7,57 +7,69 @@ ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
-ms.custom: include
+ms.custom: include, references_regions
 ---
 
 This article provides an overview of which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, how to configure virtual network support for network isolation, and using your own storage account to run evaluations.
 
-## Region support
+## Regional availability
+
+### Supported regions for Agent playground evaluations
+
+The agent playground evaluations are supported in the following regions:
+
+| Americas | Europe |
+|--|--|
+| East US 2 | France Central |
+| West US | Norway East |
+| West US 2 | Sweden Central |
+| West US 3 | Germany West Central |
+| Central US | Italy North |
+| East US | Poland Central |
+| North Central US | Spain Central |
+| South Central US |  |
+
+### Supported regions for batch evaluations
+
+The batch evaluations are supported in the following regions:
+
+| Americas | Europe | Asia Pacific | Middle East & Africa |
+|--|--|--|--|
+| Brazil South | France Central | Australia East | South Africa North |
+| Canada Central | Germany West Central | Central India | UAE North |
+| Canada East | Italy North | East Asia |  |
+| Central US | North Europe | Japan East |  |
+| East US | Norway East | Japan West |  |
+| East US 2 | Poland Central | Korea Central |  |
+| North Central US | Spain Central | South India |  |
+| South Central US | Sweden Central | Southeast Asia |  |
+| West Central US | Switzerland North |  |  |
+| West US | UK South |  |  |
+| West US 2 | West Europe |  |  |
+| West US 3 |  |  |  |
 
 ### Risk and safety evaluators and AI red teaming region support
 
-Certain AI-assisted evaluators and AI red teaming are available only in the following regions:
+The following safety evaluators and AI red teaming are supported in these regions: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes, and AI red teaming.
 
-| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes,  AI red teaming | Groundedness Pro | Protected material |
-|--|--|--|--|
-| East US 2 | Supported | Supported | Supported |
-| Sweden Central | Supported | Supported | N/A |
-| US North Central | Supported | N/A | N/A |
-| France Central | Supported | N/A | N/A |
-| Switzerland West | Supported | N/A | N/A |
+| Americas | Europe | Asia Pacific |
+|--|--|--|
+| East US 2 | France Central | Australia East |
+| North Central US | Sweden Central |  |
+|  | Switzerland West |  |
 
-### Agent playground evaluation region support
-
-The Foundry portal supports agent playground evaluation in the following regions:
+Supported regions for Groundedness Pro:
 
 - East US 2
-- West US
-- West US 2
-- West US 3
-- France Central
-- Norway East
 - Sweden Central
 
-### Unsupported regions for batch evaluation
+Supported regions for Protected material:
 
-Batch evaluations aren't supported in the following regions:
+- East US 2
 
-- Canada Central
-- Qatar Central
-- South Central US
-- Southeast Asia
-- Spain Central
+### Azure OpenAI graders regional availability
 
-### Unsupported regions for Azure OpenAI graders
-
-The following regions don't support Azure OpenAI graders or custom code evaluator:
-
-- Canada East
-- Central India
-- East Asia
-- East US
-- North Europe
-- South India
+For the Azure OpenAI graders regional list, see [Regional availability](../../foundry-classic/openai/how-to/evaluations.md#regional-availability).
 
 ## Rate limits
 
@@ -91,9 +103,17 @@ Virtual network support for evaluation requires network injection (subnet delega
 
 ### Virtual network region support
 
-Bringing your own virtual network for evaluation is supported in all regions except:
+Bringing your own virtual network for evaluation is supported in the following regions:
 
-- Central India
-- East Asia
-- North Europe
-- Qatar Central
+| Americas | Europe | Asia Pacific | Middle East & Africa |
+|--|--|--|--|
+| Brazil South | France Central | Australia East | South Africa North |
+| Canada Central | Germany West Central | Japan East | UAE North |
+| Canada East | Italy North | Korea Central |  |
+| East US | Norway East | South India |  |
+| East US 2 | Poland Central | Southeast Asia |  |
+| North Central US | Spain Central |  |  |
+| South Central US | Sweden Central |  |  |
+| West US | Switzerland North |  |  |
+| West US 2 | UK South |  |  |
+| West US 3 | West Europe |  |  |

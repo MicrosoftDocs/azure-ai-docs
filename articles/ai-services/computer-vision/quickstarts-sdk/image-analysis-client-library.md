@@ -3,8 +3,8 @@ title: "Quickstart: Image Analysis"
 titleSuffix: Foundry Tools
 description: Learn how to tag images in your application using Image Analysis through a native client library in the language of your choice.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: quickstart
 ms.date: 09/26/2025
 ms.author: pafarley

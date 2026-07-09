@@ -2,7 +2,7 @@
 title: "Configure a custom code interpreter for agents"
 description: "Configure a custom MCP-based code interpreter for Microsoft Foundry agents using Azure Container Apps Dynamic Sessions. Customize Python packages and compute resources."
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

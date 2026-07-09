@@ -9,8 +9,9 @@ ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 06/13/2025
-ms.custom: sdkv2, build-2023
+ms.date: 06/04/2026
+ms.custom: sdkv2, dev-focus
+ai-usage: ai-assisted
 ---
 # Git integration for Azure Machine Learning
 
@@ -25,8 +26,8 @@ When you submit an Azure Machine Learning training job that has source files fro
 > 
 > For more information on Visual Studio Code version control features, see [Use Version Control in Visual Studio Code](https://code.visualstudio.com/docs/editor/versioncontrol) and [Work with GitHub in Visual Studio Code](https://code.visualstudio.com/docs/editor/github).
 
-<a name="#clone-git-repositories-into-your-workspace-file-system"></a>
-## Git repositories in a workspace file system
+<a name="clone-git-repositories-into-your-workspace-file-system"></a>
+## Clone a Git repository into the workspace file system
 
 Azure Machine Learning provides a shared file system for all users in a workspace. The best way to clone a Git repository into this file share is to create a compute instance and [open a terminal](./how-to-access-terminal.md). In the terminal, you have access to a full Git client and can clone and work with Git by using the Git CLI. For more information, see [Git CLI](https://git-scm.com/docs/gitcli).
 
@@ -37,6 +38,16 @@ There are some differences between cloning to the local file system of the compu
 ## Clone a Git repository with SSH
 
 You can clone a repo by using Secure Shell (SSH) protocol. To use SSH, you need to authenticate your Git account with SSH by using an SSH key.
+
+If you prefer to clone over HTTPS, open a terminal on your compute instance and use the Git CLI with a personal access token. For more information about opening a terminal, see [Access a compute instance terminal in your workspace](how-to-access-terminal.md).
+
+To clone a repository over SSH, complete these steps:
+
+1. Generate an SSH key.
+1. Add the public key to your Git account.
+1. Clone the repository.
+
+The following sections describe each step.
 
 ### Generate and save a new SSH key
 
@@ -124,15 +135,18 @@ If so, the process uploads Git repository, branch, and current commit informatio
 
 | Property | Git command to get the value | Description |
 | ----- | ----- | ----- |
-| `azureml.git.repository_uri` or `mlflow.source.git.repoURL` | `git ls-remote --get-url` | The URI that THE repository was cloned from. |
+| `azureml.git.repository_uri` or `mlflow.source.git.repoURL` | `git ls-remote --get-url` | The URI that the repository was cloned from. |
 | `azureml.git.branch` or `mlflow.source.git.branch` | `git symbolic-ref --short HEAD` | The active branch when the job was submitted. |
 | `azureml.git.commit` or `mlflow.source.git.commit` | `git rev-parse HEAD` | The commit hash of the code that was submitted for the job. |
 | `azureml.git.dirty` | `git status --porcelain .` | `True` if the branch or commit is dirty, otherwise `false`. |
 
 If the `git` command isn't available on your development environment, or your training files aren't located in a Git repository, no Git-related information is tracked.
 
+> [!NOTE]
+> If Git properties are missing from your job, confirm that the `git --version` command succeeds in your environment and that your training files are inside the cloned repository directory.
+
 > [!TIP]
-> To check if the `git` command is available on your development environment, run the `git --version` command in a command line interface. If Git is installed and in your path, you receive a response similar to `git version 2.43.0`. For information on installing Git on your development environment, see the [Git website](https://git-scm.com/).
+> To check if the `git` command is available on your development environment, run the `git --version` command in a command line interface. If Git is installed and in your path, you receive a response similar to `git version 2.49.0`. For information on installing Git on your development environment, see the [Git website](https://git-scm.com/).
 
 ## View Git information
 
@@ -180,7 +194,7 @@ job.properties["mlflow.source.git.commit"]
 You can run the `az ml job show` command with the `--query` argument to display the Git information. For example, the following query retrieves the `mlflow.source.git.commit` property value:
 
 ```azurecli
-az ml job show --name my-job-id --query "{GitCommit:properties.azureml.git.commit} --resource-group my-resource-group --workspace-name my-workspace"
+az ml job show --name my-job-id --resource-group my-resource-group --workspace-name my-workspace --query "{GitCommit:properties.\"azureml.git.commit\"}"
 ```
 
 ## Related content

@@ -3,7 +3,7 @@ title: Include file
 description: Include file
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 01/06/2026
+ms.date: 06/15/2026
 ms.author: samkemp
 author: samuel100
 ai-usage: ai-assisted
@@ -15,11 +15,11 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/cs/audio-transcription-example
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/csharp/foundry-local/audio-transcription-example
 ```
 
 ## Install packages
@@ -30,7 +30,7 @@ cd Foundry-Local/samples/cs/audio-transcription-example
 
 Copy and paste the following code into a C# file named `Program.cs`:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/audio-transcription-example/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/csharp/foundry-local/audio-transcription-example/Program.cs" id="complete_code":::
 
 The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 

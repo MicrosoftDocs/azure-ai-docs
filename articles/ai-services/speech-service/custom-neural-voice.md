@@ -3,8 +3,8 @@ title: Custom voice overview - Speech service
 titleSuffix: Foundry Tools
 description: Custom voice is a text to speech feature that allows you to create a one-of-a-kind, customized, synthetic voice for your applications. You provide your own audio data as a sample.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
 ms.author: pafarley
@@ -56,7 +56,7 @@ Next, the phoneme sequence goes into the neural acoustic model to predict acoust
 
 ![Flowchart that shows the components of custom voice.](./media/custom-voice/cnv-intro.png)
 
-Neural text to speech voice models are trained by using deep neural networks based on the recording samples of human voices. For more information, see [this Microsoft blog post](https://techcommunity.microsoft.com/t5/azure-ai/neural-text-to-speech-extends-support-to-15-more-languages-with/ba-p/1505911). To learn more about how a neural vocoder is trained, see [this Microsoft blog post](https://techcommunity.microsoft.com/t5/azure-ai/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio/ba-p/1847860).
+Neural text to speech voice models are trained by using deep neural networks based on the recording samples of human voices. For more information, see [this Microsoft blog post](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/neural-text-to-speech-extends-support-to-15-more-languages-with-state-of-the-art/1505911). To learn more about how a neural vocoder is trained, see [this Microsoft blog post](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio-fidelity-and-faste/1847860).
 
 ## Responsible AI 
 

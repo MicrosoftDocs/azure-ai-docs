@@ -3,7 +3,7 @@ title: Face identity data notice
 titleSuffix: Foundry Tools
 author: PatrickFarley
 manager: wguyman
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include 
 ms.date: 12/12/2022
 ms.author: pafarley

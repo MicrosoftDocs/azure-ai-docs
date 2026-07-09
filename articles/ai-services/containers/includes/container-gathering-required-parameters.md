@@ -1,9 +1,9 @@
 ---
 title: Gather required parameters
 author: aahill
-manager: nitinme
+manager: mcleans
 description: The parameters for all Azure AI containers.
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include 
 ms.date: 04/01/2020
 ms.author: aahi

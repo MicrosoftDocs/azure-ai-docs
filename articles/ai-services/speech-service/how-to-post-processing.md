@@ -3,8 +3,8 @@ title: "How to use post-processing - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to configure post-processing options for speech recognition results.
 author: emilyjiji
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/30/2026
 ms.author: emilyjiji

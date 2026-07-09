@@ -1,7 +1,7 @@
 ---
 title: "Direct preference optimization (classic)"
 description: "Learn how to use direct preference optimization technique to fine-tune Azure OpenAI models. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:

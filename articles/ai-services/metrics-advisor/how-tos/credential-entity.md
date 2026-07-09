@@ -3,7 +3,7 @@ title: Create a credential entity
 titleSuffix: Azure AI services
 description: How to create a credential entity to manage your credential in secure.
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
 ms.date: 06/12/2025

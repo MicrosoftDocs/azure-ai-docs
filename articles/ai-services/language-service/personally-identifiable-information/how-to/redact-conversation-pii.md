@@ -3,16 +3,19 @@ title: Identify and extract Personally Identifiable Information (PII) from conve
 titleSuffix: Foundry Tools
 description: This article shows you how to detect and redact Personally Identifiable Information (PII) from speech, chat, and spoken-word transcriptions and call transcripts.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 04/03/2026
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 # Detect and redact Personally Identifiable Information in conversations
 
 Azure Language in Foundry Tools conversation PII API analyzes audio discourse to identify and redact sensitive information (PII) using various predefined categories. This API works on both transcribed text (referred to as transcripts) and chats. For transcripts, it also facilitates the redaction of audio segments containing PII by providing the timing information for those segments.
+
+> [!IMPORTANT]
+> **Conversation PII API** (2026-11-15-preview) and **Conversation PII model** (2026-04-15-preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Determine how to process the data (optional)
 

@@ -3,7 +3,7 @@ title: Active and inactive events - Personalizer
 description: This article discusses the use of active and inactive events within the Personalizer service.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: concept-article
 ms.date: 01/19/2024

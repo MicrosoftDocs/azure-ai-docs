@@ -3,7 +3,7 @@ title: Content Understanding API preview notice
 description: Content Understanding API preview notice
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 04/10/2026
 ms.custom: include

@@ -3,7 +3,7 @@ title: Prompt Shields container - Azure AI Content Safety
 titleSuffix: Azure AI services
 description: Install and run content safety prompt shields containers with Docker to detect and mitigate user prompt attacks.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 02/05/2026
@@ -90,4 +90,4 @@ Once the container is up and running, you can validate its operation by sending 
 ## Next steps
 
 * See the [content safety containers overview](./container-overview.md)
-* Use more [Azure AI containers](../../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../../cognitive-services-container-support.md)?context=/azure/foundry-classic/context/context

@@ -3,10 +3,10 @@ title: What is the Personally Identifiable Information (PII) detection feature i
 titleSuffix: Foundry Tools
 description: An overview of the PII detection feature in Azure Language, which helps you extract entities and sensitive information (PII) in text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 04/16/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---

@@ -3,10 +3,10 @@ title: Definitions used in orchestration workflow
 titleSuffix: Foundry Tools
 description: Learn about definitions used in orchestration workflow.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: glossary
-ms.date: 12/17/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---

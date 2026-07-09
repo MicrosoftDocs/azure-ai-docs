@@ -2,7 +2,7 @@
 title: "Quickstart: Create a provisioned throughput deployment"
 description: "Create a provisioned throughput deployment in Microsoft Foundry, make an inference call, and verify utilization."
 ai-usage: ai-assisted
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:

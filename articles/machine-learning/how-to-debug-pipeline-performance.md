@@ -9,12 +9,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 05/24/2024
+ms.date: 06/30/2026
 ms.custom: designer, pipeline UI
 ---
 # Use profiling to debug pipeline performance issues
 
-The profiling feature in Azure Machine Learning studio can help you debug pipeline performance issues such as hanging or long durations. Profiling lists the duration of each pipeline step and provides a Gantt chart for visualization. You can see the time spent on each job status and quickly find steps that take longer than expected.
+The profiling feature in Azure Machine Learning studio helps you debug pipeline performance problems, such as hanging or long durations. Profiling lists the duration of each pipeline step and provides a Gantt chart for visualization. You can see the time spent on each job status and quickly find steps that take longer than expected.
 
 ## Find the node that runs the longest overall
 

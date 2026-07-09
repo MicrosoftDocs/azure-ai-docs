@@ -14,6 +14,8 @@ zone_pivot_groups: search-sdks-rest
 
 # Quickstart: Agentic retrieval
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 ::: zone pivot="csharp"
 [!INCLUDE [C#](includes/quickstarts/agentic-retrieval-csharp.md)]
 ::: zone-end

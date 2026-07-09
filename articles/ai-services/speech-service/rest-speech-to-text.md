@@ -2,8 +2,8 @@
 title: Speech to text REST API - Speech service
 titleSuffix: Foundry Tools
 description: Get reference documentation for Speech to text REST API.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 11/21/2025
 author: PatrickFarley

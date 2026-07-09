@@ -3,8 +3,8 @@ title: Use Docker containers in disconnected environments
 titleSuffix: Foundry Tools
 description: Learn how to run Foundry Tools Docker containers disconnected from the internet.
 author: aahill
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -191,4 +191,4 @@ If you run the container with an output mount and logging enabled, the container
 
 ## Next steps
 
-[Azure AI containers overview](../cognitive-services-container-support.md)
+[Azure AI containers overview](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Guidance for integration and responsible use with custom named entity recognition"
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: best-practice
 ms.date: 04/01/2026

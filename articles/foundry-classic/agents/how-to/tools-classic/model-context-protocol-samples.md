@@ -2,7 +2,7 @@
 title: "Code Samples for the Model Context Protocol Tool (Preview) (classic)"
 description: "Find code samples to connect Foundry Agent Service with MCP servers. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

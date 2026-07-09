@@ -217,6 +217,6 @@ resource "azapi_update_resource" "enable_agent365" {
 ## Related content
 
 - [Microsoft Agent 365 integration with Foundry](../concepts/agent-365-integration.md)
-- [Publish an agent as a digital worker in Agent 365](agent-365.md)
+- [Publish an agent as an autopilot in Agent 365](agent-365.md)
 - [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md)
 - [Agent 365 overview](/microsoft-agent-365/overview)

@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 03/24/2026
+ms.date: 06/19/2026
 ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
@@ -24,7 +24,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
+Connections let you authenticate to Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
 
 ## Prerequisites
 
@@ -57,6 +57,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 |Grounding with Bing Custom Search|✅|Integrates with a custom Bing search instance for tailored web grounding. Connection creation is supported only through code.|
 |Azure APIM|✅|APIM supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
 |Model Gateway|✅|Model Gateway supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
+|Copilot Studio Environment| |Bring your Copilot Studio agents into Foundry Control Plane to view. Connection creation is supported in the Admin page through the Foundry portal, connecting directly to your Copilot Studio Environment.|
 
 ### Azure Key Vault limitations
 
@@ -116,5 +117,6 @@ For more on how to set private endpoints to your connected resources, see the fo
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#configure-connections-and-integrations) — role requirements for connections and integrations.
 - [Role-based access control in Foundry](../concepts/rbac-foundry.md)
 - [Configure network isolation](configure-private-link.md)

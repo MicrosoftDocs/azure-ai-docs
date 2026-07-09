@@ -12,6 +12,8 @@ ms.date: 05/09/2025
 
 #	Azure OpenAI Embedding skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Azure OpenAI Embedding** skill connects to an embedding model deployed to your [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) resource or [Microsoft Foundry](/azure/ai-foundry/what-is-foundry) project to generate embeddings during indexing. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 The [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal uses the Azure OpenAI Embedding skill to vectorize content. You can run the wizard and review the generated skillset to see how the wizard builds the skill for embedding models.
@@ -43,7 +45,7 @@ Parameters are case sensitive.
 
 | Inputs | Description |
 |---------------------|-------------|
-| `resourceUri` | (Required) The URI of the model provider. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul><p>This field is required if your resource is deployed behind a private endpoint or uses virtual network (VNet) integration. [Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are supported with URL `https://<resource-name>.azure-api.net`. Shared private links aren't supported for API Management endpoints. |
+| `resourceUri` | (Required) The URI of the model provider. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul><p>This field is required if your resource is deployed behind a private endpoint or uses virtual network (VNet) integration. [Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are also supported, including API Management custom domains. For setup, including authentication, RBAC, and optional private connectivity, see [Use Azure API Management with Azure OpenAI skills and vectorizers](search-how-to-configure-azure-openai-api-management.md). |
 | `apiKey`   |  The secret key used to access the model. If you provide a key, leave `authIdentity` empty. If you set both `apiKey` and `authIdentity`, the `apiKey` is used on the connection. |
 | `deploymentId`   | (Required) The ID of the deployed Azure OpenAI embedding model. This is the deployment name you specified when you deployed the model. |
 | `authIdentity`   | A user-managed identity used by the search service for the connection. You can use either a [system- or user-managed identity](search-how-to-managed-identities.md). To use a system-managed identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles) permissions to send text to Azure OpenAI. |

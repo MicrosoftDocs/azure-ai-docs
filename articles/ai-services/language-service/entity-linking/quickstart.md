@@ -3,10 +3,10 @@ title: "Quickstart: Entity linking using the client library and REST API"
 titleSuffix: Foundry Tools
 description: 'Use this quickstart to perform Entity Linking, using C#, Python, Java, JavaScript, and the REST API.'
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

@@ -40,7 +40,7 @@ To learn more about each model, see [Available FLUX models](#available-flux-mode
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md). FLUX models are available for global standard deployment in all regions.
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
-- **For FLUX.2 \[flex\]**: Approved registration. Use the [registration form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu) before you attempt deployment.
+
 
 ## Deploy FLUX models
 
@@ -412,9 +412,6 @@ See [the Black Forest Labs model collection in the Foundry portal](https://ai.az
 For more details about model capabilities, see [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ### FLUX.2 \[flex\]
-
-> [!IMPORTANT]
-> [Registration is required for access to FLUX.2 \[flex\]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
 
 FLUX.2 \[flex\] (`FLUX.2-flex`) offers fine-grained control with more stable throughput — throughput degrades more gracefully as image size increases. It's best suited for text-heavy layouts and images that require text overlay or fine detail preservation. It accepts text and image input (32,000 tokens and up to 10 images) and outputs one image in PNG or JPG format. Maximum output resolution is **4 MP**.
 

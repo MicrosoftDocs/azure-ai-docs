@@ -10,7 +10,7 @@ ms.custom:
   - classic-and-new
 ms.topic: how-to
 ms.date: 11/26/2025
-manager: nitinme
+manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW

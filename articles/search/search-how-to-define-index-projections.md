@@ -5,11 +5,13 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 06/02/2026
 ms.update-cycle: 180-days
 ---
 
 # Define an index projection for parent-child indexing
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 If you're chunking content for either a RAG pattern or vectorization, you can specify an **index projection** to control *one-to-many indexing*, where source content (one) is projected to one or more indexes (many). The intent of an index projection is to control whether elements of the parent document, such as a file name or creation date:
 
@@ -159,6 +161,8 @@ Index projections are generally available. We recommend the most recent stable A
 - [Create Skillset (api-version=2026-04-01)](/rest/api/searchservice/skillsets/create)
 
 Here's an example payload for an index projections definition that you might use to project individual pages output by the [Text Split skill](cognitive-search-skill-textsplit.md) as their own documents in the search index.
+
+When the parent document carries permission metadata used for document-level access, such as `metadata_user_ids`, `metadata_group_ids`, or `metadata_sharepoint_site_url`, include those fields in `mappings` so that every chunk inherits them. For more information, see [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 ```json
 "indexProjections": {

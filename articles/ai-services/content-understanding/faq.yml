@@ -4,9 +4,9 @@ metadata:
   description: Get answers to frequently asked questions about the Document Intelligence service.
   author: PatrickFarley 
   ms.author: pafarley
-  manager: nitinme
+  manager: mcleans
   ms.date: 03/31/2026
-  ms.service: azure-ai-content-understanding
+  ms.service: azure-content-understanding-foundry-tools
   ms.topic: faq
   ms.custom:
     - build-2025

@@ -22,6 +22,8 @@ translation.priority.mt:
 
 # OData `search.score` function in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 When you send a query to Azure AI Search without the [**$orderby** parameter](search-query-odata-orderby.md), the results that come back will be sorted in descending order by relevance score. Even when you do use **$orderby**, the relevance score is used to break ties by default. However, sometimes it's useful to use the relevance score as an initial sort criteria, and some other criteria as the tie-breaker. The example in this article demonstrates using the `search.score` function for sorting.
 
 > [!NOTE]

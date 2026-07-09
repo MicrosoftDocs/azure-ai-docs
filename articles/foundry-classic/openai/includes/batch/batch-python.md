@@ -2,7 +2,7 @@
 title: Azure OpenAI Global Batch Python
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI model global batch Python
-manager: nitinme
+manager: mcleans
 ms.date: 10/15/2024
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

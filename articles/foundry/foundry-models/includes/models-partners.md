@@ -2,15 +2,15 @@
 title: Models from partners
 author: msakande
 ms.author: mopeakande
-manager: nitinme
-ms.date: 05/26/2026
+manager: mcleans
+ms.date: 07/07/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
 
 Microsoft Foundry Models in the model catalog comprise two main categories, namely *Foundry Models sold by Azure* and *Foundry Models from partners and community*.
-This article lists a selection of Foundry Models from partners and community, along with their capabilities, deployment types, and regions of availability, excluding deprecated and retired models.
+This article lists a selection of Foundry Models from partners and community, along with their capabilities, deployment types, and regions of availability, **excluding deprecated and retired models**.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 
 > [!IMPORTANT]
@@ -40,27 +40,31 @@ You can access Models from partners and community with pay-as-you-go billing onl
 
 Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
-To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
-
 > [!NOTE]
-> [!INCLUDE [claude-mythos-preview-restriction](../includes/claude-mythos-preview-restriction.md)]
+> [!INCLUDE [claude-versions-description](claude-versions-description.md)] 
 
 #### Subscription type and region support
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
+<!-- PLACEHOLDER: When [TO VERIFY: Scarlett] is available add a new row to this table for the model. -->
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| `claude-mythos-preview` <br> **Gated research preview** | Messages | - **Input:** text, image, and code <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000 <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br /> - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:** Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:** `top_p` must be at least 0.99. Requests with `top_p` below this threshold are rejected with a 400 error. When `top_p` is omitted, the default (0.99) is used. |
-| `claude-opus-4-8` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_k`, `temperature`, and `thinking={"type":"enabled"}` are **not supported**.<br> `top_p` must be 0.99. When omitted, the default (0.99) is used. |
-| `claude-opus-4-7` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_k`, `temperature`, and `thinking={"type":"enabled"}` are **not supported**.<br> `top_p` must be 0.99. When omitted, the default (0.99) is used. |
-| `claude-opus-4-6` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
-| `claude-opus-4-5` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
-| `claude-opus-4-1` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
-| `claude-sonnet-4-6` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
-| `claude-sonnet-4-5` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
-| `claude-haiku-4-5` <br> **Preview** | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+| `claude-mythos-5`<sup>1</sup> | Messages | - **Input:** text, image, and code <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000 <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br /> - **Tool calling:** Yes (file search, code execution, and more) <br /> - **Response formats:** Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_p` must be at least 0.99. Requests with `top_p` below this threshold are rejected with a 400 error. When `top_p` is omitted, the default (0.99) is used. <br> `top_k`, `temperature`, `thinking={"type":"enabled"}`, `thinking={"type":"disabled"}`, and `output_format` are **not supported**.<br> Minimum cacheable prompt: 512 tokens. |
+| `claude-fable-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search, code execution, and more) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_p` must be at least 0.99. Requests with `top_p` below this threshold are rejected with a 400 error. When `top_p` is omitted, the default (0.99) is used. <br> `top_k`, `temperature`, `thinking={"type":"enabled"}`, `thinking={"type":"disabled"}`, and `output_format` are **not supported**. |
+| `claude-mythos-preview`<sup>1</sup> | Messages | - **Input:** text, image, and code <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000 <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br /> - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:** Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_p` must be at least 0.99. Requests with `top_p` below this threshold are rejected with a 400 error. When `top_p` is omitted, the default (0.99) is used. <br> `top_k`and `temperature` are **not supported**.<br> Minimum cacheable prompt: 2048 tokens. |
+| `claude-opus-4-8` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_k`, `temperature`, and `thinking={"type":"enabled"}` are **not supported**.<br> `top_p` must be 0.99. When omitted, the default (0.99) is used. |
+| `claude-opus-4-7` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_k`, `temperature`, and `thinking={"type":"enabled"}` are **not supported**.<br> `top_p` must be 0.99. When omitted, the default (0.99) is used. |
+| `claude-opus-4-6` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
+| `claude-opus-4-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
+| `claude-opus-4-1` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+| `claude-sonnet-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_k`, `temperature`, and `thinking={"type":"enabled"}` are **not supported**.<br>`output_format` supported only for `thinking={"type":"adaptive"}`.<br> `top_p` must be 0.99. When omitted, the default (0.99) is used. |
+| `claude-sonnet-4-6` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
+| `claude-sonnet-4-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+| `claude-haiku-4-5` | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+
+<sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](../includes/claude-mythos-preview-restriction.md)]
 
 
 ## Cohere
@@ -71,8 +75,6 @@ To deploy Cohere models in Foundry, see [Deploy Microsoft Foundry Models in the 
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| `Cohere-command-r-plus-08-2024` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| `Cohere-command-r-08-2024` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | `Cohere-embed-v3-english` | embeddings | - **Input:** text and images (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en` |
 | `Cohere-embed-v3-multilingual` | embeddings | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` |
 
@@ -88,13 +90,7 @@ To deploy Meta Llama models in Foundry, see [Deploy Microsoft Foundry Models in 
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| `Llama-3.2-11B-Vision-Instruct` | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
-| `Llama-3.2-90B-Vision-Instruct` | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
-| `Meta-Llama-3.1-405B-Instruct` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
-| `Meta-Llama-3.1-8B-Instruct` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | `Llama-4-Scout-17B-16E-Instruct` | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
-
-
 
 ## Microsoft
 
@@ -131,25 +127,6 @@ To deploy Mistral AI models in Foundry, see [Deploy Microsoft Foundry Models in 
 
 <sup>1</sup> These models require a hub-based project for deployment. Selecting them in the model catalog opens them up in the [Foundry (classic) portal experience](../../../foundry-classic/what-is-foundry.md).
 
-
-## Nixtla
-
-Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 produces accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
-
-To deploy TimeGEN-1 in Foundry, see [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
-
-To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
-
-| Model  | Type | Capabilities | Inference API |
-| ------ | ---- | ------------ | ------------- |
-| `TimeGEN-1`<sup>1</sup> | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/neuralforecast/docs/capabilities/overview.html) |
-
-<sup>1</sup> This model requires a hub-based project for deployment. Selecting the model in the model catalog opens it in the [Foundry (classic) portal experience](../../../foundry-classic/what-is-foundry.md).
-
-For more details on pricing for Nixtla models, see [Nixtla](../../../foundry-classic/concepts/models-inference-examples.md#nixtla).
-
-See [Nixtla models in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla/?cid=learnDocs).
-
 ## NTT Data
 
 **tsuzumi** is an autoregressive language-optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
@@ -163,18 +140,6 @@ To deploy tsuzumi-7b in Foundry, see [Deploy Microsoft Foundry Models in the Fou
 <sup>1</sup> This model requires a hub-based project for deployment. Selecting the model in the model catalog opens it in the [Foundry (classic) portal experience](../../../foundry-classic/what-is-foundry.md).
 
 See [NTT Data models in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=NTT+Data/?cid=learnDocs).
-
-## Stability AI
-
-The Stability AI collection of image generation models includes Stable Image Core, Stable Image Ultra, and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large accepts both image and text input. 
-
-To deploy Stability AI models in Foundry, see [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
-
-| Model  | Type | Capabilities |
-| ------ | ---- | ------------ |
-| `Stable Diffusion 3.5 Large` | Image generation | - **Input:** text and image (1,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) |
-| `Stable Image Core` | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
-| `Stable Image Ultra` | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
 
 ## Troubleshooting
 
@@ -194,4 +159,3 @@ Use the following troubleshooting guide to find and solve errors when deploying 
 - [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md)
 - [Region availability for Foundry Models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md)
 - [Explore Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md)
-

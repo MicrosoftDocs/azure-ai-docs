@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Characteristics and limitations of using Anomaly Detector and Metrics Advisor"
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: concept-article
 ms.date: 02/21/2024

@@ -38,7 +38,7 @@ You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) proto
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Work IQ | ✔️ | — | — | — | ✔️ | ✔️ | ✔️ |
+| Work IQ | ✔️ | ✔️ | ✔️ | — | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -53,6 +53,7 @@ Before you begin, make sure you have:
   - **Foundry User** role on the Foundry project for the developer identity, the agent's runtime identity, and any user identity involved in OAuth flows.
   - **Foundry Project Manager** role on the Foundry project for creating a Foundry connection to the Work IQ endpoint.
 - A **Microsoft Entra Global Administrator** who can grant admin consent for `WorkIQAgent.Ask` in your tenant and create or delegate app registrations.
+- **Foundry Toolkit**: Install [Visual Studio Code](https://code.visualstudio.com/) and [Foundry Toolkit for Visual Studio Code](https://code.visualstudio.com/docs/intelligentapps/overview#_install-and-setup).
 
 ## How it works
 
@@ -65,67 +66,86 @@ Before you begin, make sure you have:
 
 ### Add the Work IQ tool to your agent
 
+:::zone pivot="vscode"
+
+Use Foundry Toolkit for Visual Studio Code to add Work IQ as a built-in tool when you create a toolbox, then connect your agent to the published toolbox endpoint. The toolbox exposes the selected Work IQ options through its MCP endpoint.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. Select the **+ Add Toolbox** icon.
+1. On the **Build a Custom Toolbox** tab, enter the toolbox name and description.
+1. Select **Add tools**, and then select **Work IQ**.
+1. In **Add the Work IQ Tool**, select the Microsoft 365 Copilot data you want to use. **Work IQ Chat** connects through an A2A endpoint. Other options connect through MCP endpoints, including Copilot Chat, Teams, Word, Outlook Calendar, Outlook Mail, Microsoft 365 user profile, SharePoint, and OneDrive.
+1. For each selected option, choose an existing connection or select **Create new connection**.
+1. Select **Add**.
+1. Select **Publish**.
+
+:::image type="content" source="../../media/tools/work-iq/toolbox-vscode-work-iq.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Add the Work IQ Tool dialog with Work IQ options and connection selectors." lightbox="../../media/tools/work-iq/toolbox-vscode-work-iq.png":::
+
+For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#step-1-create-a-toolbox-version).
+
+To add the Work IQ tool directly to an agent by using code or the REST API, select the Python, .NET, JavaScript, or REST API tab in this section.
+
+:::zone-end
+
 :::zone pivot="python"
+
+Install the package:
+
+```bash
+pip install "azure-ai-projects>=2.2.0" python-dotenv
+```
+
+Set the following environment variables:
+
+- `FOUNDRY_PROJECT_ENDPOINT` — your project endpoint, found in the Overview page of your Foundry project.
+- `FOUNDRY_MODEL_NAME` — the deployment name of the model the agent uses.
+- `WORK_IQ_PROJECT_CONNECTION_ID` — the fully qualified resource ID of the Work IQ project connection.
 
 ```python
 import os
+from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, WorkIQPreviewTool
 
-PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-MODEL_DEPLOYMENT = os.environ.get("FOUNDRY_MODEL_DEPLOYMENT_NAME", "gpt-4o-mini")
-WORKIQ_CONNECTION_NAME = "workiq-conn"
-AGENT_NAME = "workiq-agent"
+load_dotenv()
 
-project = AIProjectClient(
-    endpoint=PROJECT_ENDPOINT,
-    credential=DefaultAzureCredential(),
-)
-openai = project.get_openai_client()
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-# Retrieve the Work IQ connection
-workiq_conn = project.connections.get(WORKIQ_CONNECTION_NAME)
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    tool_payload = WorkIQPreviewTool(
+        project_connection_id=os.environ["WORK_IQ_PROJECT_CONNECTION_ID"],
+    )
 
-# Create an agent with the Work IQ tool
-agent = project.agents.create_version(
-    agent_name=AGENT_NAME,
-    definition={
-        "model": MODEL_DEPLOYMENT,
-        "instructions": (
-            "You are a helpful assistant with access to the user's "
-            "Microsoft 365 work context through Work IQ. "
-            "Use Work IQ to answer questions about emails, meetings, "
-            "documents, and organizational knowledge."
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["FOUNDRY_MODEL_NAME"],
+            instructions="Use the available WorkIQ tools to answer questions and perform tasks.",
+            tools=[tool_payload],
         ),
-        "tools": [
-            {
-                "type": "work_iq_preview",
-                "project_connection_id": workiq_conn.id,
-            }
-        ],
-    },
-)
-print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-# Invoke the agent
-user_input = "Summarize my recent emails about Project Contoso."
-stream_response = openai.responses.create(
-    stream=True,
-    input=user_input,
-    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-)
+    user_input = "Summarize my recent emails about Project Contoso."
+    response = openai_client.responses.create(
+        input=user_input,
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+    )
 
-for event in stream_response:
-    if event.type == "response.output_text.delta":
-        print(event.delta, end="", flush=True)
-    elif event.type == "response.completed":
-        print(f"\n\nCompleted. Full response: {event.response.output_text}")
+    print(f"Agent response: {response.output_text}")
 
-# Clean up
-project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    # Clean up the agent version so unused versions don't accumulate in the project.
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
-**Expected output**: The agent calls Work IQ with the user's query. Work IQ retrieves and synthesizes the user's relevant emails, grounded in their Microsoft 365 permissions. The agent returns the synthesized summary as streamed text.
+**Expected output**: The agent calls Work IQ with the user's query. Work IQ retrieves and synthesizes the user's relevant Microsoft 365 content, grounded in their permissions, and returns the answer.
 
 :::zone-end
 
@@ -183,6 +203,95 @@ The response includes metadata about the agent execution and a `text` field in `
 
 > [!NOTE]
 > Use token scope `https://ai.azure.com/.default` when getting the bearer token.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME");
+var workIQConnectionName = Environment.GetEnvironmentVariable("WORKIQ_CONNECTION_NAME");
+
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+AIProjectConnection workIQConnection = projectClient.Connections.GetConnection(workIQConnectionName);
+DeclarativeAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful assistant that can access Microsoft 365 data through Work IQ. "
+                 + "Use the Work IQ tool to search and retrieve information from emails, calendar events, "
+                 + "Teams messages, and other Microsoft 365 content.",
+    Tools = { new WorkIQPreviewTool(workIQConnection.Id) }
+};
+
+ProjectsAgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
+    agentName: "myWorkIQAgent",
+    options: new(agentDefinition));
+Console.WriteLine($"Agent created (name: {agentVersion.Name}, version: {agentVersion.Version})");
+
+ProjectResponsesClient responseClient =
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
+CreateResponseOptions responseOptions = new()
+{
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("What meetings do I have scheduled today?") },
+};
+ResponseResult response = responseClient.CreateResponse(responseOptions);
+Console.WriteLine(response.GetOutputText());
+
+// Clean up
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
+    agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AIProjectClient } = require("@azure/ai-projects");
+require("dotenv/config");
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"];
+const deploymentName = process.env["FOUNDRY_MODEL_NAME"];
+const workIqProjectConnectionId = process.env["WORKIQ_CONNECTION_ID"];
+
+async function main() {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = project.getOpenAIClient();
+
+  const tool = {
+    type: "work_iq_preview",
+    project_connection_id: workIqProjectConnectionId,
+  };
+
+  const agent = await project.agents.createVersion("MyWorkIQAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions: "Use the available Work IQ tools to answer questions and perform tasks.",
+    tools: [tool],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  const userInput = "What meetings do I have scheduled today?";
+  const response = await openAIClient.responses.create(
+    { input: userInput },
+    { body: { agent_reference: { name: agent.name, version: agent.version, type: "agent_reference" } } },
+  );
+  console.log(`Agent response: ${response.output_text}`);
+
+  // Clean up the agent version so unused versions don't accumulate in the project.
+  await project.agents.deleteVersion(agent.name, agent.version);
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
 
 :::zone-end
 

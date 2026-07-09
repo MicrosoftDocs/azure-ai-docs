@@ -139,5 +139,5 @@ Start with the rebuild and validation guide, then proceed to deployment and cuto
 - [Configure tracing for AI agent frameworks](../../foundry/observability/how-to/trace-agent-framework.md)
 - [Microsoft Agent Framework documentation](/agent-framework/)
 - [Microsoft Agent Framework GitHub repository](https://github.com/microsoft/agent-framework)
-- [PromptFlow-to-MAF migration samples](https://github.com/microsoft/agent-framework/tree/main/migration-guide/PromptFlow-to-MAF)
+- [PromptFlow-to-MAF migration samples](https://github.com/microsoft/agent-framework/tree/main)
 - [Azure AI Evaluation SDK](/python/api/overview/azure/ai-evaluation-readme)

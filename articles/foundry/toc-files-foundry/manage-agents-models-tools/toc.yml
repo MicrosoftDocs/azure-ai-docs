@@ -1,11 +1,11 @@
 items:
 # Control Plane Overview
-- name: What is the Foundry control plane?
+- name: Overview
   href: ../../control-plane/overview.md
 
 - name: Govern tools
   items:
-  - name: Govern MCP tools by using an AI gateway
+  - name: Govern MCP tools with an AI gateway
     href: ../../agents/how-to/tools/governance.md
 
 - name: Govern agents
@@ -16,7 +16,7 @@ items:
     href: ../../control-plane/how-to-manage-agents.md
   - name: Register and manage custom agents
     href: ../../control-plane/register-custom-agent.md
-  - name: Govern agent infrastructure as a Microsoft Entra administrator
+  - name: Govern agent infrastructure (Entra admin)
     href: ../../control-plane/govern-agent-infrastructure-entra-admin.md
 
 - name: Govern models

@@ -15,6 +15,8 @@ ms.custom:
 
 # Create an Azure AI Search service in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [Azure AI Search](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
 
 The easiest way to create a search service is through the [Azure portal](https://portal.azure.com), which is covered in this article.
@@ -35,11 +37,12 @@ You can also use:
 Some properties are fixed for the lifetime of the search service. Before you create your service, decide on the following properties:
 
 | Property | Description |
-|--|--|
+| -- | -- |
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
-| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. After you create your service, you can [switch between Basic and Standard (S1, S2, and S3) tiers](search-capacity-planning.md#change-your-pricing-tier). |
+| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. After you create your service, you will need to [Choose a pricing model and service tier](search-sku-tier.md). |
 | [Compute type](search-security-best-practices.md#optional-enable-confidential-computing) | Determines virtualization and security model. You can choose between standard VMs (recommended) and confidential VMs, which are intended for select workloads requiring data-in-use privacy and isolation. |
+
 ## Subscribe to Azure
 
 Azure AI Search requires a free or Standard Azure subscription.

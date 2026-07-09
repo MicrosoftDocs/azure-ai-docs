@@ -3,9 +3,9 @@ title: What is Azure Vision in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Azure Vision in Foundry Tools provides you with access to advanced algorithms for processing images and returning information.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: overview
 ms.date: 09/26/2025
 ms.author: pafarley

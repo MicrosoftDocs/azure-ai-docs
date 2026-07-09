@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Create and manage a Foundry resource.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.date: 05/13/2026
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: quickstart
 ms.custom:
   - devx-track-azurecli

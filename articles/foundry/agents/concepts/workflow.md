@@ -1,5 +1,5 @@
 ---
-title: "Build a workflow in Microsoft Foundry"
+title: "Build a workflow in Microsoft Foundry (Preview)"
 description: "Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code."
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
@@ -12,13 +12,20 @@ ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: fniedtner
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.
 ---
 
-# Build a workflow in Microsoft Foundry
+# Build a workflow in Microsoft Foundry (Preview)
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+> [!IMPORTANT]
+> Microsoft Foundry is retiring workflows on December 1, 2026.
+> If you're looking to build new workflows, use Microsoft Agent Framework. To migrate existing workflows, see the [Migration guide](#migration-guide) section of this article for all supported paths.
+
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
 Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each powered by a Foundry model with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
@@ -324,6 +331,47 @@ To delete a workflow you no longer need:
 1. Open the workflow in the Foundry portal.
 1. Select the **Version** dropdown list to the left of the **Save** button.
 1. Select **Delete** for the version you want to remove.
+
+## Migration guide
+
+Foundry is moving workflow authoring to a code-first model. Visual workflows aren't disappearing as a capability. The orchestration patterns you built visually (sequential and group-chat coordination, branching logic, and human-in-the-loop steps) are all expressible in code and configuration, so you keep them when you migrate. After December 1, 2026, the visual designer and in-portal workflow execution aren't supported, but Foundry continues to run YAML-based workflow definitions when you deploy them as a [hosted agent](hosted-agents.md).
+
+Pick the path that matches how you want to build. Most teams should start with Microsoft Agent Framework.
+
+| If you want to... | Migrate to | Best for |
+| --- | --- | --- |
+| Keep your orchestration logic on a supported, code-first runtime | [Microsoft Agent Framework](#option-1-microsoft-agent-framework-recommended) | Teams comfortable with YAML or code who want the closest match to today's workflows |
+| Keep a fully visual, low-code designer | [Azure Logic Apps](#option-2-azure-logic-apps) | Business-process automation that mixes deterministic steps with AI reasoning |
+| Connect one agent to another without a formal workflow | [Agent-to-agent (A2A)](#option-3-connect-agents-directly-with-a2a) | Lightweight hand-offs between two agents |
+
+### Before you migrate: export your workflow definition
+
+Your workflow's YAML definition is the portable artifact you carry to any of the paths below. Save it before the designer is retired:
+
+1. Open your workflow in the Foundry workflow designer.
+1. Switch to the **YAML** view to see the full configuration.
+1. Copy or export the YAML file so you can reuse it in your new environment.
+
+The Agent Inspector in the Foundry AI Toolkit for Visual Studio Code lets you visualize and run Foundry workflow definitions, which is helpful while you validate a migration. For more information, see [Develop agents with Agent Inspector](../how-to/agent-inspector.md).
+
+### Option 1: Microsoft Agent Framework (recommended)
+
+Use Microsoft Agent Framework for most workflows. The orchestration you build visually maps directly onto Agent Framework, which supports the same patterns through **declarative YAML** or **code-first** authoring. In many cases, you can bring your exported workflow YAML into an Agent Framework project and run it with minimal changes. Then, keep iterating in Visual Studio Code instead of the portal. Because workflows are no longer a separate agent type, you run the result by [deploying it as a hosted agent](hosted-agents.md)—the same managed runtime that hosts your other code-based agents.
+
+- Build and run workflows: [Microsoft Agent Framework workflows](/agent-framework/workflows/)
+- Reuse your exported YAML with declarative workflows: [Declarative workflows overview](/agent-framework/workflows/declarative?pivots=programming-language-python)
+- Deploy to Foundry as a hosted agent: [Foundry-hosted agents](/agent-framework/hosting/foundry-hosted-agent?pivots=programming-language-python)
+
+### Option 2: Azure Logic Apps
+
+If a visual designer is the main reason you use workflows, Azure Logic Apps gives you a fully featured, low-code canvas for orchestration and can call Foundry agents as steps. Logic Apps lets you combine deterministic steps - connectors, conditions, approvals, and hundreds of prebuilt actions - with the probabilistic reasoning of Foundry agents in the same run. You can adopt agents incrementally and enrich processes you already have, instead of rebuilding them from scratch.
+
+- Build automated workflows with the visual designer: [Azure Logic Apps overview](/azure/logic-apps/logic-apps-overview)
+- Call and orchestrate Foundry agents from a workflow: [Run automated workflows from Foundry agents](/azure/logic-apps/add-agent-action-create-run-workflow?pivots=portal)
+
+### Option 3: Connect agents directly with A2A
+
+For lightweight scenarios where one agent just needs to call another - without a formal, multistep workflow - expose an agent as an agent-to-agent (A2A) endpoint and call it directly. This approach keeps the calling agent in control while it delegates a task to a specialized agent. For more information, see [Enable an incoming A2A endpoint on a Foundry agent](../how-to/enable-agent-to-agent-endpoint.md).
 
 ## Related content
 

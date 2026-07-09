@@ -2,7 +2,7 @@
 title: "Use Foundry Agent Service with function calling (classic)"
 description: "Learn how to implement function calling with Microsoft Foundry Agents. Define functions, handle requests, and execute custom code for AI-powered workflows. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

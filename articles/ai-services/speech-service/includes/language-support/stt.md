@@ -1,7 +1,7 @@
-﻿---
+---
 author: PatrickFarley
-ms.service: azure-ai-speech
-ms.date: 04/02/2026
+ms.service: azure-speech-foundry-tools
+ms.date: 6/29/2026
 ms.topic: include
 ms.author: pafarley
 ---
@@ -31,6 +31,7 @@ ms.author: pafarley
 | `as-IN` | Assamese (India) | ✅ |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | ✅ |
 | `bg-BG` | Bulgarian (Bulgaria) | ✅ |
+| `bho-IN` | Bhojpuri (India) | ✅ |
 | `bn-IN` | Bengali (India) | ✅ |
 | `bs-BA` | Bosnian (Bosnia and Herzegovina) | ✅ |
 | `ca-ES` | Catalan | ✅ |
@@ -40,7 +41,7 @@ ms.author: pafarley
 | `de-AT` | German (Austria) | ✅ |
 | `de-CH` | German (Switzerland) | ✅ |
 | `de-DE` | German (Germany) | ✅ |
-| `el-GR` | Greek (Greece) |   |
+| `el-GR` | Greek (Greece) | ✅ |
 | `en-AU` | English (Australia) | ✅ |
 | `en-CA` | English (Canada) | ✅ |
 | `en-GB` | English (United Kingdom) | ✅ |
@@ -75,7 +76,7 @@ ms.author: pafarley
 | `es-PR` | Spanish (Puerto Rico) | ✅ |
 | `es-PY` | Spanish (Paraguay) | ✅ |
 | `es-SV` | Spanish (El Salvador) | ✅ |
-| `es-US` | Spanish (United States)<sup>1</sup> | ✅ |
+| `es-US` | Spanish (United States) | ✅ |
 | `es-UY` | Spanish (Uruguay) | ✅ |
 | `es-VE` | Spanish (Venezuela) | ✅ |
 | `et-EE` | Estonian (Estonia) | ✅ |
@@ -118,7 +119,7 @@ ms.author: pafarley
 | `my-MM` | Burmese (Myanmar) | ✅ |
 | `nb-NO` | Norwegian Bokmål (Norway) | ✅ |
 | `ne-NP` | Nepali (Nepal) | ✅ |
-| `nl-BE` | Dutch (Belgium) |   |
+| `nl-BE` | Dutch (Belgium) | ✅ |
 | `nl-NL` | Dutch (Netherlands) | ✅ |
 | `or-IN` | Odia (India) | ✅ |
 | `pa-IN` | Punjabi (India) | ✅ |
@@ -133,10 +134,12 @@ ms.author: pafarley
 | `sl-SI` | Slovenian (Slovenia) | ✅ |
 | `so-SO` | Somali (Somalia) | ✅ |
 | `sq-AL` | Albanian (Albania) | ✅ |
+| `sr-ME` | Serbian (Montenegro) | ❌ |
 | `sr-RS` | Serbian (Cyrillic, Serbia) | ✅ |
+| `sr-XK` | Serbian (Kosovo) | ❌ |
 | `sv-SE` | Swedish (Sweden) | ✅ |
 | `sw-KE` | Kiswahili (Kenya) | ✅ |
-| `sw-TZ` | Kiswahili (Tanzania) |   |
+| `sw-TZ` | Kiswahili (Tanzania) | ❌ |
 | `ta-IN` | Tamil (India) | ✅ |
 | `te-IN` | Telugu (India) | ✅ |
 | `th-TH` | Thai (Thailand) | ✅ |
@@ -146,13 +149,13 @@ ms.author: pafarley
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | ✅ |
 | `vi-VN` | Vietnamese (Vietnam) | ✅ |
 | `wuu-CN` | Chinese (Wu, Simplified) | ✅ |
-| `yue-CN` | Chinese (Cantonese, Simplified) |   |
+| `yue-CN` | Chinese (Cantonese, Simplified) | ✅ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | ✅ |
-| `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) |   |
+| `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) | ❌ |
 | `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) | ✅ |
 | `zh-HK` | Chinese (Cantonese, Traditional) | ✅ |
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | ✅ |
-| `zu-ZA` | Zulu (South Africa) | ✅ |
+| `zu-ZA` | isiZulu (South Africa) | ✅ |
 
 
 ### Custom speech
@@ -177,13 +180,14 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `ar-OM` | Arabic (Oman) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-PS` | Arabic (Palestinian Authority) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-QA` | Arabic (Qatar) | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-SA` | Arabic (Saudi Arabia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
+| `ar-SA` | Arabic (Saudi Arabia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `ar-SY` | Arabic (Syria) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-TN` | Arabic (Tunisia) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-YE` | Arabic (Yemen) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `as-IN` | Assamese (India) | Audio + human-labeled transcript |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | Plain text |
 | `bg-BG` | Bulgarian (Bulgaria) | Plain text |
+| `bho-IN` | Bhojpuri (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `bn-IN` | Bengali (India) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `bs-BA` | Bosnian (Bosnia and Herzegovina) | Plain text |
 | `ca-ES` | Catalan | Plain text<br/><br/>Pronunciation |
@@ -269,7 +273,7 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `ms-MY` | Malay (Malaysia) | Plain text |
 | `mt-MT` | Maltese (Malta) | Plain text |
 | `my-MM` | Burmese (Myanmar) | Plain text |
-| `nb-NO` | Norwegian BokmÃ¥l (Norway) | Plain text<br/><br/>Output format |
+| `nb-NO` | Norwegian Bokmål (Norway) | Plain text<br/><br/>Output format |
 | `ne-NP` | Nepali (Nepal) | Plain text |
 | `nl-BE` | Dutch (Belgium) | Plain text |
 | `nl-NL` | Dutch (Netherlands) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
@@ -295,7 +299,7 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `ta-IN` | Tamil (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `te-IN` | Telugu (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `th-TH` | Thai (Thailand) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
-| `tr-TR` | Turkish (TÃ¼rkiye) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
+| `tr-TR` | Turkish (Türkiye) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `uk-UA` | Ukrainian (Ukraine) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ur-IN` | Urdu (India) | Audio + human-labeled transcript |
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | Plain text |
@@ -309,6 +313,8 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `zu-ZA` | isiZulu (South Africa) | Plain text |
 
+> [!NOTE]
+> [Phrase list](../../improve-accuracy-phrase-list.md) is a runtime recognition feature, not a model customization capability. You can use phrase lists with real-time transcription and fast transcription on both base and custom speech endpoints, for locales where the feature is enabled. Phrase list doesn't require model training. For supported locales and usage details, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md).
 
 ### Custom speech display support
 

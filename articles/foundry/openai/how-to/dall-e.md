@@ -3,7 +3,7 @@ title: "How to Use Image Generation Models from OpenAI"
 description: "Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 04/17/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

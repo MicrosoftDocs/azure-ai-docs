@@ -146,7 +146,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/aifoundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
 
 **Inference keys**
 
@@ -272,7 +272,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/aifoundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
 
 **Inference keys**
 
@@ -292,7 +292,9 @@ az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#deploy-and-manage-models) — role requirements for model deployment and quota management.
 - [Generate text responses with Foundry Models](../how-to/generate-responses.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy Foundry Models to managed compute](../how-to/deploy-foundry-models.md)
 - [Quotas and limits for Foundry Models](../quotas-limits.md)

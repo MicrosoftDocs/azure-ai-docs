@@ -3,13 +3,13 @@ title: "Container: Translate document"
 titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body request/response messages for the Azure Translator container translate document operation.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Azure Translator in Foundry Tools container: translate documents
 
 **Translate document with source language specified**.
@@ -75,4 +75,4 @@ curl -v "http://localhost:5000/translator/document:translate?sourceLanguage=en&t
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about synchronous document translation](../document-translation/reference/rest-api-guide.md)
+> [Learn more about synchronous document translation](../document-translation/latest/rest-api/guide-overview.md#synchronous-operations)

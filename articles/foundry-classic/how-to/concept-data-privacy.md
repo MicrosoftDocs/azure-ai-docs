@@ -8,7 +8,7 @@ ms.topic: concept-article
 ms.date: 01/26/2026
 ms.reviewer: shubhirajMsft
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 #Customer intent: As a data scientist, I want to learn about data privacy and security for use of models in the model catalog.
 ---

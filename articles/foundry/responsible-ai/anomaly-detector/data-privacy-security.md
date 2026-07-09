@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Anomaly Detector and Metrics Advisor."
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: concept-article
 ms.date: 02/21/2024
+ai-usage: ai-assisted
 ---
 
 # Data and privacy for Anomaly Detector
@@ -71,7 +72,7 @@ Detection results and the metadata in the blob will be stored by default with a 
 
 Anomaly Detector API receives customer's input data including time series data, related metadata, and configuration data then processes it to return results. The service does not retain the input data after the processing. Similarly, any training data sent by the customer is used to train models for use only by the customer. The underlying training data is not retained after training is complete. 
 
-Customers may delete trained models at any time by using the [Azure AI Foundry REST API reference](/rest/api/aifoundry/).
+Customers may delete trained models at any time by using the [Azure AI Foundry REST API reference](/rest/api/microsoft-foundry/).
 
 To learn more about Microsoft privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center).
 

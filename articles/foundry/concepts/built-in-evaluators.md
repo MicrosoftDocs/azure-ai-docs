@@ -4,7 +4,7 @@ description: "Comprehensive reference for all built-in evaluators in Microsoft F
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 04/03/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -65,7 +65,7 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. |
 | Indirect Attack (XPIA) | Measures whether the response fell for an indirect jailbreak attempt injected through retrieved context. |
 | Code Vulnerability | Identifies security issues in generated code. |
-| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
+| Ungrounded Attributes | Detects fabricated or erroneous information inferred from user interactions. |
 | Prohibited Actions | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions. |
 | Sensitive Data Leakage | Measures an AI agent's vulnerability to exposing sensitive information. |
 
@@ -77,6 +77,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 |--|--|
 | Task Adherence (preview)  | Measures whether the agent follows through on identified tasks according to system instructions. |
 | Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. |
+| Customer Satisfaction (preview) | Measures holistic user satisfaction across a conversation using six dimensions: helpfulness, completeness, clarity, tone, resolution, and adaptability. |
 | Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. |
 | Task Navigation Efficiency | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. |
 | Tool Call Accuracy | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. |
@@ -84,8 +85,17 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Tool Input Accuracy | Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. |
 | Tool Output Utilization | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. |
 | Tool Call Success | Evaluates whether all tool calls executed successfully without technical failures. |
+| Quality Grader (preview) | Enables quality evaluation across multiple dimensions—relevance, abstention, answer completeness, groundedness, and context coverage—in a single evaluator instead of running individual evaluators separately. |
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
+
+## Rubric evaluators (preview)
+
+| Evaluator | Purpose |
+|--|--|
+| Rubric | Scores a response or multi-turn conversation against custom, weighted criteria using an LLM as the judge. Returns a weighted average score normalized to 0–1 with per-dimension reasoning. |
+
+To learn more, see [Rubric evaluators](./evaluation-evaluators/rubric-evaluators.md).
 
 ## Azure OpenAI graders
 
@@ -104,12 +114,28 @@ In addition to built-in evaluators, you can create custom evaluators tailored to
 
 To learn more, see [Custom evaluators](./evaluation-evaluators/custom-evaluators.md).
 
+## Evaluation levels
+
+Each evaluator supports specific evaluation levels, indicated by the `supported_evaluation_levels` field in the evaluator catalog:
+
+| Level | Description |
+|-------|-------------|
+| `turn` | Evaluates individual agent responses (default) |
+| `conversation` | Evaluates entire multi-turn conversations |
+
+When creating an evaluation run, set `evaluation_level` to match your evaluators' supported levels. If omitted, the default is `turn`.
+
+**Conversation-level evaluators** score the full interaction rather than individual turns. Use them to measure outcomes like user satisfaction, task completion across multiple steps, or conversation-wide coherence.
+
+> [!IMPORTANT]
+> All evaluators in a run must support the specified `evaluation_level`. You can't mix evaluators with incompatible levels in the same evaluation run.
+
 ## Combining evaluators
 
 For comprehensive quality assessment, combine multiple evaluators:
 
 - **RAG applications**: Retrieval + Groundedness + Relevance + Content Safety
-- **Agent applications**: Tool Call Accuracy + Task Adherence + Intent Resolution + Content Safety
+- **Agent applications**: Tool Call Accuracy + Task Adherence + Intent Resolution + Rubric + Content Safety
 - **Translation applications**: BLEU + METEOR + Fluency + Coherence
 - **All applications**: Add risk and safety evaluators (Hate and Unfairness, Sexual, Violence, Self-Harm) for responsible AI practices
 
@@ -121,6 +147,7 @@ For comprehensive quality assessment, combine multiple evaluators:
 - [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md)
 - [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md)
 - [Agent evaluators](./evaluation-evaluators/agent-evaluators.md)
+- [Rubric evaluators](./evaluation-evaluators/rubric-evaluators.md)
 - [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md)
 - [Custom evaluators](./evaluation-evaluators/custom-evaluators.md)
 - [Evaluate generative AI apps in Foundry](../how-to/evaluate-generative-ai-app.md)

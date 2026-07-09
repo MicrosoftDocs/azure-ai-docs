@@ -3,7 +3,7 @@ title: "Quickstart: Create and use learning loop with client SDK - Personalizer"
 description: This quickstart shows you how to create and manage a Personalizer learning loop using the client library.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: quickstart
 ms.date: 01/19/2024

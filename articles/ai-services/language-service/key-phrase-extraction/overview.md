@@ -3,10 +3,10 @@ title: What is key phrase extraction in Azure Language in Foundry Tools?
 titleSuffix: Foundry Tools
 description: An overview of key phrase extraction in Foundry Tools, which helps you identify main concepts in unstructured text
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---

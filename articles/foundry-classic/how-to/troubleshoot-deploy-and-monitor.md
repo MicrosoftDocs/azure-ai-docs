@@ -14,7 +14,7 @@ ms.date: 08/26/2025
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 
 #CustomerIntent: As a developer or data scientist, I want to troubleshoot and monitor model deployments in Microsoft Foundry so that I can quickly resolve errors, optimize performance, and ensure my AI solutions run smoothly.

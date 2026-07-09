@@ -1,14 +1,14 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/javascript/api/overview/azure/ai-speech-transcription-readme) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-speech-transcription) | [GitHub samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md)
+[!INCLUDE [Reference links](transcription-sdk-reference-javascript.md)]
 
 ## Prerequisites
 

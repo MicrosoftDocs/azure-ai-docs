@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Add scoring profiles to boost search scores
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Scoring profiles are used to boost or suppress the ranking of matching documents based on user-defined criteria. In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. You can create scoring profiles based on:
 
 + Weighted string fields, where boosting is based on a match found in a designated field. For example, matches found in a "Subject" field are considered more relevant than the same match found in a "Description" field.
@@ -451,7 +453,7 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
 ## Example: function aggregation
 
 > [!NOTE]
-> This capability is currently in preview, available through the [2025-11-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.
+> This capability is currently in preview, available through the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.
 
 Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product"`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
 
@@ -459,7 +461,7 @@ In this example, create a scoring profile that includes two boosting functions t
 
 ```http
 ### Create a new index
-PUT {{url}}/indexes/hotels-scoring?api-version=2025-11-01-preview
+PUT {{url}}/indexes/hotels-scoring?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{key}}
 
@@ -522,7 +524,7 @@ This next request loads the index with searchable content that tests the profile
 
 ```http
 ### Upload documents to the index
-POST {{url}}/indexes/hotels-scoring/docs/index?api-version=2025-11-01-preview
+POST {{url}}/indexes/hotels-scoring/docs/index?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{key}}
 
@@ -611,7 +613,7 @@ Run a query that uses the criteria in the scoring profile to boost results based
 
 ```http
 ### Search with boost
-POST {{url}}/indexes/hotels-scoring/docs/search?api-version=2025-11-01-preview
+POST {{url}}/indexes/hotels-scoring/docs/search?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{key}}
 

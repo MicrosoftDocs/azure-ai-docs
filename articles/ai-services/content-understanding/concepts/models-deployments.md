@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how Content Understanding maps analyzer models to Foundry deployments, and how defaults and request-level overrides interact.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 04/25/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
 ms.custom:
   - ignite-2025

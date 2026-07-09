@@ -7,7 +7,7 @@ ms.topic: concept-article
 ms.date: 04/23/2026
 ms.custom:
   - classic-and-new
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.author: mopeakande
 ms.reviewer: josander

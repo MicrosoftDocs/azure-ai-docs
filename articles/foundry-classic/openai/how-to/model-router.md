@@ -3,7 +3,7 @@ title: "How to use model router for Microsoft Foundry (classic)"
 description: "Learn how to use the model router in Azure OpenAI to select the best model for your task. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/18/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
@@ -33,6 +33,9 @@ Use model router through the Chat Completions API like you'd use a single base m
 ## Deploy a model router model
 
 Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). To deploy programmatically without the portal, use the REST API examples in the deployment sections that follow.
+
+> [!NOTE]
+> If your organization uses the [built-in Azure Policy for model deployment](/azure/ai-foundry/how-to/model-deployment-policy), make sure the policy's allowed publishers include `Microsoft` (the publisher of model router) and the publisher of each model you deploy for routing (for example, `Anthropic` for Claude models). Otherwise, the policy blocks the deployment.
 
 By default, model router deploys with the **Balanced** routing mode and routes across the full supported model set. You don't need to configure optional routing settings unless you want custom routing behavior.
 

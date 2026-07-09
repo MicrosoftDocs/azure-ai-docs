@@ -3,7 +3,7 @@ title: Configure Enrichment Caching
 description: Cache enriched content for potential reuse when modifying downstream skills and projections in an AI enrichment pipeline.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 07/07/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -12,12 +12,17 @@ ms.custom:
 
 # Configure an enrichment cache
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT] 
 > This feature is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). [Preview REST APIs](/rest/api/searchservice/index-preview) support this feature.
 
-This article explains how to add caching to a skillset pipeline so that you can modify downstream enrichment steps without a full rebuild every time. By default, a skillset is stateless, and changing any part of its composition requires a full rerun of the indexer. With an *enrichment cache*, the indexer determines which parts of the document tree must be refreshed based on skillset or indexer definition changes. Existing processed output is preserved and reused where possible.
+This article explains how to add caching to a skillset pipeline so that you can modify downstream enrichment steps without a full rebuild every time. By default, a skillset is stateless, and changing any part of its composition requires a full rerun of the indexer. With an *enrichment cache*, the indexer determines which parts of the document tree must be refreshed based on skillset or indexer definition changes. The indexer preserves and reuses existing processed output where possible.
 
-Cached content is placed in Azure Storage using a connection string that you provide. These objects are created when you run the indexer. It should be considered an internal component managed by your search service and must not be modified.
+You place cached content in Azure Storage by using a connection string that you provide. The indexer creates these objects when it runs. Consider the enrichment cache an internal component managed by your search service that you must not modify.
+
+> [!IMPORTANT]
+> An enrichment cache isn't a backup of skillset outputs, indexer state, or indexed documents. It doesn't track which documents complete processing. For large data sources, review the [Limitations](#limitations) section before enabling caching.
 
 + A container named `ms-az-search-indexercache-<alpha-numeric-string>`
 + Tables named `MsAzSearchIndexerCacheIndex<alpha-numeric-string>`
@@ -33,11 +38,18 @@ You should be familiar with setting up indexers and skillsets. Start with [index
 ## Limitations
 
 > [!CAUTION]
-> If you're using the [SharePoint indexer (Preview)](search-how-to-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and full rebuild](search-howto-run-reset-indexers.md), should you choose to reload it.
+> If you're using the [SharePoint indexer (Preview)](search-how-to-index-sharepoint-online.md), avoid incremental enrichment. Under certain circumstances, the cache becomes invalid. To reload it, perform an [indexer reset and full rebuild](search-howto-run-reset-indexers.md).
+
+Large data sources have an additional cache limitation.
+
+> [!CAUTION]
+> For large data sources, an enrichment cache can increase total reprocessing when long-running skills, repeated interruptions, or frequent skill failures occur. The indexer prioritizes correctness over minimizing reprocessing, so a cache backlog from repeated interruptions amplifies retry behavior. This behavior is expected, not a bug.
+>
+> To recover from a growing cache backlog, partition the data source into smaller containers or virtual folders. Then use [parallel indexers](search-how-to-large-index.md#parallel-indexing) pointing to the same index. To disassociate the cache, set the `cache` property to null on the indexer. See [Index large data sets](search-how-to-large-index.md) for guidance on the partitioning pattern.
 
 ## Permissions
 
-An Azure AI Search identity needs write-access to Azure Storage:
+An Azure AI Search identity needs write access to Azure Storage:
 
 + **Storage Blob Data Contributor**
 + **Storage Table Data Contributor**
@@ -67,12 +79,12 @@ In the indexer definition, set `cache` with:
 
 ### [**REST**](#tab/rest)
 
-We recommend that you do a [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) if you're editing an existing indexer.
+If you're editing an existing indexer, use [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to get the current configuration.
 
-1. Use the latest preview API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+1. Use the latest preview API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
     ```http
-    PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2025-11-01-preview
+    PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2026-05-01-preview
         Content-Type: application/json
         api-key: [YOUR-ADMIN-KEY]
         {
@@ -95,7 +107,7 @@ We recommend that you do a [GET Indexer](/rest/api/searchservice/indexers/get?vi
 1. [Run the indexer](/rest/api/searchservice/indexers/run). This one-time full rebuild seeds the cache. After it's loaded, incremental reuse applies on subsequent runs.
 
     ```http
-    POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2025-11-01-preview
+    POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2026-05-01-preview
         Content-Type: application/json
         api-key: [YOUR-ADMIN-KEY]
     ```
@@ -118,9 +130,9 @@ If you now issue another GET request on the indexer, the response from the servi
 
    + The container name is  `ms-az-search-indexercache-<some-alphanumeric-string>`.
 
-   + Table names are `MsAzSearchIndexerCacheIndex<alpha-numeric-string>`
+   + Table names are `MsAzSearchIndexerCacheIndex<alpha-numeric-string>`.
 
-A cache is created and used by an indexer. Its content isn't human readable.
+An indexer creates and uses a cache. Its content isn't human readable.
 
 To verify whether the cache is operational, modify a skillset and run the indexer, then compare before-and-after metrics for execution time and document count.
 
@@ -134,11 +146,11 @@ The following error occurs if you forget to specify a preview API version on the
 
 `"The request is invalid. Details: indexer : A resource without a type name was found, but no expected type was specified. To allow entries without type information, the expected type must also be specified when the model is specified."`
 
-A 400 Bad Request error will also occur if you're missing an indexer requirement. The error message specifies any missing dependencies.
+A 400 Bad Request error also occurs if you're missing an indexer requirement. The error message specifies any missing dependencies.
 
 ## Next step
 
-Incremental enrichment is applicable on indexers that contain skillsets, providing reusable content for both indexes and knowledge stores. The following link provides more information about cache management.
+You can use incremental enrichment on indexers that contain skillsets, so you can reuse content for both indexes and knowledge stores. To learn more about cache management, see the following article:
 
 > [!div class="checklist"]
 > + [Manage an enrichment cache](enrichment-cache-how-to-manage.md)

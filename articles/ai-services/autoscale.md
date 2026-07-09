@@ -3,7 +3,7 @@ title: Autoscale Foundry Tools limits
 description: Learn how to use the autoscale feature for Foundry Tools to dynamically adjust the rate limit of your service.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: how-to

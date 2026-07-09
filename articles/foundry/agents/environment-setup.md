@@ -1,7 +1,7 @@
 ---
 title: "Set up your environment for Foundry Agent Service"
 description: "Use this guide to set up your agent environment"
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda 

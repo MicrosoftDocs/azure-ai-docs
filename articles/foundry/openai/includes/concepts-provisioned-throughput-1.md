@@ -174,5 +174,5 @@ Use Microsoft Cost Management to track and analyze your PTU usage and reservatio
 - [PTU costs and billing](../concepts/provisioned-throughput-billing.md)
 - [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md)
 - [Enable priority processing for Microsoft Foundry models](../concepts/priority-processing.md)
-- [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai)
+- [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/microsoft-foundry)
 - [Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)

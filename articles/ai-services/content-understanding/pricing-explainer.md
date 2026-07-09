@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Understand the pricing model for Azure Content Understanding in Foundry Tools, including what you're charged for, how to estimate costs, and pricing examples.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
 ms.date: 01/29/2026
 ai-usage: ai-assisted

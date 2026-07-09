@@ -3,7 +3,7 @@ title: Create an Immersive Reader resource
 titleSuffix: Azure AI services
 description: Learn how to create a new Immersive Reader resource with a custom subdomain and then configure Microsoft Entra ID in your Azure tenant.
 author: rwallerms
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to
 ms.date: 02/12/2024

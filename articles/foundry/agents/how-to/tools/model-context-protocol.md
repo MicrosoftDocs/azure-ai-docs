@@ -2,7 +2,7 @@
 title: "Connect to MCP Server Endpoints for agents"
 description: "Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -57,13 +57,13 @@ Agent Service supports both public and private MCP server endpoints:
 - **Public endpoints**: Connect to any publicly accessible remote MCP server. This option works with both Basic and Standard agent setups.
 - **Private endpoints**: Connect to MCP servers that aren't exposed to the public internet. Private MCP requires [Standard Agent Setup with private networking](../virtual-networks.md) and a dedicated MCP subnet within your virtual network.
 
-For private MCP servers, deploy your MCP server on Azure Container Apps with internal-only ingress on a dedicated MCP subnet delegated to `Microsoft.App/environments`. To get started, use the [19-private-network-agents-tools-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-private-network-agents-tools-setup) template, which provisions the required network infrastructure including the MCP subnet.
+For private MCP servers, deploy your MCP server on Azure Container Apps with internal-only ingress on a dedicated MCP subnet delegated to `Microsoft.App/environments`. To get started, use the [19-private-network-agents-tools-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-private-network-agent-tools) template, which provisions the required network infrastructure including the MCP subnet.
 
 For details about tool support in network-isolated environments, see [Agent tools with network isolation](../../../how-to/configure-private-link.md#agent-tools-with-network-isolation).
 
 ## Use Foundry Toolboxes as MCP endpoints
 
-Foundry Toolboxes (preview) let you bundle multiple tools - such as Web Search, Code Interpreter, File Search, Azure AI Search, MCP servers, OpenAPI tools, and Agent-to-Agent connections - into a single MCP-compatible endpoint. Instead of configuring each tool separately on every agent, create a Toolbox in Foundry and point your agent to the Toolbox endpoint by using the standard `mcp` tool configuration (`server_url` and `server_label`).
+Foundry Toolboxes let you bundle multiple tools - such as Web Search, Code Interpreter, File Search, Azure AI Search, MCP servers, OpenAPI tools, and Agent-to-Agent connections - into a single MCP-compatible endpoint. Instead of configuring each tool separately on every agent, create a Toolbox in Foundry and point your agent to the Toolbox endpoint by using the standard `mcp` tool configuration (`server_url` and `server_label`).
 
 Because the Toolbox endpoint is MCP-compatible, any runtime that can consume an MCP server can also consume a Toolbox. This compatibility includes Foundry Agent Service, Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and other MCP-enabled clients. You can add, remove, or reconfigure tools in the Toolbox without changing your agent code.
 
@@ -119,7 +119,9 @@ Use the following code sample to create an agent and call the function. The .NET
 
 :::zone pivot="python"
 
-The following example shows how to use the GitHub MCP server as a tool for an agent.
+The following example shows how to use the GitHub MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import json
@@ -219,12 +221,86 @@ Response: Your GitHub username is "example-username".
 Agent deleted
 ```
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_mcp_tool()` to register a hosted MCP server with per-tool approval control. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+from typing import Any
+
+from agent_framework import Agent, Message
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    client = FoundryChatClient(credential=AzureCliCredential())
+
+    # Register a hosted MCP server. Use approval_mode="always_require" in production
+    # so the user approves each tool call; "never_require" skips approvals.
+    mcp_tool = client.get_mcp_tool(
+        name="Microsoft Learn MCP",
+        url="https://learn.microsoft.com/api/mcp",
+        approval_mode={"never_require_approval": ["microsoft_docs_search"]},
+    )
+
+    async with Agent(
+        client=client,
+        name="DocsAgent",
+        instructions="You are a helpful assistant that uses your MCP tool "
+        "to help with Microsoft documentation questions.",
+        tools=[mcp_tool],
+    ) as agent:
+        query = "What is Microsoft Agent Framework?"
+        result = await agent.run(query)
+
+        # Handle any approval prompts raised by the MCP tool.
+        while len(result.user_input_requests) > 0:
+            new_inputs: list[Any] = [query]
+            for user_input_needed in result.user_input_requests:
+                print(
+                    f"Approval requested for {user_input_needed.function_call.name} "
+                    f"with arguments: {user_input_needed.function_call.arguments}"
+                )
+                new_inputs.append(Message(role="assistant", contents=[user_input_needed]))
+                approve = input("Approve function call? (y/n): ").lower() == "y"
+                new_inputs.append(
+                    Message(
+                        role="user",
+                        contents=[user_input_needed.to_function_approval_response(approve)],
+                    )
+                )
+            result = await agent.run(new_inputs)
+
+        print(f"Agent: {result}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent calls the Microsoft Learn MCP server and returns documentation-grounded text:
+
+```console
+Agent: Microsoft Agent Framework is an open-source framework for building, orchestrating, and deploying AI agents ...
+```
+
+For the full sample, including session-based approval flows and streaming, see [foundry_chat_client_with_hosted_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_hosted_mcp.py). For local (stdio) MCP servers, see [foundry_chat_client_with_local_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_local_mcp.py).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 ## Create an agent with MCP tool
 
-The following example shows how to use the GitHub MCP server as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
+The following example shows how to use a remote MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -312,6 +388,63 @@ Approval requested for api-specs...
 Response: The Azure REST API specifications repository contains the OpenAPI specifications for Azure services. It is
 organized by service and includes guidelines for contributing new specifications. The repository is intended for use by developers building tools and services that interact with Azure APIs.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with an MCP client to expose remote MCP tools to the agent. Install the `Microsoft.Agents.AI.Foundry`, `Azure.AI.Projects`, and `ModelContextProtocol` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using ModelContextProtocol.Client;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+// Connect to the Microsoft Learn MCP server via Streamable HTTP transport.
+Console.WriteLine("Connecting to MCP server at https://learn.microsoft.com/api/mcp ...");
+
+await using McpClient mcpClient = await McpClient.CreateAsync(new HttpClientTransport(new()
+{
+    Endpoint = new Uri("https://learn.microsoft.com/api/mcp"),
+    Name = "Microsoft Learn MCP",
+}));
+
+// Retrieve the list of tools available on the MCP server.
+IList<McpClientTool> mcpTools = await mcpClient.ListToolsAsync();
+Console.WriteLine($"MCP tools available: {string.Join(", ", mcpTools.Select(t => t.Name))}");
+
+List<AITool> agentTools = [.. mcpTools.Cast<AITool>()];
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: "You are a helpful assistant that can answer Microsoft documentation questions. Use the Microsoft Learn MCP tool to search documentation.",
+    name: "DocsAgent",
+    tools: agentTools);
+
+const string Prompt = "How does one create an Azure storage account using the az CLI?";
+Console.WriteLine($"User: {Prompt}\n");
+Console.WriteLine($"Agent: {await agent.RunAsync(Prompt)}");
+```
+
+### Expected output
+
+The agent queries the Microsoft Learn MCP server for documentation snippets and answers:
+
+```console
+User: How does one create an Azure storage account using the az CLI?
+
+Agent: To create an Azure storage account using the az CLI, run: `az storage account create --name <name> --resource-group <rg> --location <region> --sku Standard_LRS` ...
+```
+
+For local MCP transports and additional patterns, see [Agent_Step09_UsingMcpClientAsTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step09_UsingMcpClientAsTools) and [Agent_Step23_LocalMCP](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step23_LocalMCP).
+
+---
 
 ## Create an agent by using the MCP tool with project connection authentication
 
@@ -964,9 +1097,220 @@ This catalog-based setup creates the MCP tool for use by agents without requirin
 > [!TIP]
 > **Toolbox versioning**: Foundry Toolboxes support versioning, so you can iterate on a new version without affecting production agents. Use the **consumer endpoint** (`{project_endpoint}/toolboxes/{name}/mcp?api-version=v1`) for production agents - it always serves the promoted default version. Use the **version-specific endpoint** (`{project_endpoint}/toolboxes/{name}/versions/{version}/mcp?api-version=v1`) to test before promoting. Keep `server_label` unique per agent, even when switching Toolbox versions. For details, see [Promote a version to default](toolbox.md#promote-a-version-to-default).
 
+## Long-running operations (preview)
+
+Some MCP servers expose tools that take longer than the standard synchronous timeout to return a result. To support these operations, run the agent in [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Background mode runs the response asynchronously, so the MCP tool call can continue without holding an open connection, and you poll for the response status until it completes. This approach lets MCP tool calls exceed the 100-second non-streaming timeout described in [Known limitations](#known-limitations).
+
+> [!NOTE]
+> Long-running MCP operations are in preview. Preview features are provided without a service-level agreement and aren't recommended for production workloads. Behavior and supported models can change.
+
+### Requirements for the MCP server
+
+The agent runtime relies on the MCP server to run the operation asynchronously and report progress. The server must:
+
+- Implement the [Model Context Protocol tasks capability](https://modelcontextprotocol.io/specification) so a tool call can return a task reference instead of blocking until the work finishes.
+- Return a related task identifier in the tool result metadata (the `io.modelcontextprotocol/related-task` field with a `taskId`) when it starts a long-running operation.
+- Expose a way for the runtime to poll the task status and retrieve the final result after the task completes.
+- Be reachable as a remote MCP endpoint, the same as any other MCP tool. Local MCP servers must be self-hosted to provide a remote endpoint. See [Host a local MCP server](#host-a-local-mcp-server).
+
+When the agent runtime calls a tool that starts a long-running operation, the server returns the task reference and the runtime keeps the response in the background. The runtime starts the response, returns immediately with a response `id` and a `status` of `queued`, and collects the result when the task finishes. You poll the response `id` until `status` becomes `completed`, then read the final output.
+
+Background mode for long-running MCP operations works with any model that supports background mode, such as `gpt-5.4` or `gpt-5.5`.
+
+If your agent uses a model that doesn't support background mode, MCP tool calls run synchronously and are subject to the 100-second timeout.
+
+### Enable background mode in the Microsoft Foundry portal
+
+You can turn on background mode for an agent in the [Microsoft Foundry portal](https://ai.azure.com/) playground, without writing code:
+
+1. Open your agent, and select the **Playground** tab.
+1. In the **Model** list, select a model that supports background mode, such as `gpt-5.4` or `gpt-5.5`.
+1. Select the parameters icon next to the model, and turn on **Background mode**.
+
+   :::image type="content" source="../../media/tools/toolbox/background-mode-enable.png" alt-text="Screenshot of the model parameters panel in the Foundry portal with a supported model selected and the Background mode toggle turned on." lightbox="../../media/tools/toolbox/background-mode-enable.png":::
+
+1. Under **Tools**, add a tool whose MCP server supports MCP tasks, such as a Fabric data agent added through the Fabric IQ tool. For steps, see [Connect agents to Microsoft Fabric with Fabric IQ](fabric-iq.md#run-a-fabric-data-agent-in-background-mode).
+1. Send a message. The agent starts a background run and shows its progress while the long-running tool call completes. When the run finishes, the response appears in the chat.
+
+   :::image type="content" source="../../media/tools/toolbox/background-mode-running.png" alt-text="Screenshot of the Foundry portal chat showing a background run in progress, with a progress indicator, after the user sends a message." lightbox="../../media/tools/toolbox/background-mode-running.png":::
+
+### Run background mode with code
+
+The following examples invoke an agent that's already configured with an MCP tool, set `background` to `true`, and poll until the response completes. Replace the placeholder values with your own.
+
+:::zone pivot="python"
+
+```python
+from time import sleep
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_mcp_agent_name"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Start a background response. It returns immediately with status "queued".
+response = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="Run the long-running task and summarize the result.",
+    background=True,
+)
+
+# Poll the response ID until the MCP tool call completes.
+while response.status in ("queued", "in_progress"):
+    sleep(5)
+    response = openai.responses.retrieve(response.id)
+
+print(response.output_text)
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_mcp_agent_name";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
+
+// Start a background response. It returns immediately with status "queued".
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    new CreateResponseOptions
+    {
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "Run the long-running task and summarize the result.") },
+        Background = true,
+    });
+
+// Poll the response ID until the MCP tool call completes.
+while (response.Status is "queued" or "in_progress")
+{
+    await Task.Delay(5000);
+    response = await responsesClient.RetrieveResponseAsync(response.Id);
+}
+Console.WriteLine(response.GetOutputText());
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_mcp_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = project.getOpenAIClient();
+
+// Start a background response. It returns immediately with status "queued".
+let response = await openai.responses.create({
+  input: "Run the long-running task and summarize the result.",
+  background: true,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+
+// Poll the response ID until the MCP tool call completes.
+while (response.status === "queued" || response.status === "in_progress") {
+  await new Promise((r) => setTimeout(r, 5000));
+  response = await openai.responses.retrieve(response.id);
+}
+console.log(response.output_text);
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_mcp_agent_name";
+
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+AgentReference agentRef = new AgentReference(agentName);
+
+// Start a background response. It returns immediately with status "queued".
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions()
+        .setAgentReference(agentRef)
+        .setBackground(true),
+    ResponseCreateParams.builder()
+        .input("Run the long-running task and summarize the result."));
+
+// Poll the response ID until the MCP tool call completes.
+while (response.status().equals("queued") || response.status().equals("in_progress")) {
+    Thread.sleep(5000);
+    response = responsesClient.getAzureResponse(response.id());
+}
+System.out.println(response.output());
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+Create a background response. The request returns immediately with a response `id` and a `status` of `queued`:
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-mcp"},
+    "input": "Run the long-running task and summarize the result.",
+    "background": true
+  }'
+```
+
+Copy the response `id` from the result, then poll it until `status` is `completed`:
+
+```bash
+curl "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses/$RESPONSE_ID" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+When `status` is `completed`, the `output` array contains the MCP tool call result and the final assistant message.
+
+:::zone-end
+
 ## Known limitations
 
-- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, run the agent in [background mode](#long-running-operations-preview) with a supported model, optimize the server-side logic, or break the operation into smaller steps.
 - **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
 - **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but aren't internally validated.
 

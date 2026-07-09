@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Vector indexes in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Vectors are high-dimensional embeddings that represent text, images, and other content mathematically. Azure AI Search stores vectors at the field level, allowing vector and nonvector content to coexist within the same [search index](search-what-is-an-index.md).
 
 A search index becomes a *vector index* when you define vector fields and a vector configuration. To populate vector fields, you can push [precomputed embeddings](vector-search-how-to-generate-embeddings.md) into them or use [integrated vectorization](vector-search-integrated-vectorization.md), a built-in Azure AI Search capability that generates embeddings during indexing.
@@ -208,7 +210,7 @@ In Azure AI Search, you work with one index at a time. All index-related operati
 
 ### Continuously available
 
-An index is immediately available for queries as soon as the first document is indexed, but it's not fully operational until all documents are indexed. Internally, an index is [distributed across partitions and executes on replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions). The physical index is managed internally. You manage the logical index.
+An index is immediately available for queries as soon as the first document is indexed, but it's not fully operational until all documents are indexed. Internally, an index is [distributed across partitions and executes on replicas](search-capacity-planning.md). The physical index is managed internally. You manage the logical index.
 
 An index is continuously available and can't be paused or taken offline. Because it's designed for continuous operation, updates to its content and additions to the index itself happen in real time. If a request coincides with a document update, queries might temporarily return incomplete results.
 

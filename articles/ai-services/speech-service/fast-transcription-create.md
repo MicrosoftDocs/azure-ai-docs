@@ -2,12 +2,12 @@
 title: Use the fast transcription API - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use Azure Speech in Foundry Tools for fast transcriptions, where you submit audio get the transcription results faster than real-time.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 reviewer: patrickfarley
 ms.author: pafarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/10/2026
 zone_pivot_groups: fast-transcription-quickstart

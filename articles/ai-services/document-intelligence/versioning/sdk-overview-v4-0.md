@@ -3,8 +3,8 @@ title: Document Intelligence SDK target REST API v4.0
 titleSuffix: Foundry Tools
 description: The Document Intelligence software development kits (SDKs) expose Document Intelligence models, features, and capabilities that are in active development for C#, Java, JavaScript, or Python programming language.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.custom:
   - devx-track-dotnet
   - devx-track-extended-java

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use the Azure portal to configure customer-managed keys with Azure Key Vault. Customer-managed keys enable you to create, rotate, disable, and revoke access controls.
 author: erindormier
 
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 10/02/2025
 ms.author: egeaney

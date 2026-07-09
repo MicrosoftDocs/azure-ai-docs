@@ -1,14 +1,14 @@
 ---
-manager: nitinme
+manager: mcleans
 author: goergenj
 ms.author: jagoerge
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/python/api/overview/azure/ai-transcription-readme) | [Package (PyPi)](https://pypi.org/project/azure-ai-transcription/) | [GitHub Samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/transcription/azure-ai-transcription/samples/README.md)
+[!INCLUDE [Reference links](transcription-sdk-reference-python.md)]
 
 ## Prerequisites
 

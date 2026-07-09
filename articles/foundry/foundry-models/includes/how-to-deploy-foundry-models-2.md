@@ -46,7 +46,9 @@ For more information about quota, see [Microsoft Foundry Models quotas and limit
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#deploy-and-manage-models) — role requirements for model deployment.
 - [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
 - [Deployment types for Foundry Models](../concepts/deployment-types.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy models using Azure CLI and Bicep](../how-to/create-model-deployments.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)

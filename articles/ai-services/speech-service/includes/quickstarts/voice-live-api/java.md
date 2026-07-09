@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
@@ -66,7 +66,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry models]
             <dependency>
                 <groupId>com.azure</groupId>
                 <artifactId>azure-ai-voicelive</artifactId>
-                <version>1.0.0-beta.1</version>
+                <version>1.0.0</version>
             </dependency>
     
             <!-- Azure Core -->
@@ -142,7 +142,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry models]
     ```properties
     azure.voicelive.endpoint=https://your-resource-name.services.ai.azure.com/
     azure.voicelive.api-key=your-api-key
-    azure.voicelive.api-version=2025-10-01
+    azure.voicelive.api-version=2026-04-10
     ```
 
     > [!NOTE]
@@ -866,7 +866,7 @@ public final class ModelQuickstart {
         // Create server VAD configuration similar to Python sample
         ServerVadTurnDetection turnDetection = new ServerVadTurnDetection()
             .setThreshold(0.5)
-            .setPrefixPaddingMs(300)
+            .setPrefixPaddingMs(400)
             .setSilenceDurationMs(500)
             .setInterruptResponse(true)
             .setAutoTruncate(true)
@@ -978,7 +978,7 @@ The output of the application is printed to the console. You see messages indica
 ? VoiceLive client created
 ? Creating session configuration:
 ? Session configuration created
-[ModelQuickstart.main()] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - WebSocket connection parameters -> endpoint: wss://my-resource.services.ai.azure.com/voice-live/realtime?api-version=2025-10-01&model=gpt-realtime headers: api-key=0XxX...x0xX
+[ModelQuickstart.main()] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - WebSocket connection parameters -> endpoint: wss://my-resource.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&model=gpt-realtime headers: api-key=0XxX...x0xX
 [reactor-http-nio-2] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - WebSocket connection established
 [reactor-http-nio-2] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - Receive flux subscribed
 [reactor-http-nio-2] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - Send stream subscribed
@@ -994,7 +994,7 @@ Press Ctrl+C to exit
 ? Session created - initializing...
 ? Session updated - starting microphone
 ? Session Updated Event (Full JSON):
-{"event_id":"event_7VOMH1ALSp5A0Fa17nSZKM","session":{"model":"gpt-realtime","modalities":["audio","text"],"voice":{"name":"en-US-Ava:DragonHDLatestNeural","type":"azure-standard"},"instructions":"You are a helpful AI voice assistant. Respond naturally and conversationally. Keep your responses concise but engaging. Speak as if having a real conversation.","input_audio_sampling_rate":24000,"input_audio_format":"pcm16","output_audio_format":"pcm16","turn_detection":{"type":"server_vad","threshold":0.5,"prefix_padding_ms":300,"silence_duration_ms":500,"auto_truncate":true,"create_response":true,"interrupt_response":true},"input_audio_noise_reduction":{"type":"near_field"},"input_audio_echo_cancellation":{"type":"server_echo_cancellation"},"input_audio_transcription":{"model":"azure-speech","language":""},"tools":[],"tool_choice":"auto","temperature":0.8,"max_response_output_tokens":"inf","id":"sess_7cMSK58ShfrUY1RKnZ6Eoy"},"type":"session.updated"}
+{"event_id":"event_7VOMH1ALSp5A0Fa17nSZKM","session":{"model":"gpt-realtime","modalities":["audio","text"],"voice":{"name":"en-US-Ava:DragonHDLatestNeural","type":"azure-standard"},"instructions":"You are a helpful AI voice assistant. Respond naturally and conversationally. Keep your responses concise but engaging. Speak as if having a real conversation.","input_audio_sampling_rate":24000,"input_audio_format":"pcm16","output_audio_format":"pcm16","turn_detection":{"type":"server_vad","threshold":0.5,"prefix_padding_ms":400,"silence_duration_ms":500,"auto_truncate":true,"create_response":true,"interrupt_response":true},"input_audio_noise_reduction":{"type":"near_field"},"input_audio_echo_cancellation":{"type":"server_echo_cancellation"},"input_audio_transcription":{"model":"azure-speech","language":""},"tools":[],"tool_choice":"auto","temperature":0.8,"max_response_output_tokens":"inf","id":"sess_7cMSK58ShfrUY1RKnZ6Eoy"},"type":"session.updated"}
 ? Microphone capture started
 ? Audio capture loop started
 ? Speech detected

@@ -3,9 +3,9 @@ title: Translate text with a Custom Translator model
 titleSuffix: Foundry Tools
 description: How to make translation requests using custom models published with the Custom Translator.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: how-to
 ---

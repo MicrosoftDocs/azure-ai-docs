@@ -1,7 +1,7 @@
 ---
 title: "Build with agents, conversations, and responses in Foundry Agent Service"
 description: "Learn how to create agents, manage conversations, and generate responses in Microsoft Foundry Agent Service with code examples in Python, C#, JavaScript, Java, and REST API."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
@@ -228,7 +228,7 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 > [!NOTE]
 > Agents are now identified using the agent name and agent version. They don't have a GUID called `AgentID` anymore.
 
-For additional agent types (workflow, hosted), see [Agent development lifecycle](./development-lifecycle.md).
+For additional agent types (hosted), see [Agent development lifecycle](./development-lifecycle.md).
 
 ## Create an agent with tools
 

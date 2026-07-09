@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 0/24/2026
+ms.date: 04/24/2026
 ---
 
 You set billing consent using the Search Management REST API. The following table shows which property takes effect based on the Search Service REST API version your application uses.

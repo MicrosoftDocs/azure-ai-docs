@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Multi-region deployments in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Although Azure AI Search is a single-region service, you can achieve higher reliability by deploying multiple search services with identical configurations and content across multiple regions.
 
 This article describes the components of a multi-region solution, which relies on your custom script or code to handle failover if a service becomes unavailable.

@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools classifier solutions.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/23/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
