@@ -276,7 +276,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
@@ -572,7 +572,7 @@ Not available
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
@@ -684,7 +684,7 @@ For **Standard/Regional** deployments, Azure OpenAI processes prompts and respon
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
