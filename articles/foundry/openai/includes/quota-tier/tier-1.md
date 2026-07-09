@@ -63,6 +63,12 @@ ai-usage: ai-assisted
 | gpt-5.4-nano                   | GlobalStandard    | 5,000       | 5,000,000   |
 | gpt-5.5                        | DataZoneStandard  | 0           | 0           |
 | gpt-5.5                        | GlobalStandard    | 0           | 0           |
+| gpt-5.6-luna                   | DataZoneStandard  | 333         | 333,000     |
+| gpt-5.6-luna                   | GlobalStandard    | 1,000       | 1,000,000   |
+| gpt-5.6-sol                    | DataZoneStandard  | 333         | 333,000     |
+| gpt-5.6-sol                    | GlobalStandard    | 1,000       | 1,000,000   |
+| gpt-5.6-terra                  | DataZoneStandard  | 333         | 333,000     |
+| gpt-5.6-terra                  | GlobalStandard    | 1,000       | 1,000,000   |
 | gpt-chat-latest                | GlobalStandard    | 10,000      | 1,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 9           | -           |

@@ -60,6 +60,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-pro | 2026-03-05 | - | - | - | - | - | ✅ | - | ✅ | - | - |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | ✅ | - | ✅ | - | - | - | - |
@@ -134,6 +137,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-pro | 2026-03-05 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
@@ -207,6 +213,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
 | gpt-realtime-1.5 | 2026-02-23 | - | - | - | - | ✅ |
@@ -260,6 +269,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ |
+| gpt-5.6-luna | 2026-07-09 | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ |
+| gpt-5.6-terra | 2026-07-09 | ✅ | ✅ |
 | gpt-chat-latest | 2026-06-24 | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | ✅ |
 | gpt-image-1-mini | 2025-10-06 | - | ✅ |
@@ -276,7 +288,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
@@ -516,6 +528,9 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | ✅ | - | - | - | ✅ |
 | model-router | 2025-05-19 | - | - | ✅ | - | - | - | ✅ |
 | model-router | 2025-08-07 | - | - | ✅ | - | - | - | ✅ |
@@ -546,6 +561,9 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.1 | 2025-11-13 | ✅ | - | - | - | - | - | ✅ | - | - |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | ✅ | - | ✅ | - | - |
 | model-router | 2025-05-19 | - | - | - | - | - | - | ✅ | - | - |
 | model-router | 2025-08-07 | - | - | - | - | - | - | ✅ | - | - |
@@ -560,7 +578,11 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 
 # [Asia Pacific](#tab/az-apac)
 
-Not available
+| **Model** | **Version** | **australiaeast** | **japaneast** | **koreacentral** | **southeastasia** | **southindia** |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.3-codex | 2026-02-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Middle East & Africa](#tab/az-mea)
 
@@ -568,7 +590,7 @@ Not available
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
@@ -680,7 +702,7 @@ For **Standard/Regional** deployments, Azure OpenAI processes prompts and respon
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
