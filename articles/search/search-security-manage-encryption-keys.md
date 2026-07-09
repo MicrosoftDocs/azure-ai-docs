@@ -602,7 +602,13 @@ Content-Type: application/json
 
 With this override, object-level key lifecycle is decoupled from the service-level default. You can rotate the object-level key independently without changing the service-level key used by other objects.
 
-To return an object to service-level CMK inheritance, update the object with isServiceLevelKey set to true and omit the object-level key details.
+To return an object to service-level CMK inheritance, set `isServiceLevelKey` to `true` in a create-or-update request.
+
+In data plane API version `2026-05-01-preview`, request validation still requires `keyVaultUri` and `keyVaultKeyName` when `isServiceLevelKey` is `true`. If you omit those fields, the request fails with HTTP 400.
+
+When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. Any `keyVaultUri`, `keyVaultKeyName`, and `keyVaultKeyVersion` values in this request aren't used to select a key for this operation.
+
+For clarity and maintainability, provide the current service-level key values in the request and verify the effective key with a GET operation on the object.
 
 ```http
 PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
@@ -623,12 +629,17 @@ Content-Type: application/json
     }
   ],
   "encryptionKey": {
-    "isServiceLevelKey": true
+    "isServiceLevelKey": true,
+    "keyVaultUri": "<SERVICE-LEVEL-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<SERVICE-LEVEL-KEY-NAME>",
+    "keyVaultKeyVersion": "<SERVICE-LEVEL-KEY-VERSION>"
   }
 }
 ```
 
-After this update, the search object inherits the service-level key again. When you provide an explicit object-level key, setting `isServiceLevelKey` to `false` is optional because the explicit key definition overrides service-level inheritance.
+After this update, the search object inherits the service-level key again. Verify the effective key by issuing a GET request and confirming `isServiceLevelKey` is `true`.
+
+When you provide an explicit object-level key, setting `isServiceLevelKey` to `false` is optional because the explicit key definition overrides service-level inheritance. Omitting `encryptionKey` in an update request keeps the current encryption key configuration and doesn't switch the object back to service-level inheritance.
 
 ### [**Azure SDKs**](#tab/sdks)
 
