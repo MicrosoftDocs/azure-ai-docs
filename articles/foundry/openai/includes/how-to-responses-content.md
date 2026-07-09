@@ -27,7 +27,7 @@ Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. I
 
 ## Supported regions
 
-Before you run the examples in this article, confirm that your resource region supports the Responses API. The v1 API is required to access the latest features — for details, see the [API version lifecycle](../api-version-lifecycle.md). The Responses API is currently available in the following regions:
+Before running the examples in this article, confirm that your resource region supports the Responses API. The v1 API is required to access the latest features. For details, see the [API version lifecycle](../api-version-lifecycle.md). For Foundry Agent Service regional support, see the [regional availability table](../../agents/concepts/limits-quotas-regions.md#supported-regions). The Responses API is currently available in the following regions:
 
 - australiaeast
 - brazilsouth

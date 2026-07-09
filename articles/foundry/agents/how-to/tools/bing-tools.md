@@ -48,7 +48,7 @@ The following table shows SDK and setup support.
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 > [!NOTE]
-> Not all models support Grounding with Bing Search or Grounding with Bing Custom Search. For a full list of models that support these tools, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
+> Not all models support Grounding with Bing Search or Grounding with Bing Custom Search. For a full list of models that support these tools, see [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 ## Prerequisites
 

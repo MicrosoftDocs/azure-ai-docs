@@ -3348,7 +3348,7 @@ Toolbox availability depends on two factors beyond the project region:
 
 - **Region**: Some tool types aren't available in every region that supports the agent service. For example, a region that supports the toolbox endpoint might not support all built-in tool types.
 
-Before deploying a toolbox, verify that your target region supports the tool types you plan to use. For the full compatibility tables, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
+Before deploying a toolbox, verify that your target region supports the tool types you plan to use. For the full compatibility tables, see [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 ## Related content
 

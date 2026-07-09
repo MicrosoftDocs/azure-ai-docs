@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/02/2026
+ms.date: 07/09/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -103,7 +103,7 @@ For more information, see [Agent tracing overview](../../observability/concepts/
 Before you publish your agent (and after any meaningful change), run evaluations to catch regressions and measure quality consistently across versions.
 
 - For the key evaluation dimensions for agents, see [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
-- For a code-first workflow you can automate, see [Evaluate your AI agents](../../observability/concepts/trace-agent-concept.md).
+- For a code-first workflow you can automate, see [Evaluate your AI agents](../../observability/how-to/evaluate-agent.md).
 
 ### Monitor after publishing
 
