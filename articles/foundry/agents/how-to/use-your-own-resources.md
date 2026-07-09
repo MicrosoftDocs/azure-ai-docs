@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 07/09/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
