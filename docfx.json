@@ -282,8 +282,8 @@
     },
     "fileMetadata": {
       "author": {
-        "articles/foundry/**/*.md": "sgilley",
-        "articles/foundry-classic/**/*.md": "sgilley",
+        "articles/foundry/**/*.md": "sdgilley",
+        "articles/foundry-classic/**/*.md": "sdgilley",
         "articles/ai-services/**/*.md": "mcleanbyron",
         "articles/ai-services/anomaly-detector/**/*.md": "alvinashcraft",
         "articles/ai-services/computer-vision/**/*.md": "PatrickFarley",

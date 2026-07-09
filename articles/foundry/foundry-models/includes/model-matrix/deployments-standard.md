@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 07/08/2026
+ms.date: 06/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 ## Global Standard
 
-For **Global deployments**, prompts and responses can be processed in any Azure region where the model is deployed.
+For **global deployments**, Azure OpenAI can process prompts and responses in any Azure region where you deploy the model.
 
 #### Availability for Azure OpenAI in Foundry Models
 
@@ -629,7 +629,7 @@ Not available
 
 ## Standard/Regional
 
-For **Standard/Regional** deployments, prompts and responses are processed in the region associated with your deployment.
+For **Standard/Regional** deployments, Azure OpenAI processes prompts and responses in the region associated with your deployment.
 
 #### Availability for Azure OpenAI in Foundry Models
 

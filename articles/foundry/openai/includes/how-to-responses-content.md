@@ -6,7 +6,7 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 06/30/2026
-ms.custom: include, classic-and-new, doc-kit-assisted
+ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
 
@@ -40,8 +40,10 @@ Before you run the examples in this article, confirm that your resource region s
 - germanywestcentral
 - italynorth
 - japaneast
+- japanwest
 - koreacentral
 - northcentralus
+- northeurope
 - norwayeast
 - polandcentral
 - southafricanorth
@@ -51,10 +53,14 @@ Before you run the examples in this article, confirm that your resource region s
 - spaincentral
 - swedencentral
 - switzerlandnorth
+- switzerlandwest
 - uaenorth
 - uksouth
+- ukwest
+- westcentralus
 - westeurope
 - westus
+- westus2
 - westus3
 
 ## Supported models
