@@ -17,7 +17,7 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 Every agent in Microsoft Foundry has a stable endpoint from the moment it's created. Behind each endpoint, a Foundry model processes user input according to the agent's instructions and tools. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
 - **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent automatically updates to the latest version, which means a newly created version is immediately served. If that isn't what you want, pin traffic to a specific version.
-- **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotService or BotServiceRbac authorization scheme.
+- **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotServiceRbac or BotServiceTenant authorization scheme.
 
 This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. After you configure the endpoint, you can:
 
@@ -76,6 +76,7 @@ An agent can expose multiple protocols simultaneously:
 | **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 | **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
 | **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
+| **MCP (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/mcp` |
 
 To enable the A2A protocol on your agent, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md).
 
@@ -86,8 +87,8 @@ You can configure inbound authentication on the agent endpoint:
 | Scheme type | Description | Isolation key source |
 |-------------|-------------|----------------------|
 | **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Foundry Agent Consumer** role (or higher, such as **Foundry User**) on the Foundry project or agent scope. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
-| **`BotService`** | Azure Bot Service channel authorization. Used when publishing to M365/Teams. Configured automatically during the channel publish flow. | N/A |
-| **`BotServiceRbac`** | Azure Bot Service authorization combined with Azure RBAC. Use when you need Bot Service channel auth with additional RBAC enforcement. | N/A |
+| **`BotServiceRbac`** | Azure Bot Service channel authorization combined with Azure RBAC. Only identities that have the Azure permissions required to call the agent in Foundry can invoke it. Used when publishing to Microsoft 365 or Teams; configured automatically during the publish flow. | N/A |
+| **`BotServiceTenant`** | Azure Bot Service channel authorization scoped to your tenant. Anyone in your tenant can invoke the agent. Used when publishing to Microsoft 365 or Teams; configured automatically during the publish flow. | N/A |
 
 API key authentication isn't supported. Use Microsoft Entra ID (Azure RBAC) to authorize callers.
 
