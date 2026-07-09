@@ -1126,6 +1126,23 @@ Background mode for long-running MCP operations is supported only with the follo
 
 If your agent uses a model that isn't in this list, MCP tool calls run synchronously and are subject to the 100-second timeout.
 
+### Enable background mode in the Microsoft Foundry portal
+
+You can turn on background mode for an agent in the [Microsoft Foundry portal](https://ai.azure.com/) playground, without writing code:
+
+1. Open your agent, and select the **Playground** tab.
+1. In the **Model** list, select a model that supports background mode, such as `gpt-5.4` or `gpt-5.5`.
+1. Select the parameters icon next to the model, and turn on **Background mode**.
+
+   :::image type="content" source="../../media/tools/toolbox/background-mode-enable.png" alt-text="Screenshot of the model parameters panel in the Foundry portal with a supported model selected and the Background mode toggle turned on." lightbox="../../media/tools/toolbox/background-mode-enable.png":::
+
+1. Under **Tools**, add a tool whose MCP server supports MCP tasks, such as a Fabric data agent added through the Fabric IQ tool. For steps, see [Connect agents to Microsoft Fabric with Fabric IQ](fabric-iq.md#run-a-fabric-data-agent-in-background-mode).
+1. Send a message. The agent starts a background run and shows its progress while the long-running tool call completes. When the run finishes, the response appears in the chat.
+
+   :::image type="content" source="../../media/tools/toolbox/background-mode-running.png" alt-text="Screenshot of the Foundry portal chat showing a background run in progress, with a progress indicator, after the user sends a message." lightbox="../../media/tools/toolbox/background-mode-running.png":::
+
+### Run background mode with code
+
 The following examples invoke an agent that's already configured with an MCP tool, set `background` to `true`, and poll until the response completes. Replace the placeholder values with your own.
 
 :::zone pivot="python"
