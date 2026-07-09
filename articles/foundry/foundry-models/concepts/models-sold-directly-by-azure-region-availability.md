@@ -4,7 +4,11 @@ description: "Find region availability, capabilities, and deployments types avai
 author: msakande
 ms.author: mopeakande
 manager: mcleans
+<<<<<<< HEAD
 ms.date: 07/08/2026
+=======
+ms.date: 06/03/2026
+>>>>>>> origin/main
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: product-comparison

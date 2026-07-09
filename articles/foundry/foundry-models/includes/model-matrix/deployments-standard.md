@@ -278,6 +278,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 
 #### Availability for other model collections in Foundry Models
 
+<<<<<<< HEAD
 # [Americas](#tab/az-americas)
 
 | **Model** | **Version** | **brazilsouth** | **canadacentral** | **canadaeast** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westcentralus** | **westus** | **westus2** | **westus3** |
@@ -494,6 +495,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 For **Data Zone** deployments, Microsoft processes prompts and responses anywhere within the specified data zone: United States (data processed anywhere within the US), European Union (data processed within any EU member nation), or Asia Pacific (data processed within any Asia Pacific nation).
 
 #### Availability for Azure OpenAI in Foundry Models
+=======
+For **Data Zone** deployments, Microsoft processes prompts and responses anywhere within the specified data zone: United States (data processed anywhere within the US), European Union (data processed within any EU member nation), or Asia Pacific (data processed within any Asia Pacific nation).
+>>>>>>> origin/main
 
 # [Americas](#tab/az-americas)
 

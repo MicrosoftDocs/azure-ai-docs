@@ -41,6 +41,7 @@ Use GPT Realtime Translate when you need:
 GPT Realtime Translate is available through the Realtime API. The connection and usage patterns are the same as for other realtime models:
 
 - [Use the GPT Realtime API via WebSockets](../how-to/realtime-audio-websockets.md)
+<<<<<<< HEAD
 
 Use the same quickstart code patterns, and set your deployment name to the model deployment you created for `gpt-realtime-translate`.
 
@@ -51,6 +52,8 @@ GPT Realtime Translate is designed for multilingual scenarios. Translation quali
 - If you enable transcription settings in your session, provide an ISO-639-1 language hint (for example, `en`) when available.
 - Validate your target language pairs with production-like audio before rollout.
 - For broader language and locale references, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
+=======
+>>>>>>> origin/main
 
 ## Deployment and availability
 

@@ -3267,6 +3267,11 @@ using var httpClient = new HttpClient(
 Console.WriteLine($"Connecting to Foundry Toolbox '{toolboxName}' MCP server...");
 
 // Connect to the Foundry Toolbox MCP endpoint.
+<<<<<<< HEAD
+=======
+// The Foundry-Features: Toolboxes=V1Preview opt-in header is required while the
+// toolbox MCP surface is in preview.
+>>>>>>> origin/main
 await using var mcpClient = await McpClient.CreateAsync(
     new HttpClientTransport(
         new HttpClientTransportOptions

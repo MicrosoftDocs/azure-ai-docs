@@ -3,7 +3,11 @@ title: Model region availability for Batch deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Batch deployment options
 manager: mcleans
+<<<<<<< HEAD
 ms.date: 07/08/2026
+=======
+ms.date: 05/11/2026
+>>>>>>> origin/main
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
