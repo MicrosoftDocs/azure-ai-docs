@@ -42,31 +42,32 @@ The exact set changes frequently. See [Supported models](#supported-models) for 
 
 # [Python](#tab/python)
 
-The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` (a deployed model) with the name of any instant access model, such as `chat-gpt-latest`.
+[!INCLUDE [instant-model-code-intro](../includes/instant-model-code-intro.md)]
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/responses/quickstart-responses.py":::
 
  # [C#](#tab/csharp)
 
- The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+[!INCLUDE [instant-model-code-intro](../includes/instant-model-code-intro.md)]
 
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/responses/quickstart-responses.cs":::
 
 # [TypeScript](#tab/typescript)
 
-The only change from deployment-based code is the `model` parameter. In the following code, replace `"gpt-5-mini"` with the name of any instant model.
+[!INCLUDE [instant-model-code-intro](../includes/instant-model-code-intro.md)]
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
 
 # [Java](#tab/java)
 
-The only change from deployment-based code is the `model` parameter. In the following code, replace `"gpt-5-mini"` with the name of any instant model.
+[!INCLUDE [instant-model-code-intro](../includes/instant-model-code-intro.md)]
 
 :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/agents/CreateResponse.java":::
 
 # [REST API](#tab/rest)
 
-The only change from deployment-based code is the `model` parameter. In the following code, replace `"gpt-5-mini"` with the name of any instant model.  
+[!INCLUDE [instant-model-code-intro](../includes/instant-model-code-intro.md)]
+  
 Also replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
@@ -102,13 +103,12 @@ Deployments aren't going away. They remain the right choice when you need reserv
 ## Supported models
 
 New models support instant access by default when they're released. The product team considers support for additional models based on customer demand. The list grows over time, and examples of models you might see include:
+
 * `chat-gpt-latest`
-* `gpt-5.1-codex`
-* `gpt-5.1-codex-mini`
-* `gpt-5.1-codex-max`
-* `gpt-5.2-codex`
-* `gpt-5.3-codex`
+* `gpt-5.6-sol`
 * `gpt-5.5`
+* `gpt-5-mini`
+* `gpt-5.3-codex`
 
 To see all models that support instant access:
 
