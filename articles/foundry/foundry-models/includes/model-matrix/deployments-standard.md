@@ -631,6 +631,47 @@ Not available
 
 ---
 
+#### Availability for other model collections in Foundry Models
+
+# [Americas](#tab/az-americas)
+
+| **Model** | **Version** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westcentralus** | **westus** | **westus2** | **westus3** |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepSeek-V4-Pro | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| FLUX.2-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4-1-fast-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4-1-fast-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+# [Europe](#tab/az-europe)
+
+| **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **polandcentral** | **spaincentral** | **swedencentral** | **westeurope** |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| FLUX.2-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+# [Asia Pacific](#tab/az-apac)
+
+Not available
+
+# [Middle East & Africa](#tab/az-mea)
+
+Not available
+
+---
+
 ## Standard/Regional
 
 For **Standard/Regional** deployments, Azure OpenAI processes prompts and responses in the region associated with your deployment.
