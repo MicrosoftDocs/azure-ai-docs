@@ -333,6 +333,26 @@ main().catch((err) => {
 
 :::zone-end
 
+## Run a Fabric data agent in background mode
+
+Fabric data agent queries can take longer than the standard synchronous tool-call timeout. To let these calls run to completion, enable [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode) and use a model that supports it, such as `gpt-5.4` or `gpt-5.5`. You can enable background mode in code or in the [Microsoft Foundry portal](https://ai.azure.com/) playground.
+
+To enable background mode and run a data agent in the portal:
+
+1. Open your agent, and select the **Playground** tab.
+1. In the **Model** list, select a model that supports background mode, such as `gpt-5.4` or `gpt-5.5`.
+1. Select the parameters icon next to the model, and turn on **Background mode**.
+1. Under **Tools**, select **Add** > **Browse all tools** > **Fabric IQ (OneLake Catalog)**, and then select **Add tool**.
+1. In the **OneLake Catalog**, select a **Data agent** item, and then select **Add**.
+
+   :::image type="content" source="../../media/tools/fabric-iq/onelake-catalog-data-agent.png" alt-text="Screenshot of the OneLake Catalog in the Foundry portal with a Fabric data agent item selected." lightbox="../../media/tools/fabric-iq/onelake-catalog-data-agent.png":::
+
+1. Send a message. The agent starts a background run and shows its progress while the data agent completes the long-running query. When the run finishes, the response appears in the chat.
+
+   :::image type="content" source="../../media/tools/fabric-iq/background-mode-running.png" alt-text="Screenshot of the Foundry portal chat showing a background run in progress, with a progress indicator, after the user sends a message to a Fabric data agent." lightbox="../../media/tools/fabric-iq/background-mode-running.png":::
+
+For code samples, see [Long-running operations](model-context-protocol.md#long-running-operations-preview).
+
 ## Authentication and security
 
 Fabric IQ uses Microsoft Entra ID delegated authentication (On-Behalf-Of, OBO). All requests run in the context of the signed-in user. Application-only (app-only) authentication isn't supported. Microsoft Fabric permissions and data governance policies are enforced automatically — Fabric IQ can never surface data that the signed-in user isn't already permitted to see.
