@@ -144,7 +144,7 @@ For `gpt-image-2`, arbitrary resolutions are supported with the following constr
 - Total pixel count between 655,360 and 8,294,400.
 
 > [!NOTE]
-> The constraints apply to the input size parameter - the generated output image is not guaranteed to satisfy the same constraints (e.g. the edges may not be a multiple of 16 pixels)
+> The constraints apply only to explicitly specified sizes. If size=auto, the generated image may have dimensions that do not satisfy these constraints (for example, an edge may not be a multiple of 16 pixels).
 
 #### Quality
 
