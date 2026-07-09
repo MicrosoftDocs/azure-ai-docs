@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/24/2026
 ms.author: lajanuar
 ---
 # How to use autolabeling for Custom Named Entity Recognition
