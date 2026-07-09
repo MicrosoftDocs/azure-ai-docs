@@ -139,7 +139,7 @@ These authentication options also apply when connecting remote MCP servers, with
 [Toolbox](how-to/tools/toolbox.md) lets you define a curated set of tools once, manage them centrally in Foundry, and expose them through a single MCP-compatible endpoint. Any MCP-compatible agent runtime or client can consume a toolbox, regardless of the framework you use. Toolbox versioning gives you explicit control over when changes take effect — create a new version, test it, and promote it to default when you're ready.
 
 > [!NOTE]
-> Some tools, including memory and web search, are in preview. For availability by region and preview status, see [tool support by region and model](./concepts/tool-best-practice.md#tool-support-by-region-and-model).
+> Some tools, including memory and web search, are in preview. For availability by region and preview status, see [tool support by region and model](./concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 ## Development lifecycle
 
