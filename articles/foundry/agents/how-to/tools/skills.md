@@ -105,11 +105,7 @@ POST {endpoint}/toolboxes/my-toolbox/versions?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
 Accept: application/json
-<<<<<<< HEAD
 Foundry-Features: Skills=V1Preview
-=======
-Foundry-Features: Toolboxes=V1Preview
->>>>>>> origin/main
 
 {
   "description": "Toolbox with a skill reference",

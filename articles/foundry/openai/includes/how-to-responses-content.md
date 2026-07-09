@@ -6,11 +6,7 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 06/30/2026
-<<<<<<< HEAD
 ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
-=======
-ms.custom: include, classic-and-new, doc-kit-assisted
->>>>>>> origin/main
 ai-usage: ai-assisted
 ---
 
@@ -60,11 +56,8 @@ Before you run the examples in this article, confirm that your resource region s
 - switzerlandwest
 - uaenorth
 - uksouth
-<<<<<<< HEAD
 - ukwest
 - westcentralus
-=======
->>>>>>> origin/main
 - westeurope
 - westus
 - westus2

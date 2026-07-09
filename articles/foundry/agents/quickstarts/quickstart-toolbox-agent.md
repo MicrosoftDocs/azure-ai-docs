@@ -171,11 +171,7 @@ azd down
 | ----- | -------- |
 | `tools/list` returns no Microsoft Learn tools | Confirm the `mslearn` tool in `toolbox.yaml` points at `https://learn.microsoft.com/api/mcp`. |
 | The agent starts but reports `TOOLBOX_ENDPOINT is set but empty` or has no tools | Set `TOOLBOX_ENDPOINT` to the versioned endpoint from Step 2 in `.env` for local runs, and run `azd env set TOOLBOX_ENDPOINT "<endpoint>"` before you deploy. |
-<<<<<<< HEAD
 | Calls to the toolbox endpoint fail with an authorization error | Confirm every request includes an Entra token scoped to `https://ai.azure.com/.default`. The sample handles this for you. |
-=======
-| Calls to the toolbox endpoint fail with an authorization or header error | Confirm every request includes the `Foundry-Features: Toolboxes=V1Preview` header and an Entra token scoped to `https://ai.azure.com/.default`. The sample handles this for you. |
->>>>>>> origin/main
 | `Connection refused` on local run | Ensure no other process is using port `8088`. |
 
 ## What you learned

@@ -3,11 +3,7 @@ title: Region availability for Foundry Models sold by Azure (intro)
 author: msakande
 ms.author: mopeakande
 manager: mcleans
-<<<<<<< HEAD
 ms.date: 07/08/2026
-=======
-ms.date: 05/11/2026
->>>>>>> origin/main
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new

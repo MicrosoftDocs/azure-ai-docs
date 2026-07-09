@@ -25,14 +25,14 @@ Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
   - [Publish agents in a virtual network to Microsoft 365 Copilot and Teams](/azure/foundry/agents/how-to/publish-copilot-virtual-network)
   - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
 - Foundry Models and platform
-<<<<<<< HEAD
   - [Deploy and use Claude models in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-claude)
+  - [Govern model router deployments with Azure Policy](how-to/model-router-policy.md)
+  - [Instant access to models in Microsoft Foundry (preview)](concepts/instant-models.md)
+  - [Region availability for Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 - Foundry Local
   - [What's new in Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/whats-new#june-2026)
 - Speech
   - [Voice Live `2026-06-01-preview` API Reference](/azure/ai-services/speech-service/voice-live-api-reference-2026-06-01-preview)
-- Models
-  - [Deploy and use Claude models in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-claude)
 - Toolboxes, routines, and tool orchestration
   - [Curate intent-based toolbox in Foundry (preview)](/azure/foundry/agents/how-to/tools/toolbox)
   - [Routines in Microsoft Foundry (preview)](/azure/foundry/agents/concepts/routines)
@@ -49,18 +49,11 @@ Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
   - [Set up tracing in Microsoft Foundry](/azure/foundry/observability/how-to/trace-agent-setup)
   - [Review agent interactions with Trace Replay (preview)](/azure/foundry/observability/how-to/trace-agent-replay)
   - [Convert agent traces into evaluation datasets (preview)](/azure/foundry/observability/how-to/traces-to-dataset)
-=======
-  - [Govern model router deployments with Azure Policy](how-to/model-router-policy.md)
-  - [Instant access to models in Microsoft Foundry (preview)](concepts/instant-models.md)
-  - [Region availability for Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
->>>>>>> origin/main
 
 ## Updated articles
 
 - Foundry Agent Service
-<<<<<<< HEAD
   - [Memory in Microsoft Foundry Agent Service (preview)](/azure/foundry/agents/concepts/what-is-memory)
-=======
   - [Connect to an A2A agent endpoint from Foundry Agent Service](agents/how-to/tools/agent-to-agent.md)
   - [Deploy a hosted agent](agents/how-to/deploy-hosted-agent.md)
   - [Hosted agents in Foundry Agent Service](agents/concepts/hosted-agents.md)
@@ -82,7 +75,5 @@ Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
 - Foundry Models and platform
   - [Customer-managed key encryption](concepts/encryption-keys-portal.md)
   - [Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure.md)
-
->>>>>>> origin/main
 
 For more product information about Microsoft Foundry, see the [Microsoft Foundry Blog | June 2026](https://devblogs.microsoft.com/foundry/whats-new-in-microsoft-foundry-june-2026/).

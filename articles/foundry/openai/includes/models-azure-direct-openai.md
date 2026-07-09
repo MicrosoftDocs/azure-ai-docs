@@ -384,7 +384,6 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini` (2025-12-15) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | October 2023 |
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2024 |
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
-<<<<<<< HEAD
 |`gpt-realtime-translate` (2026-05-06) | Audio model for real-time multilingual translation with translated speech and text output. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-whisper` (2026-05-06) | Audio model for real-time low-latency transcription. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
@@ -392,10 +391,6 @@ Details about maximum request tokens and training data are available in the foll
 
 > [!NOTE]
 > `gpt-realtime-translate` and `gpt-realtime-whisper` use hourly billing. Most other realtime models use token-based input and output pricing. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
-=======
-|`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
-|`gpt-realtime-2.1` (2026-07-07)<br>`gpt-realtime-2.1-mini` (2026-07-07) | Audio models for real-time audio processing. Minor updates over `gpt-realtime-2` with improved silence and noise handling. |Input: 32,000  <br> Output: 4,096 | September 2024 |
->>>>>>> origin/main
 
 ### Audio API
 
