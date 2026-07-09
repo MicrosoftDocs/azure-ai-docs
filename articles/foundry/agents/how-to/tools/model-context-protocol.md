@@ -1115,16 +1115,9 @@ The agent runtime relies on the MCP server to run the operation asynchronously a
 
 When the agent runtime calls a tool that starts a long-running operation, the server returns the task reference and the runtime keeps the response in the background. The runtime starts the response, returns immediately with a response `id` and a `status` of `queued`, and collects the result when the task finishes. You poll the response `id` until `status` becomes `completed`, then read the final output.
 
-Background mode for long-running MCP operations is supported only with the following models:
+Background mode for long-running MCP operations works with any model that supports background mode, such as `gpt-5.4` or `gpt-5.5`.
 
-- `gpt-5.5`
-- `gpt-5.5-pro`
-- `gpt-5.4`
-- `gpt-5.4-pro`
-- `gpt-5.4-mini`
-- `gpt-5.4-nano`
-
-If your agent uses a model that isn't in this list, MCP tool calls run synchronously and are subject to the 100-second timeout.
+If your agent uses a model that doesn't support background mode, MCP tool calls run synchronously and are subject to the 100-second timeout.
 
 ### Enable background mode in the Microsoft Foundry portal
 
