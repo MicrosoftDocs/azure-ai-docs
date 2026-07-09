@@ -61,7 +61,7 @@ For model availability across all regions, grouped by deployment category, see [
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 > [!IMPORTANT]
-> The GPT-5.6 series models are released through a phased rollout during the first 24 hours after release. All customers have access within 24 hours.
+> As part of a phased rollout, access to the GPT-5.6 series models expands to customers gradually. Microsoft shares updates as it onboards more customers.
 
 ### Capabilities
 
