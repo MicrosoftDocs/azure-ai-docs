@@ -26,9 +26,6 @@ Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
   - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
 - Foundry Models and platform
   - [Deploy and use Claude models in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-claude)
-  - [Govern model router deployments with Azure Policy](how-to/model-router-policy.md)
-  - [Instant access to models in Microsoft Foundry (preview)](concepts/instant-models.md)
-  - [Region availability for Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 - Foundry Local
   - [What's new in Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/whats-new#june-2026)
 - Speech
