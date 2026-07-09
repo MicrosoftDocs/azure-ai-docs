@@ -26,7 +26,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 ## Supported regions
 
-The following table shows regional support for the Responses API, Agents, and private class A IP address ranges.
+The following table shows regional support for the [Responses API](../../openai/how-to/responses.md), Agents, and private class A IP address ranges.
 
 | Region | Responses API | Agents | Class A\* |
 | --- | --- | --- | --- |
