@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/07/2026
+ms.date: 07/09/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -129,6 +129,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
+| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-13 | — |
 | embed-v-4-0 | 1 | GA | — | — |
 
 ### DeepSeek
@@ -141,8 +142,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.1 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
-| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
-| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
+| DeepSeek-V4-Flash | 2026-04-23 | GA | 2027-08-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | GA | 2027-08-20 | — |
 
 
 ### Meta
@@ -176,6 +177,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 |-------|---------|-----------|-----------------|-------------|
 | Kimi-K2.5 | 1 | Preview | 2027-01-26 | — |
 | Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
+| Kimi-K2.7-Code | 2026-06-12 | Preview | 2026-10-03 | — |
 
 ### OpenAI-OSS
 
