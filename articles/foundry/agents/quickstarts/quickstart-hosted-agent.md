@@ -1,9 +1,9 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI, Microsoft Foundry Toolkit for Visual Studio Code extension, or Microsoft Foundry Skill."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI, the Python SDK, Microsoft Foundry Toolkit for Visual Studio Code extension, or Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
-ms.date: 07/01/2026
+ms.date: 07/09/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -31,6 +31,24 @@ Before you begin, you need:
     ```
     azd ext install microsoft.foundry
     ```
+
+:::zone-end
+
+:::zone pivot="python"
+
+* [Azure CLI](/cli/azure/install-azure-cli) installed and authenticated:
+
+  ```bash
+  az login
+  ```
+
+* The Python SDK packages used in this quickstart:
+
+  ```bash
+  pip install "azure-ai-projects>=2.3.0" python-dotenv
+  ```
+
+* An existing Foundry project with a deployed model. The Python SDK path in this quickstart creates and routes a hosted agent version, but it doesn't scaffold a new Foundry project or create a model deployment for you. If you need the full provisioning workflow, use the Azure Developer CLI tab in this article.
 
 :::zone-end
 
@@ -138,6 +156,207 @@ Deploying services (azd deploy)
 
 :::zone-end
 
+:::zone pivot="python"
+
+## Step 1: Create or choose a Foundry project
+
+1. Open [Azure AI Foundry](https://ai.azure.com) and create a Foundry project, or select an existing one.
+1. In the project, deploy a chat-capable model such as `gpt-5.4-mini`.
+1. Copy these values from the portal:
+  * **Project endpoint** from **Overview**.
+  * **Deployment name** from **Build** > **Deployments**.
+
+## Step 2: Download the Basic sample agent code
+
+Clone the Foundry samples repo.
+
+```bash
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+```
+
+For Windows (PowerShell):
+
+```powershell
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+```
+
+## Step 3: Create a Python environment and configure settings
+
+Create a virtual environment and install the Python packages required for this quickstart.
+
+For macOS or Linux:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install "azure-ai-projects>=2.3.0" python-dotenv
+```
+
+For Windows (PowerShell):
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install "azure-ai-projects>=2.3.0" python-dotenv
+```
+
+Create a working folder for the deployment script, then create a `.env` file in that folder:
+
+```text
+FOUNDRY_PROJECT_ENDPOINT=<your-project-endpoint>
+FOUNDRY_MODEL_NAME=<your-model-deployment-name>
+FOUNDRY_HOSTED_AGENT_NAME=basic-agent
+FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/01-basic>
+```
+
+## Step 4: Deploy the hosted agent with Python
+
+Create a file named `deploy_hosted_agent.py` in the same working folder as `.env` with the following contents:
+
+```python
+import os
+import tempfile
+import time
+import zipfile
+from pathlib import Path
+
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+  AgentEndpointConfig,
+  CodeConfiguration,
+  CodeDependencyResolution,
+  FixedRatioVersionSelectionRule,
+  HostedAgentDefinition,
+  ProtocolConfiguration,
+  ProtocolVersionRecord,
+  ResponsesProtocolConfiguration,
+  VersionSelector,
+)
+
+load_dotenv()
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_name = os.environ["FOUNDRY_MODEL_NAME"]
+agent_name = os.environ.get("FOUNDRY_HOSTED_AGENT_NAME", "basic-agent")
+sample_path = Path(os.environ["FOUNDRY_SAMPLE_PATH"]).resolve()
+
+
+def create_code_zip(source_dir: Path) -> Path:
+  zip_path = Path(tempfile.gettempdir()) / f"{agent_name}.zip"
+  excluded = {".git", ".venv", "__pycache__", ".env", "deploy_hosted_agent.py"}
+
+  with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
+    for path in source_dir.rglob("*"):
+      if not path.is_file():
+        continue
+      if any(part in excluded for part in path.parts):
+        continue
+      zip_file.write(path, path.relative_to(source_dir))
+
+  return zip_path
+
+
+def wait_for_active_version(project_client: AIProjectClient, version: str) -> None:
+  for attempt in range(60):
+    time.sleep(10)
+    details = project_client.agents.get_version(agent_name=agent_name, agent_version=version)
+    status = details["status"]
+    print(f"Provisioning status: {status} (attempt {attempt + 1}/60)")
+
+    if status == "active":
+      return
+
+    if status == "failed":
+      raise RuntimeError(f"Hosted agent provisioning failed: {dict(details)}")
+
+  raise RuntimeError("Timed out waiting for the hosted agent version to become active.")
+
+
+code_zip_path = create_code_zip(sample_path)
+
+with (
+  code_zip_path.open("rb") as code_stream,
+  DefaultAzureCredential() as credential,
+  AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+):
+  original_agent_endpoint = None
+  created = None
+
+  try:
+    created = project_client.agents.create_version_from_code(
+      agent_name=agent_name,
+      description="Basic hosted agent deployed from local Python source.",
+      definition=HostedAgentDefinition(
+        cpu="0.5",
+        memory="1Gi",
+        code_configuration=CodeConfiguration(
+          runtime="python_3_14",
+          entry_point=["python", "main.py"],
+          dependency_resolution=CodeDependencyResolution.REMOTE_BUILD,
+        ),
+        environment_variables={
+          "FOUNDRY_PROJECT_ENDPOINT": endpoint,
+          "FOUNDRY_MODEL_NAME": model_name,
+        },
+        protocol_versions=[ProtocolVersionRecord(protocol="responses", version="2.0.0")],
+      ),
+      code=code_stream,
+    )
+
+    print(f"Created hosted agent version {created.version}")
+
+    wait_for_active_version(project_client, created.version)
+
+    original_agent_endpoint = project_client.agents.get(agent_name=agent_name).agent_endpoint
+    project_client.agents.update_details(
+      agent_name=agent_name,
+      agent_endpoint=AgentEndpointConfig(
+        version_selector=VersionSelector(
+          version_selection_rules=[
+            FixedRatioVersionSelectionRule(agent_version=created.version, traffic_percentage=100),
+          ]
+        ),
+        protocol_configuration=ProtocolConfiguration(responses=ResponsesProtocolConfiguration()),
+      ),
+    )
+
+    print(f"Agent endpoint configured for version {created.version}")
+
+    with project_client.get_openai_client(agent_name=agent_name) as openai_client:
+      response = openai_client.responses.create(
+        input="Write a haiku about deploying cloud applications.",
+      )
+
+    print(f"Agent response: {response.output_text}")
+  finally:
+    if original_agent_endpoint is not None:
+      project_client.agents.update_details(agent_name=agent_name, agent_endpoint=original_agent_endpoint)
+      print("Agent endpoint restored")
+
+    if created is not None:
+      project_client.agents.delete_version(agent_name=agent_name, agent_version=created.version, force=True)
+      print(f"Deleted hosted agent version {created.version}")
+```
+
+Run the script:
+
+```bash
+python deploy_hosted_agent.py
+```
+
+The script zips the sample source, uploads it as a new hosted-agent version, waits for provisioning to complete, temporarily routes the hosted agent endpoint to that version, invokes the deployed agent, and then restores the previous endpoint configuration and deletes the temporary version.
+
+## Step 5: Invoke your agent
+
+After the script completes, use the hosted agent in either of these ways:
+
+1. Edit `deploy_hosted_agent.py` and change the `input` value passed to `openai_client.responses.create(...)`, then run the script again.
+1. If you want a persistent routed version instead of a temporary validation deployment, adapt the script to skip the restore and `delete_version(...)` steps after you review the traffic-routing implications.
+
+:::zone-end
+
 :::zone pivot="vscode"
 
 ## Step 1: Create a Foundry project
@@ -220,6 +439,16 @@ When deployment completes, the agent appears under **Hosted Agents (Preview)** i
 
 1. In the Foundry Toolkit explorer, expand **Hosted Agents (Preview)** and select your agent. The detail page shows the status under **Deployment Details**.
 1. Select the **Playground** tab and send a test prompt such as `Write a haiku about deploying cloud applications.`.
+
+:::zone-end
+
+:::zone pivot="python"
+
+1. If you used the sample script as written, it already restores the endpoint configuration and deletes the temporary hosted agent version after validation.
+1. If you created a dedicated resource group for this quickstart, you can delete the resource group from the Azure portal after you no longer need the project or model deployment.
+
+> [!WARNING]
+> Deleting the resource group permanently removes everything in it, including the Foundry project, model deployments, Container Registry, Application Insights, and the hosted agent.
 
 :::zone-end
 
@@ -366,6 +595,7 @@ in this article or delete the resource group from the Azure portal.
 | `AuthorizationFailed` during provisioning | Request the **Contributor** role on the subscription or resource group. |
 | `AuthenticationError` or `DefaultAzureCredential` failure | To refresh credentials, run `azd auth logout` and then `azd auth login`. |
 | `ResourceNotFound` or `DeploymentNotFound` | Verify the endpoint URL and model deployment name in the Foundry portal under **Build** > **Deployments**. |
+| `create_version_from_code` fails with `Hosted agent provisioning failed` | Check that `main.py` and `requirements.txt` are at the root of the zip you uploaded, and verify that the model deployment name in `.env` exists in the target Foundry project. |
 | `Connection refused` on local run | Ensure no other process is using port 8088. |
 | `azd ai agent init` fails | Run `azd version` to verify 1.25.0 or later. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). Run `azd ext list` and upgrade the agent extension with `azd ext upgrade azure.ai.agents` to get 0.1.34-preview or later. |
 | Microsoft Foundry Toolkit extension not found | Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) from the Marketplace and switch to the prerelease channel. |
@@ -380,9 +610,10 @@ For the full permission and role-assignment matrix, see [Hosted agent permission
 In this quickstart, you:
 
 * Scaffolded a hosted agent project from the Basic agent sample.
+* Uploaded and routed a hosted agent version with the Python SDK or scaffolded the sample with Azure Developer CLI.
 * Tested the agent locally.
 * Deployed the agent to Foundry Agent Service.
-* Sent test prompts from Azure Developer CLI, VS Code, or a coding agent that
+* Sent test prompts from the Python SDK, Azure Developer CLI, VS Code, or a coding agent that
   uses the Microsoft Foundry Skill.
 
 ## Next step
