@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 06/30/2026
+ms.date: 06/20/2026
 ---
 # Integrate conversational language understanding with Bot Framework
 
