@@ -216,7 +216,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-chat-latest | 2026-06-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-chat-latest | 2026-05-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
 | gpt-realtime-1.5 | 2026-02-23 | - | - | - | - | ✅ |
 | gpt-realtime-2 | 2026-05-06 | - | - | - | - | ✅ |
