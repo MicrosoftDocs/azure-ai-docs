@@ -606,7 +606,7 @@ To return an object to service-level CMK inheritance, set `isServiceLevelKey` to
 
 In data plane API version `2026-05-01-preview`, request validation still requires `keyVaultUri` and `keyVaultKeyName` when `isServiceLevelKey` is `true`. If you omit those fields, the request fails with HTTP 400.
 
-When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. Any `keyVaultUri`, `keyVaultKeyName`, and `keyVaultKeyVersion` values in this request aren't used to select a key for this operation.
+When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. The service doesn't use any `keyVaultUri`, `keyVaultKeyName`, or `keyVaultKeyVersion` values in this request to select a key for this operation.
 
 For clarity and maintainability, provide the current service-level key values in the request and verify the effective key with a GET operation on the object.
 
