@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: faq
-ms.date: 11/18/2025
+ms.date: 06/08/2026
 ms.author: lajanuar
 ---
 

@@ -5,7 +5,7 @@ description: Learn how to create and configure Azure resources for translation s
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.date: 11/18/2025
+ms.date: 06/29/2026
 ms.service: azure-ai-translator
 ms.topic: how-to
 
