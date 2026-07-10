@@ -250,7 +250,7 @@ created = project.beta.agents.create_version_from_code(
 print(f"Created version: {created.version}")
 ```
 
-For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="1.0.0")`. For the Invocations (WebSocket) protocol, use `ProtocolVersionRecord(protocol="invocations_ws", version="1.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and ship prebuilt dependencies in the zip—see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
+For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="1.0.0")`. For the Invocations (WebSocket) protocol, use `ProtocolVersionRecord(protocol="invocations_ws", version="1.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and ship prebuilt dependencies in the zip. For more information, see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
 ### Poll for active
 

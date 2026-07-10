@@ -84,7 +84,7 @@ Caller  ──Upgrade──▶  Agents service (proxy)  ──Upgrade──▶  
 
 ### Maximum connection duration
 
-The platform recycles infrastructure on a rolling basis with a shutdown grace period of **30 minutes**. Individual WebSocket connections are capped at approximately **30 minutes**. When the platform initiates shutdown, it sends close code `1001` (going away). Clients must be prepared to reconnect with the same `agent_session_id`—the sandbox (and any in-process container state) persists across reconnects. The platform doesn't replay missed frames; your container is responsible for any application-level resume protocol.
+The platform recycles infrastructure on a rolling basis with a shutdown grace period of **30 minutes**. Individual WebSocket connections are capped at approximately **30 minutes**. When the platform initiates shutdown, it sends close code `1001` (going away). Clients must be prepared to reconnect with the same `agent_session_id`. The sandbox (and any in-process container state) persists across reconnects. The platform doesn't replay missed frames; your container is responsible for any application-level resume protocol.
 
 ### Close codes
 
@@ -307,7 +307,7 @@ Traces and metrics appear in the linked Application Insights resource alongside 
 | Limit | Value | Notes |
 |-------|-------|-------|
 | Maximum WebSocket frame size | 1 MB | Enforced by the platform proxy (close code `1009`). |
-| Maximum connection duration | ~30 minutes | Platform sends close code `1001` on shutdown drain. Reconnect with the same `agent_session_id`. |
+| Maximum connection duration | ~30 minutes | The platform sends close code `1001` on shutdown drain. Reconnect with the same `agent_session_id`. |
 | Sandbox resources | Up to 2 vCPU / 4 GiB | At least 1 vCPU / 2 GiB recommended for voice. |
 | Session idle timeout | 15 minutes | Compute is deprovisioned; session state is persisted. |
 
