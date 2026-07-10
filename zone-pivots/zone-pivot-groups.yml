@@ -2259,6 +2259,10 @@ groups:
     title: Azure Developer CLI
   - id: vscode
     title: VS Code
+  - id: python
+    title: Python
+  - id: dotnet
+    title: .NET
 # Owner: aahi
 - id: selection-foundry-skills
   title: Selections

@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Use cURL & REST to manage project - custom question answering"
 description: This quickstart shows you how to create, publish, and query your project using the REST APIs.
-ms.date: 06/30/2026
+ms.date: 04/07/2026
 ms.topic: include
 author: laujan
 ms.author: lajanuar
