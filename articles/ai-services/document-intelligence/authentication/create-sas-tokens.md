@@ -5,7 +5,7 @@ ms.topic: how-to
 author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
-ms.date: 11/18/2025
+ms.date: 04/16/2026
 ms.author: lajanuar
 ms.custom: sfi-image-nochange
 ---

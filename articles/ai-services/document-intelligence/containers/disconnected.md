@@ -6,7 +6,7 @@ ms.service: azure-document-intelligence-foundry-tools
 author: laujan
 manager: mcleans
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 04/25/2026
 ms.author: lajanuar
 ms.custom: sfi-ropc-nochange
 ---
