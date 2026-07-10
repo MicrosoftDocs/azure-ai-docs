@@ -6,7 +6,7 @@ ms.author: lajanuar
 ms.service: azure-ai-translator
 ms.topic: best-practice
 ms.custom: horz-security
-ms.date: 11/18/2025
+ms.date: 05/11/2026
 ---
 
 # Azure Translator in Foundry Tools security guidelines

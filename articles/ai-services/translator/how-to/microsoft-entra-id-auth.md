@@ -6,7 +6,7 @@ ms.topic: install-set-up-deploy
 manager: mcleans
 ms.author: lajanuar
 author: laujan
-ms.date: 11/18/2025
+ms.date: 05/05/2026
 ---
 
 # Enable Microsoft Entra ID authentication
