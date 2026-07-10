@@ -162,7 +162,7 @@ Claude models in Foundry are available for the following deployment types in spe
 - **Global Standard**: All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure).
 - **Data Zone Standard (US)**: Hosted on Azure versions of `claude-sonnet-5` and `claude-opus-4-8`.
 
-For the exact Azure regions where Claude models are available for deployment, see the "Region availability by deployment type" section in [Foundry Models from partners and community](../concepts/models-from-partners.md).
+For the exact Azure regions where Claude models are available for deployment, see [Region availability by deployment type](../concepts/models-from-partners.md#region-availability-by-deployment-type).
 
 ### Quotas and rate limits
 

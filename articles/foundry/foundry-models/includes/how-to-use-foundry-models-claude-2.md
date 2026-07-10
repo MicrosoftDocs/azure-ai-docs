@@ -425,7 +425,7 @@ The following table lists common errors when you work with Claude models in Foun
 | 404 Not Found | Incorrect endpoint URL or deployment name. | Confirm your base URL follows the pattern `https://<resource-name>.services.ai.azure.com/anthropic` and the deployment name matches your configuration. |
 | 429 Too Many Requests | Rate limit exceeded for your subscription tier. | Implement exponential backoff with retry logic. Consider reducing request frequency or requesting a [quota increase](https://aka.ms/oai/stuquotarequest). |
 | Subscription eligibility error | Your Azure subscription type or billing region isn't supported, or your subscription tier has a default quota of 0 for the model. | Confirm your subscription has an active pay-as-you-go billing method and a supported billing country/region. See [Subscription type and region support](#subscription-type-and-region-support). For tier-specific default limits, see [Quotas, rate limits, and regions](../concepts/claude-models.md). |
-| Region not available | Deployment attempted in an unsupported region. | Deploy to the supported Azure regions for the specific Claude models you're using. For the exact Azure regions where the models are available, see the "Region availability by deployment type" section in [Foundry Models from partners and community](../concepts/models-from-partners.md). |
+| Region not available | Deployment attempted in an unsupported region. | Deploy to the supported Azure regions for the specific Claude models you're using. For the exact Azure regions where the models are available, see [Region availability by deployment type](../concepts/models-from-partners.md#region-availability-by-deployment-type). |
 
 ## Related content
 

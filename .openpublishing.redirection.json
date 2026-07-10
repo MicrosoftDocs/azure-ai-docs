@@ -26,6 +26,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry-classic/how-to/deploy-models-serverless-availability.md",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-from-partners",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/context/context.yml",
       "redirect_url": "/previous-versions/azure/ai-services/luis",
       "redirect_document_id": false
