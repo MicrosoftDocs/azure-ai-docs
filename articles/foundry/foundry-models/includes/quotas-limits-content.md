@@ -25,7 +25,7 @@ This change consolidates quota into shared pools:
 
 You can find the quota management system that applies to a given model by going to the Foundry portal's **Quota** page. The value in the **Scope** column for a given model indicates how Foundry manages quota for that model. A Scope value of:
 
-- **Global** or **Data Zone**, indicates subscription-level quota management
+- **Global** or **Data Zone**, indicates subscription-level quota management.
 - **A region** (for example, East US or West US), indicates per-region quota management for that subscription and model. 
 
 ### What's changing for me?
