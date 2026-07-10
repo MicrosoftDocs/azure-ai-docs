@@ -2004,7 +2004,7 @@ groups:
     title: Microsoft Foundry
   - id: rest-api
     title: Azure Language REST API
-# Owner: jburchel/jonburchel
+# Owner: mattwoj/mattwojo
 - id: set-up-key-vault
   title: Set up Key Vault
   prompt: Choose a method to set up Key Vault

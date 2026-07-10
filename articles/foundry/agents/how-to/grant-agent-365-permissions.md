@@ -1,9 +1,9 @@
 ---
 title: "Grant Agent 365 observability permissions"
 description: "Learn how to grant a Foundry Hosted agent permission to export telemetry to Microsoft Agent 365 by assigning the required app role in Microsoft Entra ID."
-author: deeikele
-ms.author: deeikele
-ms.reviewer: jburchel
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: deeikele
 ms.date: 06/23/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
