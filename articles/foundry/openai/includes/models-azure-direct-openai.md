@@ -60,9 +60,6 @@ For model availability across all regions, grouped by deployment category, see [
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-> [!IMPORTANT]
-> As part of a phased rollout, access to the GPT-5.6 series models expands to customers gradually. Microsoft shares updates as it onboards more customers.
-
 ### Capabilities
 
 | Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
