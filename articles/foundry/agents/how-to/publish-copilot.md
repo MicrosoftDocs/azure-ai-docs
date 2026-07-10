@@ -18,6 +18,15 @@ After you build and test an agent, the next step is often sharing it with others
 
 This article explains how to publish agents from the Foundry portal. 
 
+> [!IMPORTANT]
+> Publishing agents to Microsoft 365 Copilot and Microsoft Teams is an "Early Access Preview" and is licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" and "Early Access Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
+>
+> Use of Azure AI Foundry Agent Service to host agents that operate with third-party servers or agents, is at your own risk. We recommend reviewing all data being shared with third-party servers or agents and being cognizant of third-party practices for retention and location of data.
+>
+> External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](/legal/microsoft-365/supplemental-terms).
+>
+> It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications.
+
 > [!NOTE]
 > Publishing from the Foundry portal isn't available for projects that disable public network access because additional networking configuration is required. To publish these agents, use the REST API. For more information, see [Publish a virtual network agent to Microsoft 365 and Teams](./publish-copilot-virtual-network.md).
 
@@ -26,7 +35,7 @@ This article explains how to publish agents from the Foundry portal.
 - Access to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)
 - A [Foundry project](../../how-to/create-projects.md) with an agent version you tested and want to publish
 - The following role assignments:
-    - Permission to create an Azure Bot Service resource (`Microsoft.BotService/botServices/write`) and configure its channels (`Microsoft.BotService/botServices/channels/write`) in the resource group where you publish, such as the **Contributor** or **Owner** role. Foundry roles don't grant these permissions. For details, see [Azure Bot Service setup](../concepts/hosted-agent-permissions.md#azure-bot-service-setup).
+    - Permission to create an Azure Bot Service resource (`Microsoft.BotService/botServices/write`) and configure its channels (`Microsoft.BotService/botServices/channels/write`) in the resource group where you publish. The **Azure Bot Service Contributor Role** grants exactly these permissions; the broader **Contributor** or **Owner** roles also work. Foundry roles don't grant these permissions. For details, see [Azure Bot Service setup](../concepts/hosted-agent-permissions.md#azure-bot-service-setup).
     - **Foundry User** role on the Foundry project scope to create, manage, and publish agents.
 
       [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -196,7 +205,7 @@ Use the following table to resolve errors that occur while you publish from the 
 |-------|-------|------------|
 | Error publishing the agent | Invalid metadata or version | Ensure the agent has a unique identity (`agent.identity` isn't null). Confirm the developer name is 32 characters or fewer. |
 | Azure Bot Service creation fails | Missing permissions or unregistered provider | Confirm you have permission to create resources. Register `Microsoft.BotService` if needed. |
-| The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Contributor** or **Owner** role on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
+| The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
 
 If the portal shows **This agent uses an older format that can no longer be published to Teams and Microsoft 365 Copilot. Upgrade to new format to publish.**, the agent uses the older agent application format, which the generally available publish flow doesn't support for new publishing. Upgrade the agent to the new format, and then publish. Existing agents in the older format keep working and can still be updated. See [Migrate from agent applications to the new agent model](./migrate-agent-applications.md).
 
