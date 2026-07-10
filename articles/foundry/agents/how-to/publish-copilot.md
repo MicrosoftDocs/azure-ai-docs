@@ -25,7 +25,7 @@ This article explains how to publish agents from the Foundry portal.
 >
 > External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](/legal/microsoft-365/supplemental-terms).
 >
-> It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications.
+> It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
 
 > [!NOTE]
 > Publishing from the Foundry portal isn't available for projects that disable public network access because additional networking configuration is required. To publish these agents, use the REST API. For more information, see [Publish a virtual network agent to Microsoft 365 and Teams](./publish-copilot-virtual-network.md).
@@ -35,7 +35,7 @@ This article explains how to publish agents from the Foundry portal.
 - Access to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)
 - A [Foundry project](../../how-to/create-projects.md) with an agent version you tested and want to publish
 - The following role assignments:
-    - Permission to create an Azure Bot Service resource (`Microsoft.BotService/botServices/write`) and configure its channels (`Microsoft.BotService/botServices/channels/write`) in the resource group where you publish. The **Azure Bot Service Contributor Role** grants exactly these permissions; the broader **Contributor** or **Owner** roles also work. Foundry roles don't grant these permissions. For details, see [Azure Bot Service setup](../concepts/hosted-agent-permissions.md#azure-bot-service-setup).
+    - Permission to create an Azure Bot Service resource (`Microsoft.BotService/botServices/write`) and configure its channels (`Microsoft.BotService/botServices/channels/write`) in the resource group where you publish. The **Azure Bot Service Contributor Role** grants exactly these permissions. The broader **Contributor** or **Owner** roles also work. Foundry roles don't grant these permissions. For details, see [Azure Bot Service setup](../concepts/hosted-agent-permissions.md#azure-bot-service-setup).
     - **Foundry User** role on the Foundry project scope to create, manage, and publish agents.
 
       [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]

@@ -29,7 +29,7 @@ When you finish, users in your tenant can use your agent in Microsoft 365 Copilo
 >
 > External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](/legal/microsoft-365/supplemental-terms).
 >
-> It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications.
+> It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
 
 ## Prerequisites
 
