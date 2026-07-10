@@ -14,7 +14,7 @@ This article provides a quick reference and detailed description of the quotas a
 
 ## Updates to quota management after 05/07/2026
 
-Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, and soon all models, quota for deployments is tracked at the subscription level. By tracking quota at the subscription level, quota is shared across all resources and regions, rather than allocated separately per resource or per region.
+Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, and soon all models, quota for deployments is tracked at the subscription level. By tracking quota at the subscription level, all resources and regions share quota, rather than allocating quota separately per resource or per region.
 
 This change consolidates quota into shared pools:
 
