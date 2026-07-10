@@ -310,7 +310,7 @@ The v3.1 API introduces new and updated capabilities:
 * **Version 4.0.0 GA (2022-09-08)**
 * **Supports REST API v3.0 and v2.0 clients**
 
-[**Package (Maven)**](https://oss.sonatype.org/#nexus-search;quick~azure-ai-formrecognizer)
+[**Package (Maven)**](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0)
 
 [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_4.0.0/sdk/formrecognizer/azure-ai-formrecognizer/CHANGELOG.md)
 
@@ -394,7 +394,7 @@ The v3.1 API introduces new and updated capabilities:
 
 [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/CHANGELOG.md#400-beta6-2022-08-10)
 
- [**Package (Maven)**](https://oss.sonatype.org/#nexus-search;quick~azure-ai-formrecognizer)
+ [**Package (Maven)**](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0-beta.6)
 
  [**SDK reference documentation**](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-preview&preserve-view=true)
 
