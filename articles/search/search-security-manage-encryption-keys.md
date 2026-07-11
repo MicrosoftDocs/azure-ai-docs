@@ -3,7 +3,7 @@ title: Configure Customer-Managed Keys for Azure AI Search
 description: Supplement server-side encryption in Azure AI Search using customer managed keys (CMK) or bring your own keys (BYOK) that you create and manage in Azure Key Vault.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 07/10/2026
 ms.update-cycle: 365-days
 ms.custom:
   - references_regions
@@ -571,7 +571,7 @@ api-key: {{admin-api-key}}
 
 When `isServiceLevelKey` is `true`, the object inherits the service-level key and does not have an explicit object-level override.
 
-To decouple lifecycle for a specific object, set an explicit **object-level key** and set `isServiceLevelKey` to `false` in a create-or-update request.
+To decouple lifecycle for a specific object, set an explicit **object-level key** and set `isServiceLevelKey` to `false` in a `PUT` request that updates the object.
 
 ```http
 PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
@@ -602,11 +602,11 @@ Content-Type: application/json
 
 With this override, object-level key lifecycle is decoupled from the service-level default. You can rotate the object-level key independently without changing the service-level key used by other objects.
 
-To return an object to service-level CMK inheritance, set `isServiceLevelKey` to `true` in a create-or-update request.
+When service-level CMK is enabled, create requests can omit `encryptionKey` and the object inherits the service-level key by default. To switch an existing object from an explicit object-level key to service-level CMK inheritance, set `isServiceLevelKey` to `true` in an update request.
 
-In data plane API version `2026-05-01-preview`, request validation still requires `keyVaultUri` and `keyVaultKeyName` when `isServiceLevelKey` is `true`. If you omit those fields, the request fails with HTTP 400.
+In data plane API version `2026-05-01-preview`, request validation applies to the `encryptionKey` object. If `encryptionKey` is provided, `keyVaultUri` and `keyVaultKeyName` are required string fields, regardless of whether `isServiceLevelKey` is present or what value it has. This validation checks field presence, not key existence. Placeholder string values satisfy this schema validation, and missing required fields result in HTTP 400.
 
-When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. The service doesn't use any `keyVaultUri`, `keyVaultKeyName`, or `keyVaultKeyVersion` values in this request to select a key for this operation.
+When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. If you provide `keyVaultUri`, `keyVaultKeyName`, or `keyVaultKeyVersion` in the same request, those values are ignored for key selection in that operation.
 
 For clarity and maintainability, provide the current service-level key values in the request and verify the effective key with a GET operation on the object.
 
@@ -637,9 +637,9 @@ Content-Type: application/json
 }
 ```
 
-After this update, the search object inherits the service-level key again. Verify the effective key by issuing a GET request and confirming `isServiceLevelKey` is `true`.
+After this update, the search object inherits the service-level key. Verify the effective key by issuing a GET request and confirming `isServiceLevelKey` is `true`.
 
-When you provide an explicit object-level key, setting `isServiceLevelKey` to `false` is optional because the explicit key definition overrides service-level inheritance. Omitting `encryptionKey` in an update request keeps the current encryption key configuration and doesn't switch the object back to service-level inheritance.
+To set an object-level key, provide `encryptionKey` with object-level key values and either set `isServiceLevelKey` to `false` or omit `isServiceLevelKey`. If `isServiceLevelKey` is `true`, the request doesn't switch the object to an object-level key. Omitting `encryptionKey` in an update request keeps the current encryption key configuration.
 
 ### [**Azure SDKs**](#tab/sdks)
 
@@ -833,7 +833,7 @@ We recommend that you [enable logging](/azure/key-vault/general/logging) as part
 
 Can I change a search object between a customer-managed key defined at the service level and a customer-managed key defined at the object level?
 
-- Yes. When you configure the service-level CMK, each new search object uses that key by default. If you configure a different key at the object-level definition, the object-level key takes priority over the service-level key. If you remove the object-level key definition, the search object defaults back to the customer-managed key defined at the service level.
+- Yes. When you configure service-level CMK, each new search object uses that key by default. If you configure a different key at the object-level definition, the object-level key takes priority over the service-level key. If you remove the object-level key definition, the search object switches to the customer-managed key defined at the service level.
 
 ## Next steps
 
