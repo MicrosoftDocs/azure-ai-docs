@@ -1,8 +1,9 @@
 ---
 title: "Quickstart: Give a hosted agent persistent memory"
 description: "Provision a Foundry memory store, then deploy a Python hosted agent that remembers facts about each user across sessions by using FoundryMemoryProvider."
-author: aahill
-ms.author: aahi
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: lindazqli
 ms.date: 07/07/2026
 ms.manager: mcleans
 ms.topic: quickstart

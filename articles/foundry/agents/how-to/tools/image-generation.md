@@ -9,9 +9,9 @@ ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ms.date: 03/30/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-image-generation
 ---

@@ -1,8 +1,9 @@
 ---
 title: "Quickstart: Build a toolbox and use it with a hosted agent"
 description: "Build a Foundry toolbox that combines web search and the Microsoft Learn MCP server, then consume it from a Python hosted agent that connects over the Model Context Protocol."
-author: aahill
-ms.author: aahi
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: lindazqli
 ms.date: 06/16/2026
 ms.manager: mcleans
 ms.topic: quickstart
