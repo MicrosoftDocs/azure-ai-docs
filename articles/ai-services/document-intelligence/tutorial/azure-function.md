@@ -7,7 +7,7 @@ manager: mcleans
 
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: tutorial
-ms.date: 11/18/2025
+ms.date: 06/15/2026
 ms.author: lajanuar
 ms.custom:
   - VS Code-azure-extension-update-completed

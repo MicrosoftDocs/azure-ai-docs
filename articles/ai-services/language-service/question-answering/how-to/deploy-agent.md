@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 06/30/2026
+ms.date: 04/22/2026
 ---
 <!-- markdownlint-disable MD025 -->
 

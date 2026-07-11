@@ -5,7 +5,7 @@ description: Create and manage a Foundry resource.
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.date: 05/13/2026
+ms.date: 07/09/2026
 ms.service: foundry-tools
 ms.topic: quickstart
 ms.custom:
@@ -21,15 +21,11 @@ zone_pivot_groups: programming-languages-portal-cli-ps
 
 # Quickstart: Set up your first Foundry resource
 
-In this quickstart, you create a Microsoft Foundry resource and verify access.
+In this quickstart, you create a Microsoft Foundry resource and verify that you can connect to it successfully.
 
-Learn how to create and manage a Foundry resource. It's the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
+The **Microsoft Foundry resource** is the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models, applications, and agents. It provides an Azure-managed boundary for identity, access control, networking, security, billing, and monitoring, so your AI workloads follow the same resource model as everything else in Azure.
 
-An Azure resource is required to use and manage services in Azure. It defines the scope for configuring access, security such as networking, billing, and monitoring. 
-
-Foundry resource is the next version and renaming of former "Foundry Tools". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
-
-A Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
+Within that boundary, a single surface brings together your agents, model deployments, and evaluations, with Azure OpenAI and [Foundry Tools](what-are-ai-services.md) (formerly Azure AI services) reachable through one endpoint and key. You can group related work into projects that keep individual use cases separate while sharing the same underlying resource.
 
 :::image type="content" source="../foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Foundry resource containing multiple projects, each with deployments and connections.":::
 
@@ -97,40 +93,56 @@ The **Agent service** section is where you opt into the **standard setup for age
 
 :::image type="content" source="media/multi-service-resource/advanced/foundry-create-storage-agent-service.png" alt-text="Screenshot of the Storage tab Agent service section in the Create a Foundry resource wizard, showing the Select Resources button and the Model Deployment, Cosmos DB, AI Search, and Storage Account columns, with the Speech and Language service section beneath it." lightbox="media/multi-service-resource/advanced/foundry-create-storage-agent-service.png":::
 
-> [!TIP]
-> If your security baseline is the same for every Foundry resource you create, capture it once with [Bicep](../ai-foundry/how-to/create-resource-template.md) or [Terraform](../ai-foundry/how-to/create-resource-terraform.md). The infrastructure-as-code articles cover the same controls plus parameterization, source control, and repeatable deployment.
-
 ## Access your resource
 
-With your first resource created, you can access it via [Foundry portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](../ai-foundry/how-to/develop/sdk-overview.md), or via [Azure portal for administrative management](https://portal.azure.com).
+With your first resource created, you can access and manage it by using the Azure portal, the Azure CLI, or Azure PowerShell:
+
+- **Azure portal** — browse to your resource in the [Azure portal](https://portal.azure.com) to view its status, endpoint, keys, and configuration.
+- **Azure CLI** — use the [az cognitiveservices account](/cli/azure/cognitiveservices/account) commands to query and update the resource in scripts and automation.
+- **Azure PowerShell** — use the [Az.CognitiveServices](/powershell/module/az.cognitiveservices) cmdlets to query and update the resource in scripts and automation.
 
 ### Verify your setup
 
-You can verify that your resource is set up correctly by using the Azure AI Projects SDK to connect and list projects. This minimal example confirms authentication and access.
+Verify that your resource is set up correctly by using the Azure portal, the Azure CLI, or Azure PowerShell.
 
-```python
-# Install the SDK: pip install azure-ai-projects azure-identity
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
+#### [Azure portal](#tab/portal)
 
-# Replace with your actual values from Azure portal
-client = AIProjectClient(
-    subscription_id="<your-subscription-id>",
-    resource_group_name="<your-resource-group>",
-    project_name="<your-project-name>",
-    credential=DefaultAzureCredential()
-)
+1. Sign in to the [Azure portal](https://portal.azure.com) and go to your Foundry resource.
+1. On the **Overview** page, confirm that **Status** is **Available** (or that the provisioning state shows as succeeded).
+1. On the **Overview** page, note the **Endpoint** value. You use this endpoint to call the resource.
+1. Under **Resource Management** > **Keys and Endpoint**, confirm that keys and the endpoint are listed. This confirmation means the resource is provisioned and ready to use.
 
-# List projects to verify connection
-projects = client.projects.list()
-print(f"Successfully connected. Found {len(list(projects))} projects.")
+#### [Azure CLI](#tab/cli)
+
+If you're not already signed in, run `az login` to authenticate. If your account has more than one subscription, set the one that contains your resource by running `az account set --subscription "<subscription-name-or-id>"`.
+
+Use the [az cognitiveservices account show](/cli/azure/cognitiveservices/account#az-cognitiveservices-account-show) command to confirm the resource exists and that you can access it. Replace the following values with your own:
+
+- `foundry-multi-service-resource` — the name of your Foundry resource (the `--name` value you used when you created it).
+- `ai-services-resource-group` — the resource group that contains the resource (the `--resource-group` value you used when you created it).
+
+```azurecli-interactive
+az cognitiveservices account show --name foundry-multi-service-resource --resource-group ai-services-resource-group --query "{name:name, kind:kind, provisioningState:properties.provisioningState, endpoint:properties.endpoint}" --output table
 ```
 
-**Expected output**: `Successfully connected. Found X projects.` where X is the number of projects in your resource.
+If your setup is correct, the command returns the resource details. Confirm that `kind` is `AIServices` and that `provisioningState` is `Succeeded`.
 
-**References**:
-- [AIProjectClient class](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient)
-- [DefaultAzureCredential class](/python/api/azure-identity/azure.identity.defaultazurecredential)
+#### [Azure PowerShell](#tab/powershell)
+
+If you're not already signed in, run `Connect-AzAccount` to authenticate. If your account has more than one subscription, set the one that contains your resource by running `Set-AzContext -Subscription "<subscription-name-or-id>"`.
+
+Use the [Get-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/get-azcognitiveservicesaccount) cmdlet to confirm the resource exists and that you can access it. Replace the following values with your own:
+
+- `foundry-multi-service-resource` — the name of your Foundry resource (the `-Name` value you used when you created it).
+- `ai-services-resource-group` — the resource group that contains the resource (the `-ResourceGroupName` value you used when you created it).
+
+```azurepowershell-interactive
+Get-AzCognitiveServicesAccount -Name foundry-multi-service-resource -ResourceGroupName ai-services-resource-group | Select-Object AccountName, Kind, @{Name="ProvisioningState"; Expression={$_.Properties.ProvisioningState}}, Endpoint
+```
+
+If your setup is correct, the command returns the resource details. Confirm that `Kind` is `AIServices` and that `ProvisioningState` is `Succeeded`.
+
+---
 
 ## Grant or obtain developer permissions
 
@@ -152,9 +164,9 @@ Built-in Azure RBAC developer roles for Foundry include:
 
 :::image type="content" source="../foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../foundry/media/how-to/network/detailed-rbac-diagram.png":::
 
-For larger enterprises with strict role based access requirements, we recommend utilizing the Foundry User role the least  privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, we recommend utilizing the Foundry Owner role for developer permissions as well as resource creation permissions. 
+For larger enterprises with strict role based access requirements, use the Foundry User role to grant least privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, use the Foundry Owner role for developer permissions as well as resource creation permissions.
 
-Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal](link to Azure portal) or [Foundry portal via Admin](Link to Foundry portal). [Learn more about role-based access control](../ai-foundry/concepts/rbac-foundry.md).
+Only authorized users, typically the Azure subscription or resource group owner, can assign a role via the [Azure portal](https://portal.azure.com/#home).
 
 > [!IMPORTANT]
 > Azure Owner and Contributor roles do only include management permissions, and not development permissions. Development permissions are required to build with all capabilities in Foundry.
@@ -165,16 +177,16 @@ With permissions set up, you're now ready to start building Foundry. In [Foundry
 
 Explore some of the services that come bundled with your resource:
 
-| Service | Description | 
-| --- | --- | 
+| Service | Description |
+| --- | --- |
 | ![Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
 | ![Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Foundry model catalog. |
-| ![Azure OpenAI in Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | 
-| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | A Foundry Tool that detects unwanted contents. | 
+| ![Azure OpenAI in Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Performs a wide variety of natural language tasks. |
+| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | A Foundry tool that detects unwanted content. |
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. |
 | ![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg) [Language](./language-service/index.yml) | Build apps with industry-leading natural language understanding capabilities. |
 | ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](./speech-service/index.yml) | Speech to text, text to speech, translation, and speaker recognition. |
-| ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. | 
+| ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Uses AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. |
 
 ## Next steps
 

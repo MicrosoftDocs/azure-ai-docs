@@ -73,9 +73,6 @@ items:
   - name: Data, privacy, and security for model catalog
     displayName: Data, privacy, and security for Models sold by Azure
     href: ../../responsible-ai/openai/data-privacy.md
-  - name: Data, privacy, and security for model catalog (classic)
-    displayName: Data, privacy, and security for partner models in the model catalog
-    href: ../../../foundry-classic/how-to/concept-data-privacy.md?context=/azure/foundry/context/context
 
   - name: Model Router
     items:
@@ -198,9 +195,16 @@ items:
   items:
   - name: Azure OpenAI supported programming languages
     href: ../../openai/supported-languages.md
-  - name: MAI image models
-    displayName: MAI image models in Foundry
-    href: ../../foundry-models/how-to/use-foundry-models-mai.md
+  - name: Microsoft AI (MAI) models
+    items:
+    - name: MAI-Image models
+      displayName: MAI image models in Foundry
+      href: ../../foundry-models/how-to/use-foundry-models-mai.md
+    - name: MAI-Voice models
+      displayName: mai voice, neural voice
+      href: /azure/ai-services/speech-service/mai-voices?context=/azure/foundry/context/context
+    - name: MAI-Transcribe models
+      href: /azure/ai-services/speech-service/mai-transcribe?context=/azure/foundry/context/context
   - name: Claude models
     items:
     - name: Overview

@@ -833,7 +833,7 @@ We recommend that you [enable logging](/azure/key-vault/general/logging) as part
 
 Can I change a search object between a customer-managed key defined at the service level and a customer-managed key defined at the object level?
 
-- Yes. When you configure service-level CMK, each new search object uses that key by default. If you configure a different key at the object-level definition, the object-level key takes priority over the service-level key. If you remove the object-level key definition, the search object switches to the customer-managed key defined at the service level.
+- Yes. When you configure the service-level CMK, each new search object uses that key by default. If you configure a different key at the object-level definition, the object-level key takes priority over the service-level key. If you remove the object-level key definition, the search object defaults back to the customer-managed key defined at the service level.
 
 ## Next steps
 

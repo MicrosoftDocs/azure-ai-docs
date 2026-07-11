@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2026
+ms.date: 04/08/2026
 ms.author: lajanuar
 ---
 Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home). From the menu on the left side, select **Keys and Endpoint**. You use the endpoint and key for the API requests 

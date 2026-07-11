@@ -6,7 +6,7 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 05/26/2026
 ms.custom: FY25Q1-Linter
 ---
 

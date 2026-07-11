@@ -1,8 +1,9 @@
 ---
 title: "Quickstart: Build a toolbox and use it with a hosted agent"
 description: "Build a Foundry toolbox that combines web search and the Microsoft Learn MCP server, then consume it from a Python hosted agent that connects over the Model Context Protocol."
-author: aahill
-ms.author: aahi
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: lindazqli
 ms.date: 06/16/2026
 ms.manager: mcleans
 ms.topic: quickstart
@@ -47,7 +48,7 @@ Follow the prompts to select your project and an existing model deployment. When
 
 ## Step 2: Create the toolbox
 
-Create the toolbox, then copy the MCP endpoint it returns. You set that endpoint as an environment variable in later steps.
+Create the toolbox, and then copy the MCP endpoint it returns. Set that endpoint as an environment variable in later steps.
 
 The sample's `azure.yaml` defines the toolbox as an `azure.ai.toolbox` service and wires it to the hosted agent service with `uses:`. If you change the toolbox configuration, edit the toolbox service in `azure.yaml`, not `src/toolbox-agent/agent.yaml`.
 
@@ -65,7 +66,7 @@ The sample includes a [`toolbox.yaml`](https://github.com/microsoft-foundry/foun
 azd ai toolbox create my-toolbox --from-file ./src/toolbox-agent/toolbox.yaml
 ```
 
-The first version becomes the default version automatically. The command prints the toolbox's versioned MCP endpoint. Copy the `Endpoint` value from the output. You set it as the `TOOLBOX_ENDPOINT` environment variable in the next steps. It looks like this:
+The first version becomes the default version automatically. The command prints the toolbox's versioned MCP endpoint. Copy the `Endpoint` value from the output. Set it as the `TOOLBOX_ENDPOINT` environment variable in the next steps. It looks like this:
 
 ```
 https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/my-toolbox/versions/1/mcp?api-version=v1
@@ -77,17 +78,127 @@ https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/my-tool
 
 1. Open Visual Studio Code and select **Foundry Toolkit** in the Activity Bar.
 1. Sign in to your Azure account if you're prompted.
-1. Under **My Resources**, expand your project, then expand **Tools**.
+1. Under **My Resources**, expand your project, and then expand **Tools**.
 1. In the **Tools** view, select the **+ Add Toolbox** icon.
 1. Enter the toolbox name (`my-toolbox`) and a description.
 1. Select **Web search**.
 1. Select **+ Add tool**, choose to add a remote MCP server, and enter the server URL `https://learn.microsoft.com/api/mcp`. The server is public, so no authentication is required.
 1. Select **Publish**. Publishing creates the first version of the toolbox.
-1. Copy the toolbox's MCP endpoint. Run the following command and copy the `endpoint` value from the output. You set it as the `TOOLBOX_ENDPOINT` environment variable in the next steps:
+1. Copy the toolbox's MCP endpoint. Run the following command and copy the `endpoint` value from the output. Set it as the `TOOLBOX_ENDPOINT` environment variable in the next steps:
 
     ```bash
     azd ai toolbox show my-toolbox --output json
     ```
+
+:::zone-end
+
+:::zone pivot="python"
+
+Create the toolbox with the Foundry SDK for Python.
+
+The script authenticates with `DefaultAzureCredential`, which uses your Azure CLI sign-in. Sign in with `az login` before you run the script.
+
+1. Install the required packages:
+
+    ```bash
+    pip install azure-ai-projects azure-identity
+    ```
+
+1. Get your project endpoint. Reuse the value that initialization stored in your `azd` environment:
+
+    ```bash
+    azd env get-value FOUNDRY_PROJECT_ENDPOINT
+    ```
+
+1. Save the following script as `create_toolbox.py`. Replace `<your-project-endpoint>` with the value from the previous command, and then run the script. It creates the toolbox with web search and the Microsoft Learn MCP server, and then prints the versioned MCP endpoint:
+
+    ```python
+    from azure.identity import DefaultAzureCredential
+    from azure.ai.projects import AIProjectClient
+    from azure.ai.projects.models import MCPTool, WebSearchTool
+
+    endpoint = "<your-project-endpoint>"
+    project = AIProjectClient(endpoint=endpoint, credential=DefaultAzureCredential())
+
+    toolbox_version = project.toolboxes.create_toolbox_version(
+        name="my-toolbox",
+        description="Web search plus the Microsoft Learn MCP server",
+        tools=[
+            WebSearchTool(),
+            MCPTool(
+                server_label="mslearn",
+                server_url="https://learn.microsoft.com/api/mcp",
+                require_approval="never",
+            ),
+        ],
+    )
+
+    mcp_endpoint = (
+        f"{endpoint}/toolboxes/{toolbox_version.name}"
+        f"/versions/{toolbox_version.version}/mcp?api-version=v1"
+    )
+    print(f"Created toolbox {toolbox_version.name}, version {toolbox_version.version}")
+    print(f"Endpoint: {mcp_endpoint}")
+    ```
+
+Copy the `Endpoint` value from the output. Set it as the `TOOLBOX_ENDPOINT` environment variable in the next steps.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+Create the toolbox with the Foundry SDK for .NET.
+
+The program authenticates with `DefaultAzureCredential`, which uses your Azure CLI sign-in. Sign in with `az login` before you run the program.
+
+1. Add the required packages to your project:
+
+    ```bash
+    dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.Identity
+    ```
+
+1. Get your project endpoint. Reuse the value that initialization stored in your `azd` environment:
+
+    ```bash
+    azd env get-value FOUNDRY_PROJECT_ENDPOINT
+    ```
+
+1. Add the following code to your program. Replace `<your-project-endpoint>` with the value from the previous command, and then run the program. The program creates the toolbox with web search and the Microsoft Learn MCP server, and then prints the versioned MCP endpoint:
+
+    ```csharp
+    using Azure.Identity;
+    using Azure.AI.Projects;
+
+    var projectEndpoint = "<your-project-endpoint>";
+    AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+    AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+    ProjectsAgentTool webTool = ProjectsAgentTool.AsProjectTool(
+        ResponseTool.CreateWebSearchTool());
+
+    ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
+        serverLabel: "mslearn",
+        serverUri: new Uri("https://learn.microsoft.com/api/mcp"),
+        toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+            GlobalMcpToolCallApprovalPolicy.NeverRequireApproval
+        )
+    ));
+
+    ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+        toolboxName: "my-toolbox",
+        tools: [webTool, mcpTool],
+        description: "Web search plus the Microsoft Learn MCP server"
+    );
+
+    string mcpEndpoint =
+        $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}" +
+        $"/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+    Console.WriteLine($"Created toolbox {toolboxVersion.Name}, version {toolboxVersion.Version}");
+    Console.WriteLine($"Endpoint: {mcpEndpoint}");
+    ```
+
+Copy the `Endpoint` value from the output. Set it as the `TOOLBOX_ENDPOINT` environment variable in the next steps.
 
 :::zone-end
 
