@@ -55,7 +55,7 @@ In Microsoft Foundry, consider the following scopes when completing role assignm
 
 * **Foundry resource**: The top-level scope that defines the administrative, security, and monitoring boundary for a Microsoft Foundry environment.
 * **Foundry project**: A sub-scope within a Foundry resource used to organize work and enforce access control for Foundry APIs, tools, and developer workflows.
-* **Agent**: A narrower scope within a Foundry project that applies to an individual agent. Assign roles at this scope to grant access to a specific agent without granting access to all agents in the project. For more information, see [Agent-scope role assignments](../concepts/rbac-foundry.md#agent-scope-role-assignments).
+* **Agent**: A narrower scope within a Foundry project that applies to an individual agent. Role assignments at this scope are currently evaluated only for agent endpoint access, so use this scope to grant access to a specific agent's endpoints without granting endpoint access to all agents in the project. For more information, see [Agent-scope role assignments](../concepts/rbac-foundry.md#agent-scope-role-assignments).
 
 ## Built-in roles
 
