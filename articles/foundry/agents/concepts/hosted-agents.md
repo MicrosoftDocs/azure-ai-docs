@@ -98,7 +98,8 @@ The endpoint is available immediately after deployment—publishing isn't requir
 - **Invocations (WebSocket)**: wss://{account}.services.ai.azure.com/api/projects/{project}/agents/{name}/endpoint/protocols/invocations_ws?api-version=v1
 - **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
-Which endpoints are active depends on the protocols declared in the agent version definition. Set this definition in the `azure.ai.agent` service in `azure.yaml` when using `azd`, or via `container_protocol_versions` when using the SDK.
+Which endpoints are active depends on the protocols declared in the agent version definition. Set this definition in the `azure.ai.agent` service in `azure.yaml` when using `azd`, or via `protocol_versions` when using the SDK.
+
 
 Two identities are involved:
 
