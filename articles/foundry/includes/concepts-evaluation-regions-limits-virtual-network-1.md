@@ -50,7 +50,7 @@ The batch evaluations are supported in the following regions:
 
 ### Supported regions for risk and safety evaluators
 
-The following safety evaluators are supported in these regions: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, and Ungrounded attributes.
+These regions support the following safety evaluators: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, and Ungrounded attributes.
 
 | Americas | Europe |
 |--|--|
