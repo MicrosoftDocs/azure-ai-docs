@@ -267,11 +267,13 @@ The Claude Code VS Code extension provides a native graphical interface for Clau
 1. Select **Edit in settings.json** and add the following configuration:
 
     ```json
-      "Claude Code: Environment Variables": [
-        {"name": "CLAUDE_CODE_USE_FOUNDRY", "value": "1"},
-        {"name": "ANTHROPIC_FOUNDRY_RESOURCE", "value": "<your-resource-name>"},
-        {"name": "ANTHROPIC_FOUNDRY_API_KEY", "value": "<optional-for-non-entra-auth>"
-      ]
+      {
+        "Claude Code: Environment Variables": [
+          { "name": "CLAUDE_CODE_USE_FOUNDRY", "value": "1" },
+          { "name": "ANTHROPIC_FOUNDRY_RESOURCE", "value": "<your-resource-name>" },
+          { "name": "ANTHROPIC_FOUNDRY_API_KEY", "value": "<optional-for-non-entra-auth>" }
+        ]
+      }
     ```
 
 1. Select the **Spark icon** in the sidebar to open the Claude Code panel.
