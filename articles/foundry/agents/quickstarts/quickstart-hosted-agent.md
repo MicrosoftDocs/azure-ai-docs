@@ -304,7 +304,7 @@ with (
         ),
         environment_variables={
           "FOUNDRY_PROJECT_ENDPOINT": endpoint,
-          "AZURE_AI_MODEL_DEPLOYMENT_NAME": model_name,
+          "FOUNDRY_MODEL_NAME": model_name,
         },
         protocol_versions=[
           ProtocolVersionRecord(protocol="responses", version="2.0.0")
