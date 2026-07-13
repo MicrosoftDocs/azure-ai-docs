@@ -48,9 +48,9 @@ The batch evaluations are supported in the following regions:
 | West US 2 | West Europe |  |  |
 | West US 3 |  |  |  |
 
-### Risk and safety evaluators and AI red teaming region support
+### Supported regions for risk and safety evaluators
 
-The following safety evaluators and AI red teaming are supported in these regions: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes, and AI red teaming.
+The following safety evaluators are supported in these regions: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, and Ungrounded attributes.
 
 | Americas | Europe |
 |--|--|
@@ -66,6 +66,13 @@ Supported regions for Groundedness Pro:
 Supported regions for Protected material:
 
 - East US 2
+
+### Supported regions for AI red teaming
+
+AI red teaming is supported in following regions.
+
+- East US 2
+- North Central US
 
 ### Azure OpenAI graders regional availability
 
