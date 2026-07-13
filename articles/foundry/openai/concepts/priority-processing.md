@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 07/10/2026
+ms.date: 07/13/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu
