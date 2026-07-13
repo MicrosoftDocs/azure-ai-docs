@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 06/15/2026
+ms.date: 07/09/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -71,9 +71,6 @@ Hosted agents communicate with the Foundry gateway through protocol libraries. C
 | **Invocations (WebSocket)** | `azure-ai-agentserver-invocations` | `Azure.AI.AgentServer.Invocations` | `/invocations_ws` | Bidirectional streaming: real-time voice agents, interactive media |
 
 The WebSocket protocol uses the identifier `invocations_ws` and ships in the same `azure-ai-agentserver-invocations` package as the HTTP `/invocations` route, so one container can serve both. Use it when you need persistent, full-duplex streaming - for example, sending microphone PCM to the agent and receiving synthesized audio back. For voice scenarios, see [Build a voice agent with hosted agents](build-voice-agent.md).
-
-> [!IMPORTANT]
-> The `invocations_ws` WebSocket protocol is in preview and is currently available only in **North Central US**.
 
 A single container can expose **multiple protocols simultaneously** by declaring them when you create the agent - in the `protocols` field of the `azure.ai.agent` service in `azure.yaml`, an SDK call, or a REST API request - and importing the required libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
 <!--
