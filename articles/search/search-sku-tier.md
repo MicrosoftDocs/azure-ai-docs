@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 07/13/2026
 ---
 
 # Choose a pricing model and service tier in Azure AI Search
@@ -51,6 +51,12 @@ The Serverless Developer tier is in Public Preview and doesn't currently support
 - File Knowledge Source (Preview): Not supported
 - Shared Private Link resources: No planned support for the Serverless model
 - Service-level agreement (SLA): Not available during Public Preview
+
+Available regions for the Serverless pricing model during preview include:
+
+- West Central US
+- Switzerland North
+- Japan East
 
 To learn more, see [Service Limits in Azure AI Search](./search-limits-quotas-capacity.md).
 
