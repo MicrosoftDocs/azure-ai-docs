@@ -2,7 +2,7 @@
 title: "Manage agents at scale in Microsoft Foundry Control Plane"
 description: "Learn how to view your agent inventory, monitor agent health, and perform lifecycle operations by using Microsoft Foundry Control Plane."
 author: santiagxf
-ms.author: scottpolly
+ms.author: lagayhar
 ms.reviewer: fasantia
 ms.date: 04/13/2026
 ms.manager: mcleans
