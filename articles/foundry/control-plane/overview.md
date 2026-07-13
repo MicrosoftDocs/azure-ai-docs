@@ -5,8 +5,8 @@ ms.subservice: foundry-control-plane
 ms.topic: concept-article
 ms.date: 05/06/2026
 ms.reviewer: mesameki
-ms.author: scottpolly
-author: mesameki
+ms.author: lagayhar
+author: lgayhardt
 description: "Learn how Microsoft Foundry Control Plane provides unified visibility, governance, and control for AI agents, models, and tools across your enterprise."
 ai-usage: ai-assisted
 #customer intent: As an enterprise administrator or AI developer, I want to understand what Foundry Control Plane is and how it provides unified visibility across my AI agent fleet so that I can determine if it meets my governance and operational needs.
