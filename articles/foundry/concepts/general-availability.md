@@ -94,6 +94,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | Optimization (cluster analysis) | Preview |
 | Build | [Fine-tuning](../openai/how-to/fine-tuning.md) | GA |
 | Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview) |
+| Build | [Toolboxes](../agents/how-to/tools/toolbox.md) | GA |
 | Build | [Knowledge (Foundry IQ)](../agents/concepts/what-is-foundry-iq.md) | Partial GA (API-level GA; portal access remains Preview) |
 | Build | Data (core) | GA |
 | Build | Data — stored completions | Preview |
