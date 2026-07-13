@@ -393,6 +393,8 @@ with (
                     "Use the Microsoft Learn documentation."
                 ),
             )
+            if response.status != "completed":
+                raise RuntimeError(f"Agent invocation failed: {response.error}")
             print(response.output_text)
     finally:
         if original_agent_endpoint is not None:

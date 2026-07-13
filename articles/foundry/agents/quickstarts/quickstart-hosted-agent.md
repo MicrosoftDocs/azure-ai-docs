@@ -208,7 +208,7 @@ that folder:
 FOUNDRY_PROJECT_ENDPOINT=<your-project-endpoint>
 FOUNDRY_MODEL_NAME=<your-model-deployment-name>
 FOUNDRY_HOSTED_AGENT_NAME=basic-agent
-FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/01-basic>
+FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/01-basic/src/agent-framework-agent-basic-responses>
 ```
 
 ## Step 4: Deploy the hosted agent with Python
@@ -304,7 +304,7 @@ with (
         ),
         environment_variables={
           "FOUNDRY_PROJECT_ENDPOINT": endpoint,
-          "FOUNDRY_MODEL_NAME": model_name,
+          "AZURE_AI_MODEL_DEPLOYMENT_NAME": model_name,
         },
         protocol_versions=[
           ProtocolVersionRecord(protocol="responses", version="2.0.0")
