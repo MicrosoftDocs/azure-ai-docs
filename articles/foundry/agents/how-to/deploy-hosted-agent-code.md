@@ -3,7 +3,7 @@ title: "Deploy a hosted agent from source code (preview)"
 description: "Deploy your hosted agent directly from source code—without building a container—by using the Azure Developer CLI, Python SDK, .NET SDK, or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 06/04/2026
+ms.date: 07/09/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -250,7 +250,7 @@ created = project.beta.agents.create_version_from_code(
 print(f"Created version: {created.version}")
 ```
 
-For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="1.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and ship prebuilt dependencies in the zip—see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
+For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="1.0.0")`. For the Invocations (WebSocket) protocol, use `ProtocolVersionRecord(protocol="invocations_ws", version="1.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and ship prebuilt dependencies in the zip. For more information, see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
 ### Poll for active
 
@@ -380,7 +380,7 @@ internal class FeaturePolicy(string feature) : PipelinePolicy
 }
 ```
 
-For the Invocations protocol, change the `Versions` entry to `new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "1.0.0")`. For `bundled` mode, set `dependencyResolution: CodeDependencyResolution.Bundled` and point `filePath` at a folder that holds your `dotnet publish` output. See [Build .NET output (bundled)](#build-net-output-bundled).
+For the Invocations protocol, change the `Versions` entry to `new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "1.0.0")`. For the Invocations (WebSocket) protocol, use `new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "1.0.0")`. For `bundled` mode, set `dependencyResolution: CodeDependencyResolution.Bundled` and point `filePath` at a folder that holds your `dotnet publish` output. See [Build .NET output (bundled)](#build-net-output-bundled).
 
 ### Poll for active
 
@@ -506,7 +506,7 @@ This metadata matches the hello-world zip.
 }
 ```
 
-For the Invocations protocol, replace the `protocol_versions` entry with `{ "protocol": "invocations", "version": "1.0.0" }`. For `bundled` mode, set `"dependency_resolution": "bundled"` and follow [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
+For the Invocations protocol, replace the `protocol_versions` entry with `{ "protocol": "invocations", "version": "1.0.0" }`. For the Invocations (WebSocket) protocol, use `{ "protocol": "invocations_ws", "version": "1.0.0" }`. For `bundled` mode, set `"dependency_resolution": "bundled"` and follow [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
 `code_configuration` and `container_configuration` are mutually exclusive in the agent definition: include `code_configuration` for source-code deploy (this article) or `container_configuration` for image-based deploy. See [Deploy a hosted agent (container)](deploy-hosted-agent.md) for the image variant.
 
@@ -568,6 +568,10 @@ curl -X POST "$ENDPOINT/agents/$AGENT/endpoint/protocols/invocations?api-version
   -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview" \
   -d '{"input":"Hello, this is a test invocation!"}'
 ```
+
+**Invocations (WebSocket) protocol:**
+
+Connect over a WebSocket upgrade instead of a REST `POST`. For the endpoint format and client examples, see [Build a voice agent with hosted agents](build-voice-agent.md#connect-a-client).
 
 Useful response headers:
 
