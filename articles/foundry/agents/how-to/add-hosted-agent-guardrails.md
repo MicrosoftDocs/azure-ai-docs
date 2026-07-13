@@ -81,7 +81,7 @@ When you create an agent version with the SDK, pass a `RaiConfig` to the `rai_co
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentProtocol,
+    AgentEndpointProtocol,
     ContainerConfiguration,
     HostedAgentDefinition,
     ProtocolVersionRecord,
@@ -116,7 +116,7 @@ agent = project.agents.create_version(
         ),
         protocol_versions=[
             ProtocolVersionRecord(
-                protocol=AgentProtocol.RESPONSES, version="1.0.0"
+                protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0"
             )
         ],
         rai_config=RaiConfig(rai_policy_name=RAI_POLICY_ID),

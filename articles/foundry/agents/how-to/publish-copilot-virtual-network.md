@@ -203,16 +203,13 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 {
     "agent_endpoint": {
-        "protocols": [
-            "responses",
-            "activity"
-        ],
+        "protocol_configuration": {
+            "responses": {},
+            "activity": {}
+        },
         "authorization_schemes": [
             {
-                "type": "Entra",
-                "isolation_key_source": {
-                    "kind": "Entra"
-                }
+                "type": "Entra"
             },
             {
                 "type": "BotServiceRbac"
