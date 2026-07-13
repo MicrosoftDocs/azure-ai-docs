@@ -69,7 +69,7 @@ Supported regions for Protected material:
 
 ### Supported regions for AI red teaming
 
-AI red teaming is supported in following regions.
+AI red teaming is supported in the following regions.
 
 - East US 2
 - North Central US
