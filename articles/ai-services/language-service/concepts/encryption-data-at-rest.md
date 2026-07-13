@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/04/2026
 ms.author: lajanuar
 #Customer intent: As a user of Azure Language service, I want to learn how encryption at rest works.
 ---

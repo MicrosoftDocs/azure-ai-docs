@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/08/2026
 ms.author: lajanuar
 ---
 Use the following steps to set the required roles for your Language resource and storage account.

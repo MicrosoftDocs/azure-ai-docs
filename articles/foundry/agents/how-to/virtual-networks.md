@@ -228,7 +228,7 @@ For registry-specific details, see [Deploy a hosted agent with a private Azure C
 
 * No first-class CLI flag. All VNet wiring is manual Bicep customization plus operational discipline for runner placement, DNS, and RBAC.
 * The agent endpoint stays public in this preview. Tenant isolation on a public endpoint is done by [isolating sessions per user](isolate-sessions-per-user.md), not network privacy.
-* Region constraints apply. Hosted agents are available in a fixed set of regions. The VNet, ACR, and Foundry account should all live in, or peer to, one of those regions. Run `azd ai agent doctor` to validate.
+* Region constraints apply. Hosted agents are available in a fixed set of regions. The VNet, ACR, and Foundry account should all live in, or peer to, one of those regions. For the same-region requirement between the Foundry resource and its virtual network, see [Regional support for private networking](../concepts/limits-quotas-regions.md#regional-support-for-private-networking). Run `azd ai agent doctor` to validate.
 * DNS is the most common failure mode. Confirm private DNS resolution end to end, for example with `nslookup <endpoint>` from the runner or development VM, before you assume the issue is RBAC.
 
 ## Related content

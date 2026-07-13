@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 04/12/2026
 ms.topic: reference
 ---
 <!-- markdownlint-disable MD025 -->

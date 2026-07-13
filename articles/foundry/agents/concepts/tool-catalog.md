@@ -1,9 +1,9 @@
 ---
 title: "Agent tools overview for Microsoft Foundry Agent Service"
 description: "Explore the tools available for agents in Foundry Agent Service, including built-in tools, web search, custom options, and the Foundry tool catalog. Get started today."
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.date: 04/23/2026
 ms.manager: mcleans

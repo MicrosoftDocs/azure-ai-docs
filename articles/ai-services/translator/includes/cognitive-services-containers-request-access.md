@@ -3,7 +3,7 @@ author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/25/2026
 ---
 <!-- markdownlint-disable MD041 -->
 * The form requests information about you, your company, and the user scenario for which you use the container. After you submit the form, the Foundry Tools team reviews it and emails you with a decision within 10 business days.

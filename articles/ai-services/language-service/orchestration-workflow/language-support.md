@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 06/30/2026
+ms.date: 06/24/2026
 ms.custom: references_regions, language-service-custom-ner
 ms.author: lajanuar
 ---

@@ -88,7 +88,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
@@ -154,7 +154,7 @@ Not available
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 

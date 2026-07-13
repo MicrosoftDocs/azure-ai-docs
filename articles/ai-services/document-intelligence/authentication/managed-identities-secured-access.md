@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/16/2026
 ms.author: vikurpad
 monikerRange: '<=doc-intel-4.0.0'
 ms.custom: sfi-image-nochange

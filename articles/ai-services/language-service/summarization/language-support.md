@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 06/30/2026
+ms.date: 04/30/2026
 ms.author: lajanuar
 ms.custom: language-service-summarization, ignite-2023, build-2024
 ---

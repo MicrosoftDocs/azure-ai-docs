@@ -37,8 +37,6 @@ To learn how Claude consumption units (CCU) bill Claude models in Microsoft Foun
 
 ## Available Claude models
 
-<!-- PLACEHOLDER: When [TO VERIFY: Scarlett] is available, confirm it is also Azure-hosted and update any model-specific warnings, notes, or footnotes that apply. -->
-
 The following table compares model availability for both versions of Claude models in Foundry. For details on the features referenced in the table, see the [Capabilities](#capabilities) section.
 
 > [!WARNING]
@@ -93,8 +91,6 @@ Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the fol
 <sup>1</sup>You can call the Messages API from the `anthropic` Python package, the `@anthropic-ai/foundry-sdk` JavaScript package, or directly through REST. The deployment endpoint follows the shape `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages`, and REST and JavaScript clients use the `anthropic-version: 2023-06-01` header.
 
 ## Capabilities
-
-<!-- PLACEHOLDER: When [TO VERIFY: Scarlett] is available, update the capabilities table and any model-specific parameter tables in this section. -->
 
 Claude models in Foundry expose *core capabilities* for processing, analyzing, and generating content, and *tools* that let Claude interact with external systems, execute code, and perform automated tasks. 
 
@@ -157,18 +153,16 @@ The Effort feature allows specific `effort` levels for each model, as described 
 
 ## Quotas, rate limits, and regions
 
-<!-- PLACEHOLDER: When [TO VERIFY: Scarlett] is available, update deployment type availability, quota text, and all three rate-limit tables in this section for both Hosted on Azure and Hosted on Anthropic infrastructure. -->
-
 Use this section to understand where you can deploy Claude models, how quota is shared, and what rate limits apply to your deployments.
 
 ### Deployment types
 
-Claude models in Foundry are available for the following deployment types:
+Claude models in Foundry are available for the following deployment types in specific Azure regions:
 
-- **Global Standard**: All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) are available in **East US2** and **Sweden Central**.
-- **Data Zone Standard (US)**: `claude-sonnet-5`, `claude-opus-4-8`.
+- **Global Standard**: All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure).
+- **Data Zone Standard (US)**: Hosted on Azure versions of `claude-sonnet-5` and `claude-opus-4-8`.
 
-For more information on the different deployment types, see [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
+For the exact Azure regions where Claude models are available for deployment, see [Region availability by deployment type](../concepts/models-from-partners.md#region-availability-by-deployment-type).
 
 ### Quotas and rate limits
 
@@ -260,8 +254,6 @@ As listed in the following table, to increase your quota beyond the default limi
 
 
 ## Responsible AI considerations
-
-<!-- PLACEHOLDER: Add the safety evaluation, system card, or other Responsible AI references for [TO VERIFY: Scarlett] when they are published. -->
 
 When using Claude models in Foundry, consider these responsible AI practices:
 

@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: lifecycle
-ms.date: 06/30/2026
+ms.date: 06/01/2026
 ---
 # Custom question answering project lifecycle
 

@@ -1,5 +1,5 @@
 ---
-title: "Publish a virtual network agent to Microsoft 365 and Teams"
+title: "Publish agents to Microsoft 365 and Teams by using the REST API"
 description: "Publish a Microsoft Foundry agent that runs in a virtual network to Microsoft 365 Copilot and Microsoft Teams when public network access is disabled."
 author: fosteramanda
 ms.author: fosteramanda
@@ -7,20 +7,29 @@ ms.reviewer: aahill
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/08/2026
+ms.date: 07/07/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 #CustomerIntent: As a developer who runs a Foundry agent inside a virtual network, I want to publish it to Microsoft 365 Copilot and Teams so that users can reach it even though public network access is disabled.
 ---
 
-# Publish agents in a virtual network to Microsoft 365 Copilot and Teams
+# Publish agents to Microsoft 365 Copilot and Microsoft Teams by using the REST API + VNet Guidance 
+
+This article shows how to publish a Foundry agent to Microsoft 365 Copilot and Teams by using the REST API. You can follow it for any project, whether or not public network access is disabled:
+
+- **Steps 1 through 4** are the REST equivalent of the one-click **Publish to Teams and Microsoft 365 Copilot** button in the Foundry portal, and they work for any project.
+- **Step 5** (firewall and networking) is required only when your project disables public network access (PNA) and runs behind a private endpoint. In that case, the portal button isn't available because the Microsoft channel adapters that deliver Teams and Copilot messages run outside your network and can't reach your agent's private IP address.
+
+When you finish, users in your tenant can use your agent in Microsoft 365 Copilot and Teams, including when the agent stays on a private network.
 
 > [!IMPORTANT]
-> Publishing agents to Microsoft 365 Copilot and Microsoft Teams is an "Early Access Preview" and is licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" and "Early Access Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"). It is your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
-
-When your Microsoft Foundry project disables public network access (PNA) and runs behind a private endpoint, the one-click **Publish to Teams and Microsoft 365 Copilot** button in the Foundry portal isn't available. The Microsoft channel adapters that deliver Teams and Copilot messages run outside your network, but your agent's endpoint resolves to a private IP address they can't reach.
-
-This article shows the manual flow that replaces the button. When you finish, users in your tenant can use your agent in Microsoft 365 Copilot and Teams while it stays on your private network.
+> Publishing agents to Microsoft 365 Copilot and Microsoft Teams is an "Early Access Preview" and is licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" and "Early Access Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
+>
+> Use of Azure AI Foundry Agent Service to host agents that operate with third-party servers or agents, is at your own risk. We recommend reviewing all data being shared with third-party servers or agents and being cognizant of third-party practices for retention and location of data.
+>
+> External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](/legal/microsoft-365/supplemental-terms).
+>
+> It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
 
 ## Prerequisites
 
@@ -29,7 +38,7 @@ This article shows the manual flow that replaces the button. When you finish, us
 - An agent in that project that you tested and want to publish. Test the agent thoroughly and select the active version that consumers interact with. For more information, see [Configure your agent endpoint and settings](./configure-agent.md).
 - The following role assignments:
     - **Foundry User** role on the Foundry project to create, manage, and publish agents.
-    - Permission to create an Azure Bot Service resource (for example, **Azure Bot Service Contributor**) in the target resource group.
+    - Permission to create an Azure Bot Service resource and configure its channels in the target resource group (for example, the **Azure Bot Service Contributor Role**, or the broader **Contributor** or **Owner** role).
     - Permission to manage the firewall, DNS, and reverse proxy that route inbound traffic to your network.
 - [Azure CLI](/cli/azure/install-azure-cli) installed and signed in with `az login` to the subscription that contains your Foundry resource.
 - The `Microsoft.BotService` resource provider registered in your subscription:
@@ -38,14 +47,13 @@ This article shows the manual flow that replaces the button. When you finish, us
    az provider register --namespace Microsoft.BotService
    ```
 
-## Steps
+[!INCLUDE [publish-what-happens](../includes/publish-copilot-what-happens.md)]
 
-> [!NOTE]
-> Steps 1 through 4 are the manual equivalent of the one-click **Publish to Teams and Microsoft 365 Copilot** button and work for any project, with or without public network access. Only step 5 (firewall and networking) is required for projects that disable public network access.
+## Steps
 
 1. Get your agent's identity and tenant ID.
 1. Create an Azure Bot Service resource.
-1. Enable the activity protocol and add BotServiceRbac or BotServiceTenant as an authorization scheme on the agent.
+1. Optionally, enable the activity protocol and add BotServiceRbac or BotServiceTenant as an authorization scheme on the agent. The publish API in the next step also does this automatically.
 1. Call Foundry's Microsoft 365 publish API.
 1. Configure your network for inbound and outbound traffic.
 
@@ -79,7 +87,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 ```
 
-In the JSON response, copy `instance_identity.principal_id`. Also copy `versions.latest.agent_guid` for the publish step.
+In the JSON response, copy `instance_identity.principal_id`. You use it in the next step when you create the Azure Bot Service resource.
 
 ```json
 "instance_identity": {
@@ -158,7 +166,16 @@ https://<resource-name>.services.ai.azure.com/api/projects/<project-name>/agents
          endpoint=<agent-activity-protocol-endpoint>
    ```
 
+1. Capture the Azure Bot Service resource ID. You pass it as `botServiceArmId` when you publish in Step 4:
+
+   ```azurecli
+   az bot show --name <bot-name> --resource-group <your-resource-group> --query id -o tsv
+   ```
+
 ## Step 3: Enable the activity protocol and Bot Service authorization
+
+> [!NOTE]
+> This step is optional. The Microsoft 365 publish API in Step 4 automatically adds the `activity` protocol and sets the bot-service authorization scheme that matches your `publishScope`. Complete this step to configure them explicitly, for example to test message delivery before you publish. Choose the scheme that matches the `publishScope` you use in Step 4, because publishing updates the scheme to match.
 
 Interacting with an agent from Microsoft 365 and Teams requires two additions to the agent endpoint: the **`activity`** protocol, which lets the channel adapters deliver messages, and a **Bot Service authorization scheme**, which controls who can call the agent.
 
@@ -169,9 +186,9 @@ Choose one authorization scheme:
 | `BotServiceRbac` | Only identities that have the Azure permissions required to call the agent in Foundry, through the portal, SDK, or REST API. |
 | `BotServiceTenant` | Everyone in your tenant. |
 
-The authorization scheme controls *who can call* the agent. This is separate from *visibility* — who sees the agent in the Microsoft 365 Copilot and Teams stores — which you set with `appPublishScope` in the publish request (step 4).
+The `publishScope` value in the publish request (step 4) determines both the agent's store visibility and its authorization scheme. `Tenant` maps to `BotServiceTenant`, and `Shared` or `Personal` maps to `BotServiceRbac`. Publishing sets the matching scheme for you, so the scheme you choose here must match the `publishScope` you use in step 4.
 
-In the Foundry portal, the **Who can use this agent** option pairs the two as defaults: **Just you** applies `BotServiceRbac` with `Shared` visibility, and **People in your organization** applies `BotServiceTenant` with `Tenant` visibility. Because you call the API directly, you can combine them however you need. For example, publish org-wide for visibility (`Tenant`) but still restrict calling to Foundry users (`BotServiceRbac`). For more information, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
+In the Foundry portal, the **Who can use this agent** option applies these pairings: **Just you** applies `BotServiceRbac` with `Shared` visibility, and **People in your organization** applies `BotServiceTenant` with `Tenant` visibility. For more information, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
 
 > [!IMPORTANT]
 > Keep `responses` and `Entra` in the lists as well — removing them will break chatting with the agent from the Foundry portal or SDK.
@@ -210,31 +227,26 @@ Foundry-Features: AgentEndpoints=V1Preview
 Publish the agent by calling the **Microsoft 365 publish** API with the `{{token}}` from the first step. Replace the placeholders using these values:
 
 > [!NOTE]
-> The Microsoft 365 publish API is in preview. A generally available (GA) version is planned, and the request format might change when it ships.
+> The Microsoft 365 publish API is in preview. The request format might change in a future version.
 
 | Placeholder | Description | Where to get it |
 |---|---|---|
-| `<region>` | Azure region of your Foundry resource, for example `eastus2` | Azure portal |
-| `<subscription-id>` | Subscription that contains your Foundry resource | `az account show --query id -o tsv` |
-| `<resource-group>` | Resource group that contains your Foundry resource | Azure portal |
-| `<account-name>` | Foundry resource name | Foundry portal |
-| `<project-name>` | Foundry project name | Foundry portal |
-| `<agent-guid>` | The GUID of your agent | `versions.latest.agent_guid` from the get-agent response |
-| `<agent-principal-id>` | Agent principal ID, sent as `botId` | `instance_identity.principal_id` from the get-agent response |
+| `{{endpoint}}` | Your project endpoint, `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>` | From Step 1.2 |
 | `<agent-name>` | Your agent's name | Foundry portal |
+| `<bot-service-arm-id>` | ARM resource ID of the Azure Bot Service resource you created in Step 2 | `az bot show` output from Step 2 |
+
+The agent name is part of the request URL. The service resolves the agent and its identity from that name, so you no longer pass the agent GUID or bot ID in the request body.
 
 ```http
-POST https://<region>.api.azureml.ms/agent-asset/v2.0/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<account-name>@<project-name>@AML/microsoft365/publish
+POST {{endpoint}}/agents/<agent-name>/microsoft365/publish?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "agentGuid": "<agent-guid>",
-  "botId": "<agent-principal-id>",
-  "subscriptionId": "<subscription-id>",
-  "agentName": "<agent-name>",
-  "appPublishScope": "Shared",
-  "publishAsDigitalWorker": false,
+  "agentDisplayName": "Contoso Helpdesk",
+  "botServiceArmId": "<bot-service-arm-id>",
+  "publishScope": "Shared",
+  "publishAsAutopilot": false,
   "appVersion": "1.0.0",
   "shortDescription": "Foundry M365 Agent",
   "fullDescription": "A Foundry agent published to Microsoft 365.",
@@ -247,16 +259,19 @@ Content-Type: application/json
 
 Customize the body before you publish:
 
-- `appPublishScope`: `Shared` (the portal's **Just you**) makes the agent available only to you. It appears under **Your agents** in the agent store, and you share it with a link. `Tenant` (the portal's **People in your organization**) submits the agent for Microsoft 365 admin approval and, once approved, makes it available to your whole organization under **Built by your org**.
+- `agentDisplayName`: the display name shown in Teams and Microsoft 365 Copilot. Optional; when omitted, the agent name is used.
+- `botServiceArmId`: the ARM resource ID of the Azure Bot Service resource you created in Step 2. Required.
+- `publishScope`: `Shared` (the portal's **Just you**) makes the agent available only to you. It appears under **Your agents** in the agent store, and you share it with a link. `Tenant` (the portal's **People in your organization**) submits the agent for Microsoft 365 admin approval and, once approved, makes it available to your whole organization under **Built by your org**. `Personal` is also accepted and treated as `Shared`.
 - `appVersion`: a semantic version string such as `1.0.0`. Increment it to update the user-facing properties; republishing an existing version returns a `version already exists` error. To roll out a new agent version, update the agent version receiving traffic instead.
 - `shortDescription` and `fullDescription`: descriptions shown in the agent store.
 - `developerName`, `developerWebsiteUrl`, `privacyUrl`, and `termsOfUseUrl`: developer metadata shown to users.
-- `publishAsDigitalWorker`: required; set to `false`. To publish as an autopilot agent, see [Foundry agents in Microsoft Agent 365](./agent-365.md).
+- `publishAsAutopilot`: set to `false`. To publish as an autopilot agent, see [Foundry agents in Microsoft Agent 365](./agent-365.md).
+- `canRespondWithoutMention`, `colorIconBase64`, and `outlineIconBase64`: optional. Control whether an autopilot responds to all messages on its Teams surfaces or only when @mentioned, and set custom color (192×192 PNG) and outline (32×32 PNG) app icons.
 
 > [!WARNING]
 > Don't include secrets, API keys, or other sensitive information in any metadata field. These fields are visible to users.
 
-A successful response returns the published agent metadata. The agent isn't reachable from Teams or Copilot until you configure networking in step 5.
+A successful response returns the published title ID (`titleId`). The agent isn't reachable from Teams or Copilot until you configure networking in step 5.
 
 ## Step 5: Configure networking and secure inbound traffic
 
@@ -298,15 +313,90 @@ A published agent's Teams app can be installed in any tenant, so requests from o
 1. Start a conversation and send a message.
 1. Confirm the agent replies. A reply confirms that both the inbound path (channel adapter to agent) and the outbound path (agent reply to the channel) work.
 
+## Limitations
+
+| Limitation | Description |
+| --- | --- |
+| File uploads and image generation in Microsoft 365 | These features don't work for agents published to Microsoft 365. They work in Microsoft Teams. |
+| Private Link | Not supported for Teams or Azure Bot Service integrations. |
+| Streaming and citations | Published agents don't support streaming responses or citations. |
+
 ## Troubleshooting
 
-| Issue | Cause | Resolution |
+After you publish, problems generally fall into three types: an error while publishing, not finding the agent in the agent store, or an error when you chat with the agent.
+
+### Publishing issues
+
+These errors occur when you publish through the Microsoft 365 publish API.
+
+| Symptom | Cause | Resolution |
+|-------|-------|------------|
+| The publish API rejects the request with a validation error | Invalid metadata or version. Example messages include `AppVersion can only contain digits and periods`, `AppVersion cannot start with 0`, `Developer name cannot exceed length of 32`, `Description cannot exceed length of 4000`, and `Developer Website URL must begin with 'https://'`. | Fix the flagged field and retry. The version must contain only digits and periods and can't start with `0`, the developer name must be 32 characters or fewer, and the full description must be 4,000 characters or fewer. |
+| The publish API rejects the request because the app version already exists | You republished an existing `appVersion`. The service returns `Microsoft 365 app with {version} version already exists, please increment the version number while publishing.` | Increment `appVersion`. To roll out new agent behavior, update the agent version that receives traffic instead. |
+| The publish API rejects the request for a missing field | The request is missing a required field, for example `BotServiceArmId is required.` or `App scope is required. Must be one of 'Personal', 'Shared', or 'Tenant'`. | Pass a valid `botServiceArmId`, and set `publishScope` to `Personal`, `Shared`, or `Tenant`. |
+| The publish API rejects the request for an invalid icon | The color or outline icon isn't valid, for example `ColorIconBase64 is not valid base64.`, `ColorIconBase64 must be a PNG image.`, or `ColorIconBase64 must be a 192x192 PNG image.` | Provide a 192×192 color PNG and a 32×32 outline PNG, base64-encoded and within the size limit. |
+| The publish API returns a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service. |
+| The publish API returns an identity error | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migrate-agent-applications.md) for steps to resolve this. |
+| The publish API returns a permission error | The acting user doesn't have the required permission on the workspace: `The acting user does not have the required permission on the workspace.` | Assign a role that grants agent write access on the Foundry project. |
+
+The following issues are specific to publishing behind a virtual network:
+
+| Symptom | Cause | Resolution |
 |---|---|---|
 | Publishing from the portal returns `403` | Public network access is disabled, so the portal can't complete publishing | Use the API-based flow in this article. You can also download the manifest `.zip` and create the agent from it in the [Microsoft 365 admin center](https://admin.cloud.microsoft). |
 | The channel adapter can't reach the agent | DNS, DNAT, or TLS isn't configured | Confirm your `A` record points to the firewall, the DNAT rule forwards port 443 to the reverse proxy, and the reverse proxy presents a certificate for your hostname. |
 | The agent receives messages but never replies | Outbound traffic is blocked | Allow outbound access to `smba.trafficmanager.net`, `login.microsoftonline.com`, and `login.botframework.com`. |
 | Requests reach the agent but are rejected | Token validation fails | Confirm the `validate-jwt` policy uses issuer `https://api.botframework.com` and an audience that matches your bot's Microsoft App ID. |
-| Organization-scope agent doesn't appear | Admin approval is pending | Confirm an admin approved the agent in the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested). |
+
+### Find your published agent
+
+If you can't find your agent in the Microsoft 365 Copilot or Microsoft Teams agent store, use the following table.
+
+| Symptom | Cause | Resolution |
+|-------|-------|------------|
+| The agent doesn't appear right after publishing | The store cache refreshes only when you open the store, on about a one-hour cycle. For organization scope, admin approval might still be pending. | For **Just you** (portal) or `Shared` (API) agents, clear the store cache or sign out and sign back in. For **People in your organization** (portal) or `Tenant` (API) agents, confirm a Microsoft 365 admin approved the request in the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested). |
+| The agent isn't where you expect it | You're looking in the wrong section for the publish scope | **Just you** (portal) or `Shared` (API) agents appear under **Your agents**. **People in your organization** (portal) or `Tenant` (API) agents appear under **Built by your org**. |
+
+### Runtime issues
+
+Use the following table for errors when you chat with a published agent in Microsoft 365 Copilot or Microsoft Teams.
+
+> [!NOTE]
+> End users don't need a Microsoft 365 Copilot license to use a published agent in Microsoft 365 Copilot Chat. Without a Copilot license, usage that accesses shared tenant data, such as SharePoint or Copilot connectors, might incur usage-based charges. For more information, see [Licensing and cost considerations for Copilot extensibility](/microsoft-365/copilot/extensibility/cost-considerations).
+
+| Symptom | Cause | Resolution |
+|---------|-------|------------|
+| **Conversation stuck.** The agent stops responding, or returns `no tool output found`. | The conversation entered a locked state after a tool error, so later messages keep failing. | Reset the conversation. See [Reset a conversation](#reset-a-conversation). |
+| **Insufficient permissions.** Authorization errors when you chat with the agent. | The user doesn't have access to the Foundry project, or the agent is published to `Shared` scope, which uses Azure role-based access control. | Verify the user has access to the Foundry project and an appropriate role, or publish to `Tenant` scope so users get access through admin approval. |
+| **Agent identity missing resource permissions.** The agent works in the Foundry playground but fails after publishing. | The agent's identity is missing permissions for the resources it uses. | Assign the required roles to the agent's identity for any Azure resources it accesses. |
+| **Agent identity disabled.** Authentication or agent identity errors occur during execution. | The agent identity application is disabled. | Verify the agent identity is enabled, and re-enable it if necessary. |
+| **MCP approval required.** Requests fail with an error that an MCP approval request wasn't approved. | A required MCP tool approval was missed or dismissed. | Approve the pending MCP request in the conversation. If the approval card is no longer available, start a new conversation and retry. |
+| **Missing required license.** Tool calls fail because required services are unavailable. | The required licenses or service plans aren't assigned to the user. | Verify that all required licenses and service plans are assigned and enabled. |
+| **Authentication timeout.** Sign-in or authentication fails or times out. | The authentication process wasn't completed before the timeout period expired. | Retry the sign-in process, and complete authentication before you submit the request again. |
+| **Rate limit exceeded.** Requests fail with a rate-limit error. | Request volume exceeded the available capacity for the model deployment. | Wait and retry later. Reduce request frequency, or increase deployment capacity if the issue occurs frequently. |
+| **Context length exceeded.** Requests fail because the prompt or conversation is too large. | The combined prompt, conversation history, or attachments exceed the model's context window. | Start a new conversation, or reduce the amount of content in the request. |
+| **Unsupported file type.** A file upload fails. | The uploaded file type isn't supported. | Upload a supported file type, or convert the file to a supported format. |
+| **Another response already in progress.** Requests fail because a previous request is still running. | The service can't start a new response while an existing response is active. | Wait for the current request to complete, then retry. If the session appears stuck, start a new conversation. |
+
+### Reset a conversation
+
+If a published agent stops responding, or returns an error such as `no tool output found`, the conversation can enter a state where later messages keep failing. To recover, start a fresh conversation with the agent:
+
+- **Microsoft 365 Copilot**: Start a new chat with the agent.
+- **Microsoft Teams**: Teams doesn't yet provide a way to start a new session, so send the agent the message `/foundry_new_preview` to reset the conversation.
+
+You can't restore the previous conversation after you reset it. The agent responds normally in the new conversation.
+
+<!--
+Editorial note: The following categories are intentionally excluded from this public article and are covered in internal troubleshooting guides instead:
+- Internal service errors
+- Generic server errors
+- Request ID collection guidance
+- Incident references and escalation paths
+- Monitoring and dashboard guidance
+- Infrastructure implementation details
+- Internal service dependencies and investigations
+-->
 
 ## Related content
 

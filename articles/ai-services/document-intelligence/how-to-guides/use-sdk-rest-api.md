@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/01/2026
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---

@@ -4,7 +4,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2026
+ms.date: 04/19/2026
 ms.author: lajanuar
 ---
 To get an orchestration workflow project's details, submit a **GET** request using the following URL and headers. Replace the placeholder values with your own values.   

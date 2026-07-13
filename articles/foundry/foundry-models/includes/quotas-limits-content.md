@@ -1,5 +1,4 @@
 ---
-title: include file
 title: Include file
 description: Include file
 author: msakande
@@ -7,7 +6,7 @@ ms.author: mopeakande
 ms.reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/29/2026
+ms.date: 07/10/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -15,14 +14,21 @@ This article provides a quick reference and detailed description of the quotas a
 
 ## Updates to quota management after 05/07/2026
 
-Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, quota for deployments is tracked at the subscription level—shared across all resources and regions—rather than being allocated separately per resource or per region.
+Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, and soon all models, quota for deployments is tracked at the subscription level. By tracking quota at the subscription level, all resources and regions share quota, rather than allocating quota separately per resource or per region.
 
 This change consolidates quota into shared pools:
 
 * Global Standard: Deployments of the same model and version share one quota pool across all regions in a subscription.
 * Data Zone Standard: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
 
-## What’s changing for me?
+### Check quota management scope
+
+You can find the quota management system that applies to a given model by going to the Foundry portal's **Quota** page. The value in the **Scope** column for a given model indicates how Foundry manages quota for that model. A Scope value of:
+
+- **Global** or **Data Zone**, indicates subscription-level quota management.
+- **A region** (for example, East US or West US), indicates per-region quota management for that subscription and model. 
+
+### What's changing for me?
 
 For the models that are onboarded to the new quota management system:
 
@@ -31,9 +37,6 @@ For the models that are onboarded to the new quota management system:
 * Existing approved quota is retained and automatically applies at the subscription level—no action required.
 
 This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
-
-> [!IMPORTANT]
-> The updated quota management currently applies only to Realtime Translate and Realtime Whisper. For all other Foundry Models covered in this article, quotas and limits are managed per region, per subscription, and per model or deployment type. In the future, these quota guidelines will also apply to some existing models and to new Foundry Model launches.
 
 ## Quotas and limits reference
 

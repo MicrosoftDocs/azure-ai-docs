@@ -119,5 +119,5 @@ Prompt caching is enabled by default for all supported models. There's no opt-ou
 
 ### Does prompt caching work with data residency?
 
-In-memory prompt caching is compatible with all data residency regions. Extended prompt caching temporarily stores data on GPU machines and keeps data in-region only when using Regional Standard or Regional Provisioned deployment types.
+In-memory prompt caching is compatible with all data residency regions. Extended prompt caching temporarily stores data on GPU machines. Data stays within the data zone boundary for Data Zone Standard and Data Zone Provisioned deployment types, and within the regional boundary for Regional Standard and Regional Provisioned deployment types.
 

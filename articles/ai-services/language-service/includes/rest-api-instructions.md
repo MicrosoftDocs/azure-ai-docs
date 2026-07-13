@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/05/2026
 ms.author: lajanuar
 ---
 1. Copy the command into a text editor.

@@ -1,9 +1,9 @@
 ---
 title: "Deep research tool (classic)"
 description: "Learn how to use the deep research tool with agents. (classic)"
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 manager: mcleans
 ms.date: 02/27/2026

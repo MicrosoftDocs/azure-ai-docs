@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 06/30/2026
+ms.date: 05/12/2026
 ms.custom: language-service-question-answering, mode-other
 ---
 <!-- markdownlint-disable MD025 -->

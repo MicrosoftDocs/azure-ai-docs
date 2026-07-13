@@ -7,7 +7,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2026
+ms.date: 06/22/2026
 ms.author: lajanuar
 ---
 | Requirement | Description |

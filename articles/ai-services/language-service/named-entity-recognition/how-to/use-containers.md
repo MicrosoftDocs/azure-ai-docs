@@ -8,7 +8,7 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/14/2026
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---

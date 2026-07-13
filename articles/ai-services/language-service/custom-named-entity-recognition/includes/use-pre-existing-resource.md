@@ -5,7 +5,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/03/2026
 ms.author: lajanuar
 ---
 You can use an existing Language resource to get started with custom NER as long as this resource meets the below requirements:

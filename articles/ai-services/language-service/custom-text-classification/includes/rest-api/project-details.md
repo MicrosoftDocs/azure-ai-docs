@@ -5,7 +5,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2026
+ms.date: 05/15/2026
 ms.author: lajanuar
 ---
 To get custom text classification project details, submit a **GET** request using the following URL and headers. Replace the placeholder values with your own values.   

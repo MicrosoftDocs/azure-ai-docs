@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2026
+ms.date: 05/01/2026
 ms.author: lajanuar
 ---
 To start creating a custom text classification model, you need to create a project. Creating a project lets you label data, train, evaluate, improve, and deploy your models.

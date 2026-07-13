@@ -7,7 +7,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 12/15/2025
+ms.date: 05/28/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

@@ -2004,7 +2004,7 @@ groups:
     title: Microsoft Foundry
   - id: rest-api
     title: Azure Language REST API
-# Owner: jburchel/jonburchel
+# Owner: mattwoj/mattwojo
 - id: set-up-key-vault
   title: Set up Key Vault
   prompt: Choose a method to set up Key Vault
@@ -2259,6 +2259,10 @@ groups:
     title: Azure Developer CLI
   - id: vscode
     title: VS Code
+  - id: python
+    title: Python
+  - id: dotnet
+    title: .NET
 # Owner: aahi
 - id: selection-foundry-skills
   title: Selections

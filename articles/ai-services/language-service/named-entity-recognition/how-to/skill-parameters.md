@@ -8,7 +8,7 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 06/17/2026
 ms.author: lajanuar
 ---
 # Using named entity recognition skill parameters

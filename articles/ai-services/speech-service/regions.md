@@ -90,7 +90,7 @@ The regions in the following tables support most of the core features of Azure S
 | `francecentral` | ✅ | ✅ | ✅ | | | ✅ | |
 | `germanywestcentral` | ✅ | ✅ | ✅ | | | | |
 | `italynorth` | ✅ | ✅ | ✅ | | | | |
-| `japaneast` | ✅ | ✅ | ✅ | ✅ | | ✅ | |
+| `japaneast` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ |
 | `japanwest` | ✅ | ✅ | ✅ | | | | |
 | `koreacentral` | ✅ | ✅ | ✅ | | | ✅ | |
 | `northcentralus` | ✅ | ✅ | ✅ | | ✅ | | |
@@ -107,7 +107,7 @@ The regions in the following tables support most of the core features of Azure S
 | `uksouth` | ✅ | ✅ | ✅ | ✅ | | ✅ | |
 | `ukwest` | ✅ | | ✅ | | | | |
 | `westcentralus` | ✅ | | ✅ | | | | |
-| `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |
 | `westus` | ✅ | ✅ | ✅ | | | ✅ | ✅ |
 | `westus2` | ✅ | ✅ | ✅ | | | ✅ | |
 | `westus3` | ✅ | ✅ | ✅ | | | ✅ | |

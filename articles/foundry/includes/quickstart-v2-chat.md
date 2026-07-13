@@ -38,6 +38,9 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 1. After the model deploys, you're automatically moved from **Home** to the **Build** section. Your new model is selected and ready for you to try out.
 
+    > [!TIP]
+    > If you skipped deployment, select **Test in playground** from the home page. Select the instant access model you want to use, such as `gpt-5-mini`. (During preview, these instant access models are available only for projects in **West US3**.)
+
 1. Start chatting with your model, for example, "Write me a poem about flowers."
 
 ---

@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/11/2025
+ms.date: 06/12/2026
 ms.author: lajanuar
 ms.custom: include, ignite-2024
 ---

@@ -6,7 +6,7 @@ author: erindormier
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2026
+ms.date: 06/19/2026
 ms.author: egeaney
 ms.custom: language-service-question-answering
 ---

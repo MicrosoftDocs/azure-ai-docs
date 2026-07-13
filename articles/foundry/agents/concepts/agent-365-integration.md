@@ -1,9 +1,9 @@
 ---
 title: "Microsoft Agent 365 integration with Foundry"
 description: "Learn how Microsoft Foundry integrates with Microsoft Agent 365 to provide enterprise-grade agent governance, observability, security, and lifecycle management."
-author: deeikele
-ms.author: deeikele
-ms.reviewer: jburchel
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: deeikele
 ms.date: 06/05/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry

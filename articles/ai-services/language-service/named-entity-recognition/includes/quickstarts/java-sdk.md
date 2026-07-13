@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/03/2026
 ms.custom: devx-track-java
 ms.author: lajanuar
 ---

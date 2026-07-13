@@ -5,8 +5,8 @@ ms.subservice: foundry-agent-service
 ms.reviewer: ckittel
 description: "Recover Foundry Agent Service projects from human or automation errors, accidental deletions, and stateful dependency loss or corruption."
 #customer intent: As a developer, I want to recreate a Microsoft Foundry project after accidental deletion so that I can redeploy agents and resume operations.
-author: jonburchel
-ms.author: jburchel
+author: mattwojo
+ms.author: mattwoj
 ms.date: 05/12/2026
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
