@@ -84,7 +84,7 @@ Follow these steps to create a new connection that's available for the current p
 1. Select __Admin__ in the left pane.
 1. Select your project name in the __Manage all projects__ list.
 1. Select the __Connected resources__ tab in the bottom section.
-1. Select __Add connection__ .
+1. Select **Add connection**.
 1. Select the service you want to connect to from the list of available external resources. For example, select __Azure AI Search__.
 1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.
 
