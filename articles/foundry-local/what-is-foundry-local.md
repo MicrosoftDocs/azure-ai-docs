@@ -18,11 +18,11 @@ ai-usage: ai-assisted
 
 # What is Foundry Local?
 
-Foundry Local is an **end-to-end local AI solution for shipping applications that run entirely on the user's device**. It provides an easy-to-use SDK (C#, JavaScript, Rust, and Python), a curated catalog of optimized models, and automatic hardware acceleration—all in a lightweight package.
+Foundry Local is an end-to-end local AI solution for shipping applications that run entirely on your device. **Use Foundry Local when you want to run AI locally, work offline, minimize latency, or keep data private.** It provides an easy-to-use SDK (C#, JavaScript, Rust, and Python), a curated catalog of optimized models, and automatic hardware acceleration—all in a lightweight package.
 
-User data never leaves the device, responses start immediately with zero network latency, and your app works offline. There are no per-token costs and no backend infrastructure to maintain.
+Your data never leaves the device, responses start immediately with zero network latency, and your app works offline. There are no per-token costs and no backend infrastructure to maintain.
 
-Foundry Local is one of two options to run AI models locally. Use it to embed AI in client applications on end-user devices. Data stays on the device, your app can work offline, and you don't need an Azure subscription. If you need enterprise-scale AI inference on your own infrastructure with Kubernetes-native operations and Azure Arc management, see [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local). That option deploys to Arc-enabled Kubernetes clusters on Azure Local.
+Foundry Local runs on your users' own devices, so your app works offline and you don't need an Azure subscription. If you need enterprise-scale AI inference on your own infrastructure with Kubernetes-native operations and Azure Arc management instead, see [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local).
 
 ## Features
 
@@ -30,9 +30,9 @@ Foundry Local is one of two options to run AI models locally. Use it to embed AI
 
 - **Curated model catalog—A catalog of high-quality models optimized for on-device use across a wide range of consumer hardware. The catalog covers chat completions (for example, GPT OSS, Qwen, DeepSeek, Mistral, and Phi) and audio transcription (for example, Whisper). Every model goes through extensive quantization and compression to deliver the best balance of quality and performance. Models are versioned, so your application can pin to a specific version or automatically receive updates.**
 
-- **Automatic hardware acceleration—Foundry Local detects the available hardware on the user's device and selects the best execution provider. It accelerates inference on GPUs and NPUs when available and falls back to CPU seamlessly—no hardware detection code required. Execution provider and driver updates are managed automatically to ensure optimal performance across different hardware configurations.**
+- **Automatic hardware acceleration—Foundry Local detects the hardware available on your device and selects the best execution provider. It accelerates inference on GPUs and NPUs when available and falls back to CPU seamlessly—no hardware detection code required. Execution provider and driver updates are managed automatically to ensure optimal performance across different hardware configurations.**
 
-- **Smart model management—Foundry Local handles the full lifecycle of models on end-user devices. Models download automatically on first use, are cached locally for instant subsequent launches, and the best-performing variant is selected for the user's specific hardware.**
+- **Smart model management—Foundry Local handles the full lifecycle of models on your device. Models download automatically on first use, are cached locally for instant subsequent launches, and the best-performing variant is selected for your specific hardware.**
 
 - **OpenAI-compatible API—Supports OpenAI request and response formats including the [OpenAI Responses API format](https://developers.openai.com/api/reference/resources/responses). If your application already uses the OpenAI SDK, point it to a Foundry Local endpoint with minimal code changes.**
 
@@ -42,14 +42,19 @@ Foundry Local is one of two options to run AI models locally. Use it to embed AI
 
 Foundry Local is ideal for applications that need to:
 
-- Keep sensitive data (audio, text, image, etc.) on the user's device.
+- Keep sensitive data (audio, text, image, etc.) on your device.
 - Operate in limited-connectivity or offline environments.
 - Reduce per-token cloud inference costs.
 - Deliver low-latency AI responses for real-time interactions.
 
-## Get started
+## Choose your next step
 
-Follow the [Get started with Foundry Local](get-started.md) guide for building your first on-device AI application.
+| I want to&hellip; | Go to |
+|---|---|
+| **Build my first app** | [Get started with Foundry Local](get-started.md) |
+| **Understand the runtime** | [Foundry Local architecture overview](concepts/foundry-local-architecture.md) |
+| **Build a chatbot** | [Build a multi-turn chat assistant](tutorials/tutorial-build-chat-assistant.md) |
+| **Start coding** | [Use native chat completions](how-to/how-to-use-native-chat-completions.md) |
 
 ## Frequently asked questions
 
