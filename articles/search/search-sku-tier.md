@@ -52,7 +52,7 @@ The Serverless Developer tier is in Public Preview and doesn't currently support
 - Shared Private Link resources: No planned support for the Serverless model
 - Service-level agreement (SLA): Not available during Public Preview
 
-Available Regions for the Serverless pricing model during preview include:
+Available regions for the Serverless pricing model during preview include:
 
 - West Central US
 - Switzerland North
