@@ -3,7 +3,6 @@ title: include file
 description: include file
 author: alvinashcraft
 ms.author: aashcraft
-ms.reviewer: nitinme
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026

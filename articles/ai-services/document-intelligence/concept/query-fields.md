@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 06/11/2026
-ms.author: nitinme
+ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0'
 ---
 
