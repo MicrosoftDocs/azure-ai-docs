@@ -15,7 +15,7 @@ ms.custom: language-service-question-answering
 # What is custom question answering?
 
 > [!IMPORTANT]
-> Custom question answering (CQA) retires from Azure Language on **March 31, 2029**. After this date, CQA is no longer supported. To avoid production disruption, migrate existing workloads and create all new projects in [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which provides enhanced natural language understanding capabilities and integrates directly into your applications. For more information, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
+> Custom question answering (CQA) retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and create all new projects in [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which provides enhanced natural language understanding capabilities and integrates directly into your applications. For more information, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
 
 Custom question answering (CQA) is a cloud-based Natural Language Processing (NLP) service that creates conversational AI applications over your data. Build knowledge bases from FAQs, manuals, and documents to deliver accurate answers through chat bots, virtual assistants, and interactive interfaces.
 
