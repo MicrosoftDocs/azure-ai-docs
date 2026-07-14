@@ -6,7 +6,8 @@ ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 06/10/2026
+ms.date: 07/14/2026
+ai-usage: ai-assisted
 ms.custom:
   - references_regions
   - build-2024
@@ -100,7 +101,7 @@ When naming your service, follow these rules:
 ## Choose a region
 
 > [!IMPORTANT]
-> Due to high demand, Azure AI Search is currently unavailable for new instances in some regions.
+> Region and tier availability can change over time. Check [Azure AI Search regional availability](search-region-support.md) during service creation.
 
 If you use multiple Azure services, putting all of them in the same region minimizes or voids bandwidth charges. There are no charges for data egress among same-region services.
 
@@ -143,7 +144,7 @@ The Basic and Standard tiers are the most common for production workloads, but m
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier page in the Azure portal." border="true":::
 
 > [!NOTE]
-> Services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+> Newer services have larger partitions and higher vector quotas at every billable tier. For current details, see [Service limits in Azure AI Search](search-limits-quotas-capacity.md).
 
 ## Choose a compute type
 
