@@ -85,7 +85,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
         ]
       }
     ],
-    "options": { "translateWithinImage": true }
+    "options": { "translateTextWithinImage": true }
   }'
 ```
 
