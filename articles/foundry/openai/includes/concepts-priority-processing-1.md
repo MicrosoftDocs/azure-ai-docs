@@ -26,21 +26,21 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ## Latency target
 
-| Model | Latency target value<sup>1</sup> | 
+The following table lists the *latency target value* for each model that supports priority processing. The latency target value is calculated as p50 request latency on a per 5 minute basis and expressed as a percentile threshold. For example, "99% > 50 Tokens per Second (TPS)" means 99% of requests are processed at more than 50 tokens per second.
+
+| Model | Latency target value | 
 | --- | --- |
-| gpt-5.6-terra, 2026-07-09<sup>2</sup> | 99% > 70 Tokens Per Second |
-| gpt-5.6-sol, 2026-07-09<sup>2</sup> | 99% > 50 Tokens Per Second |
-| gpt-5.5, 2026-04-24 | 99% > 50 Tokens Per Second |
-| gpt-5.4-mini, 2026-03-17 | 99% > 100 Tokens Per Second |
-| gpt-5.4, 2026-03-05<sup>3</sup> | 99% > 50 Tokens Per Second |
-| gpt-5.2, 2025-12-11 | 99% > 50 Tokens Per Second |
-| gpt-5.1, 2025-11-13 | 99% > 50 Tokens Per Second |
-| gpt-4.1, 2025-04-14<sup>3</sup> | 99% > 80 Tokens Per Second |
+| gpt-5.6-terra, 2026-07-09<sup>1</sup> | 99% > 70 TPS |
+| gpt-5.6-sol, 2026-07-09<sup>1</sup> | 99% > 50 TPS |
+| gpt-5.5, 2026-04-24 | 99% > 50 TPS |
+| gpt-5.4-mini, 2026-03-17 | 99% > 100 TPS |
+| gpt-5.4, 2026-03-05<sup>2</sup> | 99% > 50 TPS |
+| gpt-5.2, 2025-12-11 | 99% > 50 TPS |
+| gpt-5.1, 2025-11-13 | 99% > 50 TPS |
+| gpt-4.1, 2025-04-14<sup>2</sup> | 99% > 80 TPS |
 
-<sup>1</sup> Calculated as p50 request latency on a per 5 minute basis.
+<sup>1</sup> *Long context* for this model, that is, requests estimated to exceed **272k prompt tokens** are downgraded to standard processing and charged at the standard tier rate.
 
-<sup>2</sup> *Long context*, that is, requests estimated to exceed **272k prompt tokens** are downgraded to standard processing and charged at the standard tier rate.
-
-<sup>3</sup> *Long context*, that is, requests estimated to exceed **128k prompt tokens** are downgraded to standard processing and charged at the standard tier rate.
+<sup>2</sup> *Long context* for this model, that is, requests estimated to exceed **128k prompt tokens** are downgraded to standard processing and charged at the standard tier rate.
 
 

@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/02/2026
+ms.date: 07/14/2026
 ai-usage: ai-assisted
 ---
 
@@ -85,7 +85,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
         ]
       }
     ],
-    "options": { "translateWithinImage": true }
+    "options": { "translateTextWithinImage": true }
   }'
 ```
 

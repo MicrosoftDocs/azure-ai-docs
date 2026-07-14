@@ -3,7 +3,7 @@ author: laujan
 ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 06/15/2026
+ms.date: 06/10/2026
 ---
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later installed.

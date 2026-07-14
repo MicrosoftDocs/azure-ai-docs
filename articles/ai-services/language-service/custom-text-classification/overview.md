@@ -15,7 +15,7 @@ ms.custom: language-service-custom-classification
 # What is custom text classification?
 
 > [!IMPORTANT]
-> Custom text classification retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and create all new projects in [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which provides enhanced natural language understanding capabilities and integrates directly into your applications. For more information, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
+> Custom text classification retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and direct all new projects to [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which offers enhanced capabilities for natural language understanding and can be easily integrated into your applications. For guidance, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
 
 Custom text classification is one of the custom features offered by [Azure Language in Foundry Tools](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build custom models for text classification tasks.
 

@@ -6,7 +6,7 @@ keywords: Foundry Local, on-device AI, local inference
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.topic: overview
-ms.date: 06/15/2026
+ms.date: 05/15/2026
 ms.reviewer: samkemp
 ms.author: lajanuar
 author: laujan

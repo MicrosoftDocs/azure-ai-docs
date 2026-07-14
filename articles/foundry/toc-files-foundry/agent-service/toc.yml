@@ -148,13 +148,13 @@ items:
       href: ../../agents/how-to/multiplex-session-users.md
     - name: Pass isolation keys (protocol 1.0.0)
       href: ../../agents/how-to/pass-isolation-keys.md
-    - name: Agent optimization overview
+    - name: Agent optimizer overview
       href: ../../agents/concepts/agent-optimizer-overview.md
-    - name: Make your agent optimization-ready
+    - name: Make your agent optimizer-ready
       href: ../../agents/how-to/make-agent-optimizer-ready.md
-    - name: Create a custom evaluation dataset
+    - name: Create an evaluation dataset
       href: ../../agents/how-to/create-optimizer-dataset.md
-    - name: Optimize agent instructions and skills
+    - name: Optimize agent instructions, skills, tools, and models
       href: ../../agents/how-to/optimize-agent-targets.md
     - name: Optimize agent prompts
       href: ../../observability/how-to/prompt-optimizer.md

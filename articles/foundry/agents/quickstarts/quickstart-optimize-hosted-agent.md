@@ -18,6 +18,8 @@ zone_pivot_groups: hosted-agent-optimize-quickstart-method
 
 In this quickstart, you deploy the optimization sample agent, run the agent optimizer to improve its instructions, and deploy the winning candidate.
 
+For the concepts behind each step and the full end-to-end path, see the [optimization workflow](../concepts/agent-optimizer-overview.md#the-optimization-workflow).
+
 ## Prerequisites
 
 Before you begin, you need:
@@ -359,7 +361,7 @@ In this quickstart, you:
 ## Next steps
 
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
-- [Create a custom evaluation dataset](../how-to/create-optimizer-dataset.md)
-- [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
+- [Create an evaluation dataset and evaluators](../how-to/create-optimizer-dataset.md)
+- [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
