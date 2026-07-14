@@ -14,7 +14,7 @@ ms.custom: language-service-summarization, build-2024, ignite-2024
 # What is summarization?
 
 > [!IMPORTANT]
-> Summarization retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and direct all new projects to [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications. For guidance, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
+> Summarization retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and direct all new projects to [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which offers enhanced capabilities for natural language understanding and can be easily integrated into your applications. For guidance, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
 
 Summarization is a feature offered by [Azure Language in Foundry Tools](../overview.md), a combination of generative Large Language models and task-optimized encoder models that offer summarization solutions with higher quality, cost efficiency, and lower latency.
 Use this article to learn more about this feature, and how to use it in your applications.
