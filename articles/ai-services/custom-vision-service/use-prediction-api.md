@@ -86,7 +86,7 @@ The `-WithHttpMessages` methods return the raw HTTP response of the API call.
 
 ## Get results from the service
 
-The service returns results in the form of an **[ImagePrediction](/azure/ai-services/custom-vision-service/use-prediction-api)** object. The `Predictions` property contains a list of **[PredictionModel](/dotnet/api/microsoft.azure.cognitiveservices.vision.customvision.prediction.models.predictionmodel)** objects, which each represents a single object prediction. They include the name of the label and the bounding box coordinates where the object was detected in the image. Your app can then parse this data to, for example, display the image with labeled object fields on a screen. 
+The service returns results in the form of an **[ImagePrediction](/azure/ai-services/custom-vision-service/use-prediction-api)** object. The `Predictions` property contains a list of **[PredictionModel](/dotnet/api/overview/azure/custom-vision)** objects, which each represents a single object prediction. They include the name of the label and the bounding box coordinates where the object was detected in the image. Your app can then parse this data to, for example, display the image with labeled object fields on a screen. 
 
 ## Next step
 
