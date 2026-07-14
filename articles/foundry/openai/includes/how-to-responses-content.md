@@ -43,7 +43,6 @@ Before running the examples in this article, confirm that your resource region s
 - japanwest
 - koreacentral
 - northcentralus
-- northeurope
 - norwayeast
 - polandcentral
 - southafricanorth

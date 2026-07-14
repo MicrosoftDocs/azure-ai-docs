@@ -4,10 +4,12 @@ description: "Configure Claude Desktop to use Microsoft Foundry as its inference
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 04/22/2026
+ms.date: 07/14/2026
 ms.custom: dev-focus, doc-kit-assisted
 author: msakande
 ms.author: mopeakande
+reviewer: Rsirp0c
+ms.reviewer: haorancheng
 ai-usage: ai-assisted
 #CustomerIntent: As an IT admin, I want to configure Claude Desktop to use Microsoft Foundry as its inference provider so that my organization can run Claude Cowork and Claude Code with Azure-managed billing, enterprise security, and local conversation storage.
 ---
@@ -22,7 +24,7 @@ This article shows you how to set up Claude Desktop with a Microsoft Foundry inf
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Free trial, student, credit–based accounts, Enterprise accounts in South Korea, and Cloud Solution Provider subscriptions aren't supported for Claude models. For details on these restrictions, see [subscription type and region support](#subscription-type-and-region-support).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A Microsoft Foundry resource with one or more Claude models deployed. See [Deploy and use Claude models in Microsoft Foundry (preview)](use-foundry-models-claude.md).
+- A Microsoft Foundry resource with one or more Claude models deployed. See [Deploy and use Claude models in Microsoft Foundry](use-foundry-models-claude.md).
 - Your Foundry resource name. In the Foundry portal, select your project name > **Project details** > **Parent resource** to find it.
 - An API key for your Foundry deployment.
 
@@ -34,7 +36,7 @@ This article shows you how to set up Claude Desktop with a Microsoft Foundry inf
 ## Set up a single machine
 
 > [!IMPORTANT]
-> Claude models in Microsoft Foundry are currently in preview. Model availability might change. Check the [Foundry Models from partners](../concepts/models-from-partners.md) page for the latest list of available models.
+> Availability of Claude models in Microsoft Foundry might change. Check the [Foundry Models from partners](../concepts/models-from-partners.md#anthropic) page for the latest list of available models.
 
 Use this procedure for evaluation or pilot use on an individual device.
 
@@ -96,6 +98,7 @@ Anthropic-bound telemetry (crash reports and product analytics) contains no conv
 
 - [Configure Claude Code for Microsoft Foundry](configure-claude-code.md)
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
-- [Deploy and use Claude models in Microsoft Foundry (preview)](use-foundry-models-claude.md)
+- [Claude models in Microsoft Foundry](../concepts/claude-models.md)
+- [Deploy and use Claude models in Microsoft Foundry)](use-foundry-models-claude.md)
 - [Claude Docs: Cowork on 3P — Overview](https://claude.com/docs/cowork/overview) 
 - [Claude Docs: Claude Code Overview](https://code.claude.com/docs/en/overview) 
