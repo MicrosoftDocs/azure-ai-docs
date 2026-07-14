@@ -4,7 +4,7 @@ description: "Set up Claude Code CLI and VS Code extension to use Claude models 
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 07/14/2026
 ms.custom: dev-focus, doc-kit-assisted
 author: msakande
 ms.author: mopeakande
@@ -47,10 +47,10 @@ In this article, you learn how to:
 
 ## Deploy a Claude model in Foundry
 
-Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). Claude Code uses different models for different tasks:
+Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Claude Code uses different models for different tasks:
 
 > [!IMPORTANT]
-> Claude models in Microsoft Foundry are currently in preview. Model availability might change. Check the [Foundry Models from partners](../concepts/models-from-partners.md#anthropic) page for the latest list of available models.
+> Model availability for Claude models in Microsoft Foundry might change. Check the [Foundry Models from partners](../concepts/models-from-partners.md#anthropic) page for the latest list of available models.
 
 | Claude Code role | Recommended deployment | Purpose |
 | --- | --- | --- |
