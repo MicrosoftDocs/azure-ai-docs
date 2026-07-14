@@ -42,7 +42,7 @@ Foundry Local runs on your users' own devices, so your app works offline and you
 
 Foundry Local is ideal for applications that need to:
 
-- Keep sensitive data (audio, text, image, etc.) on your device.
+- Keep sensitive data (audio, text, image, and more) on your device.
 - Operate in limited-connectivity or offline environments.
 - Reduce per-token cloud inference costs.
 - Deliver low-latency AI responses for real-time interactions.
