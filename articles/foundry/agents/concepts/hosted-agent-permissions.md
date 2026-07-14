@@ -444,7 +444,7 @@ A middle-tier service that authenticates its own end users can scope a session t
 
 `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action`
 
-This data action is **not** included in any built-in role. Roles that previously granted it through the `Microsoft.CognitiveServices/*` data action — such as **Foundry User** and **Foundry Owner** — no longer do. To grant it, create a custom role that includes the data action and assign that role to your middle-tier service's identity at the scope of the Foundry project or the specific agent.
+This data action is **not** included in any built-in role. Roles that previously granted it through the `Microsoft.CognitiveServices/*` data action — including **Foundry User** and **Foundry Owner** — no longer do. To grant it, create a custom role that includes the data action and assign that role to your middle-tier service's identity at the scope of the Foundry project or the specific agent.
 
 The following custom role definition grants only the impersonation data action:
 
