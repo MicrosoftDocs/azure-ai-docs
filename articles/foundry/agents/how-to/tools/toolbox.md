@@ -1,13 +1,10 @@
 ---
 title: "Create, test, and deploy a toolbox in Foundry"
-title: "Create, test, and deploy a toolbox in Foundry"
 description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, Azure AI Search, file search, code interpreter tool and more to hosted agents through a single managed endpoint."
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 06/25/2026
-ms.manager: mcleans
 ms.date: 06/25/2026
 ms.manager: mcleans
 ms.topic: how-to
@@ -18,7 +15,6 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-foundry-toolbox
 ---
 
-# Create, test, and deploy a toolbox in Foundry
 # Create, test, and deploy a toolbox in Foundry
 
 > [!WARNING]

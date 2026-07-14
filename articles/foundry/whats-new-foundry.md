@@ -1,8 +1,6 @@
 ---
 title: "Microsoft Foundry docs: What's new for June 2026"
 description: "Discover documentation and product updates in Microsoft Foundry for June 2026."
-title: "Microsoft Foundry docs: What's new for June 2026"
-description: "Discover documentation and product updates in Microsoft Foundry for June 2026."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -14,11 +12,9 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.date: 07/08/2026
-ms.date: 07/08/2026
 ---
 
 # What's new in Microsoft Foundry?
-Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
 Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
 <br>
 
