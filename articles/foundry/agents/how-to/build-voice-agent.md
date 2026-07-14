@@ -191,12 +191,13 @@ Voice agents follow the same deployment flow as any hosted agent. The only diffe
 
 ### Declare the protocol
 
-When you create the agent version, include `invocations_ws` in `container_protocol_versions`. You can declare it alone or alongside `responses` and `invocations`.
+When you create the agent version, include `invocations_ws` in `protocol_versions`. You can declare it alone or alongside `responses` and `invocations`.
 
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     AgentProtocol,
+    ContainerConfiguration,
     HostedAgentDefinition,
     ProtocolVersionRecord,
 )
@@ -211,12 +212,14 @@ project = AIProjectClient(
 agent = project.agents.create_version(
     agent_name="my-voice-agent",
     definition=HostedAgentDefinition(
-        container_protocol_versions=[
+        protocol_versions=[
             ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
         ],
         cpu="1",
         memory="2Gi",
-        image="your-registry.azurecr.io/your-voice-agent:v1",
+        container_configuration=ContainerConfiguration(
+            image="your-registry.azurecr.io/your-voice-agent:v1"
+        ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-realtime",
         },

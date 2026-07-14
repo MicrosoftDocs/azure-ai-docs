@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: tutorial
-ms.date: 06/26/2026
+ms.date: 07/13/2026
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
@@ -38,7 +38,7 @@ This article is part three of a three-part tutorial series. In this part of the 
 
 - `Owner`, `User Access Administrator`, or `Role Based Access Control Administrator` at scopes where you assign roles to your user account.
 
-- Foundry model deployments for `text-embedding-3-large` and `gpt-4.1`. The template used in part one deploys `gpt-4.1`, but it doesn't deploy `text-embedding-3-large`. Deploy `text-embedding-3-large`, and then verify both deployments before you continue. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/foundry/foundry-models/how-to/deploy-foundry-models).
+- Foundry model deployments for `text-embedding-3-large` and a GPT-5 family model (such as `gpt-5-turbo`). The template used in part one deploys a GPT-5 family model, but it doesn't deploy `text-embedding-3-large`. Deploy `text-embedding-3-large`, and then verify both deployments before you continue. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/foundry/foundry-models/how-to/deploy-foundry-models).
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -60,9 +60,9 @@ Verify that your Foundry resource includes the deployments used later in this ar
       -o table
    ```
 
-1. Confirm that `text-embedding-3-large` and `gpt-4.1` both appear with a `Succeeded` status.
+1. Confirm that `text-embedding-3-large` and a GPT-5 family model both appear with a `Succeeded` status.
 
-   If `gpt-4.1` isn't deployed yet, deploy it before you create the agent later in this article.
+   If a GPT-5 family model isn't deployed yet, deploy one before you create the agent later in this article.
 
 ## Assign user account roles
 
@@ -377,7 +377,7 @@ To create the agent and validate citations:
     {
       "name": "agent-private-retrieval",
        "definition": {
-          "model": "gpt-4.1",
+          "model": "<gpt-5-model-deployment-name>",
           "instructions": "Use the knowledge base for every answer. Return grounded citations. If the answer is not in the knowledge base, say that you do not know.",
           "tools": [
              {

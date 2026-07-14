@@ -1,12 +1,12 @@
 ---
 title: Deprecation
 titleSuffix: Azure AI services
-author: nitinme
+author: mattwojo
 manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: nitinme
+ms.author: mattwoj
 ---
 
 > [!IMPORTANT]
