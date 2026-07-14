@@ -357,7 +357,7 @@ Content-Type: application/json
 | `status` | enum (`Enabled`, `Disabled`) | Whether the agent is serving traffic | Not yet supported | No |
 
 > [!NOTE]
-> The `version_selector`, `protocol_configuration`, and `authorization_schemes` are nested under `agent_endpoint`. To update any of them, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
+> The `version_selector`, `protocol_configuration`, and `authorization_schemes` properties are nested under `agent_endpoint`. To update any of these properties, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
 
 </details>
 
