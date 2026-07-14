@@ -158,6 +158,22 @@ Deploying services (azd deploy)
     azd ai agent monitor --follow
     ```
 
+## Step 5: Invoke your agent
+
+1. Send the same prompt to the deployed agent:
+
+    ```
+    azd ai agent invoke "Write a haiku about deploying cloud applications."
+    ```
+
+    You should see a haiku response within a few seconds.
+
+1. (Optional) Stream container logs while you interact with the agent:
+
+    ```
+    azd ai agent monitor --follow
+    ```
+
 :::zone-end
 
 :::zone pivot="python"

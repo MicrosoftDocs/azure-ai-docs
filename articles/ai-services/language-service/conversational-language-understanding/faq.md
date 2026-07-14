@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 05/31/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: mode-other
 ---

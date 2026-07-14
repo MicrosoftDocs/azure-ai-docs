@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 06/26/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---

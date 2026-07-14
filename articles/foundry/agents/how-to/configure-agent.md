@@ -32,6 +32,7 @@ This article shows you how to select the active version, enable protocols, set a
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
 - [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents. Principals that only interact with agents (without creating or editing them) should use the [Foundry Agent Consumer role](../../concepts/rbac-foundry.md) instead.
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents. Principals that only interact with agents (without creating or editing them) should use the [Foundry Agent Consumer role](../../concepts/rbac-foundry.md) instead.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration

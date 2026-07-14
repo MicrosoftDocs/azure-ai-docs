@@ -423,7 +423,7 @@ To create the agent and validate citations:
 
    Expected result:
 
-	- The agent returns an answer that's grounded in your uploaded blob content.
+    - The agent returns an answer that's grounded in your uploaded blob content.
    - The response includes citations that reference the Earth at Night source content.
    - The request succeeds from your private network client by using the same private path configured in parts one and two.
 

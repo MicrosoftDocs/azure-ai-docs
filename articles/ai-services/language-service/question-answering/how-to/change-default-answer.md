@@ -3,7 +3,7 @@ title: Get default answer - custom question answering
 description: The default answer is returned when there is no match to the question. You might want to change the default answer from the standard default answer in custom question answering.
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 04/07/2026
+ms.date: 06/30/2026
 author: laujan
 ms.author: lajanuar
 ms.custom: language-service-question-answering

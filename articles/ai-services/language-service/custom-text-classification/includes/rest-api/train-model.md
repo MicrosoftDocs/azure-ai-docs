@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 05/17/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 Submit a **POST** request using the following URL, headers, and JSON body to submit a training job. Replace the placeholder values with your own values. 
@@ -33,13 +33,13 @@ Use the following JSON in your request body. The model will be given the `{MODEL
 
 ```json
 {
-	"modelLabel": "{MODEL-NAME}",
-	"trainingConfigVersion": "{CONFIG-VERSION}",
-	"evaluationOptions": {
-		"kind": "percentage",
-		"trainingSplitPercentage": 80,
-		"testingSplitPercentage": 20
-	}
+    "modelLabel": "{MODEL-NAME}",
+    "trainingConfigVersion": "{CONFIG-VERSION}",
+    "evaluationOptions": {
+        "kind": "percentage",
+        "trainingSplitPercentage": 80,
+        "testingSplitPercentage": 20
+    }
 }
 ```
 

@@ -1,6 +1,8 @@
 ---
 title: "Quickstart: Optimize a hosted agent (preview)"
 description: "Deploy the optimization sample agent, run the agent optimizer to automatically improve its instructions, and deploy the winning candidate."
+title: "Quickstart: Optimize a hosted agent (preview)"
+description: "Deploy the optimization sample agent, run the agent optimizer to automatically improve its instructions, and deploy the winning candidate."
 author: aahill
 ms.author: aahi
 ms.date: 06/22/2026

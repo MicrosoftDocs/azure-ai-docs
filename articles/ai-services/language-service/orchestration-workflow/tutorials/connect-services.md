@@ -8,7 +8,7 @@ manager: mcleans
 ms.reviewer: cahann, hazemelh
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 05/24/2026
+ms.date: 06/30/2026
 ---
 <!-- markdownlint-disable MD025 -->
 

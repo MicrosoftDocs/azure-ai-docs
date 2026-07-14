@@ -26,6 +26,9 @@ If the user who created the project can assign roles (for example, by having the
 > [!TIP]
 > If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
 
+> [!TIP]
+> If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
+
 To assign these roles manually, use the following quick steps.
 
 ### Assign a role to your user principal
@@ -46,6 +49,7 @@ To understand role-based access control in Microsoft Foundry, consider two quest
 To help answer these questions, here are descriptions of some terminology used throughout this article. 
 
 * **Permissions**: Allowed or denied actions that an identity can perform on a resource, such as reading, writing, deleting, or managing both control plane and data plane operations.
+* **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
 * **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
 * **Role**: A named collection of permissions that defines which actions can be performed on Azure resources at a given scope.
 

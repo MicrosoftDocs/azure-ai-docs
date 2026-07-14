@@ -4,7 +4,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 04/05/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 Create a **DELETE** request using the following URL, headers, and JSON body to delete a deployment.

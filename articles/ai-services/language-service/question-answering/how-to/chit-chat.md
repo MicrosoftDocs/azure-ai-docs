@@ -8,7 +8,7 @@ author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/24/2026
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 # Use chitchat with a project

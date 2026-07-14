@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 04/16/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 When you no longer need your project, you can delete it with the following **DELETE** request. Replace the placeholder values with your own values.   

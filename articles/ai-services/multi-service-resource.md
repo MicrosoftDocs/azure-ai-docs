@@ -5,7 +5,11 @@ description: Create and manage a Foundry resource.
 author: laujan
 ms.author: lajanuar
 manager: mcleans
+<<<<<<< HEAD
 ms.date: 07/09/2026
+=======
+ms.date: 05/13/2026
+>>>>>>> origin/main
 ms.service: foundry-tools
 ms.topic: quickstart
 ms.custom:

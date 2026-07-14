@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 # Install and run Conversational Language Understanding (CLU) containers

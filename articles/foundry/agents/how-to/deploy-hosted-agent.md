@@ -11,6 +11,7 @@ ms.subservice: foundry-agent-service
 ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-deploy-clients
+zone_pivot_groups: hosted-agent-deploy-clients
 ---
 
 # Deploy a hosted agent

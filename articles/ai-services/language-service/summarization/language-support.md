@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-summarization, ignite-2023, build-2024
 ---
@@ -56,7 +56,7 @@ Conversation summarization supports the following languages:
 | Language              | Language code |      Notes          |
 |-----------------------|---------------|---------------------|
 | Chinese-Simplified    | `zh-hans`     |  `zh` also accepted |
-|Chinese-Traditional	|`zh-hant`||
+|Chinese-Traditional    |`zh-hant`||
 | English               | `en`          |                     |
 | French                | `fr`          |                     |
 | German                | `de`          |                     |
@@ -67,17 +67,17 @@ Conversation summarization supports the following languages:
 | Polish                | `pl`          |                     |
 | Portuguese  | `pt`          | `pt-br` also accepted  |
 | Spanish               | `es`          |                     |
-|Dutch|	`nl`||	
-|Swedish|	`sv`||	
-|Danish|	`da`||	
-|Finnish|	`fi`||	
-|Russian|	`ru`||	
-|Norwegian|	`no`||	
-|Turkish|	`tr`||	
-|Arabic|	`ar`||	
-|Czech|	`cs`||	
-|Hungarian|	`hu`||	
-|Thai|	`th`||	
+|Dutch|    `nl`||    
+|Swedish|    `sv`||    
+|Danish|    `da`||    
+|Finnish|    `fi`||    
+|Russian|    `ru`||    
+|Norwegian|    `no`||    
+|Turkish|    `tr`||    
+|Arabic|    `ar`||    
+|Czech|    `cs`||    
+|Hungarian|    `hu`||    
+|Thai|    `th`||    
 
 ## Next steps
 

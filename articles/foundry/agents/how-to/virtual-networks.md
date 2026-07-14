@@ -25,6 +25,10 @@ This article describes two approaches. Use the **Portal or templates** path to p
 
 :::zone pivot="templates"
 
+This article describes two approaches. Use the **Portal or templates** path to provision a network-secured Foundry environment with Bicep or Terraform. Use the **Azure Developer CLI** path to place the dependencies of an `azd` hosted agent project behind private endpoints. Choose a method with the selector.
+
+:::zone pivot="templates"
+
 [!INCLUDE [virtual-networks content](../includes/how-to-virtual-networks-content.md)]
 
 :::zone-end

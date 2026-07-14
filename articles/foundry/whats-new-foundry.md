@@ -1,6 +1,8 @@
 ---
 title: "Microsoft Foundry docs: What's new for June 2026"
 description: "Discover documentation and product updates in Microsoft Foundry for June 2026."
+title: "Microsoft Foundry docs: What's new for June 2026"
+description: "Discover documentation and product updates in Microsoft Foundry for June 2026."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -12,15 +14,20 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.date: 07/08/2026
+ms.date: 07/08/2026
 ---
 
 # What's new in Microsoft Foundry?
+Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
 Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
 <br>
 
 ## New articles
 
 - Foundry Agent Service
+  - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](/azure/foundry/agents/how-to/publish-copilot)
+  - [Publish agents in a virtual network to Microsoft 365 Copilot and Teams](/azure/foundry/agents/how-to/publish-copilot-virtual-network)
+  - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
   - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](/azure/foundry/agents/how-to/publish-copilot)
   - [Publish agents in a virtual network to Microsoft 365 Copilot and Teams](/azure/foundry/agents/how-to/publish-copilot-virtual-network)
   - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
