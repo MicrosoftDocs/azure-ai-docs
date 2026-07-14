@@ -98,6 +98,7 @@ Anthropic-bound telemetry (crash reports and product analytics) contains no conv
 
 - [Configure Claude Code for Microsoft Foundry](configure-claude-code.md)
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
-- [Deploy and use Claude models in Microsoft Foundry (preview)](use-foundry-models-claude.md)
+- [Claude models in Microsoft Foundry](../concepts/claude-models.md)
+- [Deploy and use Claude models in Microsoft Foundry)](use-foundry-models-claude.md)
 - [Claude Docs: Cowork on 3P — Overview](https://claude.com/docs/cowork/overview) 
 - [Claude Docs: Claude Code Overview](https://code.claude.com/docs/en/overview) 
