@@ -103,7 +103,7 @@ If you provide the `prompt_cache_key` parameter, it's combined with the prefix h
 
 ## Manage prompt caching costs
 
-On `gpt-5.6` and later models, cache writes are billed, so control how often your prompts write to the cache. Cache reads stay discounted, so structure your requests to favor reads over writes.
+On `gpt-5.6` and later models, you pay for cache writes, so control how often your prompts write to the cache. Cache reads stay discounted, so structure your requests to favor reads over writes.
 
 To reduce cache-write costs:
 
