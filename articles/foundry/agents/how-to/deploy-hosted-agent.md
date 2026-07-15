@@ -332,7 +332,7 @@ When you create a version, the platform automatically provisions the agent. Ther
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol, ContainerConfiguration
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentEndpointProtocol, ContainerConfiguration
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -351,7 +351,7 @@ agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         protocol_versions=[
-            ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
+            ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")
         ],
         cpu="1",
         memory="2Gi",
@@ -371,9 +371,9 @@ To expose both protocols, pass both in `protocol_versions`:
 
 ```python
 protocol_versions=[
-    ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="1.0.0"),
 ],
 ```
 

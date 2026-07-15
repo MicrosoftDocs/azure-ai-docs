@@ -199,7 +199,7 @@ items:
     items:
     - name: MAI-Image models
       displayName: MAI image models in Foundry
-      href: ../../foundry-models/how-to/use-foundry-models-mai.md
+      href: ../../foundry-models/how-to/use-foundry-models-mai-image.md
     - name: MAI-Voice models
       displayName: mai voice, neural voice
       href: /azure/ai-services/speech-service/mai-voices?context=/azure/foundry/context/context
