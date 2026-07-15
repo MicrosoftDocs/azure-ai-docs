@@ -51,7 +51,7 @@ Before you begin, you need:
 * The Python packages used in this path:
 
   ```bash
-  pip install "azure-ai-projects>=2.3.0" azure-identity python-dotenv
+  pip install "azure-ai-projects>=2.3.0" azure-ai-agentserver-optimization azure-identity python-dotenv
   ```
 
 * An existing Foundry project that already contains the hosted agent,
@@ -224,6 +224,7 @@ Create a file named `optimize_hosted_agent.py` in the same folder as `.env`:
 import os
 import time
 
+from azure.ai.agentserver.optimization import load_config
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
   JobStatus,
@@ -250,6 +251,8 @@ optimization_model = os.environ.get("OPTIMIZATION_MODEL", "gpt-5")
 
 terminal_statuses = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
 
+optimization_config = load_config() # Reads agent optimization config from .agent_configs/baseline/metadata.yaml
+
 with (
   DefaultAzureCredential() as credential,
   AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
@@ -267,6 +270,11 @@ with (
           max_candidates=2,
           eval_model=eval_model,
           optimization_model=optimization_model,
+          optimization_config={
+            "system_prompt": optimization_config.instructions,
+            **({"tools": optimization_config.tool_definitions} if optimization_config.has_tool_definitions else {}),
+            **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
+          }
         ),
       )
     )
