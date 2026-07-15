@@ -86,11 +86,14 @@ az role assignment create --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --assign
 
 ### Agent-scope role assignments
 
-Roles can be assigned at the scope of a specific agent rather than the entire project. This approach lets you grant access to one agent without granting access to all agents in the project. The scope URI for an agent follows this pattern:
+Assign roles at the scope of a specific agent rather than the entire project. This approach lets you grant endpoint access to one agent without granting endpoint access to all agents in the project. The scope URI for an agent follows this pattern:
 
 ```
 /subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>
 ```
+
+> [!NOTE]
+> The system currently assesses agent-scope role assignments only for agent endpoint access. Assigning a role at the scope of an individual agent affects whether the assignee can interact with that agent's endpoints, but it doesn't grant broader control-plane or management permissions.
 
 For example, the following command assigns the Foundry Agent Consumer role (role definition ID `eed3b665-ab3a-47b6-8f48-c9382fb1dad6`) to a service principal at the scope of a specific agent.
 
@@ -101,7 +104,7 @@ az role assignment create \
     --scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>"
 ```
 
-Agent-scope assignments follow the same RBAC model as project-scope assignments. Any role that can be assigned at the project scope can also be assigned at the agent scope.
+Role-assignment mechanics for agent scopes follow the same Azure RBAC model as project-scope assignments. Any role that can be assigned at the project scope can also be assigned at the agent scope. However, at the agent scope, role assignments are currently evaluated only for agent endpoint access and don't grant broader control-plane or management permissions.
 
 [!INCLUDE [rbac-foundry 3](../includes/concepts-rbac-foundry-3.md)]
 

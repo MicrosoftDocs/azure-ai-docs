@@ -4,17 +4,22 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Batch deployment options
 manager: mcleans
 ms.date: 07/08/2026
+manager: mcleans
+ms.date: 07/08/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions
 ai-usage: ai-assisted
+ai-usage: ai-assisted
 ---
 
 ## Global Batch
 
 For **Global deployments**, prompts and responses can be processed in any Azure region where the model is deployed.
+
+#### Availability for Azure OpenAI in Foundry Models
 
 #### Availability for Azure OpenAI in Foundry Models
 
@@ -88,7 +93,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 
@@ -111,6 +116,8 @@ Not available
 ## Data Zone Batch
 
 For **Data Zone** deployments, prompts and responses are processed anywhere within the Microsoft-specified data zone: United States (data processed anywhere within the US) or European Union (data processed within any EU member nation).
+
+#### Availability for Azure OpenAI in Foundry Models
 
 #### Availability for Azure OpenAI in Foundry Models
 
@@ -154,7 +161,7 @@ Not available
 
 ---
 
-#### Availability for other model collections in Foundry Models
+#### Availability for other Foundry Models sold by Azure
 
 # [Americas](#tab/az-americas)
 

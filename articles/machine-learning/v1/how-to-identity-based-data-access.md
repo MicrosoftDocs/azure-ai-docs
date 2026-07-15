@@ -6,7 +6,7 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.author: scottpolly
-author: ynpandey
+author: s-polly
 ms.reviewer: shshubhe
 ms.date: 03/07/2025
 ms.custom: UpdateFrequency5, devx-track-python, data4ml

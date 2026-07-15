@@ -26,6 +26,9 @@ If the user who created the project can assign roles (for example, by having the
 > [!TIP]
 > If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
 
+> [!TIP]
+> If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
+
 To assign these roles manually, use the following quick steps.
 
 ### Assign a role to your user principal
@@ -47,6 +50,7 @@ To help answer these questions, here are descriptions of some terminology used t
 
 * **Permissions**: Allowed or denied actions that an identity can perform on a resource, such as reading, writing, deleting, or managing both control plane and data plane operations.
 * **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
+* **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
 * **Role**: A named collection of permissions that defines which actions can be performed on Azure resources at a given scope.
 
 An identity gets a *role* with specific *permissions* at a selected *scope* based on your enterprise requirements.
@@ -55,7 +59,7 @@ In Microsoft Foundry, consider the following scopes when completing role assignm
 
 * **Foundry resource**: The top-level scope that defines the administrative, security, and monitoring boundary for a Microsoft Foundry environment.
 * **Foundry project**: A sub-scope within a Foundry resource used to organize work and enforce access control for Foundry APIs, tools, and developer workflows.
-* **Agent**: A narrower scope within a Foundry project that applies to an individual agent. Assign roles at this scope to grant access to a specific agent without granting access to all agents in the project. For more information, see [Agent-scope role assignments](../concepts/rbac-foundry.md#agent-scope-role-assignments).
+* **Agent**: A narrower scope within a Foundry project that applies to an individual agent. Role assignments at this scope are currently evaluated only for agent endpoint access, so use this scope to grant access to a specific agent's endpoints without granting endpoint access to all agents in the project. For more information, see [Agent-scope role assignments](../concepts/rbac-foundry.md#agent-scope-role-assignments).
 
 ## Built-in roles
 

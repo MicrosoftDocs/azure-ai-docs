@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/21/2026
 ms.author: lajanuar
 ---
 To use PII detection, you submit text for analysis and handle the API output in your application. Analysis is performed as-is, with no customization to the model used on your data. There are two ways to use PII detection:

@@ -1,9 +1,9 @@
 ---
 title: "Create, test, and deploy a toolbox in Foundry"
 description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, Azure AI Search, file search, code interpreter tool and more to hosted agents through a single managed endpoint."
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.date: 06/25/2026
 ms.manager: mcleans
@@ -3267,8 +3267,6 @@ using var httpClient = new HttpClient(
 Console.WriteLine($"Connecting to Foundry Toolbox '{toolboxName}' MCP server...");
 
 // Connect to the Foundry Toolbox MCP endpoint.
-// The Foundry-Features: Toolboxes=V1Preview opt-in header is required while the
-// toolbox MCP surface is in preview.
 await using var mcpClient = await McpClient.CreateAsync(
     new HttpClientTransport(
         new HttpClientTransportOptions
@@ -3350,7 +3348,7 @@ Toolbox availability depends on two factors beyond the project region:
 
 - **Region**: Some tool types aren't available in every region that supports the agent service. For example, a region that supports the toolbox endpoint might not support all built-in tool types.
 
-Before deploying a toolbox, verify that your target region supports the tool types you plan to use. For the full compatibility tables, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
+Before deploying a toolbox, verify that your target region supports the tool types you plan to use. For the full compatibility tables, see [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 ## Related content
 

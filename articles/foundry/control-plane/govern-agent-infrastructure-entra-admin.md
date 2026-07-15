@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-control-plane
 ms.date: 04/30/2026
-ms.author: mahender
+ms.author: lagayhar 
 author: mattchenderson
 ms.custom: dev-focus
 ai-usage: ai-assisted

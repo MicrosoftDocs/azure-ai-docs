@@ -2004,7 +2004,7 @@ groups:
     title: Microsoft Foundry
   - id: rest-api
     title: Azure Language REST API
-# Owner: jburchel/jonburchel
+# Owner: mattwoj/mattwojo
 - id: set-up-key-vault
   title: Set up Key Vault
   prompt: Choose a method to set up Key Vault
@@ -2038,10 +2038,30 @@ groups:
   pivots:
   - id: azd
     title: Azure Developer CLI
+  - id: python
+    title: Python SDK
   - id: vscode
     title: VS Code
   - id: foundry-skills
     title: Foundry Skills
+# Owner: johmil
+- id: hosted-agent-optimize-quickstart-method
+  title: Deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azd
+    title: Azure Developer CLI
+  - id: python
+    title: Python SDK
+# Owner: johmil
+- id: hosted-agent-memory-quickstart-method
+  title: Deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azd
+    title: Azure Developer CLI
+  - id: python
+    title: Python SDK
 # Owner: johmil
 - id: hosted-agent-deploy-clients
   title: Deployment method
@@ -2259,6 +2279,8 @@ groups:
     title: Azure Developer CLI
   - id: vscode
     title: VS Code
+  - id: python
+    title: Python
 # Owner: aahi
 - id: selection-foundry-skills
   title: Selections

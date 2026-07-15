@@ -144,10 +144,12 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
     "name": "my-agent",
     "definition": {
       "kind": "hosted",
-      "image": "myacr.azurecr.io/my-agent:v1",
+      "container_configuration": {
+        "image": "myacr.azurecr.io/my-agent:v1"
+      },
       "cpu": "1",
       "memory": "2Gi",
-      "container_protocol_versions": [
+      "protocol_versions": [
         {"protocol": "responses", "version": "1.0.0"}
       ],
       "rai_config": {

@@ -118,14 +118,14 @@ public class Example {
 ```console
 Document = The food and service were unacceptable. The concierge was nice, however.
 Recognized document sentiment: mixed, positive score: 0.470000, neutral score: 0.000000, negative score: 0.520000.
-	Sentence sentiment: negative, positive score: 0.000000, neutral score: 0.000000, negative score: 0.990000.
-		Target sentiment: negative, target text: food
-			'negative' assessment sentiment because of "unacceptable". Is the assessment negated: false.
-		Target sentiment: negative, target text: service
-			'negative' assessment sentiment because of "unacceptable". Is the assessment negated: false.
-	Sentence sentiment: positive, positive score: 0.940000, neutral score: 0.010000, negative score: 0.050000.
-		Target sentiment: positive, target text: concierge
-			'positive' assessment sentiment because of "nice". Is the assessment negated: false.
+    Sentence sentiment: negative, positive score: 0.000000, neutral score: 0.000000, negative score: 0.990000.
+        Target sentiment: negative, target text: food
+            'negative' assessment sentiment because of "unacceptable". Is the assessment negated: false.
+        Target sentiment: negative, target text: service
+            'negative' assessment sentiment because of "unacceptable". Is the assessment negated: false.
+    Sentence sentiment: positive, positive score: 0.940000, neutral score: 0.010000, negative score: 0.050000.
+        Target sentiment: positive, target text: concierge
+            'positive' assessment sentiment because of "nice". Is the assessment negated: false.
 ```
 
 [!INCLUDE [clean up resources](../../../includes/clean-up-resources.md)]

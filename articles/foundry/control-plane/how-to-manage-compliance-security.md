@@ -2,8 +2,8 @@
 title: "Manage compliance and security in Microsoft Foundry"
 ms.reviewer: gregharen
 description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM."
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt 
+ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.subservice: foundry-control-plane
 ms.topic: how-to

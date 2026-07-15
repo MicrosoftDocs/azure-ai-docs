@@ -2,7 +2,7 @@
 title: "Enforce Token Limits for Models"
 description: "Use Foundry Control Plane integration with an AI gateway to apply limits for model inference, including token limits."
 author: santiagxf
-ms.author: scottpolly
+ms.author: lagayhar
 ms.reviewer: fasantia
 ms.service: microsoft-foundry
 ms.subservice: foundry-control-plane

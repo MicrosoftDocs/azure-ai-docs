@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/10/2026
 ms.author: lajanuar
 ---
 1. Locate the files to upload to your storage account

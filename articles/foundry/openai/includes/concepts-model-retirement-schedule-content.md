@@ -8,11 +8,13 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/07/2026
+ms.date: 07/09/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ai-usage: ai-assisted
 ---
 
+This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
 This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
 
 ## Foundry Models sold by Azure
@@ -27,8 +29,15 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4.1 | 2025-04-14 | Deprecated | 2026-10-14 | — |
 | gpt-4.1-mini | 2025-04-14 | Deprecated | 2026-10-14 | — |
 | gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
+| gpt-4o | 2024-11-20 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4o-mini | 2024-07-18 | Deprecated | 2026-10-01 | gpt-4.1-mini |
 | gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
 | gpt-4o | 2024-11-20 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | Deprecated | 2026-10-01 | gpt-4.1-mini |
@@ -41,11 +50,14 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-5 | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-chat | 2025-08-07 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5-chat | 2025-10-03 | Retired | 2026-05-13 | gpt-chat-latest |
+| gpt-5-chat | 2025-08-07 | Retired | 2026-06-29 | gpt-chat-latest |
+| gpt-5-chat | 2025-10-03 | Retired | 2026-05-13 | gpt-chat-latest |
 | gpt-5-codex | 2025-09-15 | GA | 2027-03-17 | — |
 | gpt-5-mini | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-nano | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-pro | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-5.1 | 2025-11-13 | GA | 2027-05-15 | — |
+| gpt-5.1-chat | 2025-11-13 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5.1-chat | 2025-11-13 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5.1-codex | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.1-codex-max | 2025-12-04 | GA | 2026-12-05 | — |
@@ -53,7 +65,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-5.2 | 2025-12-11 | GA | 2026-12-12 | — |
 | gpt-5.2-chat | 2025-12-11 | Retired | 2026-05-13 | gpt-chat-latest |
 | gpt-5.2-chat | 2026-02-10 | Retired | 2026-06-29 | gpt-chat-latest |
+| gpt-5.2-chat | 2025-12-11 | Retired | 2026-05-13 | gpt-chat-latest |
+| gpt-5.2-chat | 2026-02-10 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5.2-codex | 2026-01-14 | GA | 2027-01-14 | — |
+| gpt-5.3-chat | 2026-03-03 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5.3-chat | 2026-03-03 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5.3-codex | 2026-02-24 | GA | 2027-02-25 | — |
 | gpt-5.4 | 2026-03-05 | GA | 2027-03-05 | — |
@@ -61,6 +76,9 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-5.4-nano | 2026-03-17 | GA | 2027-03-18 | — |
 | gpt-5.4-pro | 2026-03-05 | GA | 2027-03-06 | — |
 | gpt-5.5 | 2026-04-24 | GA | 2027-04-23 | — |
+| gpt-5.6-luna | 2026-07-09 | GA | 2027-07-09 | — |
+| gpt-5.6-sol | 2026-07-09 | GA | 2027-07-09 | — |
+| gpt-5.6-terra | 2026-07-09 | GA | 2027-07-09 | — |
 | gpt-audio | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-audio-mini | 2025-10-06 | GA | 2026-09-21 | — |
@@ -129,6 +147,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
+| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-13 | — |
 | embed-v-4-0 | 1 | GA | — | — |
 
 ### DeepSeek
@@ -141,8 +160,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.1 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
-| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
-| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
+| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
 
 
 ### Meta
@@ -176,6 +195,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 |-------|---------|-----------|-----------------|-------------|
 | Kimi-K2.5 | 1 | Preview | 2027-01-26 | — |
 | Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
+| Kimi-K2.7-Code | 2026-06-12 | Preview | 2026-10-03 | — |
 
 ### OpenAI-OSS
 

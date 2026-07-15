@@ -6,9 +6,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 04/08/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: 
  - dev-focus
