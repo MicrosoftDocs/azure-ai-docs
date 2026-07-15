@@ -406,10 +406,10 @@ The protocol version format changed from `"v1"` to semver `"1.0.0"`:
 
 ```python
 # Initial preview
-ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")
+ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="v1")
 
 # Latest version
-ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
+ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")
 ```
 
 ## Container protocol 2.0.0
@@ -468,7 +468,7 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 |-----------------|-------------------|
 | `pip install "azure-ai-projects>=2.0.0"` | `pip install "azure-ai-projects>=2.3.0"` |
 | `project.get_openai_client()` with `extra_body={"agent_reference": {"name": ..., "type": "agent_reference"}}` | `project.get_openai_client(agent_name="my-agent")` — client is pre-bound, no `extra_body` needed |
-| `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")` | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")` |
+| `ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="v1")` | `ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")` |
 | `tools=[...]` in `HostedAgentDefinition` | Removed — use Foundry Toolbox MCP endpoint instead |
 | Not available | `project.beta.agents.create_session(agent_name, isolation_key=..., version_indicator=...)`, `.get_session()`, `.list_sessions()`, `.delete_session(isolation_key=...)` |
 | Not available | `project.beta.agents.download_session_file(path=...)`, `.get_session_files(path=...)`, `.delete_session_file(path=...)` |
