@@ -18,6 +18,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 #### Availability for Azure OpenAI in Foundry Models
 
+#### Availability for Azure OpenAI in Foundry Models
+
 # [Americas](#tab/az-americas)
 
 | **Model** | **Version** | **brazilsouth** | **canadacentral** | **canadaeast** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westus** | **westus3** |

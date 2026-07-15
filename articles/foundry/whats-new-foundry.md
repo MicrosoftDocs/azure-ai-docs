@@ -24,6 +24,9 @@ Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
   - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](/azure/foundry/agents/how-to/publish-copilot)
   - [Publish agents in a virtual network to Microsoft 365 Copilot and Teams](/azure/foundry/agents/how-to/publish-copilot-virtual-network)
   - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
+  - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](/azure/foundry/agents/how-to/publish-copilot)
+  - [Publish agents in a virtual network to Microsoft 365 Copilot and Teams](/azure/foundry/agents/how-to/publish-copilot-virtual-network)
+  - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
 - Foundry Models and platform
   - [Deploy and use Claude models in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-claude)
 - Foundry Local

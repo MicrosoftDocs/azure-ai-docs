@@ -147,7 +147,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
             "language": "ko"
           }
         ],
-        "translateWithinImage": true
+        "translateTextWithinImage": true
       }
     ]
   }'
