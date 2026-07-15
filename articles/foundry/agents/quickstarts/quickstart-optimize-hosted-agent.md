@@ -272,7 +272,7 @@ with (
           optimization_model=optimization_model,
           optimization_config={
             "system_prompt": optimization_config.instructions,
-            **({"tools": optimization_config.tool_definitions} if optimization_config.has_tool_definitions else {}),
+            **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
             **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
           }
         ),
