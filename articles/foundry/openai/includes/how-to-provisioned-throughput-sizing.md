@@ -84,7 +84,7 @@ In summary, the PTUs needed for this example call shape with and without caching
 
 ### Use the capacity calculator
 
-Use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal to size specific workload shapes. Find the calculator on the **Quota** page and enter the following parameters based on your workload:
+Use the [capacity calculator](https://ai.azure.com/nextgen/goto/build/models/ptu-calculator) in the Foundry portal to size specific workload shapes. Find the calculator on the **Quota** page and enter the following parameters based on your workload:
 
 | Input | Description |
 |---|---|
