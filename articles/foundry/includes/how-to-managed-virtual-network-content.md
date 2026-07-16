@@ -414,7 +414,7 @@ In Allow Only Approved Outbound mode of the managed virtual network, a few requi
 * Private endpoint to your Storage account
 * Private endpoint to your AI Search resource
 * ServiceTag to AzureActiveDirectory
-* ServiceTag to AzureMachineLearning (for the Evaluations Catalogue)
+* ServiceTag to AzureMachineLearning (for the Evaluators Catalogue)
 
 ## Outbound rules per scenario 
 
@@ -423,7 +423,7 @@ If you deploy Foundry with managed virtual network in Allow Only Approved Outbou
 | Scenario | FQDNs | Description |
 |---------|--------------------------|-------|
 | Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com`, `mcr.microsoft.com` or AAD Service Tag | Required for the Azure Container App delegation for Agent service. Includes Microsoft Container Registry for container image pulls. |
-| Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com` | Used for the evaluators catalogue and for sending results to the linked Application Insights resource. |
+| Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com` | Used for sending results to the linked Application Insights resource. |
 | Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
 
 ## Pricing
