@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 ## Agent Framework
 
-[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK for C#/.NET and Python. It provides a unified multi-agent orchestration layer with consistent abstractions for building agents and multi-agent systems in code. It's the recommended path for [Hosted agents](../agents/overview.md#hosted-agents) and the recommended orchestration layer for multi-agent workloads on Microsoft Foundry.
+[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK for C#/.NET and Python. It provides a unified multi-agent orchestration layer with consistent abstractions for building agents and multi-agent systems in code. It's the recommended orchestration layer for multi-agent workloads and [Hosted agents](../agents/overview.md#hosted-agents) on Microsoft Foundry.
 
 If you previously used AutoGen or Semantic Kernel for multi-agent orchestration, consider Agent Framework as your primary orchestration layer to reduce integration complexity and avoid mixing overlapping orchestration dependencies.
 

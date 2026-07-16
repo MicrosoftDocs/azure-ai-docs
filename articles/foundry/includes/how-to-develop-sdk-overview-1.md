@@ -18,7 +18,7 @@ The **Foundry SDK** is a thin-client SDK that exposes all of the Foundry project
 | SDK | What it's for | Endpoint |
 | --- | --- | --- |
 | **Foundry SDK** | Thin-client SDK over all Foundry project APIs. Access to Foundry Models and platform tools (file search, code interpreter, web search, memory, SharePoint, WorkIQ, Fabric IQ, MCP). | `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>` |
-| **Agent Framework** | Unified multi-agent orchestration for hosted agents and multi-agent systems in C#/.NET and Python. The `foundry` package depends on the Foundry SDK for project access. Run in your own process. | Responses API in the project endpoint, via `FoundryChatClient`. |
+| **Agent Framework** | Unified multi-agent orchestration for hosted agents and multi-agent systems in C#/.NET and Python. The `foundry` package depends on the Foundry SDK for project access and runs in your own process. | Responses API in the project endpoint, via `FoundryChatClient`. |
 | **OpenAI SDK** | Full OpenAI API surface, including embeddings. Best latency and maximum OpenAI compatibility. | `https://<resource-name>.openai.azure.com/openai/v1` |
 | **Anthropic SDK** | Anthropic Claude models deployed in Foundry. | `https://<resource-name>.services.ai.azure.com/anthropic` |
 | **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints. |
@@ -26,7 +26,7 @@ The **Foundry SDK** is a thin-client SDK that exposes all of the Foundry project
 **Choose your SDK**:
 - Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
 - Use **Agent Framework** when building hosted agents or multi-agent systems in code using the Responses API
-- Use **Agent Framework** as your primary orchestration layer when you want one approach for C# and Python or you previously considered AutoGen or Semantic Kernel for multi-agent orchestration
+- Use **Agent Framework** as your primary orchestration layer for consistent C#/.NET and Python abstractions, especially if you previously considered AutoGen or Semantic Kernel for multi-agent orchestration
 - Use **OpenAI SDK** when maximum OpenAI compatibility or lowest latency is required, when generating embeddings, or when using Foundry direct models via Chat Completions
 - Use **Anthropic SDK** when working with Anthropic Claude models deployed in Foundry
 - Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
