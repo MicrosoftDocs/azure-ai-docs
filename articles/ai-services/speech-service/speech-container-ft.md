@@ -253,19 +253,19 @@ curl http://localhost:5000/stt/health
 
 | Option | Type | Description |
 |--------|------|-------------|
-| `locales` | string[] | Locales for transcription (for example, `["en-US"]`) |
-| `audioUrl` | string | HTTP or HTTPS URL of the audio file (mutually exclusive with file upload) |
-| `profanityFilterMode` | string | How to handle profanity: `None`, `Masked`, `Removed`, `Tags` |
-| `punctuationMode` | string | Punctuation handling: `None`, `Dictated`, `Automatic`, `DictatedAndAutomatic` |
-| `channels` | int[] | Audio channels to process (for example, `[0, 1]` for stereo) |
-| `diarization` | object | Speaker diarization settings |
-| `diarization.enabled` | boolean | Enable speaker diarization |
-| `diarization.maxSpeakers` | int | Maximum number of speakers to identify (2-35) |
-| `wordLevelTimestampsEnabled` | boolean | Include word-level timing information |
-| `disfluencyTaggingEnabled` | boolean | Enable disfluency tagging |
-| `prompt` | string | Prompt text to improve recognition accuracy |
-| `phraseList` | string | Phrase list (semicolon-separated) to improve recognition accuracy |
-| `localeHint` | string | Language hint |
+| `locales` | string[] | Locales for transcription, such as `["en-US"]`. |
+| `audioUrl` | string | HTTP or HTTPS URL of the audio file. This option is mutually exclusive with file upload. |
+| `profanityFilterMode` | string | How to handle profanity: `None`, `Masked`, `Removed`, `Tags`. |
+| `punctuationMode` | string | Punctuation handling: `None`, `Dictated`, `Automatic`, `DictatedAndAutomatic`. |
+| `channels` | int[] | Audio channels to process, such as `[0, 1]` for stereo. |
+| `diarization` | object | Speaker diarization settings. |
+| `diarization.enabled` | boolean | Enable speaker diarization. |
+| `diarization.maxSpeakers` | int | Maximum number of speakers to identify (2-35). |
+| `wordLevelTimestampsEnabled` | boolean | Include word-level timing information. |
+| `disfluencyTaggingEnabled` | boolean | Enable disfluency tagging. |
+| `prompt` | string | Prompt text to improve recognition accuracy. |
+| `phraseList` | string | Phrase list (semicolon-separated) to improve recognition accuracy. |
+| `localeHint` | string | Language hint. |
 
 ### Response example
 
@@ -302,7 +302,7 @@ curl http://localhost:5000/stt/health
 | `durationMilliseconds` | int | Total audio duration in milliseconds |
 | `combinedPhrases` | array | Complete transcription text |
 | `combinedPhrases[].text` | string | Complete transcription text |
-| `combinedPhrases[].channel` | int | Channel index (shown for multi-channel audio) |
+| `combinedPhrases[].channel` | int | Channel index (shown for multichannel audio) |
 | `phrases` | array | List of segmented phrases |
 | `phrases[].offsetMilliseconds` | int | Phrase start time in milliseconds |
 | `phrases[].durationMilliseconds` | int | Phrase duration in milliseconds |
@@ -310,7 +310,7 @@ curl http://localhost:5000/stt/health
 | `phrases[].words` | array | Word-level information (returned by default) |
 | `phrases[].locale` | string | Recognized locale |
 | `phrases[].confidence` | float | Confidence score (0-1) |
-| `phrases[].channel` | int | Channel index (shown for multi-channel audio) |
+| `phrases[].channel` | int | Channel index (shown for multichannel audio) |
 | `phrases[].speaker` | int | Speaker ID (shown when diarization is enabled) |
 
 ## Configuration options
