@@ -417,7 +417,7 @@ In Allow Only Approved Outbound mode of the managed virtual network, a few requi
 
 ## Outbound rules per scenario 
 
-If you deploy Foundry with managed virtual network in Allow Only Approved Outbound mode, you may need to add the following outbound FQDN rules to ensure egress traffic is allowed. Below is the list of trusted Fully Qualified Domain Names (FQDNs) and service tags to create outbound rules for depending on the scenario or feature in Foundry. 
+If you deploy Foundry with managed virtual network in **Allow Only Approved Outbound** mode, you might need to add the following outbound FQDN rules to ensure egress traffic is allowed. The following list shows trusted fully qualified domain names (FQDNs) and service tags to create outbound rules for, depending on the scenario or feature in Foundry. 
 
 | Scenario | FQDNs, service tags| Description |
 |---------|--------------------------|-------|
