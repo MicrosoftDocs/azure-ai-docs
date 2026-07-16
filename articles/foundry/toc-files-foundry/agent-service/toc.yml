@@ -94,6 +94,8 @@ items:
       href: ../../agents/quickstarts/quickstart-toolbox-agent.md
     - name: Add Foundry IQ with a toolbox
       href: ../../agents/quickstarts/quickstart-foundry-iq-hosted-agent.md
+    - name: Add Browser Automation with a toolbox
+      href: ../../agents/how-to/tools/browser-automation-hosted-agent-quickstart.md
     - name: Add persistent memory
       href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
     - name: Evaluate an agent
