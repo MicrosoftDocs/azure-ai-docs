@@ -25,7 +25,8 @@ The **Foundry SDK** is a thin-client SDK that exposes all of the Foundry project
 
 **Choose your SDK**:
 - Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
-- Use **Agent Framework** when building hosted agents or multi-agent systems in code using the Responses API, especially if you want one orchestration layer for C# and Python or you previously considered AutoGen or Semantic Kernel for multi-agent orchestration
+- Use **Agent Framework** when building hosted agents or multi-agent systems in code using the Responses API
+- Use **Agent Framework** as your primary orchestration layer when you want one approach for C# and Python or you previously considered AutoGen or Semantic Kernel for multi-agent orchestration
 - Use **OpenAI SDK** when maximum OpenAI compatibility or lowest latency is required, when generating embeddings, or when using Foundry direct models via Chat Completions
 - Use **Anthropic SDK** when working with Anthropic Claude models deployed in Foundry
 - Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
