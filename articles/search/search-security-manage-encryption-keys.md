@@ -602,11 +602,11 @@ Content-Type: application/json
 
 With this override, object-level key lifecycle is decoupled from the service-level default. You can rotate the object-level key independently without changing the service-level key used by other objects.
 
-When service-level CMK is enabled, create requests can omit `encryptionKey` and the object inherits the service-level key by default. To switch an existing object from an explicit object-level key to service-level CMK inheritance, set `isServiceLevelKey` to `true` in an update request.
+When you enable service-level CMK, create requests can omit `encryptionKey` and the object inherits the service-level key by default. To switch an existing object from an explicit object-level key to service-level CMK inheritance, set `isServiceLevelKey` to `true` in an update request.
 
-In data plane API version `2026-05-01-preview`, request validation applies to the `encryptionKey` object. If `encryptionKey` is provided, `keyVaultUri` and `keyVaultKeyName` are required string fields, regardless of whether `isServiceLevelKey` is present or what value it has. This validation checks field presence, not key existence. Placeholder string values satisfy this schema validation, and missing required fields result in HTTP 400.
+In data plane API version `2026-05-01-preview`, request validation applies to the `encryptionKey` object. If you provide `encryptionKey`, `keyVaultUri` and `keyVaultKeyName` are required string fields, regardless of whether `isServiceLevelKey` is present or what value it has. This validation checks field presence, not key existence. Placeholder string values satisfy this schema validation, and missing required fields result in HTTP 400.
 
-When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. If you provide `keyVaultUri`, `keyVaultKeyName`, or `keyVaultKeyVersion` in the same request, those values are ignored for key selection in that operation.
+When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. If you provide `keyVaultUri`, `keyVaultKeyName`, or `keyVaultKeyVersion` in the same request, the service ignores those values for key selection in that operation.
 
 For clarity and maintainability, provide the current service-level key values in the request and verify the effective key with a GET operation on the object.
 
