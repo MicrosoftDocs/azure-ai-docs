@@ -311,7 +311,7 @@ For more Agent Service network isolation limitations, see [How to use a virtual 
 
 ### Firewall allowlisting
 
-If you deploy Foundry with virtual network injection, you may create a firewall to control egress traffic. Below is the listed of trusted Fully Qualified Domain Names (FQDNs) or ServiceTags to allowlist on your firewall depending on the scenario or feature in Foundry. 
+If you deploy Foundry with virtual network injection, you might create a firewall to control egress traffic. The following list shows trusted fully qualified domain names (FQDNs) or service tags to allowlist on your firewall depending on the scenario or feature in Foundry. 
 
 | Scenario | FQDNs, ServiceTags | Description |
 |---------|--------------------------|-------|
