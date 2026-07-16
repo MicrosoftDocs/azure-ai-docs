@@ -65,7 +65,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
 
 ### Translate images in Word and PowerPoint documents
 
-Use this option to translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) files. Set `translateWithinImage` to `true` in the `options` object.
+Use this option to translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) files. Set `translateTextWithinImage` to `true` in the `options` object.
 
 ```bash
 curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
