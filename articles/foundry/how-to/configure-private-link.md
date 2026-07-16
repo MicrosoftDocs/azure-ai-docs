@@ -311,12 +311,12 @@ For more Agent Service network isolation limitations, see [How to use a virtual 
 
 ### Firewall allowlisting
 
-If you deploy Foundry with virtual network injection, you may create a firewall to control egress traffic. Below is the listed of trusted Fully Qualified Domain Names (FQDNs) to allowlist on your firewall depending on the scenario or feature in Foundry. 
+If you deploy Foundry with virtual network injection, you may create a firewall to control egress traffic. Below is the listed of trusted Fully Qualified Domain Names (FQDNs) or ServiceTags to allowlist on your firewall depending on the scenario or feature in Foundry. 
 
-| Scenario | FQDNs | Description |
+| Scenario | FQDNs, ServiceTags | Description |
 |---------|--------------------------|-------|
 | Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com` or AAD Service Tag | Required for the Azure Container App delegation for Agent service. |
-| Evaluations & Traces | `*.blob.core.windows.net`, `settings.sdk.monitor.azure.com` | Used for the evaluators catalogue and fir sending results to the linked Application Insights resource. |
+| Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com`, AzureMachineLearning ServiceTag | Used for sending results to the linked Application Insights resource. |
 | Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
 
 ### Private endpoint limitations
