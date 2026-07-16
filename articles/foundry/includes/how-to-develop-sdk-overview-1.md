@@ -18,14 +18,14 @@ The **Foundry SDK** is a thin-client SDK that exposes all of the Foundry project
 | SDK | What it's for | Endpoint |
 | --- | --- | --- |
 | **Foundry SDK** | Thin-client SDK over all Foundry project APIs. Access to Foundry Models and platform tools (file search, code interpreter, web search, memory, SharePoint, WorkIQ, Fabric IQ, MCP). | `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>` |
-| **Agent Framework** | Unified multi-agent orchestration for hosted agents and multi-agent systems in C#/.NET and Python. | Responses API in the project endpoint, via `FoundryChatClient`. |
+| **Agent Framework** | Unified multi-agent orchestration for hosted agents and multi-agent systems, available in C#/.NET and Python. The `foundry` package depends on the Foundry SDK for project access. | Responses API in the project endpoint, via `FoundryChatClient`. |
 | **OpenAI SDK** | Full OpenAI API surface, including embeddings. Best latency and maximum OpenAI compatibility. | `https://<resource-name>.openai.azure.com/openai/v1` |
 | **Anthropic SDK** | Anthropic Claude models deployed in Foundry. | `https://<resource-name>.services.ai.azure.com/anthropic` |
 | **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints. |
 
 **Choose your SDK**:
 - Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
-- Use **Agent Framework** for hosted agents or multi-agent systems with unified orchestration across C#/.NET and Python
+- Use **Agent Framework** for hosted agents or multi-agent systems using unified orchestration, available in both C#/.NET and Python
 - Use **OpenAI SDK** when maximum OpenAI compatibility or lowest latency is required, when generating embeddings, or when using Foundry direct models via Chat Completions
 - Use **Anthropic SDK** when working with Anthropic Claude models deployed in Foundry
 - Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
