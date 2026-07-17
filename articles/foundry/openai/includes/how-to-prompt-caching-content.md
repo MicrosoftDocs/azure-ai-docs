@@ -14,10 +14,8 @@ Prompt caching reduces overall request latency and cost for longer prompts that 
 
 For supported models, cache reads are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-foundry/openai/concepts/provisioned-throughput) for Provisioned deployment types. Prompt cache pricing is the same for both retention policies.
 
-On `gpt-5.6` and later models, cache writes also affect your cost. Earlier models don't charge extra to write to the cache, but `gpt-5.6` and later models bill cache writes in addition to the discounted cache reads.
-
 > [!IMPORTANT]
-> On `gpt-5.6` and later models, cache writes are billed and can increase your costs compared to earlier models, while cache reads stay discounted. To keep costs predictable, structure your prompts so that reused content stays identical across requests, which favors lower-cost cache reads over cache writes. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+> Models before `gpt-5.6` don't charge extra to write to the cache. On `gpt-5.6` and later models, cache writes are billed in addition to discounted cache reads. To keep costs predictable, structure your prompts so that reused content stays identical across requests, which favors cache reads over cache writes. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ## Prompt cache retention
 Prompt caching can use either in-memory or extended retention policies. When available, extended prompt caching aims to retain the cache for longer, so that subsequent requests are more likely to match the cache.
