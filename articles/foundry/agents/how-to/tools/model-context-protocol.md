@@ -23,6 +23,8 @@ Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelconte
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
 
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
+
 In this article, you learn how to:
 
 - Add a remote MCP server as a tool.

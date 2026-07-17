@@ -21,6 +21,9 @@ Tools extend what your agents can do in Microsoft Foundry Agent Service. An agen
 > [!NOTE]
 > The Foundry tool catalog and the core tools framework are generally available. Some individual tools are still in preview, as noted in the tool listings throughout this article. Each tool's own page also indicates its preview status with a banner. Preview tools are subject to [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
+> [!TIP]
+> **Recommended:** For most agents, add tools through a [toolbox](../how-to/tools/toolbox.md). A toolbox packages your tools behind a single managed MCP endpoint, handles credential injection and policy enforcement, and lets you version tools without changing agent code. You can still attach any tool directly to an individual agent. See the [Toolbox](#toolbox) section and [Create, test, and deploy a toolbox](../how-to/tools/toolbox.md).
+
 ## What are tools?
 
 A *tool* is a capability that an agent can invoke during a conversation to perform a specific task. When an agent receives a user message, the Foundry model powering the agent decides whether to call a tool based on the agent's instructions and the available tool definitions. The agent sends the tool request, your application or the service executes it, and the result flows back into the conversation so the agent can continue with accurate, up-to-date information.
@@ -34,7 +37,17 @@ Tools enable agents to go beyond text generation. For example, an agent can:
 
 ## Types of tools
 
-Foundry Agent Service provides two categories of tools: built-in tools that are ready to use after basic configuration, and custom tools that let you bring your own capabilities.
+Foundry Agent Service groups tools into two categories: built-in tools that are ready to use after basic configuration, and custom tools that let you bring your own capabilities. Whichever category a tool belongs to, the recommended way to make it available to an agent is through a *toolbox*—a single managed endpoint that packages and governs your tools. The following sections describe each option, starting with the recommended toolbox approach.
+
+### Toolbox
+
+**Recommended.** A *toolbox* is a curated bundle of tools - such as web search, Azure AI Search, code interpreter, file search, MCP servers, and OpenAPI tools - that you configure once and expose as a single MCP-compatible endpoint. Instead of attaching each tool individually to every agent definition, define the collection in a toolbox and connect any agent to the toolbox endpoint. Because a toolbox exposes an MCP-compatible endpoint, any MCP-capable runtime can consume it - including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and custom code.
+
+Toolboxes support versioning. Create multiple versions, test a new version against the version-specific endpoint, and then promote it to default when it's ready. Agents that connect to the Toolbox consumer endpoint automatically receive the promoted default version without code changes. For details, see [Manage toolbox versions](../how-to/tools/toolbox.md#promote-a-version-to-default).
+
+Manage authentication for tools in a toolbox centrally. The toolbox handles credential injection, token refresh, and policy enforcement at runtime by using Microsoft Entra ID and OAuth, so consuming agents don't need to manage credentials for each tool individually. For authentication details, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
+
+For setup steps, see [Create and use a Foundry Toolbox](../how-to/tools/toolbox.md). To try it end to end, see the [toolbox quickstart](../quickstarts/quickstart-toolbox-agent.md).
 
 ### Built-in tools
 
@@ -60,16 +73,6 @@ The most common custom tool options include:
 - **[OpenAPI tool](../how-to/tools/openapi.md)** — Connect your agent to external HTTP APIs by using an OpenAPI 3.0 or 3.1 specification.
 
 For the complete list of custom tool options, see [All custom tools](#all-custom-tools).
-
-### Toolbox
-
-A *toolbox* is a curated bundle of tools - such as web search, Azure AI Search, code interpreter, file search, MCP servers, and OpenAPI tools - that you configure once and expose as a single MCP-compatible endpoint. Instead of attaching each tool individually to every agent definition, define the collection in a toolbox and connect any agent to the toolbox endpoint. Because a toolbox exposes an MCP-compatible endpoint, any MCP-capable runtime can consume it - including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and custom code.
-
-Toolboxes support versioning. Create multiple versions, test a new version against the version-specific endpoint, and then promote it to default when it's ready. Agents that connect to the Toolbox consumer endpoint automatically receive the promoted default version without code changes. For details, see [Manage toolbox versions](../how-to/tools/toolbox.md#promote-a-version-to-default).
-
-Manage authentication for tools in a toolbox centrally. The toolbox handles credential injection, token refresh, and policy enforcement at runtime by using Microsoft Entra ID and OAuth, so consuming agents don't need to manage credentials for each tool individually. For authentication details, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
-
-For setup steps, see [Create and use a Foundry Toolbox](../how-to/tools/toolbox.md).
 
 ## Use a tool in an agent
 

@@ -21,6 +21,8 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 and 3.1
 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`, `API key`, and `managed identity`. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).
 
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
+
 ### Usage support
 
 The following table shows SDK and setup support.

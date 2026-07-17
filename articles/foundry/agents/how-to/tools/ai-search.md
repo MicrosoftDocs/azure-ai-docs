@@ -24,6 +24,8 @@ zone_pivot_groups: selection-ai-search-tool
 
 Ground your Foundry agent's responses in your proprietary content by connecting it to an Azure AI Search index. The [Azure AI Search](../../../../search/search-what-is-azure-search.md) tool retrieves indexed documents so the Foundry model powering the agent can generate answers with inline citations, enabling accurate, source-backed responses.
 
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
+
 > [!IMPORTANT]
 > If you want to use a private virtual network with the Azure AI Search tool, make sure you use Microsoft Entra project managed identity to authenticate in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking.
 

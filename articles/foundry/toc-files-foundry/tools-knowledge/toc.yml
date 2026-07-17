@@ -5,6 +5,20 @@ items:
 - name: Tool best practices
   href: ../../agents/concepts/tool-best-practice.md
 
+# Toolbox (recommended)
+- name: Toolbox (recommended)
+  items:
+  - name: What is a toolbox?
+    href: ../../agents/how-to/tools/toolbox.md
+  - name: Toolbox quickstart
+    href: ../../agents/quickstarts/quickstart-toolbox-agent.md
+  - name: Tool search (preview)
+    href: ../../agents/how-to/tools/tool-search.md
+  - name: Skills (preview)
+    href: ../../agents/how-to/tools/skills.md
+  - name: Create a private tool catalog
+    href: ../../agents/how-to/private-tool-catalog.md
+
 # Core tools
 - name: Core tools
   items:
@@ -96,18 +110,6 @@ items:
     href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
   - name: Enable voice for prompt agents
     href: ../../../ai-services/speech-service/how-to-voice-agent-integration.md
-
-# Toolbox and skills
-- name: Toolbox and skills
-  items:
-  - name: Toolbox
-    href: ../../agents/how-to/tools/toolbox.md
-  - name: Tool search (preview)
-    href: ../../agents/how-to/tools/tool-search.md
-  - name: Skills (preview)
-    href: ../../agents/how-to/tools/skills.md
-  - name: Create a private tool catalog
-    href: ../../agents/how-to/private-tool-catalog.md
 
 # Knowledge and retrieval
 - name: Knowledge and retrieval
