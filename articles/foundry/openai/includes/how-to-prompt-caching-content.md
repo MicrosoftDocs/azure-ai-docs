@@ -101,7 +101,7 @@ After the first 1,024 tokens, cache hits occur for every 128 additional identica
 
 A single character difference in the first 1,024 tokens results in a cache miss, which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default for supported models.
 
-For `gpt-5.6` models, set the `prompt_cache_key` parameter and reuse the same key for requests that share long, common prompt prefixes. The parameter is combined with the prefix hash to improve cache matching. You don't need a specific API version to use `prompt_cache_key`. For new integrations, use the [v1 API](../api-version-lifecycle.md).
+For `gpt-5.6` models, set the `prompt_cache_key` parameter and reuse the same key for requests that share long, common prompt prefixes. The parameter combines with the prefix hash to improve cache matching. You don't need a specific API version to use `prompt_cache_key`. For new integrations, use the [v1 API](../api-version-lifecycle.md).
 
 If requests for the same prefix and `prompt_cache_key` combination exceed approximately 15 requests per minute, some requests might miss the cache. For higher-volume workloads, distribute requests across multiple keys while keeping a stable mapping between each key and its shared prompt prefixes.
 
