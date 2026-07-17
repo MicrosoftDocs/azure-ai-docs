@@ -129,7 +129,7 @@ The tables in this section list the throughput and deployment parameters for eac
 > - **128k prompt tokens** for `gpt-5.4`, `gpt-4.1`, `gpt-4.1-mini`, and `gpt-4.1-nano`
 > - **272k prompt tokens** for `gpt-5.6-terra` and `gpt-5.6-sol`
 >
-> Such requests are routed to [spillover deployments](../how-to/spillover-traffic-management.md) if available; otherwise, they return an error.
+> If available, the system routes such requests to [spillover deployments](../how-to/spillover-traffic-management.md). Otherwise, the request returns an error.
 
 
 | Topic | **gpt-5.6-terra**,<br>**2026-07-09** | **gpt-5.6-sol**,<br>**2026-07-09** | **gpt-5.5**,<br>**2026-04-24** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
