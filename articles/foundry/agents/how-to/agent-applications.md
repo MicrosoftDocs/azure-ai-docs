@@ -123,34 +123,6 @@ API key authentication isn't supported for invoking Agent Applications. Use Micr
 
 ## Publish an agent  
 
-### Foundry portal
-
-This section shows you how to publish an agent using the Foundry portal interface.
-
-1. In the Agent Builder, create or select an agent version you want to publish.
-
-2. Select **Publish Agent** to create an Agent Application and deployment.
-
-  **Expected result**: Publishing completes and the agent version shows a published status.
-
-3. Configure authentication for your Agent Application:
-
-      - By default, the authentication type is set to RBAC (Role-Based Access Control).
-      - Users calling the agent application using Responses protocol must be granted the **Foundry User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource. 
-   <!--
-   - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
-    -->
-
-4. Assign permissions for tool authentication:
-
-   - If your agent includes tools that use agent identity for authentication, the newly created agent identity must have appropriate permissions
-   - Navigate to each Azure resource your agent accesses and assign the required RBAC role to the new agent identity
-
-5. After publishing, you can:
-
-      - Share the published endpoint with external consumers or integrate it into your existing application.
-      - Share and chat with your application in channels like Teams/M365 Copilot.
-
 ### REST API
 To publish an agent version, you must create an application and deployment that reference your agent version.
 

@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 04/03/2026
+ms.date: 07/17/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -52,8 +52,10 @@ The following table shows regional support for the [Responses API](../../openai/
 | Spain Central | Yes | Yes | Yes |
 | Sweden Central | Yes | Yes | Yes |
 | Switzerland North | Yes | Yes | No |
+| Switzerland West | Yes | Yes | No |
 | UAE North | Yes | Yes | Yes |
 | UK South | Yes | Yes | Yes |
+| West Central US | Yes | Yes | No |
 | West Europe | Yes | Yes | Yes |
 | West US | Yes | Yes | Yes |
 | West US 3 | Yes | Yes | Yes |
