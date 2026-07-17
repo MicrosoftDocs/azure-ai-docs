@@ -17,7 +17,7 @@ This article provides a quick reference and detailed description of the quotas a
 > [!IMPORTANT]
 > Subscription-level quota management in Microsoft Foundry started after **May 7, 2026**.
 
-Starting with Realtime Translate and Realtime Whisper, and soon all models, quota for deployments is tracked at the subscription level rather than per resource or per region. This approach brings consistency and predictability to how quota is managed across deployments, since all resources and regions in a subscription share the same quota pool.
+Starting with Realtime Translate and Realtime Whisper, and soon all models, Foundry tracks quota for deployments at the subscription level rather than per resource or per region. This approach brings consistency and predictability to how quota is managed across deployments, since all resources and regions in a subscription share the same quota pool.
 
 This change consolidates quota into shared pools:
 
