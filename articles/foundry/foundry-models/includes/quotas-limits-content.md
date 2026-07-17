@@ -31,9 +31,9 @@ You can find the quota management system that applies to a given model by going 
 - **Global** or **Data Zone**, indicates subscription-level quota management.
 - **A region** (for example, East US or West US), indicates per-region quota management for that subscription and model. 
 
-### What's changing for me?
+### Changes for onboarded models
 
-For the models that are onboarded to the new quota management system:
+For the models that are onboarded to the subscription-level quota management system:
 
 * All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
 * All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
@@ -51,6 +51,9 @@ When an existing model is upgraded, its new Global or Data Zone quota limit is s
 For example, if a model has Global Standard deployments across five regions, the new global quota limit equals the combined quota of those deployments if that total exceeds the tier limit. Otherwise, the tier limit applies.
 
 ## Quotas and limits reference
+
+> [!IMPORTANT]
+> This section addresses quota for models that aren't onboarded to the subscription-level quota management system. For onboarded models, see [Subscription-level quota management](#subscription-level-quota-management).
 
 The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models. Quotas and limits aren't enforced at the tenant level. Instead, the highest level of quota restrictions is scoped at the Azure subscription level. Tokens per minute (TPM) and requests per minute (RPM) limits are defined per region, per subscription, and per model or deployment type.
 
