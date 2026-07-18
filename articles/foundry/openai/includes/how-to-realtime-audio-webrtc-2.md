@@ -1151,6 +1151,6 @@ If you use a Network Firewall, the Realtime API requires the following `Allow` r
 
 ## Related content
 
-* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
+* Try the [real-time audio quickstart](../how-to/realtime-audio-websockets.md#voice-agent-quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

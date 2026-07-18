@@ -514,6 +514,6 @@ Realtime sessions have a maximum duration of **60 minutes**. To handle long inte
 
 ## Related content
 
-* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
+* Try the [real-time audio quickstart](../how-to/realtime-audio-websockets.md#voice-agent-quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)
