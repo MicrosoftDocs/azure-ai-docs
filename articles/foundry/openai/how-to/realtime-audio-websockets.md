@@ -504,7 +504,7 @@ if __name__ == "__main__":
 
 ## Translate audio in real time
 
-The following examples show how to stream microphone audio to the `gpt-realtime-translate` model for real-time translation.
+The following examples show how to stream microphone audio to the `gpt-realtime-translate` model for real-time translation. Translation sessions use the `/openai/v1/realtime/translations` endpoint with the `model` query parameter.
 
 ### Translation example
 
