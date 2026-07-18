@@ -43,7 +43,7 @@ OpenAI describes three Realtime session patterns:
 - **Translation session**: Use this session for continuous speech translation. In Azure OpenAI, this session is a dedicated flow on `/openai/v1/realtime/translations`.
 - **Transcription session**: Use this session for speech-to-text scenarios when you need transcript deltas from streaming audio.
 
-  - **Translation session**: Use this session for continuous speech translation. In Azure OpenAI, this session is a dedicated flow on `/openai/v1/realtime/translations`.
+
 When you use the GA Realtime event model, `session.update` uses `session.type` to configure conversation-style and transcription-style sessions:
 
 - `realtime` for voice-agent speech-to-speech sessions.
