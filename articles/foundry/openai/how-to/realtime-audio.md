@@ -39,10 +39,11 @@ Here are some of the ways you can get started with the GPT Realtime API for spee
 
 OpenAI describes three Realtime session patterns:
 
-- **Voice-agent session** (default conversation flow): Use this for interactive, multimodal assistants that listen, reason, speak, and call tools. In practice, this is the standard Realtime conversation lifecycle on `/openai/v1/realtime`.
-- **Translation session**: Use this for continuous speech translation. In Azure OpenAI, this is a dedicated flow on `/openai/v1/realtime/translations`.
-- **Transcription session**: Use this for speech-to-text scenarios when you need transcript deltas from streaming audio.
+- **Voice-agent session** (default conversation flow): Use this session for interactive, multimodal assistants that listen, reason, speak, and call tools. In practice, this session is the standard Realtime conversation lifecycle on `/openai/v1/realtime`.
+- **Translation session**: Use this session for continuous speech translation. In Azure OpenAI, this session is a dedicated flow on `/openai/v1/realtime/translations`.
+- **Transcription session**: Use this session for speech-to-text scenarios when you need transcript deltas from streaming audio.
 
+  - **Translation session**: Use this session for continuous speech translation. In Azure OpenAI, this session is a dedicated flow on `/openai/v1/realtime/translations`.
 When you use the GA Realtime event model, `session.update` uses `session.type` to configure conversation-style and transcription-style sessions:
 
 - `realtime` for voice-agent speech-to-speech sessions.
