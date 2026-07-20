@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: The Azure Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 ms.date: 05/22/2026
 ms.author: lajanuar

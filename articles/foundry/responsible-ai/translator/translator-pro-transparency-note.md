@@ -5,7 +5,7 @@ description: "Microsoft Translator Pro responsible AI Basics, use cases, terms"
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: concept-article
 ms.date: 01/21/2024
 ---

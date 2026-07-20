@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Convert text from one script to another script with the Azure Translator in Foundry Tools 2026-06-06 transliterate method.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar

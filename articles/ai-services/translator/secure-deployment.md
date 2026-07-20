@@ -3,7 +3,7 @@ title: Secure your Azure Translator data and deployment
 description: Learn how to secure Azure Translator, with best practices for protecting your data and deployment.
 author: laujan
 ms.author: lajanuar
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: best-practice
 ms.custom: horz-security
 ms.date: 05/11/2026
