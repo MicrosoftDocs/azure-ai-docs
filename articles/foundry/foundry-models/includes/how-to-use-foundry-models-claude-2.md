@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 07/20/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
