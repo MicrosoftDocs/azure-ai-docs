@@ -162,11 +162,7 @@ An example JSON response is:
 The following example shows how to convert two Japanese strings into Romanized Japanese.
 
 ```bash
-<<<<<<< HEAD:articles/ai-services/translator/text-translation/preview/transliterate-api.md
-  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: aaaabbbb-0000-cccc-1111-dddd2222eeee" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
-=======
   curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2026-06-06&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: aaaabbbb-0000-cccc-1111-dddd2222eeee" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
->>>>>>> origin/main:articles/ai-services/translator/text-translation/2026-06-06/transliterate-api.md
 ```
 
 The JSON payload for the request in this example:
@@ -206,8 +202,4 @@ If an error occurs, the request also returns a JSON error response. The error co
 ## Next steps
 
 > [!div class="nextstepaction"]
-<<<<<<< HEAD:articles/ai-services/translator/text-translation/preview/transliterate-api.md
-> [View 2025-10-01-preview migration guide](../how-to/migrate-to-preview.md)
-=======
 > [View 2026-06-06 migration guide](../how-to/migrate-to-2026-06-06.md)
->>>>>>> origin/main:articles/ai-services/translator/text-translation/2026-06-06/transliterate-api.md
