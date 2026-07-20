@@ -608,7 +608,7 @@ Tool-specific `tools/call` argument examples:
 | Tool type | Arguments |
 | --------- | --------- |
 | AI Search | `{"query": "search text"}` |
-| File Search | `{"queries": ["search text"]}` — or `{"queries": ["search text"], "vector_store_ids": ["<ID>"]}` when vector store is passed dynamically |
+| File Search | `{"queries": ["search text"]}` — or `{"queries": ["search text"], "vector_store_ids": ["<VECTOR_STORE_ID>"]}` when vector store is passed dynamically |
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
 | A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
@@ -2121,7 +2121,7 @@ To create a file and vector store for use with a toolbox, upload the file at the
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
-> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
+> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to any vector stores referenced in the tool configuration or provided at runtime.
 
 :::zone pivot="rest-api"
 
@@ -2161,7 +2161,7 @@ The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. Se
 When `vector_store_ids` is omitted, callers pass it in the `tools/call` arguments:
 
 ```json
-{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"file_search","arguments":{"queries":["search text"],"vector_store_ids":["<VECTOR_STORE_ID>"]}}}
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<OPTIONAL_TOOL_NAME>","arguments":{"queries":["search text"],"vector_store_ids":["<VECTOR_STORE_ID>"]}}}
 ```
 
 :::zone-end
@@ -2282,12 +2282,6 @@ tools:
 ```bash
 azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 ```
-
-:::zone-end
-
-:::zone pivot="vscode"
-
-The Foundry portal currently requires `vector_store_ids` when adding a File Search tool. To create a File Search tool without `vector_store_ids` (enabling dynamic passing at runtime), use the REST API, SDK, or azd CLI.
 
 :::zone-end
 
