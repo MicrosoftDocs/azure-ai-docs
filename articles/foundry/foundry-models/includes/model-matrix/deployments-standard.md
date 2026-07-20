@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 06/11/2026
+ms.date: 07/20/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -38,10 +38,10 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-4o-transcribe | 2025-03-20 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-4o-transcribe-diarize | 2025-10-15 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-5 | 2025-08-07 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5-codex | 2025-09-15 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - |
+| gpt-5-codex | 2025-09-15 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5-mini | 2025-08-07 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5-nano | 2025-08-07 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - |
+| gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex-max | 2025-12-04 | - | - | - | - | - | ✅ | - | - | - | - |
@@ -559,6 +559,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.3-codex | 2026-02-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Middle East & Africa](#tab/az-mea)
