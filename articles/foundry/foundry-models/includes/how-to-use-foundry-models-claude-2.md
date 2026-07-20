@@ -432,7 +432,7 @@ The following table lists common errors when you work with Claude models in Foun
 - [Claude models in Microsoft Foundry](../concepts/claude-models.md)
 - [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../../responsible-ai/claude-models/data-privacy.md)
 - [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md)
-- [Claude on Foundry starter kit](https://github.com/Azure-Samples/claude#readme)
+- [Deploy Claude models in Microsoft Foundry using Bicep or Terraform](/azure/developer/ai/how-to/deploy-claude-foundry?context=/azure/foundry/context/context)
 - [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
 - [Explore Microsoft Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md)
 - [Claude Docs: Claude in Microsoft Foundry](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
