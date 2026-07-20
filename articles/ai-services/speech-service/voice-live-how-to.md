@@ -446,19 +446,42 @@ Specify the voice as a structured object with `type` set to `azure-realtime-nati
 
 The following `azure-realtime-native` voice names are supported:
 
-| Voice name | Description |
-|---|---|
-| `aarti` | Azure Speech native voice |
-| `andrew` | Azure Speech native voice |
-| `ava` | Azure Speech native voice (default) |
-| `denise` | Azure Speech native voice |
-| `elsa` | Azure Speech native voice |
-| `florian` | Azure Speech native voice |
-| `francisca` | Azure Speech native voice |
-| `meera` | Azure Speech native voice |
-| `ximena` | Azure Speech native voice |
-| `xiaoxiao` | Azure Speech native voice |
-| `yunxi` | Azure Speech native voice |
+| Voice name | Description | Locale |
+|---|---|---|
+| `aarti` | Azure Speech native voice | en-IN |
+| `alvaro` | Azure Speech native voice | es-ES |
+| `andrew` | Azure Speech native voice | en-US |
+| `antonio` | Azure Speech native voice | pt-BR |
+| `ava` | Azure Speech native voice (default) | en-US |
+| `clara` | Azure Speech native voice | en-CA |
+| `dalia` | Azure Speech native voice | es-MX |
+| `denise` | Azure Speech native voice | fr-FR |
+| `diego` | Azure Speech native voice | it-IT |
+| `diya` | Azure Speech native voice | hi-IN |
+| `elsa` | Azure Speech native voice | it-IT |
+| `emma` | Azure Speech native voice | en-US |
+| `florian` | Azure Speech native voice | de-DE |
+| `francisca` | Azure Speech native voice | pt-BR |
+| `hyunsu` | Azure Speech native voice | ko-KR |
+| `jorge` | Azure Speech native voice | es-MX |
+| `keita` | Azure Speech native voice | ja-JP |
+| `liam` | Azure Speech native voice | en-CA |
+| `meera` | Azure Speech native voice | hi-IN |
+| `nanami` | Azure Speech native voice | ja-JP |
+| `natasha` | Azure Speech native voice | en-AU |
+| `niwat` | Azure Speech native voice | th-TH |
+| `premwadee` | Azure Speech native voice | th-TH |
+| `rayn` | Azure Speech native voice | en-GB |
+| `remy` | Azure Speech native voice | fr-FR |
+| `seraphina` | Azure Speech native voice | de-DE |
+| `sonia` | Azure Speech native voice | en-GB |
+| `sunhi` | Azure Speech native voice | ko-KR |
+| `sylvie` | Azure Speech native voice | fr-CA |
+| `thierry` | Azure Speech native voice | fr-CA |
+| `william` | Azure Speech native voice | en-AU |
+| `xiaoxiao` | Azure Speech native voice | zh-CN |
+| `ximena` | Azure Speech native voice | es-ES |
+| `yunxi` | Azure Speech native voice | zh-CN |
 
 If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
 
