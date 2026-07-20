@@ -130,7 +130,20 @@ By default, server echo cancellation uses the service's own internal audio as th
 
 Use Live-Reference AEC when the audio the end-user hears differs from the raw model output. For example, use it when your client processes or mixes audio before playback, or when device output introduces echo that the internal reference doesn't capture. This scenario is common in client-side playback paths, such as a web or mobile app.
 
-To enable it, set `reference_source` to `client`, set `channels` to `2`, and set `input_audio_format` to `pcm16`. Send interleaved stereo PCM16 audio in which channel 0 is the microphone and channel 1 is the playback reference. Interleave the samples as microphone, reference, microphone, reference. Only two combinations are valid: `reference_source` set to `server` with `channels` set to `1` (the default), and `reference_source` set to `client` with `channels` set to `2`. You can't change `reference_source`, `channels`, `input_audio_format`, or `input_audio_sampling_rate` during a session.
+To enable Live-Reference AEC:
+
+1. Set `input_audio_format` to `pcm16`.
+1. In `input_audio_echo_cancellation`, set `reference_source` to `client` and `channels` to `2`.
+1. Send interleaved stereo PCM16 audio. Channel 0 contains microphone audio, and channel 1 contains playback reference audio. For each sample pair, send the microphone sample first, followed by the corresponding playback reference sample.
+
+Only the following `reference_source` and `channels` combinations are supported:
+
+| `reference_source` | `channels` | Behavior |
+|---|---|---|
+| `server` | `1` | Default. The service uses its internal audio as the echo reference. |
+| `client` | `2` | Live-Reference AEC. The service uses the playback reference audio sent by your client. |
+
+You can't change `reference_source`, `channels`, `input_audio_format`, or `input_audio_sampling_rate` during a session.
 
 Live-Reference AEC is available starting with API version `2026-07-15`.
 
@@ -149,10 +162,6 @@ Here's an example that enables Live-Reference AEC:
     }
 }
 ```
-
-> [!TIP]
-> Stereo input roughly doubles the input audio bandwidth. At 24 kHz PCM16, expect about 94 KB/s of raw audio before base64 encoding. The reference channel is excluded from audio billing.
-
 
 ## Conversational enhancements
 
