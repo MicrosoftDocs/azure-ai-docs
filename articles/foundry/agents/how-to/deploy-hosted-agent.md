@@ -20,7 +20,7 @@ This article shows you how to deploy a containerized agent to Foundry Agent Serv
 If you're deploying for the first time or want a guided walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md). The **Azure Developer CLI (azd)** and **VS Code extension** handle building, pushing, versioning, and RBAC configuration automatically.
 
 > [!TIP]
-> Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code (preview)](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
+> Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
 
 ## Deployment lifecycle
 
