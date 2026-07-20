@@ -150,9 +150,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-	endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+	project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
 	credential=DefaultAzureCredential(),
-	model=os.environ["AZURE_OPENAI_DEPLOYMENT"],
+	model="gpt-4.1",
 )
 
 prompt = ChatPromptTemplate.from_template(
@@ -279,7 +279,7 @@ The tracer emits spans that follow the [OpenTelemetry GenAI semantic conventions
 Each span type uses a specific `gen_ai.operation.name` value:
 
 | Span type | `gen_ai.operation.name` | Description |
-|---|---|---|
+| --- | --- | --- |
 | Agent/chain invocation | `invoke_agent` | Each LangGraph node or chain step. Span name is `invoke_agent {gen_ai.agent.name}`. |
 | Chat model call | `chat` | LLM inference requests. Span name is `chat {gen_ai.request.model}`. |
 | Text completion | `text_completion` | Non-chat LLM calls. |
@@ -324,15 +324,15 @@ as a span attribute.
 
 ```python
 config = {
+    "configurable": {"thread_id": "session-abc-123"},
     "callbacks": [tracer],
     "metadata": {
         "agent_name": "support-bot",
         "agent_id": "support-bot-v2",
         "agent_description": "Handles customer support requests",
-        "thread_id": "session-abc-123",
     },
 }
-result = graph.invoke({"messages": [message]}, config)
+result = workflow.invoke({"messages": [message]}, config)
 ```
 
 When using LangGraph, you can also set metadata per node in the graph definition:
