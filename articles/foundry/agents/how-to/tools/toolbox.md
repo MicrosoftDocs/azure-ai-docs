@@ -2108,10 +2108,10 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
 You can configure `vector_store_ids` in two ways:
 
 - **Pinned at toolbox creation** — provide `vector_store_ids` in the tool configuration. The vector store is fixed for all calls and can't be overridden at runtime.
-- **Dynamic at runtime** — omit `vector_store_ids` from the tool configuration. Callers provide it in the `tools/call` arguments, enabling scenarios like multi-tenant document stores where each call targets a different vector store.
+- **Dynamic at runtime** — omit `vector_store_ids` from the tool configuration. Callers provide it in the `tools/call` arguments, enabling scenarios like multitenant document stores where each call targets a different vector store.
 
 > [!NOTE]
-> Dynamic `vector_store_ids` is supported through the REST API, Python SDK, .NET SDK, JavaScript SDK, and azd CLI only. The Foundry portal UI currently requires `vector_store_ids` when adding a File Search tool.
+> REST API, Python SDK, .NET SDK, JavaScript SDK, and azd CLI support dynamic `vector_store_ids`. The Foundry portal UI currently requires `vector_store_ids` when adding a File Search tool.
 
 To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header (the same requirement as Code Interpreter — see the previous section for how to obtain the project GUID from `properties.amlWorkspace.internalId`):
 
@@ -2121,7 +2121,7 @@ To create a file and vector store for use with a toolbox, upload the file at the
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
-> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to any vector stores referenced in the tool configuration or provided at runtime.
+> When you use File Search through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to any vector stores referenced in the tool configuration or provided at runtime.
 
 :::zone pivot="rest-api"
 
@@ -2158,7 +2158,7 @@ The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. Se
 }
 ```
 
-When `vector_store_ids` is omitted, callers pass it in the `tools/call` arguments:
+When you omit `vector_store_ids`, callers pass it in the `tools/call` arguments:
 
 ```json
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<OPTIONAL_TOOL_NAME>","arguments":{"queries":["search text"],"vector_store_ids":["<VECTOR_STORE_ID>"]}}}
