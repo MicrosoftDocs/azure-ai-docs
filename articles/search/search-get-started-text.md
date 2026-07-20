@@ -13,7 +13,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-sdks-rest-powershell
-ms.date: 02/02/2026
+ms.date: 07/20/2026
 ---
 
 # Quickstart: Full-text search

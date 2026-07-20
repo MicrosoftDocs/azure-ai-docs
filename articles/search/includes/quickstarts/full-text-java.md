@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/02/2026
+ms.date: 07/20/2026
 ---
 
 In this quickstart, you use the [Azure AI Search client library for Java](/java/api/overview/azure/search-documents-readme) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
@@ -164,10 +164,10 @@ You create two helper classes, `Hotel.java` and `Address.java`, to define the st
 
 In the azure-search-documents client library, you can use [SearchableField](/java/api/com.azure.search.documents.indexes.searchablefield) and [SimpleField](/java/api/com.azure.search.documents.indexes.simplefield) to streamline field definitions. Both are annotations that you can apply to fields or methods to generate a [SearchField](/java/api/com.azure.search.documents.indexes.models.searchfield):
 
-+ `SimpleField` can be any data type, is always nonsearchable (ignored for full-text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, apply any attributes that are necessary for the scenario, such as `isKey = true` for a document ID.
-+ `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties.
+- `SimpleField` can be any data type, is always nonsearchable (ignored for full-text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, apply any attributes that are necessary for the scenario, such as `isKey = true` for a document ID.
+- `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties.
 
-Whether you use the basic `SearchField` API or either one of the helper models, you must explicitly enable filter, facet, and sort attributes. For example, [isFilterable](/java/api/com.azure.search.documents.indexes.models.searchfield), [isSortable](/java/api/com.azure.search.documents.indexes.models.searchfield), and [isFacetable](/java/api/com.azure.search.documents.indexes.models.searchfield) must be explicitly attributed, as shown in the previous sample.
+Whether you use the basic `SearchField` API or either one of the helper models, you must explicitly enable filter, facet, and sort attributes. For example, [isFilterable](/java/api/com.azure.search.documents.indexes.models.searchfield), [isSortable](/java/api/com.azure.search.documents.indexes.models.searchfield), and [isFacetable](/java/api/com.azure.search.documents.indexes.models.searchfield) must be explicitly set, as shown in the previous sample.
 
 #### Create the search index
 
