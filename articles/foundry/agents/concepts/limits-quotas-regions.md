@@ -41,6 +41,7 @@ The following table shows regional support for the [Responses API](../../openai/
 | Germany West Central | Yes | Yes | Yes |
 | Italy North | Yes | Yes | Yes |
 | Japan East | Yes | Yes | Yes |
+| Japan East | Yes | Yes | No |
 | Korea Central | Yes | Yes | Yes |
 | North Central US | Yes | Yes | Yes |
 | Norway East | Yes | Yes | No |
