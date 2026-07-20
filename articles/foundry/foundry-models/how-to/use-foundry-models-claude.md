@@ -4,7 +4,7 @@ description: Deploy Claude models in Microsoft Foundry and integrate powerful AI
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 07/10/2026
+ms.date: 07/20/2026
 ms.custom:
   - ignite-2024, dev-focus, pilot-ai-workflow-jan-2026
   - classic-and-new
