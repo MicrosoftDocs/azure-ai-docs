@@ -31,7 +31,3 @@ items:
     href: ../../responsible-ai/agents/data-privacy-security.md
 
 # Foundry Models Responsible AI
-- name: Foundry Models
-  items:
-  - name: Model-specific terms
-    href: ../../responsible-ai/models/model-specific-terms.md
