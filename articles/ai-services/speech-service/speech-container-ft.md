@@ -28,12 +28,12 @@ The fully qualified container image name is `mcr.microsoft.com/azure-cognitive-s
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/fast-transcription:latest`<br/><br/>The `latest` tag pulls the latest image for the `en-US` locale. |
-| 1.0.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/fast-transcription:gpu-1.0.0-en-us` |
+| 1.0.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/fast-transcription:en-gpu-1.0.0-preview` |
 
 All tags, except for `latest`, follow this format and are case sensitive:
 
 ```
-gpu-<major>.<minor>.<patch>-<locale>
+<language>-gpu-<major>.<minor>.<patch>-preview
 ```
 
 For your convenience, the tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/fast-transcription/tags/list). The body includes the container path and list of tags. The tags aren't sorted by version, but `"latest"` is always included at the end of the list as shown in this snippet:
