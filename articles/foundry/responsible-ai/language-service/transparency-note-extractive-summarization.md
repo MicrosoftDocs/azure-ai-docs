@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: yabinl
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 05/18/2022
+ms.date: 04/01/2026
 ---
 
 # Transparency note for summarization

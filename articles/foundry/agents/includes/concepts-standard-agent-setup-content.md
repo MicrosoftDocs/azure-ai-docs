@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -32,7 +32,9 @@ In this setup:
 
 ## Resource overview
 
-Standard setup requires you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant:
+> [!IMPORTANT]
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant:**
+>
 
 | Resource | What it stores |
 |----------|---------------|
@@ -46,15 +48,24 @@ All data processed by Foundry Agent Service is automatically stored at rest in t
 
 Your Azure Cosmos DB for NoSQL account must have a total throughput limit of at least **3000 RU/s**. Both **Provisioned Throughput** and **Serverless** modes are supported.
 
-Standard setup provisions **three containers** in your Cosmos DB account, **each requiring 1000 RU/s**:
+The **Standard setup** provisions **five containers**, each requiring **1000 RU/s**:
 
 | Container | Purpose |
 |-----------|---------|
 | `thread-message-store` | End-user conversations |
 | `system-thread-message-store` | Internal system messages |
 | `agent-entity-store` | Agent metadata (instructions, tools, name) |
+| `agent-definitions-v1` | Agent metadata (instructions, tools, name, versions) |
+| `run-state-v1` | Internal messages and end-user conversations |
 
-For multiple projects under the same Foundry account, multiply by the number of projects. For example, two projects require at least 6000 RU/s (3 containers × 1000 RU/s × 2 projects).
+`thread-message-store`, `system-thread-message-store`, and `agent-entity-store` are part of the **Foundry Agent Service (Classic)** Standard Setup.
+
+**Foundry Agent Service (New)** uses **`agent-definitions-v1`** and **`run-state-v1`**.  
+
+The older containers belong to the **Classic** experience and are not used by the new runtime.
+
+>[!Warning]
+>The **Classic** and **New** Foundry Agent Service runtimes use **different Cosmos DB containers**.  
 
 ## Project-level data isolation
 
@@ -72,9 +83,6 @@ Standard setup enforces project-level data isolation by default. Two blob storag
 - You can't update the capability host after it's set for a project or account.
 
 ## Provision resources step by step
-
-> [!NOTE]
-> The Foundry portal currently supports only basic agent setup. To configure standard agent setup, use the manual steps or the Bicep template described in this section.
 
 ### Manual provisioning
 
@@ -132,11 +140,13 @@ The project managed identity includes both System-assigned Managed Identity (SMI
 
 #### Phase 6: Grant developer access
 
-11. Assign all developers who need to create or edit agents in the project the **Azure AI User** role on the project scope.
+11. Assign all developers who need to create or edit agents in the project the **Foundry User** role on the project scope.
+
+   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ### Use a Bicep template
 
-Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account, or Azure AI Search resource by providing the full Azure Resource Manager (ARM) resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account, or Azure AI Search resource by providing the full Azure Resource Manager (ARM) resource ID in the [standard agent template file](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
 
 #### Use an existing Azure OpenAI resource
 
@@ -232,11 +242,11 @@ After you complete provisioning, verify the setup is working correctly:
 | `CapabilityHostProvisioningFailed` or capability host status shows **Failed** | Insufficient Cosmos DB throughput | Ensure your Cosmos DB account has at least 3000 RU/s (1000 RU/s per container × 3 containers). For multiple projects, multiply by the number of projects. |
 | `403 Forbidden` when the agent reads or writes files | Missing storage role assignments | Verify the project managed identity has **Storage Blob Data Contributor** on the `<workspaceId>-azureml-blobstore` container and **Storage Blob Data Owner** on the `<workspaceId>-agents-blobstore` container. |
 | `SearchIndexNotFound` or `403` on search operations | Missing search roles | Confirm that the project managed identity has both **Search Index Data Contributor** and **Search Service Contributor** on your Azure AI Search resource. |
-| `AuthorizationFailed` when creating or editing agents | Missing user role | Assign the **Azure AI User** role to the developer on the project scope. |
+| `AuthorizationFailed` when creating or editing agents | Missing user role | Assign the **Foundry User** role to the developer on the project scope. |
 | Update request to capability host returns `400 BadRequest` | Update not supported | Capability hosts can't be updated after creation. Delete and recreate the project if configuration changes are needed. |
 
 ## Related content
 
 - [Set up your environment for Foundry Agent Service](../environment-setup.md)
 - [Capability hosts](../concepts/capability-hosts.md)
-- [Standard agent setup Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep)
+- [Standard agent setup Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep)

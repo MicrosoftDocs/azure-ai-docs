@@ -4,16 +4,18 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools standard and pro modes.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
 # Azure Content Understanding in Foundry Tools standard and pro modes (preview)
+
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
 Azure Content Understanding in Foundry Tools is a generative AI service designed to derive structured insights from multimodal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service offers two modes: `standard` and `pro`.
 

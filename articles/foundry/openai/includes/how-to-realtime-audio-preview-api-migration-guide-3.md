@@ -4,7 +4,7 @@ description: Include file
 author: alexeyo26
 ms.reviewer: sgilley
 ms.author: alexeyo
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -18,5 +18,5 @@ When you migrate to the GA version of the Realtime API, explore these resources 
 - [WebSocket implementation guide](../how-to/realtime-audio-websockets.md) - Detailed WebSocket configuration
 - [WebRTC implementation guide](../how-to/realtime-audio-webrtc.md) - Browser-based audio implementation
 - [SIP integration](../how-to/realtime-audio-sip.md) - Enable phone call integration
-- [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) - Additional implementation examples
+- [Realtime API quickstart](../how-to/realtime-audio-websockets.md#voice-agent-quickstart) - Additional implementation examples
 - [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) - Cost and billing information

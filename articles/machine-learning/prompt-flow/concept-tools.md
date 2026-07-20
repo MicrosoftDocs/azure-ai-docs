@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Tools in prompt flow?
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Tools are the fundamental building blocks of a flow in Azure Machine Learning prompt flow.
 
 Each tool is a simple, executable unit with a specific function, allowing users to perform various tasks.

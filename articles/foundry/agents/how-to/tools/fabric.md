@@ -1,12 +1,14 @@
 ---
 title: "Use the Microsoft Fabric data agent with Foundry agents"
 description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough."
-author: alvinashcraft
-ms.author: aashcraft
-manager: nitinme
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
+manager: mcleans
 ms.date: 03/30/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -29,11 +31,11 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -42,7 +44,9 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 > - To help your agent invoke the Fabric tool reliably, include clear tool guidance in your agent instructions (for example, "For customer and product sales data, use the Fabric tool"). You can also force tool use with `tool_choice`.
 
 - Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910).
-- Assign developers and end users at least the `Azure AI User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+- Assign developers and end users at least the `Foundry User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - Give developers and end users at least `READ` access to the Fabric data agent. Users also need the minimum permission on each underlying data source:
 
     | Data source | Minimum permission |
@@ -94,10 +98,14 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 ## Code example
 
 > [!NOTE]
-> - The Python, JavaScript, and REST samples use generally available (GA) packages. The C# samples require prerelease packages. For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
+> - For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
+
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -164,11 +172,64 @@ print("Agent deleted")
 - A line that starts with `Response output:` followed by the response text.
 
 For more details, see the [full Python sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_fabric.py).
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_fabric_tool()` to attach a Microsoft Fabric data agent connection. It uses `AIProjectClient` to resolve the connection name to a connection ID. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
+from azure.identity import AzureCliCredential
+
+FABRIC_CONNECTION_NAME = "my-fabric-connection"
+
+
+async def main() -> None:
+    credential = AzureCliCredential()
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    fabric_connection_id = project.connections.get(FABRIC_CONNECTION_NAME).id
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant. Use Fabric to answer data questions.",
+        tools=[FoundryChatClient.get_fabric_tool(connection_id=fabric_connection_id)],
+    )
+
+    result = await agent.run("Tell me about sales records.")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent response text is printed to the console, grounded in the Fabric workspace your connection points to:
+
+```console
+Agent: Based on the sales records in the connected Fabric workspace ...
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 
-To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentTool`.
+To enable your agent to access the Fabric data agent, use `MicrosoftFabricPreviewTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```csharp
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -187,17 +248,17 @@ FabricDataAgentToolOptions fabricToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new MicrosoftFabricPreviewTool(fabricToolOption), }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create the response and make sure we are always using tool.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
     ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -210,17 +271,64 @@ Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
 Console.WriteLine(response.GetOutputText());
 
 // Delete the Agent version to clean up resources.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
 
 - The response text printed to the console. For the sample question, the response should include the number of public holidays (for example, `62`).
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateMicrosoftFabricTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `FABRIC_PROJECT_CONNECTION_ID` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+
+string fabricConnectionId = Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_ID")
+    ?? throw new InvalidOperationException("FABRIC_PROJECT_CONNECTION_ID is not set.");
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions =
+    "You are a helpful assistant with access to Microsoft Fabric data. Answer questions based on data available through your Fabric connection.";
+
+var fabricToolOptions = new FabricDataAgentToolOptions();
+fabricToolOptions.ProjectConnections.Add(new ToolProjectConnection(fabricConnectionId));
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
+    instructions: AgentInstructions,
+    name: "FabricAgent",
+    tools: [FoundryAITool.CreateMicrosoftFabricTool(fabricToolOptions)]);
+
+AgentResponse response = await agent.RunAsync("What data is available in the connected Fabric workspace?");
+Console.WriteLine($"Response: {response.Text}");
+```
+
+### Expected output
+
+The agent response text is printed to the console, grounded in the Fabric workspace your connection points to:
+
+```console
+Response: The connected Fabric workspace contains the following datasets ...
+```
+
+For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step20_MicrosoftFabric).
+
+---
+
 :::zone-end
 
 :::zone pivot="typescript"
 
-The following TypeScript example demonstrates how to create an AI agent with Microsoft Fabric capabilities by using the `MicrosoftFabricAgentTool` and synchronous Azure AI Projects client. The agent can query Fabric data sources and provide responses based on data analysis. For a JavaScript version of this sample, see the [JavaScript sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFabric.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript example demonstrates how to create an AI agent with Microsoft Fabric capabilities by using the `MicrosoftFabricPreviewTool` and synchronous Azure AI Projects client. The agent can query Fabric data sources and provide responses based on data analysis. For a JavaScript version of this sample, see the [JavaScript sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFabric.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -316,7 +424,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
@@ -422,10 +530,6 @@ curl --request POST \
 
 - A `200` response with a JSON body that contains the model output.
 :::zone-end
-
-## Limitations
-
-- The Fabric data agent tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the Fabric data agent tool requires user identity passthrough (On-Behalf-Of).
 
 ## Troubleshooting
 

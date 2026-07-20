@@ -1,6 +1,6 @@
 ---
 author: sharmas
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-immersive-reader
 ms.topic: include
 ms.date: 02/21/2024

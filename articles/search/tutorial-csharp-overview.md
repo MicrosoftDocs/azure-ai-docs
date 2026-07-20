@@ -5,15 +5,18 @@ ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 09/23/2025
+ms.date: 04/27/2026
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
 ms.devlang: csharp
+ai-usage: ai-assisted
 ---
 
 # Step 1 - Overview of adding search to a static web app with .NET
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This tutorial builds a website that searches through a catalog of books and then deploys the website to an Azure Static Web App. 
 

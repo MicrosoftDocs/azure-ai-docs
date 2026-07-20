@@ -6,10 +6,10 @@ ms.custom:
   - horz-monitor, subject-monitoring
   - classic-and-new
 ms.topic: reference
-author: mrbullwinkle
-ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+author: alvinashcraft
+ms.author: aashcraft
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 

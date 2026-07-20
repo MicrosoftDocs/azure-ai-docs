@@ -1,8 +1,8 @@
 ---
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.date: 11/18/2025
+manager: mcleans
+ms.date: 04/30/2026
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -52,7 +52,7 @@ In a code editor, create a new file named `test_pii_payload.json` and copy the f
 
 Save `test_pii_payload.json` somewhere on your computer. For example, your desktop.  
 
-## Send a personally identifying information (PII) detection API request
+## Send a personally identifiable information (PII) detection API request
 
 Use the following commands to send the API request using the program you're using. Copy the command into your terminal, and run it.
 
@@ -113,28 +113,28 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2022-05-01 \
 
 ```json
 {
-	"kind": "PiiEntityRecognitionResults",
-	"results": {
-		"documents": [{
-			"redactedText": "Call our office at ************, or send an email to *******************",
-			"id": "1",
-			"entities": [{
-				"text": "312-555-1234",
-				"category": "PhoneNumber",
-				"offset": 19,
-				"length": 12,
-				"confidenceScore": 0.8
-			}, {
-				"text": "support@contoso.com",
-				"category": "Email",
-				"offset": 53,
-				"length": 19,
-				"confidenceScore": 0.8
-			}],
-			"warnings": []
-		}],
-		"errors": [],
-		"modelVersion": "2021-01-15"
-	}
+    "kind": "PiiEntityRecognitionResults",
+    "results": {
+        "documents": [{
+            "redactedText": "Call our office at ************, or send an email to *******************",
+            "id": "1",
+            "entities": [{
+                "text": "312-555-1234",
+                "category": "PhoneNumber",
+                "offset": 19,
+                "length": 12,
+                "confidenceScore": 0.8
+            }, {
+                "text": "support@contoso.com",
+                "category": "Email",
+                "offset": 53,
+                "length": 19,
+                "confidenceScore": 0.8
+            }],
+            "warnings": []
+        }],
+        "errors": [],
+        "modelVersion": "2021-01-15"
+    }
 }
 ```

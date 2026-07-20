@@ -3,10 +3,10 @@ title: Create a CLU fine-tuning task in Microsoft Foundry or with the REST API
 titleSuffix: Foundry Tools
 description: This article shows you how to create CLU fine-tuning task projects the Microsoft Foundry or using the REST API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 05/29/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -16,7 +16,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-foundry-portal.md).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource, you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-foundry-portal.md).
 > * In Foundry, a fine-tuning task serves as your workspace when customizing your CLU model. Previously, a **fine-tuning task** was referred to as a **CLU project**. You might encounter both terms used interchangeably in older CLU documentation.
 > * We highly recommend that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 >
@@ -24,7 +24,9 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 ## Prerequisites
 
 * An **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Foundry Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+
+  [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
 *  An [**Foundry resource**](../../../multi-service-resource.md). For more information, *see* [Configure a Foundry resource](configure-azure-resources.md#option-1-configure-a-foundry-resource). Alternately, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * **A Foundry project created in the Foundry**. For more information, *see* [Create a Foundry project](../../../../ai-foundry/how-to/create-projects.md).
 
@@ -58,7 +60,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
    >
    > * **Standard training** enables faster training times and quicker iterations; however it's only available for English.
    > * **Advanced training** includes longer training durations and is supported for English, other languages, and multilingual projects.
-   > * For more information, *see* [Training modes](train-model.md#training-modes).
+   > * For more information, *see* [Training modes](build-train-deploy-model.md#training-modes).
 
 1. Once the task creation is complete, select the task from the Foundry Tool fine-tuning window to arrive at the **Getting started with fine-tuning** page.
 
@@ -175,5 +177,5 @@ If your project is no longer required, you can delete it using the REST API. To 
 
 After you create your fine-tuning workspace, start your fine-tuning task by defining your intents and entities and adding them to your schema:
 
-* [Build your fine-tuning schema](build-schema.md)
-* [Label utterances](tag-utterances.md)
+* [Build your fine-tuning schema](build-train-deploy-model.md#build-your-fine-tuning-schema)
+* [Label utterances](build-train-deploy-model.md#label-your-utterances)

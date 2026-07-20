@@ -4,10 +4,11 @@ description: include file
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 04/08/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 
@@ -86,8 +87,8 @@ To call the API:
 1. Send a JSON payload with your model name and messages.
 
 For full schema details, see:
-- [Swagger for Foundry REST API](/rest/api/aifoundry/)
-- [Swagger for OpenAI v1 compatibility](../openai/latest.md)
+- [Swagger for Foundry REST API](/rest/api/microsoft-foundry/?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
+- [Swagger for OpenAI v1 compatibility](/rest/api/microsoft-foundry/?view=rest-microsoft-foundry-v1&preserve-view=true)
 
 The following examples use Microsoft Entra ID authentication. Replace the placeholder values with your own.
 

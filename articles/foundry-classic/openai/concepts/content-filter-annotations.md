@@ -1,9 +1,9 @@
 ---
 title: "Guardrail annotations (classic)" 
 description: "Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models. (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 01/15/2026
 author: ssalgadodev

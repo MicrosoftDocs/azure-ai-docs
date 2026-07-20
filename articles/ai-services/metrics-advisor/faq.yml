@@ -3,12 +3,12 @@ metadata:
   title: Metrics Advisor frequently asked questions
   titleSuffix: Foundry Tools
   description: Frequently asked questions about the Metrics Advisor service.
-  author: mrbullwinkle
-  manager: nitinme
+  author: alvinashcraft
+  manager: mcleans
   ms.service: azure-ai-metrics-advisor
   ms.topic: faq
   ms.date: 06/12/2025
-  ms.author: mbullwin
+  ms.author: aashcraft
 title: Metrics Advisor frequently asked questions
 summary: |
 

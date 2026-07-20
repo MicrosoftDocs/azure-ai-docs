@@ -1,12 +1,13 @@
 ---
 title: "High availability and disaster recovery for hub projects (classic)"
 description: "Learn how to plan for high availability and disaster recovery for Microsoft Foundry hub projects. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ms.reviewer: andyaviles
 ms.date: 01/06/2026
 ai-usage: ai-assisted

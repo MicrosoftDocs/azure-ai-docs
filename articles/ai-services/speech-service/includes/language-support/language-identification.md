@@ -1,7 +1,7 @@
----
+﻿---
 author: PatrickFarley
-ms.service: azure-ai-speech
-ms.date: 8/1/2025
+ms.service: azure-speech-foundry-tools
+ms.date: 04/02/2026
 ms.topic: include
 ms.author: pafarley
 ---
@@ -17,6 +17,7 @@ ms.author: pafarley
 | Azerbaijani | `az-AZ` |
 | Basque | `eu-ES` |
 | Bengali | `bn-IN` |
+| Bhojpuri | `bho-IN` |
 | Bosnian | `bs-BA` |
 | Bulgarian | `bg-BG` |
 | Burmese | `my-MM` |

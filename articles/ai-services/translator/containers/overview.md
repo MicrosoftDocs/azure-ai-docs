@@ -3,10 +3,10 @@ title: What are Azure Translator containers?
 titleSuffix: Foundry Tools
 description: Translate text and documents using Azure Translator containers.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 04/02/2026
 ms.author: lajanuar
 ---
 

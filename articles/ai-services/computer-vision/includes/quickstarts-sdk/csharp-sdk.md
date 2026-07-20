@@ -2,8 +2,8 @@
 title: "Quickstart: Optical character recognition client library for .NET"
 description: In this quickstart, get started with the Optical character recognition client library for .NET.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 08/07/2023
 ms.author: pafarley
@@ -15,9 +15,9 @@ ms.custom: devx-track-csharp
 Use the optical character recognition (OCR) client library to read printed and handwritten text from an image. The OCR service can read visible text in an image and convert it to a character stream. For more information on text recognition, see the [OCR overview](../../overview-ocr.md). The code in this section uses the latest [Azure Vision in Foundry Tools](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/) package.
 
 > [!TIP]
-> You can also extract text from a local image. See the [ComputerVisionClient](/dotnet/api/microsoft.azure.cognitiveservices.vision.computervision.computervisionclient) methods, such as **ReadInStreamAsync**. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ComputerVisionQuickstart.cs#162) for scenarios involving local images.
+> You can also extract text from a local image. See the [ComputerVisionClient](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library) methods, such as **ReadInStreamAsync**. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ComputerVisionQuickstart.cs#162) for scenarios involving local images.
 
-[Reference documentation](/dotnet/api/overview/azure/computer-vision) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/cognitiveservices/Vision.ComputerVision) | [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
+[Reference documentation](/dotnet/api/overview/azure/computer-vision) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitiveservices) | [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
 
 ## Prerequisites
 

@@ -3,10 +3,10 @@ title: "Use limited access tokens - Face"
 titleSuffix: Foundry Tools
 description: Learn how ISVs can manage the Face API usage of their clients by issuing access tokens that grant access to Face features which are normally gated.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 #customer intent: As an ISV, I want to manage Face API usage for my clients so that they can use Face features without formal approval.
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to

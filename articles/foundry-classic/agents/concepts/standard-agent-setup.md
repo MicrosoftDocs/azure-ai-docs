@@ -1,11 +1,11 @@
 ---
 title: "Set up standard agent resources for Foundry Agent Service (classic)"
 description: "Learn how to provision and configure customer-managed Azure resources for Foundry Agent Service standard agent setup with enterprise-grade data isolation. (classic)"
-manager: nitinme
+manager: mcleans
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/13/2026
 ms.custom:

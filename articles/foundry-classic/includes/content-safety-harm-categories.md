@@ -2,7 +2,7 @@
 title: include file
 description: include file
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 01/28/2025
 ms.custom: include

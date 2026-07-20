@@ -2,30 +2,32 @@
 title: "Connect OpenAPI tools to Microsoft Foundry agents"
 description: "Connect OpenAPI 3.0 and 3.1 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs."
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-openapi-function-new
 ---
 
 # Connect agents to OpenAPI tools
-Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 and 3.1 specifications. Agents that connect to OpenAPI tools can call external services, retrieve real-time data, and extend their capabilities beyond built-in functions.
+Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 and 3.1 specifications. The Foundry model powering your agent can call external services, retrieve real-time data, and extend its capabilities beyond built-in functions.
 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`, `API key`, and `managed identity`. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 > [!NOTE]
 > For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
@@ -41,7 +43,7 @@ Before you begin, make sure you have:
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
   - Python: `azure-ai-projects`
-  - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
   - Java: `com.azure:azure-ai-agents`
 
@@ -251,7 +253,11 @@ Agent deleted
 :::zone pivot="csharp"
 ## Sample of using Agents with OpenAPI tool
 
-This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
+This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -291,24 +297,24 @@ class OpenAPIDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
         // Create a response object and ask the question about the weather in Seattle, WA.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         ResponseResult response = responseClient.CreateResponse(
                 userInputText: "Use the OpenAPI tool to print out, what is the weather in Seattle, WA today."
             );
         Console.WriteLine(response.GetOutputText());
 
         // Finally, delete all the resources created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
@@ -339,6 +345,91 @@ The weather in Seattle, WA today is cloudy with temperatures around 52°F...
 - `FileNotFoundException`: OpenAPI specification file not found in Assets folder
 - `UnauthorizedAccessException`: Invalid credentials or insufficient RBAC permissions
 - **API key not injected**: Verify your OpenAPI spec includes both `securitySchemes` (in `components`) and `security` sections with matching scheme names
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateOpenApiTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+using Microsoft.Extensions.AI;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions = "You are a helpful assistant that can use the countries API to retrieve information about countries by their currency code.";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AITool openApiTool = FoundryAITool.CreateOpenApiTool(CreateOpenAPIFunctionDefinition());
+
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: AgentInstructions,
+    name: "OpenAPIToolsAgent",
+    tools: [openApiTool]);
+
+Console.WriteLine(await agent.RunAsync(
+    "What countries use the Euro (EUR) as their currency? Please list them."));
+
+static OpenApiFunctionDefinition CreateOpenAPIFunctionDefinition()
+{
+    const string CountriesOpenApiSpec = """
+    {
+      "openapi": "3.1.0",
+      "info": {
+        "title": "REST Countries API",
+        "description": "Retrieve information about countries by currency code",
+        "version": "v3.1"
+      },
+      "servers": [ { "url": "https://restcountries.com/v3.1" } ],
+      "paths": {
+        "/currency/{currency}": {
+          "get": {
+            "description": "Get countries that use a specific currency code (e.g., USD, EUR, GBP)",
+            "operationId": "GetCountriesByCurrency",
+            "parameters": [
+              {
+                "name": "currency", "in": "path", "required": true,
+                "schema": { "type": "string" }
+              }
+            ],
+            "responses": {
+              "200": { "description": "Successful response with list of countries" },
+              "404": { "description": "No countries found for the currency" }
+            }
+          }
+        }
+      }
+    }
+    """;
+
+    return new OpenApiFunctionDefinition(
+        "get_countries",
+        BinaryData.FromString(CountriesOpenApiSpec),
+        new OpenAPIAnonymousAuthenticationDetails())
+    {
+        Description = "Retrieve information about countries by currency code"
+    };
+}
+```
+
+### Expected output
+
+The agent calls the REST Countries API through the OpenAPI tool and lists the matching countries:
+
+```console
+Countries that use the Euro (EUR) as their currency include: Austria, Belgium, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain ...
+```
+
+For the full sample including authenticated API patterns, see [Agent_Step17_OpenAPITools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step17_OpenAPITools).
+
+---
 
 ## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
 
@@ -380,12 +471,12 @@ class OpenAPIConnectedDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
@@ -395,7 +486,7 @@ class OpenAPIConnectedDemo
         // ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
         // in the ResponseCreationOptions. This setting will
         // force Agent to use tool and will trigger the error if it is not accessible.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         CreateResponseOptions responseOptions = new()
         {
             ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -410,7 +501,7 @@ class OpenAPIConnectedDemo
         Console.WriteLine(response.GetOutputText());
 
         // Finally, delete all the resources we have created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```

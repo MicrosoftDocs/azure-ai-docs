@@ -3,10 +3,10 @@ title: Translator BreakSentence Method
 titleSuffix: Foundry Tools
 description: The Translator BreakSentence method identifies the positioning of sentence boundaries in a piece of text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 

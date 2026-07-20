@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "An introduction to Azure AI Custom Vision, and what to consider to use the technology responsibly."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: concept-article
 ms.date: 07/07/2021

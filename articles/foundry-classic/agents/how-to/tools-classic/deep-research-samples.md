@@ -2,13 +2,15 @@
 title: "How to use the deep research tool (classic)"
 description: "Find code samples and instructions for using deep research in the Foundry Agent Service. (classic)"
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/27/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
 ms.custom: references_regions
 zone_pivot_groups: selection-deep-research
 ---

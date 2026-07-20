@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Connect to Azure AI Search using keys
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports both identity-based and key-based authentication (default) for connections to your search service.
 
 A request made to a search service endpoint is accepted if both the request and the API key are valid and if the search service is configured to allow API keys on a request.
@@ -175,7 +177,7 @@ Here's an example of admin API key usage on a create index request:
 @adminApiKey=aaaabbbb-0000-cccc-1111-dddd2222eeee
 
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{adminApiKey}}
 
@@ -194,7 +196,7 @@ Here's an example of query API key usage on a Search Documents (GET) request:
 
 ```http
 ### Query an index
-GET /indexes/my-new-index/docs?search=*&api-version=2025-09-01&api-key={{queryApiKey}}
+GET /indexes/my-new-index/docs?search=*&api-version=2026-04-01&api-key={{queryApiKey}}
 ```
 
 > [!NOTE]  
@@ -248,7 +250,7 @@ $headers = @{
 Use a variable to contain the fully qualified query:
 
 ```powershell
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2026-04-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
 ```
 
 Send the request to the search service:
@@ -323,7 +325,7 @@ After you create new keys via portal or management layer, access is restored to 
 
 ## Migrate from keys to roles
 
-If you want to transition to role-based access, it's helpful to understand how keys map to [built-in roles in Azure AI Search](search-security-rbac.md#built-in-roles-used-in-search):
+If you want to transition to role-based access, it's helpful to understand how keys map to [built-in roles in Azure AI Search](search-security-rbac.md#built-in-roles):
 
 + An admin key corresponds to the **Search Service Contributor** and **Search Index Data Contributor** roles.
 + A query key corresponds to the **Search Index Data Reader** role.

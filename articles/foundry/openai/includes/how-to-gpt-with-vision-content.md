@@ -3,7 +3,7 @@ title: Include file
 description: Include file
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -80,7 +80,7 @@ The following is a sample request body. The format is the same as the chat compl
 > When uploading images, there's a limit of 10 images per chat request.
 
 > [!NOTE]
-> Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP.
+> Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP. Image URLs must be publicly accessible: private endpoints, VNet-restricted, and firewall-restricted URLs are not supported even if they are on a storage account within same or peered VNet. The Vision service fetches images from Microsoft's managed infrastructure, not from within VNet, so the request will be unaware of the Private Endpoint present in VNET.
 
 ```json
 {
@@ -289,11 +289,9 @@ Every response includes a `"finish_reason"` field. It has the following possible
 - `length`: Incomplete model output due to the `max_tokens` input parameter or model's token limit.
 - `content_filter`: Omitted content due to a flag from our content filters.
 
-## Pricing information
+[!INCLUDE [input limitations](./gpt-with-vision-input-limitations.md)]
 
-Extra usage fees might apply when using chat completion models with vision functionality.
 
-For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 
 ## Troubleshooting
 
@@ -306,5 +304,4 @@ For details on how the image parameters impact tokens used and pricing please se
 ## Related content
 
 * [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-* [Vision chats frequently asked questions](../../../foundry-classic/openai/faq.yml#gpt-4-turbo-with-vision)
 * [Chat completions API reference](https://aka.ms/gpt-v-api-ref)

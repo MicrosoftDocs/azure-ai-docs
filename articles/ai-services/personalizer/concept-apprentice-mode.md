@@ -3,7 +3,7 @@ title: Apprentice mode - Personalizer
 description: Learn how to use apprentice mode to gain confidence in a model without changing any code.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: concept-article
 ms.date: 01/19/2024

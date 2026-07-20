@@ -1,16 +1,16 @@
 ---
 title:  "Prompt engineering techniques | Microsoft Foundry Models (classic)"
 description: "Learn how to use prompt engineering to optimize your work with Azure OpenAI. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 12/6/2025
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
-manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+manager: mcleans
+author: alvinashcraft
+ms.author: aashcraft
 
 recommendations: false
 ai-usage: ai-assisted

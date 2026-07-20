@@ -2,15 +2,17 @@
 title: "Use the image generation tool (preview) in Foundry Agent Service"
 description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output."
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-image-generation
 ---
 
@@ -20,15 +22,15 @@ zone_pivot_groups: selection-image-generation
 > - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
 > - You also need a compatible orchestrator model (`gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, or `gpt-5` series) deployed in the same Foundry project.
 
-The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. Use it to create AI-generated visuals and return base64-encoded output that you can save to a file.
+The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. The agent's Foundry model orchestrates the image generation request and returns base64-encoded output that you can save to a file.
 
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -53,7 +55,9 @@ Before you start, install the latest SDK package. The .NET SDK is currently in p
 :::zone pivot="python"
 ## Create an agent with the image generation tool
 
-This sample creates an agent with the image generation tool, generates an image, and saves it to a file.
+This sample creates an agent with the image generation tool, generates an image, and saves it to a file. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import base64
@@ -106,6 +110,66 @@ if image_data and image_data[0]:
         f.write(base64.b64decode(image_data[0]))
     print(f"Image saved to: {file_path}")
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_image_generation_tool()` to attach the image generation tool. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import base64
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+IMAGE_MODEL = "gpt-image-1"
+
+
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="Generate images based on user prompts.",
+        tools=[
+            FoundryChatClient.get_image_generation_tool(
+                model=IMAGE_MODEL,
+                quality="low",
+                size="1024x1024",
+            )
+        ],
+    )
+
+    result = await agent.run("Generate an image of the Microsoft logo.")
+
+    # Extract and save the generated image from the raw response.
+    for output in result.raw_representation.output:
+        if output.type == "image_generation_call":
+            file_path = os.path.abspath("microsoft.png")
+            with open(file_path, "wb") as f:
+                f.write(base64.b64decode(output.result))
+            print(f"Image saved to: {file_path}")
+
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The tool returns base64-encoded image bytes, which the sample saves to disk; the model's text reply is also printed:
+
+```console
+Image saved to: /path/to/microsoft.png
+Agent: Here is the generated Microsoft logo image.
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
@@ -139,7 +203,7 @@ AIProjectClient projectClient = new(
 // when creating this tool. The ImageGenerationTool parameters include
 // the image generation model, image quality and resolution.
 // Supported image generation models include gpt-image-1.
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
 Instructions = "Generate images based on user prompts.",
 Tools = {
@@ -150,7 +214,7 @@ Tools = {
         )
     }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
@@ -170,7 +234,7 @@ foreach (ResponseItem item in response.OutputItems)
 }
 
 // Clean up resources by deleting the Agent.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 
 // To use image generation, provide the custom header to web requests,
 // which contain the model deployment name, for example:
@@ -400,7 +464,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 

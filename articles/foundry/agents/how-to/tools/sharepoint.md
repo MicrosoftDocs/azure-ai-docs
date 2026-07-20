@@ -2,13 +2,15 @@
 title: "Use SharePoint content with agent API"
 description: "Learn how to ground Microsoft Foundry agents with SharePoint content using the agent API. Connect to SharePoint sites or folders, use identity passthrough, and keep enterprise access controls intact."
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
 ms.custom: 
     - azure-ai-agents
     - dev-focus
@@ -34,22 +36,25 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - Eligible license or pay-as-you-go model:
   - Developers and end users have a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
-- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+- Developers and end users have at least `Foundry User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - Developers and end users have at least `READ` access to the SharePoint site.
+- Ensure your SharePoint tenant and your Foundry project are in the same Microsoft Entra tenant. Cross-tenant token exchange isn't supported.
 - The required SDK package installed:
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
-  - **C# (Preview)**: Install the `Azure.AI.Projects` NuGet package (prerelease)
+  - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
   - **Java**: Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml`
 - Environment variables configured:
@@ -74,7 +79,9 @@ If you need to create a SharePoint connection for your project, see [Add a new c
 
 :::zone pivot="python"
 
-The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site.
+The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -177,13 +184,74 @@ Follow-up completed!
 Full response: Based on the meeting notes from your SharePoint site, the last meeting covered the following topics: project timeline updates, budget review, and next quarter planning.
 ```
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_sharepoint_tool()` to attach a SharePoint grounding connection. It uses `AIProjectClient` to resolve the connection name to a connection ID, then iterates over message annotations to print URL citations. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
+from azure.identity import AzureCliCredential
+
+SHAREPOINT_CONNECTION_NAME = "my-sharepoint-connection"
+
+
+async def main() -> None:
+    credential = AzureCliCredential()
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    sharepoint_connection_id = project.connections.get(SHAREPOINT_CONNECTION_NAME).id
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful agent. Use the SharePoint tool to answer questions.",
+        tools=[FoundryChatClient.get_sharepoint_tool(connection_id=sharepoint_connection_id)],
+    )
+
+    result = await agent.run("Please summarize the last meeting notes stored in SharePoint.")
+    print(f"Agent: {result.text}")
+
+    for message in result.messages:
+        for content in message.contents:
+            for annotation in getattr(content, "annotations", None) or []:
+                url = getattr(annotation, "url", None)
+                if url:
+                    title = getattr(annotation, "title", None) or ""
+                    print(f"URL Citation: [{title}]({url})")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The response text is printed along with any URL citations that the SharePoint grounding tool returned:
+
+```console
+Agent: Based on the meeting notes from your SharePoint site ...
+URL Citation: [Meeting notes](https://contoso.sharepoint.com/sites/policies/Documents/meeting-notes.docx)
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 
 The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site. This example uses synchronous methods for simplicity. For an asynchronous version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample24_Sharepoint.md) on the Azure SDK for .NET GitHub repository.
 
-To enable your Agent to access SharePoint, use `SharepointPreviewTool`.
+To enable your Agent to access SharePoint, use `SharepointPreviewTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```csharp
 using System;
@@ -207,17 +275,17 @@ SharePointGroundingToolOptions sharepointToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new SharepointPreviewTool(sharepointToolOption), }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create the response and make sure we are always using tool.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
     ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -250,7 +318,7 @@ Console.WriteLine($"Response status: {response.Status}");
 Console.WriteLine($"{response.GetOutputText()}{annotation}");
 
 // After the sample is completed, delete the Agent we have created.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -262,6 +330,66 @@ The Contoso whistleblower policy outlines procedures for reporting unethical beh
 ```
 
 The output includes the agent's response grounded in SharePoint content, with a citation link to the source document.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateSharepointTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `SHAREPOINT_PROJECT_CONNECTION_ID` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+
+string sharepointConnectionId = Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_ID")
+    ?? throw new InvalidOperationException("SHAREPOINT_PROJECT_CONNECTION_ID is not set.");
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions = """
+    You are a helpful agent that can use SharePoint tools to assist users.
+    Use the available SharePoint tools to answer questions and perform tasks.
+    """;
+
+var sharepointOptions = new SharePointGroundingToolOptions();
+sharepointOptions.ProjectConnections.Add(new ToolProjectConnection(sharepointConnectionId));
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
+    instructions: AgentInstructions,
+    name: "SharePointAgent",
+    tools: [FoundryAITool.CreateSharepointTool(sharepointOptions)]);
+
+AgentResponse response = await agent.RunAsync("List the documents available in SharePoint");
+Console.WriteLine($"Response: {response.Text}");
+
+// Print any URL citations returned by the SharePoint grounding tool.
+foreach (AIAnnotation annotation in response.Messages
+    .SelectMany(m => m.Contents)
+    .SelectMany(c => c.Annotations ?? []))
+{
+    if (annotation.RawRepresentation is UriCitationMessageAnnotation urlCitation)
+    {
+        Console.WriteLine($"URL Citation: [{urlCitation.Title}]({urlCitation.Uri})");
+    }
+}
+```
+
+### Expected output
+
+The response text is printed along with any URL citations the SharePoint tool returned:
+
+```console
+Response: Based on the documents in SharePoint ...
+URL Citation: [Whistleblower Policy](https://contoso.sharepoint.com/sites/policies/Documents/whistleblower-policy.pdf)
+```
+
+For the full sample, see [Agent_Step19_SharePoint](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step19_SharePoint).
+
+---
 
 :::zone-end
 
@@ -464,7 +592,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
@@ -537,8 +665,6 @@ public class SharePointGroundingExample {
 - You can add only one SharePoint tool per agent.
 - The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
 - For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- The SharePoint tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the SharePoint tool requires user identity passthrough (On-Behalf-Of).
-
 ## Setup
 
 > [!NOTE]

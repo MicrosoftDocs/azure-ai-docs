@@ -93,8 +93,8 @@ items:
             displayName: bing, grounding with bing custom search
           - name: How to use Grounding with Bing Custom Search
             href: how-to/tools-classic/bing-custom-search-samples.md
-        - name: Logic apps
-          href: how-to/tools-classic/logic-apps.md
+        - name: Azure Logic Apps (preview)
+          href: /azure/logic-apps/add-agent-action-create-run-workflow?context=/azure/ai-services/agents/context/context
         - name: Microsoft Fabric (preview)
           href: how-to/tools-classic/fabric.md
         - name: Model Context Protocol (preview)

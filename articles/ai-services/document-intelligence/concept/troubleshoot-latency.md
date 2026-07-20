@@ -3,10 +3,10 @@ title: Troubleshoot latency issues with Document Intelligence API
 titleSuffix: Foundry Tools
 description: Learn troubleshooting tips, remedial solutions, and best practices for addressing Document Intelligence latency issues.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: troubleshooting
-ms.date: 11/18/2025
+ms.date: 04/30/2026
 ms.author: lajanuar
 ---
 

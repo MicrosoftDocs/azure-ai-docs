@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "Foundry Tool for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 02/01/2023
+ms.date: 04/01/2026
 ---
 
 # Transparency note for Text Analytics for health

@@ -3,11 +3,11 @@ metadata:
   title: Azure Document Intelligence in Foundry Tools (formerly Azure AI Form Recognizer) FAQ
   description: Get answers to frequently asked questions about Document Intelligence.
   author: laujan
-  manager: nitinme
-  ms.service: azure-ai-document-intelligence
+  manager: mcleans
+  ms.service: azure-document-intelligence-foundry-tools
   ms.custom: references_regions
   ms.topic: faq
-  ms.date: 11/18/2025
+  ms.date: 06/04/2026
   ms.author: lajanuar
 title: Frequently asked questions
 summary: |

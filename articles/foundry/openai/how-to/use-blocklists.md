@@ -1,9 +1,9 @@
 ---
 title: "How to use block lists in Microsoft Foundry models"
 description: "Learn how to use block lists with Azure OpenAI"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 02/10/2026
 author: PatrickFarley

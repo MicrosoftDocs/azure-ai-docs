@@ -3,7 +3,7 @@ author: sdgilley
 ms.author: sgilley
 ms.date: 03/23/2026
 ms.topic: include
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ---
 
 - A Microsoft Foundry account with access to at least one project.

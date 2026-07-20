@@ -4,7 +4,7 @@ description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -18,10 +18,13 @@ Session Initiation Protocol (SIP) is a signaling protocol used to establish, mod
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).
 - `gpt-4o-mini-realtime-preview` (`2024-12-17`)
 - `gpt-4o-realtime-preview` (`2024-12-17` and `2025-06-03`)
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 - `gpt-realtime-mini` (`2025-12-15`)
 - `gpt-realtime-1.5` (`2026-02-23`)
+- `gpt-realtime-2` (`2026-05-07`)
+- `gpt-realtime-translate` (`2026-05-06`)
+- `gpt-realtime-whisper` (`2026-05-06`)

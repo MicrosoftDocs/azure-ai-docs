@@ -3,9 +3,9 @@ title: 'Quickstart: Use GPT-4 Turbo with Vision on your images with the JavaScri
 titleSuffix: Azure OpenAI
 description: Get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions, classic-and-new
 ms.date: 01/29/2026
@@ -17,7 +17,7 @@ Use this article to get started using the OpenAI JavaScript SDK to deploy and us
 
 This SDK is provided by OpenAI with Azure specific types provided by Azure. 
 
-[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Library source code](https://github.com/openai/openai-node?azure-portal=true) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
+[Reference documentation](https://developers.openai.com/api/reference/resources/responses) | [Library source code](https://github.com/openai/openai-node?azure-portal=true) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 ## Prerequisites
 

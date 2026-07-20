@@ -3,10 +3,10 @@ title: How to perform sentiment analysis and opinion mining
 titleSuffix: Foundry Tools
 description: This article shows you how to detect sentiment, and mine for opinions in text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/27/2026
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---

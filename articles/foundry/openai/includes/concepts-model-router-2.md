@@ -4,9 +4,9 @@ description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/20/2026
 ms.custom: include
 ---
 
@@ -24,6 +24,14 @@ For custom deployment configurations:
 - Your selected routing mode (Balanced, Cost, or Quality) continues to apply during failover.
 - Your configured model subset also works as your fallback set to prevent your prompts getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
 
+## Prompt caching
+
+Model router supports prompt caching because requests are processed by the underlying models that support it. When model router delegates a request to a model that supports prompt caching, cached tokens are used automatically — no extra configuration is needed.
+
+Cache behavior depends on which underlying model the router selects for a given request. Because routing decisions might vary, caching benefits apply only when the same model handles consecutive requests with overlapping prompt prefixes.
+
+For details on how prompt caching works and which models support it, see [Prompt caching](../how-to/prompt-caching.md).
+
 ## Limitations
 
 ### Resource limitations
@@ -35,15 +43,6 @@ For custom deployment configurations:
 
 Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md) for current region availability.
 
-### Rate limits
-
-| Model                               | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
-|:-----------------------------------:|------------------:|:--------------:|:--------------:|:----------------------------|:-----------------------------:|
-| `model-router` <br> `(2025-11-18)` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
-| `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
-
-Also see [Quotas and limits](../quotas-limits.md) for rate limit information.
-
 To overcome the limits on context window and parameters, use the Model subset feature to select your models for routing that support your desired properties.
 
 > [!NOTE]
@@ -53,6 +52,21 @@ To overcome the limits on context window and parameters, use the Model subset fe
 > - Summarize the prompt before passing it to the model
 > - Truncate the prompt into more relevant parts
 > - Use document embeddings and have the chat model retrieve relevant sections. For more information, see [What is Azure AI Search?](../../../search/search-what-is-azure-search.md)
+
+### Quota tiers
+
+Model router limits scale with your subscription's usage tier. For information on how tiers work, see [Quota tiers](../quotas-limits.md#quota-tiers).
+
+| Tier   | GlobalStandard RPM | GlobalStandard TPM | DataZoneStandard RPM | DataZoneStandard TPM |
+|:-------|-------------------:|-------------------:|---------------------:|---------------------:|
+| Tier 1 | 1,000              | 1,000,000          | 300                  | 300,000              |
+| Tier 2 | 2,000              | 2,000,000          | 670                  | 670,000              |
+| Tier 3 | 4,000              | 4,000,000          | 1,000                | 1,000,000            |
+| Tier 4 | 7,000              | 7,000,000          | 2,000                | 2,000,000            |
+| Tier 5 | 10,000             | 10,000,000         | 3,000                | 3,000,000            |
+| Tier 6 | 15,000             | 15,000,000         | 4,000                | 4,000,000            |
+
+For other rate limit information, see [Quotas and limits](../quotas-limits.md).
 
 Model router accepts image inputs for [Vision enabled chats](../how-to/gpt-with-vision.md) (all of the underlying models can accept image input), but the routing decision is based on the text input only.
 

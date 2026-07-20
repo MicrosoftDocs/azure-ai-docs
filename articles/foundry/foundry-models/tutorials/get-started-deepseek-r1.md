@@ -1,8 +1,8 @@
 ---
 title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models"
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-models
 ms.topic: tutorial
 ms.date: 02/17/2026
 ms.author: mopeakande
@@ -47,7 +47,7 @@ Use the Foundry Models endpoint and credentials to connect to the model.
 1. Select the **Details** pane from the upper pane of the Playgrounds to see the deployment's details. Here, you can find the deployment's URI and API key. 
 1. Get your resource name from the deployment's URI to use for inferencing the model via code. 
 
-Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet).
+Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme).
 
 The following code examples demonstrate how to:
 1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods (environment variables, managed identity, Azure CLI, and others). The exact order depends on the Azure Identity SDK version you're using.
@@ -71,7 +71,7 @@ The following code examples demonstrate how to:
 - [OpenAI JavaScript client](https://github.com/openai/openai-node)
 - [OpenAI .NET client](https://github.com/openai/openai-dotnet)
 - [DefaultAzureCredential class](/dotnet/api/azure.identity.defaultazurecredential)
-- [Chat completions API reference](../../openai/latest.md#create-chat-completion)
+- [Chat completions API reference](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
 Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).

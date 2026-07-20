@@ -1,15 +1,15 @@
 ---
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: include
-ms.date: 01/07/2026
+ms.date: 06/04/2026
 ai-usage: ai-assisted
 ---
 
-**Models sold directly by Azure:**
+**Foundry Models sold by Azure:**
 
 - **MAI-DS-R1**: Deterministic, precision-focused reasoning.
 - **grok-4**: Frontier-scale reasoning for complex, multiple-step problem solving.
@@ -21,5 +21,7 @@ ai-usage: ai-assisted
 - **Llama-4-Maverick-17B-128E-Instruct-FP8**: FP8-optimized model that delivers fast, cost-efficient inference.
 - **DeepSeek-V3-0324**: Multimodal understanding across text and images.
 - **DeepSeek-V3.1**: Enhanced multimodal reasoning and grounded retrieval.
+- **DeepSeek-V3.2**: Model that harmonizes high computational efficiency with superior reasoning and agent performance.
+- **DeepSeek-V3.2-Speciale**: Specialized DeepSeek-V3.2 variant.
 - **DeepSeek-R1-0528**: Advanced long-form and multiple-step reasoning.
 - **gpt-oss-120b**: Open-ecosystem model that supports transparency and reproducibility.

@@ -5,14 +5,15 @@ description: "Manage Microsoft Foundry costs by estimating expenses, monitoring 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: aashishb
-ms.date: 03/23/2026
+ms.date: 04/06/2026
 ms.topic: how-to
 ms.custom:
   - dev-focus
   - classic-and-new
   - doc-kit-assisted
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ---
 
 # Plan and manage costs for Microsoft Foundry
@@ -25,9 +26,9 @@ ms.service: azure-ai-foundry
 
 Language and vision models process inputs by breaking them down into tokens. Text, image, and audio workloads can all use token-based metering. The billing unit and rate can vary by model, deployment type, and meter. Check the pricing page for the exact meter names and units for your deployment. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
-### Models sold directly by Azure
+### Foundry Models sold by Azure
 
-Models sold directly by Azure (including Azure OpenAI) are billed by Microsoft. In Cost Management, these charges typically appear as model-related meters associated with your deployed resources.
+Models sold by Azure (including Azure OpenAI) are billed by Microsoft. In Cost Management, these charges typically appear as model-related meters associated with your deployed resources.
 
 ### Fine-tuned models
 
@@ -40,7 +41,7 @@ Azure OpenAI fine-tuned models are charged in three ways:
 Monitor hosted fine-tuned model costs closely to avoid unexpected charges. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 > [!IMPORTANT]
-> Fine-tuned deployments can incur hosting charges while deployed, even during low usage periods. Deployments inactive for more than 15 days might be automatically deleted. Remove or scale down deployments that you don't need, and verify current lifecycle behavior in the [fine-tuning documentation](../openai/how-to/fine-tuning.md) before relying on automatic cleanup behavior.
+> Fine-tuned deployments incur hosting charges while deployed, even during low usage periods. Remove or scale down deployments that you don't need. For details on deployment lifecycle and cleanup policies, see the [fine-tuning documentation](../openai/how-to/fine-tuning.md).
 
 ### HTTP Error response code and billing status
 
@@ -76,7 +77,7 @@ Access cost information from the [!INCLUDE [foundry-link](../includes/foundry-li
 1. Select **Operate** in the upper-right navigation.
 1. Select **Overview** in the left pane.
 1. At the top of the page, select the subscription, one or more projects, and a date range. 
-1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
+1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates. These estimates don't include prompt agent and non-Foundry agent costs.
 
 :::image type="content" source="media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="media/manage-costs/agent-costs.png":::
 
@@ -101,7 +102,7 @@ To view detailed agent costs:
 
 **Reference:** [Monitor agent metrics](../observability/how-to/how-to-monitor-agents-dashboard.md)
 
-:::image type="content" source="media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="media/manage-costs/agent-build-cost.png":::
+:::image type="content" source="media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Monitor tab for an agent, showing operational metrics including total token cost, token usage, average inference latency, agent runs chart, and runs and token metrics." lightbox="media/manage-costs/agent-build-cost.png":::
 
 ### Model deployment costs
 
@@ -119,7 +120,7 @@ You see total cost and an estimated cost chart for the selected range.
 When you select **View More Details** or **Azure Cost Management**, you're directed to the Azure portal's **Cost Management** section. Azure portal costs can show aggregated charges for the related account scope, not only individual models.
 
 > [!NOTE]
-> Token and request charts can temporarily differ from **Estimated cost** because of ingestion timing and aggregation differences. Use **Estimated cost** for near-real-time monitoring, and use Azure Cost Management and invoiced charges for financial reconciliation.
+> Token and request charts can temporarily differ from **Estimated cost** because of ingestion timing and aggregation differences. Use **Estimated cost** for near-real-time monitoring, and use Microsoft Cost Management and invoiced charges for financial reconciliation.
 
 ## Monitor in Azure portal
 
@@ -148,15 +149,15 @@ Use the **Cost Analysis** tool to view costs grouped by billing meter:
 1. By default, cost analysis is scoped to the selected resource group.
 
    > [!IMPORTANT]
-   > Scope *Cost Analysis* to the resource group where you deployed the Foundry resource. The cost meters associated with Models from Partners and Community display under the resource group instead of the Foundry resource.
+   > Scope *Cost Analysis* to the resource group where you deployed the Foundry resource. The cost meters associated with Models from partners and community display under the resource group instead of the Foundry resource.
 
 1. Modify **Group by** to **Meter**. You can now see that for this particular resource group, the source of the costs comes from different model series.
 
    :::image type="content" source="../foundry-models/media/manage-cost/cost-by-meter.png" alt-text="Screenshot of how to see the cost by each meter in the resource group." lightbox="../foundry-models/media/manage-cost/cost-by-meter.png":::
 
-#### Models sold directly by Azure
+#### Models sold by Azure
 
-Models sold directly by Azure (including Azure OpenAI) are billed directly by Microsoft. When you inspect your bill, you typically see meters that account for model input and output usage.
+Models sold by Azure (including Azure OpenAI) are billed directly by Microsoft. When you inspect your bill, you typically see meters that account for model input and output usage.
 
 :::image type="content" source="../foundry-models/media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for Azure OpenAI and Phi models. Cost is group by meter." lightbox="../foundry-models/media/manage-cost/cost-by-meter-1p.png":::
 
@@ -176,6 +177,29 @@ You can get more detailed billing information by grouping costs by resource:
 
    :::image type="content" source="../foundry-models/media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../foundry-models/media/manage-cost/cost-by-resource-saas.png":::
 
+## Chargeback with project-level cost attribution (Preview)
+
+Microsoft Foundry supports chargeback at the project level, so FinOps teams and admins can allocate shared Foundry spend back to the business unit, team, or workload that incurred it. Project-level attribution is useful when multiple projects share the same Foundry resource and you need to split the bill accurately.
+
+Every Foundry project is automatically tagged with a `project` tag on its underlying usage. In Cost Management, filter the cost analysis view by the `project` tag to see spend broken down per project. You don't need to add tags manually.
+
+> [!NOTE]
+> Project-level cost attribution is currently supported for Models sold by Azure (Azure Direct models, including Azure OpenAI). It isn't yet supported for models served through Azure Marketplace.
+
+### View costs by project
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and open your Foundry resource.
+1. Select **Cost analysis** under **Resource Management** in the left navigation.
+1. In the filter bar, select **Add filter**, choose **Tag**, then choose `project`.
+1. Select one or more projects to view their attributed cost over the selected time range.
+
+   :::image type="content" source="media/manage-costs/cost-analysis-project-tag.png" alt-text="Screenshot of Cost Management Cost analysis view filtered by the project tag, showing accumulated cost over time for a selected Foundry project." lightbox="media/manage-costs/cost-analysis-project-tag.png":::
+
+### What you can do with project-level attribution
+
+- Allocate shared Foundry resource costs back to individual projects for chargeback or showback.
+- Track project-level spend trends over time.
+
 [!INCLUDE [manage-costs-scope](../includes/concepts-manage-costs-scope.md)]
 
 [!INCLUDE [manage-costs 2](../includes/concepts-manage-costs-2.md)]
@@ -184,8 +208,8 @@ You can get more detailed billing information by grouping costs by resource:
 
 ## Related content
 
+- [Instant access to models in Microsoft Foundry (preview)](instant-models.md)
 - [Microsoft Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/)
-- [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).
 - Learn about how to [prevent unexpected costs](/azure/cost-management-billing/understand/analyze-unexpected-charges).

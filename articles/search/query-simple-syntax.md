@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Simple query syntax in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 For full text search scenarios, Azure AI Search implements two Lucene-based query languages, each one aligned to a query parser. The [Simple Query Parser](https://lucene.apache.org/core/6_6_1/queryparser/org/apache/lucene/queryparser/simple/SimpleQueryParser.html) is the default. It covers common use cases and attempts to interpret a request even if it's not perfectly composed. The other parser is [Lucene Query Parser](https://lucene.apache.org/core/6_6_1/queryparser/org/apache/lucene/queryparser/classic/package-summary.html) and it supports more advanced query constructions.
 
 This article is the query syntax reference for the simple query parser.
@@ -24,7 +26,7 @@ Although the simple parser is based on the [Apache Lucene Simple Query Parser](h
 This example shows a simple query, distinguished by `"queryType": "simple"` and valid syntax. Although query type is set below, it's the default and can be omitted unless you're reverting from an alternative type. The following example is a search over independent terms, with a requirement that all matching documents include "pool".
 
 ```http
-POST https://{{service-name}}.search.windows.net/indexes/hotel-rooms-sample/docs/search?api-version=2025-09-01
+POST https://{{service-name}}.search.windows.net/indexes/hotel-rooms-sample/docs/search?api-version=2026-04-01
 {
   "queryType": "simple",
   "search": "budget hotel +pool",

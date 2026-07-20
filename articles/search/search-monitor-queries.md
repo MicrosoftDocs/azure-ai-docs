@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Monitor query requests in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to measure query performance and volume using built-in metrics and diagnostic logging. It also explains how to get the query strings entered by application users.
 
 The Azure portal shows basic metrics about query latency, query load (QPS), and throttling. Historical data that feeds into these metrics can be accessed in the Azure portal for 30 days. For longer retention, or to report on operational data and query strings, you must [enable diagnostic logging](search-monitor-enable-logging.md) and choose a storage option for persisting logged operations and metrics. We recommend **Log Analytics workspace** as a destination for logged operations. Kusto queries and data exploration target a Log Analytics workspace.
@@ -85,11 +87,11 @@ When you enable resource logging, the system captures query requests in the **Az
       AzureDiagnostics
    | project OperationName, Query_s, IndexName_s, Documents_d
    | where OperationName == "Query.Search"
-   | where Query_s != "?api-version=2025-09-01&search=*"
+   | where Query_s != "?api-version=2026-04-01&search=*"
    | where IndexName_s != "hotels-sample"
    ```
 
-1. Optionally, set a Column filter on *Query_s* to search over a specific syntax or string. For example, you could filter over *is equal to* `?api-version=2025-09-01&search=*&%24filter=HotelName`.
+1. Optionally, set a Column filter on *Query_s* to search over a specific syntax or string. For example, you could filter over *is equal to* `?api-version=2026-04-01&search=*&%24filter=HotelName`.
 
    ![Logged query strings](./media/search-monitor-usage/log-query-strings.png "Logged query strings")
 

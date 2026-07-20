@@ -3,10 +3,10 @@ title: How to create custom text classification projects
 titleSuffix: Foundry Tools
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/27/2026
 ms.author: lajanuar
 ---
 You can create a new resource and a storage account using the following CLI [template](https://github.com/Azure-Samples/cognitive-services-sample-data-files) and [parameters](https://github.com/Azure-Samples/cognitive-services-sample-data-files) files, which are hosted on GitHub.

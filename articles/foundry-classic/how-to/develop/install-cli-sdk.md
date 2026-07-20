@@ -5,8 +5,9 @@ keywords: foundry sdk, azure cli, development environment, visual studio code
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 12/18/2025
-ms.service: azure-ai-foundry
+ms.date: 04/08/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.custom:
   - classic-and-new

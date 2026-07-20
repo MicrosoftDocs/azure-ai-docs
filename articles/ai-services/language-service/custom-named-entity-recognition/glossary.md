@@ -3,10 +3,10 @@ title: Definitions and terms used for Custom Named Entity Recognition (NER)
 titleSuffix: Foundry Tools
 description: Definitions and terms you may encounter when building AI models using Custom Named Entity Recognition
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: glossary
-ms.date: 11/18/2025
+ms.date: 06/29/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---

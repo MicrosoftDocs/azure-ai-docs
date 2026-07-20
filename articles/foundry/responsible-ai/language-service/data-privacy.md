@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data and privacy for Azure Language in Foundry Tools."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 08/15/2022
+ms.date: 04/01/2026
 ---
 
 # Data, privacy, and security for Azure Language in Foundry Tools

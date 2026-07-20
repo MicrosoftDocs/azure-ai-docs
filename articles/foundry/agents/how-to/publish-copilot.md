@@ -1,33 +1,45 @@
 ---
 title: "Publish agents to Microsoft 365 Copilot and Microsoft Teams"
-description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams by creating an agent application and packaging it for distribution."
+description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams from the Foundry portal."
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 03/09/2026
+ms.date: 07/07/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Publish agents to Microsoft 365 Copilot and Microsoft Teams
-Publishing creates an agent application with a stable endpoint. Once created, the agent application can then be published to Microsoft 365 Copilot and Teams or invoked using the Responses API protocol.
+# Publish agents to Microsoft 365 Copilot and Microsoft Teams in the Foundry portal
 
-Use this article to publish an agent to Microsoft 365 Copilot and Teams so people can use it in those interfaces.
+After you build and test an agent, the next step is often sharing it with others in the surfaces where they already work. Publishing a Foundry agent to Microsoft 365 Copilot and Teams lets you and others interact with and discover your agent through the Microsoft 365 Copilot and Teams UI. What gets published is the agent's stable endpoint, so end users always interact with a consistent agent entity while you seamlessly roll out new agent versions that receive traffic through the endpoint. 
 
-## Prerequisites 
+This article explains how to publish agents from the Foundry portal. 
+
+> [!WARNING]
+> When you publish agents to Microsoft 365 and Teams, certain data associated with publishing and using the agent in Microsoft 365 and Teams is processed and stored by those services and is subject to the terms, compliance commitments, data residency commitments, and data handling practices applicable to Microsoft 365 and Teams.
+>
+> This data can include data necessary to publish the agent, such as the agent's name, icon, and description, as well as data contained in responses provided by the agent when users in your organization submit queries to the agent from Microsoft 365 and Teams.
+>
+> Before you publish an agent to Microsoft 365 and Teams, evaluate whether the resulting data flows and processing are consistent with your organization's compliance, data residency, and governance requirements.
+
+> [!NOTE]
+> Publishing from the Foundry portal isn't available for projects that disable public network access because additional networking configuration is required. To publish these agents, use the REST API. For more information, see [Publish a virtual network agent to Microsoft 365 and Teams](./publish-copilot-virtual-network.md).
+
+## Prerequisites
 
 - Access to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)
 - A [Foundry project](../../how-to/create-projects.md) with an agent version you tested and want to publish
 - The following role assignments:
-  - **Azure AI Project Manager** role on the Foundry project scope to publish agents
-  - **Azure AI User** role on the Agent Application scope to invoke or chat with published agents
-  - For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
-- An Azure subscription where you can create Azure Bot Service resources and Microsoft Entra ID app registrations
+    - Permission to create an Azure Bot Service resource (`Microsoft.BotService/botServices/write`) and configure its channels (`Microsoft.BotService/botServices/channels/write`) in the resource group where you publish. The **Azure Bot Service Contributor Role** grants exactly these permissions. The broader **Contributor** or **Owner** roles also work. Foundry roles don't grant these permissions. For details, see [Azure Bot Service setup](../concepts/hosted-agent-permissions.md#azure-bot-service-setup).
+    - **Foundry User** role on the Foundry project scope to create, manage, and publish agents.
+
+      [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+    - For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 - **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
-- **Publish your agent as an agent application**: A published agent application uses its own agent identity separate from your project identity. If your agent uses tools that access Azure resources, plan to reassign any required permissions after publishing. For details, see [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md) and [Publish and share agents in Microsoft Foundry](publish-agent.md).
+- **Select the active agent version** you want consumers to interact with in Microsoft 365 and Teams.
 - Verify that required Azure resource providers are registered in your subscription. The publishing process creates an Azure Bot Service resource, which requires the `Microsoft.BotService` provider.
 
    If you use Azure CLI, you can register the provider with:
@@ -36,153 +48,170 @@ Use this article to publish an agent to Microsoft 365 Copilot and Teams so peopl
    az provider register --namespace Microsoft.BotService
    ```
 
-## Publish your agent as an agent application in the Foundry UI
+## Select an active agent version
 
-For more information on publishing an agent as an application, see [Publish and share agents](./publish-agent.md).
+The active version is the version that your agent's stable endpoint serves to consumers, so confirm it before you publish. For more information about agent versions and other settings, see [Configure your agent endpoint and settings](./configure-agent.md).
 
-1. In the Microsoft Foundry portal, select your agent version.
+### [Foundry portal](#tab/portal)
 
-   **Expected result**: The agent details page opens, showing the agent configuration and a **Publish** button.
+Set the active version from either of two entry points.
 
-1. Select **Publish** to create an agent application.
+**From the Details tab**
 
-    :::image type="content" source="../media/publish-agent.png" alt-text="Screenshot of the Publish option for an agent version in Microsoft Foundry." lightbox="../media/publish-agent.png":::
+1. Open your agent and select the **Details** tab.
+1. In **Agent configuration**, next to **Active version**, select **Edit**.
+1. Select **Always use latest**, or select a specific version.
 
-   **Expected result**: A publishing dialog opens with distribution options.
+**From the Publish button**
 
-## Publish to Microsoft 365 and Teams in the Foundry UI
+1. In the Microsoft Foundry portal, select **Publish**.
+1. Next to **Active version**, select the arrow.
+1. Select **Always use latest**, or select a specific version.
 
-1. Select **Publish** again, and then select **Publish to Teams and Microsoft 365 Copilot**.
+### [REST API](#tab/rest)
 
-   **Expected result**: The Microsoft 365 publishing configuration window opens.
+To pin traffic to a specific version, update the agent's `version_selector`. Set `agent_version` to the version you want to serve.
 
-1. Enter the information in the window that appears.
+```
+PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
+Authorization: ******
+Content-Type: application/merge-patch+json
 
-   1. An application ID and tenant ID are created automatically. Note these values for troubleshooting.
+{
+  "agent_endpoint": {
+    "version_selector": {
+      "version_selection_rules": [
+        {
+          "type": "FixedRatio",
+          "agent_version": "2",
+          "traffic_percentage": 100
+        }
+      ]
+    }
+  }
+}
+```
 
-   1. In the Azure Bot Service dropdown, select **Create an Azure Bot Service** to create the bot resource.
+---
 
-   **Expected result**: The portal creates an Azure Bot Service resource in your subscription and displays the resource name.
+[!INCLUDE [publish-what-happens](../includes/publish-copilot-what-happens.md)]
+
+## Publish to Microsoft 365 and Teams
+
+Publishing from the portal calls Foundry's Microsoft 365 publish API and builds the Teams app package for you. To publish by using the REST API instead, for example to automate publishing or to publish from a project that disables public network access, see [Publish a virtual network agent to Microsoft 365 and Teams](./publish-copilot-virtual-network.md). Steps 1 through 4 in that article are the REST equivalent of this portal flow and work for any project; only the final networking step is specific to disabled public network access.
+
+You can open the publish dialog from the **Details** tab (in the **Channels** section, select **Teams & Microsoft 365 Copilot**) or from the **Publish** button. These steps use the **Publish** button.
+
+1. In Microsoft Foundry portal, select **Publish**, and then select **Teams and Microsoft 365 Copilot**.
+
+   **Expected result**: The **Publish to Teams and Microsoft 365** dialog opens.
+
+1. An Azure Bot Service resource is either automatically created or shown as read-only if one already exists.
 
 1. Complete the required metadata:
 
    | Field | Description |
    |-------|-------------|
    | **Name** | Display name for your agent (appears in the agent store) |
-   | **Short description** | Short one sentence description of what your agent does |
-   | **Full description** | Longer description of your agent responsibilities and the actions it can take |
-   | **Publisher information** | Your organization name or agent developer's name |
-   | **Website** | URL to your website |
-   | **Privacy statement URL** | URL to your privacy policy |
-   | **Terms of use URL** | URL to your terms of use |
+   | **Publish version** | Three-part version number (major.minor.patch) |
+   | **Short description** | One-sentence description of what your agent does |
+   | **Description** | Longer description of your agent's responsibilities and the actions it can take |
+   | **Developer** | Your name or organization name (under **Author**) |
 
-   Provide HTTPS URLs for the **Website**, **Privacy statement URL**, and **Terms of use URL** fields. Placeholder URLs are acceptable for individual developers and testing.
+   To add optional metadata, expand **More** and complete the following fields:
+
+   | Field | Description |
+   |-------|-------------|
+   | **Developer website** | URL to your website (HTTPS required) |
+   | **Terms of use** | URL to your terms of use (HTTPS required) |
+   | **Privacy statement** | URL to your privacy policy (HTTPS required) |
 
    > [!WARNING]
    > Don't include secrets, API keys, or sensitive information in any metadata fields. These fields are visible to users.
 
-1. Select **Prepare Agent** to start packaging the agent.
+1. Select **Next: Publish options**.
 
-   **Expected result**: The portal shows a progress indicator while it creates the Microsoft 365 publishing package. This process typically takes 1-2 minutes.
+1. Choose how to publish. You can either [publish your agent directly from Foundry](#direct-publish) or [download and customize the agent manifest, then manually sideload it in Teams](#download-and-customize).
 
-1. When the Microsoft 365 publishing package is ready, choose one of the following options:
-   - **Download the package** to test it locally before broad distribution.
-   - **Continue the in-product publishing flow** for Microsoft Teams and Microsoft 365 Copilot.
+### Direct publish
 
-   **Verification**: After the package is ready, confirm the status shows "Ready" or "Published" in the agent details page.
+1. On the **Publish options** step, select the **Direct publish** tab.
 
-## Choose a publish scope
+    **Expected result**: Section  **Choose who can use this agent** is displayed.
 
-Choose the scope that matches how you want people to discover your agent.
+2. Under **Choose who can use this agent**, select a scope:
 
-| Scope | Visibility | Admin approval | Best for |
-|-------|------------|----------------|----------|
-| **Individual scope** | Appears under **Your agents** in the agent store | Not required | Personal testing, small teams, or pilots |
-| **Organization scope** | Appears under **Built by your org** in the agent store | Required | Organization-wide distribution, production deployments |
+   | Option | Behavior | Admin approval | Best for |
+   |--------|----------|----------------|----------|
+   | **Just you** | Available immediately. The agent appears under **Your agents** in the agent store. Share it with others by sending the agent link. | Not required | Personal testing, small teams, pilots |
+   | **People in your organization** | The agent is submitted for admin approval. Your Microsoft 365 admin reviews the request and assigns access. Once approved, the agent appears under **Built by your org** for all tenant users. | Required | Organization-wide distribution, production deployments |
 
- Decide whether you want **Individual scope** or **Organization scope** for distribution:
-  - **Individual scope**: Best for personal or team-level use. No admin approval required.
-  - **Organization scope**: Best for organization-wide distribution. Requires admin approval before users can access it.
+   **Just you**:
+   - Available immediately after publishing — no admin approval required.
+   - Only you see the agent initially under **Your agents** in the agent store.
+   - Share with specific users by sending the agent link.
 
-:::image type="content" source="../media/agent-store.png" alt-text="Screenshot of the agent store showing sections such as Your agents and Built by your org." lightbox="../media/agent-store.png":::
+   **People in your organization**:
+   - After publishing, a Microsoft 365 admin must review and approve the request in the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested).
+   - Once approved, the agent appears under **Built by your org** in the agent store for all tenant users.
+   - App policies in your tenant control which users can access the agent.
+   - To check approval status, go to the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) and look for your agent under **Requests**.
 
-### Individual scope details
+     :::image type="content" source="../media/agent-store.png" alt-text="A screenshot of the Agent store in Microsoft 365 Copilot.":::
 
-- The agent is available immediately after publishing.
-- Only the publisher can see and use the agent initially.
-- You can share the agent with specific users by providing them with the agent link.
-- No admin approval or tenant configuration required.
+1. Select **Publish**.
 
-### Organization scope details
+   **Expected result**: A **Publish successful** dialog confirms the agent was successfully published.
 
-- After you publish, an admin must approve the app in the Microsoft 365 admin center.
-- Once approved, the agent appears in the **Built by your org** section for all users in your tenant.
-- App policies in your tenant control which users can access the agent.
-- To check approval status, go to the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) and look for your agent under **Requests**.
-   If you don't see the request, see **Limitations** and **Troubleshooting** for current workarounds.
+### Download and customize
 
-## Download and test the publishing package
+If you want to customize the agent manifest before distributing:
 
-If you download the package, test it before broad distribution.
+1. On the **Publish options** step, select the **Download & customize** tab.
 
-1. After the package finishes preparing, download it from the publishing UI.
+    **Expected result**: The tab displays instructions for after downloading and a **Download ZIP** button.
 
-   **Expected result**: A `.zip` file downloads to your local machine.
+1. Select **Download ZIP**.
 
-1. In Microsoft Teams, upload the downloaded package for testing:
-   1. Open Microsoft Teams.
-   1. Go to **Apps** > **Manage your apps** > **Upload an app**.
-   1. Select **Upload a custom app** and choose the downloaded `.zip` file.
+   **Expected result**: A `.zip` file containing the agent manifest downloads to your local machine.
 
-   **Expected result**: Teams installs the app and shows it in your apps list.
+1. Customize the manifest in the downloaded package as needed.
 
-1. Open the agent in Teams and send a test message.
+1. In Microsoft Teams, upload the package you downloaded
+    1. Go to **Apps** > **Manage your apps** > **Upload an app**
+    1. Select  **Upload a custom app** or **Submit an app to your org** and choose the downloaded `.zip` file.
 
-   **Verification checklist**:
-    - The agent responds to messages.
-    - Any configured tools work correctly.
-    - The agent identity has access to required Azure resources (if applicable).
-    - Response times are acceptable.
+## Update a published agent in M365/Teams
 
-1. If your agent uses tools that access Azure resources, verify the published agent identity has the required role assignments. See [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md) for details on reassigning permissions.
+### Update the active agent version
 
-## Verify your publishing configuration
+To roll out a new agent version, update the agent's version selector in the Foundry portal. The stable endpoint URL stays the same — no need to republish to M365/Teams.
 
-To confirm your agent is published correctly:
+### Update end user metadata in M365/Teams
 
-1. In the Foundry portal, go to your agent and check the **Published** status.
-1. Note the **Application ID** and **Tenant ID** from the publishing details.
-1. In the Azure portal, verify the Azure Bot Service resource exists and is running.
-1. For organization scope, check the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) for approval status.
+To update metadata visible in Teams and M365 (display name, descriptions, URLs), in the **Publish** dropdown select **Update agent Teams and Microsoft 365 Copilot display properties**. The updated fields overwrite the existing values; unchanged fields are carried forward; and version will auto increment if not manually incremented.
 
 ## Limitations
-> [!NOTE]
-> All of these limitations are temporary with fixes in progress.
 
-| Limitation | Description |
-| --- | --- |
-| File uploads and image generation in Microsoft 365 | File uploads and image generation don't work for agents published to Microsoft 365. These features work correctly in Microsoft Teams. |
-| Private Link | Private Link isn't supported for Teams or Azure Bot Service integrations. |
-| Streaming and citations | Published agents don't support streaming responses or citations. |
+For agent publishing limitations, including requirements when your project disables public network access, see [Limitations](./publish-copilot-virtual-network.md#limitations).
 
-## Troubleshooting
+## Troubleshoot publishing
 
-Use these checks to unblock common publishing issues.
+Use the following table to resolve errors that occur while you publish from the portal. For more extensive troubleshooting, including how to find a published agent in the store and resolve errors when you chat with it, see [Troubleshooting](./publish-copilot-virtual-network.md#troubleshooting).
 
-| Issue | Cause | Resolution |
+| Symptom | Cause | Resolution |
 |-------|-------|------------|
-| Error preparing the agent | Invalid agent version or metadata | Verify you aren't reusing an existing agent version. Ensure the agent version doesn't start with `0`. Confirm the developer name is 32 characters or fewer. |
-| Azure Bot Service creation fails | Missing permissions or unregistered resource provider | Confirm you have permission to create resources in the selected Azure subscription. Register the `Microsoft.BotService` provider if needed. |
-| Organization scope agent doesn't appear | Admin approval pending or app policies block access | Confirm an admin approved the app in the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested). Check that app policies in your tenant allow users to access it. |
-| Agent works in Foundry but fails after publishing | Agent identity missing required role assignments | The published agent uses its own identity. Reassign RBAC permissions to the new agent identity for any Azure resources the agent accesses. See [Agent identity concepts](../concepts/agent-identity.md). |
-| Package upload fails in Teams | Invalid package format or missing metadata | Verify all required metadata fields are complete. Redownload the package and try again. |
-| Agent doesn't respond in Teams | Bot Service configuration issue | Verify the Azure Bot Service resource is running. Check the Bot Service logs in the Azure portal for errors. |
-| Users can't find the agent in the store | Wrong scope or approval pending | For Individual scope, share the direct link. For Organization scope, confirm admin approval is complete. |
+| Error publishing the agent | Invalid metadata or version | Ensure the agent has a unique identity (`agent.identity` isn't null). Confirm the developer name is 32 characters or fewer. |
+| Azure Bot Service creation fails | Missing permissions or unregistered provider | Confirm you have permission to create resources. Register `Microsoft.BotService` if needed. |
+| The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
+
+If the portal shows **This agent uses an older format that can no longer be published to Teams and Microsoft 365 Copilot. Upgrade to new format to publish.**, the agent uses the older agent application format, which the generally available publish flow doesn't support for new publishing. Upgrade the agent to the new format, and then publish. Existing agents in the older format keep working and can still be updated. See [Migrate from agent applications to the new agent model](./migrate-agent-applications.md).
 
 ## FAQs
-**If I select Organization (tenant) scope when publishing to Microsoft 365 Copilot and Teams, where should I go to approve the agent?** 
 
-In the Microsoft Admin Center, you can approve Foundry agents published to M365/Teams. Once approved by an admin, the agent appears under Built by your org in the agent store for Microsoft 365 Copilot. 
+**If I select Organization scope, where do I approve the agent?**
+
+In the Microsoft 365 admin center. Once approved, the agent appears under **Built by your org** in the agent store.
 
 **If I publish my agent to Individual Scope (previously called Shared Scope), how do I share it with others in my organization?**
 
@@ -190,7 +219,13 @@ The agent appears under Your agents in the agent store for Microsoft 365 Copilot
 
 :::image type="content" source="../media/share-published-agent.png" alt-text="Screenshot of how to share an Individual scoped published agent with others in your org." lightbox="../media/agent-store.png":::
 
+**What happens when I create a new agent version if my agent is published to M365?**
+
+If the version selector is set to "Always use latest" (the default), the new version is automatically served in M365/Teams. If pinned to a specific version, you must update the version selector to serve the new version.
+
 ## Related content
 
+- [Configure your agent endpoint and settings](./configure-agent.md)
+- [Publish a virtual network agent to Microsoft 365 and Teams](./publish-copilot-virtual-network.md)
 - [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md)
-- [Microsoft Foundry Playgrounds](../../concepts/concept-playgrounds.md)
+- [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)

@@ -1,8 +1,8 @@
 ---
 title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models (classic)"
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-models
 ms.topic: tutorial
 ms.date: 02/17/2026
 ms.author: mopeakande
@@ -58,7 +58,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 ## Deploy the model
 
-1. When you create the project and resources, a deployment wizard opens. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
+1. When you create the project and resources, a deployment wizard opens. DeepSeek-R1 is available as a Foundry Model sold by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
 
 1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup lets you configure specific names for your models when you attach specific configurations.
 
@@ -78,7 +78,7 @@ Use the Foundry Models endpoint and credentials to connect to the model.
 
 :::image type="content" source="../media/quickstart-get-started-deepseek-r1/endpoint-target-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/quickstart-get-started-deepseek-r1/endpoint-target-and-key.png":::
 
-Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet).
+Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme).
 
 The following code examples demonstrate how to:
 1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods (environment variables, managed identity, Azure CLI, and others). The exact order depends on the Azure Identity SDK version you're using.

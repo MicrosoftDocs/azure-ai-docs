@@ -2,12 +2,12 @@
 title: Metrics Advisor client libraries REST API
 titleSuffix: Azure AI services
 description: Use this quickstart to connect your applications to the Metrics Advisor API from Azure AI services.
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: quickstart
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 zone_pivot_groups: programming-languages-metrics-monitor
 ms.custom: mode-api, devx-track-extended-java, devx-track-js, devx-track-python
 ---

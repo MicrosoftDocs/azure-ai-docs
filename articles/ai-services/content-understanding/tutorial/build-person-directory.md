@@ -4,16 +4,18 @@ titleSuffix: Foundry Tools
 description: Learn how to build a person directory with Content Understanding Face APIs.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: tutorial
 ms.custom:
   - build-2025
 ---
 
 # Tutorial: Build a person directory (preview)
+
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
 A person directory provides a structured approach to storing face data for recognition tasks. It allows you to add individual faces, search for visually similar faces, and create person profiles. You can associate faces with these profiles and match new face images to known individuals. This setup supports both flexible face matching and identity recognition across images and videos.
 

@@ -3,10 +3,11 @@ title: include file
 description: include file
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 5/19/2025
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 Professional voice projects contain the voice talent consent statement, training datasets, voice models, and endpoints.
@@ -18,18 +19,20 @@ Each project is specific to a country/region and language, and the gender of the
 To create a professional voice project, use the [Projects_Create](/rest/api/aiservices/speechapi/projects/create) operation of the custom voice API. Construct the request body according to the following instructions:
 
 - Set the required `kind` property to `ProfessionalVoice`. The kind can't be changed later.
+- Optionally, set the `locale` property. The locale of this project. The locale code follows BCP-47. You can find the text to speech locale list [here](/azure/ai-services/speech-service/language-support?tabs=tts). If you provide the locale, the project is usable in [Speech Studio](https://aka.ms/speechstudio/customvoice).
 - Optionally, set the `description` property for the project description. The project description can be changed later.
 
 Make an HTTP PUT request using the URI as shown in the following [Projects_Create](/rest/api/aiservices/speechapi/projects/create) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `ProjectId` with a project ID of your choice. The case sensitive ID must be unique within your Speech resource. The ID will be used in the project's URI and can't be changed later. 
 
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
   "description": "Project description",
-  "kind": "ProfessionalVoice"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2024-02-01-preview"
+  "kind": "ProfessionalVoice",
+  "locale": "en-US"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/projects/ProjectId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -39,6 +42,7 @@ You should receive a response body in the following format:
   "id": "ProjectId",
   "description": "Project description",
   "kind": "ProfessionalVoice",
+  "locale": "en-US",
   "createdDateTime": "2023-04-01T05:30:00.000Z"
 }
 ```

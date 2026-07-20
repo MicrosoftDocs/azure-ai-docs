@@ -1,13 +1,13 @@
 ---
 title: "Role-based access control for Azure OpenAI (classic)"
 description: "Learn how to use Azure RBAC for managing individual access to Azure OpenAI resources. (classic)"
-author: mrbullwinkle
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+author: alvinashcraft
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 1/31/2026
-ms.author: mbullwin
+ms.author: aashcraft
 recommendations: false
 ---
 
@@ -168,7 +168,7 @@ When selecting an existing Azure Cognitive Search resource the search indices do
 
 To make a generic API call for listing Azure Cognitive Search services, the following call is made:
 
-``` https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Search/searchServices?api-version=2021-04-01-Preview ```
+`https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Search/searchServices?api-version=2021-04-01-Preview`
   
 Replace {subscriptionId} with your actual subscription ID.
 

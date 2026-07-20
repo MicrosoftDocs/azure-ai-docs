@@ -1,11 +1,12 @@
 ---
 title: "Custom Evaluators"
-description: "Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches."
+description: "Learn how to create custom evaluators for your AI applications using code-based, prompt-based, or endpoint-based approaches."
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: mithigpe
-ms.date: 03/06/2026
-ms.service: azure-ai-foundry
+ms.reviewer: dlozier
+ms.date: 06/17/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: reference
 ms.custom:
   - classic-and-new
@@ -19,18 +20,18 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
+Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based, prompt-based, or endpoint-based evaluators.
 
 Custom evaluators let you define domain-specific quality metrics that go beyond the [built-in evaluator catalog](../built-in-evaluators.md). Use a custom evaluator when you need to measure criteria unique to your application, such as brand tone, domain-specific accuracy, or output format compliance.
 
-You can create two types of custom evaluators:
+You can create three types of custom evaluators:
 
-| | Code-based | Prompt-based |
-|---|---|---|
-| **How it works** | A Python `grade()` function scores each item with deterministic logic. | A judge prompt instructs an LLM to score each item. |
-| **Best for** | Rule-based checks, keyword matching, format validation, length limits. | Subjective quality judgments, semantic similarity, tone analysis. |
-| **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. |
-| **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
+| | Code-based | Prompt-based | Endpoint-based |
+|---|---|---|---|
+| **How it works** | A Python `grade()` function scores each item with deterministic logic. | A judge prompt instructs an LLM to score each item. | An external HTTP endpoint receives evaluation data and returns scores. |
+| **Best for** | Rule-based checks, keyword matching, format validation, length limits. | Subjective quality judgments, semantic similarity, tone analysis. | Custom scoring logic hosted on your own infrastructure, proprietary models, or complex pipelines that need network access. |
+| **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. | Defined by your endpoint. Return a JSON object that conforms to the standard evaluation result schema. |
+| **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. | A JSON object with `score`, `reason`, `status`, and optional `properties`. See [Endpoint response schema](#endpoint-response-schema). |
 
 After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [batch evaluation runs](../../how-to/develop/cloud-evaluation.md).
 
@@ -42,7 +43,7 @@ A code-based evaluator is a Python function named `grade` that receives two dict
 - **Model or agent target evaluation**: To fetch generated response text, use `item.get("sample", {}).get("output_text")`.
 
 > [!NOTE]
-> In a future update, generated response fields will move to the `sample` parameter directly. For now, access them through `item.get("sample")`.
+> Currently, generated response text from a model or agent target is accessed through `item.get("sample", {}).get("output_text")`. This access pattern is subject to change in a future API update.
 
 The following example scores responses based on length, preferring responses between 50 and 500 characters:
 
@@ -65,6 +66,9 @@ def grade(sample: dict, item: dict) -> float:
         return 0.5
     return 1.0
 ```
+
+> [!NOTE]
+> If the `grade()` function raises an exception or times out, the service records that item's result as `0.0` and marks it as an error in the evaluation report. Design your function defensively — use `try/except` for risky operations and return a fallback score rather than letting exceptions propagate.
 
 ### Supported packages and limits
 
@@ -96,7 +100,7 @@ The NLTK corpora `punkt`, `stopwords`, `wordnet`, `omw-1.4`, and `names` are pre
 
 ### Runtime parameters
 
-`pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator.
+`pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator. Even though code-based evaluators don't call an LLM, the service API schema requires `deployment_name` for evaluation-run orchestration. You can pass any valid model deployment name from your project.
 
 ## Prompt-based evaluators
 
@@ -137,6 +141,231 @@ Output Format (JSON):
 ### Runtime parameters
 
 Both `deployment_name` and `threshold` are required as initialization parameters when you create a prompt-based evaluator.
+
+## Endpoint-based evaluators
+
+An endpoint-based evaluator delegates scoring to an external HTTP endpoint that you own and operate. The evaluation service calls your endpoint for each item (or batch of items), passing the mapped input data as a JSON payload. Your endpoint processes the data using any logic you choose and returns a JSON response with scores.
+
+Use an endpoint-based evaluator when you need:
+
+- Network access to external services or databases during scoring.
+- Proprietary models or ML pipelines hosted on your own infrastructure.
+- Complex scoring logic that exceeds the sandboxed code-based evaluator limits.
+- Integration with existing evaluation services or APIs.
+
+### How it works
+
+1. You deploy an HTTP endpoint that accepts POST requests with evaluation data.
+1. You create a connection in your Foundry project that stores the endpoint URL and authentication credentials.
+1. You register an endpoint-based evaluator that references the connection.
+1. When an evaluation runs, the service resolves the connection, calls your endpoint with the input data, and records the response as the evaluation result.
+
+### Endpoint request schema
+
+The evaluation service sends a POST request to your endpoint with a JSON body containing evaluation metadata and the mapped input fields.
+
+The following table describes the fields your endpoint receives:
+
+| Field | Type | Description |
+|---|---|---|
+| `schema_version` | `string` | Version of the request schema. Currently `"0.0.1"`. |
+| `evaluator_name` | `string` | The registered name of the evaluator being run. |
+| `evaluator_version` | `string` | The version of the evaluator definition. |
+| `evaluation_level` | `string` | Evaluation granularity: `"turn"` for per-item or `"conversation"` for full conversation. |
+| `data` | `object` | Contains the evaluation input data. See `data.item` and `data.sample` below. |
+| `data.item` | `object` | Input fields from the evaluation dataset, mapped through the `data_mapping` configuration. |
+| `data.sample` | `object` | Generated output from the model or agent target. Present only when evaluating against a target. |
+
+**Example request:**
+
+```json
+{
+  "schema_version": "0.0.1",
+  "evaluator_name": "my_endpoint_evaluator",
+  "evaluator_version": "1",
+  "evaluation_level": "turn",
+  "data": {
+    "item": {
+      "query": "What is the capital of France?"
+    },
+    "sample": {
+      "response": "Paris"
+    }
+  }
+}
+```
+
+### Endpoint response schema
+
+The following table describes the fields your endpoint can return:
+
+| Field | Type | Description |
+|---|---|---|
+| `score` | `double` or `bool`, nullable | The evaluation score. Type is evaluator-dependent. Null when skipped or on error. |
+| `reason` | `string`, nullable | Explanation for the score. Null for non-LLM evaluators. |
+| `status` | `string` | Execution status: `"completed"`, `"error"`, or `"skipped"`. |
+| `properties` | `object`, nullable | Key-value bag for evaluator-specific data not captured in standard fields. |
+| `threshold` | `integer`, nullable | Pass/fail threshold. Null for evaluators that don't use a threshold. |
+| `passed` | `bool`, nullable | Whether the score meets the threshold. Null when the evaluator errors or is skipped. |
+| `schema_version` | `string` | Version of the response schema. Use `"0.0.1"`. |
+| `error` | `object` | Error details when `status` is `"error"`. Contains `code` and `message`. Not included in success responses. |
+
+
+**Success Response:**
+
+Your endpoint must return a JSON object that conforms to the standard evaluation result schema:
+
+```json
+{
+  "schema_version": "0.0.1",
+  "score": 0.95,
+  "reason": "The response accurately answers the question using the provided context.",
+  "status": "completed",
+  "properties": {
+    "confidence": 0.87,
+    "source_coverage": "full"
+  },
+  "threshold": 3,
+  "passed": true
+}
+```
+
+**Failure Reponse:**
+
+In case of error, your endpoint needs to return a JSON object that conforms to the following schema:
+
+```json
+ {
+   "schema_version": "0.0.1",
+   "status": "error",
+   "error": {
+     "code": "500",
+     "message": "Model inference failed"
+   }
+ }
+ ```
+
+### Authentication
+
+Endpoint-based evaluators support two authentication methods through project connections:
+
+| Method | How it works | Best for |
+|---|---|---|
+| **API Key** | The service passes the key in a request header when calling your endpoint. | Simple endpoints, Azure Functions with function-level keys, third-party APIs. |
+| **Microsoft Entra ID** | The Azure Function acquires a managed identity token and passes it as a Bearer token. | Azure Functions with role-based access control, Azure Functions with Easy Auth. |
+
+### Create the endpoint connection
+
+Connections store the endpoint URL and authentication credentials. Create a connection using the Azure Cognitive Services management client:
+
+#### API Key connection
+
+```python
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+from azure.mgmt.cognitiveservices.models import ConnectionPropertiesV2BasicResource
+
+mgmt_client = CognitiveServicesManagementClient(
+    credential=credential,
+    subscription_id=subscription_id,
+)
+
+connection = ConnectionPropertiesV2BasicResource(
+    properties={
+        "category": "ApiKey",
+        "target": "https://your-endpoint.azurewebsites.net/api/evaluate",
+        "authType": "ApiKey",
+        "credentials": {
+            "key": "<your-api-key>",
+        },
+    },
+)
+
+mgmt_client.account_connections.create(
+    resource_group_name=resource_group,
+    account_name=account_name,
+    connection_name="my-endpoint-connection",
+    connection=connection,
+)
+```
+
+#### Microsoft Entra ID connection
+
+```python
+connection = ConnectionPropertiesV2BasicResource(
+    properties={
+        "category": "CustomKeys",
+        "target": "https://your-endpoint.azurewebsites.net/api/evaluate",
+        "authType": "AAD",
+        "credentials": {
+            "Audience": "api://<your-app-registration-client-id>",
+        },
+    },
+)
+
+mgmt_client.account_connections.create(
+    resource_group_name=resource_group,
+    account_name=account_name,
+    connection_name="my-endpoint-entra-connection",
+    connection=connection,
+)
+```
+
+For Entra ID authentication, your endpoint must be configured to accept tokens issued by the project's managed identity. This typically involves:
+
+- Registering an application in Microsoft Entra ID for your endpoint.
+- Enabling Easy Auth (or equivalent token validation) on your endpoint.
+- Granting the project's managed identity an app role assignment on the target application.
+
+### Register the evaluator
+
+After creating the connection, register an endpoint-based evaluator that references it:
+
+```python
+endpoint_evaluator = project_client.beta.evaluators.create_version(
+    name="my-endpoint-evaluator",
+    evaluator_version={
+        "name": "my-endpoint-evaluator",
+        "categories": [EvaluatorCategory.QUALITY],
+        "display_name": "My Endpoint Evaluator",
+        "description": "Scores responses using a custom evaluation endpoint",
+        "definition": {
+            "type": "endpoint",
+            "connection_name": "my-endpoint-connection",
+        },
+    },
+)
+```
+
+### Run an evaluation with an endpoint-based evaluator
+
+Use the `data_mapping` field to specify which input data fields are sent to your endpoint:
+
+```python
+testing_criteria = [
+    {
+        "type": "azure_ai_evaluator",
+        "name": "endpoint_eval",
+        "evaluator_name": "my-endpoint-evaluator",
+        "data_mapping": {
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
+            "context": "{{item.context}}",
+        },
+    },
+]
+```
+
+The `data_mapping` keys become the JSON fields your endpoint receives. Map them to the columns in your evaluation dataset using `{{item.<field_name>}}` syntax.
+
+### Deploy your endpoint
+
+Your evaluation endpoint can be any HTTP service that accepts POST requests and returns JSON. Common hosting options include:
+
+- **Azure Functions**: Lightweight, serverless hosting for simple scoring logic.
+- **Azure App Service**: Full web app hosting for complex evaluation pipelines.
+- **Azure Container Apps**: Container-based hosting for ML model inference.
+
+The endpoint must respond within the evaluation service timeout (30 seconds) and return a valid JSON response for each request.
 
 ## Create a custom evaluator with the SDK
 
@@ -182,6 +411,8 @@ client = project_client.get_openai_client()
 ### Create a code-based evaluator
 
 Pass the `grade()` function as a string in the `code_text` field. Define the `data_schema` to declare the input fields your function expects, and the `metrics` to describe the score your function returns. Code-based evaluators use the `continuous` metric type with a range of 0.0 to 1.0.
+
+First, define the evaluator version schema:
 
 ```python
 code_evaluator = project_client.beta.evaluators.create_version(
@@ -445,6 +676,55 @@ After you create a custom evaluator, use it in an evaluation run from the portal
 1. Complete the wizard and start the evaluation run.
 
 For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation).
+
+## Conversation-level custom evaluators
+
+Custom evaluators can score entire conversations instead of individual turns. To enable conversation-level evaluation:
+
+1. Set `evaluation_level="conversation"` on the evaluation run
+2. Design your `grade()` function to expect `item["messages"]` as a conversation array
+
+When running at the conversation level, the `item` dict receives the full conversation messages array instead of a single query/response pair. This enables you to build custom metrics that assess the entire user interaction.
+
+### Example: Session-level compliance check
+
+This example checks whether the agent disclosed a required disclaimer at any point during the conversation:
+
+```python
+def grade(sample: dict, item: dict) -> float:
+    """Check if agent disclosed required disclaimer during conversation."""
+    messages = item.get("messages", [])
+    
+    for msg in messages:
+        if msg.get("role") == "assistant":
+            content = msg.get("content", "")
+            if isinstance(content, str) and "not financial advice" in content.lower():
+                return 1.0
+    
+    return 0.0  # Disclaimer never provided
+```
+
+### Example: Conversation length scorer
+
+This example scores conversations based on whether they resolved within a target number of turns:
+
+```python
+def grade(sample: dict, item: dict) -> float:
+    """Score based on conversation length (prefer shorter resolutions)."""
+    messages = item.get("messages", [])
+    
+    # Count user turns (excludes system messages)
+    user_turns = sum(1 for msg in messages if msg.get("role") == "user")
+    
+    if user_turns <= 2:
+        return 1.0  # Resolved quickly
+    elif user_turns <= 4:
+        return 0.7  # Reasonable length
+    elif user_turns <= 6:
+        return 0.4  # Getting long
+    else:
+        return 0.2  # Too many turns
+```
 
 ## Related content
 

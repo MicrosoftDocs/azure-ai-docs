@@ -2,7 +2,7 @@
 title: "Quickstart: Use a blocklist with JavaScript"
 description: In this quickstart, get started using the Azure AI Content Safety JavaScript SDK to create and use a text blocklist.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
@@ -11,7 +11,7 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/javascript/api/@azure-rest/ai-content-safety?view=azure-node-latest) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
+[Reference documentation](/javascript/api/@azure-rest/ai-content-safety) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
 
 ## Prerequisites
 

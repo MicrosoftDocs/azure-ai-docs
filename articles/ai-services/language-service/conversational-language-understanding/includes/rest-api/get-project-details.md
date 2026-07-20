@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/19/2026
 ms.author: lajanuar
 ---
 Use the following **GET** request to get your project details. You can use the URL you received from the previous step, or replace the placeholder values with your own values. 

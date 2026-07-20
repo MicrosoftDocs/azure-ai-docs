@@ -2,14 +2,14 @@
 title: "Microsoft Foundry Playgrounds (classic)"
 description: "Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment. (classic)"
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 02/10/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: lebaro #amipatel
-manager: nitinme
+manager: mcleans
 reviewer: lebaro-msft #amibp
 ms.custom:
   - build-2025, pilot-ai-workflow-jan-2026

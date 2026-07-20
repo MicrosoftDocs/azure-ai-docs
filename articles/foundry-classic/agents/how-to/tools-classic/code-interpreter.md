@@ -2,13 +2,15 @@
 title: "How to use Foundry Agent Service Code Interpreter (classic)"
 description: "Learn how to use Foundry Agent Service Code Interpreter (classic)"
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 11/20/2025
-author: alvinashcraft
-ms.author: aashcraft
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-code-interpreter
 ---

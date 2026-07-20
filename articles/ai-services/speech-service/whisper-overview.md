@@ -4,10 +4,12 @@ titleSuffix: Foundry Tools
 description: In this article, you learn about the Whisper model from OpenAI that you can use for speech to text and speech translation.
 author: PatrickFarley
 reviewer: patrickfarley
-manager: nitinme
-ms.service: azure-ai-speech
-ms.topic: overview
-ms.date: 10/21/2025
+manager: mcleans
+ms.service: azure-speech-foundry-tools
+ms.topic: concept-article
+ms.custom: dev-focus
+ms.date: 05/21/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ms.reviewer: pafarley
 #Customer intent: As a developer, I want to learn about the Whisper model from OpenAI that I can use for speech to text and speech translation.
@@ -15,21 +17,18 @@ ms.reviewer: pafarley
 
 # What is the Whisper model?
 
-The Whisper model is a speech to text model from OpenAI that you can use to transcribe or translate audio files. The model is trained on a large dataset of English audio and text. 
-- The model is optimized for transcribing audio files that contain speech in English. 
-- The model can also be used to translate audio files that contain speech in other languages. The output of the transcription is English text.
+The Whisper model is a speech-to-text model from OpenAI that you can use to transcribe audio files in English or translate audio from other languages into English.
 
-Whisper models are available via the Azure OpenAI in Microsoft Foundry Models or via Azure Speech in Foundry Tools. The features differ for those offerings. In [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model), Whisper is just one of several models that you can use for speech to text.
+Whisper models are available via Azure OpenAI in Microsoft Foundry Models or via Azure Speech in Foundry Tools. The features differ for those offerings. In [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model), Whisper is just one of several models that you can use for speech-to-text.
 
-You might ask:
-
-- Is the Whisper Model a good choice for my scenario, or is an Azure Speech model better? What are the API comparisons between the two types of models?
-
-- If I want to use the Whisper Model, should I use it via the Azure OpenAI or via Azure Speech ? What are the scenarios that guide me to use one or the other?
+To get started right away:
+- [Whisper quickstart via Azure OpenAI](../../ai-foundry/openai/whisper-quickstart.md)
+- [Real-time speech-to-text quickstart via Azure Speech](./get-started-speech-to-text.md)
+- [Batch transcription with Whisper via Azure Speech](./batch-transcription-create.md#use-a-whisper-model)
 
 ## Whisper model or Azure Speech models
 
-Either the Whisper model or the Azure Speech models are appropriate depending on your scenarios. If you decide to use Azure Speech, you can choose from several models, including the Whisper model. The following table compares options with recommendations about where to start.
+Choose based on your scenario — the following table summarizes recommendations. If you use Azure Speech, you can choose from several models, including Whisper.
 
 | Scenario | Whisper model | Azure Speech models |
 |---------|---------------|------------------------|
@@ -54,7 +53,7 @@ Whisper Model via Azure OpenAI might be best for:
 - Quickly transcribing audio files one at a time.
 - Translate audio from other languages into English. You can input mixed language audio and the output is in English. 
 - Provide a prompt to the model to guide the output.
-- Supported file formats: mp3, mp4, mpweg, mpga, m4a, wav, and webm.
+- Supported file formats: mp3, mp4, mpeg, mpga, m4a, wav, and webm.
 - Only ASCII character supported for filename.
 
 Whisper Model via Azure Speech batch transcription might be best for:
@@ -70,5 +69,5 @@ Regional support is another consideration.
 ## Related content
 
 - [Use Whisper models via the Azure Speech batch transcription API](./batch-transcription-create.md#use-a-whisper-model)
-- [Try the speech to text quickstart for Whisper via Azure OpenAI](../../ai-foundry/openai/whisper-quickstart.md)
-- [Try the real-time speech to text quickstart via Azure Speech](./get-started-speech-to-text.md)
+- [Try the speech-to-text quickstart for Whisper via Azure OpenAI](../../ai-foundry/openai/whisper-quickstart.md)
+- [Try the real-time speech-to-text quickstart via Azure Speech](./get-started-speech-to-text.md)

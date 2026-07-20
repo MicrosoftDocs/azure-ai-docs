@@ -1,15 +1,14 @@
 ---
 title: Include file
 description: Include file
-ms.service: azure-ai-foundry
-ms.subservice: foundry-local
+ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: include
-ms.date: 01/05/2026
-ms.author: jburchel
+ms.date: 05/14/2026
+ms.author: lajanuar
 ms.reviewer: maanavd
 reviewer: maanavdalal
-author: jonburchel
+author: laujan
 ai-usage: ai-assisted
 ---
 
@@ -17,7 +16,7 @@ ai-usage: ai-assisted
 
 ### Prerequisites
 
-- Install Foundry Local and ensure the `foundry` command is available on your `PATH`.
+- Install Foundry Local CLI and ensure the `foundry` command is available on your `PATH`.
 
 ### Installation
 

@@ -15,6 +15,8 @@ ms.update-cycle: 365-days
 
 # Advance your maturity level for Generative Artificial Intelligence Operations (GenAIOps)
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Generative Artificial Intelligence Operations, or **GenAIOps** (sometimes called LLMOps), describes the operational practices and strategies for managing large language models (LLMs) in production. This article provides guidance on how to advance your capabilities in GenAIOps, based on your organization's current maturity level.
 
 :::image type="content" source="../media/concept-llmops-maturity/llmopsml.png" alt-text="Diagram shows maturity level of GenAIOps." lightbox="../media/concept-llmops-maturity/llmopsml.png":::
@@ -46,7 +48,7 @@ Begin by familiarizing yourself with different LLM APIs and their capabilities. 
 
 To better understand GenAIOps, consider available Microsoft Learning courses and workshops:
 - [Microsoft Azure AI Fundamentals: GenAI](/training/paths/introduction-generative-ai/)
-- [GenAI for Beginners Course](https://techcommunity.microsoft.com/t5/educator-developer-blog/generative-ai-for-beginners-a-12-lesson-course/ba-p/3968583)
+- [GenAI for Beginners Course](https://techcommunity.microsoft.com/blog/educatordeveloperblog/generative-ai-for-beginners---a-12-lesson-course/3968583)
 
 ## <a name="level2"></a> Level 2 - defined
 
@@ -83,7 +85,7 @@ To expand your knowledge base, focus on continuous improvement and innovation in
 - [Fine-tuning with Azure ML Learning](/training/modules/finetune-foundation-model-with-azure-machine-learning/)
 - [Model Customization with Fine-tuning](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython&pivots=programming-language-studio)
 - [GenAI Model Monitoring](/azure/machine-learning/prompt-flow/how-to-monitor-generative-ai-applications)
-- [Elevate LLM Apps to Production with GenAIOps](https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/elevate-your-llm-applications-to-production-via-llmops/ba-p/3979114)
+- [Elevate LLM Apps to Production with GenAIOps](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/elevate-your-llm-applications-to-production-via-llmops/3979114)
 
 ## <a name="level4"></a> Level 4 - optimized
 

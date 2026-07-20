@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "Learn about data and privacy for Custom text classification."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 04/26/2023
+ms.date: 04/01/2026
 ---
 
 # Data and privacy for Custom text classification

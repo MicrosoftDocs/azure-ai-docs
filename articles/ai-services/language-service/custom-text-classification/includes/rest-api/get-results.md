@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/04/2026
 ms.author: lajanuar
 ---
 Use the following **GET** request to query the status/results of the text classification task. 

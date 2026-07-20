@@ -2,8 +2,8 @@
 title: "Quickstart: Voice Agent with Agent Service (classic)"
 titleSuffix: Foundry Tools
 description: Learn how to use Voice Live with Agent Service (classic) for real-time voice agents.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 02/24/2026
 author: PatrickFarley
@@ -19,9 +19,6 @@ ai-usage: ai-assisted
 
 > [!IMPORTANT]
 > This classic integration uses Agent Service (classic) and will be deprecated 8/31/2026. We recommend the [new agent quickstart](voice-live-agents-quickstart.md).
-
-> [!NOTE]
-> Foundry agent integration currently only supports agents available on public endpoints. Foundry agents deployed in private VNet aren't supported.
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 

@@ -235,6 +235,12 @@
         "url": "https://github.com/MicrosoftDocs/azure-policy-autogen-docs",
         "branch": "main",
         "branch_mapping": {}
+    },
+    {
+        "path_to_root": "foundry-local-main",
+        "url": "https://github.com/microsoft-foundry/foundry-samples",
+        "branch": "main",
+        "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {},

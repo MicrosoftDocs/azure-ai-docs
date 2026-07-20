@@ -1,14 +1,13 @@
 ---
 title: Include file
 description: Include file
-ms.service: azure-ai-foundry
-ms.subservice: foundry-local
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 01/05/2026
-ms.author: jburchel
+ms.date: 06/26/2026
+ms.author: lajanuar
 ms.reviewer: maanavd
 reviewer: maanavdalal
-author: jonburchel
+author: laujan
 ai-usage: ai-assisted
 ---
 
@@ -16,7 +15,7 @@ ai-usage: ai-assisted
 
 ### Prerequisites
 
-- Install Foundry Local and ensure the `foundry` command is available on your `PATH`.
+- Install Foundry Local CLI and ensure the `foundry` command is available on your `PATH`.
 - Use Python 3.9 or later.
 
 ### Installation
@@ -24,7 +23,7 @@ ai-usage: ai-assisted
 Install the Python package:
 
 ```bash
-pip install foundry-local-sdk
+pip install foundry-local-sdk==0.5.1
 ```
 
 ### Quickstart

@@ -1,25 +1,33 @@
 items:
+
 - name: Identity
   items:
   # Access Control
   - name: Authentication and authorization
     href: ../../concepts/authentication-authorization-foundry.md
-  - name: Disable preview features
-    href: ../../how-to/disable-preview-features.md
   - name: Role-based access control
     displayName: RBAC, roles, permissions
     href: ../../concepts/rbac-foundry.md
+  - name: Elevated-role tasks
+    href: ../../concepts/administrator-guide.md
+  - name: Disable preview features
+    href: ../../how-to/disable-preview-features.md
   - name: Configure keyless authentication
     href: ../../foundry-models/how-to/configure-entra-id.md
 
 # Network Security
 - name: Network security
   items:
-  - name: Configure private link
+  - name: Choose a networking option
+    displayName: networking options, BYO VNet, managed VNet, private link, public, decision, compare
+    href: ../../agents/concepts/networking-options.md
+  - name: Configure network isolation
     displayName: custom dns
     href: ../../how-to/configure-private-link.md
   - name: Managed virtual network
     href: ../../how-to/managed-virtual-network.md
+  - name: Access on-premises resources
+    href: ../../how-to/access-on-premises-resources.md
   - name: Network security perimeter
     href: ../../how-to/add-foundry-to-network-security-perimeter.md    
 
@@ -44,6 +52,16 @@ items:
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
 
+# Monitor
+- name: Monitor
+  items:
+  - name: Diagnostic logging
+    href: ../../how-to/diagnostic-logging.md
+  - name: Configure Agent 365 data collection
+    href: ../../agents/how-to/configure-agent-365-data-collection.md
+  - name: Plan and manage costs
+    href: ../../concepts/manage-costs.md
+
 # Reliability and Recovery
 - name: High availability and disaster recovery
   items:
@@ -56,17 +74,15 @@ items:
   - name: Disaster recovery from resource and data loss
     href: ../../how-to/agent-service-operator-disaster-recovery.md
 
-# Cost Management
-- name: Plan and manage costs
-  href: ../../concepts/manage-costs.md
-
 # Architecture and Standards
 - name: Security baseline
   href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
 - name: Service architecture
   href: ../../concepts/architecture.md
 
-- name: Data, privacy, and security for Foundry Models sold directly by Azure
+- name: Data, privacy, and security for Foundry Models sold by Azure
   href: ../../responsible-ai/openai/data-privacy.md
 - name: Data, privacy, and security for Claude models in Microsoft Foundry
   href: ../../responsible-ai/claude-models/data-privacy.md
+- name: Compare Azure-hosted and Anthropic-hosted Claude models
+  href: ../../foundry-models/concepts/claude-models-hosting-comparison.md

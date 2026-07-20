@@ -2,10 +2,10 @@
 title: Identification entities
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/05/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---

@@ -8,7 +8,7 @@ metadata:
   ms.author: sgilley
   manager: mcleans
   ms.date: 02/11/2026
-  ms.service: azure-ai-foundry
+  ms.service: microsoft-foundry
   ms.topic: landing-page
   ms.custom:
     - build-2025
@@ -36,7 +36,7 @@ landingContent:
     linkLists:
       - linkListType: concept
         links:
-          - text: Foundry Models sold directly by Azure
+          - text: Foundry Models sold by Azure
             url: foundry-models/concepts/models-sold-directly-by-azure.md
           - text: Azure OpenAI in Foundry Models
             url: ../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md

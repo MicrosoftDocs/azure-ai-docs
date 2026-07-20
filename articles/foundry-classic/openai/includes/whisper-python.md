@@ -1,9 +1,9 @@
 ---
 services: ai-services
-author: mrbullwinkle
-ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+author: alvinashcraft
+ms.author: aashcraft
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 11/21/2025
 ai-usage: ai-assisted

@@ -3,10 +3,10 @@ title: Create Document Intelligence Studio custom projects
 titleSuffix: Foundry Tools
 description: Learn about form and document processing, data extraction, and analysis by using Document Intelligence Studio.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---

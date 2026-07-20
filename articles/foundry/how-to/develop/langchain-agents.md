@@ -1,9 +1,10 @@
 ---
 title: Use LangGraph with the Agent Service
 description: "Learn how to build practical LangGraph and LangChain applications with Foundry Agent Service."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 06/19/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasanti
@@ -16,8 +17,7 @@ ai-usage: ai-assisted
 
 # Use Foundry Agent Service with LangGraph
 
-Use the `langchain-azure-ai` package to connect LangGraph and LangChain
-applications to Foundry Agent Service. This article walks through practical
+Use the `langchain-azure-ai` package to connect LangGraph and LangChain applications to Foundry Agent Service. This article walks through practical
 scenarios, from using existing agents and composing multi-agent graphs to
 tool-enabled workflows, human-in-the-loop approvals, and tracing.
 

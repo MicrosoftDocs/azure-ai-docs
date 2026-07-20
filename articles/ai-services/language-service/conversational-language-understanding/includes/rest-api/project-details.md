@@ -1,10 +1,10 @@
 ---
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/29/2026
 ms.author: lajanuar
 ---
 To get your project details, submit a `GET` request by using the following URL and headers. Replace the placeholder values with your own values.

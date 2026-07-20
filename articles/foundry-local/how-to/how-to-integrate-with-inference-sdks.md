@@ -6,17 +6,16 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-ms.date: 01/06/2026
+ms.date: 05/11/2026
 zone_pivot_groups: foundry-local-sdk
-author: jonburchel
+author: laujan
 reviewer: samuel100
 ai-usage: ai-assisted
 ---
 
 # Integrate inference SDKs with Foundry Local
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Foundry Local integrates with OpenAI-compatible SDKs and HTTP clients through a local REST server. This article shows you how to connect your app to local AI models by using popular SDKs.
 

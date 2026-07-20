@@ -3,10 +3,10 @@ title: "What's new in model router in Microsoft Foundry Models?"
 description: "Learn about the latest news and features updates for Azure model router."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/18/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: whats-new
 
 ai-usage: ai-assisted

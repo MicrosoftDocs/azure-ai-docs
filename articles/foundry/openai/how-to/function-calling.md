@@ -1,17 +1,17 @@
 ---
 title: "How to use function calling with Azure OpenAI in Microsoft Foundry Models"
 description: "Learn how to use function calling with OpenAI models."
-author: mrbullwinkle #dereklegenzoff
-ms.author: mbullwin #delegenz
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+author: alvinashcraft #dereklegenzoff
+ms.author: aashcraft #delegenz
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/10/2026
-manager: nitinme
+ms.date: 05/13/2026
+manager: mcleans
 ai-usage: ai-assisted
 ---
 
@@ -49,6 +49,13 @@ ai-usage: ai-assisted
 * `gpt-5.4` (`2026-03-05`)
 * `gpt-5.4-mini` (`2026-03-17`)
 * `gpt-5.4-nano` (`2026-03-17`)
+* `gpt-5.5` (`2026-04-24`)
+* `gpt-5.6-sol` (`2026-07-09`)
+* `gpt-5.6-terra` (`2026-07-09`)
+* `gpt-5.6-luna` (`2026-07-09`)
+* `gpt-chat-latest` (`2026-05-05`)
+* `gpt-chat-latest` (`2026-05-28`)
+* `gpt-chat-latest` (`2026-06-24`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 

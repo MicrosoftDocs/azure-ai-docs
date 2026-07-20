@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/18/2026
 ms.author: lajanuar
 ---
 Submit a **POST** request using the following URL, headers, and JSON body to import your project.

@@ -2,9 +2,9 @@
 title: 'Quickstart: Use Azure OpenAI in Microsoft Foundry Models with the JavaScript SDK to generate images'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the JavaScript SDK. 
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
@@ -15,7 +15,7 @@ ms.custom: classic-and-new
 
 Use this guide to get started generating images with the Azure OpenAI SDK for JavaScript.
 
-[Reference documentation](https://platform.openai.com/docs/api-reference/images/create) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
+[Reference documentation](https://developers.openai.com/api/docs/guides/images-vision) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 ### Prerequisites
 

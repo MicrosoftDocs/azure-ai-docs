@@ -1,11 +1,11 @@
 ---
 title: "Build with agents, conversations, and responses in Foundry Agent Service"
 description: "Learn how to create agents, manage conversations, and generate responses in Microsoft Foundry Agent Service with code examples in Python, C#, JavaScript, Java, and REST API."
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 03/30/2026
+ms.date: 04/10/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Build with agents, conversations, and responses
 
-Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent defines what model, instructions, and tools to use. A conversation persists history across turns. A response is the output the agent produces when it processes input.
+Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent uses a model from the Foundry model catalog, along with instructions and tools. A conversation persists history across turns. A response is the output the agent produces when it processes input.
 
 This article walks through each component and shows how to use them together in code. You'll learn how to create an agent, start a conversation, generate responses (with or without an agent), add follow-up messages, and stream results—with examples in Python, C#, JavaScript, Java, and REST API.
 
@@ -25,7 +25,7 @@ When you work with an agent, you follow a consistent pattern:
 
 - **Create an agent**: Define an agent to start sending messages and receiving responses.
 - **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
-- **Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
+- **Generate a response**: The agent's Foundry model processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
 - **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
 - **Retrieve the response**: Display the generated response to the user.
 
@@ -54,14 +54,16 @@ pip install azure-identity
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --version 2.0.0-beta.2
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
 # [JavaScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects@2.0.0
+npm install @azure/ai-projects@2.3.0
 npm install @azure/identity
 ```
 
@@ -71,12 +73,12 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.15.4</version>
+    <version>1.18.4</version>
 </dependency>
 ```
 
@@ -144,7 +146,7 @@ AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-5-mini")
+            new DeclarativeAgentDefinition("gpt-5-mini")
             {
                 Instructions = "You are a helpful assistant.",
             }));
@@ -226,7 +228,7 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 > [!NOTE]
 > Agents are now identified using the agent name and agent version. They don't have a GUID called `AgentID` anymore.
 
-For additional agent types (workflow, hosted), see [Agent development lifecycle](./development-lifecycle.md).
+For additional agent types (hosted), see [Agent development lifecycle](./development-lifecycle.md).
 
 ## Create an agent with tools
 
@@ -277,7 +279,7 @@ AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-tool-agent",
         options: new(
-            new PromptAgentDefinition("gpt-5-mini")
+            new DeclarativeAgentDefinition("gpt-5-mini")
             {
                 Instructions = "You are a helpful assistant that can search the web.",
                 Tools = { ResponseTool.CreateWebSearchTool() },
@@ -432,7 +434,7 @@ AIProjectClient projectClient = new(
 
 // Generate a response using the agent
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
@@ -615,7 +617,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What happened in the news today?");
 
@@ -817,7 +819,7 @@ AIProjectClient projectClient = new(
 
 // Generate a response without storing
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     new CreateResponseOptions
     {
@@ -1029,7 +1031,7 @@ AIProjectClient projectClient = new(
 
 // Create a conversation
 ProjectConversation conversation
-    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
+    = await projectClient.ProjectOpenAIClient.GetProjectConversationsClient().CreateProjectConversationAsync();
 Console.WriteLine($"Conversation ID: {conversation.Id}");
 ```
 
@@ -1282,11 +1284,11 @@ AIProjectClient projectClient = new(
 
 // Create a conversation for multi-turn chat
 ProjectConversation conversation
-    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
+    = await projectClient.ProjectOpenAIClient.GetProjectConversationsClient().CreateProjectConversationAsync();
 
 // First turn
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(
         agentName, conversation);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
@@ -1483,7 +1485,7 @@ AIProjectClient projectClient = new(
 
 // Stream a response using the agent
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 await foreach (StreamingResponseUpdate update
     in responsesClient.CreateResponseStreamingAsync(
         "Explain how agents work in one paragraph."))
@@ -1643,7 +1645,7 @@ AIProjectClient projectClient = new(
 
 // Start a background response using the agent
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     new CreateResponseOptions
     {
@@ -1868,7 +1870,7 @@ console.log(`Memory store: ${memoryStore.name}`);
 
 ```java
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.MemoryStoresClient;
+import com.azure.ai.agents.BetaMemoryStoresClient;
 import com.azure.ai.agents.models.MemoryStoreDefaultDefinition;
 import com.azure.ai.agents.models.MemoryStoreDetails;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -1876,10 +1878,11 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 String projectEndpoint = "your_project_endpoint";
 
 // Create memory stores client
-MemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
+BetaMemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint)
-    .buildMemoryStoresClient();
+    .beta()
+    .buildBetaMemoryStoresClient();
 
 // Create a memory store
 MemoryStoreDefaultDefinition definition =
@@ -1937,7 +1940,7 @@ Limits can depend on the model, region, and the tools you attach (for example, s
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Discover tools in the Foundry Tools](./tool-catalog.md)
 - [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
-- [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
+- [Agent applications in Microsoft Foundry](../how-to/agent-applications.md)
 - [Agent tracing overview](../../observability/concepts/trace-agent-concept.md)
 - [Migrate to the new agents developer experience](../how-to/migrate.md)
 - [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)

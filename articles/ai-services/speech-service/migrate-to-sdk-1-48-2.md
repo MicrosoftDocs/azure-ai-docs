@@ -1,7 +1,7 @@
 ---
 title: Azure AI Speech SDK certificate revocation list (CRL) compatibility update
 description: Learn how the CRL partitioning change affects Azure AI Speech SDK on Linux and Android, and what actions to take before July 1, 2026.
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/26/2026
 ai-usage: ai-assisted

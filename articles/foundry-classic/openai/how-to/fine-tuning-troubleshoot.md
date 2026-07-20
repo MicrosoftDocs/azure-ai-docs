@@ -1,9 +1,9 @@
 ---
 title: "Troubleshooting for Azure OpenAI fine-tuning (classic)"
 description: "Learn how to troubleshoot Azure OpenAI in Microsoft Foundry Models fine-tuning. (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
 ms.date: 11/26/2025
@@ -17,7 +17,9 @@ ms.author: ssalgado
 
 ## How do I enable fine-tuning?
 
-In order to successfully access fine-tuning, you need **Azure AI User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](../../../ai-foundry/concepts/rbac-foundry.md).
+In order to successfully access fine-tuning, you need **Foundry User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](../../../ai-foundry/concepts/rbac-foundry.md).
+
+[!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 
 ## Why did my upload fail?
 
@@ -56,7 +58,7 @@ Remove the image. For now, we can't fine-tune models with images containing thes
 
 **How to upload large files**
 
-Your training files might get quite large. You can upload files up to 8 GB in multiple parts using the [Uploads API](/rest/api/azureopenai/upload-file?view=rest-azureopenai-2024-10-21) as opposed to the Files API, which only allows file uploads of up to 512 MB.
+Your training files might get quite large. You can upload files up to 8 GB in multiple parts using the [Uploads API](/rest/api/azureopenai/upload-file) as opposed to the Files API, which only allows file uploads of up to 512 MB.
 
 **Reducing training cost**
 

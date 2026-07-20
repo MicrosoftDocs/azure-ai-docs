@@ -3,8 +3,8 @@ title: Configure Virtual Networks for Foundry Tools
 titleSuffix: Foundry Tools
 description: Configure layered network security for your Foundry Tools resources.
 author: aahill
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 02/17/2026
 ms.author: aahi

@@ -1,6 +1,972 @@
 {
   "redirections": [
     {
+      "source_path": "articles/machine-learning/v1/algorithm-cheat-sheet.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/algorithm-cheat-sheet",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/azure-machine-learning-release-notes.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/azure-machine-learning-release-notes",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/concept-automated-ml.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-automated-ml",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/concept-azure-machine-learning-architecture.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-azure-machine-learning-architecture",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/concept-data.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-data",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/concept-designer.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-designer",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/concept-model-management-and-deployment.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-model-management-and-deployment",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/concept-network-data-access.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-network-data-access",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/concept-train-machine-learning-model.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-train-machine-learning-model",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-access-data.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-access-data",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-authenticate-web-service.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-authenticate-web-service",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-auto-train-forecast.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-auto-train-forecast",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-auto-train-image-models.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-auto-train-image-models",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-auto-train-models-v1.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-auto-train-models-v1",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-auto-train-nlp-models.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-auto-train-nlp-models",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-configure-auto-features.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-configure-auto-features",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-configure-auto-train.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-configure-auto-train",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-configure-cross-validation-data-splits.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-configure-cross-validation-data-splits",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-configure-databricks-automl-environment.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-configure-databricks-automl-environment",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-configure-environment.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-configure-environment",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-configure-private-link.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-configure-private-link",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-connect-data-ui.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-connect-data-ui",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-consume-web-service.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-consume-web-service",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-convert-ml-experiment-to-production.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-convert-ml-experiment-to-production",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-create-attach-compute-cluster.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-create-attach-compute-cluster",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-create-attach-kubernetes.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-create-attach-kubernetes",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-create-machine-learning-pipelines.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-create-machine-learning-pipelines",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-create-manage-compute-instance.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-create-manage-compute-instance",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-create-register-datasets.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-create-register-datasets",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-data-ingest-adf.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-data-ingest-adf",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-data-prep-synapse-spark-pool.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-data-prep-synapse-spark-pool",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-debug-parallel-run-step.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-debug-parallel-run-step",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-debug-pipelines.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-debug-pipelines",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-debug-visual-studio-code.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-debug-visual-studio-code",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-advanced-entry-script.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-advanced-entry-script",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-and-where.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-and-where",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-azure-container-instance.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-azure-container-instance",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-azure-kubernetes-service.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-azure-kubernetes-service",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-inferencing-gpus.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-inferencing-gpus",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-local-container-notebook-vm.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-local-container-notebook-vm",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-local.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-local",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-mlflow-models.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-mlflow-models",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-model-cognitive-search.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-model-cognitive-search",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-model-designer.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-model-designer",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-pipelines.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-pipelines",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-profile-model.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-profile-model",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-deploy-update-web-service.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-deploy-update-web-service",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-designer-import-data.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-designer-import-data",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-designer-python.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-designer-python",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-designer-transform-data.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-designer-transform-data",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-enable-app-insights.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-enable-app-insights",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-extend-prebuilt-docker-image-inference.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-extend-prebuilt-docker-image-inference",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-generate-automl-training-code.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-generate-automl-training-code",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-high-availability-machine-learning.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-high-availability-machine-learning",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-identity-based-data-access.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-identity-based-data-access",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-inference-onnx-automl-image-models.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-inference-onnx-automl-image-models",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-link-synapse-ml-workspaces.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-link-synapse-ml-workspaces",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-log-view-metrics.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-log-view-metrics",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-manage-workspace-cli.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-manage-workspace-cli",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-manage-workspace.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-manage-workspace",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-monitor-datasets.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-monitor-datasets",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-monitor-tensorboard.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-monitor-tensorboard",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-move-data-in-out-of-pipelines.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-move-data-in-out-of-pipelines",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-prebuilt-docker-images-inference-python-extensibility.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-prebuilt-docker-images-inference-python-extensibility",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-prepare-datasets-for-automl-images.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-prepare-datasets-for-automl-images",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-retrain-designer.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-retrain-designer",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-run-batch-predictions-designer.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-run-batch-predictions-designer",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-save-write-experiment-files.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-save-write-experiment-files",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-secure-inferencing-vnet.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-secure-inferencing-vnet",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-secure-training-vnet.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-secure-training-vnet",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-secure-web-service.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-secure-web-service",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-secure-workspace-vnet.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-secure-workspace-vnet",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-select-algorithms.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-select-algorithms",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-set-up-training-targets.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-set-up-training-targets",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-setup-authentication.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-setup-authentication",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-track-designer-experiments.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-track-designer-experiments",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-track-monitor-analyze-runs.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-track-monitor-analyze-runs",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-distributed-gpu.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-distributed-gpu",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-keras.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-keras",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-model.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-model",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-pytorch.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-pytorch",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-scikit-learn.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-scikit-learn",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-tensorflow.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-tensorflow",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-with-custom-image.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-with-custom-image",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-train-with-datasets.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-train-with-datasets",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-trigger-published-pipeline.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-trigger-published-pipeline",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-troubleshoot-auto-ml.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-troubleshoot-auto-ml",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-troubleshoot-deployment-local.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-troubleshoot-deployment-local",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-troubleshoot-deployment.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-troubleshoot-deployment",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-troubleshoot-prebuilt-docker-image-inference.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-troubleshoot-prebuilt-docker-image-inference",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-troubleshoot-serialization-error.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-troubleshoot-serialization-error",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-tune-hyperparameters.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-tune-hyperparameters",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-automl-small-object-detect.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-automl-small-object-detect",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-automlstep-in-pipelines.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-automlstep-in-pipelines",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-environments.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-environments",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-labeled-dataset.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-labeled-dataset",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-managed-identities.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-managed-identities",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-mlflow.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-mlflow",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-pipeline-parameter.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-pipeline-parameter",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-private-python-packages.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-private-python-packages",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-secrets-in-runs.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-secrets-in-runs",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-use-synapsesparkstep.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-synapsesparkstep",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-version-track-datasets.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-version-track-datasets",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/introduction.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/introduction",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/reference-automl-images-hyperparameters.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/reference-automl-images-hyperparameters",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/reference-automl-images-schema.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/reference-automl-images-schema",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/reference-azure-machine-learning-cli.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/reference-azure-machine-learning-cli",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/reference-pipeline-yaml.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/reference-pipeline-yaml",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/samples-designer.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/samples-designer",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/samples-notebooks.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/samples-notebooks",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/tutorial-1st-experiment-hello-world.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-1st-experiment-hello-world",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/tutorial-1st-experiment-sdk-train.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-1st-experiment-sdk-train",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/tutorial-auto-train-image-models.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-auto-train-image-models",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/tutorial-designer-automobile-price-deploy.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-designer-automobile-price-deploy",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/tutorial-designer-automobile-price-train-score.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-designer-automobile-price-train-score",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/tutorial-pipeline-python-sdk.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-pipeline-python-sdk",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/v1/tutorial-train-deploy-notebook.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-train-deploy-notebook",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/foundry/agents/how-to/publish-agent.md",
+      "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/agents/concepts/agent-catalog.md",
+      "redirect_url": "/azure/foundry/agents/quickstarts/prompt-agent",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/agents/quickstarts/quickstart-agent-catalog.md",
+      "redirect_url": "/azure/foundry/agents/quickstarts/prompt-agent",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
+      "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/authoring-reference-preview.md",
+      "redirect_url": "/rest/api/microsoft-foundry/azureopenai/evals",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/how-to/deploy-models-serverless-availability.md",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-from-partners",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/context/context.yml",
       "redirect_url": "/previous-versions/azure/ai-services/luis",
       "redirect_document_id": false
@@ -21,6 +987,12 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry/guardrails/how-to-task-adherence.md",
+      "redirect_url": "/‎articles/foundry/guardrails/task-adherence",
+      "redirect_document_id": false
+    },
+    
+    {
       "source_path": "articles/ai-services/luis/choose-natural-language-processing-service.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/choose-natural-language-processing-service",
       "redirect_document_id": false
@@ -38,6 +1010,16 @@
     {
       "source_path": "articles/ai-services/luis/developer-reference-resource.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/developer-reference-resource",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/how-to/provisioned-throughput-onboarding.md",
+      "redirect_url": "/azure/foundry/openai/concepts/provisioned-throughput-billing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/provisioned-throughput-onboarding.md",
+      "redirect_url": "/azure/foundry-classic/openai/concepts/provisioned-throughput-billing",
       "redirect_document_id": false
     },
     {
@@ -1266,6 +2248,21 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/agents/how-to/tools/knowledge-retrieval.md",
+      "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/foundry-models/how-to/use-foundry-models-mai.md",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-foundry-models-mai.md",
+      "redirect_url": "/azure/foundry-classic/foundry-models/how-to/use-foundry-models-mai-image",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
       "redirect_document_id": true
@@ -1273,6 +2270,11 @@
     {
       "source_path": "articles/foundry/foundry-models/how-to/configure-marketplace.md",
       "redirect_url": "/azure/foundry/foundry-models/concepts/models-from-partners",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/responsible-ai/models/model-specific-terms.md",
+      "redirect_url": "/legal/microsoft-foundry/model-specific-terms",
       "redirect_document_id": false
     },
     {
@@ -1284,6 +2286,86 @@
       "source_path": "articles/foundry-classic/whats-new-foundry.md",
       "redirect_url": "/azure/foundry/whats-new-foundry",
       "redirect_document_id": false
-    }  
+    },
+    {
+      "source_path": "articles/foundry-classic/concepts/model-lifecycle-retirement.md",
+      "redirect_url": "/azure/foundry-classic/concepts/model-retirement-managed-compute",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/concepts/model-lifecycle-retirement.md",
+      "redirect_url": "/azure/foundry/openai/concepts/model-retirement-schedule",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/concepts/legacy-models.md",
+      "redirect_url": "/azure/foundry-classic/openai/concepts/retired-models",
+      "redirect_document_id": false
+    }, 
+    {
+      "source_path": "articles/foundry/openai/concepts/legacy-models.md",
+      "redirect_url": "/azure/foundry/openai/concepts/retired-models",
+      "redirect_document_id": false
+    },       
+    {
+      "source_path": "articles/ai-services/create-account-resource-manager-template.md",
+      "redirect_url": "/azure/foundry-classic/how-to/create-resource-template",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/responsible-use-of-ai-overview.md",
+      "redirect_url": "/azure/foundry/responsible-use-of-ai-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/whats-new-ai-services.md",
+      "redirect_url": "/azure/foundry/whats-new-foundry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/language-support.md",
+      "redirect_url": "/azure/ai-services/language-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/reference/sdk-package-resources.md",
+      "redirect_url": "/azure/foundry/how-to/develop/sdk-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/reference/rest-api-resources.md",
+      "redirect_url": "/azure/foundry/reference/foundry-project",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/business-continuity-disaster-recovery.md",
+      "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/agents/how-to/publish-responses.md",
+      "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/gpt-realtime-whisper.md",
+      "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-whisper",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/gpt-realtime-translate.md",
+      "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-translate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/speech-service/multi-device-conversation.md",
+      "redirect_url": "/azure/ai-services/speech-service/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/speech-service/quickstarts/multi-device-conversation.md",
+      "redirect_url": "/azure/ai-services/speech-service/",
+      "redirect_document_id": false
+    }
   ]
 }

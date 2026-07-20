@@ -3,10 +3,10 @@ title: "How to use model router for Microsoft Foundry (classic)"
 description: "Learn how to use the model router in Azure OpenAI to select the best model for your task. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/18/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.custom:
   - classic-and-new
@@ -27,20 +27,39 @@ Model router for Microsoft Foundry is a deployable AI chat model that selects th
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation]() to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](../../../foundry/openai/how-to/model-router.md) to see the latest features.
 [!INCLUDE [model-router-supported](../../../foundry/openai/includes/model-router-supported.md)]
 
 ## Deploy a model router model
 
-Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
+Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). To deploy programmatically without the portal, use the REST API examples in the deployment sections that follow.
+
+> [!NOTE]
+> If your organization uses the [built-in Azure Policy for model deployment](/azure/ai-foundry/how-to/model-deployment-policy), make sure the policy's allowed publishers include `Microsoft` (the publisher of model router) and the publisher of each model you deploy for routing (for example, `Anthropic` for Claude models). Otherwise, the policy blocks the deployment.
+
+By default, model router deploys with the **Balanced** routing mode and routes across the full supported model set. You don't need to configure optional routing settings unless you want custom routing behavior.
+
+### Default deployment
 
 In the **Create new deployment**, find `model-router` in the **Models** list and select it.
+
+[!INCLUDE [model-router-deploy-rest-default](../../../foundry/openai/includes/how-to-model-router-deploy-rest-default.md)]
+
+### Optional: customize deployment settings
+
+If you want to override the default **Balanced** routing mode or restrict routing to a model subset, use the REST API deployment options in the next section.
 
 > [!NOTE]
 > Your deployment settings apply to all underlying chat models that model router uses.
 > - Don't deploy the underlying chat models separately. Model router works independently of your other deployed models.
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
+
+#### Configure custom settings with the REST API
+
+Use the following example when you want to set both the routing mode and a model subset in the same deployment request.
+
+[!INCLUDE [model-router-deploy-rest-custom](../../../foundry/openai/includes/how-to-model-router-deploy-rest-custom.md)]
 
 [!INCLUDE [model-router 1](../../../foundry/openai/includes/how-to-model-router-1.md)]
 
@@ -63,92 +82,98 @@ The JSON response you receive from a model router model is identical to the stan
 The following example response was generated using API version `2025-11-18`:
 
 ```json
+
 {
-  "choices": [
-    {
-      "content_filter_results": {
-        "hate": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "protected_material_code": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "protected_material_text": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "self_harm": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": "False",
-          "severity": "safe"
+    "success": true,
+    "data": {
+        "choices": [
+            {
+                "content_filter_results": {
+                    "hate": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "protected_material_code": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "protected_material_text": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "self_harm": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "sexual": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "violence": {
+                        "filtered": false,
+                        "severity": "safe"
+                    }
+                },
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                    "annotations": [],
+                    "content": "Charismatic and bold—combining brash showmanship and poetic wit with fierce competitiveness, moral conviction, and unwavering activism.",
+                    "refusal": null,
+                    "role": "assistant"
+                }
+            }
+        ],
+        "created": 1774543376,
+        "id": "xxxx-yyyy-zzzz",
+        "model": "gpt-5-mini-2025-08-07",
+        "object": "chat.completion",
+        "prompt_filter_results": [
+            {
+                "prompt_index": 0,
+                "content_filter_results": {
+                    "hate": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "jailbreak": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "self_harm": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "sexual": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "violence": {
+                        "filtered": false,
+                        "severity": "safe"
+                    }
+                }
+            }
+        ],
+        "system_fingerprint": null,
+        "usage": {
+            "completion_tokens": 163,
+            "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 128,
+                "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3254,
+            "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 3200
+            },
+            "total_tokens": 3417
         }
-      },
-      "finish_reason": "stop",
-      "index": 0,
-      "logprobs": "None",
-      "message": {
-        "content": "I'm doing well, thank you! How can I assist you today?",
-        "refusal": "None",
-        "role": "assistant"
-      }
     }
-  ],
-  "created": 1745308617,
-  "id": "xxxx-yyyy-zzzz",
-  "model": "gpt-4.1-nano-2025-04-14",
-  "object": "chat.completion",
-  "prompt_filter_results": [
-    {
-      "content_filter_results": {
-        "hate": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "jailbreak": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "self_harm": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": "False",
-          "severity": "safe"
-        }
-      },
-      "prompt_index": 0
-    }
-  ],
-  "system_fingerprint": "xxxx",
-  "usage": {
-    "completion_tokens": 15,
-    "completion_tokens_details": {
-      "accepted_prediction_tokens": 0,
-      "audio_tokens": 0,
-      "reasoning_tokens": 0,
-      "rejected_prediction_tokens": 0
-    },
-    "prompt_tokens": 21,
-    "prompt_tokens_details": {
-      "audio_tokens": 0,
-      "cached_tokens": 0
-    },
-    "total_tokens": 36
-  }
 }
+
 ```
 [!INCLUDE [model-router 2](../../../foundry/openai/includes/how-to-model-router-2.md)]

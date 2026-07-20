@@ -3,11 +3,11 @@ title: Query field extraction - Document Intelligence
 titleSuffix: Foundry Tools
 description: Use Document Intelligence query fields to extend model schema.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
-ms.author: nitinme
+ms.date: 06/11/2026
+ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0'
 ---
 

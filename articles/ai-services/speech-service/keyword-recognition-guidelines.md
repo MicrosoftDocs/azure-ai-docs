@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: An overview of recommendations and guidelines when using keyword recognition.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: best-practice
 ms.date: 02/25/2026
 ms.reviewer: jagoerge

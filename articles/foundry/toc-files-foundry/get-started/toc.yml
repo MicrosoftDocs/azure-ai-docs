@@ -1,13 +1,29 @@
 items:
-- name: "Quickstart: Create resources"
-  href:  ../../tutorials/quickstart-create-foundry-resources.md
- 
-- name: "Quickstart: Chat with an agent"
-  href: ../../quickstarts/get-started-code.md
-
-- name: "Tutorial: Idea to prototype"
+- name: Quickstarts
+  href: ../../quickstarts/quickstarts.md
+- name: Create Foundry resources
+  href: ../../tutorials/quickstart-create-foundry-resources.md
+- name: 'Tutorial: Idea to prototype'
   href: ../../tutorials/developer-journey-idea-to-prototype.md
-- name: Ask AI
-  href: ../../concepts/ask-ai.md
-- name: Migrate from Foundry (classic) portal
-  href: ../../how-to/navigate-from-classic.md
+
+- name: What do you want to build?
+  items:
+  - name: Build a prompt agent
+    href: ../../agents/quickstarts/prompt-agent.md
+  - name: Chat with an agent in code
+    href: ../../quickstarts/get-started-code.md
+  - name: Host an existing agent
+    href: ../../agents/how-to/deploy-hosted-agent-code.md
+  - name: Build with AI and coding agents
+    href: ../../how-to/develop/use-microsoft-foundry-skill.md
+  - name: Add tools and knowledge
+    href: ../../agents/concepts/tool-catalog.md
+  - name: Start from a template
+    href: ../../how-to/develop/ai-template-get-started.md
+
+- name: Explore and migrate
+  items:
+  - name: Ask AI
+    href: ../../concepts/ask-ai.md
+  - name: Migrate from Foundry (classic) portal
+    href: ../../how-to/navigate-from-classic.md

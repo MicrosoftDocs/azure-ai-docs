@@ -6,21 +6,23 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: troubleshooting
-ms.date: 01/05/2026
-ms.author: jburchel
-author: jonburchel
+ms.date: 06/27/2026
+ms.author: lajanuar
+author: laujan
 reviewer: maanavdalal
 ms.reviewer: maanavd
 ai-usage: ai-assisted
 ---
 
-# Best practices and troubleshooting guide for Foundry Local
+# Best practices and troubleshooting guide for Foundry Local CLI (preview)
+
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
-This article lists best practices and troubleshooting tips for Foundry Local.
+
+This article lists best practices and troubleshooting tips for Foundry Local CLI.
 
 ## Prerequisites
 
-- Install Foundry Local.
+- Install Foundry Local CLI.
 - Have internet access to download models (recommended).
 - If you use the machine-scope installation workaround in this article, run PowerShell as Administrator.
 
@@ -56,7 +58,7 @@ Reference: [Foundry Local CLI Reference](./reference-cli.md)
 
 If you experience slow inference, consider the following strategies:
 
-- Stop any AI Toolkit for VS Code inference session before you run Foundry Local.
+- Stop any Foundry Toolkit for VS Code inference session before you run Foundry Local.
 - Use GPU acceleration when available.
 - Identify bottlenecks by monitoring memory usage during inference.
 - Try more quantized model variants (for example, INT8 instead of FP16).

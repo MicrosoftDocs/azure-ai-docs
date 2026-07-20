@@ -1,7 +1,8 @@
 ---
 title: "Create a Microsoft Foundry hub using a Bicep template (classic)"
 description: "Use a Microsoft Bicep template to create a new Microsoft Foundry hub. This template also creates resources required by the hub. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom: 
   - devx-track-arm-template
   - devx-track-bicep

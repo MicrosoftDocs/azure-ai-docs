@@ -3,10 +3,10 @@ title: Azure Document Intelligence in Foundry Tools release history
 titleSuffix: Foundry Tools
 description: Release notes and updates for Azure Document Intelligence in Foundry Tools API.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/14/2026
 ms.author: lajanuar
 ms.custom: references_regions
 ---
@@ -30,7 +30,6 @@ Azure Document Intelligence is an innovative a cloud-based service that utilizes
 The Document Intelligence version 3.1 API is now generally available (GA)! The API version corresponds to ```2023-07-31```.
 The v3.1 API introduces new and updated capabilities:
 
-* Document Intelligence APIs are now more modular and with support for optional features. You can now customize the output to specifically include the features you need. Learn more about the [optional parameters](../versioning/v3-1-migration-guide.md).
 * Document classification API for splitting a single file into individual documents. [Learn more](../train/custom-classifier.md) about document classification.
 * [Prebuilt contract model](../prebuilt/contract.md).
 * [Prebuilt US tax form 1098 model](../prebuilt/tax-document.md).
@@ -311,7 +310,7 @@ The v3.1 API introduces new and updated capabilities:
 * **Version 4.0.0 GA (2022-09-08)**
 * **Supports REST API v3.0 and v2.0 clients**
 
-[**Package (Maven)**](https://oss.sonatype.org/#nexus-search;quick~azure-ai-formrecognizer)
+[**Package (Maven)**](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0)
 
 [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_4.0.0/sdk/formrecognizer/azure-ai-formrecognizer/CHANGELOG.md)
 
@@ -395,7 +394,7 @@ The v3.1 API introduces new and updated capabilities:
 
 [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/CHANGELOG.md#400-beta6-2022-08-10)
 
- [**Package (Maven)**](https://oss.sonatype.org/#nexus-search;quick~azure-ai-formrecognizer)
+ [**Package (Maven)**](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0-beta.6)
 
  [**SDK reference documentation**](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-preview&preserve-view=true)
 

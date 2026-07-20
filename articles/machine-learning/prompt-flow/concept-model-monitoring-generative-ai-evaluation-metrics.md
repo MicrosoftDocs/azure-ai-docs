@@ -19,6 +19,8 @@ ms.update-cycle: 365-days
 
 # Monitoring evaluation metrics descriptions and use cases
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 In this article, you learn about the metrics used when monitoring and evaluating generative AI models in Azure Machine Learning, and the recommended practices for using generative AI model monitoring.
 
 > [!IMPORTANT]

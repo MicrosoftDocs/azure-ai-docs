@@ -106,3 +106,11 @@ items:
         href: ../../how-to/monitor-quality-safety.md
       - name: Troubleshoot prompt flow
         href: ../../how-to/prompt-flow-troubleshoot.md
+    - name: Migrate to Microsoft Agent Framework
+      items:
+      - name: Migration overview
+        href: ../../how-to/prompt-flow-migration-overview.md
+      - name: Rebuild and validate
+        href: ../../how-to/how-to-migrate-prompt-flow-to-agent-framework.md
+      - name: Deploy and cut over
+        href: ../../how-to/how-to-deploy-migrated-agent-framework-workflow.md

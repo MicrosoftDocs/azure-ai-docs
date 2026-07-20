@@ -1,9 +1,10 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 7/17/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/python.md)]
@@ -45,7 +46,7 @@ Follow these steps to create a console application.
     import azure.cognitiveservices.speech as speechsdk
 
     # This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
-    # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourServiceRegion.api.cognitive.microsoft.com"
+    # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourResourceName.cognitiveservices.azure.com"
     speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('ENDPOINT'))
     audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 
@@ -92,6 +93,39 @@ Follow these steps to create a console application.
    ```
 
 ## Remarks
+
+### Choose a voice name
+
+Voice names follow the format `{locale}-{VoiceName}:{VoiceType}`, where:
+- **locale** identifies the voice's primary language and region (for example, `en-US` for US English, `es-ES` for Spanish)
+- **VoiceName** is the unique identifier for that voice (for example, `Ava`, `Andrew`)
+- **VoiceType** indicates the voice technology (for example, `DragonHDLatestNeural` for HD neural voices, `MultilingualNeural` for multilingual voices)
+
+To find available voices:
+- Browse the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to preview voices interactively
+- See the [full list of supported voices](~/articles/ai-services/speech-service/language-support.md?tabs=tts) for all available options
+- Call the [Voice List API](~/articles/ai-services/speech-service/rest-text-to-speech.md#get-a-list-of-voices) to retrieve voices programmatically
+
+### Save audio to a file
+
+To save synthesized speech to a file instead of playing it to the speaker, specify a filename in the `AudioOutputConfig`:
+
+```python
+# Save to a WAV file instead of playing to speaker
+audio_config = speechsdk.audio.AudioOutputConfig(filename="output.wav")
+
+speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+speech_synthesis_result = speech_synthesizer.speak_text_async("Hello, world!").get()
+```
+
+To get the audio data as bytes for custom processing (such as streaming or format conversion), omit the `audio_config` parameter and access the result's `audio_data` property:
+
+```python
+# Get audio data as bytes
+speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=None)
+result = speech_synthesizer.speak_text_async("Hello, world!").get()
+audio_bytes = result.audio_data  # Raw audio bytes
+```
 
 ### More speech synthesis options
 

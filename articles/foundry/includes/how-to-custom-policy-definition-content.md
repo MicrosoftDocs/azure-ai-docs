@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: deeikele
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -116,7 +116,7 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
 ## Sample library
 
 Explore ready-to-use templates and examples in the GitHub repository:  
-[Custom policy definitions](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions)
+[Custom policy definitions](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions)
 
 This library includes JSON templates for common scenarios.
 

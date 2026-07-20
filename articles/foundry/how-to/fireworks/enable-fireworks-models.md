@@ -1,22 +1,20 @@
 ---
-title: Fireworks models on Microsoft Foundry (preview)
+title: Fireworks models on Microsoft Foundry
 titleSuffix: Microsoft Foundry
 description: Learn how to enable, deploy, and use Fireworks models in Microsoft Foundry, including catalog models, custom model import (BYOM), data privacy, and frequently asked questions.
 author: ssalgadodev 
 ms.author: ssalgado
-manager: nitinme
-ms.date: 03/11/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+manager: mcleans
+ms.date: 07/14/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted, references_regions
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Fireworks models on Microsoft Foundry (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Fireworks models on Microsoft Foundry
 
 Through integration with [Fireworks AI](https://fireworks.ai/), Microsoft Foundry customers can:
 
@@ -30,12 +28,14 @@ All of these capabilities are available directly within your Foundry project, wi
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
-* An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
-* To deploy models, you need the **Azure AI Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
+* An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the feature.
+* To deploy models, you need the **Foundry Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ## Region availability
 
-Data Zone Standard deployments of models via Fireworks on Foundry are available in the following [Azure regions](/azure/reliability/regions-list):
+Data Zone Standard and Data Zone Provisioned deployments of models via Fireworks on Foundry are available in the following [Azure regions](/azure/reliability/regions-list):
 
 * **East US** (eastus)
 * **East US 2** (eastus2)
@@ -44,7 +44,7 @@ Data Zone Standard deployments of models via Fireworks on Foundry are available 
 * **West US** (westus)
 * **West US 3** (westus3)
 
-Global provisioned throughput deployments of base and custom models are available in all global [Azure regions](/azure/reliability/regions-list) except for Azure Government cloud environments.
+Global Provisioned throughput deployments of base and custom models are available in all global [Azure regions](/azure/reliability/regions-list) except for Azure Government cloud environments. All catalog models that support Global Provisioned throughput also support Data Zone Provisioned throughput.
 
 ## Enable Fireworks on Foundry
 
@@ -55,7 +55,7 @@ Global provisioned throughput deployments of base and custom models are availabl
 >
 > Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
-While in preview, **Fireworks requires an administrator to enable the preview feature** within your Azure subscription.
+While Fireworks on Foundry is generally available, **an administrator must enable the service** within your Azure subscription. The Azure **Preview features** portal enables customers to turn on the service by using the following steps.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -96,7 +96,7 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 1. In the deployment window, configure the following settings:
 
    * **Deployment name**: Keep the default name or enter a custom name to identify the deployment.
-   * **Deployment type**: Select **Data Zone Standard** or **Global provisioned throughput**. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
+   * **Token Plan**: Select **Pay-per-token** -> Datazone Standard or **Provisioned Throughput** -> Datazone or Global. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
    * **Model version settings**: Select the model version for the deployment.
    * **Tokens per Minute Rate Limit**:  Set a custom tokens-per-minute limit to manage costs and control usage. The default value is based on the model's typical performance and cost profile.
    * **Guardrails**: Select **DefaultV2** or **Default** guardrail configuration. Models use the **Microsoft.DefaultV2** guardrail unless a different one is specified. For more information, see [Use guardrails to set boundaries on model outputs](../../guardrails/guardrails-overview.md).
@@ -110,17 +110,43 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
 ## Available catalog models
 
-The following Fireworks models are available in the Foundry model catalog:
+The following Fireworks models are available in the Foundry model catalog. In the Supported offers column, `PTU` includes both Global Provisioned throughput and Data Zone Provisioned throughput.
 
-| Model provider | Model name | Model ID | Type | Description |
-| --- | --- | --- | --- | --- |
-| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions | Reasoning-optimized open-weight model for complex tasks. |
-| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions | General-purpose model for conversational and instruction-following tasks. |
-| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Multimodal model with strong long-context capabilities. |
-| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Large-scale open-weight model for broad generative tasks. |
-| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | High-performance bilingual model for chat and reasoning. |
+| Model provider | Model name | Model ID | Type | Supported offers | Description |
+| --- | --- | --- | --- | --- | --- |
+| **DeepSeek** | DeepSeek V3.1 | `FW-DeepSeek-V3.1` | Chat completions | PTU | MoE language model with 163K context and function calling for chat and tool-use workloads. |
+| **DeepSeek** | DeepSeek V3.2 | `FW-DeepSeek-V3.2` | Chat completions | PTU | MoE model focused on efficient reasoning and agent performance. |
+| **DeepSeek** | DeepSeek V4 Flash | `FW-DeepSeek-V4-Flash` | Chat completions | PTU | Streamlined MoE model optimized for fast, cost-efficient reasoning and coding at 1M-token context scale. |
+| **DeepSeek** | DeepSeek V4 Pro | `FW-DeepSeek-V4-Pro` | Chat completions | Pay-per-token and PTU | Flagship 1.6T-parameter MoE model for frontier reasoning, coding, and long-context agentic workloads. |
+| **Google** | Gemma 4 26B A4B IT | `FW-Gemma-4-26B-A4B-IT` | Chat completions | PTU | Multimodal MoE instruction-tuned model with image input, function calling, and 256K context. |
+| **Google** | Gemma 4 31B IT | `FW-Gemma-4-31B-IT` | Chat completions | PTU | Multimodal dense instruction-tuned model with image input, function calling, and 256K context. |
+| **MiniMax** | MiniMax-M2.5 | `FW-MiniMax-M2.5` | Chat completions | Pay-per-token and PTU | MoE model for coding, agentic tool use, search, and office-work workflows. |
+| **Mistral AI** | Ministral 3 3B Instruct 2512 | `FW-Ministral-3-3B-Instruct-2512` | Chat completions | PTU | Compact 3B dense instruction-tuned model with vision input and 256K context. |
+| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | 1T-parameter MoE instruction model with 262K context, improved coding, and tool use. |
+| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | MoE reasoning model for step-by-step tool-using agents with 262K context. |
+| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | PTU | Multimodal MoE agentic model with reasoning controls, tool use, and 262K context. |
+| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Pay-per-token and PTU | Open-source multimodal agentic model for long-horizon coding and task orchestration. |
+| **Moonshot AI** | Kimi K2.7 Code | `FW-Kimi-K2.7-Code` | Chat completions | Pay-per-token and PTU | Coding-focused multimodal agentic model for long-horizon software engineering workflows. |
+| **NVIDIA** | NVIDIA Nemotron 3 Super 120B A12B BF16 | `FW-Nemotron-3-Super-120B-A12B-BF16` | Chat completions | PTU | Hybrid LatentMoE model with 120B total parameters for agentic workflows, long-context reasoning, and tool use. |
+| **OpenAI** | OpenAI gpt-oss-120b | `FW-GPT-OSS-120B` | Chat completions | PTU | Open-weight MoE model for reasoning, agentic tasks, and developer use cases. |
+| **Qwen** | Qwen3 14B | `FW-Qwen3-14B` | Chat completions | PTU | Dense Qwen model with function calling and 40.9K context. |
+| **Qwen** | Qwen3.5 9B | `FW-Qwen3.5-9B` | Chat completions | PTU | Compact dense Qwen model with 262K context. |
+| **Qwen** | Qwen3.5 35B A3B | `FW-Qwen3.5-35B-A3B` | Chat completions | PTU | 35B-parameter MoE Qwen model with 262K context. |
+| **Qwen** | Qwen3.5 122B A10B | `FW-Qwen3.5-122B-A10B` | Chat completions | PTU | 122B-parameter MoE Qwen model with image input and 262K context. |
+| **Qwen** | Qwen3.5 397B A17B | `FW-Qwen3.5-397B-A17B` | Chat completions | PTU | 396B-parameter MoE Qwen model with image input and 262K context. |
+| **Qwen** | Qwen3.6 27B | `FW-Qwen3.6-27B` | Chat completions | PTU | 27B-parameter dense Qwen model with image input, function calling, and 262K context. |
+| **Qwen** | Qwen3.6 35B A3B | `FW-Qwen3.6-35B-A3B` | Chat completions | PTU | 35B-parameter MoE Qwen model with 262K context. |
+| **Z.ai** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | 352B-parameter MoE model for coding, reasoning, and agentic workflows. |
+| **Z.ai** | GLM-5 | `FW-GLM-5` | Chat completions | PTU | MoE model for complex systems engineering and long-horizon agentic tasks. |
+| **Z.ai** | GLM-5.1 | `FW-GLM-5.1` | Chat completions | Pay-per-token and PTU | MoE model for agentic engineering, coding, and long-horizon tasks. |
+| **Z.ai** | GLM-5.2 | `FW-GLM-5.2` | Chat completions | Pay-per-token and PTU | MoE model with 1M-token context and multi-effort coding capabilities for long-horizon tasks. |
 
-All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
+All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
+
+> [!IMPORTANT]
+> The Pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, and `FW-GLM-5`.
+>
+> Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
 
 ## Custom models (bring your own model)
 
@@ -130,16 +156,15 @@ In addition to the catalog models, Fireworks on Foundry supports importing and d
 
 Custom models must be based on one of the following supported architectures:
 
-* **DeepSeek** (V3.1, V3.2)
-* **Kimi** (K2, K2.5)
+* **Kimi** (K2, K2.5, K2.6)
 * **GLM** (4.7, 4.8)
-* **OpenAI** gpt-oss-120b
+* **OpenAI** (gpt-oss-120b)
+* **Qwen** (qwen3.5-9B, qwen3.5-35B-A3B, qwen3.5-112B-A10B, qwen3.5-397B)
 
 ### Limitations
 
-* **Full-weight models only**. LoRA and adapter-based models aren't supported.
 * **CLI-first workflow**. The import process uses the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`). The Foundry portal supports registering, viewing, and deploying models after upload.
-* **Fireworks Agents and Agent Builder workflows** are out of scope for this preview.
+* **Fireworks Agents and Agent Builder workflows** aren't currently supported.
 
 For step-by-step instructions, see [Import custom models into Foundry](import-custom-models.md).
 
@@ -179,11 +204,7 @@ No, you need to create new deployments in Foundry. If you'd like to shift consum
 
 ### Can I deploy LoRA or adapter-based models?
 
-No, the current preview supports full-weight custom models only. LoRA and adapter-based models aren't supported at this time.
-
-### Is the Fireworks preview suitable for production workloads?
-
-No. As a public preview, Fireworks on Foundry doesn't include a production service-level agreement (SLA). The preview is intended for early testing, experimentation, and validation.
+LoRA support is in public preview. See [import custom Fireworks modesl](./import-custom-models.md) for details.
 
 ### How do I import and deploy a custom model?
 
@@ -196,6 +217,10 @@ Fireworks models deployed through Foundry support both [pay-per-token](https://a
 ### How do I disable Fireworks in my Foundry project?
 
 Fireworks can be disabled at the Azure subscription level. Follow the steps to [unregister preview features](/azure/azure-resource-manager/management/preview-features#unregister-preview-feature) in your Azure subscription.
+
+### How do I use the Responses API?
+
+The Responses API is supported via the Foundry Projects API and SDK. Make sure to point your client to your project's API endpoint or use the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk).
 
 ## Troubleshoot Fireworks on Foundry
 

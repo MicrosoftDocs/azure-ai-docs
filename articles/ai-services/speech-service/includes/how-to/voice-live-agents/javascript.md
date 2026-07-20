@@ -1,10 +1,10 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 2/20/2026
 ai-usage: ai-assisted
@@ -31,7 +31,9 @@ Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-fou
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 - A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../foundry/tutorials/quickstart-create-foundry-resources.md).
 <!-- - A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](../../../../../ai-foundry/quickstarts/get-started-code.md). -->
-- Assign the `Azure AI User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+- Assign the `Foundry User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+  [!INCLUDE [role-rename-note](../../../../../foundry/includes/role-rename-note.md)]
 
 ## Prepare the environment and create the agent
 
@@ -51,7 +53,7 @@ Use Microsoft Entra ID credentials for agent mode. Agent invocation in this flow
 
 ### API version pinning
 
-Use a consistent SDK version (`@azure/ai-voicelive@1.0.0-beta.3`) in your `package.json` to keep behavior predictable across preview updates. Use the same version consistently across quickstart and how-to samples to avoid schema drift.
+Use a consistent SDK version (`@azure/ai-voicelive@1.0.0`) in your `package.json` to keep behavior predictable. Use the same version consistently across quickstart and how-to samples to avoid schema drift.
 
 ### Conversation and trace alignment
 
@@ -63,7 +65,7 @@ Pin your agent to a specific version to enable controlled deployments. This lets
 
 Set the `AGENT_VERSION` environment variable or pass the `agentVersion` property when initializing the assistant:
 
-:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="258-282,536-551,693-705" highlight="9,31,47":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="262-286,552-567,710-722" highlight="9,31,47":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -85,7 +87,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="258-282,536-551,693-705" highlight="11-17,33-35,49-50":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="262-286,552-567,710-722" highlight="11-17,33-35,49-50":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -94,13 +96,13 @@ This configuration is resolved in `main()` and then applied when the assistant i
 - In the constructor, the values are conditionally set on the `agentConfig` object, which is sent in `client.createSession({ agent: this.agentConfig })`.
 
 > [!IMPORTANT]
-> Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Azure AI User` role on the target agent resource.
+> Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Foundry User` role on the target agent resource.
 
 ## Add a proactive message at session start
 
 Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `onSessionUpdated` handler, sends a greeting prompt, and then triggers a response.
 
-:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="455-492" highlight="2-37":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="467-504" highlight="2-37":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -108,13 +110,20 @@ In this sample, proactive messaging is applied in three steps:
 - In the `onSessionUpdated` handler, `if (!this._greetingSent)` gates proactive execution to run once per session.
 - `session.addConversationItem(...)` adds the greeting instruction to conversation context, and `session.sendEvent({ type: "response.create" })` generates spoken output.
 
-## Improving tool calling and latency wait times
+## Improve tool calling and latency wait times
 
-Voice Live provides a feature called `interimResponse` to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
+Voice Live provides the `interimResponse` feature to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
+
+Voice Live offers two interim response modes:
+
+- **LLM-generated interim response** (`llm_interim_response`): Uses a lightweight LLM to generate context-aware filler text dynamically. Best for adaptive, natural-sounding responses.
+- **Static interim response** (`static_interim_response`): Randomly selects from a predefined list of texts you provide. Best for deterministic or branded messaging.
+
+For more information, see [Improve tool calling and latency wait times with interim responses](../../../how-to-voice-live-interim-response.md).
 
 The voice assistant created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="495-511" highlight="7-14":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="509-525" highlight="7-14":::
 
 In this sample, the interim response setup is applied inside `_setupSession()`:
 
@@ -138,7 +147,7 @@ Voice Live enables you to reconnect to a previous conversation by specifying the
 
 When a session connects successfully, Voice Live returns session metadata in the `onSessionUpdated` handler. The sample extracts the session ID from the context and logs it to the conversation file:
 
-:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="298-314":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="306-322":::
 
 In this event handler, the session ID is extracted from `context.sessionId` and written to the conversation log along with agent metadata.
 
@@ -146,11 +155,11 @@ The sample code writes session details to a conversation log file in the `logs/`
 
 To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversationId` property):
 
-:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="542,699":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="558,716":::
 
 In this sample, conversation reconnect is applied in three places:
 
-- In `main()`, `CONVERSATION_ID` is read from `process.env` (line 542).
+- In `main()`, `CONVERSATION_ID` is read from `process.env` (line 558).
 - The value is passed to the `BasicVoiceAssistant` constructor.
 - In the constructor, `conversationId` is conditionally spread into the `agentConfig` object.
 
@@ -169,13 +178,13 @@ The sample logs key session metadata, including the session ID, to a timestamped
 
 The following code creates the log filename and writes session metadata when `onSessionUpdated` is received:
 
-:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="20-33,298-314" highlight="1-2,9,15-16":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="21-34,306-322" highlight="1-2,9,15-16":::
 
 In this sample, session metadata logging is applied in three places:
 
-- A `logs/` directory is created if it doesn't exist, and a timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 20–28).
-- On `onSessionUpdated`, the handler extracts the session ID from `context.sessionId` and writes it along with agent metadata to the log (lines 302–305).
-- `writeConversationLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 30–33).
+- A `logs/` directory is created if it doesn't exist, and a timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 21–29).
+- On `onSessionUpdated`, the handler extracts the session ID from `context.sessionId` and writes it along with agent metadata to the log (lines 306–321).
+- `writeConversationLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 31–33).
 
 Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation in a later session.
 

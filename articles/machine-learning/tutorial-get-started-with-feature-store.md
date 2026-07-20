@@ -23,6 +23,18 @@ ms.custom:
 
 In this tutorial series, you learn how to use the managed feature store to discover, create, and operationalize Azure Machine Learning features. Features seamlessly integrate the prototyping, training, and operationalization phases of the machine learning lifecycle.
 
+> [!IMPORTANT]
+> Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
+>
+> Migration guidance:
+> - [Migrate Basic, Standard, and Premium tiers to Azure Managed Redis](/azure/redis/migrate/migrate-basic-standard-premium-overview)
+> - [Migrate Enterprise tier to Azure Managed Redis](/azure/redis/migrate/migrate-redis-enterprise-overview)
+>
+> For more details about the retirement:
+>   - [Azure Cache for Redis Retirement: What to Know and How to Prepare](https://techcommunity.microsoft.com/blog/azure-managed-redis/azure-cache-for-redis-retirement-what-to-know-and-how-to-prepare/4458721)
+>   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
+> 
+
 In the prototyping phase, you experiment with various features, and in the operationalization phase, you deploy models that use inference steps to look up feature data. Features serve as the connective tissue in the lifecycle.
 
 You use an Azure Machine Learning project workspace to train inference models by using features from feature stores. Many project workspaces can share and reuse the same feature store. For more information about managed feature store, see [What is managed feature store](concept-what-is-managed-feature-store.md) and [Understand top-level entities in managed feature store](concept-top-level-entities-in-managed-feature-store.md).

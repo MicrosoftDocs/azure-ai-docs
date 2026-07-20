@@ -1,8 +1,8 @@
 ---
 title: "How to use structured outputs for chat models (classic)"
 description: "Learn how to use structure outputs with chat completions with Microsoft Foundry Models (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 08/28/2025
 ms.author: mopeakande
@@ -49,4 +49,4 @@ zone_pivot_groups: azure-ai-inference-samples
 * [Use embeddings models](./use-embeddings.md)
 * [Use image embeddings models](./use-image-embeddings.md)
 * [Use reasoning models](./use-chat-reasoning.md)
-* [Azure AI Model Inference API](/rest/api/aifoundry/modelinference)
+* [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference)

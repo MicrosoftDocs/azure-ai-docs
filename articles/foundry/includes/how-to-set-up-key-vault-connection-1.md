@@ -1,12 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: jonburchel
+author: s-polly
 ms.reviewer: andyaviles
-ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.author: scottpolly
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/12/2026
 ms.custom: include
 ---
 

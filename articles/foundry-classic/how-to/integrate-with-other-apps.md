@@ -2,8 +2,9 @@
 title: "Integrate Microsoft Foundry with your applications (classic)"
 description: "Learn how to retrieve and use Microsoft Foundry endpoints for third-party integrations, including comparison with Azure OpenAI v1 endpoints. (classic)"
 ms.topic: how-to
-ms.date: 03/25/2026
-ms.service: azure-ai-foundry
+ms.date: 04/08/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley

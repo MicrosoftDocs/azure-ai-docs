@@ -3,10 +3,10 @@ title: "Model router for Microsoft Foundry concepts (classic)"
 description: "Learn about the model router feature in Azure OpenAI in Microsoft Foundry Models. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/18/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.custom:
   - classic-and-new

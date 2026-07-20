@@ -1,12 +1,13 @@
 ---
 title: "Add Microsoft Foundry to a network security perimeter"
 description: "Quickly learn how to associate a Microsoft Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management."
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: meerakurup
-ms.date: 02/23/2026
+ms.date: 05/12/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
   - classic-and-new
@@ -23,9 +24,6 @@ Use a network security perimeter (NSP) to restrict data-plane access to your Mic
 - Centrally log network access decisions across associated resources.
 
 This article gives only the Foundry-specific pointers you need. All procedural detail for creating perimeters, defining access rules, enabling logging, and using APIs lives in existing Azure networking documentation. Follow the links in each section for the authoritative steps.
-
-> [!IMPORTANT]
-> Network security perimeter support for Microsoft Foundry is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Review the [limitations and considerations](#review-limitations-and-considerations) before you start.
 
 :::image type="content" source="../media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram that shows a Foundry resource inside a network security perimeter boundary, with inbound rules filtering external traffic and outbound rules controlling egress to external services." lightbox="../media/how-to/network/network-security-perimeter-diagram.png":::
 

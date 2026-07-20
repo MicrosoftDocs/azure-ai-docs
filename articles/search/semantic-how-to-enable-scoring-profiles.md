@@ -4,24 +4,29 @@ description: Learn how to combine scoring profiles with semantic ranking in Azur
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 07/07/2026
+ai-usage: ai-assisted
 ---
 
 # Use scoring profiles with semantic ranker in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can apply a [scoring profile](index-add-scoring-profiles.md) over [semantically ranked search results](semantic-search-overview.md), where the scoring profile is processed last.
 
-To ensure the scoring profile provides the determining score, the semantic ranker adds a response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.reRankerBoostedScore`, results are sorted by `@search.reRankerBoostedScore`.
+To ensure the scoring profile provides the determining score, the semantic ranker adds a response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.rerankerBoostedScore`, results are sorted by `@search.rerankerBoostedScore`.
 
 ## Prerequisites
 
-- [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+- [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md).
 
 - A search index with a semantic configuration that specifies `"rankingOrder": "boostedRerankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
 
 ## Limitations
 
 Boosting of semantically ranked results applies to scoring profile functions only. There's no boosting if the scoring profile consists only of weighted text fields.
+
+This behavior applies to semantic queries that you send directly to an index, such as `/docs/search`. Agentic retrieval doesn't apply index [scoring profiles](index-add-scoring-profiles.md), including `defaultScoringProfile` on the underlying index, and retrieve responses don't surface `@search.rerankerBoostedScore`. For more information, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md) and [Query a knowledge base](agentic-retrieval-how-to-retrieve.md).
 
 ## How does semantic configuration with scoring profiles work?
 
@@ -46,7 +51,7 @@ In this scenario, a scoring profile is used twice.
 To enable scoring profiles for semantically ranked results, [update an index](/rest/api/searchservice/indexes/create-or-update#rankingorder) by setting the `rankingOrder` property of its semantic configuration. Use the PUT method to update the index with your revisions. No index rebuild is required.
 
 ```json
-PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-09-01
+PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2026-04-01
 {
   "semantic": {
     "configurations": [
@@ -64,7 +69,7 @@ PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2
 To opt out of sorting by semantic reranker boosted score, set the `rankingOrder` field to `reRankerScore` value in the semantic configuration.
 
 ```json
-PUT /indexes/{index-name}?api-version=2025-09-01
+PUT /indexes/{index-name}?api-version=2026-04-01
 {
   "semantic": {
     "configurations": [
@@ -84,7 +89,7 @@ Even if you opt out of sorting by `@search.rerankerBoostedScore`, the `boostedRe
 Start with a [semantic query](semantic-how-to-query-request.md) that specifies a scoring profile. This query targets a search index that has `rankingOrder` set to `boostedRerankerScore`.
 
 ```json
-POST /indexes/{index-name}/docs/search?api-version=2025-09-01
+POST /indexes/{index-name}/docs/search?api-version=2026-04-01
 {
   "search": "my query to be boosted",
   "scoringProfile": "myScoringProfile",

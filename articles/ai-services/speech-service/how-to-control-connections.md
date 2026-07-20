@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to monitor for connection status and manually connect or disconnect from the Speech service.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.reviewer: travisw

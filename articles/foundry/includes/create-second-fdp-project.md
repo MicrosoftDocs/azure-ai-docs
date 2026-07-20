@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.date: 04/09/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom:
   - include
@@ -65,6 +65,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
     ```azurecli
      az cognitiveservices account project create \
      --name my-foundry-resource \
+     --resource-group my-foundry-rg \
      --project-name {new_project_name} \
      --location eastus
     ```

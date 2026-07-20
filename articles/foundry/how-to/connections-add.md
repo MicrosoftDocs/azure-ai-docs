@@ -1,7 +1,8 @@
 ---
 title: "Add a new connection to your project"
 description: "Learn how to add a new connection to your Foundry project."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -9,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 03/24/2026
+ms.date: 06/19/2026
 ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
@@ -23,13 +24,15 @@ ai-usage: ai-assisted
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
+Connections let you authenticate to Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
 
 ## Prerequisites
 
 * If you don't have one, [create a project](../how-to/create-projects.md).
 * Make sure you can open your project in Microsoft Foundry.
-* Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Azure AI User**, **Azure AI Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
+* Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Foundry User**, **Foundry Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 ## Connection types
 
@@ -54,6 +57,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 |Grounding with Bing Custom Search|✅|Integrates with a custom Bing search instance for tailored web grounding. Connection creation is supported only through code.|
 |Azure APIM|✅|APIM supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
 |Model Gateway|✅|Model Gateway supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
+|Copilot Studio Environment| |Bring your Copilot Studio agents into Foundry Control Plane to view. Connection creation is supported in the Admin page through the Foundry portal, connecting directly to your Copilot Studio Environment.|
 
 ### Azure Key Vault limitations
 
@@ -79,7 +83,8 @@ Follow these steps to create a new connection that's available for the current p
 1. Select __Operate__ in the upper-right navigation.
 1. Select __Admin__ in the left pane.
 1. Select your project name in the __Manage all projects__ list.
-1. Select __Add connection__ in the upper-right corner.
+1. Select the **Connected resources** tab in the bottom section.
+1. Select **Add connection**.
 1. Select the service you want to connect to from the list of available external resources. For example, select __Azure AI Search__.
 1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.
 
@@ -113,5 +118,6 @@ For more on how to set private endpoints to your connected resources, see the fo
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#configure-connections-and-integrations) — role requirements for connections and integrations.
 - [Role-based access control in Foundry](../concepts/rbac-foundry.md)
 - [Configure network isolation](configure-private-link.md)

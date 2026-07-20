@@ -2,8 +2,8 @@
 title: How to use image and audio in chat completions with Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: Learn how to process audio and images with chat completions models with Microsoft Foundry Models
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 08/27/2025
 ms.author: mopeakande

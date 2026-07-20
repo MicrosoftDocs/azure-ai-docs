@@ -1,14 +1,14 @@
 ---
 title: "Deploy Fine-Tuned Models with Serverless API in Microsoft Foundry (classic)"
 description: "Deploy fine-tuned models using serverless API in Microsoft Foundry. Learn how to fine-tune, train, and deploy custom large language models with cost-effective serverless options. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 01/28/2026
 ms.reviewer: rasavage
 reviewer: RSavage2
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 ms.custom: references_regions
 zone_pivot_groups: azure-ai-model-fine-tune

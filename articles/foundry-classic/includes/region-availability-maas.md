@@ -4,8 +4,8 @@ description: Include file
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 02/17/2026
-ms.service: azure-ai-foundry
+ms.date: 05/26/2026
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom:
   - include
@@ -14,13 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-### Anthropic models
 
-| Model             | Offer Availability Region  | Hub/Project Region for Deployment<sup>1</sup>  | Hub/Project Region for Fine tuning  |
-|-------------------|---------|-------------------------------------|---------|
-| Claude Opus 4.6 (preview)  <br> Claude Opus 4.5 (preview) <br> Claude Opus 4.1 (preview) <br> Claude Sonnet 4.6 (preview) <br> Claude Sonnet 4.5 (preview) <br> Claude Haiku 4.5 (preview)| [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central      | Not available |
-
-<sup>1</sup> Claude models use the [Global Standard](../foundry-models/concepts/deployment-types.md#global-standard) deployment type. Your Foundry project or hub must also be in one of the regions listed in the table for you to deploy the model.
 
 ### Cohere models
 

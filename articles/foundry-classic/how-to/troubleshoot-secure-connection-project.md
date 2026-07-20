@@ -1,7 +1,8 @@
 ---
 title: "Troubleshoot private endpoint connection (classic)"
 description: "Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - build-2024
   - hub-only
@@ -10,8 +11,8 @@ ms.topic: how-to
 #CustomerIntent: As a developer, I want to diagnose private endpoint connection issues so that I can securely access my Foundry project.
 ms.date: 02/02/2026
 ms.reviewer: meerakurup
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 ---
 

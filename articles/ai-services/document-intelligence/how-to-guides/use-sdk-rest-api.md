@@ -3,11 +3,11 @@ title: "Use Document Intelligence client library or REST API "
 titleSuffix: Foundry Tools
 description: Learn how to use Document Intelligence client libraries or REST API and create apps to extract key data from documents.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/01/2026
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---

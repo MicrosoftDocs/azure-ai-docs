@@ -3,10 +3,10 @@ title: Find your Language resource endpoint and key - v3 client library
 titleSuffix: Foundry Tools
 description: Learn how to create an Azure Language in Foundry Tools resource.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/20/2026
 ms.author: lajanuar
 ---
 > [!IMPORTANT]

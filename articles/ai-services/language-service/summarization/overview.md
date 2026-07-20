@@ -3,10 +3,10 @@ title: What is summarization?
 titleSuffix: Foundry Tools
 description: Learn about summarizing text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 05/03/2026
 ms.author: lajanuar
 ms.custom: language-service-summarization, build-2024, ignite-2024
 ---
@@ -14,7 +14,7 @@ ms.custom: language-service-summarization, build-2024, ignite-2024
 # What is summarization?
 
 > [!IMPORTANT]
-> Summarization is retiring from Azure Language effective **March 31, 2029**. After this date, the summarization feature is no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Summarization retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and direct all new projects to [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which offers enhanced capabilities for natural language understanding and can be easily integrated into your applications. For guidance, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
 
 Summarization is a feature offered by [Azure Language in Foundry Tools](../overview.md), a combination of generative Large Language models and task-optimized encoder models that offer summarization solutions with higher quality, cost efficiency, and lower latency.
 Use this article to learn more about this feature, and how to use it in your applications.
@@ -22,7 +22,7 @@ Use this article to learn more about this feature, and how to use it in your app
 Out of the box, the service provides summarization solutions for three types of genre, plain texts, conversations, and native documents. Text summarization only accepts plain text blocks. Conversation summarization accepts conversational input, including various speech audio signals. Native document summarization accepts documents in their native formats, such as Word, PDF, or plain text. For more information, *see* [Supported document formats](../native-document-support/overview.md#supported-document-formats).
 
 > [!TIP]
-> Try out Summarization [in Microsoft Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Foundry resource](../../../ai-services/connect-services-foundry-portal.md) in order to use this service.
+> Try out Summarization [in Microsoft Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language resource or create a new Foundry resource](../../../ai-services/connect-services-foundry-portal.md) in order to use this service.
 
 ## Capabilities
 
@@ -31,7 +31,7 @@ Out of the box, the service provides summarization solutions for three types of 
 This documentation contains the following article types:
 
 * **[Quickstarts](quickstart.md?pivots=rest-api&tabs=text-summarization)** are getting-started instructions to guide you through making requests to the service.
-* **[How-to guides](how-to/text-summarization.md)** contain instructions for using the service in more specific or customized ways.
+* **[How-to guides](how-to/summarize.md?tabs=text-summarization)** contain instructions for using the service in more specific or customized ways.
 
 [!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
 
@@ -39,14 +39,14 @@ This documentation contains the following article types:
 
 Text summarization uses natural language processing techniques to generate a summary for plain texts, which can be from a document, conversation, or any texts. There are two approaches of summarization this API provides:
 
-* [**Extractive summarization**](how-to/text-summarization.md#try-text-extractive-summarization): Produces a summary by extracting salient sentences within the source text, together the positioning information of these sentences.
+* [**Extractive summarization**](how-to/summarize.md?tabs=text-summarization#try-text-extractive-summarization): Produces a summary by extracting salient sentences within the source text, together the positioning information of these sentences.
 
   * Multiple extracted sentences: These sentences collectively convey the main idea of the input text. They're original sentences extracted from the input text content.
   * Rank score: The rank score indicates how relevant a sentence is to the main topic. Text summarization ranks extracted sentences, and you can determine whether they're returned in the order they appear, or according to their rank.
  For example, if you request a three-sentence summary extractive summarization returns the three highest scored sentences.
   * Positional information: The start position and length of extracted sentences.
 
-* [**Abstractive summarization**](how-to/text-summarization.md#try-text-abstractive-summarization): Generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original source.
+* [**Abstractive summarization**](how-to/summarize.md?tabs=text-summarization#try-text-abstractive-summarization): Generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original source.
   * Summary texts: Abstractive summarization returns a summary for each contextual input range. A long input can be segmented so multiple groups of summary texts can be returned with their contextual input range.
   * Contextual input range: The range within the input that was used to generate the summary text.
 
@@ -72,16 +72,16 @@ If we use the preceding example, the API might return these summaries:
 This documentation contains the following article types:
 
 * **[Quickstarts](quickstart.md?pivots=rest-api&tabs=conversation-summarization)** are getting-started instructions to guide you through making requests to the service.
-* **[How-to guides](how-to/conversation-summarization.md)** contain instructions for using the service in more specific or customized ways.
+* **[How-to guides](how-to/summarize.md?tabs=conversation-summarization)** contain instructions for using the service in more specific or customized ways.
 
 ## Key features for conversation summarization
 
 Conversation summarization supports the following features:
 
-* [**Recap**](how-to/conversation-summarization.md#get-recap-and-follow-up-task-summarization): Summarizes a conversation into a brief paragraph.
+* [**Recap**](how-to/summarize.md?tabs=conversation-summarization#get-recap-and-follow-up-task-summarization): Summarizes a conversation into a brief paragraph.
 * [**Issue/resolution summarization**](quickstart.md?tabs=conversation-summarization%2Cwindows&pivots=rest-api#conversation-issue-and-resolution-summarization): Call center specific features that give a summary of issues and resolutions in conversations between customer-service agents and your customers.
-* [**Chapter title summarization**](how-to/conversation-summarization.md#get-chapter-titles): Segments a conversation into chapters based on the topics discussed in the conversation, and gives suggested chapter titles of the input conversation.
-* [**Narrative summarization**](how-to/conversation-summarization.md#get-narrative-summarization): Generates detail call notes, meeting notes or chat summaries of the input conversation.
+* [**Chapter title summarization**](how-to/summarize.md?tabs=conversation-summarization#get-chapter-titles): Segments a conversation into chapters based on the topics discussed in the conversation, and gives suggested chapter titles of the input conversation.
+* [**Narrative summarization**](how-to/summarize.md?tabs=conversation-summarization#get-narrative-summarization): Generates detail call notes, meeting notes or chat summaries of the input conversation.
 
 As an example, consider the following example conversation:
 
@@ -122,7 +122,7 @@ This documentation contains the following article types:
 
 Native document summarization uses natural language processing techniques to generate a summary for native documents. A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Azure Language in Foundry Tools resource capabilities. Currently, native document support is available for two types of summarization:
 
-* [**Extractive summarization**](how-to/document-summarization.md): Produces a summary by extracting salient sentences within the document, together the positioning information of those sentences.
+* [**Extractive summarization**](how-to/summarize.md?tabs=document-summarization): Produces a summary by extracting salient sentences within the document, together the positioning information of those sentences.
 
   * Multiple extracted sentences: These sentences collectively convey the main idea of the document. They're original sentences extracted from the input document's content.
   * Rank score: The rank score indicates how relevant a sentence is to the main topic. Text summarization ranks extracted sentences, and you can determine whether they're returned in the order they appear, or according to their rank.
@@ -142,7 +142,7 @@ Currently, **Document Summarization** supports the following native document for
 |Adobe PDF| `.pdf`       |A portable document file formatted document.|
 |Microsoft Word|`.docx`|A Microsoft Word document file.|
 
-For more information, *see* [**Summarize native documents**](how-to/document-summarization.md)
+For more information, *see* [**Summarize native documents**](how-to/summarize.md?tabs=document-summarization)
 
 ---
 

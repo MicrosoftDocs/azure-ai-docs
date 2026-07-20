@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # SerpAPI tool
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 SerpAPI is a Python tool that provides a wrapper to the [SerpAPI Google Search Engine Results API](https://serpapi.com/search-api) and the [SerpAPI Bing Search Engine Results API](https://serpapi.com/bing-search-api).
 
 You can use the tool to retrieve search results from many different search engines, including Google and Bing. You can also specify a range of search parameters, such as the search query, location, and device type.

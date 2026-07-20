@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Python tool
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 The Python tool enables you to create customized code snippets as self-contained executable nodes in prompt flow. You can easily create Python tools, edit code, and verify results.
 
 ## Inputs

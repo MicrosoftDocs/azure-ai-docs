@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Azure Content Understanding in Foundry Tools region and language support
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 05/19/2025
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: reference
 ms.custom:
   - references_regions
@@ -190,6 +190,8 @@ Different locales have different ways to represent numbers, date, and time. Cont
 
 ## Preview API (2025-05-01-preview)
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 The preview API version `2025-05-01-preview` includes managed capacity for generative capabilities and has limited regional availability compared to the GA version.
 
 ### Region support
@@ -199,7 +201,7 @@ To use Azure Content Understanding in Foundry Tools with the preview API, create
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
 | `westus` | West US | United States | United States |
-| `swedencentral` | Sweden Central | Sweden | European Union |
+| `swedencentral` | Sweden Central | European Union | European Union |
 | `australiaeast` | Australia East | Australia | N/A<sup>†</sup> |
 
 <sup>†</sup> Australia East doesn't support data zone as a processing location.

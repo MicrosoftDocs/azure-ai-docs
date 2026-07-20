@@ -3,14 +3,17 @@ title: Search Over CSV Blobs Using delimitedText Parsing
 description: Extract CSV blobs from Azure Blob Storage or Azure Files, and import as search documents into Azure AI Search using the delimitedText parsing mode.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Index CSV blobs and files using delimitedText parsing mode
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 **Applies to**: [Blob storage indexers](search-how-to-index-azure-blob-storage.md), [Files indexers](search-file-storage-integration.md)
 
@@ -69,7 +72,7 @@ Putting it all together, here are the complete payload examples.
 Datasource: 
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
+POST https://[service name].search.windows.net/datasources?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 {
@@ -83,7 +86,7 @@ api-key: [admin key]
 Indexer:
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexers?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 {

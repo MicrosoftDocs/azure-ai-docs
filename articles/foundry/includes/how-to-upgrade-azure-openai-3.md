@@ -4,9 +4,9 @@ description: Include file
 author: sdgilley
 ms.reviewer: deeikele
 ms.author: sgilley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 04/13/2026
 ms.custom: include
 ---
 
@@ -41,8 +41,6 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: Use Foundry portal**
-
 1. Select the project in the Foundry (classic) portal.
 1. Select **Management Center** in the lower left of your screen.
 1. On your resource overview page, find the rollback option.
@@ -60,8 +58,6 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 
 # [Azure Bicep](#tab/bicep)
 
-**Option 2: Use an Azure Bicep template**
-  
 To roll back, convert your template configuration back to `OpenAI` as kind.
 
   ```bicep
@@ -81,6 +77,7 @@ To roll back, convert your template configuration back to `OpenAI` as kind.
       customSubDomainName: foundryName
       disableLocalAuth: true
   }
+}
   ```
 
   Run the template by using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bicep-cli) or your [Visual Studio Code extension for Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) as a patch operation on your current resource.

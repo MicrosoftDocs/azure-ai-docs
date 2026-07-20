@@ -1,18 +1,22 @@
 ---
 title: "How to use Azure OpenAI in Microsoft Foundry Models stored completions & distillation (classic)"
 description: "Learn how to use stored completions & distillation with Azure OpenAI (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 12/6/2025
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 7/6/2026
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
+ai-usage: ai-assisted
 ---
 
-# Azure OpenAI stored completions & distillation (preview) (classic)
+# Azure OpenAI stored completions and distillation (deprecated)
+
+> [!WARNING]
+> Stored completions retire on October 15, 2026. For migration guidance, see [Migrate from stored completions to Responses API and Agent Traces](./stored-completions-retirement.md).
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -813,7 +817,9 @@ Stored completions access is controlled via two DataActions:
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/read`
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/action`
 
-By default `Azure AI User` role has access to both these permissions:
+By default `Foundry User` role has access to both these permissions:
+
+[!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 
 :::image type="content" source="../media/stored-completions/permissions.png" alt-text="Screenshot of stored completions permissions." lightbox="../media/stored-completions/permissions.png":::
 

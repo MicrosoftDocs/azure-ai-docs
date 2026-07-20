@@ -1,7 +1,7 @@
 ---
 title: "Groundedness detection overview"
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 02/18/2026

@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Connections in prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 In Azure Machine Learning prompt flow, use connections to manage credentials or secrets for APIs and data sources.
 
 ## Connections
@@ -29,14 +31,14 @@ Prompt flow provides various prebuilt connections, including Azure OpenAI, OpenA
 
 | Connection type                                              | Built-in tools                  |
 | ------------------------------------------------------------ | ------------------------------- |
-| [Azure OpenAI](https://azure.microsoft.com/products/cognitive-services/openai-service) | LLM or Python                   |
+| [Azure OpenAI](https://azure.microsoft.com/products/ai-foundry/) | LLM or Python                   |
 | [OpenAI](https://openai.com/)                               | LLM or Python                   |
 | [Azure Content Safety](https://aka.ms/acs-doc)               | Content Safety (Text) or Python |
 | [Azure AI Search](https://azure.microsoft.com/products/search) (formerly Cognitive Search) | Vector DB Lookup or Python      |
 | [Serp](https://serpapi.com/)                                 | Serp API or Python              |
 | [Custom](./tools-reference/python-tool.md#use-a-custom-connection-in-python)                                                       | Python                          |
 
-By leveraging connections in prompt flow, you can easily establish and manage connections to external APIs and data sources. This capability facilitates efficient data exchange and interaction within your AI applications.
+By using connections in prompt flow, you can easily establish and manage connections to external APIs and data sources. This capability facilitates efficient data exchange and interaction within your AI applications.
 
 ## Next steps
 

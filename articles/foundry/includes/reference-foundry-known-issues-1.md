@@ -4,7 +4,7 @@ description: Include file
 author: s-polly
 ms.reviewer: bgilmore
 ms.author: scottpolly
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include

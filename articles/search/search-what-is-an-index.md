@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Search indexes in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, a *search index* is your searchable content on a search service, available to the local search engine for indexing, agentic retrieval, full-text search, vector search, hybrid search, and filtered queries. An index is defined by a schema that's saved to your search service, with data ingestion following as a second step. Indexed content exists on your search service, apart from your primary external data stores, which is necessary for the millisecond response times expected in modern search applications. Except for remote agentic retrieval and indexer-driven indexing scenarios, the search service never connects to or queries your external source data.
 
 This article covers the key concepts for creating and managing a search index, including:
@@ -146,7 +148,7 @@ In Azure AI Search, you work with one index at a time. All index-related operati
 
 ### Continuously available
 
-An index is immediately available for queries as soon as the first document is indexed, but it's not fully operational until all documents are indexed. Internally, an index is [distributed across partitions and executes on replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions). The physical index is managed internally. You manage the logical index.
+An index is immediately available for queries as soon as the first document is indexed, but it's not fully operational until all documents are indexed. Internally, an index is [distributed across partitions and executes on replicas](search-capacity-planning.md). The physical index is managed internally. You manage the logical index.
 
 An index is continuously available and can't be paused or taken offline. Because it's designed for continuous operation, updates to its content and additions to the index itself happen in real time. If a request coincides with a document update, queries might temporarily return incomplete results.
 
@@ -160,7 +162,7 @@ All indexing and query requests target an index. Endpoints are usually one of th
 
 | Endpoint | Connection and access control |
 |----------|-------------------------------|
-| `<your-service>.search.windows.net/indexes` | Targets the indexes collection. Used when creating, listing, or deleting an index. Admin rights are required for these operations and available through admin [API keys](search-security-api-keys.md) or a [Search Contributor role](search-security-rbac.md#built-in-roles-used-in-search). |
+| `<your-service>.search.windows.net/indexes` | Targets the indexes collection. Used when creating, listing, or deleting an index. Admin rights are required for these operations and available through admin [API keys](search-security-api-keys.md) or a [Search Contributor role](search-security-rbac.md#built-in-roles). |
 | `<your-service>.search.windows.net/indexes/<your-index>/docs` | Targets the documents collection of a single index. Used when querying an index or data refresh. For queries, read rights are sufficient and available through query API keys or a data reader role. For data refresh, admin rights are required. |
 
 #### How to connect to an index

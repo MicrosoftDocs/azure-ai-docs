@@ -14,6 +14,8 @@ ms.update-cycle: 365-days
 
 # Monitor indexer status and results in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can monitor indexer processing in the Azure portal, or programmatically through REST calls or an Azure SDK. In addition to status about the indexer itself, you can review start and end times, and detailed errors and warnings from a particular run.
 
 ## Monitor using Azure portal
@@ -69,7 +71,7 @@ You can also configure the graph to see the number of skill invocations over the
 You can retrieve the status and execution history of an indexer using the [Get Indexer Status command](/rest/api/searchservice/indexers/get-status):
 
 ```http
-GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2025-09-01
+GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2026-04-01
 api-key: [Search service admin key]
 ```
 

@@ -3,8 +3,8 @@ title: "Quickstart: Document Intelligence C# SDK"
 titleSuffix: Foundry Tools
 description: 'Form and document processing, data extraction, and analysis using Document Intelligence C# client library.'
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 01/30/2026
 ms.author: lajanuar

@@ -1,12 +1,14 @@
 ---
 title: "How to use the data agents in Microsoft Fabric with Foundry Agent Service (classic)"
 description: "Learn how to perform data analytics in Microsoft Foundry Agents using Microsoft Fabric data agent. (classic)"
-author: alvinashcraft
-ms.author: aashcraft
-manager: nitinme
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
+manager: mcleans
 ms.date: 03/23/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -39,7 +41,9 @@ You need to first build and publish a Fabric data agent, and then connect your F
 ## Prerequisites
 
 * Create and publish a Fabric data agent endpoint.
-* Developers and end users have at least the `Azure AI User` RBAC role.
+* Developers and end users have at least the `Foundry User` RBAC role.
+
+  [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
 * Developers and end users have at least `READ` access to the Fabric data agent. Users also need the minimum permission on each underlying data source:
 
     | Data source | Minimum permission |

@@ -338,8 +338,8 @@ A model deployment is a set of resources required for hosting the model that doe
     | `settings.max_concurrency_per_instance` | The maximum number of parallel `scoring_script` runs per instance.|
     | `settings.mini_batch_size` | The number of files the `code_configuration.scoring_script` can process in one `run`() call.|
     | `settings.retry_settings` | Retry settings for scoring each mini batch. |
-    | `settings.retry_settingsmax_retries` | The maximum number of retries for a failed or timed-out mini batch (default is 3). |
-    | `settings.retry_settingstimeout` | The timeout in seconds for scoring a mini batch (default is 30). |
+    | `settings.retry_settings.max_retries` | The maximum number of retries for a failed or timed-out mini batch (default is 3). |
+    | `settings.retry_settings.timeout` | The timeout in seconds for scoring a mini batch (default is 30). |
     | `settings.output_action` | How the output should be organized in the output file. Allowed values are `append_row` or `summary_only`. Default is `append_row`. |
     | `settings.logging_level` | The log verbosity level. Allowed values are `warning`, `info`, `debug`. Default is `info`. |
     | `settings.environment_variables` | Dictionary of environment variable name-value pairs to set for each batch scoring job.  |

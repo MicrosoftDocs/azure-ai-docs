@@ -4,7 +4,7 @@ description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -33,9 +33,16 @@ The key to generating an ephemeral token is the REST API using
 url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
 ```
 
+> [!NOTE]
+> This is the **GA endpoint** for WebRTC. If you're migrating from the Preview API, the endpoint has changed:
+> - **Preview (deprecated)**: `/openai/realtimeapi/sessions?api-version=2025-04-01-preview`
+> - **GA (current)**: `/openai/v1/realtime/client_secrets` (no API version parameter needed)
+>
+> For migration details, see [Migration from Preview to GA version of Realtime API](../how-to/realtime-audio-preview-api-migration-guide.md#update-webrtc-endpoints).
+
 You use this URL with either an api-key or Microsoft Entra ID token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. 
 
-Here's some sample python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
+Here's some sample Python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
 
 > [!NOTE]
 > Replace placeholder values in the code samples:
@@ -184,11 +191,16 @@ if __name__ == '__main__':
 
 ### Step 2: Set up your browser application
 
-Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following URL with the ephemeral token for authentication.
+Your browser application calls your token service to get the token and then initiates a WebRTC connection with the RealtimeAPI. To initiate the WebRTC connection, use the following URL with the ephemeral token for authentication.
 
 ```text
 https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
 ```
+
+> [!NOTE]
+> This is the **GA endpoint** for WebRTC connections. If you're migrating from the Preview API:
+> - **Preview (deprecated)**: `https://<region>.realtimeapi-preview.ai.azure.com/v1/realtimertc`
+> - **GA (current)**: `https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls`
 
 Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample HTML document to get you started.
 
@@ -421,7 +433,7 @@ In the sample, we use the query parameter webrtcfilter=on. This query parameter 
 * response.output_audio_transcript.done
 
 > [!TIP]
-> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md#server-events).
+> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md).
 
 When the connection succeeds, you should see these console messages:
 - `✅ RTCPeerConnection created`
@@ -1103,6 +1115,15 @@ The associated browser changes are shown here.
 
 **Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [Flask documentation](https://flask.palletsprojects.com/)
 
+###  Step 4 (optional): Configure Network Firewall
+
+If you use a Network Firewall, the Realtime API requires the following `Allow` rule on the client side.
+
+| Port | Protocols | Rule | IP Range |
+| --- | --- | --- | --- |
+| 3478 | UDP, TCP | Allow | All Subnets belonging to `AzureCloud.<Your_Microsoft_Foundry_Resource_Azure_Region>` [Service Tag](/azure/virtual-network/service-tags-overview). Example `AzureCloud.eastus2`. [See the complete list of Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519). |
+
+
 ## Troubleshooting
 
 ### Authentication errors
@@ -1112,7 +1133,9 @@ The associated browser changes are shown here.
 
 ### Connection errors
 
-- **WebRTC connection failed**: Ensure your browser supports WebRTC and allows microphone access. Check that you're using HTTPS (required for `getUserMedia`).
+- **WebRTC connection failed**:
+  - Ensure your browser supports WebRTC and allows microphone access. Check that you're using HTTPS (required for `getUserMedia`).
+  - If you use Network Firewall, check [Firewall Settings](#step-4-optional-configure-network-firewall).
 - **Data channel not opening**: Check the browser console for ICE connection state errors. Verify the ephemeral token hasn't expired.
 - **SDP exchange failed**: Verify the WebRTC endpoint URL is correct and the ephemeral token is valid.
 
@@ -1128,6 +1151,6 @@ The associated browser changes are shown here.
 
 ## Related content
 
-* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
+* Try the [real-time audio quickstart](../how-to/realtime-audio-websockets.md#voice-agent-quickstart).
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

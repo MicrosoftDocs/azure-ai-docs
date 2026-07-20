@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Personalizer uses features, information about actions and context, to make better ranking suggestions. Features can be generic, or specific to an item.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: concept-article
 ms.date: 01/19/2024
@@ -56,7 +56,7 @@ Features from actions may typically come from content management systems, catalo
 
 ### Prevent actions from being ranked
 
-In some cases, there are actions that you don't want to display to users. The best way to prevent an action from being ranked is by adding it to the [Excluded Actions](/dotnet/api/microsoft.azure.cognitiveservices.personalizer.models.rankrequest.excludedactions) list, or not passing it to the Rank Request.
+In some cases, there are actions that you don't want to display to users. The best way to prevent an action from being ranked is by adding it to the [Excluded Actions](/azure/ai-services/personalizer/quickstart-personalizer-sdk) list, or not passing it to the Rank Request.
 
 In some cases, you might not want events to be trained on by default. In other words, you only want to train events when a specific condition is met. For example, The personalized part of your webpage is below the fold (users have to scroll before interacting with the personalized content). In this case you'll render the entire page, but only want an event to be trained on when the user scrolls and has a chance to interact with the personalized content. For these cases, you should [Defer Event Activation](concept-active-inactive-events.md) to avoid assigning default reward (and training) events that the end user didn't have a chance to interact with.
 

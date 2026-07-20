@@ -1,9 +1,10 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 7/17/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/python.md)]
@@ -43,7 +44,7 @@ Follow these steps to create a new console application.
     
     def recognize_from_microphone():
         # This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
-        # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourServiceRegion.api.cognitive.microsoft.com"
+        # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourResourceName.cognitiveservices.azure.com"
         speech_translation_config = speechsdk.translation.SpeechTranslationConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('ENDPOINT'))
         speech_translation_config.speech_recognition_language="en-US"
     

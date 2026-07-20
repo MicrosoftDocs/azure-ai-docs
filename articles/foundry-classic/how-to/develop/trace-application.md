@@ -5,7 +5,8 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 11/18/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ai-usage: ai-assisted
 ---
@@ -67,7 +68,7 @@ The following steps show how to configure your resource:
     1. Once the connection is configured, you're ready to use tracing in any project within the resource.
 
     > [!TIP]
-    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more on how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Use [Microsoft Entra groups](../../concepts/rbac-foundry.md#use-microsoft-entra-groups-with-foundry) to more easily manage access for users.
+    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). To learn more about how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Use [Microsoft Entra groups](../../concepts/rbac-foundry.md#use-microsoft-entra-groups-with-foundry) to more easily manage access for users.
 
 1. Go to the landing page of your project and copy the project's endpoint URI. You need it later.
 
@@ -292,13 +293,13 @@ Configure tracing as follows:
     }
     ```
 
-## Trace locally with AI Toolkit
+## Trace locally with Foundry Toolkit
 
-AI Toolkit offers a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it perfect for development and debugging without needing cloud access.
+Foundry Toolkit offers a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it perfect for development and debugging without needing cloud access.
 
 The toolkit supports the OpenAI SDK and other AI frameworks through OpenTelemetry. You can see traces instantly in your development environment.
 
-For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+For detailed setup instructions and SDK-specific code examples, see [Tracing in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
 ## Related content
 

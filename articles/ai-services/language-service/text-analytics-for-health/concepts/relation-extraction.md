@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about relation extraction
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/11/2026
 ms.author: lajanuar
 ms.custom: language-service-health
 ---

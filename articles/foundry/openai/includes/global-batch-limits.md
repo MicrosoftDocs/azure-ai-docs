@@ -2,20 +2,20 @@
 title: Azure OpenAI Global Batch Limits
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Global batch limits for Azure OpenAI models.
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 01/27/2025
-
+ms.date: 07/10/2026
+ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
 
 ## Batch limits
 
 | Limit name | Limit value |
-|--|--|
-| Maximum Batch input files - (no expiration)  | 500 |
+| ---------- | ----------- |
+| Maximum Batch input files - (no expiration) | 500 |
 | Maximum Batch input files - (expiration set) | 10,000 |
 | Maximum input file size | 200 MB |
 | Maximum input file size - [Bring your own storage (BYOS)](../../../foundry-classic/openai/how-to/batch-blob-storage.md) | 1 GB |
@@ -30,30 +30,38 @@ The table shows the batch quota limit. Quota values for global batch are represe
 
 ### Global batch
 
-|Model|Enterprise and MCA-E|Default| Monthly credit card-based subscriptions | MSDN subscriptions | Azure for Students, free trials |
-|---|---|---|---|---|---|
-| `gpt-4.1`| 5B | 200M | 50M | 90K | N/A |
+| Model | Enterprise and MCA-E | Default | Monthly credit card-based subscriptions | MSDN subscriptions | Azure for Students, free trials |
+| --- | --- | --- | --- | --- | --- |
+| `gpt-4.1` | 5B | 200M | 50M | 90K | N/A |
 | `gpt-4.1 mini` | 15B | 1B | 50M | 90K | N/A |
 | `gpt-4.1-nano` | 15B | 1B | 50M | 90K | N/A |
-| `gpt-4o` | 5B | 200M | 50M | 90K | N/A|
+| `gpt-4o` | 5B | 200M | 50M | 90K | N/A |
 | `gpt-4o-mini` | 15B | 1B | 50M | 90K | N/A |
 | `gpt-4-turbo` | 300M | 80M | 40M | 90K | N/A |
 | `gpt-4` | 150M | 30M | 5M | 100K | N/A |
-| `o3-mini`| 15B | 1B | 50M | 90K | N/A |
+| `o3-mini` | 15B | 1B | 50M | 90K | N/A |
 | `o4-mini` | 15B | 1B | 50M | 90K | N/A |
-| `gpt-5`| 5B | 200M | 50M | 90K | N/A |
-| `gpt-5.1`| 5B | 200M | 50M | 90K | N/A |
+| `gpt-5` | 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.1` | 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.2` | 5B | 200M | 50M | N/A | N/A |
+| `gpt-5.4` | 5B | 200M | 50M | N/A | N/A |
+| `gpt-5.4-mini` | 5B | 200M | 50M | N/A | N/A |
+| `gpt-5.4-nano` | 5B | 200M | 50M | N/A | N/A |
+| `gpt-5.5` | 5B | 200M | 50M | 90K | N/A |
 
 B = billion | M = million | K = thousand
 
 ### Data zone batch
 
-|Model|Enterprise and MCA-E|Default| Monthly credit card-based subscriptions | MSDN subscriptions | Azure for Students, free trials |
-|---|---|---|---|---|---|
-| `gpt-4.1` | 500M | 30M | 30M | 90K | N/A|
+| Model | Enterprise and MCA-E | Default | Monthly credit card-based subscriptions | MSDN subscriptions | Azure for Students, free trials |
+| --- | --- | --- | --- | --- | --- |
+| `gpt-4.1` | 500M | 30M | 30M | 90K | N/A |
 | `gpt-4.1-mini` | 1.5B | 100M | 50M | 90K | N/A |
-| `gpt-4o` | 500M | 30M | 30M | 90K | N/A|
+| `gpt-4o` | 500M | 30M | 30M | 90K | N/A |
 | `gpt-4o-mini` | 1.5B | 100M | 50M | 90K | N/A |
 | `o3-mini` | 1.5B | 100M | 50M | 90K | N/A |
-| `gpt-5`| 5B | 200M | 50M | 90K | N/A |
-| `gpt-5.1`| 5B | 200M | 50M | 90K | N/A |
+| `gpt-5` | 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.1` | 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.4` | 5B | 200M | 50M | N/A | N/A |
+| `gpt-5.4-mini` | 5B | 200M | 50M | N/A | N/A |
+| `gpt-5.5` | 5B | 200M | 50M | 90K | N/A |

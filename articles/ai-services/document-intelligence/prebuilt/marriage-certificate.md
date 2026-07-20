@@ -3,10 +3,10 @@ title: Document Intelligence marriage certificate
 titleSuffix: Foundry Tools
 description: Automate marriage certificate data extraction with Document Intelligence's marriage certificate model.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 05/25/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---

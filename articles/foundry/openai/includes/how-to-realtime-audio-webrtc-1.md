@@ -4,7 +4,7 @@ description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -28,13 +28,16 @@ WebSockets aren't recommended for real-time audio streaming because they have hi
 
 ## Supported models
 
-You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
+You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
 - `gpt-realtime-mini` (version 2025-12-15)
 - `gpt-realtime-1.5` (version 2026-02-23)
+- `gpt-realtime-2` (version 2026-05-07)
+- `gpt-realtime-translate` (version 2026-05-06)
+- `gpt-realtime-whisper` (version 2026-05-06)
 
 Use the `/openai/v1` path in the request URL when calling the Realtime API.
 
@@ -43,6 +46,10 @@ For more information about supported models, see the [models and versions docume
 > [!IMPORTANT]
 > Use the GA protocol for WebRTC.
 >
-> You can still use the beta protocol, but we recommend that you start with the GA Protocol. If you're a current customer, plan to migrate to the GA Protocol. 
+> The GA endpoints described in this article use different URLs than the Preview API:
+> - GA uses `/openai/v1/realtime/client_secrets` and `/openai/v1/realtime/calls`
+> - Preview (deprecated) used `/openai/realtimeapi/sessions` and regional URLs
 >
-> This article describes how to use WebRTC with the GA Protocol. We preserve the legacy protocol documentation [here](/previous-versions/azure/foundry-models/realtime-audio-webrtc-legacy).
+> If you're a current customer using Preview endpoints, [migrate to the GA Protocol](../how-to/realtime-audio-preview-api-migration-guide.md). 
+>
+> We preserve the legacy protocol documentation [here](/previous-versions/azure/foundry-models/realtime-audio-webrtc-legacy).

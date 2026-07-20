@@ -1,10 +1,9 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
-ms.reviewer: nitinme
-ms.service: azure-ai-foundry
+author: alvinashcraft
+ms.author: aashcraft
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -29,7 +28,7 @@ Universal required mitigations must be implemented to maintain CCC coverage for 
 
 |**Category**|**Required Mitigation**|**Effective Date**|
 |---|---|---|
-| Metaprompt | The customer offering must include a metaprompt directing the model to prevent copyright infringement in its output, for example, the sample metaprompt, "To Avoid Copyright Infringements" at: [System message framework and template recommendations for Large Language Models(LLMs)](/azure/ai-foundry/openai/concepts/system-message)|December 1, 2023|
+| Metaprompt | The customer offering must include a metaprompt directing the model to prevent copyright infringement in its output, for example, the sample system message component, "Protected Material – Text" at: [Safety system message templates](/azure/foundry/openai/concepts/safety-system-message-templates). |December 1, 2023|
 | Testing and Evaluation Report | The customer offering must have been subjected to evaluations (e.g., guided red teaming, systematic measurement, or other equivalent approach) by the customer using tests designed to detect the output of third-party content. Significant ongoing reproduction of third-party content determined through evaluation must be addressed. The report of results and mitigations must be retained by the customer and provided to Microsoft in the event of a claim. Customer is under no obligation to conduct direct testing of Microsoft services to maintain CCC coverage. More information on guided red teaming is at: [Red teaming large language models (LLMs)](/azure/ai-foundry/openai/concepts/red-teaming). More information on systematic measurement is at: [Overview of Responsible AI practices for Azure OpenAI models - Foundry Tools - Microsoft Learn.](../openai/overview.md) |December 1, 2023|
 
 ## Additional Required Mitigations Per Azure OpenAI Use Case
@@ -57,13 +56,13 @@ No additional requirements.
 
 ## Required Mitigations for GitHub Offerings
 
-The below are the only required mitigations that apply to GitHub Offerings, and separately took effect in the Product Terms on November 1, 2023.
+The below are the only required mitigations that apply to GitHub Offerings, and as of April 3, 2026, there are no additional required mitigations. Use of the Duplicate Detection filter feature is no longer required for CCC coverage. This feature remains available for optional use. See [Managing policies and features for GitHub Copilot](https://gh.io/cfb-dd).
 
 **Required Mitigations for GitHub Offerings Only**
 
 |**Category**|**Required Mitigation**|**Effective Date**|
 |---|---|---|
-|GitHub Offerings| Either the Duplicate Detection filtering feature must be set to the "Block" setting, or, if using annotate mode, customers must comply with cited licenses. Customers can learn how to enable the Duplicate Detection filter at [https://gh.io/cfb-dd](https://gh.io/cfb-dd).|November 1, 2023|
+|GitHub Offerings| No additional required mitigations.|April 3, 2026|
 
 ## Required Mitigations for Microsoft Copilot Studio
 

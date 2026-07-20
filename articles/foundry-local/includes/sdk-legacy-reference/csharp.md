@@ -1,14 +1,18 @@
 ---
 title: Include file
 description: Include file
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/09/2025
+ms.date: 05/04/2026
 ms.author: samkemp
 author: samuel100
 ---
 
 ## C# SDK Reference
+
+### Prerequisites
+
+- Install Foundry Local CLI and ensure the `foundry` command is available on your `PATH`.
 
 ### Installation
 

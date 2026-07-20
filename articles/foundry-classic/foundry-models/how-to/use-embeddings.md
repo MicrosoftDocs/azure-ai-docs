@@ -1,8 +1,8 @@
 ---
 title: "How to generate embeddings with Microsoft Foundry Models service (classic)"
 description: "Learn how to generate embeddings with Microsoft Foundry Models (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 11/21/2025
 ms.author: mopeakande
@@ -47,4 +47,4 @@ zone_pivot_groups: azure-ai-inference-samples
 ## Related content
 
 * [Use image embeddings models](./use-image-embeddings.md)
-* [Azure AI Model Inference API](/rest/api/aifoundry/modelinference)
+* [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference)

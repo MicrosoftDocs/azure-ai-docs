@@ -2,8 +2,8 @@
 title: Voice Live API Reference 2026-01-01-preview
 titleSuffix: Foundry Tools
 description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-01-01-preview
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: reference
 ms.date: 1/30/2026
 author: PatrickFarley
@@ -2236,7 +2236,7 @@ Configuration for input audio transcription.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech` |
+| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech`, `mai-transcribe` (preview) |
 | language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
@@ -2355,7 +2355,7 @@ Azure personal voice configuration.
 | type | string | Must be `"azure-personal"` |
 | name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| model | string | Underlying base model: `DragonLatestNeural`, `DragonHDOmniLatestNeural` |
+| model | string | Underlying base model: `DragonLatestNeural`, `DragonHDOmniLatestNeural`, `MAI-Voice-1` |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
 | prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |

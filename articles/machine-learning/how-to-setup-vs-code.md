@@ -49,7 +49,7 @@ The Azure Machine Learning extension for VS Code provides a user interface to:
     > ![Install Azure Machine Learning VS Code Extension](./media/how-to-setup-vs-code/install-aml-vscode-extension.PNG)
 
 > [!IMPORTANT]
-> The Azure Machine Learning VS Code extension uses the CLI (v2) by default. Support for CLI v1 ends on September 30, 2025. If you're still using CLI v1, transition to CLI v2 as soon as possible. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
+> The Azure Machine Learning VS Code extension uses the CLI (v2) by default. Support for CLI v1 ended on September 30, 2025. If you're still using CLI v1, transition to CLI v2. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 
 ## Sign in to your Azure Account
 

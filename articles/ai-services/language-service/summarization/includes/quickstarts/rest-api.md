@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/15/2025
+ms.date: 04/06/2026
 ms.author: lajanuar
 ---
 # [Text summarization](#tab/text-summarization)

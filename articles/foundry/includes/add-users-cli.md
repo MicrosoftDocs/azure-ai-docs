@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.reviewer: sgilley
 ms.author: sgilley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/04/2025
 ms.custom: include
@@ -20,20 +20,24 @@ ms.custom: include
        --query id -o tsv)
    ```
 
-1. Assign the **Azure AI User** role to a team member:
+1. Assign the **Foundry User** role to a team member:
+
+   [!INCLUDE [role-rename-note](./role-rename-note.md)]
 
    ```azurecli
    az role assignment create \
-       --role "Azure AI User" \
+       --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
        --assignee "user@contoso.com" \
        --scope $PROJECT_ID
    ```
+
+[!INCLUDE [role-rename-note-code](./role-rename-note-code.md)]
 
    To add a security group instead of an individual user:
 
    ```azurecli
    az role assignment create \
-       --role "Azure AI User" \
+       --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
        --assignee-object-id "<security-group-object-id>" \
        --assignee-principal-type Group \
        --scope $PROJECT_ID
@@ -44,7 +48,7 @@ ms.custom: include
    ```azurecli
    az role assignment list \
        --scope $PROJECT_ID \
-       --role "Azure AI User" \
+       --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
        --output table
    ```
 

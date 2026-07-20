@@ -2,13 +2,15 @@
 title: "How to use Foundry Agent Service Computer Use Tool (classic)"
 description: "Learn how to use Foundry Agent Service Computer Use Tool (classic)"
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: mattwojo
+reviewer: lindazqli
+ms.author: mattwoj
+ms.reviewer: zhuoqunli
 ms.custom: references_regions
 ---
 

@@ -3,10 +3,10 @@ title: "Share custom model projects using Document Intelligence Studio"
 titleSuffix: Foundry Tools
 description: Learn how to share custom model projects using Document Intelligence Studio.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/11/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ms.custom: sfi-image-nochange

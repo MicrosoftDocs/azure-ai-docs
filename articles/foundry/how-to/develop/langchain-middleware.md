@@ -1,9 +1,10 @@
 ---
-title: Use Azure AI Content Safety middleware with LangChain
-description: "Learn how to use Azure AI Content Safety middleware in LangChain agents with the langchain-azure-ai package."
-ms.service: azure-ai-foundry
+title: Use Foundry Content Safety middleware with LangChain
+description: "Learn how to use Foundry Content Safety middleware in LangChain agents with the langchain-azure-ai package."
+ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/24/2026
+ms.date: 06/19/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasantia
@@ -14,10 +15,9 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai middleware so that I can add content moderation, prompt shielding, groundedness detection, and protected material scanning to my LangChain agents.
 ---
 
-# Use Azure AI Content Safety middleware with LangChain
+# Use Foundry Content Safety middleware with LangChain
 
-Use the `langchain-azure-ai` package to add Azure Content Safety in Foundry Tools
-capabilities to your LangChain agents. You learn how to apply content
+Use the `langchain-azure-ai` package to add Azure Content Safety in Foundry Tools capabilities to your LangChain agents. You learn how to apply content
 moderation, prompt shielding, groundedness detection, and protected material
 scanning as middleware in your agent graphs.
 
@@ -48,7 +48,7 @@ Set your environment variable:
 import os
 
 # Option 1: Project endpoint (recommended)
-os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+os.environ["FOUNDRY_PROJECT_ENDPOINT"] = (
 	"https://<resource>.services.ai.azure.com/api/projects/<project>"
 )
 
@@ -75,7 +75,7 @@ model = init_chat_model("azure_ai:gpt-4.1", credential=DefaultAzureCredential())
 
 Use classes in the namespace `langchain_azure_ai.agents.middleware.*` to add
 Content Safety capabilities to your agents. The package automatically
-detects the project connection when you set the `AZURE_AI_PROJECT_ENDPOINT`
+detects the project connection when you set the `FOUNDRY_PROJECT_ENDPOINT`
 environment variable. Microsoft Entra ID is the default authentication
 method, but key-based authentication is also available.
 
@@ -83,7 +83,7 @@ method, but key-based authentication is also available.
 from langchain_azure_ai.agents.middleware import AzureContentModerationMiddleware
 
 middleware = AzureContentModerationMiddleware(
-    project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     # ...
 )
 ```
@@ -123,7 +123,7 @@ agent = create_agent(
     model=model,
     system_prompt=(
         "You are a helpful assistant for demonstrating "
-        "Azure AI Content Safety middleware."
+        "Foundry Content Safety middleware."
     ),
     middleware=[
         AzureContentModerationMiddleware(
@@ -183,7 +183,7 @@ agent = create_agent(
     model=model,
     system_prompt=(
         "You are a helpful assistant for demonstrating "
-        "Azure AI Content Safety middleware."
+        "Foundry Content Safety middleware."
     ),
     middleware=[
         AzureContentModerationMiddleware(

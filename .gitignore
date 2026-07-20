@@ -46,3 +46,8 @@ specs/
 node_modules/
 requirements.txt
 .roo
+.tmp/
+
+# Playwright files
+.playwright-cli
+.playwright-mcp

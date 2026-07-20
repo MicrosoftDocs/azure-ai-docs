@@ -1,7 +1,8 @@
 ---
 title: "Continuously Evaluate your AI agents (classic)"
 description: "This article provides instructions on how to continuously evaluate AI agents. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 01/08/2026
 ms.reviewer: sonalimalik

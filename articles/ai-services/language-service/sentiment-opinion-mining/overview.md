@@ -3,10 +3,10 @@ title: What is sentiment analysis and opinion mining in Azure Language service?
 titleSuffix: Foundry Tools
 description: An overview of the sentiment analysis feature in Azure Language, which helps you find out what people think of a topic by mining text for clues.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 05/07/2026
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
@@ -14,7 +14,7 @@ ms.custom: language-service-sentiment-opinion-mining
 # What are sentiment analysis and opinion mining?
 
 > [!IMPORTANT]
-> Sentiment analysis and opinion mining are retiring from Azure Language effective **March 31, 2029**. After this date, these features are no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Sentiment analysis and opinion mining retire from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and direct all new projects to [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which offers enhanced capabilities for natural language understanding and can be easily integrated into your applications. For guidance, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
 
 Sentiment analysis and opinion mining are features offered by [Azure Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. These features help you discover what people think about your brand or topic by analyzing text for signs of positive or negative sentiment. They can also link these sentiments to specific aspects of the text.
 

@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: This article provides a quick reference, a detailed description, and best practices for the quotas and limits in Azure Speech.
 author: goergenj
 ms.author: jagoerge
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 01/30/2026
+ms.date: 06/26/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for Azure Speech in Foundry Tools so that I can decide how to use the features in my application.
 ---
@@ -39,14 +39,14 @@ The following table summarizes the quotas and limits for Voice Live per Azure Sp
 
 Avatars used in Voice Live follow the quotas and limits described in [Real-time text-to-speech avatar](#real-time-text-to-speech-avatar) later in this article.
 
-### LLM speech (preview) quotas and limits per resource
+### LLM speech quotas and limits per resource
 
 The following table summarizes the quotas and limits for large language model (LLM) speech per Azure Speech resource. At this time, these limits aren't adjustable.
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum audio input file size | Not applicable | < 300 MB |
-| Maximum audio length | Not applicable | < 120 minutes per file |
+| Maximum audio input file size | Not applicable | < 500 MB |
+| Maximum audio length | Not applicable | < 5 hours per file |
 | Maximum requests per minute | Not applicable | 600 |
 
 ### Speech-to-text quotas and limits per resource
@@ -69,11 +69,13 @@ These limits apply to concurrent real-time speech-to-text requests and speech tr
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum audio input file size | Not applicable | < 300 MB |
-| Maximum audio length | Not applicable | < 120 minutes per file |
+| Maximum audio input file size | Not applicable | < 500 MB |
+| Maximum audio length | Not applicable | < 5 hours per file |
 | Maximum requests per minute | Not applicable | 600 |
 
 #### Batch transcription
+
+The following limits aren't adjustable. For more information on latency in batch transcription, see [Best practices for improving performance](batch-transcription.md#best-practices-for-improving-performance).
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
@@ -107,7 +109,7 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum number of transactions per time period for standard voices and custom voices | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1,000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-the-real-time-tps-limit) later in this article. |
+| Maximum number of transactions per time period for standard voices and custom voices | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 30 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1,000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-the-real-time-tps-limit) later in this article. |
 | Maximum audio length produced per request | 10 minutes | 10 minutes |
 | Maximum total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Maximum SSML message size per turn for WebSocket | 64 KB | 64 KB |
@@ -133,7 +135,7 @@ The limits in this table apply per Azure Speech resource when you create a profe
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum number of transactions per second | Not available for F0 | 200 TPS (default value) |
+| Maximum number of transactions per second | Not available for F0 | 30 TPS (default value) |
 | Maximum number of datasets | Not applicable | 500 |
 | Maximum number of simultaneous dataset uploads | Not applicable | 5 |
 | Maximum data file size for data import per dataset | Not applicable | 2 GB |
@@ -148,7 +150,7 @@ The limits in this table apply per Azure Speech resource when you create a perso
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
 | REST API limit (not including speech synthesis) | Not available for F0 | 50 requests per 10 seconds |
-| Maximum number of transactions per second for speech synthesis | Not available for F0 | 200 TPS (default value) |
+| Maximum number of transactions per second for speech synthesis | Not available for F0 | 30 TPS (default value) |
 
 #### Batch text-to-speech avatar
 
@@ -296,8 +298,7 @@ For the Standard pricing tier, you can increase the real-time TPS limit. Before 
 
 #### Estimate your needs
 
-- **Usage Under $10,000/month**: Typically, 32 TPS is sufficient, assuming that your peak usage is within 10 times your average.
-- **Default limit**: 200 TPS is available by default. This limit exceeds most use cases.
+- **Usage Under $10,000/month**: Typically, the default limit 30 TPS is sufficient, assuming that your peak usage is within 10 times your average.
 
 ##### Example scenario
 

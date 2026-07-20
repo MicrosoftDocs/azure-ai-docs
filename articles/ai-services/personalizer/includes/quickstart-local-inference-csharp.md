@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: jcodella
 ms.author: jacodel
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: include
 ms.date: 01/19/2024
@@ -14,7 +14,7 @@ You will need to install the Personalizer client library for .NET to:
 * Send context and action features to the Reward API, which will return the best action from the Personalizer model
 * Send a reward score to the Rank API and train the Personalizer model.
 
-[Reference documentation](/dotnet/api/Microsoft.Azure.CognitiveServices.Personalizer) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/personalizer) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Personalizer/2.0.0-beta.2)
+[Reference documentation](/dotnet/api/overview/azure/cognitive-services) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/personalizer) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Personalizer/2.0.0-beta.2)
 
 ## Prerequisites
 

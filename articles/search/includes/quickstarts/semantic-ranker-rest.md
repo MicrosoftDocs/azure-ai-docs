@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/04/2026
+ms.date: 04/24/2026
 ai-usage: ai-assisted
 ---
 
@@ -16,7 +16,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md).
 
 + An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample index](../../search-get-started-portal.md).
 
@@ -193,7 +193,7 @@ Both `.rest` files define variables at the top for reuse across all requests.
 ```http
 @searchUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @personalAccessToken = PUT-YOUR-PERSONAL-ACCESS-TOKEN-HERE
-@api-version = 2025-09-01
+@api-version = 2026-04-01
 ```
 
 Key takeaways:

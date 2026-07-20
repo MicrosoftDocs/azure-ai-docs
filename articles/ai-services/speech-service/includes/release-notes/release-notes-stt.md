@@ -1,12 +1,45 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 03/06/2026
+ms.date: 05/22/2026
 ms.author: pafarley
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
+
+### May 2026 release
+
+#### Custom speech fine-tuning in the Microsoft Foundry (new) portal
+
+The custom speech fine-tuning workflow is now documented for the Microsoft Foundry (new) portal. The wizard-driven experience walks you through project creation, data upload, data inspection, model training, evaluation, and endpoint deployment. For more information, see [Create a custom speech project](../../how-to-custom-speech-create-project.md).
+
+#### LLM Speech API Generally Availability
+
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+
+#### Speech Transcription SDK general availability
+
+The Speech Transcription SDK is now generally available (version 1.0.0) for C#, Python, Java, and JavaScript/TypeScript. The SDK provides a unified client for the Fast Transcription and LLM Speech capabilities of the Speech service. For more information, see [What is the Speech Transcription SDK?](../../transcription-sdk.md).
+
+### April 2026 release
+
+#### Post-stream refinement (public preview)
+
+Post-stream refinement is now available in public preview for real-time speech to text. When enabled, the service runs a second recognition pass in parallel with real-time streaming to improve final transcript accuracy. Intermediate results remain low-latency; only the final result for each segment is replaced with a more accurate version. Set the `SpeechServiceResponse_PostProcessingOption` property to `PostRefinement` to enable it. For more information, see [How to use post-processing](../../how-to-post-processing.md) and [How to recognize speech](../../how-to-recognize-speech.md).
+
+#### Improved pronunciation assessment model
+
+We've updated the pronunciation assessment model for `de-DE`, improving the Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+
+The updated model is ready to use through the API and the Microsoft Foundry playground.
+
+### March 2026 release
+
+* MAI-Transcribe-1 model public preview available in Azure Speech LLM Speech API. For more information, see [MAI-Transcribe-1](../../mai-transcribe.md).
+* [Fast Transcription API](../../fast-transcription-create.md?) and [LLM Speech API](../../llm-speech.md) now support up to 5 hours per audio file input.
+
 
 ### February 2026 release
 
@@ -95,7 +128,7 @@ As before, the models are available through the API and Microsoft Foundry playgr
 
 #### Conversation transcription multichannel diarization (retired)
 
-Conversation transcription multichannel diarization is retiring on March 28, 2025.
+Conversation transcription multichannel diarization was retired on March 28, 2025.
 
 To continue using speech to text with diarization, use the following features instead:
 
@@ -242,7 +275,7 @@ The Speech to text REST API version 3.2 is now generally available. For more inf
 > [!NOTE]
 > Preview versions *3.2-preview.1* and *3.2-preview.2* are retired as of September 2024.
 
-[Speech to text REST API](../../rest-speech-to-text.md) v3.1 will be retired on a date to be announced. Speech to text REST API v3.0 will be retired on March 31st, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
+[Speech to text REST API](../../rest-speech-to-text.md) v3.1 and v3.0 were retired on March 31, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
 
 
 ### May 2024 release
@@ -359,7 +392,7 @@ Check out [What is the Whisper model?](../../whisper-overview.md) to learn more 
 
 #### Speech to text REST API v3.2 public preview
 
-Speech to text REST API v3.2 is available in preview. [Speech to text REST API](../../rest-speech-to-text.md) v3.1 is generally available. Speech to text REST API v3.0 will be retired on March 31st, 2026. For more information, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
+Speech to text REST API v3.2 is available in preview. [Speech to text REST API](../../rest-speech-to-text.md) v3.1 is generally available. Speech to text REST API v3.0 was retired on March 31, 2026. For more information, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
 
 ### August 2023 release
 

@@ -8,6 +8,7 @@ ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.topic: concept-article #Don't change.
 ms.date: 11/14/2025
+ai-usage: ai-assisted
 
 #customer intent: As an administrator, I want to understand the network isolation options so that I can plan my infrastructure.
 
@@ -37,7 +38,7 @@ __Custom network isolation__ relies on you creating and managing an Azure Virtua
 ## When to use managed or custom virtual networks
 
 Use managed virtual network when… 
-- You're new user to Azure Machine Learning with standard network isolation requirements
+- You're a new user of Azure Machine Learning with standard network isolation requirements
 - You're a company with standard network isolation requirements
 - You require on-premises access to resources with HTTP/S endpoints
 - You don't have many non-Azure dependencies set up yet
@@ -63,6 +64,8 @@ The following table provides a comparison of the benefits and limitations of man
 - __New features support might be delayed__: Efforts for improving our network isolation offerings focus on managed virtual networks instead of custom virtual networks. Therefore, we prioritize new feature requests for managed virtual networks over custom virtual networks.
 - __Managed online endpoints aren't supported__: Managed online endpoints don't support custom virtual networks. You must enable workspace managed virtual network to secure your managed online endpoints. You can secure managed online endpoints with the legacy network isolation method. But, we strongly recommend that you use workspace managed network isolation. For more information, see [Managed online endpoints](concept-endpoints-online.md).
 - __Serverless Spark compute isn't supported__: Serverless Spark computes aren't supported in a custom virtual network. Workspace managed virtual network supports Serverless Spark because Azure Synapse only uses managed virtual network set-up. For more information, see [Configured Serverless Spark](apache-spark-azure-ml-concepts.md#serverless-spark-compute).
+- __Foundation models aren't supported__: Foundation model deployments require managed online endpoints, which aren't supported in a custom virtual network. Use a workspace managed virtual network to deploy foundation models.
+- __No-code MLflow isn't supported__: No-code MLflow deployments require managed online endpoints, which aren't supported in a custom virtual network. Use a workspace managed virtual network for no-code MLflow deployments.
 - __Implementation complexity and maintenance overhead__: With custom virtual network set-up, you handle all the complexity of setting up a virtual network, subnet, private endpoints, and more. You also maintain the network and computes.
 
 ### Managed virtual network limitations
@@ -75,4 +78,4 @@ The following table provides a comparison of the benefits and limitations of man
 
 - [Plan for network isolation](how-to-network-isolation-planning.md)
 - [Use a managed virtual network](how-to-managed-network.md)
-- [Use a custom virtual network](how-to-network-security-overview.md)
+- [Use a custom virtual network](how-to-secure-workspace-vnet.md)

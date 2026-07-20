@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools audiovisual analysis and content extraction capabilities for audio and video inputs.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -215,7 +215,7 @@ The following example shows the complete JSON response structure from analyzing 
   "status": "Succeeded",
   "result": {
     "analyzerId": "auto-labeling-model-1750376726735-970",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2025-06-19T23:45:31Z",
     "stringEncoding": "utf8",
     "warnings": [],

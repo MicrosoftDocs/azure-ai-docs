@@ -1,9 +1,9 @@
 ---
 title: "Fine-tuning cost management"
 description: "Learn about the training and hosting costs associated with fine-tuning"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 02/11/2026
 author: ssalgadodev

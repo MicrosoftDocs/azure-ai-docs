@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "Guidance for integration and responsible use with custom text classification."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 04/26/2023
+ms.date: 04/01/2026
 ---
 
 # Guidance for integration and responsible use with custom text classification

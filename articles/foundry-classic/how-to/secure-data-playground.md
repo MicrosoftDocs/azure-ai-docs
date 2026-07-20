@@ -1,15 +1,16 @@
 ---
 title: "Securely use playground chat (classic)"
 description: "Learn how to securely use the Microsoft Foundry portal playground chat on your own data. (classic)" 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - hub-only
   - dev-focus
 ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: meerakurup 
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 # Customer intent: As an administrator, I want to make sure that my data is handled securely when used in the playground chat.
 ---

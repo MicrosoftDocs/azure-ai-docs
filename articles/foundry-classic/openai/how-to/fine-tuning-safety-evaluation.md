@@ -1,9 +1,9 @@
 ---
 title: "Safety evaluation for fine-tuning (preview) (classic)"
 description: "Learn how the safety evaluation works for Microsoft Foundry fine-tuning. (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python, references_regions
   - classic-and-new

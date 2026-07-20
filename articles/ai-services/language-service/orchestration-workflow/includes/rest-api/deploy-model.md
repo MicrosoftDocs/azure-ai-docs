@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/22/2026
 ms.author: lajanuar
 ---
 Create a **PUT** request using the following URL, headers, and JSON body to start deploying an orchestration workflow model.

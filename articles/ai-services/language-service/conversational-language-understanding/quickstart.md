@@ -3,10 +3,10 @@ title: Quickstart - create a conversational language understanding project
 titleSuffix: Foundry Tools
 description: Quickly start building an AI model to extract information and predict the intentions of text-based utterances.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 12/05/2025
+ms.date: 04/13/2026
 ms.author: lajanuar
 ms.custom: language-service-clu, mode-other
 zone_pivot_groups: foundry-rest-api
