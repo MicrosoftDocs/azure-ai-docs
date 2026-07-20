@@ -102,7 +102,7 @@ You can use input audio properties to configure the input audio stream.
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
 | `input_audio_sampling_rate` | integer  | Optional | The sampling rate of the input audio.<br/><br/>The supported values are `16000` and `24000`. The default value is `24000`. |
-| `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation. The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.<br/><br/>By default, the service uses its own internal audio as the echo reference, so client-side echo cancellation isn't required. To use the audio that your client actually plays back as the reference instead, set `reference_source` to `client` and `channels` to `2`. For more information, see [Client-side echo cancellation reference](#client-side-echo-cancellation-reference). |
+| `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation. The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.<br/><br/>By default, the service uses its own internal audio as the echo reference, so client-side echo cancellation isn't required. To enable Live-Reference AEC and use the audio your client actually plays back as the reference, set `reference_source` to `client` and `channels` to `2`. For more information, see [Live-Reference AEC](#live-reference-aec). |
 | `input_audio_noise_reduction`   | object   | Optional | Enhances the input audio quality by suppressing or removing environmental background noise.<br/><br/>Set the `type` property of `input_audio_noise_reduction` to enable noise suppression.<br/><br/>The supported value for `type` is `azure_deep_noise_suppression`, which optimizes for speakers closest to the microphone.<br/><br/>You can set this property to `near_field` or `far_field` if you're using the [Azure OpenAI Realtime API](../../ai-foundry/openai/realtime-audio-reference.md#realtimeaudioinputaudionoisereductionsettings). |
 
 Here's an example of input audio properties in a session object:
@@ -124,17 +124,17 @@ Server echo cancellation enhances the input audio quality by removing the echo f
 > [!NOTE]
 > The service assumes the client plays response audio as soon as it receives them. If playback is delayed for more than two seconds, echo cancellation quality is impacted.
 
-#### Client-side echo cancellation reference
+#### Live-Reference AEC
 
-By default, server echo cancellation uses the service's own internal audio as the echo reference signal. With client-side echo cancellation reference, you supply the audio that your client actually plays back as the reference instead. The echo canceller then reflects your real playback path, including device output, volume, and any client-side resampling or mixing. This capability is also known as Live-Reference AEC.
+By default, server echo cancellation uses the service's own internal audio as the echo reference signal. With Live-Reference AEC, your client supplies the audio it actually plays back as the reference instead. Echo cancellation remains in the service. It uses the client-provided reference to reflect the real playback path, including device output, volume, and any client-side resampling or mixing.
 
-Use client-side echo cancellation reference when the audio the end-user hears differs from the raw model output. For example, use it when your client processes or mixes audio before playback, or when device output introduces echo that the internal reference doesn't capture. This scenario is common in client-side playback paths, such as a web or mobile app.
+Use Live-Reference AEC when the audio the end-user hears differs from the raw model output. For example, use it when your client processes or mixes audio before playback, or when device output introduces echo that the internal reference doesn't capture. This scenario is common in client-side playback paths, such as a web or mobile app.
 
 To enable it, set `reference_source` to `client`, set `channels` to `2`, and set `input_audio_format` to `pcm16`. Send interleaved stereo PCM16 audio in which channel 0 is the microphone and channel 1 is the playback reference. Interleave the samples as microphone, reference, microphone, reference. Only two combinations are valid: `reference_source` set to `server` with `channels` set to `1` (the default), and `reference_source` set to `client` with `channels` set to `2`. You can't change `reference_source`, `channels`, `input_audio_format`, or `input_audio_sampling_rate` during a session.
 
-Client-side echo cancellation reference is available starting with API version `2026-07-15`.
+Live-Reference AEC is available starting with API version `2026-07-15`.
 
-Here's an example that enables client-side echo cancellation reference:
+Here's an example that enables Live-Reference AEC:
 
 ```json
 {
