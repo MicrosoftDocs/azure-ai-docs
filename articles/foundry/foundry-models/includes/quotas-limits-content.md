@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/17/2026
+ms.date: 07/20/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -77,9 +77,9 @@ The following table lists limits for Foundry Models for the following rates:
 | ---------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- | -------------------- |
 | Azure OpenAI models                                                    | Varies per model and SKU. See [limits for Azure OpenAI](../../openai/quotas-limits.md). | Varies per model and SKU. See [limits for Azure OpenAI](../../openai/quotas-limits.md). | Varies. See [Azure OpenAI limits](../../openai/quotas-limits.md). |
 | - DeepSeek-R1<br />- DeepSeek-V3-0324                                      | 5,000,000                                           | 5,000                                                 | 300                  |
-| - Llama 3.3 70B Instruct<br />- Llama-4-Maverick-17B-128E-Instruct-FP8<br />- Grok 3<br />- Grok 3 mini | 400,000                                             | 1,000                                                 | 300                  |
+| - Llama 3.3 70B Instruct<br>- Llama-4-Maverick-17B-128E-Instruct-FP8 | 400,000                                             | 1,000                                                 | 300                  |
 | - Flux.2-Pro                                  | not applicable                                      | - Low (Default): 15 <br> - Medium: 30 <br> - High (Enterprise): 100              | not applicable       |
-|- Flux-Pro 1.1 <br />- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
+|- FLUX-1.1-pro<br>- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
 | Rest of models                                                         | 400,000                                             | 1,000                                                 | 300                  |
 
 To increase your quota, use [Microsoft Foundry Service: Request for Quota Increase](https://aka.ms/oai/stuquotarequest) to submit your request. Due to high demand, requests to increase quota are evaluated individually. For more information on quota increase requests, see [request increases to the default limits](#request-increases-to-the-default-limits). 
