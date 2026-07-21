@@ -19,8 +19,8 @@ ms.custom: references_regions
 | `ca-ES` | Catalan | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `cs-CZ` | Czech (Czechia) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `da-DK` | Danish (Denmark) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
-| `de-AT` | German (Austria) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
-| `de-CH` | German (Switzerland) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
+| `de-AT` | German (Austria) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
+| `de-CH` | German (Switzerland) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `de-DE` | German (Germany) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `el-GR` | Greek (Greece) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice  |
 | `en-AU` | English (Australia) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
@@ -62,7 +62,7 @@ ms.custom: references_regions
 | `pl-PL` | Polish (Poland) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `pt-BR` | Portuguese (Brazil) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `pt-PT` | Portuguese (Portugal) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
-| `ro-RO` | Romanian (Romania) | Neural voice<br/><br/>Multi-style voice |
+| `ro-RO` | Romanian (Romania) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
 | `ru-RU` | Russian (Russia) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `sk-SK` | Slovak (Slovakia) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
 | `sl-SI` | Slovenian (Slovenia) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |

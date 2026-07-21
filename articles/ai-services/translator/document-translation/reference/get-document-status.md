@@ -44,7 +44,7 @@ Request parameters passed on the query string are:
 
 |**Response header**|**Result URL**|
 |-----------------------|----------------|
-|`Operation-Location`| {document-translation-endpoint}/translator/document/batches/{id}?api-version={date}/ `9dce0aa9-78dc-41ba-8cae-2e2f3c2ff8ec`/ |
+|`Operation-Location`| {document-translation-endpoint}/translator/document/batches/{id}?api-version={date}/ `aaaabbbb-0000-cccc-1111-dddd2222eeee`/ |
 
 * You can also use a [GET translations status](get-translations-status.md) request to retrieve job `id` parameters for the query string.
 

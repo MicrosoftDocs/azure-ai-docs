@@ -32,7 +32,7 @@ The following diagram shows the interaction of local and cloud-based prompt flow
 
 - An Azure Machine Learning workspace. To create one, see [Create resources to get started](../quickstart-create-resources.md).
 
-- A local Python environment with the Azure Machine Learning Python SDK v2 installed, created by following the instructions at [Getting started](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started).
+- A local Python environment with the Azure Machine Learning Python SDK v2 installed, created by following the instructions at [Getting started](https://github.com/Azure/azureml-examples/tree/main/sdk/python#getting-started).
 
   >[!NOTE]
   >This environment is separate from the environment the compute session uses to run the flow, which you define as part of the flow. For more information, see [Manage prompt flow compute session in Azure Machine Learning studio](how-to-manage-compute-session.md).
@@ -143,7 +143,7 @@ flow_path = "<directory-name>"
 
 # Test flow
 flow_inputs = {"<input-type>": "<input-value>", "<input-type>": "<input-value>"}
-flow_result = pf_client.test(flow=flow_path, inputs=inputs)
+flow_result = pf_client.test(flow=flow_path, inputs=flow_inputs)
 print(f"Flow outputs: {flow_result}")
 
 # Test node in the flow
@@ -261,6 +261,8 @@ pfazure run create --file run.yml
 Load the flow, define resources and connections, and create the run.
 
 ```python
+from promptflow.entities import Run
+
 flow = "<path-to-flow>"
 data = "<path-to-flow>/<data-file>.jsonl"
 
@@ -347,6 +349,8 @@ pfazure run create --file run_evaluation.yml
 Load the evaluation flow and create the run.
 
 ```python
+from promptflow.entities import Run
+
 flow = "<path-to-flow>"
 data = "<path-to-flow>/<data-file>.jsonl"
 

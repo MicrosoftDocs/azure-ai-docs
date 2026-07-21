@@ -23,7 +23,6 @@ For more information about where datasets fit in the overall Azure Machine Learn
 
 Azure Open Datasets are curated public datasets that add scenario-specific features to enrich your predictive solutions and improve the accuracy of those solutions. Visit the [Open Datasets catalog](./dataset-catalog.md) resource for public-domain data that can help you train machine learning models - for example:
 
-- [Health and genomics](./dataset-catalog.md#health-and-genomics)
 - [Labor and economics](./dataset-catalog.md#labor-and-economics)
 - [Population and safety](./dataset-catalog.md#population-and-safety)
 - [Supplemental and common datasets](./dataset-catalog.md#supplemental-and-common-datasets)

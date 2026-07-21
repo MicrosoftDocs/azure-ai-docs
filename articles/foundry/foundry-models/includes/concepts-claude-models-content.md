@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 07/20/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -285,7 +285,7 @@ To optimize your usage and avoid rate limiting:
 ## Related content
 
 - [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md)
-- [Claude on Foundry starter kit](https://github.com/Azure-Samples/claude#readme)
+- [Deploy Claude models in Microsoft Foundry using Bicep or Terraform](/azure/developer/ai/how-to/deploy-claude-foundry?context=/azure/foundry/context/context)
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
 - [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md)
 - [Data, privacy, and security for Claude models in Microsoft Foundry](../../responsible-ai/claude-models/data-privacy.md)

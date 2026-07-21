@@ -108,7 +108,7 @@ If your application authenticates its own end users - for example, through Googl
 
 The service sends the end user's stable identifier in the `x-ms-user-identity` header. The platform treats the value as an opaque string and scopes the session to it. The value must be 1–256 characters and contain only letters, digits, and the characters `. _ : - @`; other values are rejected.
 
-To pass `x-ms-user-identity`, the calling identity must hold the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission on the agent. A caller without it receives a `403`. Grant this permission to your middle-tier service's identity. For more about agent permissions, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+To pass `x-ms-user-identity`, the calling identity must hold the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission on the agent. This permission is **not** included in any built-in role. It was previously covered by the `Microsoft.CognitiveServices/*` data action, but that action no longer grants it. Grant it explicitly by creating a custom role that includes the data action and assigning that role to your middle-tier service's identity. A caller without it receives a `403`. For the custom role definition and assignment commands, see [Delegate the end-user identity](../concepts/hosted-agent-permissions.md#delegate-the-end-user-identity).
 
 If a service holds this permission but doesn't send the header on a request, the platform scopes that session to the service's own identity instead of an end user. Your service can mix delegated and non-delegated calls, but only requests that include `x-ms-user-identity` are isolated per end user.
 
@@ -189,7 +189,7 @@ Upgrade to protocol 2.0.0 to get the automatic per-user isolation described earl
 |---------|--------------|-------------|
 | `403` with `preview_feature_required` | The preview opt-in header is missing. | Add the `Foundry-Features=HostedAgents=V1Preview` header to the request. |
 | `403` or `session_not_accessible` when accessing a session | The session belongs to a different identity. | Use the same identity that created the session, or hold the Foundry User role to see other identities' sessions. |
-| `403` on a request that sets `x-ms-user-identity` | The caller lacks the `UserIdentityImpersonation` permission. | Grant the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission to the calling service. |
+| `403` on a request that sets `x-ms-user-identity` | The caller lacks the `UserIdentityImpersonation` permission, which is no longer granted by built-in roles. | Create a custom role that includes the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` data action and assign it to the calling service. |
 | Local runs don't isolate sessions | Local runs don't enforce isolation. | Test isolation against a deployed agent. Local mode (`--local`, `azd ai agent run`) targets a single user. |
 
 ## Related content

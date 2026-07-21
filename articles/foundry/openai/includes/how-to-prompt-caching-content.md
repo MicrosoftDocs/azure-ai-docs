@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/14/2026
+ms.date: 07/17/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -14,10 +14,8 @@ Prompt caching reduces overall request latency and cost for longer prompts that 
 
 For supported models, cache reads are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-foundry/openai/concepts/provisioned-throughput) for Provisioned deployment types. Prompt cache pricing is the same for both retention policies.
 
-On `gpt-5.6` and later models, cache writes also affect your cost. Earlier models don't charge extra to write to the cache, but `gpt-5.6` and later models bill cache writes in addition to the discounted cache reads.
-
 > [!IMPORTANT]
-> On `gpt-5.6` and later models, cache writes are billed and can increase your costs compared to earlier models, while cache reads stay discounted. To keep costs predictable, structure your prompts so that reused content stays identical across requests, which favors lower-cost cache reads over cache writes. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+> Models before `gpt-5.6` don't charge extra to write to the cache. On `gpt-5.6` and later models, cache writes are billed in addition to discounted cache reads. To keep costs predictable, structure your prompts so that reused content stays identical across requests, which favors cache reads over cache writes. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ## Prompt cache retention
 Prompt caching can use either in-memory or extended retention policies. When available, extended prompt caching aims to retain the cache for longer, so that subsequent requests are more likely to match the cache.
@@ -72,6 +70,8 @@ Requests are routed based on a hash of the initial prefix of a prompt. The hash 
 
 When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits show up as [`cached_tokens`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) under [`prompt_tokens_details`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) in the chat completions response.
 
+For `gpt-5.6` models, the usage response doesn't report cache writes separately. Use `cached_tokens` to monitor cache reads, and use the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) to understand how reads and writes affect your costs.
+
 ```json
 {
   "created": 1729227448,
@@ -97,9 +97,13 @@ When a match is found between the token computations in a prompt and the current
 
 After the first 1,024 tokens, cache hits occur for every 128 additional identical tokens.
 
-A single character difference in the first 1,024 tokens results in a cache miss, which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default with no additional configuration needed for supported models.
+A single character difference in the first 1,024 tokens results in a cache miss, which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default for supported models.
 
-If you provide the `prompt_cache_key` parameter, it's combined with the prefix hash, so you can influence routing and improve cache hit rates. This benefit is especially beneficial when many requests share long, common prefixes. If requests for the same prefix and `prompt_cache_key` combination exceed a certain rate (approximately 15 requests per minute), some requests overflow and get routed to extra machines, reducing cache effectiveness.
+For `gpt-5.6` models, set the `prompt_cache_key` parameter and reuse the same key for requests that share long, common prompt prefixes. The parameter combines with the prefix hash to improve cache matching. You don't need a specific API version to use `prompt_cache_key`. For new integrations, use the [v1 API](../api-version-lifecycle.md).
+
+If requests for the same prefix and `prompt_cache_key` combination exceed approximately 15 requests per minute, some requests might miss the cache. For higher-volume workloads, distribute requests across multiple keys while keeping a stable mapping between each key and its shared prompt prefixes.
+
+Azure OpenAI doesn't currently support `prompt_cache_options` or `prompt_cache_breakpoint`. Prompt caching remains automatic, so use `prompt_cache_key` and a stable prompt structure to improve cache matching and manage costs.
 
 ## Manage prompt caching costs
 
