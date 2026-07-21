@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Configure environment variables for a hosted agent
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Configure environment variables for your hosted agent by defining where values belong in `azure.yaml`, what the Microsoft Foundry platform provides automatically, and how azd environment integration works. You also learn how to add custom variables and handle local development secrets.
 

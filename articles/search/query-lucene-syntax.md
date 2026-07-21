@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 07/20/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Lucene query syntax in Azure AI Search
@@ -19,7 +20,7 @@ To use full Lucene syntax, set the queryType to `full` and pass in a query expre
 
 ## Example (full syntax)
 
-The following example is a search request constructed using the full syntax. This particular example shows in-field search and term boosting. It looks for hotels where the category field contains the term `budget`. Any documents containing the phrase `"recently renovated"` are ranked higher as a result of the term boost value (3).  
+The following example is a search request constructed using the full syntax. This particular example shows fielded search and phrase boosting. It looks for hotels where the category field contains the term `budget`. Documents containing the phrase `"recently renovated"` receive extra boost weight and might rank higher as a result of the phrase boost value (3).
 
 ```http
 POST /indexes/hotels-sample/docs/search?api-version=2026-04-01
@@ -71,7 +72,7 @@ You can embed Boolean operators in a query string to improve the precision of a 
 |Text operator | Character | Example | Usage |
 |--------------|----------- |--------|-------|
 | AND | `+` | `wifi AND luxury` | Specifies terms that a match must contain. In the example, the query engine looks for documents containing both `wifi` and `luxury`. The plus character (`+`) can also be used directly in front of a term to make it required. For example, `+wifi +luxury` stipulates that both terms must appear somewhere in the field of a single document.|
-| OR | (none) <sup>1</sup> | `wifi OR luxury` | Finds a match when either term is found. In the example, the query engine returns match on documents containing either `wifi` or `luxury` or both. Because OR is the default conjunction operator, you could also leave it out, such that `wifi luxury` is the equivalent of  `wifi OR luxury`.|
+| OR | (none) <sup>1</sup> | `wifi OR luxury` | Finds a match when either term is found. In the example, the query engine returns matches on documents containing either `wifi` or `luxury` or both. With `searchMode=any`, OR is the default conjunction operator, so `wifi luxury` is equivalent to `wifi OR luxury`. With `searchMode=all`, use the explicit `OR` operator to get this behavior. |
 | NOT | `!`, `-` | `wifi –luxury` | Returns a match on documents that exclude the term. For example, `wifi –luxury` searches for documents that have the `wifi` term but not `luxury`. |
 
 <sup>1</sup> The `|` character isn't supported for OR operations.
@@ -126,11 +127,53 @@ Proximity searches are used to find terms that are near each other in a document
 
 ##  <a name="bkmk_termboost"></a> Term boosting
 
-Term boosting refers to ranking a document higher if it contains the boosted term, relative to documents that don't contain the term. This differs from scoring profiles in that scoring profiles boost certain fields, rather than specific terms.  
+Think of search as two steps. First, Azure AI Search finds matching documents. Then, it ranks those matches. Term boosting affects only the second step: it can move documents that match one part of your query higher in the results.
 
-The following example helps illustrate the differences. Suppose that there's a scoring profile that boosts matches in a certain field, say *genre* in the  [musicstoreindex example](index-add-scoring-profiles.md#example-boosting-by-weighted-text-and-functions). Term boosting could be used to further boost certain search terms higher than others. For example, `rock^2 electronic` boosts documents that contain the search terms in the genre field higher than other searchable fields in the index. Further, documents that contain the search term *rock* are ranked higher than the other search term *electronic* as a result of the term boost value (2).  
+Term boosting differs from a scoring profile. A boost favors a word, phrase, or group in the current query. A scoring profile favors fields or other index content according to rules defined in the index.
 
- To boost a term, use the caret, `^`, symbol with a boost factor (a number) at the end of the term you're searching. You can also boost phrases. The higher the boost factor, the more relevant the term is relative to other search terms. By default, the boost factor is 1. Although the boost factor must be positive, it can be less than 1 (for example, 0.20).  
+### Boost scope
+
+Write a caret (`^`) and a positive number immediately after the part of the query that you want to favor. For example, `tax^2` can move documents that contain `tax` higher than documents that match only an unboosted term. The default boost value is 1. You can also use a value between 0 and 1, such as `0.2`, to give a match less weight.
+
+The punctuation tells you which words each instruction affects:
+
+- A field name plus a colon, called a field prefix, appears before a word, quoted phrase, or parenthesized group. For example, `content:` tells Azure AI Search to look in the `content` field.
+- A boost, such as `^2`, appears after a word, quoted phrase, or parenthesized group. It tells Azure AI Search what to favor when ranking the matches.
+
+The following table uses the default `searchMode=any`, where a space between words works like `OR`.
+
+| Query | What can match | What the boost favors |
+| --- | --- | --- |
+| `deferred tax^2` | `deferred`, `tax`, or both. | Only the word `tax`. |
+| `"deferred tax"^2` | The complete phrase, with the words next to each other and in this order. | The complete phrase. |
+| `(deferred OR tax)^2` | `deferred`, `tax`, or both. | Everything inside the parentheses as one group. |
+
+With `searchMode=all`, the query `deferred tax^2` requires both words to match. The boost still applies only to `tax`. To match either word instead, write `deferred OR tax^2`.
+
+Place the caret after the closing quotation mark or parenthesis when you want to boost the entire phrase or group. Parentheses don't create a phrase. Use quotation marks when the words must be next to each other and in a specific order.
+
+### Boost and field scope
+
+A field name followed by a colon limits where Azure AI Search looks. A boost changes how Azure AI Search ranks a match. You can use both in the same query.
+
+| Query | What it means |
+| --- | --- |
+| `content:deferred tax^2` | The field prefix applies only to `deferred`. The separate `tax^2` part uses the fields selected by `searchFields`, or all searchable fields if `searchFields` isn't specified. A `tax` match gets extra ranking weight. |
+| `content:"deferred tax"^2` | Look for the complete phrase only in `content`, and give that phrase match extra ranking weight. |
+| `content:(deferred OR tax)^2` | Look for either word only in `content`, and give the grouped match extra ranking weight. |
+
+For example, if `searchFields` is set to `title`, the first query looks for `deferred` in `content` and `tax` in `title`. The quotation marks and parentheses in the other queries keep both words in `content`.
+
+> [!IMPORTANT]
+> The colon and caret work in opposite directions. The field prefix `content:` applies to the query part after it. The boost `^2` applies to the query part before it. Use quotation marks or parentheses to make that part include more than one word. For more information, see [Fielded search](#bkmk_fields) and [Precedence (grouping)](#precedence-grouping).
+
+### Effect of an analyzer on boosted queries
+
+For ordinary words, phrases, and groups of words, boosting doesn't skip text analysis. Before matching, Azure AI Search still processes the query text with each field's analyzer. As a result, the same boosted text might match differently in fields that use different analyzers.
+
+A phrase or group with a field prefix uses that field's analyzer. Text without a field prefix uses the analyzer for each field being searched. For example, an analyzer that changes text to lowercase can match `"DEFERRED TAX"^2` against lowercase indexed terms.
+
+Other query forms, such as wildcard, regular expression, and fuzzy queries, use different analysis rules. Adding a boost doesn't change those rules. For more information, see [Stage 2: Lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis).
 
 ##  <a name="bkmk_regex"></a> Regular expression search
  
@@ -196,9 +239,11 @@ When using Unicode characters, make sure symbols are properly escaped in the que
 
 ## Precedence (grouping)
 
-You can use parentheses to create subqueries, including operators within the parenthetical statement. For example, `motel+(wifi|luxury)` searches for documents containing the `motel` term and either `wifi` or `luxury` (or both).
+Use parentheses to control which parts of a query are evaluated together. For example, `motel AND (wifi OR luxury)` requires `motel` and at least one of the terms inside the parentheses: `wifi` or `luxury`.
 
-Field grouping is similar but scopes the grouping to a single field. For example, `hotelAmenities:(gym+(wifi|pool))` searches the field `hotelAmenities` for `gym` and `wifi`, or `gym` and `pool`.  
+Place a field prefix before a parenthesized group to search that entire group in one field. For example, `hotelAmenities:(wifi OR pool)` looks for `wifi` or `pool` only in the `hotelAmenities` field.
+
+Parentheses control how `AND` and `OR` work together. They don't require words to appear next to each other or in a specific order. Use quotation marks for that behavior. To boost a group, place the caret after the closing parenthesis, as in `hotelAmenities:(wifi OR pool)^2`. For more information, see [Boost scope](#boost-scope).
 
 ## Query size limits
 
