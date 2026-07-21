@@ -31,7 +31,7 @@ The platform manages the container lifecycle automatically. Compute is provision
 
 :::zone pivot="python"
 
-- Python SDK: `azure-ai-projects>=2.1.0` and `azure-identity`.
+- Python SDK: `azure-ai-projects>=2.3.0` and `azure-identity`.
 
 :::zone-end
 
@@ -483,7 +483,7 @@ SESSION_ID="<session-id>"
 az rest --method GET \
     --url "${BASE_URL}/agents/${AGENT_NAME}/versions/${AGENT_VERSION}/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" "Accept=text/event-stream"
+    --headers "Accept=text/event-stream"
 ```
 
 The logstream endpoint returns Server-Sent Events (SSE) with `event: log` frames. Each frame contains a JSON payload with `timestamp`, `stream` (`stdout`, `stderr`, or `status`), and `message` fields.
@@ -536,7 +536,7 @@ Endpoint routing is configured by patching the agent object. Use `PATCH /agents/
 az rest --method PATCH \
     --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
+    --headers "Content-Type=application/merge-patch+json" \
     --body '{
         "agent_endpoint": {
             "version_selector": {

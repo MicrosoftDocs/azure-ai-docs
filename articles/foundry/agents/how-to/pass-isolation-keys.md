@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -16,8 +16,6 @@ ai-usage: ai-assisted
 
 > [!IMPORTANT]
 > This article describes the isolation-key model, which applies to hosted agents on container protocol version 1.0.0. Protocol 1.0.0 is deprecated. For the current model - where the platform isolates each user's sessions automatically - see [Isolate hosted agent sessions per user](isolate-sessions-per-user.md).
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 You can configure Microsoft Foundry agents for header-based isolation. Each session, conversation, file, and log query must include one or more isolation header values. You learn what each azd isolation flag does and how to pass the keys through every `azd ai agent` subcommand that talks to a session.
 

@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 07/09/2026
+ms.date: 07/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -289,10 +289,10 @@ Use the SDK when you want to manage agent deployments directly from Python code.
 * [Python 3.10 or later](https://www.python.org/downloads/)
 * A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
 * **Container Registry Repository Writer** or **AcrPush** role on the container registry (to push images)
-* Azure AI Projects SDK version 2.1.0 or later
+* Azure AI Projects SDK version 2.3.0 or later
 
     ```bash
-    pip install "azure-ai-projects>=2.1.0"
+    pip install "azure-ai-projects>=2.3.0"
     ```
 
 ### Build and push your container image
@@ -343,7 +343,6 @@ credential = DefaultAzureCredential()
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=credential,
-    allow_preview=True,
 )
 
 # Create a hosted agent version
@@ -451,7 +450,6 @@ url = f"{PROJECT_ENDPOINT}/agents/my-agent/endpoint/protocols/invocations"
 response = requests.post(url, headers={
     "Authorization": f"Bearer {token}",
     "Content-Type": "application/json",
-    "Foundry-Features": "HostedAgents=V1Preview"
 }, params={"api-version": "v1"}, json={
     "message": "Process this task"
 })
@@ -545,7 +543,6 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/invocations?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: HostedAgents=V1Preview" \
   -d '{
     "message": "Process this task"
   }'
