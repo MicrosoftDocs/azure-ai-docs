@@ -48,6 +48,10 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
 
+***Document PII***
+
+Document-based PII detection in Microsoft Foundry includes an initial playground experience that loads a prepared sample document, runs it through the asynchronous native-file PII pipeline, and shows the redacted output side-by-side with the source. The results surface entity categories, confidence scores, and file-fidelity output so you can evaluate the feature before integrating the API. For more information, see [Document-based PII overview](./personally-identifiable-information/document-based-pii-overview.md).
+
 ### Language detection
 
 [Language detection](./language-detection/overview.md) evaluates text and detects a wide range of languages and variant dialects.
@@ -191,7 +195,7 @@ This section helps you decide which core Language feature you should use for you
 
 | What do you want to do? | Document format | Your best solution | Is this solution customizable?* |
 | --------- | --------- | --------- | --------- |
-| Detect and/or redact sensitive information such as `PII` and `PHI`. | Unstructured text, <br> transcribed conversations | [PII detection](./personally-identifiable-information/overview.md) | |
+| Detect and/or redact sensitive information such as `PII` and `PHI`. | Unstructured text, <br> transcribed conversations, <br> native documents (.pdf, .docx, .txt) | [PII detection](./personally-identifiable-information/overview.md) | |
 | Extract categories of information without creating a custom model. | Unstructured text | The [preconfigured NER feature](./named-entity-recognition/overview.md) | |
 | Extract categories of information using a model specific to your data. | Unstructured text | [Custom NER](./custom-named-entity-recognition/overview.md) | ✓ |
 | Extract medical information from clinical/medical documents, without building a model. | Unstructured text | [Text analytics for health](./text-analytics-for-health/overview.md) | |

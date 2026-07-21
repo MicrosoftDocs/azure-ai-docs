@@ -79,6 +79,11 @@ Each PII capability uses a dedicated model. On the **Playground** tab, select yo
 
 1. Select sample input, use the paperclip icon to upload a file, or enter your own input data.
 
+    > [!NOTE]
+    > For the **Document PII redaction** capability, the playground loads a prepared sample document by default, so you can evaluate the feature immediately without uploading your own file. Document input is a native file (`.pdf`, `.docx`, or `.txt`), and the output is a redacted document rendering shown side-by-side with the source. This differs from text and conversation workflows, where entities are highlighted inline within the input text.
+    >
+    > Document processing is handled by the existing asynchronous native-file document-based PII pipeline. After the job completes, the playground displays the redacted output alongside the source and surfaces entity categories, confidence scores, and file-fidelity results so you can assess how well the output preserves the original document formatting.
+
 1. In the **Configure** side panel, set your preferred options. Available options vary by capability:
 
     | Option | Description |
@@ -92,7 +97,7 @@ Each PII capability uses a dedicated model. On the **Playground** tab, select yo
     | **Policy type** | Choose the type of redaction policy to apply (character mask, entity mask, or no mask). |
     | **Specify redaction character** | Choose the character used to mask sensitive text. Available with the **CharacterMask** policy. |
 
-1. Select **Detect**. Detected entities are highlighted in the input and you can review the accompanying details in formatted text or as a JSON response.
+1. Select **Detect**. For text and conversation capabilities, detected entities are highlighted in the input and you can review the accompanying details in formatted text or as a JSON response. For the document capability, the redacted document is displayed side-by-side with the source and entity details appear in the **Details** pane.
 
     | Field | Description |
     | --- | --- |
