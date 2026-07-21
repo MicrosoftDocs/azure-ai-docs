@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 06/25/2026
+ms.date: 7/20/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -1131,7 +1131,7 @@ Authorization: Bearer {token}
 :::zone pivot="javascript"
 
 ```javascript
-const versions = project.toolboxes.listVersions("<toolbox-name");
+const versions = project.toolboxes.listVersions("<toolbox-name>");
 for await (const v of versions) {
   console.log(`${v.version} — created ${v.created_at}`);
 }
