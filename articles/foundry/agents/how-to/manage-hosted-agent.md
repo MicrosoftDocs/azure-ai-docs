@@ -3,7 +3,7 @@ title: "Manage hosted agents"
 description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 04/09/2026
+ms.date: 07/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-manage-method
 
 # Manage hosted agents
 
-This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
+This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, select the version served by the agent endpoint, monitor logs, and delete agents when they're no longer needed.
 
 The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
 
@@ -523,7 +523,10 @@ This command reads the agent name and version from the `azd` service entry in yo
 
 ## Configure agent endpoint routing
 
-Agent endpoints control how traffic is distributed across agent versions. Use version selectors to route a percentage of traffic to specific versions, enabling canary deployments or gradual rollouts.
+An agent endpoint routes 100% of its traffic to one agent version. Use the version selector to choose the version that the endpoint serves.
+
+> [!IMPORTANT]
+> Traffic splitting between agent versions isn't supported. Configure one `FixedRatio` rule with `traffic_percentage` set to `100`, even though `version_selection_rules` is an array.
 
 :::zone pivot="rest"
 
@@ -549,28 +552,6 @@ az rest --method PATCH \
 ```
 
 Set `protocol_configuration` to `{"invocations": {}}` or `{"responses": {}, "invocations": {}}` to match the protocols your agent exposes.
-
-To split traffic between two versions (for example, 90/10 for a canary deployment):
-
-```bash
-az rest --method PATCH \
-    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
-    --body '{
-        "agent_endpoint": {
-            "version_selector": {
-                "version_selection_rules": [
-                    {"agent_version": "1", "traffic_percentage": 90, "type": "FixedRatio"},
-                    {"agent_version": "2", "traffic_percentage": 10, "type": "FixedRatio"}
-                ]
-            },
-            "protocol_configuration": {
-                "responses": {}
-            }
-        }
-    }'
-```
 
 :::zone-end
 
@@ -608,7 +589,7 @@ project.agents.update_details(
 
 :::zone pivot="azd"
 
-Endpoint routing is configured automatically during `azd deploy`. To customize traffic distribution, use the REST API or SDK.
+During `azd deploy`, the tool automatically configures endpoint routing. To select a specific version, use the REST API or SDK.
 
 :::zone-end
 
