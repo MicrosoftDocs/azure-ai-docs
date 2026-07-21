@@ -6,6 +6,8 @@ items:
 # Monitoring
 - name: Monitoring
   items:
+   - name: Notification Center
+     href: ../../concepts/concept-notification-center.md
    - name: Monitor agents in the dashboard
      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
    - name: Interpret dashboard insights with Ask AI
