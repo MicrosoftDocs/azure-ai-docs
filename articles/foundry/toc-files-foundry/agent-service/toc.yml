@@ -124,7 +124,7 @@ items:
       href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
       href: ../../how-to/develop/langchain-hosted-agents.md
-    - name: Deploy from source code (preview)
+    - name: Deploy from source code
       href: ../../agents/how-to/deploy-hosted-agent-code.md
   - name: Run, test, and debug
     items:

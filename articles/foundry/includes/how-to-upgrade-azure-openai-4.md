@@ -6,19 +6,20 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/13/2026
+ms.date: 07/20/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## How to check if a resource was upgraded
 
 You can check the following Azure resource property to see if a resource was previously upgraded to Foundry.
 
-```bicep
+```json
 {
-  {
-    // Read only properties if your resource was upgraded:
-    previouskind: "OpenAI"
+  "properties": {
+    // Read only property present if your resource was upgraded:
+    "previousKind": "OpenAI"
   }
 }
 ```
