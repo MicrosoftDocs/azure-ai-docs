@@ -18,12 +18,9 @@ ai-usage: ai-assisted
 > [!NOTE]
 > This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
-The document PII playground in Microsoft Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. To help you evaluate the feature immediately, the playground loads a prepared sample document by default—no upload required for your first run. You can also upload your own `.pdf`, `.docx`, or `.txt` files, configure redaction options, and review redacted output side-by-side with the source.
+The document PII playground in Microsoft Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. The playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types—including names, addresses, financial IDs, and health identifiers—without uploading your own data. You can then transition to uploading your own `.pdf`, `.docx`, or `.txt` files when you're ready to test with real content.
 
-> [!NOTE]
-> This initial playground experience focuses on the built-in sample document to make first-touch evaluation fast. Support for selecting your own entity filters through an API configuration panel is available in an upcoming release.
-
-Processing is handled by the existing asynchronous native-file document-based PII pipeline—the same workflow described in [Detect and redact PII in native documents](how-to/redact-document-pii.md). After the job completes, the playground displays the redacted output side-by-side with the source document, along with entity categories, confidence scores, and file-fidelity results so you can assess both redaction accuracy and output formatting preservation.
+Processing is handled by the existing asynchronous native-file document-based PII pipeline—the same workflow described in [Detect and redact PII in native documents](how-to/redact-document-pii.md). The playground uses the same Document PII model and policies as the production API, so results align with production behavior. After the job completes, the playground displays the redacted output side-by-side with the source document. A single view lets you compare detection results across entity categories, review confidence scores, and assess file-fidelity output before integrating the API.
 
 ## Prerequisites
 
