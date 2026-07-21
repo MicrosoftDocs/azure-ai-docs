@@ -3,7 +3,7 @@ title: "Manage hosted agents"
 description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 04/09/2026
+ms.date: 07/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -31,7 +31,7 @@ The platform manages the container lifecycle automatically. Compute is provision
 
 :::zone pivot="python"
 
-- Python SDK: `azure-ai-projects>=2.1.0` and `azure-identity`.
+- Python SDK: `azure-ai-projects>=2.3.0` and `azure-identity`.
 
 :::zone-end
 
@@ -483,7 +483,7 @@ SESSION_ID="<session-id>"
 az rest --method GET \
     --url "${BASE_URL}/agents/${AGENT_NAME}/versions/${AGENT_VERSION}/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" "Accept=text/event-stream"
+    --headers "Accept=text/event-stream"
 ```
 
 The logstream endpoint returns Server-Sent Events (SSE) with `event: log` frames. Each frame contains a JSON payload with `timestamp`, `stream` (`stdout`, `stderr`, or `status`), and `message` fields.
@@ -533,7 +533,7 @@ Endpoint routing is configured by patching the agent object. Use `PATCH /agents/
 az rest --method PATCH \
     --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
+    --headers "Content-Type=application/merge-patch+json" \
     --body '{
         "agent_endpoint": {
             "version_selector": {
@@ -556,7 +556,7 @@ To split traffic between two versions (for example, 90/10 for a canary deploymen
 az rest --method PATCH \
     --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
+    --headers "Content-Type=application/merge-patch+json" \
     --body '{
         "agent_endpoint": {
             "version_selector": {
