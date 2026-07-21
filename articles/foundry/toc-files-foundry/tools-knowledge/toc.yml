@@ -102,6 +102,8 @@ items:
   items:
   - name: Toolbox
     href: ../../agents/how-to/tools/toolbox.md
+  - name: Reminder tool (preview)
+    href: ../../agents/how-to/tools/reminder-tool.md
   - name: Tool search (preview)
     href: ../../agents/how-to/tools/tool-search.md
   - name: Skills (preview)

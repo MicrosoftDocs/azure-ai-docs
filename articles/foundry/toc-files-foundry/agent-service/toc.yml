@@ -50,7 +50,11 @@ items:
     - name: Create a private tool catalog (preview)
       href: ../../agents/how-to/private-tool-catalog.md
   - name: Toolbox
-    href: ../../agents/how-to/tools/toolbox.md
+    items:
+    - name: Overview
+      href: ../../agents/how-to/tools/toolbox.md
+    - name: Reminder tool (preview)
+      href: ../../agents/how-to/tools/reminder-tool.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Azure AI Search

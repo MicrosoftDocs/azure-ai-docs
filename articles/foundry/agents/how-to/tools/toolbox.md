@@ -269,7 +269,7 @@ Publishing a new toolbox creates its first version. That version becomes the def
 With the unified `microsoft.foundry` extension bundle (see [Prerequisites](#prerequisites)), create a toolbox in two steps:
 
 1. Use `azd ai connection create` to register each project connection that the toolbox references (one call per credential record).
-2. Use `azd ai toolbox create --from-file <toolbox.yaml>` to create the toolbox. The YAML references connections by name and never embeds credentials.
+1. Use `azd ai toolbox create --from-file <toolbox.yaml>` to create the toolbox. The YAML references connections by name and never embeds credentials.
 
 The pattern is the same for every connection kind and auth type:
 
@@ -822,7 +822,7 @@ If you want to integrate a toolbox into an existing hosted agent project instead
 
 ### Pass the toolbox endpoint to your agent
 
-After you create the toolbox in [Step 1](#step-1-create-a-toolbox-version), retrieve its MCP endpoint with `azd ai toolbox show` and pass that endpoint to your agent code as an environment variable. The agent reads the variable at startup and uses it to connect to the toolbox.
+After you create the toolbox in [Step 1](#step-1-create-a-toolbox-version), retrieve its MCP endpoint by using `azd ai toolbox show` and pass that endpoint to your agent code as an environment variable. The agent reads the variable at startup and uses it to connect to the toolbox.
 
 1. Get the toolbox endpoint:
 
@@ -845,7 +845,7 @@ After you create the toolbox in [Step 1](#step-1-create-a-toolbox-version), retr
 
 ### Handle tool approval requirements
 
-The toolbox returns a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP endpoint does **not** block `tools/call` — enforcement is entirely the agent runtime's responsibility.
+The toolbox returns a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP endpoint doesn't block `tools/call` - enforcement is entirely the agent runtime's responsibility.
 
 ### Read `require_approval` from `tools/list`
 
@@ -1005,7 +1005,7 @@ resources:
 ## Step 5: Manage toolbox versions
 
 > [!NOTE]
-> You can delete toolbox versions through the Python SDK, .NET SDK, JavaScript SDK, and REST API only. The azd CLI supports list, get, and publish (default-version promotion) operations.
+> You can delete toolbox versions only through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI supports list, get, and publish (default-version promotion) operations.
 
 Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it - you decide when to update `default_version`. This process lets you stage changes, test a new version independently, and promote it to production on your own schedule.
 
@@ -1970,7 +1970,7 @@ Use this pattern to let the agent write and execute Python code. The pattern doe
 
 To upload a file for Code Interpreter to use through a toolbox, upload the file at the **resource-level** Files endpoint (`POST {account_endpoint}/openai/v1/files`) with the `x-aml-project-id` header. Unlike the prompt agent flow, files uploaded through the project-scoped Files endpoint (`/api/projects/{name}/openai/v1/files`) receive an `owner_id` that the toolbox container can't verify, so `tools/call` fails with an ownership-verification error.
 
-1. Get the project GUID from Azure Resource Manager. Use `properties.amlWorkspace.internalId` (dashed UUID format), **not** `properties.internalId` (no dashes — the toolbox container rejects it):
+1. Get the project GUID from Azure Resource Manager. Use `properties.amlWorkspace.internalId` (dashed UUID format), **not** `properties.internalId` (no dashes - the toolbox container rejects it):
 
     ```bash
     ARM_TOKEN=$(az account get-access-token --query accessToken -o tsv)
@@ -2113,7 +2113,7 @@ You can configure `vector_store_ids` in two ways:
 > [!NOTE]
 > REST API, Python SDK, .NET SDK, JavaScript SDK, and azd CLI support dynamic `vector_store_ids`. The Foundry portal UI currently requires `vector_store_ids` when adding a File Search tool.
 
-To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header (the same requirement as Code Interpreter — see the previous section for how to obtain the project GUID from `properties.amlWorkspace.internalId`):
+To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header (the same requirement as Code Interpreter - see the previous section for how to obtain the project GUID from `properties.amlWorkspace.internalId`):
 
 1. Upload your file: `POST {account_endpoint}/openai/v1/files` with `purpose=assistants` and header `x-aml-project-id: {project-guid}`.
 1. Create a vector store: `POST {account_endpoint}/openai/v1/vector_stores` with the returned file ID and the same `x-aml-project-id` header.
@@ -2319,7 +2319,7 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 Use this pattern to expose any REST API described by an OpenAPI spec. Choose the `auth.type` that matches your API's security model.
 
 > [!IMPORTANT]
-> When managed identity auth is used, you must assign the appropriate RBAC role to your **Foundry project's** managed identity on the target service. For example, assign Reader or higher on the target Azure resource. Without this assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
+> When you use managed identity auth, you must assign the appropriate RBAC role to your **Foundry project's** managed identity on the target service. For example, assign Reader or higher on the target Azure resource. Without this assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
 
 :::zone pivot="rest-api"
 
@@ -2751,7 +2751,7 @@ Annotation chunks are returned in `result.structuredContent.documents[]`. Each d
 
 ### [Tool Search](tool-search.md)
 
-Use this pattern to enable intent-based tool routing. When `toolbox_search_preview` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+Use this pattern to enable intent-based tool routing. When you include `toolbox_search_preview` in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
 
 :::zone pivot="rest-api"
 
@@ -2798,7 +2798,7 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 > [!NOTE]
 > `toolbox_search_preview` is a configuration directive that activates tool search. It doesn't appear in `tools/list` responses and doesn't count toward the unnamed-tool-per-type limit.
 
-When tool search is enabled, Foundry injects two meta-tools alongside your toolbox tools: `tool_search` and `call_tool`. The `call_tool` meta-tool acts as a proxy that lets agent frameworks invoke any discovered tool by name through a single declared entry point. This avoids schema-validation errors that occur when a framework tries to call a tool that wasn't present in the initial `tools/list`. If your framework supports direct tool calls without schema pre-validation, you can also call a discovered tool directly after finding it with `tool_search`.
+When you enable tool search, Foundry injects two meta-tools alongside your toolbox tools: `tool_search` and `call_tool`. The `call_tool` meta-tool acts as a proxy that agent frameworks use to invoke any discovered tool by name through a single declared entry point. This proxy avoids schema-validation errors that occur when a framework tries to call a tool that wasn't present in the initial `tools/list`. If your framework supports direct tool calls without schema pre-validation, you can also call a discovered tool directly after finding it with `tool_search`.
 
 :::zone pivot="vscode"
 
@@ -2998,7 +2998,7 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 
 Apply a named [guardrail policy](../../../guardrails/guardrails-overview.md) to a toolbox version to enforce responsible AI content filtering on tool inputs and outputs. The guardrail runs at the toolbox layer, independently of any model-level content filter.
 
-A guardrail is referenced by its policy name, which you configure in the Foundry portal under **Guardrails**. Set `policies.rai_config.rai_policy_name` to the name of the policy when creating a toolbox version.
+Reference a guardrail by its policy name, which you configure in the Foundry portal under **Guardrails**. Set `policies.rai_config.rai_policy_name` to the name of the policy when creating a toolbox version.
 
 :::zone pivot="python"
 
@@ -3275,7 +3275,7 @@ Skill references aren't currently configurable through the VS Code extension. Us
 
 ### Validate skill discovery
 
-After attaching skills to a toolbox version, verify that they're discoverable through the toolbox MCP endpoint using the MCP Python SDK:
+After attaching skills to a toolbox version, verify that you can discover them through the toolbox MCP endpoint by using the MCP Python SDK:
 
 ```python
 import asyncio
@@ -3406,6 +3406,17 @@ internal sealed class BearerTokenHandler(TokenCredential credential, string scop
 For the complete sample, including project files and deployment steps, see the [Skills in Toolbox sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework/foundry-toolbox-mcp-skills).
 
 :::zone-end
+
+### Reminder
+
+The `reminder_preview` tool lets a hosted agent schedule *itself* to run again at a future time. When the agent calls this tool, it specifies a delay in minutes. After that delay, Foundry re-invokes the same agent on the same conversation.
+
+:::image type="content" source="../../media/routines/toolbox-reminder-tool.png" alt-text="Screenshot showing the reminder_preview tool in a toolbox in the Foundry portal.":::
+
+> [!NOTE]
+> The reminder tool is available only for hosted agents. You can't use the reminder tool with prompt agents.
+
+For full setup instructions, usage examples, and limitations, see [Reminder tool for self-scheduling agents](reminder-tool.md).
 
 ## Virtual network support
 
