@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-manage-method
 
 # Manage hosted agents
 
-This article shows you how to manage hosted agents in Foundry Agent Service. After you [deploy a hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, select the version served by the agent endpoint, monitor logs, and delete agents when they're no longer needed.
+This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, select the version served by the agent endpoint, monitor logs, and delete agents when they're no longer needed.
 
 The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
 
