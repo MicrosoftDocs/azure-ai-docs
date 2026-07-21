@@ -20,7 +20,7 @@ To use full Lucene syntax, set the queryType to `full` and pass in a query expre
 
 ## Example (full syntax)
 
-The following example is a search request constructed using the full syntax. This particular example shows fielded search and phrase boosting. It looks for hotels where the category field contains the term `budget`. Documents containing the phrase `"recently renovated"` receive extra boost weight and can rank higher as a result of the phrase boost value (3).
+The following example is a search request constructed using the full syntax. This particular example shows fielded search and phrase boosting. It looks for hotels where the category field contains the term `budget`. Documents containing the phrase `"recently renovated"` receive extra boost weight and might rank higher as a result of the phrase boost value (3).
 
 ```http
 POST /indexes/hotels-sample/docs/search?api-version=2026-04-01
