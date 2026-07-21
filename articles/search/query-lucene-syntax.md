@@ -127,7 +127,7 @@ Proximity searches are used to find terms that are near each other in a document
 
 ##  <a name="bkmk_termboost"></a> Term boosting
 
-Term boosting raises the relevance of documents that match a boosted query unit. It affects ranking, not which documents qualify as matches. This differs from scoring profiles, which boost fields rather than terms or expressions.
+Term boosting raises the relevance of documents that match a boosted query unit. It affects ranking, not which documents qualify as matches. This behavior differs from scoring profiles, which boost fields rather than terms or expressions.
 
 ### Choose boost scope
 
@@ -153,14 +153,14 @@ Compare how the same words behave when you combine field scope with different bo
 | `content:"deferred tax"^2` | Scopes both terms to `content` and boosts an adjacent, ordered phrase match. |
 | `content:(deferred tax)^2` | Scopes both terms to `content` and boosts a group that matches either or both terms. |
 
-For example, if `searchFields` is set to `title`, the first query searches for `deferred` in `content` and the boosted term `tax` in `title`. The quoted and grouped queries keep both terms in `content`.
+For example, if you set `searchFields` to `title`, the first query searches for `deferred` in `content` and the boosted term `tax` in `title`. The quoted and grouped queries keep both terms in `content`.
 
 > [!IMPORTANT]
 > A field prefix, like a boost, applies only to the query unit immediately after it. Use quotation marks or parentheses to apply the field scope and boost to an entire expression. For more information, see [Fielded search](#bkmk_fields) and [Precedence (grouping)](#precedence-grouping).
 
 ### Analyzer behavior
 
-The parser first determines the boosted query unit. Complete terms and phrases are then processed by the analyzer assigned to the field, and the boost affects scoring for the analyzed match. All terms inside a field-scoped phrase or group use that field's analyzer. An unscoped unit is analyzed separately for each field in `searchFields`, so results can vary when those fields use different analyzers. For example, an analyzer that lowercases text can match `"DEFERRED TAX"^2` against lowercase indexed terms. The boost doesn't bypass analysis.
+The parser first determines the boosted query unit. The analyzer assigned to the field then processes complete terms and phrases, and the boost affects scoring for the analyzed match. All terms inside a field-scoped phrase or group use that field's analyzer. An unscoped unit is analyzed separately for each field in `searchFields`, so results can vary when those fields use different analyzers. For example, an analyzer that lowercases text can match `"DEFERRED TAX"^2` against lowercase indexed terms. The boost doesn't bypass analysis.
 
 Analyzer output can also change the type of match. A keyword analyzer emits the entire field value as one token, so quoted multiword text matches that token instead of multiple adjacent tokens. For more information, see [Stage 2: Lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis).
 
@@ -228,7 +228,7 @@ When using Unicode characters, make sure symbols are properly escaped in the que
 
 ## Precedence (grouping)
 
-You can use parentheses to create subqueries, including operators within the parenthetical statement. For example, `motel AND (wifi OR luxury)` searches for documents containing the `motel` term and either `wifi` or `luxury` (or both).
+Use parentheses to create subqueries, including operators within the parenthetical statement. For example, `motel AND (wifi OR luxury)` searches for documents containing the `motel` term and either `wifi` or `luxury` (or both).
 
 Field grouping is similar but scopes the grouping to a single field. For example, `hotelAmenities:(gym AND (wifi OR pool))` searches the field `hotelAmenities` for `gym` and `wifi`, or `gym` and `pool`.
 
