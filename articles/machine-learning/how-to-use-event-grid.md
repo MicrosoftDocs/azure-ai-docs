@@ -115,7 +115,7 @@ Applications that handle Machine Learning events should follow a few recommended
 > [!div class="checklist"]
 > * As multiple subscriptions can route events to the same event handler, don't assume events are from a particular source. Check the topic of the message to ensure that it comes from the machine learning workspace you expect.
 > * Similarly, check that the eventType is one you can process. Don't assume that all events you receive are the types you expect.
-> * As messages can arrive out of order and after some delay, use the etag fields to understand if your information about objects is still up-to-date.  Also, use the sequencer fields to understand the order of events on any particular object.
+> * As messages can arrive out of order and after some delay, use the etag fields to understand if your information about objects is still up-to-date. Also, use the sequencer fields to understand the order of events on any particular object.
 > * Ignore fields you don't understand. This practice helps keep you resilient to new features that might be added in the future.
 > * Failed or canceled Azure Machine Learning operations don't trigger an event. For example, if a model deployment fails, Microsoft.MachineLearningServices.ModelDeployed isn't triggered. Consider such failure mode when design your applications. You can always use Azure Machine Learning SDK, CLI, or portal to check the status of an operation and understand the detailed failure reasons.
 
@@ -144,16 +144,12 @@ Azure Event Grid allows you to build decoupled message handlers, which Azure Mac
 
 When you confirm your selection, select **Create**. After configuration, these events are pushed to your endpoint.
 
+To confirm the subscription was created, select **Events** > **Event Subscriptions** in your workspace and verify that your new subscription appears in the list.
+
 
 ### Set up with the CLI
 
-You can either install the latest [Azure CLI](/cli/azure/install-azure-cli), or use the Azure Cloud Shell that is provided as part of your Azure subscription.
-
-To install the Event Grid extension, use the following command from the CLI:
-
-```azurecli-interactive
-az extension add --name eventgrid
-```
+You can either install the latest [Azure CLI](/cli/azure/install-azure-cli), or use the Azure Cloud Shell that's provided as part of your Azure subscription. Make sure you install the `eventgrid` extension, as described in [Prerequisites](#prerequisites).
 
 The following example demonstrates how to select an Azure subscription and create a new event subscription for Azure Machine Learning:
 
@@ -205,6 +201,8 @@ Use [Azure Logic Apps](/azure/logic-apps/) to configure emails for all your even
     To save this action, select **Save As** on the left corner of the page.
 
     :::image type="content" source="./media/how-to-use-event-grid/configure-email-body.png" alt-text="Screenshot shows the Send an email dialog box with Topic and Event Type added to the subject line from the list to the right.":::
+
+1. To verify the alert works, trigger a qualifying event—for example, complete a training run—and confirm that the email arrives at the specified recipients.
 
 ## Next steps
 
