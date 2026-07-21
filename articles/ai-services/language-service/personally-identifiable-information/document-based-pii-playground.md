@@ -20,7 +20,9 @@ ai-usage: ai-assisted
 
 The document PII playground in Microsoft Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. The playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types—including names, addresses, financial IDs, and health identifiers—without uploading your own data. You can then transition to uploading your own `.pdf`, `.docx`, or `.txt` files when you're ready to test with real content.
 
-Processing is handled by the existing asynchronous native-file document-based PII pipeline—the same workflow described in [Detect and redact PII in native documents](how-to/redact-document-pii.md). The playground uses the same Document PII model and policies as the production API, so results align with production behavior. After the job completes, the playground displays the redacted output side-by-side with the source document. A single view lets you compare detection results across entity categories, review confidence scores, and assess file-fidelity output before integrating the API.
+Processing is handled by the existing asynchronous native-file document-based PII pipeline—the same workflow described in [Detect and redact PII in native documents](how-to/redact-document-pii.md). The playground uses the same Document PII model and policies as the production API, so results align with production behavior.
+
+After the job completes, the playground displays the redacted output side-by-side with the source document. A single view lets you compare detection results across entity categories, review confidence scores, and assess file-fidelity output before integrating the API.
 
 ## Prerequisites
 

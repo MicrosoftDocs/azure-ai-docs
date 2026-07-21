@@ -82,7 +82,9 @@ Each PII capability uses a dedicated model. On the **Playground** tab, select yo
     > [!NOTE]
     > For the **Document PII redaction** capability, the playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types—including names, addresses, financial IDs, and health identifiers—without uploading your own data. Document input is a native file (`.pdf`, `.docx`, or `.txt`), and the output is a redacted document rendering shown side-by-side with the source. This differs from text and conversation workflows, where entities are highlighted inline within the input text.
     >
-    > Document processing is handled by the existing asynchronous native-file document-based PII pipeline. The playground uses the same Document PII model and policies as the production API, so results align with production behavior. After the job completes, a single view lets you compare detection results across entity types, review confidence scores, and assess file-fidelity output. When you're ready, you can transition from curated samples to uploading live documents for real-content testing.
+    > Document processing is handled by the existing asynchronous native-file document-based PII pipeline. The playground uses the same Document PII model and policies as the production API, so results align with production behavior.
+    >
+    > After the job completes, a single view lets you compare detection results across entity types and review confidence scores. When you're ready, transition from curated samples to uploading live documents for real-content testing.
 
 1. In the **Configure** side panel, set your preferred options. Available options vary by capability:
 
