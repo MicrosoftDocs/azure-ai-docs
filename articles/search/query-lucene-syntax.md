@@ -148,7 +148,7 @@ The following table uses the default `searchMode=any`, where a space between wor
 | `"deferred tax"^2` | The complete phrase, with the words next to each other and in this order. | The complete phrase. |
 | `(deferred OR tax)^2` | `deferred`, `tax`, or both. | Everything inside the parentheses as one group. |
 
-If you set `searchMode=all`, both ungrouped words in the first query are required unless you write an explicit operator.
+With `searchMode=all`, the query `deferred tax^2` requires both words to match. The boost still applies only to `tax`. To match either word instead, write `deferred OR tax^2`.
 
 Place the caret after the closing quotation mark or parenthesis when you want to boost the entire phrase or group. Parentheses don't create a phrase. Use quotation marks when the words must be next to each other and in a specific order.
 
