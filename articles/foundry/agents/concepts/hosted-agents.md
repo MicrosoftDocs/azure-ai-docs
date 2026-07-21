@@ -23,7 +23,7 @@ Choose Hosted agents over prompt-based agents when you need to:
 
 - **Bring your own code** - use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
 - **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
-- **Control compute resources** - specify CPU and memory for your agent’s sandbox.
+- **Control compute resources** - specify CPU and memory for your agent's sandbox.
 - **Run stateful workloads** - persist files and state across turns via $HOME and the /files endpoint.
 
 ### How it works
@@ -35,7 +35,7 @@ You package your agent as a container image and push it to Azure Container Regis
 >
 > If you use Hosted Agent with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs.
 >
-> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices. It is your responsibility to manage whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices. It is your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../responsible-ai/agents/transparency-note.md#what-is-a-transparency-note).
 
@@ -112,7 +112,7 @@ The agent identity can access model inferencing through the project endpoint and
 
 When integrated via Microsoft 365 channels (for example, Teams), hosted agents can operate in two identity modes depending on how they're invoked:
 
-- **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services on behalf of the user using the user’s delegated permissions, subject to Microsoft Entra ID tenant policies.
+- **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services on behalf of the user using the user's delegated permissions, subject to Microsoft Entra ID tenant policies.
 
 - **Autonomous or background scenarios**: If no user token is available, the agent authenticates using its own Microsoft Entra ID (agent identity), typically via managed identity, to access downstream services.
 
@@ -233,26 +233,35 @@ Managed hosting runtime billing is based on consumption of CPU and memory resour
 
 Hosted agents are currently available in the following regions:
 
-- East US 2
-- North Central US
-- Sweden Central
+- Australia East
+- Brazil South
 - Canada Central
 - Canada East
-- Southeast Asia
-- Poland Central
-- South Africa North
-- Korea Central
-- South India
-- Brazil South
-- West US
-- West US 3
-- Norway East
-- Japan East
+- East US
+- East US 2
 - France Central
 - Germany West Central
-- Switzerland North
+- Italy North
+- Japan East
+- Japan West
+- Korea Central
+- North Central US
+- Norway East
+- Poland Central
+- South Africa North
+- South Central US
+- South India
+- Southeast Asia
 - Spain Central
-- Australia East
+- Sweden Central
+- Switzerland North
+- Switzerland West
+- UAE North
+- UK West
+- West Central US
+- West Europe
+- West US
+- West US 3
 
 > [!NOTE]
 > This list will be updated as additional regions become available.

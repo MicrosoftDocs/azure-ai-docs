@@ -1,7 +1,7 @@
 ---
 title: "Migration guide from Azure Content Moderator to Azure AI Content Safety"
 description: "Migrate from Azure Content Moderator to Azure AI Content Safety. Step-by-step guide covering text, image, and custom-terms migration with code examples."
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 06/04/2026

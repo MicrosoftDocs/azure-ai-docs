@@ -33,13 +33,13 @@ Use the following JSON in your request body. The model will be given the `{MODEL
 
 ```json
 {
-	"modelLabel": "{MODEL-NAME}",
-	"trainingConfigVersion": "{CONFIG-VERSION}",
-	"evaluationOptions": {
-		"kind": "percentage",
-		"trainingSplitPercentage": 80,
-		"testingSplitPercentage": 20
-	}
+    "modelLabel": "{MODEL-NAME}",
+    "trainingConfigVersion": "{CONFIG-VERSION}",
+    "evaluationOptions": {
+        "kind": "percentage",
+        "trainingSplitPercentage": 80,
+        "testingSplitPercentage": 20
+    }
 }
 ```
 

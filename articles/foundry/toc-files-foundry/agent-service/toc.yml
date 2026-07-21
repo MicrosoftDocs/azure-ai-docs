@@ -94,6 +94,8 @@ items:
       href: ../../agents/quickstarts/quickstart-toolbox-agent.md
     - name: Add Foundry IQ with a toolbox
       href: ../../agents/quickstarts/quickstart-foundry-iq-hosted-agent.md
+    - name: Add Browser Automation with a toolbox
+      href: ../../agents/how-to/tools/browser-automation-hosted-agent-quickstart.md
     - name: Add persistent memory
       href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
     - name: Evaluate an agent
@@ -122,7 +124,7 @@ items:
       href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
       href: ../../how-to/develop/langchain-hosted-agents.md
-    - name: Deploy from source code (preview)
+    - name: Deploy from source code
       href: ../../agents/how-to/deploy-hosted-agent-code.md
   - name: Run, test, and debug
     items:
@@ -142,24 +144,26 @@ items:
       href: ../../agents/how-to/agent-doctor.md
     - name: View logs
       href: ../../agents/how-to/monitor-hosted-agent-logs.md
+    - name: Export telemetry with OpenTelemetry
+      href: ../../agents/how-to/configure-hosted-agent-telemetry.md
+    - name: Monitor agents in the dashboard
+      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
     - name: Isolate sessions per user
       href: ../../agents/how-to/isolate-sessions-per-user.md
     - name: Multiplex users in one session
       href: ../../agents/how-to/multiplex-session-users.md
     - name: Pass isolation keys (protocol 1.0.0)
       href: ../../agents/how-to/pass-isolation-keys.md
-    - name: Agent optimization overview
+    - name: Agent optimizer overview
       href: ../../agents/concepts/agent-optimizer-overview.md
-    - name: Make your agent optimization-ready
+    - name: Make your agent optimizer-ready
       href: ../../agents/how-to/make-agent-optimizer-ready.md
-    - name: Create a custom evaluation dataset
+    - name: Create an evaluation dataset
       href: ../../agents/how-to/create-optimizer-dataset.md
-    - name: Optimize agent instructions and skills
+    - name: Optimize agent instructions, skills, tools, and models
       href: ../../agents/how-to/optimize-agent-targets.md
     - name: Optimize agent prompts
       href: ../../observability/how-to/prompt-optimizer.md
-    - name: Monitor agents in the dashboard
-      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Deploy and operate
     items:
     - name: Deploy

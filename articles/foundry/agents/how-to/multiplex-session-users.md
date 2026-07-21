@@ -30,7 +30,7 @@ A complete, runnable [session multiplexing sample](https://github.com/microsoft-
 ## Prerequisites
 
 - A hosted agent that uses container protocol version 2.0.0. To upgrade, see [Migrate hosted agents](migrate-hosted-agent-preview.md).
-- The `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission assigned to your middle-tier service's identity. Without it, the `x-ms-user-identity` header is rejected with a `403`.
+- The `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission assigned to your middle-tier service's identity. This permission isn't included in built-in roles; grant it through a custom role — see [Delegate the end-user identity](../concepts/hosted-agent-permissions.md#delegate-the-end-user-identity). Without it, the `x-ms-user-identity` header is rejected with a `403`.
 - The Azure AI Projects client library for the middle tier, and the Azure AI AgentServer SDK for the container ([`azure-ai-agentserver-core`](https://pypi.org/project/azure-ai-agentserver-core/) 2.0.0b7+ for Python, or [`Azure.AI.AgentServer.Core`](https://www.nuget.org/packages/Azure.AI.AgentServer.Core) 1.0.0-beta.26+ for .NET).
 - A deployed agent to test against. Isolation isn't enforced for local runs.
 

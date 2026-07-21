@@ -541,12 +541,14 @@ az rest --method PATCH \
                     {"agent_version": "1", "traffic_percentage": 100, "type": "FixedRatio"}
                 ]
             },
-            "protocols": ["responses"]
+            "protocol_configuration": {
+                "responses": {}
+            }
         }
     }'
 ```
 
-Set `protocols` to `["invocations"]` or `["responses", "invocations"]` to match the protocols your agent exposes.
+Set `protocol_configuration` to `{"invocations": {}}` or `{"responses": {}, "invocations": {}}` to match the protocols your agent exposes.
 
 To split traffic between two versions (for example, 90/10 for a canary deployment):
 
@@ -563,7 +565,9 @@ az rest --method PATCH \
                     {"agent_version": "2", "traffic_percentage": 10, "type": "FixedRatio"}
                 ]
             },
-            "protocols": ["responses"]
+            "protocol_configuration": {
+                "responses": {}
+            }
         }
     }'
 ```
@@ -574,13 +578,14 @@ az rest --method PATCH \
 
 ```python
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
+    AgentEndpointConfig,
     FixedRatioVersionSelectionRule,
+    ProtocolConfiguration,
+    ResponsesProtocolConfiguration,
     VersionSelector,
 )
 
-endpoint_config = AgentEndpoint(
+endpoint_config = AgentEndpointConfig(
     version_selector=VersionSelector(
         version_selection_rules=[
             FixedRatioVersionSelectionRule(
@@ -588,10 +593,12 @@ endpoint_config = AgentEndpoint(
             ),
         ]
     ),
-    protocols=[AgentEndpointProtocol.RESPONSES],
+    protocol_configuration=ProtocolConfiguration(
+        responses=ResponsesProtocolConfiguration()
+    ),
 )
 
-project.beta.agents.patch_agent_details(
+project.agents.update_details(
     agent_name="my-agent",
     agent_endpoint=endpoint_config,
 )

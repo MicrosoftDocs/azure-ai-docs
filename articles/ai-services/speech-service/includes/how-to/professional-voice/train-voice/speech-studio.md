@@ -39,6 +39,9 @@ After you validate your data files, use them to build your custom voice model. W
 
   The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
 
+  > [!NOTE]
+   > Neural - cross lingual retires on August 25, 2026. The voice models you already created by using these retired methods aren't affected.
+
 The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom voice, cross-lingual, or multiple style training.
 
 ## Train your custom voice model

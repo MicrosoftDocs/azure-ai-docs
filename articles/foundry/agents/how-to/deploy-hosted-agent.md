@@ -20,7 +20,7 @@ This article shows you how to deploy a containerized agent to Foundry Agent Serv
 If you're deploying for the first time or want a guided walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md). The **Azure Developer CLI (azd)** and **VS Code extension** handle building, pushing, versioning, and RBAC configuration automatically.
 
 > [!TIP]
-> Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code (preview)](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
+> Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
 
 ## Deployment lifecycle
 
@@ -332,7 +332,7 @@ When you create a version, the platform automatically provisions the agent. Ther
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol, ContainerConfiguration
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentEndpointProtocol, ContainerConfiguration
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -351,7 +351,7 @@ agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         protocol_versions=[
-            ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
+            ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")
         ],
         cpu="1",
         memory="2Gi",
@@ -371,9 +371,9 @@ To expose both protocols, pass both in `protocol_versions`:
 
 ```python
 protocol_versions=[
-    ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="1.0.0"),
 ],
 ```
 
