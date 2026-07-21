@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 08/15/2024
+ms.date: 07/21/2026
 ms.reviewer: jturuk
 ms.custom: devplatv2
 #customer intent: As an analyst, I want to run batch inference workloads in the most cost efficient way possible.
@@ -18,12 +18,18 @@ ms.custom: devplatv2
 
 [!INCLUDE [cli v2](includes/machine-learning-dev-v2.md)]
 
+> [!IMPORTANT]
+> Low priority VMs were retired for Azure Machine Learning on March 31, 2026. Compute clusters that specify `tier: low_priority` still pass validation and still run jobs, but Azure Batch now allocates their nodes as [Spot VMs](/azure/virtual-machines/spot-vms) through a system-initiated migration. Spot pricing and Spot eviction behavior therefore apply to every cluster described in this article, whether you created it before or after the retirement date. For the Batch-level details, see [Run Batch workloads on cost-effective Spot VMs](/azure/batch/batch-spot-vms).
+
 Azure batch deployments support low priority virtual machines (VMs) to reduce the cost of batch inference workloads. Low priority VMs enable a large amount of compute power to be used for a low cost. Low priority virtual machines take advantage of surplus capacity in Azure. When you specify low priority VMs in your pools, Azure can use this surplus, when available.
 
 > [!TIP]
 > The tradeoff for using low priority VMs is that those virtual machines might not be available or they might be preempted at any time, depending on available capacity. For this reason, this approach is most suitable for batch and asynchronous processing workloads, where job completion time is flexible and the work is distributed across many virtual machines.
 
-Low priority virtual machines are offered at a reduced price compared with dedicated virtual machines. For pricing details, see [Azure Machine Learning pricing](https://azure.microsoft.com/pricing/details/machine-learning/).
+Because these nodes are now allocated as Spot VMs, you're charged the current Spot rate for the VM size in the region where the cluster runs. That rate is variable rather than a fixed discount: it changes with region and demand, and it can approach the pay-as-you-go price when a region has little surplus capacity. You're never charged more than the pay-as-you-go price for the same VM size. For more information, see [Azure Spot Virtual Machines](/azure/virtual-machines/spot-vms). Check the current rate for your VM size and region before you choose a region, either in the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) or through the [Azure retail prices API](/rest/api/cost-management/retail-prices/azure-retail-prices). For general pricing details, see [Azure Machine Learning pricing](https://azure.microsoft.com/pricing/details/machine-learning/).
+
+> [!NOTE]
+> Batch doesn't support setting a maximum price for Spot VMs, so you can't cap the rate that a compute cluster pays. Nodes are evicted only for capacity reasons, never because of price. See [Run Batch workloads on cost-effective Spot VMs](/azure/batch/batch-spot-vms).
 
 ## How batch deployment works with low priority VMs
 
@@ -43,6 +49,7 @@ When you deploy models under batch endpoints, rescheduling can be done at the mi
 
 - After a deployment is associated with a low priority VMs cluster, all the jobs produced by such deployment use low priority VMs. Per-job configuration isn't possible.
 - Rescheduling is done at the mini-batch level, regardless of the progress. No checkpointing capability is provided.
+- You're billed for every node in the cluster while it's powered on, including nodes that are evicted before they complete any work, and including the time each replacement node spends starting up. Eviction doesn't produce a refund or a credit, and Spot VMs carry no SLA. See [Virtual machine states and billing status](/azure/virtual-machines/states-billing) and [Best practices for Azure Batch](/azure/batch/best-practices). Frequent evictions can make a cluster cost more than a `dedicated` cluster for the same workload, especially in regions where the Spot rate is close to the pay-as-you-go rate.
 
 > [!WARNING]
 > In the cases where the entire cluster is preempted or running on a single-node cluster, the job is cancelled because there is no capacity available for it to run. Resubmitting is required in this case.
