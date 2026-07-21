@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 > [!NOTE]
 > This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
-The document PII playground in Microsoft Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. To help you evaluate the feature immediately, the playground loads a prepared sample document by default—no upload required for your first run. You can also upload your own `.pdf`, `.docx`, or `.txt` files, configure redaction options, and review redacted output side-by-side with the source before integrating the feature into your application.
+The document PII playground in Microsoft Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. To help you evaluate the feature immediately, the playground loads a prepared sample document by default—no upload required for your first run. You can also upload your own `.pdf`, `.docx`, or `.txt` files, configure redaction options, and review redacted output side-by-side with the source.
 
 > [!NOTE]
 > This initial playground experience focuses on the built-in sample document to make first-touch evaluation fast. Support for selecting your own entity filters through an API configuration panel is available in an upcoming release.
