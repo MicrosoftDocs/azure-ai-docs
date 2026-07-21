@@ -475,7 +475,7 @@
         "articles/ai-services/language-service/**/*.md": "azure-ai-language",
         "articles/ai-services/personalizer/**/*.md": "azure-ai-personalizer",
         "articles/ai-services/speech-service/*.md": "azure-speech-foundry-tools",
-        "articles/ai-services/translator/**/*.md": "azure-ai-translator",
+        "articles/ai-services/translator/**/*.md": "azure-translator-foundry-tools",
         "articles/foundry/**/*.md": "microsoft-foundry",
         "articles/foundry-classic/**/*.md": "microsoft-foundry"
       },
