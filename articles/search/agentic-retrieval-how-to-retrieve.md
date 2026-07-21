@@ -3,7 +3,7 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -333,6 +333,24 @@ Authorization: Bearer {{accessToken}}
 ---
 
 :::zone-end
+
+### Handle the response status
+
+Successful retrieval returns `200 OK`. For `2026-05-01-preview`, use the
+response status to distinguish request validation, partial success, and hard
+retrieval failures.
+
+| Status | Meaning | What to inspect | Next action |
+| --- | --- | --- | --- |
+| `400 Bad Request` | Request validation failed. For example, `knowledgeSourceParams` names a source that isn't attached to the knowledge base. | Top-level error. | Correct the request or knowledge base reference. Don't retry the unchanged request. |
+| `206 Partial Content` | At least one source succeeded, and no failed source is marked `failOnError`. The response contains results from the sources that succeeded. | `activity[].error` for each failed source. | Use the partial results if your application permits them, and investigate or retry the failed source. |
+| `502 Bad Gateway` | Every selected source failed, or a source marked `failOnError: true` failed. | Top-level error and the request or correlation ID. The activity array might be absent. | Check request configuration, dependency authentication and permissions, throttling, timeouts, and dependency availability before you retry. |
+
+For any non-`200` response, retain the API version, timestamp, sanitized
+request body, response headers, and request or correlation ID. Also retain the
+complete top-level error for `400` and `502` responses. For `206`, retain each
+failed source's name and `activity[].error` details. Don't interpret a `502 Bad
+Gateway` response as an Azure AI Search outage without examining this evidence.
 
 ### Include images in retrieve responses (preview)
 
@@ -703,8 +721,6 @@ x-ms-query-source-authorization: {{userAccessToken}}
 
 ## Review the response
 
-Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. The activity array contains details about the partial response as errors.
-
 The retrieve action returns three main components:
 
 # [2026-05-01-preview](#tab/2026-05-01-preview)
@@ -758,7 +774,7 @@ Key points:
 
 ### Activity array
 
-The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline and errors for any retrieval failures, such as inaccessible knowledge sources.
+The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline. For a `206 Partial Content` response, the array includes errors for failed knowledge sources. A `502 Bad Gateway` response might provide failure details only in the top-level error.
 
 The output includes the following components.
 
@@ -1129,7 +1145,7 @@ The following response excerpt shows activity records with `modelName`.
 
 ### Require a knowledge source to succeed
 
-Set `failOnError` in `knowledgeSourceParams` to mark a knowledge source as required. Use this parameter when a partial answer would be misleading or noncompliant if that source is unavailable.
+Set `failOnError` in `knowledgeSourceParams` to mark a knowledge source as required. Use this parameter when a partial answer would be misleading or noncompliant if that source is unavailable. In `2026-05-01-preview`, the request returns `502 Bad Gateway` if a required source fails, even if another source succeeds. For handling guidance, see [Handle the response status](#handle-the-response-status).
 
 :::zone pivot="csharp"
 
