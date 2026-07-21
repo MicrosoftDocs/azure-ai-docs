@@ -206,13 +206,13 @@ The following example navigates to select a model from the list of models that t
 
 ## Deploy the model
 
-Automated machine learning in Azure Machine Learning studio lets you deploy the best model to a real-time online endpoint in a few steps. *Deployment* is the integration of the model so it can predict on new data and identify potential areas of opportunity. 
+Automated machine learning in Azure Machine Learning studio helps you deploy the best model to a real-time online endpoint in a few steps. *Deployment* is the integration of the model so it can predict on new data and identify potential areas of opportunity. 
 
 For this experiment, deployment to a real-time endpoint means that the bike share company now has a scalable web solution for forecasting bike share rental demand. 
 
-When you deploy from the **Automated ML** page, you don't prepare a scoring script or environment. Azure Machine Learning autogenerates both and hosts the model on a fully managed online endpoint.
+When you deploy from the **Automated ML** page, you don't need to prepare a scoring script or environment. Azure Machine Learning autogenerates both and hosts the model on a fully managed online endpoint.
 
-When the job is complete, navigate back to the parent job page by selecting **Job 1** at the top of your screen.
+When the job finishes, select **Job 1** at the top of your screen to go back to the parent job page.
 
 In the **Best model summary** section, the best model in the context of this experiment is selected based on the **Normalized root mean squared error** metric. 
 
@@ -240,7 +240,7 @@ Deploy this model. Deployment takes a few minutes to complete. The deployment pr
     
 When the deployment succeeds, you have an operational real-time endpoint that generates predictions. 
 
-Proceed to the [**Next steps**](#next-steps) to learn more about how to consume your new endpoint and test your predictions using Power BI's built-in Azure Machine Learning support.
+To learn more about how to consume your new endpoint and test your predictions by using Power BI's built-in Azure Machine Learning support, see [**Next steps**](#next-steps).
 
 For more deployment options, including the Azure CLI and Python SDK, see [Deploy an AutoML model to an online endpoint](how-to-deploy-automl-endpoint.md).
 
@@ -250,7 +250,7 @@ Deployment files are larger than data and experiment files, so they cost more to
 
 ### Delete the real-time endpoint
 
-Delete just the real-time endpoint from Azure Machine Learning studio if you want to keep the resource group and workspace for other tutorials and exploration. Deleting the endpoint also deletes its associated deployment. 
+If you want to keep the resource group and workspace for other tutorials and exploration, delete just the real-time endpoint from Azure Machine Learning studio. Deleting the endpoint also deletes its associated deployment. 
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com/). Navigate to your workspace and on the left under the **Assets** pane, select **Endpoints**. 
 
