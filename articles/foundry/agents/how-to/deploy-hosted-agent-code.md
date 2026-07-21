@@ -133,7 +133,7 @@ All source-code deployments require outbound access to:
 - `mcr.microsoft.com`
 - `*.login.microsoft.com`
 
-Without these outbound paths, provisioning can't download what it needs and the deployment fails. For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).
+For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).
 
 ## Deploy using the Azure Developer CLI or VS Code
 
