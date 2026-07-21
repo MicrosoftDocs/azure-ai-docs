@@ -526,9 +526,7 @@ This command reads the agent name and version from the `azd` service entry in yo
 An agent endpoint routes 100% of its traffic to one agent version. Use the version selector to choose the version that the endpoint serves.
 
 > [!IMPORTANT]
-> Traffic splitting between agent versions isn't supported. Configure one.
-> * `FixedRatio` rule with `traffic_percentage` set to `100`, even though
-> * `version_selection_rules` is an array.
+> Traffic splitting between agent versions isn't supported. Configure one `FixedRatio` rule with `traffic_percentage` set to `100`, even though `version_selection_rules` is an array.
 
 :::zone pivot="rest"
 
