@@ -127,44 +127,48 @@ Proximity searches are used to find terms that are near each other in a document
 
 ##  <a name="bkmk_termboost"></a> Term boosting
 
-Term boosting raises the relevance of documents that match a boosted query unit. It affects ranking, not which documents qualify as matches. This behavior differs from scoring profiles, which boost fields rather than terms or expressions.
+Think of search as two steps. First, Azure AI Search finds matching documents. Then, it ranks those matches. Term boosting affects only the second step: it can move documents that match one part of your query higher in the results.
 
-### Boost scope
+Term boosting differs from a scoring profile. A boost favors a word, phrase, or group in the current query. A scoring profile favors fields or other index content according to rules defined in the index.
 
-Use the caret (`^`) followed by a positive boost factor. The factor can be less than 1, such as `0.2`. A boost factor of 1 is the default.
+### Choose what to boost
 
-The boost applies to the complete query unit immediately before the caret. That unit can be a term, a quoted phrase, or a parenthesized expression.
+Write a caret (`^`) and a positive number immediately after the part of the query that you want to favor. For example, `tax^2` can move documents that contain `tax` higher than documents that match only an unboosted term. The default boost value is 1. You can also use a value between 0 and 1, such as `0.2`, to give a match less weight.
 
-| Syntax | Boost scope | Match behavior |
+The punctuation tells you which words each instruction affects:
+
+- A field name plus a colon, called a field prefix, appears before a word, quoted phrase, or parenthesized group. For example, `content:` tells Azure AI Search to look in the `content` field.
+- A boost, such as `^2`, appears after a word, quoted phrase, or parenthesized group. It tells Azure AI Search what to favor when ranking the matches.
+
+The following table uses the default `searchMode=any`, where a space between words works like `OR`:
+
+| Query | What can match | What the boost favors |
 | --- | --- | --- |
-| `deferred tax^2` | The term `tax` only. | Matches `deferred` or the boosted term `tax` because OR is the default operator. |
-| `"deferred tax"^2` | The quoted phrase. | Matches the adjacent terms in order and boosts that phrase match. |
-| `(deferred tax)^2` | The parenthesized expression. | Matches either or both terms and boosts the expression as a unit. |
+| `deferred tax^2` | `deferred`, `tax`, or both. | Only the word `tax`. |
+| `"deferred tax"^2` | The complete phrase, with the words next to each other and in this order. | The complete phrase. |
+| `(deferred OR tax)^2` | `deferred`, `tax`, or both. | Everything inside the parentheses as one group. |
 
-The match behavior in this table assumes the default `searchMode=any`, where a space between terms is interpreted as OR. With `searchMode=all`, ungrouped terms are required unless you specify an explicit operator.
+If you set `searchMode=all`, both ungrouped words in the first query are required unless you write an explicit operator.
 
-Place the caret after the closing quotation mark or parenthesis when you want to boost the entire phrase or group. Parentheses don't create a phrase. Use quotation marks when term order and adjacency are required.
+Place the caret after the closing quotation mark or parenthesis when you want to boost the entire phrase or group. Parentheses don't create a phrase. Use quotation marks when the words must be next to each other and in a specific order.
 
-### Boost and field scope
+### Combine a field name and a boost
 
-Compare how the same words behave when you combine field scope with different boostable units.
+A field name followed by a colon limits where Azure AI Search looks. A boost changes how Azure AI Search ranks a match. You can use both in the same query.
 
-| Syntax | Scope and behavior |
+| Query | What it means |
 | --- | --- |
-| `content:deferred tax^2` | Scopes only `deferred` to `content`. The boosted term `tax^2` uses `searchFields` or all searchable fields if `searchFields` is empty. |
-| `content:"deferred tax"^2` | Scopes both terms to `content` and boosts an adjacent, ordered phrase match. |
-| `content:(deferred tax)^2` | Scopes both terms to `content` and boosts a group that matches either or both terms. |
+| `content:deferred tax^2` | The field prefix applies only to `deferred`. The separate `tax^2` part uses the fields selected by `searchFields`, or all searchable fields if `searchFields` is empty. A `tax` match gets extra ranking weight. |
+| `content:"deferred tax"^2` | Look for the complete phrase only in `content`, and give that phrase match extra ranking weight. |
+| `content:(deferred OR tax)^2` | Look for either word only in `content`, and give the grouped match extra ranking weight. |
 
-For example, if you set `searchFields` to `title`, the first query searches for `deferred` in `content` and the boosted term `tax` in `title`. The quoted and grouped queries keep both terms in `content`.
+For example, if `searchFields` is set to `title`, the first query looks for `deferred` in `content` and `tax` in `title`. The quotation marks and parentheses in the other queries keep both words in `content`.
 
 > [!IMPORTANT]
-> A field prefix, such as a boost, applies only to the query unit immediately after it. Use quotation marks or parentheses to apply the field scope and boost to an entire expression. For more information, see [Fielded search](#bkmk_fields) and [Precedence (grouping)](#precedence-grouping).
+> The colon and caret work in opposite directions. The field prefix `content:` applies to the query part after it. The boost `^2` applies to the query part before it. Use quotation marks or parentheses to make that part include more than one word. For more information, see [Fielded search](#bkmk_fields) and [Precedence (grouping)](#precedence-grouping).
 
-### Analyzer behavior
-
-The parser first determines the boosted query unit. The analyzer assigned to the field then processes complete terms and phrases, and the boost affects scoring for the analyzed match. All terms inside a field-scoped phrase or group use that field's analyzer. An unscoped unit is analyzed separately for each field in `searchFields`, so results might vary when those fields use different analyzers. For example, an analyzer that lowercases text can match `"DEFERRED TAX"^2` against lowercase indexed terms. The boost doesn't bypass analysis.
-
-Analyzer output can also change the type of match. A keyword analyzer emits the entire field value as one token, so quoted multiword text matches that token instead of multiple adjacent tokens. For more information, see [Stage 2: Lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis).
+> [!NOTE]
+> Boosting doesn't skip text analysis. Before matching, Azure AI Search still processes the query text with each field's analyzer. As a result, the same boosted text can match differently in fields that use different analyzers. A phrase or group with a field prefix uses that field's analyzer. Text without a field prefix uses the analyzer for each field being searched. For example, an analyzer that changes text to lowercase can match `"DEFERRED TAX"^2` against lowercase indexed terms. For more information, see [Stage 2: Lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis).
 
 ##  <a name="bkmk_regex"></a> Regular expression search
  
@@ -230,11 +234,11 @@ When using Unicode characters, make sure symbols are properly escaped in the que
 
 ## Precedence (grouping)
 
-Use parentheses to create subqueries, including operators within the parenthetical statement. For example, `motel AND (wifi OR luxury)` searches for documents containing the term `motel` and either `wifi` or `luxury` (or both).
+Use parentheses to control which parts of a query are evaluated together. For example, `motel AND (wifi OR luxury)` requires `motel` and at least one of the terms inside the parentheses: `wifi` or `luxury`.
 
-Field grouping is similar but scopes the grouping to a single field. For example, `hotelAmenities:(gym AND (wifi OR pool))` searches the field `hotelAmenities` for `gym` and `wifi` or `gym` and `pool`.
+Place a field prefix before a parenthesized group to search that entire group in one field. For example, `hotelAmenities:(wifi OR pool)` looks for `wifi` or `pool` only in the `hotelAmenities` field.
 
-Parentheses control Boolean grouping only. Use quotation marks when terms must be adjacent and in order. To boost a group, place the caret after the closing parenthesis, as in `hotelAmenities:(wifi OR pool)^2`. For more information, see [Boost scope](#boost-scope).
+Parentheses control how `AND` and `OR` work together. They don't require words to appear next to each other or in a specific order. Use quotation marks for that behavior. To boost a group, place the caret after the closing parenthesis, as in `hotelAmenities:(wifi OR pool)^2`. For more information, see [Choose what to boost](#choose-what-to-boost).
 
 ## Query size limits
 
