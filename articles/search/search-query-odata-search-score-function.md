@@ -32,10 +32,11 @@ When you send a query to Azure AI Search without the [**$orderby** parameter](se
 
 ## Syntax
 
-The syntax for `search.score` in **$orderby** is `search.score()`. The function `search.score` doesn't take any parameters. For text-only queries, you can use it with the `asc` or `desc` sort-order specifier, just like any other clause in the **$orderby** parameter. It can appear anywhere in the list of sort criteria.
+The syntax for `search.score` in **$orderby** is `search.score()`. The function `search.score` doesn't take any parameters. For full-text queries, you can use it with the `asc` or `desc` sort-order specifier, just like any other clause in the **$orderby** parameter. It can appear anywhere in the list of sort criteria.
 
-You can't use `search.score()` in **$orderby** for pure vector or hybrid queries.
-The service rejects these requests with an HTTP 400 `InvalidRequestParameter` error. To correct the request, remove `search.score()` from **$orderby**.
+## Limitations
+
+You can't use `search.score()` in **$orderby** for pure vector or hybrid queries. The service rejects these requests with an HTTP 400 `InvalidRequestParameter` error. To correct the request, remove `search.score()` from **$orderby**.
 
 ## Example
 
