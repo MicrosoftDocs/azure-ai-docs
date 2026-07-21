@@ -95,7 +95,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | [Agent optimizer](../agents/concepts/agent-optimizer-overview.md) | Limited preview |
 | Build | [Workflows](../agents/concepts/workflow.md) | Preview. Foundry is retiring workflows on December 1, 2026. Use Microsoft Agent Framework for new development. |
 | Build | [Models](foundry-models-overview.md) | GA (managed compute is a Preview deployment type; see [Managed compute in Microsoft Foundry](managed-compute-overview.md)) |
-| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Partial GA (GA for prompt agents; Preview for hosted, workflow and external agents). `[TO VERIFY]`: linked tracing articles don't yet document this GA/Preview split. |
+| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Partial GA (GA for prompt agents; Preview for hosted, workflow and external agents). |
 | Build | Tracing VNet | Preview |
 | Build | [Convert traces to evaluation datasets](../observability/how-to/traces-to-dataset.md) | Preview |
 | Build | Optimization (cluster analysis) | Preview |
