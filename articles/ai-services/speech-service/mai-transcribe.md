@@ -23,7 +23,7 @@ MAI‑Transcribe models are speech recognition models developed by the Microsoft
 
 The following models are supported:
 - `mai-transcribe-1.5`
-- `mai-transcribe-1`: **Will be deprecated on Aug 20th 2026.**
+- `mai-transcribe-1`: **Deprecated on Aug 20, 2026.**
 
 ## Prerequisites
 
