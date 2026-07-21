@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 06/25/2026
+ms.date: 7/20/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -608,7 +608,7 @@ Tool-specific `tools/call` argument examples:
 | Tool type | Arguments |
 | --------- | --------- |
 | AI Search | `{"query": "search text"}` |
-| File Search | `{"queries": ["search text"]}` |
+| File Search | `{"queries": ["search text"]}` — or `{"queries": ["search text"], "vector_store_ids": ["<VECTOR_STORE_ID>"]}` when vector store is passed dynamically |
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
 | A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
@@ -1131,7 +1131,7 @@ Authorization: Bearer {token}
 :::zone pivot="javascript"
 
 ```javascript
-const versions = project.toolboxes.listVersions("<toolbox-name");
+const versions = project.toolboxes.listVersions("<toolbox-name>");
 for await (const v of versions) {
   console.log(`${v.version} — created ${v.created_at}`);
 }
@@ -2103,7 +2103,15 @@ Use the file name returned from Step 1 to download the file via the [File API do
 
 ### [File Search](file-search.md)
 
-Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
+Use this pattern to let the agent search over uploaded files stored in a vector store.
+
+You can configure `vector_store_ids` in two ways:
+
+- **Pinned at toolbox creation** — provide `vector_store_ids` in the tool configuration. The vector store is fixed for all calls and can't be overridden at runtime.
+- **Dynamic at runtime** — omit `vector_store_ids` from the tool configuration. Callers provide it in the `tools/call` arguments, enabling scenarios like multitenant document stores where each call targets a different vector store.
+
+> [!NOTE]
+> REST API, Python SDK, .NET SDK, JavaScript SDK, and azd CLI support dynamic `vector_store_ids`. The Foundry portal UI currently requires `vector_store_ids` when adding a File Search tool.
 
 To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header (the same requirement as Code Interpreter — see the previous section for how to obtain the project GUID from `properties.amlWorkspace.internalId`):
 
@@ -2113,9 +2121,11 @@ To create a file and vector store for use with a toolbox, upload the file at the
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
-> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
+> When you use File Search through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to any vector stores referenced in the tool configuration or provided at runtime.
 
 :::zone pivot="rest-api"
+
+**Pinned (vector store fixed at creation):**
 
 ```json
 {
@@ -2133,9 +2143,32 @@ The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. Se
 }
 ```
 
+**Dynamic (caller provides vector store at runtime):**
+
+```json
+{
+  "description": "File search with dynamic vector store",
+  "tools": [
+    {
+      "type": "file_search",
+      "name": "<OPTIONAL_TOOL_NAME>",
+      "description": "<Optional description for the model>"
+    }
+  ]
+}
+```
+
+When you omit `vector_store_ids`, callers pass it in the `tools/call` arguments:
+
+```json
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<OPTIONAL_TOOL_NAME>","arguments":{"queries":["search text"],"vector_store_ids":["<VECTOR_STORE_ID>"]}}}
+```
+
 :::zone-end
 
 :::zone pivot="python"
+
+**Pinned:**
 
 ```python
 from azure.ai.projects.models import FileSearchTool
@@ -2147,9 +2180,21 @@ tools = [
 ]
 ```
 
+**Dynamic (omit `vector_store_ids`):**
+
+```python
+from azure.ai.projects.models import FileSearchTool
+
+tools = [
+    FileSearchTool()
+]
+```
+
 :::zone-end
 
 :::zone pivot="dotnet"
+
+**Pinned:**
 
 ```csharp
 ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
@@ -2165,9 +2210,25 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
+**Dynamic (omit `vectorStoreIds`):**
+
+```csharp
+ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateFileSearchTool()
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "File search with dynamic vector store"
+);
+```
+
 :::zone-end
 
 :::zone pivot="javascript"
+
+**Pinned:**
 
 ```javascript
 const tools = [
@@ -2182,11 +2243,23 @@ const tools = [
 ];
 ```
 
+**Dynamic (omit `file_search` block):**
+
+```javascript
+const tools = [
+  {
+    type: "file_search",
+    name: "<OPTIONAL_TOOL_NAME>",
+    description: "<Optional description for the model>",
+  },
+];
+```
+
 :::zone-end
 
 :::zone pivot="azd"
 
-File Search is connectionless but requires an existing vector store ID. Declare it directly under `tools:`.
+**Pinned:**
 
 ```yaml
 # my-toolbox.yaml
@@ -2195,6 +2268,15 @@ tools:
   - type: file_search
     vector_store_ids:
       - vs_xxxxxxxxxxxx
+```
+
+**Dynamic (omit `vector_store_ids`):**
+
+```yaml
+# my-toolbox.yaml
+description: File search with dynamic vector store
+tools:
+  - type: file_search
 ```
 
 ```bash
@@ -3267,6 +3349,8 @@ using var httpClient = new HttpClient(
 Console.WriteLine($"Connecting to Foundry Toolbox '{toolboxName}' MCP server...");
 
 // Connect to the Foundry Toolbox MCP endpoint.
+// The Foundry-Features: Toolboxes=V1Preview opt-in header is required while the
+// toolbox MCP surface is in preview.
 await using var mcpClient = await McpClient.CreateAsync(
     new HttpClientTransport(
         new HttpClientTransportOptions
