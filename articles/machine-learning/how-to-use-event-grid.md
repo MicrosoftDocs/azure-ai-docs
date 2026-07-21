@@ -202,7 +202,7 @@ Use [Azure Logic Apps](/azure/logic-apps/) to configure emails for all your even
 
     :::image type="content" source="./media/how-to-use-event-grid/configure-email-body.png" alt-text="Screenshot shows the Send an email dialog box with Topic and Event Type added to the subject line from the list to the right.":::
 
-1. To verify the alert works, trigger a qualifying event—for example, complete a training run—and confirm that the email arrives at the specified recipients.
+1. To verify the alert works, trigger a qualifying event - for example, complete a training run - and confirm that the email arrives at the specified recipients.
 
 ## Next steps
 
