@@ -72,7 +72,7 @@ You can embed Boolean operators in a query string to improve the precision of a 
 |Text operator | Character | Example | Usage |
 |--------------|----------- |--------|-------|
 | AND | `+` | `wifi AND luxury` | Specifies terms that a match must contain. In the example, the query engine looks for documents containing both `wifi` and `luxury`. The plus character (`+`) can also be used directly in front of a term to make it required. For example, `+wifi +luxury` stipulates that both terms must appear somewhere in the field of a single document.|
-| OR | (none) <sup>1</sup> | `wifi OR luxury` | Finds a match when either term is found. In the example, the query engine returns match on documents containing either `wifi` or `luxury` or both. Because OR is the default conjunction operator, you could also leave it out, such that `wifi luxury` is the equivalent of  `wifi OR luxury`.|
+| OR | (none) <sup>1</sup> | `wifi OR luxury` | Finds a match when either term is found. In the example, the query engine returns matches on documents containing either `wifi` or `luxury` or both. With `searchMode=any`, OR is the default conjunction operator, so `wifi luxury` is equivalent to `wifi OR luxury`. With `searchMode=all`, use the explicit `OR` operator to get this behavior. |
 | NOT | `!`, `-` | `wifi –luxury` | Returns a match on documents that exclude the term. For example, `wifi –luxury` searches for documents that have the `wifi` term but not `luxury`. |
 
 <sup>1</sup> The `|` character isn't supported for OR operations.
@@ -129,7 +129,7 @@ Proximity searches are used to find terms that are near each other in a document
 
 Term boosting raises the relevance of documents that match a boosted query unit. It affects ranking, not which documents qualify as matches. This behavior differs from scoring profiles, which boost fields rather than terms or expressions.
 
-### Choose boost scope
+### Boost scope
 
 Use the caret (`^`) followed by a positive boost factor. The factor can be less than 1, such as `0.2`. A boost factor of 1 is the default.
 
@@ -141,26 +141,28 @@ The boost applies to the complete query unit immediately before the caret. That 
 | `"deferred tax"^2` | The quoted phrase. | Matches the adjacent terms in order and boosts that phrase match. |
 | `(deferred tax)^2` | The parenthesized expression. | Matches either or both terms and boosts the expression as a unit. |
 
+The match behavior in this table assumes the default `searchMode=any`, where a space between terms is interpreted as OR. With `searchMode=all`, ungrouped terms are required unless you specify an explicit operator.
+
 Place the caret after the closing quotation mark or parenthesis when you want to boost the entire phrase or group. Parentheses don't create a phrase. Use quotation marks when term order and adjacency are required.
 
-### Compare boost and field scope
+### Boost and field scope
 
 Compare how the same words behave when you combine field scope with different boostable units.
 
 | Syntax | Scope and behavior |
 | --- | --- |
-| `content:deferred tax^2` | Scopes only `deferred` to `content`. The boosted term `tax^2` uses `searchFields`, or all searchable fields if `searchFields` is empty. |
+| `content:deferred tax^2` | Scopes only `deferred` to `content`. The boosted term `tax^2` uses `searchFields` or all searchable fields if `searchFields` is empty. |
 | `content:"deferred tax"^2` | Scopes both terms to `content` and boosts an adjacent, ordered phrase match. |
 | `content:(deferred tax)^2` | Scopes both terms to `content` and boosts a group that matches either or both terms. |
 
 For example, if you set `searchFields` to `title`, the first query searches for `deferred` in `content` and the boosted term `tax` in `title`. The quoted and grouped queries keep both terms in `content`.
 
 > [!IMPORTANT]
-> A field prefix, like a boost, applies only to the query unit immediately after it. Use quotation marks or parentheses to apply the field scope and boost to an entire expression. For more information, see [Fielded search](#bkmk_fields) and [Precedence (grouping)](#precedence-grouping).
+> A field prefix, such as a boost, applies only to the query unit immediately after it. Use quotation marks or parentheses to apply the field scope and boost to an entire expression. For more information, see [Fielded search](#bkmk_fields) and [Precedence (grouping)](#precedence-grouping).
 
 ### Analyzer behavior
 
-The parser first determines the boosted query unit. The analyzer assigned to the field then processes complete terms and phrases, and the boost affects scoring for the analyzed match. All terms inside a field-scoped phrase or group use that field's analyzer. An unscoped unit is analyzed separately for each field in `searchFields`, so results can vary when those fields use different analyzers. For example, an analyzer that lowercases text can match `"DEFERRED TAX"^2` against lowercase indexed terms. The boost doesn't bypass analysis.
+The parser first determines the boosted query unit. The analyzer assigned to the field then processes complete terms and phrases, and the boost affects scoring for the analyzed match. All terms inside a field-scoped phrase or group use that field's analyzer. An unscoped unit is analyzed separately for each field in `searchFields`, so results might vary when those fields use different analyzers. For example, an analyzer that lowercases text can match `"DEFERRED TAX"^2` against lowercase indexed terms. The boost doesn't bypass analysis.
 
 Analyzer output can also change the type of match. A keyword analyzer emits the entire field value as one token, so quoted multiword text matches that token instead of multiple adjacent tokens. For more information, see [Stage 2: Lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis).
 
@@ -228,11 +230,11 @@ When using Unicode characters, make sure symbols are properly escaped in the que
 
 ## Precedence (grouping)
 
-Use parentheses to create subqueries, including operators within the parenthetical statement. For example, `motel AND (wifi OR luxury)` searches for documents containing the `motel` term and either `wifi` or `luxury` (or both).
+Use parentheses to create subqueries, including operators within the parenthetical statement. For example, `motel AND (wifi OR luxury)` searches for documents containing the term `motel` and either `wifi` or `luxury` (or both).
 
-Field grouping is similar but scopes the grouping to a single field. For example, `hotelAmenities:(gym AND (wifi OR pool))` searches the field `hotelAmenities` for `gym` and `wifi`, or `gym` and `pool`.
+Field grouping is similar but scopes the grouping to a single field. For example, `hotelAmenities:(gym AND (wifi OR pool))` searches the field `hotelAmenities` for `gym` and `wifi` or `gym` and `pool`.
 
-Parentheses control Boolean grouping only. Use quotation marks when terms must be adjacent and in order. To boost a group, place the caret after the closing parenthesis, as in `hotelAmenities:(wifi OR pool)^2`. For more information, see [Choose boost scope](#choose-boost-scope).
+Parentheses control Boolean grouping only. Use quotation marks when terms must be adjacent and in order. To boost a group, place the caret after the closing parenthesis, as in `hotelAmenities:(wifi OR pool)^2`. For more information, see [Boost scope](#boost-scope).
 
 ## Query size limits
 
