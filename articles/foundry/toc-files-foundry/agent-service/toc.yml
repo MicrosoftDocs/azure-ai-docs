@@ -144,6 +144,10 @@ items:
       href: ../../agents/how-to/agent-doctor.md
     - name: View logs
       href: ../../agents/how-to/monitor-hosted-agent-logs.md
+    - name: Export telemetry with OpenTelemetry
+      href: ../../agents/how-to/configure-hosted-agent-telemetry.md
+    - name: Monitor agents in the dashboard
+      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
     - name: Isolate sessions per user
       href: ../../agents/how-to/isolate-sessions-per-user.md
     - name: Multiplex users in one session
@@ -160,8 +164,6 @@ items:
       href: ../../agents/how-to/optimize-agent-targets.md
     - name: Optimize agent prompts
       href: ../../observability/how-to/prompt-optimizer.md
-    - name: Monitor agents in the dashboard
-      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Deploy and operate
     items:
     - name: Deploy
