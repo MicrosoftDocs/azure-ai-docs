@@ -20,7 +20,7 @@ To use full Lucene syntax, set the queryType to `full` and pass in a query expre
 
 ## Example (full syntax)
 
-The following example is a search request constructed using the full syntax. This particular example shows fielded search and phrase boosting. It looks for hotels where the category field contains the term `budget`. Any documents containing the phrase `"recently renovated"` are ranked higher as a result of the phrase boost value (3).
+The following example is a search request constructed using the full syntax. This particular example shows fielded search and phrase boosting. It looks for hotels where the category field contains the term `budget`. Documents containing the phrase `"recently renovated"` receive extra boost weight and can rank higher as a result of the phrase boost value (3).
 
 ```http
 POST /indexes/hotels-sample/docs/search?api-version=2026-04-01
@@ -158,7 +158,7 @@ A field name followed by a colon limits where Azure AI Search looks. A boost cha
 
 | Query | What it means |
 | --- | --- |
-| `content:deferred tax^2` | The field prefix applies only to `deferred`. The separate `tax^2` part uses the fields selected by `searchFields`, or all searchable fields if `searchFields` is empty. A `tax` match gets extra ranking weight. |
+| `content:deferred tax^2` | The field prefix applies only to `deferred`. The separate `tax^2` part uses the fields selected by `searchFields`, or all searchable fields if `searchFields` isn't specified. A `tax` match gets extra ranking weight. |
 | `content:"deferred tax"^2` | Look for the complete phrase only in `content`, and give that phrase match extra ranking weight. |
 | `content:(deferred OR tax)^2` | Look for either word only in `content`, and give the grouped match extra ranking weight. |
 
@@ -168,7 +168,7 @@ For example, if `searchFields` is set to `title`, the first query looks for `def
 > The colon and caret work in opposite directions. The field prefix `content:` applies to the query part after it. The boost `^2` applies to the query part before it. Use quotation marks or parentheses to make that part include more than one word. For more information, see [Fielded search](#bkmk_fields) and [Precedence (grouping)](#precedence-grouping).
 
 > [!NOTE]
-> Boosting doesn't skip text analysis. Before matching, Azure AI Search still processes the query text with each field's analyzer. As a result, the same boosted text can match differently in fields that use different analyzers. A phrase or group with a field prefix uses that field's analyzer. Text without a field prefix uses the analyzer for each field being searched. For example, an analyzer that changes text to lowercase can match `"DEFERRED TAX"^2` against lowercase indexed terms. For more information, see [Stage 2: Lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis).
+> For ordinary words, phrases, and groups of words, boosting doesn't skip text analysis. Before matching, Azure AI Search still processes the query text with each field's analyzer. As a result, the same boosted text can match differently in fields that use different analyzers. A phrase or group with a field prefix uses that field's analyzer. Text without a field prefix uses the analyzer for each field being searched. For example, an analyzer that changes text to lowercase can match `"DEFERRED TAX"^2` against lowercase indexed terms. Other query forms, such as wildcard, regular expression, and fuzzy queries, use different analysis rules. Adding a boost doesn't change those rules. For more information, see [Stage 2: Lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis).
 
 ##  <a name="bkmk_regex"></a> Regular expression search
  
