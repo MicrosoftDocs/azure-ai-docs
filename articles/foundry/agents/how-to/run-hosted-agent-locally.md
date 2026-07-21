@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Run a hosted agent locally with the Azure Developer CLI
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use `azd ai agent run` to start your Microsoft Foundry hosted agent on your local machine and `azd ai agent invoke --local` to test it without deploying to Azure. You also learn how to set ports, choose an agent in a multi-agent project, override startup commands, and pass local runtime secrets.
 

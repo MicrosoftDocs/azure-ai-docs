@@ -472,7 +472,7 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 | `tools=[...]` in `HostedAgentDefinition` | Removed — use Foundry Toolbox MCP endpoint instead |
 | Not available | `project.agents.create_session(agent_name, isolation_key=..., version_indicator=...)`, `.get_session()`, `.list_sessions()`, `.delete_session(isolation_key=...)` |
 | Not available | `project.agents.download_session_file(path=...)`, `.get_session_files(path=...)`, `.delete_session_file(path=...)` |
-| Not available | `project.agents.update_details()` for endpoint routing and traffic splitting |
+| Not available | `project.agents.update_details()` for endpoint version routing |
 | Not available | `metadata={"enableVnextExperience": "true"}` parameter on `client.agents.create_version()` |
 
 ## Agent invocation changes

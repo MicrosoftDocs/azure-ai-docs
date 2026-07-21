@@ -7,15 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Monitor hosted agent logs with the Azure Developer CLI
-
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Stream and inspect logs from your deployed Microsoft Foundry hosted agent for troubleshooting and observability. You learn how to view console logs, stream in real time, inspect system events, filter by session, and recognize common log patterns.
 
