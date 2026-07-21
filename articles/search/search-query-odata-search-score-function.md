@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 07/20/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 translation.priority.mt:
   - "de-de"
   - "es-es"
@@ -31,7 +32,11 @@ When you send a query to Azure AI Search without the [**$orderby** parameter](se
 
 ## Syntax
 
-The syntax for `search.score` in **$orderby** is `search.score()`. The function `search.score` doesn't take any parameters. It can be used with the `asc` or `desc` sort-order specifier, just like any other clause in the **$orderby** parameter. It can appear anywhere in the list of sort criteria.
+The syntax for `search.score` in **$orderby** is `search.score()`. The function `search.score` doesn't take any parameters. For text-only queries, it can be used with the `asc` or `desc` sort-order specifier, just like any other clause in the **$orderby** parameter. It can appear anywhere in the list of sort criteria.
+
+You can't use `search.score()` in **$orderby** for pure vector or hybrid queries.
+The service rejects these requests with an HTTP 400 `InvalidRequestParameter`
+error. To correct the request, remove `search.score()` from **$orderby**.
 
 ## Example
 
