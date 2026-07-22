@@ -55,14 +55,14 @@ If your audio locale is outside this set, provide a fixed supported locale.
 ## Configure language identification for real-time speech to text or speech translation (SDK)
 
 For full SDK coverage of `AutoDetectSourceLanguageConfig` with real-time speech
-to text and speech translation — including all supported languages, at-start vs.
-continuous modes, and custom-model mapping — see
+to text and speech translation - including all supported languages, at-start vs.
+continuous modes, and custom-model mapping - see
 [Implement language identification](language-identification.md).
 
 The key points when combining LID with diarization or offline transcription are:
 
 - Always supply a `candidateLocales` or `locales` list. Without a candidate
-  list the backend uses a broader model that performs poorly on short or noisy
+  list, the backend uses a broader model that performs poorly on short or noisy
   segments.
 - Don't include more than one locale per base language (for example, use
   `en-US` or `en-GB`, not both).
@@ -211,22 +211,22 @@ Use this checklist before you enable production traffic:
 1. Validate locale support.
    - Confirm every locale in `candidateLocales` (or `locales`) appears in the
      supported locale lists.
-2. Verify language detection fields.
+1. Verify language detection fields.
    - Real-time SDK: confirm `AutoDetectSourceLanguageResult` (or property
      `SpeechServiceConnection_AutoDetectSourceLanguageResult`) is populated.
    - Fast or batch transcription: confirm each phrase includes the expected
      `locale` value.
-3. Verify speaker labeling fields.
+1. Verify speaker labeling fields.
    - Real-time diarization: confirm `SpeakerId` or `speakerId` appears in
      transcribing or transcribed events.
    - Fast or batch transcription: confirm phrase-level `speaker` values are
      present.
-4. Validate short or noisy audio behavior.
+1. Validate short or noisy audio behavior.
    - Run a noisy sample set and compare detected language against expected
      language.
    - If detection is unstable, rerun with a fixed source locale instead of
      auto-detect.
-5. Validate speaker-count tuning.
+1. Validate speaker-count tuning.
    - Set `maxSpeakers` to the realistic participant ceiling.
    - Recheck whether speaker labeling quality improves when you lower or raise
      the value.
