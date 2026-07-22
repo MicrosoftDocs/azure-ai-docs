@@ -1681,7 +1681,7 @@ Content-Type: application/json
 
 ## Troubleshoot the retrieve action
 
-In `2026-05-01-preview`, the response status tells you whether retrieval succeeded, partly succeeded, or failed and what to do next. Use the following table to map each status to its meaning, and then see the corresponding section for troubleshooting guidance.
+In `2026-05-01-preview`, the response status indicates whether retrieval succeeded, partly succeeded, or failed, and what to do next. Use the following table to map each status to its meaning, and then see the corresponding section for troubleshooting guidance.
 
 | Status | Meaning |
 | --- | --- |
