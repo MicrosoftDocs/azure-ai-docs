@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article shows you how to redact Personally Identifiable Information (PII) from native documents.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 05/21/2026
 ms.author: lajanuar

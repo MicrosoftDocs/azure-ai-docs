@@ -2,7 +2,7 @@
 titleSuffix: Foundry Tools
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 04/08/2026
 ms.author: lajanuar
