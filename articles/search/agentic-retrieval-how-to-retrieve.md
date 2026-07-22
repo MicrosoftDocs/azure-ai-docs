@@ -3,7 +3,7 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -703,8 +703,6 @@ x-ms-query-source-authorization: {{userAccessToken}}
 
 ## Review the response
 
-Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. The activity array contains details about the partial response as errors.
-
 The retrieve action returns three main components:
 
 # [2026-05-01-preview](#tab/2026-05-01-preview)
@@ -754,11 +752,11 @@ Key points:
 + Retrieve responses don't include `@search.rerankerBoostedScore`.
 
 + The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
-  + A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
+  + A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Empty responses](#empty-responses).
 
 ### Activity array
 
-The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline and errors for any retrieval failures, such as inaccessible knowledge sources.
+The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline. For a `206 Partial Content` response, the array includes errors for failed knowledge sources. A `502 Bad Gateway` response might provide failure details only in the top-level error.
 
 The output includes the following components.
 
@@ -1129,7 +1127,7 @@ The following response excerpt shows activity records with `modelName`.
 
 ### Require a knowledge source to succeed
 
-Set `failOnError` in `knowledgeSourceParams` to mark a knowledge source as required. Use this parameter when a partial answer would be misleading or noncompliant if that source is unavailable.
+Set `failOnError` in `knowledgeSourceParams` to mark a knowledge source as required. Use this parameter when a partial answer would be misleading or noncompliant if that source is unavailable. In `2026-05-01-preview`, the request returns `502 Bad Gateway` if a required source fails, even if another source succeeds. For handling guidance, see [Troubleshoot the retrieve action](#troubleshoot-the-retrieve-action).
 
 :::zone pivot="csharp"
 
@@ -1681,7 +1679,57 @@ Content-Type: application/json
 
 :::zone-end
 
-## Troubleshoot empty responses
+## Troubleshoot the retrieve action
+
+In `2026-05-01-preview`, the response status indicates whether retrieval succeeded, partly succeeded, or failed, and what to do next. Use the following table to map each status to its meaning, and then see the corresponding section for troubleshooting guidance.
+
+| Status | Meaning |
+| --- | --- |
+| `200 OK` | Retrieval succeeded. A document can still be omitted if its content exceeds the output budget. For more information, see [Empty responses](#empty-responses). |
+| [`400 Bad Request`](#400-bad-request) | The retrieve request failed validation before retrieval began. |
+| [`206 Partial Content`](#206-partial-content) | At least one source succeeded, and no failed source is marked [`failOnError`](#require-a-knowledge-source-to-succeed). The response contains results from the sources that succeeded. |
+| [`502 Bad Gateway`](#502-bad-gateway) | Every selected source failed, or a source marked `failOnError: true` failed. |
+
+For any non-`200` response, record the API version, timestamp, sanitized request body, response headers, and request or correlation ID. These details help you diagnose the failure and share the issue with support, if necessary.
+
+### `400 Bad Request`
+
+Use the top-level error to identify the invalid request property. Common causes include:
+
++ A `knowledgeSourceName` in `knowledgeSourceParams` isn't attached to the knowledge base, or its `kind` doesn't match the attached source.
++ A request value is outside its supported range, or one option requires another option that isn't enabled. For example, `includeReferenceSourceData` requires `includeReferences`.
+
+Before you retry the request, correct the property identified by the top-level error.
+
+### `206 Partial Content`
+
+Inspect each [`activity`](#activity-array) entry that contains an `error`. A source retrieval activity identifies the failed knowledge source, and a model activity identifies the failed processing stage. The response body still contains the results that succeeded.
+
+For source retrieval activity errors, common causes include:
+
++ Invalid query-time input, such as a malformed [`filterAddOn`](#filter-search-index-knowledge-sources-at-query-time) expression.
++ Knowledge source or index configuration drift, such as a renamed field, missing [semantic configuration](semantic-how-to-configure.md), or invalid [vectorizer](vector-search-how-to-configure-vectorizer.md).
++ Missing or invalid dependency authorization, or insufficient [permissions](#enforce-permissions-at-query-time-preview) for the identity used to query the source.
++ Dependency [throttling](search-limits-quotas-capacity.md), timeout, or transient availability failures.
+
+For a model activity error, use the activity `type` to identify the failed processing stage. For example, a `modelWebSummarization` error indicates that [web result summarization](agentic-knowledge-source-how-to-web.md) failed.
+
+If your application permits partial results, process the successful results and record each failed source or model stage. Correct configuration, authorization, and permission errors before you retry. For throttling, timeout, or transient availability failures, use bounded retries with backoff.
+
+If results are unsafe without a specific source and its source type supports [`alwaysQuerySource`](#require-a-knowledge-source-to-succeed), set both `alwaysQuerySource` and `failOnError`. The first option ensures the source is selected, and the second returns a hard error if querying it fails. [MCP server knowledge sources](agentic-knowledge-source-how-to-mcp-server.md) don't support `alwaysQuerySource`; for those sources, `failOnError` applies only when the source is selected. `failOnError` doesn't apply to model activity failures.
+
+### `502 Bad Gateway`
+
+The top-level error describes one of two hard-failure paths:
+
++ **Every selected source failed:** Each selected source returned an error. A source that completes successfully with zero matching documents isn't a failed source. Inspect every source failure for a shared configuration, authorization, dependency, or availability issue.
++ **A `failOnError` source failed:** A required source couldn't be queried. Other sources might have succeeded, but the service doesn't return a partial result because the required source failed.
+
+The underlying source failures are generally the same kinds as those described for `206 Partial Content`: invalid source-specific input, source or index configuration drift, dependency authorization or permissions, throttling, timeouts, or transient dependency availability.
+
+A hard `502` response might omit the `activity` array and provide the source name and underlying failure only in the top-level error message. Correct configuration, authorization, and permission errors before you retry. Use bounded retries with backoff only for throttling, timeout, or transient availability failures. Don't interpret a `502 Bad Gateway` response as an Azure AI Search outage without examining the underlying source failure.
+
+### Empty responses
 
 A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document exceeded the maximum output size. The references array and grounded response content are empty for that document. To retain more content, increase `maxOutputSizeInTokens`.
 
