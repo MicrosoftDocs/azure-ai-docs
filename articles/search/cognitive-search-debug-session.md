@@ -76,13 +76,13 @@ Debug sessions don't support shared private links. If your production search ser
 
 **Workaround: use a test search service**
 
-To debug your skillset, create a separate Azure AI Search service without private connectivity restrictions. Configure the test service with:
+To debug your skillset, create a separate Azure AI Search service without private connectivity restrictions. To keep production data and schema details out of a non-private environment, build your test setup with synthetic documents:
 
-- A data source that contains a representative sample of your production documents. The sample documents only need to share the same schema and structure as your production data and non-production testing data.
-- The same skillset definition you want to debug. Copy the skillset JSON from your production service, make the changes to adapt any testing field names and apply it to the test service.
-- An indexer configured to run against the test data source.
+- Create test documents that match the field types and structure of your production data, but use generic field names (for example, `content`, `title`, `category`) and placeholder values instead of real data. Skillset logic depends on content types and structure, not specific field names.
+- Copy the skillset JSON from your production service. If skill inputs reference production field names, update those references to match your generic test field names. Use [field mappings](search-indexer-field-mappings.md) in the test indexer to align test field names with skillset inputs.
+- Configure an indexer to run against the test data source.
 
-Run the debug session on the test service to inspect skill inputs and outputs, validate skill expressions and field mappings, and identify errors. When your changes are validated, take the corrected skillset JSON, map the real field names and copy to your production service.
+Run the debug session on the test service to inspect skill inputs and outputs, validate skill expressions and field mappings, and identify errors. When your changes are validated, restore the original production field name references in the skillset JSON and apply it back to your production service.
 
 
 ## Debug session layout
