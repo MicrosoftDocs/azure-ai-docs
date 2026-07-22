@@ -4,9 +4,9 @@ titleSuffix: Azure AI Language
 description: Test document-based PII detection and redaction interactively in the Microsoft Foundry portal without writing code.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
-ms.date: 05/18/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ai-usage: ai-assisted
