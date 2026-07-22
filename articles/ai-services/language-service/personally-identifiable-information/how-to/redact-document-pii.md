@@ -4,18 +4,15 @@ titleSuffix: Foundry Tools
 description: This article shows you how to redact Personally Identifiable Information (PII) from native documents.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 05/21/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ai-usage: ai-assisted
 ---
 
-> [!IMPORTANT]
->
-> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
+# Detect and redact PII in native documents
 
 > [!TIP]
 > Before writing code, you can try document-based PII detection in the Microsoft Foundry portal. The playground loads a prepared sample document, submits it through the existing asynchronous native-file document-based PII pipeline, and shows the redacted output side-by-side with the source. Results include entity categories, confidence scores, and file-fidelity output. For step-by-step instructions, see [Use the document PII playground in Microsoft Foundry](../document-based-pii-playground.md).
