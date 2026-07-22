@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Deploy a hosted agent with a private Azure Container Registry
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use a centrally managed Azure Container Registry (ACR) when you deploy hosted agent container images. You can build locally and push to an existing ACR, or skip the build and deploy a pre-built image that was pushed by another pipeline.
 

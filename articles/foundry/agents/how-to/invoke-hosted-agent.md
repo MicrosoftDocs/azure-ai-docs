@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Invoke a hosted agent with the Azure Developer CLI
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use `azd ai agent invoke` to send messages to your agent, either the deployed version in Microsoft Foundry or a locally running instance. You learn how to choose an agent, use direct endpoints, manage sessions, send files, pin versions, and inspect raw responses.
 

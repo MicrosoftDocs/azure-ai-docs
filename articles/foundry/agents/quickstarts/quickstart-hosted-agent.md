@@ -3,7 +3,7 @@ title: "Quickstart: Deploy your first hosted agent"
 description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI, the Python SDK, Microsoft Foundry Toolkit for Visual Studio Code extension, or Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
-ms.date: 07/09/2026
+ms.date: 07/21/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -461,11 +461,11 @@ curl -sS -H "Content-Type: application/json" -X POST http://localhost:8088/respo
 1. The **Review and Deploy** page auto-populates.
 1. Select the **Deploy** button.
 
-When deployment finishes, the agent appears under **Hosted Agents (Preview)** in the Foundry Toolkit explorer.
+When deployment finishes, the agent appears under **Hosted Agents** in the Foundry Toolkit explorer.
 
 ## Step 7: Invoke your agent
 
-1. In the Foundry Toolkit explorer, expand **Hosted Agents (Preview)** and select your agent. The detail page shows the status under **Deployment Details**.
+1. In the Foundry Toolkit explorer, expand **Hosted Agents** and select your agent. The detail page shows the status under **Deployment Details**.
 1. Select the **Playground** tab and send a test prompt such as `Write a haiku about deploying cloud applications.`.
 
 :::zone-end
