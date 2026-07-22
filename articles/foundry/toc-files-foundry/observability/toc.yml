@@ -38,6 +38,8 @@ items:
      href: ../../observability/how-to/traces-to-dataset.md
    - name: Annotate traces with human feedback
      href: ../../observability/how-to/trace-annotations.md
+   - name: Restrict access to sensitive content in traces 
+     href: ../../observability/how-to/traces-sensitive-content.md
    - name: Tracing and data handling
      href: ../../observability/concepts/trace-data.md
 

@@ -396,7 +396,7 @@ Azure AI Search makes outbound calls to other Azure resources in the following s
 + Knowledge base connections to Azure OpenAI for agentic retrieval workflows
 + Indexer or query connections to Azure OpenAI or Azure Vision in Foundry Tools for vectorization
 + Indexer connections to supported data sources
-+ Indexer (skillset) connections to Azure Storage for caching enrichments, debug session state, or writing to a knowledge store
++ Indexer (skillset) connections to Azure Storage for caching enrichments or writing to a knowledge store
 + Indexer (skillset) connections to Foundry Tools for billing purposes
 + Encryption key requests to Azure Key Vault
 + Custom skill requests to Azure Functions or similar resource
@@ -432,6 +432,8 @@ When evaluating shared private links for your scenario, remember these constrain
 + Indexer execution must use the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
 
 + Shared private link [resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits) vary by pricing tier.
+
++ Debug sessions don't support shared private links. If your search service uses private endpoint connectivity, you can't run debug sessions against it. For a workaround, see [Debug sessions and private connectivity](cognitive-search-debug-session.md#debug-sessions-and-private-connectivity).
 
 + When you [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier), shared private link resources are evaluated against the target tier's limits. If your shared private link count exceeds the target tier's maximum, the tier change is blocked. If the tier change succeeds, existing shared private link resources aren't recreated and don't require reapproval. Private indexer connectivity continues to work after the search service returns to a "Succeeded" provisioning state and "Running" status, provided the shared private link provisioning state remains "Succeeded" and the connection status remains "Approved."
 
