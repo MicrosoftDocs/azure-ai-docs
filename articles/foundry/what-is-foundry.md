@@ -63,5 +63,6 @@ Foundry brings production capabilities to every project:
 - [What is Foundry Agent Service?](./agents/overview.md)
 - [Foundry Models](./concepts/foundry-models-overview.md)
 - [What's new in Microsoft Foundry](./whats-new-foundry.md)
+- [Microsoft Foundry portal general availability overview](concepts/general-availability.md)
 - [Upgrade your Azure OpenAI resource to a Foundry resource](./how-to/upgrade-azure-openai.md)
 - [Find hub-based projects in the Foundry (classic) portal](../foundry-classic/what-is-foundry.md)
