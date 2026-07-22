@@ -6,7 +6,7 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/20/2026
+ms.date: 07/22/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -18,7 +18,8 @@ An embedding is a vector of floating-point numbers that represents the semantic 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/) if you don't have one.
 - An Azure OpenAI resource with an embedding model deployment.
 - Your resource endpoint, such as `https://YOUR-RESOURCE-NAME.openai.azure.com`.
-- Your resource API key. The v1 embeddings API limitation described in the next section requires key authentication for these examples.
+- For Microsoft Entra ID authentication, an identity with the `Cognitive Services OpenAI User` role assigned to the Azure OpenAI resource. For more information, see [Role-based access control for Azure OpenAI](/azure/ai-foundry/openai/how-to/role-based-access-control).
+- The [Azure CLI](/cli/azure/install-azure-cli) for local authentication.
 - The runtime and package manager for the language you select.
 
 For more language-specific setup guidance, see [Azure OpenAI supported programming languages](../supported-languages.md).
@@ -29,33 +30,39 @@ The `model` value in each request is your Azure model deployment name. The examp
 
 Send text to the embeddings endpoint, and read the vector from the first item in the response.
 
-> [!NOTE]
-> The Azure OpenAI embeddings API doesn't currently support Microsoft Entra ID with the v1 API. Use API key authentication for the examples in this article.
+The v1 embeddings API supports Microsoft Entra ID and API key authentication. Microsoft Entra ID is recommended because it avoids storing long-lived credentials. The examples in this article use Microsoft Entra ID.
 
-Set the API key environment variable before you run an SDK example:
+For local development, sign in to Azure before you run an SDK example:
 
 ```bash
-export AZURE_OPENAI_API_KEY="<your-api-key>"
+az login
 ```
+
+`DefaultAzureCredential` uses your signed-in identity locally and can use a managed identity when your application runs in Azure.
+
+API key authentication is also supported. For key-based client configuration, see [Azure OpenAI v1 API guidance](../api-version-lifecycle.md).
 
 # [Python](#tab/python-new)
 
-Install the OpenAI package:
+Install the OpenAI and Azure Identity packages:
 
 ```bash
-pip install openai
+pip install openai azure-identity
 ```
 
 Generate an embedding and print its dimensions:
 
 ```python
-import os
 from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+token_provider = get_bearer_token_provider(
+	DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
 openai = OpenAI(
 	base_url=endpoint,
-	api_key=os.environ["AZURE_OPENAI_API_KEY"],
+	api_key=token_provider,
 )
 
 # Generate one embedding vector.
@@ -74,26 +81,31 @@ Reference: [`embeddings.create`](https://github.com/openai/openai-python/blob/ma
 
 # [C#](#tab/csharp)
 
-Install the OpenAI package:
+Install the OpenAI and Azure Identity packages:
 
 ```dotnetcli
 dotnet add package OpenAI
+dotnet add package Azure.Identity
 ```
 
 Generate an embedding and print its dimensions:
 
 ```csharp
+using Azure.Identity;
 using OpenAI;
 using OpenAI.Embeddings;
-using System.ClientModel;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
 
 var endpoint = new Uri(
 	"https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/");
-var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")
-	?? throw new InvalidOperationException("AZURE_OPENAI_API_KEY is required.");
+BearerTokenPolicy tokenPolicy = new(
+	new DefaultAzureCredential(),
+	"https://ai.azure.com/.default");
 var openAIClient = new EmbeddingClient(
 	model: "text-embedding-3-small",
-	credential: new ApiKeyCredential(apiKey),
+	authenticationPolicy: tokenPolicy,
 	options: new OpenAIClientOptions { Endpoint = endpoint });
 
 // Generate one embedding vector.
@@ -110,21 +122,27 @@ Reference: [`EmbeddingClient.GenerateEmbedding`](https://github.com/openai/opena
 
 # [JavaScript](#tab/javascript)
 
-Install the OpenAI package:
+Install the OpenAI and Azure Identity packages:
 
 ```bash
-npm install openai
+npm install openai @azure/identity
 ```
 
 Generate an embedding and print its dimensions:
 
 ```javascript
+import {
+	DefaultAzureCredential,
+	getBearerTokenProvider,
+} from "@azure/identity";
 import OpenAI from "openai";
 
 const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"];
-if (!apiKey) throw new Error("AZURE_OPENAI_API_KEY is required.");
-const openai = new OpenAI({ baseURL: endpoint, apiKey });
+const tokenProvider = getBearerTokenProvider(
+	new DefaultAzureCredential(),
+	"https://ai.azure.com/.default",
+);
+const openai = new OpenAI({ baseURL: endpoint, apiKey: tokenProvider });
 
 // Generate one embedding vector.
 const response = await openai.embeddings.create({
@@ -142,23 +160,45 @@ Reference: [`embeddings.create`](https://github.com/openai/openai-node/blob/main
 
 # [Java](#tab/java)
 
-Add the current `com.openai:openai-java` package to your Maven or Gradle project. For package setup, see [Azure OpenAI Java support](../supported-languages.md?pivots=programming-language-java#install-the-packages).
+For Maven, add the OpenAI and Azure Identity packages:
+
+```xml
+<dependencies>
+	<dependency>
+		<groupId>com.openai</groupId>
+		<artifactId>openai-java</artifactId>
+		<version>4.43.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.azure</groupId>
+		<artifactId>azure-identity</artifactId>
+		<version>1.18.4</version>
+	</dependency>
+</dependencies>
+```
+
+For Gradle setup, see [Azure OpenAI Java support](../supported-languages.md?pivots=programming-language-java).
 
 Generate an embedding and print its dimensions:
 
 ```java
+import com.azure.identity.AuthenticationUtil;
+import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
 import com.openai.models.embeddings.EmbeddingCreateParams;
 
 public class EmbeddingsExample {
 	public static void main(String[] args) {
 		String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
-		String apiKey = System.getenv("AZURE_OPENAI_API_KEY");
-		if (apiKey == null) throw new IllegalStateException(
-				"AZURE_OPENAI_API_KEY is required.");
 		OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
-				.baseUrl(endpoint).apiKey(apiKey).build();
+				.baseUrl(endpoint)
+				.credential(BearerTokenCredential.create(
+						AuthenticationUtil.getBearerTokenSupplier(
+								new DefaultAzureCredentialBuilder().build(),
+								"https://ai.azure.com/.default")))
+				.build();
 
 		// Generate one embedding vector.
 		EmbeddingCreateParams params = EmbeddingCreateParams.builder()
@@ -181,10 +221,11 @@ Reference: [`EmbeddingCreateParams`](https://github.com/openai/openai-java/blob/
 
 # [Go](#tab/go)
 
-Install version 3 of the OpenAI Go module:
+Install version 3 of the OpenAI Go module and the Azure Identity module:
 
 ```bash
 go get github.com/openai/openai-go/v3
+go get github.com/Azure/azure-sdk-for-go/sdk/azidentity
 ```
 
 Generate an embedding and print its dimensions:
@@ -195,18 +236,21 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/azure"
 	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
-	apiKey := os.Getenv("AZURE_OPENAI_API_KEY")
-	if apiKey == "" { panic("AZURE_OPENAI_API_KEY is required") }
+	credential, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil { panic(err) }
 	endpoint := "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 	openaiClient := openai.NewClient(
-		option.WithBaseURL(endpoint), option.WithAPIKey(apiKey))
+		option.WithBaseURL(endpoint),
+		azure.WithTokenCredential(credential, azure.WithTokenCredentialScopes(
+			[]string{"https://ai.azure.com/.default"})))
 
 	// Generate one embedding vector.
 	response, err := openaiClient.Embeddings.New(context.Background(), openai.EmbeddingNewParams{
@@ -227,16 +271,19 @@ Reference: [`Embeddings.New`](https://github.com/openai/openai-go/blob/main/embe
 
 # [PowerShell](#tab/PowerShell)
 
-Store your resource endpoint in `AZURE_OPENAI_ENDPOINT` and your API key in `AZURE_OPENAI_API_KEY`. Then generate an embedding:
+Store your resource endpoint in `AZURE_OPENAI_ENDPOINT`. Then get an access token and generate an embedding:
 
 ```powershell
 $Env:AZURE_OPENAI_ENDPOINT = "https://YOUR-RESOURCE-NAME.openai.azure.com"
-$Env:AZURE_OPENAI_API_KEY = "<your-api-key>"
 ```
 
 ```powershell
 $endpoint = "$($env:AZURE_OPENAI_ENDPOINT.TrimEnd('/'))/openai/v1/embeddings"
-$headers = @{ "api-key" = $env:AZURE_OPENAI_API_KEY }
+$token = az account get-access-token `
+	--resource https://cognitiveservices.azure.com `
+	--query accessToken `
+	--output tsv
+$headers = @{ Authorization = "Bearer $token" }
 
 # Generate one embedding vector.
 $body = @{
@@ -256,22 +303,28 @@ Write-Output "Embedding dimensions: $($response.data[0].embedding.Count)"
 Embedding dimensions: <number>
 ```
 
-Reference: [`Invoke-RestMethod`](/powershell/module/microsoft.powershell.utility/invoke-restmethod)
+Reference: [`Invoke-RestMethod`](/powershell/module/microsoft.powershell.utility/invoke-restmethod) and [`az account get-access-token`](/cli/azure/account#az-account-get-access-token)
 
 # [REST](#tab/console)
 
-Set `AZURE_OPENAI_API_KEY` to your resource key, and send a request to the v1 embeddings endpoint:
+Get an access token, and send a request to the v1 embeddings endpoint:
 
 ```bash
+AZURE_OPENAI_AUTH_TOKEN=$(az account get-access-token \
+	--resource https://cognitiveservices.azure.com \
+	--query accessToken \
+	--output tsv)
 curl "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/embeddings" \
   -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
+	-H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{"model":"text-embedding-3-small","input":"The quick brown fox."}'
 ```
 
 ```output
 {"data":[{"embedding":[<vector-values>]}]}
 ```
+
+Reference: [Azure OpenAI embeddings REST API](/rest/api/microsoft-foundry/azureopenai/embeddings) and [`az account get-access-token`](/cli/azure/account#az-account-get-access-token)
 
 ---
 
@@ -289,7 +342,8 @@ curl "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/embeddings" \
 
 ## Troubleshooting
 
-- For a `401` or `403` response, confirm that the API key belongs to the intended Azure OpenAI resource.
+- For a `401` response, sign in again and confirm that the access token uses the correct audience.
+- For a `403` response, confirm that your identity has the `Cognitive Services OpenAI User` role assigned to the Azure OpenAI resource.
 - For a `404` response, confirm that the endpoint includes `/openai/v1/` and that `model` contains a valid deployment name.
 - For a `400` response, check the request body, each input's token count, the number of inputs, and the aggregate token count.
 
