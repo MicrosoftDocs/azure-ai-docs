@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 Personally Identifiable Information (PII) detection is an Azure Language [core capability](../overview.md#core-capabilities) that helps you identify, classify, and redact sensitive data across text, conversations, and native documents. Submit input text to the service and receive structured output with entity categories, confidence scores, and redacted results based on your API configuration. You can use this capability to implement privacy controls, reduce sensitive data exposure, and support compliance requirements in application and data-processing workflows.
 
 > [!TIP]
-> Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data. The Document PII playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types—including names, addresses, financial IDs, and health identifiers—without uploading your own data.
+> Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data. The Document PII playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types - including names, addresses, financial IDs, and health identifiers - without uploading your own data.
 
 ## Video demonstration
 
@@ -100,7 +100,7 @@ All feature types use predefined entity categories and return confidence-scored 
 * **Document-based PII** is asynchronous and optimized for processing native files while preserving document structure.
 
 > [!NOTE]
-> **Document-based PII** focuses on native-file redaction workflows. Some text-only options are not available in every document API version. The Document PII playground uses the same model and policies as the production API, so playground results match production behavior for the same inputs and configuration.
+> **Document-based PII** focuses on native-file redaction workflows. Some text-only options aren't available in every document API version. The Document PII playground uses the same model and policies as the production API, so playground results match production behavior for the same inputs and configuration.
 
 ## GA and preview guidance
 

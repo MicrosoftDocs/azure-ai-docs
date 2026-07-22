@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # Detect and redact PII in native documents
 
 > [!TIP]
-> Before writing code, you can try document-based PII detection in the Microsoft Foundry portal. The playground loads a prepared sample document, submits it through the existing asynchronous native-file document-based PII pipeline, and shows the redacted output side-by-side with the source. Results include entity categories, confidence scores, and file-fidelity output. For step-by-step instructions, see [Use the document PII playground in Microsoft Foundry](../document-based-pii-playground.md).
+> Before writing code, try document-based PII detection in the Microsoft Foundry portal. The playground loads a prepared sample document, submits it through the existing asynchronous native-file document-based PII pipeline, and shows the redacted output side-by-side with the source. Results include entity categories, confidence scores, and file-fidelity output. For step-by-step instructions, see [Use the document PII playground in Microsoft Foundry](../document-based-pii-playground.md).
 
 Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
 
@@ -264,7 +264,7 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 You receive a 200 (Success) response with JSON output. The **status** field indicates the result of the operation. If the operation isn't complete, the value of **status** is "running" or "notStarted", and you should call the API again, either manually or through a script. We recommend an interval of one second or more between calls.
 
 > [!NOTE]
-> The Microsoft Foundry portal playground surfaces the same artifacts in a visual UI: entity categories and confidence scores appear in the **Details** pane, and the redacted document is shown side-by-side with the source to reflect file-fidelity results. This corresponds directly to the two output artifacts that the API writes to your target container: a redacted native file and a structured JSON result file containing extracted entities.
+> The Microsoft Foundry portal playground surfaces the same artifacts in a visual UI: entity categories and confidence scores appear in the **Details** pane, and the redacted document is shown side-by-side with the source to reflect file-fidelity results. This visual UI corresponds directly to the two output artifacts that the API writes to your target container: a redacted native file and a structured JSON result file containing extracted entities.
 
 #### Sample response
 
