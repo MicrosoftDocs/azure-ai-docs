@@ -433,6 +433,8 @@ When evaluating shared private links for your scenario, remember these constrain
 
 + Shared private link [resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits) vary by pricing tier.
 
++ Debug sessions don't support shared private links. If your search service uses private endpoint connectivity, you can't run debug sessions against it. For a workaround, see [Debug sessions and private connectivity](cognitive-search-debug-session.md#debug-sessions-and-private-connectivity).
+
 + When you [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier), shared private link resources are evaluated against the target tier's limits. If your shared private link count exceeds the target tier's maximum, the tier change is blocked. If the tier change succeeds, existing shared private link resources aren't recreated and don't require reapproval. Private indexer connectivity continues to work after the search service returns to a "Succeeded" provisioning state and "Running" status, provided the shared private link provisioning state remains "Succeeded" and the connection status remains "Approved."
 
 ## Troubleshooting
