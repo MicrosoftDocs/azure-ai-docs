@@ -3,11 +3,11 @@ title: Use Translator v3 connector to configure a Text translation flow
 titleSuffix: Foundry Tools
 description: Use Microsoft Translator v3 connector and Power Automate to configure a Text translation flow.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 06/12/2026
 ms.author: lajanuar
 ---
 

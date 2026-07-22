@@ -20,9 +20,11 @@ ms.custom:
 
 ## Bring your own storage
 
-You can  use your own storage account to run evaluations.
+You can use your own storage account to run evaluations for your Foundry project, whether the project is configured with a virtual network or without one.
 
-1. Create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
+For projects without a virtual network, you can use the storage account connection template. For projects with a virtual network, the storage setup is already included in the [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup).
+
+1. For projects without a virtual network, create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
 1. Make sure the connected storage account has access to all projects.
 1. If you connected your storage account by using Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
 

@@ -3,7 +3,7 @@ title: Language support for Immersive Reader
 titleSuffix: Azure AI services
 description: Learn more about the human languages that Immersive Reader supports.
 author: rwallerms
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-immersive-reader
 ms.topic: concept-article
 ms.date: 02/07/2024

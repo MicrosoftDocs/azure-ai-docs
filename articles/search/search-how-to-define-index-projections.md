@@ -11,6 +11,8 @@ ms.update-cycle: 180-days
 
 # Define an index projection for parent-child indexing
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you're chunking content for either a RAG pattern or vectorization, you can specify an **index projection** to control *one-to-many indexing*, where source content (one) is projected to one or more indexes (many). The intent of an index projection is to control whether elements of the parent document, such as a file name or creation date:
 
 - Repeat for each child (chunk) in a single index

@@ -3,7 +3,7 @@ title: Configure guided guardrail set-up for an agent
 titleSuffix: Azure AI services
 description: Learn how to configure guardrails for your agent in Microsoft Foundry by answering guided questions about its users, data, and tools.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 05/21/2026

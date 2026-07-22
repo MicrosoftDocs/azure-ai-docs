@@ -3,8 +3,8 @@ title: Azure Vision in Foundry Tools 3.2 GA Read OCR container
 titleSuffix: Foundry Tools
 description: Use the Read 3.2 OCR containers from Azure Vision in Foundry Tools to extract text from images and documents, on-premises.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.author: pafarley
@@ -345,4 +345,4 @@ In this article, you learned concepts and workflow for downloading, installing, 
 * Review the [OCR overview](overview-ocr.md) to learn more about recognizing printed and handwritten text
 * Refer to the [Read API](/rest/api/computervision/operation-groups) for details about the methods supported by the container.
 * Refer to [Frequently asked questions (FAQ)](FAQ.yml) to resolve issues related to Azure Vision functionality.
-* Use more [Azure AI containers](../cognitive-services-container-support.md)
+* Use more [Azure AI containers](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

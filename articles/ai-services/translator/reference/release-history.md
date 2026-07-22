@@ -3,10 +3,10 @@ title: Azure Translator in Foundry Tools release history
 titleSuffix: Foundry Tools
 description: Release notes and updates for Azure Translator in Foundry Tools Service API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/20/2026
 ms.author: lajanuar
 ---
 

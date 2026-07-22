@@ -3,7 +3,7 @@ title: Export your model to mobile - Custom Vision Service
 titleSuffix: Foundry Tools
 description: Learn how to export your model for use in creating mobile applications or to run locally for real-time classification.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to

@@ -1,7 +1,7 @@
 ---
 title: "Guardrails and controls overview in Microsoft Foundry"
 description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-content-safety
 ms.topic: concept-article
@@ -67,7 +67,7 @@ The following table summarizes which risks are applicable to models and agents:
 | [Protected material for text](/azure/foundry/openai/concepts/content-filter-protected-material?tabs=text) | ✅ | ✅ |
 | [Groundedness (Preview)](/azure/foundry/openai/concepts/content-filter-groundedness) | ✅ | ❌ |
 | [Personally identifiable information (Preview)](/azure/foundry/openai/concepts/content-filter-personal-information) | ✅ | ✅ |
-| [Task Adherence (Preview)](/azure/foundry/guardrails/how-to-task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
+| [Task Adherence (Preview)](/azure/foundry/guardrails/task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
 
 ### Severity levels
 

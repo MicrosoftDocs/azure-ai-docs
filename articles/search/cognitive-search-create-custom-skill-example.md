@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Example: Create a custom skill using the Bing Entity Search API
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this example, you learn how to create a web API custom skill. This skill accepts locations, public figures, and organizations and returns descriptions for them. The example uses an [Azure Function](https://azure.microsoft.com/services/functions/) to wrap the [Bing Entity Search API](/previous-versions/bing/search-apis/bing-entity-search/overview) so that it implements the custom skill interface.
 
 ## Prerequisites

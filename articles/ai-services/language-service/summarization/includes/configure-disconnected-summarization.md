@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 To use this container disconnected from the internet, you must first request access by filling out an application, and purchasing a commitment plan. See [Use Docker containers in disconnected environments](../../../containers/disconnected-containers.md) for more information.

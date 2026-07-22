@@ -3,7 +3,7 @@ title: Integrate Azure storage for notifications and model backup
 titleSuffix: Foundry Tools
 description: Learn how to integrate Azure storage to receive push notifications when you train or export Custom Vision models. You can also save a backup of exported models.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
 ms.date: 01/29/2025

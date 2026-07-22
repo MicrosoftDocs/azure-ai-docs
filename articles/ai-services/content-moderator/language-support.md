@@ -3,7 +3,7 @@ title: Language support - Content Moderator API
 titleSuffix: Azure AI services
 description: This is a list of natural languages that the Content Moderator API supports.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-content-moderator
 ms.topic: concept-article
 ms.date: 06/12/2025

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: How to lower speech synthesis latency using Speech SDK, including streaming, pre-connection, and more.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026

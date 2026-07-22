@@ -1,7 +1,7 @@
 ---
 title: "Vision fine-tuning (classic)"
 description: "Learn how to fine-tune Azure OpenAI GPT-4o and GPT-4.1 models with image inputs, including dataset requirements, image formats, and best practices. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:

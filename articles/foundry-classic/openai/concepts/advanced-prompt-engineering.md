@@ -7,7 +7,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 01/20/2026
-manager: nitinme
+manager: mcleans
 keywords: system message, system prompt, metaprompt, prompt engineering, safety, grounding
 ai-usage: ai-assisted
 ms.custom:

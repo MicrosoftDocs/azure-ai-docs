@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Get the 86 categories of taxonomy for Azure Vision in Foundry Tools API in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/26/2025
 ---

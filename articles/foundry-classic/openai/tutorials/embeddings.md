@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI in Microsoft Foundry Models embeddings tutorial (classic)"
 description: "Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset (classic)"
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

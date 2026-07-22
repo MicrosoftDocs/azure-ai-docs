@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Transparency Note for Language Understanding"
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.subservice: language-understanding

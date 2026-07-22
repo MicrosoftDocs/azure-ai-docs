@@ -3,7 +3,7 @@ title: Azure Translator neural dictionary
 titleSuffix: Foundry Tools
 description: How to use the Azure Translator neural dictionary feature.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: how-to
 ms.date: 06/02/2026

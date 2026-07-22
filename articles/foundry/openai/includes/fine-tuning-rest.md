@@ -4,13 +4,14 @@ titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 ms.date: 02/27/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025, classic-and-new
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -174,7 +175,7 @@ Select the training tier based on your use case and budget:
 
 - **Global**: Provides more affordable pricing compared to Standard by using capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
-- **Developer (preview)**: Provides significant cost savings by using idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier might be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+- **Developer**: Provides significant cost savings by using idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier might be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
 
 ```curl
 curl -X POST "https://<ACCOUNT-NAME>.openai.azure.com/openai/fine_tuning/jobs?api-version=2025-04-01-preview" -H "Content-Type: application/json" -H "api-key: <API-KEY>" -d "{"model": "gpt-4.1", "training_file": "<FILE_ID>", "hyperparameters": {"prompt_loss_weight": 0.1}, "trainingType": "developerTier"}"

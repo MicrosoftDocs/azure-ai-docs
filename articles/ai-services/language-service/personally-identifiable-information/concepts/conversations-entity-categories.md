@@ -3,7 +3,7 @@ title: Entity categories recognized by Conversational Personally Identifiable In
 titleSuffix: Foundry Tools
 description: Learn about the types of entities the conversational PII feature can detect and identify within conversation inputs.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 06/02/2026

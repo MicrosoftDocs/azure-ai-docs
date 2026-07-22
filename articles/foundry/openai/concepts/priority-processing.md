@@ -1,11 +1,11 @@
 ---
 title: Enable priority processing for Microsoft Foundry Models
 description: "Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 04/23/2026
+ms.date: 07/13/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu

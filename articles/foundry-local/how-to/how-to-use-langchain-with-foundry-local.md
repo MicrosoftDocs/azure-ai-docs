@@ -6,10 +6,10 @@ keywords: Foundry Tools, cognitive, AI models, local inference
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.topic: how-to
-ms.date: 01/05/2026
+ms.date: 05/10/2026
 ms.reviewer: eneros
-ms.author: jburchel
-author: jonburchel
+ms.author: lajanuar
+author: laujan
 reviewer: eneros
 ms.custom:
   - build-2025

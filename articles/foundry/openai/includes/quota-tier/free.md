@@ -1,7 +1,7 @@
 ---
 title: Quota tier 0
 description: Quota tier limits for tier 0
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry

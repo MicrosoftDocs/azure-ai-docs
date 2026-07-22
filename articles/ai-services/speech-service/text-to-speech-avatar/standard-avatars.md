@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Supported standard avatars, avatar styles and gestures
 author: PatrickFarley
 reviewer: patrickfarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 11/5/2025

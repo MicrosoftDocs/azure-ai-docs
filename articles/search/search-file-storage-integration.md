@@ -14,6 +14,8 @@ ms.custom:
 
 # Index data from Azure Files (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]

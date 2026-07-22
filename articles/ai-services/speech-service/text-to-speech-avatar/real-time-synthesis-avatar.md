@@ -2,7 +2,7 @@
 title: Real-time synthesis for text to speech avatar - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use text to speech avatar with real-time synthesis.
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 03/31/2026

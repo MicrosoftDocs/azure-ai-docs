@@ -3,10 +3,10 @@ title: Document Intelligence Studio
 titleSuffix: Foundry Tools
 description: Learn how to set up Document Intelligence Studio to test Azure Document Intelligence in Foundry Tools features.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 04/09/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---

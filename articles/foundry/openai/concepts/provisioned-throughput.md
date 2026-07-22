@@ -5,12 +5,12 @@ ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 05/22/2026
+ms.date: 07/15/2026
 ms.custom:
   - dev-focus
   - classic-and-new
   - doc-kit-assisted
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu

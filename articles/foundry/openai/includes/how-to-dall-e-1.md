@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
+ms.date: 05/27/2026
 ms.custom: include
 ---
 
@@ -24,7 +24,7 @@ Use this table to learn the differences between the different image generation m
 
 | Aspect | GPT-Image-2 | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini |
 |--------|-------------|---------------|--------------|------------------|
-|**Availability** | Public preview | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) |
+|**Availability** | Generally Available | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) |
 | **Strengths** | Best for high-resolution and 4K generation, improved image editing, and broad aspect-ratio support | Best for realism, instruction-following, multimodal context, and improved speed/cost | Best for realism, instruction-following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases |
 | **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). |
 | **Image Sizes / Resolutions** | Arbitrary resolutions: both edges must be multiples of 16 px; long edge up to 3,840 px (4K); aspect ratio up to 3:1; pixel count 655,360–8,294,400 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 |

@@ -3,10 +3,10 @@ title: Custom template document model - Document Intelligence
 titleSuffix: Foundry Tools
 description: Use the custom template document model to train a model to extract data from structured or templated forms.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/09/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0 || <=doc-intel-3.1.0'
 ---

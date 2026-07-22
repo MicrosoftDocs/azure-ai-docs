@@ -3,7 +3,7 @@ title: Store user preferences for Immersive Reader
 titleSuffix: Azure AI services
 description: Learn how to store user preferences via the Immersive Reader SDK options.
 author: sharmas
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to

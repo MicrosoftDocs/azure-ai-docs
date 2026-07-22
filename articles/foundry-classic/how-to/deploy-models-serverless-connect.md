@@ -5,7 +5,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/31/2026
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: fasantia

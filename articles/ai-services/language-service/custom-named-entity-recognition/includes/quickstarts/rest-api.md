@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/23/2026
 ms.author: lajanuar
 ---
 ## Prerequisites
@@ -77,7 +77,7 @@ Training could take sometime between 10 and 30 minutes for this sample dataset. 
 
 ## Deploy your model
 
-Generally after training a model you would review it's [evaluation details](../../how-to/view-model-evaluation.md) and [make improvements](../../how-to/view-model-evaluation.md) if necessary. In this quickstart, you just deploy your model, and make it available for you to try in Language Studio, or you can call the [prediction API](https://aka.ms/ct-runtime-swagger).
+Generally after training a model you would review it's [evaluation details](../../how-to/view-model-evaluation.md) and [make improvements](../../how-to/view-model-evaluation.md) if necessary. In this quickstart, you just deploy your model and make it available for testing in the Microsoft Foundry portal, or you can call the [prediction API](https://aka.ms/ct-runtime-swagger).
 
 ### Start deployment job
 

@@ -14,6 +14,8 @@ ms.custom:
 
 # Upgrade to Azure AI Search .NET SDK version 11
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If your search solution is built on the [**Azure SDK for .NET**](/dotnet/azure/), this article helps you migrate your code from earlier versions of [**Microsoft.Azure.Search**](/dotnet/api/overview/azure/search) to version 11, the new [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library. Version 11 is a fully redesigned client library, released by the Azure SDK development team (previous versions were produced by the Azure AI Search development team). 
 
 All features from version 10 are implemented in version 11. Key differences include:

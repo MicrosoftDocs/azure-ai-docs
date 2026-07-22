@@ -2,7 +2,7 @@
 title: Get supported glossary formats method
 titleSuffix: Foundry Tools
 description: The get supported glossary formats method returns the list of supported glossary formats.
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator

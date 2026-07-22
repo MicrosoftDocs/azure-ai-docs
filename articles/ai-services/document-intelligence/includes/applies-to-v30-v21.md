@@ -3,10 +3,10 @@ title: Document Intelligence v3.0 and v2.1 content
 description: include file
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/01/2026
 ---
 
 **This content applies to:** ![red-checkmark](../media/retire-icon.png) **v3.0 (retiring)** ![red-checkmark](../media/retire-icon.png) **v2.1 (retiring)**

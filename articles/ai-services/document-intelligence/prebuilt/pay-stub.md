@@ -3,10 +3,10 @@ title: Document Intelligence payStub model
 titleSuffix: Foundry Tools
 description: Automate compensation and earnings information from pay slips and stubs.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 05/11/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---

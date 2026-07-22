@@ -3,10 +3,10 @@ title: Supported prebuilt entity components
 titleSuffix: Foundry Tools
 description: Learn about which entities can be detected automatically in Conversational Language Understanding
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

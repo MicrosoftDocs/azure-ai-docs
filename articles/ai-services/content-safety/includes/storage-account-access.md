@@ -2,7 +2,7 @@
 title: "Storage account access"
 description: Storage account access
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 04/12/2024

@@ -3,7 +3,7 @@ title: "Display text format training data - Speech service"
 titleSuffix: Foundry Tools
 description: Learn about how to prepare display text format training data for custom speech.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 01/30/2026

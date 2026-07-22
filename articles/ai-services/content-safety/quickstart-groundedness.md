@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn how to detect whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
 services: ai-services
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 09/16/2025

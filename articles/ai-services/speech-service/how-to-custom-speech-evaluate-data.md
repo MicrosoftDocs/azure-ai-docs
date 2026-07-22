@@ -3,7 +3,7 @@ title: Test accuracy of a custom speech model - Speech service
 titleSuffix: Foundry Tools
 description: In this article, you learn how to quantitatively measure and improve the quality of our speech to text model or your custom model.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025

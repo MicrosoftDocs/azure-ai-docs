@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools analyzers, how to configure them, and the parameters you can set when creating custom analyzers.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools

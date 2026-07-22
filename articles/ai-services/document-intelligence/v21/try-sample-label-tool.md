@@ -3,10 +3,10 @@ title: "Quickstart: Label forms, train a model, and analyze forms using the Samp
 titleSuffix: Foundry Tools
 description: In this quickstart, learn to use the Document Intelligence Sample Labeling tool to manually label documents. Then train a custom document processing model with the labeled documents and use the model to extract key/value pairs.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: quickstart
-ms.date: 10/01/2025
+ms.date: 05/11/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---

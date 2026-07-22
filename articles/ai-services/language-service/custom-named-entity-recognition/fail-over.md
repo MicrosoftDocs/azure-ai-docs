@@ -3,10 +3,10 @@ title: Back up and recover your custom Named Entity Recognition (NER) models
 titleSuffix: Foundry Tools
 description: Learn how to save and recover your custom NER models.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/06/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---

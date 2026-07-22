@@ -3,7 +3,7 @@ title: "Transparency Note for Azure Agent Service (classic)"
 description: "Transparency Note for Azure Agents Service (classic)"
 author: aahill
 ms.author: aahi
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article

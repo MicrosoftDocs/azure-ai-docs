@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -366,7 +366,7 @@ class AsyncFunctionCallingClient:
         # Create turn detection configuration
         turn_detection_config = ServerVad(
             threshold=0.5,
-            prefix_padding_ms=300,
+            prefix_padding_ms=400,
             silence_duration_ms=500)
 
         # Define function tools

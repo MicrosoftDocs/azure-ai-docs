@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/14/2026
 ms.author: lajanuar
 ---
 To start creating a custom named entity recognition model, you need to create a project. Creating a project lets you label data, train, evaluate, improve, and deploy your models.

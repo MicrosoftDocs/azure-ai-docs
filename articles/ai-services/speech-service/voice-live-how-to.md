@@ -2,7 +2,7 @@
 title: How to use the Voice Live API
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice Live API for real-time voice agents.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
@@ -137,7 +137,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 |----------|----------|----------|------------|
 | `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-realtime-mini* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
 | `threshold` | float | Optional | Activation threshold (0.0–1.0). A higher threshold requires a higher confidence signal of the user trying to speak (default: 0.5). Available with types `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
-| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal (default: 300). |
+| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. Starting with API version `2026-04-10`, the default is 400 for `server_vad` and 420 for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. For earlier API versions, the default is 300 for all types. |
 | `speech_duration_ms` | integer | Optional | The duration of user's speech audio, measured in milliseconds, required to start detection. The default value is 200 ms for `server_vad` and 80 ms for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech (default: 500). |
 | `remove_filler_words` | boolean | Optional | Determines whether to remove filler words to reduce the false alarm rate of barge-in.<br/>To enable it the property must be set to `true`. The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove filler words feature assumes the client plays response audio as soon as it receives them.<br/>The default value is `false`. |
@@ -154,7 +154,7 @@ The Voice Live API supports multiple transcription models for input audio. Set t
 | Transcription model | Compatible chat models | Description |
 |---|---|---|
 | `azure-speech` | All non-multimodal models and agents | Azure speech to text. Automatically active with non-multimodal models. Supports [phrase list and custom speech](./voice-live-how-to-customize.md). |
-| `mai-transcribe-1` | All non-multimodal models and agents | MAI Transcribe-1 speech recognition model (preview). |
+| `mai-transcribe` | All non-multimodal models and agents | MAI Transcribe speech recognition model (preview). |
 | `whisper-1` | `gpt-realtime`, `gpt-realtime-mini` | OpenAI Whisper transcription model. |
 | `gpt-4o-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o based transcription model. |
 | `gpt-4o-mini-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o mini based transcription model. |
@@ -179,16 +179,16 @@ Azure speech to text is automatically active when you're using a non-multimodal 
 
 For speech input customization options such as phrase list and custom speech, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md).
 
-### MAI Transcribe-1 (preview)
+### MAI Transcribe (preview)
 
-MAI Transcribe-1 is a transcription model that can be used as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`). Enable it by setting `input_audio_transcription.model` to `mai-transcribe-1` in a `session.update` message:
+MAI Transcribe is a transcription model that you can use as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`). Enable it by setting `input_audio_transcription.model` to `mai-transcribe` in a `session.update` message:
 
 ```json
 {
   "type": "session.update",
   "session": {
     "input_audio_transcription": {
-      "model": "mai-transcribe-1"
+      "model": "mai-transcribe"
     },
     "modalities": ["text", "audio"],
     "instructions": "You are a helpful assistant.",
@@ -220,7 +220,7 @@ async with connect(
     await conn.session.update(
         session=RequestSession(
             input_audio_transcription=AudioInputTranscriptionOptions(
-                model="mai-transcribe-1",
+                model="mai-transcribe",
             ),
             voice=AzureStandardVoice(name="en-US-AvaNeural"),
             modalities=[Modality.TEXT, Modality.AUDIO],
@@ -446,19 +446,42 @@ Specify the voice as a structured object with `type` set to `azure-realtime-nati
 
 The following `azure-realtime-native` voice names are supported:
 
-| Voice name | Description |
-|---|---|
-| `aarti` | Azure Speech native voice |
-| `andrew` | Azure Speech native voice |
-| `ava` | Azure Speech native voice (default) |
-| `denise` | Azure Speech native voice |
-| `elsa` | Azure Speech native voice |
-| `florian` | Azure Speech native voice |
-| `francisca` | Azure Speech native voice |
-| `meera` | Azure Speech native voice |
-| `ximena` | Azure Speech native voice |
-| `xiaoxiao` | Azure Speech native voice |
-| `yunxi` | Azure Speech native voice |
+| Voice name | Description | Locale | Voice Detail |
+|---|---|---|---|
+| `aarti` | Azure Speech native voice | en-IN | Warm, rich Indian-accented English female voice with a dark, inviting tone. Best for premium support, guided learning, and trusted brand experiences. |
+| `alvaro` | Azure Speech native voice | es-ES | Confident, animated Spanish male voice with strong presence. Best for sales, promotions, and assertive service communication. |
+| `andrew` | Azure Speech native voice | en-US | Textured, relaxed, trustworthy US male voice designed for low-pressure chat. |
+| `antonio` | Azure Speech native voice | pt-BR | Bright, upbeat Brazilian Portuguese male voice with strong enthusiasm. Best for campaigns, product intros, and energetic customer engagement. |
+| `ava` | Azure Speech native voice (default) | en-US | Bright, confident, high-energy US voice. Best for product demos, customer support, and polished branded experiences. |
+| `clara` | Azure Speech native voice | en-CA | Clear, versatile Canadian voice with broad usability. Best for general-purpose assistants, education, and customer support. |
+| `dalia` | Azure Speech native voice | es-MX | Bright, upbeat Mexican Spanish female voice with warm energy. Best for retail, customer engagement, and lively assistant experiences. |
+| `denise` | Azure Speech native voice | fr-FR | Bright, engaging French female voice that keeps attention high. Best for lively customer engagement and onboarding. |
+| `diego` | Azure Speech native voice | it-IT | Animated, upbeat Italian male voice full of energy. Best for lively conversations, promotions, and entertainment-focused experiences. |
+| `diya` | Azure Speech native voice | hi-IN | Crisp, clear bilingual Hindi and Indian-accented English female voice. Best for troubleshooting, issue resolution, and multilingual support. |
+| `elsa` | Azure Speech native voice | it-IT | Confident, crisp Italian female voice with clear delivery. Best for service guidance, explainers, and professional support. |
+| `emma` | Azure Speech native voice | en-US | Warm, conversational, mid-pitch US female voice with a dynamic conversational style. Best for routine service help, onboarding, and fast-moving support flows. |
+| `florian` | Azure Speech native voice | de-DE | Warm, cheerful German male voice with strong clarity and versatility. Best for explainers, education, and approachable support. |
+| `francisca` | Azure Speech native voice | pt-BR | Cheerful, crisp Brazilian Portuguese female voice with positive clarity. Best for support, onboarding, and service messaging. |
+| `hyunsu` | Azure Speech native voice | ko-KR | Rich, resonant Korean male voice with steady professionalism. Best for formal guidance, explainers, and trusted information delivery. |
+| `jorge` | Azure Speech native voice | es-MX | Deep, confident Mexican Spanish male voice with authority and assurance. Best for announcements, logistics, and trust-focused support. |
+| `keita` | Azure Speech native voice | ja-JP | Casual, engaging Japanese male voice with a relaxed but lively feel. Best for chat-based assistants and informal service interactions. |
+| `liam` | Azure Speech native voice | en-CA | Young Canadian male voice with an enthusiastic, articulate delivery. Best for tech content, tutorials, and educational products. |
+| `meera` | Azure Speech native voice | hi-IN | Calm, warm bilingual Hindi and Indian-accented English female voice with a soothing presence. Best for wellness, care, hospitality, and reflective guidance. |
+| `nanami` | Azure Speech native voice | ja-JP | Bright, cheerful Japanese female voice with an uplifting tone. Best for welcome messages, retail, and friendly lifestyle experiences. |
+| `natasha` | Azure Speech native voice | en-AU | Clear, versatile Australian female voice that adapts easily across use cases. Best for general assistants, support, and instructional content. |
+| `niwat` | Azure Speech native voice | th-TH | Confident Thai male voice with smooth, measured professionalism. Best for corporate presentations, podcasts, and formal service messaging. |
+| `premwadee` | Azure Speech native voice | th-TH | Young Thai female voice with a formal, professional tone. Best for announcements, training, and structured communication. |
+| `rayn` | Azure Speech native voice | en-GB | Straightforward British male voice with an efficient, neutral style. Best for transactional support, enterprise tools, and service updates. |
+| `remy` | Azure Speech native voice | fr-FR | Cheerful French male voice with an uplifting, conversational tone. Best for chat, retail, and light branded storytelling. |
+| `seraphina` | Azure Speech native voice | de-DE | Casually charming German female voice with a relaxed, engaging style. Best for audiobooks, casual chat, and lifestyle content. |
+| `sonia` | Azure Speech native voice | en-GB | Gentle, soft British female voice with a calm, soothing presence. Best for premium support, wellness, and thoughtful onboarding. |
+| `sunhi` | Azure Speech native voice | ko-KR | Calm, soothing Korean female voice with dark warmth and measured pacing. Best for wellness, hospitality, and reassuring guidance. |
+| `sylvie` | Azure Speech native voice | fr-CA | Calm, soothing Canadian French female voice with steady professionalism. Best for announcements, support, and trusted public-facing communication. |
+| `thierry` | Azure Speech native voice | fr-CA | Calm Canadian French male voice with a dark, warm timbre. Best for premium narration, wellness, and thoughtful brand experiences. |
+| `william` | Azure Speech native voice | en-AU | Calm Australian male voice with warm depth and reassuring confidence. Best for onboarding, support, and premium narration. |
+| `xiaoxiao` | Azure Speech native voice | zh-CN | Sweet, soft, welcoming Mandarin female voice with rich emotional range. Best for hospitality, premium care, and warm customer-facing experiences. |
+| `ximena` | Azure Speech native voice | es-ES | Crisp, cheerful Spanish female voice with clear positivity. Best for hospitality, support, and guided shopping. |
+| `yunxi` | Azure Speech native voice | zh-CN | Lively Mandarin male voice with vivid, expressive emotion. Best for storytelling, engaging assistants, and interactive education. |
 
 If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
 

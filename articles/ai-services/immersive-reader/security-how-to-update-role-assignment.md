@@ -3,7 +3,7 @@ title: "Update role assignment for Microsoft Entra authentication"
 titleSuffix: Azure AI services
 description: Learn how to update the role assignment on existing Immersive Reader resources due to a security bug.
 author: sharmas
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-immersive-reader
 ms.custom: devx-track-azurecli

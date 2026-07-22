@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 1/26/2026
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom: build-2024, serverless, devx-track-azurecli, ignite-2024

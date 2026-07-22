@@ -8,7 +8,7 @@ ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 11/21/2025
 ms.custom: template-concept
-manager: nitinme
+manager: mcleans
 ---
 
 # Audio capabilities in Azure OpenAI in Microsoft Foundry Models (classic)

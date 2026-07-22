@@ -75,8 +75,6 @@ items:
     items:
     - name: Work with reasoning models
       href: ../../foundry-models/how-to/use-chat-reasoning.md
-    - name: Work with multimodal models
-      href: ../../foundry-models/how-to/use-chat-multi-modal.md
     - name: Use structured outputs
       href: ../../foundry-models/how-to/use-structured-outputs.md
   - name: Work with embedding models
@@ -88,11 +86,17 @@ items:
   - name: Work with image models
     href: ../../how-to/use-image-models.md
   - name: Claude in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+    items:
+    - name: Claude models overview
+      displayName: Overview of Claude models in Foundry
+      href: ../../foundry-models/concepts/claude-models.md
+    - name: Deploy and use Claude models
+      displayName: Deploy and use Claude models in Foundry
+      href: ../../foundry-models/how-to/use-foundry-models-claude.md
   - name: FLUX models in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
   - name: MAI image models in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-mai.md
+    href: ../../../foundry/foundry-models/how-to/use-foundry-models-mai-image.md
   - name: Develop with LangChain and LangGraph
     href: ../../how-to/develop/langchain.md
   - name: Develop with Llama-Index
@@ -129,8 +133,6 @@ items:
       href: ../../how-to/deploy-models-serverless.md
     - name: Consume models from a different project or hub
       href: ../../how-to/deploy-models-serverless-connect.md
-    - name: Model region availability for serverless API 
-      href: ../../how-to/deploy-models-serverless-availability.md
     - name: Guardrails & controls for serverless API 
       href: ../../concepts/model-catalog-content-safety.md
     - name: Inference examples for serverless deployments
@@ -241,6 +243,8 @@ items:
       href: ../../openai/concepts/video-generation.md
   - name: Stored completions
     href: ../../openai/how-to/stored-completions.md
+  - name: Stored completions migration guide 
+    href: ../../openai/how-to/stored-completions-retirement.md
   - name: Webhooks
     href: ../../openai/how-to/webhooks.md
   - name: Concepts

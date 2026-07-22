@@ -2,7 +2,7 @@
 title: "Post-call transcription and analytics quickstart - Speech service"
 titleSuffix: Foundry Tools
 description: In this quickstart, you perform sentiment analysis and conversation summarization of call center transcriptions.
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 02/25/2026

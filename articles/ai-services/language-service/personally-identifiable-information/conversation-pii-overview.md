@@ -3,7 +3,7 @@ title: Conversation Personally Identifiable Information (PII) redaction overview
 titleSuffix: Foundry Tools
 description: Learn how conversation PII redaction in Azure Language detects and redacts sensitive data in turn-based conversational inputs.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 06/02/2026

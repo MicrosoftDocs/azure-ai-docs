@@ -3,10 +3,10 @@ title: "Quickstart: Use the NER client library"
 titleSuffix: Foundry Tools
 description: Use this quickstart to start using the Named Entity Recognition (NER) API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 05/23/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

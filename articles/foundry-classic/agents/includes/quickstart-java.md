@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry

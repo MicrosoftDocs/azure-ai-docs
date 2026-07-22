@@ -3,14 +3,14 @@ title: Integrate Azure Functions with Foundry Agents
 titleSuffix: Microsoft Foundry
 description: Build custom agent tools with Azure Functions using queue-based integration. Step-by-step guide with code examples for Foundry agents.
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, doc-kit-assisted
 zone_pivot_groups: selection-azure-function-tool
@@ -394,7 +394,7 @@ Add the Azure AI Agents dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>

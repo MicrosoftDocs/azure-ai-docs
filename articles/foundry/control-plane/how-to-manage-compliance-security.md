@@ -2,8 +2,8 @@
 title: "Manage compliance and security in Microsoft Foundry"
 ms.reviewer: gregharen
 description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM."
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt 
+ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.subservice: foundry-control-plane
 ms.topic: how-to
@@ -189,7 +189,7 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements. Keep these considerations in mind:
 
-- Microsoft Purview Data Security Policies apply to interactions that use Microsoft Entra ID user-context authentication against Foundry's managed inference endpoint (`/chat/completions`). To learn more, see [AzureUserSecurityContext](../openai/latest.md#azureusersecuritycontext).
+- Microsoft Purview Data Security Policies apply to interactions that use Microsoft Entra ID user-context authentication against Foundry's managed inference endpoint (`/chat/completions`). To learn more, see [AzureUserSecurityContext](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true).
 
 - For all other authentication scenarios, user interactions are visible in Microsoft Purview Audit and DSPM for AI activity explorer classifications, but aren't enforced by data security policies.
 
@@ -221,5 +221,6 @@ Repeat the preceding steps for other Azure subscriptions, as appropriate.
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#manage-compliance-and-monitoring) — role requirements for compliance and monitoring tasks.
 - [What is Azure Policy?](/azure/governance/policy/overview)
 - [Microsoft Defender for Cloud documentation](/azure/defender-for-cloud/)

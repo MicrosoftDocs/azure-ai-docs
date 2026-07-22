@@ -3,10 +3,10 @@ title: Foundry Tools adaptive custom translation
 titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure AI adaptive custom translation API v1.0 preview to create and manage adaptive dataset indexes.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 04/12/2026
 ms.topic: reference
 ---
 <!-- markdownlint-disable MD025 -->

@@ -3,10 +3,10 @@ title: How to deploy a custom named entity recognition (NER) model
 titleSuffix: Foundry Tools
 description: Learn how to deploy a model for custom NER.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 05/05/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---

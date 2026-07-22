@@ -3,9 +3,9 @@ title: OCR - Optical Character Recognition
 titleSuffix: Foundry Tools
 description: Learn how the optical character recognition (OCR) services extract print and handwritten text from images and documents in global languages.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: overview
 ms.date: 11/21/2025
 ms.author: pafarley

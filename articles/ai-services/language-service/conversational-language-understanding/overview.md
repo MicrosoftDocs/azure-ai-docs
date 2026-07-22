@@ -3,10 +3,10 @@ title: Conversational Language Understanding - Foundry Tools
 titleSuffix: Foundry Tools
 description: Customize an AI model to predict the intentions of utterances, and extract important information from them.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -14,7 +14,7 @@ ms.custom: language-service-clu
 # What is conversational language understanding?
 
 > [!IMPORTANT]
-> Conversational Language Understanding (CLU) is retiring from Azure Language effective **March 31, 2029**. After this date, the CLU feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Conversational Language Understanding (CLU) retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and direct all new projects to [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which offers enhanced capabilities for natural language understanding and can be easily integrated into your applications. For guidance, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
 
 Conversational language understanding is one of the custom features offered by [Azure Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application.
 

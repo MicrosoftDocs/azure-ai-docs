@@ -3,7 +3,7 @@ title: What is Azure Translator document translation?
 titleSuffix: Foundry Tools
 description: Learn about Azure Translator document translation for batch and single-file translation while preserving document structure and formatting.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
 ms.date: 06/02/2026
@@ -141,27 +141,25 @@ The following tables list the document and glossary file formats supported by ea
 
 The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document translation service. The list includes common file extensions and content types.
 
-| File type | File extension | Description |
-| --- | --- | --- |
-| Adobe PDF | `pdf` | Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout. |
-| Comma-Separated Values | `csv` | A comma-delimited raw-data file used by spreadsheet programs. |
-| DITA | `dita` | An XML-based open standard for authoring and publishing. |
-| HTML | `html`, `htm` | Hyper Text Markup Language. |
-| Image (2025-12-01-preview) | `.jpeg`, `.png`, `.bmp`, `.webp` | Files that store digital image data. |
-| Markdown | `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd` | A lightweight markup language for creating formatted text. |
-| M&#8203;HTML | `mhtml`, `mht` | A web page archive format used to combine HTML code and its companion resources. |
-| Microsoft Excel | `xls`, `xlsx` | A spreadsheet file for data analysis and documentation. |
-| Microsoft Outlook | `msg` | An email message created or saved within Microsoft Outlook. |
-| Microsoft PowerPoint | `ppt`, `pptx` | A presentation file used to display content in a slideshow format. |
-| Microsoft Word | `doc`, `docx` | A text document file. |
-| OpenDocument Presentation | `odp` | An open-source presentation file. |
-| OpenDocument Spreadsheet | `ods` | An open-source spreadsheet file. |
-| OpenDocument Text | `odt` | An open-source text document file. |
-| Rich text format | `rtf` | A text document containing formatting. |
-| Tab separated values/TAB | `tsv`/`tab` | A tab-delimited raw-data file used by spreadsheet programs. |
-| Text | `txt` | An unformatted text document. |
-| XLIFF | `xlf`, `xliff 2.0` | A parallel document format used in translation and localization. |
-| XML | `xml` | A markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. |
+| File type| File extension|Description|
+|---|---|---|
+|Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
+|Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
+|HTML|`html`, `htm`|Hyper Text Markup Language.|
+|Image (2025-12-01-preview)|`.jpeg`, `.png`, `.bmp`, `.webp`|Files that store digital image data.|
+|OpenDocument Presentation|`odp`|An open-source presentation file.|
+|OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
+|OpenDocument Text|`odt`|An open-source text document file.|
+|Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
+|M&#8203;HTML|`mhtml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
+|Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
+|Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook. Unicode-format .msg files only. ANSI-format .msg files are not supported.|
+|Microsoft PowerPoint|`ppt`, `pptx`| A presentation file used to display content in a slideshow format.|
+|Microsoft Word|`doc`, `docx`| A text document file.|
+|Rich text format|`rtf`|A text document containing formatting.|
+|Tab separated values/TAB|`tsv`/`tab`| A tab-delimited raw-data file used by spreadsheet programs.|
+|Text|`txt`| An unformatted text document.|
+|XLIFF|`xlf`|A parallel document format used in translation and localization.|
 
 ### Batch Legacy file types
 

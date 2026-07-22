@@ -3,7 +3,7 @@ title: "Speech Studio overview - Speech service"
 titleSuffix: Foundry Tools
 description: Speech Studio is a set of UI-based tools for building and integrating features from Speech service in your applications.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026

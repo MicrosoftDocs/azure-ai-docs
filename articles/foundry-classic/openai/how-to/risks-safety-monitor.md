@@ -7,7 +7,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 01/30/2026
-manager: nitinme
+manager: mcleans
 ---
 
 # Use Risks & Safety monitoring in Microsoft Foundry (preview) (classic) 

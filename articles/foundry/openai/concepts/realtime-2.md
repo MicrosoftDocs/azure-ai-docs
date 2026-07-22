@@ -1,9 +1,9 @@
 ---
-title: "GPT Realtime 2.0 (preview) overview"
+title: "GPT Realtime 2.x (preview) overview"
 description: "Learn about GPT Realtime 2, a speech-to-speech model with built-in reasoning for low-latency interactive voice experiences."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
@@ -13,6 +13,6 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# GPT Realtime 2.0 (preview) overview
+# GPT Realtime 2.x (preview) overview
 
 [!INCLUDE [GPT Realtime 2](../includes/concepts-realtime-2.md)]

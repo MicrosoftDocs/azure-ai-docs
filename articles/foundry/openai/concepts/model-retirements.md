@@ -8,7 +8,7 @@ ms.date: 04/21/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.author: mopeakande
 ms.reviewer: josander

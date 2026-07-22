@@ -3,10 +3,10 @@ title: Identity document (ID) processing – Document Intelligence
 titleSuffix: Foundry Tools
 description: Automate identity document (ID) processing of driver licenses, passports, and more with Document Intelligence.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/03/2026
 ms.author: lajanuar
 ms.custom: references.regions
 ---

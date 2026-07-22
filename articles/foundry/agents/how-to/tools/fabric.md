@@ -1,11 +1,11 @@
 ---
 title: "Use the Microsoft Fabric data agent with Foundry agents"
 description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough."
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
-manager: nitinme
+manager: mcleans
 ms.date: 03/30/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -227,7 +227,7 @@ For more about Agent Framework Foundry tool factories, see the [Foundry provider
 
 :::zone pivot="csharp"
 
-To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+To enable your agent to access the Fabric data agent, use `MicrosoftFabricPreviewTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
 
 ### [Prompt Agents](#tab/prompt-agents)
 
@@ -320,7 +320,7 @@ The agent response text is printed to the console, grounded in the Fabric worksp
 Response: The connected Fabric workspace contains the following datasets ...
 ```
 
-For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step20_MicrosoftFabric).
+For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step20_MicrosoftFabric).
 
 ---
 
@@ -328,7 +328,7 @@ For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/micro
 
 :::zone pivot="typescript"
 
-The following TypeScript example demonstrates how to create an AI agent with Microsoft Fabric capabilities by using the `MicrosoftFabricAgentTool` and synchronous Azure AI Projects client. The agent can query Fabric data sources and provide responses based on data analysis. For a JavaScript version of this sample, see the [JavaScript sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFabric.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript example demonstrates how to create an AI agent with Microsoft Fabric capabilities by using the `MicrosoftFabricPreviewTool` and synchronous Azure AI Projects client. The agent can query Fabric data sources and provide responses based on data analysis. For a JavaScript version of this sample, see the [JavaScript sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFabric.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -424,7 +424,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 

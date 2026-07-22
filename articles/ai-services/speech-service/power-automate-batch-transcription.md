@@ -2,7 +2,7 @@
 title: Power automate batch transcription - Speech service
 titleSuffix: Foundry Tools
 description: Transcribe audio files from an Azure Storage container using the Power Automate batch transcription connector.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools

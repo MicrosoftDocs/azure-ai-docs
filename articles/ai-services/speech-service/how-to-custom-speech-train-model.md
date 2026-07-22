@@ -3,7 +3,7 @@ title: Train a custom speech model - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to train custom speech models. Training a speech to text model can improve recognition accuracy for the Microsoft base model or a custom model.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 06/02/2026

@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to create and configure Azure resources for translation services.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.date: 11/18/2025
+manager: mcleans
+ms.date: 06/29/2026
 ms.service: azure-ai-translator
 ms.topic: how-to
 

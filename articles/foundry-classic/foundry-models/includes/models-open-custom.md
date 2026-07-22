@@ -1,6 +1,6 @@
 ---
 title: Open and custom models
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include

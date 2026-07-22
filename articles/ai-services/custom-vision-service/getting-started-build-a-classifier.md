@@ -3,7 +3,7 @@ title: "Quickstart: Build an image classification model with the Custom Vision p
 titleSuffix: Foundry Tools
 description: Learn how to use the Custom Vision web portal to create, train, and test an image classification model.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: quickstart
 ms.date: 03/26/2025

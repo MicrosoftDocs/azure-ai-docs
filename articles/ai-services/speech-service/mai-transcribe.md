@@ -2,7 +2,7 @@
 title: MAI-Transcribe in LLM Speech API - Speech Service
 titleSuffix: Foundry Tools
 description: Learn how to use the MAI-Transcribe model in Azure Speech LLM Speech API.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools
@@ -23,7 +23,7 @@ MAI‑Transcribe models are speech recognition models developed by the Microsoft
 
 The following models are supported:
 - `mai-transcribe-1.5`
-- `mai-transcribe-1`
+- `mai-transcribe-1`: **Deprecated on Aug 20, 2026.**
 
 ## Prerequisites
 
@@ -142,7 +142,7 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 
 ### Use MAI-Transcribe with Voice Live
 
-You can also use the MAI-Transcribe model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-1-model-preview).
+You can also use the MAI-Transcribe model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md).
 
 
 ## Related content

@@ -3,7 +3,7 @@ title: Container location change note
 titleSuffix: Foundry Tools
 description: note about the image location for containers on the Microsoft Container Registry
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include
 ms.date: 09/02/2020

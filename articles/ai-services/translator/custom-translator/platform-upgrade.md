@@ -3,7 +3,7 @@ title: "Platform upgrade - Custom Translator"
 titleSuffix: Foundry Tools
 description: Custom Translator v1.0 upgrade
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.date: 06/02/2026
 ms.author: lajanuar

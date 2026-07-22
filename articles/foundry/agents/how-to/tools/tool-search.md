@@ -5,7 +5,7 @@ author: zhuoqunli
 ms.author: zhuoqunli
 ms.reviewer: shpeng
 ms.date: 05/10/2026
-manager: nitinme
+manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -243,7 +243,6 @@ url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<na
 token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
 headers = {
     "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Toolboxes=V1Preview",
 }
 
 async def verify_toolbox():
@@ -276,7 +275,6 @@ Use the version-specific endpoint (`/versions/{version}/mcp`) to validate before
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
 ```
@@ -287,7 +285,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","method":"notifications/initialized"}
 ```
@@ -298,7 +295,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
@@ -309,13 +305,13 @@ In `result.tools`, `tool_search` should be present and all other toolbox tools s
 
 :::zone pivot="dotnet"
 
-Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure.com/.default` and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
 
 :::zone-end
 
 :::zone pivot="javascript"
 
-Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default` and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
 
 :::zone-end
 

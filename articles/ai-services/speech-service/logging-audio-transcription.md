@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use audio and transcription logging for speech to text and speech translation.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to

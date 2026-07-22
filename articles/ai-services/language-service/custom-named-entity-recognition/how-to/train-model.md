@@ -3,10 +3,10 @@ title: How to train your Custom Named Entity Recognition (NER) model
 titleSuffix: Foundry Tools
 description: Learn about how to train your model for Custom Named Entity Recognition (NER).
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/18/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---

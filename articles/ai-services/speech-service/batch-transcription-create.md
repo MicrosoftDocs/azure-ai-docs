@@ -2,7 +2,7 @@
 title: Create a batch transcription - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use Azure Speech in Foundry Tools for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 With batch transcriptions, you submit [audio data](batch-transcription-audio-data.md) in a batch. The service transcribes the audio data and stores the results in a storage container. You can then [retrieve the results](batch-transcription-get.md) from the storage container.
 
-Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors. The service doesn't provide a way to estimate the time it takes to transcribe a batch of audio data.
+Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors.
 
 > [!TIP]
 > If you need consistent fast speed for audio files less than 2 hours long and less than 300 MB in size, consider using the [fast transcription API](./fast-transcription-create.md) instead. 
@@ -42,6 +42,10 @@ To create a batch transcription job, use the [Transcriptions - Submit](/rest/api
 - Optionally, set the `languageIdentification` property. Language identification is used to identify languages spoken in audio when compared against a list of [supported languages](language-support.md?tabs=language-identification). If you set the `languageIdentification` property, then you must also set `languageIdentification.candidateLocales` with candidate locales.
 
 For more information, see [Request configuration options](#request-configuration-options).
+
+> [!TIP]
+> A transcription request can contain URIs for one or more audio files. Separate short and long audio files into different requests. Long audio files require more processing time and the service might retry them multiple times due to insufficient computing resources. This condition prolongs the overall completion time of that request. However, bundling many long audio files together in a single request is a good way to save time.
+
 
 Make an HTTP POST request that uses the URI as shown in the following [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) example.
 

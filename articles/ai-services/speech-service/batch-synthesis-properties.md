@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the batch synthesis properties for text to speech.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 02/25/2026
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article

@@ -1,10 +1,10 @@
 ---
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 Submit a **GET** request using the following URL, headers, and JSON body to get a trained model evaluation summary.

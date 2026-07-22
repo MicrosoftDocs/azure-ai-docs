@@ -8,9 +8,10 @@ ms.subservice: enterprise-readiness
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
-ms.date: 03/04/2025
+ms.date: 06/05/2026
 ms.topic: how-to
-ms.custom: sdkv2, devx-track-python
+ms.custom: sdkv2, devx-track-python, dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -56,14 +57,13 @@ The following snippet demonstrates how to use workspace diagnostics from Python.
 
 ```python
 from azure.ai.ml import MLClient
-from azure.ai.ml.entities import Workspace
 from azure.identity import DefaultAzureCredential
 
 subscription_id = '<your-subscription-id>'
 resource_group = '<your-resource-group-name>'
 workspace = '<your-workspace-name>'
 
-ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
+ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace)
 resp = ml_client.workspaces.begin_diagnose(workspace).result()
 # Inspect the attributes of the response you are interested in
 for result in resp.application_insights_results:

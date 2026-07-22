@@ -1,10 +1,10 @@
 ---
-title: "Build a voice agent with hosted agents (preview)"
+title: "Build a voice agent with hosted agents"
 description: "Build and deploy a real-time voice agent on Foundry Agent Service using the invocations_ws WebSocket protocol."
 author: aahill
 ms.author: aahi
-ms.date: 05/18/2026
-ms.manager: nitinme
+ms.date: 07/09/2026
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -12,14 +12,11 @@ ms.custom: references_regions
 ai-usage: ai-assisted
 ---
 
-# Build a voice agent with hosted agents (preview)
+# Build a voice agent with hosted agents
 
 Hosted agents in Foundry Agent Service support real-time voice workloads through the **`invocations_ws`** WebSocket protocol. This article shows you how to choose a voice framework, expose the WebSocket endpoint from your container, and connect a client.
 
 For background on hosted agents and the available protocols, see [What are hosted agents?](../concepts/hosted-agents.md). For general container packaging and deployment steps, see [Deploy a hosted agent](deploy-hosted-agent.md).
-
-> [!IMPORTANT]
-> Hosted agents and the `invocations_ws` protocol are in public preview. The `invocations_ws` protocol is currently available only in **North Central US**. Features and limits can change.
 
 ## When to use the WebSocket protocol
 
@@ -45,19 +42,15 @@ Upgrade: websocket
 Connection: Upgrade
 ```
 
-Public endpoint (single literal path; `project_name`, `agent_name`, and `agent_session_id` are passed as query string parameters):
+Public endpoint (project and agent are path segments that mirror the HTTP `/invocations` shape; `api-version` is a required query parameter, and `agent_session_id` is optional):
 
 ```
-wss://<account>.services.ai.azure.com/api/projects/agents/endpoint/protocols/invocations_ws
-    ?project_name=<project>
-    &agent_name=<agent>
+wss://<account>.services.ai.azure.com/api/projects/<project>/agents/<agent>/endpoint/protocols/invocations_ws
+    ?api-version=v1
     &agent_session_id=<session-id>
-    &foundry_features=HostedAgents=V1Preview
 ```
 
-The platform consumes `project_name`, `agent_name`, and `foundry_features` at the APIM and Agents-service layers to route the upgrade and gate the preview. They don't appear on the upgrade the container receives. Any other query parameters you add are forwarded unchanged.
-
-The preview flag is required while the protocol is in preview. You can supply it either as the `foundry_features=HostedAgents=V1Preview` query parameter (shown above) or as the `Foundry-Features: HostedAgents=V1Preview` request header on the upgrade, which is the same flag used by HTTP `/invocations`.
+The platform consumes the `<project>` and `<agent>` path segments and the `api-version` query parameter at the APIM and Agents-service layers to route the upgrade. They don't appear on the upgrade the container receives. Any other query parameters you add are forwarded unchanged.
 
 The platform proxies the WebSocket upgrade transparently. Frames flow between the caller and your container as raw bytes—the platform doesn't parse, transform, or buffer them at the application layer.
 
@@ -89,9 +82,9 @@ Caller  ──Upgrade──▶  Agents service (proxy)  ──Upgrade──▶  
 1. **Close.** Either side sends a Close frame; the peer echoes a Close frame and shuts down its send side.
 1. **Abnormal close.** If the underlying TCP connection drops, the peer observes close code `1006` with no Close frame.
 
-### Maximum connection duration (preview)
+### Maximum connection duration
 
-The platform recycles infrastructure on a rolling basis with a shutdown grace period of **10 minutes**. Individual WebSocket connections in preview are capped at approximately **10 minutes**. When the platform initiates shutdown, it sends close code `1001` (going away). Clients must be prepared to reconnect with the same `agent_session_id`—the sandbox (and any in-process container state) persists across reconnects. The platform doesn't replay missed frames; your container is responsible for any application-level resume protocol.
+The platform recycles infrastructure on a rolling basis with a shutdown grace period of **30 minutes**. Individual WebSocket connections are capped at approximately **30 minutes**. When the platform initiates shutdown, it sends close code `1001` (going away). Clients must be prepared to reconnect with the same `agent_session_id`. The sandbox (and any in-process container state) persists across reconnects. The platform doesn't replay missed frames; your container is responsible for any application-level resume protocol.
 
 ### Close codes
 
@@ -198,12 +191,13 @@ Voice agents follow the same deployment flow as any hosted agent. The only diffe
 
 ### Declare the protocol
 
-When you create the agent version, include `invocations_ws` in `container_protocol_versions`. You can declare it alone or alongside `responses` and `invocations`.
+When you create the agent version, include `invocations_ws` in `protocol_versions`. You can declare it alone or alongside `responses` and `invocations`.
 
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentProtocol,
+    AgentEndpointProtocol,
+    ContainerConfiguration,
     HostedAgentDefinition,
     ProtocolVersionRecord,
 )
@@ -218,12 +212,14 @@ project = AIProjectClient(
 agent = project.agents.create_version(
     agent_name="my-voice-agent",
     definition=HostedAgentDefinition(
-        container_protocol_versions=[
-            ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
+        protocol_versions=[
+            ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="1.0.0"),
         ],
         cpu="1",
         memory="2Gi",
-        image="your-registry.azurecr.io/your-voice-agent:v1",
+        container_configuration=ContainerConfiguration(
+            image="your-registry.azurecr.io/your-voice-agent:v1"
+        ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-realtime",
         },
@@ -249,12 +245,10 @@ credential = DefaultAzureCredential()
 token = credential.get_token("https://ai.azure.com/.default").token
 
 uri = (
-    "wss://<account>.services.ai.azure.com/api/projects/agents"
-    "/endpoint/protocols/invocations_ws"
-    "?project_name=<project>"
-    "&agent_name=my-voice-agent"
+    "wss://<account>.services.ai.azure.com/api/projects/<project>"
+    "/agents/my-voice-agent/endpoint/protocols/invocations_ws"
+    "?api-version=v1"
     "&agent_session_id=demo-session-1"
-    "&foundry_features=HostedAgents=V1Preview"
 )
 
 async def main():
@@ -316,9 +310,8 @@ Traces and metrics appear in the linked Application Insights resource alongside 
 | Limit | Value | Notes |
 |-------|-------|-------|
 | Maximum WebSocket frame size | 1 MB | Enforced by the platform proxy (close code `1009`). |
-| Maximum connection duration | ~10 minutes (preview) | Platform sends close code `1001` on shutdown drain. Reconnect with the same `agent_session_id`. |
+| Maximum connection duration | ~30 minutes | The platform sends close code `1001` on shutdown drain. Reconnect with the same `agent_session_id`. |
 | Sandbox resources | Up to 2 vCPU / 4 GiB | At least 1 vCPU / 2 GiB recommended for voice. |
-| Maximum concurrent sessions | 50 per subscription per region | Adjustable through a quota request. |
 | Session idle timeout | 15 minutes | Compute is deprovisioned; session state is persisted. |
 
 The platform doesn't replay missed frames. Your container is responsible for any application-level resume protocol.

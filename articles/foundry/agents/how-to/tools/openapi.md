@@ -2,14 +2,14 @@
 title: "Connect OpenAPI tools to Microsoft Foundry agents"
 description: "Connect OpenAPI 3.0 and 3.1 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
@@ -427,7 +427,7 @@ The agent calls the REST Countries API through the OpenAPI tool and lists the ma
 Countries that use the Euro (EUR) as their currency include: Austria, Belgium, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain ...
 ```
 
-For the full sample including authenticated API patterns, see [Agent_Step17_OpenAPITools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step17_OpenAPITools).
+For the full sample including authenticated API patterns, see [Agent_Step17_OpenAPITools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step17_OpenAPITools).
 
 ---
 

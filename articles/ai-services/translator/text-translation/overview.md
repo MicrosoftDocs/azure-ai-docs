@@ -3,7 +3,7 @@ title: What is Azure text translation in Microsoft Foundry?
 titleSuffix: Microsoft Foundry
 description: Integrate the Azure Translator text translation API into your applications, websites, tools, and workflows for multilingual experiences.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
 ms.date: 06/02/2026

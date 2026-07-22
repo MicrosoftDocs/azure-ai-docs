@@ -4,15 +4,16 @@ description: "Retirement dates and replacement models for all models available t
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 04/23/2026
+ms.date: 07/21/2026
 ms.custom:
   - classic-and-new
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.author: mopeakande
 ms.reviewer: josander
 reviewer: johnrsanders
 recommendations: false
+ai-usage: ai-assisted
 #customer intent: As a developer, I want to see the retirement schedule and find replacement models for retiring Foundry Models so that I can update my applications before support ends.
 ---
 

@@ -3,7 +3,7 @@ title: "Model router for Microsoft Foundry concepts"
 description: "Learn about the model router feature in Azure OpenAI in Microsoft Foundry Models."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 05/31/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference

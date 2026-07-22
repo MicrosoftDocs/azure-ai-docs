@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 04/10/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 Make sure you install the correct version of the packages as shown here.
@@ -17,7 +18,7 @@ Make sure you install the correct version of the packages as shown here.
 1. Install the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** .
 
     ```
-    pip install azure-ai-projects>=2.0.0
+    pip install azure-ai-projects>=2.3.0
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.
@@ -54,7 +55,7 @@ Make sure you install the correct version of the packages as shown here.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 

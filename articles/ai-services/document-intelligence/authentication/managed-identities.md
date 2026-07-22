@@ -3,10 +3,10 @@ title: Create and use managed identities with Document Intelligence
 titleSuffix: Foundry Tools
 description: Understand how to create and  use managed identity with Document Intelligence.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/22/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ms.custom: sfi-image-nochange

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Create and manage a Microsoft Foundry resource for Content Understanding operations
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/31/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
