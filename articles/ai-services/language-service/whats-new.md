@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: whats-new
-ms.date: 05/19/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---
