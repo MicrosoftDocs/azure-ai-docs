@@ -239,6 +239,7 @@ Hosted agents are currently available in the following regions:
 - Brazil South
 - Canada Central
 - Canada East
+- Central US
 - East US
 - East US 2
 - France Central
