@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An overview of the PII detection feature in Azure Language, which helps you extract entities and sensitive information (PII) in text.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 05/25/2026
 ms.author: lajanuar

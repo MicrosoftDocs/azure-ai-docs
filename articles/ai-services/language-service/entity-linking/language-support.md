@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: A list of natural languages supported by the entity linking API
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 05/22/2026
 ms.author: lajanuar

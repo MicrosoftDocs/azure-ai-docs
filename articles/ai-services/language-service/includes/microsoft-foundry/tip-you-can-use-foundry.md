@@ -3,7 +3,7 @@
  description: tip
  #services: cognitive-services
  author: laujan
- ms.service: azure-ai-language
+ ms.service: azure-language-foundry-tools
  ms.topic: include
  ms.date: 04/02/2026
  ms.author: lajanuar

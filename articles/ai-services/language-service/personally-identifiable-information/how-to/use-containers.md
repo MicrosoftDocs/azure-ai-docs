@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use Docker containers for the Personally Identifiable Information (PII) detection API to detect and redact sensitive entities on-premises.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.custom:
 ms.topic: how-to
 ms.date: 06/16/2026

@@ -7,7 +7,7 @@ manager: mcleans
 author: laujan
 ms.author: lajanuar
 displayName: chat history, history, chat logs, logs
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.custom: language-service-question-answering

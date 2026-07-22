@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Prepare data, define a schema, label data, train, evaluate, deploy, and query a custom text classification model in Microsoft Foundry.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/17/2026
 ms.author: lajanuar

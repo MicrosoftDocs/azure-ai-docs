@@ -2,7 +2,7 @@
 title: "Quickstart: Entity Linking client library for C#"
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 05/14/2026
 ms.author: lajanuar

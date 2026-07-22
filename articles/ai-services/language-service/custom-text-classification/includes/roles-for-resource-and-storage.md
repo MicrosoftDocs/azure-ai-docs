@@ -5,7 +5,7 @@ description: Learn about the steps for using Azure resources with custom text cl
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 05/20/2026
 ms.author: lajanuar
