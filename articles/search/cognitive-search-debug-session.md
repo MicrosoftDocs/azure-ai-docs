@@ -68,7 +68,7 @@ A cached copy of the enriched document and skillset is loaded into the visual ed
 
 If the enrichment pipeline doesn't have any errors, a debug session can be used to incrementally enrich a document, test and validate each change before committing the changes.
 
-Debug sessions help identify the root cause of errors or warnings by analyzing data, skill inputs and outputs, and field mappings. Use the skill details pane to inspect what each skill receives as input and produces as output, which helps verify that skill definitions, expressions, and field mappings are correctly formed. If the indexer encounters configuration issues, such as incorrect network setup or permission-related access errors, review the specific error message and the linked documentation. For troubleshooting guidance, see [Common indexer errors and warnings](cognitive-search-common-errors-warnings.md).
+Debug sessions help identify the root cause of errors or warnings by analyzing data, skill inputs and outputs, and field mappings. Use the skill details pane to inspect what each skill receives as input and produces as output. This inspection helps verify that skill definitions, expressions, and field mappings are correctly formed. If the indexer encounters configuration problems, such as incorrect network setup or permission-related access errors, review the specific error message and the linked documentation. For troubleshooting guidance, see [Common indexer errors and warnings](cognitive-search-common-errors-warnings.md).
 
 ## Debug sessions and private connectivity
 
