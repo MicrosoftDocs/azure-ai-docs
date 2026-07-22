@@ -396,7 +396,7 @@ Azure AI Search makes outbound calls to other Azure resources in the following s
 + Knowledge base connections to Azure OpenAI for agentic retrieval workflows
 + Indexer or query connections to Azure OpenAI or Azure Vision in Foundry Tools for vectorization
 + Indexer connections to supported data sources
-+ Indexer (skillset) connections to Azure Storage for caching enrichments, debug session state, or writing to a knowledge store
++ Indexer (skillset) connections to Azure Storage for caching enrichments or writing to a knowledge store
 + Indexer (skillset) connections to Foundry Tools for billing purposes
 + Encryption key requests to Azure Key Vault
 + Custom skill requests to Azure Functions or similar resource
