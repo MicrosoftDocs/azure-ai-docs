@@ -7,7 +7,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ---
 # Convert agent traces into evaluation datasets (preview)
@@ -44,31 +44,7 @@ In the trace-based dataset flow, the **Intelligent sampling** option appears in 
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`
 - Foundry User role or higher on the project.
 - Set up tracing for a deployed agent that emits traces. Foundry agents emit traces automatically, and OpenTelemetry-instrumented third-party agents are also supported. For setup steps, see [Set up tracing for your agent](trace-agent-setup.md).
-
-## Supported regions for traces to dataset generation
-
-Traces to dataset generation is supported in the following regions:
-
-- UAE North
-- West US 3
-- North Central US
-- East US
-- West Europe
-- South Central US
-- Switzerland North
-- Sweden Central
-- East US 2
-- West US
-- France Central
-- South Africa North
-- Australia East
-- Japan East
-- UK South
-- Norway East
-- Poland Central
-- South India
-- Germany West Central
-- Italy North
+- A supported region. For the list, see [Supported regions for data generation](../../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
 ## Generate an evaluation dataset from traces (portal)
 
@@ -192,7 +168,7 @@ Whether you created the dataset from the portal or the SDK, you can preview it o
 
 After the dataset exists, evaluate your agent against it. The generated dataset uses the standard query-response schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md).
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md). For a complete runnable example that filters traces, generates an evaluation dataset, and scores it, see [sample_agent_trace_evaluation_smart_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py) on GitHub.
 
 ## Manage data generation jobs
 
@@ -232,3 +208,6 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 - [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
 - [Agent tracing in Microsoft Foundry](../concepts/trace-agent-concept.md)
 - [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
+- [Multi-turn trace evaluation by ID sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_by_id.py)
+- [Multi-turn trace evaluation by agent filter sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_agent_filter.py)
+- [Trace-based evaluation with intelligent sampling sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py)
