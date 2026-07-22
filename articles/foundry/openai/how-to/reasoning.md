@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 07/22/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -946,6 +946,8 @@ print(response.model_dump_json(indent=2))
 | `o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model. |
 
 ## API & feature support
+
+Input and output limits share the available context budget and aren't additive. For details and a GPT-5.5 calculation example, see [Understand model token limits](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#understand-model-token-limits) and [Responses API token budget](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#responses-api-token-budget).
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
