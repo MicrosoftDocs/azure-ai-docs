@@ -260,6 +260,7 @@ Hosted agents are currently available in the following regions:
 - Switzerland North
 - Switzerland West
 - UAE North
+- UK South
 - UK West
 - West Central US
 - West Europe
