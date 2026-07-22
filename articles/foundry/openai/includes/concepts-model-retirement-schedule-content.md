@@ -91,9 +91,9 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-image-2 | 2026-04-21 | GA | 2027-04-21 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
-| gpt-realtime-2 | 2026-05-06 | GA | 2027-05-06 | — |
-| gpt-realtime-2.1 | 2026-07-07 | GA | 2027-06-25 | — |
-| gpt-realtime-2.1-mini | 2026-07-07 | GA | 2027-06-25 | — |
+| gpt-realtime-2 | 2026-05-06 | Preview | 2026-08-31 | — |
+| gpt-realtime-2.1 | 2026-07-07 | Preview | 2027-06-25 | — |
+| gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-09-16 | — |
