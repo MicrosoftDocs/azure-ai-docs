@@ -60,7 +60,7 @@ Debug Sessions work with all generally available [indexer data sources](search-d
 
 ## How a debug session works
 
-When you start a session, the search service creates a copy of the skillset, indexer, and a data source containing a single document used to test the skillset. All session state is saved to a new blob container created by the Azure AI Search service in an Azure Storage account that you provide. The name of the generated container has a prefix of `ms-az-cognitive-search-debugsession`. The prefix is required because it mitigates the chance of accidentally exporting session data to another container in your account.
+When you start a session, the search service creates a copy of the skillset, indexer, and a data source containing a single document used to test the skillset. The Azure AI Search service saves all session state to a new blob container that it creates in an Azure Storage account you provide. The generated container name has a prefix of `ms-az-cognitive-search-debugsession`. This prefix reduces the chance of accidentally exporting session data to another container in your account.
 
 If you configure the storage account connection using a [managed identity](search-how-to-managed-identities.md), assign the `Storage Blob Data Contributor` role to your search service identity on the storage account. In your storage account, [enable trusted services](search-indexer-howto-access-trusted-service-exception.md) to allow write access from Azure AI Search.
 
