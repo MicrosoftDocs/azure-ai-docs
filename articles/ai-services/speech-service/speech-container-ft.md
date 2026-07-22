@@ -36,6 +36,7 @@ All tags, except for `latest`, follow this format and are case sensitive:
 gpu-<major>.<minor>.<patch>-<locale>
 ```
 
+
 For your convenience, the tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/fast-transcription/tags/list). The body includes the container path and list of tags. The tags aren't sorted by version, but `"latest"` is always included at the end of the list as shown in this snippet:
 
 ```json
@@ -52,6 +53,24 @@ For your convenience, the tags are also available [in JSON format](https://mcr.m
   ]
 }
 ```
+
+### Locale support 
+
+The following model and locale groups map to supported transcription locales:
+
+| Model or locale group | Supported transcription locales |
+| --- | --- |
+| `en` | `en-AU`, `en-CA`, `en-GB`, `en-GH`, `en-HK`, `en-IE`, `en-KE`, `en-NG`, `en-NZ`, `en-PH`, `en-SG`, `en-TZ`, `en-US`, `en-ZA` |
+| `multilingual-15-locales` | `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `es-MX`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, `zh-CN` |
+| `t4-35-locales` | `af-ZA`, `am-ET`, `az-AZ`, `bn-IN`, `bs-BA`, `et-EE`, `eu-ES`, `fil-PH`, `ga-IE`, `gl-ES`, `hy-AM`, `is-IS`, `jv-ID`, `ka-GE`, `kk-KZ`, `km-KH`, `lo-LA`, `lt-LT`, `mk-MK`, `ml-IN`, `mn-MN`, `mt-MT`, `my-MM`, `ne-NP`, `ps-AF`, `si-LK`, `so-SO`, `sq-AL`, `sr-RS`, `sw-KE`, `ur-IN`, `uz-UZ`, `wuu-CN`, `zh-CN-SICHUAN`, `zu-ZA` |
+| `ar` | `ar-AE`, `ar-BH`, `ar-EG`, `ar-IL`, `ar-IQ`, `ar-JO`, `ar-KW`, `ar-LB`, `ar-LY`, `ar-OM`, `ar-PS`, `ar-QA`, `ar-SA`, `ar-SY`, `ar-YE` |
+| `t3-16-locales` | `bg-BG`, `ca-ES`, `cy-GB`, `fa-IR`, `hr-HR`, `hu-HU`, `lv-LV`, `mr-IN`, `ms-MY`, `nb-NO`, `ro-RO`, `sk-SK`, `sl-SI`, `uk-UA`, `vi-VN`, `zh-HK` |
+| `es` | `es-AR`, `es-BO`, `es-CL`, `es-CR`, `es-CU`, `es-DO`, `es-EC`, `es-GQ`, `es-GT`, `es-HN`, `es-MX`, `es-NI`, `es-PA`, `es-PE`, `es-PR`, `es-PY`, `es-SV`, `es-US`, `es-UY`, `es-VE` |
+| `fr` | `fr-BE`, `fr-CH`, `fr-FR` |
+| `it` | `it-CH`, `it-IT` |
+| `india-13-locales` | `ta-IN`, `hi-IN`, `te-IN`, `gu-IN`, `mr-IN`, `kn-IN`, `bn-IN`, `ml-IN`, `pa-IN`, `ur-IN`, `or-IN`, `as-IN`, `bho-IN` |
+| Single-locale entries | `de-DE`, `en-IN`, `en-Latn-IN`, `es-CO`, `es-ES`, `fr-CA`, `ja-JP`, `ko-KR`, `pt-BR`, `pt-PT`, `zh-CN` |
+
 
 ## Get the container image with `docker pull`
 
