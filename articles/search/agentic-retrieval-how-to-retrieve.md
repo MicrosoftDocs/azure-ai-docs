@@ -1836,7 +1836,7 @@ print(response.output_text)
 
 ### Use an admin key for MCP authentication
 
-An admin key grants full read-write access to the search service, so you should only use it in development environments or when a bearer token isn't available. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
+An admin key grants full read-write access to the search service, so use it only in development environments or when a bearer token isn't available. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
 
 > [!TIP]
 > The following example shows only the header that differs from the bearer token example. For the full setup, see [Use a bearer token for MCP authentication](#use-a-bearer-token-for-mcp-authentication).
