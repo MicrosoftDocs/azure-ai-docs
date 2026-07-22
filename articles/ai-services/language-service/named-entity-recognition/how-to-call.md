@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article shows you how to extract named entities from text.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 04/15/2026
 ms.author: lajanuar

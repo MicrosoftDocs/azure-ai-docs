@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about definitions used in orchestration workflow.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: glossary
 ms.date: 06/03/2026
 ms.author: lajanuar

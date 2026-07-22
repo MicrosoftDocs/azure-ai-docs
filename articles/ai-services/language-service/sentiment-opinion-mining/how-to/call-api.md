@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article shows you how to detect sentiment, and mine for opinions in text.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 04/27/2026
 ms.author: lajanuar

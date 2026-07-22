@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use Docker containers for the conversational language understanding (CLU) API to determine the language of written text, on-premises.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/19/2026
 ms.author: lajanuar

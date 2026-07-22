@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Learn core concepts for conversational language understanding models: evaluation metrics, the None intent, and accepted data formats."
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 06/13/2026
 ms.author: lajanuar

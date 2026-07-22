@@ -1,7 +1,7 @@
 ---
 title: Configure the conversational language understanding service for fine-tune models
 description: This article details Azure AI resource configurations for conversational language understanding fine-tune models.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
