@@ -14,10 +14,7 @@ ai-usage: ai-assisted
 
 # Configure language identification and diarization for speech transcription
 
-This guide shows a single configuration approach for language identification
-(LID) and speaker diarization across real-time speech to text, speech
-translation, fast transcription, and batch transcription. It focuses on two
-common failure patterns:
+This guide shows a single configuration approach for language identification (LID) and speaker diarization across real-time speech to text, speech translation, fast transcription, and batch transcription. It focuses on two common failure patterns:
 
 - Relying on default language detection without constraining candidate locales.
 - Expecting speaker labels without explicitly enabling diarization.
@@ -27,8 +24,7 @@ common failure patterns:
 - A [Microsoft Foundry resource](../multi-service-resource.md) for Speech.
 - A [supported Speech region](regions.md?tabs=stt).
 - For SDK examples, one of the supported SDK setups:
-  - [Speech SDK](speech-sdk.md) for real-time speech to text and speech
-    translation.
+  - [Speech SDK](speech-sdk.md) for real-time speech to text and speech translation.
   - [Speech Transcription SDK](transcription-sdk.md) for fast transcription.
 - Test audio that represents production conditions, including:
   - Short utterances.
@@ -37,15 +33,13 @@ common failure patterns:
 
 ## Check supported locales before you configure requests
 
-Use these locale lists before setting `candidateLocales`, `locales`, or a fixed
-source locale:
+Use these locale lists before setting `candidateLocales`, `locales`, or a fixed source locale:
 
 - [Language identification locales](language-support.md?tabs=language-identification)
 - [Speech to text locales](language-support.md?tabs=stt)
 - [Speech translation locales](language-support.md?tabs=speech-translation)
 
-For fast transcription with the multilingual model (`locales` empty or omitted),
-the supported input locales are currently:
+For fast transcription with the multilingual model (`locales` empty or omitted), the supported input locales are currently:
 
 - `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `es-MX`,
   `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, `zh-CN`
@@ -54,32 +48,19 @@ If your audio locale is outside this set, provide a fixed supported locale.
 
 ## Configure language identification for real-time speech to text or speech translation (SDK)
 
-For full SDK coverage of `AutoDetectSourceLanguageConfig` with real-time speech
-to text and speech translation - including all supported languages, at-start vs.
-continuous modes, and custom-model mapping - see
-[Implement language identification](language-identification.md).
+For full SDK coverage of `AutoDetectSourceLanguageConfig` with real-time speech to text and speech translation - including all supported languages, at-start vs. continuous modes, and custom-model mapping - see [Implement language identification](language-identification.md).
 
 The key points when combining LID with diarization or offline transcription are:
 
-- Always supply a `candidateLocales` or `locales` list. Without a candidate
-  list, the backend uses a broader model that performs poorly on short or noisy
-  segments.
-- Don't include more than one locale per base language (for example, use
-  `en-US` or `en-GB`, not both).
-- If `AutoDetectSourceLanguageResult.Language` returns empty or unexpected
-  values on short clips, bypass auto-detect and set a fixed
-  `SpeechRecognitionLanguage` instead.
+- Always supply a `candidateLocales` or `locales` list. Without a candidate list, the backend uses a broader model that performs poorly on short or noisy segments.
+- Don't include more than one locale per base language (for example, use `en-US` or `en-GB`, not both).
+- If `AutoDetectSourceLanguageResult.Language` returns empty or unexpected values on short clips, bypass auto-detect and set a fixed `SpeechRecognitionLanguage` instead.
 
-For speech translation, read the detected language from
-`PropertyId.SpeechServiceConnection_AutoDetectSourceLanguageResult` on the
-recognition result, not from `SpeechRecognitionLanguage`. The latter is a
-required placeholder but is currently ignored by the service when auto-detect
-is active.
+For speech translation, read the detected language from `PropertyId.SpeechServiceConnection_AutoDetectSourceLanguageResult` on the recognition result, not from `SpeechRecognitionLanguage`. The latter is a required placeholder but is currently ignored by the service when auto-detect is active.
 
 ## Configure real-time diarization (SDK)
 
-Real-time speaker diarization isn't enabled by default. Use
-`ConversationTranscriber` and verify `SpeakerId` in events.
+Real-time speaker diarization isn't enabled by default. Use `ConversationTranscriber` and verify `SpeakerId` in events.
 
 ```csharp
 using Microsoft.CognitiveServices.Speech;
@@ -171,8 +152,7 @@ For batch jobs, set all three items explicitly:
 
 - `locale` for fallback when no language is detected.
 - `properties.languageIdentification.candidateLocales` for LID scope.
-- `properties.diarization.enabled` and `properties.diarization.maxSpeakers` for
-  speaker labels.
+- `properties.diarization.enabled` and `properties.diarization.maxSpeakers` for speaker labels.
 
 ```json
 {
@@ -209,27 +189,19 @@ Reference: [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submi
 Use this checklist before you enable production traffic:
 
 1. Validate locale support.
-   - Confirm every locale in `candidateLocales` (or `locales`) appears in the
-     supported locale lists.
+   - Confirm every locale in `candidateLocales` (or `locales`) appears in the supported locale lists.
 1. Verify language detection fields.
-   - Real-time SDK: confirm `AutoDetectSourceLanguageResult` (or property
-     `SpeechServiceConnection_AutoDetectSourceLanguageResult`) is populated.
-   - Fast or batch transcription: confirm each phrase includes the expected
-     `locale` value.
+   - Real-time SDK: confirm `AutoDetectSourceLanguageResult` (or property `SpeechServiceConnection_AutoDetectSourceLanguageResult`) is populated.
+   - Fast or batch transcription: confirm each phrase includes the expected `locale` value.
 1. Verify speaker labeling fields.
-   - Real-time diarization: confirm `SpeakerId` or `speakerId` appears in
-     transcribing or transcribed events.
-   - Fast or batch transcription: confirm phrase-level `speaker` values are
-     present.
+   - Real-time diarization: confirm `SpeakerId` or `speakerId` appears in transcribing or transcribed events.
+   - Fast or batch transcription: confirm phrase-level `speaker` values are present.
 1. Validate short or noisy audio behavior.
-   - Run a noisy sample set and compare detected language against expected
-     language.
-   - If detection is unstable, rerun with a fixed source locale instead of
-     auto-detect.
+   - Run a noisy sample set and compare detected language against expected language.
+   - If detection is unstable, rerun with a fixed source locale instead of auto-detect.
 1. Validate speaker-count tuning.
    - Set `maxSpeakers` to the realistic participant ceiling.
-   - Recheck whether speaker labeling quality improves when you lower or raise
-     the value.
+   - Recheck whether speaker labeling quality improves when you lower or raise the value.
 
 ## Related content
 
