@@ -7,9 +7,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
@@ -131,7 +131,7 @@ After you run a sample, verify the tool was called by using tracing in Microsoft
 > - This article assumes you already created the Playwright workspace connection. See the prerequisites section.
 
 :::zone pivot="python"
-## Use BrowserAutomationAgentTool with agents example
+## Use BrowserAutomationPreviewTool with agents example
 
 The following Python example demonstrates how to create an AI agent with browser automation capabilities. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
@@ -570,7 +570,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 

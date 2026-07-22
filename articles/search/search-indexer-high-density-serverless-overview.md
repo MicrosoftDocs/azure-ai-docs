@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Indexer execution on Serverless and Standard 3 High Density (S3 HD)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes the indexer execution model that Azure AI Search uses for Serverless and Standard 3 High Density (S3 HD) search services. Both options have a service-level daily runtime quota that governs how much total indexer time you can use per 24-hour UTC window.
 
 > [!IMPORTANT]
@@ -34,7 +36,7 @@ Indexers on Serverless and S3 HD have the following execution characteristics:
 
 + You don't provision or manage indexer infrastructure. The service handles capacity for you.
 
-+ Indexers run only in the [public execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment). The private execution environment, which is provided through [shared private link resources](search-indexer-howto-access-private.md), isn't available for indexers on these SKUs.
++ Indexers run only in the [multitenant execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment). The private execution environment, which is provided through [shared private link resources](search-indexer-howto-access-private.md), isn't available for indexers on these SKUs.
 
 + For S3 HD, if you need indexer connections to stay off the public internet, configure a [network security perimeter](search-security-network-security-perimeter.md) (NSP) on your search service to control inbound and outbound traffic through explicit access rules.
 

@@ -3,7 +3,7 @@ title: "Quickstart: Build agents using the Responses API"
 description: "Call the Responses API on a Foundry project endpoint from your own code using the Agent Framework FoundryChatClient or the OpenAI SDK."
 author: aahill
 ms.author: aahi
-ms.date: 05/27/2026
+ms.date: 07/07/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart
@@ -467,7 +467,7 @@ Because Agent Framework agents created here are ephemeral, no service-side clean
 
 ::: zone pivot="csharp"
 
-- [Agents with Foundry samples (.NET)](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry)
+- [Agents with Foundry samples (.NET)](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry)
 
 ::: zone-end
 

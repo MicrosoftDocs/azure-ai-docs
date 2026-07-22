@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Use embedding models from the Microsoft Foundry model catalog for integrated vectorization
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
 > This feature is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update) supports this feature.
 

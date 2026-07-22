@@ -21,6 +21,8 @@ The Azure Content Understanding API has reached general availability (GA). It in
 
 This article highlights changes needed to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
 
+For supported REST API versions and operations, use the [Content Understanding REST API reference](/rest/api/contentunderstanding/operation-groups). The version selector on Learn shows currently published reference versions.
+
 ## Prerequisites
 
 [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
@@ -133,7 +135,7 @@ You need to delete the existing analyzer to reuse the name.
 - The field extraction method is optional. When the method isn't set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
 - There's added support for confidence scores and source grounding for fields in document analyzers that have the method set to generate.
 - There are now increased field limits to 1,000 fields per analyzer.
-- For documents, classification and segmentation supports up to 200 distinct types.
+- For documents, classification and segmentation support up to 200 distinct types.
 
 ### Deprecated features
 

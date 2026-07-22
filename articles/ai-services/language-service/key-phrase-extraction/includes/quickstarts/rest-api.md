@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/03/2026
 ms.author: lajanuar
 ---
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
@@ -118,15 +118,15 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2022-05-01 \
 
 ```json
 {
-	"kind": "KeyPhraseExtractionResults",
-	"results": {
-		"documents": [{
-			"id": "1",
-			"keyPhrases": ["modern medical office", "Dr. Smith", "great staff"],
-			"warnings": []
-		}],
-		"errors": [],
-		"modelVersion": "2021-06-01"
-	}
+    "kind": "KeyPhraseExtractionResults",
+    "results": {
+        "documents": [{
+            "id": "1",
+            "keyPhrases": ["modern medical office", "Dr. Smith", "great staff"],
+            "warnings": []
+        }],
+        "errors": [],
+        "modelVersion": "2021-06-01"
+    }
 }
 ```

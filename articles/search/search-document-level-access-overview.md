@@ -1,7 +1,7 @@
 ---
 title: Document-Level Access Control
 description: Learn how Azure AI Search enforces document-level access control with security filters, ACLs, RBAC scopes, SharePoint permissions, and Purview sensitivity labels.
-ms.date: 06/10/2026
+ms.date: 07/07/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -12,16 +12,18 @@ ai-usage: ai-assisted
 
 # Document-level access control in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 > The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
 >
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+> It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, retrieval-augmented generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.
 
@@ -51,7 +53,7 @@ For a side-by-side feature comparison (supported principals, item types, sync be
 
 ## Pattern for security trimming using filters
 
-For scenarios where native ACL/RBAC scopes integration isn't viable, security string filters are recommended for trimming results based on exclusion criteria. The pattern includes the following components:
+For scenarios where native ACL/RBAC scopes integration isn't viable, use security string filters to trim results based on exclusion criteria. The pattern includes the following components:
 
 - To store user or group identities, create a string field in the index.
 - Load the index using source documents that include associated ACLs.
@@ -70,7 +72,7 @@ Native support is based on Microsoft Entra users and groups affiliated with docu
 
 Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and on files. For ADLS Gen2, RBAC scope preservation at document level is natively supported when you use an [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md) or a [Blob knowledge source (supports ADLS Gen2)](agentic-knowledge-source-how-to-blob.md) and a preview API to ingest content. For Azure blobs using the [Azure blob indexer](search-blob-indexer-role-based-access.md) or knowledge source, RBAC scope preservation is at the container level.
 
-For ACL-secured content, we recommend group access over individual user access for ease of management. The pattern includes the following components:
+For ACL-secured content, use group access over individual user access for ease of management. The pattern includes the following components:
 
 - Start with documents or files that have ACL assignments.
 - [Enable permission filters](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#searchindexpermissionfilteroption) in the index.
@@ -84,7 +86,7 @@ Your client app receives read permissions to the index through **Search Index Da
 
 - Second, given the extra token on the request, it checks for user or group permissions on documents that are returned in search results, excluding any that don't match.
 
-To get permission metadata into the index, you can use the push model API, pushing any JSON documents to the search index, where the payload includes a string field providing POSIX-like ACLs for each document. The important difference between this approach and security trimming is that the permission filter metadata in the index and query is recognized as Microsoft Entra ID authentication, whereas the security trimming workaround is simple string comparison. Also, you can use the Graph SDK to retrieve the identities.
+To get permission metadata into the index, use the push model API, pushing any JSON documents to the search index, where the payload includes a string field providing POSIX-like ACLs for each document. The important difference between this approach and security trimming is that the permission filter metadata in the index and query is recognized as Microsoft Entra ID authentication, whereas the security trimming workaround is simple string comparison. Also, you can use the Graph SDK to retrieve the identities.
 
 You can also use the pull model (indexer) APIs if the data source is [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/data-lake-storage-introduction) and your code calls a preview API for indexing.
 
@@ -118,7 +120,7 @@ For SharePoint in Microsoft 365 content, Azure AI Search can apply document-leve
 
 SharePoint ACL support is available in preview through the SharePoint indexer using the [2026-05-01-preview REST API](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or supported SDK.
 
-The pattern includes the following components:
+This pattern includes the following components:
 
 - Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-query-time-enforcement) for enablement and limitations.
 - During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
@@ -144,24 +146,24 @@ If your skillset chunks documents (for example, with the Text Split skill for in
 
 ## Pattern for Microsoft Purview sensitivity labels (preview)
 
-When label ingestion is enabled, Azure AI Search extracts sensitivity metadata from supported data sources. These include: Azure Blob Storage, Azure Data Lake Storage Gen2 (ADLS Gen2), SharePoint in Microsoft 365, and Microsoft OneLake. The extracted labels are stored in the index alongside document content.
+When you enable label ingestion, Azure AI Search extracts sensitivity metadata from supported data sources. These data sources include Azure Blob Storage, Azure Data Lake Storage Gen2 (ADLS Gen2), SharePoint in Microsoft 365, and Microsoft OneLake. The extracted labels are stored in the index alongside document content.
 
-At query time, Azure AI Search checks each document's sensitivity label, the user's Microsoft Entra token, and the organization's Purview policies to determine access. Documents are returned only if the user's identity and label-based permissions allow access under the configured Purview policies.
+At query time, Azure AI Search checks each document's sensitivity label, the user's Microsoft Entra token, and the organization's Purview policies to determine access. The system returns documents only if the user's identity and label-based permissions allow access under the configured Purview policies.
 
-The pattern includes the following components:
+This pattern includes the following components:
 
-- Configure your [index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), [data source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), and [indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (for scheduling purposes) using the 2026-05-01-preview REST API or a corresponding SDK that supports Purview label ingestion.
-- Enable a [system-assigned managed identity](search-how-to-managed-identities.md) to your search service. Then ask your tenant global administrator or privileged role administrator to [grant the required access](search-indexer-sensitivity-labels.md), so the search service can securely access Microsoft Purview and extract label metadata.
-- Apply sensitivity labels to documents before indexing so they can be recognized and preserved during ingestion.
+- Configure your [index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), [data source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), and [indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (for scheduling purposes) by using the 2026-05-01-preview REST API or a corresponding SDK that supports Purview label ingestion.
+- Enable a [system-assigned managed identity](search-how-to-managed-identities.md) on your search service. User-assigned managed identities aren't supported for Purview label extraction - the service's own identity must hold the elevated Purview permissions. Then have your tenant global administrator or privileged role administrator [grant the required access](search-indexer-sensitivity-labels.md#3-grant-access-to-extract-sensitivity-labels) to allow the search service to authenticate with Microsoft Purview and extract label metadata.
+- Apply sensitivity labels to documents before indexing so the system can recognize and preserve them during ingestion.
 - At query time, attach a valid Microsoft Entra token via the header `x-ms-query-source-authorization` to each query request. Azure AI Search evaluates the token and the associated label metadata to enforce label-based access control.
 
 Purview sensitivity label enforcement is limited to single-tenant scenarios and requires RBAC authentication. During the preview, it's supported only through the REST API and Azure SDKs. Autocomplete and Suggest APIs aren't currently available for Purview-enabled indexes.
 
 ### Where sensitivity labels are surfaced
 
-Before labels can be enforced at query time or returned in retrieve responses, the label metadata must first be synchronized into the index. Both consumption paths described in this section depend on this synchronization step. You can synchronize labels either by configuring an Azure AI Search indexer directly against a supported data source, or by enabling the equivalent ingestion option when you create a knowledge source. In both cases, your environment must meet the [sensitivity label metadata sync configuration prerequisites](search-indexer-sensitivity-labels.md) (managed identity, RBAC on the search service, and the required Microsoft Purview and data-source permissions). For end-to-end indexer setup, see [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md). For knowledge-source-driven ingestion, set `ingestionPermissionOptions` to include `sensitivityLabel` during [knowledge source creation](agentic-knowledge-source-overview.md).
+Before the system can enforce labels at query time or return them in retrieve responses, you must first synchronize the label metadata into the index. Both consumption paths described in this section depend on this synchronization step. You can synchronize labels either by configuring an Azure AI Search indexer directly against a supported data source, or by enabling the equivalent ingestion option when you create a knowledge source. In both cases, your environment must meet the [sensitivity label metadata sync configuration prerequisites](search-indexer-sensitivity-labels.md) (managed identity, RBAC on the search service, and the required Microsoft Purview and data-source permissions). For end-to-end indexer setup, see [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md). For knowledge-source-driven ingestion, set `ingestionPermissionOptions` to include `sensitivityLabel` during [knowledge source creation](agentic-knowledge-source-overview.md).
 
-After labels are synchronized, the same indexed label metadata is consumed through two query paths. Choose the path that matches how your application calls Azure AI Search:
+After you synchronize labels, two query paths consume the same indexed label metadata. Choose the path that matches how your application calls Azure AI Search:
 
 - **Direct query API** (`/docs/search`): Attach the user's Microsoft Entra token in `x-ms-query-source-authorization`. Administrators can also issue [elevated read](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview) requests for auditable investigations. For setup and examples, see [Query-time enforcement of Microsoft Purview sensitivity labels](search-query-sensitivity-labels.md).
 
@@ -173,7 +175,7 @@ For more information, see [Use Azure AI Search indexers to ingest Microsoft Purv
 
 ## Enforce document-level permissions at query time
 
-Token-based query enforcement is a cross-cutting capability that applies to the POSIX-like ACL / RBAC scopes, Microsoft Purview sensitivity labels, and SharePoint in Microsoft 365 ACLs patterns. With [native token-based querying](search-query-access-control-rbac-enforcement.md), Azure AI Search validates the caller's [Microsoft Entra token](/entra/identity-platform/access-tokens) on each request and trims result sets to only the documents the caller is authorized to read according to the document ACLs, as long as the document ACL metadata has been synchronized to the index.
+Token-based query enforcement is a cross-cutting capability that applies to the POSIX-like ACL and RBAC scopes, Microsoft Purview sensitivity labels, and SharePoint in Microsoft 365 ACLs patterns. By using [native token-based querying](search-query-access-control-rbac-enforcement.md), Azure AI Search validates the caller's [Microsoft Entra token](/entra/identity-platform/access-tokens) on each request and trims result sets to only the documents the caller is authorized to read according to the document ACLs, as long as the document ACL metadata is synchronized to the index.
 
 When you attach the user's token to a query request through the `x-ms-query-source-authorization` header, Azure AI Search:
 
@@ -189,15 +191,15 @@ For end-to-end query implementation steps, see [Query-time ACL and RBAC enforcem
 
 Native document-level access control in Azure AI Search delivers concrete advantages over application-side filtering:
 
-- **Eliminates custom permission code:** You don't need to implement nested group resolution, multi-level ACL traversal, or post-query trimming in your application. Azure AI Search handles the comparison and filtering during query execution.
+- **Eliminates custom permission code:** You don't need to implement nested group resolution, multilevel ACL traversal, or post-query trimming in your application. Azure AI Search handles the comparison and filtering during query execution.
 - **Aligns with existing compliance controls:** Reusing Microsoft Entra, Microsoft Purview, and SharePoint permissions metadata helps keep search results aligned with the source identity system. Review the permission synchronization model for each source to understand its limitations.
-- **Honors source permissions after each ACL synchronization:** For token-based approaches (ACL, RBAC scopes, Purview labels, SharePoint ACLs), query-time enforcement uses the permission metadata that the documented source-specific synchronization mechanism (indexer run, push-API update, or Purview refresh) has already written to the index.
+- **Honors source permissions after each ACL synchronization:** For token-based approaches (ACL, RBAC scopes, Purview labels, SharePoint ACLs), query-time enforcement uses the permission metadata that the documented source-specific synchronization mechanism (indexer run, push-API update, or Purview refresh) already wrote to the index.
 - **Improves performance versus post-query trimming:** Filtering inside the search pipeline is faster than loading larger result sets into your application and trimming there, especially at high query volumes.
 - **Reuses your existing identity infrastructure:** Microsoft Entra and SharePoint identities remain the source of truth for access decisions, which reduces identity duplication and the operational overhead of maintaining a parallel permission store.
 
 ## Tutorials and samples
 
-Take a closer look at document-level access control in Azure AI Search with more articles and samples.
+Explore document-level access control in Azure AI Search with more articles and samples.
 
 - [Tutorial: Index ADLS Gen2 permissions metadata using an indexer](tutorial-adls-gen2-indexer-acls.md)
 - [azure-search-rest-samples/acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl)

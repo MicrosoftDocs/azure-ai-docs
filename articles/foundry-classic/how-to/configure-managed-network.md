@@ -13,8 +13,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: meerakurup
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 zone_pivot_groups: azure-ai-studio-sdk-cli
 ai.usage: ai-assisted
 #Customer intent: As an administrator, I want to configure a managed network for Microsoft Foundry hubs so that my computing resources are protected.

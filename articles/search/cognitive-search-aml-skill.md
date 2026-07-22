@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 # AML skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
 > Support for indexer connections to the model catalog is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Preview REST APIs support this capability.
 

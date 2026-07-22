@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/21/2026
 ms.author: lajanuar
 ---
 Create a **POST** request by using the following URL, headers, and JSON body to cancel a training job. 

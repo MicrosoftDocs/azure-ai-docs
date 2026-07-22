@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
 ms.reviewer: sooryar
-ms.date: 10/18/2024
+ms.date: 07/06/2026
 ms.custom:
   - cli-v2
   - sdk-v2
@@ -88,14 +88,14 @@ The GenAIOps Prompt Flow template formalizes this structured methodology by usin
 
 ## Create a GenAIOps prompt flow
 
-The rest of this article shows you how to use GenAIOps with prompt flow by following the end-to-end sample in the [GenAIOps with prompt flow template repository](https://github.com/microsoft/genaiops-promptflow-template), which help you build LLM-infused applications using prompt flow and Azure DevOps. The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
+The rest of this article shows you how to use GenAIOps with prompt flow by following the end-to-end sample in the [GenAIOps with prompt flow template repository](https://github.com/microsoft/genaiops-promptflow-template). The sample helps you build LLM-infused applications using prompt flow and Azure DevOps. The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
 
 ### Prerequisites
 
 - An Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Machine Learning workspace.
 - [Git version 2.27 or newer](https://git-scm.com/downloads) running on your local machine.
-- An [Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) where you have the ability to create a project, an Azure Repos source control repository, and Azure Pipelines pipelines. An Azure DevOps organization helps you collaborate, plan and track your work, code, and issues, and set up CI and CD.
+- An [Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) where you can create a project, an Azure Repos source control repository, and Azure Pipelines pipelines. An Azure DevOps organization helps you collaborate, plan and track your work, code, and issues, and set up CI and CD.
 - An understanding of [how to integrate GenAIOps with prompt flow](how-to-integrate-with-llm-app-devops.md).
 
 >[!NOTE]
@@ -164,9 +164,9 @@ The outputs should look similar to the examples at [Example prompt run, evaluati
 
 ### Use local execution
 
-To use [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#local-execution) capabilities, follow these steps.
+To use [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#local-execution) capabilities, follow these steps:
 
-1. Clone the repository as follows:
+1. Clone the repository.
 
    ```bash
    git clone https://github.com/microsoft/genaiops-promptflow-template.git

@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/02/2026
 ms.author: lajanuar
 ---
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
@@ -117,68 +117,68 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2022-05-01 \
 
 ```json
 {
-	"kind": "EntityLinkingResults",
-	"results": {
-		"documents": [{
-			"id": "1",
-			"entities": [{
-				"bingId": "a093e9b9-90f5-a3d5-c4b8-5855e1b01f85",
-				"name": "Microsoft",
-				"matches": [{
-					"text": "Microsoft",
-					"offset": 0,
-					"length": 9,
-					"confidenceScore": 0.48
-				}],
-				"language": "en",
-				"id": "Microsoft",
-				"url": "https://en.wikipedia.org/wiki/Microsoft",
-				"dataSource": "Wikipedia"
-			}, {
-				"bingId": "0d47c987-0042-5576-15e8-97af601614fa",
-				"name": "Bill Gates",
-				"matches": [{
-					"text": "Bill Gates",
-					"offset": 25,
-					"length": 10,
-					"confidenceScore": 0.52
-				}],
-				"language": "en",
-				"id": "Bill Gates",
-				"url": "https://en.wikipedia.org/wiki/Bill_Gates",
-				"dataSource": "Wikipedia"
-			}, {
-				"bingId": "df2c4376-9923-6a54-893f-2ee5a5badbc7",
-				"name": "Paul Allen",
-				"matches": [{
-					"text": "Paul Allen",
-					"offset": 40,
-					"length": 10,
-					"confidenceScore": 0.54
-				}],
-				"language": "en",
-				"id": "Paul Allen",
-				"url": "https://en.wikipedia.org/wiki/Paul_Allen",
-				"dataSource": "Wikipedia"
-			}, {
-				"bingId": "52535f87-235e-b513-54fe-c03e4233ac6e",
-				"name": "April 4",
-				"matches": [{
-					"text": "April 4",
-					"offset": 54,
-					"length": 7,
-					"confidenceScore": 0.38
-				}],
-				"language": "en",
-				"id": "April 4",
-				"url": "https://en.wikipedia.org/wiki/April_4",
-				"dataSource": "Wikipedia"
-			}],
-			"warnings": []
-		}],
-		"errors": [],
-		"modelVersion": "2021-06-01"
-	}
+    "kind": "EntityLinkingResults",
+    "results": {
+        "documents": [{
+            "id": "1",
+            "entities": [{
+                "bingId": "a093e9b9-90f5-a3d5-c4b8-5855e1b01f85",
+                "name": "Microsoft",
+                "matches": [{
+                    "text": "Microsoft",
+                    "offset": 0,
+                    "length": 9,
+                    "confidenceScore": 0.48
+                }],
+                "language": "en",
+                "id": "Microsoft",
+                "url": "https://en.wikipedia.org/wiki/Microsoft",
+                "dataSource": "Wikipedia"
+            }, {
+                "bingId": "0d47c987-0042-5576-15e8-97af601614fa",
+                "name": "Bill Gates",
+                "matches": [{
+                    "text": "Bill Gates",
+                    "offset": 25,
+                    "length": 10,
+                    "confidenceScore": 0.52
+                }],
+                "language": "en",
+                "id": "Bill Gates",
+                "url": "https://en.wikipedia.org/wiki/Bill_Gates",
+                "dataSource": "Wikipedia"
+            }, {
+                "bingId": "df2c4376-9923-6a54-893f-2ee5a5badbc7",
+                "name": "Paul Allen",
+                "matches": [{
+                    "text": "Paul Allen",
+                    "offset": 40,
+                    "length": 10,
+                    "confidenceScore": 0.54
+                }],
+                "language": "en",
+                "id": "Paul Allen",
+                "url": "https://en.wikipedia.org/wiki/Paul_Allen",
+                "dataSource": "Wikipedia"
+            }, {
+                "bingId": "52535f87-235e-b513-54fe-c03e4233ac6e",
+                "name": "April 4",
+                "matches": [{
+                    "text": "April 4",
+                    "offset": 54,
+                    "length": 7,
+                    "confidenceScore": 0.38
+                }],
+                "language": "en",
+                "id": "April 4",
+                "url": "https://en.wikipedia.org/wiki/April_4",
+                "dataSource": "Wikipedia"
+            }],
+            "warnings": []
+        }],
+        "errors": [],
+        "modelVersion": "2021-06-01"
+    }
 }
 ```
 

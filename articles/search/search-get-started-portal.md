@@ -14,6 +14,8 @@ ms.custom:
 
 # Quickstart: Full-text search in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this quickstart, you use the **Import data** wizard and sample data about fictitious hotels to get started with [full-text search](search-lucene-query-architecture.md), also known as keyword search. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
 The wizard creates multiple objects on your search service, including a searchable index, an indexer, and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.

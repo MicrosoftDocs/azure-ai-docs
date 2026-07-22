@@ -14,6 +14,16 @@ ai-usage: ai-assisted
 
 # Register external agents for observability and evaluation (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+> [!IMPORTANT]
+> When you use external agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. 
+>
+> If you use external agents with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs.  
+>
+> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices.  It is your responsibility to manage whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned. 
+>
+>  You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../observability/concepts/trace-data.md). 
+
 Microsoft Foundry Agent Service lets you register agents that run outside Foundry, on any cloud, on-premises, or other host, so you can use Foundry's trace view and evaluation experiences. Foundry stores only registration metadata for these agents. It doesn't host, proxy, or invoke the runtime.
 
 External agents differ from [Control Plane custom agents](../../control-plane/register-custom-agent.md), which route traffic through an AI Gateway. With external agents, your agent keeps its existing endpoint and shares only OpenTelemetry telemetry. No AI Gateway is required.
@@ -119,7 +129,7 @@ After the agent emits spans to Application Insights, register it in Foundry so t
 ### Install the SDK
 
 ```bash
-pip install azure-ai-projects>=2.2.0 azure-identity>=1.17.0
+pip install azure-ai-projects>=2.3.0 azure-identity>=1.17.0
 ```
 
 ### Create the registration
@@ -262,6 +272,14 @@ If `create_version()` fails, check the following items:
 > * Your identity has the **Foundry User** role (or higher) on the project.
 > * The `agent_name` value uses only alphanumeric characters, hyphens, and underscores.
 > * No existing agent with the same name and a different kind already exists. Use `project.agents.get()` to check.
+
+## Current limitations
+
+The following Foundry features aren't currently supported for external agents:
+
+- [Human evaluation](../../observability/how-to/human-evaluation.md) — Manual review workflows aren't available for externally registered agents.
+- [Convert agent traces into evaluation datasets](../../observability/how-to/traces-to-dataset.md) — Trace-to-dataset conversion isn't supported for external agents.
+- [AI red teaming](../../concepts/ai-red-teaming-agent.md) — Red teaming scans can't target external agents.
 
 ## Related content
 

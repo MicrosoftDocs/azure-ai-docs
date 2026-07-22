@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.date: 11/18/2025
+ms.date: 04/30/2026
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -149,15 +149,15 @@ Poller status: SUCCESSFULLY_COMPLETED.
 Results of Azure Text Analytics for health entities" Model, version: 2022-03-01
 Document ID = 0
 Document entities: 
-	Text: 100mg, normalized name: null, category: Dosage, subcategory: null, confidence score: 0.980000.
-	Text: ibuprofen, normalized name: ibuprofen, category: MedicationName, subcategory: null, confidence score: 1.000000.
-	Text: twice daily, normalized name: null, category: Frequency, subcategory: null, confidence score: 1.000000.
+    Text: 100mg, normalized name: null, category: Dosage, subcategory: null, confidence score: 0.980000.
+    Text: ibuprofen, normalized name: ibuprofen, category: MedicationName, subcategory: null, confidence score: 1.000000.
+    Text: twice daily, normalized name: null, category: Frequency, subcategory: null, confidence score: 1.000000.
 Relation type: DosageOfMedication.
-	Entity text: 100mg, category: Dosage, role: Dosage.
-	Entity text: ibuprofen, category: MedicationName, role: Medication.
+    Entity text: 100mg, category: Dosage, role: Dosage.
+    Entity text: ibuprofen, category: MedicationName, role: Medication.
 Relation type: FrequencyOfMedication.
-	Entity text: ibuprofen, category: MedicationName, role: Medication.
-	Entity text: twice daily, category: Frequency, role: Frequency.
+    Entity text: ibuprofen, category: MedicationName, role: Medication.
+    Entity text: twice daily, category: Frequency, role: Frequency.
 ```
 
 > [!TIP]

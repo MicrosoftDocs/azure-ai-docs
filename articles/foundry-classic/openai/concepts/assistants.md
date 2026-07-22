@@ -9,6 +9,7 @@ manager: mcleans
 author: aahill
 ms.author: aahi
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 # Azure OpenAI Assistants API (Preview) (classic)
@@ -49,7 +50,7 @@ For information on using assistants, see the following reference documentation.
 * [Java](/java/api/overview/azure/ai-openai-assistants-readme?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext)
 * [JavaScript](../how-to/migration-javascript.md?tabs=javascript-new#assistants)
 * [Python](https://developers.openai.com/api/reference/resources/beta/subresources/assistants)
-* [REST API](../reference-preview.md#list---assistants)
+* [REST API](/rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 
 ## Available models
 
@@ -87,7 +88,7 @@ We strongly recommend the following data access controls:
 
 ## Parameters
 
-The Assistants API has support for several parameters that let you customize the Assistants' output. The `tool_choice` parameter lets you force the Assistant to use a specified tool. You can also create messages with the `assistant` role to create custom conversation histories in Threads. `temperature`, `top_p`, `response_format` let you further tune responses. For more information, see the [reference](../reference-preview.md#list---assistants) documentation.
+The Assistants API has support for several parameters that let you customize the Assistants' output. The `tool_choice` parameter lets you force the Assistant to use a specified tool. You can also create messages with the `assistant` role to create custom conversation histories in Threads. `temperature`, `top_p`, `response_format` let you further tune responses. For more information, see the [reference](/rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true) documentation.
 
 ## Context window management
 

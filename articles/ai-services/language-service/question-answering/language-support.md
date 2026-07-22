@@ -9,7 +9,7 @@ ms.author: lajanuar
 recommendations: false
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 05/06/2026
 ms.custom: language-service-question-answering
 ---
 # Language support for custom question answering and projects

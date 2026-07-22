@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/02/2026
+ms.date: 07/14/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
@@ -46,7 +46,7 @@ POST {endpoint}/translator/document/batches?api-version=2026-03-01
 | `inputs[].targets[].language` | Yes | Target language code (for example, `fr`). |
 | `inputs[].targets[].glossaries` | No | Array of glossary objects. Each glossary requires `glossaryUrl` (SAS URL) and `format` (for example, `TSV`). |
 | `inputs[].storageType` | No | Storage source type. Supported values: `Folder` (default), `File`. |
-| `translateWithinImage` | No | Boolean. Set to `true` to translate text within images in `.docx` and `.pptx` files. |
+| `translateTextWithinImage` | No | Boolean. Set to `true` to translate text within images in `.docx` and `.pptx` files. |
 
 ## Example requests
 
@@ -147,7 +147,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
             "language": "ko"
           }
         ],
-        "translateWithinImage": true
+        "translateTextWithinImage": true
       }
     ]
   }'

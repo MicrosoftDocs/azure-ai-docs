@@ -7,7 +7,7 @@ ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
-ms.custom: include
+ms.custom: include, references_regions
 ---
 
 This article provides an overview of which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, how to configure virtual network support for network isolation, and using your own storage account to run evaluations.
@@ -48,9 +48,9 @@ The batch evaluations are supported in the following regions:
 | West US 2 | West Europe |  |  |
 | West US 3 |  |  |  |
 
-### Risk and safety evaluators and AI red teaming region support
+### Supported regions for risk and safety evaluators
 
-The following safety evaluators and AI red teaming are supported in these regions: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes, and AI red teaming.
+These regions support the following safety evaluators: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, and Ungrounded attributes.
 
 | Americas | Europe | Asia Pacific |
 |--|--|--|
@@ -66,6 +66,13 @@ Supported regions for Groundedness Pro:
 Supported regions for Protected material:
 
 - East US 2
+
+### Supported regions for AI red teaming
+
+AI red teaming is supported in the following regions.
+
+- East US 2
+- North Central US
 
 ### Azure OpenAI graders regional availability
 
@@ -103,9 +110,17 @@ Virtual network support for evaluation requires network injection (subnet delega
 
 ### Virtual network region support
 
-Bringing your own virtual network for evaluation is supported in all regions except:
+Bringing your own virtual network for evaluation is supported in the following regions:
 
-- Central India
-- East Asia
-- North Europe
-- Qatar Central
+| Americas | Europe | Asia Pacific | Middle East & Africa |
+|--|--|--|--|
+| Brazil South | France Central | Australia East | South Africa North |
+| Canada Central | Germany West Central | Japan East | UAE North |
+| Canada East | Italy North | Korea Central |  |
+| East US | Norway East | South India |  |
+| East US 2 | Poland Central | Southeast Asia |  |
+| North Central US | Spain Central |  |  |
+| South Central US | Sweden Central |  |  |
+| West US | Switzerland North |  |  |
+| West US 2 | UK South |  |  |
+| West US 3 | West Europe |  |  |

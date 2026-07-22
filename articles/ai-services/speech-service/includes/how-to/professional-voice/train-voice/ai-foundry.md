@@ -23,9 +23,9 @@ Training duration varies depending on how much data you use. It takes about 10 c
 
 After you validate your data files, use them to build your custom voice model. When you create a custom voice, you can choose to train it with one of the following methods:
 
-- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language as your training data.
-
 - [Neural - HD Voice](?tabs=hdvoice#train-your-custom-voice-model): Create an HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
+
+- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language as your training data.
 
 - [Neural - multilingual](?tabs=multilingual#train-your-custom-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
 
@@ -38,6 +38,9 @@ After you validate your data files, use them to build your custom voice model. W
 - [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model): Create a voice that speaks a different language from your training data. For example, with the `zh-CN` training data, you can create a voice that speaks `en-US`.
 
   The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
+
+  > [!NOTE]
+   > Neural - cross lingual retires on August 25, 2026. The voice models you already created by using these retired methods aren't affected.
 
 The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom voice, cross-lingual, or multiple style training.
 

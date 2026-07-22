@@ -3,12 +3,14 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/07/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Query a knowledge base using the retrieve action or MCP endpoint
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
@@ -23,7 +25,11 @@ zone_pivot_groups: search-csharp-python-rest
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
-This article explains how to call both retrieval methods with optional permissions enforcement and interpret the three-pronged response. To set up a pipeline that connects Azure AI Search to Foundry Agent Service via MCP, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
+This article explains how to call both retrieval methods with optional permissions enforcement. It covers the retrieve action first and the MCP endpoint later because the MCP tool result currently differs from the REST and SDK response shape. Use `2026-05-01-preview` for the full feature set, including `messages`, answer synthesis, configurable reasoning effort, and sensitivity label metadata in retrieve responses.
+
+If you're moving from `2025-11-01-preview`, you can update directly to `2026-05-01-preview` because the request and response shapes remain compatible. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
+
+To set up a pipeline that connects Azure AI Search to Foundry Agent Service via MCP, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
 ## Prerequisites
 
@@ -63,12 +69,15 @@ This article explains how to call both retrieval methods with optional permissio
 
 ::: zone-end
 
+## Limitations
+
+For search index knowledge sources, retrieve uses the knowledge source's semantic configuration, but it doesn't apply the underlying index's [scoring profiles](index-add-scoring-profiles.md), including `defaultScoringProfile`. Retrieve responses also don't surface `@search.rerankerBoostedScore`.
+
 ## Call the retrieve action
 
 You specify the retrieve action on a knowledge base. The request body includes the query input and an optional list of knowledge sources to target.
 
-> [!IMPORTANT]
-> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
+The `2026-04-01` API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. Use `2026-05-01-preview` for full functionality.
 
 :::zone pivot="csharp"
 
@@ -325,43 +334,6 @@ Authorization: Bearer {{accessToken}}
 
 :::zone-end
 
-### Request parameters
-
-Pass the following parameters to call the retrieve action.
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `messages` | Contains the chat conversation history sent to the agentic retrieval pipeline. The LLM determines the query from the conversation history. The message format is similar to Azure OpenAI APIs. Supported only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium. | Object | Yes | No |
-| `messages.role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
-| `messages.content` | The message or prompt sent to the LLM. Must be text. | Array | Yes | No |
-| `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. For a usage example, see [Inspect model names in activity logs](#inspect-model-names-in-activity-logs). | Boolean | Yes | No |
-| `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. If `maxOutputSize` is also set, both constraints apply, and whichever limit is reached first wins. The service can return fewer documents than this parameter's value if fewer results survive ranking, thresholding, or deduplication. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. If `maxOutputDocuments` is also set, both constraints apply, and whichever limit is reached first wins. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
-| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
-| `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
-| `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
-| `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. This parameter is independent of `failOnError`. To require a source to always run and fail the request if it errors, set both to `true`. | Boolean | Yes | No |
-| `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` and an error message that identifies the knowledge source that couldn't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`, which means the pipeline favors availability and returns results from other sources when one fails. Independent of `alwaysQuerySource`, which controls whether the source is attempted at all; `failOnError` controls what happens when that attempt fails. For a usage example, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
-| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Use `50` for cross-region compatibility because some preview regions cap this per-source parameter at 50. Doesn't control the final number of grounding documents returned to the caller. The service can return fewer documents when fewer matches are available or when internal limits apply. For a usage example, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
-| `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. For a usage example, see [Set references for each knowledge source](#set-references-for-each-knowledge-source). | Boolean | Yes | No |
-| `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. For a usage example, see [Set references for each knowledge source](#set-references-for-each-knowledge-source). | Boolean | Yes | No |
-| `knowledgeSourceParams.rerankerThreshold` | Minimum reranker score that a candidate document must have to be included in the result set for this source. | Number | Yes | No |
-| `knowledgeSourceParams.filterAddOn` | OData filter appended to the persisted `baseFilter` (if any) for search index knowledge sources, narrowing the source query at request time. For filter syntax and examples, see [Filter search index knowledge sources at query time](#filter-search-index-knowledge-sources-at-query-time). | String | Yes | No |
-
-# [2026-04-01](#tab/2026-04-01)
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `intents` | A list of search intents sent to the agentic retrieval pipeline. Each intent specifies a query type and a search string. | Array | Yes | Yes |
-| `intents.type` | The query type. The only valid value is `semantic`. | String | Yes | Yes |
-| `intents.search` | The search string for the query. | String | Yes | Yes |
-| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
-
----
-
 ### Include images in retrieve responses (preview)
 
 For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition.
@@ -370,219 +342,13 @@ Image serving runs only when `outputMode` is `answerSynthesis` and requires the 
 
 ### Search index behavior
 
-For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. The implied query type is `semantic`, and there's no search mode.
+For knowledge sources that target a search index, the implied query type is `semantic`, and there's no search mode. Query execution uses the knowledge source definition, including `semanticConfigurationName`, `searchFields`, and `sourceDataFields`.
+
+Agentic retrieval doesn't accept `scoringProfile` or `scoringParameters` inputs. If you need recency bias for indexed knowledge sources, use [freshness-aware retrieval](agentic-retrieval-how-to-configure-freshness.md) instead of an index scoring profile.
 
 If the index includes vector fields, you need a valid vectorizer definition so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
 
 For more information, see [Create an index for agentic retrieval](agentic-retrieval-how-to-create-index.md).
-
-## Call the MCP endpoint
-
-> [!IMPORTANT]
-> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
-
-[MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
-
-In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Claude](https://claude.ai), and [Cursor](https://cursor.com), can invoke this tool to query the knowledge base.
-
-### Authenticate to the MCP endpoint
-
-Each knowledge base has an MCP endpoint at the following URL:
-
-```
-https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
-```
-
-How you authenticate to this endpoint depends on your MCP client. When you use the Azure OpenAI Responses API with the `knowledge_base_retrieve` MCP tool, you authenticate both the Responses API call to Azure OpenAI and the MCP request to Azure AI Search. If your MCP client calls this endpoint directly, you authenticate only to Azure AI Search.
-
-For Azure AI Search authentication, use one of the following methods:
-
-+ [Pass a bearer token](#use-a-bearer-token-for-mcp-authentication) in the `Authorization` header (recommended)
-+ [Pass an admin key](#use-an-admin-key-for-mcp-authentication) in the `api-key` header
-
-> [!NOTE]
-> MCP clients configure custom headers differently. For example, [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect) injects headers through project connections, while clients such as [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) require headers in MCP server JSON.
-
-### Use a bearer token for MCP authentication
-
-The recommended method for MCP authentication is a bearer token, which avoids storing sensitive keys in configuration files. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
-
-:::zone pivot="csharp"
-
-```csharp
-using Azure.AI.OpenAI;
-using Azure.Core;
-using Azure.Identity;
-using OpenAI.Responses;
-using System;
-using System.Collections.Generic;
-
-string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!; // Example: https://<your-resource-name>.openai.azure.com
-string mcpServerUrl = Environment.GetEnvironmentVariable("AZURE_SEARCH_MCP_ENDPOINT")!; // Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
-DefaultAzureCredential credential = new();
-
-// Create the Azure OpenAI Responses client
-AzureOpenAIClient azureClient = new(new Uri(openAiEndpoint), credential);
-ResponsesClient openAIClient = azureClient.GetResponsesClient();
-
-// Get a bearer token for Azure AI Search
-string searchToken = credential.GetToken(
-    new TokenRequestContext(new[] { "https://search.azure.com/.default" })
-).Token;
-
-// Configure the MCP tool for knowledge base retrieval
-McpTool mcpTool = ResponseTool.CreateMcpTool(
-    serverLabel: "search_kb",
-    serverUri: new Uri(mcpServerUrl),
-    headers: new Dictionary<string, string>
-    {
-        ["Authorization"] = $"Bearer {searchToken}",
-    },
-    allowedTools: new[] { "knowledge_base_retrieve" },
-    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
-        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
-);
-
-// Build the response request with the MCP tool attached
-CreateResponseOptions options = new()
-{
-    Model = "MODEL_NAME",
-    InputItems =
-    {
-        ResponseItem.CreateUserMessageItem(
-            "What causes the strongest nighttime brightness patterns in this dataset?")
-    },
-    Tools = { mcpTool }
-};
-
-ResponseResult response = await openAIClient.CreateResponseAsync(options);
-Console.WriteLine(response.GetOutputText());
-```
-
-**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-import os
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import AzureOpenAI
-
-openai_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"] # Example: https://<your-resource-name>.openai.azure.com
-mcp_server_url = os.environ["AZURE_SEARCH_MCP_ENDPOINT"] # Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
-credential = DefaultAzureCredential()
-
-# Create token providers for Azure OpenAI and Azure AI Search
-openai_token_provider = get_bearer_token_provider(
-    credential, "https://cognitiveservices.azure.com/.default"
-)
-search_token_provider = get_bearer_token_provider(
-    credential, "https://search.azure.com/.default"
-)
-
-# Create the Azure OpenAI client
-client = AzureOpenAI(
-    azure_endpoint=openai_endpoint,
-    azure_ad_token_provider=openai_token_provider,
-)
-
-# Create a response using the MCP tool configuration
-response = client.responses.create(
-    model="MODEL_NAME",
-    input="What causes the strongest nighttime brightness patterns in this dataset?",
-    tools=[
-        {
-            "type": "mcp",
-            "server_label": "search_kb",
-            "server_url": mcp_server_url,
-            "allowed_tools": ["knowledge_base_retrieve"],
-            "headers": {
-                "Authorization": f"Bearer {search_token_provider()}"
-            },
-            "require_approval": "never",
-        }
-    ],
-)
-
-print(response.output_text)
-```
-
-**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
-
-:::zone-end
-
-:::zone pivot="rest"
-
-```http
-// This code snippet is currently unavailable.
-```
-
-:::zone-end
-
-### Use an admin key for MCP authentication
-
-An admin key grants full read-write access to the search service, so you should only use it in development environments or when a bearer token isn't available. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
-
-> [!TIP]
-> The following example shows only the header that differs from the bearer token example. For the full setup, see [Use a bearer token for MCP authentication](#use-a-bearer-token-for-mcp-authentication).
-
-:::zone pivot="csharp"
-
-```csharp
-using OpenAI.Responses;
-using System;
-using System.Collections.Generic;
-
-string mcpServerUrl = Environment.GetEnvironmentVariable("AZURE_SEARCH_MCP_ENDPOINT")!; // Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
-string searchAdminKey = Environment.GetEnvironmentVariable("AZURE_SEARCH_ADMIN_KEY")!; // Example: <your-search-admin-key>
-
-McpTool mcpTool = ResponseTool.CreateMcpTool(
-    serverLabel: "search_kb",
-    serverUri: new Uri(mcpServerUrl),
-    headers: new Dictionary<string, string> { ["api-key"] = searchAdminKey },
-    allowedTools: new[] { "knowledge_base_retrieve" },
-    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
-        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
-);
-```
-
-**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-import os
-
-mcp_server_url = os.environ["AZURE_SEARCH_MCP_ENDPOINT"] # Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
-search_admin_key = os.environ["AZURE_SEARCH_ADMIN_KEY"] # Example: <your-search-admin-key>
-
-tools = [
-    {
-        "type": "mcp",
-        "server_label": "search_kb",
-        "server_url": mcp_server_url,
-        "allowed_tools": ["knowledge_base_retrieve"],
-        "headers": {"api-key": search_admin_key},
-        "require_approval": "never",
-    }
-]
-```
-
-**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
-
-:::zone-end
-
-:::zone pivot="rest"
-
-```http
-// This code snippet is currently unavailable.
-```
-
-:::zone-end
 
 ## Filter search index knowledge sources at query time
 
@@ -777,8 +543,7 @@ filter_add_on="(status eq 'published' or status eq 'internal') and created ge 20
 
 ## Enforce permissions at query time (preview)
 
-> [!IMPORTANT]
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+Changes to access permissions that you set outside of `2026-05-01-preview` can take time to appear in `2026-05-01-preview` retrieval results.
 
 If your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user only sees the documents they're authorized to access. You enable this filtering by passing the end user's identity on the retrieve request. Without the identity token, results from permission-enabled knowledge sources are returned unfiltered.
 
@@ -794,16 +559,15 @@ The following table shows which knowledge sources require ingestion-time configu
 
 | Knowledge source | Requires `ingestionPermissionOptions` | How permissions are enforced |
 |---|---|---|
-| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes, ACLs, or Microsoft Purview matched against user identity. |
-| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested document Microsoft Purview sensitivity labels matched against user identity. |
-| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs or Microsoft Purview sensitivity labels matched against user identity. |
+| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md) | ✅ | Ingested RBAC scopes, ACLs, or Microsoft Purview matched against user identity. |
+| [OneLake](agentic-knowledge-source-how-to-onelake.md) | ✅ | Ingested document Microsoft Purview sensitivity labels matched against user identity. |
+| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) | ✅ | Ingested SharePoint ACLs or Microsoft Purview sensitivity labels matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
 | [Fabric Data Agent](agentic-knowledge-source-how-to-fabric-data-agent.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the data agent on their behalf. |
 | [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the ontology item on their behalf. |
 | [Work IQ](agentic-knowledge-source-how-to-work-iq.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Work IQ–scoped token and queries Work IQ on their behalf. |
 
-> [!IMPORTANT]
-> If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
+If you don't configure `ingestionPermissionOptions` when you create the indexed knowledge source, the index doesn't contain permission metadata. The system returns results unfiltered, regardless of the header. To fix this problem, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
 
 ### Query-time authorization
 
@@ -987,10 +751,10 @@ Key points:
 
   + The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
 
-+ The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
++ Retrieve responses don't include `@search.rerankerBoostedScore`.
 
-    > [!IMPORTANT]
-    > A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
++ The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
+  + A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -1152,8 +916,7 @@ Here's an example of the references array:
 
 ## Inspect sensitivity label metadata in the response (preview)
 
-> [!IMPORTANT]
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+The same timing behavior described in [Enforce permissions at query time](#enforce-permissions-at-query-time-preview) applies here: changes to access permissions that were set outside of `2026-05-01-preview` can take time to appear in `2026-05-01-preview` retrieve responses.
 
 When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
 
@@ -1923,6 +1686,243 @@ Content-Type: application/json
 A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document exceeded the maximum output size. The references array and grounded response content are empty for that document. To retain more content, increase `maxOutputSizeInTokens`.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
+
+## Call the MCP endpoint
+
+> [!IMPORTANT]
+> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
+
+[MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
+
+In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Claude](https://claude.ai), and [Cursor](https://cursor.com), can invoke this tool to query the knowledge base.
+
+### Authenticate to the MCP endpoint
+
+Each knowledge base has an MCP endpoint at the following URL:
+
+```
+https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+```
+
+The API version you specify determines what the connection returns. With `2026-05-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
+
+How you authenticate to this endpoint depends on your MCP client. When you use the Azure OpenAI Responses API with the `knowledge_base_retrieve` MCP tool, you authenticate both the Responses API call to Azure OpenAI and the MCP request to Azure AI Search. If your MCP client calls this endpoint directly, you authenticate only to Azure AI Search.
+
+For Azure AI Search authentication, use one of the following methods:
+
++ [Pass a bearer token](#use-a-bearer-token-for-mcp-authentication) in the `Authorization` header (recommended)
++ [Pass an admin key](#use-an-admin-key-for-mcp-authentication) in the `api-key` header
+
+> [!NOTE]
+> MCP clients configure custom headers differently. For example, [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect) injects headers through project connections, while clients such as [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) require headers in MCP server JSON.
+
+### Use a bearer token for MCP authentication
+
+The recommended method for MCP authentication is a bearer token, which avoids storing sensitive keys in configuration files. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
+
+:::zone pivot="csharp"
+
+```csharp
+using Azure.AI.OpenAI;
+using Azure.Core;
+using Azure.Identity;
+using OpenAI.Responses;
+using System;
+using System.Collections.Generic;
+
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!; // Example: https://<your-resource-name>.openai.azure.com
+string mcpServerUrl = Environment.GetEnvironmentVariable("AZURE_SEARCH_MCP_ENDPOINT")!; // Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+DefaultAzureCredential credential = new();
+
+// Create the Azure OpenAI Responses client
+AzureOpenAIClient azureClient = new(new Uri(openAiEndpoint), credential);
+ResponsesClient openAIClient = azureClient.GetResponsesClient();
+
+// Get a bearer token for Azure AI Search
+string searchToken = credential.GetToken(
+    new TokenRequestContext(new[] { "https://search.azure.com/.default" })
+).Token;
+
+// Configure the MCP tool for knowledge base retrieval
+McpTool mcpTool = ResponseTool.CreateMcpTool(
+    serverLabel: "search_kb",
+    serverUri: new Uri(mcpServerUrl),
+    headers: new Dictionary<string, string>
+    {
+        ["Authorization"] = $"Bearer {searchToken}",
+    },
+    allowedTools: new[] { "knowledge_base_retrieve" },
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
+);
+
+// Build the response request with the MCP tool attached
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+            "What causes the strongest nighttime brightness patterns in this dataset?")
+    },
+    Tools = { mcpTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+import os
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from openai import AzureOpenAI
+
+openai_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"] # Example: https://<your-resource-name>.openai.azure.com
+mcp_server_url = os.environ["AZURE_SEARCH_MCP_ENDPOINT"] # Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+credential = DefaultAzureCredential()
+
+# Create token providers for Azure OpenAI and Azure AI Search
+openai_token_provider = get_bearer_token_provider(
+    credential, "https://cognitiveservices.azure.com/.default"
+)
+search_token_provider = get_bearer_token_provider(
+    credential, "https://search.azure.com/.default"
+)
+
+# Create the Azure OpenAI client
+client = AzureOpenAI(
+    azure_endpoint=openai_endpoint,
+    azure_ad_token_provider=openai_token_provider,
+)
+
+# Create a response using the MCP tool configuration
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="What causes the strongest nighttime brightness patterns in this dataset?",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "search_kb",
+            "server_url": mcp_server_url,
+            "allowed_tools": ["knowledge_base_retrieve"],
+            "headers": {
+                "Authorization": f"Bearer {search_token_provider()}"
+            },
+            "require_approval": "never",
+        }
+    ],
+)
+
+print(response.output_text)
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```http
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+### Use an admin key for MCP authentication
+
+An admin key grants full read-write access to the search service, so you should only use it in development environments or when a bearer token isn't available. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
+
+> [!TIP]
+> The following example shows only the header that differs from the bearer token example. For the full setup, see [Use a bearer token for MCP authentication](#use-a-bearer-token-for-mcp-authentication).
+
+:::zone pivot="csharp"
+
+```csharp
+using OpenAI.Responses;
+using System;
+using System.Collections.Generic;
+
+string mcpServerUrl = Environment.GetEnvironmentVariable("AZURE_SEARCH_MCP_ENDPOINT")!; // Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+string searchAdminKey = Environment.GetEnvironmentVariable("AZURE_SEARCH_ADMIN_KEY")!; // Example: <your-search-admin-key>
+
+McpTool mcpTool = ResponseTool.CreateMcpTool(
+    serverLabel: "search_kb",
+    serverUri: new Uri(mcpServerUrl),
+    headers: new Dictionary<string, string> { ["api-key"] = searchAdminKey },
+    allowedTools: new[] { "knowledge_base_retrieve" },
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
+);
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+import os
+
+mcp_server_url = os.environ["AZURE_SEARCH_MCP_ENDPOINT"] # Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+search_admin_key = os.environ["AZURE_SEARCH_ADMIN_KEY"] # Example: <your-search-admin-key>
+
+tools = [
+    {
+        "type": "mcp",
+        "server_label": "search_kb",
+        "server_url": mcp_server_url,
+        "allowed_tools": ["knowledge_base_retrieve"],
+        "headers": {"api-key": search_admin_key},
+        "require_approval": "never",
+    }
+]
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```http
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+## Review the MCP response
+
+When an MCP client invokes `knowledge_base_retrieve`, it receives an MCP tool result instead of the retrieve action's `response`, `activity`, and `references` envelope. Many MCP clients surface that tool result under a top-level `result` object, so the payload you should expect is `result.content[]`.
+
+```json
+{
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"ref_id\":\"0\",\"title\":\"Urban Structure\",\"terms\":\"Location of Phoenix, Grid of City Blocks, Phoenix Metropolitan Area at Night\",\"content\":\"<content chunk redacted>\"}]"
+      }
+    ]
+  }
+}
+```
+
+Key points:
+
++ `result.content[]` contains the MCP tool output returned by the knowledge base.
+
++ `result.content[].type` is `text`.
+
++ `result.content[].text` contains the retrieved grounding data as a JSON-encoded string.
+
++ Unlike the retrieve action, the current MCP response doesn't return separate `activity` or `references` arrays, and it doesn't populate `resource` entries for the returned content.
 
 ## Related content
 

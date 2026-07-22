@@ -9,7 +9,7 @@ ms.author: lajanuar
 displayName: chat history, history, chat logs, logs
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.custom: language-service-question-answering
 ---
 # Get analytics for your project

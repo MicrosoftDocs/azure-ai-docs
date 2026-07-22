@@ -5,7 +5,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/26/2026
 ms.custom: devx-track-java
 ms.author: lajanuar
 ---

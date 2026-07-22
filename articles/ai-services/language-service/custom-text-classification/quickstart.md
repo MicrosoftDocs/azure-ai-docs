@@ -7,7 +7,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 12/15/2025
+ms.date: 04/18/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, mode-other
 ---
@@ -28,11 +28,11 @@ In this quickstart, you can use the sample datasets provided to build a multi la
 ## Next steps
 
 After you create a custom text classification model, you can:
-* [Use the runtime API to classify text](how-to/call-api.md)
+* [Use the runtime API to classify text](how-to/build-train-deploy-model.md#send-prediction-requests)
 
 When you start to create your own custom text classification projects, use the how-to articles to learn more about developing your model in greater detail:
 
-* [Data selection and schema design](how-to/design-schema.md)
-* [Tag data](how-to/tag-data.md)
-* [Train a model](how-to/train-model.md)
-* [View model evaluation](how-to/view-model-evaluation.md)
+* [Data selection and schema design](how-to/build-train-deploy-model.md#prepare-your-data-and-define-a-schema)
+* [Tag data](how-to/build-train-deploy-model.md#label-your-data)
+* [Train a model](how-to/build-train-deploy-model.md#train-your-model)
+* [View model evaluation](how-to/build-train-deploy-model.md#view-model-details)

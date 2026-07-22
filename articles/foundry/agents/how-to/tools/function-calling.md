@@ -7,9 +7,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/30/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
@@ -472,7 +472,7 @@ The Agent Framework runs the local `GetWeather` function automatically and print
 The weather in Amsterdam is cloudy with a high of 15°C.
 ```
 
-You can also pass tools per call via `agent.RunAsync(query, tools: [...])` to vary the tool set per invocation. For the full sample including approval workflows, see [Agent_Step03_UsingFunctionTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step03_UsingFunctionTools) and [Agent_Step04_UsingFunctionToolsWithApprovals](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step04_UsingFunctionToolsWithApprovals).
+You can also pass tools per call via `agent.RunAsync(query, tools: [...])` to vary the tool set per invocation. For the full sample including approval workflows, see [Agent_Step03_UsingFunctionTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step03_UsingFunctionTools) and [Agent_Step04_UsingFunctionToolsWithApprovals](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step04_UsingFunctionToolsWithApprovals).
 
 ---
 
@@ -755,7 +755,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 

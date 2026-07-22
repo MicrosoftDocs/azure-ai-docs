@@ -13,6 +13,8 @@ ms.custom:
 
 # Troubleshoot issues with shared private links in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A shared private link allows Azure AI Search to make secure outbound connections over a private endpoint when accessing customer resources in a virtual network. This article can help you resolve errors that might occur.
 
 Creating a shared private link is a search service control plane operation. You can [create a shared private link](search-indexer-howto-access-private.md) using either the Azure portal or a [Management REST API](/rest/api/searchmanagement/shared-private-link-resources/create-or-update). During provisioning, the state of the request is `Updating`. After the operation completes successfully, status is `Succeeded`. A private endpoint to the resource, along with any DNS zones and mappings, is created. This endpoint is used exclusively by your search service instance and is managed through Azure AI Search.

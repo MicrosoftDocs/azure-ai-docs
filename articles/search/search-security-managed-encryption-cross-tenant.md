@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Configure customer-managed keys across different tenants
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes a cross-tenant scenario where a service provider hosts Azure AI Search in their own tenant and enables [customer-managed key (CMK) encryption](search-security-manage-encryption-keys.md) using a multitenant Microsoft Entra application.
 
 In this configuration, the customer uses Azure Key Vault in their own tenant to manage their encryption key. The service provider has no access to this key.
@@ -184,7 +186,7 @@ We refer to the tenant containing Azure Key Vault as *tenant B*. In tenant B, cr
 
    An example of this assignment might look like this:
 
-   `az role assignment create --assignee 12345678-1234-1234-1234-123456789012 --role "Key Vault Crypto Service Encryption User" --scope /subscriptions/87654321-4321-4321-4321-210987654321/resourceGroups/myKeyVaultRG/providers/Microsoft.KeyVault/vaults/myCompanyKeyVault`
+   `az role assignment create --assignee 00001111-aaaa-2222-bbbb-3333cccc4444 --role "Key Vault Crypto Service Encryption User" --scope /subscriptions/87654321-4321-4321-4321-210987654321/resourceGroups/myKeyVaultRG/providers/Microsoft.KeyVault/vaults/myCompanyKeyVault`
 
 ### Validate the client secret cross-tenant CMK configuration
 
@@ -197,7 +199,7 @@ After you configure the multitenant Microsoft Entra application and connect it t
    - `keyVaultUri`: The URI address from the customer.
    - `keyVaultKeyName`: The key name from the customer.
    - `keyVaultKeyVersion`: The key version from the customer.
-   - `accessCredentials`: The `applicationId` will look something like "12345678-1234-1234-1234-123456789012" and the `applicationSecret` that was just created.
+   - `accessCredentials`: The `applicationId` is something like `00001111-aaaa-2222-bbbb-3333cccc4444`, and the `applicationSecret` is the value you just created.
 
 ```json
 {

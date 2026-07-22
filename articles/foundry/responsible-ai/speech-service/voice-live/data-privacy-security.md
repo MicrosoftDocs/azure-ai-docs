@@ -5,7 +5,7 @@ description: "This document details issues for data, privacy, and security for V
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 09/29/2025
 ---

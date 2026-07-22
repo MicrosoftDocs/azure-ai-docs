@@ -1,18 +1,23 @@
 ---
-title: Orchestration workflow model evaluation metrics
+title: Orchestration workflow model concepts
 titleSuffix: Foundry Tools
-description: Learn about evaluation metrics in orchestration workflow
+description: "Learn core concepts for orchestration workflow models: evaluation metrics and accepted data formats."
 author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/26/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-# Evaluation metrics for orchestration workflow models
+<!-- markdownlint-disable MD025 -->
+# Orchestration workflow model concepts
 
-Your dataset is split into two parts: a set for training, and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process, to make sure that the model is tested on new data. <!--See [data splitting](../how-to/train-model.md#data-splitting) for more information-->
+This article covers core concepts for building orchestration workflow models, including how model performance is measured and the data formats that orchestration workflow accepts.
+
+## Evaluation metrics
+
+Your dataset is split into two parts: a set for training, and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process, to make sure that the model is tested on new data. <!--See [data splitting](../how-to/build-train-deploy-model.md#data-splitting) for more information-->
 
 Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined intents for utterances in the test set, and compares them with the provided tags (which establishes a baseline of truth). The results are returned so you can review the model's performance. For evaluation, orchestration workflow uses the following metrics:
 
@@ -111,6 +116,92 @@ You can calculate the model-level evaluation metrics from the confusion matrix:
 * The *false positive* of the model is the sum of *false positives* for all intents.
 * The *false Negative* of the model is the sum of *false negatives* for all intents.
 
+## Accepted data formats
+
+When your model uses data for learning, it expects the data to be in a specific format. When you tag your data, the process converts it to the JSON format described in this article. You can also manually tag your files.
+
+
+### JSON file format
+
+If you upload a tags file, it should follow this format.
+
+```json
+{
+  "projectFileVersion": "{API-VERSION}",
+  "stringIndexType": "Utf16CodeUnit",
+  "metadata": {
+    "projectKind": "Orchestration",
+    "projectName": "{PROJECT-NAME}",
+    "multilingual": false,
+    "description": "This is a description",
+    "language": "{LANGUAGE-CODE}"
+  },
+  "assets": {
+    "projectKind": "Orchestration",
+    "intents": [
+      {
+        "category": "{INTENT1}",
+        "orchestration": {
+          "targetProjectKind": "Luis|Conversation|QuestionAnswering",
+          "luisOrchestration": {
+            "appId": "{APP-ID}",
+            "appVersion": "0.1",
+            "slotName": "production"
+          },
+          "conversationOrchestration": {
+            "projectName": "{PROJECT-NAME}",
+            "deploymentName": "{DEPLOYMENT-NAME}"
+          },
+          "questionAnsweringOrchestration": {
+            "projectName": "{PROJECT-NAME}"
+          }
+        }
+      }
+    ],
+    "utterances": [
+      {
+        "text": "utterance 1",
+        "language": "{LANGUAGE-CODE}",
+        "dataset": "{DATASET}",
+        "intent": "intent1"
+      }
+    ]
+  }
+}
+```
+
+|Key  |Placeholder  |Value  | Example |
+|---------|---------|----------|--|
+| `api-version` | `{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest released [model version](../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released. | `2022-03-01-preview` |
+|`confidenceThreshold`|`{CONFIDENCE-THRESHOLD}`|This is the threshold score below which the intent is predicted as [none intent](none-intent.md)|`0.7`|
+| `projectName` | `{PROJECT-NAME}` | The name of your project. This value is case-sensitive. | `EmailApp` |
+| `multilingual` | `false`| Orchestration doesn't support the multilingual feature  | `false`|
+| `language` | `{LANGUAGE-CODE}` |  A string specifying the language code for the utterances used in your project. See [Language support](../language-support.md) for more information about supported language codes. |`en-us`|
+| `intents` | `[]` | Array containing all the intent types you have in the project. These are the intents used in the orchestration project.| `[]` |
+
+
+### Utterance format
+
+```json
+[
+    {
+        "intent": "intent1",
+        "language": "{LANGUAGE-CODE}",
+        "text": "{Utterance-Text}",
+    },
+    {
+        "intent": "intent2",
+        "language": "{LANGUAGE-CODE}",
+        "text": "{Utterance-Text}",
+    }
+]
+
+```
+
+
+
 ## Next steps
 
-[Train a model](../how-to/train-model.md)
+* [Train a model](../how-to/build-train-deploy-model.md#train-your-model)
+* You can import your labeled data into your project directly. Learn how to [import project](../how-to/create-project.md).
+* For more information about labeling your data, see the [how-to article](../how-to/build-train-deploy-model.md#label-your-utterances).

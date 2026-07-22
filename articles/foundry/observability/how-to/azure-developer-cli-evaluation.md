@@ -19,19 +19,19 @@ Use the Azure Developer CLI (`azd`) CLI evaluation experience to add a measured 
 
 Prompt-based agents can also be evaluated when they are available as agent targets in the Foundry project. The hosted-agent deployment steps apply only to hosted agents.
 
-This article covers how to run the first agent evaluation with `azd ai agent eval init` and `azd ai agent eval run`.
+This article covers how to run the first agent evaluation with `azd ai agent eval generate` and `azd ai agent eval run`.
 
 ## Prerequisites
 
 - An Azure subscription with access to Microsoft Foundry.
 - The Azure Developer CLI (`azd`). For installation instructions, see [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
-- The `azd ai agent` extension installed (`azd extension install azure.ai.agents`). If you don't have the extension installed, when you initialize the starter template or run `azd ai agent` the extension is installed automatically. To learn more about the `azd` AI agent extension see, [Microsoft Foundry agent extension](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension)
+- The `azd ai agent` extension, version 0.1.40-preview or later, installed (`azd ext install azure.ai.agents`). If you don't have the extension installed, when you initialize the starter template or run `azd ai agent` the extension is installed automatically. Run `azd ext list` to verify the installed version, and run `azd ext upgrade azure.ai.agents` if you need to upgrade. To learn more about the `azd` AI agent extension, see [Microsoft Foundry agent extension](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension).
 - An authenticated `azd` session. To check your authentication status, run `azd auth status`. If you're not signed in, run `azd auth login`.
 - The `Foundry User` role on the Foundry resource (previously named `Azure AI User`). For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 - **For hosted agents:** No preexisting Foundry project is required. `azd ai agent init` and `azd provision` create the necessary resources.
 - **For prompt-based agents:** An existing Foundry project with the agent already deployed and available as an evaluation target.
 - A model deployment that supports chat completions in the same Foundry project.
-- Optional: a JSONL evaluation dataset with representative examples, if you do not want `eval init` to generate a smoke dataset.
+- Optional: a JSONL evaluation dataset with representative examples, if you do not want `eval generate` to generate a smoke dataset.
 
 ## How azd agent evaluations work
 
@@ -41,7 +41,7 @@ The primary azd CLI evaluation experience is designed for the hosted-agent lifec
 azd ai agent init
 azd provision
 azd deploy
-azd ai agent eval init
+azd ai agent eval generate
 azd ai agent eval run
 azd ai agent eval update
 # Optional, after the agent and eval recipe meet optimization prerequisites:
@@ -52,7 +52,7 @@ The evaluation flow includes the following artifacts and commands.
 
 | Item | Description |
 |---|---|
-| `eval init` | Creates or repairs local evaluation assets for an agent target. |
+| `eval generate` | Creates or repairs local evaluation assets for an agent target. |
 | `eval.yaml` | Local runnable evaluation recipe. It records the agent target, dataset reference, evaluator references, and generation options |
 | Generated local artifacts | Editable local copies of generated datasets and evaluator rubrics. The artifacts are stored under `datasets/` and `evaluators/` in the agent folder (for example, `src/<agent-name>/datasets/` and `src/<agent-name>/evaluators/`). |
 | Registered service artifacts | The Foundry dataset and evaluator versions used by evaluation runs. These are the source of truth for generated assets. |
@@ -83,7 +83,7 @@ azd deploy
 After deployment completes, verify the agent is invokable:
 
 ```bash
-azd ai agent status
+azd ai agent show
 ```
 
 The hosted agent must be deployed and invokable before you initialize evaluation assets.
@@ -91,17 +91,21 @@ The hosted agent must be deployed and invokable before you initialize evaluation
 After a successful deployment, the CLI suggests evaluation as an explicit next step:
 
 ```text
-Set up an evaluation suite to measure quality and impact in one step with `azd ai agent eval init`
+Set up an evaluation suite to measure quality and impact in one step with `azd ai agent eval generate`
 ```
 
 To evaluate a prompt-based agent, skip the hosted-agent creation and deployment commands. Continue to the next section after you confirm that the prompt-based agent exists in the Foundry project and is available as an evaluation target.
 
+> [!NOTE]
+> Target-based evaluation invokes your hosted agent directly. It works with agents that use the responses or invocations protocol with synchronous, non-streaming execution. To evaluate agents that use the A2A or Activity protocol, or other execution patterns such as long-running or streaming, evaluate the traces your agent emits instead. See [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
+
+
 ## Initialize evaluation assets
 
-Run `eval init` from the azd workspace or agent project folder:
+Run `eval generate` from the azd workspace or agent project folder:
 
 ```bash
-azd ai agent eval init
+azd ai agent eval generate
 ```
 
 With no flags, the command starts an interactive wizard. The wizard detects the agent target from the azd environment, then asks for a generation instruction so the service can create useful seed evaluation data and an evaluator rubric.
@@ -150,24 +154,24 @@ Eval suite created
 For scripted use, pass the generation inputs directly:
 
 ```bash
-azd ai agent eval init \
+azd ai agent eval generate \
   --gen-instruction "This agent handles restaurant reservations. Test booking, modification, cancellation, and policy enforcement." \
   --eval-model gpt-4o \
   --max-samples 100
 ```
 
-`--output` is optional and defaults to `eval.yaml` in the agent project root. Use `--output <path>` to write the config to a different location.
+`--out-file` is optional and defaults to `eval.yaml` in the agent project root. Use `--out-file <path>` to write the config to a different location.
 
 To use an existing dataset and selected evaluators:
 
 ```bash
-azd ai agent eval init \
+azd ai agent eval generate \
   --dataset ./tests/support-golden.jsonl \
   --gen-instruction "Support quality, policy adherence, and escalation behavior" \
   --max-samples 50 \
   --evaluator builtin.intent_resolution \
   --evaluator support-quality \
-  --output eval.yaml
+  --out-file eval.yaml
 ```
 
 Replace `./tests/support-golden.jsonl` with the path to your own evaluation dataset.
@@ -182,7 +186,7 @@ The `--dataset` value can point to a local file or a registered dataset name. Re
 If dataset or evaluator generation takes too long, use `--no-wait` to submit generation jobs and exit immediately:
 
 ```bash
-azd ai agent eval init \
+azd ai agent eval generate \
   --gen-instruction "..." \
   --no-wait
 ```
@@ -215,7 +219,7 @@ azd ai agent eval show
 
 ## Review eval.yaml
 
-After `eval init` succeeds, open `eval.yaml` in the agent project root. For example:
+After `eval generate` succeeds, open `eval.yaml` in the agent project root. For example:
 
 ```text
 src/reservation-agent/eval.yaml
@@ -266,7 +270,7 @@ By default, zero-argument `eval run` resolves `eval.yaml` in the agent project r
 azd ai agent eval run --config eval.yaml
 ```
 
-If `eval init --no-wait` created pending generation operations, `eval run` resumes those operations before it starts the evaluation run. It does not start new dataset or evaluator generation jobs from scratch.
+If `eval generate --no-wait` created pending generation operations, `eval run` resumes those operations before it starts the evaluation run. It does not start new dataset or evaluator generation jobs from scratch.
 
 ## Inspect evaluation runs
 
@@ -282,17 +286,12 @@ Show the latest run:
 azd ai agent eval show
 ```
 
-With no flags, `eval show` defaults to the most recently completed evaluation run.
+With no flags, `eval show` defaults to the most recent evaluation and lists its runs.
 
-Show a specific run by its run ID. Copy the ID from the `azd ai agent eval list` output:
-
-```text
-ID                                         Status     Agent              Date
-run-a1b2c3d4-e5f6-7890-abcd-ef1234567890   completed  reservation-agent  2026-05-20
-```
+To show the details of a specific run, pass the eval ID as an argument and the run ID with `--eval-run-id`. Copy the eval ID from the `azd ai agent eval list` output and the run ID from the `azd ai agent eval show <eval-id>` output:
 
 ```bash
-azd ai agent eval show --eval-id run-a1b2c3d4-e5f6-7890-abcd-ef1234567890
+azd ai agent eval show <eval-id> --eval-run-id <run-id>
 ```
 
 Use the run output to answer:
@@ -325,10 +324,10 @@ To update what an evaluation run uses, choose the path that matches the type of 
 | Change | How to update |
 |---|---|
 | Change thresholds, evaluator references, output settings, or other recipe fields | Edit `eval.yaml`, then run `azd ai agent eval run --config eval.yaml`. |
-| Use a different local or registered dataset | Edit the dataset reference in `eval.yaml`, or rerun `azd ai agent eval init --dataset <path-or-name> --output eval.yaml`. |
-| Add or change evaluator references | Edit `eval.yaml`, or rerun `azd ai agent eval init` with repeatable `--evaluator` values. |
+| Use a different local or registered dataset | Edit the dataset reference in `eval.yaml`, or rerun `azd ai agent eval generate --dataset <path-or-name> --out-file eval.yaml`. |
+| Add or change evaluator references | Edit `eval.yaml`, or rerun `azd ai agent eval generate` with repeatable `--evaluator` values. |
 | Register local edits to a generated dataset or evaluator rubric | Run `azd ai agent eval update`, review the detected changes, and confirm the version-reference update in `eval.yaml`. |
-| Start over from the default generated setup | Run `azd ai agent eval init --reset-defaults`. |
+| Start over from the default generated setup | Run `azd ai agent eval generate --reset-defaults`. |
 
 For example, after editing a generated evaluator rubric under `evaluators/` in the agent folder, run:
 
@@ -339,7 +338,7 @@ azd ai agent eval run --config eval.yaml
 
 The update command creates new registered dataset or evaluator versions. Existing evaluation runs remain tied to the versions they originally used.
 
-When `eval.yaml` already exists, `eval init` detects it and prints the existing config:
+When `eval.yaml` already exists, `eval generate` detects it and prints the existing config:
 
 ```text
 Eval config already exists: src/reservation-agent/eval.yaml
@@ -356,13 +355,13 @@ Eval config already exists: src/reservation-agent/eval.yaml
     azd ai agent eval update
 
   To overwrite and regenerate:
-    azd ai agent eval init --reset-defaults
+    azd ai agent eval generate --reset-defaults
 ```
 
 To overwrite the local config and regenerate the default evaluation assets, run:
 
 ```bash
-azd ai agent eval init --reset-defaults
+azd ai agent eval generate --reset-defaults
 ```
 
 `--reset-defaults` overwrites the local `eval.yaml` and regenerates the default evaluation assets. Existing service-registered dataset and evaluator versions are not deleted; only the local recipe is replaced.
@@ -390,7 +389,7 @@ The optimize command reads the agent target, dataset, evaluators, and thresholds
 
 ## Best practices
 
-- Run `azd ai agent eval init` only after the agent is available as an evaluation target. For hosted agents, the agent must be deployed and invokable.
+- Run `azd ai agent eval generate` only after the agent is available as an evaluation target. For hosted agents, the agent must be deployed and invokable.
 - Start with a small generated dataset or a small subset of your golden dataset.
 - Check generated dataset and evaluator review artifacts before trusting scores.
 - After editing generated dataset or evaluator files, run `azd ai agent eval update` to register the edited assets before running the evaluation again.
@@ -403,7 +402,7 @@ The optimize command reads the agent target, dataset, evaluators, and thresholds
 
 - The primary command flow is optimized for hosted agents and the post-deploy evaluation loop.
 - `azd provision` does not create evaluation assets.
-- `eval run` does not generate new datasets or evaluators, except for resuming pending operations from `eval init --no-wait`.
+- `eval run` does not generate new datasets or evaluators, except for resuming pending operations from `eval generate --no-wait`.
 - Full suite lifecycle, scheduled evaluation, continuous evaluation, alerts, and comparison workflows are not required for the first evaluation path.
 
 ## Related content

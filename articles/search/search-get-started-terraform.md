@@ -2,7 +2,7 @@
 title: 'Quickstart: Deploy Using Terraform'
 description: 'In this article, you create an Azure AI Search service using Terraform.'
 ms.topic: quickstart
-ms.date: 05/29/2025
+ms.date: 06/10/2026
 ms.update-cycle: 365-days
 ms.custom:
   - devx-track-terraform
@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 ---
 
 # Quickstart: Deploy Azure AI Search service using Terraform
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This article shows how to use Terraform to create an [Azure AI Search service](./search-what-is-azure-search.md) using [Terraform](/azure/developer/terraform/quickstart-configure).
 

@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: limits-and-quotas
-ms.date: 11/18/2025
+ms.date: 06/09/2026
 ms.author: lajanuar
 ms.custom: language-service-clu, references_regions
 ---

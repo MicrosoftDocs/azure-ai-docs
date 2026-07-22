@@ -1,6 +1,6 @@
 ---
-title: "Create an evaluation dataset for the agent optimizer (preview)"
-description: "Generate or manually define evaluation datasets used by the agent optimizer to evaluate and improve your hosted agent in Foundry Agent Service."
+title: "Create an evaluation dataset and evaluators for the agent optimizer (preview)"
+description: "Generate or manually define evaluation datasets and evaluators used by the agent optimizer to evaluate and improve your hosted agent in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -11,175 +11,109 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Create an evaluation dataset (preview)
+# Create an evaluation dataset and evaluators (preview)
 
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
-The agent optimizer evaluates your agent against a *dataset* — a collection of tasks with evaluation criteria. You can generate a dataset automatically from the CLI or create one manually for full control.
+The agent optimizer evaluates your agent against a *dataset* - a collection of tasks - scored by *evaluators*. You can generate both automatically from the CLI or create a dataset manually for full control.
+
+Both parts are essential to good optimization: the dataset defines *what* to test, and the evaluators define *how* to judge each response. Weak evaluators produce noisy scores that lead to poor optimization, so invest in strong evaluators as much as representative tasks.
+
+Creating these assets is the second step in the [optimization workflow](../concepts/agent-optimizer-overview.md#the-optimization-workflow), after you [make your agent optimizer-ready](make-agent-optimizer-ready.md). The optimizer uses them to score your baseline and rank candidates.
 
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with a deployed hosted agent
 - The `azure.ai.agents` CLI extension installed (see [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md))
 
-## Generate a dataset (recommended)
+## Generate a dataset and evaluators (recommended)
 
-The fastest way to create an evaluation dataset is with `azd ai agent eval init`. This command generates a dataset and adaptive evaluators tuned to your agent's domain:
-
-```bash
-azd ai agent eval init
-```
-
-The interactive wizard auto-detects your agent from `azure.yaml` and prompts for a generation instruction describing what your agent does and what scenarios to test.
-
-Example output:
-
-```text
-Detecting agent...
-  Found: my-support-agent (hosted)
-
-Generation prompt
-  Describe what this agent does and what scenarios to test.
-  > This agent handles customer support for electronics. Test returns, troubleshooting, and out-of-scope requests.
-
-Generating dataset and evaluators...
-  Dataset generation:    done  (registered: my-support-agent-eval-seed/v1)
-  Evaluator generation:  done  (registered: my-support-agent-quality/v1)
-
-Eval suite created
-  Config:     eval.yaml
-  Dataset:    .azure/.foundry/datasets/my-support-agent-eval-seed.v1.jsonl
-  Evaluator:  .azure/.foundry/evaluators/my-support-agent-quality.v1.yaml
-
-Review the generated assets, then run:
-  azd ai agent eval run
-```
-
-### Non-interactive mode
-
-For scripted workflows, pass the inputs directly:
+The fastest way to create evaluation assets is with `azd ai agent eval generate`. The command auto-detects your agent and generates everything the optimizer needs:
 
 ```bash
-azd ai agent eval init \
-  --gen-instruction "Customer support agent. Test refund handling, troubleshooting, and out-of-scope deflection." \
-  --eval-model gpt-4.1-mini \
-  --max-samples 50
+azd ai agent eval generate
 ```
 
-### Use your own data with generated evaluators
+By default, it generates:
 
-If you already have a golden dataset but want auto-generated evaluators:
+- A **seed dataset** of tasks tuned to your agent's domain.
+- **Evaluators** that score responses - a built-in evaluator (such as `builtin.task_adherence`) plus a custom **rubric evaluator** tailored to your agent.
+- A runnable **`eval.yaml`** that wires them together.
 
-```bash
-azd ai agent eval init --dataset ./my-golden-dataset.jsonl
-```
+For the interactive wizard, non-interactive flags, and details about the generated artifacts, see [Initialize evaluation assets](../../observability/how-to/azure-developer-cli-evaluation.md#initialize-evaluation-assets).
 
-### Run optimization with the generated config
-
-After `eval init` completes, `azd ai agent optimize` auto-detects the generated `eval.yaml`:
+After generation, `azd ai agent optimize` auto-detects `eval.yaml`:
 
 ```bash
 azd ai agent optimize
 ```
 
-Or pass it explicitly:
+To customize the generated assets, see [Customize evaluators](#customize-evaluators-advanced) and [Create a custom dataset](#create-a-custom-dataset-advanced). To change run options, edit `eval.yaml`; see [Configure the optimization run](optimize-agent-targets.md#configure-the-optimization-run).
 
-```bash
-azd ai agent optimize --config eval.yaml
-```
+## Customize evaluators (advanced)
 
-For the full evaluation CLI workflow, see [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation).
+Evaluators score each agent response. The optimizer supports two kinds:
 
-## Create a custom dataset manually (advanced)
+- **Built-in evaluators**, such as `builtin.task_adherence`, which scores each task-level criterion as pass or fail.
+- **Custom rubric evaluators**, which score responses across several quality dimensions tuned to your agent. `azd ai agent eval generate` creates one automatically as an editable `rubric_dimensions.json` file.
 
-For full control over evaluation tasks and criteria, create a JSONL dataset by hand. This is useful when you need precise control over test scenarios or have production data to use directly.
+For most agents, the generated rubric evaluator gives the most meaningful scores because it's tailored to your domain. Edit the generated `rubric_dimensions.json` to refine dimensions, then run `azd ai agent eval update` to register the changes as a new version. For details on generating, editing, and versioning evaluators, see [Initialize evaluation assets](../../observability/how-to/azure-developer-cli-evaluation.md#initialize-evaluation-assets).
 
-By default, `azd ai agent optimize` uses a built-in dataset with 3 general coding tasks and 25 criteria. For meaningful optimization of your specific agent, create a custom *dataset* that reflects your agent's real-world use cases.
+To wire evaluators into your run configuration, see [Configure the optimization run](optimize-agent-targets.md#configure-the-optimization-run).
 
-### Dataset format
+## Create a custom dataset (advanced)
 
-Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that represents a single evaluation *task*. A task is an individual scenario in the dataset. It contains a prompt and evaluation criteria.
+Create a custom dataset when you need precise control over test scenarios or have production data to use directly. The recommended approach is to iterate on top of the seed dataset that `azd ai agent eval generate` produces—refine it into a local dataset, or point to another dataset already registered in your Foundry project.
+
+### Choose a dataset source
+
+A dataset can come from either of two sources:
+
+- **Foundry dataset** — a dataset already registered in your Foundry project. Reference it in `eval.yaml` by `name` and `version`.
+- **Local dataset** — a JSONL file you author and keep in your project. Reference it in `eval.yaml` by `local_uri`.
+
+Both sources use the same task schema described in the next section. For the `eval.yaml` wiring, see [Configure the optimization run](optimize-agent-targets.md#configure-the-optimization-run).
+
+### Dataset schema
+
+A dataset uses **JSONL** (JSON Lines) format. Each line is one JSON object that represents a single evaluation *task*—an individual scenario. A task has a prompt (`query`) and, optionally, task-level `criteria`.
 
 ```jsonl
-{"name": "task_1", "prompt": "Your prompt here", "criteria": [{"name": "criterion_name", "instruction": "What the evaluator checks for"}]}
-{"name": "task_2", "prompt": "Another prompt", "criteria": [{"name": "check_1", "instruction": "..."}, {"name": "check_2", "instruction": "..."}]}
+{"name": "task_1", "query": "Your prompt here"}
+{"name": "task_2", "query": "Another prompt", "ground_truth": "Expected answer"}
 ```
-
-### Field reference
 
 | Field | Required | Description |
 | ------- | ---------- | ------------- |
-| `name` | Yes | Unique task identifier (for example, `"greeting"`, `"math_test"`) |
-| `prompt` | Yes | The message sent to the agent |
-| `criteria` | Yes | Array of evaluation *criteria* — rules that define what "good" looks like for the task |
-| `criteria[].name` | Yes | Short name for the criterion (for example, `"is_polite"`) |
-| `criteria[].instruction` | Yes | What the *evaluator* checks. Be specific and testable. The built-in evaluator (`builtin.task_adherence`) scores each criterion independently as a binary value (0 or 1). |
-| `groundTruth` | No | Expected answer (used by some evaluators for reference) |
+| `name` | Yes | Unique task identifier (for example, `"greeting"`, `"math_test"`). |
+| `query` | Yes | The message sent to the agent. |
+| `ground_truth` | No | Expected answer, used by evaluators that support a reference. |
+| `criteria` | No | Optional task-level checks. See [Add task-level criteria](#add-task-level-criteria). |
 
-### Example: Customer support agent
-
-```jsonl
-{"name": "refund_policy", "prompt": "What is your refund policy?", "criteria": [{"name": "mentions_30_days", "instruction": "Response must mention the 30-day refund window"}, {"name": "polite_tone", "instruction": "Response must be professional and empathetic"}]}
-{"name": "order_status", "prompt": "Where is my order #12345?", "criteria": [{"name": "asks_for_details", "instruction": "Agent should ask for email or order details to look up the order"}, {"name": "no_hallucination", "instruction": "Agent must NOT make up a fake order status"}]}
-{"name": "out_of_scope", "prompt": "Can you help me fix my car?", "criteria": [{"name": "polite_decline", "instruction": "Agent should politely explain this is outside its scope"}, {"name": "redirect", "instruction": "Agent should suggest contacting an appropriate service"}]}
-```
-
-### Example: Coding assistant
-
-```jsonl
-{"name": "python_function", "prompt": "Write a Python function to reverse a linked list", "criteria": [{"name": "correct_algorithm", "instruction": "The function must correctly reverse a singly linked list"}, {"name": "handles_empty", "instruction": "The function must handle an empty list without errors"}, {"name": "includes_docstring", "instruction": "The function should include a descriptive docstring"}]}
-{"name": "explain_concept", "prompt": "Explain what a closure is in JavaScript", "criteria": [{"name": "accurate_definition", "instruction": "Must correctly define a closure as a function that captures variables from its enclosing scope"}, {"name": "includes_example", "instruction": "Must include at least one working code example"}]}
-```
-
-### Use a custom dataset
-
-Reference your dataset in a YAML config file:
-
-```yaml
-# eval.yaml
-agent:
-  name: my-agent
-
-dataset_file: ./my_eval_dataset.jsonl
-
-evaluators:
-  - builtin.task_adherence
-
-options:
-  eval_model: gpt-4.1-mini
-  optimization_model: gpt-5.1
-  max_iterations: 10
-```
-
-Then run:
+When you use a local dataset, validate the JSONL syntax before you run optimization:
 
 ```bash
-azd ai agent optimize --config eval.yaml
+python -c "import json; [json.loads(l) for l in open('eval.jsonl')]"
 ```
 
-Before you run the command, validate the JSONL syntax:
+### Add task-level criteria
 
-```bash
-python -c "import json; [json.loads(l) for l in open('my_eval_dataset.jsonl')]"
+Criteria are optional. The [evaluators](#customize-evaluators-advanced) you configure in `eval.yaml` apply to every task in the dataset. Add per-task `criteria` only when a specific task needs checks beyond those shared evaluators. When present, a task's `criteria` are scored and aggregated together with the shared evaluators to produce the task's overall score.
+
+| Field | Required | Description |
+| ------- | ---------- | ------------- |
+| `criteria[].name` | Yes | Short name for the criterion (for example, `"is_polite"`). |
+| `criteria[].instruction` | Yes | What the evaluator checks. Be specific and testable. |
+
+The following customer-support dataset shows tasks with task-level criteria:
+
+```jsonl
+{"name": "refund_policy", "query": "What is your refund policy?", "criteria": [{"name": "mentions_30_days", "instruction": "Response must mention the 30-day refund window"}, {"name": "polite_tone", "instruction": "Response must be professional and empathetic"}]}
+{"name": "order_status", "query": "Where is my order #12345?", "criteria": [{"name": "asks_for_details", "instruction": "Agent should ask for email or order details to look up the order"}, {"name": "no_hallucination", "instruction": "Agent must NOT make up a fake order status"}]}
+{"name": "out_of_scope", "query": "Can you help me fix my car?", "criteria": [{"name": "polite_decline", "instruction": "Agent should politely explain this is outside its scope"}, {"name": "redirect", "instruction": "Agent should suggest contacting an appropriate service"}]}
 ```
 
 ## Tips for writing good datasets
-
-### Be specific in criteria
-
-Bad:
-
-```json
-{"name": "good_answer", "instruction": "The response should be good"}
-```
-
-Good:
-
-```json
-{"name": "mentions_30_days", "instruction": "Response must explicitly mention the 30-day refund window"}
-```
-
-Specific criteria give the evaluator a clear, binary signal. Vague criteria lead to inconsistent scoring.
 
 ### Include edge cases
 
@@ -199,38 +133,48 @@ Test beyond the happy path. Include:
 | 10–20 tasks | Comprehensive evaluation, longer runs |
 | 20+ tasks | Thorough but slow — consider for final validation |
 
-Each task can have multiple criteria. A dataset with 5 tasks × 4 criteria each = 20 evaluation signals.
+Larger datasets give broader coverage but take longer to evaluate.
+
+### Provide ground truth when useful
+
+The `ground_truth` field gives evaluators a reference answer to compare against. It's not required - evaluators can also judge responses from their instructions and any task-level criteria alone.
+
+```jsonl
+{"name": "geography_fact", "query": "What is the largest city in France by population?", "ground_truth": "Paris", "criteria": [{"name": "correct_answer", "instruction": "Response must state that Paris is the largest city in France by population"}]}
+```
 
 ### Write prompts like real users
 
-Use actual messages from your users if possible. Real prompts capture the vocabulary and context that your agent faces in production.
+Use actual messages from your users if possible. Real prompts capture the vocabulary and context that your agent faces in production, which also helps you write realistic task-level criteria.
 
-### Criteria are scored independently
+### Be specific in criteria
 
-Each criterion gets a binary score (0 or 1). The task score is the average of its criteria scores. The overall score is the average across all tasks. This means:
+Vague criteria lead to inconsistent scoring. Make each criterion specific and testable.
 
-- A task with 4 criteria where 3 pass scores 0.75
-- An agent that passes all criteria on 2 of 3 tasks scores 0.67
+Bad:
 
-### Ground truth is optional
+```json
+{"name": "good_answer", "instruction": "The response should be good"}
+```
 
-The `groundTruth` field provides a reference answer for evaluators that support it. This field isn't required. The `builtin.task_adherence` evaluator works entirely from criteria instructions.
+Good:
 
-```jsonl
-{"name": "geography_fact", "prompt": "What is the largest city in France by population?", "groundTruth": "Paris", "criteria": [{"name": "correct_answer", "instruction": "Response must state that Paris is the largest city in France by population"}]}
+```json
+{"name": "mentions_30_days", "instruction": "Response must explicitly mention the 30-day refund window"}
 ```
 
 ## Troubleshooting
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| `dataset_file not found` | Wrong path in `eval.yaml` | Use a path relative to the config file location |
+| `dataset not found` | Wrong path in `eval.yaml` | For `dataset.local_uri`, use a path relative to the config file location. For a Foundry dataset, verify `dataset.name` and `dataset.version`. |
 | `invalid JSON on line N` | Malformed JSONL | Validate that each line is valid JSON. Check for trailing commas. |
-| Scores are inconsistent between runs | Vague criteria | Make criteria specific and binary-testable |
+| Scores are inconsistent between runs | Vague criteria | Make criteria specific and testable. |
 
 ## Related content
 
-- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
+- [Make your agent optimizer-ready](make-agent-optimizer-ready.md)
 - [Optimize agent instructions, skills, tools, and models](optimize-agent-targets.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
+- [Run agent evaluations with the azd CLI](../../observability/how-to/azure-developer-cli-evaluation.md)

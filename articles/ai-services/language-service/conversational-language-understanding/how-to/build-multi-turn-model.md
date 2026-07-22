@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 05/01/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 04/16/2026
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
@@ -14,7 +14,7 @@ ms.custom: language-service-key-phrase
 # What is key phrase extraction in Azure Language in Foundry Tools?
 
 > [!IMPORTANT]
-> Key phrase extraction is retiring from Azure Language effective **March 31, 2029**. After this date, the feature is no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Key phrase extraction retires from Azure Language on **March 31, 2029**. To avoid production disruption, migrate existing workloads and direct all new projects to [Microsoft Foundry](../../../foundry/concepts/foundry-models-overview.md), which offers enhanced capabilities for natural language understanding and can be easily integrated into your applications. For guidance, see [**Transitioning from Azure Language features to Foundry models**](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/transitioning-from-azure-language-features-to-foundry-models/4524092).
 
 Key phrase extraction is one of the features offered by [Azure Language in Foundry Tools](../overview.md). This capability is part of a suite of cloud-based machine learning and AI tools designed for building intelligent applications that process written language. Use key phrase extraction to quickly identify the main concepts in text. For example, in the text "*The food was delicious and the staff were wonderful.*", key phrase extraction returns the main topics: "*food*" and "*wonderful staff*."
 
