@@ -26,7 +26,7 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI image models are available for **global standard deployment** (West Central US, East US, West US, West Europe, Sweden Central, South India, and UAE North).
+- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI image models are available for **global standard deployment** in West Central US, East US, West US, West Europe, Sweden Central, South India, and UAE North.
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## MAI image models at a glance
@@ -227,7 +227,7 @@ Where `AZURE_AUTH_TOKEN` is a valid Microsoft Entra ID token scoped to `https://
 Some MAI image models support precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
 For the list of models that support image-to-image edits, see [MAI image models at a glance](#mai-image-models-at-a-glance).
 
-The following example shows how to perform an image-to-image edit using an MAI image model with the [MAI image edits API](#api-endpoints).
+The following example shows how to perform an image-to-image edit by using an MAI image model with the [MAI image edits API](#api-endpoints).
 
 > [!NOTE]
 > Requests for image-to-image edits use **multipart form data**.
@@ -348,13 +348,13 @@ To use Microsoft Entra ID authentication instead of an API key, modify this code
 
 ## MAI image model capabilities
 
-Foundry supports use of MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), MAI-Image-2.5 (Preview), MAI-Image-2 (Preview), and MAI-Image-2e (Preview). Each of these models are suitable for the following key use-cases:
+Foundry supports use of MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), MAI-Image-2.5 (Preview), MAI-Image-2 (Preview), and MAI-Image-2e (Preview). Each of these models is suitable for the following key use cases:
 
 - **Text-to-image generation:** Generate high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
 - **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
 - **Product, branding and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
 
-MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview) and MAI-Image-2.5 (Preview) further excel in these key use cases:
+MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), and MAI-Image-2.5 (Preview) further excel in these key use cases:
 
 - **Image-to-image editing:** Support precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
 - **High-fidelity portraits:** Generate expressive, natural-looking portraits with accurate facial structure, lighting, and texture.
