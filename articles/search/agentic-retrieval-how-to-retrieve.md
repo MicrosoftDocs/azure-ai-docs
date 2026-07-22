@@ -1681,15 +1681,16 @@ Content-Type: application/json
 
 ## Troubleshoot the retrieve action
 
-A successful retrieval returns `200 OK`. For `2026-05-01-preview`, use the response status to distinguish request validation, partial success, and hard retrieval failures.
+In `2026-05-01-preview`, the response status tells you whether retrieval succeeded, partly succeeded, or failed and what to do next. Use the following table to map each status to its meaning, and then see the corresponding section for troubleshooting guidance.
 
 | Status | Meaning |
 | --- | --- |
-| `400 Bad Request` | The retrieve request failed validation before retrieval began. |
-| `206 Partial Content` | At least one source succeeded, and no failed source is marked [`failOnError`](#require-a-knowledge-source-to-succeed). The response contains results from the sources that succeeded. |
-| `502 Bad Gateway` | Every selected source failed, or a source marked [`failOnError: true`](#require-a-knowledge-source-to-succeed) failed. |
+| `200 OK` | Retrieval succeeded. A document can still be omitted if its content exceeds the output budget. For more information, see [Empty responses](#empty-responses). |
+| [`400 Bad Request`](#400-bad-request) | The retrieve request failed validation before retrieval began. |
+| [`206 Partial Content`](#206-partial-content) | At least one source succeeded, and no failed source is marked [`failOnError`](#require-a-knowledge-source-to-succeed). The response contains results from the sources that succeeded. |
+| [`502 Bad Gateway`](#502-bad-gateway) | Every selected source failed, or a source marked `failOnError: true` failed. |
 
-For any non-`200` response, retain the API version, timestamp, sanitized request body, response headers, and request or correlation ID.
+For any non-`200` response, record the API version, timestamp, sanitized request body, response headers, and request or correlation ID. These details help you diagnose the failure and share the issue with support, if necessary.
 
 ### `400 Bad Request`
 
@@ -1698,11 +1699,11 @@ Use the top-level error to identify the invalid request property. Common causes 
 + A `knowledgeSourceName` in `knowledgeSourceParams` isn't attached to the knowledge base, or its `kind` doesn't match the attached source.
 + A request value is outside its supported range, or one option requires another option that isn't enabled. For example, `includeReferenceSourceData` requires `includeReferences`.
 
-Correct the property identified by the top-level error before you retry. Don't retry the unchanged request.
+Before you retry the request, correct the property identified by the top-level error.
 
 ### `206 Partial Content`
 
-Inspect each [`activity`](#review-the-response) entry that contains an `error`. For a source retrieval activity, the entry identifies the failed knowledge source. For a model activity, such as web summarization, the activity `type` identifies the failed processing stage. The normal response contains the results that succeeded.
+Inspect each [`activity`](#activity-array) entry that contains an `error`. A source retrieval activity identifies the failed knowledge source, and a model activity identifies the failed processing stage. The response body still contains the results that succeeded.
 
 For source retrieval activity errors, common causes include:
 
@@ -1713,16 +1714,18 @@ For source retrieval activity errors, common causes include:
 
 For a model activity error, use the activity `type` to identify the failed processing stage. For example, a `modelWebSummarization` error indicates that [web result summarization](agentic-knowledge-source-how-to-web.md) failed.
 
-If your application permits partial results, process the successful results and record each failed source or model stage. Correct configuration, authorization, and permission errors before you retry. For throttling, timeout, or transient availability failures, use bounded retries with backoff. If results are unsafe without a specific source and its source type supports [`alwaysQuerySource`](#require-a-knowledge-source-to-succeed), set both `alwaysQuerySource` and `failOnError`. The first option ensures the source is selected, and the second returns a hard error if querying it fails. [MCP server knowledge sources](agentic-knowledge-source-how-to-mcp-server.md) don't support `alwaysQuerySource`; for those sources, `failOnError` applies only when the source is selected. `failOnError` doesn't apply to model activity failures.
+If your application permits partial results, process the successful results and record each failed source or model stage. Correct configuration, authorization, and permission errors before you retry. For throttling, timeout, or transient availability failures, use bounded retries with backoff.
+
+If results are unsafe without a specific source and its source type supports [`alwaysQuerySource`](#require-a-knowledge-source-to-succeed), set both `alwaysQuerySource` and `failOnError`. The first option ensures the source is selected, and the second returns a hard error if querying it fails. [MCP server knowledge sources](agentic-knowledge-source-how-to-mcp-server.md) don't support `alwaysQuerySource`; for those sources, `failOnError` applies only when the source is selected. `failOnError` doesn't apply to model activity failures.
 
 ### `502 Bad Gateway`
 
 The top-level error describes one of two hard-failure paths:
 
-+ **Every selected source failed.** Each selected source ended in an error. A source that completes successfully with zero matching documents isn't a failed source. Inspect every source failure for a shared configuration, authorization, dependency, or availability issue.
-+ **A `failOnError` source failed.** A required source couldn't be queried. Other sources might have succeeded, but the service doesn't return a partial result because the required source failed.
++ **Every selected source failed:** Each selected source returned an error. A source that completes successfully with zero matching documents isn't a failed source. Inspect every source failure for a shared configuration, authorization, dependency, or availability issue.
++ **A `failOnError` source failed:** A required source couldn't be queried. Other sources might have succeeded, but the service doesn't return a partial result because the required source failed.
 
-The underlying source failures are generally the same kinds described for `206 Partial Content`: invalid source-specific input, source or index configuration drift, dependency authorization or permissions, throttling, timeouts, or transient dependency availability.
+The underlying source failures are generally the same kinds as those described for `206 Partial Content`: invalid source-specific input, source or index configuration drift, dependency authorization or permissions, throttling, timeouts, or transient dependency availability.
 
 A hard `502` response might omit the `activity` array and provide the source name and underlying failure only in the top-level error message. Correct configuration, authorization, and permission errors before you retry. Use bounded retries with backoff only for throttling, timeout, or transient availability failures. Don't interpret a `502 Bad Gateway` response as an Azure AI Search outage without examining the underlying source failure.
 
