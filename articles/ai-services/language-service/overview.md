@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---
