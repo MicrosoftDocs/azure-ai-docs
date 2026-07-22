@@ -48,21 +48,21 @@ Each generated rubric contains the following fields:
 
 #### Choose an LLM judge model
 
-Not all models perform equally as rubric judges. The following table ranks models by judge quality.
+Not all models perform equally as rubric judges. The following table lists the supported chat models for rubric generation and scoring.
 
-| Rank | Model | Recommendation |
-|------|-------|----------------|
-| 1 | `gpt-5.5` | Recommended |
-| 2 | `gpt-5.4` | Recommended |
-| 3 | `gpt-5.4-nano` | Recommended |
-| 4 | `gpt-5.4-mini` | Recommended |
-| 5 | `gpt-5.2` | Recommended |
-| 8 | `gpt-4.1` | Acceptable |
-| 9 | `gpt-4o` | Acceptable |
-| 10 | `gpt-4o-mini` | Not recommended |
-
-> [!IMPORTANT]
-> Avoid using `gpt-4o-mini` as a rubric judge. This model produces noticeably less reliable scores compared to newer models. For the best balance of performance and cost, use `gpt-5.4-mini`.
+| Model | Recommendation |
+|-------|----------------|
+| `gpt-5.5` | Recommended |
+| `gpt-5.4` | Recommended |
+| `gpt-5.4-mini` | Recommended — best balance of performance and cost |
+| `gpt-5.4-nano` | Recommended |
+| `gpt-5.2` | Recommended |
+| `gpt-5.1` | Recommended |
+| `gpt-5` | Recommended |
+| `gpt-5-mini` | Recommended |
+| `gpt-5-nano` | Recommended |
+| `gpt-4.1` | Acceptable |
+| `gpt-4o` | Acceptable |
 
 ### Manually create a rubric
 
