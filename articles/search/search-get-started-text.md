@@ -14,6 +14,7 @@ ms.custom:
 ms.topic: quickstart
 zone_pivot_groups: search-sdks-rest-powershell
 ms.date: 07/20/2026
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Full-text search
