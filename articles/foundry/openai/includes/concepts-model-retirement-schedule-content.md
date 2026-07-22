@@ -8,9 +8,8 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/16/2026
+ms.date: 07/21/2026
 ms.custom: include, classic-and-new
-ai-usage: ai-assisted
 ai-usage: ai-assisted
 ---
 
@@ -247,18 +246,21 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 ### Fireworks
 
+> [!IMPORTANT]
+> Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
+
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | FW-DeepSeek-V3.1 | 1 | Preview | 2026-07-01 | — |
-| FW-DeepSeek-V3.2 | 1 | Preview | 2026-07-01 | — |
+| FW-DeepSeek-V3.2 | 1 | Deprecated | 2026-07-01 | — |
 | FW-GLM-4.7 | 1 | Preview | 2026-07-01 | — |
-| FW-GLM-5 | 1 | Preview | 2026-07-01 | — |
-| FW-GLM-5.1 | 1 | Preview | 2026-08-01 | — |
-| FW-GPT-OSS-120B | 1 | Preview | 2026-07-01 | — |
+| FW-GLM-5 | 1 | Deprecated | 2026-07-01 | — |
+| FW-GLM-5.1 | 1 | Preview | 2026-08-07 | — |
+| FW-GPT-OSS-120B | 1 | Deprecated | 2026-07-01 | — |
 | FW-Kimi-K2-Instruct-0905 | 1 | Preview | 2026-07-01 | — |
 | FW-Kimi-K2-Thinking | 1 | Preview | 2026-07-01 | — |
-| FW-Kimi-K2.5 | 1 | Preview | 2026-07-01 | — |
-| FW-MiniMax-M2.5 | 1 | Preview | 2026-07-01 | — |
+| FW-Kimi-K2.5 | 1 | Deprecated | 2026-07-01 | — |
+| FW-MiniMax-M2.5 | 1 | Preview | 2026-08-07 | — |
 | FW-Qwen3-14B | 1 | Preview | 2026-07-01 | — |
 | FW-Qwen3.5-122B-A10B | 1 | Preview | 2026-08-01 | — |
 | FW-Qwen3.5-397B-A17B | 1 | Preview | 2026-08-01 | — |

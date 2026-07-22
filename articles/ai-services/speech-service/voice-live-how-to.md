@@ -446,19 +446,42 @@ Specify the voice as a structured object with `type` set to `azure-realtime-nati
 
 The following `azure-realtime-native` voice names are supported:
 
-| Voice name | Description |
-|---|---|
-| `aarti` | Azure Speech native voice |
-| `andrew` | Azure Speech native voice |
-| `ava` | Azure Speech native voice (default) |
-| `denise` | Azure Speech native voice |
-| `elsa` | Azure Speech native voice |
-| `florian` | Azure Speech native voice |
-| `francisca` | Azure Speech native voice |
-| `meera` | Azure Speech native voice |
-| `ximena` | Azure Speech native voice |
-| `xiaoxiao` | Azure Speech native voice |
-| `yunxi` | Azure Speech native voice |
+| Voice name | Description | Locale | Voice Detail |
+|---|---|---|---|
+| `aarti` | Azure Speech native voice | en-IN | Warm, rich Indian-accented English female voice with a dark, inviting tone. Best for premium support, guided learning, and trusted brand experiences. |
+| `alvaro` | Azure Speech native voice | es-ES | Confident, animated Spanish male voice with strong presence. Best for sales, promotions, and assertive service communication. |
+| `andrew` | Azure Speech native voice | en-US | Textured, relaxed, trustworthy US male voice designed for low-pressure chat. |
+| `antonio` | Azure Speech native voice | pt-BR | Bright, upbeat Brazilian Portuguese male voice with strong enthusiasm. Best for campaigns, product intros, and energetic customer engagement. |
+| `ava` | Azure Speech native voice (default) | en-US | Bright, confident, high-energy US voice. Best for product demos, customer support, and polished branded experiences. |
+| `clara` | Azure Speech native voice | en-CA | Clear, versatile Canadian voice with broad usability. Best for general-purpose assistants, education, and customer support. |
+| `dalia` | Azure Speech native voice | es-MX | Bright, upbeat Mexican Spanish female voice with warm energy. Best for retail, customer engagement, and lively assistant experiences. |
+| `denise` | Azure Speech native voice | fr-FR | Bright, engaging French female voice that keeps attention high. Best for lively customer engagement and onboarding. |
+| `diego` | Azure Speech native voice | it-IT | Animated, upbeat Italian male voice full of energy. Best for lively conversations, promotions, and entertainment-focused experiences. |
+| `diya` | Azure Speech native voice | hi-IN | Crisp, clear bilingual Hindi and Indian-accented English female voice. Best for troubleshooting, issue resolution, and multilingual support. |
+| `elsa` | Azure Speech native voice | it-IT | Confident, crisp Italian female voice with clear delivery. Best for service guidance, explainers, and professional support. |
+| `emma` | Azure Speech native voice | en-US | Warm, conversational, mid-pitch US female voice with a dynamic conversational style. Best for routine service help, onboarding, and fast-moving support flows. |
+| `florian` | Azure Speech native voice | de-DE | Warm, cheerful German male voice with strong clarity and versatility. Best for explainers, education, and approachable support. |
+| `francisca` | Azure Speech native voice | pt-BR | Cheerful, crisp Brazilian Portuguese female voice with positive clarity. Best for support, onboarding, and service messaging. |
+| `hyunsu` | Azure Speech native voice | ko-KR | Rich, resonant Korean male voice with steady professionalism. Best for formal guidance, explainers, and trusted information delivery. |
+| `jorge` | Azure Speech native voice | es-MX | Deep, confident Mexican Spanish male voice with authority and assurance. Best for announcements, logistics, and trust-focused support. |
+| `keita` | Azure Speech native voice | ja-JP | Casual, engaging Japanese male voice with a relaxed but lively feel. Best for chat-based assistants and informal service interactions. |
+| `liam` | Azure Speech native voice | en-CA | Young Canadian male voice with an enthusiastic, articulate delivery. Best for tech content, tutorials, and educational products. |
+| `meera` | Azure Speech native voice | hi-IN | Calm, warm bilingual Hindi and Indian-accented English female voice with a soothing presence. Best for wellness, care, hospitality, and reflective guidance. |
+| `nanami` | Azure Speech native voice | ja-JP | Bright, cheerful Japanese female voice with an uplifting tone. Best for welcome messages, retail, and friendly lifestyle experiences. |
+| `natasha` | Azure Speech native voice | en-AU | Clear, versatile Australian female voice that adapts easily across use cases. Best for general assistants, support, and instructional content. |
+| `niwat` | Azure Speech native voice | th-TH | Confident Thai male voice with smooth, measured professionalism. Best for corporate presentations, podcasts, and formal service messaging. |
+| `premwadee` | Azure Speech native voice | th-TH | Young Thai female voice with a formal, professional tone. Best for announcements, training, and structured communication. |
+| `rayn` | Azure Speech native voice | en-GB | Straightforward British male voice with an efficient, neutral style. Best for transactional support, enterprise tools, and service updates. |
+| `remy` | Azure Speech native voice | fr-FR | Cheerful French male voice with an uplifting, conversational tone. Best for chat, retail, and light branded storytelling. |
+| `seraphina` | Azure Speech native voice | de-DE | Casually charming German female voice with a relaxed, engaging style. Best for audiobooks, casual chat, and lifestyle content. |
+| `sonia` | Azure Speech native voice | en-GB | Gentle, soft British female voice with a calm, soothing presence. Best for premium support, wellness, and thoughtful onboarding. |
+| `sunhi` | Azure Speech native voice | ko-KR | Calm, soothing Korean female voice with dark warmth and measured pacing. Best for wellness, hospitality, and reassuring guidance. |
+| `sylvie` | Azure Speech native voice | fr-CA | Calm, soothing Canadian French female voice with steady professionalism. Best for announcements, support, and trusted public-facing communication. |
+| `thierry` | Azure Speech native voice | fr-CA | Calm Canadian French male voice with a dark, warm timbre. Best for premium narration, wellness, and thoughtful brand experiences. |
+| `william` | Azure Speech native voice | en-AU | Calm Australian male voice with warm depth and reassuring confidence. Best for onboarding, support, and premium narration. |
+| `xiaoxiao` | Azure Speech native voice | zh-CN | Sweet, soft, welcoming Mandarin female voice with rich emotional range. Best for hospitality, premium care, and warm customer-facing experiences. |
+| `ximena` | Azure Speech native voice | es-ES | Crisp, cheerful Spanish female voice with clear positivity. Best for hospitality, support, and guided shopping. |
+| `yunxi` | Azure Speech native voice | zh-CN | Lively Mandarin male voice with vivid, expressive emotion. Best for storytelling, engaging assistants, and interactive education. |
 
 If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
 

@@ -8,7 +8,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/27/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 
@@ -16,8 +16,6 @@ ai-usage: ai-assisted
 ---
 
 # Multiplex multiple users in one hosted agent session
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 By default, each caller gets their own hosted agent session, as described in [Isolate hosted agent sessions per user](isolate-sessions-per-user.md). Applications that serve many users - a Teams bot, an ISV gateway, or a customer-support platform - don't need one session per user. Instead, a middle-tier service maps many users onto a bounded pool of shared sessions and identifies each user on every call.
 
