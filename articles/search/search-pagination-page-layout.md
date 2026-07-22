@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Shape search results or modify search results composition in Azure AI Search
@@ -67,7 +68,7 @@ The `count` parameter returns the number of documents in the index that are cons
 
 Count is accurate when the index is stable. If the system is actively adding, updating, or deleting documents, the count is approximate, excluding any documents that aren't fully indexed.
 
-Count won't be affected by routine maintenance or other workloads on the search service. However if you have multiple partitions and a single replica, you could experience short-term fluctuations in document count (several minutes) as the partitions are restarted.
+Routine maintenance or other workloads on the search service don't affect count. However, if you have multiple partitions and a single replica, you might experience short-term fluctuations in document count (several minutes) as the partitions restart.
 
 > [!TIP]
 > To check indexing operations, you can confirm whether the index contains the expected number of documents by adding `count=true` on an empty search `search=*` query. The result is the full count of documents in your index.

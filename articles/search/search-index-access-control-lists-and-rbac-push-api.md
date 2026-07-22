@@ -4,7 +4,7 @@ description: Learn how to use the REST API for indexing documents with ACLs and 
 ms.reviewer: admayber
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ---
 
