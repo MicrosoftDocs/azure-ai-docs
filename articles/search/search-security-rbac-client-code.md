@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Connect your app to Azure AI Search using identities
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In your application code, you can set up a keyless connection to Azure AI Search that uses Microsoft Entra ID and roles for authentication and authorization. Application requests to most Azure services must be authenticated with keys or keyless connections. Developers must be diligent to never expose the keys in an unsecure location. Anyone who gains access to the key is able to authenticate to the service. Keyless authentication offers improved management and security benefits over the account key because there's no key (or connection string) to store.
 
 This article explains how to use `DefaultAzureCredential` in your application code.

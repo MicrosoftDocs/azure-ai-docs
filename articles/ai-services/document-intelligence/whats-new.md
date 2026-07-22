@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: whats-new
-ms.date: 11/18/2025
+ms.date: 06/11/2026
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -74,7 +74,7 @@ For more information, *see* client libraries for the following supported program
 * [Batch API](concept-batch-analysis.md)
   * Batch API now supports all models, including all read, layout, prebuilt verticals, and custom models.
   * Batch API supports LIST function to allow users to list batch jobs within past seven days.
-  * Batch API supports DELETE function to explicitly delete batch job for GDPR and privacy compliance.
+  * Batch API supports DELETE function to explicitly delete batch job for privacy compliance.
   * GetAnalyzeBatchResult supports resultId in response to LIST all resultIds.
 
 * Searchable PDF. The [prebuilt read](prebuilt/read.md) model now supports images formats (JPEG/JPG, PNG, BMP, TIFF, HEIF)  and language expansion to include Chinese, Japanese, and Korean for  [PDF output](prebuilt/read.md#searchable-pdf).

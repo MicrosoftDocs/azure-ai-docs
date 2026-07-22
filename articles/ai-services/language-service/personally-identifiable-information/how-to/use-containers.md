@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-ai-language
 ms.custom:
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 06/16/2026
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---

@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 06/18/2026
 ms.custom: language-service-question-answering
 ---
 # Improve quality of response with synonyms
@@ -57,7 +57,7 @@ Let improve the results by adding the following words and their alterations:
 
 ```
 
-For the question and answer pair “Fix problems with Surface Pen,” we compare the response for a query made using its synonym “troubleshoot.”
+For the question and answer pair "Fix problems with Surface Pen," we compare the response for a query made using its synonym "troubleshoot."
 
 ## Response before addition of synonym
 
@@ -69,7 +69,7 @@ For the question and answer pair “Fix problems with Surface Pen,” we compare
 > [!div class="mx-imgBorder"]
 > [ ![Screenshot with a confidence score of .97 highlighted in red]( ../media/adding-synonyms/score-improvement.png) ]( ../media/adding-synonyms/score-improvement.png#lightbox)
 
-As you can see, when `troubleshoot` was not added as a synonym, we got a low confidence response to the query “How to troubleshoot your surface pen.” However, after we add `troubleshoot` as a synonym to “fix problems”, we received the correct response to the query with a higher confidence score. Once these synonyms were added, the relevance of results is improved.
+As you can see, when `troubleshoot` was not added as a synonym, we got a low confidence response to the query "How to troubleshoot your surface pen." However, after we add `troubleshoot` as a synonym to "fix problems", we received the correct response to the query with a higher confidence score. Once these synonyms were added, the relevance of results is improved.
 
 > [!IMPORTANT]
 > Synonyms are case insensitive. Synonyms also might not work as expected if you add stop words as synonyms. The list of stop words can be found here: [List of stop words](https://github.com/Azure-Samples/azure-search-sample-data/blob/master/STOPWORDS.md).

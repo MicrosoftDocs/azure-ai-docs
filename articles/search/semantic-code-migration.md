@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Migrate semantic ranking code from previous versions
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If your semantic ranking code was written against early preview APIs, this article identifies the code changes necessary for migrating to newer API versions. Breaking changes for semantic ranker are limited to query logic in recent APIs, but if your code was written against the initial preview version, you might need to change your semantic configuration as well.
 
 ## Breaking changes

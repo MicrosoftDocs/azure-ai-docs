@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 04/01/2026
 ---
 # Authoring API
 

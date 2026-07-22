@@ -6,7 +6,7 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 07/09/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -24,6 +24,7 @@ Creating your first agent is a two-step process:
 | Create an account and project                                          | Foundry Account Owner           |
 | [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
 | Create and edit agents                                                 | Foundry User                    |
+| Interact with agent endpoints (without creating or editing agents)     | Foundry Agent Consumer          |
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
@@ -35,7 +36,7 @@ To get started, you need a Microsoft Foundry resource and a Foundry project.
 Agents are created within a specific project, and each project acts as an isolated workspace. This means:
 * All agents in the same project share access to the same file storage, thread storage (conversation history), and search indexes.
 * Data is isolated between projects. Agents in one project cannot access resources from another.
-Projects are currently the unit of sharing and isolation in Foundry. See the [what is AI foundry](../../../ai-foundry/what-is-foundry.md) article for more information on Foundry projects.
+Projects are currently the unit of sharing and isolation in Foundry. See the [What is Microsoft Foundry?](../../what-is-foundry.md) article for more information on Foundry projects.
 
 ### Prerequisites 
 
@@ -139,5 +140,6 @@ After deployment completes (typically 5-10 minutes), verify that your resources 
 * [Create your first agent](../../quickstarts/get-started-code.md)
 
 * Explore more:
+    * [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#configure-agent-infrastructure) — role requirements for agent setup.
     * [Use your existing resources](../how-to/use-your-own-resources.md)
     * [Network secured agent setup](../how-to/virtual-networks.md)

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Field mappings and transformations using Azure AI Search indexers
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 ![Indexer Stages](./media/search-indexer-field-mappings/indexer-stages-field-mappings.png "indexer stages")
 
 This article explains how to set explicit field mappings that establish the data path between source fields in a supported data source and target fields in a search index.

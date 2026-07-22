@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Use an Azure Logic Apps workflow for automated indexing in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, you can use the [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to create a logic app workflow that indexes and vectorizes your content. This capability is equivalent to an [indexer](search-indexer-overview.md) and data source that generates an indexing pipeline and creates searchable content.
 
 After you create a workflow in the wizard, you can manage the workflow in Azure Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in Azure AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, Azure AI Search, and other items required to complete the ingestion workflow.

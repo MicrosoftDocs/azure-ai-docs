@@ -14,6 +14,6 @@ ms.custom: include
 
 - [Foundry Models and capabilities](../concepts/models-sold-directly-by-azure.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
-- [Instant models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Model and region availability for Foundry Models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md)
 - [What is Azure OpenAI in Foundry Models?](../concepts/models-sold-directly-by-azure.md)

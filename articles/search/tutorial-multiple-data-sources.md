@@ -14,6 +14,8 @@ ms.custom:
 
 # Tutorial: Index from multiple data sources using the .NET SDK
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports importing, analyzing, and indexing data from multiple data sources into a single consolidated search index.
 
 This C# tutorial uses the [Azure.Search.Documents](/dotnet/api/overview/azure/search) client library in the Azure SDK for .NET to index sample hotel data from an Azure Cosmos DB instance. You then merge the data with hotel room details drawn from Azure Blob Storage documents. The result is a combined hotel search index containing hotel documents, with rooms as complex data types.

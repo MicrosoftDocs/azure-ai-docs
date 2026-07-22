@@ -4,7 +4,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/21/2026
 ms.author: haelhamm
 ---
 ### Unassign resource

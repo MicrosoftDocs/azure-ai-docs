@@ -3,7 +3,7 @@ title: "Manage hosted agent sessions"
 description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 04/14/2026
+ms.date: 07/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -63,7 +63,7 @@ For Invocations, the platform reads the query parameter only. Fields named `agen
 
 :::zone pivot="python"
 
-- Python SDK: `azure-ai-projects>=2.1.0` and `azure-identity`.
+- Python SDK: `azure-ai-projects>=2.3.0` and `azure-identity`.
 
 :::zone-end
 
@@ -95,9 +95,6 @@ RESOURCE="https://ai.azure.com"
 > [!IMPORTANT]
 > The `--resource` parameter is required for all `az rest` calls to Foundry Agent Service data-plane endpoints. Without it, `az rest` can't derive the correct Microsoft Entra audience from the URL and authentication fails.
 
-> [!NOTE]
-> Session operations are a preview feature. Include the `Foundry-Features: HostedAgents=V1Preview` header in every REST request.
-
 :::zone-end
 
 :::zone pivot="python"
@@ -113,12 +110,8 @@ from azure.ai.projects import AIProjectClient
 project = AIProjectClient(
     endpoint="<your-project-endpoint>",
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 ```
-
-> [!NOTE]
-> Session operations are exposed under the `project.beta.agents` subclient. Calls to `project.beta.agents` work without `allow_preview=True`, but `project.get_openai_client(agent_name=...)`—used in this article to invoke Responses-protocol agents—requires `allow_preview=True` and raises `ValueError` without it.
 
 :::zone-end
 
@@ -141,7 +134,6 @@ AGENT_NAME="my-agent"
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/openai/responses?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" \
     --body '{
         "input": "Find me hotels in Seattle under $200 per night",
         "stream": false
@@ -154,7 +146,6 @@ The response payload includes the `agent_session_id` the platform created. To co
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/openai/responses?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" \
     --body '{
         "input": "Recommend one of those hotels",
         "stream": false,
@@ -230,7 +221,6 @@ AGENT_NAME="my-agent"
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/invocations?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" \
     --body '{"input": "Hello"}'
 ```
 
@@ -242,7 +232,6 @@ SESSION_ID="<session_id-from-first-response>"
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/invocations?api-version=${API_VERSION}&agent_session_id=${SESSION_ID}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" \
     --body '{"input": "Continue our previous discussion"}'
 ```
 
@@ -264,7 +253,6 @@ credential = DefaultAzureCredential()
 token = credential.get_token("https://ai.azure.com/.default").token
 headers = {
     "Authorization": f"Bearer {token}",
-    "Foundry-Features": "HostedAgents=V1Preview",
     "Content-Type": "application/json",
 }
 
@@ -312,6 +300,18 @@ How the key is set depends on the agent endpoint's authorization scheme, which y
 - **`Entra` (default).** The platform derives the isolation key from the caller's Microsoft Entra token. The `x-ms-user-isolation-key` header is accepted but ignored. Each authenticated caller automatically gets their own scope.
 - **`Header`.** The platform reads the isolation key from the `x-ms-user-isolation-key` request header. Send a stable string per session owner (for example, an end-user or tenant identifier) on every session request, including invocations and file operations. Requests without the header fail. The platform doesn't validate the value, so your client is responsible for choosing the right key for each call.
 
+For information about how the platform automatically isolates each caller's sessions and how to extend that isolation to your own application's users, see [Isolate hosted agent sessions per user](isolate-sessions-per-user.md).
+
+## View and manage sessions across users
+
+By default, each caller sees and manages only the sessions that belong to their own identity. List, get, and delete operations return or affect only that caller's sessions.
+
+An administrator or automation that needs to work with every session on an agent - for debugging, cost analysis, or incident response - needs the **Foundry User** role on the Foundry project. This role carries the `sessions/read` and `sessions/write` data actions for cross-user access. By using that role, the same list, get, and delete operations return and act on all sessions on the agent, regardless of which identity created them.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+Grant the Foundry User role only to identities that need cross-user session access. Regular callers keep the default, own-sessions-only scope.
+
 ## Create a session explicitly (advanced)
 
 Create a session in advance only when you need to:
@@ -328,7 +328,7 @@ AGENT_NAME="my-agent"
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/sessions?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "x-ms-user-isolation-key=user-123" "Foundry-Features=HostedAgents=V1Preview" \
+    --headers "x-ms-user-isolation-key=user-123" \
     --body '{
         "version_indicator": {
             "type": "version_ref",
@@ -344,7 +344,7 @@ Omit the body (or send `{}`) to let the platform pick the version using the agen
 :::zone pivot="python"
 
 ```python
-session = project.beta.agents.create_session(
+session = project.agents.create_session(
     agent_name="my-agent",
     body={},
     isolation_key="user-123",
@@ -357,7 +357,7 @@ The SDK requires the `isolation_key` keyword on `create_session` and `delete_ses
 To pin the session to a specific agent version, include `version_indicator` in the body:
 
 ```python
-session = project.beta.agents.create_session(
+session = project.agents.create_session(
     agent_name="my-agent",
     body={
         "version_indicator": {"type": "version_ref", "agent_version": "2"},
@@ -382,8 +382,7 @@ Sessions are created automatically when you invoke an agent through `azd`. Manua
 ```bash
 az rest --method GET \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview"
+    --resource "${RESOURCE}"
 ```
 
 :::zone-end
@@ -391,7 +390,7 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-sessions = project.beta.agents.list_sessions(agent_name="my-agent")
+sessions = project.agents.list_sessions(agent_name="my-agent")
 for item in sessions:
     print(f"Session: {item.agent_session_id} (status: {item.status})")
 ```
@@ -413,8 +412,7 @@ SESSION_ID="<session-id>"
 
 az rest --method GET \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview"
+    --resource "${RESOURCE}"
 ```
 
 :::zone-end
@@ -422,11 +420,91 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-session = project.beta.agents.get_session(
+session = project.agents.get_session(
     agent_name="my-agent",
     session_id="<session-id>",
 )
 print(f"Session ID: {session.agent_session_id}, Status: {session.status}")
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Session management isn't currently available as a standalone command. Use the REST API or SDK.
+
+:::zone-end
+
+## Stop a session
+
+Stopping a session terminates its running compute while preserving the persistent filesystem volume. Unlike deleting a session, the session is retained and you can resume it later.
+
+Stopping a session that's already stopped succeeds without error.
+
+When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the stop to the calling identity.
+
+:::zone pivot="rest"
+
+```bash
+SESSION_ID="<session-id>"
+ISOLATION_KEY="user-123"
+
+az rest --method POST \
+    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}:stop?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --headers "x-ms-user-isolation-key=${ISOLATION_KEY}"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+project.agents.stop_session(
+    agent_name="my-agent",
+    session_id="<session-id>",
+    isolation_key="user-123",
+)
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Session management isn't currently available as a standalone command. Use the REST API or SDK.
+
+:::zone-end
+
+## Stopping a session
+
+Stopping a session terminates its running compute while preserving the persistent filesystem volume. Unlike deleting a session, the session is retained and you can resume it later.
+
+Stopping a session that's already stopped succeeds without error.
+
+When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the stop to the calling identity.
+
+:::zone pivot="rest"
+
+```bash
+SESSION_ID="<session-id>"
+ISOLATION_KEY="user-123"
+
+az rest --method POST \
+    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}:stop?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --headers "x-ms-user-isolation-key=${ISOLATION_KEY}"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+project.agents.stop_session(
+    agent_name="my-agent",
+    session_id="<session-id>",
+    isolation_key="user-123",
+)
 ```
 
 :::zone-end
@@ -450,7 +528,7 @@ ISOLATION_KEY="user-123"
 az rest --method DELETE \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "x-ms-user-isolation-key=${ISOLATION_KEY}" "Foundry-Features=HostedAgents=V1Preview"
+    --headers "x-ms-user-isolation-key=${ISOLATION_KEY}"
 ```
 
 :::zone-end
@@ -458,7 +536,7 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.beta.agents.delete_session(
+project.agents.delete_session(
     agent_name="my-agent",
     session_id="<session-id>",
     isolation_key="user-123",
@@ -477,6 +555,8 @@ Session management isn't currently available as a standalone command. Use the RE
 
 Upload and download files to agent session sandboxes. Each file is scoped to a specific session. The maximum file size for upload is 50 MB.
 
+A container can also write files directly into the session sandbox (under `$HOME`) and have them appear through these APIs. For an example, see the [note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent), which persists one notes file per session.
+
 > [!NOTE]
 > The Python SDK uses `session_id` as the keyword for `upload_session_file`, and `agent_session_id` for `get_session_files`, `download_session_file`, and `delete_session_file`. Use the keyword name shown in each example.
 
@@ -491,7 +571,7 @@ az rest --method PUT \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}/files/content?api-version=${API_VERSION}&path=data.csv" \
     --resource "${RESOURCE}" \
     --body @data.csv \
-    --headers "Content-Type=application/octet-stream" "Foundry-Features=HostedAgents=V1Preview"
+    --headers "Content-Type=application/octet-stream"
 ```
 
 :::zone-end
@@ -499,7 +579,7 @@ az rest --method PUT \
 :::zone pivot="python"
 
 ```python
-project.beta.agents.upload_session_file(
+project.agents.upload_session_file(
     agent_name="my-agent",
     session_id="<session-id>",
     content_or_file_path="./data.csv",
@@ -528,8 +608,7 @@ SESSION_ID="<session-id>"
 
 az rest --method GET \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}/files?api-version=${API_VERSION}&path=." \
-    --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview"
+    --resource "${RESOURCE}"
 ```
 
 :::zone-end
@@ -537,7 +616,7 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-files = project.beta.agents.get_session_files(
+files = project.agents.get_session_files(
     agent_name="my-agent",
     agent_session_id="<session-id>",
     path=".",
@@ -566,7 +645,6 @@ SESSION_ID="<session-id>"
 az rest --method GET \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}/files/content?api-version=${API_VERSION}&path=data.csv" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" \
     --output-file output.csv
 ```
 
@@ -576,7 +654,7 @@ az rest --method GET \
 
 ```python
 content_bytes = b"".join(
-    project.beta.agents.download_session_file(
+    project.agents.download_session_file(
         agent_name="my-agent",
         agent_session_id="<session-id>",
         path="data.csv",
@@ -605,8 +683,7 @@ SESSION_ID="<session-id>"
 
 az rest --method DELETE \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}/files?api-version=${API_VERSION}&path=data.csv" \
-    --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview"
+    --resource "${RESOURCE}"
 ```
 
 :::zone-end
@@ -614,7 +691,7 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.beta.agents.delete_session_file(
+project.agents.delete_session_file(
     agent_name="my-agent",
     agent_session_id="<session-id>",
     path="data.csv",
@@ -642,3 +719,4 @@ azd ai agent files remove --file data.csv
 - [Deploy a Hosted agent](deploy-hosted-agent.md)
 - [Manage Hosted agents](manage-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
+- [Note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent) for a container that writes per-session files visible through the Session Files API.

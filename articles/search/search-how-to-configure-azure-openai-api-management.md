@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Use Azure API Management with Azure OpenAI skills and vectorizers in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can place [Azure API Management](/azure/api-management/api-management-key-concepts) in front of [Azure OpenAI in Microsoft Foundry Models](/azure/ai-services/openai/overview) and [Microsoft Foundry](/azure/ai-foundry/what-is-foundry) deployments to centralize routing, load balancing, throttling, and observability for Azure AI Search workloads that use Foundry models. This article describes the supported scenarios, the recommended authentication and role-based access control (RBAC) pattern, and how to optionally make the connection from Azure AI Search private.
 
 ## Supported scenarios

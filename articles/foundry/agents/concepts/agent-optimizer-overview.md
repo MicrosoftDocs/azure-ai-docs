@@ -15,9 +15,21 @@ ai-usage: ai-assisted
 
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
-The agent optimizer in Foundry Agent Service automatically improves your hosted agents by evaluating their behavior and generating better configurations. These configurations primarily include improved system instructions and discovered skills.
+The agent optimizer in Foundry Agent Service automatically improves your hosted agents by evaluating their behavior and generating better configurations. These configurations can include improved instructions, skills, tool descriptions, and model selection.
 
 Building effective AI agents requires extensive prompt engineering. You deploy an agent with handcrafted instructions, test it against real scenarios, identify weaknesses, revise the prompt, and repeat. This loop is slow, subjective, and doesn't scale. The agent optimizer automates this cycle so you can focus on your agent's core logic.
+
+## The optimization workflow
+
+Optimizing an agent follows a repeatable path. Each step links to the article that covers it in detail:
+
+1. **Prepare your agent.** Add the optimization package and a baseline configuration so the optimizer can read and improve your agent. See [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md).
+1. **Create an evaluation dataset.** Define the tasks and criteria the optimizer scores against. See [Create an evaluation dataset and evaluators](../how-to/create-optimizer-dataset.md).
+1. **Run the optimizer.** Start an optimization run and choose which targets and models to explore. See [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md).
+1. **Review the results.** Compare candidate scores against your baseline and pick the best one. See [Understand optimization results](#understand-optimization-results).
+1. **Apply and deploy.** Promote the winning candidate to your agent's configuration and redeploy. See [Deploy the winner](../how-to/optimize-agent-targets.md#deploy-the-winner).
+
+To try the full workflow with a sample agent, start with the [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md).
 
 ## How the agent optimizer works
 
@@ -26,81 +38,27 @@ The agent optimizer runs a closed-loop evaluation and improvement cycle:
 1. **Evaluate the baseline.** The optimizer invokes your agent against a dataset of tasks and scores each response against criteria you define or a built-in default set. The *baseline* is your agent's score before any changes.
 1. **Generate candidates.** The optimizer produces alternative configurations called *candidates*—rewritten instructions or discovered skills—designed to improve scores.
 1. **Evaluate candidates.** The optimizer tests each candidate against the same dataset.
-1. **Rank and recommend.** The optimizer ranks results by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance, and marks the best candidate with ★.
-1. **Deploy the winner.** A single command promotes the winning candidate and saves its configuration to your agent's environment.
+1. **Rank and recommend.** The optimizer ranks results by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance, and marks the best candidate with ★. You then apply and deploy the winner.
 
-The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#install-the-cli-extension)). The run takes 5 to 20 minutes depending on dataset size.
+The entire process runs in the cloud and takes 5 to 20 minutes, depending on dataset size. After you make your agent [optimizer-ready](../how-to/make-agent-optimizer-ready.md), no further code changes are needed between runs: `load_config()` returns your baseline normally and supplies optimized configuration automatically during and after a run - no feature flags or conditional logic.
 
 > [!WARNING]
 > During optimization, the optimizer evaluates your agent by invoking it against every task in your dataset. If your agent calls external tools—such as APIs, databases, or third-party services—those calls execute during each evaluation run. To avoid unintended side effects (charges, state mutations, or rate limiting), consider using test endpoints or mocking tool implementations during optimization.
-
-> [!TIP]
-> For the best results, generate a dataset tailored to your agent with `azd ai agent eval generate` before running optimization. The optimizer auto-detects the generated `eval.yaml`. For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
 
 <!-- :::image type="content" source="media/agent-optimizer-architecture.svg" alt-text="Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup, and the agent optimizer evaluates, generates candidates, and ranks them."::: -->
 
 ## Optimization targets
 
-An optimization *target* is a specific aspect of your agent's configuration that the optimizer can improve. The agent optimizer automatically determines which targets to activate based on your agent's baseline configuration and the `eval.yaml` settings.
+An optimization *target* is a specific aspect of your agent's configuration that the optimizer can improve. The optimizer runs all applicable targets in a single run and automatically activates each one based on your baseline configuration and `eval.yaml` settings.
 
-### Instruction tuning
+| Target | What the optimizer improves | Activates when your baseline has |
+| ------ | --------------------------- | -------------------------------- |
+| **Instruction tuning** | Rewrites and refines the system prompt to score higher. The most common target. | An `instructions.md` file |
+| **Skill improvement** | Refines the body of each reusable skill (in `SKILL.md`) while keeping skill descriptions unchanged. | A `skills/` directory |
+| **Tool optimization** | Improves tool and parameter descriptions so the model calls tools more accurately. Doesn't change types, defaults, or required fields. | A `tools.json` file |
+| **Model selection** | Evaluates your agent across multiple model deployments to find the best quality-to-cost trade-off. | `model_search_space` in `eval.yaml` |
 
-The optimizer rewrites and refines your agent's system prompt. It analyzes baseline performance and generates prompt variations that score higher.
-
-**When it activates:** Instruction tuning runs when your agent has an `instructions.md` file in the baseline config directory. This is the most common optimization target and works well for improving response quality, adherence to task requirements, and reducing inaccurate outputs.
-
-### Skill improvement
-
-The optimizer improves reusable skills your agent uses. It refines existing skill *bodies* (the implementation content in each `SKILL.md` file) while keeping skill descriptions unchanged. The agent loads these skills through `load_config()` and appends them to the instruction set.
-
-**When it activates:** Skill improvement runs when your agent has a `skills/` directory in the baseline config. Use skills for agents that need structured, repeatable behaviors. For example, a support agent that follows a specific escalation procedure or a travel agent that checks budget policies.
-
-### Tool optimization
-
-The optimizer improves tool descriptions and parameter descriptions to help the model call tools more accurately. It does not change parameter types, defaults, or required fields—only the natural-language descriptions are refined.
-
-**When it activates:** Tool optimization runs when your agent has a `tools.json` file in the baseline config. The optimizer analyzes which tool calls succeed or fail and generates clearer descriptions and parameter descriptions.
-
-### Model selection
-
-The optimizer evaluates your agent across multiple model deployments in a single run to find the best quality-to-cost trade-off. For example, it can determine whether `gpt-4.1-mini` handles your workload at lower cost or whether `gpt-4.1` provides a quality improvement that justifies the extra token cost.
-
-**When it activates:** Model selection runs when you include
-`optimization_config.model_search_space` in your `eval.yaml` with a list of
-model deployments to evaluate. The optimizer scores each model option against
-the same dataset and shows the trade-offs.
-
-> [!NOTE]
-> If the model list includes your agent's current model deployment, it is automatically removed from the candidates (the baseline already represents that model). If no models remain after this removal, you receive a validation error.
-
-Configure model candidates in your `eval.yaml`:
-
-```yaml
-# eval.yaml
-options:
-  optimization_config:
-    model_search_space:
-      - gpt-4.1
-      - gpt-4.1-mini
-      - gpt-4o
-```
-
-You can combine model selection with instruction and skill optimization in the same run. The optimizer automatically determines which targets to improve based on your baseline configuration and the `optimization_config` settings.
-
-## Config resolution
-
-When your agent starts, the `load_config()` function checks several sources in order: inline JSON during candidate evaluation, the resolver API for a fetched candidate, the local `.agent_configs/` directory after you apply a candidate, and finally `None` when no config source is present.
-
-Your agent always works with or without optimization. You don't need feature flags or conditional logic. Call `load_config()` and use the values it returns. For the full resolution order and implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md#configuration-resolution-order).
-
-## What gets optimized
-
-| Field | Description | Target |
-| ------- | ------------- | ---------- |
-| `instructions` | System prompt and instructions | instruction, skill |
-| `skills` | Discovered skill catalog | skill |
-| `model` | Model deployment name | model |
-| `tools` | Tool definitions (descriptions, parameters) | tool |
+To set up these baseline inputs, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md). To run and configure each target, see [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md).
 
 ## Models
 
@@ -113,20 +71,11 @@ The agent optimizer uses two models during an optimization run. Both must be dep
 
 The eval model runs once per task per candidate. It reads the agent's response and each criterion, then returns a binary score. The optimization model analyzes baseline results and generates improved candidates across the configured targets (instructions, skills, tools, and models). Because it reasons over the full dataset, a more capable optimization model typically produces better candidates.
 
-```yaml
-# eval.yaml
-options:
-  eval_model: gpt-4.1-mini
-  optimization_model: gpt-5.1
-```
-
-> [!IMPORTANT]
-> You must specify `optimization_model`, and the optimization model must be
-> from the supported list above.
+You specify these models in `eval.yaml` or with CLI flags, and `optimization_model` is required. For configuration steps, see [Choose the eval and optimization models](../how-to/optimize-agent-targets.md#choose-the-eval-and-optimization-models).
 
 ## Understand optimization results
 
-This section describes the results table structure, how scores are computed, what score improvements mean, and how to diagnose common issues.
+This section explains the results table, how the composite score is computed, and how to interpret improvements.
 
 > [!TIP]
 > You can also view optimization results in the [Foundry portal](https://ai.azure.com). Navigate to your project, select **Agents**, choose your agent, and then select the **Optimize** tab to see score comparisons, charts, and deployment options.
@@ -203,6 +152,6 @@ Optimized instructions are often longer and more detailed, which can increase re
 
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
-- [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
-- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
+- [Create an evaluation dataset and evaluators](../how-to/create-optimizer-dataset.md)
 - [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)
+- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)

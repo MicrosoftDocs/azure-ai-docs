@@ -18,12 +18,7 @@ ISO 3166 subdivision codes are added where not present to simplify joining. Colu
 
 ## Datasets
 
-| Datasets                                                                 | Description                                                                                                                                                                                                                                             |
-|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Bing COVID-19 Data](dataset-bing-covid-19.md)                                                       | Bing COVID-19 data includes confirmed, fatal, and recovered cases from all regions, updated daily.                                                                                                                                                      |
-| [COVID Tracking Project](dataset-covid-tracking.md)                                                | The COVID Tracking Project dataset provides the latest numbers on tests, confirmed cases, hospitalizations, and patient outcomes from every US state and territory.                                                                                     |
-| [European Centre for Disease Prevention and Control (ECDC) Covid-19 Cases](dataset-ecdc-covid-cases.md) | The latest available public data on geographic distribution of COVID-19 cases worldwide from the European Center for Disease Prevention and Control (ECDC). Each row/entry contains the number of new cases reported per day and per country or region. |
-| [Oxford COVID-19 Government Response Tracker](dataset-oxford-covid-government-response-tracker.md)                              | The Oxford Covid-19 Government Response Tracker (OxCGRT) dataset contains systematic information on which governments have taken which measures, and when.                                                                                              |
+For the full list of datasets available in the COVID-19 Data Lake, see the [Open Datasets catalog](dataset-catalog.md).
 
 ---
 

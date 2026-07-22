@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Configure a vectorizer in a search index
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, a *vectorizer* converts text or images into vectors during query execution, allowing you to submit plain-text queries against vector fields without computing embeddings yourself.
 
 A vectorizer is defined in a search index and assigned to vector fields through a vector profile. At query time, the vectorizer calls an embedding model to generate a vector from your query input. For more information, see [Using integrated vectorization in queries](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries).

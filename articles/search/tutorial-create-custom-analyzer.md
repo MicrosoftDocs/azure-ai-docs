@@ -12,6 +12,8 @@ ms.date: 11/21/2025
 
 # Tutorial: Create a custom analyzer for phone numbers
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In search solutions, strings that have complex patterns or special characters can be challenging to work with because the [default analyzer](search-analyzers.md) strips out or misinterprets meaningful parts of a pattern. This results in a poor search experience where users can't find the information they expect. Phone numbers are a classic example of strings that are difficult to analyze. They come in various formats and include special characters that the default analyzer ignores.
 
 With phone numbers as its subject, this tutorial uses the [Search Service REST APIs](/rest/api/searchservice/) to solve patterned data problems using a [custom analyzer](index-add-custom-analyzers.md). This approach can be used as is for phone numbers or adapted for fields with the same characteristics (patterned with special characters), such as URLs, emails, postal codes, and dates.

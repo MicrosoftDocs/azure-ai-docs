@@ -67,8 +67,6 @@ items:
   href: ../../concepts/management-center.md
 - name: Consolidated view
   href: ../../concepts/ai-foundry-consolidated-view.md
-- name: Status dashboard
-  href: ../../foundry-status-dashboard-documentation.md  
 - name: Connect to other services
   items:
   - name: Create a connection

@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 04/17/2026
 ms.author: lajanuar
 ---
 # Multilingual and emoji support in Language features

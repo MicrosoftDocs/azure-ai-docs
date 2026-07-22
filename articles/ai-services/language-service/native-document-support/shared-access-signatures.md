@@ -6,7 +6,7 @@ ms.topic: how-to
 manager: mcleans
 ms.author: lajanuar
 author: laujan
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ---
 # SAS tokens for your storage containers
 

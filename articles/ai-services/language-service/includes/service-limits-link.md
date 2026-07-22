@@ -5,7 +5,7 @@
  author: laujan
  ms.service: azure-ai-language
  ms.topic: include
- ms.date: 11/05/2025
+ ms.date: 04/30/2026
  ms.author: lajanuar
  ms.custom: include
 ---

@@ -1,7 +1,7 @@
 ---
 title: Index Large Data Sets for Full-Text Search
 description: Learn about strategies for large data indexing or computationally intensive indexing through batch mode, resourcing, and scheduled, parallel, and distributed indexing.
-ms.date: 06/08/2026
+ms.date: 07/07/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.update-cycle: 180-days
@@ -12,18 +12,20 @@ ai-usage: ai-assisted
 
 # Index large data sets in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you need to index large or complex data sets in your search solution, this article explores strategies to accommodate long-running processes on Azure AI Search.
 
 These strategies assume familiarity with the [two basic approaches for importing data](search-what-is-data-import.md): *pushing* data into an index, or *pulling* in data from a supported data source using a [search indexer](search-indexer-overview.md). If your scenario involves computationally intensive [AI enrichment](cognitive-search-concept-intro.md), then indexers are required, given the skillset dependency on indexers.
 
 This article complements [Tips for better performance](search-performance-tips.md), which offers best practices on index and query design. A well-designed index that includes only the fields and attributes you need is an important prerequisite for large-scale indexing.
 
-We recommend using a search service created after April 3, 2024 for [higher storage per partition](search-limits-quotas-capacity.md#service-limits). Older services can also be [upgraded to benefit from higher partition storage](search-how-to-upgrade.md).
+Use a search service created after April 3, 2024, for [higher storage per partition](search-limits-quotas-capacity.md#service-limits). You can also [upgrade older services to benefit from higher partition storage](search-how-to-upgrade.md).
 
 > [!NOTE]
 > The strategies described in this article assume a single large data source. If your solution requires indexing from multiple data sources, see [Index multiple data sources in Azure AI Search](/samples/azure-samples/azure-search-dotnet-scale/multiple-data-sources/) for a recommended approach.
 
-## Index data using the push APIs
+## Index data by using the push APIs
 
 *Push* APIs, such as the [Documents Index REST API](/rest/api/searchservice/documents) or the [IndexDocuments method (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocuments), are the most prevalent form of indexing in Azure AI Search. For solutions that use a push API, the strategy for long-running indexing has one or both of the following components:
 
@@ -59,27 +61,27 @@ The Azure .NET SDK automatically retries 503s and other failed requests, but you
 
 ## Use indexers and the pull APIs
 
-[Indexers](search-indexer-overview.md) have several capabilities that are useful for long-running processes:
+[Indexers](search-indexer-overview.md) offer several capabilities that are useful for long-running processes:
 
 - Batching documents
 - Parallel indexing over partitioned data
 - Scheduling and change detection for indexing only new and changed documents over time
 
-Indexer schedules can resume processing at the last known stopping point. If data isn't fully indexed within the processing window, the indexer picks up wherever it left off on the next run, assuming you're using a data source that provides change detection.
+Indexer schedules can resume processing at the last known stopping point. If the data isn't fully indexed within the processing window, the indexer picks up wherever it left off on the next run, assuming you're using a data source that provides change detection.
 
 Partitioning data into smaller individual data sources enables parallel processing. You can break up source data, such as into multiple containers in Azure Blob Storage, [create a data source](/rest/api/searchservice/data-sources/create) for each partition, and then [run the indexers in parallel](search-howto-run-reset-indexers.md), subject to the number of search units of your search service.
 
 ### Check indexer batch size
 
-As with the push API, indexers allow you to configure the number of items per batch. For indexers based on the [Create Indexer REST API](/rest/api/searchservice/indexers/create), you can set the `batchSize` argument to customize this setting to better match the characteristics of your data.
+As with the push API, indexers allow you to configure the number of items per batch. For indexers based on the [Create Indexer REST API](/rest/api/searchservice/indexers/create), set the `batchSize` argument to customize this setting to better match the characteristics of your data.
 
-Default batch sizes are data-source specific. Azure SQL Database and Azure Cosmos DB have a default batch size of 1,000. In contrast, Azure Blob and SharePoint (Preview) indexing sets batch size at 10 documents in recognition of the larger average document size.
+Default batch sizes are data-source specific. Azure SQL Database and Azure Cosmos DB have a default batch size of 1,000. In contrast, Azure Blob and SharePoint (Preview) indexing set the batch size at 10 documents in recognition of the larger average document size.
 
 ### Schedule indexers for long-running processes
 
 Indexer scheduling is an important mechanism for processing large data sets and for accommodating slow-running processes like image analysis in an enrichment pipeline.
 
-Typically, indexer processing runs within a two-hour window. If the indexing workload takes days rather than hours to complete, you can put the indexer on a consecutive, recurring schedule that starts every two hours. Assuming the data source has [change tracking enabled](search-howto-create-indexers.md#change-detection-and-internal-state), the indexer resumes processing where it last left off. At this cadence, an indexer can work its way through a document backlog over a series of days until all unprocessed documents are processed. This pattern is especially important during the initial run or when indexing large blob containers, where the blob listing phase alone can take multiple hours or days. During this time, the indexer would show no blobs being processed, but unless an error is reported, it's likely still iterating through the blob list. Document processing and enrichment begin only after this phase completes, and this behavior is expected.
+Typically, indexer processing runs within a two-hour window. If the indexing workload takes days rather than hours to complete, you can put the indexer on a consecutive, recurring schedule that starts every two hours. Assuming the data source has [change tracking enabled](search-howto-create-indexers.md#change-detection-and-internal-state), the indexer resumes processing where it last left off. At this cadence, an indexer can work its way through a document backlog over a series of days until all unprocessed documents are processed. This pattern is especially important during the initial run or when indexing large blob containers, where the blob listing phase alone can take multiple hours or days. During this time, the indexer shows no blobs being processed, but unless an error is reported, it's likely still iterating through the blob list. Document processing and enrichment begin only after this phase completes, and this behavior is expected.
 
 ```json
 {
@@ -94,19 +96,25 @@ When there are no longer any new or updated documents in the data source, indexe
 For more information about setting schedules, see [Create Indexer REST API](/rest/api/searchservice/indexers/create) or see [Schedule indexers for Azure AI Search](search-howto-schedule-indexers.md).
 
 > [!NOTE]
-> Some indexers that run on an older runtime architecture have a 24-hour rather than 2-hour maximum processing window. The two-hour limit is for newer content processors that run in an [internally managed multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment). Whenever possible, Azure AI Search tries to offload indexer and skillset processing to the multitenant environment. If the indexer can't be migrated, it runs in the private environment and it can run for as long as 24 hours. If you're scheduling an indexer that exhibits these characteristics, assume a 24-hour processing window.
+> The maximum processing window depends on whether the indexer has a skillset. Indexers with skillsets run in an [internally managed multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment) with a 2-hour maximum. Indexers configured to use [shared private links](search-indexer-howto-access-private.md) run with a 24-hour maximum. Indexers without skillsets run with a 24-hour maximum.
+
+If your indexer uses a skillset with enrichment caching, review the following information before enabling the cache for large-scale workloads.
+
+> [!CAUTION]
+> For workloads with long-running skills, repeated interruptions, or frequent failures, an enrichment cache can increase total reprocessing during initial ingestion or recovery. An enrichment cache isn't a backup and doesn't track which documents have completed processing.
+
 
 <a id="parallel-indexing"></a>
 
 ### Run indexers in parallel
 
-If you partition your data, you can create multiple indexer-data-source combinations that pull from each data source and write to the same search index. Because each indexer is distinct, you can run them at the same time, populating a search index more quickly than if you ran them sequentially.
+If you partition your data, you can create multiple indexer-data-source combinations that pull from each data source and write to the same search index. Because each indexer is distinct, you can run them at the same time, so you populate a search index more quickly than if you ran them sequentially.
 
 Make sure you have sufficient capacity. One search unit in your service can run one indexer at any given time. Creating multiple indexers is only useful if they can run in parallel.
 
 The number of indexing jobs that can run simultaneously varies for text-based and skills-based indexing. For more information, see [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution).
 
-If your data source is an [Azure Blob Storage container](/azure/storage/blobs/storage-blobs-introduction#containers) or [Azure Data Lake Storage Gen 2](/azure/storage/blobs/storage-blobs-introduction#about-azure-data-lake-storage-gen2), enumerating a large number of blobs can take a long time (even hours) until this operation is completed. As a result, your indexer's *documents succeeded* count doesn't appear to increase during that time and might seem to not be making any progress, when it is. If you would like document processing to go faster for a large number of blobs, consider partitioning your data into multiple containers and create parallel indexers pointing to a single index.
+If your data source is an [Azure Blob Storage container](/azure/storage/blobs/storage-blobs-introduction#containers) or [Azure Data Lake Storage Gen 2](/azure/storage/blobs/storage-blobs-introduction#about-azure-data-lake-storage-gen2), enumerating a large number of blobs can take a long time (even hours) until this operation is completed. As a result, your indexer's *documents succeeded* count doesn't appear to increase during that time and might seem to not be making any progress, when it is. If you want document processing to go faster for a large number of blobs, consider partitioning your data into multiple containers and create parallel indexers pointing to a single index.
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
@@ -122,15 +130,15 @@ If your data source is an [Azure Blob Storage container](/azure/storage/blobs/st
 
 1. Review indexer status and execution history for confirmation.
 
-There are some risks associated with parallel indexing. First, recall that indexing doesn't run in the background, increasing the likelihood that queries are throttled or dropped.
+There are some risks associated with parallel indexing. First, recall that indexing doesn't run in the background, which increases the likelihood that queries are throttled or dropped.
 
-Second, Azure AI Search doesn't lock the index for updates. Concurrent writes are managed, invoking a retry if a particular write doesn't succeed on first attempt, but you might notice an increase in indexing failures.
+Second, Azure AI Search doesn't lock the index for updates. Concurrent writes are managed by invoking a retry if a particular write doesn't succeed on first attempt, but you might notice an increase in indexing failures.
 
 Although multiple indexer-data-source sets can target the same index, be careful of indexer runs that can overwrite existing values in the index. If a second indexer-data-source targets the same documents and fields, any values from the first run are overwritten. Field values are replaced in full; an indexer can't merge values from multiple runs into the same field.
 
 ## Index big data on Spark
 
-If you have a big data architecture and your data is on a Spark cluster, we recommend [SynapseML for loading and indexing data](search-synapseml-cognitive-services.md). The tutorial includes steps for calling Foundry Tools for AI enrichment, but you can also use the AzureSearchWriter API for text indexing.
+If you have a big data architecture and your data is on a Spark cluster, use [SynapseML for loading and indexing data](search-synapseml-cognitive-services.md). The tutorial includes steps for calling Foundry Tools for AI enrichment, but you can also use the AzureSearchWriter API for text indexing.
 
 ## Related content
 

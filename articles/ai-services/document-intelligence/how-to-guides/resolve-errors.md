@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: error-reference
-ms.date: 11/18/2025
+ms.date: 04/18/2026
 ms.author: paulhsu
 monikerRange: '>=doc-intel-3.0.0'
 ---

@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 06/10/2026
 ms.update-cycle: 365-days
 ms.custom:
   - subject-moving-resources
@@ -14,6 +14,8 @@ ms.custom:
 ---
 
 # Move your Azure AI Search service to another Azure region
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Occasionally, customers ask about moving a search service to another region. Currently, there's no built-in mechanism or tooling to help with that task, but this article can help you understand the manual steps for recreating indexes and other objects on a new search service in a different region.
 

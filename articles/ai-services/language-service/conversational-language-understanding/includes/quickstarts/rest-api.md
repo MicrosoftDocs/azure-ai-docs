@@ -3,7 +3,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/19/2026
 ms.author: lajanuar
 ---
 ## Prerequisites
@@ -45,7 +45,7 @@ For this quickstart, you can download [this sample project](https://go.microsoft
 
 ## Start training your model
 
-Typically, after you create a project, you should [build schema](../../how-to/build-schema.md) and [tag utterances](../../how-to/tag-utterances.md). For this quickstart, we already imported a ready project with built schema and tagged utterances. 
+Typically, after you create a project, you should [build schema](../../how-to/build-train-deploy-model.md#build-your-fine-tuning-schema) and [tag utterances](../../how-to/build-train-deploy-model.md#label-your-utterances). For this quickstart, we already imported a ready project with built schema and tagged utterances. 
 
 [!INCLUDE [train model](../rest-api/train-model.md)]
 

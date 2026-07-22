@@ -4,12 +4,12 @@ ms.reviewer: samuelzhang
 description: "Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service."
 keywords: Model Context Protocol, MCP server, Azure Functions, Azure API Center, tool catalog, Foundry Agent Service
 #customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Foundry Agent Service.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
 ms.topic: how-to
-ms.date: 04/13/2026
+ms.date: 07/15/2026
 ai-usage: ai-assisted
 ms.custom: ai-assisted, doc-kit-assisted
 ---
@@ -23,9 +23,9 @@ This approach enables you to securely integrate internal APIs and services into 
 
 - A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Create a prompt agent](../agents/quickstarts/prompt-agent.md).
 - An Azure subscription and permissions to create resources. At minimum, you typically need the Contributor role on the target resource group.
-- [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
-- [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.0.7030 or higher.
-- [Azure Developer CLI](https://aka.ms/azd) installed for deployment automation.
+- [Python](https://www.python.org/downloads/) version 3.13 or higher installed on your local development machine.
+- [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.8.0 or higher.
+- [Azure Developer CLI](https://aka.ms/azd) version 1.23.0 or higher, installed for deployment automation.
 - For local development and debugging:
   - [Visual Studio Code](https://code.visualstudio.com/)
   - [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for Visual Studio Code
@@ -61,11 +61,13 @@ Azure Functions is a serverless compute service that provides scale-to-zero capa
    azd init --template remote-mcp-functions-python -e mcpserver-python
    ```
 
-1. Review the sample code structure. The template includes:
+1. Review the sample structure. The template includes several sample projects, each with its own README:
 
-   - Function definitions for MCP endpoints.
-   - Configuration for authentication and authorization.
-   - Deployment scripts for Azure.
+   - An MCP tools sample that exposes callable functions.
+   - MCP resources and MCP prompts samples.
+   - Infrastructure and deployment scripts for Azure.
+
+   Start from the MCP tools sample, which demonstrates the core pattern for exposing your APIs as MCP tools.
 
 1. Customize the MCP server functions to expose your specific APIs and services. Modify the function code to implement the tools and capabilities your agents need.
 
@@ -187,7 +189,7 @@ The same MCP server can be reused by multiple clients (such as Foundry Agent Ser
 > [!TIP]
 > Foundry also surfaces Microsoft-provided MCP servers in the **Add Tools** catalog. For example, you can select **Azure DevOps MCP Server (preview)** and connect your organization to enable agent access. After you select a catalog MCP server, you can limit which tools are enabled for the agent by selecting a subset of available tools. This enforces least privilege and governance as part of the Foundry configuration flow.
 
-### Connect using a custom MCP tool
+### Connect by using a custom MCP tool
 
 If you don't register your MCP server in the organizational catalog, add it directly as a custom tool:
 
@@ -210,7 +212,7 @@ If you don't register your MCP server in the organizational catalog, add it dire
 
 For detailed configuration steps (including project connections and approval workflows), see [Connect to Model Context Protocol servers (preview)](../agents/how-to/tools/model-context-protocol.md).
 
-After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server. The same MCP server can be reused by multiple clients (such as Foundry Agent Service and developer tools like Visual Studio Code) provided authentication is configured appropriately.
+After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server. Multiple clients, such as Foundry Agent Service and developer tools like Visual Studio Code, can reuse the same MCP server if you configure authentication appropriately.
 
 ## Verify the MCP server works end to end
 
@@ -240,7 +242,7 @@ Here are some common issues you might encounter when building and connecting you
 
 ## Clean up resources
 
-When you're done, delete Azure resources created by the template to avoid ongoing charges.
+When you're done, delete the Azure resources that the template created to avoid ongoing charges.
 
 1. In your MCP server project folder, run:
 
@@ -256,5 +258,8 @@ When you're done, delete Azure resources created by the template to avoid ongoin
 - [Get started with Foundry MCP Server (preview) using Visual Studio Code](get-started.md)
 - [Foundry MCP Server best practices and security guidance](security-best-practices.md)
 - [Explore available tools and example prompts for Foundry MCP Server (preview)](available-tools.md)
+- [Microsoft MCP server certification overview](/microsoft-copilot-studio/mcp-certification).
 - [Add environments and deployments in Azure API Center](/azure/api-center/configure-environments-deployments)
 - [Azure Functions Python developer guide](/azure/azure-functions/functions-reference-python)
+- [Use Azure Functions MCP servers as tools in Microsoft Foundry](/azure/azure-functions/functions-mcp-foundry-tools)
+- [Register MCP servers hosted in Azure Functions in Azure API Center](/azure/azure-functions/register-mcp-server-api-center)

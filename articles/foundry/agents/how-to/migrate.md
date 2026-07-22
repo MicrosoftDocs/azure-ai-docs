@@ -29,7 +29,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 # [Python](#tab/python)
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.3.0"
 ```
 
 # [C#](#tab/csharp)
@@ -44,7 +44,7 @@ dotnet add package Azure.Identity
 # [JavaScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects@2.0.0
+npm install @azure/ai-projects@2.3.0
 npm install @azure/identity
 ```
 
@@ -54,12 +54,12 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.15.4</version>
+    <version>1.18.4</version>
 </dependency>
 ```
 
@@ -145,7 +145,7 @@ The new agents provide the following benefits:
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
 - **Background mode**. Support for long-running tools (like image-generation), and durable streams (supports disconnect/reconnect scenarios)
 - **Future-proof.** New features and model support are only added to the new agents.
-- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and Hosted agents (preview).
+- **New agent types.** Create prompt-based agents and Hosted agents.
 
 **Enterprise readiness**
 
@@ -169,7 +169,7 @@ The following table summarizes the main API changes between the previous and cur
 | -------- | ------- | ------ |
 | Threads | Conversations | Supports streams of items, not just messages. |
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
-| Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and Hosted agents with stateful context by default for any Foundry model. |
+| Assistants / agents | Agents (new) | Support for enterprise-ready prompt and Hosted agents with stateful context by default for any Foundry model. |
 
 ## Agent tool availability
 
@@ -183,7 +183,7 @@ The following table compares agent tools available in classic agents and the new
 | Browser Automation | Yes (Public Preview) | Yes (Public Preview) |
 | Code Interpreter | Yes (GA) | Yes (GA) |
 | Computer Use | Yes (Public Preview) | Yes (Public Preview) |
-| Connected Agents | Yes (Public Preview) | No (Recommendation: Workflow and A2A tool) |
+| Connected Agents | Yes (Public Preview) | No (Recommendation: A2A tool) |
 | Deep Research | Yes (Public Preview) | No (Recommendation: Deep Research model with Web Search tool) |
 | Fabric Data Agent | Yes (Public Preview) | Yes (Public Preview) |
 | File Search | Yes (GA) | Yes (GA) |
@@ -1663,8 +1663,8 @@ After you migrate your code, confirm that everything works correctly:
 | --------- | ------- | ------------ |
 | **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project.get_openai_client()` to obtain the OpenAI client, then call `openai.conversations.create()`. |
 | **C#**: `Azure.AI.Extensions.OpenAI` namespace not found | The `Azure.AI.Extensions.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects` (which brings in `Azure.AI.Extensions.OpenAI` and `Azure.AI.Projects.Agents` as dependencies). |
-| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0` or later: `npm install @azure/ai-projects@2.0.0`. |
-| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml` dependencies. |
+| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.3.0` or later: `npm install @azure/ai-projects`. |
+| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.2.0` to your `pom.xml` dependencies. |
 | `create_agent()` is removed | Earlier SDK versions used `create_agent()`, which was removed in v2.0.0. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
 | `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../concepts/limits-quotas-regions.md). |

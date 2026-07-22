@@ -14,6 +14,8 @@ ms.custom:
 
 # Tutorial: Index Azure SQL data using the .NET SDK
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn how to configure an [indexer](search-indexer-overview.md) to extract searchable data from Azure SQL Database and send it to a search index in Azure AI Search.
 
 In this tutorial, you use C# and the [Azure SDK for .NET](/dotnet/api/overview/azure/search) to:

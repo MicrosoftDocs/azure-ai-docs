@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/18/2025
+ms.date: 04/30/2026
 ms.author: lajanuar
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---

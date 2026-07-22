@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/07/2026
 ms.custom: devx-track-java
 ms.author: lajanuar
 ---

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Eliminate optional vector instances from storage
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search stores multiple copies of vector fields that are used in specific workloads. If your search scenarios don't require all of these copies, you can omit storage for that workload. 
 
 Use cases where an extra copy is used include:

@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Index CSV blobs and files using delimitedText parsing mode
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 **Applies to**: [Blob storage indexers](search-how-to-index-azure-blob-storage.md), [Files indexers](search-file-storage-integration.md)
 
 In Azure AI Search, indexers for Azure Blob Storage and Azure Files support a `delimitedText` parsing mode for CSV files that treats each line in the CSV as a separate search document. For example, given the following comma-delimited text, the `delimitedText` parsing mode would result in two documents in the search index: 

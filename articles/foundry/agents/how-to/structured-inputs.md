@@ -7,10 +7,10 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/31/2026
-author: jonburchel
-reviewer: lindazqli
-ms.author: jburchel
-ms.reviewer: zhuoqunli
+author: mattwojo
+reviewer: zhuoqunli
+ms.author: mattwoj
+ms.reviewer: lindazqli
 ms.custom: azure-ai-agents, dev-focus, doc-kit-assisted
 zone_pivot_groups: selection-structured-inputs
 ai-usage: ai-assisted
@@ -272,7 +272,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
@@ -1524,7 +1524,7 @@ The `{{userFilter}}` template inside the `filter` expression is replaced with `b
 
 By using structured inputs, you can dynamically configure MCP server connections at runtime. You can set the server URL, authentication headers, and server label. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
 
-The following JSON shows the request body for the [Create Agent Version](/rest/api/aifoundry/aiproject#agents---create-agent-version) operation (`POST /agents?api-version=v1`). The agent definition includes MCP tool properties with handlebar template placeholders:
+The following JSON shows the request body for the [Create Agent Version](https://ai.azure.com/api-reference/agent-versions/create-agent-version-agents-create-agent-version-from-code/) operation (`POST /agents?api-version=v1`). The agent definition includes MCP tool properties with handlebar template placeholders:
 
 ```json
 {
