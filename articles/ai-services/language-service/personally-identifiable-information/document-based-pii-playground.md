@@ -1,14 +1,15 @@
 ---
-title: Use the document PII playground in Microsoft 
-FoundrytitleSuffix: Azure AI Language
-description: Test document-based PII detection and redaction interactively in the Azure AI Foundry playground without writing code.
+title: Use the document PII playground in Microsoft Foundry
+titleSuffix: Azure AI Language
+description: Test document-based PII detection and redaction interactively in the Microsoft Foundry portal without writing code.
 author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: quickstart
-ms.date: 05/18/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -17,7 +18,11 @@ ms.custom: language-service-pii
 > [!NOTE]
 > This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
-The document PII playground in Azure AI Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. You can upload document files, configure redaction options, and review redacted output before integrating the feature into your application.
+The document PII playground in Microsoft Foundry lets you detect and redact personally identifiable information (PII) in native documents interactively, without writing code. The playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types - including names, addresses, financial IDs, and health identifiers - without uploading your own data. You can then transition to uploading your own `.pdf`, `.docx`, or `.txt` files when you're ready to test with real content.
+
+Processing is handled by the existing asynchronous native-file document-based PII pipeline - the same workflow described in [Detect and redact PII in native documents](how-to/redact-document-pii.md). The playground uses the same Document PII model and policies as the production API, so results align with production behavior.
+
+After the job completes, the playground displays the redacted output side-by-side with the source document. A single view lets you compare detection results across entity categories, review confidence scores, and assess file-fidelity output before integrating the API.
 
 ## Prerequisites
 
@@ -72,7 +77,7 @@ The **Azure-Language-Document-PII redaction** model identifies and redacts perso
 
 1. On the **Playground** tab, select **Azure Language—Document PII redaction** from the drop-down menu.
 
-1. Use the paperclip icon to upload a `.pdf`, `.docx`, or `.txt` document.
+1. Use the prepared sample document that loads by default, or use the paperclip icon to upload your own `.pdf`, `.docx`, or `.txt` document.
 
 1. In the **Configure** pane, set the following options:
 
@@ -84,13 +89,15 @@ The **Azure-Language-Document-PII redaction** model identifies and redacts perso
     | **Select types to include** | Select the PII types you want to redact. |
     | **Policy type** | Choose the type of redaction policy to apply (character mask, entity mask, or no mask). |
 
-1. Select **Detect**. After processing completes, the redacted document is displayed and you can review the detected entities in the **Details** pane.
+1. Select **Detect**. The request is submitted through the existing asynchronous native-file document-based PII pipeline. After processing completes, the redacted document is displayed side-by-side with the source document for comparison. You can review the detected entities in the **Details** pane.
 
     | Field | Description |
     | --- | --- |
-    | **Type** | The detected entity type. |
+    | **Type** | The detected entity type (category). |
     | **Confidence** | The model's level of certainty regarding whether it correctly identified an entity type. |
     | **Offset** | The position of the entity within the document. |
     | **Length** | The character length of the entity. |
+
+    The side-by-side view also reflects file-fidelity results, showing how well the redacted output preserves the original document's layout and formatting. Use this to evaluate both redaction accuracy and document rendering quality before integrating the API.
 
 Verify that the detected entities match the PII in your input document. Use the **Edit** button to modify **Configure** parameters and resubmit the document as needed.

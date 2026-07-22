@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -47,6 +48,10 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 ***Text PII***
 
 :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
+
+***Document PII***
+
+The Document PII playground in Microsoft Foundry is generally available. It ships with curated sample documents and expected outputs, so you can evaluate detection of common PII types - including names, addresses, financial IDs, and health identifiers - without uploading your own data. A single view lets you compare detection results across entity types before you transition to uploading real documents for live testing. The playground uses the same Document PII model and policies as the production API, so results align with production behavior. For more information, see [Document-based PII overview](./personally-identifiable-information/document-based-pii-overview.md).
 
 ### Language detection
 
@@ -191,7 +196,7 @@ This section helps you decide which core Language feature you should use for you
 
 | What do you want to do? | Document format | Your best solution | Is this solution customizable?* |
 | --------- | --------- | --------- | --------- |
-| Detect and/or redact sensitive information such as `PII` and `PHI`. | Unstructured text, <br> transcribed conversations | [PII detection](./personally-identifiable-information/overview.md) | |
+| Detect and redact sensitive information such as `PII` and `PHI`. | Unstructured text, <br> transcribed conversations, <br> native documents (.pdf, .docx, .txt) | [PII detection](./personally-identifiable-information/overview.md) | |
 | Extract categories of information without creating a custom model. | Unstructured text | The [preconfigured NER feature](./named-entity-recognition/overview.md) | |
 | Extract categories of information using a model specific to your data. | Unstructured text | [Custom NER](./custom-named-entity-recognition/overview.md) | ✓ |
 | Extract medical information from clinical/medical documents, without building a model. | Unstructured text | [Text analytics for health](./text-analytics-for-health/overview.md) | |

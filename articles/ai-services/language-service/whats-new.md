@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: whats-new
-ms.date: 05/19/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
 # What's new in Azure Language in Foundry Tools?
@@ -30,11 +31,11 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 * **Conversation PII improvements (`2026-04-15-preview`)**. A new preview model delivers quality improvements and expanded entity recognition, optimized for spoken-language patterns—including interruptions, filler words, and speaker turns common in transcripts and call recordings.
 
-* **PII detection capabilities available in new Foundry playgrounds**. Text PII detection, conversation PII detection, and document PII detection (preview) are now available in [new Foundry](https://ai.azure.com/). For more information, see:
+* **PII detection capabilities available in new Foundry playgrounds**. Text PII detection, conversation PII detection, and Document PII detection are now available in [new Foundry](https://ai.azure.com/). The refreshed Document PII playground is generally available. It ships with curated sample inputs and expected outputs so you can evaluate detection of common entity types—including names, addresses, financial IDs, and health identifiers—without uploading your own documents. A single view lets you compare detection results across entity types. The playground uses the same Document PII model and policies as the production API, so results align with production behavior. When you're ready, transition from curated samples to uploading live documents for real-content testing. For more information, see:
 
   * [Text PII detection](personally-identifiable-information/text-pii-playground.md)
   * [Conversation PII detection](personally-identifiable-information/conversation-pii-playground.md)
-  * [Document PII detection](personally-identifiable-information/document-based-pii-playground.md) (preview)
+  * [Document PII detection](personally-identifiable-information/document-based-pii-playground.md)
 
 * **Text Analytics for Health available in new Foundry**. The Text Analytics for Health playground is now available in [new Foundry](https://ai.azure.com/). For more information, see the [Text Analytics for Health quickstart](text-analytics-for-health/quickstart.md).
 

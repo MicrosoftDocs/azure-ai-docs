@@ -9,6 +9,7 @@ ms.topic: overview
 ms.date: 05/25/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -17,7 +18,7 @@ ms.custom: language-service-pii
 Personally Identifiable Information (PII) detection is an Azure Language [core capability](../overview.md#core-capabilities) that helps you identify, classify, and redact sensitive data across text, conversations, and native documents. Submit input text to the service and receive structured output with entity categories, confidence scores, and redacted results based on your API configuration. You can use this capability to implement privacy controls, reduce sensitive data exposure, and support compliance requirements in application and data-processing workflows.
 
 > [!TIP]
-> Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data.
+> Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data. The Document PII playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types - including names, addresses, financial IDs, and health identifiers - without uploading your own data.
 
 ## Video demonstration
 
@@ -86,6 +87,8 @@ Use the following table to select the right experience before you start implemen
 
 [!INCLUDE [development options](./includes/development-options.md)]
 
+When using the Microsoft Foundry portal for Document PII, the playground provides a single view to compare detection results across entity types. You can start with the curated sample content, then transition to uploading live documents when you're ready to test with real content.
+
 [!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
 
 ## What differs across feature types?
@@ -97,7 +100,7 @@ All feature types use predefined entity categories and return confidence-scored 
 * **Document-based PII** is asynchronous and optimized for processing native files while preserving document structure.
 
 > [!NOTE]
-> **Document-based PII** focuses on native-file redaction workflows. Some text-only options are not available in every document API version.
+> **Document-based PII** focuses on native-file redaction workflows. Some text-only options aren't available in every document API version. The Document PII playground uses the same model and policies as the production API, so playground results match production behavior for the same inputs and configuration.
 
 ## GA and preview guidance
 
