@@ -73,7 +73,9 @@ The Foundry platform automatically injects the following environment variables i
 
 | Variable | Description |
 |----------|-------------|
+| `FOUNDRY_HOSTING_ENVIRONMENT` | Injected as a non-empty value by the platform when hosted in Foundry. Developers can check for its existence to determine if the container is running in a Foundry context. |
 | `FOUNDRY_AGENT_NAME` | The agent's name, such as `my-weather-agent`. |
+| `FOUNDRY_AGENT_ID` | The id of the agent. |
 | `FOUNDRY_AGENT_VERSION` | The agent's version. |
 | `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint, such as `https://{account}.services.ai.azure.com/api/projects/{project}`. |
 | `FOUNDRY_AGENT_SESSION_ID` | The agent's session ID. |
@@ -112,7 +114,7 @@ During local development with `azd ai agent run`, azd sets `FOUNDRY_PROJECT_ENDP
    services:
      my-agent:
        host: azure.ai.agent
-       env:
+       environmentVariables:
          MY_API_URL: ${MY_API_URL}
    ```
 
