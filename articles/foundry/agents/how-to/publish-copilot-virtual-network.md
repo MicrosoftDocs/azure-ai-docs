@@ -295,7 +295,7 @@ However, if your network security requirements mean that traffic must be authent
 Validating the JWT is the strongest control, but it requires a component that can verify a signed token. If you don't have infrastructure that can validate a JWT, you can still reduce risk with two simpler checks at your inbound component:
 
 - **Restrict the source IP ranges** to the Teams Required ranges (see **Source IP ranges** in 5.1), so that only the Bot Channel Adapter can reach your entry point.
-- **Validate the caller's tenant ID.** The Bot Channel Adapter includes the caller's tenant ID in the `x-tenant-id` header. Reject any request whose tenant ID isn't your own.
+- **Validate the caller's tenant ID.** The Bot Channel Adapter includes the caller's tenant ID in the `x-ms-tenant-id` header. Reject any request whose tenant ID isn't your own.
 
 A published agent's Teams app can be installed in any tenant, so requests from outside your organization can reach your endpoint before Foundry applies RBAC. Checking the tenant ID lets you drop calls from tenants you don't intend to serve. This combination is weaker than JWT validation, because any caller that reaches your endpoint can set a header. Pair it with the source IP restriction so that only the Bot Channel Adapter can present the header. Together, the two checks give customers without JWT-capable infrastructure a meaningful layer of defense.
 
