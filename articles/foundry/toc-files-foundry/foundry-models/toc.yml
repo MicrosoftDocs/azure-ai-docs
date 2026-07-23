@@ -265,6 +265,9 @@ items:
       - name: Deep research
         displayName: Deep research with the Responses API
         href: ../../openai/how-to/deep-research.md
+      - name: Tool search
+        displayName: Use tool search with the Azure OpenAI Responses API
+        href: ../../openai/how-to/tool-search.md
       - name: Web search
         displayName: Web search with the Responses API
         href: ../../openai/how-to/web-search.md
