@@ -257,7 +257,7 @@ The `voice` object has the following properties:
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
+| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaMultilingualNeural`. |
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
@@ -265,12 +265,28 @@ See [How to customize Voice Live input and output](./voice-live-how-to-customize
 
 ### Azure standard voices
 
+#### Mai-voice-2-flash
+Mai-Voice-2-flash is the ultra-fast low-latency, high-fidelity expressive TTS model being optimized for real‑time responsiveness used in the Voice Live.
+Here is an example for a Mai-voice-2-flash voices:
+
+```JSON
+{
+ "voice": {
+   "name": "en-US-Harper:MAI-Voice-2-Flash",
+   "type": "azure-standard"
+ }
+}
+```
+
+For the full list of Mai-voice-2-flash voices, see [MAI voices](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices).
+
+#### Azure Neural Voice
 Here's a partial message example for a standard (`azure-standard`) voice:
 
 ```json
 {
   "voice": {
-    "name": "en-US-AvaNeural",
+    "name": "en-US-AvaMultilingualNeural",
     "type": "azure-standard"
   }
 }
