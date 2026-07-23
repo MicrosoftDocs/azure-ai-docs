@@ -110,10 +110,10 @@ The following table shows which tools are available in each [supported region](#
 | Norway East         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Poland Central      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | South Africa North  | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| South Central US    | yes | yes             | yes                 | no                | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| South Central US    | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Southeast Asia      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | South India         | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| Spain Central       | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Spain Central       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Sweden Central      | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Switzerland North   | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | UAE North           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
@@ -228,7 +228,7 @@ The following table shows which tools each model supports. For the image generat
 
 ### A tool isn't available in your region
 
-- Not all tools are supported in every region. For example, file search isn't available in Italy North and Brazil South, and code interpreter isn't available in all regions.
+- Not all tools are supported in every region. For example, file search isn't available in Italy North and Brazil South.
 - Check the [tool support by region and model](#tool-support-by-region-and-model) table to confirm availability before you deploy.
 - If a tool isn't available, choose a supported region or use a different tool.
 
