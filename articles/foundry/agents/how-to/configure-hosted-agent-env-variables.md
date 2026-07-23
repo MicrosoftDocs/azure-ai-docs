@@ -73,7 +73,7 @@ The Foundry platform automatically injects the following environment variables i
 
 | Variable | Description |
 |----------|-------------|
-| `FOUNDRY_HOSTING_ENVIRONMENT` | The platform injects a non-empty value when hosting in Foundry. Check for this variable to determine if the container is running in a Foundry context. |
+| `FOUNDRY_HOSTING_ENVIRONMENT` | The platform injects a nonempty value when hosting in Foundry. Check for this variable to determine if the container is running in a Foundry context. |
 | `FOUNDRY_AGENT_NAME` | The agent's name, such as `my-weather-agent`. |
 | `FOUNDRY_AGENT_ID` | The ID of the agent. |
 | `FOUNDRY_AGENT_VERSION` | The agent's version. |
