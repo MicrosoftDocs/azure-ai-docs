@@ -7,7 +7,7 @@ ms.reviewer: josander
 reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/29/2026
+ms.date: 07/23/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -127,7 +127,7 @@ For **Global Standard**, **Data Zone Standard**, and **Standard** deployment typ
 
 ### Example: gpt-4o → gpt-5.1 upgrade
 
-When gpt-4o versions `2024-05-13` and `2024-08-06` retired on **2026-03-31**, they were auto-upgraded to gpt-5.1 on the Standard SKU. Before the upgrade, gpt-5.1 had no Standard presence at all. After the upgrade, gpt-5.1 Standard was added to all eight regions that previously had those gpt-4o versions (centralus, eastus, eastus2, northcentralus, southcentralus, swedencentral, westus, westus3). Version `2024-11-20` was unaffected (retires 2026-10-01).
+When gpt-4o versions `2024-05-13`, `2024-08-06`, and `2024-11-20` retire on **2026-10-01**, they'll be auto-upgraded to gpt-5.1 on the Standard SKU in each region where those versions are currently available. If gpt-5.1 doesn't yet have a Standard presence in one of those regions, the upgrade process adds it there. Check the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) for the current retirement date and replacement model before this upgrade occurs, since these details are subject to change.
 
 ## Migration to a replacement model
 

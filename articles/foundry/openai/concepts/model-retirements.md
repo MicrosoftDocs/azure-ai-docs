@@ -4,7 +4,7 @@ description: Learn about the Microsoft Foundry Models lifecycle and support poli
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 04/21/2026
+ms.date: 07/23/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
