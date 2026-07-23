@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Customize an AI model to connect your Conversational Language Understanding and Custom question answering applications.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 06/30/2026
 ms.author: lajanuar

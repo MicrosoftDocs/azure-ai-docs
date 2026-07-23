@@ -1,7 +1,7 @@
 ---
 title: Create, test, and deploy your custom question answering project in Microsoft Foundry
 description: Create a custom question answering project from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering project from a simple FAQ webpage, to answer questions.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 06/30/2026
 ---

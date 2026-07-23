@@ -1,58 +1,234 @@
 ---
-title: include file
-description: include file
+title: Azure OpenAI embeddings guidance
+description: Generate vector embeddings with Azure OpenAI by using current OpenAI SDKs for Python, C#, JavaScript, Java, and Go, or the REST API.
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/14/2026
-ms.custom: include, classic-and-new
+ms.date: 07/22/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
-An embedding is a special format of data representation that machine learning models and algorithms can easily use. An embedding is an information-dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating-point numbers, such that the distance between two embeddings in the vector space correlates with the semantic similarity between two inputs in the original format. For example, if two texts are similar, their vector representations are also similar. Embeddings power vector similarity search in Azure databases such as [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search), [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search), and [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
+An embedding is a vector of floating-point numbers that represents the semantic meaning of text. Similar text produces vectors that are close together, which makes embeddings useful for vector search, recommendations, classification, and clustering.
 
 ## Prerequisites
 
-- An Azure OpenAI embedding model deployed.
-- The following values from your resource:
-	- Endpoint, for example, `https://YOUR-RESOURCE-NAME.openai.azure.com/`.
-	- API key.
-	- Model deployment name.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/) if you don't have one.
+- An Azure OpenAI resource with an embedding model deployment.
+- Your resource endpoint, such as `https://YOUR-RESOURCE-NAME.openai.azure.com`.
+- For Microsoft Entra ID authentication, an identity with the `Cognitive Services OpenAI User` role assigned to the Azure OpenAI resource. For more information, see [Role-based access control for Azure OpenAI](/azure/ai-foundry/openai/how-to/role-based-access-control).
+- The [Azure CLI](/cli/azure/install-azure-cli) for local authentication.
+- The runtime and package manager for the language you select.
 
 For more language-specific setup guidance, see [Azure OpenAI supported programming languages](../supported-languages.md).
 
-## How to get embeddings
+The `model` value in each request is your Azure model deployment name. The examples use `text-embedding-3-small`; replace it if your deployment has a different name.
 
-To get an embedding vector for a piece of text, make a request to the embeddings endpoint as shown in the following code snippets:
+## Generate an embedding
 
-> [!NOTE]
-> The Azure OpenAI embeddings API doesn't currently support Microsoft Entra ID with the v1 API. Use API key authentication for the examples in this article.
+Send text to the embeddings endpoint, and read the vector from the first item in the response.
+
+The v1 embeddings API supports Microsoft Entra ID and API key authentication. Microsoft Entra ID is recommended because it avoids storing long-lived credentials. The examples in this article use Microsoft Entra ID.
+
+For local development, sign in to Azure before you run an SDK example:
+
+```bash
+az login
+```
+
+`DefaultAzureCredential` uses your signed-in identity locally and can use a managed identity when your application runs in Azure.
+
+API key authentication is also supported. For key-based client configuration, see [Azure OpenAI v1 API guidance](../api-version-lifecycle.md).
+
+# [Python](#tab/python-new)
+
+Install the OpenAI and Azure Identity packages:
+
+```bash
+pip install openai azure-identity
+```
+
+Generate an embedding and print its dimensions:
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+token_provider = get_bearer_token_provider(
+	DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+openai = OpenAI(
+	base_url=endpoint,
+	api_key=token_provider,
+)
+
+# Generate one embedding vector.
+response = openai.embeddings.create(
+	model="text-embedding-3-small",
+	input="The quick brown fox jumped over the lazy dog.",
+)
+print(f"Embedding dimensions: {len(response.data[0].embedding)}")
+```
+
+```output
+Embedding dimensions: <number>
+```
+
+Reference: [`embeddings.create`](https://github.com/openai/openai-python/blob/main/src/openai/resources/embeddings.py)
 
 # [C#](#tab/csharp)
 
-```csharp
-using OpenAI;
-using OpenAI.Embeddings;
-using System.ClientModel;
+Install the OpenAI and Azure Identity packages:
 
-EmbeddingClient client = new(
-    "text-embedding-3-small",
-    credential: new ApiKeyCredential("API-KEY"),
-    options: new OpenAIClientOptions()
-    {
-
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-    }
-);
-
-string input = "This is a test";
-
-OpenAIEmbedding embedding = client.GenerateEmbedding(input);
-ReadOnlyMemory<float> vector = embedding.ToFloats();
-Console.WriteLine($"Embeddings: [{string.Join(", ", vector.ToArray())}]");
+```dotnetcli
+dotnet add package OpenAI
+dotnet add package Azure.Identity
 ```
 
+Generate an embedding and print its dimensions:
+
+```csharp
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Embeddings;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
+
+var endpoint = new Uri(
+	"https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/");
+BearerTokenPolicy tokenPolicy = new(
+	new DefaultAzureCredential(),
+	"https://ai.azure.com/.default");
+var openAIClient = new EmbeddingClient(
+	model: "text-embedding-3-small",
+	authenticationPolicy: tokenPolicy,
+	options: new OpenAIClientOptions { Endpoint = endpoint });
+
+// Generate one embedding vector.
+OpenAIEmbedding embedding = openAIClient.GenerateEmbedding(
+	"The quick brown fox jumped over the lazy dog.");
+Console.WriteLine($"Embedding dimensions: {embedding.ToFloats().Length}");
+```
+
+```output
+Embedding dimensions: <number>
+```
+
+Reference: [`EmbeddingClient.GenerateEmbedding`](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Embeddings/EmbeddingClient.cs)
+
+# [JavaScript](#tab/javascript)
+
+Install the OpenAI and Azure Identity packages:
+
+```bash
+npm install openai @azure/identity
+```
+
+Generate an embedding and print its dimensions:
+
+```javascript
+import {
+	DefaultAzureCredential,
+	getBearerTokenProvider,
+} from "@azure/identity";
+import OpenAI from "openai";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+const tokenProvider = getBearerTokenProvider(
+	new DefaultAzureCredential(),
+	"https://ai.azure.com/.default",
+);
+const openai = new OpenAI({ baseURL: endpoint, apiKey: tokenProvider });
+
+// Generate one embedding vector.
+const response = await openai.embeddings.create({
+  model: "text-embedding-3-small",
+  input: "The quick brown fox jumped over the lazy dog.",
+});
+console.log(`Embedding dimensions: ${response.data[0].embedding.length}`);
+```
+
+```output
+Embedding dimensions: <number>
+```
+
+Reference: [`embeddings.create`](https://github.com/openai/openai-node/blob/main/src/resources/embeddings.ts)
+
+# [Java](#tab/java)
+
+For Maven, add the OpenAI and Azure Identity packages:
+
+```xml
+<dependencies>
+	<dependency>
+		<groupId>com.openai</groupId>
+		<artifactId>openai-java</artifactId>
+		<version>4.43.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.azure</groupId>
+		<artifactId>azure-identity</artifactId>
+		<version>1.18.4</version>
+	</dependency>
+</dependencies>
+```
+
+For Gradle setup, see [Azure OpenAI Java support](../supported-languages.md?pivots=programming-language-java).
+
+Generate an embedding and print its dimensions:
+
+```java
+import com.azure.identity.AuthenticationUtil;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.embeddings.EmbeddingCreateParams;
+
+public class EmbeddingsExample {
+	public static void main(String[] args) {
+		String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+		OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+				.baseUrl(endpoint)
+				.credential(BearerTokenCredential.create(
+						AuthenticationUtil.getBearerTokenSupplier(
+								new DefaultAzureCredentialBuilder().build(),
+								"https://ai.azure.com/.default")))
+				.build();
+
+		// Generate one embedding vector.
+		EmbeddingCreateParams params = EmbeddingCreateParams.builder()
+				.model("text-embedding-3-small")
+				.input("The quick brown fox jumped over the lazy dog.")
+				.encodingFormat(EmbeddingCreateParams.EncodingFormat.FLOAT)
+				.build();
+		int dimensions = openAIClient.embeddings().create(params)
+				.data().get(0).embedding().size();
+		System.out.println("Embedding dimensions: " + dimensions);
+	}
+}
+```
+
+```output
+Embedding dimensions: <number>
+```
+
+Reference: [`EmbeddingCreateParams`](https://github.com/openai/openai-java/blob/main/openai-java-example/src/main/java/com/openai/example/EmbeddingsExample.java)
+
 # [Go](#tab/go)
+
+Install version 3 of the OpenAI Go module and the Azure Identity module:
+
+```bash
+go get github.com/openai/openai-go/v3
+go get github.com/Azure/azure-sdk-for-go/sdk/azidentity
+```
+
+Generate an embedding and print its dimensions:
 
 ```go
 package main
@@ -60,153 +236,129 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/option"
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/azure"
+	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
-	// Get API key from environment variable
-	apiKey := os.Getenv("AZURE_OPENAI_API_KEY")
-	if apiKey == "" {
-		panic("AZURE_OPENAI_API_KEY environment variable is not set")
-	}
+	credential, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil { panic(err) }
+	endpoint := "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+	openaiClient := openai.NewClient(
+		option.WithBaseURL(endpoint),
+		azure.WithTokenCredential(credential, azure.WithTokenCredentialScopes(
+			[]string{"https://ai.azure.com/.default"})))
 
-	// Create a client with Azure OpenAI endpoint and API key
-	client := openai.NewClient(
-		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-		option.WithAPIKey(apiKey),
-	)
-
-	ctx := context.Background()
-	text := "The attention mechanism revolutionized natural language processing"
-
-	// Make an embedding request
-	embedding, err := client.Embeddings.New(ctx, openai.EmbeddingNewParams{
-		Input: openai.EmbeddingNewParamsInputUnion{OfString: openai.String(text)},
-		Model: "text-embedding-3-large", // Use your deployed model name on Azure
+	// Generate one embedding vector.
+	response, err := openaiClient.Embeddings.New(context.Background(), openai.EmbeddingNewParams{
+		Model: "text-embedding-3-small",
+		Input: openai.EmbeddingNewParamsInputUnion{OfString: openai.String(
+			"The quick brown fox jumped over the lazy dog.")},
 	})
-	if err != nil {
-		panic(err.Error())
-	}
-
-	// Print embedding information
-	fmt.Printf("Model: %s\n", embedding.Model)
-	fmt.Printf("Number of embeddings: %d\n", len(embedding.Data))
-	fmt.Printf("Embedding dimensions: %d\n", len(embedding.Data[0].Embedding))
-	fmt.Printf("Usage - Prompt tokens: %d, Total tokens: %d\n", embedding.Usage.PromptTokens, embedding.Usage.TotalTokens)
-	
-	// Print first few values of the embedding vector
-	fmt.Printf("First 10 embedding values: %v\n", embedding.Data[0].Embedding[:10])
+	if err != nil { panic(err) }
+	fmt.Printf("Embedding dimensions: %d\n", len(response.Data[0].Embedding))
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-```javascript
-import OpenAI from "openai";
-const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
-});
-
-const embedding = await client.embeddings.create({
-  model: "text-embedding-3-small",
-  input: "Your text string goes here",
-});
-
-console.log(embedding);
+```output
+Embedding dimensions: <number>
 ```
 
-# [Python](#tab/python-new)
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
-
-response = client.embeddings.create(
-    input = "Your text string goes here",
-    model= "text-embedding-3-large"
-)
-
-print(response.model_dump_json(indent=2))
-```
+Reference: [`Embeddings.New`](https://github.com/openai/openai-go/blob/main/embedding.go)
 
 # [PowerShell](#tab/PowerShell)
 
-```powershell-interactive
-# Azure OpenAI metadata variables
-$openai = @{
-    api_key     = $Env:AZURE_OPENAI_API_KEY
-    api_base    = $Env:AZURE_OPENAI_ENDPOINT # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-    name        = 'YOUR-DEPLOYMENT-NAME-HERE' #This will correspond to the custom name you chose for your deployment when you deployed a model.
-}
+Store your resource endpoint in `AZURE_OPENAI_ENDPOINT`. Then get an access token and generate an embedding:
 
-$headers = [ordered]@{
-    'api-key' = $openai.api_key
-}
-
-$text = 'Your text string goes here'
-
-$body = [ordered]@{
-    input = $text
-	model = $openai.name
-} | ConvertTo-Json
-
-$url = "$($openai.api_base)/openai/v1/embeddings"
-
-$response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
-return $response.data.embedding
+```powershell
+$Env:AZURE_OPENAI_ENDPOINT = "https://YOUR-RESOURCE-NAME.openai.azure.com"
 ```
+
+```powershell
+$endpoint = "$($env:AZURE_OPENAI_ENDPOINT.TrimEnd('/'))/openai/v1/embeddings"
+$token = az account get-access-token `
+	--resource https://cognitiveservices.azure.com `
+	--query accessToken `
+	--output tsv
+$headers = @{ Authorization = "Bearer $token" }
+
+# Generate one embedding vector.
+$body = @{
+    model = "text-embedding-3-small"
+    input = "The quick brown fox jumped over the lazy dog."
+} | ConvertTo-Json
+$response = Invoke-RestMethod `
+    -Uri $endpoint `
+    -Method Post `
+    -Headers $headers `
+    -ContentType "application/json" `
+    -Body $body
+Write-Output "Embedding dimensions: $($response.data[0].embedding.Count)"
+```
+
+```output
+Embedding dimensions: <number>
+```
+
+Reference: [`Invoke-RestMethod`](/powershell/module/microsoft.powershell.utility/invoke-restmethod) and [`az account get-access-token`](/cli/azure/account#az-account-get-access-token)
 
 # [REST](#tab/console)
 
-```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
-  -H 'Content-Type: application/json' \
-  -H 'api-key: YOUR_API_KEY' \
-	-d '{"model": "YOUR-DEPLOYMENT-NAME", "input": "Sample Document goes here"}'
+Get an access token, and send a request to the v1 embeddings endpoint:
+
+```bash
+AZURE_OPENAI_AUTH_TOKEN=$(az account get-access-token \
+	--resource https://cognitiveservices.azure.com \
+	--query accessToken \
+	--output tsv)
+curl "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/embeddings" \
+  -H "Content-Type: application/json" \
+	-H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{"model":"text-embedding-3-small","input":"The quick brown fox."}'
 ```
+
+```output
+{"data":[{"embedding":[<vector-values>]}]}
+```
+
+Reference: [Azure OpenAI embeddings REST API](/rest/api/microsoft-foundry/azureopenai/embeddings) and [`az account get-access-token`](/cli/azure/account#az-account-get-access-token)
 
 ---
 
 ## Best practices
 
 > [!TIP]
-> Embedding requests return HTTP 400 when the **sum** of input tokens exceeds 300,000, even if every individual input is well under the per-input limit. If you previously batched large arrays of long inputs successfully, split them into smaller requests.
+> Embedding requests return HTTP 400 when the **sum** of input tokens exceeds 300,000, even if every individual input is under the per-input limit. Split large batches into smaller requests.
 
 ### Verify inputs don't exceed the maximum length
 
-- The maximum length of input text for the latest embedding models is 8,192 tokens. Verify that your inputs don't exceed this limit before making a request.
+- The maximum input length for the current embedding models is 8,192 tokens. Check each input before sending the request.
 - If you send an array of inputs in a single embedding request, the maximum array size is 2,048.
-- Each `/embeddings` request also has a hard cap of 300,000 tokens summed across all inputs. Requests that exceed this aggregate limit fail with HTTP 400, even when every individual input is under 8,192 tokens and the array length is under 2,048. Batch large workloads into multiple smaller requests to stay under the cap.
-- When you send an array of inputs in a single request, remember that the number of tokens per minute in your requests must stay below the quota limit assigned to the model deployment. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
+- Each `/embeddings` request has a 300,000-token aggregate limit across all inputs. Requests above this limit fail with HTTP 400.
+- Keep the total tokens per minute below the quota assigned to your model deployment. For current limits, see [Azure OpenAI quotas and limits](../quotas-limits.md).
 
 ## Troubleshooting
 
-- If you get a `401` or `403` error, confirm the API key is valid for the resource.
-- If you get a `404` error, confirm the endpoint includes the `/openai/v1/` path and you used the correct base URL.
-- If you get a `400` error, confirm `model` is set to your deployment name and the request body is valid JSON.
+- For a `401` response, sign in again and confirm that the access token uses the correct audience.
+- For a `403` response, confirm that your identity has the `Cognitive Services OpenAI User` role assigned to the Azure OpenAI resource.
+- For a `404` response, confirm that the endpoint includes `/openai/v1/` and that `model` contains a valid deployment name.
+- For a `400` response, check the request body, each input's token count, the number of inputs, and the aggregate token count.
 
-## Limitations & risks
+## Limitations and risks
 
 Embedding models might be unreliable or pose social risks in certain cases. They might cause harm if used without mitigations. For more information about how to approach their use responsibly, see the [Responsible AI](/azure/foundry/responsible-use-of-ai-overview) content.
 
 ## Next steps
 
-* To learn more about using Azure OpenAI and embeddings to perform document search, see the [embeddings tutorial](../tutorials/embeddings.md).
-* To learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-* To store your embeddings and perform vector (similarity) search, choose from the following services:
-  * [Azure AI Search](/azure/search/vector-search-overview)
-  * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
-  * [Azure Cosmos DB for NoSQL](/azure/cosmos-db/vector-search)
-  * [Azure Cosmos DB for PostgreSQL](/azure/cosmos-db/postgresql/howto-use-pgvector)
-  * [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector)  
-  * [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-tutorial-vector-similarity)
-  * [Use Eventhouse as a vector database - Real-Time Intelligence in Microsoft Fabric](/fabric/real-time-intelligence/vector-database)
+- [Explore embeddings and document search](../tutorials/embeddings.md).
+- [Review available Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+- Choose a service to store and search vectors:
+	- [Azure AI Search](/azure/search/vector-search-overview)
+	- [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
+	- [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search)
+	- [Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-use-pgvector)
+	- [Azure Managed Redis](/azure/redis/overview-vector-similarity)
+	- [Eventhouse in Microsoft Fabric](/fabric/real-time-intelligence/vector-database)

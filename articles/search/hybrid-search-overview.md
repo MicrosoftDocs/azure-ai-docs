@@ -5,7 +5,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 07/21/2026
+ai-usage: ai-assisted
 ---
 
 # Hybrid search using vectors and full text in Azure AI Search

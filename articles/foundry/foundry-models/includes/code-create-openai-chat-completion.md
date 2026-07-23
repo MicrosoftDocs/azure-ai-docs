@@ -3,9 +3,11 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 1/21/2025
+ms.date: 07/20/2026
 ms.author: fasantia
 author: santiagxf
+ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 # [Python](#tab/python)
@@ -25,12 +27,13 @@ print(response.model_dump_json(indent=2)
 # [JavaScript](#tab/javascript)
 
 ```javascript
-var messages = [
-    { role: "system", content: "You are a helpful assistant" },
-    { role: "user", content: "Explain Riemann's conjecture in 1 paragraph" },
-];
-
-const response = await client.chat.completions.create({ messages, model: "deepseek-v3-0324" });
+const response = await client.chat.completions.create({
+    model: "deepseek-v3-0324",
+    messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        { role: "user", content: "Explain Riemann's conjecture in one paragraph." }
+    ]
+});
 
 console.log(response.choices[0].message.content)
 ```

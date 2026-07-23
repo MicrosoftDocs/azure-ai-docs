@@ -3,7 +3,7 @@ title: Identification entities
 titleSuffix: Foundry Tools
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 05/05/2026
 ms.author: lajanuar

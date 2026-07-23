@@ -2,7 +2,7 @@
 title: Authoring API - custom question answering
 titleSuffix: Foundry Tools
 description: Use the custom question answering Authoring API to automate common tasks like adding new question answer pairs, and creating, and publishing projects. 
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to

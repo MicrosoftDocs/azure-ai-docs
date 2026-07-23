@@ -193,7 +193,7 @@ items:
 
 - name: Model support
   items:
-  - name: Azure OpenAI supported programming languages
+  - name: Azure OpenAI SDK language support
     href: ../../openai/supported-languages.md
   - name: Microsoft AI (MAI) models
     items:

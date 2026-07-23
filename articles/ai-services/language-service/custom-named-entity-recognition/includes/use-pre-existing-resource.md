@@ -3,7 +3,7 @@ titleSuffix: Foundry Tools
 description: Learn about the steps for using Azure resources with custom named entity recognition (NER).
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 04/03/2026
 ms.author: lajanuar

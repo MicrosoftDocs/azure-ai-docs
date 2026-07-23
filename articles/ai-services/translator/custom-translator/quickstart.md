@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: A step-by-step guide to building a translation system using the Custom Translator portal v2.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: quickstart

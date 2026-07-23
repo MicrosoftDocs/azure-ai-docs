@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An overview of key phrase extraction in Foundry Tools, which helps you identify main concepts in unstructured text
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 06/30/2026
 ms.author: lajanuar

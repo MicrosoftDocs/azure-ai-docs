@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Customize an AI model to predict the intentions of utterances, and extract important information from them.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 06/30/2026
 ms.author: lajanuar

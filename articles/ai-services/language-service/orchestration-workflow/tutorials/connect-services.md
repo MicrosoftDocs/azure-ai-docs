@@ -6,7 +6,7 @@ author: laujan
 ms.author: lajanuar
 manager: mcleans
 ms.reviewer: cahann, hazemelh
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
 ms.date: 06/30/2026
 ---
