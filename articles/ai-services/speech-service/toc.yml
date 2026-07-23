@@ -95,6 +95,8 @@ items:
         href: get-speech-recognition-results.md
       - name: Language identification
         href: language-identification.md
+      - name: Configure language ID and diarization
+        href: configure-language-identification-diarization.md
       - name: Real-time diarization quickstart
         href: get-started-stt-diarization.md
     - name: Fast transcription API
