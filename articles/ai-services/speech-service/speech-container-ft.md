@@ -48,8 +48,7 @@ For your convenience, the tags are also available [in JSON format](https://mcr.m
     "gpu-1.0.0-en-gb",
     "gpu-1.0.0-en-au",
     "gpu-1.0.0-en-in",
-    "gpu-1.0.0-de-de",
-    "latest"
+    "gpu-1.0.0-de-de"
   ]
 }
 ```
@@ -95,7 +94,7 @@ The fast transcription container requires a GPU to run.
 | Recommended | NVIDIA T4 | 16 cores | 110 GB |
 
 > [!IMPORTANT]
-> GPU support is required. The container doesn't support CPU-only mode.
+> GPU required. The fast transcription container doesn't support CPU.
 
 ## Run the container with `docker run`
 
