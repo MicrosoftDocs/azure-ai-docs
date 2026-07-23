@@ -265,9 +265,9 @@ See [How to customize Voice Live input and output](./voice-live-how-to-customize
 
 ### Azure standard voices
 
-#### Mai-voice-2-flash (Preview)
-Mai-Voice-2-flash is an ultra-fast, low-latency, high-fidelity expressive TTS model that's optimized for real-time responsiveness in Voice Live.
-Here's an example for a Mai-voice-2-flash voice:
+#### MAI-Voice-2-Flash (Preview)
+MAI-Voice-2-Flash is an ultra-fast, low-latency, high-fidelity expressive TTS model that's optimized for real-time responsiveness in Voice Live.
+Here's an example for a MAI-Voice-2-Flash voice:
 
 ```JSON
 {
