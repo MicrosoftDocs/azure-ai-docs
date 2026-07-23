@@ -184,7 +184,7 @@ POST /speechtotext/transcriptions:submit?api-version=2025-10-15
 
 Reference: [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit)
 
-## Run a pre-flight verification checklist
+## Run a preflight verification checklist
 
 Use this checklist before you enable production traffic:
 
