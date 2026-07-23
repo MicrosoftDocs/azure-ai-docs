@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: 'Use this quickstart to perform Entity Linking, using C#, Python, Java, JavaScript, and the REST API.'
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
 ms.date: 06/30/2026
 ms.author: lajanuar

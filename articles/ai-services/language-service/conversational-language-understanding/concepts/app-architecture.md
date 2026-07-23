@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn when to choose between conversational language understanding or orchestration workflow.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: best-practice
 ms.date: 06/30/2026
 ms.author: lajanuar

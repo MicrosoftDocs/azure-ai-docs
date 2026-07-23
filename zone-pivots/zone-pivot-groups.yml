@@ -593,6 +593,21 @@ groups:
     title: C++
   - id: programming-language-java
     title: Java
+- id: programming-languages-speech-services-embedded
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-go
+    title: Go
 - id: programming-languages-get-started-transcription
 # Owner: eur
   title: Programming languages
@@ -2046,6 +2061,8 @@ groups:
     title: VS Code
   - id: foundry-skills
     title: Foundry Skills
+  - id: canvas
+    title: Foundry Agent Canvas
 # Owner: johmil
 - id: hosted-agent-optimize-quickstart-method
   title: Deployment method

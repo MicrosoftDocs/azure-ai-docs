@@ -6,7 +6,7 @@ description: Adding personal chitchat to your bot makes it more conversational a
 manager: mcleans
 author: laujan
 ms.author: lajanuar
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/30/2026
 ms.custom: language-service-question-answering

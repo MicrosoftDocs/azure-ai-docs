@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to save and recover your orchestration workflow models.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 06/30/2026
 ms.author: lajanuar

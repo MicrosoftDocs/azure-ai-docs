@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to secure Azure Language, with best practices for protecting your data and deployment.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: best-practice
 ms.date: 07/16/2026
 ms.author: lajanuar

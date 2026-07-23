@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the languages supported by orchestration workflow.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 06/30/2026
 ms.custom: references_regions, language-service-custom-ner

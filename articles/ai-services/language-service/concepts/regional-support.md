@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn which Azure regions support by Azure Language service features and capabilities.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 03/27/2026
 ms.author: lajanuar

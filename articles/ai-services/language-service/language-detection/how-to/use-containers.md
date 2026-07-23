@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use Docker containers for Azure Language Detection API to determine the language of written text, on-premises.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 05/27/2026
 ms.author: lajanuar

@@ -1,6 +1,6 @@
 ---
 author: laujan
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: include
 ms.date: 04/07/2026
 ms.custom: devx-track-java

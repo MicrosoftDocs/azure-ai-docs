@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use the Docker containers for the Sentiment Analysis API to perform natural language processing such as sentiment analysis, on-premises.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/30/2026
 ms.author: lajanuar

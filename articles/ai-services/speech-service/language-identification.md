@@ -1079,3 +1079,4 @@ For more information about containers, see the [language identification speech c
 - [Try the speech to text quickstart](get-started-speech-to-text.md)
 - [Improve recognition accuracy with custom speech](custom-speech-overview.md)
 - [Use batch transcription](batch-transcription.md)
+- [Configure language identification and diarization for transcription](configure-language-identification-diarization.md)

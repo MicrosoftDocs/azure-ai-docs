@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Quickly start building an AI model to extract information and predict the intentions of text-based utterances.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
 ms.date: 06/30/2026
 ms.author: lajanuar
