@@ -4,7 +4,7 @@ description: "Build a Foundry toolbox that combines web search and the Microsoft
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
-ms.date: 07/09/2026
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -448,7 +448,7 @@ azd env set TOOLBOX_ENDPOINT ""
 Delete the agent and its Azure resources:
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. Delete any resources you no longer need from the existing project separately.
 
 ```bash
 azd down

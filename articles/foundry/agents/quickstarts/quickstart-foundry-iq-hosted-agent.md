@@ -3,7 +3,7 @@ title: "Quickstart: Add a Foundry IQ knowledge base to a hosted agent with a too
 description: "Provision a Foundry IQ knowledge base, expose it through a Foundry toolbox, and deploy a Python hosted agent that grounds its answers in the knowledge base."
 author: aahill
 ms.author: aahi
-ms.date: 06/17/2026
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -126,7 +126,7 @@ The hook locates its own directory, so it works no matter which directory `azd` 
 
 ## Step 5: Deploy to Foundry Agent Service
 
-Build and deploy the agent container:
+Deploy the agent source code. `azd` packages the source as a ZIP file and uploads it to Foundry, which resolves dependencies and builds the hosted agent remotely:
 
 ```powershell
 azd deploy
@@ -175,7 +175,7 @@ Delete the resources when you're finished so you stop incurring charges.
 1. Delete the agent and its Azure resources:
 
     > [!WARNING]
-    > `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
+    > If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. Delete any resources you no longer need from the existing project separately.
 
     ```powershell
     azd down
