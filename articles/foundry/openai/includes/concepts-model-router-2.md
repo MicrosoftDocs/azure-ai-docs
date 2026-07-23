@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/20/2026
+ms.date: 07/23/2026
 ms.custom: include
 ---
 
@@ -38,8 +38,11 @@ For details on how prompt caching works and which models support it, see [Prompt
 
 | Region | Deployment types supported |
 |------|-----------|
+| Australia East | Global Standard, Data Zone Standard |
 | East US 2 | Global Standard, Data Zone Standard |
+| South India | Global Standard, Data Zone Standard |
 | Sweden Central | Global Standard, Data Zone Standard |
+| West US 3 | Global Standard, Data Zone Standard |
 
 Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md) for current region availability.
 
@@ -76,7 +79,7 @@ Model router doesn't process audio input.
 
 | Issue | Resolution |
 |-------|------------|
-| Deployment fails | Verify your Foundry resource is in East US 2 or Sweden Central. |
+| Deployment fails | Verify your Foundry resource is in a supported region: Australia East, East US 2, South India, Sweden Central, or West US 3. |
 | Claude models not routing | Ensure Claude models are deployed separately before enabling in model router. |
 | Context exceeded error | Reduce prompt size or use model subset to select models with larger context windows. |
 | Unexpected model selection | Review your routing mode setting (Balanced, Cost, Quality) and model subset configuration. |
