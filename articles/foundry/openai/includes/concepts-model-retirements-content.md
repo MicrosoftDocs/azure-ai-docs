@@ -127,7 +127,7 @@ For **Global Standard**, **Data Zone Standard**, and **Standard** deployment typ
 
 ### Example: gpt-4o → gpt-5.1 upgrade
 
-When gpt-4o versions `2024-05-13`, `2024-08-06`, and `2024-11-20` retire on **2026-10-01**, they'll be auto-upgraded to gpt-5.1 on the Standard SKU in each region where those versions are currently available. If gpt-5.1 doesn't yet have a Standard presence in one of those regions, the upgrade process adds it there. Check the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) for the current retirement date and replacement model before this upgrade occurs, since these details are subject to change.
+When gpt-4o versions `2024-05-13`, `2024-08-06`, and `2024-11-20` retire on **2026-10-01**, the service automatically upgrades them to gpt-5.1 on the Standard SKU in each region where those versions are currently available. If gpt-5.1 doesn't yet have a Standard presence in one of those regions, the upgrade process adds it there. Check the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) for the current retirement date and replacement model before this upgrade occurs, since these details are subject to change.
 
 ## Migration to a replacement model
 
