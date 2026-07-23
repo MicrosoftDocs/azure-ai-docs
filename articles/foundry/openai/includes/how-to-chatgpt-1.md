@@ -6,13 +6,18 @@ ms.reviewer: sgilley
 ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
-ms.custom: include
+ms.date: 07/22/2026
+ms.custom:
+	- include
+	- doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
-Chat models are language models that are optimized for conversational interfaces. The models behave differently than the older completion API models. Previous models were text-in and text-out, which means they accepted a prompt string and returned a completion to append to the prompt. However, the latest models are conversation-in and message-out. The models expect input formatted in a specific chat-like transcript format. They return a completion that represents a model-written message in the chat. This format was designed specifically for multi-turn conversations, but it can also work well for nonchat scenarios.
+In this article, you use Python or .NET to send chat completion requests, build a multi-turn conversation, and manage the conversation's token budget.
 
-This article walks you through getting started with chat completions models. To get the best results, use the techniques described here. Don't try to interact with the models the same way you did with the older model series because the models are often verbose and provide less useful responses.
+Chat models are language models optimized for conversational interfaces. Unlike older text-in and text-out completion models, chat models accept a transcript of messages and return a model-generated message. This format supports multi-turn conversations and nonchat scenarios.
+
+Use the message format described in this article instead of prompting chat models like older completion models. Otherwise, the models might produce verbose or less useful responses.
 
 > [!TIP]
 > For new apps, consider building on the [Responses API](../how-to/responses.md) instead of Chat Completions. To upgrade an existing app, see [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses).
