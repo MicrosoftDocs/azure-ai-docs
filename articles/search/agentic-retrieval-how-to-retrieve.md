@@ -41,6 +41,12 @@ To set up a pipeline that connects Azure AI Search to Foundry Agent Service via 
 
 ::: zone pivot="csharp"
 
++ If you [call the MCP endpoint through the Azure OpenAI Responses API](#authenticate-to-the-mcp-endpoint), you need:
+
+  + A deployed LLM and the **Cognitive Services OpenAI User** role (or an API key) on the Foundry resource. You can reuse the LLM and resource specified in your knowledge base, if applicable.
+
+  + The [`Azure.AI.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI) and [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) packages.
+
 + Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
   + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
@@ -50,6 +56,12 @@ To set up a pipeline that connects Azure AI Search to Foundry Agent Service via 
 ::: zone-end
 
 ::: zone pivot="python"
+
++ If you [call the MCP endpoint through the Azure OpenAI Responses API](#authenticate-to-the-mcp-endpoint), you need:
+
+  + A deployed LLM and the **Cognitive Services OpenAI User** role (or an API key) on the Foundry resource. You can reuse the LLM and resource specified in your knowledge base, if applicable.
+
+  + The [`openai`](https://pypi.org/project/openai/) and [`azure-identity`](https://pypi.org/project/azure-identity/) packages.
 
 + Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
@@ -1723,6 +1735,8 @@ The recommended method for MCP authentication is a bearer token, which avoids st
 :::zone pivot="csharp"
 
 ```csharp
+#pragma warning disable OPENAI001
+
 using Azure.AI.OpenAI;
 using Azure.Core;
 using Azure.Identity;
@@ -1751,7 +1765,7 @@ McpTool mcpTool = ResponseTool.CreateMcpTool(
     {
         ["Authorization"] = $"Bearer {searchToken}",
     },
-    allowedTools: new[] { "knowledge_base_retrieve" },
+    allowedTools: new McpToolFilter { ToolNames = { "knowledge_base_retrieve" } },
     toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
         GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
 );
@@ -1799,6 +1813,7 @@ search_token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
     azure_endpoint=openai_endpoint,
     azure_ad_token_provider=openai_token_provider,
+    api_version=os.environ["OPENAI_API_VERSION"], # Example: 2025-04-01-preview
 )
 
 # Create a response using the MCP tool configuration
@@ -1844,6 +1859,8 @@ An admin key grants full read-write access to the search service, so use it only
 :::zone pivot="csharp"
 
 ```csharp
+#pragma warning disable OPENAI001
+
 using OpenAI.Responses;
 using System;
 using System.Collections.Generic;
@@ -1855,7 +1872,7 @@ McpTool mcpTool = ResponseTool.CreateMcpTool(
     serverLabel: "search_kb",
     serverUri: new Uri(mcpServerUrl),
     headers: new Dictionary<string, string> { ["api-key"] = searchAdminKey },
-    allowedTools: new[] { "knowledge_base_retrieve" },
+    allowedTools: new McpToolFilter { ToolNames = { "knowledge_base_retrieve" } },
     toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
         GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
 );
