@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Translator document translation 2026-03-01 for batch and single-file translation while preserving document structure and formatting.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
 ms.date: 07/08/2026
 ms.author: lajanuar
