@@ -5,7 +5,7 @@ description: Learn how to use the asynchronous batch translation process of the 
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: quickstart
 ms.date: 07/14/2026
 ai-usage: ai-assisted
