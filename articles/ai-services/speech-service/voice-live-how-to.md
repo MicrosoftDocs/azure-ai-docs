@@ -294,9 +294,9 @@ Here's a partial message example for a standard (`azure-standard`) voice:
 
 For the full list of standard voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
-### Azure high definition voices
+### Azure high definition (HD) voices
 
-Here's an example `session.update` message for a standard high definition voice:
+Here's an example `session.update` message for a standard high definition (HD) voice:
 
 ```json
 {
@@ -308,7 +308,7 @@ Here's an example `session.update` message for a standard high definition voice:
 }
 ```
 
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
+For the full list of high definition (HD) voices, see [high definition (HD) voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
 
 > [!NOTE]
 > High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2
