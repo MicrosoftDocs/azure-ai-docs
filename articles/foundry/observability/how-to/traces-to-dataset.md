@@ -44,6 +44,7 @@ In the trace-based dataset flow, the **Intelligent sampling** option appears in 
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`
 - Foundry User role or higher on the project.
 - Set up tracing for a deployed agent that emits traces. Foundry agents emit traces automatically, and OpenTelemetry-instrumented third-party agents are also supported. For setup steps, see [Set up tracing for your agent](trace-agent-setup.md).
+- The project's managed identity must have the Log Analytics Reader role on the connected Application Insights resource so the service can query trace data. If the tables that store your traces are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role.
 - A supported region. For the list, see [Supported regions for data generation](../../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
 ## Generate an evaluation dataset from traces (portal)
