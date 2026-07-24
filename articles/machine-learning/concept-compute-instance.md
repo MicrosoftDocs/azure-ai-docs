@@ -135,6 +135,9 @@ Compute instance comes with P10 OS disk. Temp disk type depends on the VM size c
 
 Compute instances can be used as a [training compute target](concept-compute-target.md#training-compute-targets) similar to Azure Machine Learning [compute training clusters](how-to-create-attach-compute-cluster.md). But a compute instance has only a single node, while a compute cluster can have more nodes.
 
+> [!IMPORTANT]
+> To use a Compute instance as a compute target for submitting training Jobs, root access on the Compute instance needs to be enabled.
+
 A compute instance:
 
 * Has a job queue.
