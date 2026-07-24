@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/20/2026
+ms.date: 07/24/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -20,20 +20,19 @@ To deploy and call a Claude model, see [Deploy and use Claude models in Microsof
 
 ## How Claude models are hosted and billed
 
-Microsoft Foundry offers Claude models in two versions: **Hosted on Azure** and **Hosted on Anthropic infrastructure**. Not every model is available in both versions. A model's lifecycle stage, such as Preview or Generally available, can differ between the two versions. For per-model availability and lifecycle status, see [Available Claude models](#available-claude-models).
+Microsoft Foundry offers Claude models in two versions: 
 
-> [!NOTE]
-> You access Claude models in Microsoft Foundry through [Foundry Models from partners and community](../concepts/models-from-partners.md). Models from partners and community that Anthropic sells and operates are Non-Microsoft Products under the Product Terms. Claude models in Foundry require an Azure Marketplace subscription. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md) before you deploy.
+- Version 1: **Hosted on Anthropic infrastructure**; these models run on Anthropic's infrastructure (outside of Azure). 
+- Version 2: **Hosted on Azure**; these models run on Azure infrastructure end-to-end and are all Generally available (GA). 
 
-Claude models that are **Hosted on Azure** run on Azure infrastructure end-to-end and are Generally available (GA). 
-
-Claude models that are **Hosted on Anthropic infrastructure** run on Anthropic's infrastructure (outside of Azure). 
+Not all models are available in both versions. A model's lifecycle stage, such as Preview or Generally available, can differ between the two versions. For per-model availability and lifecycle status, see [Available Claude models](#available-claude-models).
 
 To compare both hosting options across data residency, SLAs, support paths, compliance, and purchasing flow, see [Compare Azure-hosted and Anthropic-hosted Claude models](../concepts/claude-models-hosting-comparison.md).
 
-To learn how data is processed when you use Claude models in Foundry, see [Data, privacy, and security for Claude models in Microsoft Foundry](../../responsible-ai/claude-models/data-privacy.md).
-
-To learn how Claude consumption units (CCU) bill Claude models in Microsoft Foundry through Azure Marketplace, see [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md).
+> [!NOTE]
+> You access Claude models in Microsoft Foundry through [Foundry Models from partners and community](../concepts/models-from-partners.md). Models from partners and community that Anthropic sells and operates are Non-Microsoft Products under the Product Terms. 
+>
+> Claude models in Foundry require an Azure Marketplace subscription and bill through Claude Consumption Units (CCU). Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md) before you deploy. For pricing details, see [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md).
 
 ## Available Claude models
 
@@ -50,29 +49,26 @@ The following table compares model availability for both versions of Claude mode
 
 | Model | Availability | Context window / Max output | Key capabilities | Best for |
 |---|---|---|---|---|
-| `claude-mythos-5`<sup>1</sup> | Hosted on Anthropic: Gated research preview | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only</li></ul> | <ul><li>Biology and life sciences</li><li>Cybersecurity (defensive use cases prioritized): vulnerability discovery, attack-surface auditing, red teaming, threat intelligence</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
-| `claude-fable-5` | Hosted on Anthropic: Preview | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases and multi-day project context</li><li>Longer independent work than any prior Claude model</li><li>Self verification</li><li>Sub-agent orchestration</li><li>Refusal `stop_reason` on dual-use safeguard policies<sup>2</sup></li></ul> | <ul><li>Cybersecurity</li><li>Autonomous coding</li><li>Long-running agents</li><li>Coding and agents, with deeper reasoning for enterprise workflows</li></ul> |
-| `claude-mythos-preview`<sup>1</sup> |  Hosted on Anthropic: Gated research preview | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only</li></ul> | <ul><li>Cybersecurity (defensive use cases prioritized)</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
-| `claude-opus-4-8`<sup>3</sup> | Hosted on Azure: GA | 1M / 128K | <ul><li>Adaptive thinking with `xhigh` effort level</li><li>Reasoning over entire codebases and multi-day project context</li><li>High-resolution image input (up to 2576px / 3.75MP)</li></ul> | <ul><li>Coding</li><li>Long-running agents</li><li>Financial analysis</li><li>Cybersecurity</li><li>Computer use</li></ul> |
-| `claude-opus-4-8`<sup>3</sup> | Hosted on Anthropic: GA | 1M / 128K | <ul><li>Adaptive thinking with `xhigh` effort level</li><li>Reasoning over entire codebases and multi-day project context</li><li>High-resolution image input (up to 2576px / 3.75MP)</li></ul> | <ul><li>Coding</li><li>Long-running agents</li><li>Financial analysis</li><li>Cybersecurity</li><li>Computer use</li></ul> |
-| `claude-opus-4-7` | Hosted on Anthropic: GA  | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases<li>High-resolution image input (up to 2576px / 3.75MP)</li></ul> | <ul><li>Coding</li><li>Enterprise workflows</li><li>Long-running agents</li><li>Multimodal reasoning</li><li>Financial analysis</li><li>Cybersecurity</li></ul> |
-| `claude-opus-4-6` | Hosted on Anthropic: GA | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Computer use</li><li>Advanced tool use (search, programmatic calling, examples)</li></ul> | <ul><li>Coding</li><li>Enterprise agents</li></ul> |
-| `claude-opus-4-5` | Hosted on Anthropic: GA | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input</li><li>Computer use</li><li>Advanced tool use (search, programmatic calling, examples)</li></ul> | <ul><li>Coding</li><li>Agents</li><li>Computer use</li><li>Enterprise workflows</li></ul> |
-| `claude-opus-4-1` | Hosted on Anthropic: GA | 200K / 32K | <ul><li>Extended thinking</li><li>Image and text input</li></ul> | <ul><li>Coding</li><li>Long-running tasks</li></ul> |
-| `claude-sonnet-5` | Hosted on Azure: GA | 1M / 128K | <ul><li>Adaptive thinking </li><li>`xhigh` effort level</li><li>Reasoning over entire codebases and multi-day project context</li><li>High-res image input (up to 2576px / 3.75MP) are on by default</li></ul><ul></li><li>Mid-conversation<sup>4</sup> `role:"system"` </li></ul><ul></li><li>Token budgets<sup>4</sup> (`task_budget`) </li></ul> | <ul><li>Coding</li><li>Long-running agents</li><li>Financial analysis</li><li>Cybersecurity</li><li>Computer use</li></ul> |
-| `claude-sonnet-5` | Hosted on Anthropic: GA | 1M / 128K | <ul><li>Adaptive thinking </li><li>`xhigh` effort level</li><li>Reasoning over entire codebases and multi-day project context</li><li>High-res image input (up to 2576px / 3.75MP) are on by default</li></ul><ul></li><li>Mid-conversation<sup>4</sup> `role:"system"` </li></ul><ul></li><li>Token budgets<sup>4</sup> (`task_budget`) </li></ul> | <ul><li>Coding</li><li>Long-running agents</li><li>Financial analysis</li><li>Cybersecurity</li><li>Computer use</li></ul> |
-| `claude-sonnet-4-6` | Hosted on Anthropic:  GA | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Computer use</li><li>Advanced tool use (search, programmatic calling, examples)</li></ul> | <ul><li>Coding</li><li>Agents</li><li>Enterprise workflows</li></ul> |
-| `claude-sonnet-4-5` | Hosted on Anthropic: GA | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input</li><li>Computer use</li></ul> | <ul><li>Agents and complex, long-horizon tasks</li><li>High-volume workloads</li></ul> |
-| `claude-haiku-4-5` | Hosted on Azure: GA | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input</li></ul> | <ul><li>Coding</li><li>Agents</li></ul> |
-| `claude-haiku-4-5` | Hosted on Anthropic: GA  | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input</li></ul> | <ul><li>Coding</li><li>Agents</li></ul> |
+| `claude-mythos-5`<sup>1</sup> | <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only </li><li> See [Introducing Claude Fable 5 and Claude Mythos 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5)</li></ul> | <ul><li>Biology and life sciences</li><li>Cybersecurity (defensive use cases prioritized): vulnerability discovery, attack-surface auditing, red teaming, threat intelligence</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
+| `claude-fable-5` | <ul><li>Hosted on Anthropic infrastructure: Preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases and multi-day project context</li><li>Longer independent work than any prior Claude model</li><li>Self verification</li><li>Sub-agent orchestration</li><li>Refusal `stop_reason` on dual-use safeguard policies<sup>2</sup> </li><li> See See [Introducing Claude Fable 5 and Claude Mythos 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) | <ul><li>Cybersecurity</li><li>Autonomous coding</li><li>Long-running agents</li><li>Coding and agents, with deeper reasoning for enterprise workflows</li></ul> |
+| `claude-mythos-preview`<sup>1</sup> |  <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only</li></ul> | <ul><li>Cybersecurity (defensive use cases prioritized)</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
+| `claude-opus-5` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 1M / 128K |  <ul><li>Adaptive thinking with `xhigh` and `max` effort levels</li><li>Reasoning over entire codebases and multi-day project context</li><li>Per-turn effort controls<sup>3</sup> </li><li>Mid-conversation<sup>3</sup> `role:"system"` </li><li>Token budgets<sup>3</sup> (`task_budget`) </li></ul> | <ul><li>Near-Fable intelligence for long-horizon coding and complex agentic orchestration.</li><li>Long-running agents</li><li>Enterprise workflows</li><li>Financial analysis</li><li>Computer use</li></ul>  |
+| `claude-opus-4-8` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 1M / 128K | <ul><li>Adaptive thinking with `xhigh` effort level</li><li>Reasoning over entire codebases and multi-day project context</li><li>High-resolution image input (up to 2576px / 3.75MP) </li><li> See [What's new in Claude Opus 4.8](https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-8)</li></ul> | <ul><li>Coding</li><li>Long-running agents</li><li>Financial analysis</li><li>Cybersecurity</li><li>Computer use</li></ul> |
+| `claude-opus-4-7` | <ul><li>Hosted on Anthropic infrastructure: GA</li></ul>  | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases<li>High-resolution image input (up to 2576px / 3.75MP) </li><li> See [Migrating to Claude Opus 4.8](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-8)</li></ul> | <ul><li>Coding</li><li>Enterprise workflows</li><li>Long-running agents</li><li>Multimodal reasoning</li><li>Financial analysis</li><li>Cybersecurity</li></ul> |
+| `claude-opus-4-6` | <ul><li>Hosted on Anthropic infrastructure: GA</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Computer use</li><li>Advanced tool use (search, programmatic calling, examples) </li><li> See [Migrating to Claude Opus 4.8](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-8)</li></ul> | <ul><li>Coding</li><li>Enterprise agents</li></ul> |
+| `claude-opus-4-5` | <ul><li>Hosted on Anthropic infrastructure: GA</li></ul> | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input</li><li>Computer use</li><li>Advanced tool use (search, programmatic calling, examples) </li><li> See [Migrating to Claude Opus 4.8](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-8)</li></ul> | <ul><li>Coding</li><li>Agents</li><li>Computer use</li><li>Enterprise workflows</li></ul> |
+| `claude-opus-4-1` | <ul><li>Hosted on Anthropic infrastructure: GA</li></ul> | 200K / 32K | <ul><li>Extended thinking</li><li>Image and text input </li><li> See [Migrating to Claude Opus 4.8](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-8)</li></ul> | <ul><li>Coding</li><li>Long-running tasks</li></ul> |
+| `claude-sonnet-5` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 1M / 128K | <ul><li>Adaptive thinking </li><li>`xhigh` effort level</li><li>Reasoning over entire codebases and multi-day project context</li><li>High-res image input (up to 2576px / 3.75MP) are on by default</li><li>Mid-conversation<sup>3</sup> `role:"system"` </li><li>Token budgets<sup>3</sup> (`task_budget`) </li><li> See [What's new in Claude Sonnet 5](https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5)</li></ul> | <ul><li>Coding</li><li>Long-running agents</li><li>Financial analysis</li><li>Cybersecurity</li><li>Computer use</li></ul> |
+| `claude-sonnet-4-6` | <ul><li>Hosted on Anthropic infrastructure: GA</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Computer use</li><li>Advanced tool use (search, programmatic calling, examples) </li><li> See [Migrating to Claude Sonnet 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-sonnet-5)</li></ul> | <ul><li>Coding</li><li>Agents</li><li>Enterprise workflows</li></ul> |
+| `claude-sonnet-4-5` | <ul><li>Hosted on Anthropic infrastructure: GA</li></ul> | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input</li><li>Computer use </li><li> See [Migrating to Claude Sonnet 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-sonnet-5) </li></ul> | <ul><li>Agents and complex, long-horizon tasks</li><li>High-volume workloads</li></ul> |
+| `claude-haiku-4-5` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input </li></ul> | <ul><li>Coding</li><li>Agents</li></ul> |
+
 
 <sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
-<sup>2</sup> Claude Fable 5 applies additional input/output classifiers that may refuse requests whose content triggers dual-use safeguard policies. When a refusal occurs, the request returns a successful (200) response with a refusal indicator `stop_reason: "refusal"` instead of model-generated content. You're not billed for input tokens that are refused.
+<sup>2</sup> **Claude Fable 5** applies additional input/output classifiers that might refuse requests whose content triggers dual-use safeguard policies. When a refusal occurs, the request returns a successful (200) response with a refusal indicator `stop_reason: "refusal"` instead of model-generated content. You're not billed for input tokens that are refused.
 
-<sup>3</sup> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
-
-<sup>4</sup> Mid-conversation and Token budgets are currently in Beta state.
+<sup>3</sup> Per-turn effort controls, Mid-conversation, and Token budgets are currently in Beta state.
 
 ## API overview
 
@@ -119,31 +115,34 @@ The following table summarizes capabilities available for both the **Hosted on A
 
 The **Extended thinking** feature allows specific values for the `thinking` parameter type, depending on the model, as described in the following table. The `adaptive` type allows the model to decide whether to think, based on query complexity and effort level.
 
-| Model                   | `adaptive` | `enabled` | `disabled` |
-|-------------------------|:----------:|:---------:|:----------:|
-| `claude-mythos-5`       | Yes        | No        | No         |
-| `claude-fable-5`        | Yes        | No        | No         |
-| `claude-mythos-preview` | Yes        | Yes       | No         |
-| `claude-opus-4-8`       | Yes        | No        | Yes        |
-| `claude-opus-4-7`       | Yes        | No        | Yes        |
-| `claude-opus-4-6`       | Yes        | Yes       | Yes        |
-| `claude-sonnet-5`       | Yes        | No        | Yes        |
-| `claude-sonnet-4-6`     | Yes        | Yes       | Yes        |
+| Model                   | `adaptive` | `enabled` | `disabled`       |
+|-------------------------|:----------:|:---------:|:----------------:|
+| `claude-mythos-5`       | Yes        | No        | No               |
+| `claude-fable-5`        | Yes        | No        | No               |
+| `claude-mythos-preview` | Yes        | Yes       | No               |
+| `claude-opus-5`         | Yes        | No        | Yes<sup>1</sup>  |
+| `claude-opus-4-8`       | Yes        | No        | Yes              |
+| `claude-opus-4-7`       | Yes        | No        | Yes              |
+| `claude-opus-4-6`       | Yes        | Yes       | Yes              |
+| `claude-sonnet-5`       | Yes        | No        | Yes              |
+| `claude-sonnet-4-6`     | Yes        | Yes       | Yes              |
 
+<sup>1</sup> Thinking can be `disabled` only at effort `high` or below
 
 **Effort**
 
 The Effort feature allows specific `effort` levels for each model, as described in the following table. The `xhigh` level produces the same result as `max`.
 
-| Model               | `low` | `medium` | `high` | `max` | `xhigh` |
-|---------------------|:-----:|:--------:|:------:|:-----:|:-------:|
-| `claude-mythos-5`   | Yes   | Yes      | Yes    | No    | Yes     |
-| `claude-fable-5`    | Yes   | Yes      | Yes    | No    | Yes     |
-| `claude-opus-4-8`   | Yes   | Yes      | Yes    | Yes   | Yes     |
-| `claude-opus-4-7`   | Yes   | Yes      | Yes    | Yes   | Yes     |
-| `claude-opus-4-6`   | Yes   | Yes      | Yes    | Yes   | No      |
-| `claude-sonnet-5`   | Yes   | Yes      | Yes    | Yes   | Yes     |
-| `claude-sonnet-4-6` | Yes   | Yes      | Yes    | Yes   | No      |
+| Model               | `low` | `medium` | `high` | `xhigh` | `max` |
+|---------------------|:-----:|:--------:|:------:|:-------:|:-----:|
+| `claude-mythos-5`   | Yes   | Yes      | Yes    | Yes     | No    |
+| `claude-fable-5`    | Yes   | Yes      | Yes    | Yes     | No    |
+| `claude-opus-5`     | Yes   | Yes      | Yes    | Yes     | Yes   |
+| `claude-opus-4-8`   | Yes   | Yes      | Yes    | Yes     | Yes   |
+| `claude-opus-4-7`   | Yes   | Yes      | Yes    | Yes     | Yes   |
+| `claude-opus-4-6`   | Yes   | Yes      | Yes    | No      | Yes   |
+| `claude-sonnet-5`   | Yes   | Yes      | Yes    | Yes     | Yes   |
+| `claude-sonnet-4-6` | Yes   | Yes      | Yes    | No      | Yes   |
 
 ## Agent support
 
@@ -160,7 +159,7 @@ Use this section to understand where you can deploy Claude models, how quota is 
 Claude models in Foundry are available for the following deployment types in specific Azure regions:
 
 - **Global Standard**: All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure).
-- **Data Zone Standard (US)**: Hosted on Azure versions of `claude-sonnet-5` and `claude-opus-4-8`.
+- **Data Zone Standard (US)**: Hosted on Azure versions of `claude-opus-5`, `claude-opus-4-8`, and `claude-sonnet-5`.
 
 For the exact Azure regions where Claude models are available for deployment, see [Region availability by deployment type](../concepts/models-from-partners.md#region-availability-by-deployment-type).
 
@@ -197,58 +196,64 @@ As listed in the following table, to increase your quota beyond the default limi
 
 #### Pay-as-you-go
 
-| Model             | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | Deployment type         | RPM | ITPM   |
-|:------------------|:--------------------------:|:---------------------------------------------:|:------------------------|:---:|:------:|
-| claude-fable-5    | N/A                        | Yes                                           | Global Standard         | 0   | 0      |
-| claude-opus-4-8   | Yes                        | Yes                                           | Global Standard         | 40  | 40,000 |
-| claude-opus-4-8   | Yes                        | N/A                                           | Data Zone Standard (US) | 40  | 40,000 |
-| claude-opus-4-7   | N/A                        | Yes                                           | Global Standard         | 40  | 40,000 |
-| claude-opus-4-6   | N/A                        | Yes                                           | Global Standard         | 40  | 40,000 |
-| claude-opus-4-5   | N/A                        | Yes                                           | Global Standard         | 40  | 40,000 |
-| claude-opus-4-1   | N/A                        | Yes                                           | Global Standard         | 40  | 40,000 |
-| claude-sonnet-5   | Yes                        | Yes                                           | Global Standard         | 40  | 40,000 |
-| claude-sonnet-5   | Yes                        | N/A                                           | Data Zone Standard (US) | 40  | 40,000 |
-| claude-sonnet-4-6 | N/A                        | Yes                                           | Global Standard         | 80  | 80,000 |
-| claude-sonnet-4-5 | N/A                        | Yes                                           | Global Standard         | 80  | 80,000 |
-| claude-haiku-4-5  | Yes                        | Yes                                           | Global Standard       | 80  | 80,000 |
+| Model             | Deployment type         | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | RPM       | ITPM      |
+|:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|----------:|
+| claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    |
+| claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 40        | 40,000    |
+| claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    |
+| claude-opus-4-8   | Data Zone Standard (US) | Yes                        | N/A                                           | 40        | 40,000    |
+| claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 40        | 40,000    |
+| claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 40        | 40,000    |
+| claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 40        | 40,000    |
+| claude-opus-4-1   | Global Standard         | N/A                        | Yes                                           | 40        | 40,000    |
+| claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    |
+| claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 40        | 40,000    |
+| claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 80        | 80,000    |
+| claude-sonnet-4-5 | Global Standard         | N/A                        | Yes                                           | 80        | 80,000    |
+| claude-haiku-4-5  | Global Standard         | Yes                        | Yes                                           | 80        | 80,000    |
 
 # [Enterprise and MCA-E](#tab/enterprise)
 
 #### Enterprise and MCA-E
 
-| Model             | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | Deployment type         | RPM   | ITPM      |
-|:------------------|:--------------------------:|:---------------------------------------------:|:------------------------|:-----:|:---------:|
-| claude-fable-5    | N/A                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
-| claude-opus-4-8   | Yes                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
-| claude-opus-4-8   | Yes                        | N/A                                           | Data Zone Standard (US) | 2,000 | 2,000,000 |
-| claude-opus-4-7   | N/A                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
-| claude-opus-4-6   | N/A                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
-| claude-opus-4-5   | N/A                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
-| claude-opus-4-1   | N/A                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
-| claude-sonnet-5   | Yes                        | Yes                                           | Global Standard         | 2,000 | 2,000,000 |
-| claude-sonnet-5   | Yes                        | N/A                                           | Data Zone Standard (US) | 2,000 | 2,000,000 |
-| claude-sonnet-4-6 | N/A                        | Yes                                           | Global Standard         | 4,000 | 4,000,000 |
-| claude-sonnet-4-5 | N/A                        | Yes                                           | Global Standard         | 4,000 | 4,000,000 |
-| claude-haiku-4-5  |Yes                       | Yes                                           | Global Standard         | 4,000 | 4,000,000 |
+| Model             | Deployment type         | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | RPM       | ITPM      |
+|:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|----------:|
+| claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 |
+| claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-opus-4-8   | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 |
+| claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-opus-4-1   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 |
+| claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 |
+| claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000 |
+| claude-sonnet-4-5 | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000 |
+| claude-haiku-4-5  | Global Standard         | Yes                        | Yes                                           | 4,000     | 4,000,000 |
 
 # [Free Trial](#tab/free)
 
 #### Free Trial
 
-| Model             | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | Deployment type         | RPM   | ITPM      |
-|:------------------|:--------------------------:|:---------------------------------------------:|:------------------------|:---:|:----:|
-| claude-fable-5    | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-opus-4-8   | Yes                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-opus-4-8   | Yes                        | N/A                                           | Data Zone Standard (US) | 0   | 0    |
-| claude-opus-4-7   | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-opus-4-6   | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-opus-4-5   | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-opus-4-1   | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-sonnet-5   | Yes                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-sonnet-5   | Yes                        | N/A                                           | Data Zone Standard (US) | 0   | 0    |
-| claude-sonnet-4-6 | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-sonnet-4-5 | N/A                        | Yes                                           | Global Standard         | 0   | 0    |
-| claude-haiku-4-5  | Yes                        | Yes                                           | Global Standard         | 0   | 0    |
+| Model             | Deployment type         | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | RPM       | ITPM      |
+|:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|----------:|
+| claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 0         | 0         |
+| claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 0         | 0         |
+| claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 0         | 0         |
+| claude-opus-4-8   | Data Zone Standard (US) | Yes                        | N/A                                           | 0         | 0         |
+| claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-opus-4-1   | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 0         | 0         |
+| claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 0         | 0         |
+| claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-sonnet-4-5 | Global Standard         | N/A                        | Yes                                           | 0         | 0         |
+| claude-haiku-4-5  | Global Standard         | Yes                        | Yes                                           | 0         | 0         |
 
 ---
 
@@ -257,9 +262,11 @@ As listed in the following table, to increase your quota beyond the default limi
 
 When using Claude models in Foundry, consider these responsible AI practices:
 
+- Review [Data, privacy, and security for Claude models in Microsoft Foundry](../../responsible-ai/claude-models/data-privacy.md) to understand how your data is processed and retained when you deploy Claude models.
+
 - Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time.
 
-- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Fable 5](https://www.anthropic.com/claude-fable-5-system-card), [Claude Mythos 5](https://www.anthropic.com/claude-mythos-5-system-card), [Claude Mythos Preview](https://www.anthropic.com/claude-mythos-preview-system-card), [Claude Opus 4.8](https://www.anthropic.com/claude-opus-4-8-system-card), [Claude Opus 4.7](https://www.anthropic.com/claude-opus-4-7-system-card), [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 5](https://www.anthropic.com/claude-sonnet-5-system-card), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Fable 5](https://www.anthropic.com/claude-fable-5-system-card), [Claude Mythos 5](https://www.anthropic.com/claude-mythos-5-system-card), [Claude Mythos Preview](https://www.anthropic.com/claude-mythos-preview-system-card), [Claude Opus 5](https://www.anthropic.com/claude-opus-5-system-card), [Claude Opus 4.8](https://www.anthropic.com/claude-opus-4-8-system-card), [Claude Opus 4.7](https://www.anthropic.com/claude-opus-4-7-system-card), [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 5](https://www.anthropic.com/claude-sonnet-5-system-card), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
  
 ## Best practices
 
