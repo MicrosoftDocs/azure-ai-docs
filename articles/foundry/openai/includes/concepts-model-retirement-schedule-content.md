@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/23/2026
+ms.date: 07/24/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -79,7 +79,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime-2 | 2026-05-06 | Preview | 2026-08-31 | — |
 | gpt-realtime-2.1 | 2026-07-07 | Preview | 2027-06-25 | — |
 | gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
-| gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
+| gpt-realtime-mini | 2025-10-06 | Retired | 2026-07-23 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
 | o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
@@ -88,7 +88,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
-| sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
+| sora-2 | 2025-10-06 | Retired | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
 | text-embedding-3-large | 1 | GA | 2028-02-09 | — |
 | text-embedding-3-small | 1 | GA | 2028-02-09 | — |
@@ -139,9 +139,9 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | DeepSeek-R1 | 1 | Legacy | 2026-08-13 | DeepSeek-V4-Pro |
-| DeepSeek-R1-0528 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Pro |
-| DeepSeek-V3-0324 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash |
-| DeepSeek-V3.1 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash |
+| DeepSeek-R1-0528 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Pro |
+| DeepSeek-V3-0324 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
+| DeepSeek-V3.1 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
 | DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
@@ -170,7 +170,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | Mistral-Large-3 | 1 | GA | — | — |
-| mistral-document-ai-2505 | 1 | Preview | 2026-07-20 | mistral-document-ai-2512, mistral-ocr-4-0 |
+| mistral-document-ai-2505 | 1 | Retired | 2026-07-20 | mistral-document-ai-2512, mistral-ocr-4-0 |
 | mistral-document-ai-2512 | 1 | GA | — | mistral-ocr-4-0 |
 
 ### MoonshotAI
@@ -225,7 +225,7 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 |-------|---------|-----------|-----------------|-------------|
 | Cohere-command-r-08-2024 | 1 | Retired | 2026-05-12 | — |
 | Cohere-command-r-plus-08-2024 | 1 | Retired | 2026-05-12 | — |
-| Cohere-rerank-v3.5 | 1 | Deprecated | 2026-05-14 | Cohere-rerank-v4.0-pro, Cohere-rerank-v4.0-fast |
+| Cohere-rerank-v3.5 | 1 | Retired | 2026-05-14 | Cohere-rerank-v4.0-pro, Cohere-rerank-v4.0-fast |
 | Cohere-embed-v3-english | 1 | GA | — | — |
 | Cohere-embed-v3-multilingual | 1 | GA | — | — |
 
@@ -236,17 +236,17 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| FW-DeepSeek-V3.1 | 1 | Preview | 2026-07-01 | — |
-| FW-DeepSeek-V3.2 | 1 | Deprecated | 2026-07-01 | — |
-| FW-GLM-4.7 | 1 | Preview | 2026-07-01 | — |
-| FW-GLM-5 | 1 | Deprecated | 2026-07-01 | — |
+| FW-DeepSeek-V3.1 | 1 | Retired | 2026-07-01 | — |
+| FW-DeepSeek-V3.2 | 1 | Retired | 2026-07-01 | — |
+| FW-GLM-4.7 | 1 | Retired | 2026-07-01 | — |
+| FW-GLM-5 | 1 | Retired | 2026-07-01 | — |
 | FW-GLM-5.1 | 1 | Preview | 2026-08-07 | — |
-| FW-GPT-OSS-120B | 1 | Deprecated | 2026-07-01 | — |
-| FW-Kimi-K2-Instruct-0905 | 1 | Preview | 2026-07-01 | — |
-| FW-Kimi-K2-Thinking | 1 | Preview | 2026-07-01 | — |
-| FW-Kimi-K2.5 | 1 | Deprecated | 2026-07-01 | — |
+| FW-GPT-OSS-120B | 1 | Retired | 2026-07-01 | — |
+| FW-Kimi-K2-Instruct-0905 | 1 | Retired | 2026-07-01 | — |
+| FW-Kimi-K2-Thinking | 1 | Retired | 2026-07-01 | — |
+| FW-Kimi-K2.5 | 1 | Retired | 2026-07-01 | — |
 | FW-MiniMax-M2.5 | 1 | Preview | 2026-08-07 | — |
-| FW-Qwen3-14B | 1 | Preview | 2026-07-01 | — |
+| FW-Qwen3-14B | 1 | Retired | 2026-07-01 | — |
 | FW-Qwen3.5-122B-A10B | 1 | Preview | 2026-08-01 | — |
 | FW-Qwen3.5-397B-A17B | 1 | Preview | 2026-08-01 | — |
 
@@ -254,12 +254,12 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| Llama-3.2-11B-Vision-Instruct | — | Deprecated | 2026-06-13 | — |
-| Llama-3.2-90B-Vision-Instruct | — | Deprecated | 2026-06-13 | — |
+| Llama-3.2-11B-Vision-Instruct | — | Retired | 2026-06-13 | — |
+| Llama-3.2-90B-Vision-Instruct | — | Retired | 2026-06-13 | — |
 | Llama-4-Scout-17B-16E-Instruct | — | GA | — | — |
-| Meta-Llama-3.1-405B-Instruct | — | Deprecated | 2026-06-13 | — |
-| Meta-Llama-3.1-8B | — | Deprecated | 2026-06-13 | — |
-| Meta-Llama-3.1-8B-Instruct | — | Deprecated | 2026-06-13 | — |
+| Meta-Llama-3.1-405B-Instruct | — | Retired | 2026-06-13 | — |
+| Meta-Llama-3.1-8B | — | Retired | 2026-06-13 | — |
+| Meta-Llama-3.1-8B-Instruct | — | Retired | 2026-06-13 | — |
 
 ### Microsoft
 

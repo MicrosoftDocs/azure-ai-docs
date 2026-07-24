@@ -145,7 +145,7 @@ For model availability across all regions, grouped by deployment category, see [
 ## Related content
 
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
-- [Model deprecation and retirement for Foundry Models](../../concepts/model-lifecycle-retirement.md)
+- [Microsoft Foundry Models lifecycle and support policy](../../openai/concepts/model-retirements.md)
 - [Deployment overview for Foundry Models](../../../foundry-classic/concepts/deployments-overview.md)
 - [Add and configure models to Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
