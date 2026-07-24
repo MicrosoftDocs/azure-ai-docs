@@ -323,7 +323,7 @@ searchClient.uploadDocuments(documents);
 ```
 
 
-**Reference:** [SearchClient](/java/api/com.azure.search.documents.searchclient), [SearchDocument](/java/api/com.azure.search.documents.searchdocument)
+**Reference:** [SearchClient](/java/api/com.azure.search.documents.searchclient), SearchDocument
 
 ### Create a knowledge source
 
