@@ -77,9 +77,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-realtime-mini | 2025-12-15 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-translate | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-whisper | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
-| model-router | 2025-05-19 | - | - | - | - | - | ✅ | - | - | - | - |
-| model-router | 2025-08-07 | - | - | - | - | - | ✅ | - | - | - | - |
-| model-router | 2025-11-18 | - | - | - | - | - | ✅ | - | - | - | - |
+| model-router | 2025-05-19 | - | - | - | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | - | - | - | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-deep-research | 2025-06-26 | - | - | - | - | - | - | - | - | ✅ | - |
@@ -211,6 +211,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-realtime-mini | 2025-12-15 | - | - | - | - | ✅ |
 | gpt-realtime-translate | 2026-05-06 | - | - | - | - | ✅ |
 | gpt-realtime-whisper | 2026-05-06 | - | - | - | - | ✅ |
+| model-router | 2025-05-19 | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | - | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | - | ✅ |
@@ -509,9 +512,9 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | ✅ | - | - | - | ✅ |
-| model-router | 2025-05-19 | - | - | ✅ | - | - | - | - |
-| model-router | 2025-08-07 | - | - | ✅ | - | - | - | - |
-| model-router | 2025-11-18 | - | - | ✅ | - | - | - | - |
+| model-router | 2025-05-19 | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | - | - | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -561,6 +564,9 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.3-codex | 2026-02-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| model-router | 2025-05-19 | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | ✅ | - | - | - | ✅ |
 
 # [Middle East & Africa](#tab/az-mea)
 
