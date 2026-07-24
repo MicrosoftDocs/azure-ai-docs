@@ -2062,7 +2062,7 @@ groups:
   - id: foundry-skills
     title: Foundry Skills
   - id: canvas
-    title: Foundry Agent Canvas
+    title: Foundry Canvas
 # Owner: johmil
 - id: hosted-agent-optimize-quickstart-method
   title: Deployment method
