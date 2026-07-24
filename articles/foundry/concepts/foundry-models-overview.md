@@ -242,8 +242,7 @@ To set the public network access flag for the Foundry hub:
 
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family becomes available, older models might be retired in the Foundry model catalog. To allow for a smooth transition to a newer model version, some models let users enable automatic updates. To learn about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
-- [Azure OpenAI in Microsoft Foundry model deprecations and retirements](../openai/concepts/model-retirements.md)
-- [Model deprecation and retirement for Microsoft Foundry Models](model-lifecycle-retirement.md)
+- [Microsoft Foundry Models lifecycle and support policy](../openai/concepts/model-retirements.md)
  
 ## Related content
 
