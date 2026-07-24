@@ -44,7 +44,7 @@ To learn more about each model, see [Available FLUX models](#available-flux-mode
 
 ## Deploy FLUX models
 
-FLUX models are available for [global standard deployment](../concepts/deployment-types.md#global-standard). For the full list of supported regions, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md). To deploy a FLUX model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
+You can deploy FLUX models through [global standard deployment](../concepts/deployment-types.md#global-standard). For a full list of supported regions, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md). To deploy a FLUX model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
 After deployment, use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model with text prompts.
 
