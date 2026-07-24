@@ -22,6 +22,8 @@ When a toolbox contains many tools, passing all tool definitions to the model on
 
 When tool search is enabled, the model receives two built-in meta-tools: `tool_search`, which it calls with a natural-language description of the capability it needs, and `call_tool`, which it uses to invoke any discovered tool by name. Foundry evaluates `tool_search` queries against the full set of tools in the toolbox and returns only the ones that match, keeping the active context focused and relevant.
 
+For request-scoped discovery of deferred tool definitions, see [Use tool search with the Azure OpenAI Responses API](../../../openai/how-to/tool-search.md).
+
 Use tool search when:
 
 - Your toolbox has more than 10–15 tools and you want to avoid context bloat.
