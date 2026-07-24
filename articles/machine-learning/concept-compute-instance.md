@@ -16,11 +16,11 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 # What is an Azure Machine Learning compute instance?
 
-An Azure Machine Learning compute instance is a managed cloud-based workstation for data scientists. Each compute instance has only one owner, although you can share files between multiple compute instances. 
+An Azure Machine Learning compute instance is a managed cloud-based workstation for data scientists. Each compute instance has only one owner, but you can share files between multiple compute instances. 
 
 Compute instances make it easy to get started with Azure Machine Learning development and provide management and enterprise readiness capabilities for IT administrators.
 
-Use a compute instance as your fully configured and managed development environment in the cloud for machine learning. They can also be used as a compute target for training and inferencing for development and testing purposes.
+Use a compute instance as your fully configured and managed development environment in the cloud for machine learning. You can also use compute instances as a compute target for training and inferencing for development and testing purposes.
 
 For compute instance Jupyter functionality to work, ensure that web socket communication isn't disabled. Ensure your network allows websocket connections to *.instances.azureml.net and *.instances.azureml.ms.
 
@@ -44,22 +44,22 @@ A compute instance is a fully managed cloud-based workstation optimized for your
 * The compute instance is also a secure training compute target similar to [compute clusters](how-to-create-attach-compute-cluster.md), but it's single node. 
 * You can [create a compute instance](how-to-create-compute-instance.md?tabs=python#create) yourself, or an administrator can **[create a compute instance on your behalf](how-to-create-compute-instance.md?tabs=python#create-on-behalf-of)**.
 * You can also **[use a setup script](how-to-customize-compute-instance.md)**  for an automated way to customize and configure the compute instance as per your needs.
-* To save on costs, **[create  a schedule](how-to-create-compute-instance.md#schedule-automatic-start-and-stop)** to automatically start and stop the compute instance, or [enable idle shutdown](how-to-create-compute-instance.md#configure-idle-shutdown)
+* To save on costs, **[create  a schedule](how-to-create-compute-instance.md#schedule-automatic-start-and-stop)** to automatically start and stop the compute instance, or [enable idle shutdown](how-to-create-compute-instance.md#configure-idle-shutdown).
 
 
 ## Tools and environments
 
 Azure Machine Learning compute instance enables you to author, train, and deploy models in a fully integrated notebook experience in your workspace.
 
-You can run notebooks from [your Azure Machine Learning workspace](./how-to-run-jupyter-notebooks.md), [Jupyter](https://jupyter.org/), [JupyterLab](https://jupyterlab.readthedocs.io), or [Visual Studio Code](./how-to-launch-vs-code-remote.md). VS Code Desktop can be configured to access your compute instance. Or use VS Code for the Web, directly from the browser, and without any required installations or dependencies.
+You can run notebooks from [your Azure Machine Learning workspace](./how-to-run-jupyter-notebooks.md), [Jupyter](https://jupyter.org/), [JupyterLab](https://jupyterlab.readthedocs.io), or [Visual Studio Code](./how-to-launch-vs-code-remote.md). You can configure VS Code Desktop to access your compute instance. Or use VS Code for the Web, directly from the browser, and without any required installations or dependencies.
 
-We recommend you try VS Code for the Web to take advantage of the easy integration and rich development environment it provides. VS Code for the Web gives you many of the features of VS Code Desktop that you love, including search and syntax highlighting while browsing and editing. For more information about using VS Code Desktop and VS Code for the Web, see [Launch Visual Studio Code integrated with Azure Machine Learning (preview)](how-to-launch-vs-code-remote.md) and [Work in VS Code remotely connected to a compute instance (preview)](how-to-work-in-vs-code-remote.md).
+Try VS Code for the Web to take advantage of the easy integration and rich development environment it provides. VS Code for the Web gives you many of the features of VS Code Desktop that you love, including search and syntax highlighting while browsing and editing. For more information about using VS Code Desktop and VS Code for the Web, see [Launch Visual Studio Code integrated with Azure Machine Learning (preview)](how-to-launch-vs-code-remote.md) and [Work in VS Code remotely connected to a compute instance (preview)](how-to-work-in-vs-code-remote.md).
 
 You can [install packages](how-to-access-terminal.md#install-packages) and [add kernels](how-to-access-terminal.md#add-new-kernels) to your compute instance.
 
 The following tools and environments are already installed on the compute instance:
 
-|General tools & environments|Details|
+|General tools and environments|Details|
 |----|:----:|
 |Drivers|`CUDA`</br>`cuDNN`</br>`NVIDIA`</br>`Blob FUSE` |
 |Intel MPI library||
@@ -70,13 +70,13 @@ The following tools and environments are already installed on the compute instan
 |NCCL 2.0 ||
 |Protobuf||
 
-|**R** tools & environments|Details|
+|**R** tools and environments|Details|
 |----|:----:|
 |R kernel||
 
 You can [Add RStudio or Posit Workbench (formerly RStudio Workbench)](how-to-create-compute-instance.md#add-custom-applications-such-as-rstudio-or-posit-workbench) when you create the instance.
 
-|**PYTHON** tools & environments |Details|
+|**PYTHON** tools and environments |Details|
 |----|----|
 |Anaconda Python||
 |Jupyter and extensions||
@@ -92,19 +92,19 @@ The compute instance has Ubuntu as the base OS.
 
 ## Accessing files
 
-Notebooks and Python scripts are stored in the default storage account of your workspace in Azure file share. These files are located under your "User files" directory. This storage makes it easy to share notebooks between compute instances. The storage account also keeps your notebooks safely preserved when you stop or delete a compute instance.
+The default storage account of your workspace in Azure file share stores notebooks and Python scripts. You can find these files under your "User files" directory. This storage makes it easy to share notebooks between compute instances. The storage account also keeps your notebooks safely preserved when you stop or delete a compute instance.
 
-The Azure file share account of your workspace is mounted as a drive on the compute instance. This drive is the default working directory for Jupyter, Jupyter Labs, RStudio, and Posit Workbench. This means that the notebooks and other files you create in Jupyter, JupyterLab, VS Code for Web, RStudio, or Posit are automatically stored on the file share and available to use in other compute instances as well.
+The Azure file share account of your workspace is mounted as a drive on the compute instance. This drive is the default working directory for Jupyter, Jupyter Labs, RStudio, and Posit Workbench. This setup means that the notebooks and other files you create in Jupyter, JupyterLab, VS Code for Web, RStudio, or Posit are automatically stored on the file share and available to use in other compute instances as well.
 
-The files in the file share are accessible from all compute instances in the same workspace. Any changes to these files on the compute instance are reliably persisted back to the file share.
+All compute instances in the same workspace can access the files in the file share. Any changes to these files on the compute instance are reliably persisted back to the file share.
 
 You can also clone the latest Azure Machine Learning samples to your folder under the user files directory in the workspace file share.
 
-Writing small files can be slower on network drives than writing to the compute instance local disk itself. If you're writing many small files, try using a directory directly on the compute instance, such as a `/tmp` directory. Note files on the compute instance aren't accessible from other compute instances.
+Writing small files can be slower on network drives than writing to the compute instance local disk itself. If you're writing many small files, try using a directory directly on the compute instance, such as a `/tmp` directory. Note that files on the compute instance aren't accessible from other compute instances.
 
 Don't store training data on the notebooks file share. For information on the various options to store data, see [Access data in a job](how-to-read-write-data-v2.md).
 
-You can use the `/tmp` directory on the compute instance for your temporary data. However, don't write large files of data on the OS disk of the compute instance. OS disk on compute instance has 120-GB capacity. You can also store temporary training data on temporary disk mounted on /mnt. Temporary disk size is based on the VM size chosen and can store larger amounts of data if a higher size VM is chosen. Any software packages you install are saved on the OS disk of compute instance. Note customer managed key encryption is currently not supported for OS disk. The OS disk for compute instance is encrypted with Microsoft-managed keys. 
+You can use the `/tmp` directory on the compute instance for your temporary data. However, don't write large files of data on the OS disk of the compute instance. The OS disk on the compute instance has 120-GB capacity. You can also store temporary training data on the temporary disk mounted on `/mnt`. The temporary disk size is based on the VM size chosen and can store larger amounts of data if a higher size VM is chosen. Any software packages you install are saved on the OS disk of the compute instance. Note that customer managed key encryption isn't currently supported for the OS disk. The OS disk for the compute instance is encrypted with Microsoft-managed keys. 
 
 :::moniker range="azureml-api-1"
 You can also mount [datastores and datasets](v1/concept-azure-machine-learning-architecture.md?view=azureml-api-1&preserve-view=true#datasets-and-datastores). 
@@ -112,11 +112,11 @@ You can also mount [datastores and datasets](v1/concept-azure-machine-learning-a
 
 ## Create
 
-Follow the steps in [Create resources you need to get started](quickstart-create-resources.md) to create a basic compute instance. 
+To create a basic compute instance, see [Create resources you need to get started](quickstart-create-resources.md). 
 
 For more options, see [create a new compute instance](how-to-create-compute-instance.md?tabs=azure-studio#create).
 
-As an administrator, you can **[create a compute instance for others in the workspace](how-to-create-compute-instance.md#create-on-behalf-of)**. SSO has to be disabled for such a compute instance.
+As an administrator, you can **[create a compute instance for others in the workspace](how-to-create-compute-instance.md#create-on-behalf-of)**. You must disable SSO for such a compute instance.
 
 You can also **[use a setup script](how-to-customize-compute-instance.md)** for an automated way to customize and configure the compute instance.
 
@@ -126,9 +126,9 @@ Other ways to create a compute instance:
 * With [Azure Machine Learning SDK](how-to-create-compute-instance.md?tabs=python#create)
 * From the [CLI extension for Azure Machine Learning](how-to-create-compute-instance.md?tabs=azure-cli#create)
 
-The dedicated cores per region per VM family quota and total regional quota, which applies to compute instance creation, is unified and shared with Azure Machine Learning training compute cluster quota. Stopping the compute instance doesn't release quota to ensure you are able to restart the compute instance. Don't stop the compute instance through the OS terminal by doing a sudo shutdown.
+The dedicated cores per region per VM family quota and total regional quota, which applies to compute instance creation, is unified and shared with Azure Machine Learning training compute cluster quota. Stopping the compute instance doesn't release quota to ensure you can restart the compute instance. Don't stop the compute instance through the OS terminal by doing a sudo shutdown.
 
-Compute instance comes with P10 OS disk. Temp disk type depends on the VM size chosen. Currently, it isn't possible to change the OS disk type.
+Compute instance comes with P10 OS disk. Temp disk type depends on the VM size chosen. Currently, you can't change the OS disk type.
 
 
 ## Compute target
@@ -136,7 +136,7 @@ Compute instance comes with P10 OS disk. Temp disk type depends on the VM size c
 Compute instances can be used as a [training compute target](concept-compute-target.md#training-compute-targets) similar to Azure Machine Learning [compute training clusters](how-to-create-attach-compute-cluster.md). But a compute instance has only a single node, while a compute cluster can have more nodes.
 
 > [!IMPORTANT]
-> To use a Compute instance as a compute target for submitting training Jobs, root access on the Compute instance needs to be enabled.
+> To use a Compute instance as a compute target for submitting training Jobs, root access on the Compute instance needs to be enabled. This must be done during the creation of the Compute instance. If root access is not enabled, you will not be able to use the Compute instance as a compute target for training jobs.
 
 A compute instance:
 
