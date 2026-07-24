@@ -5,7 +5,7 @@ ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 07/21/2026
+ms.date: 07/24/2026
 ai-usage: ai-assisted
 ms.custom:
   - devx-track-csharp
@@ -20,30 +20,43 @@ ms.devlang: csharp
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-Continue to build your search-enabled website by following these steps:
+Continue to build your search-enabled website for Azure Container Apps by following these steps:
 
-- Create a new index
-- Load data
+- Create a new index.
+- Load data.
 
 The program uses [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents/) in the Azure SDK for .NET:
 
-- [NuGet package Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents/)
-- [Reference Documentation](/dotnet/api/overview/azure/search)
+- [NuGet package Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents/).
+- [Reference documentation](/dotnet/api/overview/azure/search).
 
 Before you start, make sure you have room on your search service for a new index. The free tier limit is three indexes. The Basic tier limit is 15.
 
 ## Prepare the bulk import script for Search
 
-1. In Visual Studio Code, open the `Program.cs` file in the subdirectory, `azure-search-static-web-app/bulk-insert`, replace the following variables with your own values to authenticate with the Azure Search SDK.
+The bulk import project reads its configuration from environment variables. Managed identity is the default credential path. If `SEARCH_API_KEY` is empty, the code uses `DefaultAzureCredential` for Azure AI Search. Use an API key only as an explicit fallback.
 
-   - YOUR-SEARCH-SERVICE-NAME (not the full URL)
-   - YOUR-SEARCH-ADMIN-API-KEY (see [Find API keys](search-security-api-keys.md#find-existing-keys))
+1. In Visual Studio Code, open an integrated terminal for the `azure-search-static-web-app/bulk-insert` directory.
+
+1. Set the search service name. Replace `YOUR-SEARCH-SERVICE-NAME` with the name of your search service, not the full URL.
+
+    ```bash
+    export SEARCH_SERVICE_NAME="YOUR-SEARCH-SERVICE-NAME"
+    ```
+
+1. If you need key authentication, set `SEARCH_API_KEY` to an admin key for your search service. To find keys, see [Find API keys](search-security-api-keys.md#find-existing-keys).
+
+    ```bash
+    export SEARCH_API_KEY="YOUR-SEARCH-ADMIN-API-KEY"
+    ```
+
+    If you use managed identity or another credential supported by `DefaultAzureCredential`, omit `SEARCH_API_KEY`. Make sure your signed-in identity has access to create and load the search index.
+
+1. Review the current `Program.cs` configuration. It uses `SEARCH_SERVICE_NAME`, optional `SEARCH_API_KEY`, and `SEARCH_INDEX_NAME`, which defaults to `good-books`.
 
     :::code language="csharp" source="~/azure-search-static-web-app/bulk-insert/Program.cs" :::
 
-1. Open an integrated terminal in Visual Studio Code for the project directory's subdirectory, `azure-search-static-web-app/bulk-insert`.
-
-1. Run the following command to install the dependencies. 
+1. Run the following command to install the dependencies.
 
     ```bash
     dotnet restore
@@ -74,22 +87,22 @@ Once the upload completes, the search index is ready to use. Review your new ind
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. On the left, select **Search Management > Indexes**, and then select the good-books index.
+1. On the left, select **Search Management > Indexes**, and then select the `good-books` index.
 
     :::image type="content" source="media/tutorial-csharp-create-load-index/azure-portal-indexes-page.png" lightbox="media/tutorial-csharp-create-load-index/azure-portal-indexes-page.png" alt-text="Expandable screenshot of Azure portal showing the index." border="true":::
 
 1. By default, the index opens in the **Search Explorer** tab. Select **Search** to return documents from the index.
 
-    :::image type="content" source="media/tutorial-csharp-create-load-index/azure-portal-search-explorer.png" lightbox="media/tutorial-csharp-create-load-index/azure-portal-search-explorer.png" alt-text="Expandable screenshot of Azure portal showing search results" border="true":::
+    :::image type="content" source="media/tutorial-csharp-create-load-index/azure-portal-search-explorer.png" lightbox="media/tutorial-csharp-create-load-index/azure-portal-search-explorer.png" alt-text="Expandable screenshot of Azure portal showing search results." border="true":::
 
-## Rollback bulk import file changes
+## Clear local environment variables
 
-Use the following git command in the Visual Studio Code integrated terminal at the `bulk-insert` directory to roll back the changes to the `Program.cs` file. They aren't needed to continue the tutorial and you shouldn't save or push your API keys or search service name to your repo. 
+If you set `SEARCH_API_KEY` in your terminal, clear it after the import finishes. Don't save or commit API keys to your repository.
 
-```git
-git checkout .
+```bash
+unset SEARCH_API_KEY
 ```
 
 ## Next steps
 
-[Deploy your Static Web App](tutorial-csharp-deploy-static-web-app.md)
+[Deploy the app to Azure Container Apps](tutorial-csharp-deploy-static-web-app.md)
