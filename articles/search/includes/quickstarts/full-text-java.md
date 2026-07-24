@@ -258,7 +258,7 @@ You can get query results as soon as the first document is indexed, but actual t
 
 This section adds two pieces of functionality: query logic and results. For queries, use the [search](/java/api/com.azure.search.documents.searchclient) method. This method takes search text (the query string) and other [options](/java/api/com.azure.search.documents.models.searchoptions).
 
-The SearchPagedIterable class represents the results.
+The `SearchPagedIterable` class represents the results.
 
 In `App.java`, the `WriteDocuments` method prints search results to the console.
 
