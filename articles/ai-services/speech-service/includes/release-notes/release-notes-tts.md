@@ -13,7 +13,7 @@ ms.custom: references_regions
 
 #### Public preview of MAI-Voice-2-Flash
 
-MAI-Voice-2-Flash is a new neural text-to-speech model optimized for fast, low-latency speech generation. It delivers high-fidelity, natural, and expressive speech across 15 languages and supports gated instant voice cloning. Built for real-time conversational experiences, MAI-Voice-2-Flash combines human-like intonation, rhythm, and emotional nuance with industry-leading responsiveness, making it ideal for voice agents, AI assistants, customer service automation, and other interactive applications where latency and cost are critical. Chech [here](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices?tabs=mai-voice-2-flash&pivots=ai-foundry) for more details.
+MAI-Voice-2-Flash is a new neural text-to-speech model optimized for fast, low-latency speech generation. It delivers high-fidelity, natural, and expressive speech across 15 languages and supports gated instant voice cloning. Built for real-time conversational experiences, MAI-Voice-2-Flash combines human-like intonation, rhythm, and emotional nuance with industry-leading responsiveness, making it ideal for voice agents, AI assistants, customer service automation, and other interactive applications where latency and cost are critical. Check [here](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices?tabs=mai-voice-2-flash&pivots=ai-foundry) for more details.
 
 | Voice ID | Gender | Recommended use case |
 |--------|--------|----------|
