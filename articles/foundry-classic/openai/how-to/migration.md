@@ -8,7 +8,7 @@ ms.subservice: foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 11/26/2025
-manager: nitinme
+manager: mcleans
 ---
 
 # Migrating to the OpenAI Python API library 1.x (classic)

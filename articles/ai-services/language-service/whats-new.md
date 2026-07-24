@@ -3,11 +3,12 @@ title: What's new in Azure Language in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: whats-new
-ms.date: 05/19/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
 # What's new in Azure Language in Foundry Tools?
@@ -15,6 +16,9 @@ ms.author: lajanuar
 Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## June 2026
+
+> [!NOTE]
+> For a deeper look at the PII detection updates announced at Microsoft Build, check out the [What's new in Azure Language in Foundry Tools](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/what%E2%80%99s-new-in-azure-language-in-foundry-tools/4521343) blog post.
 
 * **Text PII detection generally available (`2026-05-01`)**. The GA API delivers quality improvements across common entity types. The following capabilities, previously in preview, are now generally available:
 
@@ -27,11 +31,11 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 * **Conversation PII improvements (`2026-04-15-preview`)**. A new preview model delivers quality improvements and expanded entity recognition, optimized for spoken-language patterns—including interruptions, filler words, and speaker turns common in transcripts and call recordings.
 
-* **PII detection capabilities available in new Foundry playgrounds**. Text PII detection, conversation PII detection, and document PII detection (preview) are now available in [new Foundry](https://ai.azure.com/). For more information, see:
+* **PII detection capabilities available in new Foundry playgrounds**. Text PII detection, conversation PII detection, and Document PII detection are now available in [new Foundry](https://ai.azure.com/). The refreshed Document PII playground is generally available. It ships with curated sample inputs and expected outputs so you can evaluate detection of common entity types—including names, addresses, financial IDs, and health identifiers—without uploading your own documents. A single view lets you compare detection results across entity types. The playground uses the same Document PII model and policies as the production API, so results align with production behavior. When you're ready, transition from curated samples to uploading live documents for real-content testing. For more information, see:
 
   * [Text PII detection](personally-identifiable-information/text-pii-playground.md)
   * [Conversation PII detection](personally-identifiable-information/conversation-pii-playground.md)
-  * [Document PII detection](personally-identifiable-information/document-based-pii-playground.md) (preview)
+  * [Document PII detection](personally-identifiable-information/document-based-pii-playground.md)
 
 * **Text Analytics for Health available in new Foundry**. The Text Analytics for Health playground is now available in [new Foundry](https://ai.azure.com/). For more information, see the [Text Analytics for Health quickstart](text-analytics-for-health/quickstart.md).
 
@@ -178,7 +182,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 ## June 2025
 
-**New version of the Conversational Language Understanding (CLU) training configuration**. This new version is aimed at minimizing over-predictions of the [None intent](conversational-language-understanding/concepts/none-intent.md)—particularly in multilingual contexts—is now available via the REST API using **trainingConfigVersion 2025-07-01-preview**. For more information, *see* [Train your model: request body data](conversational-language-understanding/how-to/train-model.md?tabs=rest-api#request-body).
+**New version of the Conversational Language Understanding (CLU) training configuration**. This new version aims to minimize over-predictions of the [None intent](conversational-language-understanding/concepts/evaluation-metrics.md#none-intent)—particularly in multilingual contexts. You can access it through the REST API by using **trainingConfigVersion 2025-07-01-preview**. For more information, *see* [Train your model: request body data](conversational-language-understanding/how-to/build-train-deploy-model.md?tabs=rest-api#request-body).
 
 **Updated [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) accelerator project**. The update includes a new routing strategy—**TRIAGE_AGENT**. This strategy uses an agent hosted on Foundry Agent Service. It utilizes Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as tools to triage user intent for downstream agent routing. Additionally, these tools help deliver precise answers to specific questions. For more information, *see* [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)
 

@@ -3,7 +3,7 @@ title: Use environment variables with Foundry Tools
 titleSuffix: Foundry Tools
 description: This guide shows you how to set and retrieve environment variables for your Foundry Tools credentials when you test applications.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025

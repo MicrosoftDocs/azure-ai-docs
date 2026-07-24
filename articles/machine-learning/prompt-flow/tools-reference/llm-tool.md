@@ -25,7 +25,7 @@ The large language model (LLM) tool in prompt flow enables you to use widely use
 Prompt flow provides several large language model APIs:
 
 - [Completion](https://platform.openai.com/docs/api-reference/completions): OpenAI's completion models generate text based on provided prompts.
-- [Chat](https://platform.openai.com/docs/api-reference/chat): OpenAI's chat models and the [Azure AI](https://aka.ms/azureai/modelinference) chat models facilitate interactive conversations with text-based inputs and responses.
+- [Chat](https://developers.openai.com/api/docs/guides/text): OpenAI's chat models and the [Azure AI](https://aka.ms/azureai/modelinference) chat models facilitate interactive conversations with text-based inputs and responses.
 
 The [Embeddings](https://platform.openai.com/docs/api-reference/embeddings) API isn't available in the LLM tool. Use the [embedding tool](embedding-tool.md) to generate embeddings with OpenAI or Azure OpenAI.
 

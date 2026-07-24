@@ -3,10 +3,31 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 02/20/2026
+ms.date: 07/21/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 ---
+
+### July 2026 release
+
+Voice Live API version `2026-07-15` is generally available and is now the default service version used by the SDKs.
+
+New features:
+- Azure realtime native voices — added 12 native voice options (Aarti, Andrew, Ava, Denise, Diya, Elsa, Florian, Francisca, Meera, Xiaoxiao, Ximena, and Yunxi) for use with the `azure-realtime` model.
+- Parallel tool calls — control whether the model can invoke tools in parallel.
+- Echo cancellation reference source — configure the echo cancellation reference path and stereo channel input on `AudioEchoCancellation`.
+- Streaming text input — incrementally stream text input into a conversation item with new input text delta and done events.
+- Hosted agent invocation passthrough — attach input data for a hosted agent invocation on a single response request and receive streaming invocation deltas.
+- Session expiration — sessions now expose a server-set expiration time.
+
+Breaking change:
+- The image content part URL field is renamed from `url` to `image_url` to match the wire format. Update image input construction to use the new field name.
+
+Updated SDK versions:
+- Python `azure-ai-voicelive` 1.3.0
+- C# `Azure.AI.VoiceLive` 1.2.0
+- Java `azure-ai-voicelive` 1.1.0
+- JavaScript `@azure/ai-voicelive` 1.1.0
 
 ### May 2026 release
 
@@ -27,7 +48,7 @@ New GA feature:
 - [Telemetry and tracing](../../how-to-voice-live-telemetry.md) — built-in OpenTelemetry instrumentation for monitoring Voice Live sessions.
 
 New preview feature:
-- [MAI Transcribe-1](../../mai-transcribe.md) is available in preview as a speech recognition model option for Voice Live.
+- [MAI Transcribe](../../mai-transcribe.md) is available in preview as a speech recognition model option for Voice Live.
 
 Updated GA SDK versions:
 - Python `azure-ai-voicelive` 1.2.0

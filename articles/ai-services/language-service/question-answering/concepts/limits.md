@@ -1,11 +1,11 @@
 ---
 title: Limits and boundaries - custom question answering
 description: Custom question answering has meta-limits for parts of the knowledge base and service. It's important to keep your knowledge base within those limits in order to test and publish.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 author: laujan
 ms.author: lajanuar
 ms.topic: limits-and-quotas
-ms.date: 04/20/2026
+ms.date: 06/30/2026
 ---
 
 # Project limits and boundaries

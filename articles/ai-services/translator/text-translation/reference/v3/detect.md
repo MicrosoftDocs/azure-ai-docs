@@ -3,8 +3,8 @@ title: Translator Detect Method
 titleSuffix: Foundry Tools
 description: Identify the language of a piece of text with the Azure Translator Detect method.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar

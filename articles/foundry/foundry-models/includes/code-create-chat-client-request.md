@@ -1,11 +1,13 @@
 ---
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 02/17/2026
+ms.date: 07/20/2026
 ms.author: mopeakande
 author: msakande
+ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 # [Python](#tab/python)
@@ -59,34 +61,30 @@ The following code creates the token provider, creates a client to consume chat 
 
 ```javascript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://ai.azure.com/.default');
 
-const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+const openai = new OpenAI({
+  baseURL: endpoint,
     apiKey: tokenProvider
 });
 
-const messages = [
-    { role: 'system', content: 'You are a helpful assistant.' },
-    { role: 'user', content: 'How many languages are in the world?' }
-];
+async function main() {
+  const result = await openai.chat.completions.create({
+    model: "DeepSeek-R1", // Replace with your model deployment name.
+    messages: [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user", content: "How many languages are in the world?" }
+    ]
+  });
+  console.log(result.choices[0]?.message.content ?? "No response returned.");
+}
 
-// Make the API request with top-level await
-const result = await client.chat.completions.create({ 
-    messages, 
-    model: 'DeepSeek-R1', // Your model deployment name
-    max_tokens: 100 
-});
-
-// Print the full response
-console.log('Full response:', result);
-
-// Print just the message content from the response
-console.log('Response content:', result.choices[0].message.content);
+main().catch(console.error);
 ```
 
 # [C#](#tab/csharp)

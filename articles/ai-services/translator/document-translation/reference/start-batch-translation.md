@@ -2,10 +2,10 @@
 title: Start translation
 titleSuffix: Foundry Tools
 description: Start a document translation request with the Document translation service.
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ---

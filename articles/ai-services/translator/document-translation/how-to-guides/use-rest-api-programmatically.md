@@ -2,8 +2,8 @@
 title: Use Document translation APIs programmatically
 description: "How to create a Document translation service using C#, Go, Java, Node.js, or Python and the REST API"
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: quickstart
 ms.date: 06/02/2026
 ms.author: lajanuar

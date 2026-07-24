@@ -3,7 +3,7 @@ title: "Face recognition - Face"
 titleSuffix: Foundry Tools
 description: Learn the concept of Face recognition, its operations, and data structures, including PersonGroup creation, identification, and verification.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face

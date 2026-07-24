@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Face"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted

@@ -2,7 +2,7 @@
 title: Batch synthesis properties - Speech service
 titleSuffix: Foundry Tools
 description: Learn about the batch synthesis properties that are available for text to speech avatar.
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026

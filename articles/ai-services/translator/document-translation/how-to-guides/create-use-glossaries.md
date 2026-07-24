@@ -2,8 +2,8 @@
 title: Create and use a glossary with Azure Translator Document translation
 description: How to create and use a glossary with Document translation.
 ms.topic: how-to
-ms.service: azure-ai-translator
-manager: nitinme
+ms.service: azure-translator-foundry-tools
+manager: mcleans
 ms.author: lajanuar
 author: laujan
 ms.date: 06/02/2026

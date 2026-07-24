@@ -1,5 +1,4 @@
 ---
-title: include file
 title: Include file
 description: Include file
 author: msakande
@@ -7,24 +6,34 @@ ms.author: mopeakande
 ms.reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/29/2026
+ms.date: 07/17/2026
 ms.custom: include, classic-and-new
 ---
 
 This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
 
-## Updates to quota management after 05/07/2026
+## Subscription-level quota management
 
-Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, quota for deployments is tracked at the subscription level—shared across all resources and regions—rather than being allocated separately per resource or per region.
+> [!IMPORTANT]
+> Subscription-level quota management in Microsoft Foundry started after **May 7, 2026**.
+
+Starting with Realtime Translate and Realtime Whisper, and soon all models, Foundry tracks quota for deployments at the subscription level rather than per resource or per region. This approach brings consistency and predictability to how quota is managed across deployments, since all resources and regions in a subscription share the same quota pool.
 
 This change consolidates quota into shared pools:
 
-* Global Standard: Deployments of the same model and version share one quota pool across all regions in a subscription.
-* Data Zone Standard: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
+* **Global Standard**: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* **Data Zone Standard**: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
 
-## What’s changing for me?
+### Check quota management scope
 
-For the models that are onboarded to the new quota management system:
+You can find the quota management system that applies to a given model by going to the Foundry portal's **Quota** page. The value in the **Scope** column for a given model indicates how Foundry manages quota for that model. A Scope value of:
+
+- **Global** or **Data Zone**, indicates subscription-level quota management.
+- **A region** (for example, East US or West US), indicates per-region quota management for that subscription and model. 
+
+### Changes for onboarded models
+
+For the models that are onboarded to the subscription-level quota management system:
 
 * All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
 * All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
@@ -32,10 +41,19 @@ For the models that are onboarded to the new quota management system:
 
 This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
 
-> [!IMPORTANT]
-> The updated quota management currently applies only to Realtime Translate and Realtime Whisper. For all other Foundry Models covered in this article, quotas and limits are managed per region, per subscription, and per model or deployment type. In the future, these quota guidelines will also apply to some existing models and to new Foundry Model launches.
+### Quota limits when a model is upgraded
+
+When an existing model is upgraded, its new Global or Data Zone quota limit is set to the greater of:
+
+- The applicable tier limit.
+- The total quota assigned to all existing deployments of that model within the quota scope.
+
+For example, if a model has Global Standard deployments across five regions, the new global quota limit equals the combined quota of those deployments if that total exceeds the tier limit. Otherwise, the tier limit applies.
 
 ## Quotas and limits reference
+
+> [!IMPORTANT]
+> This section addresses quota for models that aren't onboarded to the subscription-level quota management system. For onboarded models, see [Subscription-level quota management](#subscription-level-quota-management).
 
 The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models. Quotas and limits aren't enforced at the tenant level. Instead, the highest level of quota restrictions is scoped at the Azure subscription level. Tokens per minute (TPM) and requests per minute (RPM) limits are defined per region, per subscription, and per model or deployment type.
 

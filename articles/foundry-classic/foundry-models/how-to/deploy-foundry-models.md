@@ -10,7 +10,7 @@ ms.custom:
   - classic-and-new
 author: msakande   
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 recommendations: false
 ai-usage: ai-assisted
 

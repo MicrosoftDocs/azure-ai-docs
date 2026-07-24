@@ -1,9 +1,9 @@
 ---
 title: "Quickstart: custom question answering"
 description: This quickstart shows you how to create and manage your  custom question answering projects.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 author: laujan
 ms.author: lajanuar
 recommendations: false

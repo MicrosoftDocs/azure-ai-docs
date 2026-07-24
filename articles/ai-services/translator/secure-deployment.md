@@ -3,33 +3,33 @@ title: Secure your Azure Translator data and deployment
 description: Learn how to secure Azure Translator, with best practices for protecting your data and deployment.
 author: laujan
 ms.author: lajanuar
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: best-practice
 ms.custom: horz-security
-ms.date: 11/18/2025
+ms.date: 07/16/2026
 ---
 
-# Azure Translator in Foundry Tools security guidelines
+# Secure your Azure Translator data and deployment
 
 Azure Translator in Foundry Tools is a powerful cloud-based service designed to deliver real-time translation capabilities for a wide range of scenarios, including applications, websites, and business workflows. When organizations integrate this service, they can enhance global communication and user engagement across multiple languages and dialects.
 
-* **Security within Azure is grounded in a collaborative model, where the responsibility for protecting resources and data is shared between Microsoft and our customers.**
+- **Security within Azure is grounded in a collaborative model, where Microsoft and customers share the responsibility for protecting resources and data.**
 
-* **Microsoft is dedicated to securing the core infrastructure that underpins all Azure services, providing a reliable and robust foundation for cloud operations.** 
+- **Microsoft is dedicated to securing the core infrastructure that underpins all Azure services, providing a reliable and robust foundation for cloud operations.**
 
-* **Our customers also play a crucial role in this security partnership by ensuring that Azure Translator is properly configured and managed, thereby protecting sensitive information and adhering to all relevant regulatory requirements.**
+- **Customers play a crucial role in this security partnership by ensuring that Azure Language is properly configured and managed, thereby protecting sensitive information and adhering to all relevant regulatory requirements.**
 
-* **By clearly understanding and fulfilling their respective responsibilities, both Microsoft and our customers work together to achieve a comprehensive and resilient security posture in the Azure environment.** 
+- **By clearly understanding and fulfilling their respective responsibilities, both Microsoft and customers work together to achieve a comprehensive and resilient security posture in the Azure environment.**
 
-* For more information, *see* [**Shared responsibility in the cloud**](/azure/security/fundamentals/shared-responsibility)
+- For more information, *see* [**Shared responsibility in the cloud**](/azure/security/fundamentals/shared-responsibility)
 
 This document offers detailed guidelines and practical recommendations for establishing and maintaining a secure environment when using Azure Translator. It's essential for users of any service to prioritize the protection of sensitive data, safeguard user privacy, and ensure deployment reliability. By adhering to these best practices, you help reduce risks and guarantee that your translation solutions remain secure and effective across all platforms.
 
- ## Service-specific security
+## Service-specific security
 
 Azure Translator requires careful consideration of specific security challenges and requirements to maintain the confidentiality and integrity of translation workflows. By taking a proactive approach to these security concerns, you can protect sensitive information during translation and reduce the risk of unauthorized access or data breaches.
 
-* **Text translation**: For public-facing translation services, it's important to apply content filtering as necessary. Additionally, consider implementing extra filtering measures to prevent the translation of harmful or inappropriate content.<br> 
+* **Text translation**: For public-facing translation services, apply content filtering as necessary. Additionally, consider implementing extra filtering measures to prevent the translation of harmful or inappropriate content.<br> 
 For more information, *see* [Prevent translation with the Translator](/azure/ai-services/translator/prevent-translation).
 
 * **Document translation**: When translating documents, ensure secure workflows are established. Utilize secure storage containers with appropriate access controls and encryption to safeguard both the original documents and the translated outputs.<br>
@@ -68,7 +68,7 @@ Azure Translator processes sensitive data from your applications. Therefore, it'
 * **Configure private endpoints**: Increase shielding by configuring private endpoints for API requests. This approach strengthens security and provides enhanced network isolation for your Azure Translator resources.<br>
 For more information, *see* [Use private endpoints with Foundry Tools](/azure/ai-services/cognitive-services-virtual-networks#use-private-endpoints).
 
-* **Implement virtual network service endpoints**: Augment safeguards by restricting network access to allow only traffic originating from your Azure virtual network. At the same time, ensure that you maintain optimal routing by utilizing the Microsoft backbone network for all communications.<br> 
+* **Implement virtual network service endpoints**: Augment safeguards by restricting network access to allow only traffic originating from your Azure virtual network. At the same time, ensure that you maintain optimal routing by utilizing the Microsoft backbone network for all communications.<br>
 For more information, *see* [Enable custom Translator through Azure Virtual Network](/azure/ai-services/translator/custom-translator/how-to/enable-vnet-service-endpoint).
 
 * **Configure firewall rules**: Enhance security by designating specific IP addresses or ranges that are permitted to access your Translator resource. Restricting access in this way minimizes the likelihood of unauthorized connections from unfamiliar networks.<br>
@@ -86,7 +86,7 @@ For more information, *see* [Microsoft compliance](/compliance/regulatory/offeri
 * **Implement Customer-managed keys (CMK)**: To achieve enhanced control over encryption key management, configure customer-managed keys for Translator resources by integrating Azure Key Vault. This capability is accessible when selecting a pricing tier that includes support for customer-managed key functionality.<br>
 For more information, *see* [Azure Translator encryption of data at rest](/azure/ai-services/translator/custom-translator/concepts/encrypt-data-at-rest).
 
-* **Review details of the No-Trace policy**: Translator doesn't retain customer data submitted for text translation; it processes the data without storing it. For document translation, data is stored only temporarily during processing and isn't kept afterward.<br> 
+* **Review details of the No-Trace policy**: Translator doesn't retain customer data submitted for text translation; it processes the data without storing it. For document translation, data is stored only temporarily during processing and isn't kept afterward.<br>
 For more information, *see* [Data, privacy, and security for Azure Translator](/azure/ai-foundry/responsible-ai/translator/data-privacy-security).
 
 * **Follow data residency requirements**: To ensure that your deployment adheres to regional data residency regulations, select the designated geographical endpoints for your Translator. Use these endpoints to remain compliant with local requirements.<br>
@@ -118,18 +118,14 @@ For more information, *see* [Azure Policy Regulatory Compliance controls for Fou
 * **Conduct regular security assessments**: Continuously assess the security status of your Translator deployments and ensure they align with industry standards and organizational policies. Promptly detect and address any potential vulnerabilities as they arise.<br>
 For more information, *see* [Microsoft cloud security benchmark](/security/benchmark/azure/introduction).
 
-* **Maintain regulatory compliance**: Configure your Translator to comply with all relevant laws and regulations that apply to your industry and geographic area. Make sure to pay special attention to any requirements related to data privacy and protection.<br> 
+* **Maintain regulatory compliance**: Configure your Translator to comply with all relevant laws and regulations that apply to your industry and geographic area. Pay special attention to any requirements related to data privacy and protection.<br> 
 For more information, *see* [Azure Translator Transparency Note](/azure/ai-foundry/responsible-ai/translator/transparency-note).
 
 * **Implement human oversight**: For sensitive translation scenarios, implement a human review workflow to verify translation accuracy. This process ensures that all content complies with organizational standards before wide distribution.<br>
 For more information, *see* [Azure Translator Transparency Note](/azure/ai-foundry/responsible-ai/translator/transparency-note#evaluating-and-integrating-azure-ai-translator-for-your-use).
 
-
-
-
 ## Related content
 
-* [Azure Translator documentation](/azure/ai-services/translator/)
 * [Microsoft Cloud Security Benchmark – Foundry Tools](/security/benchmark/azure/baselines/azure-openai-security-baseline)
 * [Well-Architected Framework – AI workloads](/azure/well-architected/ai/design-principles)
 * [Security documentation for Foundry Tools](/azure/ai-services/security-features)

@@ -3,7 +3,7 @@ title: About the Voice Live SDK - Speech service
 titleSuffix: Foundry Tools
 description: The Voice Live software development kit (SDK) exposes Azure Voice Live capabilities, making it easier to build low-latency speech-to-speech voice agents.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 04/28/2026

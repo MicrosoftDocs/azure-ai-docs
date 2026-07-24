@@ -3,12 +3,12 @@ title: Document Intelligence SDK target REST API v3.1 (GA) latest
 titleSuffix: Foundry Tools
 description: The Document Intelligence v3.1 (GA) software development kits (SDKs) expose Document Intelligence models, features, and capabilities that are in active development for C#, Java, JavaScript, or Python programming language.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.custom:
   - devx-track-python
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/18/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.1.0'
 --- 

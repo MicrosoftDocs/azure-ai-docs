@@ -3,10 +3,10 @@ title: Custom Named Entity Recognition (NER) service limits
 titleSuffix: Foundry Tools
 description: Learn about the data and service limits when using Custom Named Entity Recognition (NER).
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 11/18/2025
+ms.date: 05/13/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-ner, references_regions
 ---

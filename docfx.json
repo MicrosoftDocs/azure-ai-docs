@@ -19,9 +19,6 @@
         "dest": "."
       },
       {
-        "group": "grp-machine-learning",
-        "src": "articles/machine-learning",
-        "dest": "./machine-learning",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -32,12 +29,26 @@
           "**/obj/**",
           "**/v1/**",
           "**/v-fake/**"
-        ]
+        ],
+        "src": "articles/machine-learning",
+        "dest": "./machine-learning",
+        "group": "grp-machine-learning"
       },
       {
-        "group": "grp-document-intelligence",
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ],
         "src": "articles/ai-services/document-intelligence",
         "dest": "./ai-services/document-intelligence/",
+        "group": "grp-document-intelligence"
+      },
+      {
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -46,26 +57,12 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ]
-      },
-      {
-        "group": "grp-machine-learningv1",
+        ],
         "src": "articles/machine-learning/v1",
         "dest": "./machine-learning",
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
+        "group": "grp-machine-learningv1"
       },
       {
-        "group": "grp-machine-learningv1",
-        "src": "articles/machine-learning/v-fake",
-        "dest": "./machine-learning/v1",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -74,13 +71,16 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ]
+        ],
+        "src": "articles/machine-learning/v-fake",
+        "dest": "./machine-learning/v1",
+        "group": "grp-machine-learningv1"
       },
-      
       {
         "files": [
           "toc.yml"
         ],
+        "exclude": [],
         "src": "breadcrumb/azure-ai",
         "dest": "breadcrumb/azure-ai"
       },
@@ -88,6 +88,7 @@
         "files": [
           "zone-pivot-groups.yml"
         ],
+        "exclude": [],
         "src": "zone-pivots",
         "dest": "zone-pivots/azure-ai/"
       }
@@ -112,9 +113,6 @@
         "dest": "."
       },
       {
-        "group": "grp-document-intelligence",
-        "src": "articles/ai-services/document-intelligence",
-        "dest": "./ai-services/document-intelligence/",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -125,12 +123,12 @@
         "exclude": [
           "**/_themes/**",
           "**/obj/**"
-        ]
+        ],
+        "src": "articles/ai-services/document-intelligence",
+        "dest": "./ai-services/document-intelligence/",
+        "group": "grp-document-intelligence"
       },
       {
-        "group": "grp-machine-learning",
-        "src": "articles/machine-learning",
-        "dest": "./machine-learning/",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -143,28 +141,28 @@
           "**/obj/**",
           "**/v1/**",
           "**/v-fake/**"
-        ]
+        ],
+        "src": "articles/machine-learning",
+        "dest": "./machine-learning/",
+        "group": "grp-machine-learning"
       },
       {
-        "group": "grp-machine-learningv1",
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/obj/**"
+        ],
         "src": "articles/machine-learning/v1",
         "dest": "./machine-learning/",
-        "files": [
-          "**/*.gif",
-          "**/*.jpeg",
-          "**/*.jpg",
-          "**/*.png",
-          "**/*.svg"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/obj/**"
-        ]
+        "group": "grp-machine-learningv1"
       },
       {
-        "group": "grp-machine-learningv1",
-        "src": "articles/machine-learning/v-fake",
-        "dest": "./machine-learning/v1",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -175,32 +173,14 @@
         "exclude": [
           "**/_themes/**",
           "**/obj/**"
-        ]
+        ],
+        "src": "articles/machine-learning/v-fake",
+        "dest": "./machine-learning/v1",
+        "group": "grp-machine-learningv1"
       }
-      
     ],
-    "groups": {
-      "grp-document-intelligence": {
-        "moniker_range": ">=doc-intel-2.1.0",
-        "dest": "destdocumentintelligence"
-      },
-      "grp-machine-learning": {
-        "moniker_range": "azureml-api-2 || azureml-api-1",
-        "dest": "destmachinelearning"
-      },
-      "grp-machine-learningv1": {
-        "moniker_range": "azureml-api-1",
-        "dest": "destmachinelearningv1"
-      },
-      "grp-foundry-classic": {
-        "moniker_range": "foundry-classic || foundry",
-        "dest": "destfoundryclassic"
-      },
-      "grp-foundry-default": {
-        "moniker_range": "foundry",
-        "dest": "destfoundrydefault"
-      }
-    },
+    "overwrite": [],
+    "externalReference": [],
     "globalMetadata": {
       "contributors_to_exclude": [
         "alexbuckgit",
@@ -282,8 +262,8 @@
     },
     "fileMetadata": {
       "author": {
-        "articles/foundry/**/*.md": "sgilley",
-        "articles/foundry-classic/**/*.md": "sgilley",
+        "articles/foundry/**/*.md": "sdgilley",
+        "articles/foundry-classic/**/*.md": "sdgilley",
         "articles/ai-services/**/*.md": "mcleanbyron",
         "articles/ai-services/anomaly-detector/**/*.md": "alvinashcraft",
         "articles/ai-services/computer-vision/**/*.md": "PatrickFarley",
@@ -410,20 +390,27 @@
         "articles/ai-services/language-service/**/*.md": "180-days",
         "articles/ai-services/language-service/**/*.yml": "180-days",
         "articles/ai-services/language-service/key-phrase-extraction/*.md": "365-days",
+        "articles/ai-services/language-service/key-phrase-extraction/**/*.md": "365-days",
         "articles/ai-services/language-service/key-phrase-extraction/*.yml": "365-days",
         "articles/ai-services/language-service/sentiment-opinion-mining/*.md": "365-days",
+        "articles/ai-services/language-service/sentiment-opinion-mining/**/*.md": "365-days",
         "articles/ai-services/language-service/sentiment-opinion-mining/*.yml": "365-days",
         "articles/ai-services/language-service/custom-text-classification/*.md": "365-days",
         "articles/ai-services/language-service/custom-text-classification/*.yml": "365-days",
         "articles/ai-services/language-service/conversational-language-understanding/*.md": "365-days",
-        "articles/ai-services/language-service/conversational-language-understanding/*.yml": "365-days",
+        "articles/ai-services/language-service/conversational-language-understanding/**/*.md": "365-days",
+        "articles/ai-services/language-service/custom-text-classification/**/*.yml": "365-days",
         "articles/ai-services/language-service/question-answering/*.md": "365-days",
+        "articles/ai-services/language-service/question-answering/**/*.md": "365-days",
         "articles/ai-services/language-service/question-answering/*.yml": "365-days",
         "articles/ai-services/language-service/orchestration-workflow/*.md": "365-days",
+        "articles/ai-services/language-service/orchestration-workflow/**/*.md": "365-days",
         "articles/ai-services/language-service/orchestration-workflow/*.yml": "365-days",
         "articles/ai-services/language-service/summarization/*.md": "365-days",
+        "articles/ai-services/language-service/summarization/**/*.md": "365-days",
         "articles/ai-services/language-service/summarization/*.yml": "365-days",
         "articles/ai-services/language-service/entity-linking/*.md": "365-days",
+        "articles/ai-services/language-service/entity-linking/**/*.md": "365-days",
         "articles/ai-services/language-service/entity-linking/*.yml": "365-days",
         "articles/ai-services/speech-service/**/*.md": "180-days",
         "articles/ai-services/speech-service/**/*.yml": "180-days",
@@ -482,13 +469,13 @@
         "articles/ai-studio/**/*.md": "microsoft-foundry",
         "articles/ai-services/**/*.md": "foundry-tools",
         "articles/ai-services/anomaly-detector/**/*.md": "azure-ai-anomaly-detector",
-        "articles/ai-services/computer-vision/**/*.md": "azure-ai-vision",
+        "articles/ai-services/computer-vision/**/*.md": "azure-vision-foundry-tools",
         "articles/ai-services/content-moderator/**/*.md": "azure-content-moderator",
         "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision",
         "articles/ai-services/language-service/**/*.md": "azure-ai-language",
         "articles/ai-services/personalizer/**/*.md": "azure-ai-personalizer",
         "articles/ai-services/speech-service/*.md": "azure-speech-foundry-tools",
-        "articles/ai-services/translator/**/*.md": "azure-ai-translator",
+        "articles/ai-services/translator/**/*.md": "azure-translator-foundry-tools",
         "articles/foundry/**/*.md": "microsoft-foundry",
         "articles/foundry-classic/**/*.md": "microsoft-foundry"
       },
@@ -497,8 +484,7 @@
         "articles/machine-learning/**/*.md": "azureml-api-2",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1"
       },
-      "open_to_public_contributors": {
-      },
+      "open_to_public_contributors": {},
       "recommendations": {
         "articles/ai-services/translator/**/*.md": false
       },
@@ -514,10 +500,35 @@
         "articles/foundry-classic/**/*.md": "Microsoft Foundry (classic) portal",
         "articles/search/**/*.md": "Azure AI Search",
         "articles/search/**/*.yml": "Azure AI Search"
+      },
+      "exclude_monikers": {
+        "articles/machine-learning/v1/**/*.{md,yml,yaml}": [
+          "azureml-api-1"
+        ]
       }
     },
-    "overwrite": [],
-    "externalReference": [],
-    "template": []
+    "template": [],
+    "groups": {
+      "grp-document-intelligence": {
+        "dest": "destdocumentintelligence",
+        "moniker_range": ">=doc-intel-2.1.0"
+      },
+      "grp-machine-learning": {
+        "dest": "destmachinelearning",
+        "moniker_range": "azureml-api-2 || azureml-api-1"
+      },
+      "grp-machine-learningv1": {
+        "dest": "destmachinelearningv1",
+        "moniker_range": "azureml-api-1"
+      },
+      "grp-foundry-classic": {
+        "dest": "destfoundryclassic",
+        "moniker_range": "foundry-classic || foundry"
+      },
+      "grp-foundry-default": {
+        "dest": "destfoundrydefault",
+        "moniker_range": "foundry"
+      }
+    }
   }
 }

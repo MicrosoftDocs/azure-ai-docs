@@ -1,7 +1,7 @@
 ---
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 05/13/2026
+ms.date: 07/21/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -14,6 +14,43 @@ ai-usage: ai-assisted
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.51: 2026-July release
+
+#### New features
+  * Added support for multichannel processing of stereo input audio in speech recognition.
+  * Removed ConversationTranslator (multi-device conversation) support due to the service retirement.
+  * **Android:** Updated OpenSSL to 3.0.21.
+  * **C#, C++:** Added support for configuring a custom AEC (echo cancellation) model path on AudioProcessingOptions via the new PropertyId.AudioProcessing_EchoCancellationModelPath property.
+  * **Go, Python:** Added support for [embedded speech](https://aka.ms/embedded-speech).
+  * **iOS, macOS:** Added Swift Package Manager support.
+
+#### Bug fixes
+  * Fixed crashes during WebSocket connection teardown ([issue 2976](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2976)).
+  * Fixed TranslationRecognizer dropping overlapping target language codes ([issue 3024](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/3024)).
+  * Fixed TTS token credential errors when using the REST backend.
+  * **C#, Java:** Fixed an exception/hang when KeywordRecognizer is stopped ([issue 3055](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/3055)).
+  * **C#, Java, Python:** Fixed an EventLogger crash during process teardown.
+  * **iOS, macOS:** Fixed a crash on TTS SSML/text input with embedded NUL or invalid UTF-8.
+  * **Linux:** Fixed internal symbols exported from pal_azure_c_shared library ([issue 3001](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/3001)).
+
+#### Samples:
+  * Removed ConversationTranslator samples.
+  * Removed MeetingTranscriber samples due to the feature being reserved for Microsoft first-party applications.
+  * **Python:** Added samples for embedded speech.
+
+### Speech SDK for JavaScript (1.51)
+
+#### New features
+  * Added setters for speech context fields that were missing from the JavaScript SDK.
+  * Added support for multichannel processing of stereo input audio in speech recognition.
+  * Removed ConversationTranslator (multi-device conversation) support due to the service retirement.
+
+#### Bug fixes
+  * Fixed TTS REST requests when using a custom domain.
+
+#### Samples:
+  * Fixed a browser sample not displaying translation results ([issue 2786](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2786)).
 
 ### Speech SDK 1.50: 2026-May release
 
@@ -1026,7 +1063,7 @@ This table shows the previous and new object names for real-time diarization and
 - **C++/C#/Java/Python/Objective-C/Go**: We now expose the latency and underrun time in `SpeechSynthesisResult` to help you monitor and diagnose speech synthesis latency issues. See details for [C++](/cpp/cognitive-services/speech/speechsynthesisresult), [C#](/dotnet/api/microsoft.cognitiveservices.speech.speechsynthesisresult), [Java](/java/api/com.microsoft.cognitiveservices.speech.speechsynthesisresult), [Python](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesisresult), [Objective-C](/objectivec/cognitive-services/speech/spxspeechsynthesisresult) and [Go](https://pkg.go.dev/github.com/Microsoft/cognitive-services-speech-sdk-go#readme-reference).
 - **C++/C#/Java/Python/Objective-C**: Text to speech [now uses neural voices](../../text-to-speech.md#key-features) by default when you don't specify a voice to be used. This gives you higher fidelity output by default, but also [increases the default price](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/#pricing). 
 - **C++/C#/Java/Python/Objective-C/Go**: We added a Gender property to the synthesis voice info to make it easier to select voices based on gender. This addresses [GitHub issue #1055](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/1055).
-- **C++, C#, Java, JavaScript**: We now support `retrieveEnrollmentResultAsync`, `getAuthorizationPhrasesAsync`, and `getAllProfilesAsync()` in Speaker Recognition to ease user management of all voice profiles for a given account. See documentation for [C++](/cpp/cognitive-services/speech/speaker-voiceprofileclient), [C#](/dotnet/api/microsoft.cognitiveservices.speech), [Java](/java/api/), [JavaScript](/javascript/api/). This addresses [GitHub issue #338](https://github.com/microsoft/cognitive-services-speech-sdk-js/issues/338).
+- **C++, C#, Java, JavaScript**: We now support `retrieveEnrollmentResultAsync`, `getAuthorizationPhrasesAsync`, and `getAllProfilesAsync()` in Speaker Recognition to ease user management of all voice profiles for a given account. See documentation for [C++](/cpp/cognitive-services/speech/), [C#](/dotnet/api/microsoft.cognitiveservices.speech), [Java](/java/api/), [JavaScript](/javascript/api/). This addresses [GitHub issue #338](https://github.com/microsoft/cognitive-services-speech-sdk-js/issues/338).
 - **JavaScript**: We added retry for connection failures that will make your JavaScript-based speech applications more robust.
 
 #### Improvements
@@ -1073,7 +1110,7 @@ This table shows the previous and new object names for real-time diarization and
 - **C++/C#/Java/JavaScript/Objective-C/Python**: Added `BookmarkReached` event for TTS. You can set bookmarks in the input SSML and get the audio offsets for each bookmark. See documentation [here](../../speech-synthesis-markup-structure.md#bookmark-element).
 - **Java**: Added support for Speaker Recognition APIs. Details [here](/java/api/).
 - **C++/C#/Java/JavaScript/Objective-C/Python**: Added two new output audio formats with WebM container for TTS (Webm16Khz16BitMonoOpus and Webm24Khz16BitMonoOpus). These are better formats for streaming audio with the Opus codec. Details for [C++](/cpp/cognitive-services/speech/microsoft-cognitiveservices-speech-namespace#speechsynthesisoutputformat), [C#](/dotnet/api/microsoft.cognitiveservices.speech.speechsynthesisoutputformat), [Java](/java/api/com.microsoft.cognitiveservices.speech.speechsynthesisoutputformat), [JavaScript](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechsynthesisoutputformat), [Objective-C](/objectivec/cognitive-services/speech/spxspeechsynthesisoutputformat), [Python](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesisoutputformat).
-- **C++/C#/Java**: Added support for retrieving voice profile for Speaker Recognition scenario. Details for [C++](/cpp/cognitive-services/speech/speaker-speakerrecognizer), [C#](/dotnet/api/microsoft.cognitiveservices.speech), and [Java](/java/api/).
+- **C++/C#/Java**: Added support for retrieving voice profile for Speaker Recognition scenario. Details for [C++](/cpp/cognitive-services/speech/), [C#](/dotnet/api/microsoft.cognitiveservices.speech), and [Java](/java/api/).
 - **C++/C#/Java/Objective-C/Python**: Added support for separate shared library for audio microphone and speaker control. This allows the developer to use the SDK in environments that don't have required audio library dependencies.
 - **Objective-C/Swift**: Added support for module framework with umbrella header. This allows the developer to import Speech SDK as a module in iOS/Mac Objective-C/Swift apps. This addresses [GitHub issue #452](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/452).
 - **Python**: Added support for [Python 3.9](../../quickstarts/setup-platform.md?pivots=programming-language-python) and dropped support for Python 3.5 per Python's [end-of-life for 3.5](https://devguide.python.org/devcycle/#end-of-life-branches).
@@ -1214,7 +1251,7 @@ Stay healthy!
 - **C#**: Added support for asynchronous conversation transcription. See documentation [here](../../get-started-stt-diarization.md).
 - **JavaScript**: Added Speaker Recognition support for both [browser](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/javascript/browser) and [Node.js](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/javascript/node).
 - **JavaScript**: Added support for Language Identification/language ID. See documentation [here](../../language-identification.md?pivots=programming-language-javascript).
-- **Objective-C**: Added support for [multi-device conversation](../../multi-device-conversation.md) and conversation transcription.
+- **Objective-C**: Added support for **multi-device conversation** (this service has been deprecated) and conversation transcription.
 - **Python**: Added compressed audio support for Python on Windows and Linux. See documentation [here](../../how-to-use-codec-compressed-audio-input-streams.md).
 
 #### Bug fixes
@@ -1352,7 +1389,7 @@ Stay healthy!
 
 #### New features
 
-- Multi-device conversation: connect multiple devices to the same speech or text-based conversation, and optionally translate messages sent between them. Learn more in [this article](../../multi-device-conversation.md).
+- Multi-device conversation: connect multiple devices to the same speech or text-based conversation, and optionally translate messages sent between them.
 - Keyword recognition support added for Android `.aar` package and added support for x86 and x64 flavors.
 - Objective-C: `SendMessage` and `SetMessageProperty` methods added to `Connection` object. See documentation [here](/objectivec/cognitive-services/speech/spxconnection).
 - TTS C++ API now supports `std::wstring` as synthesis text input, removing the need to convert a wstring to string before passing it to the SDK. See details [here](/cpp/cognitive-services/speech/speechsynthesizer#speaktextasync).
@@ -1385,7 +1422,7 @@ Stay healthy!
 
 - Added keyword recognition sample for Android [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/sdkdemo).
 - Added TTS sample for the server scenario [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_synthesis_server_scenario_sample.cs).
-- Added Multi-device conversation quickstarts for C# and C++ [here](../../quickstarts/multi-device-conversation.md).
+- Added Multi-device conversation quickstarts for C# and C++ (this service has been deprecated).
 
 **Other changes**
 

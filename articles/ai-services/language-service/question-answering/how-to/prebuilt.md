@@ -2,11 +2,11 @@
 title: Prebuilt API - custom question answering
 titleSuffix: Foundry Tools
 description: Use the custom question answering Prebuilt API to ask and receive answers to questions without having to create a project. 
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ---
 # Prebuilt API
 

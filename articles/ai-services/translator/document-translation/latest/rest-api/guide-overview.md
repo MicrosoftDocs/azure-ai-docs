@@ -1,11 +1,11 @@
-﻿---
+---
 title: Document Translation REST API Guide
 titleSuffix: Foundry Tools
 description: Overview of the Document Translation REST API operations for synchronous and asynchronous batch document translation.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ai-usage: ai-assisted

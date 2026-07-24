@@ -8,7 +8,8 @@ ms.subservice: core
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: zhanxia
-ms.date: 06/11/2025
+ms.date: 06/29/2026
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.custom:
   - devplatv2
@@ -64,7 +65,7 @@ In the `cli/jobs/pipelines-with-components/basics` directory of the [`azureml-ex
 
  You'll now create a pipeline by using the `3b_pipeline_with_data` example. Each file is explained further in the following sections.
 
- First, list your available compute resources by using the following command:
+ First, list your available compute resources by using the following command. The `az ml` commands require your resource group and workspace name. If you didn't configure CLI defaults, add `-g <resource-group> -w <workspace>` to each command, or run `az configure --defaults group=<resource-group> workspace=<workspace>` to set them once.
 
 ```azurecli
 az ml compute list
@@ -76,7 +77,7 @@ If you don't have it, create a cluster called `cpu-cluster` by running this comm
 > Skip this step to use [serverless compute](./how-to-use-serverless-compute.md).
 
 ```azurecli
-az ml compute create -n cpu-cluster --type amlcompute --min-instances 0 --max-instances 10
+az ml compute create -n cpu-cluster --type AmlCompute --min-instances 0 --max-instances 10
 ```
 
 Now create a pipeline job that's defined in the pipeline.yml file by running the following command. The compute target is referenced in the pipeline.yml file as `azureml:cpu-cluster`. If your compute target uses a different name, remember to update it in the pipeline.yml file.
@@ -129,10 +130,10 @@ The *3b_pipeline_with_data* example contains a three-step pipeline.
 
 One common scenario is to read and write data in a pipeline. In Azure Machine Learning, you use the same schema to [read and write data](how-to-read-write-data-v2.md) for all types of jobs (pipeline jobs, command jobs, and sweep jobs). Following are examples of using data in pipelines for common scenarios:
 
-- [Local data](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/4a_local_data_input)
-- [Web file with a public URL](https://github.com/Azure/azureml-examples/blob/sdk-preview/cli/jobs/pipelines-with-components/basics/4c_web_url_input/pipeline.yml)
-- [Azure Machine Learning datastore and path](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/4b_datastore_datapath_uri)
-- [Azure Machine Learning data asset](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/4d_data_input)
+- [Local data](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/4a_local_data_input)
+- [Web file with a public URL](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/4c_web_url_input/pipeline.yml)
+- [Azure Machine Learning datastore and path](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/4b_datastore_datapath_uri)
+- [Azure Machine Learning data asset](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/4d_data_input)
 
 ## Understand the component definition YAML
 
@@ -161,7 +162,7 @@ In the example in *3b_pipeline_with_data/componentA.yml*, component A has one da
 
 Input and output define the interface of a component. Input and output can be literal values (of type `string`, `number`, `integer`, or `boolean`) or an object that contains an input schema.
 
-**Object input** (of type `uri_file`, `uri_folder`, `mltable`, `mlflow_model`, or `custom_model`) can connect to other steps in the parent pipeline job to pass data/models to other steps. In the pipeline graph, the object type input renders as a connection dot.
+**Object input** (of type `uri_file`, `uri_folder`, `mltable`, or `mlflow_model`) can connect to other steps in the parent pipeline job to pass data or models to other steps. In the pipeline graph, the object type input renders as a connection dot.
 
 **Literal value inputs** (`string`, `number`, `integer`, `boolean`) are the parameters you can pass to the component at runtime. You can add a default value of literal inputs in the `default` field. For `number` and `integer` types, you can also add minimum and maximum values by using the `min` and `max` fields. If the input value is less than the minimum or more than the maximum, the pipeline fails at validation. Validation occurs before you submit a pipeline job, which can save time. Validation works for the CLI, the Python SDK, and the Designer UI. The following screenshot shows a validation example in the Designer UI. Similarly, you can define allowed values in `enum` fields.
 
@@ -181,9 +182,9 @@ To learn more about inputs and outputs, see [Manage inputs and outputs for compo
 
 The environment is the environment in which the component runs. It could be an Azure Machine Learning environment (curated or custom registered), a Docker image, or a conda environment. See the following examples:
 
-- [Registered Azure Machine Learning environment asset](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5b_env_registered). The environment is referenced in the component with `azureml:<environment-name>:<environment-version>` syntax.
-- [Public docker image](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5a_env_public_docker_image).
-- [Conda file](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5c_env_conda_file). The conda file needs to be used together with a base image.
+- [Registered Azure Machine Learning environment asset](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/5b_env_registered). The component references the environment by using the `azureml:<environment-name>:<environment-version>` syntax.
+- [Public docker image](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/5a_env_public_docker_image).
+- [Conda file](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/5c_env_conda_file). You need to use the conda file together with a base image.
 
 ## Register a component for reuse and sharing
 
@@ -199,7 +200,13 @@ az ml component create --file score.yml
 az ml component create --file eval.yml
 ```
 
-After these commands run to completion, you can see the components in studio, under **Assets** > **Components**:
+After these commands run to completion, verify the registration by running:
+
+```azurecli
+az ml component list --output table
+```
+
+You can also view the components in studio, under **Assets** > **Components**:
 
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/registered-components.png" alt-text="Screenshot of studio. It shows the registered components." lightbox ="./media/how-to-create-component-pipelines-cli/registered-components.png":::
 
@@ -227,6 +234,7 @@ You can check component details and manage components by using CLI v2. Use `az m
 |`az ml component update`|Update a component. Only a few fields (description,  display_name) support update.|
 |`az ml component archive`|Archive a component container.|
 |`az ml component restore`|Restore an archived component.|
+|`az ml component prepare-for-sign`|Prepare a component for signing.|
 
 ## Next step
 

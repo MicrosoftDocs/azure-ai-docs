@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Configure BM25 relevance scoring
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this article, learn how to configure the [BM25 relevance scoring algorithm](https://en.wikipedia.org/wiki/Okapi_BM25) used by Azure AI Search for full text search queries. It also explains how to enable BM25 on older search services.
 
 BM25 applies to:

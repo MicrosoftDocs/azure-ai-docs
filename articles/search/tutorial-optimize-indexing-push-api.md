@@ -5,13 +5,16 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 07/21/2026
+ai-usage: ai-assisted
 ms.custom:
   - devx-track-csharp
   - ignite-2023
 ---
 
 # Tutorial: Optimize indexing using the push API
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Azure AI Search supports two basic methods for [importing data](search-what-is-data-import.md) into a search index: *pushing* your data into the index programmatically or *pulling* your data by pointing an [indexer](search-indexer-overview.md) to a supported data source.
 

@@ -18,6 +18,8 @@ ms.date: 02/02/2026
 
 # Quickstart: Full-text search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 ::: zone pivot="csharp"
 
 [!INCLUDE [C#](includes/quickstarts/full-text-csharp.md)]

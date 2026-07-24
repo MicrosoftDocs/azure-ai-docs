@@ -3,10 +3,10 @@ title: Multilingual and emoji support in Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about offsets caused by multilingual and emoji encodings in Language service features.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 04/17/2026
 ms.author: lajanuar
 ---
 # Multilingual and emoji support in Language features

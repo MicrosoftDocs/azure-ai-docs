@@ -3,8 +3,8 @@ title: "Document formats and naming conventions - Custom Translator"
 titleSuffix: Foundry Tools
 description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Custom Translator.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: concept-article

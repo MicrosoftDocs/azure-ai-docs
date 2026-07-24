@@ -4,14 +4,17 @@ description: Set up a search indexer to index data stored in Azure Cosmos DB for
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
 ---
 
 # Index data from Azure Cosmos DB for MongoDB for queries in Azure AI Search (preview)
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -34,7 +37,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
   
 + An [Azure Cosmos DB account, database, collection, and documents](/azure/cosmos-db/sql/create-cosmosdb-resources-portal). Use the same region for both Azure AI Search and Azure Cosmos DB for lower latency and to avoid bandwidth charges.
 
-+ An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This is the default configuration. Lazy indexing isn't recommended and may result in missing data.
++ An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This setting is the default configuration. Lazy indexing isn't recommended and might result in missing data.
 
 + Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Cosmos DB Account Reader Role** permissions.
 
@@ -100,7 +103,7 @@ For this call, specify a [preview REST API version](search-api-preview.md). You 
 
 Indexers can connect to a collection using the following connections. For connections that target the [MongoDB API](/azure/cosmos-db/mongodb/mongodb-introduction), be sure to include "ApiKind" in the connection string.
 
-Avoid port numbers in the endpoint URL. If you include the port number, the connection will fail.  
+Avoid port numbers in the endpoint URL. If you include the port number, the connection fails.  
 
 | Full access connection string |
 |-----------------------------------------------|
@@ -116,7 +119,7 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 
 In a [search index](search-what-is-an-index.md), add fields to accept the source JSON documents or the output of your custom query projection. Ensure that the search index schema is compatible with source data. For content in Azure Cosmos DB, your search index schema should correspond to the [Azure Cosmos DB items](/azure/cosmos-db/resource-model#azure-cosmos-db-items) in your data source.
 
-1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to define search fields that will store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to define search fields that store data:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview

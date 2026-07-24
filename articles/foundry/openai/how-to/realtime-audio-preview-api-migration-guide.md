@@ -1,7 +1,7 @@
 ---
 title: "Migration from Preview to GA version of Realtime API"
 description: "Step-by-step guide for migrating from Preview (Beta) to Generally Available version of OpenAI GPT Realtime API protocol."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
@@ -46,7 +46,7 @@ Example of GA endpoint format:
 https://<your-resource>.openai.azure.com/openai/v1/
 ```
 
-See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../how-to/realtime-audio.md#quickstart).
+See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../how-to/realtime-audio-websockets.md#voice-agent-quickstart).
 
 [!INCLUDE [realtime-audio-preview-api-migration-guide 2](../includes/how-to-realtime-audio-preview-api-migration-guide-2.md)]
 

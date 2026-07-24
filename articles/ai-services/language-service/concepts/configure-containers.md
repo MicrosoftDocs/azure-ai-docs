@@ -3,13 +3,13 @@ title: Configure containers - Language service
 titleSuffix: Foundry Tools
 description: Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 12/05/2025
+ms.date: 06/21/2026
 ms.author: lajanuar
 ---
 # Configure Language docker containers
@@ -80,4 +80,4 @@ The exact syntax of the host mount location varies depending on the host operati
 
 ## Next steps
 
-* Use more [Azure AI containers](../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

@@ -2,10 +2,10 @@
 title: Get supported document formats method
 titleSuffix: Foundry Tools
 description: The get supported document formats method returns a list of supported document formats.
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ---

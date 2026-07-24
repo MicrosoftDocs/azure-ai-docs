@@ -3,8 +3,8 @@ title: Translator Dictionary Examples Method
 titleSuffix: Foundry Tools
 description: The Translator Dictionary Examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar

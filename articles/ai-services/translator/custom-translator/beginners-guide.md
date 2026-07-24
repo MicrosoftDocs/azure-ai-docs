@@ -3,8 +3,8 @@ title: Custom Translator for beginners
 titleSuffix: Foundry Tools
 description: A user guide for understanding the end-to-end customized machine translation process.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.author: lajanuar
 ms.date: 06/02/2026
 ms.topic: overview

@@ -1,10 +1,10 @@
 ---
 #services: cognitive-services
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 Create a **POST** request using the following URL, headers, and JSON body to start a swap deployments job.

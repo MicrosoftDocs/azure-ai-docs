@@ -1,9 +1,9 @@
 ---
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.date: 11/18/2025
-ms.service: azure-ai-language
+manager: mcleans
+ms.date: 04/22/2026
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.custom:
   - language-service-pii

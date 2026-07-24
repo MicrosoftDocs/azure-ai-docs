@@ -3,7 +3,7 @@ title: Voice and sound with Speech Synthesis Markup Language (SSML) - Speech ser
 titleSuffix: Foundry Tools
 description: Learn about how you can use Speech Synthesis Markup Language (SSML) elements to customize what your Speech service voice sounds like.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 01/30/2026

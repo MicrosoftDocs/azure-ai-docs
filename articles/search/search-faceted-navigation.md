@@ -9,6 +9,8 @@ ms.update-cycle: 365-days
 
 # Add faceted navigation to search results
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Faceted navigation is used for self-directed filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience.
 
 In this article, learn the steps for returning a faceted navigation structure in Azure AI Search. Once you're familiar with basic concepts and clients, continue to [Facet examples](search-faceted-navigation-examples.md) for syntax about various use cases, including basic faceting and distinct counts. 

@@ -1,11 +1,11 @@
 ---
 title: "Use the GPT Realtime API for speech and audio with Azure OpenAI"
 description: "Learn how to use the GPT Realtime API for speech and audio with Azure OpenAI."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 02/11/2026
+ms.date: 07/13/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom:
@@ -14,7 +14,6 @@ ms.custom:
   - doc-kit-assisted
 recommendations: false
 ai-usage: ai-assisted
-zone_pivot_groups: openai-portal-js-python-ts-cs
 ---
 
 # Use the GPT Realtime API for speech and audio
@@ -32,42 +31,27 @@ Before you can use GPT real-time audio, you need:
     - In the Microsoft Foundry portal, load your project. Select **Build** in the upper right menu, then select the **Models** tab on the left pane, and **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 
 Here are some of the ways you can get started with the GPT Realtime API for speech and audio:
-- For steps to deploy and use a GPT realtime model, see [the real-time audio quickstart](../how-to/realtime-audio.md#quickstart).
+- For steps to deploy and use a GPT realtime model over WebSockets, see [the WebSockets quickstart](./realtime-audio-websockets.md#voice-agent-quickstart).
 - Try the [WebRTC via HTML and JavaScript example](./realtime-audio-webrtc.md#step-3-optional-create-a-websocket-observercontroller) to get started with the Realtime API via WebRTC.
 - [The Azure-Samples/aisearch-openai-rag-audio repo](https://github.com/Azure-Samples/aisearch-openai-rag-audio) contains an example of how to implement RAG support in applications that use voice as their user interface, powered by the GPT realtime API for audio.
 
-## Quickstart
+## Understand Realtime session types
 
-Follow the instructions in this section to get started with the Realtime API via WebSockets. Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
+OpenAI describes three Realtime session patterns:
 
-::: zone pivot="programming-language-javascript"
+- **Voice-agent session** (default conversation flow): Use this session for interactive, multimodal assistants that listen, reason, speak, and call tools. In practice, this session is the standard Realtime conversation lifecycle on `/openai/v1/realtime`.
+- **Translation session**: Use this session for continuous speech translation. In Azure OpenAI, this session is a dedicated flow on `/openai/v1/realtime/translations`.
+- **Transcription session**: Use this session for speech-to-text scenarios when you need transcript deltas from streaming audio.
 
-[!INCLUDE [JavaScript quickstart](../includes/realtime-javascript.md)]
 
-::: zone-end
+When you use the GA Realtime event model, `session.update` uses `session.type` to configure conversation-style and transcription-style sessions:
 
-::: zone pivot="programming-language-python"
+- `realtime` for voice-agent speech-to-speech sessions.
+- `transcription` for live transcription sessions.
 
-[!INCLUDE [Python quickstart](../includes/realtime-python.md)]
+For implementation guidance:
 
-::: zone-end
-
-::: zone pivot="programming-language-typescript"
-
-[!INCLUDE [TypeScript quickstart](../includes/realtime-typescript.md)]
-
-::: zone-end
-
-::: zone pivot="ai-foundry-portal"
-
-[!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-portal.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-csharp"
-
-[!INCLUDE [C# quickstart](../includes/realtime-csharp.md)]
-
-::: zone-end
+- For server-to-server setup, see [Use the GPT Realtime API via WebSockets](./realtime-audio-websockets.md).
+- For browser-native, low-latency media setup, see [Use the GPT Realtime API via WebRTC](./realtime-audio-webrtc.md).
 
 [!INCLUDE [realtime-audio 2](../includes/how-to-realtime-audio-2.md)]

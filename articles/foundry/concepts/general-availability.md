@@ -1,20 +1,20 @@
 ---
-title: New Microsoft Foundry portal general availability overview
+title: Microsoft Foundry portal general availability overview
 titleSuffix: Microsoft Foundry
 description: Learn what general availability means for Microsoft Foundry, including GA scope, supported scenarios, feature readiness, and migration guidance.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne
-ms.date: 05/22/2026
+ms.date: 07/21/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
 ai-usage: ai-assisted
 ---
 
-# New Microsoft Foundry portal general availability overview
+# Microsoft Foundry portal general availability overview
 
-The new Microsoft Foundry portal is now generally available (GA). This milestone marks a shift from pilot-focused usage to secure, reliable, enterprise-ready production usage for core scenarios.
+The new Microsoft Foundry portal is generally available (GA). This milestone marks a shift from pilot-focused usage to secure, reliable, enterprise-ready production usage for core scenarios.
 
 Foundry is designed for teams that need to build, deploy, and operate AI systems at scale, with governance, security, and operational controls integrated throughout the lifecycle. Foundry unifies the end-to-end lifecycle across **Discover**, **Build**, and **Operate** so teams can move faster without trading off reliability, compliance, or operational rigor.
 
@@ -79,26 +79,34 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Home | All | GA |
 | Discover | Overview | GA |
 | Discover | Model | GA |
-| Discover | [Instant Models](instant-models.md) | Preview |
+| Discover | [Instant Access Models](instant-models.md) | Preview |
+| Discover | [Model leaderboards](model-benchmarks.md) | Preview |
 | Discover | Tools | GA |
 | Discover | [Solution Templates](../how-to/develop/ai-template-get-started.md) | GA |
 | Discover | Search | GA |
+| Discover | [Foundry Playgrounds](concept-playgrounds.md) — Model, Agents, and Images playgrounds | GA |
+| Discover | Foundry Playgrounds — Video playground | Preview |
 | Discover | Ask AI | Preview |
 | Build | [Agents](../agents/overview.md) (core) | GA |
 | Build | Agents — Voice Live | Preview |
 | Build | Agents — traces in agent builder | Preview |
-| Build | [Workflows](../agents/concepts/workflow.md) | Preview |
-| Build | [Models](foundry-models-overview.md) | GA |
-| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Partial GA (GA for prompt agents; Preview for hosted, workflow and external agents) |
+| Build | [Publish agents to Microsoft 365 Copilot and Teams](../agents/how-to/publish-copilot.md) | GA |
+| Build | [Routines](../agents/concepts/routines.md) | Preview |
+| Build | [Agent optimizer](../agents/concepts/agent-optimizer-overview.md) | Limited preview |
+| Build | [Workflows](../agents/concepts/workflow.md) | Preview. Foundry is retiring workflows on December 1, 2026. Use Microsoft Agent Framework for new development. |
+| Build | [Models](foundry-models-overview.md) | GA (managed compute is a Preview deployment type; see [Managed compute in Microsoft Foundry](managed-compute-overview.md)) |
+| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | GA for prompt and hosted agents; Preview for workflow and external agents. |
 | Build | Tracing VNet | Preview |
+| Build | [Convert traces to evaluation datasets](../observability/how-to/traces-to-dataset.md) | Preview |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | [Fine-tuning](../openai/how-to/fine-tuning.md) | GA |
 | Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview) |
+| Build | [Toolboxes](../agents/how-to/tools/toolbox.md) | GA |
 | Build | [Knowledge (Foundry IQ)](../agents/concepts/what-is-foundry-iq.md) | Partial GA (API-level GA; portal access remains Preview) |
 | Build | Data (core) | GA |
 | Build | Data — stored completions | Preview |
 | Build | [Evaluations](../how-to/evaluate-generative-ai-app.md) | GA (some evaluators and features are Preview; check individual evaluator labels) |
-| Build | Memory | Preview |
+| Build | [Memory](../agents/concepts/what-is-memory.md) | Preview |
 | Build | [Guardrails](../guardrails/guardrails-overview.md) — Models | GA |
 | Build | [Guardrails](../guardrails/guardrails-overview.md) — Agents | Preview |
 | Build | Guardrails — Controls and intervention | Preview |
@@ -124,7 +132,6 @@ The following items are out of scope at GA for the new Foundry portal and requir
 - Content Understanding.
 - Prebuilt prompts in video playground.
 - Adding data directly from the Data tab (users can add data during agent creation workflows).
-- Private/Government cloud support for the new Foundry portal.
 
 ## FAQ
 
@@ -160,7 +167,7 @@ The new Foundry portal supports Agents v2. Existing assistants and v1 agents are
 
 Yes. Foundry provides support across portal, APIs, SDKs, and CLI for GA-supported scenarios.
 
-To get started, see [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md) and [Microsoft Foundry API](/rest/api/aifoundry/).
+To get started, see [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md) and [Microsoft Foundry API](https://ai.azure.com/api-reference/).
 
 ### Is GA the final state of Microsoft Foundry?
 
@@ -182,7 +189,8 @@ Before production rollout, validate the following:
 - Assuming API key authentication provides the same governance granularity as Entra ID with RBAC. See [Role-based access control for Microsoft Foundry](rbac-foundry.md) for proper configuration.
 - Skipping region availability validation for required models and services. See [Feature availability across cloud regions](../reference/region-support.md).
 - Migrating assistants or AOAI workflows without a documented fallback path in Foundry (classic) portal. See [Migrate to the new Foundry Agent Service](../agents/how-to/migrate.md).
-- Assuming all GA features work behind a virtual network. Some features, including Traces and Workflow Agents, don't yet fully support network isolation. Hosted Agents require public access to Azure Container Registry. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
+- Assuming all GA features work behind a virtual network. Some features, including Traces and Workflow Agents, don't yet fully support network isolation. For Hosted Agents, a private Azure Container Registry is supported only for Foundry projects created after June 25, 2026; projects created before that date require public access to the registry. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
+- Building new production dependencies on Workflows. Foundry is retiring workflows on December 1, 2026. Use Microsoft Agent Framework for new development, and see the migration guide in [Build a workflow in Microsoft Foundry](../agents/concepts/workflow.md#migration-guide) if you have existing workflows.
 
 ## Next steps
 

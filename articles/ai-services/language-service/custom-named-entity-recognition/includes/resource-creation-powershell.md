@@ -2,10 +2,10 @@
 title: Using Azure resources in custom NER
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/05/2026
 ms.author: lajanuar
 ---
 ### Create a new Language resource using PowerShell

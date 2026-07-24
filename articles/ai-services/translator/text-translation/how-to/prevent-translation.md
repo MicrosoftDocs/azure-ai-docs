@@ -3,8 +3,8 @@ title: Prevent content translation - Azure Translator in Foundry Tools
 titleSuffix: Foundry Tools
 description: Prevent translation of content with the Azure Translator. Azure Translator allows you to tag content so that it isn't translated.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.author: lajanuar

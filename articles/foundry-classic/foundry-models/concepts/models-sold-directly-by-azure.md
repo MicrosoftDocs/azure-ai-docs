@@ -3,7 +3,7 @@ title: "Foundry Models sold by Azure (classic)"
 description: "Learn about Microsoft Foundry Models sold by Azure, their capabilities, deployment types, and regional availability for AI applications. (classic)"
 author: msakande #alvinashcraft for azure-openai pivot
 ms.author: mopeakande #aashcraft for azure-openai pivot
-manager: nitinme
+manager: mcleans
 ms.date: 04/17/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-models

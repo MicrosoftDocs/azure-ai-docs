@@ -15,6 +15,8 @@ ms.custom:
 
 # Set up an indexer connection to Azure SQL using a managed identity
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to set up an indexer connection to Azure SQL Database using a managed identity instead of providing credentials in the connection string.
 
 You can use a system-assigned managed identity or a user-assigned managed identity. Managed identities are Microsoft Entra logins and require Azure role assignments to access data in Azure SQL.

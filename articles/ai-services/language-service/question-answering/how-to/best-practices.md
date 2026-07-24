@@ -1,12 +1,12 @@
 ---
 title: Project best practices
 description: Best practices for custom question answering
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
 recommendations: false
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ---
 # Project best practices
 

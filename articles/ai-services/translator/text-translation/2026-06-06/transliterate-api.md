@@ -3,20 +3,14 @@ title: Azure Translator in Foundry Tools 2026-06-06 transliterate method
 titleSuffix: Foundry Tools
 description: Convert text from one script to another script with the Azure Translator in Foundry Tools 2026-06-06 transliterate method.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 
 # Transliterate (2026-06-06)
-
-> [!IMPORTANT]
->
-> * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 The Text transliteration API maps your source language script or alphabet to a target language script or alphabet. Unlike translation, transliteration doesn't return the meaning, only the way the text is written.
 
@@ -168,7 +162,7 @@ An example JSON response is:
 The following example shows how to convert two Japanese strings into Romanized Japanese.
 
 ```bash
-  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2026-06-06&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
+  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2026-06-06&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: aaaabbbb-0000-cccc-1111-dddd2222eeee" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
 ```
 
 The JSON payload for the request in this example:
@@ -209,4 +203,3 @@ If an error occurs, the request also returns a JSON error response. The error co
 
 > [!div class="nextstepaction"]
 > [View 2026-06-06 migration guide](../how-to/migrate-to-2026-06-06.md)
-

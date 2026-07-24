@@ -1,36 +1,36 @@
 ---
 title: Azure OpenAI Go support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
-description: Azure OpenAI Go support
-manager: nitinme
+description: Azure OpenAI Go support.
+author: alvinashcraft
+manager: mcleans
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 03/27/2025
+ms.date: 07/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
-[Source code](https://github.com/openai/openai-go) | [Package (pkg.go.dev)](https://pkg.go.dev/github.com/openai/openai-go/v3) | [REST API reference documentation](../../latest.md) | [Package reference documentation](https://pkg.go.dev/github.com/openai/openai-go/v3#section-documentation) 
+[Source code](https://github.com/openai/openai-go) | [Package](https://pkg.go.dev/github.com/openai/openai-go/v3) | [REST API reference](https://ai.azure.com/api-reference/) | [Go API reference](https://github.com/openai/openai-go/blob/main/api.md)
 
-## Azure OpenAI API version support
+The examples require Go 1.25 or later. They were tested with `github.com/openai/openai-go/v3` 3.44.0 and `azidentity` 1.14.0.
 
-- v1 Generally Available (GA) API now allows access to both GA and Preview operations. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
+## Install the modules
 
-## Installation
+Install the OpenAI and Azure Identity modules:
 
-Install the `openai` and `azidentity` modules with go get:
-
-```
-go get -u 'github.com/openai/openai-go'
-
-# optional
+```bash
+go get github.com/openai/openai-go/v3
 go get github.com/Azure/azure-sdk-for-go/sdk/azidentity
 ```
 
-## Authentication
+The `/v3` suffix is required because it identifies the current major version of the Go module.
 
-# [Microsoft Entra ID](#tab/secure)
+## Create a response with Microsoft Entra ID
 
-The [azidentity](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/azidentity) module is used for Microsoft Entra ID authentication with Azure OpenAI.
+Use `DefaultAzureCredential` and the Azure authentication option to authenticate without storing an API key.
 
 ```go
 package main
@@ -43,76 +43,44 @@ import (
 	"github.com/openai/openai-go/v3"
 	"github.com/openai/openai-go/v3/azure"
 	"github.com/openai/openai-go/v3/option"
+	"github.com/openai/openai-go/v3/responses"
 )
 
 func main() {
-	// Create an Azure credential
-	tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
-	if err != nil {
-		panic(fmt.Sprintf("Failed to create credential: %v", err))
-	}
-
-	// Create a client with Azure OpenAI endpoint and token credential
-	client := openai.NewClient(
-		option.WithBaseURL("https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/"),
-		azure.WithTokenCredential(tokenCredential),
-	)
-
-	// Make a completion request
-	chatCompletion, err := client.Chat.Completions.New(context.TODO(), openai.ChatCompletionNewParams{
-		Messages: []openai.ChatCompletionMessageParamUnion{
-			openai.UserMessage("Explain what the bitter lesson is?"),
-		},
-		Model: "o4-mini", // Use your deployed model name on Azure
+	credential, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil { panic(err) }
+	endpoint := "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+	openaiClient := openai.NewClient(
+		option.WithBaseURL(endpoint),
+		azure.WithTokenCredential(credential, azure.WithTokenCredentialScopes(
+			[]string{"https://ai.azure.com/.default"})))
+	response, err := openaiClient.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: openai.ChatModel("gpt-5-mini"),
+		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(
+			"Explain the purpose of an API in one sentence.")},
 	})
-	if err != nil {
-		panic(err.Error())
-	}
-
-	fmt.Println(chatCompletion.Choices[0].Message.Content)
+	if err != nil { panic(err) }
+	fmt.Println(response.OutputText())
 }
 ```
 
-For more information about Azure OpenAI keyless authentication, see [Use Azure OpenAI without keys](/azure/developer/ai/keyless-connections?tabs=go%2Cazure-cli). 
+The following output is representative. The exact wording might vary:
 
-# [API Key](#tab/api-key)
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-
-	"github.com/openai/openai-go/v3"
-	"github.com/openai/openai-go/v3/option"
-)
-
-func main() {
-	// Create a client with Azure OpenAI endpoint and API key
-	client := openai.NewClient(
-		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-		option.WithAPIKey("API-KEY-HERE"),
-	)
-
-	// Make a completion request
-	chatCompletion, err := client.Chat.Completions.New(context.TODO(), openai.ChatCompletionNewParams{
-		Messages: []openai.ChatCompletionMessageParamUnion{
-			openai.UserMessage("Tell me about the bitter lesson"),
-		},
-		Model: "o4-mini", // Use your deployed model name on Azure
-	})
-	if err != nil {
-		panic(err.Error())
-	}
-
-	fmt.Println(chatCompletion.Choices[0].Message.Content)
-}
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
 ```
 
----
+Reference: [`ResponseService.New`](https://github.com/openai/openai-go/blob/main/examples/responses/main.go) and [`WithTokenCredentialScopes`](https://github.com/openai/openai-go/blob/main/azure/azure.go)
 
-## Embeddings
+## Create a response with an API key
+
+API keys aren't recommended for production use. Store the key in the `AZURE_OPENAI_API_KEY` environment variable instead of placing it in source code.
+
+```bash
+export AZURE_OPENAI_API_KEY="<your-api-key>"
+```
+
+Then create the client and request:
 
 ```go
 package main
@@ -124,86 +92,166 @@ import (
 
 	"github.com/openai/openai-go/v3"
 	"github.com/openai/openai-go/v3/option"
+	"github.com/openai/openai-go/v3/responses"
 )
 
 func main() {
-	// Get API key from environment variable
 	apiKey := os.Getenv("AZURE_OPENAI_API_KEY")
-	if apiKey == "" {
-		panic("AZURE_OPENAI_API_KEY environment variable is not set")
-	}
-
-	// Create a client with Azure OpenAI endpoint and API key
-	client := openai.NewClient(
-		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-		option.WithAPIKey(apiKey),
-	)
-
-	ctx := context.Background()
-	text := "The attention mechanism revolutionized natural language processing"
-
-	// Make an embedding request
-	embedding, err := client.Embeddings.New(ctx, openai.EmbeddingNewParams{
-		Input: openai.EmbeddingNewParamsInputUnion{OfString: openai.String(text)},
-		Model: "text-embedding-3-small", // Use your deployed model name on Azure
+	if apiKey == "" { panic("AZURE_OPENAI_API_KEY is required") }
+	endpoint := "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+	openaiClient := openai.NewClient(
+		option.WithBaseURL(endpoint),
+		option.WithAPIKey(apiKey))
+	response, err := openaiClient.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: openai.ChatModel("gpt-5-mini"),
+		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(
+			"Explain the purpose of an API in one sentence.")},
 	})
-	if err != nil {
-		panic(err.Error())
-	}
-
-	// Print embedding information
-	fmt.Printf("Model: %s\n", embedding.Model)
-	fmt.Printf("Number of embeddings: %d\n", len(embedding.Data))
-	fmt.Printf("Embedding dimensions: %d\n", len(embedding.Data[0].Embedding))
-	fmt.Printf("Usage - Prompt tokens: %d, Total tokens: %d\n", embedding.Usage.PromptTokens, embedding.Usage.TotalTokens)
-	
-	// Print first few values of the embedding vector
-	fmt.Printf("First 10 embedding values: %v\n", embedding.Data[0].Embedding[:10])
+	if err != nil { panic(err) }
+	fmt.Println(response.OutputText())
 }
 ```
 
+The following output is representative. The exact wording might vary:
 
-## Responses
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
+
+Reference: [`Responses.New`](https://github.com/openai/openai-go/blob/main/examples/azure/main.go)
+
+## Use Chat Completions
+
+For new applications, use the Responses API. Use Chat Completions when you need its message-based interface or are maintaining an existing application.
 
 ```go
 package main
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/openai/openai-go/v3"
 	"github.com/openai/openai-go/v3/azure"
 	"github.com/openai/openai-go/v3/option"
+)
+
+func main() {
+	credential, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil { panic(err) }
+	endpoint := "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+	openaiClient := openai.NewClient(
+		option.WithBaseURL(endpoint),
+		azure.WithTokenCredential(credential, azure.WithTokenCredentialScopes(
+			[]string{"https://ai.azure.com/.default"})))
+	completion, err := openaiClient.Chat.Completions.New(context.Background(),
+		openai.ChatCompletionNewParams{
+			Model: openai.ChatModel("gpt-5-mini"),
+			Messages: []openai.ChatCompletionMessageParamUnion{
+				openai.DeveloperMessage("You are a helpful assistant."),
+				openai.UserMessage("Explain the purpose of an API.")}})
+	if err != nil { panic(err) }
+	fmt.Println(completion.Choices[0].Message.Content)
+}
+```
+
+The following output is representative. The exact wording might vary:
+
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
+
+Reference: [`Chat.Completions.New`](https://github.com/openai/openai-go/blob/main/README.md#chat-completions-api)
+
+## Stream a response
+
+Call `Responses.NewStreaming`, and process text delta events as the model generates them:
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
 	"github.com/openai/openai-go/v3/responses"
 )
 
 func main() {
-	// Create Azure token credential
-	tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
-	if err != nil {
-		panic(err)
-	}
-
-	// Create client with Azure endpoint and token credential
-	client := openai.NewClient(
-		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-		azure.WithTokenCredential(tokenCredential),
-	)
-
-	ctx := context.Background()
-	question := "Tell me about the attention is all you need paper"
-
-	resp, err := client.Responses.New(ctx, responses.ResponseNewParams{
-		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(question)},
-		Model: "o4-mini",
+	endpoint := "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+	openaiClient := openai.NewClient(option.WithBaseURL(endpoint),
+		option.WithAPIKey(os.Getenv("AZURE_OPENAI_API_KEY")))
+	// Stream text as the model generates it.
+	stream := openaiClient.Responses.NewStreaming(context.Background(), responses.ResponseNewParams{
+		Model: openai.ChatModel("gpt-5-mini"),
+		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(
+			"Explain the purpose of an API in one sentence.")},
 	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	println(resp.OutputText())
+	for stream.Next() { fmt.Print(stream.Current().Delta) }
+	if err := stream.Err(); err != nil { panic(err) }
 }
 ```
 
+The following streamed output is representative. The exact wording might vary:
+
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
+
+Reference: [`Responses.NewStreaming`](https://github.com/openai/openai-go/blob/main/examples/responses-streaming/main.go)
+
+## Handle errors and retries
+
+The SDK retries connection errors and HTTP 408, 409, 429, and 5xx responses twice with exponential backoff. Use `option.WithMaxRetries` to change the default. Check the returned `error` before reading a response, and use `errors.As` to inspect an `openai.Error`.
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"os"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	endpoint := "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+	openaiClient := openai.NewClient(option.WithBaseURL(endpoint),
+		option.WithAPIKey(os.Getenv("AZURE_OPENAI_API_KEY")), option.WithMaxRetries(4))
+	// Send the request and inspect structured service errors.
+	result, err := openaiClient.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: openai.ChatModel("gpt-5-mini"),
+		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Explain an API.")},
+	})
+	if err != nil {
+		var apiError *openai.Error
+		if errors.As(err, &apiError) { fmt.Printf("Status: %d; Request ID: %s\n",
+			apiError.StatusCode, apiError.Response.Header.Get("x-request-id")) }
+		panic(err)
+	}
+	fmt.Println(result.OutputText())
+}
+```
+
+For a successful request, the following output is representative. The exact wording might vary:
+
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
+
+Reference: [Errors and retries](https://github.com/openai/openai-go#errors)
+
+## More SDK examples
+
+- [Use the Responses API](../../how-to/responses.md)
+- [Generate embeddings](../../how-to/embeddings.md)
+- [Analyze images](../../how-to/gpt-with-vision.md)
+- [Fine-tune a model](../../how-to/fine-tuning.md)

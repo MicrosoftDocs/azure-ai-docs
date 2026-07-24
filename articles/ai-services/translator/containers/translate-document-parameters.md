@@ -3,8 +3,8 @@ title: "Container: Translate document"
 titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body request/response messages for the Azure Translator container translate document operation.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar

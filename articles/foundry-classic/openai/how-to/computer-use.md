@@ -1,7 +1,7 @@
 ---
 title: "Computer Use in Azure OpenAI (classic)"
 description: "Learn about Computer Use in Azure OpenAI, which allows AI to interact with computer applications. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

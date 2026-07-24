@@ -4,7 +4,7 @@ description: "Connect Foundry Agent Service to a Foundry IQ knowledge base (Azur
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -299,7 +299,7 @@ Content-Type: application/json
 
 [!INCLUDE [foundry-iq-limitation](../../includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time).
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time (preview)](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time).
 
 #### [Python](#tab/python)
 

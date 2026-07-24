@@ -2,7 +2,7 @@
 title: "Quickstart: Use a blocklist with TypeScript"
 description: In this quickstart, get started using the Azure AI Content Safety TypeScript SDK to create and use a text blocklist.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include

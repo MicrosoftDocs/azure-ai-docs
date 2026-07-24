@@ -4,8 +4,9 @@ description: Migrate your search application code from older SDK versions to the
 ms.service: azure-ai-search
 ms.devlang: csharp
 ms.topic: upgrade-and-migration-article
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -14,7 +15,9 @@ ms.custom:
 
 # Upgrade to Azure AI Search .NET SDK version 11
 
-If your search solution is built on the [**Azure SDK for .NET**](/dotnet/azure/), this article helps you migrate your code from earlier versions of [**Microsoft.Azure.Search**](/dotnet/api/overview/azure/search) to version 11, the new [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library. Version 11 is a fully redesigned client library, released by the Azure SDK development team (previous versions were produced by the Azure AI Search development team). 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+If you built your search solution on the [**Azure SDK for .NET**](/dotnet/azure/), this article helps you migrate your code from earlier versions of [**Microsoft.Azure.Search**](/dotnet/api/overview/azure/search) to version 11, the new [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library. Version 11 is a fully redesigned client library, released by the Azure SDK development team (previous versions were produced by the Azure AI Search development team).
 
 All features from version 10 are implemented in version 11. Key differences include:
 
@@ -190,7 +193,7 @@ Version 11.3 additions ([change log](https://github.com/Azure/azure-sdk-for-net/
 
 + Quickstarts, tutorials, and [C# samples](samples-dotnet.md) have been updated to use the Azure.Search.Documents package. We recommend reviewing the samples and walkthroughs to learn about the new APIs before embarking on a migration exercise.
 
-+ [How to use Azure.Search.Documents](search-howto-dotnet-sdk.md) introduces the most commonly used APIs. Even  knowledgeable users of Azure AI Search might want to review this introduction to the new library as a precursor to migration.
++ [How to use Azure.Search.Documents](search-howto-dotnet-sdk.md) introduces the most commonly used APIs. Even experienced users of Azure AI Search might want to review this introduction to the new library as a precursor to migration.
 
 <a name="UpgradeSteps"></a>
 

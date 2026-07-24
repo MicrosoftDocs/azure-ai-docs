@@ -3,10 +3,10 @@ title: "Translator: sovereign clouds"
 titleSuffix: Foundry Tools
 description: Using Translator in sovereign clouds
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 05/02/2026
 ms.author: lajanuar
 ---
 

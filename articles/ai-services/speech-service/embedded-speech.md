@@ -3,13 +3,14 @@ title: Embedded Speech - Speech service
 titleSuffix: Foundry Tools
 description: Embedded Speech is designed for on-device scenarios where cloud connectivity is intermittent or unavailable.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java
 ms.topic: how-to
-ms.date: 12/30/2025
+ms.date: 07/01/2026
 ms.author: pafarley
-zone_pivot_groups: programming-languages-set-thirteen
+zone_pivot_groups: programming-languages-speech-services-embedded
+ai-usage: ai-assisted
 ---
 
 # What is embedded speech?
@@ -21,7 +22,11 @@ Embedded Speech is designed for on-device [speech to text](speech-to-text.md) an
 
 ## Platform requirements
 
-Embedded speech is included with the Speech SDK (version 1.24.1 and higher) for C#, C++, and Java. Refer to the general [Speech SDK installation requirements](quickstarts/setup-platform.md#platform-requirements) for programming language and target platform specific details.
+Embedded speech is included with the Speech SDK (version 1.24.1 and higher) for C#, C++, and Java, and with the Speech SDK for Python (version 1.51.0 and higher). Refer to the general [Speech SDK installation requirements](quickstarts/setup-platform.md#platform-requirements) for programming language and target platform specific details.
+
+Embedded speech with the Speech SDK for Python is supported on Windows (x64, Arm64), Linux (x64, Arm64), and macOS (x64, Arm64). Python doesn't support embedded speech on Android.
+
+Embedded speech with the Speech SDK for Go (version 1.51.0 and higher) is supported on Linux (x64, Arm64, Arm32). Go doesn't support embedded speech on Android.
 
 The following are general estimates of memory consumption with embedded speech. The final numbers depend on feature configuration.
 * Speech recognition or translation: Total size of the files of a model + 200 MB.
@@ -56,7 +61,8 @@ The Speech SDK for Java doesn't support Windows on Arm64.
 
 ## Limitations
 
-- Embedded speech is only available with C#, C++, and Java SDKs. The other Speech SDKs, Speech CLI, and REST APIs don't support embedded speech.
+- Only the C#, C++, Java, Python, and Go SDKs support embedded speech. The other Speech SDKs, Speech CLI, and REST APIs don't support embedded speech.
+- The Speech SDK for Python and the Speech SDK for Go don't support hybrid speech (`HybridSpeechConfig`). Use the C#, C++, or Java SDK for hybrid scenarios.
 - Embedded speech recognition only supports mono 16 bit, 8-kHz or 16-kHz PCM-encoded WAV audio formats.
 - Embedded neural voices support 16 or 24 kHz RIFF/RAW.
 
@@ -156,6 +162,56 @@ dependencies {
 ```
 ::: zone-end
 
+::: zone pivot="programming-language-python"
+
+For Python embedded applications, install the embedded variant of the Speech SDK for Python, which includes the on-device inference runtime:
+
+```console
+pip install azure-cognitiveservices-speech-embedded
+```
+
+> [!IMPORTANT]
+> The embedded package (`azure-cognitiveservices-speech-embedded`) is a superset of the cloud-only package (`azure-cognitiveservices-speech`). It exposes the same `azure.cognitiveservices.speech` import namespace and supports all cloud scenarios in addition to embedded ones. Install only one of the two packages.
+
+::: zone-end
+
+
+::: zone pivot="programming-language-go"
+
+The Speech SDK for Go is a `cgo` binding, so embedded speech requires the native Speech SDK libraries at build time and run time. Download the embedded variant of the native Speech SDK package for Linux, which includes the on-device runtime extensions:
+
+1. Choose a directory for the Speech SDK files and set the `SPEECHSDK_ROOT` environment variable to point to it:
+
+    ```console
+    export SPEECHSDK_ROOT="$HOME/speechsdk-embedded"
+    mkdir -p "$SPEECHSDK_ROOT"
+    ```
+
+1. Download and extract the embedded Speech SDK binaries:
+
+    ```console
+    wget -O SpeechSDK-Embedded-Linux.tar.gz https://aka.ms/csspeech/linuxembeddedbinary
+    tar --strip 1 -xzf SpeechSDK-Embedded-Linux.tar.gz -C "$SPEECHSDK_ROOT"
+    ```
+
+    The embedded package is a superset of the standard (cloud-only) package. It includes the core library (`Microsoft.CognitiveServices.Speech.core`), the embedded recognition and synthesis runtime extensions, and their ONNX runtime dependency. Install only the embedded package, not both.
+
+1. Point `cgo` at the native headers and libraries, and add the library folder to the loader path. Replace `<architecture>` with the processor architecture of your CPU: `x64`, `arm64`, or `arm32`.
+
+    ```console
+    export CGO_CFLAGS="-I$SPEECHSDK_ROOT/include/c_api"
+    export CGO_LDFLAGS="-L$SPEECHSDK_ROOT/lib/<architecture> -lMicrosoft.CognitiveServices.Speech.core"
+    export LD_LIBRARY_PATH="$SPEECHSDK_ROOT/lib/<architecture>:$LD_LIBRARY_PATH"
+    ```
+
+1. Add the Speech SDK for Go module to your project:
+
+    ```console
+    go get github.com/Microsoft/cognitive-services-speech-sdk-go
+    ```
+
+::: zone-end
+
 
 ## Models and voices
 
@@ -242,6 +298,74 @@ embeddedSpeechConfig.setSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.
 
 ::: zone-end
 
+::: zone pivot="programming-language-python"
+
+```python
+import os
+import azure.cognitiveservices.speech as speechsdk
+
+# Provide the location of the models and voices.
+paths = [
+    "C:\\dev\\embedded-speech\\stt-models",
+    "C:\\dev\\embedded-speech\\tts-voices",
+]
+embedded_speech_config = speechsdk.EmbeddedSpeechConfig.from_paths(paths)
+
+# For speech to text
+embedded_speech_config.set_speech_recognition_model(
+    "Microsoft Speech Recognizer en-US FP Model V8",
+    os.environ.get("EMBEDDED_SPEECH_MODEL_LICENSE"))
+
+# For text to speech
+embedded_speech_config.set_speech_synthesis_voice(
+    "Microsoft Server Speech Text to Speech Voice (en-US, JennyNeural)",
+    os.environ.get("EMBEDDED_SPEECH_MODEL_LICENSE"))
+embedded_speech_config.set_speech_synthesis_output_format(
+    speechsdk.SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm)
+```
+
+> [!TIP]
+> If there's only one model or voice path, you can also use `speechsdk.EmbeddedSpeechConfig.from_path(path)`.
+
+::: zone-end
+
+
+::: zone pivot="programming-language-go"
+
+```go
+import (
+    "os"
+
+    "github.com/Microsoft/cognitive-services-speech-sdk-go/speech"
+)
+
+// Provide the location of the models and voices.
+paths := []string{
+    "/dev/embedded-speech/stt-models",
+    "/dev/embedded-speech/tts-voices",
+}
+embeddedSpeechConfig, err := speech.NewEmbeddedSpeechConfigFromPaths(paths)
+if err != nil {
+    // Handle the error.
+}
+defer embeddedSpeechConfig.Close()
+
+// For speech to text
+embeddedSpeechConfig.SetSpeechRecognitionModel(
+    "Microsoft Speech Recognizer en-US FP Model V8",
+    os.Getenv("EMBEDDED_SPEECH_MODEL_LICENSE"))
+
+// For text to speech
+embeddedSpeechConfig.SetSpeechSynthesisVoice(
+    "Microsoft Server Speech Text to Speech Voice (en-US, JennyNeural)",
+    os.Getenv("EMBEDDED_SPEECH_MODEL_LICENSE"))
+```
+
+> [!TIP]
+> If there's only one model or voice path, you can also use `speech.NewEmbeddedSpeechConfigFromPath(path)`. The embedded config wraps a regular `SpeechConfig`, so pass `embeddedSpeechConfig.GetSpeechConfig()` to the existing recognizer and synthesizer factory functions, such as `NewSpeechRecognizerFromConfig`.
+
+::: zone-end
+
 
 ## Embedded speech code samples
 
@@ -266,6 +390,17 @@ You can find ready to use embedded speech samples at [GitHub](https://aka.ms/emb
 - [Java for Android](https://aka.ms/embedded-speech-samples-java-android)
 ::: zone-end
 
+::: zone pivot="programming-language-python"
+
+You can find ready-to-use embedded speech samples at [GitHub](https://aka.ms/embedded-speech-samples). For remarks on projects from scratch, see the samples specific documentation:
+- [Python](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/python/embedded-speech)
+::: zone-end
+
+::: zone pivot="programming-language-go"
+
+You can find ready-to-use embedded speech samples for speech recognition, synthesis, and translation at [GitHub](https://github.com/microsoft/cognitive-services-speech-sdk-go/tree/master/samples/embedded). For prerequisites, native library setup, model and voice installation, and build flags, see the [embedded samples guide](https://github.com/microsoft/cognitive-services-speech-sdk-go/blob/master/samples/embedded/README.md).
+::: zone-end
+
 ## Hybrid speech
 
 Hybrid speech with the `HybridSpeechConfig` object uses the cloud speech service by default and embedded speech as a fallback in case cloud connectivity is limited or slow.
@@ -273,6 +408,9 @@ Hybrid speech with the `HybridSpeechConfig` object uses the cloud speech service
 With hybrid speech configuration for [speech to text](speech-to-text.md) (recognition models), embedded speech is used when connection to the cloud service fails after repeated attempts. Recognition might continue using the cloud service again if the connection is later resumed.
 
 With hybrid speech configuration for [text to speech](text-to-speech.md) (voices), embedded and cloud synthesis are run in parallel and the final result is selected based on response speed. The best result is evaluated again on each new synthesis request.
+
+> [!NOTE]
+> The Speech SDK for Python and the Speech SDK for Go don't support hybrid speech. Use the C#, C++, or Java SDK for hybrid scenarios.
 
 ## Cloud speech
 

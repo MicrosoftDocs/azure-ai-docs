@@ -7,7 +7,7 @@ ms.topic: concept-article
 ms.date: 06/01/2026
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI practitioner, I want to understand the deployment options available for Microsoft Foundry Models so that I can choose the right deployment method for my models and use case.
 ---
@@ -31,7 +31,7 @@ The Foundry portal automatically selects the appropriate deployment option based
 |---|---|---|
 | **Models** | [ADM models](../foundry-models/concepts/models-sold-directly-by-azure.md) (Azure OpenAI + partner models billed through Azure) and select [Models from partners and community](../foundry-models/concepts/models-from-partners.md)| Other models in the model catalog from partners and custom models. For example, models from Hugging Face, NVIDIA NIMs, industry models, and Databricks. |
 | **Billing** | Token usage or [provisioned throughput units (PTU)](../openai/concepts/provisioned-throughput.md) | Hourly per accelerator SKU |
-| **Data processing** | Regional, data zone, or global | Regional only |
+| **Data processing** | Regional, data zone, or global | Global |
 | **Content filtering** | Built-in and customizable | Via Azure AI Content Safety APIs |
 
 ## Standard deployment in Foundry resources

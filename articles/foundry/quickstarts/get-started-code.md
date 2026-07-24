@@ -1,10 +1,10 @@
 ---
-title: "Microsoft Foundry Quickstart"
-description: "Get started with Microsoft Foundry SDK building AI applications." 
+title: "Quickstart: Get started with Microsoft Foundry SDK"
+description: "Learn how to use the Microsoft Foundry SDK to build AI applications with Foundry."
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 03/10/2026
+ms.date: 06/19/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: quickstart
@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---
 
-# Microsoft Foundry quickstart
+# Quickstart: Get started with Microsoft Foundry SDK
 
 In this quickstart you'll get started using models and agents in Foundry.
 
@@ -38,7 +38,7 @@ In this quickstart you'll get started using models and agents in Foundry.
 * A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md).
 
     > [!TIP]
-    > Or, skip the deployment step and try an [instant model (preview)](../concepts/instant-models.md) instead. Create a project in **West US 3**, and substitute any instant model  for `gpt-5.1-mini` in all the code examples in this quickstart.
+    > Or, skip the deployment step and try an [instant model (preview)](../concepts/instant-models.md) instead. Create a project in **West US 3** to use instant access models.
 
 * The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 

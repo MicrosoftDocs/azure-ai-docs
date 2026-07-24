@@ -2,8 +2,8 @@
 title: "Quickstart: Document translation C# SDK"
 description: 'Document translation processing using the C# SDK'
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: include
 ms.date: 06/02/2026
 ms.author: lajanuar

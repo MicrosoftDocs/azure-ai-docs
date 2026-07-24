@@ -3,13 +3,14 @@ title: How to configure Microsoft Entra authentication
 titleSuffix: Foundry Tools
 description: Learn how to authenticate using Microsoft Entra authentication
 author: goergenj
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 11/13/2025
+ms.date: 06/06/2026
 ms.author: jagoerge
 zone_pivot_groups: programming-languages-set-two
 ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-python, devx-track-azurecli
+ai-usage: ai-assisted
 ---
 
 # Microsoft Entra authentication with the Speech SDK
@@ -206,46 +207,46 @@ var speechConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), brows
 
 ### SpeechSynthesizer
 
-For ```SpeechSynthesizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechSynthesizer``` objects, use an appropriate instance of [TokenCredential](/dotnet/api/azure.core.tokencredential) for authentication. Along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), use these credentials to create a ```SpeechConfig``` object.
 
 ```C#
-string resourceId = "Your Resource ID";
-string aadToken = "Your Microsoft Entra access token";
-string region =  "Your Speech Region";
+TokenCredential browserCredential = new InteractiveBrowserCredential();
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-var authorizationToken = $"aad#{resourceId}#{aadToken}";
-var speechConfig = SpeechConfig.FromAuthorizationToken(authorizationToken, region);
+// Define the custom domain endpoint for your Speech resource.
+var endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
+
+// Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
+var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), browserCredential);
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 ### SpeechRecognizer, SpeechSynthesizer, ConversationTranscriber
 
-For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechRecognizer```, ```SpeechSynthesizer```, and ```ConversationTranscriber``` objects, use an appropriate instance of [TokenCredential](https://github.com/Azure/azure-sdk-for-cpp/tree/main/sdk/identity/azure-identity) for authentication. Along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), use these credentials to create a ```SpeechConfig``` object.
 
 ```C++
-std::string resourceId = "Your Resource ID";
-std::string aadToken = "Your Microsoft Entra access token";
-std::string region = "Your Speech Region";
+auto browserCredential = std::make_shared<Azure::Identity::InteractiveBrowserCredential>();
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-auto authorizationToken = "aad#" + resourceId + "#" + aadToken;
-auto speechConfig = SpeechConfig::FromAuthorizationToken(authorizationToken, region);
+// Define the custom domain endpoint for your Speech resource.
+auto endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
+
+// Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
+auto speechConfig = SpeechConfig::FromEndpoint(endpoint, browserCredential);
 ```
 
 ### TranslationRecognizer
 
-For the ```TranslationRecognizer```, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
+For the ```TranslationRecognizer```, use an appropriate instance of [TokenCredential](https://github.com/Azure/azure-sdk-for-cpp/tree/main/sdk/identity/azure-identity) for authentication. Along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), use these credentials to create a ```SpeechTranslationConfig``` object.
 
 ```cpp
-std::string resourceId = "Your Resource ID";
-std::string aadToken = "Your Microsoft Entra access token";
-std::string region = "Your Speech Region";
+auto browserCredential = std::make_shared<Azure::Identity::InteractiveBrowserCredential>();
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-auto authorizationToken = "aad#" + resourceId + "#" + aadToken;
-auto speechConfig = SpeechTranslationConfig::FromAuthorizationToken(authorizationToken, region);
+// Define the custom domain endpoint for your Speech resource
+auto endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
+
+// Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
+auto speechConfig = SpeechTranslationConfig::FromEndpoint(endpoint, browserCredential);
 ```
 
 ::: zone-end
@@ -281,15 +282,16 @@ SpeechConfig speechConfig = SpeechTranslationConfig.fromEndpoint(new java.net.UR
 
 ### SpeechSynthesizer
 
-For ```SpeechSynthesizer```, objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For `SpeechSynthesizer` object, use an appropriate instance of [TokenCredential](/dotnet/api/azure.core.tokencredential) for authentication. Along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), use these credentials to create a `SpeechConfig` object.
 
 ```Java
-String resourceId = "Your Resource ID";
-String region = "Your Region";
+TokenCredential browserCredential = new InteractiveBrowserCredentialBuilder().build();
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-String authorizationToken = "aad#" + resourceId + "#" + token;
-SpeechConfig speechConfig = SpeechConfig.fromAuthorizationToken(authorizationToken, region);
+// Define the custom domain endpoint for your Speech resource.
+String endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
+
+// Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
+SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new java.net.URI(endpoint), browserCredential);
 ```
 ::: zone-end
 
@@ -301,11 +303,11 @@ For ```SpeechRecognizer```, ```ConversationTranscriber``` objects, use an approp
 ```Python
 browserCredential = InteractiveBrowserCredential()
 
-// Define the custom domain endpoint for your Speech resource.
+# Define the custom domain endpoint for your Speech resource.
 custom_endpoint = "https://{your custom name}.cognitiveservices.azure.com/"
 
-// Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
-speechConfig = SpeechConfig(token_credential=credential, endpoint=custom_endpoint)
+# Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
+speechConfig = SpeechConfig(token_credential=browserCredential, endpoint=custom_endpoint)
 ```
 
 ### TranslationRecognizer
@@ -315,72 +317,26 @@ For ```TranslationRecognizer``` object, use an appropriate instance of [TokenCre
 ```Python
 browserCredential = InteractiveBrowserCredential()
 
-// Define the custom domain endpoint for your Speech resource
+# Define the custom domain endpoint for your Speech resource
 custom_endpoint = "https://{your custom name}.cognitiveservices.azure.com/"
 
-// Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
-speechTranslationConfig = SpeechTranslationConfig(token_credential=credential, endpoint=custom_endpoint)
+# Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
+speechTranslationConfig = SpeechTranslationConfig(token_credential=browserCredential, endpoint=custom_endpoint)
 ```
 
 ### SpeechSynthesizer
 
-For ```SpeechSynthesizer``` object, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For the ```SpeechSynthesizer``` object, use an appropriate instance of [TokenCredential](/dotnet/api/azure.core.tokencredential) for authentication. Along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), use these elements to create a ```SpeechConfig``` object.
 
 ```Python
-resourceId = "Your Resource ID"
-region = "Your Region"
-# You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-authorizationToken = "aad#" + resourceId + "#" + aadToken.token
-speechConfig = SpeechConfig(auth_token=authorizationToken, region=region)
+browserCredential = InteractiveBrowserCredential()
+
+# Define the custom domain endpoint for your Speech resource.
+custom_endpoint = "https://{your custom name}.cognitiveservices.azure.com/"
+
+# Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
+speechConfig = SpeechConfig(token_credential=browserCredential, endpoint=custom_endpoint)
 ```
-::: zone-end
-
-### VoiceProfileClient
-To use the ```VoiceProfileClient``` with Microsoft Entra authentication, use the custom domain name created above.
-
-::: zone pivot="programming-language-csharp"
-```C#
-string customDomainName = "Your Custom Name";
-string hostName = $"https://{customDomainName}.cognitiveservices.azure.com/";
-string token = "Your Microsoft Entra access token";
-
-var config =  SpeechConfig.FromHost(new Uri(hostName));
-
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-var authorizationToken = $"aad#{resourceId}#{aadToken}";
-config.AuthorizationToken = authorizationToken;
-```
-::: zone-end
-
-::: zone pivot="programming-language-cpp"
-```cpp
-std::string customDomainName = "Your Custom Name";
-std::string aadToken = "Your Microsoft Entra access token";
-
-auto speechConfig = SpeechConfig::FromHost("https://" + customDomainName + ".cognitiveservices.azure.com/");
-
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-auto authorizationToken = "aad#" + resourceId + "#" + aadToken;
-speechConfig->SetAuthorizationToken(authorizationToken);
-```
-::: zone-end
-
-::: zone pivot="programming-language-java"
-```Java
-String aadToken = "Your Microsoft Entra access token";
-String customDomainName = "Your Custom Name";
-String hostName = "https://" + customDomainName + ".cognitiveservices.azure.com/";
-SpeechConfig speechConfig = SpeechConfig.fromHost(new URI(hostName));
-
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-String authorizationToken = "aad#" + resourceId + "#" + token;
-
-speechConfig.setAuthorizationToken(authorizationToken);
-```
-::: zone-end
-
-::: zone pivot="programming-language-python"
-The ```VoiceProfileClient``` isn't available with the Speech SDK for Python.
 ::: zone-end
 
 > [!NOTE]

@@ -2,10 +2,10 @@
 titleSuffix: Foundry Tools
 #services: cognitive-services
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 To get custom text classification project details, submit a **GET** request using the following URL and headers. Replace the placeholder values with your own values.   

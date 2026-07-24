@@ -250,9 +250,9 @@ A user might want to interrupt the assistant's response or ask the assistant to 
 
 ## Image input
 
-The GPT realtime models support image input as part of the conversation. The model can ground responses in what the user is currently seeing. You can send images to the model as part of a conversation item. The model can then generate responses that reference the images.
+The GPT real-time models support image input as part of the conversation. The model can ground responses in what the user is currently seeing. You can send images to the model as part of a conversation item. The model can then generate responses that reference the images.
 
-The following example json body adds an image to the conversation:
+The following example JSON body adds an image to the conversation:
 
 ```json
 {
@@ -277,7 +277,7 @@ To enable MCP support in a Realtime API session, provide the URL of a remote MCP
 
 You can easily enhance your agent's functionality by specifying a different MCP server in the session configuration—any tools available on that server will be accessible immediately.
 
-The following example json body sets up an MCP server:
+The following example JSON body sets up an MCP server:
 
 ```json
 {
@@ -300,7 +300,7 @@ The following example json body sets up an MCP server:
 
 Here's an example of the event sequence for a simple text-in, audio-out conversation:
 
-When you connect to the `/realtime` endpoint, the server responds with a `session.created` event. The maximum session duration is 30 minutes.
+When you connect to the `/realtime` endpoint, the server responds with a `session.created` event. The maximum session duration is 60 minutes.
 
 ```json
 {
@@ -507,13 +507,13 @@ For more information about quotas, see [Azure OpenAI quotas and limits](../quota
 
 ### Session timeout
 
-Realtime sessions have a maximum duration of **30 minutes**. To handle long interactions:
+Realtime sessions have a maximum duration of **60 minutes**. To handle long interactions:
 - Monitor the `session.created` event's `expires_at` field.
 - Implement session renewal logic before timeout.
 - Save conversation context to restore state in a new session.
 
 ## Related content
 
-* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
+* Try the [real-time audio quickstart](../how-to/realtime-audio-websockets.md#voice-agent-quickstart).
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

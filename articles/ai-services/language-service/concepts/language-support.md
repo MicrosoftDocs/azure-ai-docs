@@ -3,10 +3,10 @@ title: Language support for language features
 titleSuffix: Foundry Tools
 description: This article explains which natural languages are supported by the different features of Azure Language in Foundry Tools.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 04/09/2026
 ms.author: lajanuar
 ---
 # Language support for Language features

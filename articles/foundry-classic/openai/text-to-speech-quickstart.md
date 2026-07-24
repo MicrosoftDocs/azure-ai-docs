@@ -1,7 +1,7 @@
 ---
 title: "Text to speech with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Convert text to speech using Azure OpenAI voices. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: quickstart
@@ -9,6 +9,7 @@ ms.date: 01/30/2026
 ms.author: pafarley
 author: PatrickFarley
 recommendations: false
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-rest-js-cs
 
 ---
@@ -19,7 +20,7 @@ zone_pivot_groups: programming-languages-rest-js-cs
 
 This quickstart shows you how to convert text to speech using Azure OpenAI voices.  
 
-The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI reference documentation for text to speech](./reference.md#text-to-speech-preview).
+The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI reference documentation for text to speech](./reference-preview.md#speech---create).
 
 ::: zone pivot="rest-api"
 
@@ -54,5 +55,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Learn more about how to work with text to speech with Azure OpenAI in the [Azure OpenAI reference documentation](./reference.md#text-to-speech-preview).
+* Learn more about how to work with text to speech with Azure OpenAI in the [Azure OpenAI reference documentation](./reference-preview.md#speech---create).
 * For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

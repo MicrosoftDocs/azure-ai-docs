@@ -1,7 +1,7 @@
 ---
 title: "Connect Azure Speech in Foundry Tools to an agent"
 description: "Connect Azure Speech in Foundry Tools to an agent by using an MCP server for speech-to-text and text-to-speech in Foundry Agent Service."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -26,7 +26,7 @@ Azure Speech in Foundry Tools lets your agent convert speech to text and generat
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../ai-services/multi-service-resource.md) created in a [supported region](../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and is used by the Speech MCP server.
-- Your Foundry resource must support MCP tools in Foundry Agent Service. MCP tools require the Agent Service Enterprise tier. For the list of regions and models that support MCP tools, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
+- Your Foundry resource must support MCP tools in Foundry Agent Service. MCP tools require the Agent Service Enterprise tier. For the list of regions and models that support MCP tools, see [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 > [!NOTE]
 > If you receive the error `Invalid tool value(s): mcp. Use the Enterprise offerings to access these tool(s)` when you connect the tool, your resource doesn't support MCP. Create a new Foundry resource that supports the Enterprise tier in a supported region.

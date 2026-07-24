@@ -1,11 +1,11 @@
-﻿---
+---
 title: "Quickstart: Synchronous Document Translation"
 titleSuffix: Foundry Tools
 description: Learn how to use the synchronous translation process of the Document Translation API to translate a single document without Azure Blob Storage. The translated document is returned directly in the response.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: quickstart
 ms.date: 06/02/2026
 ai-usage: ai-assisted

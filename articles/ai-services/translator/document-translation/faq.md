@@ -3,8 +3,8 @@ title: Frequently asked questions - Azure Translator Document translation
 titleSuffix: Foundry Tools
 description: Get answers to Azure Translator in Foundry Tools Document translation frequently asked questions.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: faq
 ms.date: 06/02/2026
 ms.author: lajanuar

@@ -11,7 +11,7 @@ ms.topic: how-to
 ms.date: 11/21/2025
 ms.reviewer: estraight
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 ---
 

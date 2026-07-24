@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Configure security features such as customer-managed keys and managed identities to secure your data and applications.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article

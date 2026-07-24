@@ -1,7 +1,7 @@
 ﻿---
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 06/02/2026
 ms.author: lajanuar

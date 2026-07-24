@@ -3,7 +3,7 @@ title: "Azure role-based access control - Custom Vision"
 titleSuffix: Foundry Tools
 description: This article will show you how to configure Azure role-based access control for your Custom Vision projects.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
 ms.date: 01/29/2025

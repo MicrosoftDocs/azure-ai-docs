@@ -3,8 +3,8 @@ title: Azure Translator in Foundry Tools usage and data metrics
 titleSuffix: Foundry Tools
 description: Reference documentation for Azure Translator Azure Monitor Metrics.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar

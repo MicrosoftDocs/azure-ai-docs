@@ -3,10 +3,10 @@ title: Frequently Asked Questions
 titleSuffix: Foundry Tools
 description: Use this article to quickly get the answers to FAQ about conversational language understanding
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: faq
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: mode-other
 ---
@@ -41,7 +41,7 @@ See the [language support](./language-support.md) article.
 
 ## How do I get more accurate results for my project?
 
-Take a look at the [recommended guidelines](./how-to/build-schema.md#guidelines-and-recommendations) for information on improving accuracy.
+Take a look at the [recommended guidelines](./how-to/build-train-deploy-model.md#guidelines-and-recommendations) for information on improving accuracy.
 
 ## How do I get predictions in different languages?
 
@@ -69,11 +69,11 @@ Yes, you can use [orchestration workflow](../orchestration-workflow/overview.md)
 
 ## How do I handle out of scope or domain utterances that aren't relevant to my intents?
 
-Add any out of scope utterances to the [none intent](./concepts/none-intent.md).
+Add any out-of-scope utterances to the [none intent](./concepts/evaluation-metrics.md#none-intent).
 
 ## How do I control the none intent?
 
-You can control the none intent threshold from UI through the project settings, by changing the none intent threshold value. The values can be between 0.0 and 1.0. Also, you can change this threshold from the APIs by changing the *confidenceThreshold* in settings object. Learn more about [none intent](./concepts/none-intent.md#none-score-threshold)
+You can control the none intent threshold from the UI through the project settings by changing the none intent threshold value. Set the values between 0.0 and 1.0. Also, you can change this threshold from the APIs by changing the *confidenceThreshold* in the settings object. For more information, see [none intent](./concepts/evaluation-metrics.md#none-score-threshold).
 
 ## Is there any SDK support?
 
@@ -87,7 +87,7 @@ Yes, only for predictions, and samples are available for [Python](https://aka.ms
 |Standard training     | Faster training times for quicker model iteration.        | Can only train projects in English.        | Included in your [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).        |
 |Advanced training     | Slower training times using fine-tuned neural network transformer models.        | Can train [multilingual projects](language-support.md#multi-lingual-option).         | May incur [added charges](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
 
-For more information, *see* [training modes](how-to/train-model.md#training-modes).
+For more information, *see* [training modes](how-to/build-train-deploy-model.md#training-modes).
 
 ## Are there APIs for this feature?
 

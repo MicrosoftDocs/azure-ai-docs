@@ -3,8 +3,8 @@ title: Migrate from Translator v3 to the latest Azure Translator in Foundry Tool
 titleSuffix: Foundry Tools
 description: This article provides the steps to help you migrate from Azure Translator v3 to 2025-05-01-preview text translation API.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: concept-article
 ms.date: 06/02/2026
 ms.author: lajanuar

@@ -1,7 +1,7 @@
 ---
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 06/02/2026
 ms.author: lajanuar
@@ -79,6 +79,13 @@ Each PII capability uses a dedicated model. On the **Playground** tab, select yo
 
 1. Select sample input, use the paperclip icon to upload a file, or enter your own input data.
 
+    > [!NOTE]
+    > For the **Document PII redaction** capability, the playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types—including names, addresses, financial IDs, and health identifiers—without uploading your own data. Document input is a native file (`.pdf`, `.docx`, or `.txt`), and the output is a redacted document rendering shown side-by-side with the source. This differs from text and conversation workflows, where entities are highlighted inline within the input text.
+    >
+    > Document processing is handled by the existing asynchronous native-file document-based PII pipeline. The playground uses the same Document PII model and policies as the production API, so results align with production behavior.
+    >
+    > After the job completes, a single view lets you compare detection results across entity types and review confidence scores. When you're ready, transition from curated samples to uploading live documents for real-content testing.
+
 1. In the **Configure** side panel, set your preferred options. Available options vary by capability:
 
     | Option | Description |
@@ -92,7 +99,7 @@ Each PII capability uses a dedicated model. On the **Playground** tab, select yo
     | **Policy type** | Choose the type of redaction policy to apply (character mask, entity mask, or no mask). |
     | **Specify redaction character** | Choose the character used to mask sensitive text. Available with the **CharacterMask** policy. |
 
-1. Select **Detect**. Detected entities are highlighted in the input and you can review the accompanying details in formatted text or as a JSON response.
+1. Select **Detect**. For text and conversation capabilities, detected entities are highlighted in the input and you can review the accompanying details in formatted text or as a JSON response. For the document capability, the redacted document is displayed side-by-side with the source and entity details appear in the **Details** pane.
 
     | Field | Description |
     | --- | --- |

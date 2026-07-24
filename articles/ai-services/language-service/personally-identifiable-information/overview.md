@@ -3,12 +3,13 @@ title: What is the Personally Identifiable Information (PII) detection feature i
 titleSuffix: Foundry Tools
 description: An overview of the PII detection feature in Azure Language, which helps you extract entities and sensitive information (PII) in text.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -17,7 +18,7 @@ ms.custom: language-service-pii
 Personally Identifiable Information (PII) detection is an Azure Language [core capability](../overview.md#core-capabilities) that helps you identify, classify, and redact sensitive data across text, conversations, and native documents. Submit input text to the service and receive structured output with entity categories, confidence scores, and redacted results based on your API configuration. You can use this capability to implement privacy controls, reduce sensitive data exposure, and support compliance requirements in application and data-processing workflows.
 
 > [!TIP]
-> Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data.
+> Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data. The Document PII playground ships with curated sample documents and expected outputs, so you can evaluate detection of common entity types - including names, addresses, financial IDs, and health identifiers - without uploading your own data.
 
 ## Video demonstration
 
@@ -86,6 +87,8 @@ Use the following table to select the right experience before you start implemen
 
 [!INCLUDE [development options](./includes/development-options.md)]
 
+When using the Microsoft Foundry portal for Document PII, the playground provides a single view to compare detection results across entity types. You can start with the curated sample content, then transition to uploading live documents when you're ready to test with real content.
+
 [!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
 
 ## What differs across feature types?
@@ -97,12 +100,9 @@ All feature types use predefined entity categories and return confidence-scored 
 * **Document-based PII** is asynchronous and optimized for processing native files while preserving document structure.
 
 > [!NOTE]
-> **Document-based PII** focuses on native-file redaction workflows. Some text-only options are not available in every document API version.
+> **Document-based PII** focuses on native-file redaction workflows. Some text-only options aren't available in every document API version. The Document PII playground uses the same model and policies as the production API, so playground results match production behavior for the same inputs and configuration.
 
 ## GA and preview guidance
-
-> [!IMPORTANT]
-> Text PII API (2026-05-15-preview) and Conversation PII API (2026-11-15-preview) and **Conversation PII model** (2026-04-15-preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum ("DPA")](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 To avoid integration issues, use API versions and features that match your deployment target:
 

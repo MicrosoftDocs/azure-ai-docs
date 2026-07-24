@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Delete documents in a search index
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to delete whole documents from a search index on Azure AI Search using REST APIs or Azure SDKs. It covers these tasks:
 
 + Understand when manual deletion is required
@@ -267,7 +269,7 @@ The Azure SDK for JavaScript/TypeScript provides the following APIs for document
 The Azure SDK for Java provides the following APIs for document deletion:
 
 + [IndexActionType](/java/api/com.azure.search.documents.models.indexactiontype)
-+ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
++ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedsender)
 
 Code sample: [IndexContentManagementExample.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/IndexContentManagementExample.java)
 
@@ -382,7 +384,7 @@ The Azure SDK for JavaScript/TypeScript provides the following APIs for bulk doc
 The Azure SDK for Java provides the following APIs for bulk document deletion:
 
 + [IndexActionType](/java/api/com.azure.search.documents.models.indexactiontype)
-+ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
++ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedsender)
 
 Code sample: [IndexContentManagementExample.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/IndexContentManagementExample.java)
 

@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how to use the asynchronous batch translation process of the Document Translation API to translate multiple documents or large files in parallel using Azure Blob Storage for input and output.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: quickstart
-ms.date: 06/02/2026
+ms.date: 07/14/2026
 ai-usage: ai-assisted
 ---
 
@@ -65,7 +65,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
 
 ### Translate images in Word and PowerPoint documents
 
-Use this option to translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) files. Set `translateWithinImage` to `true` in the `options` object.
+Use this option to translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) files. Set `translateTextWithinImage` to `true` in the `options` object.
 
 ```bash
 curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
@@ -85,7 +85,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
         ]
       }
     ],
-    "options": { "translateWithinImage": true }
+    "options": { "translateTextWithinImage": true }
   }'
 ```
 

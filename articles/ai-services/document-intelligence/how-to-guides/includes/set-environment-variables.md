@@ -2,11 +2,11 @@
 title: Environment variables in Windows, macOS, and Linux
 description: How to set environment variables for keys and endpoint
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.custom: linux-related-content
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/17/2026
 ms.author: lajanuar
 ---
 

@@ -3,8 +3,8 @@ title: Create and manage a workspace—Custom Translator
 titleSuffix: Foundry Tools
 description: How to create and manage workspaces
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: how-to

@@ -1,11 +1,11 @@
 ---
 title: "Tutorial: Create an FAQ bot for multiple categories with Azure AI Bot Service"
 description: In this tutorial, create a no code FAQ Bot for production use cases with custom question answering and Azure AI Bot Service.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering, cogserv-non-critical-language
 ---
 # Add multiple categories to your FAQ bot

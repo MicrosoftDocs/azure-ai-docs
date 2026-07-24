@@ -5,11 +5,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/27/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Reference a path to enriched nodes using context and source properties an Azure AI Search skillset
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 During skillset execution, the engine builds an in-memory [enrichment tree](cognitive-search-working-with-skillsets.md#enrichment-tree) that captures each enrichment, such as recognized entities or translated text. In this article, learn how to reference an enrichment node in the enrichment tree so that you can pass output to downstream skills or specify an output field mapping for a search index field. 
 
@@ -116,7 +119,7 @@ When annotations are arrays or collections of strings, you might want to target 
 
 Sometimes you need to group all annotations of a particular type to pass them to a particular skill. Consider a hypothetical custom skill that identifies the most common last name from all the last names extracted in Example 2. To provide just the last names to the custom skill, specify the context as `"/document"` and the input as `"/document/people/*/lastname"`.
 
-Notice that the cardinality of `"/document/people/*/lastname"` is larger than that of document. There might be 10 lastname nodes while there's only one document node for this document. In that case, the system will automatically create an array of  `"/document/people/*/lastname"` containing all of the elements in the document.
+Notice that the cardinality of `"/document/people/*/lastname"` is larger than that of document. There might be 10 lastname nodes while there's only one document node for this document. In that case, the system automatically creates an array of `"/document/people/*/lastname"` containing all of the elements in the document.
 
 ```json
   {

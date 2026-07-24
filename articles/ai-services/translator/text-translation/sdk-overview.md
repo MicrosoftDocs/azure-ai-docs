@@ -3,8 +3,8 @@ title: Azure Text translation SDKs
 titleSuffix: Foundry Tools
 description: Azure Text translation software development kits (SDKs) expose Text translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 06/02/2026

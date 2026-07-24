@@ -3,8 +3,8 @@ title: "Use Azure Translator in Foundry Tools APIs"
 titleSuffix: Foundry Tools
 description: "Learn to translate text, transliterate text, detect language, and more with the Translator service. Examples are provided in C#, Java, JavaScript, and Python."
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.author: lajanuar

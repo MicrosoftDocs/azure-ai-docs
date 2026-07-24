@@ -3,7 +3,7 @@ title: Foundry Agent Service Limitations for Per-User Trimming
 description: Important box about the limitations of using Foundry Agent Service with Foundry IQ for per-user trimming security trimming.
 author: haileytap
 ms.author: haileytapia
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 01/27/2026

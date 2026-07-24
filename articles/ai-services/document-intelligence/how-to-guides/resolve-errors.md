@@ -3,10 +3,10 @@ title: "Reference: Document Intelligence Errors"
 titleSuffix: Foundry Tools
 description: Learn how errors are represented in Document Intelligence and find a list of possible errors returned by the service.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: error-reference
-ms.date: 11/18/2025
+ms.date: 04/18/2026
 ms.author: paulhsu
 monikerRange: '>=doc-intel-3.0.0'
 ---

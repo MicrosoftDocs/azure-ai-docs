@@ -3,7 +3,7 @@ title: Service limits - Anomaly Detector service
 titleSuffix: Azure AI services
 description: Service limits for Anomaly Detector service, including Univariate Anomaly Detection and Multivariate Anomaly Detection.
 author: jr-MS
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: limits-and-quotas
 ms.date: 06/12/2025

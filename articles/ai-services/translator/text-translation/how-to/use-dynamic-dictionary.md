@@ -3,8 +3,8 @@ title: Dynamic Dictionary - Azure Translator in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn how to use the dynamic dictionary feature of the Azure Translator.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.author: lajanuar

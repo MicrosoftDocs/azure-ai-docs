@@ -7,7 +7,7 @@ ms.author: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 ---
 

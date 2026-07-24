@@ -3,8 +3,8 @@ title: Use the conversation PII playground in Microsoft Foundry
 FoundrytitleSuffix: Azure AI Language
 description: Test conversation PII detection and redaction interactively in the Azure AI Foundry playground without writing code.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
 ms.date: 05/18/2026
 ms.author: lajanuar

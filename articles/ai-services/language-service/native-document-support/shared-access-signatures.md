@@ -1,12 +1,12 @@
 ---
 title: Shared access signature (SAS) tokens for storage blobs
 description: Create shared access signature tokens (SAS) for containers and blobs with Azure portal.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ---
 # SAS tokens for your storage containers
 

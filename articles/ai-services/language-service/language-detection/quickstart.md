@@ -3,8 +3,8 @@ title: "Quickstart: Detect the language of text"
 titleSuffix: Foundry Tools
 description: Use Azure Language in Foundry Tools to detect the language of text with client libraries, the REST API, or the Microsoft Foundry portal.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
 ms.date: 02/06/2026
 ms.author: lajanuar

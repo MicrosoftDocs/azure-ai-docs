@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted

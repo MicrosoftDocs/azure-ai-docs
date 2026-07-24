@@ -3,7 +3,8 @@ title: Create a Knowledge Store Using REST
 description: Use the REST APIs to create an Azure AI Search knowledge store for persisting AI enrichments from a skillset.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 07/21/2026
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -11,6 +12,8 @@ ms.custom:
 ---
 
 # Create a knowledge store using REST
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!NOTE]
 > *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.

@@ -2,15 +2,15 @@
 title: "Connect to an A2A agent endpoint from Foundry Agent Service"
 description: "Connect your Foundry agent to a remote Agent2Agent (A2A) endpoint. Configure connections, authentication, and use SDK integration to call external A2A agents."
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/03/2026
-author: jonburchel
-reviewer: lindazqli
-ms.author: jburchel
-ms.reviewer: zhuoqunli
+author: mattwojo
+reviewer: zhuoqunli
+ms.author: mattwoj
+ms.reviewer: lindazqli
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-to-agent
@@ -28,10 +28,7 @@ You can extend the capabilities of your Microsoft Foundry agent by connecting to
 > [!TIP]
 > This article covers how to **call** a remote A2A endpoint from your Foundry agent. If you want to **expose** your own agent as an A2A endpoint that other agents can call, see [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) later in this article.
 
-Connecting agents via the A2A tool versus a multi-agent workflow:
-
-- **Using the A2A tool**: When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.
-- **Using a multi-agent workflow**: When Agent A calls Agent B through a workflow or other multi-agent orchestration, Agent B takes full responsibility for answering the user. Agent A is out of the loop. Agent B handles all subsequent user input. For more information, see [Build a workflow in Microsoft Foundry](../../concepts/workflow.md).
+When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.
 
 > [!IMPORTANT]
 > **Migrating from `agent.as_tool` or Connected Agents?** The Connected Agents tool from the previous (classic) Agents API isn't available in the new Foundry Agent Service. To use one Foundry agent from another, choose one of the following replacements:
@@ -335,7 +332,7 @@ The top-level agent delegates the weather question to the `WeatherAgent` sub-age
 Le temps à Amsterdam est nuageux avec une température maximale de 15 °C.
 ```
 
-For the full sample, see [Agent_Step11_AsFunctionTool](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step11_AsFunctionTool).
+For the full sample, see [Agent_Step11_AsFunctionTool](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step11_AsFunctionTool).
 
 ---
 
@@ -502,7 +499,7 @@ curl --request PUT \
     "name": "{{connection_name}}",
     "type": "Microsoft.MachineLearningServices/workspaces/connections",
     "properties": {
-      "authType": "AgenticIdentity",
+      "authType": "AgenticIdentityToken",
       "group": "ServicesAndApps",
       "category": "RemoteA2A",
       "expiryTime": null,
@@ -668,7 +665,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
@@ -789,6 +786,5 @@ The A2A tool allows you to pass custom headers, such as authentication keys or s
 
 - [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md)
 - [Register and manage custom agents](../../../control-plane/register-custom-agent.md)
-- [Build a workflow in Microsoft Foundry](../../concepts/workflow.md)
 - [Best practices for tools](../../concepts/tool-best-practice.md)
 - [Foundry project REST API (preview)](../../../reference/foundry-project-rest-preview.md)

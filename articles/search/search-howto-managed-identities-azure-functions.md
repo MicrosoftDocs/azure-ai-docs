@@ -4,13 +4,16 @@ description: Learn how to set up an indexer connection to an Azure Function usin
 ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 07/21/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ms.custom:
   - subject-rbac-steps
 ---
 
 # Authenticate to an Azure Function App using "Easy Auth" (Azure AI Search)
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This article explains how to set up an indexer connection to an Azure Function app using the [built-in authentication capabilities of Azure App Service](/azure/app-service/overview-authentication-authorization), also known as "Easy Auth." Azure Function apps are a great solution for hosting Custom Web APIs that an Azure AI Search service can use to enrich content ingested during an indexer run or, if you're using a custom embedding model for [integrated vectorization](vector-search-integrated-vectorization.md), vectorize content in a search query.
 
@@ -34,7 +37,7 @@ The app registration should be configured with an application ID URI, which can 
 
 ### Set supported account types for authentication
 
-Navigate to the **Authentication** section of the app registration and configure the **supported account types** so that only accounts in the same organization directory as the app registration can utilize it for authentication.
+Go to the **Authentication** section of the app registration and configure the **supported account types** so that only accounts in the same organization directory as the app registration can use it for authentication.
 
 [ ![Screenshot of an app registration with supported account types configured.](./media/search-howto-managed-identities-azure-functions/authentication-supported-account.png) ](./media/search-howto-managed-identities-azure-functions/authentication-supported-account.png#lightbox)
 
@@ -127,7 +130,7 @@ Here's an example to call into the same function, where the specific user assign
 
 ## Run the indexer/vectorizer to verify permissions
 
-For Custom Web API skills, permissions are validated during indexer run-time. For vectorizer, they're validated when a vector query is issued utilizing the Custom Web API vectorizer. To rule out any specific issues with authentication, you can test by disabling the authentication provider on the Azure Function app and ensuring that calls from indexer/vectorizer succeed.
+For Custom Web API skills, permissions are validated during indexer run-time. For vectorizer, they're validated when a vector query is issued using the Custom Web API vectorizer. To rule out any specific issues with authentication, you can test by disabling the authentication provider on the Azure Function app and ensuring that calls from indexer/vectorizer succeed.
 
 * If authentication issues persist, ensure that the right identity information - namely Application ID, Object (principal) ID for the Azure AI Search service's identity is specified in the Azure Function app's authentication provider.
 

@@ -3,10 +3,10 @@ title: 'Tutorial: Integrate Power BI with key phrase extraction'
 titleSuffix: Foundry Tools
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom:
   - language-service-key-phrase
@@ -20,6 +20,7 @@ Microsoft Power BI Desktop is a free application that lets you connect to, trans
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
+>
 > * Use Power BI Desktop to import and transform data
 > * Create a custom function in Power BI Desktop
 > * Integrate Power BI Desktop with the Key Phrase Extraction feature of Language
@@ -28,11 +29,11 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- Microsoft Power BI Desktop. [Download at no charge](https://powerbi.microsoft.com/get-started/).
-- A Microsoft Azure account. [Create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) or [sign in](https://portal.azure.com/).
-- A Language resource. If you don't have one, you can [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics).
-- The Language resource key that was generated for you when you created the resource.
-- Customer comments. You can [use our example data](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/tutorials/comments.csv) or your own data. This tutorial assumes you're using our example data.
+* Microsoft Power BI Desktop. [Download at no charge](/power-bi/fundamentals/desktop-getting-started).
+* A Microsoft Azure account. [Create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) or [sign in](https://portal.azure.com/).
+* A Language resource. If you don't have one, you can [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics).
+* The Language resource key that was generated for you when you created the resource.
+* Customer comments. You can [use our example data](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/tutorials/comments.csv) or your own data. This tutorial assumes you're using our example data.
 
 ## Load customer data
 

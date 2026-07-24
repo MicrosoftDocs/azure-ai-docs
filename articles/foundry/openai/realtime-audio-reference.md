@@ -1,7 +1,7 @@
 ---
 title: "Realtime API reference"
 description: "Reference for the Azure OpenAI Realtime API events, with notes on Azure-specific deviations from the OpenAI specification."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: reference

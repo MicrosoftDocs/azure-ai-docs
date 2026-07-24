@@ -7,10 +7,10 @@ metadata:
   titleSuffix: Foundry Tools
   description: Azure Translator is a cloud-based machine translation service you can use to translate text through a simple REST API call. The service uses modern neural machine translation technology and offers statistical machine translation technology. Custom Translator is an extension of Translator, which allows you to build neural translation systems. The customized translation system can be used to translate text with the Translator or Microsoft Speech Services.
   author: laujan
-  manager: nitinme
-  ms.service: azure-ai-translator
+  manager: mcleans
+  ms.service: azure-translator-foundry-tools
   ms.topic: landing-page
-  ms.date: 12/05/2025
+  ms.date: 04/09/2026
   ms.author: lajanuar
 
 

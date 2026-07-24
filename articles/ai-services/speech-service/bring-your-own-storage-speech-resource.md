@@ -2,7 +2,7 @@
 title: Set up the Bring your own storage (BYOS) Speech resource
 titleSuffix: Foundry Tools
 description: Learn how to set up Bring your own storage (BYOS) Speech resource.
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to

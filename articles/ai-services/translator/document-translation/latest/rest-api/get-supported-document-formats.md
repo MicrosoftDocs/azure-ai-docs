@@ -1,11 +1,11 @@
-﻿---
+---
 title: Get Supported Document Formats
 titleSuffix: Foundry Tools
 description: Retrieve the list of document formats supported by the Document Translation service for translation.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ai-usage: ai-assisted

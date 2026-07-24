@@ -3,7 +3,7 @@ title: Get a speaker profile ID for the personal voice - Speech service
 titleSuffix: Foundry Tools
 description: Learn about how to Get a speaker profile ID for the personal voice.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom:
   - build-2024

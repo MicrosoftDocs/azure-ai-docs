@@ -1,7 +1,7 @@
 ---
 title: Quota tier 6
 description: Quota tier limits for tier 6
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
@@ -63,6 +63,12 @@ ai-usage: ai-assisted
 | gpt-5.4-nano                   | GlobalStandard    | 225,000     | 225,000,000 |
 | gpt-5.5                        | DataZoneStandard  | 4,000       | 4,000,000   |
 | gpt-5.5                        | GlobalStandard    | 15,000      | 15,000,000  |
+| gpt-5.6-luna                   | DataZoneStandard  | 5,000       | 5,000,000   |
+| gpt-5.6-luna                   | GlobalStandard    | 15,000      | 15,000,000  |
+| gpt-5.6-sol                    | DataZoneStandard  | 5,000       | 5,000,000   |
+| gpt-5.6-sol                    | GlobalStandard    | 15,000      | 15,000,000  |
+| gpt-5.6-terra                  | DataZoneStandard  | 5,000       | 5,000,000   |
+| gpt-5.6-terra                  | GlobalStandard    | 15,000      | 15,000,000  |
 | gpt-chat-latest                | GlobalStandard    | 80,000      | 8,000,000   |
 | gpt-audio                      | GlobalStandard    | 45000 / 10s | 45,000,000  |
 | gpt-image-1                    | GlobalStandard    | 90          | -           |

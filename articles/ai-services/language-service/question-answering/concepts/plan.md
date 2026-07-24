@@ -1,11 +1,12 @@
 ---
 title: Plan your app - custom question answering
-description: Learn how to plan your custom question answering app. Understand how custom question answering works and interacts with other Azure services and some project concepts.
-ms.service: azure-ai-language
+description: Learn how to plan your custom question answering app, including how it interacts with other Azure services, project concepts, and the Azure resources, pricing tiers, and keys it uses.
+ms.service: azure-language-foundry-tools
 author: laujan
 ms.author: lajanuar
 ms.topic: get-started
-ms.date: 12/15/2025
+ms.date: 06/30/2026
+ms.custom: language-service-question-answering
 ---
 
 # Plan your custom question answering app
@@ -14,12 +15,12 @@ To plan your custom question answering app, you need to understand how custom qu
 
 ## Azure resources
 
-Each [Azure resource](azure-resources.md#resource-purposes) created with custom question answering has a specific purpose. Each resource has its own purpose, limits, and [pricing tier](azure-resources.md#pricing-tier-considerations). It's important to understand the function of these resources so that you can use that knowledge into your planning process.
+Each [Azure resource](#resource-purposes) created with custom question answering has a specific purpose. Each resource has its own purpose, limits, and [pricing tier](#pricing-tier-considerations). It's important to understand the function of these resources so that you can use that knowledge in your planning process.
 
 | Resource | Purpose |
 |--|--|
-| [Language resource](azure-resources.md) resource | Authoring, query prediction endpoint and telemetry|
-| [Azure AI Search](azure-resources.md#azure-ai-search-resource) resource | Data storage and search |
+| [Language resource](#resource-purposes) resource | Authoring, query prediction endpoint, and telemetry|
+| [Azure AI Search](#azure-ai-search-resource) resource | Data storage and search |
 
 ### Resource planning
 
@@ -27,7 +28,7 @@ Custom question answering throughput is currently capped at 10 text records per 
 
 ### Language resource
 
-A single language resource with the custom question answering feature enabled can host more than one project. The number of projects is determined via the Azure AI Search pricing tier's quantity of supported indexes. Learn more about the [relationship of indexes to projects](azure-resources.md#index-usage).
+A single language resource with the custom question answering feature enabled can host more than one project. The number of projects is determined by the Azure AI Search pricing tier's quantity of supported indexes. Learn more about the [relationship of indexes to projects](#index-usage).
 
 ### Project size and throughput
 
@@ -37,7 +38,7 @@ Project size control factors:
 * [Azure AI Search resource](/azure/search/search-limits-quotas-capacity) pricing tier limits
 * [Custom question answering limits](./limits.md)
 
-The project query prediction request is controlled via the web app plan and web app. Refer to [recommended settings](azure-resources.md#recommended-settings) to plan your pricing tier.
+The web app plan and web app control the project query prediction request. Refer to [recommended settings](#recommended-settings) to plan your pricing tier.
 
 ### Understand the impact of resource selection
 
@@ -45,7 +46,7 @@ Proper resource selection means your project answers query predictions successfu
 
 If your project isn't functioning properly, it's typically an issue of improper resource management.
 
-Improper resource selection requires investigation to determine which [resource needs to change](azure-resources.md#pricing-tier-considerations).
+Improper resource selection requires investigation to determine which [resource needs to change](#pricing-tier-considerations).
 
 ## Project
 
@@ -145,6 +146,114 @@ A project shares the Azure AI Search index with all other projects on the langua
 
 To have the _same score_ on the `test` and `production` projects, isolate a language resource to a single project. In this architecture, the resource only needs to live as long as the isolated batch test.
 
+## Azure resource details
+
+Custom question answering uses several Azure sources, each with a different purpose. Understanding how they're used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how resources are used _in combination_ allows you to find and fix problems when they occur.
+
+### Resource planning for development and production
+
+> [!TIP]
+> "Knowledge base" and "project" are equivalent terms in custom question answering and can be used interchangeably.
+
+When you first develop a project, in the prototype phase, it's common to have a single resource for both testing and production.
+
+When you move into the development phase of the project, consider:
+
+* How many languages will your project hold?
+* In how many regions do you need your project to be available?
+* How many documents will your system hold in each domain?
+
+### Pricing tier considerations
+
+Typically, consider these three parameters:
+
+* **The throughput you need**:
+
+    * The throughput for custom question answering currently caps at 10 text records per second for both management APIs and prediction APIs.
+
+    * The throughput cap should also influence your **Azure AI Search** selection. For more information, *see* [Azure AI Search](/azure/search/search-sku-tier). Additionally, you might need to adjust Azure AI Search [capacity](/azure/search/search-capacity-planning) with replicas.
+
+* **Size and the number of projects**: Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide the number of projects you need based on the number of different subject domains. One subject domain (for a single language) should be in one project.
+
+    With custom question answering, you have a choice to set up your language resource in a single language or multiple languages.
+
+    > [!IMPORTANT]
+    > You can publish N-1 projects  with a single language resource or N-2 projects with multiple language resources in a single tier. The `N` notation is the maximum indexes allowed in the tier.
+    > Also, check the maximum size and the number of documents allowed per tier.
+
+    For example, if your tier has 15 allowed indexes, you can publish 14 projects of the same language (one index per published project). The 15th index is used for all the projects for authoring and testing. If you choose to have projects in different languages, then you can only publish seven projects.
+
+* **Number of documents as sources**: There are no limits to the number of documents you can add as sources in custom question answering.
+
+The following table gives you some high-level guidelines.
+
+|                            |Azure AI Search | Limitations                      |
+| -------------------------- |------------ | -------------------------------- |
+| **Experimentation**        |Free Tier    | Publish Up to 2-KBs, 50-MB size  |
+| **Dev/Test Environment**   |Basic        | Publish Up to 14-KBs, 2-GB size    |
+| **Production Environment** |Standard     | Publish Up to 49-KBs, 25-GB size |
+
+### Recommended settings
+
+The throughput for custom question answering is currently capped at 10 text records per second for both management APIs and prediction APIs. To target 10 text records per second for your service, use the S1 (one instance) tier of Azure AI Search.
+
+### Keys in custom question answering
+
+The custom question answering feature uses two kinds of keys: **authoring keys** and **Azure AI Search keys**. Use these keys to access the service in your subscription.
+
+Use these keys when making requests to the service through APIs.
+
+|Name|Location|Purpose|
+|--|--|--|
+|Authoring/Subscription key|[Azure portal](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)|These keys are used to access Azure Language APIs). These APIs let you edit the questions and answers in your project, and publish your project. These keys are created when you create a new resource.<br><br>Find these keys on the **Foundry Tools** resource on the **Keys and Endpoint** page.|
+|Azure AI Search Admin Key|[Azure portal](/azure/search/search-security-api-keys)|These keys are used to communicate with the Azure AI Search service deployed in the user's Azure subscription. When you associate an Azure AI Search resource with the custom question answering feature, the admin key is automatically passed to custom question answering. <br><br>You can find these keys on the **Azure AI Search** resource on the **Keys** page.|
+
+#### Find authoring keys in the Azure portal
+
+You can view and reset your authoring keys from the Azure portal, where you added the custom question answering feature in your language resource.
+
+1. Go to the language resource in the Azure portal and select the resource that has the *Foundry Tools* type:
+
+    > [!div class="mx-imgBorder"]
+    > ![Screenshot of custom question answering resource list.](../media/qnamaker-how-to-setup-service/resources-created-question-answering.png)
+
+2. Go to **Keys and Endpoint**:
+
+    > [!div class="mx-imgBorder"]
+    > ![Screenshot of subscription key.](../media/qnamaker-how-to-key-management/custom-qna-keys-and-endpoint.png)
+
+#### Management service region
+
+In custom question answering, both the management and the prediction services are colocated in the same region.
+
+### Resource purposes
+
+Each Azure resource created with custom question answering feature has a specific purpose:
+
+* Language resource (Also referred to as a Text Analytics resource depending on the context of where you're evaluating the resource.)
+* Azure AI Search resource
+
+#### Language resource purpose
+
+The language resource with custom question answering feature provides access to the authoring and publishing APIs, hosts the ranking runtime and provides telemetry.
+
+#### Azure AI Search resource
+
+The [Azure AI Search](/azure/search/) resource is used to:
+
+* Store the question and answer pairs
+* Provide the initial ranking (ranker #1) of the question and answer pairs at runtime
+
+##### Index usage
+
+You can publish N-1 projects of a single language or N/2 projects of different languages in a particular tier, where N is the maximum number of indexes allowed in the Azure AI Search tier. Also check the maximum size and the number of documents allowed per tier.
+
+For example, if your tier has 15 allowed indexes, you can publish 14 projects of the same language (one index per published project). The 15th index is used for all the projects for authoring and testing. If you choose to have projects in different languages, then you can only publish seven projects.
+
+##### Language usage
+
+With custom question answering, you have a choice to set up your service for projects in a single language or multiple languages. You make this choice during the creation of the first project in your language resource.
+
 ## Next steps
 
-* [Azure resources](./azure-resources.md)
+* Learn about the custom question answering [projects](../how-to/manage-knowledge-base.md)
