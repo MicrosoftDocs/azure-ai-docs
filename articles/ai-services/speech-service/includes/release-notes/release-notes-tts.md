@@ -37,9 +37,9 @@ MAI-Voice-2-Flash is a new neural text-to-speech model optimized for fast, low-l
 | `zh-CN-Mei:MAI-Voice-2-Flash` | Female | Customer service, AI assistants, emotional styles |
 
 #### Neural HD introducing a new voice in `en-IN`
-| **Locale (BCP-47)** | Gender | **Voice name**                                      |
-| -------------------- | -------- | ---------------------------------------------------- |
-| `en-IN`             | Female | `en-IN-Lavanya:DragonHDLatestNeural` (Female)           |
+| **Voice name** | Gender | Recommended use case |
+| -------------------- | -------- | ----- |
+| `en-IN-Lavanya:DragonHDLatestNeural` | Female |  Chat, Customer Service, E-learning |
 
 ### May 2026 release
 
