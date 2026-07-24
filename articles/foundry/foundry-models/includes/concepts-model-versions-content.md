@@ -5,7 +5,7 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 07/24/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -64,7 +64,7 @@ As a customer of Azure OpenAI models, you might notice some changes in the model
 
 ### Will a model upgrade happen if the new model version is not yet available in that region?
 
-Yes, even in cases where the latest model version is not yet available in a region, Azure automatically upgrades deployments during the scheduled upgrade window. Our engineering team begins rollout of the new model version starting on the announced upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, Azure engineering team deploys `gpt-35-turbo-0125` to Japan East to upgrade older model versions as part of the default model version upgrade process. 
+Yes, even in cases where the latest model version isn't yet available in a region, Azure automatically upgrades deployments during the scheduled upgrade window. The engineering team begins rollout of the new model version starting on the announced upgrade date. For example, if `gpt-4o` version `2024-11-20` isn't yet available in Japan East, Azure engineering team deploys `gpt-4o` version `2024-11-20` to Japan East to upgrade older model versions as part of the default model version upgrade process. 
 
 ## Partner model upgrades
 
@@ -80,13 +80,13 @@ When a model version reaches its retirement date, what happens next depends on t
 * **Upgrade once new default version becomes available**: The deployment automatically updates to the current default version. No action is required.
 * **Once the current version expires**: The deployment automatically updates to the next available version when the current version expires.
 
-Azure notifies you of upcoming retirements through email to subscription owners and contributors, Azure Service Health alerts, and the upcoming retirement tables in [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md).
+Azure notifies you of upcoming retirements through email to subscription owners and contributors, Azure Service Health alerts, and the upcoming retirement tables in [Model deprecation and retirement for Microsoft Foundry Models](../../openai/concepts/model-retirements.md).
 
 ## Related content
 
 - [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
-- [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md)
+- [Microsoft Foundry Models lifecycle and support policy](../../openai/concepts/model-retirements.md)
 - [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy Foundry Models](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
