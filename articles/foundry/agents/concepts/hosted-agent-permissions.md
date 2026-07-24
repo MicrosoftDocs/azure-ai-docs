@@ -181,6 +181,10 @@ Creating a Foundry project requires the `Microsoft.CognitiveServices/accounts/pr
 | Foundry Account Owner | Foundry account | ✔ Yes |
 | Foundry Owner | Foundry account | ✔ Yes |
 
+> [!IMPORTANT]
+> Currently, user-assigned managed identities are supported only when configured during the Foundry project creation.
+> Changing the project identity type after creation isn't supported. This limitation includes changing from system-assigned to user-assigned managed identity, or from user-assigned to system-assigned managed identity.
+
 If the creator of the project has the ability to assign the `Foundry User` role at the scope of the account, the system automatically creates two role assignments:
 
 - The project creator is granted the Foundry User role at the scope of the Foundry account.
