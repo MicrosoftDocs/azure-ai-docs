@@ -198,7 +198,8 @@ At deployment retirement, inference and deployment return error responses.
 | gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
 | gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
 | gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
-| o4-mini | 2025-04-16 | Base model retirement | One year after training retirement |
+| o4-mini | 2025-04-16 | No earlier than 2027-04-16<sup>1</sup> | 2027-10-16
+|
 
 <sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
