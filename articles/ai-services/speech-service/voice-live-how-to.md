@@ -278,7 +278,7 @@ Here's an example for a MAI-Voice-2-Flash voice:
 }
 ```
 
-For the full list of Mai-voice-2-flash voices, see [MAI voices](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices).
+For the full list of Mai-voice-2-flash voices, see [MAI voices](./mai-voices.md).
 
 #### Azure Neural Voice
 Here's a partial message example for a standard (`azure-standard`) voice:
