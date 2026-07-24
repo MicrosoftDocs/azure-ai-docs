@@ -9,6 +9,38 @@ ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
+### July 2026 release
+
+#### Public preview of MAI-Voice-2-Flash
+
+MAI-Voice-2-Flash is a new neural text-to-speech model optimized for fast, low-latency speech generation. It delivers high-fidelity, natural, and expressive speech across 15 languages and supports gated instant voice cloning. Built for real-time conversational experiences, MAI-Voice-2-Flash combines human-like intonation, rhythm, and emotional nuance with industry-leading responsiveness, making it ideal for voice agents, AI assistants, customer service automation, and other interactive applications where latency and cost are critical. Chech [here](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices?tabs=mai-voice-2-flash&pivots=ai-foundry) for more details.
+
+| Voice ID | Gender | Recommended use case |
+|--------|--------|----------|
+| `en-US-Ethan:MAI-Voice-2-Flash` | Male | Voice agents, AI assistants, conversational applications, emotional styles |
+| `en-US-Harper:MAI-Voice-2-Flash` | Female | Customer service, AI assistants, conversational applications, emotional styles |
+| `en-US-Olivia:MAI-Voice-2-Flash` | Female | Voice agents, customer engagement, emotional styles |
+| `de-DE-Klaus:MAI-Voice-2-Flash` | Male | German conversational AI, customer support, emotional styles |
+| `de-DE-Mia:MAI-Voice-2-Flash` | Female | German voice assistants, customer engagement, emotional styles |
+| `fr-FR-Marc:MAI-Voice-2-Flash` | Male | French conversational AI, interactive experiences, emotional styles |
+| `fr-FR-Soleil:MAI-Voice-2-Flash` | Female | French customer service, conversational applications, emotional styles |
+| `es-ES-Marta:MAI-Voice-2-Flash` | Female | Spanish narration, customer engagement, expressive storytelling |
+| `es-MX-Alejo:MAI-Voice-2-Flash` | Male | Latin American conversational AI, emotional styles |
+| `es-MX-Valeria:MAI-Voice-2-Flash` | Female | Customer service, voice assistants, emotional styles |
+| `it-IT-Luca:MAI-Voice-2-Flash` | Male | Italian conversational AI, interactive applications |
+| `it-IT-Rosa:MAI-Voice-2-Flash` | Female | Customer engagement, customer support, emotional styles |
+| `pt-BR-Caio:MAI-Voice-2-Flash` | Male | Brazilian Portuguese voice agents, emotional styles |
+| `pt-BR-Luana:MAI-Voice-2-Flash` | Female | Conversational AI, customer support, emotional styles |
+| `ko-KR-Haena:MAI-Voice-2-Flash` | Female | Korean AI assistants, customer engagement |
+| `ko-KR-Junho:MAI-Voice-2-Flash` | Male | Conversational AI, interactive applications |
+| `zh-CN-Bo:MAI-Voice-2-Flash` | Male | Mandarin voice agents, conversational AI, emotional styles |
+| `zh-CN-Mei:MAI-Voice-2-Flash` | Female | Customer service, AI assistants, emotional styles |
+
+#### Neural HD introducing a new voice in `en-IN`
+| **Locale (BCP-47)** | Gender | **Voice name**                                      |
+| -------------------- | -------- | ---------------------------------------------------- |
+| `en-IN`             | Female | `en-IN-Lavanya:DragonHDLatestNeural` (Female)           |
+
 ### May 2026 release
 
 #### Custom voice fine-tuning in the Microsoft Foundry (new) portal
