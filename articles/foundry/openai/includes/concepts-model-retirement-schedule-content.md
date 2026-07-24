@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/21/2026
+ms.date: 07/23/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -25,21 +25,21 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Deprecated | 2026-10-14 | — |
-| gpt-4.1-mini | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
 | gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Deprecated | 2026-10-14 | — |
-| gpt-4.1-mini | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
 | gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
-| gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4o | 2024-08-06 | Deprecated | 2027-04-14 | gpt-5.1 |
 | gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
-| gpt-4o | 2024-11-20 | Deprecated | 2026-10-01 | gpt-5.1 |
-| gpt-4o-mini | 2024-07-18 | Deprecated | 2026-10-01 | gpt-4.1-mini |
+| gpt-4o | 2024-11-20 | Deprecated | 2027-04-14 | gpt-5.1 |
+| gpt-4o-mini | 2024-07-18 | Deprecated | 2027-04-14 | gpt-4.1-mini |
 | gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
-| gpt-4o | 2024-11-20 | Deprecated | 2026-10-01 | gpt-5.1 |
-| gpt-4o-mini | 2024-07-18 | Deprecated | 2026-10-01 | gpt-4.1-mini |
+| gpt-4o | 2024-11-20 | Deprecated | 2027-04-14 | gpt-5.1 |
+| gpt-4o-mini | 2024-07-18 | Deprecated | 2027-04-14 | gpt-4.1-mini |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-10-15 | — |
@@ -96,19 +96,19 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
-| o1 | 2024-12-17 | Deprecated | 2026-09-16 | — |
-| o1-pro | 2025-03-19 | GA | 2026-09-18 | — |
-| o3 | 2025-04-16 | GA | 2026-10-16 | — |
+| o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
+| o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
+| o3 | 2025-04-16 | GA | 2026-10-21 | gpt-5.6-sol |
 | o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
 | o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
-| text-embedding-3-large | 1 | GA | 2027-04-15 | — |
-| text-embedding-3-small | 1 | GA | 2027-04-15 | — |
-| text-embedding-ada-002 | 1 | GA | 2027-04-15 | — |
-| text-embedding-ada-002 | 2 | GA | 2027-04-15 | — |
+| text-embedding-3-large | 1 | GA | 2028-02-09 | — |
+| text-embedding-3-small | 1 | GA | 2028-02-09 | — |
+| text-embedding-ada-002 | 1 | GA | 2028-02-09 | — |
+| text-embedding-ada-002 | 2 | GA | 2028-02-09 | — |
 | tts | 001 | Preview | 2026-12-15 | — |
 | tts-hd | 001 | GA | 2026-12-15 | — |
 | whisper | 001 | GA | 2026-12-15 | — |
