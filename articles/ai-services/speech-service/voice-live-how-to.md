@@ -257,7 +257,7 @@ The `voice` object has the following properties:
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
+| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaMultilingualNeural`. |
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
@@ -265,12 +265,28 @@ See [How to customize Voice Live input and output](./voice-live-how-to-customize
 
 ### Azure standard voices
 
+#### MAI-Voice-2-Flash (Preview)
+MAI-Voice-2-Flash is an ultra-fast, low-latency, high-fidelity expressive TTS model that's optimized for real-time responsiveness in Voice Live.
+Here's an example for a MAI-Voice-2-Flash voice:
+
+```JSON
+{
+ "voice": {
+   "name": "en-US-Harper:MAI-Voice-2-Flash",
+   "type": "azure-standard"
+ }
+}
+```
+
+For the full list of Mai-voice-2-flash voices, see [MAI voices](./mai-voices.md).
+
+#### Azure Neural Voice
 Here's a partial message example for a standard (`azure-standard`) voice:
 
 ```json
 {
   "voice": {
-    "name": "en-US-AvaNeural",
+    "name": "en-US-AvaMultilingualNeural",
     "type": "azure-standard"
   }
 }
@@ -278,9 +294,9 @@ Here's a partial message example for a standard (`azure-standard`) voice:
 
 For the full list of standard voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
-### Azure high definition voices
+### Azure high definition (HD) voices
 
-Here's an example `session.update` message for a standard high definition voice:
+Here's an example `session.update` message for a standard high definition (HD) voice:
 
 ```json
 {
@@ -292,7 +308,7 @@ Here's an example `session.update` message for a standard high definition voice:
 }
 ```
 
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
+For the full list of high definition (HD) voices, see [high definition (HD) voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
 
 > [!NOTE]
 > High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2
