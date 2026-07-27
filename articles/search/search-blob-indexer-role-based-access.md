@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Use a blob indexer or knowledge source to ingest RBAC scopes metadata
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]

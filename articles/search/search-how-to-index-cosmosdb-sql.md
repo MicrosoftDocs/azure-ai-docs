@@ -4,8 +4,9 @@ description: Set up a search indexer to index data stored in Azure Cosmos DB for
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
@@ -13,6 +14,8 @@ ms.custom:
 ---
 
 # Index data from Azure Cosmos DB for NoSQL for queries in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
 > These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
@@ -149,18 +152,18 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 
 | Full access connection string |
 |-----------------------------------------------|
-|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`" }` |
+|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>" }` |
 | You can get the connection string from the Azure Cosmos DB account page in the Azure portal by selecting **Keys** in the left pane. Make sure to select a full connection string and not just a key. |
 
 | (Modern approach) Managed identity connection string for NoSQL accounts |
 |------------------------------------------------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=AccessToken)" }`|
-|This connection string, supported only for Azure Cosmos DB for NoSQL accounts, ensures that the search service will never use account keys (even in the background) when attempting to access data from Cosmos DB. This is recommended, as it works even if the NoSQL account has account keys disabled. For more information, see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)|
+|This connection string, supported only for Azure Cosmos DB for NoSQL accounts, ensures that the search service never uses account keys (even in the background) when attempting to access data from Cosmos DB. This approach is recommended, as it works even if the NoSQL account has account keys disabled. For more information, see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md).|
 
 | (Legacy approach) Managed identity connection string |
 |------------------------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=AccountKey)" }`|
-|This connection string doesn't require an account key to be specified directly, but the search service will utilize the managed identity to fetch the account keys in the background. Though this is supported for all Cosmos DB account types, it isn't recommended for the NoSQL account type. Such a connection string won't work if account keys are disabled for the Cosmos DB account. If the `IdentityAuthType` property is omitted, the search service will still default to fetching the account key in the background. For connections targeting the [SQL API](/azure/cosmos-db/sql-query-getting-started), you can omit `ApiKind` from the connection string. For more information about `ApiKind`, `IdentityAuthType` see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)|
+|This connection string doesn't require an account key to be specified directly, but the search service uses the managed identity to fetch the account keys in the background. Though this approach is supported for all Cosmos DB account types, it isn't recommended for the NoSQL account type. Such a connection string doesn't work if account keys are disabled for the Cosmos DB account. If the `IdentityAuthType` property is omitted, the search service still defaults to fetching the account key in the background. For connections targeting the [SQL API](/azure/cosmos-db/sql-query-getting-started), you can omit `ApiKind` from the connection string. For more information about `ApiKind` and `IdentityAuthType`, see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md).|
 
 <a name="flatten-structures"></a>
 
@@ -388,7 +391,7 @@ The following example shows a [data source definition](#define-the-data-source) 
 ```
 
 > [!NOTE]
-> When you assign a `null` value to a field in your Azure Cosmos DB, the AI Search indexer is unable to distinguish between `null` and a missing field value. Therefore, if a field in the index is empty, it will not be substituted with a `null` value, even if that modification was made in your database.
+> When you assign a `null` value to a field in your Azure Cosmos DB, the AI Search indexer can't distinguish between `null` and a missing field value. Therefore, if a field in the index is empty, it isn't substituted with a `null` value, even if that modification was made in your database.
 
 <a name="IncrementalProgress"></a>
 

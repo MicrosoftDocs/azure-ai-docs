@@ -1,11 +1,11 @@
 ---
 title: Create, test, and deploy your custom question answering (CQA) knowledge base
 description: You can create a custom question answering knowledge from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering knowledge base.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 04/20/2026
+ms.date: 05/12/2026
 ms.custom: language-service-question-answering, mode-other
 ---
 <!-- markdownlint-disable MD025 -->

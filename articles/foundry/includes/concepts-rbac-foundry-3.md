@@ -30,7 +30,7 @@ If the built-in roles don't meet your enterprise requirements, create a custom r
 }
 ```
 
-For more information on creating a custom role, see the following articles. 
+For more information on creating a custom role, see the following articles.
 
 - [Azure portal](/azure/role-based-access-control/custom-roles-portal)
 - [Azure CLI](/azure/role-based-access-control/custom-roles-cli)

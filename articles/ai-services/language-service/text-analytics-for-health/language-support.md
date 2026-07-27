@@ -5,9 +5,9 @@ description: "This article explains which natural languages are supported by the
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/10/2026
 ms.author: lajanuar
 ms.custom: language-service-health
 ---

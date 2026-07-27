@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how versioning works in conversational language understanding
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 04/19/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ms.reviewer: haelhamm
@@ -56,6 +56,6 @@ In conversational language understanding, the data being saved to the snapshot a
 ## Next steps
 Learn how to load or export model data for:
 * [Conversational language understanding](../../conversational-language-understanding/how-to/build-train-deploy-model.md#export-model-data)
-* [Custom text classification](../../custom-text-classification/how-to/view-model-evaluation.md)
+* [Custom text classification](../../custom-text-classification/how-to/build-train-deploy-model.md#view-model-details)
 * [Custom NER](../../custom-named-entity-recognition/how-to/view-model-evaluation.md)
-* [Orchestration workflow](../../orchestration-workflow/how-to/view-model-evaluation.md)
+* [Orchestration workflow](../../orchestration-workflow/how-to/build-train-deploy-model.md#view-model-details)

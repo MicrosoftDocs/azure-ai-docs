@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Indexing blobs and files to produce multiple search documents
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 **Applies to**: [Blob indexers](search-how-to-index-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
 
 By default, an indexer treats the contents of a blob or file as a single search document. If you want a more granular representation in a search index, you can set **parsingMode** values to create multiple search documents from one blob or file. The **parsingMode** values that result in many search documents include `delimitedText` (for [CSV](search-how-to-index-azure-blob-csv.md)), `jsonArray` or `jsonLines` (for [JSON](search-how-to-index-azure-blob-json.md)), or `markdown` with sub-mode `oneToMany` for [markdown](search-how-to-index-azure-blob-markdown.md).

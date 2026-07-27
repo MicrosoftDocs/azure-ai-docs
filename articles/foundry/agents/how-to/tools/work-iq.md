@@ -7,8 +7,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 05/06/2026
-author: jonburchel
-ms.author: jburchel
+author: mattwojo
+ms.author: mattwoj
 reviewer: lindazqli
 ms.reviewer: zhuoqunli
 ms.custom:

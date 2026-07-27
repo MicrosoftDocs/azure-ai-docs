@@ -42,6 +42,22 @@ GPT Realtime Whisper is available through the Realtime API. The connection and u
 - [Use the GPT Realtime API via WebSockets](../how-to/realtime-audio-websockets.md)
 - [Use the GPT Realtime API via WebRTC](../how-to/realtime-audio-webrtc.md)
 
+Use the same quickstart code patterns, and set your deployment name to the model deployment you created for `gpt-realtime-whisper`.
+
+## Language support guidance
+
+GPT Realtime Whisper is designed for multilingual transcription. Accuracy can vary by language, audio quality, and speaking conditions.
+
+- Provide an ISO-639-1 language hint (for example, `en`) when available.
+- Validate transcription quality with production-like audio before rollout.
+- For broader language and locale references, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
+
 ## Deployment and availability
 
 GPT Realtime Whisper is available as a Global Standard (pay-as-you-go) deployment in Microsoft Foundry. Deploy the model from the [model catalog](https://ai.azure.com).
+
+For current region support, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).
+
+## Pricing
+
+`gpt-realtime-whisper` is priced hourly. For current rates, see the **Audio Models** section on the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).

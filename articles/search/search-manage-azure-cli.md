@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Manage your Azure AI Search service using the Azure CLI
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can run Azure CLI commands and scripts on Windows, macOS, Linux, or in Azure Cloud Shell to create and configure Azure AI Search.
 
 Use the [**az search module**](/cli/azure/search) to perform the following tasks:

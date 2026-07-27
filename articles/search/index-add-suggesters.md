@@ -13,6 +13,8 @@ ms.custom:
 
 # Configure a suggester for autocomplete and suggestions in a query
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, typeahead or "search-as-you-type" is enabled by using a *suggester*. A suggester is a configuration in an index that specifies which fields should be used to populate autocomplete and suggested matches. These fields undergo extra tokenization, generating prefix sequences to support matches on partial terms. For example, a suggester that includes a `city` field with a value for *Seattle* has prefix combinations of *sea*, *seat*, *seatt*, and *seattl* to support typeahead.
 
 Matches on partial terms can be either an autocompleted query or a suggested match. The same suggester supports both experiences.

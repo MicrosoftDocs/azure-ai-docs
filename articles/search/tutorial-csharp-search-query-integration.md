@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Step 4 - Explore the .NET search code
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In the previous lessons, you added search to a static web app. This lesson highlights the essential steps that establish integration. If you're looking for a cheat sheet on how to integrate search into your web app, this article explains what you need to know.
 
 ## Azure SDK Azure.Search.Documents

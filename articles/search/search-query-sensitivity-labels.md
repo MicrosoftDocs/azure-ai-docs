@@ -4,22 +4,24 @@ description: Learn how query-time enforcement of Microsoft Purview sensitivity l
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 07/07/2026
 ai-usage: ai-assisted
 ---
 
 # Query-time enforcement of Microsoft Purview sensitivity labels in Azure AI Search (preview)
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 > The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
 >
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+> It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 At query time, Azure AI Search can enforce sensitivity label policies defined in [Microsoft Purview](/purview/create-sensitivity-labels). These policies include the evaluation of [`EXTRACT` usage rights](/purview/rights-management-usage-rights) associated with each document, ensuring users can only retrieve documents they're permitted to access.
 
@@ -36,6 +38,8 @@ This article explains how query-time sensitivity label enforcement works and how
 
 - Complete all steps in [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
+- Verify that the Azure AI Search service has its **system-assigned managed identity** (not a user-assigned managed identity) enabled and that it holds the `Content.SuperUser` and `UnifiedPolicy.Tenant.Read` role assignments. Query-time enforcement depends on label metadata that the indexer can extract only when the system-assigned identity has the correct configuration. See [Step 1](search-indexer-sensitivity-labels.md#1-enable-ai-search-managed-identity) in the indexer setup article.
+
 - Both the Azure AI Search service and the user issuing the query must be in the same Microsoft Entra tenant.
 
 - REST API version 2025-11-01-preview or an equivalent preview SDK package to query the index. The [elevated read](#elevated-read-for-administrative-investigations-preview) capability and Purview audit logging require [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or later.
@@ -48,7 +52,7 @@ This article explains how query-time sensitivity label enforcement works and how
 
 - [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs aren't supported for Purview-enabled indexes.
 
-- If label evaluation fails (for example, Purview APIs are temporarily unavailable), the service returns **5xx** and doesn't return a partial or unfiltered result set.
+- If label evaluation fails, the service returns a specific HTTP error code rather than a partial or unfiltered result set. For the complete list of error codes and causes, see [Troubleshoot query errors](#troubleshoot-query-errors).
 
 - The system evaluates labels only as they existed at the time of the last indexer run. Recent label changes might not be reflected until the next scheduled reindex.
 
@@ -115,19 +119,19 @@ This approach uses your current Azure CLI login session, so you can use the cont
 
 ### Token acquisition for OBO scenarios
 
-Applications that implement the on-behalf-of (OBO) flow must acquire tokens through Microsoft Entra ID using a supported authentication library, such as the [Microsoft Authentication Library](/entra/identity-platform/msal-acquire-cache-tokens) (MSAL).
+Applications that implement the on-behalf-of (OBO) flow must acquire tokens through Microsoft Entra ID by using a supported authentication library, such as the [Microsoft Authentication Library](/entra/identity-platform/msal-acquire-cache-tokens) (MSAL).
 
-In OBO scenarios, the token must be requested for the downstream API that the application calls. For example, when calling Azure AI Search, the resource URI is `https://search.azure.com/.default`.
+In OBO scenarios, request the token for the downstream API that the application calls. For example, when calling Azure AI Search, the resource URI is `https://search.azure.com/.default`.
 
-The `.default` scope requests all delegated permissions that have been pre-consented for the application for the specified resource.
+The `.default` scope requests all delegated permissions that the application preconsented for the specified resource.
 
-Sensitivity label permissions, including `EXTRACT`, aren't represented as OAuth scopes. These permissions are evaluated at runtime by the downstream service, such as Azure AI Search, based on the user identity in the token and the applied sensitivity label policy.
+Sensitivity label permissions, including `EXTRACT`, aren't represented as OAuth scopes. The downstream service, such as Azure AI Search, evaluates these permissions at runtime based on the user identity in the token and the applied sensitivity label policy.
 
 ## Query example
 
-Here's an example of a query request using Microsoft Purview sensitivity label enforcement.
+Here's an example of a query request that uses Microsoft Purview sensitivity label enforcement.
 
-The application token is passed as a bearer token in the `Authorization` header. The user token is passed as the raw token value in the `x-ms-query-source-authorization` header, without the `Bearer` prefix.
+Pass the application token as a bearer token in the `Authorization` header. Pass the user token as the raw token value in the `x-ms-query-source-authorization` header, without the `Bearer` prefix.
 
 ```http
 POST  {{endpoint}}/indexes/sensitivity-docs/docs/search?api-version=2025-11-01-preview
@@ -144,7 +148,7 @@ Content-Type: application/json
 
 ## Elevated read for administrative investigations (preview)
 
-Elevated read lets an authorized developer return labeled documents that the calling user wouldn't normally see, while emitting a Microsoft Purview audit log entry for every document the request returns. Use it for compliance reviews, eDiscovery, incident response, and other administrative investigations where an auditable record of access is required.
+Elevated read lets an authorized developer return labeled documents that the calling user normally can't see, while emitting a Microsoft Purview audit log entry for every document the request returns. Use it for compliance reviews, eDiscovery, incident response, and other administrative investigations where an auditable record of access is required.
 
 Elevated read is available on Purview-enabled indexes in REST API version [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and later.
 
@@ -179,7 +183,7 @@ Content-Type: application/json
 }
 ```
 
-### Audit fields emitted to Microsoft Purview
+### Audit fields sent to Microsoft Purview
 
 Each audit entry follows the [Office 365 management activity API](/office/office-365-management-api/office-365-management-activity-api-schema) schema and includes the following fields.
 
@@ -200,15 +204,17 @@ Each audit entry follows the [Office 365 management activity API](/office/office
 
 ### Graceful degradation
 
-If Azure AI Search can't reach Microsoft Purview while processing a query, such as during a transient Purview outage, label evaluation is skipped for that request. The behavior depends on whether the request includes a user identity token:
+If Azure AI Search can't reach Microsoft Purview while processing a query, such as during a transient Purview outage, it skips label evaluation for that request. The behavior depends on whether the request includes a user identity token:
 
 - **Elevated read requests** (`x-ms-enable-elevated-read: true`): The request fails with `5xx`. Azure AI Search doesn't return labeled documents without first being able to emit audit logs.
 
-- **Standard label-enforced requests** (with `x-ms-query-source-authorization`): The request fails with `5xx`. Azure AI Search doesn't return partial or unfiltered results when label policies can't be evaluated.
+- **Standard label-enforced requests** (with `x-ms-query-source-authorization`): The request fails with `5xx`. Azure AI Search doesn't return partial or unfiltered results when it can't evaluate label policies.
 
 - **Calls without `x-ms-query-source-authorization`** issued by an application with at least the **Search Index Data Reader** role: The request succeeds and returns only documents that don't have a sensitivity label. Labeled documents are omitted from the response.
 
 This degraded path is intended only for non-user-facing workflows that explicitly accept unlabeled-only results. Don't rely on it for end-user search experiences.
+
+For the complete list of error codes returned during query-time sensitivity label evaluation, see [Troubleshoot query errors](#troubleshoot-query-errors).
 
 ### Find elevated read audit logs in Microsoft Purview
 
@@ -233,12 +239,57 @@ To display label names and/or enforce UI-specific restrictions, your application
 You can use the GUID returned by Azure AI Search to resolve the label properties and call the [Purview Labels APIs](/graph/api/sensitivitylabel-get) to fetch the label name, description, and policy settings. 
 
 
+## Troubleshoot query errors
+
+When query-time sensitivity label evaluation fails, Azure AI Search returns a specific HTTP error code that identifies the cause. The service never returns a partial or unfiltered result set. If label policies can't be evaluated, the query fails rather than exposing unlabeled or unauthorized content.
+
+### 400 Bad Request
+
+A 400 error indicates a problem with the index configuration or the request headers. Fix the configuration before retrying.
+
+| Condition | What to check |
+|---|---|
+| The index defines both a new sensitivity label field and one or more legacy `permissionFilter: sensitivityLabel` fields. | Use only one configuration style. Remove either the new sensitivity label field or all legacy permission-filter fields from the index schema. See [configure the index](search-indexer-sensitivity-labels.md) for guidance. |
+| The index defines more than one legacy `permissionFilter: sensitivityLabel` field. | An index supports exactly one legacy permission-filter field for sensitivity labels. Remove the duplicate fields from the index schema. |
+| The index is configured for Purview filtering but has no sensitivity label field defined. | Add the required sensitivity label field to the index schema. See [configure the index](search-indexer-sensitivity-labels.md). |
+| The delegated user email is invalid, or the user isn't in the same Microsoft Entra tenant as the Azure AI Search service. | Verify that the token in `x-ms-query-source-authorization` belongs to a user in the same tenant as the search service. Cross-tenant queries aren't supported. |
+| Microsoft Purview rejected the request because the `x-ms-query-source-authorization` header is absent, malformed, or the tenant isn't onboarded to Microsoft Purview Information Protection. | Check that the `x-ms-query-source-authorization` header is present and contains a valid delegated user token. Confirm that the tenant is onboarded to [Microsoft Purview Information Protection](/purview/information-protection). |
+
+### 401 Unauthorized
+
+A 401 error indicates a problem with the authorization token or the application's Purview permissions.
+
+| Condition | What to check |
+|---|---|
+| The `Authorization: Bearer` token has no tenant ID claim, or is an app-only token without a delegated user context. | Use a delegated token that includes a tenant ID claim. App-only tokens aren't supported for label-enforced queries. |
+| The `Authorization` header is absent or doesn't use the `Bearer` scheme. | Add an `Authorization: Bearer <token>` header to the request. |
+| The delegated token is invalid or expired, admin consent for the required Purview scopes is missing, or the tenant blocks token exchange for Purview. | Reacquire the token. If the error persists, verify that an administrator has granted admin consent for the required Microsoft Purview API permissions for the calling application in Microsoft Entra ID. |
+| The token endpoint succeeded but returned no access token. | Check the application's permission configuration in Microsoft Entra ID. Make sure the application has the required delegated Purview permissions and that admin consent is in place. |
+| The calling user hasn't consented to the required Purview API permissions, or doesn't have access to Microsoft Purview Information Protection in the tenant. | Make sure the user has the required Purview permissions assigned. Contact your Microsoft Purview or Microsoft Entra administrator to verify the user's access. |
+
+### 502 Bad Gateway
+
+A 502 error indicates a connectivity failure between Azure AI Search and Microsoft Purview. These errors are typically transient.
+
+| Condition | What to check |
+|---|---|
+| A network or connectivity failure occurred when Azure AI Search contacted Microsoft Purview. | Retry the query. If the error persists, check **Health** > **Service health** in the [Microsoft 365 admin center](https://admin.microsoft.com) to confirm Microsoft Purview Information Protection has no active incidents. |
+| An unexpected error occurred during Purview communication. | Retry the query. If the error persists, contact [Microsoft Support](https://azure.microsoft.com/support). If the response includes a correlation ID, provide it when filing a support request. |
+
+### 504 Gateway Timeout
+
+A 504 error indicates that Microsoft Purview didn't respond within the allowed time.
+
+| Condition | What to check |
+|---|---|
+| Microsoft Purview didn't respond within the allowed time. | Retry the query — this error is often transient. If the issue persists, check **Health** > **Service health** in the [Microsoft 365 admin center](https://admin.microsoft.com) to confirm Microsoft Purview Information Protection has no active incidents. |
+
 ## End-to-end testing setup
 
-To help you validate your sensitivity label configuration in Azure AI Search, here's a [reference end-to-end setup](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo).
+To help you validate your sensitivity label configuration in Azure AI Search, see the [reference end-to-end setup](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo).
 
-This repository demonstrates:
-- How to configure sensitivity labels sync and honoring in Azure AI Search
-- How to test ingestion and query-time enforcement scenarios for documents with sensitivity labels
-- How to extract the label name and expose it as part of the citations used in your RAG applications or agents.
+This repository demonstrates how to:
+- Configure sensitivity labels sync and honoring in Azure AI Search
+- Test ingestion and query-time enforcement scenarios for documents with sensitivity labels
+- Extract the label name and expose it as part of the citations used in your RAG applications or agents.
 

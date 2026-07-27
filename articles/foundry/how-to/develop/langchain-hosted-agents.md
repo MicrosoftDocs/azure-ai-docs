@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 Use the `langchain_azure_ai.agents.hosting` package to expose a compiled
 LangGraph graph through the protocols for Microsoft Foundry
-[hosted agents](../../agents/overview.md#hosted-agents-preview). The hosting
+[hosted agents](../../agents/overview.md#hosted-agents). The hosting
 package lets you keep your LangChain and LangGraph agent logic in code while
 Foundry manages the hosted runtime, sessions, scale, identity, and protocol
 endpoints.
@@ -69,13 +69,10 @@ Set the project endpoint and model deployment name for local development:
 
 ```bash
 export FOUNDRY_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
-export AZURE_AI_MODEL_DEPLOYMENT_NAME="gpt-4.1"
+export FOUNDRY_MODEL_NAME="gpt-4.1"
 ```
 
-When the same code runs as a Hosted agent in Foundry, the platform injects
-`FOUNDRY_PROJECT_ENDPOINT`. If you use `azd ai agent init` with a sample
-manifest, the generated project also uses `AZURE_AI_MODEL_DEPLOYMENT_NAME` for
-the selected model deployment.
+When the same code runs as a Hosted agent in Foundry, the platform injects `FOUNDRY_PROJECT_ENDPOINT`. If you use `azd ai agent init` with a sample `azure.yaml`, the generated project also uses `FOUNDRY_MODEL_NAME` for the selected model deployment.
 
 ## Responses protocol
 
@@ -103,7 +100,7 @@ _AZURE_AI_SCOPE = "https://ai.azure.com/.default"
 
 def build_chat_model() -> ChatOpenAI:
     project_endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"].rstrip("/")
-    deployment = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1")
+    deployment = os.environ.get("FOUNDRY_MODEL_NAME", "gpt-4.1")
     credential = DefaultAzureCredential()
     project = AIProjectClient(endpoint=project_endpoint, credential=credential)
     openai_client = project.get_openai_client()
@@ -346,19 +343,14 @@ state, override `build_input` instead of flattening the request to text.
 
 ## Deploy
 
-You can deploy with the Azure Developer CLI or the Foundry Toolkit Visual
-Studio Code extension. The Azure Developer CLI flow uses sample manifests and
-Docker; the extension flow provides a guided deployment experience in Visual
-Studio Code.
+You can deploy by using the Azure Developer CLI or the Foundry Toolkit Visual Studio Code extension. The Azure Developer CLI flow uses sample `azure.yaml` files and Docker. The extension flow provides a guided deployment experience in Visual Studio Code.
 
 Hosted agent deployment requires the **Foundry Project Manager** role on the
 project. For details, see [Deploy a Hosted agent](../../agents/how-to/deploy-hosted-agent.md#required-permissions).
 
 ### Deploy with Azure Developer CLI
 
-The `langchain-azure-ai` source repository includes Hosted agent samples that
-can be run and deployed with the Azure Developer CLI. The flow uses each
-sample's `agent.manifest.yaml`, `agent.yaml`, `Dockerfile`, and `main.py`.
+The `langchain-azure-ai` source repository includes Hosted agent samples that you can run and deploy by using the Azure Developer CLI. The flow uses each sample's `azure.yaml`, `Dockerfile`, and `main.py`. For details about the hosted-agent configuration in `azure.yaml`, see [Author azure.yaml for hosted agents](../../agents/how-to/author-azure-yaml.md).
 
 Install the AI agent extension and sign in before you initialize a sample:
 
@@ -371,16 +363,15 @@ Docker must be running locally because `azd ai agent run` builds the container
 image declared in the sample's Dockerfile. For command details, see the
 [Azure Developer CLI reference](/azure/developer/azure-developer-cli/reference).
 
-#### Initialize from a sample manifest
+#### Initialize from a sample azure.yaml
 
-Create a new folder and initialize it from a sample manifest. Replace the
-manifest URL with the sample you want to use.
+Create a new folder and initialize it from a sample `azure.yaml`. Replace the `azure.yaml` URL with the sample you want to use.
 
 ```bash
 mkdir my-langchain-agent
 cd my-langchain-agent
 
-azd ai agent init -m https://github.com/langchain-ai/langchain-azure/blob/main/samples/hosting/langgraph-hosted-agents/responses/01_basic/agent.manifest.yaml
+azd ai agent init -m https://github.com/langchain-ai/langchain-azure/blob/main/samples/hosting/langgraph-hosted-agents/responses/01_basic/azure.yaml
 ```
 
 Follow the prompts from `azd ai agent init`. If you don't already have a
@@ -442,7 +433,7 @@ the agent, including:
 
 - `FOUNDRY_PROJECT_ENDPOINT`: The endpoint URL for the Foundry project where
   the agent is deployed.
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The model deployment name selected during
+- `FOUNDRY_MODEL_NAME`: The model deployment name selected during
   `azd ai agent init`.
 - `APPLICATIONINSIGHTS_CONNECTION_STRING`: The connection string for the
   project's Application Insights instance.
@@ -481,7 +472,7 @@ conversation state.
 
 ### The model can't be reached in the hosted container
 
-Confirm that the Hosted agent version includes `AZURE_AI_MODEL_DEPLOYMENT_NAME`,
+Confirm that the Hosted agent version includes `FOUNDRY_MODEL_NAME`,
 and that the agent identity has permission to call the Foundry project. The
 platform sets `FOUNDRY_PROJECT_ENDPOINT`; your code should read that variable
 when running in Foundry.

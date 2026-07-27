@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to use Docker containers for Custom Named Entity Recognition on-premises.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 05/28/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-named-entity-recognition
 keywords: on-premises, Docker, container, natural language processing

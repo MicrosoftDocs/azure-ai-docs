@@ -10,6 +10,8 @@ ai-usage: ai-assisted
 
 # Multimodal search in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Multimodal search refers to the ability to ingest, understand, and retrieve information across multiple content types, including text, images, video, and audio. In Azure AI Search, multimodal search natively supports the ingestion of documents containing text and images and the retrieval of their content, enabling you to perform searches that combine both modalities.
 
 Building a robust multimodal pipeline typically involves:

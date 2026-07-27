@@ -11,6 +11,7 @@ ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025, classic-and-new
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -196,7 +197,7 @@ Select the training tier based on your use case and budget:
 
 - **Global**: Provides more affordable pricing compared to Standard by using capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
-- **Developer (preview)**: Provides significant cost savings by using idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier might be automatically preempted and resumed later. There are no guarantees for data residency either. Ideal for experimentation and price-sensitive workloads.
+- **Developer**: Provides significant cost savings by using idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier might be automatically preempted and resumed later. There are no guarantees for data residency either. Ideal for experimentation and price-sensitive workloads.
 
 ```python
 import openai

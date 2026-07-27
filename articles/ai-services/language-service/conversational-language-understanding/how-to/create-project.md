@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: This article shows you how to create CLU fine-tuning task projects the Microsoft Foundry or using the REST API.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 05/29/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

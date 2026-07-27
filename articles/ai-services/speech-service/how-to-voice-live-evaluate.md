@@ -7,14 +7,13 @@ author: solarrezaei
 ms.author: solarrezaei
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 05/19/2026
+ms.date: 06/05/2026
 ms.custom: references_regions
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to evaluate the quality of my Voice Live voice agent so I can measure conversational quality and identify areas for improvement.
 ---
 
-# How to evaluate Voice Live agents (preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# How to evaluate Voice Live agents
 
 Use the Voice Live evaluation harness to measure the quality of voice agents built on the [Voice Live API](./voice-live.md). The harness sends pre-recorded audio through Voice Live, collects transcriptions and responses, and then scores the results with [Microsoft Foundry built-in evaluators](/azure/ai-foundry/concepts/built-in-evaluators).
 
@@ -79,12 +78,22 @@ Your dataset is a JSON Lines (JSONL) file where each line represents one evaluat
 > [!TIP]
 > Dataset quality has a strong effect on evaluation scores. Datasets with specific questions, matching ground truth, and aligned system prompts typically produce higher scores. Datasets with open-ended questions and no ground truth typically produce lower scores, even with the same Voice Live configuration.
 
-> [!TIP]
-> The evaluation harness repository includes a helper script to download audio datasets from HuggingFace as evaluation-ready JSONL files. For details, see the [helper scripts documentation](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/helper_scripts).
-
 ### Multi-turn conversations
 
 To create a multi-turn conversation, group related turns by using the same `conversationID`. The harness processes all turns in a conversation sequentially within a single Voice Live session and maintains conversation context across turns. The `system_prompt` and `tool_definitions` fields apply once per conversation, based on the first turn.
+
+### Sample datasets
+
+The evaluation harness repository includes ready-to-use sample datasets so you can run your first evaluation without preparing your own data. The datasets vary along several dimensions:
+
+- **Complexity** — from minimal single-field inputs to fully populated multi-turn conversations with system prompts and tool definitions.
+- **Turn structure** — single-turn Q&A datasets and multi-turn conversational sessions with sequential context.
+- **Audio format** — local WAV file paths, base64-encoded inline audio, and URL-referenced audio to demonstrate each input method.
+- **Scenario type** — general knowledge Q&A, task-oriented conversations, and tool-calling workflows.
+
+The repository also includes pre-generated sample output so you can see the expected format before running your own evaluation. For the full list of datasets and their descriptions, see the [sample datasets folder](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/sample_evaluation_input) in the repository.
+
+The repository includes [helper scripts](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/helper_scripts) for converting external data sources (such as HuggingFace datasets or Bing Chat logs) into evaluation-ready JSONL files.
 
 ## Configure the evaluation
 
@@ -129,7 +138,7 @@ Voice Live session parameters control how the harness processes audio and how th
 | `noise_reduction` | string | `azure_deep_noise_suppression` | The noise reduction type. Set to `none` to disable. |
 | `push_to_talk` | bool | `false` | When set to `true`, enables push-to-talk mode instead of VAD. |
 
-Pre-built sample configs are available in the [evaluation harness repository](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/configs).
+Pre-built sample configs that match the recommended configurations are available in the [evaluation harness repository](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/configs).
 
 > [!NOTE]
 > The config file uses a simplified flat-key format for readability. For the full Voice Live API session parameters, see [How to use the Voice Live API](./voice-live-how-to.md).
@@ -155,9 +164,9 @@ export PROJECT_ENDPOINT="https://<your-resource>.services.ai.azure.com/api/proje
 # Authenticate with Azure CLI (recommended)
 az login
 
-# Run evaluation with a config file
+# Run evaluation with a sample dataset and config from the repository
 python voice_agent_audio_input_evaluation.py \
-    -f datasets/my-dataset.jsonl \
+    -f sample_evaluation_input/Eiffel_Tower_Visit_1/Eiffel_Tower_Visit_1.jsonl \
     --config configs/sample_vad_realtime.json \
     -o output/my-eval-run
 ```
@@ -175,7 +184,7 @@ After the CLI generates evaluation output and submits it to Foundry, you can vie
 To evaluate multiple datasets in parallel, use the batch processor:
 
 ```bash
-python batch_processor.py --test-files-folder datasets/ --max-workers 4
+python batch_processor.py --test-files-folder sample_evaluation_input/ --max-workers 4
 ```
 
 The batch processor creates subprocesses that write to a shared aggregated JSONL file. It then runs a single evaluation on the combined results.
@@ -212,7 +221,7 @@ python voice_agent_audio_input_evaluation.py -f dataset.jsonl --evaluators inten
 ```
 
 > [!NOTE]
-> Custom evaluators aren't supported in this release. You can only select from the built-in evaluator set provided by Microsoft Foundry.
+> Custom evaluators aren't currently supported. You can only select from the built-in evaluator set provided by Microsoft Foundry.
 
 ### Score interpretation
 
@@ -265,10 +274,10 @@ When the harness submits results to Foundry for scoring, it sends the conversati
 
 ### API version
 
-The harness uses the Voice Live preview API. The API version is pinned in the harness source code and appended automatically to the endpoint URL. For the current API version, see the [harness repository configuration](https://github.com/microsoft-foundry/voicelive-evaluation).
+The harness uses the Voice Live API. The API version is pinned in the harness source code and appended automatically to the endpoint URL. For the current API version, see the [harness repository configuration](https://github.com/microsoft-foundry/voicelive-evaluation).
 
 > [!NOTE]
-> Session-level logging and OpenTelemetry integration for Voice Live evaluation aren't available in this release. These capabilities are planned for a future update.
+> Session-level logging and OpenTelemetry integration for Voice Live evaluation aren't currently available.
 
 ## Known issues
 
@@ -288,7 +297,7 @@ For the complete list of known issues and workarounds, see the [evaluation harne
 - **Text-based evaluators only.** Current evaluators assess conversational quality from transcribed text. Speech-specific metrics like MOS, WER, and voice naturalness aren't available.
 - **Not a competitive benchmarking tool.** The harness evaluates Voice Live configurations. It doesn't support comparisons against other platforms.
 - **Regional availability.** The Foundry Evaluations API isn't available in all regions. For current availability, see [Evaluation regions and limits](/azure/ai-foundry/concepts/evaluation-regions-limits-virtual-network).
-- **Current scope.** This release covers Phase 1 functionality. Session logging, portal-native evaluation, and speech-specific evaluators are planned for future releases.
+- **Session logging and speech evaluators.** Session-level logging, portal-native evaluation, and speech-specific evaluators aren't currently available.
 
 ## Related content
 

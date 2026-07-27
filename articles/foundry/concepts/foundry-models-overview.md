@@ -166,7 +166,7 @@ Learn more about deploying models:
 
 ### Building generative AI apps with managed compute
 
-The *prompt flow* feature in Azure Machine Learning offers a great experience for prototyping. Use models deployed with managed compute in prompt flow with the [Open Model LLM tool](/azure/machine-learning/prompt-flow/tools-reference/open-model-llm-tool). You can also use the REST API exposed by managed compute in popular LLM tools like LangChain with the [Azure Machine Learning extension](https://python.langchain.com/docs/integrations/chat/azureml_chat_endpoint/).  
+The *prompt flow* feature in Azure Machine Learning offers a great experience for prototyping. Use models deployed with managed compute in prompt flow with the [Open Model LLM tool](/azure/machine-learning/prompt-flow/tools-reference/open-model-llm-tool). You can also use the REST API exposed by managed compute in popular LLM tools like LangChain with the [Azure Machine Learning extension](https://docs.langchain.com/oss/python/integrations/providers/azure_ai).  
 
 ### Content safety for models deployed as managed compute
 
@@ -242,8 +242,7 @@ To set the public network access flag for the Foundry hub:
 
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family becomes available, older models might be retired in the Foundry model catalog. To allow for a smooth transition to a newer model version, some models let users enable automatic updates. To learn about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
-- [Azure OpenAI in Microsoft Foundry model deprecations and retirements](../openai/concepts/model-retirements.md)
-- [Model deprecation and retirement for Microsoft Foundry Models](model-lifecycle-retirement.md)
+- [Microsoft Foundry Models lifecycle and support policy](../openai/concepts/model-retirements.md)
  
 ## Related content
 

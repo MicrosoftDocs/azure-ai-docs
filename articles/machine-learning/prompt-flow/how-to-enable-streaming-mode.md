@@ -12,7 +12,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 11/02/2023
+ms.date: 06/30/2026
 ms.update-cycle: 365-days
 ---
 
@@ -22,15 +22,15 @@ ms.update-cycle: 365-days
 
 In prompt Flow, you can [deploy flow to an Azure Machine Learning managed online endpoint](how-to-deploy-for-real-time-inference.md) for real-time inference.
 
-When consuming the endpoint by sending a request, the default behavior is that the online endpoint keeps waiting until the whole response is ready, and then send it back to the client. This can cause a long delay for the client and a poor user experience.
+When you consume the endpoint by sending a request, the default behavior is that the online endpoint keeps waiting until the whole response is ready, and then sends it back to the client. This behavior can cause a long delay for the client and a poor user experience.
 
-To avoid this, you can use streaming when you consume the endpoints. Once streaming enabled, you don't have to wait for the whole response to be ready. Instead, the server sends back the response in chunks as they're generated. The client can then display the response progressively, with less waiting time and more interactivity.
+To avoid this delay, use streaming when you consume the endpoints. Once you enable streaming, you don't have to wait for the whole response. Instead, the server sends back the response in chunks as they're generated. The client can then display the response progressively, with less waiting time and more interactivity.
 
 This article describes the scope of streaming, how streaming works, and how to consume streaming endpoints.
 
 ## Create a streaming enabled flow
 
-If you want to use the streaming mode, you need to create a flow that has a node that produces a string generator as the flow's output. A string generator is an object that can return one string at a time when requested. You can use the following types of nodes to create a string generator:
+To use streaming mode, create a flow that has a node that produces a string generator as the flow's output. A string generator is an object that returns one string at a time when requested. Use the following types of nodes to create a string generator:
 
 - LLM node: This node uses a large language model to generate natural language responses based on the input.
 
@@ -44,7 +44,7 @@ If you want to use the streaming mode, you need to create a flow that has a node
   {{question}}
   ```
 
-- Python node: This node allows you to write custom Python code that can yield string outputs. You can use this node to call external APIs or libraries that support streaming. For example, you can use this code to echo the input word by word:
+- Python node: This node allows you to write custom Python code that can yield string outputs. Use this node to call external APIs or libraries that support streaming. For example, you can use this code to echo the input word by word:
 
   ```python
   from promptflow import tool
@@ -63,17 +63,17 @@ If you want to use the streaming mode, you need to create a flow that has a node
 >
 > "Last node" means the node output isn't consumed by other nodes.
 
-In this guide, we'll use the "Chat with Wikipedia" sample flow as an example. This flow processes the user's question, searches Wikipedia for relevant articles, and answers the question with information from the articles. It uses streaming mode to show the progress of the answer generation.
+In this article, the "Chat with Wikipedia" sample flow is used as an example. This flow processes the user's question, searches Wikipedia for relevant articles, and answers the question with information from the articles. It uses streaming mode to show the progress of the answer generation.
 
-To learn how to create a chat flow, see  [how to develop a chat flow in prompt flow](how-to-develop-a-chat-flow.md) to create a chat flow.
+To learn how to create a chat flow, see [how to develop a chat flow in prompt flow](how-to-develop-a-chat-flow.md).
 
 :::image type="content" source="./media/how-to-enable-streaming-mode/chat-wikipedia-center.png" alt-text="Screenshot of the chat with Wikipedia flow." lightbox = "./media/how-to-enable-streaming-mode/chat-wikipedia-center.png":::
 
 ## Deploy the flow as an online endpoint
 
-To use the streaming mode, you need to deploy your flow as an online endpoint. This allows you to send requests and receive responses from your flow in real time.
+To use the streaming mode, you need to deploy your flow as an online endpoint. When you deploy the flow as an online endpoint, you can send requests and receive responses from your flow in real time.
 
-To learn how to deploy your flow as an online endpoint, see  [Deploy a flow to online endpoint for real-time inference with CLI](./how-to-deploy-to-code.md) to deploy your flow as an online endpoint.
+For more information about deploying your flow as an online endpoint, see [Deploy a flow to online endpoint for real-time inference with CLI](./how-to-deploy-to-code.md).
 
 > [!NOTE]
 > 
@@ -85,7 +85,7 @@ You can check your runtime version and update runtime in the run time detail pag
 
 ## Understand the streaming process
 
-When you have an online endpoint, the client and the server need to follow specific principles for [content negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation) to utilize the streaming mode:
+When you create an online endpoint, the client and the server need to follow specific principles for [content negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation) to use the streaming mode:
 
 Content negotiation is like a conversation between the client and the server about the preferred format of the data they want to send and receive. It ensures effective communication and agreement on the format of the exchanged data.
 
@@ -94,9 +94,9 @@ To understand the streaming process, consider the following steps:
 - First, the client constructs an HTTP request with the desired media type included in the `Accept` header. The media type tells the server what kind of data format the client expects. It's like the client saying, "Hey, I'm looking for a specific format for the data you send me. It could be JSON, text, or something else." For example, `application/json` indicates a preference for JSON data, `text/event-stream` indicates a desire for streaming data, and `*/*` means the client accepts any data format.
     > [!NOTE]
     >
-    > If a request lacks an `Accept` header or has empty `Accept` header, it implies that the client will accept any media type in response. The server treats it as `*/*`.
+    > If a request lacks an `Accept` header or has an empty `Accept` header, it implies that the client accepts any media type in response. The server treats it as `*/*`.
 
-- Next, the server responds based on the media type specified in the `Accept` header. It's important to note that the client might request multiple media types in the `Accept` header, and the server must consider its capabilities and format priorities to determine the appropriate response.
+- Next, the server responds based on the media type specified in the `Accept` header. The client might request multiple media types in the `Accept` header, so the server considers its capabilities and format priorities to determine the appropriate response.
   - First, the server checks if `text/event-stream` is explicitly specified in the `Accept` header:
     - For a stream-enabled flow, the server returns a response with a `Content-Type` of `text/event-stream`, indicating that the data is being streamed.
     - For a non-stream-enabled flow, the server proceeds to check for other media types specified in the header.
@@ -127,7 +127,7 @@ Accept: text/event-stream
 
 > [!NOTE]
 > 
-> The `Accept` header is set to `text/event-stream` to request a stream response.
+> Set the `Accept` header to `text/event-stream` to request a stream response.
 
 ### 1. The server sends back the response in streaming mode
 
@@ -162,11 +162,11 @@ data: {"answer": ""}
 ```
 
 > [!NOTE]
-> The `Content-Type` is set to `text/event-stream; charset=utf-8`, indicating the response is an event stream.
+> Set the `Content-Type` to `text/event-stream; charset=utf-8` to indicate the response is an event stream.
 
-The client should decode the response data as server-sent events and display them incrementally. The server will close the HTTP connection after all the data is sent.
+The client decodes the response data as server-sent events and displays them incrementally. The server closes the HTTP connection after sending all the data.
 
-Each response event is the delta to the previous event. It's recommended for the client to keep track of the merged data in memory and send them back to the server as chat history in the next request.
+Each response event is the delta to the previous event. The client should keep track of the merged data in memory and send it back to the server as chat history in the next request.
 
 ### 2. The client sends another chat message, along with the full chat history, to the server
 
@@ -241,7 +241,7 @@ The chat then continues in a similar way.
 
 The client should check the HTTP response code first. See [HTTP status code table](../how-to-troubleshoot-online-endpoints.md#http-status-codes) for common error codes returned by online endpoints.
 
-If the response code is "424 Model Error", it means that the error is caused by the model's code. The error response from a prompt flow model always follows this format:
+If the response code is `424 Model Error`, the model's code caused the error. The error response from a prompt flow model always follows this format:
 
 ```json
 {
@@ -252,22 +252,22 @@ If the response code is "424 Model Error", it means that the error is caused by 
 }
 ```
 
-- It's always a JSON dictionary with only one key "error" defined.
-- The value for "error" is a dictionary, containing "code", "message".
-- "code" defines the error category. Currently, it might be "UserError" for bad user inputs and "SystemError" for errors inside the service.
-- "message" is a description of the error. It can be displayed to the end user.
+- It's always a JSON dictionary with only one key `error` defined.
+- The value for `error` is a dictionary, containing `code` and `message`.
+- `code` defines the error category. Currently, it might be `UserError` for bad user inputs and `SystemError` for errors inside the service.
+- `message` is a description of the error. You can display it to the end user.
 
 ## How to consume the server-sent events
 
 ### Consume using Python
 
-In this sample usage, we're using the `SSEClient` class. This class isn't a built-in Python class and needs to be installed separately. You can install it via pip:
+In this sample usage, use the `SSEClient` class. This class isn't a built-in Python class and you need to install it separately. You can install it by using pip:
 
 ```bash
 pip install sseclient-py
 ```
 
-A sample usage would like:
+A sample usage looks like:
 
 ```python
 import requests
@@ -292,23 +292,23 @@ except HTTPError:
 
 ### Consume using JavaScript
 
-There are several libraries to consume server-sent events in JavaScript. Here's [one of them as an example](https://www.npmjs.com/package/sse.js?activeTab=code).
+Several libraries can consume server-sent events in JavaScript. Here's [one of them as an example](https://www.npmjs.com/package/sse.js?activeTab=code).
 
 ## A sample chat app using Python
 
 [Here's a sample chat app written in Python](https://github.com/microsoft/promptflow/blob/main/docs/media/how-to-guides/how-to-enable-streaming-mode/scripts/chat_app.py).
 
-:::image type="content" source="./media/how-to-enable-streaming-mode/chat-app.gif" alt-text="Gif a sample chat app using Python."lightbox ="./media/how-to-enable-streaming-mode/chat-app.gif":::
+:::image type="content" source="./media/how-to-enable-streaming-mode/chat-app.gif" alt-text="Gif a sample chat app using Python." lightbox="./media/how-to-enable-streaming-mode/chat-app.gif":::
 
 ## Advanced usage - hybrid stream and nonstream flow output
 
-Sometimes, you might want to get both stream and nonstream results from a flow output. For example, in the "Chat with Wikipedia" flow, you might want to get not only LLM's answer, but also the list of URLs that the flow searched. To do this, you need to modify the flow to output a combination of stream LLM's answer and nonstream URL list.
+Sometimes, you want to get both stream and nonstream results from a flow output. For example, in the "Chat with Wikipedia" flow, you might want to get not only the LLM's answer but also the list of URLs that the flow searched. To do this, modify the flow to output a combination of stream LLM's answer and nonstream URL list.
 
-In the sample "Chat With Wikipedia" flow, the output is connected to the LLM node `augmented_chat`. To add the URL list to the output, you need to add an output field with the name `url` and the value `${get_wiki_url.output}`.
+In the sample "Chat With Wikipedia" flow, the output connects to the LLM node `augmented_chat`. To add the URL list to the output, add an output field with the name `url` and the value `${get_wiki_url.output}`.
 
-:::image type="content" source="./media/how-to-enable-streaming-mode/chat-wikipedia-dual-output-center.png" alt-text="Screenshot of hybrid chat with Wikipedia flow." lightbox = "./media/how-to-enable-streaming-mode/chat-wikipedia-dual-output-center.png":::
+:::image type="content" source="./media/how-to-enable-streaming-mode/chat-wikipedia-dual-output-center.png" alt-text="Screenshot of hybrid chat with Wikipedia flow." lightbox="./media/how-to-enable-streaming-mode/chat-wikipedia-dual-output-center.png":::
 
-The output of the flow will be a nonstream field as the base and a stream field as the delta. Here's an example of request and response.
+The output of the flow is a nonstream field as the base and a stream field as the delta. Here's an example of request and response.
 
 ### Advanced usage - 0. The client sends a message to the server
 
@@ -323,7 +323,7 @@ Accept: text/event-stream
 }
 ```
 
-### Advance usage - 1. The server sends back the answer in streaming mode
+### Advanced usage - 1. The server sends back the answer in streaming mode
 
 ```JSON
 HTTP/1.1 200 OK
@@ -372,7 +372,7 @@ data: {"answer": "PT"}
 data: {"answer": ""}
 ```
 
-### Advance usage - 2. The client sends another chat message, along with the full chat history, to the server
+### Advanced usage - 2. The client sends another chat message, along with the full chat history, to the server
 
 ```JSON
 POST https://<your-endpoint>.inference.ml.azure.com/score
@@ -398,7 +398,7 @@ Accept: text/event-stream
 }
 ```
 
-### Advance usage - 3. The server sends back the answer in streaming mode
+### Advanced usage - 3. The server sends back the answer in streaming mode
 
 ```JSON
 HTTP/1.1 200 OK
@@ -502,4 +502,4 @@ data: {"answer": ""}
 ## Next steps
 
 - Learn more about how to [troubleshoot managed online endpoints](../how-to-troubleshoot-online-endpoints.md).
-- Once you improve your flow, and would like to deploy the improved version with safe rollout strategy, you can refer to [Safe rollout for online endpoints](../how-to-safely-rollout-online-endpoints.md).
+- When you improve your flow and want to deploy the improved version by using a safe rollout strategy, see [Safe rollout for online endpoints](../how-to-safely-rollout-online-endpoints.md).

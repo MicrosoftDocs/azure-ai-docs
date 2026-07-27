@@ -52,11 +52,7 @@ configuration:
           - not:
               or:
                 - isActivitySender:
-                    user: eric-urban
-                - isActivitySender:
-                    user: nitinme
-                - isActivitySender:
-                    user: mrbullwinkle
+                    user: mcleans
                 - isActivitySender:
                     user: aahill
                 - isActivitySender:
@@ -73,9 +69,7 @@ configuration:
                 ${issueAuthor} - Please don't sign off on this PR. The area owners will sign off once they've reviewed your contribution.
           - mentionUsers:
               mentionees:
-                - eric-urban
-                - nitinme
-                - mrbullwinkle
+                - mcleans
                 - aahill
                 - laujan
                 - patrickfarley

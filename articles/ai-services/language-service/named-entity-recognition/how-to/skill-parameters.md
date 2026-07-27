@@ -4,11 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about skill parameters for named entity recognition.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 06/17/2026
 ms.author: lajanuar
 ---
 # Using named entity recognition skill parameters

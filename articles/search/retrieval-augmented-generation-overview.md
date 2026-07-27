@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Retrieval-augmented generation (RAG) in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Retrieval-augmented generation (RAG) is a pattern that extends LLM capabilities by grounding responses in your proprietary content. While conceptually simple, RAG implementations face significant challenges.
 
 ## The challenges of RAG

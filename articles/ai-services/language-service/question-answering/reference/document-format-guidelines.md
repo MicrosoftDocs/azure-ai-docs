@@ -1,11 +1,11 @@
 ---
 title: Import document format guidelines - custom question answering
 description: Use these guidelines for importing documents to get the best results for your content with custom question answering.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 04/20/2026
+ms.date: 05/30/2026
 ---
 
 # Format guidelines for custom question answering

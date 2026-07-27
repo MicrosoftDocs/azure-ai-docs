@@ -1,15 +1,16 @@
 ---
 title: Deprecation
 titleSuffix: Azure AI services
-author: nitinme
+author: mattwojo
 manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: nitinme
+ms.author: mattwoj
 ---
 
 > [!IMPORTANT]
+> Azure AI Metrics Advisor has been retired as of 18 May 2026.
 > Azure AI Metrics Advisor has been retired as of 18 May 2026.
 >
 > We recommend the following alternatives:

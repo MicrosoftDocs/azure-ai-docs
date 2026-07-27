@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Create a multi-turn conversational language understanding (CLU) model with entity slot filling in Microsoft Foundry (classic).
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
-ms.date: 02/06/2026
+ms.date: 05/16/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ms.custom: 

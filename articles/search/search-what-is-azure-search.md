@@ -9,6 +9,8 @@ ms.date: 06/02/2026
 
 # What is Azure AI Search?
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search is a fully managed, cloud-hosted service that connects your data to AI. The service unifies access to enterprise and web content so agents and LLMs can use context, chat history, and multi-source signals to produce reliable, grounded answers.
 
 Azure AI Search is available in two pricing models:

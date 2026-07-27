@@ -22,6 +22,8 @@ translation.priority.mt:
 
 # OData logical operators in Azure AI Search - `and`, `or`, `not`
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [OData filter expressions](query-odata-filter-orderby-syntax.md) in Azure AI Search are Boolean expressions that evaluate to `true` or `false`. You can write a complex filter by writing a series of [simpler filters](search-query-odata-comparison-operators.md) and composing them using the logical operators from [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra):
 
 - `and`: A binary operator that evaluates to `true` if both its left and right sub-expressions evaluate to `true`.

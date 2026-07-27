@@ -1,8 +1,8 @@
 items:
 # Getting Started
-- name: Guardrails and Controls Overview
+- name: Overview
   href: ../../guardrails/guardrails-overview.md
-- name: How to configure Guardrails and Controls
+- name: Configure guardrails and controls
   href: ../../guardrails/how-to-create-guardrails.md
 # Content Filtering and Risk Detection
 - name: Risks
@@ -15,7 +15,7 @@ items:
     href: ../../openai/concepts/content-filter-personal-information.md
   - name: Groundedness detection
     href: ../../openai/concepts/content-filter-groundedness.md
-  - name: Task Adherence 
+  - name: Task adherence
     href: ../../guardrails/task-adherence.md
   - name: Protected material for code
     href: ../../../ai-services/content-safety/quickstart-protected-material-code.md
@@ -38,10 +38,18 @@ items:
   href: ../../openai/concepts/default-safety-policies.md
 - name: Safety system messages
   href: ../../openai/concepts/safety-system-message-templates.md
-- name: Third party Guardrail integrations
+- name: Third-party guardrail integrations
   href: ../../guardrails/third-party-integrations.md
 - name: Guided Guardrail (preview)
   href: ../../guardrails/guided-set-up.md
+
+# Safety best practices
+- name: Safety best practices
+  items:
+  - name: Safety system message guidance
+    href: ../../openai/concepts/system-message.md
+  - name: Red teaming large language models (LLMs)
+    href: ../../openai/concepts/red-teaming.md
 
 
 

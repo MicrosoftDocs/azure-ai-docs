@@ -1,16 +1,16 @@
 items:
 # Overview and Governance
-- name: Responsible AI overview
+- name: Overview
   href: ../../responsible-use-of-ai-overview.md
 - name: Limited access
-  href: ../../../ai-services/cognitive-services-limited-access.md
+  href: ../../../ai-services/cognitive-services-limited-access.md?context=/azure/foundry/context/context
 
 # Azure OpenAI Responsible AI
 - name: Azure OpenAI
   items:
   - name: Overview
     href: ../../responsible-ai/openai/overview.md
-  - name : Transparency note
+  - name: Transparency note
     href: ../../responsible-ai/openai/transparency-note.md
   - name: Limited access
     href: ../../responsible-ai/openai/limited-access.md
@@ -21,7 +21,7 @@ items:
   - name: Customer Copyright Commitment
     href: ../../responsible-ai/openai/customer-copyright-commitment.md
   - name: Abuse monitoring
-    href: ../../openai/concepts/abuse-monitoring.md
+    href: ../../openai/concepts/abuse-monitoring.md?context=/azure/foundry/context/context
 # Agents Responsible AI
 - name: Agents
   items:
@@ -31,7 +31,3 @@ items:
     href: ../../responsible-ai/agents/data-privacy-security.md
 
 # Foundry Models Responsible AI
-- name: Foundry Models
-  items:
-  - name: Model-specific terms
-    href: ../../responsible-ai/models/model-specific-terms.md

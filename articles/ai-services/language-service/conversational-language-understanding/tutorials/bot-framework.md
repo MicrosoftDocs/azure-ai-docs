@@ -5,9 +5,9 @@ keywords: conversational language understanding, bot framework, bot, language un
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 11/18/2025
+ms.date: 06/20/2026
 ---
 # Integrate conversational language understanding with Bot Framework
 

@@ -48,7 +48,7 @@ Set your environment variable:
 import os
 
 # Option 1: Project endpoint (recommended)
-os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+os.environ["FOUNDRY_PROJECT_ENDPOINT"] = (
 	"https://<resource>.services.ai.azure.com/api/projects/<project>"
 )
 
@@ -75,7 +75,7 @@ model = init_chat_model("azure_ai:gpt-4.1", credential=DefaultAzureCredential())
 
 Use classes in the namespace `langchain_azure_ai.agents.middleware.*` to add
 Content Safety capabilities to your agents. The package automatically
-detects the project connection when you set the `AZURE_AI_PROJECT_ENDPOINT`
+detects the project connection when you set the `FOUNDRY_PROJECT_ENDPOINT`
 environment variable. Microsoft Entra ID is the default authentication
 method, but key-based authentication is also available.
 
@@ -83,7 +83,7 @@ method, but key-based authentication is also available.
 from langchain_azure_ai.agents.middleware import AzureContentModerationMiddleware
 
 middleware = AzureContentModerationMiddleware(
-    project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     # ...
 )
 ```

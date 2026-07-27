@@ -3,12 +3,14 @@ title: Create a File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a file knowledge source (preview)
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -40,6 +42,8 @@ If your content already lives in Azure Blob Storage or ADLS Gen2, or if you need
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + If the knowledge source specifies an Azure OpenAI model for embeddings, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
+
+  + If the Foundry resource has public network access disabled, create an `openai_account` [shared private link](search-indexer-howto-access-private.md#supported-resource-types) from the search service to the Foundry resource, and keep the resource's **Allow Azure services on the trusted services list** setting enabled.
 
 ::: zone pivot="csharp"
 
@@ -235,75 +239,6 @@ Prefer: return=representation
 
 ::: zone-end
 
-### Source-specific properties
-
-The following properties apply to file knowledge sources.
-
-::: zone pivot="csharp"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `Description` | A description of the knowledge source. | String | Yes | No |
-| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `FileParameters` | Parameters specific to file knowledge sources: `IngestionParameters`. | Object | Only nested model credentials are editable | No |
-
-::: zone-end
-
-::: zone pivot="python"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `file_parameters` | Parameters specific to file knowledge sources: `ingestion_parameters`. | Object | Only nested model credentials are editable | No |
-
-::: zone-end
-
-::: zone pivot="rest"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `file` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `fileParameters` | Parameters specific to file knowledge sources: `ingestionParameters`. | Object | Only nested model credentials are editable | No |
-
-::: zone-end
-
-### Ingestion parameters properties
-
-The following ingestion parameter properties control how uploaded files are processed.
-
-::: zone pivot="csharp"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `ContentExtractionMode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
-| `EmbeddingModel` | A [vectorizer](vector-search-how-to-configure-vectorizer.md) that generates embeddings for content during ingestion and for queries at retrieval time. Supported `Kind` values are `azureOpenAI`, `customWebApi`, `aiServicesVision`, and `aml`. | Object | Vectorizer credentials are editable | No |
-
-::: zone-end
-
-::: zone pivot="python"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `content_extraction_mode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
-| `embedding_model` | A [vectorizer](vector-search-how-to-configure-vectorizer.md) that generates embeddings for content during ingestion and for queries at retrieval time. Supported `kind` values are `azureOpenAI`, `customWebApi`, `aiServicesVision`, and `aml`. | Object | Vectorizer credentials are editable | No |
-
-::: zone-end
-
-::: zone pivot="rest"
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `contentExtractionMode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
-| `embeddingModel` | A [vectorizer](vector-search-how-to-configure-vectorizer.md) that generates embeddings for content during ingestion and for queries at retrieval time. Supported `kind` values are `azureOpenAI`, `customWebApi`, `aiServicesVision`, and `aml`. | Object | Vectorizer credentials are editable | No |
-
-::: zone-end
-
 ## Upload files
 
 After the knowledge source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
@@ -445,7 +380,9 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 }
 ```
 
-Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Review the value for unsupported file types, extraction failures, model access issues, or quota limits.
+Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Common causes include unsupported file types, extraction failures, model access issues, and quota limits.
+
+If a model access failure occurs and the Foundry resource that hosts the embedding model uses private networking, confirm that the `openai_account` shared private link is approved and the trusted-services bypass is enabled. A disabled bypass returns `403 Public access is disabled`. For setup details, see [Prerequisites](#prerequisites).
 
 ## Delete uploaded files
 

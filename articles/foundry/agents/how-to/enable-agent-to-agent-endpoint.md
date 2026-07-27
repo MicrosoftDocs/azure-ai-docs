@@ -76,7 +76,10 @@ curl -X PATCH "$BASE_URL/agents/$AGENT_NAME?api-version=v1" \
       ]
     },
     "agent_endpoint": {
-      "protocols": ["responses", "a2a"]
+      "protocol_configuration": {
+        "responses": {},
+        "a2a": {}
+      }
     }
   }'
 ```
@@ -110,7 +113,10 @@ $body = @{
         )
     }
     agent_endpoint = @{
-        protocols = @("responses", "a2a")
+        protocol_configuration = @{
+            responses = @{}
+            a2a = @{}
+        }
     }
 } | ConvertTo-Json -Depth 5
 
@@ -128,17 +134,19 @@ Update the `agent_card` fields to describe your agent's actual capabilities. The
 Install the required package:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.3.0"
 ```
 
-Use the `patch_agent_details` method to add the A2A protocol to your agent's endpoint:
+Use the `update_details` method to add the A2A protocol to your agent's endpoint:
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
+    A2AProtocolConfiguration,
+    AgentEndpointConfig,
+    ProtocolConfiguration,
+    ResponsesProtocolConfiguration,
 )
 
 # Format: "https://{account}.ai.azure.com/api/projects/{project}"
@@ -150,14 +158,14 @@ project_client = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-endpoint_config = AgentEndpoint(
-    protocols=[
-        AgentEndpointProtocol.RESPONSES,
-        AgentEndpointProtocol.A2A,
-    ],
+endpoint_config = AgentEndpointConfig(
+    protocol_configuration=ProtocolConfiguration(
+        responses=ResponsesProtocolConfiguration(),
+        a2a=A2AProtocolConfiguration(),
+    ),
 )
 
-patched_agent = project_client.beta.agents.patch_agent_details(
+patched_agent = project_client.agents.update_details(
     agent_name=AGENT_NAME,
     agent_endpoint=endpoint_config,
 )
@@ -230,7 +238,7 @@ The response contains the agent card with the description and skills you configu
 
 ## Configure authentication for incoming requests
 
-Incoming A2A requests require Microsoft Entra ID authentication. Key-based authentication and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Foundry User** role (or higher) on the Foundry project that hosts your agent.
+Incoming A2A requests require Microsoft Entra ID authentication. Key-based authentication and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Foundry Agent Consumer** role (or higher) on the Foundry project that hosts your agent.
 
 Two authentication patterns are supported:
 
@@ -242,7 +250,7 @@ The calling agent passes through the end user's identity. Your agent receives a 
 
 The calling agent authenticates with its own identity—either the platform-assigned agent identity, a service principal, or a managed identity. Your agent sees the calling service's identity, not an individual user. This pattern is appropriate for backend agent-to-agent workflows where individual user context isn't required.
 
-To grant a calling identity access, assign the **Foundry User** role on the Foundry project that hosts your agent. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+To grant a calling identity access, assign the **Foundry Agent Consumer** role on the Foundry project that hosts your agent. This role provides least-privilege access for interacting with agent endpoints. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 
 ## Supported A2A transports
 
@@ -340,10 +348,7 @@ You can call a Foundry A2A agent from another Foundry agent by using the A2A too
 
 ### Step 1: Create an A2A connection to the target agent
 
-The connection stores the target agent's A2A endpoint URL, authentication details, and the custom agent card path. Foundry agents serve their agent card at `agentCard/v1.0` (not the default `.well-known/agent-card.json`), so you must set the `AgentCardPath` in the connection metadata.
-
-> [!NOTE]
-> Setting a custom agent card path isn't supported in the Foundry portal. Use the REST API to create the connection.
+The connection stores the target agent's A2A endpoint URL and authentication details. For a Foundry agent target, don't set an agent card path. Foundry resolves the default agent card path automatically and negotiates the A2A protocol version for you.
 
 #### [REST API (Bash)](#tab/connection-bash)
 
@@ -375,9 +380,7 @@ curl --request PUT \
       "target": "'"$TARGET_A2A_URL"'",
       "audience": "https://ai.azure.com",
       "Credentials": {},
-      "metadata": {
-        "AgentCardPath": "/agentCard/v1.0"
-      }
+      "metadata": {}
     }
   }'
 ```
@@ -408,9 +411,7 @@ $body = @{
         target = $TARGET_A2A_URL
         audience = "https://ai.azure.com"
         Credentials = @{}
-        metadata = @{
-            AgentCardPath = "/agentCard/v1.0"
-        }
+        metadata = @{}
     }
 } | ConvertTo-Json -Depth 5
 

@@ -12,6 +12,8 @@ ms.update-cycle: 180-days
 
 # Relevance in vector search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 During vector query execution, the search engine looks for similar vectors to find the best candidates to return in search results. Depending on how you indexed the vector content, the search for relevant matches is either exhaustive or constrained to nearest neighbors for faster processing. When candidates are found, similarity metrics are used to score each result based on the strength of the match.
 
 This article explains the algorithms used to find relevant matches and the similarity metrics used for scoring. It also offers tips for improving relevance if search results don't meet expectations.

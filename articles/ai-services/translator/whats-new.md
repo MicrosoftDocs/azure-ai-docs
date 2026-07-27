@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the latest changes to the Azure Translator API.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
 ms.date: 05/05/2026
 ms.author: lajanuar

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Examples of *full* Lucene search syntax (advanced queries)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 When constructing queries for Azure AI Search, you can replace the default [simple query parser](query-simple-syntax.md) with the more powerful [Lucene query parser](query-lucene-syntax.md) to formulate specialized and advanced query expressions.
 
 The Lucene parser supports complex query formats, such as field-scoped queries, fuzzy search, infix and suffix wildcard search, proximity search, term boosting, and regular expression search. The extra power comes with more processing requirements so you should expect a slightly longer execution time. In this article, you can step through examples that demonstrate query operations based on full syntax.

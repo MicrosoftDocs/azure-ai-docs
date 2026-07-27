@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: View a list of entity types the PII feature can detect and identify within unstructured text.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 04/18/2026
 ms.author: lajanuar
 ms.custom:
   - language-service-pii

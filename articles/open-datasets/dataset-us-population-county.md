@@ -3,7 +3,7 @@ title: US Population by County
 description: Learn how to use the US Population by County dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 06/29/2026
 ---
 
 # US Population by County
@@ -276,6 +276,33 @@ display(spark.sql('SELECT * FROM source LIMIT 10'))
 ```
 
 <!-- nbend -->
+
+---
+
+### Azure SQL Database
+
+[Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly by using [data virtualization](/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas&preserve-view=true). Use `OPENROWSET` to read the Parquet files over HTTPS.
+
+#### Query in place
+
+```sql
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'abs://censusdatacontainer@azureopendatastorage.blob.core.windows.net/release/us_population_county/**',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
+
+#### Persist into a table (optional)
+
+```sql
+SELECT *
+INTO dbo.UsPopulationByCounty_Local
+FROM OPENROWSET(
+    BULK 'abs://censusdatacontainer@azureopendatastorage.blob.core.windows.net/release/us_population_county/**',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
 
 ---
 

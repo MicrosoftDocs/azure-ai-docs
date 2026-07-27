@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Vector search in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Vector search is an information retrieval approach that supports indexing and querying over numeric representations of content. Because the content is numeric rather than plain text, matching is based on vectors that are most similar to the query vector. This approach enables matching across:
 
 - Semantic or conceptual likeness. For example, "dog" and "canine" are conceptually similar but linguistically distinct.

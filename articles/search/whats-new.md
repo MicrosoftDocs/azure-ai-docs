@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # What's new in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn about the latest updates to Azure AI Search functionality, docs, and samples.
 
 > [!NOTE]

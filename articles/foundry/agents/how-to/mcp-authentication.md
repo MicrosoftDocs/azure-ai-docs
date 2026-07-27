@@ -121,7 +121,7 @@ When the agent invokes the MCP server, Agent Service uses the project's managed 
 ## OAuth identity passthrough
 
 > [!NOTE]
-> - To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
+> - To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry Agent Consumer** role on the project. Prefer this role for least-privilege access. The **Foundry User** role also works but is intended for developers building agents, not consumers. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
 > - We highly recommend you adding `offline_access` as part of scopes to auto refresh the token once expired.
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]

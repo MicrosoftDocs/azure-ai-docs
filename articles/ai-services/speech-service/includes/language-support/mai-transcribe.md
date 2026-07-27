@@ -1,9 +1,10 @@
 ---
 author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 04/28/2026
+ms.date: 07/01/2026
 ms.topic: include
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 
@@ -51,3 +52,4 @@ ms.author: pafarley
 | `tr` | Turkish | ✅ | ✅ |
 | `uk` | Ukrainian | ✅ |  |
 | `vi` | Vietnamese | ✅ | ✅ |
+| `zh` | Chinese (simplified) | ✅ | ✅ |

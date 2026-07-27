@@ -17,7 +17,7 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 Every agent in Microsoft Foundry has a stable endpoint from the moment it's created. Behind each endpoint, a Foundry model processes user input according to the agent's instructions and tools. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
 - **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent automatically updates to the latest version, which means a newly created version is immediately served. If that isn't what you want, pin traffic to a specific version.
-- **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotService or BotServiceRbac authorization scheme.
+- **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotServiceRbac or BotServiceTenant authorization scheme.
 
 This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. After you configure the endpoint, you can:
 
@@ -31,7 +31,8 @@ This article shows you how to select the active version, enable protocols, set a
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
-- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents. Principals that only interact with agents (without creating or editing them) should use the [Foundry Agent Consumer role](../../concepts/rbac-foundry.md) instead.
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents. Principals that only interact with agents (without creating or editing them) should use the [Foundry Agent Consumer role](../../concepts/rbac-foundry.md) instead.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
@@ -76,6 +77,7 @@ An agent can expose multiple protocols simultaneously:
 | **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 | **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
 | **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
+| **MCP (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/mcp` |
 
 To enable the A2A protocol on your agent, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md).
 
@@ -85,9 +87,9 @@ You can configure inbound authentication on the agent endpoint:
 
 | Scheme type | Description | Isolation key source |
 |-------------|-------------|----------------------|
-| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Foundry User** role on the Foundry project. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
-| **`BotService`** | Azure Bot Service channel authorization. Used when publishing to M365/Teams. Configured automatically during the channel publish flow. | N/A |
-| **`BotServiceRbac`** | Azure Bot Service authorization combined with Azure RBAC. Use when you need Bot Service channel auth with additional RBAC enforcement. | N/A |
+| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Foundry Agent Consumer** role (or higher, such as **Foundry User**) on the Foundry project or agent scope. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
+| **`BotServiceRbac`** | Azure Bot Service channel authorization combined with Azure RBAC. Only identities that have the Azure permissions required to call the agent in Foundry can invoke it. Used when publishing to Microsoft 365 or Teams; configured automatically during the publish flow. | N/A |
+| **`BotServiceTenant`** | Azure Bot Service channel authorization scoped to your tenant. Anyone in your tenant can invoke the agent. Used when publishing to Microsoft 365 or Teams; configured automatically during the publish flow. | N/A |
 
 API key authentication isn't supported. Use Microsoft Entra ID (Azure RBAC) to authorize callers.
 
@@ -137,8 +139,7 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
+    AgentEndpointConfig,
     FixedRatioVersionSelectionRule,
     VersionSelector,
 )
@@ -151,11 +152,10 @@ agent_name = "name-of-your-existing-agent"
 project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
+    endpoint_config = AgentEndpointConfig(
         version_selector=VersionSelector(
             version_selection_rules=[
                 FixedRatioVersionSelectionRule(agent_version="2", traffic_percentage=100),
@@ -163,7 +163,7 @@ with project_client:
         ),
     )
 
-    patched_agent = project_client.beta.agents.patch_agent_details(
+    patched_agent = project_client.agents.update_details(
         agent_name=agent_name,
         agent_endpoint=endpoint_config,
     )
@@ -189,13 +189,15 @@ Content-Type: application/merge-patch+json
 
 {
   "agent_endpoint": {
-    "protocols": ["activity", "responses", "invocations", "a2a"],
+    "protocol_configuration": {
+      "activity": {},
+      "responses": {},
+      "invocations": {},
+      "a2a": {}
+    },
     "authorization_schemes": [
       {
-        "type": "Entra",
-        "isolation_key_source": {
-          "kind": "Entra"
-        }
+        "type": "Entra"
       },
       {
         "type": "BotServiceRbac"
@@ -210,11 +212,14 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
-    EntraAuthorizationScheme,
+    A2AProtocolConfiguration,
+    ActivityProtocolConfiguration,
+    AgentEndpointConfig,
     BotServiceRbacAuthorizationScheme,
-    EntraIsolationKeySource,
+    EntraAuthorizationScheme,
+    InvocationsProtocolConfiguration,
+    ProtocolConfiguration,
+    ResponsesProtocolConfiguration,
 )
 from azure.identity import DefaultAzureCredential
 
@@ -225,26 +230,23 @@ agent_name = "name-of-your-existing-agent"
 project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
-        protocols=[
-            AgentEndpointProtocol.RESPONSES,
-            AgentEndpointProtocol.ACTIVITY,
-            AgentEndpointProtocol.INVOCATIONS,
-            AgentEndpointProtocol.A2A,
-        ],
+    endpoint_config = AgentEndpointConfig(
+        protocol_configuration=ProtocolConfiguration(
+            responses=ResponsesProtocolConfiguration(),
+            activity=ActivityProtocolConfiguration(),
+            invocations=InvocationsProtocolConfiguration(),
+            a2a=A2AProtocolConfiguration(),
+        ),
         authorization_schemes=[
-            EntraAuthorizationScheme(
-                isolation_key_source=EntraIsolationKeySource(),
-            ),
+            EntraAuthorizationScheme(),
             BotServiceRbacAuthorizationScheme(),
         ],
     )
 
-    patched_agent = project_client.beta.agents.patch_agent_details(
+    patched_agent = project_client.agents.update_details(
         agent_name=agent_name,
         agent_endpoint=endpoint_config,
     )
@@ -349,14 +351,14 @@ Content-Type: application/json
 | `id` | string | Unique identifier | No | No |
 | `name` | string (max 63 chars) | Name of the agent | No | No |
 | `versions` | object | Contains `latest` with the latest `AgentVersion` | Yes (via create_version) | Yes |
-| `agent_endpoint` | AgentEndpoint | Endpoint configuration (version selector, protocols, authorization). See the AgentEndpoint table below. | Yes (`PATCH /agents/{name}`) | Partial (version selector only) |
+| `agent_endpoint` | AgentEndpoint | Endpoint configuration (version selector, protocol configuration, authorization). See the AgentEndpoint table below. | Yes (`PATCH /agents/{name}`) | Partial (version selector only) |
 | `instance_identity` | object | The agent's unique Microsoft Entra identity (`principal_id`, `client_id`) | No (read-only) | No |
 | `blueprint` / `blueprint_reference` | object | Reference to the agent's Microsoft Entra agent blueprint (`principal_id`, `client_id`, or `type`, `blueprint_id`) | No (read-only) | No |
 | `agent_card` | AgentCard | Agent details for consumers and A2A | Yes (`PATCH /agents/{name}`) | No (REST API / SDK only) |
 | `status` | enum (`Enabled`, `Disabled`) | Whether the agent is serving traffic | Not yet supported | No |
 
 > [!NOTE]
-> The `version_selector`, `protocols`, and `authorization_schemes` are nested under `agent_endpoint`. To update any of them, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
+> The `version_selector`, `protocol_configuration`, and `authorization_schemes` properties are nested under `agent_endpoint`. To update any of these properties, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
 
 </details>
 
@@ -366,7 +368,7 @@ Content-Type: application/json
 | Property | Type | Description |
 | --- | --- | --- |
 | `version_selector` | VersionSelector | How traffic is routed to agent versions |
-| `protocols` | array of string | Protocols enabled (for example, `responses`, `activity`, `a2a`) |
+| `protocol_configuration` | object | Protocols enabled, keyed by protocol name (for example, `responses`, `activity`, `a2a`). Each key maps to a protocol configuration object. |
 | `authorization_schemes` | array of objects | Authorization schemes (for example, `Entra`, `BotServiceRbac`) |
 
 </details>

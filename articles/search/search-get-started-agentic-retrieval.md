@@ -10,11 +10,11 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: search-sdks-rest
 # Customer intent: I want to learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations. The knowledge base should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI LLM to synthesize answers.
-
 ---
 
 # Quickstart: Agentic retrieval
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 ::: zone pivot="csharp"
 [!INCLUDE [C#](includes/quickstarts/agentic-retrieval-csharp.md)]

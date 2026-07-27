@@ -8,7 +8,7 @@ ms.custom:
   - devx-track-python
   - classic-and-new
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 07/22/2026
 author: alvinashcraft
 ms.author: aashcraft
 recommendations: false

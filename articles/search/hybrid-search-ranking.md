@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Relevance scoring in hybrid search using Reciprocal Rank Fusion (RRF)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Reciprocal Rank Fusion (RRF) is an algorithm that evaluates search scores from multiple previously ranked results to produce a single, unified result set. In Azure AI Search, RRF is used when two or more queries execute in parallel, such as [hybrid queries](hybrid-search-overview.md) and [multiple vector queries](vector-search-overview.md). Each individual query produces a ranked result set, and RRF merges and homogenizes those rankings into a single result set for the query response.
 
 RRF is based on the concept of *reciprocal rank*, which is the inverse of the rank of the first relevant document in a list of search results. The goal of the technique is to take into account the position of the items in the original rankings and give higher importance to items that are ranked higher in multiple lists. This approach can help improve the overall quality and reliability of the final ranking, making it more useful for the task of fusing multiple ordered search results.

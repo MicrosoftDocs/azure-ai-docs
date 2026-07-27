@@ -1,8 +1,9 @@
 ---
-title: "Use Connected Foundry Models in Foundry Agent Service"
+title: "Use connected Foundry models in Foundry Agent Service"
 description: "Connect to Foundry models hosted in another Foundry resource and use them in your agents without copying or redeploying the models."
-author: aahil
+author: aahill
 ms.author: aahi
+ms.manager: mcleans
 ms.date: 06/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

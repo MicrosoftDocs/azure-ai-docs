@@ -3,7 +3,7 @@ author: laujan
 ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 06/15/2026
+ms.date: 06/10/2026
 ---
 
 - [Python 3.11](https://www.python.org/downloads/) or later installed.

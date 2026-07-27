@@ -9,6 +9,8 @@ zone_pivot_groups: tutorial-create-skillset
 
 # Tutorial: Skillsets in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 ::: zone pivot="csharp"
 
 [!INCLUDE [C# tutorial](includes/tutorials/skillset-csharp.md)]

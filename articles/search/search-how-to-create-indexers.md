@@ -12,6 +12,8 @@ ms.custom:
 
 # Create an indexer in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains the basic steps for creating an indexer that automates data ingestion for supported data sources. Depending on the data source and your workflow, you might need more configuration.
 
 You can use an indexer to automate data import and indexing in Azure AI Search. An indexer is a named object on a search service that connects to an external Azure data source, reads and serializes data, and passes it to the search engine for indexing. Using indexers significantly reduces the amount and complexity of code you need to write for supported data sources.

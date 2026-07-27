@@ -44,7 +44,7 @@ To create a fine-tuning job in the Foundry portal:
 1. Go to **Build** > **Fine-tune**, and select **Start fine-tuning**.
 1. Select the premium healthcare model you want to customize. You can also select a previously fine-tuned model.
 1. Choose the customization method that your selected model supports: **Supervised** for supervised fine-tuning (SFT), or **Direct Preference Optimization** (DPO), or **Reinforcement** for reinforcement fine-tuning (RFT).
-1. Select the training type: **Standard** (in-region, data residency), or **Global** (lower cost, faster queue), or **Developer (preview)** (experimentation, preemptible).
+1. Select the training type: **Standard** (in-region, data residency), or **Global** (lower cost, faster queue), or **Developer** (experimentation, preemptible).
 1. Upload or select your training and validation datasets.
 1. Optionally, configure a suffix, seed, and hyperparameters.
 1. Select **Submit** to start the job.

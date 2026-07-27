@@ -6,8 +6,9 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/13/2026
+ms.date: 07/20/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Private network configuration
@@ -76,6 +77,9 @@ To roll back, convert your template configuration back to `OpenAI` as kind.
       // Defines developer API endpoint subdomain
       customSubDomainName: foundryName
       disableLocalAuth: true
+
+      // Required, or the deployment fails with "PublicNetworkAccess is required for this resource."
+      publicNetworkAccess: 'Enabled'
   }
 }
   ```

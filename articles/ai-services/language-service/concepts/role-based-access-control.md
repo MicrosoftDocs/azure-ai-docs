@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to use Azure role based access control (RBAC) for managing individual access to Azure resources.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 05/07/2026
 ms.author: lajanuar
 ---
 # Language role-based access control

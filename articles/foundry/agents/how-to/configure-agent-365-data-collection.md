@@ -1,9 +1,9 @@
 ---
 title: "Configure Agent 365 data collection for Microsoft Foundry"
 description: "Learn how to enable or disable Microsoft Agent 365 data collection on a Foundry resource, and how to enforce settings across a subscription with Azure Policy."
-author: deeikele
-ms.author: deeikele
-ms.reviewer: jburchel
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: deeikele
 ms.date: 03/19/2026
 ms.topic: how-to
 ms.service: microsoft-foundry

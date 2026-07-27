@@ -534,6 +534,7 @@ For full Responsible AI guidance, see the [Responsible AI Overview](../responsib
 
 ## Next steps
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#set-up-guardrails-and-policies) — role requirements for guardrails and policy management.
 - [Guardrails and controls overview](guardrails-overview.md)
 - [Intervention points and controls](intervention-points.md)
 - [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md)

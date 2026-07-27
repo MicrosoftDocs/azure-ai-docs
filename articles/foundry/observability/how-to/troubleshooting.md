@@ -271,6 +271,9 @@ az role assignment create \
 
 Run the command twice: once for the Application Insights resource and once for the Log Analytics workspace it's linked to. Role assignments can take up to 10 minutes to propagate. For setup details, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
 
+> [!NOTE]
+> If the Log Analytics tables that store your traces are [protected](/azure/azure-monitor/logs/protected-tables-configure) (their protection level is set to **Protected**), the Log Analytics Reader role can't read them. In that case, also assign the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role to the managed identity at the same scopes so trace evaluation can read the protected trace tables.
+
 ### Fetched traces have no input or output messages
 
 Quality evaluators read the query and response from each trace. If the fetched `invoke_agent` spans have neither the `gen_ai.input.messages` nor the `gen_ai.output.messages` attribute, the evaluators have no conversation content to score.

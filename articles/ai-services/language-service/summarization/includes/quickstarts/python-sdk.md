@@ -1,8 +1,8 @@
 ---
 author: laujan
 ms.author: lajanuar
-ms.date: 12/15/2025
-ms.service: azure-ai-language
+ms.date: 06/24/2026
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.custom:
   - build-2024

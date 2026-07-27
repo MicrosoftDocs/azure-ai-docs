@@ -12,6 +12,6 @@ ms.author: pafarley
 > * Get the resource key and region. After your Microsoft Foundry resource is deployed, select **Go to resource** to view and manage keys.
 
 > [!IMPORTANT]
-> This quickstart requires access to [conversation summarization](../../../../language-service/summarization/how-to/conversation-summarization.md). To get access, you must submit an [online request](https://aka.ms/applyforconversationsummarization/) and have it approved. 
+> This quickstart requires access to [conversation summarization](../../../../language-service/summarization/how-to/summarize.md?tabs=conversation-summarization). To get access, you must submit an [online request](https://aka.ms/applyforconversationsummarization/) and have it approved. 
 > 
 > The `--languageKey` and `--languageEndpoint` values in this quickstart must correspond to a resource that's in one of the regions supported by the [conversation summarization API](https://aka.ms/convsumregions): `eastus`, `northeurope`, and `uksouth`.

@@ -46,22 +46,24 @@ Always use the full ARM resource ID for `rai_policy_name`, not the bare policy n
 
 ## Add a guardrail with the Azure Developer CLI
 
-When you use `azd`, you declare the guardrail in the `policies` list of your `agent.manifest.yaml`. Each entry has a `type` that identifies the policy kind. For a content safety guardrail, use `rai_policy` and set `rai_policy_name`.
+When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `azure.yaml`. Set `rai_config.rai_policy_name` to the full ARM resource ID of the RAI policy.
 
-1. In your `agent.manifest.yaml`, add a `policies` list under `template`:
+1. In your `azure.yaml`, add `rai_config` to the agent service:
 
     ```yaml
-    template:
-      kind: hosted
-      name: my-hosted-agent
-      description: A hosted agent with a content safety guardrail
-      policies:
-        - type: rai_policy
+    services:
+      my-agent:
+        host: azure.ai.agent
+        project: src/my-agent
+        kind: hosted
+        name: my-hosted-agent
+        description: A hosted agent with a content safety guardrail
+        rai_config:
           # Full ARM resource ID of the RAI policy on the Foundry resource.
           rai_policy_name: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
-      protocols:
-        - protocol: responses
-          version: "1.0.0"
+        protocols:
+          - protocol: responses
+            version: "2.0.0"
     ```
 
 1. Deploy the agent:
@@ -79,7 +81,7 @@ When you create an agent version with the SDK, pass a `RaiConfig` to the `rai_co
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentProtocol,
+    AgentEndpointProtocol,
     ContainerConfiguration,
     HostedAgentDefinition,
     ProtocolVersionRecord,
@@ -114,7 +116,7 @@ agent = project.agents.create_version(
         ),
         protocol_versions=[
             ProtocolVersionRecord(
-                protocol=AgentProtocol.RESPONSES, version="1.0.0"
+                protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0"
             )
         ],
         rai_config=RaiConfig(rai_policy_name=RAI_POLICY_ID),
@@ -142,10 +144,12 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
     "name": "my-agent",
     "definition": {
       "kind": "hosted",
-      "image": "myacr.azurecr.io/my-agent:v1",
+      "container_configuration": {
+        "image": "myacr.azurecr.io/my-agent:v1"
+      },
       "cpu": "1",
       "memory": "2Gi",
-      "container_protocol_versions": [
+      "protocol_versions": [
         {"protocol": "responses", "version": "1.0.0"}
       ],
       "rai_config": {

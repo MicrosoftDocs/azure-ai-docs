@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about which entities can be detected automatically in Conversational Language Understanding
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 04/19/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

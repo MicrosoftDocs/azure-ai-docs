@@ -2,8 +2,8 @@
 title: "Manage compliance and security in Microsoft Foundry"
 ms.reviewer: gregharen
 description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM."
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt 
+ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.subservice: foundry-control-plane
 ms.topic: how-to
@@ -201,25 +201,31 @@ This feature requires a Microsoft Purview license in the tenant. To learn about 
 
 ### Enable Microsoft Purview in Foundry
 
-You must have the Foundry Account Owner role to enable Microsoft Purview integration.
+To enable Microsoft Purview, you need the **Azure AI Account Owner** role.
+
+When you turn on the integration, interaction data from Foundry models is sent to your tenant's Microsoft Purview account, and data security policies that your tenant's security admins create in Purview are enforced in Foundry. This integration lets your organization:
+
+- Monitor sensitive data flowing through AI agents.
+- Detect risky user interactions and insider threats.
+- Enforce Data Loss Prevention (DLP) policies and compliance standards.
 
 To enable Microsoft Purview in Foundry:
 
 1. On the toolbar, select **Operate**.
-
 1. On the left pane, select **Compliance**.
+1. Select the **Data security and governance** tab.
+1. At the top of the tab, use the subscription dropdown to select the Azure subscription.
+1. Turn on the **Powered by Microsoft Purview** toggle.
 
-1. Select the **Security posture** tab.
+   :::image type="content" source="media/how-to-manage-compliance-security/purview-data-security-and-governance.png" alt-text="Screenshot of the Data security and governance tab in Foundry, showing the Powered by Microsoft Purview toggle and the option to enable data security and compliance governance for the selected subscription." lightbox="media/how-to-manage-compliance-security/purview-data-security-and-governance.png":::
 
-1. Select the Azure subscription.
+> [!NOTE]
+> The toggle takes effect only if Microsoft Purview is present in the tenant. Billing happens in Purview and is based on pay-as-you-go (PAYG) meters and the policies created in Purview. If PAYG billing isn't set up in Purview, only Microsoft Purview Audit integration is supported.
 
-1. Turn on the **Microsoft Purview** toggle.
-
-    :::image type="content" source="media/how-to-manage-compliance-security/microsoft-purview-toggle.png" alt-text="Screenshot of the toggle for enabling Microsoft Purview on the tab for security posture.":::
-
-Repeat the preceding steps for other Azure subscriptions, as appropriate.
+Repeat the preceding steps for other Azure subscriptions, as appropriate. For more information, select **About Microsoft Purview** on the tab, or **Go to Microsoft Purview** to open the Microsoft Purview portal.
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../concepts/administrator-guide.md#manage-compliance-and-monitoring) — role requirements for compliance and monitoring tasks.
 - [What is Azure Policy?](/azure/governance/policy/overview)
 - [Microsoft Defender for Cloud documentation](/azure/defender-for-cloud/)

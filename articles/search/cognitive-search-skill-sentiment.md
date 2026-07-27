@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Sentiment cognitive skill (v2)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Sentiment** skill (v2) evaluates unstructured text along a positive-negative continuum, and for each record, returns a numeric score between 0 and 1. Scores close to 1 indicate positive sentiment, and scores close to 0 indicate negative sentiment. This skill uses the machine learning models provided by [Text Analytics](/azure/ai-services/language-service/overview) in Foundry Tools.
 
 > [!IMPORTANT]

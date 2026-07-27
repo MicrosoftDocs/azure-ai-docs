@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about how to select and prepare data, to be successful in creating custom NER projects.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 05/05/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---

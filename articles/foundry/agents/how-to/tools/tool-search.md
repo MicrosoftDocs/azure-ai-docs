@@ -22,6 +22,8 @@ When a toolbox contains many tools, passing all tool definitions to the model on
 
 When tool search is enabled, the model receives two built-in meta-tools: `tool_search`, which it calls with a natural-language description of the capability it needs, and `call_tool`, which it uses to invoke any discovered tool by name. Foundry evaluates `tool_search` queries against the full set of tools in the toolbox and returns only the ones that match, keeping the active context focused and relevant.
 
+For request-scoped discovery of deferred tool definitions, see [Use tool search with the Azure OpenAI Responses API](../../../openai/how-to/tool-search.md).
+
 Use tool search when:
 
 - Your toolbox has more than 10–15 tools and you want to avoid context bloat.
@@ -243,7 +245,6 @@ url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<na
 token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
 headers = {
     "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Toolboxes=V1Preview",
 }
 
 async def verify_toolbox():
@@ -276,7 +277,6 @@ Use the version-specific endpoint (`/versions/{version}/mcp`) to validate before
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
 ```
@@ -287,7 +287,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","method":"notifications/initialized"}
 ```
@@ -298,7 +297,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
@@ -309,13 +307,13 @@ In `result.tools`, `tool_search` should be present and all other toolbox tools s
 
 :::zone pivot="dotnet"
 
-Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure.com/.default` and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
 
 :::zone-end
 
 :::zone pivot="javascript"
 
-Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default` and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
 
 :::zone-end
 

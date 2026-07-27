@@ -6,7 +6,7 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/12/2026
 ---
 
 **This content applies to:**![checkmark](../media/yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=true) ![red-checkmark](../media/retire-icon.png) [**v3.0 (retiring)**](?view=doc-intel-3.0.0&preserve-view=true) **Earlier version:** ![red-checkmark](../media/retire-icon.png) [v2.1 (retiring)](?view=doc-intel-2.1.0&preserve-view=true)

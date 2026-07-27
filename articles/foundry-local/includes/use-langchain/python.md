@@ -4,7 +4,7 @@ description: Include file
 ms.service: microsoft-foundry
 ms.custom: build-2025
 ms.topic: include
-ms.date: 06/15/2026
+ms.date: 06/28/2026
 ms.author: lajanuar
 ms.reviewer: maanavd
 reviewer: maanavdalal

@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about the default None intent in orchestration workflow.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 05/18/2026
 ms.author: lajanuar
 ms.custom:  language-service-orchestration
 ms.reviewer: haelhamm

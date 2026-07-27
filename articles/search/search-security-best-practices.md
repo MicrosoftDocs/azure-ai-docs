@@ -11,6 +11,8 @@ ms.custom: horz-security
 
 # Secure an Azure AI Search service
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article provides security best practices to help protect your Azure AI Search service. You're responsible for implementing these customer-configurable security controls. For information about Microsoft's built-in protections, such as network architecture, encryption, and compliance certifications, see [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md).
 
 As a solutions architect, you should configure security controls across three domains:

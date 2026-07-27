@@ -9,6 +9,8 @@ ms.update-cycle: 365-days
 
 # Faceted navigation examples
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This section extends [faceted navigation configuration](search-faceted-navigation.md) with examples that demonstrate basic usage and other scenarios.
 
 Facetable fields are defined in an index, but facet parameters and expressions are defined in query requests. If you have an index with facetable fields, you can try new preview features like [facet hierarchies](#facet-hierarchy-example), [facet aggregations](#facet-aggregation-example), and [facet filters](#facet-filtering-example) on existing indexes.

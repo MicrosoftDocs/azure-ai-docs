@@ -6,7 +6,7 @@ ms.reviewer: skohlmeier
 ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/21/2026
 ms.custom: include, references_regions
 ---
 
@@ -48,9 +48,9 @@ The batch evaluations are supported in the following regions:
 | West US 2 | West Europe |  |  |
 | West US 3 |  |  |  |
 
-### Risk and safety evaluators and AI red teaming region support
+### Supported regions for risk and safety evaluators
 
-The following safety evaluators and AI red teaming are supported in these regions: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes, and AI red teaming.
+These regions support the following safety evaluators: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, and Ungrounded attributes.
 
 | Americas | Europe | Asia Pacific |
 |--|--|--|
@@ -66,6 +66,29 @@ Supported regions for Groundedness Pro:
 Supported regions for Protected material:
 
 - East US 2
+
+### Supported regions for AI red teaming
+
+AI red teaming is supported in the following regions.
+
+- East US 2
+- North Central US
+
+### Supported regions for data generation
+
+The following regions support synthetic data generation and trace-to-dataset generation:
+
+| Americas | Europe | Asia Pacific | Middle East & Africa |
+|--|--|--|--|
+| East US | France Central | Australia East | South Africa North |
+| East US 2 | Germany West Central | Japan East | UAE North |
+| North Central US | Italy North | South India |  |
+| South Central US | Norway East |  |  |
+| West US | Poland Central |  |  |
+| West US 3 | Sweden Central |  |  |
+|  | Switzerland North |  |  |
+|  | UK South |  |  |
+|  | West Europe |  |  |
 
 ### Azure OpenAI graders regional availability
 

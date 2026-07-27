@@ -7,10 +7,13 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 07/21/2026
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Create a custom analyzer for phone numbers
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 In search solutions, strings that have complex patterns or special characters can be challenging to work with because the [default analyzer](search-analyzers.md) strips out or misinterprets meaningful parts of a pattern. This results in a poor search experience where users can't find the information they expect. Phone numbers are a classic example of strings that are difficult to analyze. They come in various formats and include special characters that the default analyzer ignores.
 

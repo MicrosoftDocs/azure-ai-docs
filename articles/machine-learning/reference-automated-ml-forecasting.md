@@ -17,7 +17,7 @@ ms.reviewer: rasavage
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-The source JSON schema can be found at https://azuremlschemas.azureedge.net/latest/autoMLForecastingJob.schema.json
+You can find the source JSON schema at https://azuremlschemas.azureedge.net/latest/autoMLForecastingJob.schema.json.
 
 
 
@@ -147,6 +147,5 @@ az ml job create --file [YOUR_CLI_YAML_FILE] --workspace-name [YOUR_AZURE_WORKSP
 
 ### Quick links for further reference:
 * [Install and use the CLI (v2)](how-to-configure-cli.md)
-* [How to run an Automated ML job via CLI]()
 * [How to auto train forecasts](./how-to-auto-train-forecast.md)
 * CLI Forecasting examples:<br>[Orange Juice Sale Forecasting](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/automl-standalone-jobs/cli-automl-forecasting-orange-juice-sales) <br> [Energy Demand Forecasting](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/automl-standalone-jobs/cli-automl-forecasting-task-energy-demand) <br> [Bike Share Demand Forecasting](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/automl-standalone-jobs/cli-automl-forecasting-bike-share) <br> [GitHub Daily Active Users Forecast](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/automl-standalone-jobs/cli-automl-forecasting-task-github-dau)

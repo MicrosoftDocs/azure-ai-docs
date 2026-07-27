@@ -10,6 +10,8 @@ ai-usage: ai-assisted
 
 # Skillset concepts in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article is for developers who need a deeper understanding of skillset composition, and assumes familiarity with the high-level concepts of [AI enrichment](cognitive-search-concept-intro.md) or how AI is applied in Azure AI Search to transform raw content during indexing.
 
 A skillset is a reusable object in Azure AI Search that's attached to [an indexer](search-indexer-overview.md). It contains one or more skills that call built-in AI or external custom processing over raw content retrieved from an external data source.

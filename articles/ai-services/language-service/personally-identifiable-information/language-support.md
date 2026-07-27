@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: This article explains which natural languages the PII detection feature in Azure Language in Foundry Tools supports.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/10/2026
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
 ---

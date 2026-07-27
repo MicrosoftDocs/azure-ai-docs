@@ -3,7 +3,7 @@ title: NYC Taxi and Limousine green dataset
 description: Learn how to use the NYC Taxi and Limousine green dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 06/29/2026
 ---
 
 # NYC Taxi & Limousine Commission - green taxi trip records
@@ -261,6 +261,33 @@ df.createOrReplaceTempView('source')
 # Display top 10 rows
 print('Displaying top 10 rows: ')
 display(spark.sql('SELECT * FROM source LIMIT 10'))
+```
+
+---
+
+### Azure SQL Database
+
+[Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly by using [data virtualization](/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas&preserve-view=true). Use `OPENROWSET` to read the Parquet files over HTTPS.
+
+#### Query in place
+
+```sql
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'abs://nyctlc@azureopendatastorage.blob.core.windows.net/green/puYear=2018/puMonth=6/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
+
+#### Persist into a table (optional)
+
+```sql
+SELECT *
+INTO dbo.NycTaxiGreen_Local
+FROM OPENROWSET(
+    BULK 'abs://nyctlc@azureopendatastorage.blob.core.windows.net/green/puYear=2018/puMonth=6/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
 ```
 
 ---

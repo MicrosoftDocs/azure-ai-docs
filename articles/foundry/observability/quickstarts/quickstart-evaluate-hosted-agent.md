@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # Quickstart: Evaluate your hosted agent
 
 > [!NOTE]
-> Hosted agents and the Azure Developer CLI evaluation experience are currently in preview.
+> The Azure Developer CLI evaluation experience is currently in preview.
 
 In this quickstart, you evaluate the hosted agent you deployed in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md). You provide a test dataset, choose evaluators, run an evaluation against the deployed agent, and review the scores. Each step shows three ways to do the same task: the Azure Developer CLI (`azd`), the Microsoft Foundry portal, and the Python SDK.
 
@@ -75,15 +75,15 @@ Install the Foundry SDK:
 pip install "azure-ai-projects>=2.0.0" azure-identity
 ```
 
-Set two environment variables, then create the project client. Set `AZURE_AI_PROJECT_ENDPOINT` to your project endpoint and `AZURE_AI_MODEL_DEPLOYMENT_NAME` to a chat-completion deployment to use as the judge model. The following code samples assume you run them in this context:
+Set two environment variables, and then create the project client. Set `FOUNDRY_PROJECT_ENDPOINT` to your project endpoint and `FOUNDRY_MODEL_NAME` to a chat-completion deployment to use as the judge model. The following code samples assume you run them in this context:
 
 ```python
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-model_deployment = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment = os.environ["FOUNDRY_MODEL_NAME"]
 
 credential = DefaultAzureCredential()
 project_client = AIProjectClient(endpoint=endpoint, credential=credential)
@@ -394,7 +394,7 @@ To remove the hosted agent and the Azure resources you created, follow the clean
 | `AuthenticationError`, `DefaultAzureCredential`, or `Forbidden` failure | Sign in with `az login` (or `azd auth login` for the CLI path), and confirm you have the **Foundry User** role on the project. Dataset uploads also require write access to the project's storage. |
 | Agent target not found | Verify the agent name and version with `project_client.agents.get("<your-agent-name>")` or `project_client.agents.list()`. |
 | Many errored rows or unexpectedly low scores | Open the report URL and check whether rows failed with agent response or evaluator errors. Fix the underlying errors, then rerun the evaluation. |
-| Eval model deployment not found | Verify that the judge model deployment (`AZURE_AI_MODEL_DEPLOYMENT_NAME` for the SDK, or `eval_model` in `eval.yaml`) exists in your project under **Build** > **Deployments**. |
+| Eval model deployment not found | Verify that the judge model deployment (`FOUNDRY_MODEL_NAME` for the SDK, or `eval_model` in `eval.yaml`) exists in your project under **Build** > **Deployments**. |
 
 ## What you learned
 

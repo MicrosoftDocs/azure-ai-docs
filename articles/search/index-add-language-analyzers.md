@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Add language analyzers to string fields in an Azure AI Search index
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A *language analyzer* is a specific type of [text analyzer](search-analyzers.md) that performs lexical analysis using the linguistic rules of the target language. Every searchable string field has an **analyzer** property. If your content consists of translated strings, such as separate fields for English and Chinese text, you could specify language analyzers on each field to access the rich linguistic capabilities of those analyzers.
 
 ## When to use a language analyzer

@@ -1,9 +1,9 @@
 ---
 title: Create, test, and deploy your custom question answering project in Microsoft Foundry
 description: Create a custom question answering project from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering project from a simple FAQ webpage, to answer questions.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/28/2026
 ---
 This quickstart guides you through the essential steps needed to create, test, and deploy a custom question answering (CQA) project in Microsoft Foundry. It provides clear, actionable instructions for a fast and successful CQA deployment.
 

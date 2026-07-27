@@ -10,6 +10,8 @@ ms.date: 04/22/2026
 
 # Features of Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search provides information retrieval and uses optional AI integration to extract more value from text and vector content.
 
 The following table summarizes features by category. There's feature parity in all Azure public, private, and sovereign clouds, but some features aren't supported in [specific regions](search-region-support.md) or [specific tiers](search-sku-tier.md#feature-availability-by-tier).

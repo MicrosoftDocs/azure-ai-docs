@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Use this quickstart to start using Summarization.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 04/17/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -64,5 +64,5 @@ To clean up and remove an Azure AI resource, you can delete either the individua
 
 ## Next steps
 
-* [How to call text summarization](./how-to/document-summarization.md)
-* [How to call conversation summarization](./how-to/conversation-summarization.md)
+* [How to call text summarization](./how-to/summarize.md?tabs=text-summarization)
+* [How to call conversation summarization](./how-to/summarize.md?tabs=conversation-summarization)

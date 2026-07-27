@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Azure Vision vectorizer
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
 > This vectorizer is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Indexes - Create Or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) supports this feature.
 

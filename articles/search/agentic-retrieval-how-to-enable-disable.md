@@ -10,6 +10,8 @@ ai-usage: ai-assisted
 
 # Enable or disable agentic retrieval billing
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Agentic retrieval is a premium feature billed by usage. By default, all search services are enrolled in the free plan, which provides a monthly allowance at no charge. To enable continued access after the free quota is consumed, you can switch to the standard plan.
 
 Starting with Search Service REST API version 2026-04-01, billing consent for semantic ranker and agentic retrieval is separate. Use `knowledgeRetrieval` to control paid agentic retrieval usage independently of `semanticSearch`.

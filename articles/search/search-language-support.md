@@ -5,11 +5,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Create an index for multiple languages in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 If you have strings in multiple languages, you can use [vector search](vector-search-overview.md) to represent multilingual content mathematically, which is the more modern approach. Alternatively, if you aren't using vectors, you can attach [language analyzers](index-add-language-analyzers.md#supported-language-analyzers) that analyze strings using linguistic rules of a specific language during indexing and query execution. With a language analyzer, you get better handling of diacritics, character variants, punctuation, and word root forms.
 
@@ -59,7 +62,7 @@ To add text translation, follow these steps:
 
 ## Define fields for content in different languages
 
-In Azure AI Search, queries target a single index. Developers who want to provide language-specific strings in a single search experience typically define dedicated fields to store the values: one field for English strings, one for French, and so on.
+In Azure AI Search, queries target a single index. Developers who want to provide language-specific strings in a single search experience typically define one dedicated field per language to store the values, such as one field for English strings and one field for French strings.
 
 The `analyzer` property on a field definition is used to set the [language analyzer](index-add-language-analyzers.md). It's used for both indexing and query execution.
 

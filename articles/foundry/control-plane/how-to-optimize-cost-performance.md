@@ -6,8 +6,8 @@ ms.subservice: foundry-control-plane
 ms.topic: how-to
 ms.date: 05/12/2026
 ms.reviewer: hanch
-ms.author: scottpolly
-author: bhcglx
+ms.author: lagayhar
+author: lgayhardt
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---

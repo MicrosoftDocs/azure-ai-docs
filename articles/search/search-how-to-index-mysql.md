@@ -15,6 +15,8 @@ ms.custom:
 
 # Index data from Azure Database for MySQL Flexible Server (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]

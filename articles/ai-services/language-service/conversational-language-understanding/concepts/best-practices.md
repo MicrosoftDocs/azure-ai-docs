@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to apply best practices when you use conversational language understanding.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: best-practice
-ms.date: 12/17/2025
+ms.date: 04/05/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -57,7 +57,7 @@ For more information, see [Component types](./entity-components.md#component-typ
 
 ## Use the None score threshold
 
-If you see too many false positives, such as out-of-context utterances being marked as valid intents, see [Confidence threshold](./none-intent.md) for information on how it affects inference.
+If you see too many false positives, such as out-of-context utterances being marked as valid intents, see [Confidence threshold](./evaluation-metrics.md#none-intent) for information on how it affects inference.
 
 * Non-machine-learned entity components, like lists and regex, are by definition not contextual. If you see list or regex entities in unintended places, try labeling the list synonyms as the machine-learned component.
 * For entities, you can use learned component as the Required component, to restrict when a composed entity should fire.

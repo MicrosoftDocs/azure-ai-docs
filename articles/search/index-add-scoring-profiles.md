@@ -7,11 +7,13 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 07/27/2026
 ms.update-cycle: 365-days
 ---
 
 # Add scoring profiles to boost search scores
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Scoring profiles are used to boost or suppress the ranking of matching documents based on user-defined criteria. In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. You can create scoring profiles based on:
 
@@ -348,7 +350,7 @@ Here's an example scoring profile that demonstrates how to boost by freshness.
             "boost": 2.0,
             "interpolation": "quadratic",
             "parameters": {
-              "boostingDuration": "365D"
+              "boostingDuration": "P365D"
             }
           }
         ]
@@ -359,7 +361,7 @@ Here's an example scoring profile that demonstrates how to boost by freshness.
 
 + The `freshness` function computes a magnitude from "now" to `lastUpdated`.
 + A positive boost with quadratic interpolation increases lift for recent dates, tapering quickly for older ones. 
-+ `"boostingDuration": "365D"` defines the time window over which freshness is evaluated, for example boosting documents dated within the last year.
++ `"boostingDuration": "P365D"` defines the time window over which freshness is evaluated, for example boosting documents dated within the last year.
 + `"interpolation": "quadratic"` means the boost effect is stronger for documents closer to the current date and tapers off more sharply for older ones.
 
 In the next example, a linear interpolation provides a steady preference for most‑recent content across the 30‑day window. Increase boost if the signal needs to win against other relevance factors.

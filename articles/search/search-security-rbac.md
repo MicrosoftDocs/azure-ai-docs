@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Connect to Azure AI Search using roles
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports [role-based access control](/azure/role-based-access-control/role-assignments-steps) through Microsoft Entra ID. Role-based access is optional but recommended. The alternative is [key-based authentication](search-security-api-keys.md), which is the default.
 
 If you assign multiple roles to a security principal, permissions are combined. Role assignments apply across all tools and client libraries. You can assign roles using any [supported approach](/azure/role-based-access-control/role-assignments-steps#step-5-assign-role).

@@ -1,11 +1,11 @@
 ---
 title: Markdown format - custom question answering
 description: Following is the list of markdown formats that you can use your answer text.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 12/15/2025
+ms.date: 04/19/2026
 ---
 # Markdown format supported in answer text
 
