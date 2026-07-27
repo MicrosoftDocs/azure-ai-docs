@@ -10,7 +10,6 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
-zone_pivot_groups: hosted-agent-deploy-method
 #CustomerIntent: As an enterprise hosted agent developer, I want to set up a CI/CD pipeline so that I can automatically deploy and validate my agent after I update its source code.
 ---
 
