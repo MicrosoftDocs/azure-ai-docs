@@ -243,7 +243,7 @@ The Skills API is versioned: creating a skill version auto-creates the skill if 
 | `SkillVersion` | `id`, `skill_id`, `name`, `version`, `description`, `created_at` | An immutable snapshot of the skill content. |
 
 > [!TIP]
-> For an end-to-end Python CRUD walkthrough — create two versions, switch `default_version`, fetch, list, delete — see the [`sample_skills_crud.py`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/hosted_agents/sample_skills_crud.py) sample in the `azure-ai-projects` SDK.
+> For an end-to-end Python CRUD walkthrough — create two versions, switch `default_version`, fetch, list, delete — see the [`sample_skills_crud.py`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/skills/sample_skills_crud.py) sample in the `azure-ai-projects` SDK.
 
 ### Create a skill version
 
