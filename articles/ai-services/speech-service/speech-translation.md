@@ -9,6 +9,7 @@ ms.topic: overview
 ms.date: 02/25/2026
 ms.author: pafarley
 ms.custom: devx-track-csharp
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of speech translation with Azure Speech in Foundry Tools.
 ---
 
@@ -27,43 +28,37 @@ For a list of languages supported for speech translation, see [Language and voic
 
 The core features of speech translation include:
 
-- [Speech to text translation](#speech-to-text-translation)
-- [Speech to speech translation](#speech-to-speech-translation)
-- [Multi-lingual speech translation](#multi-lingual-speech-translation)
+- [Real-time speech translation](#real-time-speech-translation)
 - [Live Interpreter](#live-interpreter)
 - [Multiple target languages translation](#multiple-target-languages-translation)
 
-## Speech to text translation
+## Real-time speech translation
 
-The standard feature offered by the Speech service is the ability to take in an input audio stream in your specified source language, and have it translated and outputted as text in your specified target language. 
+Speech translation uses one standard API for real-time translation with text output, audio output, or both.
 
-## Speech to speech translation
+### Standard speech translation API
 
-As a supplement to the above feature, the Speech service also offers the option to read aloud the translated text using our large database of pretrained voices, allowing for a natural output of the input speech. 
-
-## Multi-lingual speech translation
-
-Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, handling language switches within the same session, and supporting live streaming translations into English. These features enable a new level of speech translation powers that can be implemented into your products. 
-
-- Unspecified input language. Multi-lingual speech translation can receive audio in a wide range of languages, and there's no need to specify what the expected input language is. 
-- Language switching. Multi-lingual speech translation allows for multiple languages to be spoken during the same session, and have them all translated into the same target language. There's no need to restart a session when the input language changes or any other actions by you. 
-- Transcription. The service outputs a transcription in the specified target language. Source language transcription isn't available yet. 
-
-Some use cases for multi-lingual speech translation include:
-
-- Travel Interpreter. When traveling abroad, multi-lingual speech translation offers the ability to create a solution that allows customers to translate any input audio to and from the local language. This allows them to communicate with the locals and better understand their surroundings. 
-- Business Meeting. In a meeting with people who speak different languages, multi-lingual speech translation allows the members of the meeting to all communicate with each other naturally as if there was no language barrier. 
-
-For a list of the supported input (source) languages, see the [speech to text languages documentation](language-support.md?tabs=stt). For a list of the supported output (target) languages, see the *Translate to text language* table in the [speech translation languages documentation](language-support.md?tabs=speech-translation).
-
-For more information on multi-lingual speech translation, see [the speech translation how to guide](./how-to-translate-speech.md#multi-lingual-speech-translation-without-source-language-candidates) and [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L472).
+Use the standard speech translation API when you want to send an input audio stream in a specified source language and return translated text, synthesized speech, or both in your specified target language.
 
 ## Live interpreter
-Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker’s style and tone. Live Interpreter helps people communicate clearly and inclusively in everyday scenarios, like in Teams meetings, customer support centers, international classrooms, or global events. 
 
-For a list of the supported input (source) languages, see the [speech to text languages documentation](language-support.md?tabs=stt).
+Live Interpreter is part of real-time speech translation and provides a more full-featured experience than the standard API for conversational scenarios. It continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker's style and tone. 
 
-For the Live Interpreter sample code, see the [Speech translation how-to guide](./how-to-translate-speech.md#using-live-interpreter-for-real-time-speech-to-speech-translation-with-personal-voice).
+Live Interpreter includes advanced capabilities such as:
+
+- Unspecified input language. Receive audio in a wide range of languages without setting expected input language.
+- Language switching. Handle multiple spoken languages in the same session without restarting.
+- Bring your own voice (BYO voice). Use personal voice with Live Interpreter for real-time speech-to-speech translation.
+- Transcription in the target language. Source language transcription isn't available yet.
+
+Some use cases for Live Interpreter include:
+
+- Travel interpreter. Build solutions that let customers translate input audio to and from local languages while traveling.
+- Business meetings. Help participants who speak different languages communicate naturally in one session.
+
+For a list of supported input (source) languages, see [speech to text languages](language-support.md?tabs=stt). For supported output (target) languages, see the *Translate to text language* table in [speech translation languages](language-support.md?tabs=speech-translation).
+
+For more information, see [the speech translation how-to guide](./how-to-translate-speech.md#multi-lingual-speech-translation-without-source-language-candidates), [Live Interpreter sample code](./how-to-translate-speech.md#using-live-interpreter-for-real-time-speech-to-speech-translation-with-personal-voice), and [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L472).
 
 ## Multiple target languages translation
 
