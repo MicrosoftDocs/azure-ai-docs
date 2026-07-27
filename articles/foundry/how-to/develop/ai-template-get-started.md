@@ -48,6 +48,12 @@ Speed up development by using these templates for common AI scenarios, including
 > [!TIP]
 > Each template includes a GitHub README with setup, deployment, and customization instructions. Start there for the fastest path forward.
 
+## Build agents with agent templates
+
+Agent templates are starter manifests that you can deploy directly in the Foundry portal. Each manifest defines a working agent configuration, so you can deploy it, inspect how it's built, and adapt it as a starting point for your own agent.
+
+Use agent templates to learn and experiment as you build your own agents. They shorten the path from idea to a running agent, giving you a concrete example to explore instead of starting from scratch.
+
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
