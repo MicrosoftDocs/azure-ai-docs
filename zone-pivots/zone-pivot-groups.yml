@@ -13,6 +13,8 @@ groups:
     title: Python SDK
   - id: programming-language-csharp
     title: .NET SDK
+  - id: programming-language-csharp
+    title: .NET SDK
   - id: programming-language-javascript
     title: JavaScript SDK
   - id: azd
@@ -28,6 +30,15 @@ groups:
     title: REST API
   - id: azd
     title: Azure Developer CLI
+# Owner: taochen
+- id: microsoft-agent-framewok
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: .NET
 # Owner: taochen
 - id: microsoft-agent-framewok
   title: Programming languages

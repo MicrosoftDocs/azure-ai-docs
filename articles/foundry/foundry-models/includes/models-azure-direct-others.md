@@ -1,9 +1,11 @@
 ---
 title: Other Foundry Models sold by Azure
 manager: mcleans
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
+ms.date: 07/23/2026
 ms.date: 07/23/2026
 ms.author: mopeakande
 author: msakande

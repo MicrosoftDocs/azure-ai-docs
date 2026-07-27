@@ -107,7 +107,7 @@ The regions in the following tables support most of the core features of Azure S
 | `uksouth` | ✅ | ✅ | ✅ | ✅ | | ✅ | |
 | `ukwest` | ✅ | | ✅ | | | | |
 | `westcentralus` | ✅ | | ✅ | | | | |
-| `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |
+| `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `westus` | ✅ | ✅ | ✅ | | | ✅ | ✅ |
 | `westus2` | ✅ | ✅ | ✅ | | | ✅ | |
 | `westus3` | ✅ | ✅ | ✅ | | | ✅ | |
