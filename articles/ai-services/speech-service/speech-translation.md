@@ -32,11 +32,9 @@ The core features of speech translation include:
 - [Live Interpreter](#live-interpreter)
 - [Multiple target languages translation](#multiple-target-languages-translation)
 
-## Real-time speech translation
+## Real-time speech translation (standard)
 
 Speech translation uses one standard API for real-time translation with text output, audio output, or both.
-
-### Standard speech translation API
 
 Use the standard speech translation API when you want to send an input audio stream in a specified source language and return translated text, synthesized speech, or both in your specified target language.
 
@@ -60,7 +58,7 @@ For a list of supported input (source) languages, see [speech to text languages]
 
 For more information, see [the speech translation how-to guide](./how-to-translate-speech.md#multi-lingual-speech-translation-without-source-language-candidates), [Live Interpreter sample code](./how-to-translate-speech.md#using-live-interpreter-for-real-time-speech-to-speech-translation-with-personal-voice), and [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L472).
 
-## Multiple target languages translation
+### Multiple target languages translation
 
 In scenarios where you want output in multiple languages, the Speech service directly offers the ability for you to translate the input language into two target languages. This enables you to receive two outputs and share these translations to a wider audience in a single API call. If more output languages are required, you can create a multi-service resource or use separate translation services. 
 
