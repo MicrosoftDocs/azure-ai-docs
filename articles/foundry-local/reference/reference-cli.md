@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 # Foundry Local CLI reference
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-This article provides a comprehensive reference for the Foundry Local command-line interface (CLI). The CLI organizes commands into logical categories to help you manage models, control the service, and maintain your local cache.
+This article provides a comprehensive reference for the Foundry Local command-line interface (CLI). The CLI organizes commands into logical categories to help you manage models, control the local server, and maintain your local cache.
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ foundry --version
 Make sure you have admin rights to install software.
 
 > [!TIP]
-> If you see a service connection error after installation (for example, `Request to local service failed`), run `foundry service restart`.
+> If you see a service connection error after installation (for example, `Request to local service failed`), run `foundry server restart`.
 
 ## Quick verification
 
@@ -67,15 +67,15 @@ Run these commands to confirm the CLI is installed and the service is reachable.
 
 	Reference: [Overview](#overview)
 
-1. Check the service status:
+1. Check the server status:
 
 	```bash
-	foundry service status
+  foundry server status
 	```
 
-	This command prints whether the Foundry Local service is running and includes its local endpoint.
+  This command prints whether the Foundry Local daemon is running and includes its local endpoint.
 
-	Reference: [Service commands](#service-commands)
+  Reference: [Server commands](#server-commands)
 
 ## Overview
 
@@ -84,7 +84,7 @@ Use the built-in help to explore commands and options.
 The CLI organizes commands into three main categories:
 
 - **Model**: Commands for managing and running AI models
-- **Service**: Commands for controlling the Foundry Local service
+- **Server**: Commands for controlling the Foundry Local daemon and local service
 - **Cache**: Commands for managing your local model storage
 
 ## Model commands
@@ -235,20 +235,21 @@ Why is the sky blue?
 > [!TIP]
 > Replace `qwen2.5-0.5b` with any model alias from the catalog. Run `foundry model list` to view available models. Foundry Local downloads the variant that best matches your hardware — for example, a CUDA variant for NVIDIA GPUs or an NPU variant for Qualcomm NPUs.
 
-## Service commands
+## Server commands
 
 The following table summarizes the commands related to managing and running the Foundry Local service:
 
 | **Command** | **Description** |
 | --- | --- |
-| `foundry service --help` | Displays all available service-related commands and their usage. |
-| `foundry service start` | Starts the Foundry Local service. |
-| `foundry service stop` | Stops the Foundry Local service. |
-| `foundry service restart` | Restarts the Foundry Local service. |
-| `foundry service status` | Displays the current status of the Foundry Local service. |
-| `foundry service ps` | Lists all models currently loaded in the Foundry Local service. |
-| `foundry service diag` | Displays the logs of the Foundry Local service. |
-| `foundry service set <options>` | Sets the configuration of the Foundry Local service. |
+| `foundry server --help` | Displays all available server-related commands and their usage. |
+| `foundry server start` | Starts the Foundry Local daemon and OpenAI-compatible local service. |
+| `foundry server start --port <port>` | Starts the local service on the specified TCP port. Use `0` for an OS-assigned port. |
+| `foundry server start --idle-timeout <minutes>` | Stops the daemon after the specified number of inactive minutes. Use `0` to keep the daemon running. |
+| `foundry server stop` | Stops the Foundry Local daemon. |
+| `foundry server restart` | Restarts the Foundry Local daemon and local service. |
+| `foundry server restart --port <port> --idle-timeout 0` | Restarts the local service on the specified TCP port and keeps the daemon running. |
+| `foundry server status` | Displays the daemon state, local service URLs, process ID, uptime, and log location. |
+| `foundry server logs` | Displays the Foundry Local daemon and SDK logs. |
 
 ## Cache commands
 
@@ -304,7 +305,7 @@ Connect [Open WebUI](https://github.com/open-webui/open-webui) to Foundry Local 
 1. Get your local endpoint URL:
 
    ```bash
-   foundry service status
+  foundry server status
    ```
 
    Copy the endpoint URL. Foundry Local assigns a dynamic port each time the service starts.
@@ -321,7 +322,7 @@ Connect [Open WebUI](https://github.com/open-webui/open-webui) to Foundry Local 
 1. Select a model from the dropdown and start chatting.
 
 > [!TIP]
-> If no models appear, run `foundry model run <model>` in a terminal and reload Open WebUI. If the connection fails, confirm the port with `foundry service status`.
+> If no models appear, run `foundry model run <model>` in a terminal and reload Open WebUI. If the connection fails, confirm the port with `foundry server status`.
 
 ## Upgrade Foundry Local
 
@@ -363,13 +364,13 @@ Uri: http://127.0.0.1:0/foundry/list
 
 The requested address is not valid in its context. (127.0.0.1:0)
 
-Please check service status with 'foundry service status'.
+Please check service status with 'foundry server status'.
 ```
 
 Restart the service:
 
 ```bash
-foundry service restart
+foundry server restart
 ```
 
 This command fixes cases where the service runs but isn't accessible because of a port binding problem.
