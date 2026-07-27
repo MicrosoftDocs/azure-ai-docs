@@ -13,8 +13,6 @@ groups:
     title: Python SDK
   - id: programming-language-csharp
     title: .NET SDK
-  - id: programming-language-csharp
-    title: .NET SDK
   - id: programming-language-javascript
     title: JavaScript SDK
   - id: azd
@@ -30,15 +28,6 @@ groups:
     title: REST API
   - id: azd
     title: Azure Developer CLI
-# Owner: taochen
-- id: microsoft-agent-framewok
-  title: Programming languages
-  prompt: Choose a programming language
-  pivots:
-  - id: programming-language-python
-    title: Python
-  - id: programming-language-csharp
-    title: .NET
 # Owner: taochen
 - id: microsoft-agent-framewok
   title: Programming languages
@@ -2073,7 +2062,7 @@ groups:
   - id: foundry-skills
     title: Foundry Skills
   - id: canvas
-    title: Foundry Canvas
+    title: Foundry Agent Canvas
 # Owner: johmil
 - id: hosted-agent-optimize-quickstart-method
   title: Deployment method
