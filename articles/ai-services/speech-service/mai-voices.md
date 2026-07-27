@@ -113,6 +113,11 @@ The examples use the following voices.
   <voice xml:lang='en-US' name='en-US-Ethan:MAI-Voice-2-Flash'>
     hello world, it's very great, hello world, it's very great?
   </voice>
+</speak>
+```
+
+**Expressive Control with SSML `mstts:express-as`**
+
 ```xml
 <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
   <voice xml:lang='en-US' name='en-US-Ethan:MAI-Voice-2-Flash'>
@@ -134,6 +139,7 @@ The following SSML synthesizes a greeting in Spanish (Mexico) by using `es-MX-Va
   <voice name="es-MX-Valeria:MAI-Voice-2">
     Hola, esta es una muestra de MAI Voice 2.
   </voice>
+</speak>
 ```
 
 **Expressive Control with SSML `mstts:express-as`**
