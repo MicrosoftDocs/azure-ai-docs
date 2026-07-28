@@ -5,8 +5,9 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/27/2026
+ms.date: 07/27/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
@@ -258,6 +259,15 @@ The usage limit determines the level of usage above which customers might see la
 | `gpt-4.1` | 30 billion tokens |
 | `gpt-4.1-mini` | 150 billion tokens |
 | `gpt-4.1-nano` | 550 billion tokens |
+| `gpt-5.1` | 86 billion tokens |
+| `gpt-5.1-codex` | 86 billion tokens |
+| `gpt-5.2` | 60 billion tokens |
+| `gpt-5.3-codex` | 60 billion tokens |
+| `gpt-5.4` | 50 billion tokens |
+| `gpt-5.4-mini` | 165 billion tokens |
+| `gpt-5.4-nano` | 605 billion tokens |
+| `gpt-5.5` | 25 billion tokens |
+| `gpt-5.6-sol` | 25 billion tokens |
 
 ### General best practices to remain within rate limits
 
