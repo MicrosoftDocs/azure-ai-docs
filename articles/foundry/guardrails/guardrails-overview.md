@@ -82,7 +82,7 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 
 For a detailed breakdown of what each severity level detects, see [Content filtering categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories).
 
-For Azure Direct Models, only customers who have been approved for modified Guardrails can turn them off. Apply for modified Guardrails via this form: [Limited Access Review: Modified Guardrails](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified Guardrails via this form: [Azure Government - Request Modified Content Filtering](https://aka.ms/AOAIGovModifyContentFilter).
+For Models sold by Azure, only customers who have been approved for modified Guardrails can turn them off. Apply for modified Guardrails via this form: [Limited Access Review: Modified Guardrails](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified Guardrails via this form: [Azure Government - Request Modified Content Filtering](https://aka.ms/AOAIGovModifyContentFilter).
 
 ### Intervention point applicability
 
