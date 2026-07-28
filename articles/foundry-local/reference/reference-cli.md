@@ -81,11 +81,28 @@ Run these commands to confirm the CLI is installed and the service is reachable.
 
 Use the built-in help to explore commands and options.
 
-The CLI organizes commands into three main categories:
+The CLI organizes commands into the following groups:
 
-- **Model**: Commands for managing and running AI models
-- **Server**: Commands for controlling the Foundry Local daemon and local service
-- **Cache**: Commands for managing your local model storage
+- **Model**: `model`, `cache`
+- **Run**: `run`, `chat`, `complete`, `transcribe`
+- **Server**: `server`
+- **Setup**: `config`
+- **Help**: `status`, `report`
+
+The following table summarizes the top-level commands:
+
+| **Command** | **Description** |
+| --- | --- |
+| `foundry model` | Discovers, inspects, downloads, loads, and unloads local models. |
+| `foundry chat <model>` | Starts an interactive local chat session. |
+| `foundry complete <model> <prompt>` | Generates one stateless text completion. |
+| `foundry run <model>` | Runs a model with automatic routing to chat or transcription. |
+| `foundry server` | Starts, stops, restarts, inspects, and troubleshoots the local Foundry daemon. |
+| `foundry cache` | Inspects and manages downloaded model cache entries. |
+| `foundry config` | Views and edits persistent Foundry CLI settings. |
+| `foundry status` | Shows system, service, model, and connectivity diagnostics. |
+| `foundry report` | Opens a pre-filled GitHub issue with diagnostics. |
+| `foundry transcribe` | Starts an interactive local speech transcription session or transcribes a file. |
 
 ## Model commands
 
@@ -250,6 +267,26 @@ The following table summarizes the commands related to managing and running the 
 | `foundry server restart --port <port> --idle-timeout 0` | Restarts the local service on the specified TCP port and keeps the daemon running. |
 | `foundry server status` | Displays the daemon state, local service URLs, process ID, uptime, and log location. |
 | `foundry server logs` | Displays the Foundry Local daemon and SDK logs. |
+
+### Fixed-port local server
+
+To start the local service on a fixed port and keep the daemon running, use `--port` with `--idle-timeout 0`:
+
+```bash
+foundry server start --port 39839 --idle-timeout 0
+```
+
+If the daemon is already running and you need to apply a new port, restart it with the same options:
+
+```bash
+foundry server restart --port 39839 --idle-timeout 0
+```
+
+To verify the local endpoint URL, run:
+
+```bash
+foundry server status
+```
 
 ## Cache commands
 
