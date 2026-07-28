@@ -28,7 +28,7 @@ For a list of languages supported for speech translation, see [Language and voic
 
 The core features of speech translation include:
 
-- [Real-time speech translation](#real-time-speech-translation)
+- [Real-time speech translation](#real-time-speech-translation-standard)
 - [Live Interpreter](#live-interpreter)
 - [Multiple target languages translation](#multiple-target-languages-translation)
 
