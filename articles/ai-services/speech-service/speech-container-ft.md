@@ -7,13 +7,13 @@ manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 07/27/2026
 ms.author: pafarley
 keywords: on-premises, Docker, container, transcription
 ai-usage: ai-assisted
 ---
 
-# Fast transcription containers with Docker
+# Fast transcription containers with Docker (preview)
 
 The fast transcription container transcribes audio files synchronously, returning results faster than real-time. It's suitable for scenarios where you need transcription results as quickly as possible, such as audio and video subtitles, meeting transcripts, and voicemail. It supports speaker diarization, multichannel processing, and word-level timestamps. This article describes how to download, install, and run a fast transcription container.
 
