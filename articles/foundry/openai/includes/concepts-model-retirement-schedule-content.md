@@ -172,7 +172,6 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
 | DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
 | DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
-
 | DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
 | DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
 
