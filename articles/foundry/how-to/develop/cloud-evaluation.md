@@ -540,6 +540,9 @@ Send queries to a deployed model at runtime. Evaluate the responses by using the
 > [!TIP]
 > Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
 
+> [!NOTE]
+> You can use the [model router](../../openai/concepts/model-router.md) as the target model. Model router is supported *only* as the evaluation target. It can't be selected as a model for any other evaluation feature.
+
 ### Define the message template and target
 
 The `input_messages` template controls how queries are sent to the model. Use `{{item.query}}` to reference fields from your input data. Specify the model to evaluate and optional sampling parameters:
@@ -1374,7 +1377,7 @@ Use the `azure_ai_synthetic_data_gen_preview` data source type to generate synth
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `samples_count` | Yes | Maximum number of synthetic test queries to generate. |
-| `model_deployment_name` | Yes | Model deployment to use for generating synthetic queries. Only models with Responses API capability are supported. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability). |
+| `model_deployment_name` | Yes | Model deployment to use for generating synthetic queries. Only models with Responses API capability are supported. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability). The [model router](../../openai/concepts/model-router.md) isn't supported here; it can only be used as the evaluation target. |
 | `prompt` | No | Instructions describing the type of queries to generate. Optional when the agent target has instructions configured. |
 | `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If you don't provide a name, the service generates one automatically. |
 | `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. Currently only one file is supported. |
@@ -2175,7 +2178,7 @@ Create a JSONL file where each line describes a scenario for the simulated user.
 |-----------|----------|-------------|
 | `num_conversations` | No | Number of conversations to generate per scenario. Defaults to 5, server-side cap of 5. |
 | `max_turns` | No | Maximum number of turns (exchanges) per conversation. Defaults to 10, server-side cap of 20. |
-| `model` | Yes | Model deployment to use for simulating the user. For example, `gpt-4.1`. |
+| `model` | Yes | Model deployment to use for simulating the user. For example, `gpt-4.1`. The [model router](../../openai/concepts/model-router.md) isn't supported as the simulator model; it can only be used as the evaluation target. |
 | `sampling_params` | No | Sampling parameters for the simulator model, including `temperature`, `top_p`, and `max_completion_tokens`. |
 | `data_mapping` | No | Maps fields from your scenario JSONL to simulation parameters. Common mappings: `test_case_description`, `id`, `desired_num_turns`. |
 
