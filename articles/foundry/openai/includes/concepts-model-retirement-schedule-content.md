@@ -97,7 +97,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime-2 | 2026-05-06 | Preview | 2026-08-31 | — |
 | gpt-realtime-2.1 | 2026-07-07 | Preview | 2027-06-25 | — |
 | gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
-| gpt-realtime-mini | 2025-10-06 | Retired | 2026-07-23 | — |
+| gpt-realtime-mini | 2025-10-06 | GA | 2026-09-21 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
 | o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
@@ -110,7 +110,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
-| sora-2 | 2025-10-06 | Retired | 2026-07-15 | sora-2 (2025-12-08) |
+| sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
 | text-embedding-3-large | 1 | GA | 2028-02-09 | — |
 | text-embedding-3-small | 1 | GA | 2028-02-09 | — |
@@ -270,19 +270,19 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| FW-DeepSeek-V3.1 | 1 | Retired | 2026-07-01 | — |
-| FW-DeepSeek-V3.2 | 1 | Retired | 2026-07-01 | — |
-| FW-GLM-4.7 | 1 | Retired | 2026-07-01 | — |
-| FW-GLM-5 | 1 | Retired | 2026-07-01 | — |
-| FW-GLM-5.1 | 1 | Preview | 2026-08-07 | — |
-| FW-GPT-OSS-120B | 1 | Retired | 2026-07-01 | — |
-| FW-Kimi-K2-Instruct-0905 | 1 | Retired | 2026-07-01 | — |
-| FW-Kimi-K2-Thinking | 1 | Retired | 2026-07-01 | — |
-| FW-Kimi-K2.5 | 1 | Retired | 2026-07-01 | — |
-| FW-MiniMax-M2.5 | 1 | Preview | 2026-08-07 | — |
-| FW-Qwen3-14B | 1 | Retired | 2026-07-01 | — |
-| FW-Qwen3.5-122B-A10B | 1 | Preview | 2026-08-01 | — |
-| FW-Qwen3.5-397B-A17B | 1 | Preview | 2026-08-01 | — |
+| FW-DeepSeek-V3.1 | 1 | GA | 2027-07-01 | — |
+| FW-DeepSeek-V3.2 | 1 | GA | 2027-07-01 | — |
+| FW-GLM-4.7 | 1 | GA | 2027-07-01 | — |
+| FW-GLM-5 | 1 | GA | 2027-07-01 | — |
+| FW-GLM-5.1 | 1 | GA | 2027-07-01 | — |
+| FW-GPT-OSS-120B | 1 | GA | 2027-07-01 | — |
+| FW-Kimi-K2-Instruct-0905 | 1 | GA | 2027-07-01 | — |
+| FW-Kimi-K2-Thinking | 1 | GA | 2027-07-01 | — |
+| FW-Kimi-K2.5 | 1 | GA | 2027-07-01 | — |
+| FW-MiniMax-M2.5 | 1 | GA | 2027-07-01 | — |
+| FW-Qwen3-14B | 1 | GA | 2027-07-01 | — |
+| FW-Qwen3.5-122B-A10B | 1 | GA | 2027-07-01 | — |
+| FW-Qwen3.5-397B-A17B | 1 | GA | 2027-07-01 | — |
 
 ### Meta
 

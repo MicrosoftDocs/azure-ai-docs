@@ -504,6 +504,177 @@
       "exclude_monikers": {
         "articles/machine-learning/v1/**/*.{md,yml,yaml}": [
           "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-automated-ml.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-azure-machine-learning-v2.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-compute-instance.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-compute-target.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-customer-managed-keys.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-data-encryption.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-designer.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-hub-workspace.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-ml-pipelines.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-secure-network-traffic-flow.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-soft-delete.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/concept-workspace.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-access-azureml-behind-firewall.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-assign-roles.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-change-storage-access-key.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-create-compute-instance.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-create-image-labeling-projects.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-create-text-labeling-projects.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-custom-dns.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-enable-studio-virtual-network.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-export-delete-data.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-inference-onnx-automl-image-models.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-launch-vs-code-remote.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-manage-compute-instance.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-manage-labeling-projects.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-manage-resources-vscode.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-migrate-from-v1.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-network-security-overview.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-prevent-data-loss-exfiltration.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-secure-workspace-vnet.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-securely-attach-databricks.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-setup-customer-managed-keys.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-setup-vs-code.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-troubleshoot-environments.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-troubleshoot-protobuf-descriptor-error.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-use-event-grid.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/how-to-workspace-diagnostic-api.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-assets-data.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-assets-model.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-command-job.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-deploy-endpoints.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-deploy-pipelines.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-execution-automl.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-execution-hyperdrive.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-execution-parallel-run-step.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-execution-pipeline.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-local-runs.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-managed-online-endpoints.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-resource-compute.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-resource-datastore.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/migrate-to-v2-resource-workspace.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/resource-curated-environments.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/tutorial-create-secure-workspace-vnet.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/tutorial-create-secure-workspace.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/tutorial-pipeline-python-sdk.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/includes/machine-learning-customer-managed-keys.md": [
+          "azureml-api-1"
+        ],
+        "articles/machine-learning/includes/machine-learning-dev-v1.md": [
+          "azureml-api-1"
         ]
       }
     },
