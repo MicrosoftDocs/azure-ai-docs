@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 06/19/2026
+ms.date: 07/22/2026
 ms.author: pafarley
 ms.custom: references_regions, build-2024
 ai-usage: ai-assisted
@@ -35,7 +35,7 @@ Choose a feature:
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription).
+The following table summarizes locale support for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), [batch transcription](speech-to-text.md#batch-transcription), and [post-stream refinement](how-to-recognize-speech.md). The table lists post-stream refinement support separately for generally available monolingual recognition and multilingual recognition in public preview.
 
 **In this section**
 - [Speech to text locales](#speech-to-text-locales)

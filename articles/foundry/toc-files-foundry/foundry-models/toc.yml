@@ -442,7 +442,7 @@ items:
   items:
   - name: Prompt engineering techniques
     href: ../../openai/concepts/prompt-engineering.md
-  - name: Get started with DeepSeek-R1 reasoning model
+  - name: Get started with a DeepSeek reasoning model
     href: ../../foundry-models/tutorials/get-started-deepseek-r1.md
   - name: System message design
     href: ../../openai/concepts/advanced-prompt-engineering.md
