@@ -36,14 +36,14 @@ If a create, scale, or upgrade operation is still running, wait for the provisio
 
 | Failure | Likely cause | First action |
 | --- | --- | --- |
-| Service creation blocked in a subscription and region | Subscription quota | In Azure **Quotas**, check the limit for your tier and region, then [request more services](search-create-service-portal.md#add-more-services-to-your-subscription). |
-| Create, scale, or upgrade fails despite quota headroom | Regional capacity | [Evaluate another region](search-region-capacity.md#capacity-constraint-options) when the error names a capacity condition. |
+| Service creation blocked in a subscription and region | Subscription quota | In the **Quotas** service, check the limit for your tier and region, then [request more services](search-create-service-portal.md#add-more-services-to-your-subscription). |
+| Create, scale, or upgrade fails even though quota is available | Regional capacity constraint | Check the footnotes in [region support](search-region-support.md) for constrained tiers, then [choose another region](search-region-capacity.md#capacity-constraint-options). |
 | Replica, partition, tier, or object request rejected | Service or index limit | Compare your configuration and object counts with [service limits](#service-limits) and [index limits](#index-limits). |
-| Search returns throttling responses under load | Service limit (throttling) | Reduce the request rate or add search units. See [Throttling limits](#throttling-limits). |
-| Indexing fails near a storage or vector limit | Storage or vector headroom | Compare `storageSize` with [partition storage](#partition-storage-gb) and `vectorIndexSize` with [vector index size limits](#vector-index-size-limits). |
-| Indexer, skill, or vectorizer reports a 429 from another service | Dependent-service quota | Follow the quota guidance for the service that issued the error, such as [Azure OpenAI](/azure/ai-services/openai/quotas-limits). |
+| The search service returns throttling responses under load | Throttling | Reduce the request rate or add search units. See [Throttling limits](#throttling-limits). |
+| Indexing fails near a storage or vector limit | Storage or vector quota | Compare `storageSize` with [partition storage](#partition-storage-gb) for disk and `vectorIndexSize` with [vector index size limits](#vector-index-size-limits) for memory. |
+| Indexer, skill, or vectorizer reports a 429 from another service | Azure OpenAI or other service quota | Follow the quota guidance for the service that issued the error, such as [Azure OpenAI](/azure/ai-services/openai/quotas-limits). |
 
-Quota headroom doesn't prove regional capacity, and more quota doesn't make infrastructure deployable. If the failure persists, open an Azure support request that includes the subscription, region, tier, requested configuration, full error text, UTC time, and any correlation or operation ID.
+Available subscription quota doesn't guarantee regional capacity, and requesting more quota doesn't resolve a capacity constraint. If the failure persists, open an Azure support request that includes the subscription, region, tier, requested configuration, full error text, UTC time, and any correlation or operation ID.
 
 ## Subscription limits
 <!-- [!INCLUDE [azure-search-limits-per-subscription](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-subscription.md)] -->
