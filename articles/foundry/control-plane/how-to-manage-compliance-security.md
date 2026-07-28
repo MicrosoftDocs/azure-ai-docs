@@ -17,8 +17,6 @@ ms.custom: dev-focus, doc-kit-assisted
 # Manage compliance and security in Microsoft Foundry
 Learn how Microsoft Foundry Control Plane helps you manage compliance, enforce guardrail controls, and integrate security tooling such as Microsoft Defender for Cloud across subscriptions.
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 Use the compliance workspace tabs to reach the right surface quickly.
 
 | Tab | Navigation | Outcome |
@@ -175,9 +173,9 @@ To review Defender security recommendations, follow these steps:
 
 1. Select a recommendation to view details, and select links to take remediation action in the Azure portal.
 
-## Enable enterprise-grade data security and compliance for Foundry with Microsoft Purview (preview)
+## Enable enterprise-grade data security and compliance for Foundry with Microsoft Purview
 
-By enabling Microsoft Purview on your Azure subscription, you can access, process, and store prompt and response data from Microsoft Foundry apps and agents. The data includes associated metadata. This integration supports key data security and compliance scenarios, such as:
+By enabling Microsoft Purview on your Azure subscription, a Foundry admin causes AI interaction data from all applications and agents in that subscription to flow into Microsoft Purview for centralized compliance, governance, and AI data posture management. This integration supports key data security and compliance scenarios, such as:
 
 - Microsoft Purview Audit
 - Sensitive information type (SIT) classification
@@ -203,7 +201,7 @@ This feature requires a Microsoft Purview license in the tenant. To learn about 
 
 To enable Microsoft Purview, you need the **Azure AI Account Owner** role.
 
-When you turn on the integration, interaction data from Foundry models is sent to your tenant's Microsoft Purview account, and data security policies that your tenant's security admins create in Purview are enforced in Foundry. This integration lets your organization:
+When you turn on the integration, interaction data from Foundry applications and agents is sent to your tenant's Microsoft Purview account, and data security policies that your tenant's security admins create in Purview are enforced in Foundry. This integration lets your organization:
 
 - Monitor sensitive data flowing through AI agents.
 - Detect risky user interactions and insider threats.
