@@ -29,7 +29,7 @@ You reference the guardrail by the RAI policy resource ID on the agent definitio
     /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
     ```
 
-* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.1 or later. Earlier versions support guardrails only in the standalone `agent.yaml` manifest, not in `azure.yaml`.
+* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.1 or later.
 * For the Python SDK method: the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) for Python, version 2.2.0 or later:
 
     ```bash
@@ -66,7 +66,7 @@ When you use `azd`, declare the guardrail in the `policies` list on the `azure.a
             raiPolicyName: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
         protocols:
           - protocol: responses
-            version: "1.0.0"
+            version: "2.0.0"
     ```
 
 1. Deploy the agent:
@@ -78,7 +78,7 @@ When you use `azd`, declare the guardrail in the `policies` list on the `azure.a
 The platform attaches the guardrail when it creates the agent version. `policies` works for both container image deploys and code deploys.
 
 > [!IMPORTANT]
-> In `azure.yaml`, the field is `raiPolicyName`, in camelCase, and it must be nested under a `policies` entry. `azd` ignores service properties it doesn't recognize, so an agent that sets `rai_config` in `azure.yaml` deploys **without** a guardrail and reports no error. If you're migrating from the standalone `agent.yaml` manifest, note that it spells the same field `rai_policy_name`.
+> In `azure.yaml`, the field is `raiPolicyName`, in camelCase, and it must be nested under a `policies` entry. `azd` ignores service properties it doesn't recognize, so an agent that sets `rai_config` in `azure.yaml` deploys **without** a guardrail and reports no error.
 
 Unlike the API, `azd` requires `raiPolicyName` whenever `type` is `rai_policy`. Omitting it fails validation before deploy rather than falling back to the default policy.
 
