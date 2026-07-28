@@ -410,6 +410,6 @@ Restart the service:
 foundry server restart
 ```
 
-This command fixes cases where the service runs but isn't accessible because of a port binding problem.
+This command fixes cases where the server runs but isn't accessible because of a port binding problem.
 
 For more troubleshooting guidance, see [Best practices and troubleshooting](reference-best-practice.md).
