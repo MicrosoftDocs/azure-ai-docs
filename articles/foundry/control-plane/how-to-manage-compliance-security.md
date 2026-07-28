@@ -175,7 +175,7 @@ To review Defender security recommendations, follow these steps:
 
 ## Enable enterprise-grade data security and compliance for Foundry with Microsoft Purview
 
-By enabling Microsoft Purview on your Azure subscription, a Foundry admin causes AI interaction data from all applications and agents in that subscription to flow into Microsoft Purview for centralized compliance, governance, and AI data posture management. This integration supports key data security and compliance scenarios, such as:
+When a Foundry admin enables Microsoft Purview on their Azure subscription, AI interaction data from all applications and agents in that subscription flows into Microsoft Purview for centralized compliance, governance, and AI data posture management. This integration supports key data security and compliance scenarios, such as:
 
 - Microsoft Purview Audit
 - Sensitive information type (SIT) classification
