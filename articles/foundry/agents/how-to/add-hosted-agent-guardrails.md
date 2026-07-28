@@ -75,12 +75,7 @@ When you use `azd`, declare the guardrail in the `policies` list on the `azure.a
     azd deploy
     ```
 
-The platform attaches the guardrail when it creates the agent version. `policies` works for both container image deploys and code deploys.
-
-> [!IMPORTANT]
-> In `azure.yaml`, the field is `raiPolicyName`, in camelCase, and it must be nested under a `policies` entry. `azd` ignores service properties it doesn't recognize, so an agent that sets `rai_config` in `azure.yaml` deploys **without** a guardrail and reports no error.
-
-Unlike the API, `azd` requires `raiPolicyName` whenever `type` is `rai_policy`. Omitting it fails validation before deploy rather than falling back to the default policy.
+The platform attaches the guardrail when it creates the agent version.
 
 ## Add a guardrail with the Python SDK
 
