@@ -103,10 +103,10 @@ Project capacity is dynamic because more traffic per project consumes more IPs.
 
 The number of concurrent agent sessions available per subscription varies by region. By default, concurrent sessions and usable subnet IPs map **1:1**, subject to the limit for your region.
 
-| Subnet | Total IPs | Usable IPs | Default concurrent sessions |
-|--------|-----------|------------|-----------------------------|
-| /27    | 32        | ~27        | ~27                         |
-| /26    | 64        | ~59        | ~59                         |
+| Subnet | Total IPs | Usable IPs | Approximate concurrent sessions |
+|--------|-----------|------------|---------------------------------|
+| /27    | 32        | ~27        | ~17                             |
+| /26    | 64        | ~59        | ~50 (maximum supported)         |
 
 With the default 1:1 mapping, use a **/26 subnet** or larger to support 50 concurrent sessions.
 
