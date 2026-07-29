@@ -5,11 +5,15 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 07/27/2026
 ms.custom: include, classic-and-new
 ---
 
 In this quickstart, you transcribe speech to text using the [Azure OpenAI Whisper model](../../../ai-services/speech-service/whisper-overview.md). The Whisper model can transcribe human speech in numerous languages and translate other languages into English.
+
+For offline transcription, use `gpt-transcribe`. This model uses the Audio API transcription path and isn't a Realtime API model.
+
+This quickstart uses a file upload request and response flow (one request per audio file), not a live streaming session.
 
 > [!TIP]
 > This quickstart takes approximately 10-15 minutes to complete.
