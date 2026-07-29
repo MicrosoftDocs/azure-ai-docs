@@ -36,11 +36,20 @@ This article shows IT admins how to assign a policy that governs model router, a
 
 ## How model router honors Azure Policy
 
-When an Azure Policy that restricts approved models is active at the subscription or resource group scope, model router enforces the policy at deploy time on every surface:
+When an Azure Policy is active at the subscription, resource group, or management group scope, model router enforces the policy at deploy time on every surface:
 
 - **Foundry portal**: The model subset selector lists all model router supported models, but checkboxes for unapproved models are disabled. A banner explains that selections are governed by Azure Policy.
 - **REST API, Azure CLI, and ARM templates**: A model router deployment that includes an unapproved model is rejected with a policy violation. The behavior is consistent with the portal: the same policy decision applies regardless of how the deployment is created.
 - **Existing (brownfield) deployments**: When you update or assign a policy, Azure Policy reevaluates existing model router deployments and surfaces noncompliant deployments in the **Compliance** dashboard. You can then remediate by removing the noncompliant deployment or by updating the model subset.
+
+### Compliance monitoring and drift detection
+
+When policies are scoped to management groups or subscriptions, Azure Policy evaluates all model router resources within that scope and reports results in the **Compliance** dashboard. Administrators can monitor compliance state across the organization and identify deployments that have drifted from approved configurations after a policy is assigned or updated.
+
+The effect you choose when assigning the policy determines how it applies to new and existing model router deployments:
+
+- **Deny** blocks new noncompliant deployments at deploy time and surfaces existing noncompliant deployments in the **Compliance** dashboard for remediation. It doesn't automatically remove or modify existing deployments — you update them manually.
+- **Audit** logs noncompliant deployments without blocking new requests. Use the Audit effect to measure the impact of a policy before you switch to Deny enforcement.
 
 Model discoverability is preserved. Unapproved models remain visible in the model subset list so developers can see the full set of supported models and request approval through their administrator if they need a model that isn't on the allowed list.
 
@@ -50,7 +59,11 @@ The following screenshot shows the deployment pane in the Foundry portal when a 
 
 ## Assign a policy that governs model router
 
-Model router uses the same built-in Foundry policy that governs other model deployments: **Cognitive Services Deployments should only use approved Registry Models**. To assign or update the policy, follow the steps in [Built-in policy for model deployment](model-deployment-policy.md). The publisher names and asset IDs that you allow apply to model router selections automatically. No separate policy definition is required.
+Model router honors built-in Foundry policy definitions for approved-models governance and, in public preview, for additional routing standards.
+
+**Approved-models governance**: Model router uses the same built-in Foundry policy that governs other model deployments — **Foundry model deployments should only use approved models** (previously named *Cognitive Services Deployments should only use approved Registry Models*). To assign or update this policy, follow the steps in [Built-in policy for model deployment](model-deployment-policy.md). The publisher names and asset IDs that you allow apply to model router selections automatically.
+
+**Model router-specific governance (preview)**: Additional built-in policy definitions are available in public preview to extend governance to other aspects of model router deployments, including deployment regions, required routing rules, and logging configurations. You can assign these definitions from the Azure Policy **Definitions** catalog alongside the approved-models policy to enforce a broader set of routing standards across your environment.
 
 > [!TIP]
 > Scope the policy to the resource group or subscription that contains your Foundry resources. The model subset selector evaluates the policy at the scope where the Foundry resource is created.

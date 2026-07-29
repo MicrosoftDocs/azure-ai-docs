@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [model-deployment-policy 1](../includes/how-to-model-deployment-policy-1.md)]
 
-Microsoft Foundry provides two built-in Azure Policy definitions to help you govern which models can be deployed in your organization:
+Microsoft Foundry provides built-in Azure Policy definitions to help you govern which models can be deployed in your organization. The following definitions apply to model deployments:
 
 | Policy | Purpose | Status |
 |---|---|---|
@@ -30,7 +30,7 @@ Microsoft Foundry provides two built-in Azure Policy definitions to help you gov
 Both policies are evaluated at **deployment time**. Models are not hidden from the catalog — instead, the **Deploy** action is disabled with a clear reason when a policy blocks the deployment. You can assign one or both policies depending on your governance needs.
 
 > [!NOTE]
-> These policies also govern the underlying models that [model router](../openai/how-to/model-router-agents.md) selects from. Model router only routes requests to models that satisfy your assigned policies, so the same approval and eligibility rules apply whether you deploy a model directly or use model router to pick one per request.
+> These policies also govern the underlying models that [model router](../openai/how-to/model-router-agents.md) selects from. Model router only routes requests to models that satisfy your assigned policies, so the same approval and eligibility rules apply whether you deploy a model directly or use model router to pick one per request. In addition, dedicated built-in policy definitions for model router are available in public preview. These extend governance to other aspects of model router deployments, including deployment regions, required routing rules, and logging configurations. For more information, see [Govern model router deployments with Azure Policy](model-router-policy.md).
 
 ## How these policies work together
 
