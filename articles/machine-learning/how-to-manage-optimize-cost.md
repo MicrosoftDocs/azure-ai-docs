@@ -9,7 +9,7 @@ ms.custom: subject-cost-optimization, dev-focus
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 03/01/2026
+ms.date: 07/29/2026
 ai-usage: ai-assisted
 #customer intent: As a data scientist or engineer, I want to optimize my cost for training learning modules.
 ---
@@ -107,11 +107,16 @@ Here are a few options that you have:
 
 ## <a id="low-pri-vm"></a>Use low-priority virtual machines
 
-Azure allows you to use excess unused capacity as Low-Priority VMs across virtual machine scale sets, Batch, and the Machine Learning service. These allocations are preemptible but come at a reduced price compared to dedicated VMs. In general, Low-Priority VMs are recommended for Batch workloads. You should also use them where interruptions are recoverable either through resubmits for Batch Inferencing or through restarts for deep learning training with checkpointing.
+> [!IMPORTANT]
+> Low-priority virtual machines (VMs) were retired for Azure Machine Learning on March 31, 2026. Compute clusters that specify `tier: low_priority` still pass validation and still run jobs, but Azure Batch now allocates their nodes as [Spot VMs](/azure/virtual-machines/spot-vms) through a system-initiated migration. Spot pricing and Spot eviction behavior apply to every low-priority cluster, whether you created it before or after the retirement date.
 
-Low-Priority VMs have a single quota separate from the dedicated quota value, which is by VM family. For more information about more about AmlCompute quotas, see [Manage and increase quotas ](how-to-manage-quotas.md).
+Azure allows you to use excess unused capacity as low-priority VMs across virtual machine scale sets, Batch, and the Machine Learning service. These allocations are preemptible. In general, low-priority VMs are recommended for Batch workloads. You should also use them where interruptions are recoverable either through resubmits for Batch Inferencing or through restarts for deep learning training with checkpointing.
 
-Low-Priority VMs don't work for compute instances, since they need to support interactive notebook experiences.
+Because these nodes are now allocated as Spot VMs, you're charged the current Spot rate for the VM size in the region where the cluster runs. That rate is variable rather than a fixed discount over the dedicated price. It changes with region and demand, and it can approach the pay-as-you-go price when a region has little surplus capacity. You're never charged more than the pay-as-you-go price for the same VM size. Azure Batch doesn't support setting a maximum price for Spot VMs, so you can't cap the rate that a compute cluster pays; nodes are evicted only for capacity reasons, never because of price. Check the current rate for your VM size and region in the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) before you choose a region. For more information, see [Azure Spot Virtual Machines](/azure/virtual-machines/spot-vms).
+
+Low-priority VMs have a single quota separate from the dedicated quota value, which is by VM family. For more information about AmlCompute quotas, see [Manage and increase quotas](how-to-manage-quotas.md).
+
+Low-priority VMs don't work for compute instances, since they need to support interactive notebook experiences.
 
 ## Schedule compute instances
 
