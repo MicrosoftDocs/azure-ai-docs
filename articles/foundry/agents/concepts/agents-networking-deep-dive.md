@@ -110,7 +110,7 @@ The number of concurrent agent sessions available per subscription varies by reg
 
 With the default 1:1 mapping, use a **/26 subnet** or larger to support 50 concurrent sessions.
 
-To support more concurrent sessions with the same subnet, create an Azure support request for the specific subscription and region. Based on your requirements and regional capacity, support can increase the mapping to **1 usable IP for 10 concurrent sessions (1:10)**.
+To support more concurrent sessions with the same subnet, create an Azure support request. In the request, specify the subscription, region, and expected number of concurrent sessions. Based on your requirements and regional capacity, support can increase the mapping to **1 usable IP for 10 concurrent sessions (1:10)**.
 
 ### Project capacity
 
