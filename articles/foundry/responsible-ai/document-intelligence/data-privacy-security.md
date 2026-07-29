@@ -7,7 +7,8 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 10/15/2025
+ms.date: 07/22/2026
+ai-usage: ai-assisted
 ---
 
 
@@ -40,6 +41,6 @@ The "Get Analyze Results" operation is authenticated against the same API key th
 
 **For customer trained models**: The Custom model feature allows customers to build custom models from training data stored in customer’s Azure blob storage locations. The interim outputs after analysis and labeling are stored in the same location. The trained custom models are stored in Azure storage in the same region and logically isolated with their Azure subscription and API credentials.
 
-**Deletes data**: Analyze response is stored for 24 hours from when the operation completes for retrieval. Customers can delete the analysis response at any time by utilizing the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API. After successfully retrieving the analysis results, calling the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API permanently purges those results. This action applies to all models.
+**Deletes data**: The service stores submitted input data and analyze results for 24 hours after an analysis operation completes. Document Intelligence automatically deletes both after this retention period. To delete the data earlier, call the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API. This operation permanently deletes the submitted input data and analyze result associated with the request. This action applies to all models.
 
 To learn more about privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx).

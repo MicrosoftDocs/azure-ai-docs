@@ -7,13 +7,13 @@ manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 07/27/2026
 ms.author: pafarley
 keywords: on-premises, Docker, container, transcription
 ai-usage: ai-assisted
 ---
 
-# Fast transcription containers with Docker
+# Fast transcription containers with Docker (preview)
 
 The fast transcription container transcribes audio files synchronously, returning results faster than real-time. It's suitable for scenarios where you need transcription results as quickly as possible, such as audio and video subtitles, meeting transcripts, and voicemail. It supports speaker diarization, multichannel processing, and word-level timestamps. This article describes how to download, install, and run a fast transcription container.
 
@@ -216,7 +216,10 @@ GET http://localhost:5000/stt/health
 | Limit | Value |
 |--------|------|
 | Maximum file size | 300 MB |
-| Supported formats | WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW (in WAV container), MULAW (in WAV container), AMR, WebM, SPEEX |
+| Supported formats | **WAV (mono PCM 16-bit 48 kHz, recommended)**, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW (in WAV container), MULAW (in WAV container), AMR, WebM, SPEEX |
+
+> [!TIP]
+> For best results and fastest processing, use mono PCM WAV format at 16-bit depth and 48 kHz sample rate. Other formats are supported but might require extra processing. For examples, see [Convert audio to recommended format](#convert-audio-to-recommended-format).
 
 ### Request format
 
@@ -226,7 +229,32 @@ The API accepts `multipart/form-data` requests with the following structure:
 |------|--------------|-------------|
 | `definition` | `application/json` | JSON object containing transcription options |
 | `audio` | `audio/*` | The audio file to transcribe (mutually exclusive with `audioUrl`) |
+### Convert audio to recommended format
 
+If your audio is in a format other than WAV, use `ffmpeg` to convert it to mono PCM WAV 16-bit 48 kHz:
+
+**Convert MP3 to WAV:**
+
+```bash
+ffmpeg -i input.mp3 -ac 1 -ar 48000 -f s16le output.wav
+```
+
+**Convert M4A or AAC to WAV:**
+
+```bash
+ffmpeg -i input.m4a -ac 1 -ar 48000 -f s16le output.wav
+```
+
+**Convert OPUS to WAV:**
+
+```bash
+ffmpeg -i input.opus -ac 1 -ar 48000 -f s16le output.wav
+```
+
+The flags mean:
+- `-ac 1`: Convert to mono (1 audio channel)
+- `-ar 48000`: Set sample rate to 48 kHz
+- `-f s16le`: Output as 16-bit signed PCM (little-endian)
 ### Request examples
 
 Basic transcription:
@@ -285,6 +313,7 @@ curl http://localhost:5000/stt/health
 | `phraseList` | string | Phrase list (semicolon-separated) to improve recognition accuracy. |
 | `localeHint` | string | Language hint. |
 
+
 ### Response example
 
 ```json
@@ -341,6 +370,42 @@ Use the following environment variables to configure the fast transcription cont
 | `BILLING` | (required) | Azure endpoint URL for billing |
 | `APIKEY` | (required) | API key for authentication |
 | `DECODER_COUNT` | `2` | Number of parallel decoder instances; at least 2 required for dual-channel audio |
+
+## Troubleshooting
+
+### Recognition delays at end of speech
+
+If you experience latency after you stop speaking, the issue is likely related to silence timeout configuration.
+
+1. Verify you're using the correct timeout properties. The `EndSilenceTimeoutMs` property controls when the service stops listening after detecting silence. For faster results, reduce this value (the default is typically 500 ms).
+1. Ensure your audio format is correctly specified. Audio format mismatches can cause processing delays. Use mono PCM WAV 16-bit 48 kHz for fastest processing.
+1. Check that `SegmentationSilenceTimeoutMs` (used for batch segmentation) isn't being confused with `EndSilenceTimeoutMs` (used for session termination).
+
+### Fragmented or incomplete transcription results
+
+If you receive partial transcription results or fragmented output:
+
+1. **Validate audio format first.** Confirm your input audio is actually mono PCM 16-bit 48 kHz by checking with `ffmpeg info`:
+   ```bash
+   ffmpeg -i input.wav
+   ```
+   Look for: `Audio: pcm_s16le, 48000 Hz, mono`
+
+1. **Check audio quality.** Ensure the audio file isn't corrupted or doesn't contain long silences between words. Use a tool like Audacity to inspect the waveform.
+
+1. **Verify the audio encoding.** If you're uploading audio via a URL (`audioUrl`), ensure the remote endpoint serves the correct `Content-Type` header (for example, `audio/wav`).
+
+### Unsupported media format error
+
+If you receive an "unsupported media format" error:
+
+**Cause:** The container detected a mismatch between the file extension, the actual audio codec, or the declared format in your request.
+
+**Solutions:**
+1. Convert the audio to WAV format using `ffmpeg` (see [Convert audio to recommended format](#convert-audio-to-recommended-format)).
+1. Ensure the file extension matches the actual format (for example, don't name an MP3 file `audio.wav`).
+1. If you're posting audio from a URL, verify the `Content-Type` header is correct.
+
 
 ## Related content
 
