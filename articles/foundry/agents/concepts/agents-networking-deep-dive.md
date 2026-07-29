@@ -3,7 +3,7 @@ title: "Deep dive into Foundry Agent Service networking"
 description: "Understand the network architecture, subnet sizing, IP allocation, and traffic flow for hosted and prompt agents in Microsoft Foundry Agent Service with bring-your-own VNet."
 author: aahill
 ms.author: aahi
-ms.date: 05/13/2026
+ms.date: 07/29/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -101,14 +101,16 @@ Project capacity is dynamic because more traffic per project consumes more IPs.
 
 ### Subnet size and concurrent sessions
 
-The platform supports a maximum of **50 concurrent agent sessions per subscription per region**. Your subnet size determines whether you can reach that maximum.
+The number of concurrent agent sessions available per subscription varies by region. By default, concurrent sessions and usable subnet IPs map **1:1**, subject to the limit for your region.
 
-| Subnet | Total IPs | Usable IPs | Approximate concurrent sessions |
-|--------|-----------|------------|---------------------------------|
-| /27    | 32        | ~27        | ~17                             |
-| /26    | 64        | ~59        | ~50 (maximum supported)         |
+| Subnet | Total IPs | Usable IPs | Default concurrent sessions |
+|--------|-----------|------------|-----------------------------|
+| /27    | 32        | ~27        | ~27                         |
+| /26    | 64        | ~59        | ~59                         |
 
-To support the full 50 concurrent sessions, use a **/26 subnet** or larger.
+With the default 1:1 mapping, use a **/26 subnet** or larger to support 50 concurrent sessions.
+
+To request more concurrent sessions, create an Azure support request for the specific subscription and region. Based on your requirements and regional capacity, support can increase the mapping to **1 usable IP for 10 concurrent sessions (1:10)**.
 
 ### Project capacity
 
@@ -184,7 +186,7 @@ Consider deploying a new Foundry instance with a fresh subnet when you observe:
 
 | Topic | Recommendation |
 |-------|----------------|
-| Subnet size | /24 for production. /27 is the minimum but risky. /26 is needed for 50 concurrent sessions. |
+| Subnet size | /24 for production. /27 is the minimum but risky. With the default 1:1 mapping, /26 is needed for 50 concurrent sessions. Request a 1:10 mapping through Azure support. |
 | Utilization target | Stay below 80% subnet utilization to absorb upgrade and scaling spikes. |
 | Supported IP ranges | RFC 1918 only: `10.x`, `172.16` through `172.31.x`, and `192.168.x`. No public or CGNAT ranges. |
 | Project capacity | ~250 projects at low traffic, as few as ~25 at full scale. Driven by IP availability. |
