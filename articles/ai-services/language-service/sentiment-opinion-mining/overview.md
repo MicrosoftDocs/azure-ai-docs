@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An overview of the sentiment analysis feature in Azure Language, which helps you find out what people think of a topic by mining text for clues.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 05/07/2026
 ms.author: lajanuar

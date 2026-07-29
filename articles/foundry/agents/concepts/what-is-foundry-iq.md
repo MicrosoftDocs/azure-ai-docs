@@ -49,7 +49,7 @@ A Foundry IQ knowledge base contains knowledge sources and uses agentic retrieva
 | [Knowledge sources](/azure/search/agentic-knowledge-source-overview) | Connections to indexed or remote content. A knowledge base references one or more knowledge sources. |
 | [Agentic retrieval](/azure/search/agentic-retrieval-overview) | Multi-query pipeline that decomposes complex questions into subqueries, executes them in parallel, semantically reranks results, and returns unified responses. Uses an optional LLM from Azure OpenAI in Foundry Models for query planning. |
 
-You can use Foundry IQ knowledge bases in Foundry Agent Service, Microsoft Agent Framework, or any custom application by calling the knowledge base APIs from Azure AI Search.
+You can use Foundry IQ knowledge bases in Foundry Agent Service, Microsoft Agent Framework, or any custom application by calling the knowledge base REST API or supported Azure SDK client libraries from Azure AI Search.
 
 ## Workflow
 

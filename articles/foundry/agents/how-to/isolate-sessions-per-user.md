@@ -8,7 +8,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/27/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-manage-method
@@ -17,8 +17,6 @@ zone_pivot_groups: hosted-agent-manage-method
 ---
 
 # Isolate hosted agent sessions per user
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 A single hosted agent serves many users from one endpoint. This article shows you how Microsoft Foundry keeps each user's sessions, conversations, and stored data private, and how to extend that isolation to the users of your own application. By the end, you can invoke an agent and confirm that one caller can't see another caller's sessions, conversations, or stored data.
 
@@ -75,7 +73,6 @@ AGENT_NAME="my-agent"
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/openai/responses?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" \
     --body '{
         "input": "Summarize the latest support tickets",
         "stream": false
@@ -121,7 +118,7 @@ If a service holds this permission but doesn't send the header on a request, the
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/openai/responses?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" "x-ms-user-identity=<stable-end-user-id>" \
+    --headers "x-ms-user-identity=<stable-end-user-id>" \
     --body '{
         "input": "Summarize my open tickets",
         "stream": false
@@ -187,7 +184,6 @@ Upgrade to protocol 2.0.0 to get the automatic per-user isolation described earl
 
 | Symptom | Likely cause | What to try |
 |---------|--------------|-------------|
-| `403` with `preview_feature_required` | The preview opt-in header is missing. | Add the `Foundry-Features=HostedAgents=V1Preview` header to the request. |
 | `403` or `session_not_accessible` when accessing a session | The session belongs to a different identity. | Use the same identity that created the session, or hold the Foundry User role to see other identities' sessions. |
 | `403` on a request that sets `x-ms-user-identity` | The caller lacks the `UserIdentityImpersonation` permission, which is no longer granted by built-in roles. | Create a custom role that includes the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` data action and assign it to the calling service. |
 | Local runs don't isolate sessions | Local runs don't enforce isolation. | Test isolation against a deployed agent. Local mode (`--local`, `azd ai agent run`) targets a single user. |

@@ -5,7 +5,7 @@ description: Learn how to extract and label medical information from unstructure
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/19/2026
 ms.author: lajanuar

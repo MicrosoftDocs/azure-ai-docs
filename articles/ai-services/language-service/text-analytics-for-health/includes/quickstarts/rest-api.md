@@ -3,7 +3,7 @@ author: laujan
 ms.author: lajanuar
 manager: mcleans
 ms.date: 05/08/2026
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.custom:
   - ignite-2024

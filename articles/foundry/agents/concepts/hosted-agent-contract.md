@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: reference
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Hosted agent runtime contract
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 A hosted agent is a container that fulfills a specific runtime contract with the Microsoft Foundry platform. This reference describes what the platform expects from your container and how the SDK adapter packages help you meet those requirements.
 

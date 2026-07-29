@@ -5,7 +5,7 @@ description: An overview of Text analytics for health in Azure Language, which h
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 03/30/2026
 ms.author: lajanuar

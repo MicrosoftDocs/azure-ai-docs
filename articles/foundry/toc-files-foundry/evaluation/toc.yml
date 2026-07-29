@@ -39,6 +39,8 @@ items:
    - name: Generate a synthetic evaluation dataset
      href: ../../observability/how-to/evaluation-dataset-synthetic.md
      displayName: code,accuracy,metrics
+   - name: Convert agent traces into evaluation datasets
+     href: ../../observability/how-to/traces-to-dataset.md
    - name: Continuous evaluation
      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation
    - name: Run evaluations from the portal

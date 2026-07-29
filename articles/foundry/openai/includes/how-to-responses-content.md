@@ -10,7 +10,7 @@ ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
 
-Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
+Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
 
 ## Prerequisites
 
@@ -2548,7 +2548,7 @@ The following table lists the supported file types for image inputs.
 | WebP        | `image/webp`      |
 | Non-animated GIF | `image/gif`  |
 
-In a single request, you can include up to 100 images. Each individual image file must be under 50 MB, and the combined size of all images in the request must also be under 50 MB.
+In a single request, you can include up to 50 images. Each individual image file must be under 50 MB, and the combined size of all images in the request must also be under 50 MB.
 
 Images must meet these additional requirements:
 

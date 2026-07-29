@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.reviewer: ambadal
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/20/2026
+ms.date: 07/24/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -43,7 +43,7 @@ The following table summarizes operational differences that affect how you build
 
 | Dimension | Hosted on Azure | Hosted on Anthropic|
 |---|---|---|
-| **Model availability** | Opus 4.8, Sonnet 5, and Haiku 4.5 | Opus 4.8, Sonnet 5, Haiku 4.5, preview models (Fable), and older versions of Opus, Sonnet, and Haiku |
+| **Model availability** | Opus 5, Opus 4.8, Sonnet 5, and Haiku 4.5 | Opus 5, Opus 4.8, Sonnet 5, Haiku 4.5, preview models (Fable), and older versions of Opus, Sonnet, and Haiku |
 | **Deployment types** | Global Standard and Data Zone Standard (US) | Global Standard only |
 | **Supported APIs** | Messages, Token counting | Messages, Token counting, plus /files and /skills |
 | **Additional capabilities** | Core capability set | Core set plus [additional capabilities](https://docs.claude.com/en/docs/build-with-claude/overview) |

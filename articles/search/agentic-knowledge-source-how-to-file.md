@@ -3,7 +3,7 @@ title: Create a File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -42,6 +42,8 @@ If your content already lives in Azure Blob Storage or ADLS Gen2, or if you need
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + If the knowledge source specifies an Azure OpenAI model for embeddings, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
+
+  + If the Foundry resource has public network access disabled, create an `openai_account` [shared private link](search-indexer-howto-access-private.md#supported-resource-types) from the search service to the Foundry resource, and keep the resource's **Allow Azure services on the trusted services list** setting enabled.
 
 ::: zone pivot="csharp"
 
@@ -378,7 +380,9 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 }
 ```
 
-Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Review the value for unsupported file types, extraction failures, model access issues, or quota limits.
+Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Common causes include unsupported file types, extraction failures, model access issues, and quota limits.
+
+If a model access failure occurs and the Foundry resource that hosts the embedding model uses private networking, confirm that the `openai_account` shared private link is approved and the trusted-services bypass is enabled. A disabled bypass returns `403 Public access is disabled`. For setup details, see [Prerequisites](#prerequisites).
 
 ## Delete uploaded files
 

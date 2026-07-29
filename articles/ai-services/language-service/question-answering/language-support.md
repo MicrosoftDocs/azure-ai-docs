@@ -7,7 +7,7 @@ manager: mcleans
 author: laujan
 ms.author: lajanuar
 recommendations: false
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 05/06/2026
 ms.custom: language-service-question-answering

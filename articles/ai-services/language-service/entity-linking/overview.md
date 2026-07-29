@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An overview of entity linking in Foundry Tools, which helps you extract entities from text, and provides links to an online knowledge base.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 06/27/2026
 ms.author: lajanuar

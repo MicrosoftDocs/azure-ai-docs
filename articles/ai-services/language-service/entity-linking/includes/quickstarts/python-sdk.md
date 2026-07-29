@@ -1,6 +1,6 @@
 ---
 author: laujan
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 06/15/2026
 ms.author: lajanuar

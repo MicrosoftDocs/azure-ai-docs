@@ -348,10 +348,7 @@ You can call a Foundry A2A agent from another Foundry agent by using the A2A too
 
 ### Step 1: Create an A2A connection to the target agent
 
-The connection stores the target agent's A2A endpoint URL, authentication details, and the custom agent card path. Foundry agents serve their agent card at `agentCard/v1.0` (not the default `.well-known/agent-card.json`), so you must set the `AgentCardPath` in the connection metadata.
-
-> [!NOTE]
-> Setting a custom agent card path isn't supported in the Foundry portal. Use the REST API to create the connection.
+The connection stores the target agent's A2A endpoint URL and authentication details. For a Foundry agent target, don't set an agent card path. Foundry resolves the default agent card path automatically and negotiates the A2A protocol version for you.
 
 #### [REST API (Bash)](#tab/connection-bash)
 
@@ -383,9 +380,7 @@ curl --request PUT \
       "target": "'"$TARGET_A2A_URL"'",
       "audience": "https://ai.azure.com",
       "Credentials": {},
-      "metadata": {
-        "AgentCardPath": "/agentCard/v1.0"
-      }
+      "metadata": {}
     }
   }'
 ```
@@ -416,9 +411,7 @@ $body = @{
         target = $TARGET_A2A_URL
         audience = "https://ai.azure.com"
         Credentials = @{}
-        metadata = @{
-            AgentCardPath = "/agentCard/v1.0"
-        }
+        metadata = @{}
     }
 } | ConvertTo-Json -Depth 5
 

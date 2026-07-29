@@ -1,7 +1,7 @@
 ---
 author: laujan
 ms.author: lajanuar
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: include
 ms.date: 06/25/2026
 ---

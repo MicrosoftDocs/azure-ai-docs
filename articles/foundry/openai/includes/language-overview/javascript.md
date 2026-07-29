@@ -1,222 +1,226 @@
 ---
 title: Azure OpenAI JavaScript support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
-description: Azure OpenAI JavaScript support
+description: Azure OpenAI JavaScript and TypeScript support.
+author: alvinashcraft
 manager: mcleans
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 09/15/2025
+ms.date: 07/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
-
-ms.custom: classic-and-new
 ---
 
-[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../../../foundry-classic/openai/reference.md) |
+[Source code](https://github.com/openai/openai-node) | [Package](https://www.npmjs.com/package/openai) | [REST API reference](https://ai.azure.com/api-reference/) | [Azure OpenAI v1 guidance](../../api-version-lifecycle.md)
 
-## Azure OpenAI API version support
+The examples require Node.js 20 or later. They were tested with `openai` 6.46.0 and `@azure/identity` 4.13.1. Use `openai` 5.18.0 or later when you pass a Microsoft Entra token provider as `apiKey`.
 
-- v1 Generally Available (GA) API now allows access to both GA and Preview operations. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
+## Install the packages
 
-## Installation
+Install the OpenAI and Azure Identity packages:
 
-```cmd
-npm install openai
+```bash
+npm install openai @azure/identity
 ```
 
-## Authentication
+The command adds both packages to your project.
 
-# [Microsoft Entra ID](#tab/secure)
+## Create a response with Microsoft Entra ID
 
-```cmd
-npm install @azure/identity
-```
-
-In order to authenticate the `OpenAI` client, however, we need to use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `OpenAI` uses internally to obtain tokens for each request. The token provider is created as follows:
+Use `DefaultAzureCredential` and `getBearerTokenProvider` to authenticate without storing an API key. The token provider refreshes the access token when needed.
 
 ```typescript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
 const tokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    'https://ai.azure.com/.default');
-const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: tokenProvider
-});
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default",
+);
+const openai = new OpenAI({ baseURL: endpoint, apiKey: tokenProvider });
+
+async function main() {
+  const response = await openai.responses.create({
+    model: "gpt-5-mini",
+    input: "Explain the purpose of an API in one sentence.",
+  });
+  console.log(response.output_text);
+}
+
+main().catch(console.error);
 ```
 
-For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=typescript)" QuickStart article. 
+The following output is representative. The exact wording might vary:
 
-# [API Key](#tab/api-key)
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
 
-API keys aren't recommended for production use because they're less secure than other authentication methods.
+Reference: [`OpenAI` client and Azure OpenAI v1 authentication](https://github.com/openai/openai-node/blob/main/azure.md)
+
+## Create a response with an API key
+
+API keys aren't recommended for production use. Store the key in the `AZURE_OPENAI_API_KEY` environment variable instead of placing it in source code.
+
+```bash
+export AZURE_OPENAI_API_KEY="<your-api-key>"
+```
+
+Then create the client and request:
 
 ```typescript
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
-const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
-});
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"];
+if (!apiKey) throw new Error("AZURE_OPENAI_API_KEY is required.");
+
+const openai = new OpenAI({ baseURL: endpoint, apiKey });
+
+async function main() {
+  const response = await openai.responses.create({
+    model: "gpt-5-mini",
+    input: "Explain the purpose of an API in one sentence.",
+  });
+  console.log(response.output_text);
+}
+
+main().catch(console.error);
 ```
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
----
+The following output is representative. The exact wording might vary:
 
-## Responses
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
 
-`responses.create`
+Reference: [`responses.create`](https://github.com/openai/openai-node/blob/main/examples/azure/responses.ts)
+
+## Use Chat Completions
+
+For new applications, use the Responses API. Use Chat Completions when you need its message-based interface or are maintaining an existing application.
 
 ```typescript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
 const tokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    'https://ai.azure.com/.default');
-const client = new OpenAI({
-  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: tokenProvider
-});
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default",
+);
+const openai = new OpenAI({ baseURL: endpoint, apiKey: tokenProvider });
 
-const response = await client.responses.create({
-  model: 'gpt-4.1-nano', //model deployment name
-  instructions: 'You are a helpful AI agent',
-  input: 'Tell me about the bitter lesson?',
-});
+async function main() {
+  const completion = await openai.chat.completions.create({
+    model: "gpt-5-mini",
+    messages: [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user", content: "Explain the purpose of an API." },
+    ],
+  });
+  console.log(completion.choices[0]?.message.content ?? "No response returned.");
+}
 
-console.log(response.output_text);
+main().catch(console.error);
 ```
 
-### Streaming
+The following output is representative. The exact wording might vary:
+
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
+
+Keeping `messages` inside the request provides the contextual typing required for the `role` values. If you define the array separately, declare it as `OpenAI.Chat.ChatCompletionMessageParam[]`.
+
+Reference: [`chat.completions.create`](https://github.com/openai/openai-node/blob/main/examples/azure/chat.ts)
+
+## Stream a response
+
+Set `stream` to `true`, and process text delta events as the model generates them:
 
 ```typescript
-import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
-const tokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    'https://ai.azure.com/.default');
-const client = new OpenAI({
-  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: tokenProvider
-});
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"];
+if (!apiKey) throw new Error("AZURE_OPENAI_API_KEY is required.");
+const openai = new OpenAI({ baseURL: endpoint, apiKey });
 
-const stream = await client.responses.create({
-  model: 'gpt-4.1-nano', // model deployment name
-  input: 'Provide a brief history of the attention is all you need paper.',
-  stream: true,
-});
-
-for await (const event of stream) {
-  if (event.type === 'response.output_text.delta' && event.delta) {
-    process.stdout.write(event.delta);
+async function main() {
+  // Stream text as the model generates it.
+  const stream = await openai.responses.create({
+    model: "gpt-5-mini",
+    input: "Explain the purpose of an API in one sentence.",
+    stream: true,
+  });
+  for await (const event of stream) {
+    if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    }
   }
 }
+
+main().catch(console.error);
 ```
 
-### MCP Server
+The following streamed output is representative. The exact wording might vary:
 
-```javascript
-import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
-
-const tokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    'https://ai.azure.com/.default');
-const client = new OpenAI({
-  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: tokenProvider
-});
-
-const resp = await client.responses.create({
-  model: "gpt-5",
-  tools: [
-    {
-      type: "mcp",
-      server_label: "microsoft_learn",
-      server_description: "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
-      server_url: "https://learn.microsoft.com/api/mcp",
-      require_approval: "never",
-    },
-  ],
-  input: "Search for information about Azure Functions",
-});
-
-console.log(resp.output_text);
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
 ```
 
-## Chat
+Reference: [`responses.create` streaming](https://github.com/openai/openai-node#streaming-responses)
 
-`chat.completions.create`
+## Handle errors and retries
+
+The SDK automatically retries connection errors, timeouts, HTTP 408, 409, 429, and 5xx responses twice with exponential backoff. Set `maxRetries` on the `OpenAI` client to change this behavior. Catch `APIError` to inspect the HTTP status, request ID, and error details for a failed request.
+
+The following example sets four retries and records the request ID for successful and failed requests:
 
 ```typescript
-import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
-const tokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    'https://ai.azure.com/.default');
-const client = new OpenAI({
-  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: tokenProvider
-});
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"];
+if (!apiKey) throw new Error("AZURE_OPENAI_API_KEY is required.");
+const openai = new OpenAI({ baseURL: endpoint, apiKey, maxRetries: 4 });
 
-const messages = [
-    { role: 'system', content: 'You are a helpful assistant.' },
-    { role: 'user', content: 'Tell me about the attention is all you need paper' }
-];
+async function main() {
+  try {
+    // Send the request and record its request ID.
+    const response = await openai.responses.create({
+      model: "gpt-5-mini",
+      input: "Explain the purpose of an API in one sentence.",
+    });
+    console.log(response.output_text);
+    console.log(`Request ID: ${response._request_id}`);
+  } catch (error) {
+    if (error instanceof OpenAI.APIError) {
+      console.error(`Status: ${error.status}; Request ID: ${error.requestID}`);
+    }
+    throw error;
+  }
+}
 
-// Make the API request with top-level await
-const result = await client.chat.completions.create({ 
-    messages, 
-    model: 'gpt-4.1-nano', // model deployment name
-    max_tokens: 100 
-});
-
-// Print the full response
-console.log('Full response:', result);
-
-// Print just the message content from the response
-console.log('Response content:', result.choices[0].message.content);
+main().catch(console.error);
 ```
 
-## Error handling
+For a successful request, the following output is representative. The response text and request ID vary:
 
-### Error codes
-
-| Status Code | Error Type |
-|----|---|
-| 400         | `Bad Request Error`          |
-| 401         | `Authentication Error`       |
-| 403         | `Permission Denied Error`    |
-| 404         | `Not Found Error`            |
-| 422         | `Unprocessable Entity Error` |
-| 429         | `Rate Limit Error`           |
-| 500         | `Internal Server Error`      |
-| 503         | `Service Unavailable`       |
-| 504         | `Gateway Timeout` |
-
-### Retries
-The following errors are automatically retried twice by default with a brief exponential backoff:
-
-- Connection Errors
-- 408 Request Timeout
-- 429 Rate Limit
-- `>=`500 Internal Errors
-
-Use `maxRetries` to set/disable the retry behavior:
-
-```typescript
-// Configure the default for all requests:
-const client = new OpenAI({
-  maxRetries: 0, // default is 2
-});
-
-// Or, configure per-request:
-await client.chat.completions.create({ messages: [{ role: 'user', content: 'How can I get the name of the current day in Node.js?' }], model: '' }, {
-  maxRetries: 5,
-});
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+Request ID: <request-id>
 ```
+
+Reference: [Request IDs, errors, and retries](https://github.com/openai/openai-node#request-ids)
+
+## More SDK examples
+
+- [Use the Responses API](../../how-to/responses.md)
+- [Generate embeddings](../../how-to/embeddings.md)
+- [Analyze images](../../how-to/gpt-with-vision.md)
+- [Fine-tune a model](../../how-to/fine-tuning.md)

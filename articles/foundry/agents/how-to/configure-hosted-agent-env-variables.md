@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Configure environment variables for a hosted agent
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Configure environment variables for your hosted agent by defining where values belong in `azure.yaml`, what the Microsoft Foundry platform provides automatically, and how azd environment integration works. You also learn how to add custom variables and handle local development secrets.
 
@@ -75,7 +73,9 @@ The Foundry platform automatically injects the following environment variables i
 
 | Variable | Description |
 |----------|-------------|
+| `FOUNDRY_HOSTING_ENVIRONMENT` | The platform injects a nonempty value when hosting in Foundry. Check for this variable to determine if the container is running in a Foundry context. |
 | `FOUNDRY_AGENT_NAME` | The agent's name, such as `my-weather-agent`. |
+| `FOUNDRY_AGENT_ID` | The ID of the agent. |
 | `FOUNDRY_AGENT_VERSION` | The agent's version. |
 | `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint, such as `https://{account}.services.ai.azure.com/api/projects/{project}`. |
 | `FOUNDRY_AGENT_SESSION_ID` | The agent's session ID. |
@@ -114,7 +114,7 @@ During local development with `azd ai agent run`, azd sets `FOUNDRY_PROJECT_ENDP
    services:
      my-agent:
        host: azure.ai.agent
-       env:
+       environmentVariables:
          MY_API_URL: ${MY_API_URL}
    ```
 

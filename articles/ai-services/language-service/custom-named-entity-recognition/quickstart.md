@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Quickly start building an AI model to categorize and extract information from unstructured text.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
 ms.date: 01/11/2026
 ms.author: lajanuar

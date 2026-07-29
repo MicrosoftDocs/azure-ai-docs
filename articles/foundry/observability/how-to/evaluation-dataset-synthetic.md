@@ -7,7 +7,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ---
 
@@ -51,31 +51,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`.
 - Foundry User role or higher on the project.
 - An Azure OpenAI model deployment that supports the Responses API. The `simple_qna` recipe uses this model to synthesize question-and-answer pairs. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
-
-## Supported regions for Synthetic data generation
-
-Synthetic data generation is supported in the following regions:
-
-- UAE North
-- West US 3
-- North Central US
-- East US
-- West Europe
-- South Central US
-- Switzerland North
-- Sweden Central
-- East US 2
-- West US
-- France Central
-- South Africa North
-- Australia East
-- Japan East
-- UK South
-- Norway East
-- Poland Central
-- South India
-- Germany West Central
-- Italy North
+- A supported region. For the list, see [Supported regions for data generation](../../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
 ## Generate a dataset from the portal
 
@@ -304,7 +280,7 @@ job = project_client.beta.datasets.create_generation_job(job=job)
 
 The generated dataset uses the standard `query` and `ground_truth` schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md) and [Evaluate your agent](evaluate-agent.md).
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md). For complete runnable end-to-end examples that generate synthetic data and evaluate the responses, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
 
 ## Manage data generation jobs
 
@@ -352,3 +328,5 @@ For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-
 - [Evaluate your agent](evaluate-agent.md)
 - [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
 - [Set up tracing for your agent](trace-agent-setup.md)
+- [Synthetic data + agent evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py)
+- [Synthetic data + model evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py)

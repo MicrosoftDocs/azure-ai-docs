@@ -3,8 +3,9 @@ title: Azure SQL Indexer
 description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 07/21/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
@@ -93,7 +94,7 @@ Use these instructions to create and load a table in Azure SQL Database for test
     INSERT INTO tbl_hotels (Id, Modified, IsDeleted, HotelName, Category, City, State, Description) VALUES (17, CURRENT_TIMESTAMP, 0, 'City Skyline Antiquity Hotel', 'Boutique', 'New York', 'NY', 'In vogue since 1888, the Antiquity Hotel takes you back to bygone era. From the crystal chandeliers that adorn the Green Room, to the arched ceilings of the Grand Hall, the elegance of old New York beckons. Elevate Your Experience. Upgrade to a premiere city skyline view for less, where old world charm combines with dramatic views of the city, local cathedral and midtown.');
     INSERT INTO tbl_hotels (Id, Modified, IsDeleted, HotelName, Category, City, State, Description) VALUES (18, CURRENT_TIMESTAMP, 0, 'Ocean Water Resort & Spa', 'Luxury', 'Tampa', 'FL', 'New Luxury Hotel for the vacation of a lifetime. Bay views from every room, location near the pier, rooftop pool, waterfront dining & more.');
     INSERT INTO tbl_hotels (Id, Modified, IsDeleted, HotelName, Category, City, State, Description) VALUES (19, CURRENT_TIMESTAMP, 0, 'Economy Universe Motel', 'Budget', 'Redmond', 'WA', 'Local, family-run hotel in bustling downtown Redmond. We are a pet-friendly establishment, near expansive Marymoor park, haven to pet owners, joggers, and sports enthusiasts. Close to the highway and just a short drive away from major cities.');
-    INSERT INTO tbl_hotels (Id, Modified, IsDeleted, HotelName, Category, City, State, Description) VALUES (20, CURRENT_TIMESTAMP, 0, 'Delete Me Hotel', 'Unknown', 'Nowhere', 'XX', 'Test-case row for change detection and delete detection . For change detection, modify any value, and then re-run the indexer. For soft-delete, change IsDelete from zero to a one, and then re-run the indexer.');
+    INSERT INTO tbl_hotels (Id, Modified, IsDeleted, HotelName, Category, City, State, Description) VALUES (20, CURRENT_TIMESTAMP, 0, 'Delete Me Hotel', 'Unknown', 'Nowhere', 'XX', 'Test-case row for change detection and delete detection. For change detection, modify any value, and then re-run the indexer. For soft-delete, change IsDeleted from zero to a one, and then re-run the indexer.');
     
     ```
 
@@ -382,7 +383,7 @@ Database requirements:
 + Database must have [change tracking enabled](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server)
 + Tables only (no views).
 + Tables can't be clustered. To meet this requirement, drop the clustered index and recreate it as non-clustered index. This workaround often degrades performance. Duplicating content in a second table that's dedicated to indexer processing can be a helpful mitigation. 
-+ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-how-to-delete-documents.md#delete-a-single-document).
++ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer doesn't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-how-to-delete-documents.md#delete-a-single-document).
 + Primary key can't be a compound key (containing more than one column).
 + Primary key must be non-clustered if you want deletion detection.
 
@@ -440,7 +441,7 @@ api-key: admin-key
 ```
 
 > [!NOTE]
-> If the source table doesn't have an index on the high water mark column, queries used by the SQL indexer may time out. In particular, the `ORDER BY [High Water Mark Column]` clause requires an index to run efficiently when the table contains many rows.
+> If the source table doesn't have an index on the high water mark column, queries used by the SQL indexer might time out. In particular, the `ORDER BY [High Water Mark Column]` clause requires an index to run efficiently when the table contains many rows.
 
 <a name="convertHighWaterMarkToRowVersion"></a>
 

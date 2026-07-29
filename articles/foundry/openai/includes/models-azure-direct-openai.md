@@ -3,10 +3,10 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 06/11/2026
+ms.date: 07/22/2026
 ms.service: microsoft-foundry
 ms.topic: include
-ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
+ms.custom: pilot-ai-workflow-jan-2026, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -40,6 +40,12 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [Image generation](../../foundry-models/concepts/models-sold-directly-by-azure.md#image-generation-models) | A series of models that can generate original images from natural language. |
 | [`Video generation`](../../foundry-models/concepts/models-sold-directly-by-azure.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
 | [Audio](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
+
+### Understand model token limits
+
+The **Context Window** column lists the total number of tokens that a model can process in a request. When a row lists separate **Input** and **Output** values, these values are individual limits. They aren't additive allowances that you can always use together. Input tokens, generated output tokens, and reasoning tokens share the available context budget. More input leaves fewer tokens for generation.
+
+The **Max Output Tokens** column sets an upper limit, not a guaranteed output size. An API parameter such as `max_output_tokens` doesn't reserve tokens when the request has less context budget available.
 
 ## GPT-chat-latest
 
@@ -80,6 +86,22 @@ For model availability across all regions, grouped by deployment category, see [
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.5` (2026-04-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000  | 128,000 | December 2025 |
+
+### Responses API token budget
+
+For the current GPT-5.5 Responses API implementation, the effective combined prompt and generation budget is approximately 922,000 tokens. This API limit is lower than the model's 1,050,000-token context window. You can't combine a 922,000-token prompt with 128,000 generated tokens in one request. Calculate the approximate generation budget as follows:
+
+`available generation tokens = 922,000 - prompt tokens`
+
+For example, a request with 921,549 prompt tokens has the following token budget:
+
+- Prompt tokens: 921,549.
+- Effective context budget: 922,000.
+- Remaining generation budget: 451 tokens.
+
+The model can generate at most the remaining 451 tokens, even if you set `max_output_tokens` to 64,000 or 128,000. This generation budget includes visible output and reasoning tokens.
+
+Reaching the available token budget doesn't necessarily produce an HTTP error. A request can return HTTP status code 200 with an incomplete response. Check `status` for `incomplete` and `incomplete_details.reason` for `max_output_tokens` to determine whether generation stopped at the token limit.
 
 > [!NOTE]
 > Some [quota tiers](../quotas-limits.md) will require quota requests for `gpt-5.5` to be able to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default.

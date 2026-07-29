@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about which languages are supported by document summarization.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 04/30/2026
 ms.author: lajanuar

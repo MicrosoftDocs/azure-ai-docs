@@ -4,7 +4,7 @@ description: "Learn about Microsoft Foundry Models sold by Azure, their capabili
 author: msakande #alvinashcraft for azure-openai pivot
 ms.author: mopeakande #aashcraft for azure-openai pivot
 manager: mcleans
-ms.date: 07/07/2026
+ms.date: 07/23/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: product-comparison

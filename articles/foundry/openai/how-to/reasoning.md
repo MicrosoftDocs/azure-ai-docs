@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 07/22/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -947,6 +947,8 @@ print(response.model_dump_json(indent=2))
 
 ## API & feature support
 
+Input and output limits share the available context budget and aren't additive. For details and a GPT-5.5 calculation example, see [Understand model token limits](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#understand-model-token-limits) and [Responses API token budget](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#responses-api-token-budget).
+
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
 | **Feature**  | **gpt-5.6-sol**, **2026-06-25** | **gpt-5.6-terra**, **2026-06-25** | **gpt-5.6-luna**, **2026-06-25** | **gpt-5.5**, **2026-04-24** |**gpt-5.4-nano**, **2026-03-17** | **gpt-5.4-mini**, **2026-03-17** | **gpt-5.4-pro**  | **gpt-5.4**, **2026-03-05** | **gpt-5.3-codex**, **2026-02-24** | **gpt-5.2-codex**, **2026-01-14**  | **gpt-5.2**, **2025-12-11** | **gpt-5.1-codex-max**, **2025-12-04** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
@@ -972,13 +974,13 @@ print(response.model_dump_json(indent=2))
 <sup>4</sup> `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1` keep in mind that you may need to update your code to explicitly pass a reasoning_effort level if you want reasoning_effort to occur.<br><br>
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.<br><br>
 <sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to.<br><br>
-<sup>7</sup> `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. If you wish to use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.
+<sup>7</sup> `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.
 
 ### NEW GPT-5 reasoning features
 
 | Feature | Description |
 |----|----|
-|`reasoning_effort` | `xhigh` is only supported with `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` is not supported with `gpt-5.1` or greater <sup>*</sup> <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
+|`reasoning_effort` | `max` is only supported with `gpt-5.6` and Responses API <br> `xhigh` is only supported with `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, and `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` isn't supported with `gpt-5.1` or greater <sup>*</sup> <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
 |`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |

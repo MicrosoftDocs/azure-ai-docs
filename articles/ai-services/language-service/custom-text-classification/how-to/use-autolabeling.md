@@ -5,7 +5,7 @@ description: Learn how to use autolabeling in custom text classification.
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 04/21/2026
 ms.author: lajanuar

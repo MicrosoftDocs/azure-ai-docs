@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 07/14/2026
+ms.date: 07/21/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -144,7 +144,9 @@ The following Fireworks models are available in the Foundry model catalog. In th
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
 
 > [!IMPORTANT]
-> The Pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, and `FW-GLM-5`.
+> The following deprecations affect only the Pay-per-token offering. The models aren't retiring. The Pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, and `FW-GLM-5`.
+>
+> Deprecation of the Pay-per-token offering for `FW-GLM-5.1` and `FW-MiniMax-M2.5` is scheduled for August 7, 2026. Provisioned throughput (PTU) remains available for all six models.
 >
 > Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
 

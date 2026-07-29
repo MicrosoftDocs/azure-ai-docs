@@ -618,7 +618,7 @@ To optimize performance and reduce latency, consider the following strategies:
 
 + Set `maxOutputSize` on the [retrieve action](agentic-retrieval-how-to-retrieve.md) to govern the size of the response or `maxRuntimeInSeconds` for time-bound processing.
 
-+ Chunk large documents into smaller pieces before indexing. Documents that exceed the output budget can be [silently omitted from grounded results](agentic-retrieval-how-to-retrieve.md#troubleshoot-empty-responses).
++ Chunk large documents into smaller pieces before indexing. Documents that exceed the output budget can be [silently omitted from grounded results](agentic-retrieval-how-to-retrieve.md#empty-responses).
 
 ## Related content
 

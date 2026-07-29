@@ -3,7 +3,7 @@ author: laujan
 ms.author: lajanuar
 manager: mcleans
 ms.date: 04/07/2026
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.custom:
   - build-2024

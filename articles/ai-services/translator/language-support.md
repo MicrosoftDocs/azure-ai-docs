@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Azure Translator supports the following languages for text to text translation using Neural Machine Translation (NMT).
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/06/2026
 ms.author: lajanuar

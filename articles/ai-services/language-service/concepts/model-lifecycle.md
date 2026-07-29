@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article describes the timelines for models and model versions used by Language service features.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 06/11/2026
 ms.author: lajanuar

@@ -5,7 +5,7 @@ description: Learn about which languages are supported by custom text classifica
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 05/23/2026
 ms.author: lajanuar
