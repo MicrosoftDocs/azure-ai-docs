@@ -186,7 +186,7 @@ Consider deploying a new Foundry instance with a fresh subnet when you observe:
 
 | Topic | Recommendation |
 |-------|----------------|
-| Subnet size | /24 for production. /27 is the minimum but risky. With the default 1:1 mapping, /26 is needed for 50 concurrent sessions. Request a 1:10 mapping through Azure support. |
+| Subnet size | Use /24 for production. /27 is the minimum but risky. With the default 1:1 mapping, you need /26 for 50 concurrent sessions. Request more sessions (up to a 1:10 mapping, or one IP address for 10 sessions) through Azure support. |
 | Utilization target | Stay below 80% subnet utilization to absorb upgrade and scaling spikes. |
 | Supported IP ranges | RFC 1918 only: `10.x`, `172.16` through `172.31.x`, and `192.168.x`. No public or CGNAT ranges. |
 | Project capacity | ~250 projects at low traffic, as few as ~25 at full scale. Driven by IP availability. |
