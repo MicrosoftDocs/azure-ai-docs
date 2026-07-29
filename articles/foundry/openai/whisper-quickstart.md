@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: quickstart
-ms.date: 11/21/2025
+ms.date: 07/29/2026
 ms.author: pafarley
 author: PatrickFarley
 recommendations: false
