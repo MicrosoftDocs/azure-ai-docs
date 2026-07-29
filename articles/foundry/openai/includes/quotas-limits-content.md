@@ -34,7 +34,7 @@ To learn more about quota allocation at the subscription level, see [Microsoft F
 
 ## Quota tiers
 
-We are introducing Quota Tiers to improve the Foundry Models experience and reduce friction as workloads scale. Quotas will now increase automatically with usage, helping avoid rate limit errors while also creating a fairer environment for all users. Seven tiers will be made available: Free Tier and Tiers 1 through 6 - with Tier 6 offering the highest quotas. A customer's initial assigned tier is based on their current usage of that model and their current relationship with Microsoft, such as Enterprise Agreement (EA or MCA-E) status.  
+Microsoft is introducing quota tiers to improve the Foundry Models experience and reduce friction as workloads scale. Quotas now increase automatically with usage, helping avoid rate limit errors while also creating a fairer environment for all users. Seven tiers are available: Free Tier and Tiers 1 through 6 - with Tier 6 offering the highest quotas. A customer's initial assigned tier is based on their current usage of that model and their current relationship with Microsoft, such as Enterprise Agreement (EA or MCA-E) status.  
 
 ### What's changing for me? 
 
@@ -42,11 +42,11 @@ Previously, Foundry offered only Default and Enterprise quota levels for pay as 
 
 ### How will a customer automatically move from one tier to another, for example what are the tier change criteria?  
 
-Automatic tier upgrades are based primarily on customer consumption trends across Foundry Models over time. If a customer's usage increases such that their current quota tier is limiting their ability to use Foundry Models the system will automatically upgrade the customer to the next higher tier. A customer's relationship with Microsoft is also taken into account. Customers with Enterprise relationships (including EA and MCA-E) with Microsoft are assigned higher quota tiers. In addition, Microsoft will also consider a customer's payment history to determine eligibility for automatic upgrades.  
+Automatic tier upgrades primarily depend on customer consumption trends across Foundry Models over time. If a customer's usage increases such that their current quota tier limits their ability to use Foundry Models, the system automatically upgrades the customer to the next higher tier. The system also considers a customer's relationship with Microsoft. Customers with Enterprise relationships (including EA and MCA-E) with Microsoft are assigned higher quota tiers. In addition, Microsoft also considers a customer's payment history to determine eligibility for automatic upgrades.  
 
 ### Can I opt out of auto upgrades? 
 
-Yes, you can opt out of auto upgrades and you'll remain in your current tier regardless of changes in your consumption. We recognize that some of our customers use quota to manage their billing. This isn't the Azure best practice, however, we understand that if your system is configured that way we don't want to break it. You can learn more about billing management and best practices here: [Cost Management](../../concepts/manage-costs.md). 
+Yes, you can opt out of auto upgrades to stay in your current tier regardless of changes in your consumption. Some customers use quota to manage their billing. Using quota to manage billing isn't the Azure best practice, but if your system is configured that way, you might not want to break it. To learn more about billing management and best practices, see [Cost Management](../../concepts/manage-costs.md). 
 
 To opt out, you can set the following flag to `NoAutoUpgrade`: 
 
@@ -238,7 +238,7 @@ Azure OpenAI usage tiers are designed to provide consistent performance for most
 - This variability is most noticeable for customers with high sustained usage or bursty traffic patterns.
 
 ### Recommended actions if you exceed your usage tier
-If you encounter 429 errors or notice increased latency variability, here's what you should do:
+If you encounter 429 errors or notice increased latency variability, take the following steps:
 
 - Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
