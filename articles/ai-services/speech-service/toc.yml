@@ -489,8 +489,10 @@ items:
           - name: Install and run speech containers
             displayName: 'containers,install container,run container'
             href: speech-container-howto.md
-          - name: Speech to text containers
+          - name: Real-time speech to text containers
             href: speech-container-stt.md
+          - name: Fast transcription containers
+            href: speech-container-ft.md
           - name: Custom speech to text containers
             href: speech-container-cstt.md
           - name: Text to speech containers
