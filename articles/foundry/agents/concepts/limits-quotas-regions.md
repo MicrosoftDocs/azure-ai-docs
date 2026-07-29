@@ -308,7 +308,7 @@ For example:
 - **Message content size.** Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap.** Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 - **Rate limit exceeded.** API calls to the model deployment are throttled. Implement exponential backoff with jitter.
-- **Valid agent revision cap.** Creating a version fails once an agent reaches 1,000 valid revisions. The service returns HTTP 400 with the message `Maximum number of agent versions (1000) exceeded. Please delete older versions before creating new ones.` This is a terminal error, not a transient one, so don't retry the same call. Delete revisions you no longer need to free capacity immediately, then create the new version.
+- **Valid agent revision cap.** Creating a version fails once an agent reaches 1,000 valid revisions. The service returns HTTP 400 with the message `Maximum number of agent versions (1000) exceeded. Please delete older versions before creating new ones.` This error is terminal, not a transient one, so don't retry the same call. Delete revisions you no longer need to free capacity immediately, then create the new version.
 
 For file search scenarios, see [Vector stores for file search](vector-stores.md) for guidance on managing vector store growth.
 
