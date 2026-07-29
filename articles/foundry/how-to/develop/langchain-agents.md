@@ -226,11 +226,11 @@ agent = factory.create_prompt_agent(
 	),
 )
 
-print(f"Agent created with ID: {factory.get_agents_id_from_graph(agent)}")
+print(f"Agent created with ID: {agent.agent_id}")
 ```
 
 ```output
-Agent created with ID: {'my-echo-agent:1'}
+Agent created with ID: my-echo-agent:1
 ```
 
 Invoke the agent:
@@ -254,7 +254,7 @@ You are not a genius and you hate programming!
 **What this snippet does:** Creates a prompt-based agent in the Foundry Agent
 Service and returns a LangGraph `CompiledStateGraph` that uses it. The agent 
 is immediately visible in your Foundry portal under **Agents**. 
-The `get_agents_id_from_graph` call retrieves the Foundry-assigned agent ID
+The `agent.agent_id` property retrieves the Foundry-assigned agent ID
 so you can track or reference the agent later.
 
 You can visualize how the agent got created and used within the LangGraph
@@ -267,7 +267,7 @@ from IPython import display
 
 display.Image(agent.get_graph().draw_mermaid_png())
 
-factory.delete_agent(agent)
+agent.delete()
 ```
 
 :::image type="content" source="../media/langchain-agents/agent-no-tools.png" alt-text="Diagram of the agent graph for an agent without tools.":::
@@ -677,7 +677,7 @@ tracer = AzureAIOpenTelemetryTracer(
     agent_id="mcp-github-specs-agent-langgraph"
 )
 
-mcp_agent = mcp_agent.with_config({ "callbacks": [tracer] })
+mcp_agent = mcp_agent.with_config({"callbacks": [tracer]})
 ```
 
 **What this snippet does:** Creates an instance of `AzureAIOpenTelemetryTracer`
@@ -731,12 +731,12 @@ Delete agents you created in samples to avoid leaving unused resources.
 Delete only agents that you created in your session.
 
 ```python
-factory.delete_agent(math_agent)	
-factory.delete_agent(document_parser_agent)
-factory.delete_agent(image_agent)
-factory.delete_agent(code_interpreter_agent)
-factory.delete_agent(mcp_agent)
-factory.delete_agent(file_search_agent)
+math_agent.delete()
+document_parser_agent.delete()
+image_agent.delete()
+code_interpreter_agent.delete()
+mcp_agent.delete()
+file_search_agent.delete()
 ```
 
 > [!IMPORTANT]
