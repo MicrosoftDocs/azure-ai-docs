@@ -28,6 +28,8 @@ Risks are flagged by classification models designed to detect harmful content. F
 
 For more information about intervention points, see [Intervention points and controls](intervention-points.md).
 
+In addition to content safety controls, hosted agents support **network egress controls (preview)**, which govern the outbound connections an agent makes so it reaches only the destinations you allow. You configure egress controls in the same guardrail (RAI policy) and they apply only to hosted agents. To learn how to author and apply egress rules, see [Add guardrails to a hosted agent](../agents/how-to/add-hosted-agent-guardrails.md#network-egress-controls-preview).
+
 > [!NOTE]
 > Guardrails leverage classification models from [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety) to detect harmful content across supported risk categories.
 
