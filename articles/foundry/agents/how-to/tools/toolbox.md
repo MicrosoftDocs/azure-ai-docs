@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 7/20/2026
+ms.date: 07/20/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -115,7 +115,7 @@ Create a toolbox version based on the tools you need.
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool, ToolboxSearchPreviewTool, WebSearchTool
+from azure.ai.projects.models import MCPTool, ToolSearchToolboxTool, WebSearchTool
 
 # Create Foundry project client
 endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
@@ -136,7 +136,7 @@ toolbox_version = project.toolboxes.create_toolbox_version(
             require_approval="never",
             project_connection_id="my-key-auth-connection",
         ),
-        ToolboxSearchPreviewTool(),
+        ToolSearchToolboxTool(),
     ],
 )
 print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
@@ -166,7 +166,7 @@ ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateM
     )
 ));
 
-ToolboxSearchPreviewTool searchTool = new() { Name = "ToolBoxSearch" };
+ToolSearchToolboxTool searchTool = new() { Name = "ToolBoxSearch" };
 
 ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
     toolboxName: "my-toolbox",
@@ -200,7 +200,7 @@ Content-Type: application/json
       "project_connection_id": "my-key-auth-connection"
     },
     {
-      "type": "toolbox_search_preview"
+      "type": "toolbox_search"
     }
   ]
 }
@@ -236,7 +236,7 @@ const toolboxVersion = await project.toolboxes.createVersion(
       require_approval: "never",
       project_connection_id: "my-key-auth-connection",
     },
-    { type: "toolbox_search_preview" },
+    { type: "toolbox_search" },
   ],
   {
     description: "Toolbox with web search, MCP, and tool search",
@@ -279,7 +279,7 @@ The pattern is the same for every connection kind and auth type:
    azd ai project set $PROJECT_ENDPOINT
    ```
 
-2. Create a connection with `azd ai connection create`. The flags differ per auth type, but the command shape is always:
+1. Create a connection with `azd ai connection create`. The flags differ per auth type, but the command shape is always:
 
    ```bash
    azd ai connection create <name> \
@@ -306,7 +306,7 @@ The pattern is the same for every connection kind and auth type:
        container: { type: auto }
        name: code
      # Tool search is connectionless.
-     - type: toolbox_search_preview
+     - type: toolbox_search
      # For Azure AI Search, set the index in the tool entry:
      # - type: azure_ai_search
      #   name: search
@@ -845,7 +845,7 @@ After you create the toolbox in [Step 1](#step-1-create-a-toolbox-version), retr
 
 ### Handle tool approval requirements
 
-The toolbox returns a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP endpoint doesn't block `tools/call` - enforcement is entirely the agent runtime's responsibility.
+The toolbox returns a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP endpoint doesn't block `tools/call`. Enforcement is entirely the agent runtime's responsibility.
 
 ### Read `require_approval` from `tools/list`
 
@@ -1970,7 +1970,7 @@ Use this pattern to let the agent write and execute Python code. The pattern doe
 
 To upload a file for Code Interpreter to use through a toolbox, upload the file at the **resource-level** Files endpoint (`POST {account_endpoint}/openai/v1/files`) with the `x-aml-project-id` header. Unlike the prompt agent flow, files uploaded through the project-scoped Files endpoint (`/api/projects/{name}/openai/v1/files`) receive an `owner_id` that the toolbox container can't verify, so `tools/call` fails with an ownership-verification error.
 
-1. Get the project GUID from Azure Resource Manager. Use `properties.amlWorkspace.internalId` (dashed UUID format), **not** `properties.internalId` (no dashes - the toolbox container rejects it):
+1. Get the project GUID from Azure Resource Manager. Use `properties.amlWorkspace.internalId` (dashed UUID format), **not** `properties.internalId` (no dashes, the toolbox container rejects it):
 
     ```bash
     ARM_TOKEN=$(az account get-access-token --query accessToken -o tsv)
@@ -2113,7 +2113,7 @@ You can configure `vector_store_ids` in two ways:
 > [!NOTE]
 > REST API, Python SDK, .NET SDK, JavaScript SDK, and azd CLI support dynamic `vector_store_ids`. The Foundry portal UI currently requires `vector_store_ids` when adding a File Search tool.
 
-To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header (the same requirement as Code Interpreter - see the previous section for how to obtain the project GUID from `properties.amlWorkspace.internalId`):
+To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header (the same requirement as Code Interpreter, see the previous section for how to obtain the project GUID from `properties.amlWorkspace.internalId`):
 
 1. Upload your file: `POST {account_endpoint}/openai/v1/files` with `purpose=assistants` and header `x-aml-project-id: {project-guid}`.
 1. Create a vector store: `POST {account_endpoint}/openai/v1/vector_stores` with the returned file ID and the same `x-aml-project-id` header.
@@ -2286,7 +2286,7 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 :::zone-end
 
 > [!NOTE]
-> When File Search returns results over MCP, chunk metadata is embedded in the tool response content as `【index†filename†file_id【` markers. For example:
+> When File Search returns results over MCP, the tool response content includes chunk metadata embedded as `【index†filename†file_id【` markers. For example:
 >
 > ```json
 > {
@@ -2751,7 +2751,7 @@ Annotation chunks are returned in `result.structuredContent.documents[]`. Each d
 
 ### [Tool Search](tool-search.md)
 
-Use this pattern to enable intent-based tool routing. When you include `toolbox_search_preview` in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+Use this pattern to enable intent-based tool routing. When you include `toolbox_search` in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
 
 :::zone pivot="rest-api"
 
@@ -2760,7 +2760,7 @@ Use this pattern to enable intent-based tool routing. When you include `toolbox_
   "description": "Toolbox with intent-based tool routing",
   "tools": [
     {
-      "type": "toolbox_search_preview"
+      "type": "toolbox_search"
     }
   ]
 }
@@ -2772,7 +2772,7 @@ Use this pattern to enable intent-based tool routing. When you include `toolbox_
 
 ```python
 tools = [
-    {"type": "toolbox_search_preview"}
+    {"type": "toolbox_search"}
 ]
 ```
 
@@ -2786,7 +2786,7 @@ Tool Search is connectionless. Declare it directly under `tools:`.
 # my-toolbox.yaml
 description: Toolbox with intent-based tool routing
 tools:
-  - type: toolbox_search_preview
+  - type: toolbox_search
 ```
 
 ```bash
@@ -2796,7 +2796,7 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 :::zone-end
 
 > [!NOTE]
-> `toolbox_search_preview` is a configuration directive that activates tool search. It doesn't appear in `tools/list` responses and doesn't count toward the unnamed-tool-per-type limit.
+> `toolbox_search` is a configuration directive that activates tool search. It doesn't appear in `tools/list` responses and doesn't count toward the unnamed-tool-per-type limit.
 
 When you enable tool search, Foundry injects two meta-tools alongside your toolbox tools: `tool_search` and `call_tool`. The `call_tool` meta-tool acts as a proxy that agent frameworks use to invoke any discovered tool by name through a single declared entry point. This proxy avoids schema-validation errors that occur when a framework tries to call a tool that wasn't present in the initial `tools/list`. If your framework supports direct tool calls without schema pre-validation, you can also call a discovered tool directly after finding it with `tool_search`.
 
@@ -3409,7 +3409,7 @@ For the complete sample, including project files and deployment steps, see the [
 
 ### Reminder
 
-The `reminder_preview` tool lets a hosted agent schedule *itself* to run again at a future time. When the agent calls this tool, it specifies a delay in minutes. After that delay, Foundry re-invokes the same agent on the same conversation.
+The `reminder_preview` tool enables a hosted agent to schedule *itself* to run again at a future time. When the agent calls this tool, it specifies a delay in minutes. After that delay, Foundry re-invokes the same agent on the same conversation.
 
 :::image type="content" source="../../media/routines/toolbox-reminder-tool.png" alt-text="Screenshot showing the reminder_preview tool in a toolbox in the Foundry portal.":::
 
