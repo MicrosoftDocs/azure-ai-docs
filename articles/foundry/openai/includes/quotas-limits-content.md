@@ -16,27 +16,35 @@ This article contains a quick reference and a detailed description of the quotas
 
 Quotas and limits aren't enforced at the tenant level. Instead, the highest level of quota restrictions is scoped at the Azure subscription level.
 
-## Regional quota allocation
+## Subscription-level quota management
 
-Tokens per minute (TPM) and requests per minute (RPM) limits are defined *per region*, *per subscription*, and *per model or deployment type*.
+> [!IMPORTANT]
+> Subscription-level quota management in Microsoft Foundry started after **May 7, 2026**.
 
-For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](../../foundry-models/concepts/models-sold-directly-by-azure.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
+Starting with Realtime Translate and Realtime Whisper, and soon all models, Foundry tracks quota for deployments at the subscription level rather than per resource or per region. This approach brings consistency and predictability to how quota is managed across deployments, since all resources and regions in a subscription share the same quota pool.
+
+This change consolidates quota into shared pools:
+
+* **Global Standard**: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* **Data Zone Standard**: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
+
+To learn more about quota allocation at the subscription level, see [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).
 
 ## Quota tiers
 
-We are introducing Quota Tiers to improve the Foundry Models experience and reduce friction as workloads scale. Quotas will now increase automatically with usage, helping avoid rate limit errors while also creating a fairer environment for all users. Seven tiers will be made available: Free Tier and Tiers 1 through 6 - with Tier 6 offering the highest quotas. A customer’s initial assigned tier is based on their current usage of that model and their current relationship with Microsoft, such as Enterprise Agreement (EA or MCA-E) status.  
+We are introducing Quota Tiers to improve the Foundry Models experience and reduce friction as workloads scale. Quotas will now increase automatically with usage, helping avoid rate limit errors while also creating a fairer environment for all users. Seven tiers will be made available: Free Tier and Tiers 1 through 6 - with Tier 6 offering the highest quotas. A customer's initial assigned tier is based on their current usage of that model and their current relationship with Microsoft, such as Enterprise Agreement (EA or MCA-E) status.  
 
-### What’s changing for me? 
+### What's changing for me? 
 
 Previously, Foundry offered only Default and Enterprise quota levels for pay as you go offer type, with a large gap between each level and a longer process to request increases. With Quota Tiers, all users are assigned a tier with quotas equal to or higher than their previous levels. Any previously approved quota increases are retained and will not be reduced. As usage grows, Foundry automatically increases quotas by moving users to higher tiers, and additional quota can still be requested through the quota form.  
 
 ### How will a customer automatically move from one tier to another, for example what are the tier change criteria?  
 
-Automatic tier upgrades are based primarily on customer consumption trends across Foundry Models over time. If a customer’s usage increases such that their current quota tier is limiting their ability to use Foundry Models the system will automatically upgrade the customer to the next higher tier. A customer’s relationship with Microsoft is also taken into account. Customers with Enterprise relationships (including EA and MCA-E) with Microsoft are assigned higher quota tiers. In addition, Microsoft will also consider a customer's payment history to determine eligibility for automatic upgrades.  
+Automatic tier upgrades are based primarily on customer consumption trends across Foundry Models over time. If a customer's usage increases such that their current quota tier is limiting their ability to use Foundry Models the system will automatically upgrade the customer to the next higher tier. A customer's relationship with Microsoft is also taken into account. Customers with Enterprise relationships (including EA and MCA-E) with Microsoft are assigned higher quota tiers. In addition, Microsoft will also consider a customer's payment history to determine eligibility for automatic upgrades.  
 
 ### Can I opt out of auto upgrades? 
 
-Yes, you can opt out of auto upgrades and you'll remain in your current tier regardless of changes in your consumption. We recognize that some of our customers use quota to manage their billing. This isn't the Azure best practice, however, we understand that if your system is configured that way we don’t want to break it. You can learn more about billing management and best practices here: [Cost Management](../../concepts/manage-costs.md). 
+Yes, you can opt out of auto upgrades and you'll remain in your current tier regardless of changes in your consumption. We recognize that some of our customers use quota to manage their billing. This isn't the Azure best practice, however, we understand that if your system is configured that way we don't want to break it. You can learn more about billing management and best practices here: [Cost Management](../../concepts/manage-costs.md). 
 
 To opt out, you can set the following flag to `NoAutoUpgrade`: 
 
@@ -164,7 +172,7 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Limit name | Limit value |
 |--|--|
-| Azure OpenAI resources per region, per Azure subscription | 30. |
+| Azure OpenAI resources per Azure subscription | 30. |
 | Default GPT-image-1 quota limits | 9 requests per minute |
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
@@ -228,7 +236,7 @@ Azure OpenAI usage tiers are designed to provide consistent performance for most
 - This variability is most noticeable for customers with high sustained usage or bursty traffic patterns.
 
 ### Recommended actions if you exceed your usage tier
-If you encounter 429 errors or notice increased latency variability, here’s what you should do:
+If you encounter 429 errors or notice increased latency variability, here's what you should do:
 
 - Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
