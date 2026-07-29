@@ -32,7 +32,7 @@ To compare both hosting options across data residency, SLAs, support paths, comp
 > [!NOTE]
 > You access Claude models in Microsoft Foundry through [Foundry Models from partners and community](../concepts/models-from-partners.md). Models from partners and community that Anthropic sells and operates are Non-Microsoft Products under the Product Terms. 
 >
-> Claude models in Foundry require an Azure Marketplace subscription and bill through Claude Consumption Units (CCU). Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md) before you deploy. For pricing details, see [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md).
+> Claude models in Foundry require an Azure Marketplace subscription and bill through Claude Consumption Units (CCU). Ensure that you have the [permissions required to subscribe to model offerings](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community) before you deploy. For pricing details, see [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md).
 
 ## Available Claude models
 

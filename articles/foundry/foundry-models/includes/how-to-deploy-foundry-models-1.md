@@ -24,4 +24,4 @@ To complete this article, you need:
 
 - A [Microsoft Foundry project](../../how-to/create-projects.md). This kind of project is managed under a Foundry resource.
 
-- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md). [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community). [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.

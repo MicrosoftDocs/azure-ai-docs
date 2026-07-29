@@ -33,7 +33,7 @@ In this article, you learn how to:
 - Access to [Microsoft Foundry](https://ai.azure.com/) with Contributor permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../concepts/models-from-partners.md#region-availability-by-deployment-type) for Claude model deployments.
 - **Contributor** or **Owner** role on your Foundry resource group. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
-- Access to [Azure Marketplace](../../foundry-models/how-to/configure-marketplace.md) to deploy Foundry Models from partners.
+- Access to [Azure Marketplace](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community) to deploy Foundry Models from partners.
 - For Windows, use Git Bash (included with [Git for Windows](https://gitforwindows.org/)) or install WSL2 (recommended for full Linux compatibility). See [Install WSL](/windows/wsl/install).
 - (Optional) [Azure CLI](/cli/azure/install-azure-cli) installed with `az login` completed for Microsoft Entra ID authentication.
 
@@ -561,7 +561,7 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 | "Failed to get token from azureADTokenProvider: ChainedTokenCredential authentication failed" | Sign in with `az login`, or set `ANTHROPIC_FOUNDRY_API_KEY` for API key authentication. |
 | "The model `<model-name>` is not available on your foundry deployment" | Deploy the missing model in the Foundry portal. Claude Code requires each model role (Sonnet, Haiku, Opus) to have a corresponding deployment. |
 | "Token tenant does not match resource tenant" | Your Azure CLI is signed in to a different tenant than your Foundry resource. Run `az login --tenant <tenant-id>` to sign in to the correct tenant. |
-| Deployment creation fails in the Foundry portal | Verify you have **Contributor** or **Owner** role on the resource group, and your subscription has [Azure Marketplace access](../../foundry-models/how-to/configure-marketplace.md) enabled. |
+| Deployment creation fails in the Foundry portal | Verify you have **Contributor** or **Owner** role on the resource group, and your subscription has [Azure Marketplace access](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community) enabled. |
 | Claude Code prompts for Anthropic login | Verify `CLAUDE_CODE_USE_FOUNDRY=1` is set. Without this variable, Claude Code uses the default Anthropic API. |
 
 ## Related content
