@@ -19,9 +19,9 @@ ms.custom: devplatv2
 [!INCLUDE [cli v2](includes/machine-learning-dev-v2.md)]
 
 > [!IMPORTANT]
-> Low priority VMs were retired for Azure Machine Learning on March 31, 2026. Compute clusters that specify `tier: low_priority` still pass validation and still run jobs, but Azure Batch now allocates their nodes as [Spot VMs](/azure/virtual-machines/spot-vms) through a system-initiated migration. Spot pricing and Spot eviction behavior therefore apply to every cluster described in this article, whether you created it before or after the retirement date. For the Batch-level details, see [Run Batch workloads on cost-effective Spot VMs](/azure/batch/batch-spot-vms).
+> Low priority virtual machines (VMs) were retired for Azure Machine Learning on March 31, 2026. Compute clusters that specify `tier: low_priority` still pass validation and still run jobs, but Azure Batch now allocates their nodes as [Spot VMs](/azure/virtual-machines/spot-vms) through a system-initiated migration. Spot pricing and Spot eviction behavior apply to every cluster described in this article, whether you created it before or after the retirement date. For the Batch-level details, see [Run Batch workloads on cost-effective Spot VMs](/azure/batch/batch-spot-vms).
 
-Azure Batch deployments support low priority virtual machines (VMs) to reduce the cost of batch inference workloads. Low priority VMs enable a large amount of compute power to be used for a low cost. Low priority virtual machines take advantage of surplus capacity in Azure. When you specify low priority VMs in your pools, Azure can use this surplus, when available.
+Azure Batch deployments support low priority VMs to reduce the cost of batch inference workloads. Low priority VMs enable a large amount of compute power to be used for a low cost. Low priority VMs take advantage of surplus capacity in Azure. When you specify low priority VMs in your pools, Azure can use this surplus, when available.
 
 > [!TIP]
 > The tradeoff for using low priority VMs is that those virtual machines might not be available or they might be preempted at any time, depending on available capacity. For this reason, this approach is most suitable for batch and asynchronous processing workloads, where job completion time is flexible and the work is distributed across many virtual machines.
