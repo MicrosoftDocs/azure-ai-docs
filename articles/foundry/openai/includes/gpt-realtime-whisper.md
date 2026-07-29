@@ -6,12 +6,17 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/07/2026
+ms.date: 07/27/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
 
 GPT Realtime Whisper is a streaming transcription model that converts live audio to text in real time. You can use it alongside speech-to-speech and translation models to provide continuous input transcription for audio streams.
+
+> [!NOTE]
+> GPT Realtime Whisper is a Realtime API model. For offline file transcription via `POST /v1/audio/transcriptions`, use `gpt-transcribe`.
+
+Realtime transcription uses a persistent streaming session, not one-request-per-file upload. Choose Realtime API when you need low-latency transcript updates while audio is still in progress.
 
 ## Key capabilities
 
