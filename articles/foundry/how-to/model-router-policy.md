@@ -44,11 +44,11 @@ When an Azure Policy is active at the subscription, resource group, or managemen
 
 ### Compliance monitoring and drift detection
 
-When policies are scoped to management groups or subscriptions, Azure Policy evaluates all model router resources within that scope and reports results in the **Compliance** dashboard. Administrators can monitor compliance state across the organization and identify deployments that have drifted from approved configurations after a policy is assigned or updated.
+When you scope policies to management groups or subscriptions, Azure Policy evaluates all model router resources within that scope and reports results in the **Compliance** dashboard. Administrators can monitor compliance state across the organization and identify deployments that drift from approved configurations after a policy is assigned or updated.
 
 The effect you choose when assigning the policy determines how it applies to new and existing model router deployments:
 
-- **Deny** blocks new noncompliant deployments at deploy time and surfaces existing noncompliant deployments in the **Compliance** dashboard for remediation. It doesn't automatically remove or modify existing deployments — you update them manually.
+- **Deny** blocks new noncompliant deployments at deploy time and surfaces existing noncompliant deployments in the **Compliance** dashboard for remediation. It doesn't automatically remove or modify existing deployments - you update them manually.
 - **Audit** logs noncompliant deployments without blocking new requests. Use the Audit effect to measure the impact of a policy before you switch to Deny enforcement.
 
 Model discoverability is preserved. Unapproved models remain visible in the model subset list so developers can see the full set of supported models and request approval through their administrator if they need a model that isn't on the allowed list.
@@ -61,7 +61,7 @@ The following screenshot shows the deployment pane in the Foundry portal when a 
 
 Model router honors built-in Foundry policy definitions for approved-models governance and, in public preview, for additional routing standards.
 
-**Approved-models governance**: Model router uses the same built-in Foundry policy that governs other model deployments — **Foundry model deployments should only use approved models** (previously named *Cognitive Services Deployments should only use approved Registry Models*). To assign or update this policy, follow the steps in [Built-in policy for model deployment](model-deployment-policy.md). The publisher names and asset IDs that you allow apply to model router selections automatically.
+**Approved-models governance**: Model router uses the same built-in Foundry policy that governs other model deployments - **Foundry model deployments should only use approved models** (previously named *Cognitive Services Deployments should only use approved Registry Models*). To assign or update this policy, follow the steps in [Built-in policy for model deployment](model-deployment-policy.md). The publisher names and asset IDs that you allow apply to model router selections automatically.
 
 **Model router-specific governance (preview)**: Additional built-in policy definitions are available in public preview to extend governance to other aspects of model router deployments, including deployment regions, required routing rules, and logging configurations. You can assign these definitions from the Azure Policy **Definitions** catalog alongside the approved-models policy to enforce a broader set of routing standards across your environment.
 
