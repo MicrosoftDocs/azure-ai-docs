@@ -96,7 +96,7 @@ This minimal handler forwards user input to a model from the Foundry model catal
 
 ### [Python](#tab/python)
 
-From [`bring-your-own/responses/hello-world/main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/hello-world/main.py):
+From [`bring-your-own/responses/hello-world/main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/hello-world/src/hello-world-python-responses/main.py):
 
 ```python
 import asyncio
