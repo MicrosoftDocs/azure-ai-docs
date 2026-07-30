@@ -1,10 +1,10 @@
 ---
 title: Use LangGraph with the Agent Service
-description: "Learn how to build practical LangGraph and LangChain applications with Foundry Agent Service."
+description: "Learn how to use LangGraph and LangChain with Foundry Agent Service to create agents, add tools, require approvals, and trace workflows."
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 07/30/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasanti
@@ -29,12 +29,26 @@ tool-enabled workflows, human-in-the-loop approvals, and tracing.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
 
+Some examples require additional resources:
+
+- The Code Interpreter example requires a [supported region and model](../../agents/concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
+- The image generation example requires a `gpt-image-1.5` deployment. [Deploy the model](../../foundry-models/how-to/deploy-foundry-models.md) in your project. If needed, [apply for model access](https://aka.ms/oai/gptimage1.5access).
+- The file search example requires a vector store that contains at least one indexed file. For setup instructions, see [Use the file search tool](../../agents/how-to/tools/file-search.md).
+
 ### Configure your environment
 
 Install the package `langchain-azure-ai` to use Microsoft Foundry capabilities in LangGraph and LangChain.
 
 ```bash
 pip install langchain-azure-ai[tools,opentelemetry] azure-identity
+```
+
+Verify your Python version, package installation, and Azure sign-in:
+
+```bash
+python --version
+python -c "import langchain_azure_ai; print('langchain-azure-ai is installed')"
+az account show --output table
 ```
 
 > [!TIP]
@@ -226,11 +240,12 @@ agent = factory.create_prompt_agent(
 	),
 )
 
-print(f"Agent created with ID: {agent.agent_id}")
+agent_ids = factory.get_agents_id_from_graph(agent)
+print(f"Agent created: {next(iter(agent_ids))}")
 ```
 
 ```output
-Agent created with ID: my-echo-agent:1
+Agent created: my-echo-agent:1
 ```
 
 Invoke the agent:
@@ -254,8 +269,8 @@ You are not a genius and you hate programming!
 **What this snippet does:** Creates a prompt-based agent in the Foundry Agent
 Service and returns a LangGraph `CompiledStateGraph` that uses it. The agent 
 is immediately visible in your Foundry portal under **Agents**. 
-The `agent.agent_id` property retrieves the Foundry-assigned agent ID
-so you can track or reference the agent later.
+The `factory.get_agents_id_from_graph` method retrieves the
+Foundry-assigned agent name and version from the compiled graph.
 
 You can visualize how the agent got created and used within the LangGraph
 graph by printing its diagram representation. The node `foundryAgent` runs
@@ -267,7 +282,7 @@ from IPython import display
 
 display.Image(agent.get_graph().draw_mermaid_png())
 
-agent.delete()
+factory.delete_agent(agent)
 ```
 
 :::image type="content" source="../media/langchain-agents/agent-no-tools.png" alt-text="Diagram of the agent graph for an agent without tools.":::
@@ -443,6 +458,14 @@ Create a code interpreter agent for data analysis and invoke it with a fictitiou
 Before running this sample, create a local `data.csv` file in your current
 working directory.
 
+```csv
+region,sales
+North,120
+South,80
+East,100
+West,60
+```
+
 ```python
 import base64
 from langchain_azure_ai.agents.prebuilt.tools import CodeInterpreterTool
@@ -505,7 +528,9 @@ Name: code-interpreter-agent
 
 ### Example: using image generation tool
 
-The following example shows how to use `ImageGenTool` for image generation:
+Before running this example, confirm that your project has a deployment named
+`gpt-image-1.5`. The following example shows how to use `ImageGenTool` for image
+generation:
 
 ```python
 from langchain_azure_ai.agents.prebuilt.tools import ImageGenTool
@@ -542,7 +567,11 @@ Any Foundry Agent Service tool can be used with `create_prompt_agent`. Use `Agen
 to wrap tools from the Azure AI Projects SDK and attach them to your prompt agent.
 
 Before running this sample, make sure the vector store ID exists in your
-project.
+project. Set the ID as an environment variable:
+
+```bash
+export VECTOR_STORE_ID="<vector-store-id>"
+```
 
 The following example shows how to use a `FileSearchTool`:
 
@@ -559,10 +588,18 @@ file_search_agent = factory.create_prompt_agent(
 	),
 	tools=[
 		AgentServiceBaseTool(
-			tool=FileSearchTool(vector_store_ids=["vector-store-1"]),
+			tool=FileSearchTool(
+				vector_store_ids=[os.environ["VECTOR_STORE_ID"]]
+			),
 		)
 	],
 )
+
+print(factory.get_agents_id_from_graph(file_search_agent))
+```
+
+```output
+{'file-search-agent:1'}
 ```
 
 ## Human-in-the-loop
@@ -586,7 +623,8 @@ mcp_agent = factory.create_prompt_agent(
 	name="mcp-github-specs-agent",
 	model=os.environ["MODEL_DEPLOYMENT_NAME"],
 	instructions=(
-		"You are a helpful agent that can use MCP tools to assist users."
+		"Use the available MCP tool to answer every request. "
+		"Don't answer from your existing knowledge."
 	),
 	tools=[
 		MCPTool(
@@ -601,7 +639,13 @@ mcp_agent = factory.create_prompt_agent(
 config = {"configurable": {"thread_id": "mcp-session-1"}}
 
 response = mcp_agent.invoke(
-	input={"messages": [HumanMessage("What APIs are available for Azure Cosmos DB?")]},
+	input={
+		"messages": [
+			HumanMessage(
+				"Use the MCP tool to find the APIs available for Azure Cosmos DB."
+			)
+		]
+	},
 	config=config,
 )
 pretty_print(response)
@@ -610,7 +654,7 @@ pretty_print(response)
 ```output
 ================================ Human Message =================================
 
-What APIs are available for Azure Cosmos DB?
+Use the MCP tool to find the APIs available for Azure Cosmos DB.
 ================================== Ai Message ==================================
 Tool Calls:
   mcp_approval_request (mcpr_74e314080483acce0069a11d2d9f008190a971212ac61d76d8)
@@ -640,7 +684,7 @@ pretty_print(response)
 ```output
 ================================ Human Message =================================
 
-What APIs are available for Azure Cosmos DB?
+Use the MCP tool to find the APIs available for Azure Cosmos DB.
 ================================== Ai Message ==================================
 Tool Calls:
   mcp_approval_request (mcpr_74e314080483acce0069a11d2d9f008190a971212ac61d76d8)
@@ -731,12 +775,17 @@ Delete agents you created in samples to avoid leaving unused resources.
 Delete only agents that you created in your session.
 
 ```python
-math_agent.delete()
-document_parser_agent.delete()
-image_agent.delete()
-code_interpreter_agent.delete()
-mcp_agent.delete()
-file_search_agent.delete()
+for variable_name in (
+	"math_agent",
+	"document_parser_agent",
+	"image_agent",
+	"code_interpreter_agent",
+	"mcp_agent",
+	"file_search_agent",
+):
+	created_agent = locals().get(variable_name)
+	if created_agent is not None:
+		factory.delete_agent(created_agent)
 ```
 
 > [!IMPORTANT]
@@ -780,6 +829,18 @@ logging.basicConfig(level=logging.DEBUG)
 	exist and are reachable.
 - If a tool requires a specific resource type, verify that resource is
 	provisioned in the correct subscription and region.
+
+### Resolve tool execution errors
+
+- If Code Interpreter returns a `400` response, retry the request. If the error
+	continues, confirm that the project region and chat model support Code
+	Interpreter.
+- If image generation returns `DeploymentNotFound`, deploy `gpt-image-1.5` in
+	the project or update `model_deployment` to the name of an existing image
+	model deployment.
+- If an MCP request doesn't pause for approval, make the prompt explicitly
+	require use of the MCP tool. Approval occurs only when the model selects the
+	tool.
 
 > [!div class="nextstepaction"]
 > [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
