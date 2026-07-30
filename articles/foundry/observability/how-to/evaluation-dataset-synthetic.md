@@ -17,10 +17,10 @@ ai-usage: ai-assisted
 
 When your agent doesn't have production traffic yet, you can still build a meaningful evaluation dataset. The Microsoft Foundry data generation service synthesizes evaluation data from material you already have: an agent's instructions, an inline prompt, or a reference document you upload. Two task types are available:
 
-- **Simple Q&A (single-turn)** produces question-and-answer pairs for turn-level evaluation.
-- **Simulation seed (multi-turn)** produces scenario descriptions that feed the [Conversation simulation](../../how-to/develop/cloud-evaluation.md#conversation-simulation) flow for multi-turn evaluation.
+- **Simple Q&A** produces question-and-answer pairs for turn-level evaluation.
+- **Simulation seed** produces scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow for multi-turn evaluation.
 
-In both cases, the output is a versioned dataset you can run evaluators against.
+In both cases, the output is a versioned dataset you use as input to an evaluation.
 
 Three input source types are available, and you can combine them in a single job for richer coverage:
 
@@ -55,7 +55,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 - Python SDK version `2.4.0` or later: `pip install "azure-ai-projects>=2.4.0" azure-identity`.
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`.
 - Foundry User role or higher on the project.
-- An Azure OpenAI model deployment that supports the Responses API. The `simple_qna` recipe uses this model to synthesize question-and-answer pairs. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
+- An Azure OpenAI model deployment that supports the Responses API. Both the `simple_qna` and `simulation_seed` recipes use this model to synthesize output rows. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
 - A supported region. For the list, see [Supported regions for data generation](../../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
 ## Generate a dataset from the portal
@@ -287,11 +287,13 @@ while not poller.done():
 result = poller.result()
 ```
 
-## Generate simulation seeds (SDK)
+## Generate a simulation seed dataset (SDK)
 
-Simulation seed jobs produce a dataset of scenario descriptions that feed the [Conversation simulation](../../how-to/develop/cloud-evaluation.md#conversation-simulation) flow. Each generated row includes a `category`, a `test_case_description` (the scenario the simulator plays as the user), and `desired_num_turns` (the recommended conversation length).
+Simulation seed jobs produce a dataset of scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow. Each generated row includes a `category`, a `test_case_description` (the scenario the simulator plays as the user), and `desired_num_turns` (the recommended conversation length).
 
 The job shape is identical to Simple Q&A. The only differences are the options class (`SimulationSeedDataGenerationJobOptions`) and the wire type value (`simulation_seed`). The following example uses an agent definition as the source. To use a prompt or reference file instead, swap the source class as shown in [Generate a dataset from a prompt (SDK)](#generate-a-dataset-from-a-prompt-sdk) or [Generate a dataset from reference files (SDK)](#generate-a-dataset-from-reference-files-sdk), and substitute `SimulationSeedDataGenerationJobOptions` for `SimpleQnADataGenerationJobOptions`.
+
+This example assumes a deployed agent named `retail-agent`. If you don't have one yet, create it first with the `create_version` pattern shown in [Generate a dataset from an agent definition (SDK)](#generate-a-dataset-from-an-agent-definition-sdk).
 
 ```python
 from azure.ai.projects.models import (
