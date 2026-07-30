@@ -336,7 +336,7 @@ Poll and resolve the dataset by using the same pattern shown in [Generate a data
 Each row in the seed dataset includes the following fields:
 
 - `id` — Row identifier.
-- `category` — Scenario category label (for example, `Basic support & empathy` or `Requests beyond capabilities`).
+- `category` — Scenario category label, such as `Basic support & empathy` or `Requests beyond capabilities`.
 - `test_case_description` — Free-form description of the scenario. The simulator uses this text to play the user's side of the conversation. Descriptions typically run several paragraphs and spell out the user's goal, expected agent behavior, and any multi-turn dynamics to test.
 - `desired_num_turns` — Recommended conversation length, as a string (for example, `"4"`). The simulator uses this value as guidance when driving the interaction.
 
