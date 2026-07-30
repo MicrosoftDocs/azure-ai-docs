@@ -70,6 +70,9 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-chat-latest | 2026-05-05 | Preview | 2026-08-05 | — |
 | gpt-chat-latest | 2026-05-28 | Preview | 2026-08-28 | — |
 | gpt-chat-latest | 2026-06-24 | Preview | 2026-08-28 | — |
+| gpt-chat-latest | 2026-05-05 | Preview | 2026-08-05 | — |
+| gpt-chat-latest | 2026-05-28 | Preview | 2026-08-28 | — |
+| gpt-chat-latest | 2026-06-24 | Preview | 2026-08-28 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2027-06-16 | — |
@@ -146,6 +149,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
 | DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
 | DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
+| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
 
 
 ### Meta
@@ -161,7 +166,11 @@ Unless explicitly stated, training retires no earlier than the base model retire
 |-------|---------|-----------|-----------------|-------------|
 | model-router | 2025-05-19 | Preview | 2026-08-30 | — |
 | model-router | 2025-08-07 | Preview | 2026-08-30 | — |
+| model-router | 2025-05-19 | Preview | 2026-08-30 | — |
+| model-router | 2025-08-07 | Preview | 2026-08-30 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
+| MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
+| MAI-Image-2  | 2026-02-20 | Preview | 2026-08-15 | MAI-Image-2.5 |
 | MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
 | MAI-Image-2  | 2026-02-20 | Preview | 2026-08-15 | MAI-Image-2.5 |
 
@@ -179,6 +188,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 |-------|---------|-----------|-----------------|-------------|
 | Kimi-K2.5 | 1 | Preview | 2027-01-26 | — |
 | Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
+| Kimi-K2.7-Code | 2026-06-12 | Preview | 2026-10-03 | — |
 | Kimi-K2.7-Code | 2026-06-12 | Preview | 2026-10-03 | — |
 
 ### OpenAI-OSS

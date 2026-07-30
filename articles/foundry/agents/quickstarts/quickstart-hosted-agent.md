@@ -754,5 +754,6 @@ In this quickstart, you:
 * [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
 * [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
+* [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
