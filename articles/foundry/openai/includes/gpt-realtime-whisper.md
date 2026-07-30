@@ -1,17 +1,27 @@
 ---
-title: GPT Realtime Whisper
+title: GPT Realtime Transcribe
 description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/07/2026
+ms.date: 07/27/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
 
-GPT Realtime Whisper is a streaming transcription model that converts live audio to text in real time. You can use it alongside speech-to-speech and translation models to provide continuous input transcription for audio streams.
+GPT Realtime Transcribe is a streaming transcription model that converts live audio to text in real time. You can use it alongside speech-to-speech and translation models to provide continuous input transcription for audio streams.
+
+> [!NOTE]
+> GPT Realtime Transcribe is a Realtime API model. For offline file transcription via `POST /v1/audio/transcriptions`, use `gpt-transcribe`.
+
+Realtime transcription uses a persistent streaming session, not one-request-per-file upload. Choose Realtime API when you need low-latency transcript updates while audio is still in progress.
+
+> [!NOTE]
+> GPT Realtime Whisper is a Realtime API model. For offline file transcription via `POST /v1/audio/transcriptions`, use `gpt-transcribe`.
+
+Realtime transcription uses a persistent streaming session, not one-request-per-file upload. Choose Realtime API when you need low-latency transcript updates while audio is still in progress.
 
 ## Key capabilities
 
@@ -19,9 +29,9 @@ GPT Realtime Whisper is a streaming transcription model that converts live audio
 - **Low latency**: Designed for real-time scenarios where delays aren't acceptable, such as live captions or quality monitoring.
 - **Parallel operation**: Runs alongside other realtime models (such as GPT Realtime Translate) to provide source-language transcription in parallel with translation.
 
-## When to use GPT Realtime Whisper
+## When to use GPT Realtime Transcribe
 
-Use GPT Realtime Whisper when you need:
+Use GPT Realtime Transcribe when you need:
 
 - Live captions and subtitles for ongoing audio streams.
 - Transcription for monitoring, moderation, or analytics workflows.
@@ -37,7 +47,7 @@ Use GPT Realtime Whisper when you need:
 
 ## Get started
 
-GPT Realtime Whisper is available through the Realtime API. The connection and usage patterns are the same as for other realtime models:
+You can access GPT Realtime Transcribe through the Realtime API. The connection and usage patterns are the same as for other realtime models:
 
 - [Use the GPT Realtime API via WebSockets](../how-to/realtime-audio-websockets.md)
 - [Use the GPT Realtime API via WebRTC](../how-to/realtime-audio-webrtc.md)
@@ -46,7 +56,7 @@ Use the same quickstart code patterns, and set your deployment name to the model
 
 ## Language support guidance
 
-GPT Realtime Whisper is designed for multilingual transcription. Accuracy can vary by language, audio quality, and speaking conditions.
+GPT Realtime Transcribe is designed for multilingual transcription. Accuracy can vary by language, audio quality, and speaking conditions.
 
 - Provide an ISO-639-1 language hint (for example, `en`) when available.
 - Validate transcription quality with production-like audio before rollout.
@@ -54,7 +64,7 @@ GPT Realtime Whisper is designed for multilingual transcription. Accuracy can va
 
 ## Deployment and availability
 
-GPT Realtime Whisper is available as a Global Standard (pay-as-you-go) deployment in Microsoft Foundry. Deploy the model from the [model catalog](https://ai.azure.com).
+You can deploy GPT Realtime Transcribe as a Global Standard (pay-as-you-go) deployment in Microsoft Foundry. Deploy the model from the [model catalog](https://ai.azure.com).
 
 For current region support, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).
 
