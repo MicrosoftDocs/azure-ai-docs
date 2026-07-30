@@ -231,6 +231,8 @@ When creating a new Foundry resource, follow these steps:
 
 Certain Agent tools are supported when Foundry is network isolated, while others are not. The following table shows support status for agent tools in network-isolated environments and how traffic flows. This covers tool support behind a VNET for the new Responses API Agents created through SDK/CLI or in the new Foundry portal only, not agents created in the classic Foundry portal experience. 
 
+This tool support applies to network-isolated deployments created with either the Standard setup template [`15-private-network-standard-agent-setup`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup) or the Basic setup template [`11-private-network-basic-vnet`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/11-private-network-basic-vnet).
+
 Code samples for how to run these Agent tools within a network secured set-up can be found in the sample template [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-private-network-agent-tools). 
 
 | Tool | Support Status | Traffic Flow |

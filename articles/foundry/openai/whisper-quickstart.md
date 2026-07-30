@@ -1,6 +1,6 @@
 ---
-title: "Speech to text with Whisper"
-description: "Learn how to use the Azure OpenAI Whisper model for speech to text conversion."
+title: "Speech to text with transcription models"
+description: "Learn how to use Azure OpenAI transcription models for speech to text conversion."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -17,6 +17,6 @@ zone_pivot_groups: programming-languages-rest-ps-py-js-cs
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Speech to text with the Azure OpenAI Whisper model
+# Quickstart: Speech to text with Azure OpenAI transcription models
 
 [!INCLUDE [whisper-quickstart content](includes/whisper-quickstart-content.md)]

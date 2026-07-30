@@ -109,7 +109,7 @@ Transcribes and translates input audio into English text.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| deployment-id | path | Yes | string | Deployment ID of the whisper model which was deployed.<br/><br/>For information about supported models, see [/azure/ai-foundry/openai/concepts/models#audio-models]. |
+| deployment-id | path | Yes | string | Deployment ID of the transcription model which was deployed.<br/><br/>For information about supported models, see [/azure/ai-foundry/openai/concepts/models#audio-models]. |
 | api-version | query | Yes | string | API version |
 
 ### Request Header
