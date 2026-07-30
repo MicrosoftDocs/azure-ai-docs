@@ -268,6 +268,9 @@ This approach is useful for:
 
 ### Prepare scenario data
 
+> [!TIP]
+> Instead of authoring scenarios by hand, you can generate them with the **Simulation seed (multi-turn)** task type in the synthetic data generation flow. The output uses the same `id` / `test_case_description` / `desired_num_turns` schema. See [Generate simulation seeds](evaluation-dataset-synthetic.md#generate-simulation-seeds-sdk).
+
 Create a JSONL file where each line describes a scenario for the simulated user. The schema requires `id`, `test_case_description`, and `desired_num_turns`. Include details about the user's goal, context, and any constraints. For a complete example, see the [conversation evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations) in the SDK.
 
 ```json
