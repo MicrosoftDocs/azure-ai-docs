@@ -13,6 +13,9 @@ ms.author: ssalgado
 
 # Custom categories (preview)
 
+>[!IMPORTANT]
+> Custom categories (standard) is retiring on September 1, 2026. We recommend migrating to the [Custom text API in Foundry Custom text classification - Foundry Tools | Microsoft Learn](/azure/ai-services/language-service/custom-text-classification/overview.md).
+
 Azure AI Content Safety lets you create and manage your own content categories for enhanced moderation and filtering that matches your specific policies or use cases.
 
 ## Types of customization
