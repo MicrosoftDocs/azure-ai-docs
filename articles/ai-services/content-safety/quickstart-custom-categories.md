@@ -16,7 +16,7 @@ zone_pivot_groups: programming-languages-content-safety-foundry-rest
 # Quickstart: Custom categories (standard mode) (preview)
 
 > [!IMPORTANT]
-> Custom categories (standard) is retiring on September 1, 2026. Migrate to the [Custom text API in Foundry Custom text classification - Foundry Tools | Microsoft Learn](../../language-service/custom-text-classification/overview.md).
+> Custom categories (standard) is retiring on September 1, 2026. Migrate to the [Custom text API in Foundry Custom text classification - Foundry Tools | Microsoft Learn](../language-service/custom-text-classification/overview.md).
 
 Follow this guide to use Azure AI Content Safety Custom categories (standard) REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content. 
 
