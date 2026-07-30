@@ -48,7 +48,7 @@ When you omit `rai_config`, the agent runs without a content safety guardrail. W
 Always use the full ARM resource ID for `rai_policy_name`, not the bare policy name.
 
 > [!WARNING]
-> Don't rely on deploy-time validation to catch a bad policy ID. On many subscriptions an agent that references a policy that doesn't exist is created successfully and reports `active`, but **no content filtering is applied** — the guardrail fails open and harmful prompts reach the agent. Confirm the policy exists on the account, then run [Test the guardrail at runtime](#test-the-guardrail-at-runtime) before you rely on the agent's content safety.
+> Don't rely on deploy-time validation to catch a bad policy ID. On many subscriptions an agent that references a policy that doesn't exist is created successfully and reports `active`, but **no content filtering is applied** - the guardrail fails open and harmful prompts reach the agent. Confirm the policy exists on the account, then run [Test the guardrail at runtime](#test-the-guardrail-at-runtime) before you rely on the agent's content safety.
 
 ## Add a guardrail with the Azure Developer CLI
 
@@ -82,7 +82,7 @@ When you use `azd`, declare the guardrail in the `policies` list on the `azure.a
 The platform attaches the guardrail when it creates the agent version.
 
 > [!NOTE]
-> In `azure.yaml` the field is camelCased as `raiPolicyName`. The deprecated standalone `agent.yaml` uses the snake_case `rai_policy_name`. Both map to `rai_config.rai_policy_name` on the agent version. Don't declare the guardrail in `agent.manifest.yaml` — `azd` reads that file only during `azd ai agent init` and ignores it at deploy time.
+> In `azure.yaml` the field is camelCased as `raiPolicyName`. The deprecated standalone `agent.yaml` uses the snake_case `rai_policy_name`. Both map to `rai_config.rai_policy_name` on the agent version. Don't declare the guardrail in `agent.manifest.yaml` - `azd` reads that file only during `azd ai agent init` and ignores it at deploy time.
 
 ## Add a guardrail with the Python SDK
 
