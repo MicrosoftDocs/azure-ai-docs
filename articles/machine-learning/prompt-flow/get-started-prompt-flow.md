@@ -169,7 +169,7 @@ After the flow runs successfully with a single row of data, test whether it perf
 
 You need to prepare test data first. Azure Machine Learning supports CSV, TSV, and JSONL file formats for data.
 
-- Go to GitHub and download [data.csv](https://github.com/Azure/azureml-assets/blob/main/assets/promptflow/data/web-classification/data.csv), the golden dataset for the Web Classification sample.
+- Go to GitHub and download [data.csv](https://github.com/Azure/azureml-assets), the golden dataset for the Web Classification sample.
 
 Use the **Batch run & Evaluate** wizard to configure and submit a batch run and optionally an evaluation method. Evaluation methods are also flows, which use Python or LLM to calculate metrics like accuracy and relevance score.
 
