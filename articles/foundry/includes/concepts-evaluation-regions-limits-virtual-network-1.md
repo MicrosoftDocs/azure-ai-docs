@@ -115,7 +115,7 @@ Use exponential backoff when retrying failed requests.
 
 For network isolation, you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
 
-Virtual network support for evaluation requires network injection (subnet delegation), but if you **only need evaluation and data generation capabilities** and do not require full agent support (Cosmos DB, AI Search, or project capability host), consider using the simplified [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup) instead. It deploys a minimal network-secured environment tailored for evaluation scenarios with fewer resources and reduced complexity.
+Virtual network support for evaluation requires network injection (subnet delegation), but if you **only need evaluation and data generation capabilities** and don't require full agent support (Cosmos DB, AI Search, or project capability host), consider using the simplified [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup) instead. It deploys a minimal network-secured environment tailored for evaluation scenarios with fewer resources and reduced complexity.
 
 > [!NOTE]
 > If you connect Application Insights, evaluation data is sent to it.
@@ -144,10 +144,10 @@ Bringing your own virtual network for evaluation is supported in the following r
 
 ## Virtual network support for data generation
 
-For network isolation, you can bring your own virtual network for data generation (synthetic data generation and trace-to-dataset generation). To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
+For network isolation, bring your own virtual network for data generation (synthetic data generation and trace-to-dataset generation). To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
 
-Virtual network support for data generation uses the same network injection (subnet delegation) as evaluation. If you only need evaluation and data generation capabilities and do not require full agent support (Cosmos DB, AI Search, or project capability host), consider using the simplified [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup).
+Virtual network support for data generation uses the same network injection (subnet delegation) as evaluation. If you only need evaluation and data generation capabilities and don't require full agent support (Cosmos DB, AI Search, or project capability host), consider using the simplified [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup).
 
 ### Virtual network region support for data generation
 
-Bringing your own virtual network for data generation is supported in the same regions as data generation itself. See [Supported regions for data generation](#supported-regions-for-data-generation).
+You can bring your own virtual network for data generation in the same regions as data generation itself. See [Supported regions for data generation](#supported-regions-for-data-generation).
