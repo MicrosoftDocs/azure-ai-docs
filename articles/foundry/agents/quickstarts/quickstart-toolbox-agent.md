@@ -59,7 +59,7 @@ azd env set FOUNDRY_PROJECT_ENDPOINT "$(azd env get-value FOUNDRY_PROJECT_ENDPOI
 
 :::zone pivot="azd"
 
-The sample includes a [`toolbox.yaml`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/toolbox.yaml) in `src/toolbox-agent` that defines both tools behind one endpoint. Create the toolbox from that file:
+The sample includes a [`toolbox.yaml`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/src/agent-framework-agent-with-foundry-toolbox-responses/toolbox.yaml) in `src/toolbox-agent` that defines both tools behind one endpoint. Create the toolbox from that file:
 
 ```bash
 azd ai toolbox create my-toolbox --from-file ./src/toolbox-agent/toolbox.yaml
