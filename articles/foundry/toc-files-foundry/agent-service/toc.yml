@@ -176,7 +176,7 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a voice agent (preview)
       href: ../../agents/how-to/build-voice-agent.md
-    - name: Add a content safety guardrail
+    - name: Add hosted agent guardrails
       href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
