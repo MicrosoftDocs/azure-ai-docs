@@ -8,7 +8,7 @@ reviewer: ychang-msft
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
-ms.date: 02/04/2026
+ms.date: 07/31/2026
 ms.custom: ignite-2024, github-universe-2024, template-concept, devx-track-python
 ai-usage: ai-assisted
 
