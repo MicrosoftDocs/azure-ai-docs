@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 07/30/2026
 ms.author: lajanuar
 ms.custom: references_regions, pilot-ai-workflow-jan-2026
 recommendations: false
@@ -115,7 +115,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+|**Client libraries (SDKs)**|Use the [Document translation client libraries](document-sdk-overview.md) for [C#/.NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
 
 ### [Synchronous](#tab/sync)
 
@@ -126,7 +126,7 @@ Use synchronous document translation to translate a single file and return the t
 |**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **new Foundry** is not selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
 |**REST API**|Integrate synchronous document translation into your applications by using the [REST API](reference/translate-document.md).|
-|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
+|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [Document translation client libraries](document-sdk-overview.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../containers/translate-document-parameters.md).|
 
 ---
