@@ -63,7 +63,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```
 
     > [!NOTE]
-    > `node-record-lpcm16` and `speaker` are optional audio packages for microphone input and audio playback. They require [SoX](https://sox.sourceforge.io/) and native build tools. If you want to connect without audio hardware, use the `--no-audio` flag when running the sample.
+    > The `node-record-lpcm16` and `speaker` packages are optional audio packages for microphone input and audio playback. They require [SoX](https://sox.sourceforge.io/) and native build tools. If you want to connect without audio hardware, use the `--no-audio` flag when running the sample.
 
 1. Install the dependencies:
 

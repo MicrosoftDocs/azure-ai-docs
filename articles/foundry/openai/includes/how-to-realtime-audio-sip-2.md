@@ -15,7 +15,7 @@ ms.custom: include
 To connect a phone number to the Realtime API, use a SIP trunking provider (for example, Twilio). A trunking provider is a service that converts your phone call to IP traffic.
 
 1. Purchase a phone number from your SIP trunking provider.
-1. Create a webhook for incoming calls using the [Azure OpenAI Webhook Service REST API](../how-to/webhooks.md).
+1. Create a webhook for incoming calls by using the [Azure OpenAI Webhook Service REST API](../how-to/webhooks.md).
 1. Get the internal ID of your Azure OpenAI resource:
    1. In the Azure portal, navigate to your resource.
    1. Select **JSON View** to find the internal ID.

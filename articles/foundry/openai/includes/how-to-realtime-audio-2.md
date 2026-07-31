@@ -22,7 +22,7 @@ For the Realtime API, use the GA endpoint with `/openai/v1` in the URL. Don't us
 Often, the first event sent by the caller on a newly established `/realtime` session is a `session.update` payload. This event controls a wide set of input and output behavior, with output and response generation properties then later overridable using the `response.create` event.
 
 The `session.update` event can be used to configure the following aspects of the session:
-- Transcription of user input audio is opted into via the session's `input_audio_transcription` property. Specifying a transcription model deployment name in this configuration enables the delivery of `conversation.item.audio_transcription.completed` events.
+- Opt in to transcription of user input audio by using the session's `input_audio_transcription` property. If you specify a transcription model deployment name in this configuration, you enable the delivery of `conversation.item.audio_transcription.completed` events.
 - Turn handling is controlled by the `turn_detection` property. This property's type can be set to `none`, `semantic_vad`, or `server_vad` as described in the [voice activity detection (VAD) and the audio buffer](#voice-activity-detection-vad-and-the-audio-buffer) section.
 - Tools can be configured to enable the server to call out to external services or functions to enrich the conversation. Tools are defined as part of the `tools` property in the session configuration.
 
