@@ -65,7 +65,7 @@ You don't need to explicitly install these resources for this tutorial, because 
       1. Download the *azureml-examples/sdk/python/featurestore-sample/project/env/online.yml* file to your local machine
       1. In **configure session** in the top nav, select **Python packages**
       1. Select **Upload Conda file**
-      1. Upload the *online.yml* file from your local machine, by using the same steps described in [uploading the *conda.yml* file in Tutorial 1](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
+      1. Upload the *online.yml* file from your local machine by using the same steps described in [uploading the *conda.yml* file in Tutorial 1](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
       1. Optionally, increase the session time-out (idle time) to avoid frequent prerequisite reruns
 
 1. This code cell starts the Spark session. It needs about 10 minutes to install all dependencies and start the Spark session.
