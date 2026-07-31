@@ -29,8 +29,12 @@ For more information about pricing model and service tier differences, see [Choo
 In the Serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
 
 - Queries and indexing consume compute, measured in Compute Units per hour (CU/h).
-- Storage is billed separately based on index size on disk.
-- When the service is idle with no active queries or indexing, compute usage is zero. There's no reserved or minimum capacity charge.
+- Active indexes also consume compute based on index size and how long they remain active.
+- An index stays active for ~10-20 minutes after its last query or indexing request before it goes inactive.
+- Inactive indexes have no minimum or reserved compute charge.
+- Storage is billed separately based on index size on disk and continues whether or not an index is in use.
+
+Storage charges stop only when you delete the index.
 
 The Serverless pricing model is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
 
@@ -111,11 +115,15 @@ To estimate serverless costs:
 1. Use Azure Monitor metrics to measure aggregate usage over time.
 1. Extrapolate costs based on expected production traffic.
 
+Use the **Scale + Cost** tab in the Azure portal to see your current usage and estimate costs.
+
 Because the same request executed against the same data generally produces similar compute consumption, representative workloads can provide a reliable basis for cost estimation.
 
 Serverless usage is measured continuously and aggregated for billing. Compute consumption is tracked throughout each minute and emitted only when compute resources are used.
 
 When estimating costs, use request charge values to understand the cost of individual operations and Azure Monitor metrics to understand overall service consumption patterns.
+
+Use both data sources together to understand costs: per-request charge data helps you evaluate individual operations, while Azure Monitor metrics help you understand aggregate service consumption over time. For a complete cost picture, also account for features that are billed separately from Compute Units.
 
 Billing is based on aggregate compute usage rather than individual requests. Usage is measured in one-minute intervals and rounded up to the nearest 0.25 CU per minute. These one-minute usage intervals accumulate over the course of an hour to determine the billable CU/hour amount. Internally, usage aggregates from milli-compute units (mCU) to compute units (CU) and converts into the hourly usage reported for billing.
 
