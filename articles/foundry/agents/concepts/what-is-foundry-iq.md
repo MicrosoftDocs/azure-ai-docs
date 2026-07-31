@@ -39,7 +39,7 @@ A knowledge base consists of *knowledge sources* (connections to internal and ex
 
 - Run queries under the caller's Microsoft Entra identity for end-to-end permission enforcement.
 
-- Connect your Foundry IQ knowledge base to a Microsoft Copilot Studio agent
+- Connect your Foundry IQ knowledge base to a Microsoft Copilot Studio agent.
 
 ## Components
 
