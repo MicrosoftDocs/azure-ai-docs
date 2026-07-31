@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include
 ---
 
@@ -22,7 +22,7 @@ For the Realtime API, use the GA endpoint with `/openai/v1` in the URL. Don't us
 Often, the first event sent by the caller on a newly established `/realtime` session is a `session.update` payload. This event controls a wide set of input and output behavior, with output and response generation properties then later overridable using the `response.create` event.
 
 The `session.update` event can be used to configure the following aspects of the session:
-- Transcription of user input audio is opted into via the session's `input_audio_transcription` property. Specifying a transcription model (such as `whisper-1`) in this configuration enables the delivery of `conversation.item.audio_transcription.completed` events.
+- Opt in to transcription of user input audio by using the session's `input_audio_transcription` property. If you specify a transcription model deployment name in this configuration, you enable the delivery of `conversation.item.audio_transcription.completed` events.
 - Turn handling is controlled by the `turn_detection` property. This property's type can be set to `none`, `semantic_vad`, or `server_vad` as described in the [voice activity detection (VAD) and the audio buffer](#voice-activity-detection-vad-and-the-audio-buffer) section.
 - Tools can be configured to enable the server to call out to external services or functions to enrich the conversation. Tools are defined as part of the `tools` property in the session configuration.
 
@@ -33,10 +33,10 @@ An example `session.update` that configures several aspects of the session, incl
   "type": "session.update",
   "session": {
     "voice": "alloy",
-    "instructions": "",
+    "instructions": "Your custom system instructions.",
     "input_audio_format": "pcm16",
     "input_audio_transcription": {
-      "model": "whisper-1"
+      "model": "<your-transcription-deployment-name>"
     },
     "turn_detection": {
       "type": "server_vad",
@@ -102,9 +102,9 @@ You can also construct a custom context that the model uses outside of the sessi
           {
             "type": "input_text",
             "text": "The capital/major city of France is Paris."
-          },
-        ],
-      },
+          }
+        ]
+      }
     ]
   }
 }
@@ -353,10 +353,8 @@ Here's the client `response.create` event in JSON format:
   "event_id": null,
   "type": "response.create",
   "response": {
-    "commit": true,
-    "cancel_previous": true,
     "instructions": "Please assist the user.",
-    "modalities": ["text", "audio"],
+    "modalities": ["text", "audio"]
   }
 }
 ```
