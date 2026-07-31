@@ -1,7 +1,7 @@
 ---
 title: "Tutorial 6: Network isolation for feature store"
 titleSuffix: Azure Machine Learning managed feature store - basics
-description: This is part 6 of the managed feature store tutorial series 
+description: "Part 6 of the Azure Machine Learning managed feature store tutorial series: network isolation for the feature store."
 services: machine-learning
 ms.service: azure-machine-learning
 
@@ -18,9 +18,9 @@ ms.custom:
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
 ---
 
-# Tutorial 6: Network isolation with feature store
+# Tutorial 6: Network isolation for feature store
 
-An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about feature stores, read the [feature store concepts](./concept-what-is-managed-feature-store.md) document.
+An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md).
 
 > [!IMPORTANT]
 > Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
@@ -36,7 +36,7 @@ An Azure Machine Learning managed feature store lets you discover, create, and o
 
 This tutorial describes how to configure secure ingress through a private endpoint, and secure egress through a managed virtual network.
 
-Part 1 of this tutorial series showed how to create a feature set specification with custom transformations, and use that feature set to generate training data. Part 2 of the series showed how to enable materialization, and perform a backfill. Additionally, Part 2 showed how to experiment with features, as a way to improve model performance. Part 3 showed how a feature store increases agility in the experimentation and training flows. Part 3 also described how to run batch inference. Tutorial 4 explained how to use feature store for online/realtime inference use cases. Tutorial 5 demonstrated how to develop a feature set with a custom data source. Tutorial 6 shows how to
+Tutorial 1 showed how to create a feature set specification with custom transformations, and then use that feature set to generate training data, enable materialization, and perform a backfill. Tutorial 2 showed how to experiment with features to improve model performance, and then train and register a model that uses features. Tutorial 3 showed how to enable recurrent materialization for the `transactions` feature set and run a batch inference pipeline. Tutorial 4 showed how to enable online materialization and run online inference. Tutorial 5 showed how to develop a feature set with a custom source. This tutorial shows how to
 
 > [!div class="checklist"]
 > * Set up the necessary resources for network isolation of a managed feature store.
@@ -328,7 +328,7 @@ For this tutorial, you create three separate storage containers in the same ADLS
 
    Inspect the feature transformation code file `featurestore/featuresets/transactions/spec/transformation_code/transaction_transform.py`. This spark transformer performs the rolling aggregation defined for the features.
 
-   For more information about the feature set and transformations in more detail, visit [feature store concepts](./concept-what-is-managed-feature-store.md).
+   For more information about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md).
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/network_isolation/Network-isolation-feature-store.ipynb?name=develop-txn-fset-locally)]
 
@@ -456,11 +456,11 @@ For this tutorial, you create three separate storage containers in the same ADLS
 
    Now that you successfully created a secure feature store and submitted a successful materialization run, you can proceed through the tutorial series to build an understanding of the feature store.
 
-   This tutorial contains a mixture of steps from tutorials 1 and 2 of this series. Remember to replace the necessary public storage containers used in the other tutorial notebooks with those created in this tutorial notebook, for the network isolation.
+   This tutorial contains a mixture of steps from Tutorials 1 and 2 of this series. Remember to replace the necessary public storage containers used in the other tutorial notebooks with those created in this tutorial notebook, for the network isolation.
 
 This concludes the tutorial. Your training data uses features from a feature store. You can either save it to storage for later use, or directly run model training on it.
 
 ## Next steps
 
-* [Part 2: Experiment and train models using features](./tutorial-experiment-train-models-using-features.md)
-* [Part 3: Enable recurrent materialization and run batch inference](./tutorial-enable-recurrent-materialization-run-batch-inference.md)
+* [Tutorial 2: Experiment and train models by using features](./tutorial-experiment-train-models-using-features.md)
+* [Tutorial 3: Enable recurrent materialization and run batch inference](./tutorial-enable-recurrent-materialization-run-batch-inference.md)

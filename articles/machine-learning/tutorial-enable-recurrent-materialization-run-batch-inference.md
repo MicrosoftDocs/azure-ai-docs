@@ -1,7 +1,7 @@
 ---
 title: "Tutorial 3: Enable recurrent materialization and run batch inference"
 titleSuffix: Azure Machine Learning managed feature store - basics
-description: This is part of a tutorial series on managed feature store.
+description: "Part 3 of the Azure Machine Learning managed feature store tutorial series: enable recurrent materialization and run batch inference."
 services: machine-learning
 ms.service: azure-machine-learning
 
@@ -31,7 +31,7 @@ This tutorial series shows how features seamlessly integrate all phases of the m
 >   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
 > 
 
-The first tutorial showed how to create a feature set specification with custom transformations. It then showed how to use that feature set to generate training data, enable materialization, and perform a backfill. The second tutorial showed how to enable materialization and perform a backfill. It also showed how to experiment with features, as a way to improve model performance.
+Tutorial 1 showed how to create a feature set specification with custom transformations, and then use that feature set to generate training data, enable materialization, and perform a backfill. Tutorial 2 showed how to experiment with features to improve model performance, and then train and register a model that uses features.
 
 This tutorial explains how to:
 
@@ -41,7 +41,7 @@ This tutorial explains how to:
 
 ## Prerequisites
 
-Before you proceed with this tutorial, be sure to complete the first and second tutorials in the series.
+Before you proceed with this tutorial, be sure to complete Tutorials 1 and 2 in this series.
 
 ## Set up
 
@@ -96,7 +96,7 @@ Before you proceed with this tutorial, be sure to complete the first and second 
 
 1. Initialize the feature store variables.
 
-   To reflect what you created in the first tutorial, be sure to update the `featurestore_name` value.
+   To reflect what you created in Tutorial 1, be sure to update the `featurestore_name` value.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/3.Enable-recurrent-materialization-run-batch-inference.ipynb?name=init-fs-crud-client)]
 
@@ -106,7 +106,7 @@ Before you proceed with this tutorial, be sure to complete the first and second 
 
 ## Enable recurrent materialization on the transactions feature set
 
-In the second tutorial, you enabled materialization and performed backfill on the `transactions` feature set. Backfill is an on-demand, one-time operation that computes and places feature values in the materialization store.
+In Tutorial 1, you enabled materialization and performed backfill on the `transactions` feature set. Backfill is an on-demand, one-time operation that computes and places feature values in the materialization store.
 
 To handle inference of the model in production, you might want to set up recurrent materialization jobs to keep the materialization store up to date. These jobs run on user-defined schedules. The recurrent job schedule works this way:
 
@@ -141,7 +141,7 @@ Not applicable.
 
 The batch inference has these steps:
 
-1. You use the same built-in feature retrieval component for feature retrieval that you used in the training pipeline (covered in the third tutorial). For pipeline training, you provided a feature retrieval specification as a component input. For batch inference, you pass the registered model as the input. The component looks for the feature retrieval specification in the model artifact.
+1. You use the same built-in feature retrieval component for feature retrieval that you used in the training pipeline (covered in Tutorial 2). For pipeline training, you provided a feature retrieval specification as a component input. For batch inference, you pass the registered model as the input. The component looks for the feature retrieval specification in the model artifact.
 
    Additionally, for training, the observation data had the target variable. However, the batch inference observation data doesn't have the target variable. The feature retrieval step joins the observation data with the features and outputs the data for batch inference.
 
@@ -167,7 +167,7 @@ In the pipeline view:
 
 ## Clean up
 
-The [fifth tutorial in the series](./tutorial-develop-feature-set-with-custom-source.md#clean-up) describes how to delete the resources.
+[Tutorial 5: Develop a feature set with a custom source](./tutorial-develop-feature-set-with-custom-source.md#clean-up) describes how to delete the resources.
 
 ## Next steps
 

@@ -1,7 +1,7 @@
 ---
 title: "Tutorial 2: Experiment and train models by using features"
 titleSuffix: Azure Machine Learning managed feature store - basics
-description: This is part of a tutorial series about managed feature store. 
+description: "Part 2 of the Azure Machine Learning managed feature store tutorial series: experiment and train models by using features."
 services: machine-learning
 ms.service: azure-machine-learning
 
@@ -31,18 +31,18 @@ This tutorial series shows how features seamlessly integrate all phases of the m
 >   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
 > 
 
-The first tutorial showed how to create a feature set specification with custom transformations. Then, it showed how to use that feature set to generate training data, enable materialization, and perform a backfill. This tutorial shows how to enable materialization and perform a backfill. It also shows how to experiment with features, as a way to improve model performance.
+Tutorial 1 showed how to create a feature set specification with custom transformations, and then use that feature set to generate training data, enable materialization, and perform a backfill. This tutorial shows how to experiment with features to improve model performance, and then train and register a model that uses features.
 
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
-> * Prototype a new `accounts` feature set specification, through use of existing precomputed values as features. Then, register the local feature set specification as a feature set in the feature store. This process differs from the first tutorial, where you created a feature set that had custom transformations.
+> * Prototype a new `accounts` feature set specification, through use of existing precomputed values as features. Then, register the local feature set specification as a feature set in the feature store. This process differs from Tutorial 1, where you created a feature set that had custom transformations.
 > * Select features for the model from the `transactions` and `accounts` feature sets, and save them as a feature retrieval specification.
 > * Run a training pipeline that uses the feature retrieval specification to train a new model. This pipeline uses the built-in feature retrieval component to generate the training data.
 
 ## Prerequisites
 
-Before you proceed with this tutorial, be sure to complete the first tutorial in the series.
+Before you proceed with this tutorial, be sure to complete Tutorial 1 in this series.
 
 ## Set up
 
@@ -56,7 +56,7 @@ Before you proceed with this tutorial, be sure to complete the first tutorial in
 
       1. When the toolbar displays **Configure session**, select it.
       1. On the **Python packages** tab, select **Upload Conda file**.
-      1. Upload the *conda.yml* file that you [uploaded in the first tutorial](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
+      1. Upload the *conda.yml* file that you [uploaded in Tutorial 1](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
       1. As an option, you can increase the session time-out (idle time) to avoid frequent prerequisite reruns.
 
 1. Start the Spark session.
@@ -96,7 +96,7 @@ Before you proceed with this tutorial, be sure to complete the first tutorial in
 
 1. Initialize the feature store variables.
 
-   Be sure to update the `featurestore_name` and `featurestore_location` values, to reflect what you created in the first tutorial.
+   Be sure to update the `featurestore_name` and `featurestore_location` values, to reflect what you created in Tutorial 1.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/2.Experiment-train-models-using-features.ipynb?name=init-fs-crud-client)]
 
@@ -112,7 +112,7 @@ Before you proceed with this tutorial, be sure to complete the first tutorial in
 
 ## Create the accounts feature set in a local environment
 
-In the first tutorial, you created a `transactions` feature set that had custom transformations. Here, you create an `accounts` feature set that uses precomputed values.
+In Tutorial 1, you created a `transactions` feature set that had custom transformations. Here, you create an `accounts` feature set that uses precomputed values.
 
 To onboard precomputed features, you can create a feature set specification without writing any transformation code. You use a feature set specification to develop and test a feature set in a fully local development environment.
 
@@ -185,7 +185,7 @@ In these steps, you select a list of features, run a training pipeline, and regi
 
 1. Optionally, discover features from the feature store UI.
 
-   The first tutorial covered this step, when you registered the `transactions` feature set. Because you also have an `accounts` feature set, you can browse through the available features:
+   Tutorial 1 covered this step, when you registered the `transactions` feature set. Because you also have an `accounts` feature set, you can browse through the available features:
 
    1. Go to the [Azure Machine Learning global landing page](https://ml.azure.com/home).
    1. On the left pane, select **Feature stores**.
@@ -232,7 +232,7 @@ In this procedure, you manually trigger the training pipeline. In a production s
    1. Register the model: This step registers the model.
 
       > [!NOTE]
-      > In the second tutorial, you ran a backfill job to materialize data for the `transactions` feature set. The feature retrieval step reads feature values from the offline store for this feature set. The behavior is the same, even if you use the `get_offline_features()` API.
+      > In Tutorial 1, you ran a backfill job to materialize data for the `transactions` feature set. The feature retrieval step reads feature values from the offline store for this feature set. The behavior is the same, even if you use the `get_offline_features()` API.
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/2.Experiment-train-models-using-features.ipynb?name=run-training-pipeline)]
 
@@ -266,11 +266,11 @@ In this procedure, you manually trigger the training pipeline. In a production s
 
 ## Clean up
 
-The [fifth tutorial in the series](./tutorial-develop-feature-set-with-custom-source.md#clean-up) describes how to delete the resources.
+[Tutorial 5: Develop a feature set with a custom source](./tutorial-develop-feature-set-with-custom-source.md#clean-up) describes how to delete the resources.
 
 ## Next steps
 
-* Go to the next tutorial in the series: [Enable recurrent materialization and run batch inference](./tutorial-enable-recurrent-materialization-run-batch-inference.md).
+* Go to the next tutorial in the series: [Tutorial 3: Enable recurrent materialization and run batch inference](./tutorial-enable-recurrent-materialization-run-batch-inference.md).
 * Learn about [feature store concepts](./concept-what-is-managed-feature-store.md) and [top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
 * Learn about [identity and access control for managed feature store](./how-to-setup-access-control-feature-store.md).
 * View the [troubleshooting guide for managed feature store](./troubleshooting-managed-feature-store.md).
