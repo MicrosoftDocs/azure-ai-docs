@@ -1,7 +1,7 @@
 ---
-title: "Managed feature store tutorial 1: Develop and register a feature set"
-titleSuffix: Azure Machine Learning
-description: Learn how to develop and register a feature set, the first tutorial in a series on using managed feature store in Azure Machine Learning.
+title: "Tutorial 1: Develop and register a feature set"
+titleSuffix: Azure Machine Learning managed feature store - basics
+description: Part 1 of the Azure Machine Learning managed feature store tutorial series: develop and register a feature set.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -19,7 +19,7 @@ ms.custom:
 #Customer intent: As a data scientist, I want to learn about the managed feature store so I can build and deploy a model with Azure Machine Learning by using Python and CLI or Python SDKs only in a notebook.
 ---
 
-# Managed feature store tutorial 1: Develop and register a feature set
+# Tutorial 1: Develop and register a feature set
 
 In this tutorial series, you learn how to use the managed feature store to discover, create, and operationalize Azure Machine Learning features. Features seamlessly integrate the prototyping, training, and operationalization phases of the machine learning lifecycle.
 
@@ -82,7 +82,7 @@ The SDK-only track uses two SDKs. The *conda.yml* file you upload installs these
 
 ---
 
-## Tutorial 1: Develop and register a feature set
+## Develop and register a feature set
 
 This tutorial walks through creating a feature set specification with custom transformations. You then use that feature set to generate training data, enable materialization, and perform a backfill. You learn how to:
 
@@ -160,11 +160,11 @@ This tutorial walks through creating a feature set specification with custom tra
 
 1. Create the feature store.
 
-   ### [SDK and CLI track](#tab/SDK-and-CLI-track)
+   ### [SDK + CLI](#tab/SDK-and-CLI-track)
 
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=create-fs-cli)]
 
-   ### [SDK track](#tab/SDK-track)
+   ### [SDK-only](#tab/SDK-track)
 
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=create-fs)]
 
@@ -397,7 +397,7 @@ The following code sample shows the creation of a feature store with user-define
    print(fs_poller.result()) 
 ```
 
-After you enable feature set materialization on the transactions feature set, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, see the third tutorial in this series, [Enable recurrent materialization & run batch inference](tutorial-enable-recurrent-materialization-run-batch-inference.md).
+After you enable feature set materialization on the transactions feature set, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, see [Tutorial 3: Enable recurrent materialization and run batch inference](tutorial-enable-recurrent-materialization-run-batch-inference.md).
 
 ### Set spark.sql.shuffle.partitions in the YAML file
 
@@ -509,13 +509,14 @@ When you disable offline materialization on a feature set, the materialization s
 
 ## Clean up
 
-The fifth tutorial in this series, [Develop a feature set with a custom source](tutorial-develop-feature-set-with-custom-source.md#clean-up), describes how to delete the resources.
+[Tutorial 5: Develop a feature set with a custom source](tutorial-develop-feature-set-with-custom-source.md#clean-up) describes how to delete the resources.
 
-## Next step
+## Next steps
 
 This tutorial built the training data with features from the feature store, enabled materialization to offline feature store, and performed a backfill.
 
 The next tutorial in the series, [Experiment and train models by using features](tutorial-experiment-train-models-using-features.md), shows you how to run model training by using these features.
+The next tutorial in the series, [Tutorial 2: Experiment and train models by using features](tutorial-experiment-train-models-using-features.md), shows you how to run model training by using these features.
 
 ## Related content
 
