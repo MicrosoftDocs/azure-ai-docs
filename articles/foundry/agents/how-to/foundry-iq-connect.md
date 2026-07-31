@@ -487,7 +487,7 @@ Authorization: Bearer {management_access_token}
 > [!NOTE]
 > Deleting your agent and project connection doesn't delete your knowledge base or its knowledge sources. You must delete these objects separately on your Azure AI Search service. For more information, see [Delete a knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base?#delete-a-knowledge-base) and [Delete a knowledge source](/azure/search/agentic-knowledge-source-how-to-search-index#delete-a-knowledge-source).
 
-## Connect your knowledge base to a Microsoft Copilot Studio agent
+## Connect your Foundry IQ knowledge base to a Microsoft Copilot Studio agent
 
 After you connect your Foundry IQ knowledge base to an Agent Service agent, you can add that agent to Microsoft Copilot Studio. This integration makes your enterprise knowledge available to Copilot Studio agents with grounded retrieval, source attribution, and centralized knowledge management.
 
