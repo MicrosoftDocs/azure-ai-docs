@@ -666,6 +666,8 @@ items:
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
       href: search-monitor-indexers.md
+    - name: Monitoring data reference
+      href: monitor-azure-cognitive-search-data-reference.md
     - name: Troubleshoot storage metrics
       href: troubleshoot-storage-metrics.md
   - name: Visualize resource logs
@@ -740,8 +742,6 @@ items:
     - name: Azure Policy built-ins
       displayName: samples, policies, definitions
       href: ./policy-reference.md
-    - name: Monitoring data reference
-      href: monitor-azure-cognitive-search-data-reference.md
   - name: Data
     items:
     - name: Data types
