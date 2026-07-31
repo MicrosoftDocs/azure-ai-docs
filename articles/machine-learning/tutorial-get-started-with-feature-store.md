@@ -24,7 +24,7 @@ ms.custom:
 In this tutorial series, you learn how to use the managed feature store to discover, create, and operationalize Azure Machine Learning features. Features seamlessly integrate the prototyping, training, and operationalization phases of the machine learning lifecycle.
 
 > [!IMPORTANT]
-> Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
+> Azure Cache for Redis announced its retirement timeline for all SKUs. Move your existing Azure Cache for Redis instances to Azure Managed Redis as soon as possible.
 >
 > Migration guidance:
 > - [Migrate Basic, Standard, and Premium tiers to Azure Managed Redis](/azure/redis/migrate/migrate-basic-standard-premium-overview)
@@ -35,14 +35,14 @@ In this tutorial series, you learn how to use the managed feature store to disco
 >   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
 > 
 
-In the prototyping phase, you experiment with various features, and in the operationalization phase, you deploy models that use inference steps to look up feature data. Features serve as the connective tissue in the lifecycle.
+In the prototyping phase, you experiment with various features. In the operationalization phase, you deploy models that use inference steps to look up feature data. Features serve as the connective tissue in the lifecycle.
 
-You use an Azure Machine Learning project workspace to train inference models by using features from feature stores. Many project workspaces can share and reuse the same feature store. For more information about managed feature store, see [What is managed feature store](concept-what-is-managed-feature-store.md) and [Understand top-level entities in managed feature store](concept-top-level-entities-in-managed-feature-store.md).
+Use an Azure Machine Learning project workspace to train inference models by using features from feature stores. Many project workspaces can share and reuse the same feature store. For more information about managed feature store, see [What is managed feature store](concept-what-is-managed-feature-store.md) and [Understand top-level entities in managed feature store](concept-top-level-entities-in-managed-feature-store.md).
 
 ## Prerequisites
 
 * An Azure Machine Learning workspace. For more information about workspace creation, see [Quickstart: Create workspace resources](./quickstart-create-resources.md).
-* Owner role on the resource group where the feature store is created.
+* Owner role on the resource group where you create the feature store.
 
 ## SDK + CLI or SDK-only tutorial tracks
 
@@ -52,14 +52,14 @@ This tutorial series uses an Azure Machine Learning Spark notebook for developme
 
 - The SDK-only track uses only Python SDKs. This track offers pure, Python-based development and deployment.
 
-You select a track by opening the notebook in either the **cli_and_sdk** or **sdk_only** folder of your cloned notebook. Follow the instructions in the corresponding tab in the tutorials.
+Select a track by opening the notebook in either the **cli_and_sdk** or **sdk_only** folder of your cloned notebook. Follow the instructions in the corresponding tab in the tutorials.
 
 #### [SDK + CLI](#tab/SDK-and-CLI-track)
 
 The SDK + CLI track uses the Azure CLI for CRUD operations and the feature store core SDK for feature set development and testing. This approach is useful for GitOps or CI/CD scenarios that use CLI and YAML. The *conda.yml* file you upload installs these resources.
 
-- The CLI is used for CRUD operations on feature stores, feature sets, and feature store entities.
-* The feature store core SDK `azureml-featurestore` is for feature set development and consumption. The SDK performs the following operations:
+- Use the CLI for CRUD operations on feature stores, feature sets, and feature store entities.
+* Use the feature store core SDK `azureml-featurestore` for feature set development and consumption. The SDK performs the following operations:
 
   * Lists or gets a registered feature set.
   * Generates or resolves a feature retrieval specification.
@@ -70,9 +70,9 @@ The SDK + CLI track uses the Azure CLI for CRUD operations and the feature store
 
 The SDK-only track uses two SDKs. The *conda.yml* file you upload installs these SDKs.
 
-- The feature store CRUD SDK is the same `azure-ai-ml` SDK that you use with the Azure Machine Learning workspace. A feature store is implemented as a type of workspace. Feature stores, feature sets, and feature store entities use this SDK for CRUD operations.
+- The feature store CRUD SDK is the same `azure-ai-ml` SDK that you use with the Azure Machine Learning workspace. A feature store is implemented as a type of workspace. Use this SDK for CRUD operations on feature stores, feature sets, and feature store entities.
 
-- The feature store core SDK `azureml-featurestore` is for feature-set development and consumption. The SDK performs the following operations:
+- The feature store core SDK `azureml-featurestore` is for feature set development and consumption. The SDK performs the following operations:
 
   * Develops a feature set specification.
   * Retrieves feature data.
@@ -84,7 +84,7 @@ The SDK-only track uses two SDKs. The *conda.yml* file you upload installs these
 
 ## Tutorial 1: Develop and register a feature set
 
-This first tutorial walks through creating a feature set specification with custom transformations. You then use that feature set to generate training data, enable materialization, and perform a backfill. You learn how to:
+This tutorial walks through creating a feature set specification with custom transformations. You then use that feature set to generate training data, enable materialization, and perform a backfill. You learn how to:
 
 > [!div class="checklist"]
 > * Create a new, minimal feature store resource.
@@ -170,7 +170,7 @@ This first tutorial walks through creating a feature set specification with cust
 
  
 
-1. Initialize a feature store core SDK client for Azure Machine Learning. The client is used to develop and consume features.
+1. Initialize a feature store core SDK client for Azure Machine Learning. Use the client to develop and consume features.
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=init-fs-core-sdk)]
 
 1. Grant your user identity the **AzureML Data Scientist** role on the feature store. Get your Microsoft Entra object ID value from the Azure portal as described in [Find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id).
@@ -182,7 +182,7 @@ This first tutorial walks through creating a feature set specification with cust
 
 ## Prototype and develop a feature set
 
-This notebook uses sample data hosted in a publicly accessible blob container, which you can read into Spark only through a `wasbs` driver. If you create feature sets by using your own source data, host them in an Azure Data Lake Storage account, and use an `abfss` driver in the data path.
+This notebook uses sample data hosted in a publicly accessible blob container. You can read this data into Spark only through a `wasbs` driver. If you create feature sets by using your own source data, host the data in an Azure Data Lake Storage account, and use an `abfss` driver in the data path.
 
 ### Explore the transactions source data
 
@@ -206,7 +206,7 @@ Review the feature transformation code file: *featurestore/featuresets/transacti
 
 ### Export as a feature set specification
 
-To register the feature set specification with the feature store, you save that specification in a specified location and format, which supports source control.
+To register the feature set specification with the feature store, save the specification in a location and format that supports source control.
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=dump-transactions-fs-spec)]
 
 To see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification, open the generated `transactions` feature set specification from the file tree. The specification contains these elements:
@@ -217,7 +217,7 @@ To see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specific
 
 ## Register a feature store entity
 
-Entities help enforce the best practice of using the same join key definition across feature sets that use the same logical entities. Examples of entities include `accounts` and `customers`. Entities are typically created once and then reused across feature sets. To learn more, see [Understand top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
+Entities help enforce the best practice of using the same join key definition across feature sets that use the same logical entities. Examples of entities include `accounts` and `customers`. Typically, you create entities once and then reuse them across feature sets. For more information, see [Understand top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
 
 #### [SDK + CLI](#tab/SDK-and-CLI-track)
 
@@ -227,7 +227,7 @@ Create an `account` entity that has the join key `accountID` of type `string`. R
 
 #### [SDK-only](#tab/SDK-track)
 
-`MLClient` is used to create, read, update, and delete a feature store asset. This notebook code cell sample searches for the feature store you created in an earlier step. You can't reuse the same `ml_client` value that you used earlier, because that value is scoped at the resource group level. Proper scoping is essential for feature store creation.
+Use `MLClient` to create, read, update, and delete a feature store asset. This notebook code cell sample searches for the feature store you created in an earlier step. You can't reuse the same `ml_client` value that you used earlier, because that value is scoped at the resource group level. Proper scoping is essential for feature store creation.
 
 1. Initialize the feature store CRUD client. In the following code sample, the client is scoped at feature store level.
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=init-fset-crud-client)]
@@ -253,15 +253,15 @@ The following code registers a feature set asset with the feature store. You can
 
 ## Explore the feature store UI
 
-Feature store asset creation and updates can happen only through the SDK and CLI. You can use the Machine Learning UI to search or browse through the feature store.
+You can create and update feature store assets only through the SDK and CLI. Use the Machine Learning UI to search or browse through the feature store.
 
 1. Open the [Azure Machine Learning global landing page](https://ml.azure.com/home).
-1. Select **Feature stores** on the left pane.
+1. Select **Feature stores** in the left pane.
 1. From the list of accessible feature stores, select the feature store you created earlier in this tutorial.
 
 ## Assign the Storage Blob Data Reader role
 
-The **Storage Blob Data Reader** role must be assigned to your user account to ensure that the user account can read materialized feature data from the offline materialization store.
+Assign the **Storage Blob Data Reader** role to your user account to ensure that you can read materialized feature data from the offline materialization store.
 
 Get information about the offline materialization store from the feature store UI **Overview** page. The values for the storage account `<SUBSCRIPTION_ID>`, storage account `<RESOURCE_GROUP>`, and `<STORAGE_ACCOUNT_NAME>` for the offline materialization store are located in the **Offline materialization store** card.
 
@@ -269,14 +269,14 @@ Get information about the offline materialization store from the feature store U
 
 #### [SDK + CLI](#tab/SDK-and-CLI-track)
 
-Run the following code cell for role assignment. The permissions might need some time to propagate.
+Run the following code cell for role assignment. It might take some time for the permissions to propagate.
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=grant-rbac-to-user-identity-cli)]
 
 #### [SDK-only](#tab/SDK-track)
 
 1. Get your Microsoft Entra object ID value from the Azure portal as described in [Find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id).
 
-1. Run the following code cell for role assignment. The permissions might need some time to propagate.
+1. Run the following code cell for role assignment. It might take some time for the permissions to propagate.
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=grant-rbac-to-user-identity)]
 
 ---
@@ -309,7 +309,7 @@ Without materialization, a feature set query applies transformations to the sour
 
 The default blob store for the feature store is an Azure Data Lake Storage (ADLS) container. A feature store is always created with an offline materialization store and a user-assigned managed identity (UAI).
 
-If a feature store is created with parameter default values `offline_store=None` and `materialization_identity=None`, the system performs the following setup:
+If you create a feature store with parameter default values `offline_store=None` and `materialization_identity=None`, the system performs the following setup:
 1. Creates an ADLS container as the offline store.
 1. Creates a UAI and assigns it to the feature store as the materialization identity.
 1. Assigns required role-based access control (RBAC) permissions to the UAI on the offline store.
@@ -403,7 +403,7 @@ After you enable feature set materialization on the transactions feature set, yo
 
 The Spark configuration `spark.sql.shuffle.partitions` is an optional parameter that can affect the number of Parquet files generated per day when the feature set is materialized into the offline store. The default value of this parameter is 200.
 
-As a best practice, avoid generation of many small Parquet files. If offline feature retrieval becomes slow after feature set materialization, open the corresponding folder in the offline store. Check whether the issue involves too many small Parquet files per day, and adjust the value of this parameter according to the feature data size.
+As a best practice, avoid generating many small Parquet files. If offline feature retrieval becomes slow after feature set materialization, open the corresponding folder in the offline store. Check whether the issue involves too many small Parquet files per day, and adjust the value of this parameter according to the feature data size.
 
 > [!NOTE]
 > The sample data used in this notebook is small. Therefore, the `spark.sql.shuffle.partitions` parameter is set to `1` in the *featureset_asset_offline_enabled.yaml* file.
@@ -423,12 +423,12 @@ You can also save the feature set asset as a YAML resource.
 
 ## Backfill data for the transactions feature set
 
-Materialization computes the feature values for a feature window, and stores these computed values in a materialization store. Feature materialization increases the reliability and availability of the computed values. All feature queries now use the values from the materialization store. This step performs a one-time backfill for a feature window of 18 months.
+Materialization computes the feature values for a feature window and stores these computed values in a materialization store. Feature materialization increases the reliability and availability of the computed values. All feature queries now use the values from the materialization store. This step performs a one-time backfill for a feature window of 18 months.
 
 > [!NOTE]
-> You might need to determine a backfill data window value. The window must match the window of your training data. For example, to use 18 months of data for training, you must retrieve features for 18 months. This means you should backfill for an 18-month window.
+> You might need to determine a backfill data window value. The window must match the window of your training data. For example, to use 18 months of data for training, you must retrieve features for 18 months. This requirement means you should backfill for an 18-month window.
 
-The following code cell materializes data by current status `None` or `Incomplete` for the defined feature window. You can provide a list of more than one data status, for example `["None", "Incomplete"]`, in a single backfill job.
+The following code cell materializes data by current status `None` or `Incomplete` for the defined feature window. You can provide a list of more than one data status, such as `["None", "Incomplete"]`, in a single backfill job.
 
 #### [SDK + CLI](#tab/SDK-and-CLI-track)
 
@@ -444,8 +444,8 @@ The following code cell materializes data by current status `None` or `Incomplet
 
 > [!TIP]
 > - The `timestamp` column should follow `yyyy-MM-ddTHH:mm:ss.fffZ` format. 
-> - The `feature_window_start_time` and `feature_window_end_time` granularity is limited to seconds. Milliseconds in the `datetime` object are ignored.
-> - A materialization job is submitted only if data in the feature window matches the `data_status` defined when submitting the job.
+> - The `feature_window_start_time` and `feature_window_end_time` granularity is limited to seconds. The process ignores milliseconds in the `datetime` object.
+> - The process submits a materialization job only if data in the feature window matches the `data_status` defined when submitting the job.
 
 Print sample data from the feature set. The output information shows that the data was retrieved from the materialization store. The `get_offline_features()` method retrieves the training and inference data and also uses the materialization store by default.
 
@@ -456,7 +456,7 @@ Print sample data from the feature set. The output information shows that the da
 You can explore feature materialization status for a feature set in the **Materialization jobs** UI.
 
 1. Open the [Azure Machine Learning global landing page](https://ml.azure.com/home).
-1. Select **Feature stores** on the left pane.
+1. Select **Feature stores** in the left pane.
 1. From the list of accessible feature stores, select the feature store you performed backfill for.
 1. Select the **Materialization jobs** tab.
 
@@ -469,17 +469,17 @@ Data materialization status can be:
 - Pending (blue)
 - None (gray)
 
-A *data interval* represents a contiguous portion of data with same data materialization status. For example, the earlier snapshot has 16 data intervals in the offline materialization store. The data can have a maximum of 2,000 data intervals. If your data contains more than 2,000 data intervals, create a new feature set version.
+A *data interval* represents a contiguous portion of data with the same data materialization status. For example, the earlier snapshot has 16 data intervals in the offline materialization store. The data can have a maximum of 2,000 data intervals. If your data contains more than 2,000 data intervals, create a new feature set version.
 
-During backfill, a new materialization job is submitted for each data interval that falls within the defined feature window. No job is submitted if a materialization job is already pending or running for a data interval that isn't backfilled.
+During backfill, the system submits a new materialization job for each data interval that falls within the defined feature window. The system doesn't submit a job if a materialization job is already pending or running for a data interval that isn't backfilled.
 
 You can retry a failed materialization job.
 
 > [!NOTE]
 > To get the job ID of a failed materialization job:
-> 1. Navigate to the feature set **Materialization jobs** UI.
+> 1. Go to the feature set **Materialization jobs** UI.
 > 1. Select the **Display name** of a specific job with **Status** of **Failed**.
-> 1. Under the **Name** property on the job **Overview** page, locate the job ID starting with `Featurestore-Materialization-`.
+> 1. Under the **Name** property on the job **Overview** page, find the job ID starting with `Featurestore-Materialization-`.
 
 #### [SDK + CLI](#tab/SDK-and-CLI-track)
 
@@ -503,9 +503,9 @@ print(poller.result().job_ids)
 
 ### Update an offline materialization store
 
-If an offline materialization store must be updated at the feature store level, all feature sets in the feature store should have offline materialization disabled.
+To update an offline materialization store at the feature store level, disable offline materialization for all feature sets in the feature store.
 
-If offline materialization is disabled on a feature set, materialization status of the data already materialized in the offline materialization store resets. The reset renders data that is already materialized unusable. You must resubmit materialization jobs after enabling offline materialization.
+When you disable offline materialization on a feature set, the materialization status resets for the data already materialized in the offline materialization store. The reset status renders the already materialized data unusable. You must resubmit materialization jobs after enabling offline materialization.
 
 ## Clean up
 
@@ -515,7 +515,7 @@ The fifth tutorial in this series, [Develop a feature set with a custom source](
 
 This tutorial built the training data with features from the feature store, enabled materialization to offline feature store, and performed a backfill.
 
-The next tutorial in the series, [Experiment and train models by using features](tutorial-experiment-train-models-using-features.md), shows you how to run model training using these features.
+The next tutorial in the series, [Experiment and train models by using features](tutorial-experiment-train-models-using-features.md), shows you how to run model training by using these features.
 
 ## Related content
 
