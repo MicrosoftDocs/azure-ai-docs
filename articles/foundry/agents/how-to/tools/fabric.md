@@ -95,7 +95,7 @@ The following table shows SDK and setup support.
   - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
   - For more information about how agent identity works, see [Agent identity](../../concepts/agent-identity.md).
 
-## Code example
+## Create an agent with the Microsoft Fabric tool
 
 > [!NOTE]
 > - For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
