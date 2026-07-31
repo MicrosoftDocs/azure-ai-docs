@@ -42,7 +42,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-Before you proceed with this tutorial, be sure to complete Tutorial 1 in this series.
+Before you proceed with this tutorial, complete Tutorial 1 in this series.
 
 ## Set up
 
@@ -96,7 +96,7 @@ Before you proceed with this tutorial, be sure to complete Tutorial 1 in this se
 
 1. Initialize the feature store variables.
 
-   Be sure to update the `featurestore_name` and `featurestore_location` values, to reflect what you created in Tutorial 1.
+   Update the `featurestore_name` and `featurestore_location` values to match what you created in Tutorial 1.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/2.Experiment-train-models-using-features.ipynb?name=init-fs-crud-client)]
 

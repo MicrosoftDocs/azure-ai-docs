@@ -41,7 +41,7 @@ This tutorial explains how to:
 
 ## Prerequisites
 
-Before you proceed with this tutorial, be sure to complete Tutorials 1 and 2 in this series.
+Before you proceed with this tutorial, complete Tutorials 1 and 2 in this series.
 
 ## Set up
 
@@ -96,7 +96,7 @@ Before you proceed with this tutorial, be sure to complete Tutorials 1 and 2 in 
 
 1. Initialize the feature store variables.
 
-   To reflect what you created in Tutorial 1, be sure to update the `featurestore_name` value.
+   To reflect what you created in Tutorial 1, update the `featurestore_name` value.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/3.Enable-recurrent-materialization-run-batch-inference.ipynb?name=init-fs-crud-client)]
 
@@ -141,7 +141,7 @@ Not applicable.
 
 The batch inference has these steps:
 
-1. You use the same built-in feature retrieval component for feature retrieval that you used in the training pipeline (covered in Tutorial 2). For pipeline training, you provided a feature retrieval specification as a component input. For batch inference, you pass the registered model as the input. The component looks for the feature retrieval specification in the model artifact.
+1. You use the same built-in feature retrieval component for feature retrieval that you used in the training pipeline (covered in Tutorial 2). For pipeline training, you provide a feature retrieval specification as a component input. For batch inference, you pass the registered model as the input. The component looks for the feature retrieval specification in the model artifact.
 
    Additionally, for training, the observation data had the target variable. However, the batch inference observation data doesn't have the target variable. The feature retrieval step joins the observation data with the features and outputs the data for batch inference.
 

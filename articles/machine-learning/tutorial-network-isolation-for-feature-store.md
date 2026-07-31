@@ -20,7 +20,7 @@ ms.custom:
 
 # Tutorial 6: Network isolation for feature store
 
-An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md).
+An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
 
 > [!IMPORTANT]
 > Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
@@ -328,7 +328,7 @@ For this tutorial, you create three separate storage containers in the same ADLS
 
    Inspect the feature transformation code file `featurestore/featuresets/transactions/spec/transformation_code/transaction_transform.py`. This spark transformer performs the rolling aggregation defined for the features.
 
-   For more information about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md).
+   For more information about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/network_isolation/Network-isolation-feature-store.ipynb?name=develop-txn-fset-locally)]
 

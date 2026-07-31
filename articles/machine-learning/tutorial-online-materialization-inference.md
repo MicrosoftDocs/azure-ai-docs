@@ -17,7 +17,7 @@ ms.custom: sdkv2, ignite-2023
 
 # Tutorial 4: Enable online materialization and run online inference
 
-An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md).
+An Azure Machine Learning managed feature store helps you discover, create, and operationalize features. Features connect the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. The lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
 
 > [!IMPORTANT]
 > Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
@@ -46,7 +46,7 @@ In this tutorial, you
 > [!NOTE]
 > This tutorial uses a Azure Machine Learning notebook with **Serverless Spark Compute**.
 
-* Be sure to complete Tutorials 1 through 3 in this series. This tutorial reuses the feature store and other resources created in those earlier tutorials.
+* Be sure to complete Tutorials 1 through 3 in this series. This tutorial reuses the feature store and other resources that you created in those earlier tutorials.
 
 ## Set up
 
@@ -65,7 +65,7 @@ You don't need to explicitly install these resources for this tutorial, because 
       1. Download the *azureml-examples/sdk/python/featurestore-sample/project/env/online.yml* file to your local machine
       1. In **configure session** in the top nav, select **Python packages**
       1. Select **Upload Conda file**
-      1. Upload the *online.yml* file from your local machine, with the same steps as described in [uploading the *conda.yml* file in Tutorial 1](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment)
+      1. Upload the *online.yml* file from your local machine, by using the same steps described in [uploading the *conda.yml* file in Tutorial 1](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
       1. Optionally, increase the session time-out (idle time) to avoid frequent prerequisite reruns
 
 1. This code cell starts the Spark session. It needs about 10 minutes to install all dependencies and start the Spark session.

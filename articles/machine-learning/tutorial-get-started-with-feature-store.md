@@ -515,7 +515,7 @@ If offline materialization is disabled on a feature set, materialization status 
 
 This tutorial built the training data with features from the feature store, enabled materialization to offline feature store, and performed a backfill.
 
-The next tutorial in the series, [Tutorial 2: Experiment and train models by using features](tutorial-experiment-train-models-using-features.md), shows you how to run model training using these features.
+The next tutorial in the series, [Tutorial 2: Experiment and train models by using features](tutorial-experiment-train-models-using-features.md), shows you how to run model training by using these features.
 
 ## Related content
 
