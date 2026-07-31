@@ -1,7 +1,7 @@
 ---
 title: "Tutorial 1: Develop and register a feature set"
 titleSuffix: Azure Machine Learning managed feature store - basics
-description: Part 1 of the Azure Machine Learning managed feature store tutorial series: develop and register a feature set.
+description: "Part 1 of the Azure Machine Learning managed feature store tutorial series: develop and register a feature set."
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
