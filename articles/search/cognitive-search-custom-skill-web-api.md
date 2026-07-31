@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023
 ai-usage: ai-assisted
 ms.topic: reference
-ms.date: 07/28/2026
+ms.date: 07/30/2026
 ms.update-cycle: 365-days
 ---
 
@@ -279,6 +279,10 @@ For cases when the Web API is unavailable or returns an HTTP error, the indexer 
 ## Security considerations for managed identity authentication
 
 When using managed identity authentication with a Custom Web API skill, Azure AI Search obtains a Microsoft Entra access token for the application identified by `authResourceId` and includes that token in requests sent to the endpoint specified by `uri`. The endpoint referenced by `uri` is typically your Azure Function, Azure App Service, Azure API Management endpoint, or another Microsoft Entra-protected application. You're responsible for configuring and maintaining the relationship between the endpoint and the application identified by `authResourceId`.
+
+Regardless of the authentication method, custom skill inputs can contain values from customer-provided documents or values derived from those documents. Treat all custom skill inputs as untrusted input. Azure AI Search forwards the inputs configured in the skillset to your endpoint without interpreting, validating, or constraining their content for your custom implementation.
+
+Validate and constrain document-derived values in your custom skill before using them in outbound requests or other security-sensitive operations. Use input validation, destination allowlists, URL and hostname validation, protocol restrictions, and least-privilege network access that permits only the destinations and ports the skill requires. For more information, see [Architecture strategies for networking and connectivity](/azure/well-architected/security/networking#classify-the-traffic-flows).
 
 ### Recommended security practices
 
