@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 # Set up human evaluation for your agents (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-This article explains how to set up human evaluation for your Foundry agent. As an agent builder, you define evaluation question templates focused on key aspects of interest. Human reviewers - peers, data scientists, or compliance team members - complete those templates for each agent response in the agent's preview experience. After reviewers submit their evaluations, you can view and download the results directly from the Foundry portal for further analysis.
+This article explains how to set up human evaluation for your Foundry agent. As an agent builder, you define evaluation question templates focused on key aspects of interest. Human reviewers — peers, data scientists, or compliance team members — complete those templates for each agent response in the agent's preview experience. After reviewers submit their evaluations, you can view and download the results directly from the Foundry portal for further analysis.
 
 ## Prerequisites
 
@@ -28,9 +28,9 @@ This article explains how to set up human evaluation for your Foundry agent. As 
 To begin human evaluation for your Foundry agent, define a template that contains the set of questions you want human reviewers to complete based on agent responses.
 
 1. Select the agent you want to evaluate from the agent table in the **Agents** tab.  
-1. Go to the **Human Evaluation** tab under **Evaluation**.  
-1. Select **Create new template** to start the template creation process.  
-1. In the **Create Human Evaluation Template** pop-up, assign a name and description, edit or delete sample questions, and add new questions based on your evaluation goals. Supported question types include thumbs up/down, slider, multiple choice, and free-form text.
+2. Go to the **Human Evaluation** tab under **Evaluation**.  
+3. Select **Create new template** to start the template creation process.  
+4. In the **Create Human Evaluation Template** pop-up, assign a name and description, edit or delete sample questions, and add new questions based on your evaluation goals. Supported question types include thumbs up/down, slider, multiple choice, and free-form text.
 
    > [!TIP]
    > Example questions by type:
@@ -39,7 +39,7 @@ To begin human evaluation for your Foundry agent, define a template that contain
    > - **Multiple choice:** "Which best describes this response? (Correct / Partially correct / Incorrect)"
    > - **Free-form text:** "What additional context would have improved this response?"
 
-1. After configuring the template, select **Create** to finalize it.
+5. After configuring the template, select **Create** to finalize it.
 
 The new template appears in the template table with **Inactive** status. Activate it before reviewers begin evaluating.
 
