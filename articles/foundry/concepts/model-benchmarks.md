@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Model leaderboards in Foundry portal help you compare models in the Foundry model catalog using industry-standard model benchmarks.
+Model leaderboards in Foundry portal help you compare models in the Foundry model catalog by using industry-standard model benchmarks.
 
 You can review detailed benchmarking methodology for each leaderboard category:
 
