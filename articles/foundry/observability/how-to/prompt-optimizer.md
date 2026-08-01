@@ -5,7 +5,7 @@ ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
-ms.date: 03/13/2026
+ms.date: 07/31/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
@@ -43,9 +43,9 @@ Prompt Optimizer uses a multistep process that combines your input with LLM-driv
 To open Prompt Optimizer in the Foundry portal:
 
 1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the **New Foundry** toggle is on.
-2. Go to **Build** > **Agents**, and select the agent you want to optimize.
-3. In the agent configuration panel, find the **Instructions** section.
-4. Select the pencil with sparkle icon (✏️✨) next to the *Instructions* header. This action opens the Prompt Optimizer dialog.
+1. Go to **Build** > **Agents**, and select the agent you want to optimize.
+1. In the agent configuration panel, find the **Instructions** section.
+1. Select the pencil with sparkle icon (✏️✨) next to the *Instructions* header. This action opens the Prompt Optimizer dialog.
 
 > [!TIP]
 > You can use Prompt Optimizer inside the model playground wherever a system instructions field is present.
@@ -55,20 +55,20 @@ To open Prompt Optimizer in the Foundry portal:
 If your agent doesn't have instructions yet:
 
 1. Open Prompt Optimizer. The dialog displays an empty state prompting you to describe what you want your agent to do.
-2. In the text area, enter a description of your agent's purpose and behavior. For example: *"A travel planning assistant that helps users plan multi-day trips with budget recommendations."*
-3. Select **Optimize**. The optimizer generates a full set of structured system instructions based on your description.
-4. Review the optimized instructions. Changed paragraphs are highlighted in purple with a left purple border.
-5. Select **Use prompt** to apply the optimized instructions to your agent. The dialog closes and the **Instructions** field updates with the optimized text.
+1. In the text area, enter a description of your agent's purpose and behavior. For example: *"A travel planning assistant that helps users plan multi-day trips with budget recommendations."*
+1. Select **Optimize**. The optimizer generates a full set of structured system instructions based on your description.
+1. Review the optimized instructions. Changed paragraphs are highlighted in purple with a left purple border.
+1. Select **Use prompt** to apply the optimized instructions to your agent. The dialog closes and the **Instructions** field updates with the optimized text.
 
 ## Optimize existing instructions
 
 If your agent already has instructions, follow these steps:
 
 1. Open Prompt Optimizer. The dialog shows your original instructions in a bordered card.
-2. Optionally, enter a suggestion in the suggestion bar to guide the optimization. For example: *"Add guardrails for off-topic questions"* or *"Make the tone more conversational."*
-3. Select **Optimize**. The optimizer analyzes your current instructions and generates an improved version.
-4. Review the optimized instructions.
-5. Select **Use prompt** to replace your current instructions with the optimized version. The dialog closes and the **Instructions** field updates with the optimized text.
+1. Optionally, enter a suggestion in the suggestion bar to guide the optimization. For example: *"Add guardrails for off-topic questions"* or *"Make the tone more conversational."*
+1. Select **Optimize**. The optimizer analyzes your current instructions and generates an improved version.
+1. Review the optimized instructions.
+1. Select **Use prompt** to replace your current instructions with the optimized version. The dialog closes and the **Instructions** field updates with the optimized text.
 
 > [!NOTE]
 > You can leave the suggestion field empty. In some cases, optimization without additional direction produces strong results, since the optimizer focuses purely on structural and clarity improvements.
@@ -87,16 +87,16 @@ Reasoning explanations describe what prompt-engineering principle was applied an
 You can refine the optimized result as many times as needed:
 
 1. After reviewing the optimized instructions, enter a new suggestion in the suggestion bar. For example: *"Shorten the response format section"* or *"Add a fallback behavior when the user asks something out of scope."*
-2. Select **Optimize** again. The optimizer uses your latest optimized text as the new baseline and applies your new suggestion.
-3. Repeat until you're satisfied.
-4. Select **Use prompt** to apply the final result. The dialog closes and the **Instructions** field updates with the optimized text.
+1. Select **Optimize** again. The optimizer uses your latest optimized text as the new baseline and applies your new suggestion.
+1. Repeat until you're satisfied.
+1. Select **Use prompt** to apply the final result. The dialog closes and the **Instructions** field updates with the optimized text.
 
 > [!IMPORTANT]
 > Optimization results aren't stored permanently. To apply results, select **Use prompt** before closing the dialog, or you lose the results.
 
 ## Supported regions
 
-You can use Prompt Optimizer in projects hosted in the following regions. 
+You can use Prompt Optimizer in projects hosted in the following regions.
 
 - Central US
 - East US 2
