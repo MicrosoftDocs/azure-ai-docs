@@ -8,7 +8,7 @@ ms.custom:
   - ai-learning-hub
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 03/19/2026
+ms.date: 07/31/2026
 ms.reviewer: skohlmeier
 ms.author: lagayhar  
 author: lgayhardt
@@ -20,9 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Model leaderboards (preview) in Foundry portal help you compare models in the Foundry model catalog using industry-standard model benchmarks.
-
-To get started, [compare and select models using the model leaderboard](../how-to/benchmark-model-in-catalog.md) in Foundry portal.
+Model leaderboards in Foundry portal help you compare models in the Foundry model catalog using industry-standard model benchmarks.
 
 You can review detailed benchmarking methodology for each leaderboard category:
 
@@ -35,18 +33,18 @@ You can review detailed benchmarking methodology for each leaderboard category:
 
 When you find a suitable model, you can open its **Detailed benchmarking results** in the model catalog. From there, you can deploy the model, try it in the playground, or evaluate it on your own data. The leaderboards support benchmarking for text language models (including large language models (LLMs) and small language models (SLMs)) and embedding models.
 
-Model benchmarks assess LLMs and SLMs across quality, safety, cost, and throughput. Embedding models are evaluated using standard quality benchmarks. Leaderboards are updated as new models and benchmark datasets become available.
+Model benchmarks assess LLMs and SLMs across quality, safety, cost, and throughput. Embedding models are evaluated by using standard quality benchmarks. Leaderboards are updated as new models and benchmark datasets become available.
 
 [!INCLUDE [model-benchmarks 1](../includes/concepts-model-benchmarks-1.md)]
 
 ## Performance benchmarks of language models
 
-Performance metrics are aggregated over 14 days using 24 trials per day, with two requests per trial sent at one-hour intervals. Unless otherwise noted, the following default parameters apply to both serverless API deployments and Azure OpenAI:
+Performance metrics aggregate data over 14 days using 24 trials per day, with two requests per trial sent at one-hour intervals. Unless otherwise noted, the following default parameters apply to both serverless API deployments and Azure OpenAI:
 
 | Parameter | Value | Applicable for |
 |--|--|--|
 | Region | East US/East US2 | serverless API deployments and Azure OpenAI |
-| Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless API deployments) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (serverless API, global, global standard, and so on.) <br> For serverless API deployments, this setting is abstracted. |
+| Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless API deployments) | For Azure OpenAI models, users can select rate limit ranges based on deployment type (serverless API, global, global standard, and so on.) <br> For serverless API deployments, this setting is abstracted. |
 | Number of requests | Two requests in a trial for every hour (24 trials per day) | serverless API deployments, Azure OpenAI |
 | Number of trials/runs | 14 days with 24 trials per day for 336 runs | serverless API deployments, Azure OpenAI |
 | Prompt/Context length | Moderate length | serverless API deployments, Azure OpenAI |
@@ -66,17 +64,10 @@ The performance of LLMs and SLMs is assessed across the following metrics:
 | Latency P90 | 90th percentile latency. 90% of requests complete within this time. |
 | Latency P95 | 95th percentile latency. 95% of requests complete within this time. |
 | Latency P99 | 99th percentile latency. 99% of requests complete within this time. |
-| Throughput GTPS | Generated tokens per second (GTPS) is the number of output tokens that are getting generated per second from the time the request is sent to the endpoint. |
-| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. For models which don't support streaming, time to first token (ttft) represents the P50 value of latency (time taken to receive the response) |
+| Throughput GTPS | Generated tokens per second (GTPS) is the number of output tokens generated per second from the time the request is sent to the endpoint. |
+| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. For models that don't support streaming, time to first token (TTFT) represents the P50 value of latency (time taken to receive the response) |
 | Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled. |
 | Time between tokens | This metric is the time between tokens received. |
-
-Foundry summarizes performance using:
-
-| Metric | Description |
-|-------|-------------|
-| Latency | Mean time to first token. Lower is better. |
-| Throughput | Mean generated tokens per second. Higher is better. |
 
 For performance metrics like latency or throughput, the time to first token and the generated tokens per second give a better overall sense of the typical performance and behavior of the model. Performance numbers are refreshed periodically to reflect the latest deployment configurations.
 
