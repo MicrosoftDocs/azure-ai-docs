@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/08/2026
+ms.date: 08/03/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -858,9 +858,9 @@ azd ai routine create on-issue-opened --file routine.yaml
 
 A `custom` trigger fires on an event from an external provider. In the preview, the `teams` provider supports the `on_new_channel_message` event, which fires when a new message is posted to a watched Microsoft Teams channel. When the trigger fires, Foundry forwards the Teams message payload to the agent as its input, so the agent can respond to the message.
 
-The trigger relies on a Microsoft Teams connector connection. Foundry provisions the connection in your account's connector namespace and authenticates to Teams through it. The `connection_id` in the trigger's `parameters` references this connection. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
+The trigger requires a Microsoft Teams connector connection. Foundry provisions the connection in your account's connector namespace and uses it to authenticate to Teams. The `connection_id` in the trigger's `parameters` references this connection. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
-The `parameters` object scopes the trigger to a single Teams channel. Set `threadType` to `channel`, `groupId` to the ID of the Teams team that contains the channel, and `channelId` to the ID of the channel to watch.
+The `parameters` object scopes the trigger to a single Teams channel. Set `threadType` to `channel`, `groupId` to the ID of the Teams team that contains the channel, and `channelId` to the ID of the channel to watch. You can obtain the team and channel IDs from Microsoft Teams or Microsoft Graph. The authenticated Teams connection must have access to the team and channel specified by `groupId` and `channelId`.
 
 :::zone pivot="foundry-portal"
 
@@ -1810,9 +1810,7 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 Routines let an external trigger start an agent. A hosted agent can also schedule *itself* to run again at a future time by calling the built-in `reminder_preview` toolbox tool. Use this pattern when the agent decides during a run that it needs to follow up later, such as to check back on a long-running task.
 
-> [!NOTE]
-> [!NOTE]
-> The reminder tool is available only for hosted agents. You can't use the reminder tool with prompt agents.
+The reminder tool is available only for hosted agents. You can't use the reminder tool with prompt agents.
 
 When the agent calls the reminder tool, it specifies a delay in minutes. After that delay, Foundry re-invokes the same agent on the same conversation. The agent can then continue its work or check on external systems.
 
