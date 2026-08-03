@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 12/01/2025
+ms.date: 07/30/2026
 author: ssalgadodev
 ms.author: ssalgado
 zone_pivot_groups: openai-fine-tuning
