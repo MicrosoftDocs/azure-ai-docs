@@ -119,7 +119,7 @@ Here's an example of input audio properties in a session object:
 
 Noise suppression enhances the input audio quality by suppressing or removing environmental background noise. Noise suppression helps the model understand the end-user with higher accuracy and improves accuracy of signals like interruption detection and end-of-turn detection.
 
-Server echo cancellation enhances the input audio quality by removing the echo from the model's own voice. In this way, client-side echo cancellation isn't required. Server echo cancellation is useful when the model's voice is played back to the end-user through a speaker. This helps avoid the microphone picking up the model's own voice.
+Server echo cancellation enhances the input audio quality by removing the echo from the model's own voice. In this way, client-side echo cancellation isn't required. Server echo cancellation is useful when the model's voice is played back to the end-user through a speaker. This process helps avoid the microphone picking up the model's own voice.
 
 > [!NOTE]
 > This timing assumption applies to the default server reference (`reference_source` set to `server`). The service assumes the client plays response audio as soon as it receives it. If playback is delayed for more than two seconds, echo cancellation quality is impacted. To avoid this limitation, use [Live-Reference AEC](#live-reference-aec-acoustic-echo-cancellation), where your client supplies the playback reference directly.
