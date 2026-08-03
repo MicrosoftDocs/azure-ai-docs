@@ -29,9 +29,9 @@ For more information about pricing model and service tier differences, see [Choo
 In the Serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
 
 - Queries and indexing consume compute, measured in Compute Units per hour (CU/h).
-- Active indexes also consume compute based on index size and how long they remain active.
-- An index stays active for ~10-20 minutes after its last query or indexing request before it goes inactive.
-- Inactive indexes have no minimum or reserved compute charge.
+- For active indexes, compute usage is based on two resource measurements: total index size on disk and [vector index size](vector-search-index-size.md) in memory. Because memory is more resource intensive than disk, vector index size has a higher weighting. The two amounts aren't added together. Compute usage is based on whichever measurement produces the higher effective CU amount and how long the index remains active.
+- An index stays active for 10 minutes after its last query or indexing request before it goes inactive.
+- Inactive indexes have no minimum or reserved compute charge. The compute usage for inactive indexes scales to zero. There is no minimum compute charge when an index is inactive.
 - Storage is billed separately based on index size on disk and continues whether or not an index is in use.
 
 Storage charges stop only when you delete the index.

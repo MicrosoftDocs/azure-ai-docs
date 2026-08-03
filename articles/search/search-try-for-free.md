@@ -43,13 +43,13 @@ Before you create resources for a key-based connection, confirm regional support
 
 ## Choose a pricing model and tier
 
-Azure AI Search offers two pricing models: Dedicated and Serverless (Preview). For a free-trial account, you can evaluate Dedicated Free and Basic tiers, and you can also try the Serverless Developer tier without billing through August 31, 2026 while reviewing estimated usage costs in the **Scale + Cost** tab. Starting September 1, 2026, Serverless Developer billing goes into effect, and usage on or after that date appears on your Azure bill.
+Azure AI Search offers two pricing models: Dedicated and Serverless (Preview).
 
-+ **Free** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier is always free and doesn't expire, even after your 30-day trial ends. However, it doesn't support semantic ranking or managed identities for Microsoft Entra ID authentication and authorization, which are commonly used in quickstarts.
+- **Dedicated pricing model** - **Free tier** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier is always free and doesn't expire, even after your 30-day trial ends. However, it doesn't support semantic ranking or managed identities for Microsoft Entra ID authentication and authorization, which are commonly used in quickstarts.
 
-+ **Basic** (recommended) is in the Dedicated pricing model, consumes about one-third of your USD200 credits over 30 days, and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
+- **Dedicated pricing model** - **Basic tier** (recommended) consumes about one-third of your USD200 credits over 30 days, and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
 
-+ **Serverless Developer** (Preview) is in the Serverless pricing model and uses consumption-based pricing. You can evaluate estimated usage costs without billing through August 31, 2026. No charges are applied retroactively for preview-period usage before September 1, 2026. Starting September 1, 2026, billing goes into effect and usage appears on your Azure bill.
+- **Serverless pricing model** - **Serverless Developer tier** (Preview) uses consumption-based pricing. To evaluate usage costs in this tier, visit the [Azure portal](https://portal.azure.com) where you can view charges accrued once the billing period begins in the **Scale + Cost** tab.
 
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
