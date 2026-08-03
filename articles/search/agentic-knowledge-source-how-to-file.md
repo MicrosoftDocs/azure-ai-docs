@@ -21,11 +21,11 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-A *file knowledge source* (preview) uploads small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
+A *file knowledge source* (preview) uploads small-to-medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
 File knowledge sources are useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container. Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base.
 
-If your content already lives in Azure Blob Storage or ADLS Gen2, or if you need large-scale ingestion or storage account capabilities, use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead.
+A file knowledge source supports up to 100 files. Use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead when your files are already in Azure Blob Storage or Azure Data Lake Storage Gen2, when your file set exceeds or is likely to exceed 100 files, or when you need scheduled ingestion. Also use a blob knowledge source when you want to manage source blobs with [Azure Blob Storage lifecycle management policies](/azure/storage/blobs/lifecycle-management-overview) or when you need [document-level permissions (preview)](agentic-knowledge-source-how-to-blob.md#enforce-document-level-permissions-preview) based on permissions in Azure Storage.
 
 ### Usage support
 
@@ -81,7 +81,8 @@ The following limits apply to file knowledge sources.
 | Maximum files per file knowledge source | 100 |
 
 > [!NOTE]
-> Uploaded content is stored in the generated search index. For total storage limits by pricing tier, see [Service limits](search-limits-quotas-capacity.md#service-limits).
+> + Uploading the same file name doesn't replace an existing file. For more information, see [Upload files](#upload-files).
+> + The generated search index stores the uploaded content. For total storage limits by pricing tier, see [Service limits](search-limits-quotas-capacity.md#service-limits).
 
 
 ## Check for existing knowledge sources
@@ -309,9 +310,9 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 ::: zone-end
 
 > [!NOTE]
-> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
+> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each successful upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
 >
-> To replace content, delete the prior file by `fileId` before or after the new upload.
+> To replace content, delete the prior file by `fileId` before you upload the replacement.
 
 ## List uploaded files
 

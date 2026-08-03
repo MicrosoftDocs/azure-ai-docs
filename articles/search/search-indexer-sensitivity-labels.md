@@ -65,8 +65,6 @@ This functionality is available for the following data sources:
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
 
-  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
-
   + [Knowledge store](knowledge-store-concept-intro.md)
 
   + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)

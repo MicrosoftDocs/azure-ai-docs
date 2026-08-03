@@ -14,6 +14,7 @@ ai-usage: ai-assisted
 ---
 
 This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
+This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
 
 ## Foundry Models sold by Azure
 
@@ -23,6 +24,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
 | gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
 | gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
@@ -45,6 +50,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-5-nano | 2025-08-07 | GA | 2027-02-09 | — |
 | gpt-5-pro | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-5.1 | 2025-11-13 | GA | 2027-05-15 | — |
+| gpt-5.1-chat | 2025-11-13 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5.1-chat | 2025-11-13 | Retired | 2026-06-29 | gpt-chat-latest |
 | gpt-5.1-codex | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.1-codex-max | 2025-12-04 | GA | 2027-05-18 | — |
@@ -84,6 +90,11 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2027-04-06 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2027-06-15 | — |
+| gpt-realtime-mini | 2025-10-06 | GA | 2026-09-21 | — |
+| gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
+| o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
+| o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
+| o3 | 2025-04-16 | GA | 2026-10-21 | gpt-5.6-sol |
 | o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
 | o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
 | o3 | 2025-04-16 | GA | 2026-10-21 | gpt-5.6-sol |
@@ -93,6 +104,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
+| text-embedding-3-large | 1 | GA | 2028-02-09 | — |
+| text-embedding-3-small | 1 | GA | 2028-02-09 | — |
+| text-embedding-ada-002 | 1 | GA | 2028-02-09 | — |
+| text-embedding-ada-002 | 2 | GA | 2028-02-09 | — |
 | text-embedding-3-large | 1 | GA | 2028-02-09 | — |
 | text-embedding-3-small | 1 | GA | 2028-02-09 | — |
 | text-embedding-ada-002 | 1 | GA | 2028-02-09 | — |
