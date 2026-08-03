@@ -240,12 +240,11 @@ with (
     )
     print(f"Created toolbox version {created.version} for {created.name}")
 
-    toolbox = project_client.toolboxes.get(name=toolbox_name)
     mcp_endpoint = (
-        f"{endpoint}/toolboxes/{toolbox.name}/versions/"
-        f"{toolbox.default_version}/mcp?api-version=v1"
+        f"{endpoint}/toolboxes/{created.name}/versions/"
+        f"{created.version}/mcp?api-version=v1"
     )
-    print(f"Default toolbox version: {toolbox.default_version}")
+    print(f"Toolbox version: {created.version}")
     print(f"Toolbox MCP endpoint: {mcp_endpoint}")
 ```
 

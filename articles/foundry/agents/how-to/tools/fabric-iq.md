@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/26/2026
+ms.date: 07/29/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -19,17 +19,18 @@ zone_pivot_groups: selection-fabric-iq
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
+[Fabric IQ (preview)](/fabric/iq/overview) is a Microsoft Fabric workload that unifies data across OneLake and organizes it according to the language of your business. It exposes that data to analytics, AI agents, and applications with consistent semantic meaning through its core items: the [ontology (preview)](/fabric/iq/ontology/overview), which defines your enterprise vocabulary as entity types (such as Customer, Order, and Product), their properties, relationships, and data bindings to OneLake sources (lakehouses, eventhouses, and Power BI semantic models); the [Fabric data agent](/fabric/data-science/concept-data-agent), which enables conversational Q&A over ontology-grounded data; [Power BI semantic models](/fabric/data-warehouse/semantic-models), which provide curated analytics with measures and hierarchies. The ontology includes a Natural Language to Ontology (NL2Ontology) layer that converts natural-language questions into structured queries, so agents can ask questions using business terms instead of table names or query syntax.
+
+When you connect your Foundry agent to Fabric IQ by registering it as a server-side tool, your agent can delegate natural-language tasks to the Fabric IQ workload—for example, "Which customers placed orders above $10,000 last quarter?" Fabric IQ handles data retrieval, ontology-grounded reasoning, and response synthesis, then returns the result to your agent. All requests run in the context of the signed-in user, honor Fabric permissions and governance policies, and remain within the Microsoft Fabric trust boundary.
+
 > [!WARNING]
 > When you connect to Fabric IQ, you may incur costs and data may be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It is your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
-> [!NOTE]
-> For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
+For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
-[Fabric IQ (preview)](/fabric/iq/overview) is a Microsoft Fabric workload that unifies data across OneLake and organizes it according to the language of your business. It exposes that data to analytics, AI agents, and applications with consistent semantic meaning through its core items: the [ontology (preview)](/fabric/iq/ontology/overview), which defines your enterprise vocabulary as entity types (such as Customer, Order, and Product), their properties, relationships, and data bindings to OneLake sources (lakehouses, eventhouses, and Power BI semantic models); the [Fabric data agent](/fabric/data-science/concept-data-agent), which enables conversational Q&A over ontology-grounded data; [Power BI semantic models](/fabric/data-warehouse/semantic-models), which provide curated analytics with measures and hierarchies. The ontology includes a Natural Language to Ontology (NL2Ontology) layer that converts natural-language questions into structured queries, so agents can ask questions using business terms instead of table names or query syntax.
-
-When you connect your Foundry agent to Fabric IQ by registering it as a server-side tool, your agent can delegate natural-language tasks to the Fabric IQ workload—for example, "Which customers placed orders above $10,000 last quarter?" Fabric IQ handles data retrieval, ontology-grounded reasoning, and response synthesis, then returns the result to your agent. All requests run in the context of the signed-in user, honor Fabric permissions and governance policies, and remain within the Microsoft Fabric trust boundary.
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
 ## Usage support
 
@@ -62,6 +63,8 @@ Before you begin, make sure you have:
 1. **The result is returned to your agent** — Fabric IQ returns the synthesized response. Your agent incorporates it into its reply to the user. All requests run in the context of the signed-in user and honor Fabric permissions and governance policies.
 
 ## Connect to Fabric IQ
+
+The following steps will guide you through the steps to connect agents to Fabric IQ, including server URL patterns and authentication methods.
 
 ### Find your Fabric IQ server details
 
@@ -110,7 +113,7 @@ Adding a Fabric IQ (OneLake Catalog) connection from Foundry Toolkit isn't direc
 
 For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#step-1-create-a-toolbox-version).
 
-To add the Fabric IQ tool directly to an agent by using code or the REST API, select the Python, .NET, JavaScript, or REST API tab in this section.
+To add the Fabric IQ tool through a toolbox by using code or the REST API, select the Python, .NET, JavaScript, or REST API tab in this section.
 
 :::zone-end
 
@@ -127,6 +130,12 @@ Set the following environment variables:
 - `FOUNDRY_PROJECT_ENDPOINT` — your project endpoint, found in the Overview page of your Foundry project.
 - `FOUNDRY_MODEL_NAME` — the deployment name of the model the agent uses.
 - `FABRIC_IQ_PROJECT_CONNECTION_ID` — the fully qualified resource ID of the Fabric IQ project connection.
+- `FABRIC_IQ_SERVER_LABEL` — a short lowercase label for the Fabric IQ MCP server.
+- `FABRIC_IQ_SERVER_URL` — the Fabric IQ MCP endpoint URL for the Fabric item.
+
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent that connects to the tool through a toolbox.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import os
@@ -174,13 +183,129 @@ with (
 
 **Expected output**: The agent calls Fabric IQ with the user's query. Fabric IQ queries the ontology-grounded data using your business terms, synthesizes results from bound OneLake sources, and returns the answer.
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample creates the Fabric IQ tool, adds it to a toolbox, and connects a hosted Microsoft Agent Framework agent to the toolbox MCP endpoint.
+
+```python
+import asyncio
+import os
+import httpx
+from dotenv import load_dotenv
+
+from agent_framework import Agent, MCPStreamableHTTPTool
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import FabricIQPreviewTool
+
+load_dotenv()
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+
+
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = "Bearer " + self._token_provider()
+        yield request
+
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # 1. Create the Fabric IQ tool and add it to a toolbox. Using a toolbox is the
+    #    recommended way to give agents tools: curate tools once and reuse the
+    #    toolbox across agents. See /azure/foundry/agents/concepts/toolbox-overview
+    project_client = AIProjectClient(endpoint=endpoint, credential=credential)
+    fabric_iq_tool = FabricIQPreviewTool(
+        project_connection_id=os.environ["FABRIC_IQ_PROJECT_CONNECTION_ID"],
+        server_label=os.environ["FABRIC_IQ_SERVER_LABEL"],
+        server_url=os.environ["FABRIC_IQ_SERVER_URL"],
+    )
+    toolbox = project_client.toolboxes.create_toolbox_version(
+        name="fabric-iq-toolbox",
+        description="Toolbox with the Fabric IQ tool",
+        tools=[fabric_iq_tool],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{endpoint}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="Use the available Fabric IQ tools to answer questions and perform tasks.",
+        tools=[mcp_tool],
+    )
+
+    result = await agent.run("Which customers placed orders above $10,000 last quarter?")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The hosted agent calls Fabric IQ through the toolbox MCP endpoint and returns an ontology-grounded answer.
+
+---
 :::zone-end
 
 
 
 :::zone pivot="rest-api"
 
-**Step 1:** Create the agent with the Fabric IQ tool:
+The recommended way to add Fabric IQ is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+**Step 1:** Create a toolbox that contains the Fabric IQ tool:
+
+```bash
+curl --request POST \
+  --url "{project_endpoint}/toolboxes/fabric-iq-toolbox/versions?api-version=v1" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "description": "Toolbox with the Fabric IQ tool",
+    "tools": [
+      {
+        "type": "fabric_iq_preview",
+        "project_connection_id": "{connection-name}",
+        "server_label": "{fabric-iq-server-label}",
+        "server_url": "{fabric-iq-server-url}"
+      }
+    ]
+  }'
+```
+
+The toolbox exposes an MCP-compatible endpoint at `{project_endpoint}/toolboxes/fabric-iq-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+**Step 2:** Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`):
+
+```bash
+azd ai connection create fabric-iq-toolbox-conn \
+  --kind remote-tool \
+  --target "{project_endpoint}/toolboxes/fabric-iq-toolbox/versions/<version>/mcp?api-version=v1" \
+  --auth-type user-entra-token \
+  --audience https://ai.azure.com
+```
+
+**Step 3:** Create the agent with the toolbox attached as an MCP tool:
 
 ```http
 POST {project_endpoint}/agents/{agent_name}/versions?api-version=v1
@@ -194,17 +319,18 @@ Content-Type: application/json
     "instructions": "You are a helpful assistant with access to your organization's Microsoft Fabric data through Fabric IQ. Use Fabric IQ to answer questions about business entities, relationships, and data in the ontology—such as customers, orders, products, and pipelines.",
     "tools": [
       {
-        "type": "fabric_iq_preview",
-        "project_connection_id": "{connection-name}",
-        "server_label": "{fabric-iq-server-label}",
-        "server_url": "{fabric-iq-server-url}"
+        "type": "mcp",
+        "server_label": "toolbox",
+        "server_url": "{project_endpoint}/toolboxes/fabric-iq-toolbox/versions/<version>/mcp?api-version=v1",
+        "require_approval": "never",
+        "project_connection_id": "fabric-iq-toolbox-conn"
       }
     ]
   }
 }
 ```
 
-**Step 2:** Create a conversation session:
+**Step 4:** Create a conversation session:
 
 ```http
 POST {project_endpoint}/openai/v1/conversations
@@ -216,7 +342,7 @@ Content-Type: application/json
 
 The response includes an `id` field. Use it in the next step.
 
-**Step 3:** Send a request to the agent:
+**Step 5:** Send a request to the agent:
 
 ```http
 POST {project_endpoint}/openai/v1/responses
@@ -240,6 +366,10 @@ Use token scope `https://ai.azure.com/.default` when getting the bearer token.
 :::zone-end
 
 :::zone pivot="dotnet"
+
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent that connects to the tool through a toolbox.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```csharp
 using Azure.AI.Projects;
@@ -284,6 +414,72 @@ await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
     agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
+**Expected output**: The agent calls Fabric IQ with the user's query. Fabric IQ queries the ontology-grounded data using your business terms, synthesizes results from bound OneLake sources, and returns the answer.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample creates the Fabric IQ tool, adds it to a toolbox, and connects a hosted Microsoft Agent Framework agent to the toolbox MCP endpoint.
+
+```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
+using Azure.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+
+var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME");
+var fabricIQConnectionName = Environment.GetEnvironmentVariable("FABRIC_IQ_PROJECT_CONNECTION_NAME");
+var fabricIQServerLabel = Environment.GetEnvironmentVariable("FABRIC_IQ_SERVER_LABEL");
+var fabricIQServerUrl = Environment.GetEnvironmentVariable("FABRIC_IQ_SERVER_URL");
+
+var openAiEndpoint = new Uri(projectEndpoint).GetLeftPart(UriPartial.Authority);
+DefaultAzureCredential credential = new();
+
+// 1. Create the Fabric IQ tool and add it to a toolbox. Using a toolbox is the
+//    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
+string fabricIQConnectionId =
+    (await projectClient.Connections.GetConnectionAsync(fabricIQConnectionName)).Value.Id;
+
+FabricIQPreviewTool fabricIQToolDefinition = new(projectConnectionId: fabricIQConnectionId)
+{
+    ServerLabel = fabricIQServerLabel,
+    ServerUrl = new Uri(fabricIQServerUrl),
+};
+ProjectsAgentTool fabricIQTool = ProjectsAgentTool.AsProjectTool(fabricIQToolDefinition);
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "fabric-iq-toolbox",
+        tools: [fabricIQTool],
+        description: "Toolbox with the Fabric IQ tool");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// 3. Attach the toolbox to the hosted agent.
+var openAIClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(modelDeploymentName);
+
+// ToolboxMcpClient discovers tools from the toolbox MCP endpoint and calls them
+// through tools/call. ToolboxHandler maps model tool calls to that MCP client.
+var toolboxClient = new ToolboxMcpClient(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
+});
+```
+
+### Expected output
+
+The hosted agent calls Fabric IQ through the toolbox MCP endpoint and returns an ontology-grounded answer.
+
+---
 :::zone-end
 
 :::zone pivot="javascript"
@@ -296,22 +492,61 @@ require("dotenv/config");
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"];
 const deploymentName = process.env["FOUNDRY_MODEL_NAME"];
 const fabricIqProjectConnectionId = process.env["FABRIC_IQ_PROJECT_CONNECTION_ID"];
+const fabricIqServerLabel = process.env["FABRIC_IQ_SERVER_LABEL"];
+const fabricIqServerUrl = process.env["FABRIC_IQ_SERVER_URL"];
 
 async function main() {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = project.getOpenAIClient();
 
-  const tool = {
-    type: "fabric_iq_preview",
-    project_connection_id: fabricIqProjectConnectionId,
-    require_approval: "never",
-  };
+  console.log("Creating a toolbox with the Fabric IQ tool...");
 
+  // 1. Add the Fabric IQ tool to a toolbox. Using a toolbox is the recommended
+  //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "fabric-iq-toolbox",
+    [
+      {
+        type: "fabric_iq_preview",
+        project_connection_id: fabricIqProjectConnectionId,
+        server_label: fabricIqServerLabel,
+        server_url: fabricIqServerUrl,
+      },
+    ],
+    { description: "Toolbox with the Fabric IQ tool" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${projectEndpoint}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create fabric-iq-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "fabric-iq-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
     model: deploymentName,
     instructions: "Use the available Fabric IQ tools to answer questions and perform tasks.",
-    tools: [tool],
+    tools: [
+      {
+        type: "mcp",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
+        require_approval: "never",
+        project_connection_id: toolboxConnectionName,
+      },
+    ],
   });
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
@@ -332,6 +567,154 @@ main().catch((err) => {
 ```
 
 :::zone-end
+
+> [!NOTE]
+> Annotation chunks are returned in `result.structuredContent.documents[]`. Each document includes `title` and `url` fields that you can use to generate citation details in your application.
+
+### Use Fabric IQ with a hosted agent
+
+This sample creates a Fabric IQ toolbox, then uses a hosted agent to discover and invoke Fabric IQ through the toolbox MCP endpoint.
+
+# [Python](#tab/python)
+
+```python
+import asyncio
+import os
+import httpx
+
+from agent_framework import Agent, MCPStreamableHTTPTool
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import FabricIQPreviewTool
+
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+
+
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = "Bearer " + self._token_provider()
+        yield request
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # 1. Create the Fabric IQ tool and add it to a toolbox. Using a toolbox is the
+    #    recommended way to give agents tools: curate tools once and reuse the
+    #    toolbox across agents. See /azure/foundry/agents/concepts/toolbox-overview
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+    fabric_iq_tool = FabricIQPreviewTool(
+        project_connection_id=os.environ["FABRIC_IQ_PROJECT_CONNECTION_ID"],
+        server_label=os.environ["FABRIC_IQ_SERVER_LABEL"],
+        server_url=os.environ["FABRIC_IQ_SERVER_URL"],
+    )
+    toolbox = project.toolboxes.create_toolbox_version(
+        name="fabric-iq-toolbox",
+        description="Toolbox with the Fabric IQ tool",
+        tools=[fabric_iq_tool],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="Use the available Fabric IQ tools to answer questions about business entities, relationships, and data.",
+        tools=[mcp_tool],
+    )
+
+    result = await agent.run("Which customers placed orders above $10,000 last quarter?")
+    print(result.text)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
+using Azure.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+
+const string AgentInstructions = "You are a helpful assistant that can access Microsoft Fabric data through Fabric IQ.";
+const string AgentName = "FabricIQAgent";
+
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+var fabricIQConnectionName = Environment.GetEnvironmentVariable("FABRIC_IQ_PROJECT_CONNECTION_NAME");
+var fabricIQServerLabel = Environment.GetEnvironmentVariable("FABRIC_IQ_SERVER_LABEL");
+var fabricIQServerUrl = Environment.GetEnvironmentVariable("FABRIC_IQ_SERVER_URL");
+
+DefaultAzureCredential credential = new();
+
+// 1. Create the Fabric IQ tool and add it to a toolbox. Using a toolbox is the
+//    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: credential);
+string fabricIQConnectionId =
+    (await projectClient.Connections.GetConnectionAsync(fabricIQConnectionName)).Value.Id;
+
+FabricIQPreviewTool fabricIQToolDefinition = new(projectConnectionId: fabricIQConnectionId)
+{
+    ServerLabel = fabricIQServerLabel,
+    ServerUrl = new Uri(fabricIQServerUrl),
+};
+ProjectsAgentTool fabricIQTool = ProjectsAgentTool.AsProjectTool(fabricIQToolDefinition);
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "fabric-iq-toolbox",
+        tools: [fabricIQTool],
+        description: "Toolbox with the Fabric IQ tool");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// 3. Attach the toolbox to the hosted agent.
+AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+
+// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call.
+ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(
+        name: AgentName,
+        instructions: AgentInstructions,
+        chatClient: chatClient,
+        toolboxClient: toolboxClient));
+});
+```
+
+---
 
 ## Run a Fabric data agent in background mode
 
@@ -443,7 +826,7 @@ For example, for workspace ID `1234567890abcdef1234567890abcdef`, the host is `1
 
 Create a remote tool connection that uses Microsoft Entra ID On-Behalf-Of (OBO) authentication with the user's token and connects through the workspace private endpoint. Configure the audience as the Power BI API resource `https://analysis.windows.net/powerbi/api`, which authorizes data agent execution using the `DataAgent.Execute.All` permission scope.
 
-# [azd](#tab/azd)
+# [Azure Developer CLI](#tab/azd)
 
 Add the connection to the `resources` section of your `azure.yaml` file, then run `azd provision`:
 

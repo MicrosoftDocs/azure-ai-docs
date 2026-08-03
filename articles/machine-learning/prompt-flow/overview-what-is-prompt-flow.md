@@ -11,17 +11,18 @@ ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 07/16/2025
+ms.date: 07/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # What is Azure Machine Learning prompt flow
 
 [!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
-Azure Machine Learning prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
+Azure Machine Learning prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by large language models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 
-With Azure Machine Learning prompt flow, you can:
+By using Azure Machine Learning prompt flow, you can:
 
 - Create executable flows that link LLMs, prompts, and Python tools through a visualized graph.
 - Debug, share, and iterate your flows with ease through team collaboration.
@@ -43,8 +44,8 @@ Azure Machine Learning prompt flow offers a range of benefits that help users tr
 
 ### Enterprise readiness for LLM-based applications
 
-- **Collaboration**: Supports team collaboration, allowing multiple users to work together on prompt engineering projects, share knowledge, and maintain version control.
-- **All-in-one platform**: Streamlines the entire prompt engineering process, from development and evaluation to deployment and monitoring. Users can effortlessly deploy their flows as Azure Machine Learning endpoints and monitor their performance in real-time, ensuring optimal operation and continuous improvement.
+- **Collaboration**: Supports team collaboration, so multiple users can work together on prompt engineering projects, share knowledge, and maintain version control.
+- **All-in-one platform**: Streamlines the entire prompt engineering process, from development and evaluation to deployment and monitoring. You can effortlessly deploy your flows as Azure Machine Learning endpoints and monitor their performance in real time, ensuring optimal operation and continuous improvement.
 - **Azure Machine Learning enterprise readiness solutions**: Prompt flow uses Azure Machine Learning's robust enterprise readiness solutions, providing a secure, scalable, and reliable foundation for the development, experimentation, and deployment of flows.
 
 Azure Machine Learning prompt flow empowers agile prompt engineering, seamless collaboration, and robust enterprise LLM-based application development and deployment.
@@ -66,4 +67,5 @@ With prompt flow's methodical process, you can confidently develop, test, refine
 
 ## Next steps
 
+- [Migrate from prompt flow to Microsoft Agent Framework](migrate-prompt-flow-to-agent-framework.md)
 - [Get started with prompt flow](get-started-prompt-flow.md)

@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 05/19/2026
+ms.date: 07/31/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
@@ -25,31 +25,34 @@ A knowledge base consists of *knowledge sources* (connections to internal and ex
 
 ## Capabilities
 
-+ Connect one knowledge base to multiple agents. Supported knowledge sources include internal data stores (such as Azure Blob Storage, SharePoint, and OneLake) and public web data.
+- Connect one knowledge base to multiple agents. Supported knowledge sources include internal data stores (such as Azure Blob Storage, SharePoint, and OneLake) and public web data.
 
-+ Automate document chunking, vector embedding generation, and metadata extraction for indexed knowledge sources. Schedule recurring indexer runs for incremental data refresh.
+- Automate document chunking, vector embedding generation, and metadata extraction for indexed knowledge sources. Schedule recurring indexer runs for incremental data refresh.
 
-+ Issue keyword, vector, or hybrid queries across indexed and remote knowledge sources.
+- Issue keyword, vector, or hybrid queries across indexed and remote knowledge sources.
 
-+ Use the agentic retrieval engine with a large language model (LLM) to plan queries, select sources, run parallel searches, and aggregate results.
+- Use the agentic retrieval engine with a large language model (LLM) to plan queries, select sources, run parallel searches, and aggregate results.
 
-+ Return extractive data with citations so agents can reason over raw content and trace answers to source documents.
+- Return extractive data with citations so agents can reason over raw content and trace answers to source documents.
 
-+ Synchronize access control lists (ACLs) for supported sources and honor Microsoft Purview sensitivity labels. Enforce permissions at query time so agents return only authorized content.
+- Synchronize access control lists (ACLs) for supported sources and honor Microsoft Purview sensitivity labels. Enforce permissions at query time so agents return only authorized content.
 
-+ Run queries under the caller's Microsoft Entra identity for end-to-end permission enforcement.
+- Run queries under the caller's Microsoft Entra identity for end-to-end permission enforcement.
+
+- Connect your Foundry IQ knowledge base to a Microsoft Copilot Studio agent.
 
 ## Components
 
 A Foundry IQ knowledge base contains knowledge sources and uses agentic retrieval to process queries. Azure AI Search provides the underlying indexing and retrieval infrastructure.
 
 | Component | Description |
-|--|--|
+| -- | -- |
 | [Knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) | Top-level resource that orchestrates agentic retrieval. Defines which knowledge sources to query and parameters that control retrieval behavior, including the retrieval reasoning effort (minimal, low, or medium) for LLM processing. |
 | [Knowledge sources](/azure/search/agentic-knowledge-source-overview) | Connections to indexed or remote content. A knowledge base references one or more knowledge sources. |
 | [Agentic retrieval](/azure/search/agentic-retrieval-overview) | Multi-query pipeline that decomposes complex questions into subqueries, executes them in parallel, semantically reranks results, and returns unified responses. Uses an optional LLM from Azure OpenAI in Foundry Models for query planning. |
 
 You can use Foundry IQ knowledge bases in Foundry Agent Service, Microsoft Agent Framework, or any custom application by calling the knowledge base REST API or supported Azure SDK client libraries from Azure AI Search.
+
 
 ## Workflow
 
@@ -115,3 +118,9 @@ Each IQ workload is standalone, but you can use them together to provide compreh
 + For step-by-step integration guidance, learn how to [connect a Foundry IQ knowledge base to Foundry Agent Service](../how-to/foundry-iq-connect.md).
 
 + Review application code in the [Azure OpenAI demo](/samples/azure-samples/azure-search-openai-demo/azure-search-openai-demo/), which uses agentic retrieval.
+
+## Connect your Foundry IQ knowledge base to a Microsoft Copilot Studio agent
+
+After you connect your Foundry IQ knowledge base to an Agent Service agent, you can also add that agent to Microsoft Copilot Studio. This integration makes your enterprise knowledge available to Copilot Studio agents with grounded retrieval, source attribution, and centralized knowledge management.
+
+For configuration instructions, see [Connect to a Microsoft Foundry agent (preview)](/microsoft-copilot-studio/add-agent-foundry-agent).
