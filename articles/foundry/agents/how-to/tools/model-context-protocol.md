@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/23/2026
+ms.date: 07/29/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -22,6 +22,8 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This connection extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agent's Foundry model can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
 In this article, you learn how to:
 
@@ -68,6 +70,109 @@ Foundry Toolboxes let you bundle multiple tools - such as Web Search, Code Inter
 Because the Toolbox endpoint is MCP-compatible, any runtime that can consume an MCP server can also consume a Toolbox. This compatibility includes Foundry Agent Service, Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and other MCP-enabled clients. You can add, remove, or reconfigure tools in the Toolbox without changing your agent code.
 
 For setup steps, see [Create and use a Foundry Toolbox](toolbox.md).
+
+The toolbox MCP endpoint supports long-running operations through [MCP tasks](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks), which is in preview. To use long-running tools, make sure your agent harness supports [MCP tasks](https://modelcontextprotocol.io/extensions/tasks/overview).
+
+### Toolbox MCP authentication and configuration
+
+Create a project connection for your MCP server with the auth type that matches your scenario, then reference it from a minimal toolbox YAML.
+
+**Step 1. Create the connection**
+
+Export your project endpoint and set it as the active project for the `azd ai` commands:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set $PROJECT_ENDPOINT
+```
+
+Pick the auth variant you need:
+
+```bash
+# No auth — public MCP server
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://learn.microsoft.com/api/mcp \
+  --auth-type none
+
+# Custom-keys header (for example, GitHub PAT)
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp/ \
+  --auth-type custom-keys \
+  --custom-key "Authorization=******"
+
+# OAuth — bring your own app registration
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://your-mcp-server.example.com \
+  --auth-type oauth2 \
+  --authorization-url https://auth.example.com/authorize \
+  --token-url https://auth.example.com/token \
+  --client-id <oauth-client-id> \
+  --client-secret <oauth-client-secret> \
+  --scopes "<scope1> <scope2>"
+
+# User Entra token (managed user identity passthrough; for example, Microsoft Fabric)
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://api.fabric.microsoft.com/v1/mcp/fabricaihub/integrations/m365 \
+  --auth-type user-entra-token \
+  --audience https://analysis.windows.net/powerbi/api
+
+# Project managed identity — the project's system-assigned MI
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://<resource>.cognitiveservices.azure.com/language/mcp \
+  --auth-type project-managed-identity \
+  --audience https://cognitiveservices.azure.com
+
+# Agentic identity — the agent's per-project identity
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://<resource>.cognitiveservices.azure.com/language/mcp \
+  --auth-type agentic-identity \
+  --audience https://cognitiveservices.azure.com
+```
+
+| `--auth-type` | Additional flags |
+|---------------|------------------|
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `oauth2` | `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, `--scopes` |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `project-managed-identity` | `--audience <entra-audience>` (optional) |
+| `agentic-identity` | `--audience <entra-audience>` |
+
+For identity-based auth (`user-entra-token`, `project-managed-identity`, `agentic-identity`), assign the corresponding principal the required RBAC role on the target resource before you call the toolbox.
+
+**Step 2. Define the toolbox**
+
+```yaml
+# my-toolbox.yaml
+description: MCP server tools
+connections:
+  - name: my-mcp-conn
+```
+
+**Step 3. Create the toolbox**
+
+```bash
+azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
+```
+
+The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
+
+```json
+{
+  "error": {
+    "code": -32006,
+    "message": "User consent is required. Please visit: https://..."
+  }
+}
+```
+
+This error is expected. Open the consent URL in a browser, complete the OAuth authorization flow, and then retry the agent call. Subsequent calls succeed without re-prompting.
 
 ## Authentication
 
@@ -119,7 +224,7 @@ Use the following code sample to create an agent and call the function. The .NET
 
 :::zone pivot="python"
 
-The following example shows how to use the GitHub MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+The following example shows how to add the GitHub MCP server to a toolbox and attach the toolbox to an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
 ### [Prompt Agents](#tab/prompt-agents)
 
@@ -223,57 +328,77 @@ Agent deleted
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_mcp_tool()` to register a hosted MCP server with per-tool approval control. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework, creates a toolbox containing the GitHub MCP server, then attaches the toolbox endpoint to your hosted agent with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
-from typing import Any
 
-from agent_framework import Agent, Message
+import httpx
+from agent_framework import Agent, MCPStreamableHTTPTool
 from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import MCPTool
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+MCP_CONNECTION_NAME = "my-mcp-connection"
+
+
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
+        yield request
+
 
 async def main() -> None:
-    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
-    client = FoundryChatClient(credential=AzureCliCredential())
+    credential = AzureCliCredential()
 
-    # Register a hosted MCP server. Use approval_mode="always_require" in production
-    # so the user approves each tool call; "never_require" skips approvals.
-    mcp_tool = client.get_mcp_tool(
-        name="Microsoft Learn MCP",
-        url="https://learn.microsoft.com/api/mcp",
-        approval_mode={"never_require_approval": ["microsoft_docs_search"]},
+    # 1. Add the GitHub MCP server to a toolbox.
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+    server_tool = MCPTool(
+        server_label="api-specs",
+        server_url="https://api.githubcopilot.com/mcp",
+        require_approval="always",
+        project_connection_id=MCP_CONNECTION_NAME,
+    )
+    toolbox = project.toolboxes.create_toolbox_version(
+        name="mcp-server-toolbox",
+        description="Toolbox with the GitHub MCP server",
+        tools=[server_tool],
     )
 
-    async with Agent(
-        client=client,
-        name="DocsAgent",
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(
+        auth=_ToolboxAuth(token_provider),
+        timeout=120.0,
+    )
+
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
         instructions="You are a helpful assistant that uses your MCP tool "
         "to help with Microsoft documentation questions.",
         tools=[mcp_tool],
-    ) as agent:
-        query = "What is Microsoft Agent Framework?"
-        result = await agent.run(query)
+    )
 
-        # Handle any approval prompts raised by the MCP tool.
-        while len(result.user_input_requests) > 0:
-            new_inputs: list[Any] = [query]
-            for user_input_needed in result.user_input_requests:
-                print(
-                    f"Approval requested for {user_input_needed.function_call.name} "
-                    f"with arguments: {user_input_needed.function_call.arguments}"
-                )
-                new_inputs.append(Message(role="assistant", contents=[user_input_needed]))
-                approve = input("Approve function call? (y/n): ").lower() == "y"
-                new_inputs.append(
-                    Message(
-                        role="user",
-                        contents=[user_input_needed.to_function_approval_response(approve)],
-                    )
-                )
-            result = await agent.run(new_inputs)
-
-        print(f"Agent: {result}")
+    result = await agent.run("What is Microsoft Agent Framework?")
+    print(f"Agent: {result.text}")
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -281,13 +406,13 @@ if __name__ == "__main__":
 
 ### Expected output
 
-The agent calls the Microsoft Learn MCP server and returns documentation-grounded text:
+The agent calls the Microsoft Learn MCP server through the toolbox endpoint and returns documentation-grounded text:
 
 ```console
 Agent: Microsoft Agent Framework is an open-source framework for building, orchestrating, and deploying AI agents ...
 ```
 
-For the full sample, including session-based approval flows and streaming, see [foundry_chat_client_with_hosted_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_hosted_mcp.py). For local (stdio) MCP servers, see [foundry_chat_client_with_local_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_local_mcp.py).
+For the full toolbox hosted-agent patterns, see [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
 
 ---
 
@@ -296,7 +421,7 @@ For the full sample, including session-based approval flows and streaming, see [
 :::zone pivot="csharp"
 ## Create an agent with MCP tool
 
-The following example shows how to use a remote MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+The following example shows how to add a remote MCP server to a toolbox and attach the toolbox to an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
 
 ### [Prompt Agents](#tab/prompt-agents)
 
@@ -391,50 +516,60 @@ organized by service and includes guidelines for contributing new specifications
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with an MCP client to expose remote MCP tools to the agent. Install the `Microsoft.Agents.AI.Foundry`, `Azure.AI.Projects`, and `ModelContextProtocol` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample creates the MCP server toolbox with the Azure AI Projects SDK, then uses `ToolboxMcpClient` with `ResponsesServer` from the Microsoft Agent Framework to expose the toolbox tools to your hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
 using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
-using Microsoft.Agents.AI;
-using Microsoft.Extensions.AI;
-using ModelContextProtocol.Client;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
-    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
 string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
 
-// Connect to the Microsoft Learn MCP server via Streamable HTTP transport.
-Console.WriteLine("Connecting to MCP server at https://learn.microsoft.com/api/mcp ...");
+DefaultAzureCredential credential = new();
 
-await using McpClient mcpClient = await McpClient.CreateAsync(new HttpClientTransport(new()
+// 1. Create the MCP server tool and add it to a toolbox.
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
+McpTool mcpTool = ResponseTool.CreateMcpTool(
+    serverLabel: "api-specs",
+    serverUri: new Uri("https://gitmcp.io/Azure/azure-rest-api-specs"),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval));
+
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "mcp-server-toolbox",
+        tools: [ProjectsAgentTool.AsProjectTool(mcpTool)],
+        description: "Toolbox with the GitHub MCP server");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// 3. Attach the toolbox to the hosted agent.
+AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+
+// Toolbox MCP client - discovers tools via tools/list, calls them via tools/call
+ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 {
-    Endpoint = new Uri("https://learn.microsoft.com/api/mcp"),
-    Name = "Microsoft Learn MCP",
-}));
-
-// Retrieve the list of tools available on the MCP server.
-IList<McpClientTool> mcpTools = await mcpClient.ListToolsAsync();
-Console.WriteLine($"MCP tools available: {string.Join(", ", mcpTools.Select(t => t.Name))}");
-
-List<AITool> agentTools = [.. mcpTools.Cast<AITool>()];
-
-AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
-
-AIAgent agent = aiProjectClient.AsAIAgent(
-    deploymentName,
-    instructions: "You are a helpful assistant that can answer Microsoft documentation questions. Use the Microsoft Learn MCP tool to search documentation.",
-    name: "DocsAgent",
-    tools: agentTools);
-
-const string Prompt = "How does one create an Azure storage account using the az CLI?";
-Console.WriteLine($"User: {Prompt}\n");
-Console.WriteLine($"Agent: {await agent.RunAsync(Prompt)}");
+    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
+});
 ```
 
 ### Expected output
 
-The agent queries the Microsoft Learn MCP server for documentation snippets and answers:
+When invoked, the hosted agent queries the Microsoft Learn MCP server through the toolbox endpoint for documentation snippets and answers:
 
 ```console
 User: How does one create an Azure storage account using the az CLI?
@@ -442,13 +577,13 @@ User: How does one create an Azure storage account using the az CLI?
 Agent: To create an Azure storage account using the az CLI, run: `az storage account create --name <name> --resource-group <rg> --location <region> --sku Standard_LRS` ...
 ```
 
-For local MCP transports and additional patterns, see [Agent_Step09_UsingMcpClientAsTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step09_UsingMcpClientAsTools) and [Agent_Step23_LocalMCP](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step23_LocalMCP).
+For a maintained .NET Agent Framework integration, see [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
 
 ---
 
 ## Create an agent by using the MCP tool with project connection authentication
 
-In this example, you learn how to authenticate to the GitHub MCP server and use it as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample20_MCP_Connection.md) in the Azure SDK for .NET repository on GitHub.
+In this example, you learn how to authenticate to the GitHub MCP server inside a toolbox, then attach the toolbox MCP endpoint to an agent. The example uses synchronous methods to create the toolbox and agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample20_MCP_Connection.md) in the Azure SDK for .NET repository on GitHub.
 
 #### Set up project connection
 
@@ -483,21 +618,53 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Create an agent with the MCPTool. Note that, in this scenario,
-// GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval is used.
-// This means that any calls to the MCP server must be approved.
-// The ProjectConnectionId property is then set on the McpTool
-// so agent can authenticate with GitHub.
-McpTool tool = ResponseTool.CreateMcpTool(
-        serverLabel: "api-specs",
-        serverUri: new Uri("https://api.githubcopilot.com/mcp"),
-        toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
-    ));
-tool.ProjectConnectionId = mcpConnectionName;
+// 1. Add the GitHub MCP server to a toolbox. Using a toolbox is the recommended
+//    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+McpTool mcpTool = ResponseTool.CreateMcpTool(
+    serverLabel: "api-specs",
+    serverUri: new Uri("https://api.githubcopilot.com/mcp"),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval));
+mcpTool.ProjectConnectionId = mcpConnectionName;
+
+ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+    toolboxName: "mcp-server-toolbox",
+    tools: [ProjectsAgentTool.AsProjectTool(mcpTool)],
+    description: "Toolbox with the GitHub MCP server");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+var toolboxMcpUrl = new Uri(
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}" +
+    $"/versions/{toolboxVersion.Version}/mcp?api-version=v1");
+
+// 3. Create a remote-tool project connection that points at the toolbox endpoint.
+//    Use a user Entra token so the caller's identity is passed through
+//    (audience https://ai.azure.com). Create the connection once, for example
+//    with the Azure Developer CLI:
+//
+//    azd ai connection create mcp-server-toolbox-conn \
+//      --kind remote-tool \
+//      --target "<toolboxMcpUrl>" \
+//      --auth-type user-entra-token \
+//      --audience https://ai.azure.com
+var toolboxConnectionName = "mcp-server-toolbox-conn";
+
+// 4. Attach the toolbox to a prompt agent as an MCP tool. Note that in this scenario
+//    GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval is used, which means that
+//    any calls to the toolbox MCP endpoint must be approved.
+McpTool toolboxTool = ResponseTool.CreateMcpTool(
+    serverLabel: "toolbox",
+    serverUri: toolboxMcpUrl,
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval));
+toolboxTool.ProjectConnectionId = toolboxConnectionName;
+
 DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
-    Tools = { tool }
+    Tools = { toolboxTool }
 };
 AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
@@ -506,7 +673,7 @@ AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentV
 // If the tool approval is required, the response item is
 // of McpToolCallApprovalRequestItem type and contains all
 // the information about tool call. This example checks that
-// the server label is "api-specs" and approves the tool call,
+// the server label is "toolbox" and approves the tool call.
 // All other calls are denied because they shouldn't happen given
 // the current configuration.
 ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
@@ -527,7 +694,7 @@ while (nextResponseOptions is not null)
             {
                 PreviousResponseId = latestResponse.Id,
             };
-            if (string.Equals(mcpToolCall.ServerLabel, "api-specs"))
+            if (string.Equals(mcpToolCall.ServerLabel, "toolbox"))
             {
                 Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.ToolName})");
                 Console.Write("Approve this MCP tool call? (y/N): ");
@@ -555,7 +722,7 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersi
 The following example shows the expected output when you run the sample:
 
 ```console
-Approval requested for api-specs...
+Approval requested for toolbox...
 Response: Your GitHub username is "example-username".
 ```
 :::zone-end
@@ -563,7 +730,7 @@ Response: Your GitHub username is "example-username".
 :::zone pivot="typescript"
 ## Create an agent in TypeScript with the MCP tool
 
-The following TypeScript sample demonstrates how to create an agent with MCP tool capabilities, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcp.js) on the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript sample demonstrates how to add an MCP server to a toolbox, attach the toolbox to an agent, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcp.js) on the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -581,8 +748,40 @@ export async function main(): Promise<void> {
 
   console.log("Creating agent with MCP tool...");
 
-  // Define MCP tool that connects to Azure REST API specifications GitHub repository
-  // The tool requires approval for each operation to ensure user control over external requests
+  // 1. Add the Azure REST API specifications MCP server to a toolbox. Using a toolbox is
+  //    the recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "mcp-server-toolbox",
+    [
+      {
+        type: "mcp",
+        server_label: "api-specs",
+        server_url: "https://gitmcp.io/Azure/azure-rest-api-specs",
+        require_approval: "always",
+      },
+    ],
+    { description: "Toolbox with the Azure REST API specifications MCP server" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create mcp-server-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "mcp-server-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
+  // The toolbox tool requires approval for each operation to ensure user control over external requests.
   const agent = await project.agents.createVersion("agent-mcp", {
     kind: "prompt",
     model: "gpt-5-mini",
@@ -591,9 +790,10 @@ export async function main(): Promise<void> {
     tools: [
       {
         type: "mcp",
-        server_label: "api-specs",
-        server_url: "https://gitmcp.io/Azure/azure-rest-api-specs",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
         require_approval: "always",
+        project_connection_id: toolboxConnectionName,
       },
     ],
   });
@@ -625,7 +825,7 @@ export async function main(): Promise<void> {
   const ask = (q: string) => new Promise<string>((resolve) => rl.question(q, resolve));
   for (const item of response.output) {
     if (item.type === "mcp_approval_request") {
-      if (item.server_label === "api-specs" && item.id) {
+      if (item.server_label === "toolbox" && item.id) {
         console.log(`\nReceived MCP approval request (id: ${item.id})`);
         console.log(`  Server: ${item.server_label}`);
         console.log(`  Tool: ${item.name}`);
@@ -721,7 +921,7 @@ MCP sample completed!
 
 ## Create an agent by using the MCP tool with project connection authentication
 
-The following TypeScript sample demonstrates how to create an agent with MCP tool capabilities using project connection authentication, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcpConnectionAuth.js) on the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript sample demonstrates how to add an authenticated MCP server to a toolbox, attach the toolbox MCP endpoint to an agent, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcpConnectionAuth.js) on the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -740,9 +940,41 @@ export async function main(): Promise<void> {
 
   console.log("Creating agent with MCP tool using project connection...");
 
-  // Define MCP tool that connects to GitHub Copilot API with project connection authentication
+  // 1. Add the GitHub MCP server to a toolbox with project connection authentication.
   // The project connection should have Authorization header configured with "Bearer <GitHub PAT token>"
   // Token can be created at https://github.com/settings/personal-access-tokens/new
+  const toolbox = await project.toolboxes.createVersion(
+    "mcp-server-toolbox",
+    [
+      {
+        type: "mcp",
+        server_label: "api-specs",
+        server_url: "https://api.githubcopilot.com/mcp",
+        require_approval: "always",
+        project_connection_id: MCP_CONNECTION_NAME,
+      },
+    ],
+    { description: "Toolbox with the GitHub MCP server" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create mcp-server-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "mcp-server-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
   const agent = await project.agents.createVersion("agent-mcp-connection-auth", {
     kind: "prompt",
     model: "gpt-5-mini",
@@ -750,10 +982,10 @@ export async function main(): Promise<void> {
     tools: [
       {
         type: "mcp",
-        server_label: "api-specs",
-        server_url: "https://api.githubcopilot.com/mcp",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
         require_approval: "always",
-        project_connection_id: MCP_CONNECTION_NAME,
+        project_connection_id: toolboxConnectionName,
       },
     ],
   });
@@ -783,7 +1015,7 @@ export async function main(): Promise<void> {
   const ask = (q: string) => new Promise<string>((resolve) => rl.question(q, resolve));
   for (const item of response.output) {
     if (item.type === "mcp_approval_request") {
-      if (item.server_label === "api-specs" && item.id) {
+      if (item.server_label === "toolbox" && item.id) {
         console.log(`\nReceived MCP approval request (id: ${item.id})`);
         console.log(`  Server: ${item.server_label}`);
         console.log(`  Tool: ${item.name}`);
@@ -850,7 +1082,7 @@ Creating conversation...
 Created conversation (id: <conversation-id>)
 Sending request that will trigger MCP approval...
 Received MCP approval request (id: <approval-request-id>)
-  Server: api-specs
+  Server: toolbox
   Tool: get-github-username
 Processing 1 approval request(s)
 Final input:
@@ -873,6 +1105,9 @@ MCP with project connection sample completed!
 :::zone pivot="java"
 
 ## Use MCP tools in a Java agent
+
+> [!TIP]
+> Most agents use a [toolbox](../../concepts/toolbox-overview.md) to add the file search tool and attach the toolbox to your agent as an MCP tool. *If you are using the Java SDK, an API for creating toolboxes is not yet available. Create a toolbox by using the Python, REST API, C#,TypeScript, or the [Foundry portal](../../how-to/tools/toolbox.md), then reference it's MCP endpoint from your Java agent as an `McpTool`.
 
 Add the dependency to your `pom.xml`:
 
@@ -905,7 +1140,9 @@ public class McpToolExample {
     public static void main(String[] args) {
         // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
         String projectEndpoint = "your_project_endpoint";
-        String mcpConnectionName = "my-mcp-connection";
+        // Create the toolbox out-of-band by using Python, REST, the Foundry portal, C#, or TypeScript.
+        String toolboxMcpUrl = projectEndpoint + "/toolboxes/mcp-server-toolbox/versions/1/mcp?api-version=v1";
+        String toolboxConnectionName = "mcp-server-toolbox-conn";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -914,10 +1151,10 @@ public class McpToolExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create MCP tool with server label, URL, connection, and approval mode
-        McpTool mcpTool = new McpTool("api-specs")
-            .setServerUrl("https://gitmcp.io/Azure/azure-rest-api-specs")
-            .setProjectConnectionId(mcpConnectionName)
+        // Attach the toolbox MCP endpoint with server label, URL, connection, and approval mode.
+        McpTool mcpTool = new McpTool("toolbox")
+            .setServerUrl(toolboxMcpUrl)
+            .setProjectConnectionId(toolboxConnectionName)
             .setRequireApproval("always");
 
         // Create agent with MCP tool
@@ -974,15 +1211,50 @@ Get an access token:
 export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
 
-If your MCP server doesn't require authentication, omit `project_connection_id` from the request body.
+If the MCP server inside the toolbox doesn't require authentication, omit `project_connection_id` from the toolbox tool definition. The agent's MCP tool still uses `project_connection_id` for the remote-tool connection to the toolbox endpoint.
 
 > [!NOTE]
-> For REST API, you need to first retrieve the connection ID from the connection name using the Connections API, then pass the ID to the MCP tool configuration.
+> For REST API, use the remote-tool project connection name that you create for the toolbox endpoint as `project_connection_id` on the agent's MCP tool.
 
 > [!TIP]
 > For details on the MCP tool schema and approval items, see [OpenAI.MCPTool](../../../reference/foundry-project-rest-preview.md#openaimcptool) and the MCP approval item types in the REST reference.
 
-### 1. Create an MCP agent
+### 1. Create a toolbox with the MCP server
+
+The recommended way to add an MCP server is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/mcp-server-toolbox/versions?api-version=v1" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "description": "Toolbox with the Azure REST API specifications MCP server",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "api-specs",
+        "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
+        "require_approval": "never"
+      }
+    ]
+  }'
+```
+
+The toolbox exposes an MCP-compatible endpoint at `$FOUNDRY_PROJECT_ENDPOINT/toolboxes/mcp-server-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+### 2. Create a remote-tool connection to the toolbox
+
+Create a remote-tool project connection that points to the toolbox endpoint. Use a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`):
+
+```bash
+azd ai connection create mcp-server-toolbox-conn \
+  --kind remote-tool \
+  --target "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/mcp-server-toolbox/versions/<version>/mcp?api-version=v1" \
+  --auth-type user-entra-token \
+  --audience https://ai.azure.com
+```
+
+### 3. Create an MCP agent
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
@@ -998,18 +1270,19 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
       "tools": [
         {
           "type": "mcp",
-          "server_label": "api-specs",
-          "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
-          "require_approval": "never"
+          "server_label": "toolbox",
+          "server_url": "'$FOUNDRY_PROJECT_ENDPOINT'/toolboxes/mcp-server-toolbox/versions/<version>/mcp?api-version=v1",
+          "require_approval": "always",
+          "project_connection_id": "mcp-server-toolbox-conn"
         }
       ]
     }
   }'
 ```
 
-To use an authenticated MCP server with a project connection, add `"project_connection_id": "'$MCP_PROJECT_CONNECTION_NAME'"` to the tool definition and change `server_url` to the authenticated server endpoint (for example, `https://api.githubcopilot.com/mcp`).
+To use an authenticated MCP server inside the toolbox, add `"project_connection_id": "'$MCP_PROJECT_CONNECTION_NAME'"` to the toolbox tool definition. Change `server_url` to the authenticated server endpoint (for example, `https://api.githubcopilot.com/mcp`).
 
-### 2. Create a response
+### 4. Create a response
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
@@ -1023,7 +1296,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
 
 If the response includes an output item with `type` set to `mcp_approval_request`, copy the approval request item `id` as `APPROVAL_REQUEST_ID`. Also copy the top-level response `id` as `PREVIOUS_RESPONSE_ID`.
 
-### 3. Send an approval response
+### 5. Send an approval response
 
 If the MCP tool requires approval, send a follow-up request:
 
@@ -1043,7 +1316,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   }'
 ```
 
-### 4. Clean up resources
+### 6. Clean up resources
 
 Delete the agent:
 

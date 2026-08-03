@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.topic: faq
-ms.date: 06/02/2026
+ms.date: 07/30/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD001 -->
@@ -59,4 +60,4 @@ PDF documents generated from digital file formats (also known as "native" PDFs) 
 Yes.
 
 * For more information, *see* [Synchronous document translation](overview.md#key-features)
-* To view `synchronous document translation` sample code in our GitHub repository, *see* [.NET/C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/samples/Sample5_SynchronousTranslation.md); [Python](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-translation-document_1.0.0/sdk/translation/azure-ai-translation-document/samples/sample_begin_translation.py); [REST API](quickstarts/rest-api.md#synchronously-translate-a-single-document-post)
+* To view synchronous document translation sample code, see [.NET/C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/samples/Sample5_SynchronousTranslation.md), [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-document/samples/sample_single_document_translation.py), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/translation/azure-ai-translation-document/src/samples/java/com/azure/ai/translation/document/ReadmeSamples.java), or the [REST API](quickstarts/rest-api.md#synchronously-translate-a-single-document-post).
