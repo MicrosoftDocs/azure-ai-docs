@@ -37,4 +37,3 @@ Alternatively, telephony integration is supported through third-party providers'
 ## Related content 
 
 - Learn more about [Voice Live API](/azure/ai-services/speech-service/voice-live).
-- Learn more about [Azure Communication Services](/azure/communication-services/overview). 
