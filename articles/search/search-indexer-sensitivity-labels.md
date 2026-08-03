@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers to ingest Microsoft
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 07/07/2026
 ai-usage: ai-assisted
 ---
 

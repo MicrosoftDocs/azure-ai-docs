@@ -4,6 +4,8 @@ author: msakande
 ms.author: mopeakande
 manager: mcleans
 ms.date: 07/24/2026
+manager: mcleans
+ms.date: 07/24/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ai-usage: ai-assisted

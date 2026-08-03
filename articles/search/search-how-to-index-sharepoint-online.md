@@ -4,7 +4,7 @@ description: Set up a SharePoint in Microsoft 365 indexer to automate indexing o
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/30/2026
+ms.date: 07/23/2026
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2025

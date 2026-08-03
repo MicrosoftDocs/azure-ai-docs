@@ -4,8 +4,6 @@ items:
   href: ../../responsible-use-of-ai-overview.md
 - name: Limited access
   href: ../../../ai-services/cognitive-services-limited-access.md?context=/azure/foundry/context/context
-- name: Content Provenance for Microsoft Foundry Models
-  href: ../../responsible-ai/content-understanding/provenance-disclosure.md
 
 # Azure OpenAI Responsible AI
 - name: Azure OpenAI

@@ -3,7 +3,7 @@ title: Create a File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/30/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---

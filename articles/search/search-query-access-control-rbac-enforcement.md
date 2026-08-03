@@ -2,7 +2,7 @@
 title: Query-Time ACL and RBAC Enforcement
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.
 ms.reviewer: magottei
-ms.date: 07/28/2026
+ms.date: 06/08/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ai-usage: ai-assisted
