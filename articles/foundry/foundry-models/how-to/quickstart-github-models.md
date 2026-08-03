@@ -2,9 +2,9 @@
 title: "Upgrade from GitHub Models to Microsoft Foundry Models"
 description: "Learn how to upgrade from GitHub Models to Microsoft Foundry Models for production-ready AI applications with enhanced features."
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 07/29/2026
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new

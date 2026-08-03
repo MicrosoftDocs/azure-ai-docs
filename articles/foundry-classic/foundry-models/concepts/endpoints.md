@@ -34,7 +34,7 @@ Foundry services provide multiple endpoints depending on the type of work you wa
 > [!NOTE]
 > The Azure AI Inference SDK samples in this section remain fully functional. However, for new projects, we recommend using the [Azure OpenAI endpoint](#azure-openai-inference-endpoint) with the OpenAI SDK. For migration guidance, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md).
 
-The **Azure AI inference endpoint**, usually of the form `https://<resource-name>.services.ai.azure.com/models`, enables you to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All Foundry Models support this capability. This endpoint follows the [Azure AI Model Inference API](/rest/api/aifoundry/modelinference), which supports the following modalities:
+The **Azure AI inference endpoint**, usually of the form `https://<resource-name>.services.ai.azure.com/models`, enables you to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All Foundry Models support this capability. This endpoint follows the [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference), which supports the following modalities:
 
 * Text embeddings
 * Image embeddings

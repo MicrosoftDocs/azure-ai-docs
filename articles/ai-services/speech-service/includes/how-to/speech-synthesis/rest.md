@@ -1,9 +1,10 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 08/30/2023
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/rest.md)]
@@ -28,7 +29,7 @@ You might also want to change the following values:
 - The output file. In this example, we direct the response from the server into a file named `output.mp3`.
 
 ```curl
-curl --location --request POST 'https://YOUR_RESOURCE_REGION.tts.speech.microsoft.com/cognitiveservices/v1' \
+curl --location --request POST 'https://YourResourceName.cognitiveservices.azure.com/tts/cognitiveservices/v1' \
 --header 'Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY' \
 --header 'Content-Type: application/ssml+xml' \
 --header 'X-Microsoft-OutputFormat: audio-16khz-128kbitrate-mono-mp3' \

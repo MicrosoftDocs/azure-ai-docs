@@ -7,8 +7,9 @@ ms.reviewer: josander
 reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/23/2026
+ms.date: 07/27/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Microsoft Foundry offers a variety of models for different use cases. The following models are retired and no longer available for use or for new deployments.
@@ -16,46 +17,52 @@ Microsoft Foundry offers a variety of models for different use cases. The follow
 ## Azure OpenAI
 
 
-| Model | Deprecation date | Retirement date | Suggested replacement |
-| --------- | --------------------- | ------------------- | -------------------- |
-| `o1-preview`  | |  July 28, 2025                       | `o1`                                 |
-| `gpt-4.5-preview`         |       |  July 14, 2025 | `gpt-4.1` version: `2025-04-14`      |
-| `gpt-4o-realtime-preview` - `2024-10-01` | February 25, 2025 | March 26, 2025 | `gpt-4o-realtime-preview` (version 2024-12-17) or `gpt-4o-mini-realtime-preview` (version 2024-12-17) |
-| `gpt-35-turbo` - 0301 | | February 13, 2025   | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |
-| `gpt-35-turbo` - 0613 | | February 13, 2025 | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |
-| `gpt-4`<br>`gpt-4-32k` - 0314 |         | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
-| `gpt-4`<br>`gpt-4-32k` - 0613 |         | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
-| `gpt-35-turbo-16k`     - 0613 |         | April  30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
-| `babbage-002` | | January 27, 2025 |  |
-| `davinci-002` | | January 27, 2025 | |
-| `dall-e-2`|  | January 27, 2025 | `gpt-image-1` |
-| `ada` | July 6, 2023 | June 14, 2024 |  |
-| `babbage` | July 6, 2023 | June 14, 2024 |  |
-| `curie` | July 6, 2023 | June 14, 2024 | |
-| `davinci` | July 6, 2023 | June 14, 2024 |  |
-| `text-ada-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
-| `text-babbage-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
-| `text-curie-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
-| `text-davinci-002` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
-| `text-davinci-003` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
-| `code-cushman-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
-| `code-davinci-002` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
-| `text-similarity-ada-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-similarity-babbage-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-similarity-curie-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-similarity-davinci-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-ada-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-ada-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-babbage-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-babbage-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-curie-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-curie-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-davinci-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `text-search-davinci-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `code-search-ada-code-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `code-search-ada-text-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `code-search-babbage-code-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
-| `code-search-babbage-text-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| Model | Version | Deprecation date | Retirement date | Suggested replacement |
+| --------- | --------- | --------------------- | ------------------- | -------------------- |
+| `gpt-5-chat` | `2025-08-07` | — | June 29, 2026 | `gpt-chat-latest` |
+| `gpt-5-chat` | `2025-10-03` | — | May 13, 2026 | `gpt-chat-latest` |
+| `gpt-5.1-chat` | `2025-11-13` | — | June 29, 2026 | `gpt-chat-latest` |
+| `gpt-5.2-chat` | `2025-12-11` | — | May 13, 2026 | `gpt-chat-latest` |
+| `gpt-5.2-chat` | `2026-02-10` | — | June 29, 2026 | `gpt-chat-latest` |
+| `gpt-5.3-chat` | `2026-03-03` | — | June 29, 2026 | `gpt-chat-latest` |
+| `o1-preview` | — | — | July 28, 2025 | `o1` |
+| `gpt-4.5-preview` | — | — | July 14, 2025 | `gpt-4.1` version: `2025-04-14` |
+| `gpt-4o-realtime-preview` | `2024-10-01` | February 25, 2025 | March 26, 2025 | `gpt-4o-realtime-preview` (version 2024-12-17) or `gpt-4o-mini-realtime-preview` (version 2024-12-17) |
+| `gpt-35-turbo` | 0301 | — | February 13, 2025 | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini` |
+| `gpt-35-turbo` | 0613 | — | February 13, 2025 | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini` |
+| `gpt-4`<br>`gpt-4-32k` | 0314 | — | June 6, 2025 | `gpt-4o` version: `2024-11-20` |
+| `gpt-4`<br>`gpt-4-32k` | 0613 | — | June 6, 2025 | `gpt-4o` version: `2024-11-20` |
+| `gpt-35-turbo-16k` | 0613 | — | April  30, 2025 | `gpt-4.1-mini` version: `2025-04-14` |
+| `babbage-002` | — | — | January 27, 2025 | N/A |
+| `davinci-002` | — | — | January 27, 2025 | N/A |
+| `dall-e-2` | — | — | January 27, 2025 | `gpt-image-1` |
+| `ada` | — | July 6, 2023 | June 14, 2024 | N/A |
+| `babbage` | — | July 6, 2023 | June 14, 2024 | N/A |
+| `curie` | — | July 6, 2023 | June 14, 2024 | N/A |
+| `davinci` | — | July 6, 2023 | June 14, 2024 | N/A |
+| `text-ada-001` | — | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-babbage-001` | — | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-curie-001` | — | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-davinci-002` | — | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-davinci-003` | — | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `code-cushman-001` | — | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `code-davinci-002` | — | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-similarity-ada-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-similarity-babbage-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-similarity-curie-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-similarity-davinci-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-ada-doc-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-ada-query-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-babbage-doc-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-babbage-query-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-curie-doc-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-curie-query-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-davinci-doc-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-davinci-query-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-ada-code-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-ada-text-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-babbage-code-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-babbage-text-001` | — | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 
 
 ## AI21 Labs
@@ -80,6 +87,9 @@ Microsoft Foundry offers a variety of models for different use cases. The follow
 | Command R+ | June 30, 2025 | `Cohere-command-r-plus-08-2024` |
 | Cohere-rerank-v3-english | June 30, 2025 | `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast` |
 | Cohere-rerank-v3-multilingual | June 30, 2025 | `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast` |
+| `Cohere-command-r-08-2024` | May 12, 2026 | N/A |
+| `Cohere-command-r-plus-08-2024` | May 12, 2026 | N/A |
+| `Cohere-rerank-v3.5` | May 14, 2026 | `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast` |
 
 ## Core42
 
@@ -92,6 +102,9 @@ Microsoft Foundry offers a variety of models for different use cases. The follow
 | Model | Retirement date | Suggested replacement |
 |-------|-----------------------|-----------------------------|
 | DeepSeek-V3 | August 31, 2025 | `DeepSeek-V3-0324` |
+| `DeepSeek-R1-0528` | July 13, 2026 | `DeepSeek-V4-Pro` |
+| `DeepSeek-V3-0324` | July 13, 2026 | `DeepSeek-V4-Flash` |
+| `DeepSeek-V3.1` | July 13, 2026 | `DeepSeek-V4-Flash` |
 
 ## Gretel
 
@@ -109,9 +122,14 @@ Microsoft Foundry offers a variety of models for different use cases. The follow
 | Llama-2-70b-chat | June 30, 2025 | `Llama-3.3-70B-Instruct` |
 | Llama-2-7b | June 30, 2025 | `Meta-Llama-3.1-8B-Instruct` |
 | Llama-2-7b-chat | June 30, 2025 | `Meta-Llama-3.1-8B-Instruct` |
+| Llama-3.2-11B-Vision-Instruct | June 13, 2026 | N/A |
+| Llama-3.2-90B-Vision-Instruct | June 13, 2026 | N/A |
 | Meta-Llama-3-70B-Instruct | June 30, 2025 | `Llama-3.3-70B-Instruct` |
 | Meta-Llama-3-8B-Instruct | June 30, 2025 | `Meta-Llama-3.1-8B-Instruct` |
+| Meta-Llama-3.1-405B-Instruct | June 13, 2026 | N/A |
 | Meta-Llama-3.1-70B-Instruct | June 30, 2025 | `Llama-3.3-70B-Instruct` |
+| Meta-Llama-3.1-8B | June 13, 2026 | N/A |
+| Meta-Llama-3.1-8B-Instruct | June 13, 2026 | N/A |
 
 ## Microsoft
 
@@ -134,7 +152,8 @@ Microsoft Foundry offers a variety of models for different use cases. The follow
 |-------|-----------------------|-----------------------------|
 | Mistral-Nemo | January 30, 2026 | `Mistral-small-2503` |
 | Mistral-large-2411 | January 30, 2026 | `Mistral-medium-2505` |
-| Mistral-ocr-2503 | January 30, 2026 | `Mistral-document-ai-2505` |
+| Mistral-document-ai-2505 | July 20, 2026 | `mistral-document-ai-2512`, `mistral-ocr-4-0` |
+| Mistral-ocr-2503 | January 30, 2026 | `mistral-document-ai-2512`, `mistral-ocr-4-0` |
 | Mistral-small | July 31, 2025 | `Mistral-small-2503` |
 | Mistral-large-2407 | May 13, 2025 | `Mistral-medium-2505` |
 | Mistral-large | April 15, 2025 | `Mistral-medium-2505` |
@@ -144,3 +163,12 @@ Microsoft Foundry offers a variety of models for different use cases. The follow
 | Model | Retirement date | Suggested replacement  |
 |-------|-----------------------|-----------------------------|
 | Kimi-k2-thinking | March 29, 2026 | `Kimi-K2.5` |
+
+## xAI
+
+| Model | Retirement date | Suggested replacement |
+|-------|-----------------------|-----------------------------|
+| grok-3 | May 1, 2026 | `grok-4` |
+| grok-3-mini | May 1, 2026 | `grok-4-1-fast-reasoning` |
+| grok-4-fast-non-reasoning | May 1, 2026 | `grok-4-1-fast-non-reasoning` |
+| grok-4-fast-reasoning | May 1, 2026 | `grok-4-1-fast-reasoning` |

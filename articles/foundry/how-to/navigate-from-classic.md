@@ -5,8 +5,9 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: nbrady
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 03/10/2026
+ms.date: 06/19/2026
 ms.custom:
   - classic-and-new
   - build-2025
@@ -16,7 +17,7 @@ ai-usage: ai-assisted
 
 # Migrate from the Foundry (classic) portal
 
-Microsoft Foundry evolved through several naming and architectural changes. If you're moving from the classic portal experience, this article helps you plan and execute the transition with reference mappings for terminology, capabilities, SDKs, and portal navigation.
+Microsoft Foundry has evolved through several naming and architectural changes. If you're moving from the classic portal experience, this article helps you plan and execute the transition with reference mappings for terminology, capabilities, SDKs, and portal navigation.
 
 > [!NOTE]
 > **Product naming**: Microsoft's AI Platform has evolved from Azure AI Studio → Azure AI Foundry → to Microsoft Foundry (current). Similarly, our AI services portfolio evolved with the platform from Azure Cognitive Services → Azure AI Services → to Foundry Tools (current). Despite the platform evolution, the Azure resource type remains `Microsoft.CognitiveServices/accounts`. All names in this documentation refer to the same evolving platform.
@@ -41,11 +42,11 @@ Follow these steps to move from the classic portal experience to the current Fou
 1. **Check the feature comparison.** Use the [feature comparison](#feature-comparison) table to identify capabilities that are new, enhanced, or classic-only.
 1. **Update your SDK packages.** Replace deprecated packages using the [SDK mapping](#sdk-mapping) table.
 1. **Migrate agents to the Responses API.** Rewrite agents that use the Assistants API to use the [Responses API](../foundry-models/how-to/generate-responses.md) before the August 2026 sunset.
-1. **Verify your Foundry resource region supports the Responses API.** The Responses API and Foundry Agent Service aren't available in every Azure region. If your Foundry resource is in an unsupported region, agents and other Responses API features don't work in the current portal. Check the [Responses API region availability](../openai/how-to/responses.md#region-availability) list before migrating.
+1. **Verify your Foundry resource region supports the Responses API.** The Responses API and Foundry Agent Service aren't available in every Azure region. If your Foundry resource is in an unsupported region, agents and other Responses API features don't work in the current portal. Check the [Responses API region availability](../openai/how-to/responses.md#supported-regions) list before migrating.
 1. **Validate in the new portal.** Use the [portal navigation](#navigate-the-portal) reference to verify your workflows in the current experience.
 
 > [!IMPORTANT]
-> The Responses API isn't available in all Azure regions. If your Foundry resource is in an unsupported region, you can't create or run agents in the current Foundry portal. Before migrating, verify your resource is in a [supported region](../openai/how-to/responses.md#region-availability). If it isn't, create a new Foundry resource in a supported region.
+> The Responses API isn't available in all Azure regions. If your Foundry resource is in an unsupported region, you can't create or run agents in the current Foundry portal. Before migrating, verify your resource is in a [supported region](../openai/how-to/responses.md#supported-regions). If it isn't, create a new Foundry resource in a supported region.
 
 ## Terminology mapping
 
@@ -141,7 +142,7 @@ These features are available only in the current Foundry portal:
 | Agent memory | Preview |
 | Agent publishing to M365/Teams | GA |
 | Foundry IQ | Preview |
-| Hosted agents | Preview |
+| Hosted agents | GA |
 | A2A protocol | Preview |
 | Foundry Control Plane | Preview |
 
@@ -203,7 +204,7 @@ You can switch between the classic and current portal experiences at any time. T
 | Endpoint connection failures | Old multi-endpoint URLs no longer resolve | Update to the single project endpoint format (`https://<project>.services.ai.azure.com`) |
 | `AuthenticationError` with new client | API key used with `OpenAI()` client without proper header | Use `DefaultAzureCredential` with a bearer token provider as shown in the [SDK migration example](#sdk-mapping) |
 | Agent code returns `404` or `MethodNotAllowed` | Assistants API calls sent to a Responses API endpoint | Rewrite agent code to use the Responses API (`create_version()` instead of `create_agent()`) |
-| Agents unavailable in the current portal | Foundry resource is in a region that doesn't support the Responses API | Create a Foundry resource in a [supported region](../openai/how-to/responses.md#region-availability) |
+| Agents unavailable in the current portal | Foundry resource is in a region that doesn't support the Responses API | Create a Foundry resource in a [supported region](../openai/how-to/responses.md#supported-regions) |
 
 ## Related content
 

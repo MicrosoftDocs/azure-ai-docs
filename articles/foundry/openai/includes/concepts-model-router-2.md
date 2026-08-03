@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/10/2026
+ms.date: 07/23/2026
 ms.custom: include
 ---
 
@@ -38,19 +38,13 @@ For details on how prompt caching works and which models support it, see [Prompt
 
 | Region | Deployment types supported |
 |------|-----------|
+| Australia East | Global Standard, Data Zone Standard |
 | East US 2 | Global Standard, Data Zone Standard |
+| South India | Global Standard, Data Zone Standard |
 | Sweden Central | Global Standard, Data Zone Standard |
+| West US 3 | Global Standard, Data Zone Standard |
 
 Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md) for current region availability.
-
-### Rate limits
-
-| Model                               | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
-|:-----------------------------------:|------------------:|:--------------:|:--------------:|:----------------------------|:-----------------------------:|
-| `model-router` <br> `(2025-11-18)` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
-| `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
-
-Also see [Quotas and limits](../quotas-limits.md) for rate limit information.
 
 To overcome the limits on context window and parameters, use the Model subset feature to select your models for routing that support your desired properties.
 
@@ -62,6 +56,21 @@ To overcome the limits on context window and parameters, use the Model subset fe
 > - Truncate the prompt into more relevant parts
 > - Use document embeddings and have the chat model retrieve relevant sections. For more information, see [What is Azure AI Search?](../../../search/search-what-is-azure-search.md)
 
+### Quota tiers
+
+Model router limits scale with your subscription's usage tier. For information on how tiers work, see [Quota tiers](../quotas-limits.md#quota-tiers).
+
+| Tier   | GlobalStandard RPM | GlobalStandard TPM | DataZoneStandard RPM | DataZoneStandard TPM |
+|:-------|-------------------:|-------------------:|---------------------:|---------------------:|
+| Tier 1 | 1,000              | 1,000,000          | 300                  | 300,000              |
+| Tier 2 | 2,000              | 2,000,000          | 670                  | 670,000              |
+| Tier 3 | 4,000              | 4,000,000          | 1,000                | 1,000,000            |
+| Tier 4 | 7,000              | 7,000,000          | 2,000                | 2,000,000            |
+| Tier 5 | 10,000             | 10,000,000         | 3,000                | 3,000,000            |
+| Tier 6 | 15,000             | 15,000,000         | 4,000                | 4,000,000            |
+
+For other rate limit information, see [Quotas and limits](../quotas-limits.md).
+
 Model router accepts image inputs for [Vision enabled chats](../how-to/gpt-with-vision.md) (all of the underlying models can accept image input), but the routing decision is based on the text input only.
 
 Model router doesn't process audio input.
@@ -70,7 +79,7 @@ Model router doesn't process audio input.
 
 | Issue | Resolution |
 |-------|------------|
-| Deployment fails | Verify your Foundry resource is in East US 2 or Sweden Central. |
+| Deployment fails | Verify your Foundry resource is in a supported region: Australia East, East US 2, South India, Sweden Central, or West US 3. |
 | Claude models not routing | Ensure Claude models are deployed separately before enabling in model router. |
 | Context exceeded error | Reduce prompt size or use model subset to select models with larger context windows. |
 | Unexpected model selection | Review your routing mode setting (Balanced, Cost, Quality) and model subset configuration. |

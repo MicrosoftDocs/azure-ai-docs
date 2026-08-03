@@ -3,10 +3,10 @@ title: "Quickstart: Document Intelligence JavaScript SDK v2.1"
 titleSuffix: Foundry Tools
 description: Form and document processing, data extraction, and analysis using Document Intelligence JavaScript client library v2.1
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 

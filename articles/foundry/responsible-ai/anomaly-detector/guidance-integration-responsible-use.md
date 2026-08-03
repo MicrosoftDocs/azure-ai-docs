@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Guidance for how to deploy the Anomaly Detector and Metrics Advisor responsibly, based on the knowledge and understanding from the team that created this product."
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: best-practice
 ms.date: 02/21/2024

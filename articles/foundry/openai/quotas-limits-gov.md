@@ -3,7 +3,7 @@ title: "Azure OpenAI in Microsoft Foundry Models Quotas and Limits in Azure Gove
 description: "This article features detailed descriptions and best practices on the quotas and limits for Azure OpenAI in Azure Government."
 author: challenp
 ms.author: chaparker
-ms.date: 04/17/2026
+ms.date: 07/24/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: limits-and-quotas

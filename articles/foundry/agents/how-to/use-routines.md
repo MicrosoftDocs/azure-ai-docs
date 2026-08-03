@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/08/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -78,7 +78,7 @@ For required and optional fields of each action type, see [Action fields](#actio
 - Install the `azure-ai-projects` SDK, version 2.2.0 or later (preview):
 
   ```bash
-  pip install "azure-ai-projects>=2.2.0"
+  pip install "azure-ai-projects>=2.3.0"
   ```
 
   Version 2.2.0 introduces the duration shorthand (`"30m"`, `"2h"`) for timer triggers.
@@ -87,6 +87,22 @@ For required and optional fields of each action type, see [Action fields](#actio
 
   ```bash
   pip install azure-identity
+  ```
+
+:::zone-end
+
+:::zone pivot="programming-language-csharp"
+
+- Install the `Azure.AI.Projects` NuGet package (preview):
+
+  ```bash
+  dotnet add package Azure.AI.Projects --prerelease
+  ```
+
+- Install `Azure.Identity` for authentication:
+
+  ```bash
+  dotnet add package Azure.Identity
   ```
 
 :::zone-end
@@ -121,14 +137,14 @@ For required and optional fields of each action type, see [Action fields](#actio
 
   ```bash
   azd auth login
-  export AZURE_AI_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+  export FOUNDRY_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
   ```
 
 :::zone-end
 
 ## Create a routine
 
-A routine definition specifies a trigger (when to fire) and an action (which agent to run and through which API). Exactly one trigger entry is supported in preview.
+A routine definition specifies a trigger (when to fire) and an action (which agent to run and through which API). The preview supports exactly one trigger entry.
 
 ### Schedule trigger
 
@@ -139,10 +155,10 @@ A schedule trigger fires repeatedly on a cron expression. The service enforces a
 1. In [Microsoft Foundry](https://ai.azure.com), open your project.
 1. In the left navigation, select **Routines**.
 1. Select **+ New routine**.
-1. Enter a **Name** for the routine, for example `daily-summary`.
+1. Enter a **Name** for the routine, such as `daily-summary`.
 1. Select an **Agent** from the dropdown.
 1. Enter a **Prompt** for the agent to run on each invocation.
-1. Under **Trigger**, set **Type** to **Recurring schedule**, then choose a **Frequency** (**Daily** or **Weekly**) and a **Time**.
+1. Under **Trigger**, set **Type** to **Recurring schedule**, and then choose a **Frequency** (**Daily** or **Weekly**) and a **Time**.
 1. Select **Create & start**.
 
    :::image type="content" source="../media/routines/routine-recurring-schedule.png" alt-text="Screenshot of the New routine dialog with the Recurring schedule trigger type selected, showing Frequency set to Daily and Time set to 9:00 AM." lightbox="../media/routines/routine-recurring-schedule.png":::
@@ -156,7 +172,7 @@ The portal interprets the **Time** in your browser's local time zone. To pin a r
 
 :::zone pivot="programming-language-rest"
 
-Replace the placeholder values, then run:
+Replace the placeholder values, and then run the command:
 
 ```bash
 PROJECT_ENDPOINT=<your-project-endpoint>   # e.g. https://<account>.services.ai.azure.com/api/projects/<project>
@@ -263,6 +279,51 @@ print(f"Routine created: {routine.name}, enabled={routine.enabled}")
 
 :::zone-end
 
+:::zone pivot="programming-language-csharp"
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+
+var projectEndpoint = Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var agentName = Environment.GetEnvironmentVariable("AGENT_NAME");
+
+var projectClient = new AIProjectClient(new Uri(projectEndpoint), new DefaultAzureCredential());
+var routinesClient = projectClient.Routines;
+
+// Using Responses API action
+var action = new AgentResponsesApiRoutineAction
+{
+    AgentName = agentName,
+    Input = BinaryData.FromObjectAsJson("Summarize activity from the last 24 hours."),
+};
+
+var routineOptions = new ProjectsRoutineOptions(
+    action: action,
+    description: "Runs a daily summary agent on weekday mornings.",
+    enabled: true);
+
+routineOptions.Triggers.Add("weekday-morning", new ScheduleRoutineTrigger(
+    cronExpression: "0 7 * * 1-5",  // required
+    timeZone: "UTC"                  // required
+));
+
+ProjectsRoutine routine = await routinesClient.CreateOrUpdateAsync(
+    name: "daily-summary",
+    options: routineOptions);
+
+Console.WriteLine($"Routine created: {routine.Name}, enabled={routine.IsEnabled}");
+
+// To use the Invocations API action instead:
+// var action = new AgentInvocationsApiRoutineAction
+// {
+//     AgentName = agentName,
+//     // SessionId = "...",
+// };
+```
+
+:::zone-end
+
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -329,10 +390,10 @@ action:
 azd ai routine create --file routine.yaml
 ```
 
-The minimum interval between fires is five minutes. Set `time_zone` to any IANA zone (for example `America/Los_Angeles`); omit it to interpret `cron` in UTC.
+The minimum interval between fires is five minutes. Set `time_zone` to any IANA zone (for example, `America/Los_Angeles`); omit it to interpret `cron` in UTC.
 
 > [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. Prompt-only agents are rejected by the service when bound to a routine action.
+> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
 
 :::zone-end
 
@@ -410,6 +471,31 @@ routine = client.beta.routines.create_or_update(
 
 :::zone-end
 
+:::zone pivot="programming-language-csharp"
+
+```csharp
+var action = new AgentResponsesApiRoutineAction
+{
+    AgentName = agentName,
+    Input = BinaryData.FromObjectAsJson("Run the release-day tasks."),
+};
+
+var routineOptions = new ProjectsRoutineOptions(
+    action: action,
+    description: "Runs the agent once on release day.",
+    enabled: true);
+
+routineOptions.Triggers.Add("release-day", new TimerRoutineTrigger(
+    at: DateTimeOffset.Parse("2026-09-01T09:00:00Z")
+));
+
+ProjectsRoutine routine = await routinesClient.CreateOrUpdateAsync(
+    name: "once-on-release-day",
+    options: routineOptions);
+```
+
+:::zone-end
+
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -468,7 +554,7 @@ azd ai routine create --file routine.yaml
 ```
 
 > [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. Prompt-only agents are rejected by the service when bound to a routine action.
+> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
 
 :::zone-end
 
@@ -490,6 +576,8 @@ The preview supports two event-based triggers: the `github_issue` trigger and th
 #### GitHub issue trigger
 
 A `github_issue` trigger fires when an issue is opened or closed in a watched GitHub repository. When the trigger fires, Foundry forwards the GitHub issue payload to the agent as its input, so the agent can triage or act on the issue.
+
+:::image type="content" source="../media/routines/routine-github-trigger.png" alt-text="Screenshot showing the New routine dialog in the Foundry portal with a GitHub issue trigger selected, displaying fields for repository owner and repository name.":::
 
 The trigger relies on a GitHub connector connection. Foundry provisions the connection to GitHub in your account's connector namespace and authenticates to GitHub through it. The `connection_id` you set on the trigger references this connection. Each tab shows how to create the connection and the routine that uses it. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
@@ -640,6 +728,39 @@ routine = client.beta.routines.create_or_update(
 
 :::zone-end
 
+:::zone pivot="programming-language-csharp"
+
+The C# SDK creates the routine but not the GitHub connector connection. Create the connection first in the [Foundry portal](tools/connectors.md?pivots=foundry-portal), with the [REST API](tools/connectors.md?pivots=programming-language-rest), or with the [Azure Developer CLI](tools/connectors.md?pivots=azd). Then reference it by name in the trigger's `ConnectionId` property.
+
+```csharp
+var action = new AgentResponsesApiRoutineAction
+{
+    AgentName = agentName,
+    Input = BinaryData.FromObjectAsJson("Triage this GitHub issue."),  // optional; omitted when the issue payload is present
+};
+
+var routineOptions = new ProjectsRoutineOptions(
+    action: action,
+    description: "Triages a GitHub issue when it is opened in the watched repository.",
+    enabled: true);
+
+routineOptions.Triggers.Add("on-issue", new GitHubIssueRoutineTrigger(
+    connectionId: "github-conn",      // required: project connection to GitHub
+    owner: "your-org",                 // required
+    repository: "your-repo",           // required
+    issueEvent: GitHubIssueEvent.Opened  // required: Opened or Closed
+));
+
+ProjectsRoutine routine = await routinesClient.CreateOrUpdateAsync(
+    name: "on-issue-opened",
+    options: routineOptions);
+```
+
+> [!NOTE]
+> For a `github_issue` trigger, the GitHub issue payload overwrites `action.Input`. When an issue event fires the routine, Foundry replaces the `Input` value with the issue payload. The `Input` you set applies only to manual test dispatches.
+
+:::zone-end
+
 :::zone pivot="programming-language-javascript"
 
 The JavaScript SDK creates the routine but not the GitHub connector connection. Create the connection first in the [Foundry portal](tools/connectors.md?pivots=foundry-portal), with the [REST API](tools/connectors.md?pivots=programming-language-rest), or with the [Azure Developer CLI](tools/connectors.md?pivots=azd), then reference it by name in the trigger's `connection_id` field.
@@ -672,9 +793,28 @@ const routine = await client.beta.routines.createOrUpdate("on-issue-opened", {
 
 :::zone pivot="azd"
 
-Create the GitHub connector connection first by following the azd steps in [Add managed MCP servers powered by connector namespaces](tools/connectors.md?pivots=azd). That flow installs the `microsoft.foundry` extension, creates the OAuth2 connection with `azd ai connection create <connection-name> --connector-name github`, and walks you through the one-time GitHub consent with `azd ai connection show <connection-name>`.
+### Step 1: Create the GitHub OAuth2 connection
 
-After consent is recorded, reference the connection by name in the routine's `connection_id`. Create the routine inline:
+Before you can create a GitHub issue routine, register the GitHub connector as a project connection. Use `azd ai connection create` with `--connector-name github`:
+
+```bash
+azd ai connection create github-conn \
+  --connector-name github
+```
+
+### Step 2: Complete OAuth consent
+
+The connection is created in an `Unauthenticated` state. Retrieve the consent URL and open it in a browser:
+
+```bash
+azd ai connection show github-conn
+```
+
+Sign in to GitHub once and authorize the application. After consent is recorded, `overallStatus` transitions to `Connected`.
+
+### Step 3: Create the routine
+
+Reference the connection by name in the routine's `connection_id`. Create the routine inline:
 
 ```bash
 azd ai routine create on-issue-opened \
@@ -1024,6 +1164,20 @@ print(f"Enabled: {enabled_routine.enabled}")    # True
 
 :::zone-end
 
+:::zone pivot="programming-language-csharp"
+
+```csharp
+// Disable
+ProjectsRoutine disabled = await routinesClient.DisableAsync("daily-summary");
+Console.WriteLine($"Enabled: {disabled.IsEnabled}");   // false
+
+// Enable
+ProjectsRoutine enabled = await routinesClient.EnableAsync("daily-summary");
+Console.WriteLine($"Enabled: {enabled.IsEnabled}");    // true
+```
+
+:::zone-end
+
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -1052,7 +1206,7 @@ azd ai routine enable once-on-release-day
 
 ## Test a routine manually
 
-Queue a one-off run without waiting for the trigger to fire. This lets you verify that the routine reaches your agent correctly.
+Queue a one-off run without waiting for the trigger to fire. This step lets you verify that the routine reaches your agent correctly.
 
 :::zone pivot="foundry-portal"
 
@@ -1072,7 +1226,7 @@ Use the `dispatch_async` operation to queue the run. The dispatch payload type m
 | `type` | string | Yes | Must match the routine's action type: `"invoke_agent_responses_api"` or `"invoke_agent_invocations_api"`. |
 | `input` | string | No | Override input sent to the downstream target for testing. Maximum 32,768 characters. |
 
-**Responses API routine Ã¢â‚¬â€ with optional input override:**
+**Responses API routine – with optional input override:**
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
@@ -1087,7 +1241,7 @@ curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
   }'
 ```
 
-**Invocations API routine Ã¢â‚¬â€ with optional input override:**
+**Invocations API routine – with optional input override:**
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/my-invocations-routine:dispatch_async" \
@@ -1152,6 +1306,35 @@ result2 = client.beta.routines.dispatch(
 
 :::zone-end
 
+:::zone pivot="programming-language-csharp"
+
+```csharp
+// Responses API routine
+var payload = new AgentResponsesApiRoutineDispatch
+{
+    Input = BinaryData.FromObjectAsJson("Run the daily summary for testing."),  // optional
+};
+
+RoutineDispatchResult result = await routinesClient.DispatchAsync(
+    name: "daily-summary",
+    payload: payload);
+
+Console.WriteLine($"dispatch_id: {result.DispatchId}");
+Console.WriteLine($"task_id:     {result.TaskId}");
+
+// Invocations API routine
+var payload2 = new AgentInvocationsApiRoutineDispatch
+{
+    Input = BinaryData.FromObjectAsJson("Run the agent for testing."),  // optional
+};
+
+RoutineDispatchResult result2 = await routinesClient.DispatchAsync(
+    name: "my-invocations-routine",
+    payload: payload2);
+```
+
+:::zone-end
+
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -1190,12 +1373,12 @@ The command prints the `dispatch_id` and `task_id`. Use the `dispatch_id` to fin
 
 ## View run history
 
-Run history records every time a routine fired and the outcome of each attempt.
+Run history records every time a routine fires and the outcome of each attempt.
 
 :::zone pivot="foundry-portal"
 
 1. Open the routine in [Microsoft Foundry](https://ai.azure.com).
-1. Past runs are listed in the table on the routine detail page. Each row shows the response ID, when the run was triggered, its duration, and its state (for example **Completed** or **Failed**).
+1. The table on the routine detail page lists past runs. Each row shows the response ID, when the run triggered, its duration, and its state (for example **Completed** or **Failed**).
 1. Use the **Last day**, **7D**, **1M**, or **Custom** range controls above the table to filter the time window.
 1. Select a response ID to open the full run, including the response and any error details.
 
@@ -1245,7 +1428,23 @@ for run in runs:
         f"started={run.started_at}  ended={run.ended_at}"
     )
     if run.phase == "failed":
-        print(f"  error: {run.error_type} Ã¢â‚¬â€ {run.error_message}")
+        print(f"  error: {run.error_type} - {run.error_message}")
+```
+
+
+:::zone-end
+
+:::zone pivot="programming-language-csharp"
+
+```csharp
+await foreach (RoutineRun run in routinesClient.GetRoutineRunsAsync("daily-summary"))
+{
+    Console.WriteLine($"{run.Id}  phase={run.Phase}  source={run.AttemptSource}  started={run.StartedAt}");
+    if (run.Phase == RoutineRunPhase.Failed)
+    {
+        Console.WriteLine($"  error: {run.ErrorType} — {run.ErrorMessage}");
+    }
+}
 ```
 
 :::zone-end
@@ -1256,7 +1455,7 @@ for run in runs:
 for await (const run of client.beta.routines.listRuns("daily-summary")) {
   console.log(`${run.id}  phase=${run.phase}  source=${run.attempt_source}`);
   if (run.phase === "failed") {
-    console.log(`  error: ${run.error_type} Ã¢â‚¬â€ ${run.error_message}`);
+    console.log(`  error: ${run.error_type} - ${run.error_message}`);
   }
 }
 ```
@@ -1273,7 +1472,7 @@ Listing run history through `azd ai routine` isn't supported in preview. Use the
 
 :::zone pivot="foundry-portal"
 
-All routines in your project are shown on the **Routines** page. Select any routine to see its configuration and run history.
+The **Routines** page shows all routines in your project. Select any routine to see its configuration and run history.
 
 :::zone-end
 
@@ -1311,6 +1510,22 @@ print(routine)
 
 :::zone-end
 
+:::zone pivot="programming-language-csharp"
+
+```csharp
+// List all routines
+await foreach (ProjectsRoutine r in routinesClient.GetRoutinesAsync())
+{
+    Console.WriteLine($"{r.Name}  enabled={r.IsEnabled}  triggers={string.Join(", ", r.Triggers.Keys)}");
+}
+
+// Get a single routine
+ProjectsRoutine routine = await routinesClient.GetAsync("daily-summary");
+Console.WriteLine(routine);
+```
+
+:::zone-end
+
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -1340,7 +1555,7 @@ Listing all routines through `azd ai routine` isn't supported in preview. Use th
 
 ## Update a routine
 
-To change a routine's trigger or action, issue a new create-or-update request with the same name. The operation replaces the stored definition.
+To change a routine's trigger or action, send a new create-or-update request with the same name. This operation replaces the stored definition.
 
 :::zone pivot="foundry-portal"
 
@@ -1353,7 +1568,7 @@ To change a routine's trigger or action, issue a new create-or-update request wi
 
 :::zone pivot="programming-language-rest"
 
-Reissue the `PUT` request with the updated body. Include all fields; omitted fields reset to defaults.
+Reissue the `PUT` request with the updated body. Include all fields. Omitted fields reset to defaults.
 
 ```bash
 curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
@@ -1403,6 +1618,30 @@ print(f"Updated at: {updated.updated_at}")
 
 :::zone-end
 
+:::zone pivot="programming-language-csharp"
+
+```csharp
+var action = new AgentResponsesApiRoutineAction { AgentName = agentName };
+
+var routineOptions = new ProjectsRoutineOptions(
+    action: action,
+    description: "Updated: runs at 08:00 UTC on weekdays.",
+    enabled: true);
+
+routineOptions.Triggers.Add("weekday-morning", new ScheduleRoutineTrigger(
+    cronExpression: "0 8 * * 1-5",
+    timeZone: "UTC"
+));
+
+ProjectsRoutine updated = await routinesClient.CreateOrUpdateAsync(
+    name: "daily-summary",
+    options: routineOptions);
+
+Console.WriteLine($"Updated at: {updated.UpdatedAt}");
+```
+
+:::zone-end
+
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -1434,18 +1673,18 @@ Apply changes from a YAML manifest:
 azd ai routine update once-on-release-day --file routine.yaml
 ```
 
-The `--description` flag isn't supported for timer routines in preview; edit the manifest and reapply with `--file` instead.
+The `--description` flag isn't supported for timer routines in preview. Edit the manifest and reapply it by using `--file` instead.
 
 :::zone-end
 
 ## Delete a routine
 
-Deleting a routine removes it and stops all future trigger deliveries. Existing run records are preserved.
+When you delete a routine, you remove it and stop all future trigger deliveries. The process preserves existing run records.
 
 :::zone pivot="foundry-portal"
 
 1. Open the routine in [Microsoft Foundry](https://ai.azure.com).
-1. Select **Delete**, then confirm.
+1. Select **Delete**, and then confirm.
 
 :::zone-end
 
@@ -1466,6 +1705,15 @@ A successful response returns HTTP 204 No Content.
 ```python
 client.beta.routines.delete("daily-summary")
 print("Routine deleted.")
+```
+
+:::zone-end
+
+:::zone pivot="programming-language-csharp"
+
+```csharp
+await routinesClient.DeleteAsync("daily-summary");
+Console.WriteLine("Routine deleted.");
 ```
 
 :::zone-end
@@ -1536,7 +1784,7 @@ For the `teams` provider, `parameters` accepts the following fields:
 
 ## Dispatch behavior and retry policy
 
-When a trigger fires or you call `:dispatch_async` manually, Foundry acknowledges that the run was enqueued. The acknowledgment doesn't mean the downstream agent call has finished. Use the run state, telemetry, or the returned `dispatch_id` to confirm completion.
+When a trigger fires or you call `:dispatch_async` manually, Foundry acknowledges that the run was enqueued. The acknowledgment doesn't mean the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to confirm completion.
 
 ### Downstream call outcomes
 
@@ -1555,7 +1803,7 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 ### Retry and timeout defaults
 
-- The default delivery policy is 3 total attempts with exponential backoff starting at 1 second and capped at 5 seconds.
+- The default delivery policy is three total attempts with exponential backoff starting at 1 second and capped at 5 seconds.
 - The downstream HTTP request has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, and worker concurrency limits aren't included in that per-request timeout.
 
 ## Let an agent schedule its own reminders
@@ -1563,43 +1811,25 @@ A successful run means the downstream API accepted the dispatch request. It does
 Routines let an external trigger start an agent. A hosted agent can also schedule *itself* to run again at a future time by calling the built-in `reminder_preview` toolbox tool. Use this pattern when the agent decides during a run that it needs to follow up later, such as to check back on a long-running task.
 
 > [!NOTE]
-> You expose the reminder tool only through a [toolbox](tools/toolbox.md). The agent can't call it directly.
+> [!NOTE]
+> The reminder tool is available only for hosted agents. You can't use the reminder tool with prompt agents.
 
-The reminder tool re-invokes the same hosted agent on the same conversation after a delay. The agent decides the delay at run time and passes it to the tool as a number of minutes. You expose the tool to the agent through a toolbox, then the agent calls it like any other tool.
+When the agent calls the reminder tool, it specifies a delay in minutes. After that delay, Foundry re-invokes the same agent on the same conversation. The agent can then continue its work or check on external systems.
 
-1. Define the reminder tool in a toolbox manifest. The `reminder_preview` tool takes a single `minutes` argument (1 to 43,200) that the agent sets when it calls the tool:
-
-   ```yaml
-   # toolbox.yaml
-   description: Built-in reminder tool for a self-scheduling agent
-   tools:
-     - type: reminder_preview
-       name: schedule_reminder
-       description: Schedule a reminder that re-invokes this agent at a future time.
-   ```
-
-1. Create the toolbox and note the versioned MCP endpoint it prints:
-
-   ```bash
-   azd ai toolbox create reminder-toolbox --from-file toolbox.yaml
-   ```
-
-1. Connect your hosted agent to the toolbox endpoint, then have the agent call `schedule_reminder` when it wants to run again. When the delay elapses, Foundry re-invokes the agent on the same conversation.
-
-For the full end-to-end sample, including the agent code, see the [hosted-agent routines samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework/routines). For more about the reminder tool and toolboxes, see [Use toolboxes with agents](tools/toolbox.md#reminder).
+For full setup instructions, usage examples, and how reminders differ from routines, see [Reminder tool for self-scheduling agents](tools/reminder-tool.md).
 
 ## Known issues and limitations
 
-The preview has the following known issues and limitations:
+This preview has the following known issues and limitations:
 
 - **One trigger and one action per routine.** Each routine supports exactly one entry in the `triggers` map and one action. To run multiple agents or multiple schedules, create separate routines.
-- **Trigger types.** The supported triggers are `timer` (one-shot), `schedule` (cron-based recurring), and `github_issue` (event-based). You expose the agent-scheduled reminder tool only through a toolbox.
+- **Trigger types.** The supported triggers are `timer` (one-shot), `schedule` (cron-based recurring), and `github_issue` (event-based). The agent-scheduled [reminder tool](tools/reminder-tool.md) is available only for hosted agents.
 - **Action types.** The only action is invoking one Foundry agent through the Responses API or Invocations API.
 - **Schedule minimum interval.** A `schedule` trigger fires at most once every five minutes. Cron expressions that resolve to a shorter interval are rejected.
-- **Regional availability.** Routines are available only in the regions listed under [Prerequisites](#prerequisites). If **Routines** isn't visible in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
+- **Regional availability.** Routines are available only in the regions listed under [Prerequisites](#prerequisites). If you don't see **Routines** in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
 - **Use `:dispatch_async` for manual dispatch.** Only the `POST .../routines/{routineName}:dispatch_async` route is part of the public contract. The legacy `:dispatch` route isn't supported for customer use.
 - **Acknowledgment isn't completion.** A `:dispatch_async` response acknowledges that the run was enqueued, not that the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to observe final delivery.
-- **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults), and the routine run is marked failed if all attempts time out.
+- **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults). The routine run is marked failed if all attempts time out.
 - **Successful delivery doesn't guarantee end-to-end completion.** A completed routine run means the downstream API returned success for the dispatch request. It doesn't guarantee that asynchronous work started by the agent has finished.
 
 ## Related content

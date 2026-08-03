@@ -3,7 +3,7 @@ title: "Use blocklists for text moderation"
 titleSuffix: Azure AI services
 description: Learn how to customize text moderation in Azure AI Content Safety by using your own list of blocklistItems.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: how-to

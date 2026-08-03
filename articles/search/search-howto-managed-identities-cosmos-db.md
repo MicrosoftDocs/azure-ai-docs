@@ -1,4 +1,4 @@
----
+﻿---
 title: Set up an Indexer Connection to Azure Cosmos DB Using a Managed Identity
 description: Learn how to set up an indexer connection to an Azure Cosmos DB account using a managed identity.
 ms.reviewer: arjagann
@@ -13,6 +13,8 @@ ms.custom:
 ---
 
 # Connect to Azure Cosmos DB using a managed identity (Azure AI Search)
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This article explains how to set up an indexer connection to an Azure Cosmos DB database using a managed identity instead of providing credentials in the connection string.'
 
@@ -156,7 +158,7 @@ Follow the same steps as before to assign the appropriate roles on the control p
 Here's an example to connect to MongoDB collections using system-assigned identity via the REST API
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -171,7 +173,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2025-11-0
 Here's an example to connect to Gremlin graphs using user-assigned identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",

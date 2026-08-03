@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Upgrade versions of the Azure Search .NET Management SDK
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article points you to libraries in the Azure SDK for .NET for managing a search service. These libraries provide the APIs used to create, configure, and delete search services. They also provide APIs used to adjust capacity, manage API keys, and configure network security.
 
 Management SDKs target a specific version of the Management REST API. Release notes for each library indicate which REST API version is the target for each package. For more information about concepts and operations, see [Search Management (REST)](/rest/api/searchmanagement/).

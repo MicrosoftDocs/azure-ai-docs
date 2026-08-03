@@ -1,6 +1,6 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 02/28/2023
 ms.custom: devx-track-java, linux-related-content

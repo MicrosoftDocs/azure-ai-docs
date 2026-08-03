@@ -3,7 +3,7 @@ title: Create an Anomaly Detector resource
 titleSuffix: Azure AI services
 description: Create an Anomaly Detector resource
 author: alvinashcraft    
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
 ms.date: 06/12/2025

@@ -3,14 +3,15 @@ title: Speech to text REST API for short audio - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use Speech to text REST API for short audio to convert speech to text.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 11/21/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 # Customer intent: As a developer, I want to learn how to use the Speech to text REST API for short audio to convert speech to text.
+ai-usage: ai-assisted
 ---
 
 # Use speech to text REST API for short audio
@@ -31,10 +32,10 @@ Before you use the Speech to text REST API for short audio, understand that you 
 The endpoint for the REST API for short audio has this format:
 
 ```
-https://<REGION_IDENTIFIER>.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1
+https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1
 ```
 
-Replace `<REGION_IDENTIFIER>` with the identifier that matches the [region](regions.md) of your Speech resource.
+Replace `YourResourceName` with the name of your Speech resource.
 
 > [!NOTE]
 > For Azure Government and Microsoft Azure operated by 21Vianet endpoints, see [this article about sovereign clouds](sovereign-clouds.md).
@@ -70,7 +71,7 @@ This table lists required and optional headers for speech to text requests:
 These parameters might be included in the query string of the REST request.
 
 > [!NOTE]
-> You must append the language parameter to the URL to avoid receiving a 4xx HTTP error. For example, the language set to US English via the West US endpoint is: `https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US`.
+> You must append the language parameter to the URL to avoid receiving a 4xx HTTP error. For example, the language set to US English is: `https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US`.
 
 | Parameter | Description | Required or optional |
 |-----------|-------------|---------------------|
@@ -126,7 +127,7 @@ POST speech/recognition/conversation/cognitiveservices/v1?language=en-US&format=
 Accept: application/json;text/xml
 Content-Type: audio/wav; codecs=audio/pcm; samplerate=16000
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
-Host: westus.stt.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Transfer-Encoding: chunked
 Expect: 100-continue
 ```

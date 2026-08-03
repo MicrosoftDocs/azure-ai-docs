@@ -2,15 +2,15 @@
 title: "Deploy Microsoft Foundry Models in the Foundry portal (classic)"
 description: "Learn how to deploy Microsoft Foundry Models in the Foundry portal for AI inference applications and integration into your projects. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 07/28/2026
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new
 author: msakande   
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 recommendations: false
 ai-usage: ai-assisted
 
@@ -32,14 +32,14 @@ Deploy a model by following these steps in the Foundry portal:
 
 1. Go to the **Model catalog** section in the Foundry portal.
 
-1. Select a model and review its details in the model card. This article uses `Llama-3.2-90B-Vision-Instruct` for illustration.
+1. Select a model and review its details in the model card. This article uses `Llama-4-Scout-17B-16E-Instruct` for illustration.
 
 1. Select **Use this model**.
 
-1. For [Foundry Models from partners and community](../concepts/models-from-partners.md), you need to subscribe to Azure Marketplace. This requirement applies to `Llama-3.2-90B-Vision-Instruct`, for example. Read the terms of use and select **Agree and Proceed** to accept the terms.
+1. For [Foundry Models from partners and community](../concepts/models-from-partners.md), you need to subscribe to Azure Marketplace. This requirement applies to `Llama-4-Scout-17B-16E-Instruct`, for example. Read the terms of use and select **Agree and Proceed** to accept the terms.
 
    > [!NOTE]
-   > For [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as the Azure OpenAI model `gpt-4o-mini`, you don't subscribe to Azure Marketplace.
+   > For [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md), such as the Azure OpenAI model `gpt-4o-mini`, you don't subscribe to Azure Marketplace.
 
 1. Configure the deployment settings:
 
@@ -63,7 +63,7 @@ You can manage the existing model deployments in the resource by using the Found
 
 1. Go to the **Models + Endpoints** section in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. The portal groups and displays model deployments per resource. Select the **Llama-3.2-90B-Vision-Instruct** model deployment from the section for your Foundry resource. This action opens the model's deployment page.
+1. The portal groups and displays model deployments per resource. Select the **Llama-4-Scout-17B-16E-Instruct** model deployment from the section for your Foundry resource. This action opens the model's deployment page.
 
    :::image type="content" source="../media/add-model-deployments/endpoints-foundry-resource-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../media/add-model-deployments/endpoints-foundry-resource-connection.png":::
 

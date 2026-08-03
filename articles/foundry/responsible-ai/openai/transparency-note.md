@@ -3,7 +3,7 @@ title: "Transparency Note for Azure OpenAI in Microsoft Foundry Models"
 description: "Transparency Note for Azure OpenAI"
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
@@ -18,7 +18,7 @@ ms.custom:
 
 [!INCLUDE [transparency-note 1](../includes/openai-transparency-note-1.md)]
 
-## The basics of the Azure OpenAI Models
+## The basics of Azure OpenAI models
 
 Azure OpenAI provides customers with a fully managed Foundry Tool that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed Guardrails (previously content filters) and abuse detection models. Learn more about Guardrails (previously content filters) [here](/azure/ai-foundry/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy).
 
@@ -29,24 +29,23 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | GPT-3 & Codex | ✅ |  |  |
 | GPT-image-1 series |  | ✅ |  |
 | GPT-image-2 |  | ✅ |  |
-|  Whisper|  |  | ✅ |
-|  GPT-4 Turbo with Vision| ✅ | ✅ |  |
-| GPT-4o </br>GPT-4o-mini | ✅ | ✅ | ✅ |
-| GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
+| Transcribe |  |  | ✅ |
+| GPT-4 Turbo with Vision | ✅ | ✅ |  |
+| GPT-4o <br> GPT-4o-mini | ✅ | ✅ | ✅ |
+| GPT-4.1 <br> GPT-4.1-mini <br> GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
 | GPT-5 series | ✅ | ✅ |  |
 | GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
-| GPT-Audio-2 |  |  | ✅ |
 | GPT-Realtime series | ✅ | ✅ | ✅ |
 | o1 series | ✅ | ✅ |  |
-| o3/o3-pro | ✅ | ✅| | 
-| o3-mini |✅  |  |  |
-| o4-mini/codex-mini<sup>1</sup> | ✅| ✅| |
-| o3-deep-research <br>o4-mini-deep-research| ✅ |  |  |
-| computer-use-preview |✅  | ✅ |  |
+| o3/o3-pro | ✅ | ✅ |  |
+| o3-mini | ✅ |  |  |
+| o4-mini/codex-mini<sup>1</sup> | ✅ | ✅ |  |
+| o3-deep-research <br> o4-mini-deep-research | ✅ |  |  |
+| computer-use-preview | ✅ | ✅ |  |
 
-<sup>1</sup>`codex-mini` is a fine-tuned version of `o4-mini` specifically for use in Codex CLI. For more information, please see [OpenAI's documentation](https://platform.openai.com/docs/models/codex-mini-latest). 
+<sup>1</sup> `codex-mini` is a fine-tuned version of `o4-mini` specifically for use in Codex CLI. For more information, see [OpenAI's documentation](https://platform.openai.com/docs/models/codex-mini-latest).
 
 Select the tabs to see content for the relevant model type.
 
@@ -101,9 +100,9 @@ The following guidance is drawn from Microsoft research insights and [best pract
 
 The GPT realtime models in Azure OpenAI service enable robust speech-to-speech and text-to-speech interactions. These models integrate advanced speech recognition and synthesis capabilities, allowing them to understand spoken input, generate accurate transcriptions, and produce fluent spoken output in a target language. With their ability to translate speech in real time, GPT realtime models facilitate dynamic conversations across languages. 
 
-The Whisper model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The Whisper model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
+The transcription model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The transcription model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
 
-You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure Speech in Foundry Tools service. Learn more about the Azure Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
+You can learn more about training and modeling techniques for the transcription model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The transcription model is also used in the Azure Speech in Foundry Tools service. Learn more about the Azure Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
 
 ### Key terms
 
@@ -111,8 +110,8 @@ You can learn more about training and modeling techniques for the Whisper model 
 |--|--|
 | Transcription | The text output of the Speech to Text feature. This automatically generated text output leverages _speech models_ and is sometimes referred to as machine transcription or automated speech recognition (ASR). Transcription in this context is fully automated, meaning it's generated by the model, and therefore is different from human transcription, which is text that is generated by human transcribers.   |
 | Automatic Speech Recognition (ASR) | Also known as Speech-to-Text (STT), ASR is the process whereby a model transcribes or processes human speech as audio into text. |
-| Speech Translation | A capability that enables users to translate speech into a designated language. At this time, the Whisper model in Azure OpenAI Service enables users to translate speech audio from non-English into English only. |
-| Prompt | Context or cues that you can provide to the model to improve the quality of transcripts generated for your scenario. The prompt can provide instructions for processing things like jargon or acronyms, or for forcing filler words to be included.   </br></br>Learn more about prompts [here](https://platform.openai.com/docs/guides/speech-to-text). 
+| Speech Translation | A capability that enables users to translate speech into a designated language. At this time, the transcription model in Azure OpenAI Service enables users to translate speech audio from non-English into English only. |
+| Prompt | Context or cues that you can provide to the model to improve the quality of transcripts generated for your scenario. The prompt can provide instructions for processing jargon or acronyms, or for forcing filler words to be included. <br><br>Learn more about prompts in the [OpenAI speech-to-text guide](https://platform.openai.com/docs/guides/speech-to-text). |
 |Completion / Generation | The audio or text Azure OpenAI outputs in response. |
 |Token | Azure OpenAI processes audio and text by breaking it down into tokens. Tokens can be words or just chunks of characters. |
 
@@ -126,7 +125,7 @@ The reasoning models, GPT-4, GPT-3, Codex models, and Azure OpenAI evaluation us
 
 There are three main approaches for in-context learning. These approaches vary based on the amount of task-specific data that is given to the model:
 
-**Few-shot** : In this case, a user includes several examples in the prompt that demonstrate the expected answer format and content. The following example shows a few-shot prompt providing multiple examples:
+**Few-shot:** In this case, you include several examples in the prompt that demonstrate the expected answer format and content. The following example shows a few-shot prompt that provides multiple examples:
 
 ```
 Convert the questions to a command: 
@@ -147,7 +146,7 @@ A:
 ```
 The number of examples typically ranges from 0 to 100 depending on how many can fit in the maximum input length for a single prompt. Few-shot learning enables a major reduction in the amount of task-specific data required for accurate predictions.
 
-**One-shot** : This case is the same as the few-shot approach except only one example is provided. The following example shows a one-shot prompt:
+**One-shot:** This case is the same as the few-shot approach except that you provide only one example. The following example shows a one-shot prompt:
 
 ```
 Convert the questions to a command:
@@ -252,7 +251,7 @@ Azure OpenAI service offers these functionalities through the realtime API:
 
 The service is designed for rapid speech-to-speech processing of spoken interactions, facilitating real-time conversations with minimal latency. 
 
-The Whisper model in Azure OpenAI service enables speech-to-text transcription and translation of audio files. The model was trained on multilingual and multitask supervised data that was collected from the internet. These large and diverse datasets enabled improved robustness to attributes such as accents, background noise and technical language, while enabling transcription into multiple languages, and translation into English.
+The transcription model in Azure OpenAI service enables speech-to-text transcription and translation of audio files. The model was trained on multilingual and multitask supervised data that was collected from the internet. These large and diverse datasets improve robustness to attributes such as accents, background noise, and technical language, while enabling transcription into multiple languages and translation into English.
 
 Azure OpenAI service provides these functionalities through two REST APIs:
 - Transcribing a provided audio file
@@ -299,7 +298,7 @@ Fine tuning alone is not recommended for scenarios where you want to extend your
 
 #### Reasoning model use cases
 
-The advanced reasoning capabilities of the reasoning models may be best suited for reasoning-heavy uses in science, coding, math, and similar fields. Specific use cases could include:  
+The advanced reasoning capabilities of the reasoning models might be best suited for reasoning-heavy uses in science, coding, math, and similar fields. Specific use cases could include the following:
 
 - **Complex code generation, analysis and optimization**: Algorithm generation and advanced coding tasks to help developers execute multi-step workflows, better understanding the steps taken in code development.  
 - **Advanced problem solving**: Comprehensive brainstorming sessions, strategy development and breaking down multifaceted issues.  
@@ -330,7 +329,7 @@ Azure OpenAI evaluation is a text-only feature and can't be used with models tha
 
 #### Computer Use (Preview) use cases 
 
-The capabilities of Computer Use are best suited for developing agentic AI systems that can autonomously interact with GUIs. Specific use cases could include: 
+The capabilities of Computer Use are best suited for developing agentic AI systems that can autonomously interact with GUIs. Specific use cases include the following options:
 
 * Automated Web Navigation and Interaction: Navigating  navigation of web-based interfaces autonomously to retrieve and present information from trusted sources, such as internal company resources or structured databases. The model follows predefined navigation rules to extract relevant data while ensuring compliance with security policies. 
 
@@ -405,7 +404,7 @@ The GPT-image API in Azure OpenAI service can be used for various image-generati
 - **Visual question answering**: Users can ask questions about an image and receive contextually relevant responses. For instance, when shown a picture of a bird, users might ask, "What type of bird is this?" and receive a response like, "It's a European robin." The application can identify and interpret context within images to answer queries. For example, if presented with an image of a crowded marketplace, users can ask, "How many people are wearing hats?" or "What fruit is the vendor selling?" and the application can provide the answers. The system should not be used to answer identifying questions about people.  
 - **Brand and landmark recognition**: The application can be used to identify commercial brands and popular landmarks in images or videos from a preset database of thousands of global logos and landmarks.
 
-#### Computer Use (Preview) use cases 
+#### Computer Use (Preview) use cases
 
 The capabilities of Computer Use are best suited for developing agentic AI systems that can autonomously interact with GUIs. Specific use cases could include: 
 
@@ -466,7 +465,7 @@ The GPT realtime models can be used for a variety of natural language processing
 
 For greater detail on 4o model's capabilities, see the [OpenAI 4o System Card](https://openai.com/index/gpt-4o-system-card/). 
 
-The Whisper model in Azure OpenAI service can be used for various speech recognition and speech translation tasks. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported with appropriate mitigations.
+The transcription model in Azure OpenAI service can be used for various speech recognition and speech translation tasks. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported with appropriate mitigations.
 
 - **Dictation:** Users can transcribe spoken words in the form of audio files into text. For example, a user might use the service to transcribe call center recordings into reports.
 - **Captioning or transcription:** Users can transcribe audio files into text for natural language understanding or analytic tasks like summarization and sentiment analysis. Examples include speech as input into dialog systems, making audio content more accessible, or creating a text translation to be analyzed.  
@@ -474,10 +473,10 @@ The Whisper model in Azure OpenAI service can be used for various speech recogni
 
 ### Considerations when choosing a use case
 
-We encourage customers to use the GPT realtime models and Whisper models in Azure OpenAI service in their innovative solutions or applications. Here are some considerations when choosing a use case:
+Use the GPT real-time models and transcription models in Azure OpenAI service in your innovative solutions or applications. Here are some considerations when choosing a use case:
 - **Avoid scenarios in which the use or misuse of the system could have a consequential impact on life opportunities or legal status.** Examples include scenarios in which the AI system could affect an individual's legal status, legal rights, or their access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which these items are available. 
 - **Carefully consider all use cases in high-stakes domains or industries:** Examples include but are not limited to healthcare, education, finance, and legal.
-- **Whisper in Azure Speech service:** The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, or processing multiple audio files per request.
+- **Transcription in Azure Speech service:** The OpenAI transcription model is also available within Azure Speech services, enhancing the experience with advanced features like multilingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, or processing multiple audio files per request.
 - [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ---
@@ -494,7 +493,7 @@ When it comes to large-scale natural language models, vision models, and speech 
 Large-scale natural language, image, and speech models trained with such data can potentially behave in ways that are unfair, unreliable, or offensive, in turn causing harms. Some of the ways are listed here. We emphasize that these types of harms are not mutually exclusive. A single model can exhibit more than one type of harm, potentially relating to multiple different groups of people. For example:
 
 - **Allocation:** These models can be used in ways that lead to unfair allocation of resources or opportunities. For example, automated résumé screening systems can withhold employment opportunities from one gender if they are trained on résumé data that reflects the existing gender imbalance in a particular industry. Or the image generation models could be used to create imagery in the style of a known artist, which could affect the value of the artist's work or the artist's life opportunities. GPT-4 vision models could be used to identify individual behaviors and patterns that might have negative impacts on life opportunities.
-- **Quality of service:** The Azure OpenAI models are trained primarily on English text and images with English text descriptions. Languages other than English will experience worse performance. English language varieties with less representation in the training data might experience worse performance than standard American English. The publicly available images used to train the image generation models might reinforce public bias and other undesirable content. Speech models might introduce other limitations, for example, translations using the Whisper model in Azure OpenAI are limited to English output only. Broadly speaking, with Speech-to-Text models, be sure to properly specify a language (or locale) for each audio input to improve accuracy in transcription. Additionally, acoustic quality of the audio input, non-speech noise, overlapped speech, vocabulary, accents, and insertion errors might also affect the quality of your transcription or translation.  
+- **Quality of service:** The Azure OpenAI models are trained primarily on English text and images with English text descriptions. Languages other than English experience worse performance. English language varieties with less representation in the training data might experience worse performance than standard American English. The publicly available images used to train the image generation models might reinforce public bias and other undesirable content. Speech models might introduce other limitations. For example, translations that use the transcription model in Azure OpenAI are limited to English output only. Broadly speaking, with Speech-to-Text models, be sure to properly specify a language (or locale) for each audio input to improve accuracy in transcription. Additionally, acoustic quality of the audio input, non-speech noise, overlapped speech, vocabulary, accents, and insertion errors might also affect the quality of your transcription or translation.  
 - **Stereotyping:** These models can reinforce stereotypes. For example, when translating "He is a nurse" and "She is a doctor" into a genderless language such as Turkish and then back into English, many machine translation systems yield the stereotypical (and incorrect) results of "She is a nurse" and "He is a doctor." When generating an image based on the prompt "Fatherless children," the model could generate images of Black children only, reinforcing harmful stereotypes that might exist in publicly available images. The GPT-4 vision models might also reinforce stereotypes based on the contents of the input image, by relying on components of the image and making assumptions that might not always be true.
 - **Demeaning:** The natural language and vision models in the Azure OpenAI service can demean people. For example, an open-ended content generation system with inappropriate or insufficient mitigations might produce content that is offensive or demeaning to a particular group of people. 
 - **Overrepresentation and underrepresentation:** The natural language and vision models in the Azure OpenAI service can over- or under-represent groups of people, or even erase their representation entirely. For example, if text prompts that contain the word "gay" are detected as potentially harmful or offensive, this identification could lead to the underrepresentation or even erasure of legitimate image generations by or about the LGBTQIA+ community.
@@ -537,10 +536,12 @@ For more best practices, see the [OpenAI 4o System Card](https://openai.com/inde
 - The 4.1-series models introduce the ability to create inference requests with up to 1M context tokens, including images. Due to the extended length, there may be differences in system behavior and risks when compared to other models.
 - Users should thoroughly evaluate and test their applications and use cases that leverage this longer context capability and should account for this additional effort when developing applications.
 
-### GPT-Audio-2 limitations
+### GPT-Realtime-2 limitations
 
 > [!CAUTION]
-> Microsoft's testing of GPT-Audio-2 identified that the model shows a lower propensity to block coaching, role-playing, or advising in certain inappropriate scenarios. Customers should consider (i) conducting their own evaluations in their production environments to validate safety performance for their specific use cases, (ii) using Azure AI Content Safety (or equivalent safeguards) in conjunction with this model, (iii) limited access/gating or preview deployment or other staggered roll-outs, (iv) implementing appropriate monitoring for safety performance in their production systems. Customers are encouraged to provide feedback to Microsoft.
+> Microsoft's testing of GPT-Realtime-2 identified that the model shows a lower propensity to block coaching, role-playing, or advising in certain inappropriate scenarios. Customers should consider (i) conducting their own evaluations in their production environments to validate safety performance for their specific use cases, (ii) using Azure AI Content Safety (or equivalent safeguards) in conjunction with this model, (iii) limited access/gating or preview deployment or other staggered roll-outs, (iv) implementing appropriate monitoring for safety performance in their production systems. Customers are encouraged to provide feedback to Microsoft.
+
+The same considerations apply to `gpt-realtime-2.1` and `gpt-realtime-2.1-mini`, which are minor updates over `gpt-realtime-2` focused on improved silence and noise handling.
 
 ### Risk and limitations of Computer Use (Preview) 
 

@@ -1,7 +1,7 @@
 ---
 title: "Web search with the Responses API (classic)"
 description: "Learn how to use Web search with the Responses API (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

@@ -35,7 +35,7 @@ We're always working to make AutoML faster and more scalable. To work as a gener
 
 One common source of slow runtime is training AutoML with default settings on data that contains numerous time series. The cost of many forecasting methods scales with the number of series. For example, methods like Exponential Smoothing and Prophet [train a model for each time series](./concept-automl-forecasting-methods.md#model-grouping) in the training data.
 
-The Many Models feature of AutoML scales to these scenarios by distributing training jobs across a compute cluster. It has been successfully applied to data with millions of time series. For more information, see the [many models](concept-automl-forecasting-at-scale.md#many-models) article section. You can also read about [the success of Many Models](https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/automated-machine-learning-on-the-m5-forecasting-competition/ba-p/2933391) on a high-profile competition dataset.
+The Many Models feature of AutoML scales to these scenarios by distributing training jobs across a compute cluster. It has been successfully applied to data with millions of time series. For more information, see the [many models](concept-automl-forecasting-at-scale.md#many-models) article section. You can also read about [the success of Many Models](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/automated-machine-learning-on-the-m5-forecasting-competition/2933391) on a high-profile competition dataset.
 
 ## How can I make AutoML faster?
 

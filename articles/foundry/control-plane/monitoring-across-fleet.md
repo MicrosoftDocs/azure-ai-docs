@@ -1,12 +1,13 @@
 ---
 title: "Monitor AI agent fleet health and performance - Microsoft Foundry"
 description: "Track agent health, compliance, performance trends, and cost efficiency across your AI fleet by using Microsoft Foundry Control Plane monitoring."
-author: sonalim-0
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: sonalimalik
 ms.date: 05/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.

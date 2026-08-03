@@ -2,8 +2,8 @@
 title: "Quickstart: Voice Agent with Agent Service (classic)"
 titleSuffix: Foundry Tools
 description: Learn how to use Voice Live with Agent Service (classic) for real-time voice agents.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 02/24/2026
 author: PatrickFarley

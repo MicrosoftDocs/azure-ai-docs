@@ -2,6 +2,7 @@
 title: "Develop application with LlamaIndex and Microsoft Foundry (classic)"
 description: "This article explains how to use LlamaIndex with models deployed in Microsoft Foundry portal to build advance intelligent applications. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024
   - dev-focus

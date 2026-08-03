@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: meerakurup
 ms.service: microsoft-foundry
 ms.topic: include
@@ -364,7 +364,7 @@ az rest --method PUT \
 
 Replace the placeholders with values for your environment. For other resource types, change the `serviceResourceId` and `subresourceTarget` values accordingly. Common subresource targets include `blob` for Azure Storage, `searchService` for Azure AI Search, and `vault` for Azure Key Vault.
 
-For more information, follow the instructions in the [outbound rules CLI](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network/update-outbound-rules-cli/outbound-rule-cli.md) file in the foundry-samples repository.
+For more information, follow the instructions in the [outbound rules CLI](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network) file in the foundry-samples repository.
 
 ---
 
@@ -414,16 +414,15 @@ In Allow Only Approved Outbound mode of the managed virtual network, a few requi
 * Private endpoint to your Storage account
 * Private endpoint to your AI Search resource
 * ServiceTag to AzureActiveDirectory
-* ServiceTag to AzureMachineLearning (for the Evaluations Catalogue)
 
 ## Outbound rules per scenario 
 
-If you deploy Foundry with managed virtual network in Allow Only Approved Outbound mode, you may need to add the following outbound FQDN rules to ensure egress traffic is allowed. Below is the list of trusted Fully Qualified Domain Names (FQDNs) to create outbound rules for depending on the scenario or feature in Foundry. 
+If you deploy Foundry with managed virtual network in **Allow Only Approved Outbound** mode, you might need to add the following outbound FQDN rules to ensure egress traffic is allowed. The following list shows trusted fully qualified domain names (FQDNs) and service tags to create outbound rules for, depending on the scenario or feature in Foundry. 
 
-| Scenario | FQDNs | Description |
+| Scenario | FQDNs, service tags| Description |
 |---------|--------------------------|-------|
-| Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com`, `mcr.microsoft.com` or AAD Service Tag | Required for the Azure Container App delegation for Agent service. Includes Microsoft Container Registry for container image pulls. |
-| Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com` | Used for the evaluators catalogue and for sending results to the linked Application Insights resource. |
+| Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com`, `mcr.microsoft.com` or AAD service tag | Required for the Azure Container App delegation for Agent service. Includes Microsoft Container Registry for container image pulls. |
+| Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com`, AzureMachineLearning service tag | Used for sending results to the linked Application Insights resource and Evaluators Catalog. |
 | Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
 
 ## Pricing

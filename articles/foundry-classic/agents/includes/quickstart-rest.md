@@ -7,7 +7,7 @@ ms.subservice: foundry-agent-service
 ms.topic: include
 ms.date: 09/25/2025
 ---
-| [Reference documentation](/rest/api/aifoundry/) |
+| [Reference documentation](/rest/api/microsoft-foundry/) |
 
 ## Prerequisites
 

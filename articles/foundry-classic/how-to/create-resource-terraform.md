@@ -4,6 +4,7 @@ description: "In this article, you create a Microsoft Foundry resource, a Micros
 ms.topic: how-to
 ms.date: 04/08/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.reviewer: deeikele 
 ms.author: sgilley
 author: sdgilley

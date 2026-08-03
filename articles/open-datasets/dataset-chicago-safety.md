@@ -5,7 +5,7 @@ ms.service: azure-open-datasets
 ms.custom: devx-track-python
 ms.topic: sample
 ms.reviewer: franksolomon
-ms.date: 06/17/2024
+ms.date: 06/29/2026
 ---
 
 # Chicago Safety Data
@@ -400,6 +400,34 @@ display(spark.sql('SELECT * FROM source LIMIT 10'))
 ```
 
 <!-- nbend -->
+
+---
+
+
+### Azure SQL Database
+
+[Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly by using [data virtualization](/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas&preserve-view=true). Use `OPENROWSET` to read the Parquet files over HTTPS.
+
+#### Query in place
+
+```sql
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'abs://citydatacontainer@azureopendatastorage.blob.core.windows.net/Safety/Release/city=Chicago/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
+
+#### Persist into a table (optional)
+
+```sql
+SELECT *
+INTO dbo.ChicagoSafety_Local
+FROM OPENROWSET(
+    BULK 'abs://citydatacontainer@azureopendatastorage.blob.core.windows.net/Safety/Release/city=Chicago/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
 
 ---
 

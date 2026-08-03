@@ -78,7 +78,7 @@ Azure notifies you of upcoming retirements through email to subscription owners 
 
 ## Related content
 
-- [Foundry Models sold directly by Azure in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
+- [Foundry Models sold by Azure in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
 - [Foundry Models lifecycle and support policy in Azure Government](../../openai/concepts/model-retirements-gov.md)
 - [Deploy Foundry Models](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models in Azure Government](../concepts/deployment-types-gov.md)

@@ -2,11 +2,12 @@
 title: "Quickstart: Create a guardrail policy"
 description: "Learn how to create a guardrail policy for model deployments in Microsoft Foundry so that you can govern the usage of guardrail controls across your subscription."
 author: gregharen
-ms.author: scottpolly
+ms.author: lagayhar 
 ms.reviewer: gregharen
 ms.date: 05/06/2026
 ms.topic: quickstart
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a subscription owner, I want to manage guardrail policies in Microsoft Foundry so that I can monitor compliance status in Foundry Control Plane.

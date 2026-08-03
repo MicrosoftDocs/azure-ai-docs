@@ -2,7 +2,7 @@
 title: Container support
 titleSuffix: Azure AI services
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: include 
 ms.date: 06/12/2025

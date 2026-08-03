@@ -23,7 +23,7 @@ Visit the [list of known issues](reference-known-issues.md) to learn about known
 
 ## May 20, 2025
 
-[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 22.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version  `25.05.19`
 
@@ -31,19 +31,19 @@ Version  `25.05.19`
 
 ## May 15, 2025
 
-[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+Data Science Virtual Machine - Windows 2022
 
 Version  `25.05.10`
 
 - SDK `1.60.0`
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version  `25.05.10`
 
 - SDK `1.60.0`
 
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `25.02.13`
 
@@ -51,7 +51,7 @@ Version `25.02.13`
   
 ## April 28, 2025
 
-[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 22.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version  `25.04.15`
 
@@ -59,7 +59,7 @@ Version  `25.04.15`
 
 ## February 18, 2025
 
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `25.02.13`
 
@@ -70,7 +70,7 @@ Version `25.02.13`
   
 ## February 7, 2025
 
-[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+Data Science Virtual Machine - Windows 2022
 
 Version  `25.02.03`
 
@@ -78,7 +78,7 @@ Version  `25.02.03`
   
 ## February 4, 2025
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version  `25.01.31`
 
@@ -86,7 +86,7 @@ Version  `25.01.31`
 
 ## January 22, 2025
 
-[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 22.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version  `25.01.20`
 
@@ -109,7 +109,7 @@ DSVM 22.04 has all the latest packages that we had installed and shipped with 20
 
 ## October 18, 2024
 
-[Data Science Virtual Machine – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science Virtual Machine – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version  `24.10.01`
 - SDK `1.57.0`
@@ -117,31 +117,31 @@ Version  `24.10.01`
 - Cuda  `cuda_12.2.r12` 
 - Python Version `3.10.8`
 
-[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+Data Science Virtual Machine - Windows 2022
 
 Version  `24.09.26`
 - SDK `1.57.0`
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version  `24.10.07`
 - SDK `1.57.0`
   
 ## June 17, 2024
 
-[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+Data Science Virtual Machine - Windows 2022
 
 Version  `24.05.20`
 
 - SDK `1.56.0`
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version  `24.05.20`
 
 - SDK `1.56.0`
 
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version  `24.05.24`
 
@@ -149,7 +149,7 @@ Version  `24.05.24`
 
 ## May 4, 2024
 
-[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+Data Science Virtual Machine - Windows 2022
 
 Version `24.05.03`
 
@@ -164,7 +164,7 @@ Resolved issue: Office365ProPlus installation
 
 ## December 20, 2023
 
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `23.12.18`
 
@@ -186,7 +186,7 @@ Primary changes:
 
 ## December 18, 2023
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version `23.12.11`
 
@@ -201,7 +201,7 @@ Primary changes:
 
 ## December 5, 2023
 
-The Data Science Virtual Machine (DSVM) offering for [Data Science VM – Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview) is now generally available in the marketplace.
+The Data Science Virtual Machine (DSVM) offering for Data Science VM – Windows 2022 is now generally available in the marketplace.
 
 Version `23.11.23`
 
@@ -216,7 +216,7 @@ Primary changes:
 
 ## July 26, 2023
 
-A new Data Science Virtual Machine (DSVM) offering for [Data Science VM – Windows 2022 (Preview)](https://azuremarketplace.microsoft.com/en-US/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview) is now live in the marketplace.
+A new Data Science Virtual Machine (DSVM) offering for Data Science VM – Windows 2022 (Preview) is now live in the marketplace.
 
 Version `23.06.25`
 
@@ -225,7 +225,7 @@ Primary changes:
 - SDK `1.51.0`
 
 ## April 26, 2023
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `23.04.24`
 
@@ -237,7 +237,7 @@ Primary changes:
 - Blobfuse upgraded to blobfuse2
 
 ## April 4, 2023
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version: `23.03.31`
 
@@ -249,7 +249,7 @@ Primary changes:
 - `Dotnet` upgraded to `6.0`
 
 ## January 10, 2023
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version: `23.01.06`
 
@@ -259,7 +259,7 @@ Primary changes:
 - Pinned `pandas==1.1.5` and `numpy==1.23.0` in `azureml_py38` environment
 
 ## November 30, 2022
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version: `22.11.25`
 
@@ -271,7 +271,7 @@ Primary changes:
 - `azureml-core` to version `1.47.0`
 - `azure-ai-ml` to version `1.1.1`
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version: `22.11.27`
 
@@ -285,7 +285,7 @@ Primary changes:
 
 ## September 20, 2022
 **Announcement:**
-Beginning October 1, 2022, the Ubuntu 18 Data Science Virtual Machine (DSVM) will **not be** available on the marketplace. We recommend that users switch to the Ubuntu 20 DSVM as we continue to ship updates/patches on our latest [Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+Beginning October 1, 2022, the Ubuntu 18 Data Science Virtual Machine (DSVM) will **not be** available on the marketplace. We recommend that users switch to the Ubuntu 20 DSVM as we continue to ship updates/patches on our latest [Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Users who use the Azure Resource Manager (ARM) template/virtual machine scale, set to deploy the Ubuntu DSVM machines, should set the configuration to
 
@@ -303,7 +303,7 @@ instead of:
 There's no problem for existing customers who still use the Ubuntu-18 DSVM, as of our October 2022 update. However, the deprecation plan is scheduled for December 2022. We recommend that you switch to Ubuntu-20 DSVM at your earliest convenience.
 
 ## September 19, 2022
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `22.09.19`
 
@@ -328,7 +328,7 @@ Environment Specific Updates:
 - `tensorflow-gpu` to version `2.10.0`
 
 ## September 12, 2022
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version `22.09.06`
 
@@ -337,7 +337,7 @@ Primary changes:
 - Base OS level image updates.
 
 ## August 16, 2022
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `22.08.11`
 
@@ -348,7 +348,7 @@ Primary changes:
 - Jupyterhub spawner reconfigured to root environment.
 
 ## July 28, 2022
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `22.07.19`
 
@@ -368,7 +368,7 @@ Primary changes:
 
 - Added new Azure Machine Learning Environment `azureml_310_sdkv2`
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version `22.07.18`
 
@@ -377,7 +377,7 @@ Primary changes:
 - General OS level updates.
 
 ## July 11, 2022
-[Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview) [Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+Data Science VM – Ubuntu 18.04 [Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `22.07.08`
 
@@ -386,12 +386,12 @@ Primary changes:
 - Minor bug fixes.
 
 ## June 28, 2022
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+Data Science Virtual Machine - Windows 2019
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `22.06.10`
 
-[Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
+Data Science VM – Ubuntu 18.04
 
 Version `22.06.13`
 
@@ -400,7 +400,7 @@ Primary changes:
 - Remove `Rstudio` software tool from Data Science Virtual Machine (DSVM) images.
 
 ## May 17, 2022
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `22.05.11`
 
@@ -409,8 +409,8 @@ Primary changes:
 - Upgraded `log4j(v2)` to version `2.17.2`
 
 ## April 29, 2022
-[Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
-[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+Data Science VM – Ubuntu 18.04
+[Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204)
 
 Version `22.04.27`
 
@@ -421,7 +421,7 @@ Primary changes:
 - Fix `Python 3.8` - Azure Machine Learning notebook run, pinned `matplotlib` to `3.2.1` and `cycler` to `0.11.0` packages in `Azureml_py38` environment.
 
 ## April 26, 2022
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version: `22.04.21`
 
@@ -431,12 +431,12 @@ Primary changes:
 - Update `Rscript` env path to support latest R studio version `4.1.3`.
 
 ## April 14, 2022
-A new Data Science Virtual Machine (DSVM) offering for [Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview) is currently live in the marketplace.
+A new Data Science Virtual Machine (DSVM) offering for [Data Science VM – Ubuntu 20.04](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204) is currently live in the marketplace.
 
 Version: `22.04.05`
 
 ## April 04, 2022
-A new image for [Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
+A new image for Data Science VM – Ubuntu 18.04
 
 Version: `22.04.01`
 
@@ -473,7 +473,7 @@ Primary changes:
     environments
 
 ## March 18, 2022
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version: `22.03.09`
 
@@ -505,7 +505,7 @@ Primary changes:
 
 ## March 9, 2022
 
-[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+Data Science Virtual Machine - Windows 2019
 
 Version: `21.12.03`
 
@@ -515,7 +515,7 @@ Users who use the Azure Resource Manager (ARM) template / virtual machine scale,
 
 ## December 3, 2021
 
-A new image for [Windows Server 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+A new image for Windows Server 2019
 
 Version: `21.12.03`
 
@@ -529,7 +529,7 @@ Primary changes:
 
 ## November 4, 2021
 
-A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
+A new image for Ubuntu 18.04
 
 Version: `21.11.04`
 
@@ -565,7 +565,7 @@ Primary changes:
 
 ## October 7, 2021
 
-A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
+A new image for Ubuntu 18.04
 
 Version: `21.10.07`
 
@@ -582,7 +582,7 @@ Primary changes:
 
 ## August 11, 2021
 
-A new image for [Windows Server 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+A new image for Windows Server 2019
 
 Version: `21.08.11`
 
@@ -596,7 +596,7 @@ Primary changes:
 
 ## July 12, 2021
 
-A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
+A new image for Ubuntu 18.04
 
 Primary changes:
 
@@ -608,7 +608,7 @@ Primary changes:
 
 ## June 22, 2021
 
-A new image for [Windows Server 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+A new image for Windows Server 2019
 
 Version: `21.06.22`
 
@@ -619,7 +619,7 @@ Primary changes:
 
 ## June 1, 2021
 
-A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
+A new image for Ubuntu 18.04
 
 Version: `21.06.01`
 
@@ -636,7 +636,7 @@ Removed several icons from desktop.
 
 ## May 22, 2021
 
-A new image for [Windows Server 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+A new image for Windows Server 2019
 
 Version: `21.05.22`
 
@@ -668,7 +668,7 @@ Dark mode; changed icons on desktop; wallpaper background change.
 
 ## May 12, 2021
 
-A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview)
+A new image for Ubuntu 18.04
 
 Selected version updates include:
 - azcopy 10.10
@@ -706,7 +706,7 @@ sudo systemctl start docker
 
 ## February 24, 2020
 
-The Data Science Virtual Machine (DSVM) images for [Ubuntu 18.04](https://marketplace.microsoft.com/en-us/product/virtual-machines/tidalmediainc.ubuntu-server-18-04-minimal?tab=Overview) and [Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview) images are now available.
+The Data Science Virtual Machine (DSVM) images for Ubuntu 18.04 and Windows 2019 images are now available.
 
 ## October 8, 2019
 

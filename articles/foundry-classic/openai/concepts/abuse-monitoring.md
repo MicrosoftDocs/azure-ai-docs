@@ -1,5 +1,5 @@
 ---
-title: "Azure Direct Models abuse monitoring (classic)"
+title: "Foundry Models sold by Azure abuse monitoring (classic)"
 description: "Learn about the abuse monitoring capabilities of Azure OpenAI (classic)"
 author: alvinashcraft
 ms.author: aashcraft
@@ -10,7 +10,7 @@ ms.date: 12/6/2025
 ms.custom:
   - template-concept, ignite-2024
   - classic-and-new
-manager: nitinme
+manager: mcleans
 
 ai-usage: ai-assisted
 

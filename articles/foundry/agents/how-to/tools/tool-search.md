@@ -1,9 +1,10 @@
 ---
 title: "Enable tool search in a toolbox"
 description: "Use tool search in Microsoft Foundry to help agents dynamically discover relevant tools from a large toolbox, reducing context overhead and improving tool selection accuracy."
-author: zhuoqunli
-ms.author: zhuoqunli
-ms.reviewer: shpeng
+author: mattwojo
+ms.author: mattwoj
+reviewer: lindazqli
+ms.reviewer: zhuoqunli
 ms.date: 07/20/2026
 manager: mcleans
 ms.topic: how-to
@@ -16,9 +17,11 @@ zone_pivot_groups: selection-foundry-tool-search
 
 # Enable tool search in a toolbox
 
-When a toolbox contains many tools, passing all tool definitions to the model on every turn creates three compounding problems: token costs grow with every tool added to the context, the context window fills with definitions the current task doesn't need, and the model picks the wrong tools from an overcrowded list. Tool search solves this by replacing the full tool list with two focused meta-tools—keeping cost flat regardless of toolbox size.
+When a toolbox contains many tools, passing all tool definitions to the model on every turn creates three compounding problems: token costs grow with every tool added to the context, the context window fills with definitions the current task doesn't need, and the model picks the wrong tools from an overcrowded list. Tool search solves this problem by replacing the full tool list with two focused meta-tools, so cost stays flat regardless of toolbox size.
 
-When tool search is enabled, the model receives two built-in meta-tools: `tool_search`, which it calls with a natural-language description of the capability it needs, and `call_tool`, which it uses to invoke any discovered tool by name. Foundry evaluates `tool_search` queries against the full set of tools in the toolbox and returns only the ones that match, keeping the active context focused and relevant.
+When you enable tool search, the model gets two built-in meta-tools: `tool_search`, which it calls with a natural-language description of the capability it needs, and `call_tool`, which it uses to invoke any discovered tool by name. Foundry evaluates `tool_search` queries against the full set of tools in the toolbox and returns only the ones that match, so the active context stays focused and relevant.
+
+For request-scoped discovery of deferred tool definitions, see [Use tool search with the Azure OpenAI Responses API](../../../openai/how-to/tool-search.md).
 
 Use tool search when:
 
@@ -34,19 +37,25 @@ Use tool search when:
 
 ## How tool search works
 
-When you include `{"type": "toolbox_search"}` in a toolbox, all tools in the toolbox are hidden from the initial `tools/list` response. Instead, Foundry injects two meta-tools:
+When you include `{"type": "toolbox_search"}` in a toolbox, the initial `tools/list` response hides all tools in the toolbox. Instead, Foundry adds two meta-tools:
 
-- `tool_search` — the model calls this with a natural-language description of the capability it needs. Foundry evaluates the query and returns the matching tool definitions.
-- `call_tool` — the model uses this to invoke any discovered tool by name.
+- `tool_search` — the model calls this tool with a natural-language description of the capability it needs. Foundry evaluates the query and returns the matching tool definitions.
+- `call_tool` — the model uses this tool to invoke any discovered tool by name.
 
-The model doesn't browse a full tool list—it describes intent, discovers the right tools, and calls them.
+The model doesn't browse a full tool list. It describes intent, discovers the right tools, and calls them.
+
+### Search mechanism
+
+Tool search uses **BM25** (Best Matching 25), a probabilistic ranking algorithm that scores tools based on how well their metadata matches the query. BM25 considers term frequency, inverse document frequency, and document length normalization to rank results. When the model calls `tool_search`, Foundry indexes each tool's name, description, and parameter information, then returns the top-scoring matches for the query.
+
+### Parameters
 
 The `tool_search` function accepts the following parameters:
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `query` | string | Yes | Natural-language description of the capability or task you need a tool for. |
-| `limit` | integer | No | Maximum number of tools to return. Defaults to a platform value when omitted. |
+| `limit` | integer | No | Maximum number of tools to return. Defaults to 5. Maximum is 10. |
 
 The model can call `tool_search` as many times as needed during a single turn. Each call returns only the tools that match the query, so the active context stays focused on what's relevant to the current step. Tools returned by `tool_search` remain callable for the rest of the turn without repeated searching.
 
@@ -55,7 +64,7 @@ The model can call `tool_search` as many times as needed during a single turn. E
 
 ## Enable tool search
 
-Add `{"type": "toolbox_search"}` to your toolbox version's tools list. All other tools in the toolbox are available through tool search — they aren't exposed in the initial tool list the model sees.
+Add `{"type": "toolbox_search"}` to your toolbox version's tools list. All other tools in the toolbox are available through tool search - the initial tool list the model sees doesn't expose them.
 
 :::zone pivot="vscode"
 
@@ -80,14 +89,14 @@ Publishing a new toolbox creates its first version. That version becomes the def
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool, ToolSearchTool
+from azure.ai.projects.models import MCPTool, ToolSearchToolboxTool
 
 client = AIProjectClient(
     endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
-# ToolSearchTool() enables tool search — other tools in the toolbox are discovered on
+# ToolSearchToolboxTool() enables tool search — other tools in the toolbox are discovered on
 # demand through tool_search instead of being listed up front. Add as many MCP servers as you need;
 # tool search keeps the agent's initial tool surface small regardless of toolbox size.
 inner_mcp_tool = MCPTool(
@@ -100,7 +109,7 @@ inner_mcp_tool = MCPTool(
 toolbox_version = client.beta.toolboxes.create_version(
     name="my-toolbox",
     description="Large toolbox with tool search enabled",
-    tools=[inner_mcp_tool, ToolSearchTool()],
+    tools=[inner_mcp_tool, ToolSearchToolboxTool()],
 )
 print(f"Created toolbox `{toolbox_version.name}` (version {toolbox_version.version})")
 ```
@@ -161,12 +170,12 @@ DefaultAzureCredential credential = new();
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
 AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
 
-// ToolSearchTool enables tool search — other tools are discovered on demand via tool_search
+// ToolSearchToolboxTool enables tool search — other tools are discovered on demand via tool_search
 ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
     serverLabel: "github",
     serverUri: new Uri("https://api.githubcopilot.com/mcp"),
     toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)));
-ToolSearchTool searchTool = new()
+ToolSearchToolboxTool searchTool = new()
 {
     Name = "ToolBoxSearch",
     Description = "Search for tools by capability"
@@ -319,7 +328,7 @@ Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotoco
 
 ## Fine-tune tool discovery
 
-Tool search works without additional configuration. For predictable usage patterns, you can tune how specific tools are surfaced and indexed.
+Tool search works without extra configuration. For predictable usage patterns, tune how specific tools are surfaced and indexed.
 
 :::zone pivot="vscode"
 
@@ -427,7 +436,7 @@ Use the same `"*"` wildcard key inside `tool_configs` on the JavaScript MCP tool
 
 ### Add search keywords
 
-If a tool's MCP description doesn't match the vocabulary users naturally use, add keywords with `additional_search_text`. The extra text is used only for search ranking—it's never exposed to the model in the tool schema.
+If a tool's MCP description doesn't match the vocabulary users naturally use, add keywords by using `additional_search_text`. The extra text is used only for search ranking - it's never exposed to the model in the tool schema.
 
 :::zone pivot="python"
 
@@ -512,7 +521,7 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 
 - **All toolbox tools are hidden from the initial listing.** When `toolbox_search` is in a toolbox, no other toolbox tools appear in `tools/list`. The model discovers them only through `tool_search`. Tools added directly to an agent outside the toolbox are unaffected and remain visible.
 - **Tool descriptions drive match quality.** Foundry uses tool names and descriptions to evaluate search queries. A tool without a description, or with a vague one, is unlikely to be returned even for relevant queries. Write descriptions that describe what the tool does and the kinds of tasks it handles.
-- **`tool_search` doesn't count toward tool limits.** It's injected by the platform and doesn't consume the unnamed-tool-per-type slot.
+- **`tool_search` doesn't count toward tool limits.** The platform injects it and it doesn't consume the unnamed-tool-per-type slot.
 - **Multiple searches per turn are supported.** The model can call `tool_search` more than once in a single turn if different steps need different capabilities.
 - **Returned tools persist for the turn.** Once a tool is returned by `tool_search`, the model can call it multiple times without re-searching.
 - **Pinned tools always appear in `tools/list`.** Tools with `"pin": True` in `tool_configs` appear alongside `tool_search` and `call_tool` on every turn, regardless of search queries.
@@ -522,7 +531,7 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 ## Best practices
 
 - **Add a description to every tool.** Tool search uses descriptions to match tools to queries. A missing or vague description causes poor discovery.
-- **Use tool search for large toolboxes.** This is the most effective configuration when you have 10 or more tools.
+- **Use tool search for large toolboxes.** This configuration is most effective when you have 10 or more tools.
 - **Use tool search together with toolbox versioning.** Test your configuration on a version-specific endpoint before promoting it to default.
 - **Mention tool search in the system prompt.** Guide the model to call `tool_search` before concluding that a capability is unavailable. For example: *"If you need a tool that isn't in your current list, call `tool_search` with a description of what you need before responding that you can't help."*
 - **Pin always-needed tools.** Use `"pin": True` in `tool_configs` for tools called on nearly every turn to skip the search round-trip.

@@ -1,34 +1,45 @@
 ---
 title: Document translation SDKs
 titleSuffix: Foundry Tools
-description: Document translation software development kits (SDKs) expose Document translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
+description: Use the Document translation SDKs for C#, Java, and Python to add batch and synchronous document translation to your applications.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
-ms.custom: devx-track-python
+manager: mcleans
+ms.service: azure-translator-foundry-tools
+ms.custom: devx-track-python, devx-track-java
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 07/30/2026
 ms.author: lajanuar
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
-
+<!-- markdownlint-disable MD025 -->
 # Document translation SDKs
 
-Document translation is a cloud-based REST API feature of the Azure Translator. The Document translation API enables quick and accurate source-to-target whole document translations, asynchronously, in supported languages and various file formats. The Document translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document translation REST API capabilities into your applications.
+Document translation is a cloud-based feature of Azure Translator in Foundry Tools. It supports asynchronous batch translation and synchronous single-document translation across supported languages and file formats. The Document translation software development kits (SDKs) help you integrate these REST API capabilities into your applications.
+
+## Prerequisites
+
+To use a Document translation SDK, you need:
+
+* An active [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* A [single-service Azure Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation).
+* The custom endpoint and key for your Translator resource.
+* For asynchronous batch translation, an Azure Blob Storage account with source and target containers. For authorization options, see [Storage container authorization](quickstarts/client-library-sdks.md#storage-container-authorization).
 
 ## Supported languages
 
 Document translation SDK supports the following programming languages:
 
-| Language → SDK version | Package|Client library| Supported API version|
-|:----------------------|:----------|:----------|:-------------|
-| `.NET/C# → 2.0.0`| [NuGet](https://www.nuget.org/packages/Azure.AI.Translation.Document/2.0.0) | [Azure SDK for .NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true) | 
-| `Python → 1.0.0`|[PyPi](https://pypi.org/project/azure-ai-translation-document/1.0.0/)|[Azure SDK for Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python-preview&preserve-view=true)|
+| Language and SDK version | Package | Client library | Default API version |
+| --- | --- | --- | --- |
+| `.NET/C# 2.0.0` | [NuGet](https://www.nuget.org/packages/Azure.AI.Translation.Document/2.0.0) | [Azure SDK for .NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true) | `2024-05-01` |
+| `Python 2.0.0` | [PyPI](https://pypi.org/project/azure-ai-translation-document/2.0.0/) | [Azure SDK for Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true) | `2026-03-01` |
+| `Java 2.0.0` | [Maven Central](https://central.sonatype.com/artifact/com.azure/azure-ai-translation-document/2.0.0) | [Azure SDK for Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true) | `2026-03-01` |
 
 ## Changelog and release history
 
@@ -46,13 +57,23 @@ This section provides a version-based description of Document translation featur
 
 ### [Python](#tab/python)
 
-**Version 1.0.0** </br>
+**Version 2.0.0** </br>
 
 ##### [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-document/CHANGELOG.md)
 
 ##### [README](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-document/README.md)
 
 ##### [Samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/translation/azure-ai-translation-document/samples)
+
+### [Java](#tab/java)
+
+**Version 2.0.0** </br>
+
+##### [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/translation/azure-ai-translation-document/CHANGELOG.md)
+
+##### [README](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/translation/azure-ai-translation-document/README.md)
+
+##### [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/translation/azure-ai-translation-document/src/samples/java/com/azure/ai/translation/document)
 
 ---
 
@@ -74,8 +95,18 @@ Install-Package Azure.AI.Translation.Document -Version 2.0.0
 
 ### [Python](#tab/python)
 
-```python
-pip install azure-ai-translation-document==1.0.0
+```bash
+pip install azure-ai-translation-document==2.0.0
+```
+
+### [Java](#tab/java)
+
+```xml
+<dependency>
+  <groupId>com.azure</groupId>
+  <artifactId>azure-ai-translation-document</artifactId>
+  <version>2.0.0</version>
+</dependency>
 ```
 
 ---
@@ -94,7 +125,18 @@ using Azure.AI.Translation.Document;
 
 ```python
 from azure.ai.translation.document import DocumentTranslationClient
+from azure.ai.translation.document import SingleDocumentTranslationClient
 from azure.core.credentials import AzureKeyCredential
+```
+
+### [Java](#tab/java)
+
+```java
+import com.azure.ai.translation.document.DocumentTranslationClient;
+import com.azure.ai.translation.document.DocumentTranslationClientBuilder;
+import com.azure.ai.translation.document.SingleDocumentTranslationClient;
+import com.azure.ai.translation.document.SingleDocumentTranslationClientBuilder;
+import com.azure.core.credential.AzureKeyCredential;
 ```
 
 ---
@@ -121,7 +163,7 @@ DocumentTranslationClient client = new DocumentTranslationClient(new Uri(endpoin
 private static readonly string endpoint = "<your-custom-endpoint>";
 private static readonly string key = "<your-key>";
 
-SingleDocumentTranslationClient client = new SingleDocumentTranslationClient(new Uri(endpoint), new AzureKeyCredential(apiKey));
+SingleDocumentTranslationClient client = new SingleDocumentTranslationClient(new Uri(endpoint), new AzureKeyCredential(key));
 
 ```
 
@@ -132,20 +174,49 @@ Create an instance of the `DocumentTranslationClient` object to interact with th
 ***Asynchronous batch translation***
 
 ```python
-  endpoint = "<endpoint>"
-  key = "<apiKey>"
+endpoint = "<endpoint>"
+key = "<api-key>"
 
-  client = DocumentTranslationClient(endpoint, AzureKeyCredential(key))
+client = DocumentTranslationClient(endpoint, AzureKeyCredential(key))
 
 ```
 
 ***Synchronous single document translation***
 
 ```python
-  endpoint = "<endpoint>"
-  key = "<apiKey>"
+endpoint = "<endpoint>"
+key = "<api-key>"
 
-  client = SingleDocumentTranslationClient(endpoint, AzureKeyCredential(key))
+client = SingleDocumentTranslationClient(endpoint, AzureKeyCredential(key))
+```
+
+### [Java](#tab/java)
+
+Create a `DocumentTranslationClient` for batch translation or a `SingleDocumentTranslationClient` for synchronous translation.
+
+***Asynchronous batch translation***
+
+```java
+String endpoint = "<endpoint>";
+String key = "<api-key>";
+
+DocumentTranslationClient client = new DocumentTranslationClientBuilder()
+    .endpoint(endpoint)
+    .credential(new AzureKeyCredential(key))
+    .buildClient();
+```
+
+***Synchronous single document translation***
+
+```java
+String endpoint = "<endpoint>";
+String key = "<api-key>";
+
+SingleDocumentTranslationClient client =
+    new SingleDocumentTranslationClientBuilder()
+        .endpoint(endpoint)
+        .credential(new AzureKeyCredential(key))
+        .buildClient();
 
 ```
 
@@ -165,11 +236,11 @@ Document translation batch interfaces require the following input:
 
 ```csharp
 
-Uri sourceUri = new Uri("<your-source container-url");
+Uri sourceUri = new Uri("<your-source-container-url>");
 Uri targetUri = new Uri("<your-target-container-url>");
 string targetLanguage = "<target-language-code>";
 
-DocumentTranslationInput input = new DocumentTranslationInput(sourceUri, targetUri, targetLanguage)
+DocumentTranslationInput input = new DocumentTranslationInput(sourceUri, targetUri, targetLanguage);
 ```
 
 ***Synchronous single document translation***
@@ -200,6 +271,10 @@ result = poller.result()
 
 [Single document translation](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-document/samples/sample_single_document_translation.py)
 
+### [Java](#tab/java)
+
+The Java client library supports asynchronous batch translation and synchronous single-document translation. For complete examples, see the [Java samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/translation/azure-ai-translation-document/src/samples/java/com/azure/ai/translation/document).
+
 ---
 
 ## Help options
@@ -214,4 +289,4 @@ The [`Microsoft Q&A`](/answers/tags/132/azure-translator) and [Stack Overflow](h
 ## Next steps
 
 >[!div class="nextstepaction"]
-> [**Document translation SDK quickstart**](quickstarts/client-library-sdks.md) [**Document translation v1.1 REST API reference**](reference/rest-api-guide.md)
+> [**Document translation SDK quickstart**](quickstarts/client-library-sdks.md) [**Document translation v1.1 REST API reference**](reference/rest-api-guide.md).

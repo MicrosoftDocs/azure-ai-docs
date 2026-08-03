@@ -3,8 +3,8 @@ title: What is the named entity recognition (NER) feature in Azure Language?
 titleSuffix: Foundry Tools
 description: An overview of the named entity recognition feature in Azure Language, which helps you extract categories of entities in text.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 03/30/2026
 ms.author: lajanuar

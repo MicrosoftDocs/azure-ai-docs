@@ -2,7 +2,7 @@
 title: "Custom Vision Services Retirement"
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: include
 ms.date: 09/24/2025

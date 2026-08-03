@@ -17,13 +17,16 @@ ms.custom: doc-kit-assisted, references_regions
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
+> [!TIP]
+> If you're using the new Foundry portal experience, see [Deploy Hugging Face models in Microsoft Foundry (preview)](../../foundry/foundry-models/how-to/hugging-face-models.md) instead.
+
 Microsoft has partnered with Hugging Face to bring open-source models from Hugging Face Hub to the Foundry model catalog. Hugging Face is the creator of Transformers, a widely popular library for building large language models. The Hugging Face Hub has thousands of open-source models. The integration with Microsoft Foundry enables you to deploy open-source models of your choice to secure and scalable inference infrastructure on Azure.
 
 You can search from thousands of Transformers models in the model catalog and deploy models to managed compute endpoints (also called managed online endpoints). Once deployed, the managed online endpoint provides a secure REST API to score your model in real time.
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. For more information, see [Create a project](hub-create-projects.md).
 - Azure role-based access controls (Azure RBAC). Your user account must be assigned the **Azure AI Developer** role on the resource group. For more information, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 - Virtual machine (VM) quota in your Azure subscription for the specific VM SKUs needed to run your model. Each deployment consumes VM core quota on a per-region basis.

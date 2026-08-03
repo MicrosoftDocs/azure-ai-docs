@@ -10,11 +10,13 @@ ms.custom:
   - mode-arm
   - devx-track-bicep
   - ignite-2023
-ms.date: 03/04/2025
+ms.date: 06/10/2026
 ms.update-cycle: 365-days
 ---
 
 # Quickstart: Deploy Azure AI Search using Bicep
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 In this quickstart, you use a Bicep file to deploy an Azure AI Search service in the Azure portal.
 

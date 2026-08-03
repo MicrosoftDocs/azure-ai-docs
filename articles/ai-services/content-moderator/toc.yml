@@ -5,6 +5,8 @@
   items:
   - name: What is Content Moderator?
     href: overview.md
+  - name: Migrate from Azure Content Moderator to Azure AI Content Safety
+    href: ../content-moderator/content-moderator.md
   - name: Language support
     href: language-support.md
   - name: Pricing

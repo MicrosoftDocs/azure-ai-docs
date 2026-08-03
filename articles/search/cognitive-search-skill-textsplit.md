@@ -10,7 +10,9 @@ ms.date: 01/07/2026
 ms.update-cycle: 365-days
 ---
 
-# Text Split cognitive skill
+# Text Split skill
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT] 
 > Some parameters are in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports these parameters.

@@ -35,6 +35,7 @@ Therefore you should...
 * Grant your admin the **Foundry Account Owner** on resource scope
 * Grant your developer the **Reader** role on Foundry resource scope and **Foundry User** on project scope
 * Grant your project manager the **Foundry Project Manager** role on resource scope
+* Grant your agent consumers the **Foundry Agent Consumer** role on project scope (or agent scope for per-agent control)
 
 ### Use Microsoft Entra groups with Foundry
 
@@ -51,6 +52,7 @@ Complete the following steps to use Microsoft Entra ID groups with Foundry:
 Common examples:
 
 * To build agents, run traces, and use core Foundry capabilities, assign **Foundry User** to the Microsoft Entra group.
+* To allow interaction with agents without broader development access, assign **Foundry Agent Consumer** to the Microsoft Entra group.
 * To use Tracing and Monitoring features, assign **Reader** on the connected Application Insights resource to the same group.
 
 To learn more about Microsoft Entra ID groups, prerequisites, and limitations, refer to:

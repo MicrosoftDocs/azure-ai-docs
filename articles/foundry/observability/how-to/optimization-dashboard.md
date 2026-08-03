@@ -2,6 +2,7 @@
 title: "Monitoring dashboard insights in Microsoft Foundry with Ask AI"
 description: "Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making."
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 04/14/2026
 ms.reviewer: hanch

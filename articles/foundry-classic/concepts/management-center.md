@@ -5,6 +5,7 @@ ms.author: sgilley
 author: sdgilley
 ms.reviewer: aashishb
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024
   - dev-focus

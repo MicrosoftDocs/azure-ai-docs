@@ -2,10 +2,10 @@
 title: Create a batch transcription - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use Azure Speech in Foundry Tools for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/30/2026
 zone_pivot_groups: speech-cli-rest
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 With batch transcriptions, you submit [audio data](batch-transcription-audio-data.md) in a batch. The service transcribes the audio data and stores the results in a storage container. You can then [retrieve the results](batch-transcription-get.md) from the storage container.
 
-Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors. The service doesn't provide a way to estimate the time it takes to transcribe a batch of audio data.
+Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors.
 
 > [!TIP]
 > If you need consistent fast speed for audio files less than 2 hours long and less than 300 MB in size, consider using the [fast transcription API](./fast-transcription-create.md) instead. 
@@ -43,10 +43,14 @@ To create a batch transcription job, use the [Transcriptions - Submit](/rest/api
 
 For more information, see [Request configuration options](#request-configuration-options).
 
+> [!TIP]
+> A transcription request can contain URIs for one or more audio files. Separate short and long audio files into different requests. Long audio files require more processing time and the service might retry them multiple times due to insufficient computing resources. This condition prolongs the overall completion time of that request. However, bundling many long audio files together in a single request is a good way to save time.
+
+
 Make an HTTP POST request that uses the URI as shown in the following [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) example.
 
 - Replace `YourSpeechResoureKey` with your Microsoft Foundry resource key.
-- Replace `YourServiceRegion` with your Microsoft Foundry resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Set the request body properties as previously described.
 
 ```azurecli-interactive
@@ -68,20 +72,20 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
     },
     "timeToLiveHours": 48
   }
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35?api-version=2024-11-15",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35?api-version=2024-11-15",
   "displayName": "My Transcription 2",
   "locale": "en-US",
   "createdDateTime": "2025-05-24T03:20:39Z",
   "lastActionDateTime": "2025-05-24T03:20:39Z",
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35/files?api-version=2024-11-15"
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35/files?api-version=2024-11-15"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
@@ -138,12 +142,12 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/7f4232d5-9873-47a7-a6f7-4a3f00d00dc0/files"
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/7f4232d5-9873-47a7-a6f7-4a3f00d00dc0/files"
   },
   "properties": {
     "diarizationEnabled": false,
@@ -253,12 +257,12 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
   "locale": "en-US",
   "displayName": "My Transcription",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
   }
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
 ```
 
 ::: zone-end
@@ -266,7 +270,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
 ::: zone pivot="speech-cli"
 
 ```azurecli
-spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
 ```
 
 ::: zone-end
@@ -328,13 +332,13 @@ You can make a [Models - List Base Models](/rest/api/speechtotext/models/list-ba
 Make an HTTP GET request as shown in the following example for the `eastus` region. Replace `YourSpeechResoureKey` with your Microsoft Foundry resource key. Replace `eastus` if you're using a different region.
 
 ```azurecli-interactive
-curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 By default, only the 100 oldest base models are returned. Use the `skip` and `top` query parameters to page through the results. For example, the following request returns the next 100 base models after the first 100.
 
 ```azurecli-interactive
-curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15&skip=100&top=100" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base?api-version=2024-11-15&skip=100&top=100" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 ::: zone-end
@@ -355,7 +359,7 @@ The `displayName` property of a Whisper model contains "Whisper" as shown in thi
 ```json
 {
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00/manifest?api-version=2024-11-15"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00/manifest?api-version=2024-11-15"
   },
   "properties": {
     "deprecationDates": {
@@ -376,7 +380,7 @@ The `displayName` property of a Whisper model contains "Whisper" as shown in thi
     },
     "chargeForAdaptation": true
   },
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15",
   "displayName": "20240228 Whisper Large V2",
   "description": "OpenAI Whisper Model in Azure Speech (Whisper v2-large)",
   "locale": "en-US",
@@ -399,12 +403,12 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
   "locale": "en-US",
   "displayName": "My Transcription",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
   },
-}'  "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
 ```
 
 ::: zone-end
@@ -416,7 +420,7 @@ You set the full model URI as shown in this example for the `eastus` region. Rep
 Set the required `api-version` parameter to `v3.2`. The Speech CLI doesn't support version `2024-11-15` or later yet, so you must use `v3.2` for now.
 
 ```azurecli
-spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb" --api-version v3.2
+spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb" --api-version v3.2
 ```
 
 ::: zone-end
@@ -509,11 +513,11 @@ curl -X POST \
     },
     "webUrl": "https://your-endpoint.example.com/webhook"
   }' \
-  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/webhooks?api-version=2024-11-15"
+  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/webhooks?api-version=2024-11-15"
 ```
 
 - Replace `YourSpeechResourceKey` with your Microsoft Foundry resource key.
-- Replace `YourServiceRegion` with your resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace the `webUrl` with your publicly reachable HTTPS endpoint URL.
 
 For the full list of supported event types, see the [Web hooks reference](/rest/api/speechtotext/web-hooks).

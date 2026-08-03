@@ -3,7 +3,7 @@ title: "How to Use Image Generation Models from OpenAI"
 description: "Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 04/17/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -142,6 +142,9 @@ For `gpt-image-2`, arbitrary resolutions are supported with the following constr
 - Long edge up to 3840 px (4K support).
 - Aspect ratio up to 3:1.
 - Total pixel count between 655,360 and 8,294,400.
+
+> [!NOTE]
+> The sizing constraints only apply when you specify a size. If `size=auto`, the generated image might have dimensions that don't satisfy these constraints (for example, an edge might not be a multiple of 16 pixels).
 
 #### Quality
 

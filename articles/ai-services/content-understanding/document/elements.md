@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - ignite-2025

@@ -28,6 +28,9 @@ Azure Machine Learning supports managed virtual network (managed virtual network
 
 Securing your workspace with a *managed network* provides network isolation for __outbound__ access from the workspace and managed computes. An *Azure Virtual Network that you create and manage* provides network isolation __inbound__ access to the workspace. For example, you create a private endpoint for the workspace in your Azure Virtual Network. Any clients connecting to the virtual network can access the workspace through the private endpoint. When you run jobs on managed computes, the managed network restricts what the compute can access.
 
+> [!NOTE]
+> Use `managedNetworkKind v1` when enabling managed virtual network on your Machine Learning workspace. Don't use `managedNetworkKind v2`, which is in preview.
+
 ## Managed virtual network architecture
 
 When you enable managed virtual network isolation, the workspace creates a managed virtual network. Managed compute resources you create for the workspace automatically use this managed virtual network. The managed virtual network can use private endpoints for Azure resources that your workspace uses, such as Azure Storage, Azure Key Vault, and Azure Container Registry. 
@@ -1132,6 +1135,10 @@ If you plan to use __HuggingFace models__ with Azure Machine Learning, add outbo
 * `production.cloudflare.docker.com`
 * `cdn.auth0.com`
 * `cdn-lfs.huggingface.co`
+* `xethub.hf.co`
+* `*.xethub.hf.co`
+* `huggingface.co`
+* `*.huggingface.co`
 
 ### Scenario: Enable access from selected IP Addresses
 

@@ -3,13 +3,13 @@ title: "Microsoft Foundry Playgrounds"
 description: "Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 02/10/2026
+ms.date: 07/28/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: lebaro #amipatel
-manager: nitinme
+manager: mcleans
 reviewer: lebaro-msft #amibp
 ms.custom:
   - build-2025, pilot-ai-workflow-jan-2026
@@ -35,7 +35,7 @@ Highlights of the Foundry playgrounds experience include:
 
 - **AgentOps support** for evaluations and tracing in the **Agents playground.**
 - **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Foundry to VS Code for multilingual code samples.
-- **Images playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
+- **Images playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), gpt-image-2, and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
 - **Video playground** for Azure OpenAI Sora-2.
 
 ## Summary of playground capabilities
@@ -237,8 +237,7 @@ The images playground is ideal for developers who build image generation flows. 
 You can use the images playground with these models:
 
 - [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) and gpt-image-2 from Azure OpenAI.
-- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
-- [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
+- [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs), [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs), FLUX.2-pro, and FLUX.2-flex from Black Forest Labs.
 
 Follow these steps to use the images playground:
 
@@ -269,7 +268,7 @@ By using the images playground, you can explore and validate the following aspec
     - How can I balance creativity versus prompt fidelity?
 
 - **Model Comparison**
-    - How do results differ between models, such as SDXL versus DALL·E?
+    - How do results differ between models, such as gpt-image-1 versus FLUX.1-Kontext-pro?
     - Which model performs better for realistic faces versus artistic compositions?
 
 - **Composition Control**
@@ -296,6 +295,7 @@ By using the images playground, you can explore and validate the following aspec
 
 ## Related content
 
+- [Instant access to models in Microsoft Foundry (preview)](instant-models.md)
 - [Understanding the agent development lifecycle](../agents/concepts/development-lifecycle.md)
 - [Deploy models in Microsoft Foundry](../../foundry-classic/how-to/deploy-models-managed.md)
 - [Azure AI Content Safety overview](/azure/ai-services/content-safety/overview)

@@ -3,14 +3,15 @@ title: "How to access on-premises resources (classic)"
 description: "Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources. (classic)"
 manager: mcleans
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - hub-only
   - dev-focus
 ms.topic: how-to
 ms.date: 01/06/2026
 ms.reviewer: meerakurup 
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Microsoft Foundry.
 ---

@@ -2,10 +2,10 @@
 title: Batch transcription overview - Speech service
 titleSuffix: Foundry Tools
 description: Batch transcription is ideal if you want to transcribe a large quantity of audio in storage, such as Azure blobs. Then you can asynchronously retrieve transcriptions.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 11/21/2025
 ms.devlang: csharp
@@ -47,6 +47,20 @@ To use the batch transcription REST API:
 **Avoid peak traffic for API calls**: Minimize the `ListFiles`, `Update`, and `Get` API calls during peak traffic times. These calls behave similarly to the `Create` call. 
 
 **Load balancing**: To optimize throughput for large-scale batch transcription, consider distributing your jobs across multiple supported Azure regions. This approach can help balance load and reduce overall processing time, provided your data and compliance requirements allow for multiregion usage. Review [region availability](./regions.md) and ensure your storage and resources are accessible from each region you plan to use.
+
+## Roughly estimate the latency
+
+The latency is the end-to-end time it takes to transcribe a batch of audio data. It's hard to estimate because it's determined by multiple factors: 
+- The total audio length included in the request.
+- Whether additional features are required, such as diarization and language identification.
+- The length of the job queue in the system at that time.
+- The system's hardware resource configuration.
+
+But we are confident that the **90th percentile latency is less than 6 hours**. We define a normalized latency calculation method as follows:
+
+**Normalized Latency = ProcessDuration - AudioLength/5**
+
+For example, when the **AudioLength** is 120 minutes and the end-to-end **ProcessDuration** is 30 minutes: **30 - 120/5 = 6**, where the factor of 5 means the system processes audio at roughly 5x real-time speed. The 6 minutes represents the queue wait time under normal circumstances, which doesn't exceed six hours. In extreme cases, it might reach 24 hours or longer, as the pending queue might be very long, making the end-to-end **ProcessDuration** longer.
 
 
 ## Related content

@@ -3,9 +3,9 @@ title: Face detection - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn concepts related to the face detection feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/26/2025
 ms.author: pafarley

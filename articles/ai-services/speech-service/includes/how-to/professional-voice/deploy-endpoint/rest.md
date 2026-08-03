@@ -3,10 +3,11 @@ title: include file
 description: include file
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 5/19/2025
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 After you've successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom voice endpoint. 
@@ -24,7 +25,7 @@ To create an endpoint, use the [Endpoints_Create](/rest/api/aiservices/speechapi
 
 Make an HTTP PUT request using the URI as shown in the following [Endpoints_Create](/rest/api/aiservices/speechapi/endpoints/create) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `EndpointId` with an endpoint ID of your choice. The ID must be a GUID and must be unique within your Speech resource. The ID will be used in the project's URI and can't be changed later. 
 
 ```azurecli-interactive
@@ -32,7 +33,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "description": "Endpoint for Jessica voice",
   "projectId": "ProjectId",
   "modelId": "JessicaModelId",
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/EndpointId?api-version=2026-01-01"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/endpoints/EndpointId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -55,7 +56,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Endpoints_Create](/rest/api/aiservices/speechapi/endpoints/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
+Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
 Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
@@ -87,11 +88,11 @@ To suspend an endpoint, use the [Endpoints_Suspend](/rest/api/aiservices/speecha
 
 Make an HTTP POST request using the URI as shown in the following [Endpoints_Suspend](/rest/api/aiservices/speechapi/endpoints/suspend) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `YourEndpointId` with the endpoint ID that you received when you created the endpoint.
 
 ```azurecli-interactive
-curl -v -X POST "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId:suspend?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
+curl -v -X POST "https://YourResourceName.cognitiveservices.azure.com/customvoice/endpoints/YourEndpointId:suspend?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
 ```
 
 You should receive a response body in the following format:
@@ -117,11 +118,11 @@ To resume an endpoint, use the [Endpoints_Resume](/rest/api/aiservices/speechapi
 
 Make an HTTP POST request using the URI as shown in the following [Endpoints_Resume](/rest/api/aiservices/speechapi/endpoints/resume) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `YourEndpointId` with the endpoint ID that you received when you created the endpoint.
 
 ```azurecli-interactive
-curl -v -X POST "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId:resume?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
+curl -v -X POST "https://YourResourceName.cognitiveservices.azure.com/customvoice/endpoints/YourEndpointId:resume?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
 ```
 
 You should receive a response body in the following format:
@@ -147,11 +148,11 @@ To delete an endpoint, use the [Endpoints_Delete](/rest/api/aiservices/speechapi
 
 Make an HTTP DELETE request using the URI as shown in the following [Endpoints_Delete](/rest/api/aiservices/speechapi/endpoints/delete) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `YourEndpointId` with the endpoint ID that you received when you created the endpoint.
 
 ```azurecli-interactive
-curl -v -X DELETE "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey"
+curl -v -X DELETE "https://YourResourceName.cognitiveservices.azure.com/customvoice/endpoints/YourEndpointId?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey"
 ```
 
 You should receive a response header with status code 204.

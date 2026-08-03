@@ -1,7 +1,7 @@
 ---
 title: "Deep research with the Responses API"
 description: "Learn how to use Azure OpenAI deep research"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

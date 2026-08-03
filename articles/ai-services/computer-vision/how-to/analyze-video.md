@@ -2,10 +2,10 @@
 title: Analyze videos in near real time - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn how to perform near real-time analysis on frames that are taken from a live video stream by using Azure Vision in Foundry Tools API.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.devlang: csharp
@@ -245,6 +245,6 @@ The image-, voice-, video-, and text-understanding capabilities of **VideoFrameA
 
 In this article, you learned how to run near real-time analysis on live video streams by using the Face and Azure Vision.
 
-Feel free to provide feedback and suggestions in the [GitHub repository](https://github.com/Microsoft/Cognitive-Samples-VideoFrameAnalysis/). To provide broader API feedback, go to our [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858) site.
+Feel free to provide feedback and suggestions in the [GitHub repository](https://github.com/Microsoft/Cognitive-Samples-VideoFrameAnalysis/). To provide broader API feedback, go to our [UserVoice](https://feedback.azure.com/d365community/forum/aaaabbbb-0000-cccc-1111-dddd2222eeee) site.
 
 - [Call the Image Analysis API (how to)](call-analyze-image.md)

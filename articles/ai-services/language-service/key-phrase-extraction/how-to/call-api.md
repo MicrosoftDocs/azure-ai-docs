@@ -3,10 +3,10 @@ title: how to call the Key Phrase Extraction API
 titleSuffix: Foundry Tools
 description: How to extract key phrases by using the Key Phrase Extraction API.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---

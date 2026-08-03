@@ -5,7 +5,7 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 07/29/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -20,8 +20,8 @@ The playground and free API usage for GitHub Models are [rate limited](https://d
 You need:
 
 - A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. Alternatively, you can wait until you're ready to deploy your model to production, at which point you'll be prompted to create or update your Azure account to a standard account.
-- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin. Alternatively, you can wait until you're ready to deploy your model to production, at which point you'll be prompted to create or update your Azure account to a standard account.
+- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community). [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
  
 
 ## Upgrade to Foundry Models
@@ -41,17 +41,13 @@ To get the key and endpoint:
 
 1. In the "Configure authentication" step, select **Get Microsoft Foundry key** from the "Azure AI" section.
 
-    :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="A screenshot showing how to get the Azure AI production key from the playground of a GitHub Model." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
+    :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="Screenshot that shows how to get the Microsoft Foundry key from the playground of a GitHub model." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
 
 1. If you're already signed in to your Azure account, skip this step. However, if you don't have an Azure account or you're not signed in to your account, follow these steps:
 
     1. If you don't have an Azure account, select **Create my account** and follow the steps to create one.
 
-    1. Alternatively, if you have an Azure account, select **Sign back in**. If your existing account is a free account, you first have to upgrade to a standard plan. 
-
-    1. Return to the model's playground and select **Get Microsoft Foundry key** again. 
-
-    1. Sign in to your Azure account.
+    1. Alternatively, if you have an Azure account, select **Sign back in** to sign in to your Azure account. If your existing account is a free account, you first have to upgrade to a standard plan. 
 
 1.  You're taken to [Foundry > GitHub](https://ai.azure.com/GitHub) and land on the home page in a Foundry project.
 
@@ -79,8 +75,8 @@ Foundry Models supports features that aren't available in GitHub Models:
 
 | Issue | Resolution |
 | --- | --- |
-| Model not available in your region | Check the model's region availability on its [model catalog page](https://ai.azure.com/explore/models) and choose a supported region. |
-| Authentication error after key swap | Verify you copied the correct key from the Foundry portal. Select **Project settings** > **Keys and endpoints** to view your keys. |
+| Model not available in your region | Check the model's region availability by selecting **View availability** in the **Quick facts** section of its model card. Switch to a project in a supported region. |
+| Authentication error after key swap | Verify you copied the correct key from the Foundry portal. On the Foundry homepage, copy the **API key** and **Project endpoint** to view your key and endpoint. |
 | Rate limit errors after upgrade | Foundry Models rate limits depend on your [deployment type](../concepts/deployment-types.md). Scale up or choose a higher-throughput deployment. |
 
 ## Related content

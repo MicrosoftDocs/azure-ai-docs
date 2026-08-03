@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Deprecated Cognitive Skills in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This document describes cognitive skills that are considered deprecated (retired). Use the following guide for the contents:
 
 * Skill Name: The name of the skill to be deprecated; it maps to the @odata.type attribute.

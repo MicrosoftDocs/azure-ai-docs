@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Monitor query requests in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to measure query performance and volume using built-in metrics and diagnostic logging. It also explains how to get the query strings entered by application users.
 
 The Azure portal shows basic metrics about query latency, query load (QPS), and throttling. Historical data that feeds into these metrics can be accessed in the Azure portal for 30 days. For longer retention, or to report on operational data and query strings, you must [enable diagnostic logging](search-monitor-enable-logging.md) and choose a storage option for persisting logged operations and metrics. We recommend **Log Analytics workspace** as a destination for logged operations. Kusto queries and data exploration target a Log Analytics workspace.

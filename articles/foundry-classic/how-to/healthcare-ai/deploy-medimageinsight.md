@@ -2,13 +2,13 @@
 title: "Deploy MedImageInsight for Medical Image Embeddings (classic)"
 description: "Deploy MedImageInsight to generate medical image embeddings for X-Ray, CT, MRI, and more. Get step-by-step deployment guidance and API examples. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.custom: dev-focus
 ai-usage: ai-assisted
@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
+[!INCLUDE [health-ai-models-meddev-disclaimer](includes/health-ai-models-meddev-disclaimer.md)]
 
 MedImageInsight is a healthcare AI model that generates embeddings for medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. This article shows you how to deploy MedImageInsight as an online endpoint for real-time inference and send API requests to generate medical image embeddings. The steps you take are:
 
@@ -32,7 +32,7 @@ To learn more about MedImageInsight, see [Learn more about the model](#learn-mor
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 

@@ -8,15 +8,39 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
-## Using the Agent Framework for local orchestration
+## Agent Framework
 
-Microsoft Agent Framework is an open-source SDK for building multi-agent systems in code (for example, .NET and Python) with a cloud-provider-agnostic interface.
+[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK for C#/.NET and Python that provides unified multi-agent orchestration and consistent abstractions for building agents and multi-agent systems. It's the recommended orchestration layer for [Hosted agents](../agents/overview.md#hosted-agents) in Foundry.
 
-Use Agent Framework when you want to define and orchestrate agents locally. Pair it with the Foundry SDK when you want those agents to run against Foundry models or when you want Agent Framework to orchestrate agents hosted in Foundry.
+- If you previously used AutoGen or Semantic Kernel for multi-agent orchestration (coordinating multiple agents to work together on tasks), consider Agent Framework as your primary orchestration layer. It helps you avoid combining multiple orchestration SDKs that solve similar coordination tasks, which can add conflicting abstractions and dependencies.
+- If you already have substantial existing orchestration code, depend on product-specific features, or face complex migration requirements, evaluate those requirements before consolidating on Agent Framework.
 
-For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview).
+### Run your code as a Hosted agent
+
+The main story for code-based agents in Foundry is [Hosted agents](../agents/overview.md#hosted-agents). Write your agent with Agent Framework, package it as a container image or zip of your source code, and let Foundry run it with a managed endpoint, automatic scaling on isolated Micro VMs, a dedicated Microsoft Entra agent identity, session-level state, and end-to-end observability.
+
+Hosted agents are the recommended path when you want a Foundry-managed, network-addressable endpoint that other apps or agents can call. See [Deploy your first Hosted agent](../agents/quickstarts/quickstart-hosted-agent.md).
+
+### Build agents in code outside Foundry with the Responses API
+
+If you're hosting your agent outside of Foundry — in your own process or infrastructure — you can also use Agent Framework to call the **Responses API in your project endpoint** directly. Agent Framework connects through the `FoundryChatClient` provider, which targets:
+
+```
+{project_endpoint}/openai/v1/responses
+```
+
+Going through the project endpoint — instead of a resource-level OpenAI endpoint — gives your agent:
+
+- Foundry models from the catalog (Azure OpenAI and Foundry direct models) through one API.
+- Platform tools beyond the OpenAI tool set, including file search, code interpreter, memory, web search, MCP servers, SharePoint, WorkIQ, and Fabric IQ.
+- Project-scoped data, On-Behalf-Of (OBO) tool authentication, and the project's tracing, content filters, and identity configuration.
+
+This pattern is additive to Hosted agents, not an alternative — the same Agent Framework code can call the Responses API from your own process today and be packaged as a Hosted agent later when you want a Foundry-managed endpoint. See [Quickstart: Build agents using the Responses API](../agents/quickstarts/responses-api.md).
+
+For a full comparison of agent types and hosting choices, see [What is Microsoft Foundry Agent Service?](../agents/overview.md).
 
 ## Foundry Tools SDKs
 

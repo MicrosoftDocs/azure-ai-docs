@@ -1,11 +1,11 @@
 ---
 title: Configure the custom question answering service for fine-tune models
 description: This article details Azure AI resource configurations for custom question answering fine-tune models.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 # Configure your environment for Azure AI resources

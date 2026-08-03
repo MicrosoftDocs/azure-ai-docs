@@ -5,7 +5,7 @@ description: Explains the importance of updating the Liveness SDK for security a
 author: PatrickFarley
 ms.author: pafarley
 manager: qingflin
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.date: 09/26/2025
 ms.topic: concept-article
 ---

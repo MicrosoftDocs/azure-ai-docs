@@ -10,7 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.date: 03/23/2026
 ms.reviewer: jturuk
-ms.custom: update-code, devplatv2, dev-focus
+ms.custom: update-code1, devplatv2, dev-focus
 ai-usage: ai-assisted
 
 #customer intent: As a developer, I want to use batch deployments for MLflow models in Azure Machine Learning, so I can test deployments and analyze outputs.

@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Indexers in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 An *indexer* in Azure AI Search is a crawler that extracts textual data from cloud data sources and populates a search index using field-to-field mappings between source data and a search index. This approach is sometimes referred to as a 'pull model' because the search service pulls data in without you having to write any code that adds data to an index. 
 
 Indexers also drive [skillset execution and AI enrichment](cognitive-search-concept-intro.md), where you can configure skills to integrate extra processing of content en route to an index. A few examples are OCR over image files, text split skill for data chunking, and calling embedding models to generate vectors for vector search.
@@ -20,6 +22,9 @@ Indexers target [supported data sources](#supported-data-sources). An indexer co
 You can run indexers on demand or on a recurring data refresh schedule that runs as often as every five minutes. More frequent updates preclude the use of indexers, requiring that you implement a ['push model'](search-what-is-data-import.md) that simultaneously pushes data to both Azure AI Search and your external data source for data synchronization.
 
 A search service runs one indexer job per search unit. If you need concurrent processing, make sure you have [sufficient replicas](/azure/search/search-capacity-planning#add-or-reduce-replicas-and-partitions). Indexers don't run in the background, so you might detect more query throttling than usual if the service is under pressure.
+
+> [!NOTE]
+> Indexer execution on Standard 3 High Density (S3 HD) search services and Serverless search services follows a different model that includes a service-level daily runtime quota. For more information, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
 
 ## Indexer scenarios and use cases
 

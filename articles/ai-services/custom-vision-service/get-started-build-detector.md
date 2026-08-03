@@ -3,7 +3,7 @@ title: "Quickstart: Build an object detector with the Custom Vision website"
 titleSuffix: Foundry Tools
 description: Learn how to use the Custom Vision website to create, train, and test an object detector model.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: quickstart
 ms.date: 11/06/2024

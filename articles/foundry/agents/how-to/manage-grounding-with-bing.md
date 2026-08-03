@@ -5,6 +5,7 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: overview
 ms.date: 05/13/2026
 ai-usage: ai-assisted

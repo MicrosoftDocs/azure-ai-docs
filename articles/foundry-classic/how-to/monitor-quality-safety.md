@@ -2,6 +2,7 @@
 title: "Monitor Quality and Token Usage of Deployed Prompt Flow Applications (Preview) (classic)"
 description: "Learn how to monitor quality and token usage of deployed prompt flow applications with Microsoft Foundry. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024

@@ -1,6 +1,6 @@
 ---
 titleSuffix: Azure OpenAI
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

@@ -9,7 +9,7 @@ ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
   - doc-kit-assisted
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 

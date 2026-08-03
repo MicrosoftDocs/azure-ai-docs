@@ -1,7 +1,7 @@
 ---
 title: "Language notice"
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 05/03/2023

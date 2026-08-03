@@ -7,3 +7,5 @@ ms.service: microsoft-foundry
 ---
 
 Microsoft wants to provide the best possible experience for all customers. If you have a disability or have questions related to accessibility, contact the Microsoft Disability Answer Desk for technical assistance. The Disability Answer Desk support team is trained in using many popular assistive technologies. They can offer assistance in English, Spanish, French, and American Sign Language. Go to the Microsoft Disability Answer Desk site to find the contact details for your region.
+
+If you're a government, commercial, or enterprise customer, contact the Enterprise Disability Answer Desk.

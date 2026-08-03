@@ -3,10 +3,10 @@ title: Deploy custom language projects to multiple regions in Azure Language in 
 titleSuffix: Foundry Tools
 description: Learn about how to deploy your custom language projects to multiple regions.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 12/05/2025
+ms.date: 05/24/2026
 ms.author: lajanuar
 ms.custom: language-service-clu, ignite-2024
 ---
@@ -59,7 +59,7 @@ Some regions are only available for deployment and not for authoring projects.
 
 Learn how to deploy models for:
 
-* [Conversational language understanding](../../conversational-language-understanding/how-to/deploy-model.md)
-* [Custom text classification](../../custom-text-classification/how-to/deploy-model.md)
+* [Conversational language understanding](../../conversational-language-understanding/how-to/build-train-deploy-model.md#deploy-your-model)
+* [Custom text classification](../../custom-text-classification/how-to/build-train-deploy-model.md#deploy-your-model)
 * [Custom NER](../../custom-named-entity-recognition/how-to/deploy-model.md)
-* [Orchestration workflow](../../orchestration-workflow/how-to/deploy-model.md)
+* [Orchestration workflow](../../orchestration-workflow/how-to/build-train-deploy-model.md#deploy-your-model)

@@ -6,6 +6,7 @@ ms.author: lagayhar
 ms.reviewer: minthigpen
 ms.date: 02/25/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.custom:
   - build-2024

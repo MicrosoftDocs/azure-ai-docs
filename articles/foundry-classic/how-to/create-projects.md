@@ -6,6 +6,7 @@ ms.author: sgilley
 ms.reviewer: deeikele
 ms.date: 04/08/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.custom:
   - classic-and-new

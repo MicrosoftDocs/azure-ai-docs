@@ -7,6 +7,7 @@ author: deeikele
 ms.reviewer: sdgilley
 ms.date: 03/13/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.custom: dev-focus
 ai-usage: ai-assisted

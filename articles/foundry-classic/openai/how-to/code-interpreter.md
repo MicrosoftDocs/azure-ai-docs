@@ -2,7 +2,7 @@
 title: "How to use Azure OpenAI Assistants Code Interpreter (classic)"
 description: "Learn how to use Assistants Code Interpreter (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
@@ -10,6 +10,7 @@ ms.date: 04/10/2026
 author: aahill
 ms.author: aahi
 recommendations: false
+ai-usage: ai-assisted
 
 ---
 
@@ -270,6 +271,6 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/<YOUR-FILE-ID>/con
 ## See also
 
 * [File Upload API reference](/rest/api/azureopenai/files/upload)
-* [Assistants API Reference](../reference-preview.md#list---assistants)
+* [Assistants API Reference](/rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 * Learn more about how to use Assistants with our [How-to guide on Assistants](../how-to/assistant.md).
 * [Azure OpenAI Assistants API samples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants)

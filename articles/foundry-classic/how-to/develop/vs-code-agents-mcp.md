@@ -3,6 +3,7 @@ title: "Work with Foundry agents and MCP server tools in Visual Studio Code (cla
 description: "Add Model Context Protocol (MCP) server tools to your Foundry agents by using the Microsoft Foundry for Visual Studio Code extension. (classic)"
 manager: mcleans
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted

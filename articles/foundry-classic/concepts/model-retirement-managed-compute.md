@@ -7,7 +7,7 @@ ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 04/23/2026
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.reviewer: rasavage
 reviewer: rsavage2

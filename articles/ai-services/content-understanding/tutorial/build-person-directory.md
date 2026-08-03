@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how to build a person directory with Content Understanding Face APIs.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: tutorial
 ms.custom:
   - build-2025

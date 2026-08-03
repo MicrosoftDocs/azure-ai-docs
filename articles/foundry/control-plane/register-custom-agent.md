@@ -2,12 +2,13 @@
 title: "Register and Manage Custom Agents in Microsoft Foundry Control Plane"
 description: "Learn how to register a custom agent in Microsoft Foundry Control Plane for management and observability."
 author: santiagxf
-ms.author: scottpolly
+ms.author: lagayhar
 ms.reviewer: fasantia
 ms.date: 05/06/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---

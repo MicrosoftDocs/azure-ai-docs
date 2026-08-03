@@ -2,8 +2,8 @@
 title: "Face Java client library quickstart"
 description: Use the Face client library for Java to detect faces and identify faces (facial recognition search).
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.topic: include
 ms.date: 08/08/2024

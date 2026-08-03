@@ -8,7 +8,7 @@ ms.subservice: foundry-openai
 ms.custom: devx-track-dotnet
 ms.topic: how-to
 ms.date: 11/6/2025
-manager: nitinme
+manager: mcleans
 ---
 
 # Migrate from 1.0 beta to 2.0 (`Azure.AI.OpenAI`) (classic)

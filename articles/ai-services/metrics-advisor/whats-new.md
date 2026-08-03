@@ -3,7 +3,7 @@ title: Metrics Advisor what's new
 titleSuffix: Azure AI services
 description: Learn about what is new with Metrics Advisor
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: whats-new
 ms.date: 06/12/2025
@@ -32,7 +32,6 @@ Check out [this article](how-tos/configure-metrics.md#tune-the-detection-configu
 
 If you want to learn about the latest updates to Metrics Advisor client SDKs see: 
 
-* [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/metricsadvisor/Azure.AI.MetricsAdvisor/CHANGELOG.md)
 * [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/metricsadvisor/azure-ai-metricsadvisor/CHANGELOG.md)
 * [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-metricsadvisor_1.0.1/sdk/metricsadvisor/azure-ai-metricsadvisor/CHANGELOG.md)
 * [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk)

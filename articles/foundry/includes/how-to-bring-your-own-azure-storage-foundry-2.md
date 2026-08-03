@@ -1,9 +1,9 @@
 ---
 title: Include file
 description: Include file
-author: jonburchel
+author: s-polly
 ms.reviewer: andyaviles
-ms.author: jburchel
+ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/12/2026
@@ -16,7 +16,7 @@ You create two capability hosts—one at the resource level and one at the proje
 
 1. Create a resource-level connection (as above) if not already present.
    > [!NOTE]
-   > As described in the previous section, select the **Catalog** tab and look for **Azure Blob Storage**.
+   > As described in the previous section, select **Operate** > **Admin** > your project > **Add connection** and choose **Azure Storage**.
 1. Create a resource-level capability host referencing that connection.
 1. Create (or open) a project under the resource.
 1. Create a project-level capability host referencing the resource-level capability host.

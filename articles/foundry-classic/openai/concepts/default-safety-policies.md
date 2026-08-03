@@ -3,7 +3,7 @@ title: "Default Guardrail policies for Azure OpenAI (classic)"
 description: "Learn about the default Guardrail policies that Azure OpenAI uses to flag content and ensure responsible use of the service. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 11/06/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

@@ -3,10 +3,10 @@ title: How to create custom text classification projects
 titleSuffix: Foundry Tools
 description: Learn about the steps for using Azure resources with custom text classification.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/08/2026
 ms.author: lajanuar
 ---
 Use the following steps to set the required roles for your Language resource and storage account.

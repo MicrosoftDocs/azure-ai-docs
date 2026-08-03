@@ -3,8 +3,8 @@ title: Recover or purge deleted Microsoft Foundry resources
 titleSuffix: Foundry Tools
 description: This article provides instructions on how to recover or purge an already-deleted Microsoft Foundry resource.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025
 ms.author: pafarley

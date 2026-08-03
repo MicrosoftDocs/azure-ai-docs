@@ -2,17 +2,21 @@
 title: Include file
 description: Include file
 author: msakande
-ms.reviewer: sgilley
 ms.author: mopeakande
+reviewer: achandmsft
+ms.reviewer: achand
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/31/2026
 ms.custom: include
 ---
 
 ## Related content
 
+- [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
+- [Azure OpenAI in Microsoft Foundry Models v1 API](../../openai/api-version-lifecycle.md)
+- [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md)
 - [Foundry Models and capabilities](../concepts/models-sold-directly-by-azure.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
-- [Model and region availability for Foundry Models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md)
-- [What is Azure OpenAI in Foundry Models?](../concepts/models-sold-directly-by-azure.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
+

@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn how to start using the Metrics Advisor web portal.
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 06/12/2025
 ms.topic: quickstart
 ms.service: azure-ai-metrics-advisor

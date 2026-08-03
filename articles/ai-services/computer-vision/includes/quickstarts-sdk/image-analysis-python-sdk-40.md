@@ -2,8 +2,8 @@
 title: "Quickstart: Image Analysis 4.0 client SDK for Python"
 description: Get started with the Image Analysis 4.0 client SDK for Python with this quickstart.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 01/24/2023
 ms.author: pafarley

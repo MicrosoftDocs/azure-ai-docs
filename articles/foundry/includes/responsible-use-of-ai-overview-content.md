@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 07/21/2026
 ms.custom: include, classic-and-new
 ---
 

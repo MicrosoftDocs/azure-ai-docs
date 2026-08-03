@@ -8,7 +8,7 @@ ms.date: 03/31/2026
 ms.reviewer: vkann
 reviewer: kvijaykannan
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 ms.custom: 
   - references_regions

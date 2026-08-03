@@ -96,7 +96,7 @@ In this section, you introduce the data for training. You then cover how to run 
 
 ### Obtain the training data
 
-You can use the dataset in this [zipped file](https://azuremlexamples.blob.core.windows.net/datasets/fowl_data.zip). This dataset consists of about 120 training images each for two classes (turkeys and chickens), with 100 validation images for each class. The images are a subset of the [Open Images v5 Dataset](https://storage.googleapis.com/openimages/web/index.html). The training script *pytorch_train.py* downloads and extracts the dataset.
+This dataset consists of about 120 training images each for two classes (turkeys and chickens), with 100 validation images for each class. The images are a subset of the [Open Images v5 Dataset](https://storage.googleapis.com/openimages/web/index.html). The training script *pytorch_train.py* downloads and extracts the dataset.
 
 ### Prepare the training script
 

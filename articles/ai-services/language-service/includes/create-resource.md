@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/18/2026
 ms.author: lajanuar
 ---
 ### Create an Azure resource

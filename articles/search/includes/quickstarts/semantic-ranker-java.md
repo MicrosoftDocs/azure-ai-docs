@@ -56,7 +56,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 1. In `src/main/resources/application.properties`, replace the placeholder value for `azure.search.endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Compile the project to resolve dependencies, including [azure-search-documents](https://search.maven.org/artifact/com.azure/azure-search-documents).
+1. Compile the project to resolve dependencies, including [azure-search-documents](https://central.sonatype.com/artifact/com.azure/azure-search-documents).
 
     ```bash
     mvn compile

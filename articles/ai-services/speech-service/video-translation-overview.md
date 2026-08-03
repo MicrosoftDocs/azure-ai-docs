@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: With video translation, you can seamlessly integrate multi-language voice-over capabilities into your videos.
 author: PatrickFarley
 reviewer: patrickfarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 10/21/2025
 ms.author: pafarley

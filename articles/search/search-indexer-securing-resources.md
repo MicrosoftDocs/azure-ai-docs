@@ -6,11 +6,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/12/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Indexer access to content protected by Azure network security
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 If your Azure resources are deployed in an Azure virtual network, this concept article explains how a search indexer can access content that's protected by network security. It describes the outbound traffic patterns and indexer execution environments. It also covers the network protections supported by Azure AI Search and factors that might influence your security strategy. Finally, because Azure Storage is used for both data access and persistent storage, this article also covers network considerations that are specific to [search and storage connectivity](#access-to-a-network-protected-storage-account).
 
@@ -67,9 +70,9 @@ Your Azure resources could be protected using any number of the network isolatio
 
 ## Network access and indexer execution environments
 
-Azure AI Search has the concept of an [*indexer execution environment*](search-howto-run-reset-indexers.md#indexer-execution-environment) that optimizes processing based on the characteristics of the job. There are two environments. If you're using an IP firewall to control access to Azure resources, knowing about execution environments will help you set up an IP range that is inclusive of both environments.
+Azure AI Search has the concept of an [*indexer execution environment*](search-howto-run-reset-indexers.md#indexer-execution-environment) that optimizes processing based on the characteristics of the job. There are two environments. If you use an IP firewall to control access to Azure resources, knowing about execution environments helps you set up an IP range that is inclusive of both environments.
 
-For any given indexer run, Azure AI Search determines the best environment in which to run the indexer. Depending on the number and types of tasks assigned, the indexer will run in one of two environments/
+For any given indexer run, Azure AI Search determines the best environment in which to run the indexer. Depending on the number and types of tasks assigned, the indexer runs in one of two environments:
 
 | Execution environment | Description |
 |-----------------------|-------------|
@@ -77,7 +80,7 @@ For any given indexer run, Azure AI Search determines the best environment in wh
 |  multitenant | Managed and secured by Microsoft at no extra cost. It isn't subject to any network provisions under your control. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Examples of resource-intensive indexer jobs include skillsets, processing large documents, or processing a high volume of documents. |
 
 
-<sup>1</sup> To prevent heavy load on the private execution environment, indexers with more than 2 Azure OpenAI Embedding or Azure Vision multimodal embeddings skills will be restricted from running in this environment.
+<sup>1</sup> To prevent heavy load on the private execution environment, indexers with more than two Azure OpenAI Embedding or Azure Vision multimodal embeddings skills are restricted from running in this environment.
 
 ### Setting up IP ranges for indexer execution
 
@@ -105,7 +108,7 @@ Notice that if you specified the service tag for the multitenant environment IP 
 
 ## Choose a connectivity approach
 
-A search service can't be provisioned into a specific virtual network, running natively on a virtual machine. Although some Azure resources offer [virtual network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview), this functionality won't be offered by Azure AI Search. You should plan on implementing one of the following approaches.
+You can't provision a search service into a specific virtual network because it doesn't run natively on a virtual machine. Although some Azure resources offer [virtual network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview), Azure AI Search doesn't offer this functionality. Plan on implementing one of the following approaches.
 
 | Approach | Details |
 |----------|---------|
@@ -150,7 +153,7 @@ This section narrows in on the private connection option.
 
 Once you have an approved private endpoint to a resource, indexers that are set to be *private* attempt to obtain access via the private link that was created and approved for the Azure resource. 
 
-Azure AI Search will validate that callers of the private endpoint have appropriate role assignments. For example, if you request a private endpoint connection to a storage account with read-only permissions, this call will be rejected.
+Azure AI Search validates that callers of the private endpoint have appropriate role assignments. For example, if you request a private endpoint connection to a storage account with read-only permissions, this call is rejected.
 
 If the private endpoint isn't approved, or if the indexer didn't use the private endpoint connection, you'll find a `transientFailure` error message in indexer execution history.
 
@@ -164,7 +167,7 @@ If you don't need key-based authentication, we recommend that you disable API ke
 
 ## Access to a network-protected storage account
 
-A search service stores indexes and synonym lists. For other features that require storage, Azure AI Search takes a dependency on Azure Storage. Enrichment caching, debug sessions, and knowledge stores fall into this category. The location of each service, and any network protections in place for storage, will determine your data access strategy.
+A search service stores indexes and synonym lists. For other features that require storage, Azure AI Search takes a dependency on Azure Storage. Enrichment caching, debug sessions, and knowledge stores fall into this category. The location of each service and any network protections in place for storage determine your data access strategy.
 
 ### Same-region services
 

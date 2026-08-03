@@ -1,10 +1,9 @@
 ---
 title: include file
 description: include file
-author: nitinme
-ms.reviewer: nitinme
-ms.author: nitinme
-ms.service: azure-ai-services
+author: mattwojo
+ms.author: mattwoj
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 2/22/2024
 ms.custom: include, build-2024

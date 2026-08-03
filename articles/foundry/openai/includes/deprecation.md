@@ -2,7 +2,7 @@
 title: Python 0.28.1 deprecated
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Python library deprecation 
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

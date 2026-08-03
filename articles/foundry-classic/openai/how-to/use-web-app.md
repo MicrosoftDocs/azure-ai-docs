@@ -1,7 +1,7 @@
 ---
 title: "Use the Azure OpenAI web app (classic)"
 description: "Use this article to learn about using the available web app to chat with Azure OpenAI models. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

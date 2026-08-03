@@ -2,10 +2,10 @@
 title: "Use Document Intelligence SDK for Java (REST API v3.0)"
 description: 'Use the Document Intelligence SDK for Java (REST API v3.0) to create a forms processing app that extracts key data from documents.'
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/10/2026
 ms.author: lajanuar
 ms.custom: devx-track-csharp, linux-related-content
 monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'

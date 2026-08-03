@@ -2,10 +2,11 @@
 title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: tutorial
-ms.date: 03/31/2026
-ms.author: jburchel
-author: jonburchel
+ms.date: 07/31/2026
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: dantaylo
 ai-usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
@@ -177,7 +178,8 @@ Start by running the agent so you see working functionality before diving into i
 1. Verify that your `requirements.txt` uses these published package versions:
 
    ```text
-   azure-ai-projects>=2.0.0
+   azure-ai-projects>=2.3.0
+   azure-identity
    python-dotenv
    ```
 
@@ -221,7 +223,7 @@ Create a `.env` file in the `ModernWorkplaceAssistant` directory.
 
 ```dotenv
 # Foundry configuration
-FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_PROJECT_ENDPOINT=https://<your-resource>.services.ai.azure.com/api/projects/<your-project>
 FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # The Microsoft Learn MCP Server (optional)
@@ -235,7 +237,7 @@ SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 
 ```dotenv
 # Foundry configuration
-FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_PROJECT_ENDPOINT=https://<your-resource>.services.ai.azure.com/api/projects/<your-project>
 FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # SharePoint integration (optional - requires connection name)
@@ -476,12 +478,12 @@ Contoso Corp supports flexible work arrangements, including remote work, to enha
 
 📊 SCENARIO 2/3: 📚 Technical Documentation Question (MCP Only)
 --------------------------------------------------
-❓ QUESTION: According to Microsoft Learn, what is the correct way to implement Azure AD Conditional Access policies? Please include reference links to the official documentation.
+❓ QUESTION: According to Microsoft Learn, what is the correct way to implement Microsoft Entra Conditional Access policies? Please include reference links to the official documentation.
 🎯 BUSINESS CONTEXT: IT administrator needs authoritative Microsoft technical guidance
 🎓 LEARNING POINT: MCP tool accesses Microsoft Learn for official documentation with links
 --------------------------------------------------
 🤖 AGENT RESPONSE:
-✅ SUCCESS: To implement Azure AD Conditional Access policies correctly, follow these key steps outlined in the Microsoft Learn documentation:
+✅ SUCCESS: To implement Microsoft Entra Conditional Access policies correctly, follow these key steps outlined in the Microsoft Learn documentation:
 
 ### 1. Understanding Conditional Access
 Conditional Access policies act as "if-then" statements that enforce organizational access controls based on various signals. Th...
@@ -503,10 +505,10 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 
 ✅ DEMONSTRATION COMPLETED!
 🎓 Key Learning Outcomes:
-   • Microsoft Foundry SDK usage for enterprise AI
-   • Conversation management via the Responses API
-   • Real business value through AI assistance
-   • Foundation for governance and monitoring (Tutorials 2-3)
+   * Microsoft Foundry SDK usage for enterprise AI
+   * Conversation management via the Responses API
+   * Real business value through AI assistance
+   * Foundation for governance and monitoring (Tutorials 2-3)
 
 🎯 Try interactive mode? (y/n): n
 

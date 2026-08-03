@@ -2,6 +2,7 @@
 title: "Tutorial: Deploy an enterprise chat web app in the Microsoft Foundry portal playground (classic)"
 description: "Use this article to deploy an enterprise chat web app in the Microsoft Foundry portal playground. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.custom:
   - ignite-2023
   - build-2024

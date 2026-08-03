@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Analyze performance in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article describes the tools, behaviors, and approaches for analyzing query and indexing performance in Azure AI Search.
 
 This article applies to [classic search](search-what-is-azure-search.md#what-is-classic-search), full-text search scenarios only.
@@ -183,4 +185,4 @@ Review these articles related to analyzing service performance.
 + [Performance tips](search-performance-tips.md)
 + [Choose a service tier](search-sku-tier.md)
 + [Manage capacity](search-capacity-planning.md)
-+ [Case Study: Use Cognitive Search to Support Complex AI Scenarios](https://techcommunity.microsoft.com/t5/azure-ai/case-study-effectively-using-cognitive-search-to-support-complex/ba-p/2804078)
++ [Case Study: Use Cognitive Search to Support Complex AI Scenarios](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/case-study-effectively-using-cognitive-search-to-support-complex-ai-scenarios/2804078)

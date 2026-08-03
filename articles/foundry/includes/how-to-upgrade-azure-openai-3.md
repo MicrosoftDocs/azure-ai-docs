@@ -6,8 +6,9 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/13/2026
+ms.date: 07/20/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Private network configuration
@@ -41,8 +42,6 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: Use Foundry portal**
-
 1. Select the project in the Foundry (classic) portal.
 1. Select **Management Center** in the lower left of your screen.
 1. On your resource overview page, find the rollback option.
@@ -60,8 +59,6 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 
 # [Azure Bicep](#tab/bicep)
 
-**Option 2: Use an Azure Bicep template**
-  
 To roll back, convert your template configuration back to `OpenAI` as kind.
 
   ```bicep
@@ -80,6 +77,9 @@ To roll back, convert your template configuration back to `OpenAI` as kind.
       // Defines developer API endpoint subdomain
       customSubDomainName: foundryName
       disableLocalAuth: true
+
+      // Required, or the deployment fails with "PublicNetworkAccess is required for this resource."
+      publicNetworkAccess: 'Enabled'
   }
 }
   ```

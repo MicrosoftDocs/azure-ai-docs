@@ -22,6 +22,8 @@ translation.priority.mt:
 
 # OData geo-spatial functions in Azure AI Search - `geo.distance` and `geo.intersects`
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports geo-spatial queries in [OData filter expressions](query-odata-filter-orderby-syntax.md) via the `geo.distance` and `geo.intersects` functions. The `geo.distance` function returns the distance in kilometers between two points, one being a field or range variable, and one being a constant passed as part of the filter. The `geo.intersects` function returns `true` if a given point is within a given polygon, where the point is a field or range variable and the polygon is specified as a constant passed as part of the filter.
 
 The `geo.distance` function can also be used in the [**$orderby** parameter](search-query-odata-orderby.md) to sort search results by distance from a given point. The syntax for `geo.distance` in **$orderby** is the same as it is in **$filter**. When using `geo.distance` in **$orderby**, the field to which it applies must be of type `Edm.GeographyPoint` and it must also be **sortable**.

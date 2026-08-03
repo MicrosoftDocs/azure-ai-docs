@@ -3,8 +3,8 @@ title: What is language detection in Azure Language?
 titleSuffix: Foundry Tools
 description: An overview of language detection in Azure Language, which helps you detect the language that text is written in by returning language codes.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 03/30/2026
 ms.author: lajanuar

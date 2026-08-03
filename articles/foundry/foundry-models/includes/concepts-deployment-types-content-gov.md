@@ -34,7 +34,7 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 | [Regional Provisioned](#regional-provisioned) | `ProvisionedManaged` | Single region | Reserved PTU | Regional compliance + throughput |
 
 > [!NOTE]
-> Not all models support all deployment types. Check [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure-gov.md) for model availability by deployment type and region.
+> Not all models support all deployment types. Check [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-gov.md) for model availability by deployment type and region.
 
 > [!NOTE]
 > SLA guarantees vary by deployment type. Provisioned types provide guaranteed throughput and lower latency variance. Standard types offer best-effort service. For details, see the [Azure SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
@@ -67,7 +67,7 @@ For **DataZone** deployment types, prompts and responses are processed only with
 
 - **USGov**: Data processed within the two Azure Government regions (USGovArizona or USGovVirginia)
 
-Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure-gov.md).
+Learn more in the "Model region availability by deployment type" section of [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-gov.md).
 
 > [!NOTE]
 > With Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [high availability and disaster recovery guide](../../../foundry-classic/how-to/high-availability-resiliency.md).
@@ -121,7 +121,7 @@ Not all features of Abuse Monitoring are enabled for Azure OpenAI deployments in
 
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../../foundry-classic/openai/how-to/create-resource.md)
-- [Foundry Models sold directly by Azure in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
+- [Foundry Models sold by Azure in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
 - [Model region availability by deployment type  in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
 - [Azure OpenAI in Azure Government quotas and limits](../../openai/quotas-limits-gov.md)
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)

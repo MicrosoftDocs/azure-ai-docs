@@ -31,6 +31,6 @@ Enabling capabilities such as sending data to Azure Monitor Logs and alerting in
 
 ### Using Azure Prepayment
 
-You can pay for Models Sold Directly by Azure charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for other provider models because they're billed through Azure Marketplace.
+You can pay for Models sold by Azure charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for other provider models because they're billed through Azure Marketplace.
 
 For more information, see [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).

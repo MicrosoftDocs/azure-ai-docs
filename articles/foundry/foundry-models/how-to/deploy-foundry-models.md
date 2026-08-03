@@ -2,16 +2,16 @@
 title: "Deploy Microsoft Foundry Models in the Foundry portal"
 description: "Learn how to deploy Microsoft Foundry Models in the Foundry portal for AI inference applications and integration into your projects."
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 07/28/2026
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new
   - doc-kit-assisted
 author: msakande   
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 recommendations: false
 ai-usage: ai-assisted
 
@@ -30,14 +30,14 @@ Deploy a model by following these steps in the Foundry portal:
 
 1. From the Foundry portal homepage, select **Discover** in the upper-right navigation, then **Models** in the left pane.
 
-1. Select a model and review its details in the model card. This article uses `Llama-3.2-90B-Vision-Instruct` for illustration.
+1. Select a model and review its details in the model card. This article uses `Llama-4-Scout-17B-16E-Instruct` for illustration.
 
 1. Select **Deploy** > **Custom settings** to customize your deployment. Alternatively, you can use the default deployment settings by selecting **Deploy** > **Default settings**.
 
-1. For [Foundry Models from partners and community](../concepts/models-from-partners.md), you need to subscribe to Azure Marketplace. This requirement applies to `Llama-3.2-90B-Vision-Instruct`, for example. Read the terms of use and select **Agree and Proceed** to accept the terms.
+1. For [Foundry Models from partners and community](../concepts/models-from-partners.md), you need to subscribe to Azure Marketplace. This requirement applies to `Llama-4-Scout-17B-16E-Instruct`, for example. Read the terms of use and select **Agree and Proceed** to accept the terms.
 
    > [!NOTE]
-   > For [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as the Azure OpenAI model `gpt-4o-mini`, you don't subscribe to Azure Marketplace.
+   > For [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md), such as the Azure OpenAI model `gpt-4o-mini`, you don't subscribe to Azure Marketplace.
 
 1. Configure the deployment settings:
 
@@ -65,7 +65,7 @@ From a deployment's detail page, you can view endpoint details and keys, adjust 
 
 You can interact with the new model in the Foundry portal by using the playground. The playground is a web-based interface that lets you interact with the model in real-time. Use the playground to test the model with different prompts and see the model's responses.
 
-1. From the list of deployments, select the **Llama-3.2-90B-Vision-Instruct** deployment to open up the playground page.
+1. From the list of deployments, select the **Llama-4-Scout-17B-16E-Instruct** deployment to open the playground page.
 
 1. Type your prompt and see the outputs.
 

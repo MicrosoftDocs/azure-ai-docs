@@ -3,10 +3,10 @@ title: Fast Healthcare Interoperability Resources (FHIR) structuring in Text Ana
 titleSuffix: Foundry Tools
 description: Learn about Fast Healthcare Interoperability Resources (FHIR) structuring
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 12/05/2025
+ms.date: 06/12/2026
 ms.author: lajanuar
 ms.custom: language-service-health, ignite-2024
 ---

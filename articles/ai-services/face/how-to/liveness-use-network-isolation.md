@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: 
 #customer intent: As a developer, I want to use Face API Liveness Detection but also want to disable public network access to satisfy network isolation requirements of my organization or industry.
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
