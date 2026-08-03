@@ -224,18 +224,9 @@ using Azure.AI.Extensions.OpenAI;
 const string deploymentName = "gpt-5.2";
 
 // Get an OpenAI-compatible client from the project
-OpenAIClient openAIClient = projectClient.GetOpenAIClient();
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForModel(deploymentName);
 
-// Create a Responses client for the specified model
-ResponsesClient responsesClient = openAIClient.GetResponsesClient(deploymentName);
-
-// Send a prompt and print the output text
-CreateResponseOptions options = new()
-{
-    Input = { "What is the speed of light?" }
-};
-
-Response response = responsesClient.CreateResponse(options);
+Response response = responsesClient.CreateResponse("What is the speed of light?");
 Console.WriteLine(response.Output[0].Content[0].Text);
 ```
 ::: zone-end
