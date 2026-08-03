@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers to ingest Microsoft
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/28/2026
 ai-usage: ai-assisted
 ---
 
@@ -64,8 +64,6 @@ This functionality is available for the following data sources:
 + The following indexer features don't support documents with sensitivity labels. If you use any of these features in a skillset or indexer, documents with sensitivity labels aren't processed.
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
-
-  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 
   + [Knowledge store](knowledge-store-concept-intro.md)
 

@@ -2,7 +2,7 @@
 title: Query-Time ACL and RBAC Enforcement
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.
 ms.reviewer: magottei
-ms.date: 06/08/2026
+ms.date: 07/28/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ai-usage: ai-assisted
@@ -103,7 +103,7 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 Starting in the 2026-05-01-preview REST API, Azure AI Search can honor SharePoint site group memberships, such as Owners, Members, Visitors, and custom site groups, at query time. To enable this scenario, the index must include:
 
 - A `sharePointConnectorAppRegistration` property that references the federated identity credential of the Microsoft Entra application used to call SharePoint on behalf of the user.
-- A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_sharepoint_site_url` source field).
+- A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_spo_site_url` source field).
 
 At query time, Azure AI Search uses the registered application and the site URL on each candidate document to resolve the SharePoint group memberships of the calling user on that site. The resolved groups are matched against the `spg:`-prefixed values stored in the `groupIds` permission filter field. The `spg:` prefix distinguishes SharePoint site groups from Microsoft Entra group object IDs, which are stored without a prefix.
 
