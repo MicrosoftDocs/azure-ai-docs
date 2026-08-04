@@ -1,6 +1,6 @@
 ﻿---
 title: "Automate agents with routines (preview)"
-description: "Create, manage, and monitor routines that automatically trigger agents on a schedule or at a specific time in Microsoft Foundry."
+description: "Create, manage, and monitor routines that trigger agents on a schedule, at a specific time, or in response to an external event."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -21,38 +21,13 @@ zone_pivot_groups: foundry-routines-config
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-A *routine* is a named automation rule that triggers an agent on a schedule or at a specific time. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
+A *routine* is a named automation rule that triggers an agent on a schedule, at a specific time, or in response to an external event. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
 
-This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, and the Python and JavaScript SDKs.
+This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, the Python SDK, .NET SDK, JavaScript SDK, or the Azure Developer CLI.
 
 > [!NOTE]
 > Routines are in preview. Send the `Foundry-Features: Routines=V1Preview` header on every REST call. All routine operations are on the data plane under your project endpoint.
 
-
-## Supported trigger types
-
-Routines support the following trigger types:
-
-| Trigger type | Description |
-|---|---|
-| `schedule` | Recurring trigger defined by a cron expression. Minimum interval is five minutes. |
-| `timer` | One-shot trigger that fires at a specific future date/time or after a duration. |
-| `github_issue` | Event-based trigger that fires when an issue is opened or closed in a watched GitHub repository. |
-| `custom` | Event-based trigger from an external provider. In the preview, the `teams` provider fires when a new message is posted to a watched Microsoft Teams channel. |
-
-## Supported action types
-
-Each routine specifies exactly one action that runs when the routine fires. Two action types are supported:
-
-| Action type | Description |
-|---|---|
-| `invoke_agent_responses_api` | Invokes the agent through the Responses API. Provide either the agent name or endpoint ID. |
-| `invoke_agent_invocations_api` | Invokes the agent through the Invocations API. Requires the endpoint-scoped agent identifier. |
-
-For required and optional fields of each action type, see [Action fields](#action-fields).
-
-> [!NOTE]
-> Routines can't invoke an agent that requires an end-user identity to be passed at run time. A routine runs unattended, so there's no signed-in user to delegate. Use routines only with agents that authenticate through their own configured identity, not on-behalf-of the caller.
 
 ## Prerequisites
 
@@ -60,9 +35,9 @@ For required and optional fields of each action type, see [Action fields](#actio
 - **Foundry User** role or higher on the project scope.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- An agent that authenticates through its configured identity. Routines can't invoke an agent that requires an end-user identity to be passed at run time. A routine runs unattended, so there's no signed-in user to delegate. Use routines only with agents that authenticate through their own configured identity, not on-behalf-of the caller.
 
-> [!NOTE]
-> Routines are available in a subset of regions in preview. Confirm that your Foundry project is provisioned in one of the supported regions before you create a routine:
+Routines are available in a subset of regions in preview. Confirm that your Foundry project is provisioned in one of the supported regions before you create a routine:
 >
 > - East US
 > - East US 2
@@ -75,13 +50,11 @@ For required and optional fields of each action type, see [Action fields](#actio
 
 :::zone pivot="programming-language-python"
 
-- Install the `azure-ai-projects` SDK, version 2.2.0 or later (preview):
+- Install the `azure-ai-projects` SDK, version 2.3.0 or later:
 
   ```bash
   pip install "azure-ai-projects>=2.3.0"
   ```
-
-  Version 2.2.0 introduces the duration shorthand (`"30m"`, `"2h"`) for timer triggers.
 
 - Install `azure-identity` for authentication:
 
@@ -93,10 +66,10 @@ For required and optional fields of each action type, see [Action fields](#actio
 
 :::zone pivot="programming-language-csharp"
 
-- Install the `Azure.AI.Projects` NuGet package (preview):
+- Install the `Azure.AI.Projects` NuGet package:
 
   ```bash
-  dotnet add package Azure.AI.Projects --prerelease
+  dotnet add package Azure.AI.Projects
   ```
 
 - Install `Azure.Identity` for authentication:
@@ -141,6 +114,28 @@ For required and optional fields of each action type, see [Action fields](#actio
   ```
 
 :::zone-end
+
+## Supported trigger types
+
+Routines support the following trigger types:
+
+| Trigger type | Description |
+|---|---|
+| `schedule` | Recurring trigger defined by a cron expression. |
+| `timer` | One-shot trigger that fires at a specific future date/time or after a duration. |
+| `github_issue` | Event-based trigger that fires when an issue is opened or closed in a watched GitHub repository. |
+| `custom` | Event-based trigger from an external provider. In the preview, the `teams` provider fires when a new message is posted to a watched Microsoft Teams channel. |
+
+## Supported action types
+
+Each routine specifies exactly one action that runs when the routine fires. Two action types are supported:
+
+| Action type | Description |
+|---|---|
+| `invoke_agent_responses_api` | Invokes an agent through the Responses API. Provide either the agent name or endpoint ID. |
+| `invoke_agent_invocations_api` | Invokes an agent through the Invocations API. Provide either the agent name or endpoint ID. |
+
+For required and optional fields of each action type, see [Action fields](#action-fields).
 
 ## Create a routine
 
@@ -263,7 +258,7 @@ routine = client.beta.routines.create_or_update(
         "type": "invoke_agent_responses_api",
         "agent_name": agent_name,  # required
         "input": "Summarize activity from the last 24 hours.",  # optional
-        # "conversation_id": "...",  # optional
+        # "conversation": "...",  # optional
     },
 )
 
@@ -350,7 +345,7 @@ const routine = await client.beta.routines.createOrUpdate("daily-summary", {
     type: "invoke_agent_responses_api",
     agent_name: agentName,  // required
     input: "Summarize activity from the last 24 hours.",  // optional
-    // conversation_id: "...",  // optional
+    // conversation: "...",  // optional
   },
 });
 
@@ -390,10 +385,7 @@ action:
 azd ai routine create --file routine.yaml
 ```
 
-The minimum interval between fires is five minutes. Set `time_zone` to any IANA zone (for example, `America/Los_Angeles`); omit it to interpret `cron` in UTC.
-
-> [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
+Set `time_zone` to any IANA zone (for example, `America/Los_Angeles`); omit it to interpret `cron` in UTC.
 
 :::zone-end
 
@@ -553,9 +545,6 @@ action:
 azd ai routine create --file routine.yaml
 ```
 
-> [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
-
 :::zone-end
 
 ### Event-based triggers
@@ -582,6 +571,8 @@ A `github_issue` trigger fires when an issue is opened or closed in a watched Gi
 The trigger relies on a GitHub connector connection. Foundry provisions the connection to GitHub in your account's connector namespace and authenticates to GitHub through it. The `connection_id` you set on the trigger references this connection. Each tab shows how to create the connection and the routine that uses it. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
 The `issue_event` field accepts `opened` or `closed` only.
+
+When an issue event fires, the GitHub issue payload replaces `action.input`. The configured input applies only to manual test dispatches.
 
 :::zone pivot="foundry-portal"
 
