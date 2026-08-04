@@ -44,7 +44,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 Install the Foundry SDK and set up authentication:
 
 ```bash
-pip install "azure-ai-projects>=2.2.0" azure-identity
+pip install "azure-ai-projects>=2.4.0" azure-identity
 ```
 
 Create the project client. The following code samples assume you run them in this context:
@@ -83,28 +83,28 @@ from azure.ai.projects.models import (
     AgentEvaluatorGenerationJobSource,
     EvaluatorGenerationInputs,
     EvaluatorGenerationJob,
-    JobStatus,
 )
 
 AGENT_NAME = "my-agent"  # Replace with your agent name
-TERMINAL_STATUSES = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
+poll_interval_seconds = 10
 
-generation_job = project_client.beta.evaluators.create_generation_job(
-    job=EvaluatorGenerationJob(
-        inputs=EvaluatorGenerationInputs(
-            model=model_deployment,
-            evaluator_name=f"agent-quality-{uuid.uuid4().hex[:8]}",
-            evaluator_display_name="Agent Quality",
-            sources=[AgentEvaluatorGenerationJobSource(agent_name=AGENT_NAME)],
-        ),
+job = EvaluatorGenerationJob(
+    inputs=EvaluatorGenerationInputs(
+        model=model_deployment,
+        evaluator_name=f"agent-quality-{uuid.uuid4().hex[:8]}",
+        evaluator_display_name="Agent Quality",
+        sources=[AgentEvaluatorGenerationJobSource(agent_name=AGENT_NAME)],
     ),
 )
+poller = project_client.beta.evaluators.begin_create_generation_job(job=job)
 
-while generation_job.status not in TERMINAL_STATUSES:
-    time.sleep(10)
-    generation_job = project_client.beta.evaluators.get_generation_job(generation_job.id)
+# Optional: While SDK is polling, periodically print the job status until the job is complete
+while not poller.done():
+    print(f"\tstatus=`{poller.status()}`")
+    time.sleep(poll_interval_seconds)
 
-rubric_evaluator = generation_job.result
+rubric_evaluator = poller.result()
+
 print(f"Generated rubric {rubric_evaluator.name} v{rubric_evaluator.version}")
 for dim in rubric_evaluator.definition.dimensions:
     print(f"  - {dim.id} (weight {dim.weight}): {dim.description}")

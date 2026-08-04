@@ -32,7 +32,7 @@ You reference the guardrail by its RAI policy resource ID on the agent definitio
     /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
     ```
 
-* For the Azure Developer CLI method: the `azd ai agent` extension, version 0.1.38-preview or later.
+* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.1 or later.
 * For the Python SDK method: the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) for Python, version 2.2.0 or later:
 
     ```bash
@@ -47,11 +47,13 @@ When you omit `rai_config`, the agent runs without a content safety guardrail. W
 
 Always use the full ARM resource ID for `rai_policy_name`, not the bare policy name.
 
+`rai_config` is the shape the Foundry API accepts, so the Python SDK and REST examples in this article set it directly. The Azure Developer CLI doesn't expose `rai_config` in `azure.yaml`; it uses a `policies` list instead and maps it to `rai_config` when it deploys.
+
 ## Add a guardrail with the Azure Developer CLI
 
-When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `azure.yaml`. Set `rai_config.rai_policy_name` to the full ARM resource ID of the RAI policy.
+When you use `azd`, declare the guardrail in the `policies` list on the `azure.ai.agent` service in `azure.yaml`. Add an entry with `type: rai_policy` and set `raiPolicyName` to the full ARM resource ID of the RAI policy. When you deploy, `azd` maps that entry to `rai_config.rai_policy_name` on the agent definition it sends to Foundry.
 
-1. In your `azure.yaml`, add `rai_config` to the agent service:
+1. In your `azure.yaml`, add `policies` to the agent service:
 
     ```yaml
     services:
@@ -61,9 +63,10 @@ When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `az
         kind: hosted
         name: my-hosted-agent
         description: A hosted agent with a content safety guardrail
-        rai_config:
-          # Full ARM resource ID of the RAI policy on the Foundry resource.
-          rai_policy_name: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
+        policies:
+          - type: rai_policy
+            # Full ARM resource ID of the RAI policy on the Foundry resource.
+            raiPolicyName: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
         protocols:
           - protocol: responses
             version: "2.0.0"
