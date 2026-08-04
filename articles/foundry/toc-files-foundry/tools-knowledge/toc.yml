@@ -110,6 +110,8 @@ items:
     href: ../../agents/how-to/tools/skills.md
   - name: Create a private tool catalog
     href: ../../agents/how-to/private-tool-catalog.md
+  - name: Create a private skill catalog
+    href: ../../agents/how-to/private-skill-catalog.md
 
 # Knowledge and retrieval
 - name: Knowledge and retrieval

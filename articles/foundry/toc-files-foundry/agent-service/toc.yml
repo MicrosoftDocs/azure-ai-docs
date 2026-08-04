@@ -49,6 +49,8 @@ items:
       href: ../../agents/concepts/tool-best-practice.md
     - name: Create a private tool catalog (preview)
       href: ../../agents/how-to/private-tool-catalog.md
+    - name: Create a private skill catalog (preview)
+      href: ../../agents/how-to/private-skill-catalog.md
   - name: Toolbox
     items:
     - name: Overview
