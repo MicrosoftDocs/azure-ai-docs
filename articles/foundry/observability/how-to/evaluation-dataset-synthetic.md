@@ -141,8 +141,6 @@ job = DataGenerationJob(
 
 # 3. Submit and wait for completion.
 poller = project_client.beta.datasets.begin_create_generation_job(job=job)
-# Optional: While SDK is polling, periodically print the job status until the job is complete
-print("Periodically check job status:")
 while not poller.done():
     print(f"\tstatus=`{poller.status()}`")
     time.sleep(poll_interval_seconds)

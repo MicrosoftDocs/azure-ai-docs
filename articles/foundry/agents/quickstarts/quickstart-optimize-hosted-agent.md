@@ -339,11 +339,10 @@ with (
   )
 
   print(f"Optimization job started, waiting for completion...")
-  # Optional: While SDK is polling, periodically print the job status until the job is complete
-  print("Periodically check job status:")
   while not poller.done():
     print(f"\tstatus=`{poller.status()}`")
     time.sleep(poll_interval_seconds)
+
   result = poller.result()
 
   if result:

@@ -100,11 +100,12 @@ poller = project_client.beta.evaluators.begin_create_generation_job(
 )
 
 # Optional: While SDK is polling, periodically print the job status until the job is complete
-print("Periodically check job status:")
 while not poller.done():
     print(f"\tstatus=`{poller.status()}`")
     time.sleep(poll_interval_seconds)
+
 rubric_evaluator = poller.result()
+
 print(f"Generated rubric {rubric_evaluator.name} v{rubric_evaluator.version}")
 for dim in rubric_evaluator.definition.dimensions:
     print(f"  - {dim.id} (weight {dim.weight}): {dim.description}")
