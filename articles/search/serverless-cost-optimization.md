@@ -29,12 +29,23 @@ For more information about pricing model and service tier differences, see [Choo
 In the Serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
 
 - Queries and indexing consume compute, measured in Compute Units per hour (CU/h).
-- For active indexes, compute usage is based on two resource measurements: total index size on disk and [vector index size](vector-search-index-size.md) in memory. Because memory is more resource intensive than disk, vector index size has a higher weighting. The two amounts aren't added together. Compute usage is based on whichever measurement produces the higher effective CU amount and how long the index remains active.
+- Active indexes consume compute based on their resource usage and how long they remain active.
 - An index stays active for 10 minutes after its last query or indexing request before it goes inactive.
 - Inactive indexes have no minimum or reserved compute charge. The compute usage for inactive indexes scales to zero. There is no minimum compute charge when an index is inactive.
 - Storage is billed separately based on index size on disk and continues whether or not an index is in use.
 
 Storage charges stop only when you delete the index.
+
+### How index size affects compute usage
+
+While an index is active, Azure AI Search evaluates two finite resources to determine its compute usage:
+
+- **Total index size**: The total space that the index occupies on disk, including text, metadata, and vectors.
+- **Vector index size**: The memory used by the [vector index](vector-search-index-size.md). Memory is more resource intensive than disk, so vector index size has a higher weighting when converted to CUs.
+
+Azure AI Search doesn't add the two resulting CU amounts together. Compute usage is based on whichever amount is higher. For example, vector index size can determine compute usage even when the total index size on disk is relatively small.
+
+To reduce active-index compute usage, identify which resource produces the higher CU amount. Then reduce total index size, vector index size, or both. Indexed storage remains a separate per-GB/month charge.
 
 The Serverless pricing model is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
 
