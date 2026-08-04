@@ -315,28 +315,27 @@ with (
   DefaultAzureCredential() as credential,
   AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
-  poller = project_client.beta.agents.begin_create_optimization_job(
-    job=OptimizationJob(
-      inputs=OptimizationJobInputs(
-        agent=OptimizationAgentIdentifier(agent_name=agent_name),
-        train_dataset=OptimizationReferenceDatasetInput(
-          name=dataset_name,
-          version=dataset_version,
-        ),
-        evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
-        options=OptimizationOptions(
-          max_candidates=2,
-          eval_model=eval_model,
-          optimization_model=optimization_model,
-          optimization_config={
-            "system_prompt": optimization_config.instructions,
-            **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
-            **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
-          }
-        ),
-      )
+  job = OptimizationJob(
+    inputs=OptimizationJobInputs(
+      agent=OptimizationAgentIdentifier(agent_name=agent_name),
+      train_dataset=OptimizationReferenceDatasetInput(
+        name=dataset_name,
+        version=dataset_version,
+      ),
+      evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
+      options=OptimizationOptions(
+        max_candidates=2,
+        eval_model=eval_model,
+        optimization_model=optimization_model,
+        optimization_config={
+          "system_prompt": optimization_config.instructions,
+          **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
+          **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
+        }
+      ),
     )
   )
+  poller = project_client.beta.agents.begin_create_optimization_job(job=job)
 
   print(f"Optimization job started, waiting for completion...")
   while not poller.done():

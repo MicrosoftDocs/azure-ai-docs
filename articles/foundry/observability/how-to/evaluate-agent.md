@@ -88,16 +88,15 @@ from azure.ai.projects.models import (
 AGENT_NAME = "my-agent"  # Replace with your agent name
 poll_interval_seconds = 10
 
-poller = project_client.beta.evaluators.begin_create_generation_job(
-    job=EvaluatorGenerationJob(
-        inputs=EvaluatorGenerationInputs(
-            model=model_deployment,
-            evaluator_name=f"agent-quality-{uuid.uuid4().hex[:8]}",
-            evaluator_display_name="Agent Quality",
-            sources=[AgentEvaluatorGenerationJobSource(agent_name=AGENT_NAME)],
-        ),
+job = EvaluatorGenerationJob(
+    inputs=EvaluatorGenerationInputs(
+        model=model_deployment,
+        evaluator_name=f"agent-quality-{uuid.uuid4().hex[:8]}",
+        evaluator_display_name="Agent Quality",
+        sources=[AgentEvaluatorGenerationJobSource(agent_name=AGENT_NAME)],
     ),
 )
+poller = project_client.beta.evaluators.begin_create_generation_job(job=job)
 
 # Optional: While SDK is polling, periodically print the job status until the job is complete
 while not poller.done():
