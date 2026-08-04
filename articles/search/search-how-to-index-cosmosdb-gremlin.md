@@ -4,8 +4,9 @@ description: Set up an Azure Cosmos DB indexer to automate indexing of Apache Gr
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
@@ -36,7 +37,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + An [Azure Cosmos DB account, database, container, and items](/azure/cosmos-db/sql/create-cosmosdb-resources-portal). Use the same region for both Azure AI Search and Azure Cosmos DB for lower latency and to avoid bandwidth charges.
 
-+ An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This is the default configuration. Lazy indexing isn't recommended and may result in missing data.
++ An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This setting is the default configuration. Lazy indexing isn't recommended and might result in missing data.
 
 + Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Cosmos DB Account Reader Role** permissions.
 
@@ -81,9 +82,9 @@ For this call, specify a [preview REST API version](search-api-preview.md) to cr
 
 1. Set "container" to the collection. The "name" property is required and it specifies the ID of the graph. 
 
-   The "query" property is optional. By default the Azure AI Search indexer for Azure Cosmos DB for Apache Gremlin makes every vertex in your graph a document in the index. Edges will be ignored. The query default is `g.V()`. Alternatively, you could set the query to only index the edges. To index the edges, set the query to `g.E()`.
+   The "query" property is optional. By default, the Azure AI Search indexer for Azure Cosmos DB for Apache Gremlin makes every vertex in your graph a document in the index. Edges are ignored. The query default is `g.V()`. Alternatively, you can set the query to only index the edges. To index the edges, set the query to `g.E()`.
 
-1. [Set "dataChangeDetectionPolicy"](#DataChangeDetectionPolicy) if data is volatile and you want the indexer to pick up just the new and updated items on subsequent runs. Incremental progress will be enabled by default using `_ts` as the high water mark column.
+1. [Set "dataChangeDetectionPolicy"](#DataChangeDetectionPolicy) if your data is volatile and you want the indexer to pick up just the new and updated items on subsequent runs. Incremental progress is enabled by default using `_ts` as the high water mark column.
 
 1. [Set "dataDeletionDetectionPolicy"](#DataDeletionDetectionPolicy) if you want to remove search documents from a search index when the source item is deleted.
 
@@ -91,7 +92,7 @@ For this call, specify a [preview REST API version](search-api-preview.md) to cr
 
 Indexers can connect to a collection using the following connections. For connections that target [Azure Cosmos DB for Apache Gremlin](/azure/cosmos-db/graph/graph-introduction), be sure to include "ApiKind" in the connection string.
 
-Avoid port numbers in the endpoint URL. If you include the port number, the connection will fail.  
+Avoid port numbers in the endpoint URL. If you include the port number, the connection fails.  
 
 | Full access connection string |
 |-----------------------------------------------|
@@ -107,7 +108,7 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 
 In a [search index](search-what-is-an-index.md), add fields to accept the source JSON documents or the output of your custom query projection. Ensure that the search index schema is compatible with your graph. For content in Azure Cosmos DB, your search index schema should correspond to the [Azure Cosmos DB items](/azure/cosmos-db/resource-model#azure-cosmos-db-items) in your data source.
 
-1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that store data:
 
    ```http
     POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
@@ -311,13 +312,13 @@ Even if you enable deletion detection policy, deleting complex (`Edm.ComplexType
 
 ## Mapping graph data to fields in a search index
 
-The Azure Cosmos DB for Apache Gremlin indexer will automatically map a couple pieces of graph data:
+The Azure Cosmos DB for Apache Gremlin indexer automatically maps a couple pieces of graph data:
 
-1. The indexer will map `_rid` to an `rid` field in the index if it exists, and Base64 encode it.
+1. The indexer maps `_rid` to an `rid` field in the index if it exists, and Base64 encodes it.
 
-1. The indexer will map `_id` to an `id` field in the index if it exists.
+1. The indexer maps `_id` to an `id` field in the index if it exists.
 
-1. When querying your Azure Cosmos DB database using the Azure Cosmos DB for Apache Gremlin you may notice that the JSON output for each property has an `id` and a `value`. The indexer will automatically map the properties `value` into a field in your search index that has the same name as the property if it exists. In the following example, 450 would be mapped to a `pages` field in the search index.
+1. When querying your Azure Cosmos DB database by using the Azure Cosmos DB for Apache Gremlin, you might notice that the JSON output for each property has an `id` and a `value`. The indexer automatically maps the property's `value` into a field in your search index that has the same name as the property if it exists. In the following example, 450 is mapped to a `pages` field in the search index.
 
 ```http
     {
@@ -335,7 +336,7 @@ The Azure Cosmos DB for Apache Gremlin indexer will automatically map a couple p
     }
 ```
 
-You may find that you need to use [Output Field Mappings](cognitive-search-output-field-mapping.md) in order to map your query output to the fields in your index. You'll likely want to use Output Field Mappings instead of [Field Mappings](search-indexer-field-mappings.md) since the custom query will likely have complex data.
+You might find that you need to use [Output Field Mappings](cognitive-search-output-field-mapping.md) to map your query output to the fields in your index. You'll likely want to use Output Field Mappings instead of [Field Mappings](search-indexer-field-mappings.md) since the custom query likely has complex data.
 
 For example, let's say that your query produces this output:
 

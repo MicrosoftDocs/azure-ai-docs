@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: "Agent types, tools, and publishing options supported by Microsoft Foundry Agent Service in Azure Government (USGov Virginia and USGov Arizona)."
 author: jvenezia
 ms.author: jvenezia
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article

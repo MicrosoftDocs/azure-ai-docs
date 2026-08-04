@@ -75,7 +75,7 @@ The SharePoint tool uses your project connection to determine which SharePoint s
 
 If you need to create a SharePoint connection for your project, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
-## Code example
+## Create an agent with the SharePoint tool
 
 :::zone pivot="python"
 
@@ -592,7 +592,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 

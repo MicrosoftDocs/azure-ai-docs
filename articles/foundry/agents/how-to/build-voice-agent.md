@@ -196,7 +196,7 @@ When you create the agent version, include `invocations_ws` in `protocol_version
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentProtocol,
+    AgentEndpointProtocol,
     ContainerConfiguration,
     HostedAgentDefinition,
     ProtocolVersionRecord,
@@ -213,7 +213,7 @@ agent = project.agents.create_version(
     agent_name="my-voice-agent",
     definition=HostedAgentDefinition(
         protocol_versions=[
-            ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
+            ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="1.0.0"),
         ],
         cpu="1",
         memory="2Gi",

@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Use this article to quickly get the answers to FAQ about orchestration projects
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: faq
-ms.date: 05/19/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: mode-other
 ---

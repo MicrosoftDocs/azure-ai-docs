@@ -63,7 +63,7 @@ dotnet add package Azure.Identity
 # [JavaScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects@2.0.0
+npm install @azure/ai-projects@2.3.0
 npm install @azure/identity
 ```
 
@@ -73,12 +73,12 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.15.4</version>
+    <version>1.18.4</version>
 </dependency>
 ```
 
@@ -1870,7 +1870,7 @@ console.log(`Memory store: ${memoryStore.name}`);
 
 ```java
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.MemoryStoresClient;
+import com.azure.ai.agents.BetaMemoryStoresClient;
 import com.azure.ai.agents.models.MemoryStoreDefaultDefinition;
 import com.azure.ai.agents.models.MemoryStoreDetails;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -1878,10 +1878,11 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 String projectEndpoint = "your_project_endpoint";
 
 // Create memory stores client
-MemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
+BetaMemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint)
-    .buildMemoryStoresClient();
+    .beta()
+    .buildBetaMemoryStoresClient();
 
 // Create a memory store
 MemoryStoreDefaultDefinition definition =

@@ -5,7 +5,7 @@ description: Use this quickstart to start using Text Analytics for health.
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
 ms.date: 05/28/2026
 ms.author: lajanuar

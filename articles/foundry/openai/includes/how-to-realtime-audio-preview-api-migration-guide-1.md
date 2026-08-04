@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: alexeyo
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include
 ---
 
@@ -19,10 +19,10 @@ The Azure OpenAI GPT Realtime API is now Generally Available (GA). This migratio
 **Time to migrate**: Most migrations take 30-60 minutes.
 
 > [!IMPORTANT]
-> The Preview version of the API is deprecated starting April 30, 2026. Migrate to the GA version before this date to avoid service disruption.
+> The preview version of the API was deprecated on April 30, 2026. Migrate to the GA version now to avoid service disruption.
 
 > [!NOTE]
-> If you're building a new application, refer to the [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) instead. This guide is only for migrating existing Preview applications to GA.
+> If you're building a new application, refer to the [Realtime API quickstart](../how-to/realtime-audio-websockets.md#voice-agent-quickstart) instead. This guide is only for migrating existing preview applications to GA.
 
 ## Prerequisites
 

@@ -3,7 +3,7 @@ title: Create a File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -21,11 +21,11 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-A *file knowledge source* (preview) uploads small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
+A *file knowledge source* (preview) uploads small-to-medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
 File knowledge sources are useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container. Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base.
 
-If your content already lives in Azure Blob Storage or ADLS Gen2, or if you need large-scale ingestion or storage account capabilities, use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead.
+A file knowledge source supports up to 100 files. Use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead when your files are already in Azure Blob Storage or Azure Data Lake Storage Gen2, when your file set exceeds or is likely to exceed 100 files, or when you need scheduled ingestion. Also use a blob knowledge source when you want to manage source blobs with [Azure Blob Storage lifecycle management policies](/azure/storage/blobs/lifecycle-management-overview) or when you need [document-level permissions (preview)](agentic-knowledge-source-how-to-blob.md#enforce-document-level-permissions-preview) based on permissions in Azure Storage.
 
 ### Usage support
 
@@ -42,6 +42,8 @@ If your content already lives in Azure Blob Storage or ADLS Gen2, or if you need
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + If the knowledge source specifies an Azure OpenAI model for embeddings, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
+
+  + If the Foundry resource has public network access disabled, create an `openai_account` [shared private link](search-indexer-howto-access-private.md#supported-resource-types) from the search service to the Foundry resource, and keep the resource's **Allow Azure services on the trusted services list** setting enabled.
 
 ::: zone pivot="csharp"
 
@@ -79,7 +81,8 @@ The following limits apply to file knowledge sources.
 | Maximum files per file knowledge source | 100 |
 
 > [!NOTE]
-> Uploaded content is stored in the generated search index. For total storage limits by pricing tier, see [Service limits](search-limits-quotas-capacity.md#service-limits).
+> + Uploading the same file name doesn't replace an existing file. For more information, see [Upload files](#upload-files).
+> + The generated search index stores the uploaded content. For total storage limits by pricing tier, see [Service limits](search-limits-quotas-capacity.md#service-limits).
 
 
 ## Check for existing knowledge sources
@@ -307,9 +310,9 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 ::: zone-end
 
 > [!NOTE]
-> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
+> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each successful upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
 >
-> To replace content, delete the prior file by `fileId` before or after the new upload.
+> To replace content, delete the prior file by `fileId` before you upload the replacement.
 
 ## List uploaded files
 
@@ -378,7 +381,9 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 }
 ```
 
-Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Review the value for unsupported file types, extraction failures, model access issues, or quota limits.
+Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Common causes include unsupported file types, extraction failures, model access issues, and quota limits.
+
+If a model access failure occurs and the Foundry resource that hosts the embedding model uses private networking, confirm that the `openai_account` shared private link is approved and the trusted-services bypass is enabled. A disabled bypass returns `403 Public access is disabled`. For setup details, see [Prerequisites](#prerequisites).
 
 ## Delete uploaded files
 

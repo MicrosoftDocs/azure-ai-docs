@@ -7,7 +7,7 @@ manager: mcleans
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 06/21/2026
 ms.author: lajanuar

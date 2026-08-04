@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 04/06/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom:
   - language-service-key-phrase

@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about the latest changes to the Azure Translator API.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 05/05/2026
+ms.date: 07/30/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
@@ -21,6 +22,17 @@ Bookmark this page to stay up to date with release notes, feature enhancements, 
 Azure Translator in Foundry Tools is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages.
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+
+## July 2026
+
+### Document translation client libraries 2.0.0 (GA)
+
+Version 2.0.0 of the Document translation client libraries is now generally available for Python and Java. Both libraries use Document translation API version **2026-03-01** by default and support asynchronous batch translation and synchronous single-document translation.
+
+* [Python package 2.0.0](https://pypi.org/project/azure-ai-translation-document/2.0.0/)
+* [Java package 2.0.0](https://central.sonatype.com/artifact/com.azure/azure-ai-translation-document/2.0.0)
+
+For installation, authentication, and sample guidance, see [Document translation SDKs](document-translation/document-sdk-overview.md).
 
 ## June 2026
 

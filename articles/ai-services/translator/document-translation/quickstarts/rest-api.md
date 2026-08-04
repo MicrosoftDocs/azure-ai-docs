@@ -5,7 +5,7 @@ description: Use the Document translation REST APIs for batch and single documen
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: quickstart
 ms.date: 06/02/2026
 ---

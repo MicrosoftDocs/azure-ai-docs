@@ -3,7 +3,7 @@ title: Create a Skillset
 description: Learn about skillsets and create a skillset in Azure AI Search using REST APIs.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/27/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -51,7 +51,7 @@ Start with the basic structure. In the [Create Skillset REST API](/rest/api/sear
    "cognitiveServices":{
       "@odata.type":"#Microsoft.Azure.Search.CognitiveServicesByKey",
       "description":"A Microsoft Foundry resource in the same region as Azure AI Search",
-      "key":"<Your-Azure-AI-Foundry-Resource-Key>"
+      "key":"<Your-Microsoft-Foundry-Resource-Key>"
    },
    "knowledgeStore":{
       "storageConnectionString":"<Your-Azure-Storage-Connection-String>",

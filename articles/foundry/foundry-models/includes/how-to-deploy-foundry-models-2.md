@@ -41,7 +41,7 @@ For more information about quota, see [Microsoft Foundry Models quotas and limit
 | --- | --- |
 | Quota exceeded | [Request more quota](https://aka.ms/oai/stuquotarequest) or reallocate TPM from existing deployments. |
 | Region not supported | Check [regional availability](../quotas-limits.md) and deploy in a supported region. |
-| Marketplace subscription error | Verify you have the [required permissions](../how-to/configure-marketplace.md) to subscribe to Azure Marketplace offerings. |
+| Marketplace subscription error | Verify you have the [required permissions](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community) to subscribe to Azure Marketplace offerings. |
 | Deployment status shows **Failed** | Confirm that the model is available in your selected region and that you have sufficient quota. |
 
 ## Related content

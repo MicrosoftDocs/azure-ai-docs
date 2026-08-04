@@ -20,6 +20,8 @@ items:
     href: ../../how-to/develop/use-microsoft-foundry-skill.md
   - name: Best practices for coding agents
     href: ../../agents/how-to/use-cli-with-coding-agents.md
+  - name: Foundry Agent Canvas
+    href: ../../agents/concepts/foundry-agent-canvas.md
   - name: Work in VS Code
     href: ../../how-to/develop/get-started-projects-vs-code.md
   - name: Use declarative agent workflows in the VS Code extension

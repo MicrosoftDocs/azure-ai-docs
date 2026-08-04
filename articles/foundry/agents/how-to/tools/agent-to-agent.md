@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/03/2026
+ms.date: 07/28/2026
 author: mattwojo
 reviewer: zhuoqunli
 ms.author: mattwoj
@@ -20,23 +20,27 @@ zone_pivot_groups: selection-agent-to-agent
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
+You can extend the capabilities of your Microsoft Foundry agent by connecting to a remote Agent2Agent (A2A) endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication through a standardized protocol, allowing your Foundry agent to exchange context and collaborate with external agents.
+
+This article shows you how to configure an A2A connection and call a remote A2A endpoint from your Foundry Agent Service agent.
+
+If you want to **expose** your own agent as an A2A endpoint that other agents can call, see [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint).
+
+When your Foundry agent calls a remote agent through the A2A tool, the remote agent processes the request and returns a response. Your Foundry agent uses that response to generate an answer for the user and continues to manage the conversation.
+
+To learn more on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
+
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
+
 > [!NOTE]
-> For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
-
-You can extend the capabilities of your Microsoft Foundry agent by connecting to a remote Agent2Agent (A2A) endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication, making it easier to share context between Foundry-model-powered agents and external agent endpoints through a standardized protocol. This guide shows you how to configure a connection and call a remote A2A endpoint from your Foundry Agent Service agent.
-
-> [!TIP]
-> This article covers how to **call** a remote A2A endpoint from your Foundry agent. If you want to **expose** your own agent as an A2A endpoint that other agents can call, see [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) later in this article.
-
-When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.
-
-> [!IMPORTANT]
-> **Migrating from `agent.as_tool` or Connected Agents?** The Connected Agents tool from the previous (classic) Agents API isn't available in the new Foundry Agent Service. To use one Foundry agent from another, choose one of the following replacements:
+> **Migrating from `agent.as_tool` or Connected Agents?** 
 >
-> - **A2A tool** (this article): Call any A2A-compatible endpoint from your agent. To call another Foundry agent this way, expose that agent as an A2A endpoint by following [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) later in this article, then connect to it from your calling agent.
-> - **Workflows**: Orchestrate multiple Foundry agents declaratively in a sequential, group chat, or human-in-the-loop pattern. See [Build a workflow in Microsoft Foundry](../../concepts/workflow.md).
+> The Connected Agents tool from the classic Agents API isn't available in the new Foundry Agent Service. To connect one agent to another, use one of the following approaches:
 >
-> For the full mapping of classic tools to their replacements in the new API, see [Agent tool availability](../../how-to/migrate.md#agent-tool-availability) in the migration guide.
+> - **A2A tool** (this article): Connect to any A2A-compatible endpoint, including another Foundry agent exposed as an A2A endpoint. See [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) to set up the Foundry agent as an endpoint.
+> - **Workflows**: Orchestrate multiple Foundry agents declaratively using sequential, group chat, or human-in-the-loop patterns. See [Build a workflow in Microsoft Foundry](../../concepts/workflow.md).
+>
+> For a complete mapping of classic agent tools to their replacements in the new API, see [Agent tool availability](../../how-to/migrate.md#agent-tool-availability).
 
 ## Usage support
 
@@ -71,6 +75,8 @@ Create a project connection for your A2A endpoint so you can store authenticatio
 
 For details about supported authentication approaches, see [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md).
 
+If you are connecting to a Foundry agent as the target, set the connection **target** to the target agent's A2A base path, `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a`, and use the audience `https://ai.azure.com`. Don't set an agent card path. Foundry resolves the default agent card path automatically and negotiates the A2A protocol version for you. The target agent must have incoming A2A enabled; see [Enable incoming A2A on a Foundry agent](../enable-agent-to-agent-endpoint.md).
+
 ### Create the connection in the Foundry portal
 
 1. [!INCLUDE [foundry-sign-in](../../../includes/foundry-sign-in.md)]
@@ -87,8 +93,6 @@ Use your connection name in code. Your code uses this name to retrieve the full 
 
 - **Python/C#/TypeScript**: Call `project.connections.get(connection_name)` to get the connection object, then access `connection.id`.
 - **REST API**: Include the connection ID in the `project_connection_id` field of the A2A tool definition.
-
-## Code example
 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
@@ -117,46 +121,34 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
+# Create the A2A tool from the project connection
 a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
-
 tool = A2APreviewTool(
     project_connection_id=a2a_connection.id,
 )
 
+# Create the agent with the A2A tool
 agent = project.agents.create_version(
     agent_name=AGENT_NAME,
     definition=PromptAgentDefinition(
-        model="gpt-4.1-mini",
+        model="gpt-5-mini",
         instructions="You are a helpful assistant.",
         tools=[tool],
     ),
 )
 print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
 
-user_input = input("Enter your question (e.g., 'What can the secondary agent do?'): \n")
+Next, send a request to the agent and print the response:
 
-stream_response = openai.responses.create(
-    stream=True,
+```python
+# Send a request to the agent
+response = openai.responses.create(
     tool_choice="required",
-    input=user_input,
+    input="What can the secondary agent do?",
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
-
-for event in stream_response:
-    if event.type == "response.created":
-        print(f"Follow-up response created with ID: {event.response.id}")
-    elif event.type == "response.output_text.delta":
-        print(f"Delta: {event.delta}")
-    elif event.type == "response.text.done":
-        print(f"\nFollow-up response done!")
-    elif event.type == "response.output_item.done":
-        item = event.item
-        if item.type == "remote_function_call":
-            print(f"Call ID: {getattr(item, 'call_id')}")
-            print(f"Label: {getattr(item, 'label')}")
-    elif event.type == "response.completed":
-        print(f"\nFollow-up completed!")
-        print(f"Full response: {event.response.output_text}")
+print(response.output_text)
 
 # Clean up the created agent version
 project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
@@ -164,36 +156,69 @@ project.agents.delete_version(agent_name=agent.name, agent_version=agent.version
 
 ### Expected output
 
-The agent responds with information about the secondary agent's capabilities, demonstrating successful A2A communication. You see streaming delta text as the response is generated, followed by completion messages. The output includes the follow-up response ID, text deltas, and a final summary of what the secondary agent can do.
+The agent responds with information about the secondary agent's capabilities, demonstrating successful A2A communication.
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_a2a_tool()` to attach an A2A connection. It uses `AIProjectClient` to resolve the connection name to a connection ID. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `a2a-toolbox` and connect to its MCP endpoint with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx azure-ai-projects`, replace `PROJECT_ENDPOINT` with your project endpoint, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 ```python
 import asyncio
-import os
 
-from agent_framework import Agent
+import httpx
+from agent_framework import Agent, MCPStreamableHTTPTool
 from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential, get_bearer_token_provider
 from azure.ai.projects import AIProjectClient
-from azure.identity import AzureCliCredential
+from azure.ai.projects.models import A2APreviewTool
 
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 A2A_CONNECTION_NAME = "my-a2a-connection"
+
+# Create the A2A tool and add it to a toolbox
+credential = AzureCliCredential()
+project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
+toolbox = project.toolboxes.create_toolbox_version(
+    name="a2a-toolbox",
+    description="Toolbox with the A2A tool",
+    tools=[A2APreviewTool(project_connection_id=a2a_connection.id)],
+)
+```
+
+Next, attach the toolbox to the hosted agent as an MCP tool and run it:
+
+```python
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = f"******"
+        yield request
 
 
 async def main() -> None:
-    credential = AzureCliCredential()
-    project = AIProjectClient(
-        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-        credential=credential,
+    # The toolbox exposes an MCP-compatible endpoint
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
     )
-    a2a_connection_id = project.connections.get(A2A_CONNECTION_NAME).id
+
+    # Attach the toolbox to the hosted agent as an MCP tool
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
 
     agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are a helpful assistant.",
-        tools=[FoundryChatClient.get_a2a_tool(project_connection_id=a2a_connection_id)],
+        tools=[mcp_tool],
     )
 
     result = await agent.run("What can the secondary agent do?")
@@ -206,13 +231,13 @@ if __name__ == "__main__":
 
 ### Expected output
 
-The agent calls the remote A2A endpoint and prints the consolidated reply:
+The agent calls the secondary agent through the `a2a-toolbox` MCP endpoint and prints the consolidated reply:
 
 ```console
 Agent: The secondary agent can help with ...
 ```
 
-For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 ---
 
@@ -236,9 +261,10 @@ var projectEndpoint = "https://<resource>.ai.azure.com/api/projects/<project>";
 var a2aConnectionName = "my-a2a-connection";
 var a2aBaseUri = "https://<a2a-endpoint>"; // Optional for non-RemoteA2A connections.
 
+// Create project client to call Foundry API
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
-// Create the A2ATool and provide it with the A2A connection ID.
+// Create the A2ATool and provide it with the A2A connection ID
 AIProjectConnection a2aConnection = projectClient.Connections.GetConnection(connectionName: a2aConnectionName);
 A2APreviewTool a2aTool = new()
 {
@@ -250,21 +276,24 @@ if (!string.Equals(a2aConnection.Type.ToString(), "RemoteA2A"))
     {
     throw new InvalidOperationException($"The connection {a2aConnection.Name} is of {a2aConnection.Type.ToString()} type and does not carry the A2A service base URI. Set a2aBaseUri before running this sample.");
     }
-    // Provide the service endpoint as a baseUri parameter
-    // if the connection is not of a RemoteA2A type.
     a2aTool.BaseUri = new Uri(a2aBaseUri);
 }
-DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+
+// Create the agent with the A2A tool
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { a2aTool }
 };
-// Create the Agent version with the A2A tool.
 AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
+```
 
-// Create the response and make sure we are always using tool.
+Next, send a request to the agent and print the response:
+
+```csharp
+// Send the request and print the response
 ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
@@ -272,15 +301,9 @@ CreateResponseOptions responseOptions = new()
     InputItems = { ResponseItem.CreateUserMessageItem("What can the secondary agent do?") },
 };
 ResponseResult response = responseClient.CreateResponse(responseOptions);
-
-// Print the Agent output.
-if (response.Status != ResponseStatus.Completed)
-{
-    throw new InvalidOperationException($"Response did not complete. Status: {response.Status}");
-}
 Console.WriteLine(response.GetOutputText());
 
-// Clean up the created Agent version.
+// Clean up the created agent version
 projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
@@ -290,49 +313,76 @@ The console displays the agent's response text from the A2A endpoint. After comp
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-The Microsoft Agent Framework lets you compose agents directly in your process by exposing one `AIAgent` as an `AIFunction` of another. This sample creates a specialist `WeatherAgent` and a top-level `MainAgent` that calls it via `weatherAgent.AsAIFunction()`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample creates the `a2a-toolbox` with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke the A2A tool through the toolbox MCP endpoint. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 ```csharp
-using System.ComponentModel;
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
 using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
-using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
 
-[Description("Get the weather for a given location.")]
-static string GetWeather([Description("The location to get the weather for.")] string location)
-    => $"The weather in {location} is cloudy with a high of 15°C.";
+const string AgentInstructions = "You are a helpful assistant.";
+const string AgentName = "A2AAgent";
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
-    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
+string a2aConnectionName = "my-a2a-connection";
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
 string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
 
-AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+DefaultAzureCredential credential = new();
 
-AITool weatherTool = AIFunctionFactory.Create(GetWeather);
-AIAgent weatherAgent = aiProjectClient.AsAIAgent(deploymentName,
-    instructions: "You answer questions about the weather.",
-    name: "WeatherAgent",
-    tools: [weatherTool]);
+// Create the A2A tool and add it to a toolbox
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
+AIProjectConnection a2aConnection = projectClient.Connections.GetConnection(connectionName: a2aConnectionName);
+A2APreviewTool a2aTool = new() { ProjectConnectionId = a2aConnection.Id };
+ProjectsAgentTool a2aProjectTool = a2aTool;
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "a2a-toolbox",
+        tools: [a2aProjectTool],
+        description: "Toolbox with the A2A tool");
+```
 
-AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
-    instructions: "You are a helpful assistant who responds in French.",
-    name: "MainAgent",
-    tools: [weatherAgent.AsAIFunction()]);
+Next, attach the toolbox to the hosted agent:
 
-AgentSession session = await agent.CreateSessionAsync();
-Console.WriteLine(await agent.RunAsync("What is the weather like in Amsterdam?", session));
+```csharp
+// The toolbox exposes an MCP-compatible endpoint
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// Attach the toolbox to the hosted agent
+AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+
+// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call
+ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(
+        name: AgentName,
+        instructions: AgentInstructions,
+        chatClient: chatClient,
+        toolboxClient: toolboxClient));
+});
 ```
 
 ### Expected output
 
-The top-level agent delegates the weather question to the `WeatherAgent` sub-agent and prints the consolidated reply in French:
+When invoked, the hosted agent calls the secondary agent through the `a2a-toolbox` MCP endpoint and prints the consolidated reply:
 
 ```console
-Le temps à Amsterdam est nuageux avec une température maximale de 15 °C.
+Agent: The secondary agent can help with ...
 ```
 
-For the full sample, see [Agent_Step11_AsFunctionTool](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step11_AsFunctionTool).
+For a maintained .NET Agent Framework integration, see [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
 
 ---
 
@@ -525,139 +575,246 @@ az account get-access-token --scope https://ai.azure.com/.default --query access
 
 Use that token as `{{agent_token}}` in the request.
 
-### Create an agent version with the A2A tool
+The recommended way to add an A2A tool is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+1. Create a toolbox that contains the A2A tool:
 
 ```bash
 curl --request POST \
-  --url '{{project_endpoint}}/agents/{{agent_name}}/versions?api-version=v1' \
-  -H 'Authorization: Bearer {{agent_token}}' \
+  --url '{{project_endpoint}}/toolboxes/a2a-toolbox/versions?api-version=v1' \
   -H 'Content-Type: application/json' \
   -d '{
-  "description": "Test agent version description",
-  "definition": {
-    "kind": "prompt",
-    "model": "{{model}}",
-    "tools": [ 
+    "description": "Toolbox with the A2A tool",
+    "tools": [
       {
-         "type": "a2a_preview",
-         "base_url": "{{a2a_endpoint}}",
-         "project_connection_id": "{{project_connection_id}}"
+        "type": "a2a_preview",
+        "base_url": "{{a2a_endpoint}}",
+        "project_connection_id": "{{project_connection_id}}"
       }
-    ],
-    "instructions": "You are a helpful agent."
-  }
-}'
+    ]
+  }'
 ```
+
+   The toolbox exposes an MCP-compatible endpoint at `{{project_endpoint}}/toolboxes/a2a-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+1. Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`).
+
+    ```bash
+    azd ai connection create a2a-toolbox-conn \
+      --kind remote-tool \
+      --target "{{project_endpoint}}/toolboxes/a2a-toolbox/versions/<version>/mcp?api-version=v1" \
+      --auth-type user-entra-token \
+      --audience https://ai.azure.com
+    ```
+
+1. Create an agent version that uses the toolbox by attaching it as an MCP tool:
+
+    ```bash
+    curl --request POST \
+      --url '{{project_endpoint}}/agents/{{agent_name}}/versions?api-version=v1' \
+      -H 'Authorization: Bearer {{agent_token}}' \
+      -H 'Content-Type: application/json' \
+      -d '{
+      "description": "Test agent version description",
+      "definition": {
+        "kind": "prompt",
+        "model": "{{model}}",
+        "tools": [
+          {
+            "type": "mcp",
+            "server_label": "toolbox",
+            "server_url": "{{project_endpoint}}/toolboxes/a2a-toolbox/versions/<version>/mcp?api-version=v1",
+            "require_approval": "never",
+            "project_connection_id": "a2a-toolbox-conn"
+          }
+        ],
+        "instructions": "You are a helpful agent."
+      }
+    }'
+    ```
 
 To delete an agent version, send a `DELETE` request to the same endpoint with the agent name and version.
 :::zone-end
 
+### Add an A2A tool to a toolbox with the Azure Developer CLI
+
+Create a `remote-a2a` connection for the remote agent, then reference it from a minimal toolbox YAML.
+
+**Step 1. Create the connection**
+
+Pick the auth variant you need:
+
+```bash
+# No auth
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type none
+
+# Custom-keys header
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type custom-keys \
+  --custom-key "Authorization=******"
+
+# OAuth — bring your own app registration
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type oauth2 \
+  --authorization-url https://auth.example.com/authorize \
+  --token-url https://auth.example.com/token \
+  --client-id <oauth-client-id> \
+  --client-secret <oauth-client-secret> \
+  --scopes "<scope1> <scope2>"
+
+# User Entra token (managed user identity passthrough)
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type user-entra-token \
+  --audience "<entra-audience>"
+
+# Project managed identity
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type project-managed-identity \
+  --audience "<entra-audience>"
+
+# Agentic identity
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
+| `--auth-type` | Additional flags |
+|---------------|------------------|
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `oauth2` | `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, `--scopes` |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `project-managed-identity` | `--audience <entra-audience>` (optional) |
+| `agentic-identity` | `--audience <entra-audience>` |
+
+**Step 2. Define the toolbox**
+
+```yaml
+# my-toolbox.yaml
+description: Agent-to-Agent toolbox
+connections:
+  - name: my-a2a-conn
+```
+
+**Step 3. Create the toolbox**
+
+```bash
+azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
+```
+
 :::zone pivot="typescript"
 
-This sample demonstrates how to create an AI agent with A2A capabilities by using the `a2a_preview` tool type and the Azure AI Projects client. The agent can communicate with other agents and provide responses based on inter-agent interactions by using the A2A protocol.
+This sample demonstrates how to create an AI agent with A2A capabilities by using the `a2a_preview` tool type and the Azure AI Projects client. The agent communicates with other agents and provides responses based on inter-agent interactions by using the A2A protocol.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import * as readline from "readline";
 
 const PROJECT_ENDPOINT = "https://<resource>.ai.azure.com/api/projects/<project>";
 const A2A_CONNECTION_NAME = "my-a2a-connection";
 
-export async function main(): Promise<void> {
-  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+// Create clients to call Foundry API
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = project.getOpenAIClient();
 
-  // Get the A2A connection by name to retrieve its ID
-  const a2aConnection = await project.connections.get(A2A_CONNECTION_NAME);
+// Get the A2A connection by name to retrieve its ID
+const a2aConnection = await project.connections.get(A2A_CONNECTION_NAME);
 
-  // Create the agent with A2A tool
-  const agent = await project.agents.createVersion("MyA2AAgent", {
-    kind: "prompt",
-    model: "gpt-4.1-mini",
-    instructions: "You are a helpful assistant.",
-    // Define A2A tool for agent-to-agent communication
-    tools: [
-      {
-        type: "a2a_preview",
-        project_connection_id: a2aConnection.id,
-      },
-    ],
-  });
-  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
-
-  // Prompt user for input
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  const userInput = await new Promise<string>((resolve) => {
-    rl.question("Enter your question (e.g., 'What can the secondary agent do?'): \n", (answer) => {
-      rl.close();
-      resolve(answer);
-    });
-  });
-
-  // Send request and stream the response
-  const streamResponse= await openAIClient.responses.create(
+// Add the A2A tool to a toolbox
+const toolbox = await project.toolboxes.createVersion(
+  "a2a-toolbox",
+  [
     {
-      input: userInput,
-      stream: true,
+      type: "a2a_preview",
+      project_connection_id: a2aConnection.id,
     },
+  ],
+  { description: "Toolbox with the A2A tool" },
+);
+
+// The toolbox exposes an MCP-compatible endpoint
+const toolboxMcpUrl =
+  `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+  `/versions/${toolbox.version}/mcp?api-version=v1`;
+```
+
+Create a remote-tool project connection that points at the toolbox endpoint. Use a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`). Create the connection once, for example with the Azure Developer CLI:
+
+```bash
+azd ai connection create a2a-toolbox-conn \
+  --kind remote-tool \
+  --target "<toolboxMcpUrl>" \
+  --auth-type user-entra-token \
+  --audience https://ai.azure.com
+```
+
+Next, attach the toolbox to a prompt agent as an MCP tool and run it:
+
+```typescript
+const toolboxConnectionName = "a2a-toolbox-conn";
+
+// Attach the toolbox to a prompt agent as an MCP tool
+const agent = await project.agents.createVersion("MyA2AAgent", {
+  kind: "prompt",
+  model: "gpt-5-mini",
+  instructions: "You are a helpful assistant.",
+  tools: [
     {
-      body: {
-        agent: { name: agent.name, type: "agent_reference" },
-        tool_choice: "required",
-      },
+      type: "mcp",
+      server_label: "toolbox",
+      server_url: toolboxMcpUrl,
+      require_approval: "never",
+      project_connection_id: toolboxConnectionName,
     },
-  );
-
-  // Process the streaming response
-  for await (const event of streamResponse) {
-    if (event.type === "response.created") {
-      console.log(`Follow-up response created with ID: ${event.response.id}`);
-    } else if (event.type === "response.output_text.delta") {
-      process.stdout.write(event.delta);
-    } else if (event.type === "response.output_text.done") {
-      console.log("\n\nFollow-up response done!");
-    } else if (event.type === "response.output_item.done") {
-      const item = event.item as any;
-      if (item.type === "remote_function_call") {
-        // Add your handling logic for remote function call items here
-        const callId = item.call_id;
-        const label = item.label;
-        console.log(`Call ID: ${callId ?? "None"}`);
-        console.log(`Label: ${label ?? "None"}`);
-      }
-    } else if (event.type === "response.completed") {
-      console.log("\nFollow-up completed!");
-    }
-  }
-
-  // Clean up the created agent version
-  await project.agents.deleteVersion(agent.name, agent.version);
-}
-
-main().catch((err) => {
-  console.error("The sample encountered an error:", err);
+  ],
 });
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+// Send a request to the agent
+const response = await openai.responses.create(
+  {
+    input: "What can the secondary agent do?",
+  },
+  {
+    body: {
+      agent: { name: agent.name, type: "agent_reference" },
+      tool_choice: "required",
+    },
+  },
+);
+console.log(response.output_text);
+
+// Clean up the created agent version
+await project.agents.deleteVersion(agent.name, agent.version);
 ```
 
 ### Expected output
 
-The console displays streamed response text as the A2A agent processes the request. You see the follow-up response ID, text deltas printed to stdout, and completion messages. The agent version is deleted after the interaction completes.
+The console displays the agent's response text from the A2A endpoint. After completion, the agent version is deleted to clean up resources.
 :::zone-end
 
 :::zone pivot="java"
 
 ## Use agent-to-agent communication in Java
 
-Update these values in the sample:
+Update these values in your Java agent after you create the toolbox:
 
 - `projectEndpoint` — Your project endpoint.
-- `model` — A deployed model name.
-- `a2aConnectionId` — The ID of the A2A connection in your Foundry project.
+- `toolboxMcpUrl` — The MCP endpoint for the toolbox version that contains the A2A tool.
+- `toolboxConnectionName` — The remote-tool project connection name for the toolbox endpoint.
 
 Add the dependency to your `pom.xml`:
 
@@ -665,67 +822,12 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
-### Create agents with agent-to-agent tool
-
-```java
-import com.azure.ai.agents.AgentsClient;
-import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.ResponsesClient;
-import com.azure.ai.agents.models.AgentReference;
-import com.azure.ai.agents.models.AgentVersionDetails;
-import com.azure.ai.agents.models.A2APreviewTool;
-import com.azure.ai.agents.models.AzureCreateResponseOptions;
-import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.openai.models.responses.Response;
-import com.openai.models.responses.ResponseCreateParams;
-
-import java.util.Collections;
-
-public class AgentToAgentExample {
-    public static void main(String[] args) {
-        String projectEndpoint = "https://<resource>.ai.azure.com/api/projects/<project>";
-        String a2aConnectionId = "<a2a-connection-id>";
-
-        AgentsClientBuilder builder = new AgentsClientBuilder()
-            .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(projectEndpoint);
-
-        AgentsClient agentsClient = builder.buildAgentsClient();
-        ResponsesClient responsesClient = builder.buildResponsesClient();
-
-        // Create agent-to-agent tool with connection ID
-        A2APreviewTool a2aTool = new A2APreviewTool()
-            .setProjectConnectionId(a2aConnectionId);
-
-        // Create agent with agent-to-agent tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
-            .setInstructions("You are a coordinator agent that can communicate with other agents.")
-            .setTools(Collections.singletonList(a2aTool));
-
-        AgentVersionDetails agent = agentsClient.createAgentVersion("a2a-agent", agentDefinition);
-        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
-
-        // Create a response
-        AgentReference agentReference = new AgentReference(agent.getName())
-            .setVersion(agent.getVersion());
-
-        Response response = responsesClient.createAzureResponse(
-            new AzureCreateResponseOptions().setAgentReference(agentReference),
-            ResponseCreateParams.builder()
-                .input("What can the secondary agent do?"));
-
-        System.out.println("Response: " + response.output());
-
-        // Clean up
-        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
-    }
-}
-```
+> [!TIP]
+> **Recommended:** For most agents, add the A2A tool through a [toolbox](../../concepts/toolbox-overview.md) and attach the toolbox to your agent as an MCP tool. The Java SDK doesn't yet expose a toolbox creation API, so create the toolbox by using the [Python](?pivots=python), [REST API](?pivots=rest-api), [C#](?pivots=csharp), or [TypeScript](?pivots=typescript) example, or the [Foundry portal](../../how-to/tools/toolbox.md), and then reference its MCP endpoint from your Java agent as an `McpTool`.
 
 :::zone-end
 

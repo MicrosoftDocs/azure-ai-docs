@@ -17,6 +17,16 @@ ai-usage: ai-assisted
 
 Adding support for the agent optimizer to your agent requires a few lines of code. No framework changes or conditional logic are needed. You install the optimization package, set up a configuration directory, and call `load_config()` at startup.
 
+This step is the first step in the [optimization workflow](../concepts/agent-optimizer-overview.md#the-optimization-workflow). The baseline configuration you create defines the inputs the optimizer improves: instructions, tools, skills, and the model. Your agent works the same whether or not optimization is active.
+
+To make your agent optimizer-ready, complete three steps:
+
+1. [Install the optimization package](#install-the-optimization-package).
+1. [Set up a baseline configuration directory](#set-up-the-configuration-directory) with your instructions and, optionally, tools and skills.
+1. [Load the config at startup](#load-and-use-the-config) with `load_config()` and use the values it returns.
+
+The rest of this article gives a complete example and explains how configuration resolution works. After an optimization run finishes, you apply the winning candidate and deploy—see [Deploy the winner](optimize-agent-targets.md#deploy-the-winner).
+
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with a deployed hosted agent
@@ -50,6 +60,8 @@ my-agent/
    \- <candidate_id>/        <- created by 'azd ai agent optimize apply'
       \- (same layout as baseline/)
 ```
+
+The baseline requires `metadata.yaml` and `instructions.md`. The `tools.json` file and `skills/` directory are optional - include them only if your agent uses tools or skills. The optimizer activates each target based on which of these files are present.
 
 ### metadata.yaml
 
@@ -155,7 +167,7 @@ The optimizer can discover and create new skills during optimization. These skil
 
 Learn more about the Agent Skills format at [agentskills.io](https://agentskills.io).
 
-## Load the optimization config
+## Load and use the config
 
 Add the config loader at the top of your agent's entry point:
 
@@ -188,7 +200,7 @@ returns your baseline configuration. If no config source is found, it returns
 | `tool_definitions` | `list` | Tool definitions with optimized descriptions |
 | `source` | `str` | Where the config came from (`baseline`, `env`, etc.) |
 
-## Use the config values
+### Use the config values
 
 Use the model and composed instructions when calling the model:
 
@@ -237,29 +249,6 @@ logger.info(
     config.source, model, len(instructions), len(config.skills),
 )
 ```
-
-## Apply the optimized config locally
-
-After running `azd ai agent optimize` and selecting a winning candidate, apply it to your local project before deploying:
-
-```bash
-# 1. Run optimization
-azd ai agent optimize
-
-# 2. Review results
-azd ai agent optimize status <job-id>
-
-# 3. Apply the winning candidate locally
-azd ai agent optimize apply --candidate <candidate_id>
-
-# 4. Deploy with the optimized config
-azd deploy
-```
-
-The `apply` command downloads the optimized `instructions.md`, `tools.json`, and `skills/` from the candidate and writes them into `.agent_configs/<candidate_id>/` in your project. On next startup, `load_config()` detects the candidate and uses the optimized configuration.
-
-> [!WARNING]
-> If you use `azd ai agent optimize deploy --candidate <id>` instead of `apply`, the optimized config deploys directly via the API without updating your local files. Use the `apply` -> `deploy` workflow for production to maintain reproducibility.
 
 ## Complete example
 
@@ -368,10 +357,10 @@ if __name__ == "__main__":
 
 1. **During optimization**: The optimizer sets `OPTIMIZATION_CONFIG` with the candidate's configuration as inline JSON. Your agent uses the candidate's instructions and tool descriptions during evaluation.
 
-    > [!WARNING]
-    > During evaluation, the optimizer invokes your agent against every task in your dataset. If your agent calls external tools (APIs, databases, third-party services), those calls execute for real. Consider mocking tool implementations or pointing to test endpoints to avoid unintended side effects.
+    > [!NOTE]
+    > During evaluation, the optimizer invokes your agent against every task in your dataset, so any external tool calls run for real. For guidance on avoiding unintended side effects, see [How the agent optimizer works](../concepts/agent-optimizer-overview.md#how-the-agent-optimizer-works).
 
-1. **After applying a winner**: You run `azd ai agent optimize apply --candidate <id>` to write the optimized config files into `.agent_configs/<candidate_id>/` in your project. Then `azd deploy` deploys the agent with the improved configuration.
+1. **After applying a winner**: You run `azd ai agent optimize apply --candidate <id>` to write the optimized config files into `.agent_configs/<candidate_id>/` in your project. Then `azd deploy` deploys the agent with the improved configuration. For the full apply and deploy steps, see [Deploy the winner](optimize-agent-targets.md#deploy-the-winner).
 
 Your code never changes between these states. The config resolution is fully automatic.
 
@@ -401,8 +390,8 @@ azd ai agent run
 
 ## Related content
 
-- [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
-- [Create a custom evaluation dataset](create-optimizer-dataset.md)
-- [Optimize agent instructions, skills, tools, and models](optimize-agent-targets.md)
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
+- [Create an evaluation dataset and evaluators](create-optimizer-dataset.md)
+- [Optimize agent instructions, skills, tools, and models](optimize-agent-targets.md)
+- [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
 - [Agent Skills format](https://agentskills.io) — open standard for portable agent skills

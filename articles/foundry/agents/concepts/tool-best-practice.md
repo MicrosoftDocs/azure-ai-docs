@@ -50,7 +50,7 @@ For details, see `tool_choice` in [Foundry project REST (preview)](../../referen
 
 - Keep instructions specific and consistent with your tool setup.
 - Tell the model what each tool is for.
-- If you have multiple tools that overlap, add a decision rule (for example, “Use File Search before Web Search for internal content.”).
+- If you have multiple tools that overlap, add a decision rule (for example, "Use File Search before Web Search for internal content.").
 
 ## Secure tool usage
 
@@ -58,7 +58,7 @@ Tools send and receive data outside the model. Reduce security and privacy risks
 
 - Treat tool outputs as untrusted input and validate critical values before acting on them.
 - Send only the information required to complete the task.
-- Don’t include keys, tokens, or other credentials in prompts.
+- Don't include keys, tokens, or other credentials in prompts.
 - Avoid logging secrets in traces or application logs.
 - If you connect to non-Microsoft services (for example, third-party MCP servers), review the considerations in [Discover and manage tools in the Foundry tool catalog (preview)](tool-catalog.md).
 - If you need centralized routing and policy enforcement for MCP tools, see [Tools governance with AI Gateway (preview)](../how-to/tools/governance.md).
@@ -67,7 +67,7 @@ Tools send and receive data outside the model. Reduce security and privacy risks
 
 Use these checks to resolve common issues:
 
-- **Your agent doesn’t call a tool**:
+- **Your agent doesn't call a tool**:
     - Confirm the tool is attached to the agent.
     - Confirm the model supports the tool.
     - If you need deterministic behavior, set `tool_choice` to `required`.

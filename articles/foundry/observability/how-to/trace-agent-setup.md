@@ -6,8 +6,8 @@ description: "Learn how to set up tracing in Microsoft Foundry to debug AI agent
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: ychen
-ms.date: 03/27/2026
+ms.reviewer: dchirasani
+ms.date: 07/31/2026
 ms.topic: how-to
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
@@ -18,9 +18,9 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 [!INCLUDE [trace-agent-preview](../../includes/trace-agent-preview.md)]
 
-Use tracing to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry—including latency, exceptions, prompt content, and retrieval operations—so you can identify and fix issues faster.
+Use tracing to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry - including latency, exceptions, prompt content, and retrieval operations - so you can identify and fix issues faster.
 
-The recommended starting point is **server-side tracing**. Foundry enables it for you automatically once you connect an Application Insights resource to your project. No code changes are required, and traces are available within minutes of enabling it. Server-side tracing works for any agent hosted in Foundry. When you need visibility into your own application code — for example, to trace custom logic surrounding an agent call — you can layer on client-side instrumentation as a second step.
+The recommended starting point is **server-side tracing**. Foundry enables it automatically after you connect an Application Insights resource to your project. No code changes are required, and traces are available within minutes of enabling it. Server-side tracing works for any agent hosted in Foundry. When you need visibility into your own application code - for example, to trace custom logic surrounding an agent call - you can add client-side instrumentation as a second step.
 
 ## Prerequisites
 
@@ -71,29 +71,31 @@ Choose the approach that matches how you build and run your agent.
 
 Start with server-side traces. Foundry logs traces for common agent and workflow scenarios without changing your code.
 
-- Foundry automatically logs server-side traces for Prompt agents, Host agents, and workflows in the Foundry portal. Once tracing is enabled in your Foundry project, you'll have access to out-of-the-box traces for the past 90 days.
-- Foundry also allows for easy [integration](trace-agent-framework.md) with top agent frameworks.
+- Foundry automatically logs server-side traces for Prompt agents, Host agents, and workflows in the Foundry portal. After tracing is enabled in your Foundry project, you have access to out-of-the-box traces for the past 90 days.
+- Foundry also supports easy [integration](trace-agent-framework.md) with top agent frameworks.
 
 ### Client-side traces with the Microsoft Foundry SDK (Python)
 
-Install OpenTelemetry and the Azure SDK tracing plugin using:
+Install OpenTelemetry and the Azure SDK tracing plugin by using the following steps:
 
 ```bash
 pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracing-opentelemetry
 ```
 
-> [!IMPORTANT]
-> Using a project's endpoint in your application requires configuring Microsoft Entra ID. If you don't configure Microsoft Entra ID, use the Application Insights connection string.
+Reference: [azure-ai-projects](/python/api/overview/azure/ai-projects-readme), [azure-core-tracing-opentelemetry](/python/api/overview/azure/core-tracing-opentelemetry-readme)
 
-After running your agent, you can begin to [view and analyze traces in Foundry portal](#view-traces-in-the-foundry-portal).
+> [!IMPORTANT]
+> To use a project's endpoint in your application, you need to configure Microsoft Entra ID. If you don't configure Microsoft Entra ID, use the Application Insights connection string.
+
+After running your agent, you can [view and analyze traces in Foundry portal](#view-traces-in-the-foundry-portal).
 
 For detailed instructions and SDK-specific code examples, see [Tracing with azure-ai-projects (Python SDK)](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects#tracing) and [Telemetry samples for agents](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/telemetry).
 
 ### Trace locally with the Microsoft Foundry Toolkit for Visual Studio Code extension
 
-The Microsoft Foundry Toolkit for Visual Studio Code extension lets you trace locally in VS Code using a local OTLP-compatible collector, which is ideal for development and debugging.
+The Microsoft Foundry Toolkit for Visual Studio Code extension lets you trace locally in VS Code by using a local OTLP-compatible collector. This approach is ideal for development and debugging.
 
-The toolkit supports AI frameworks such as Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
+The toolkit supports AI frameworks such as Foundry Agent Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
 
 For detailed setup instructions and SDK-specific code examples, see [Tracing in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
@@ -103,7 +105,7 @@ For detailed setup instructions and SDK-specific code examples, see [Tracing in 
 
 In your Foundry project, go to the **Traces** tab in your agents or workflows. You can search, filter, or sort ingested traces from the last 90 days.
 
-Select a trace to step through each span, identify issues, and observe how your application responds. This helps you debug and pinpoint issues in your application.
+Select a trace to step through each span, identify problems, and observe how your application responds. This process helps you debug and pinpoint problems in your application.
 
 ### View traces in Azure Monitor
 
@@ -115,7 +117,7 @@ For more information on how to send traces to Azure Monitor and create an Azure 
 
 A **Conversation** is the persistent context of an end-to-end dialogue history between a user and an agent. In the Foundry portal, you can view **Conversation** results for your agent run out of the box along with traces on the **Traces** page.
 
-You can select a conversation search for a Response ID, or search by a Trace ID that maps to this conversation. Then, select **Conversation ID** to review the conversation:
+Search by Response ID or by a Trace ID that maps to this conversation. Then select a **Conversation ID** to review:
 
 - Conversation history details
 - Response information and tokens in a run
@@ -136,7 +138,7 @@ If you don't see new traces, wait a few minutes and refresh, and then see [Troub
 
 ## Security and privacy
 
-Tracing can capture sensitive information (for example, user inputs, model outputs, and tool arguments and results). Use these practices to reduce risk:
+Tracing can capture sensitive information, such as user inputs, model outputs, and tool arguments and results. Use these practices to reduce risk:
 
 - Don't store secrets, credentials, or tokens in prompts, tool arguments, or span attributes.
 - Redact or minimize personal data and other sensitive content before it appears in telemetry.
@@ -159,7 +161,7 @@ Foundry stores traces in the Application Insights resource connected to your pro
 
 ## Related content
 
-Now that tracing is set up, explore these resources to deepen your understanding and extend your observability capabilities:
+Now that you set up tracing, explore these resources to deepen your understanding and extend your observability capabilities:
 
 - [Agent tracing overview](../concepts/trace-agent-concept.md)
 - [Tracing integrations](trace-agent-framework.md)

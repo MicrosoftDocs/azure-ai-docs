@@ -3,10 +3,10 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 06/11/2026
+ms.date: 07/27/2026
 ms.service: microsoft-foundry
 ms.topic: include
-ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
+ms.custom: pilot-ai-workflow-jan-2026, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -41,6 +41,12 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [`Video generation`](../../foundry-models/concepts/models-sold-directly-by-azure.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
 | [Audio](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
+### Understand model token limits
+
+The **Context Window** column lists the total number of tokens that a model can process in a request. When a row lists separate **Input** and **Output** values, these values are individual limits. They aren't additive allowances that you can always use together. Input tokens, generated output tokens, and reasoning tokens share the available context budget. More input leaves fewer tokens for generation.
+
+The **Max Output Tokens** column sets an upper limit, not a guaranteed output size. An API parameter such as `max_output_tokens` doesn't reserve tokens when the request has less context budget available.
+
 ## GPT-chat-latest
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
@@ -68,6 +74,9 @@ For model availability across all regions, grouped by deployment category, see [
 | `gpt-5.6-terra` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
 | `gpt-5.6-luna` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
 
+> [!NOTE]
+> Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-5.6` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
+
 ## GPT-5.5
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
@@ -77,6 +86,22 @@ For model availability across all regions, grouped by deployment category, see [
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.5` (2026-04-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000  | 128,000 | December 2025 |
+
+### Responses API token budget
+
+For the current GPT-5.5 Responses API implementation, the effective combined prompt and generation budget is approximately 922,000 tokens. This API limit is lower than the model's 1,050,000-token context window. You can't combine a 922,000-token prompt with 128,000 generated tokens in one request. Calculate the approximate generation budget as follows:
+
+`available generation tokens = 922,000 - prompt tokens`
+
+For example, a request with 921,549 prompt tokens has the following token budget:
+
+- Prompt tokens: 921,549.
+- Effective context budget: 922,000.
+- Remaining generation budget: 451 tokens.
+
+The model can generate at most the remaining 451 tokens, even if you set `max_output_tokens` to 64,000 or 128,000. This generation budget includes visible output and reasoning tokens.
+
+Reaching the available token budget doesn't necessarily produce an HTTP error. A request can return HTTP status code 200 with an incomplete response. Check `status` for `incomplete` and `incomplete_details.reason` for `max_output_tokens` to determine whether generation stopped at the token limit.
 
 > [!NOTE]
 > Some [quota tiers](../quotas-limits.md) will require quota requests for `gpt-5.5` to be able to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default.
@@ -398,11 +423,12 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-translate` (2026-05-06) | Audio model for real-time multilingual translation with translated speech and text output. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-whisper` (2026-05-06) | Audio model for real-time low-latency transcription. |Input: 32,000  <br> Output: 4,096 | September 2024 |
+|`gpt-live-transcribe` (2026-07-29) | Audio model for real-time low-latency transcription. Current recommended model for realtime transcription scenarios. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2.1` (2026-07-07)<br>`gpt-realtime-2.1-mini` (2026-07-07) | Audio models for real-time audio processing. Minor updates over `gpt-realtime-2` with improved silence and noise handling. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 
 > [!NOTE]
-> `gpt-realtime-translate` and `gpt-realtime-whisper` use hourly billing. Most other realtime models use token-based input and output pricing. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+> `gpt-realtime-translate`, `gpt-realtime-whisper`, and `gpt-live-transcribe` use duration-based billing. Most other realtime models use token-based input and output pricing. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ### Audio API
 
@@ -413,10 +439,16 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 |  Model ID  | Description | Max request (audio file size) |
 | ----- | ----- | ----- |
 | `whisper` | General-purpose speech recognition model. | 25 MB |
+| `gpt-transcribe` | Offline speech-to-text model for file transcription via `POST /v1/audio/transcriptions`. Supports language hints. | 25 MB |
 | `gpt-4o-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o. | 25 MB|
 | `gpt-4o-mini-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o mini. | 25 MB|
 | `gpt-4o-transcribe-diarize` (2025-10-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. | 25 MB|
 | `gpt-4o-mini-transcribe` (2025-12-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
+
+> [!IMPORTANT]
+> `gpt-transcribe` is an offline transcription model and isn't a Realtime API model. For streaming transcription, use `gpt-realtime-whisper` or `gpt-live-transcribe`.
+> `gpt-realtime-whisper` and `gpt-live-transcribe` appear in the **GPT-4o audio models** table because they're Realtime API models, not `/audio` API speech-to-text models.
+
 
 #### Speech translation models
 

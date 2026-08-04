@@ -1,21 +1,25 @@
-﻿---
-title: Document Translation REST API Guide
+---
+title: Document Translation REST API Guide (2026-03-01)
 titleSuffix: Foundry Tools
 description: Overview of the Document Translation REST API operations for synchronous and asynchronous batch document translation.
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
-ms.date: 06/02/2026
+ms.date: 07/30/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Document Translation REST API guide overview
+<!-- markdownlint-disable MD060 -->
+# Document Translation REST API guide (2026-03-01)
 
 The Document Translation REST API (version 2026-03-01) supports two translation models and a set of discovery operations. Synchronous translation processes a single document without Blob Storage and returns the translated file directly. Asynchronous batch translation processes one or more documents stored in Azure Blob Storage and lets you poll for status. Both models use neural machine translation (NMT) by default.
 
 All requests require a custom domain endpoint. The format is `https://{your-resource-name}.cognitiveservices.azure.com/`.
+
+> [!NOTE]
+> For existing applications that use earlier APIs, see the [legacy Document Translation REST API guide](../../reference/rest-api-guide.md).
 
 ## Synchronous operations
 
@@ -44,5 +48,7 @@ All requests require a custom domain endpoint. The format is `https://{your-reso
 ## Related content
 
 * [Document Translation overview](../../overview.md)
+* [Legacy Document Translation REST API guide](../../reference/rest-api-guide.md)
+* [Document translation SDKs](../../document-sdk-overview.md)
 * [End-to-end batch translation workflow](../end-to-end-batch-workflow.md)
 * [Prerequisites](../prerequisites.md)

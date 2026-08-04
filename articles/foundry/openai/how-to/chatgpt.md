@@ -1,6 +1,6 @@
 ---
 title: "Work with chat completion models"
-description: "Learn about the options for how to use models with the chat completions API"
+description: "Learn how to use Azure OpenAI chat completions in Python and .NET, manage multi-turn conversations, and handle context windows and common errors."
 author: alvinashcraft #dereklegenzoff
 ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
@@ -10,25 +10,24 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 07/22/2026
 manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 zone_pivot_groups: openai-chat-completions
 ---
 
-# Work with chat completions models
+# Work with chat completion models
 
 [!INCLUDE [chatgpt 1](../includes/how-to-chatgpt-1.md)]
 
 ## Prerequisites
 
-- An Azure OpenAI chat completions model deployed.
-
+- An Azure OpenAI resource with a chat completion model deployment. To create a resource and deploy a model, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
 ::: zone pivot="programming-language-python"
 
 - Install the OpenAI Python library: `pip install openai`.
-- For Microsoft Entra ID authentication, install Azure Identity: `pip install azure-identity`.
+- For Microsoft Entra ID authentication, install Azure Identity (`pip install azure-identity`) and the [Azure CLI](/cli/azure/install-azure-cli). Assign the `Cognitive Services User` role to your user account, and then run `az login`.
 - For the token-counting example, install tiktoken: `pip install tiktoken`.
 - If you use API keys, set the `AZURE_OPENAI_API_KEY` environment variable.
 
@@ -42,6 +41,8 @@ zone_pivot_groups: openai-chat-completions
 
 ::: zone-end
 
+In the code samples, replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resource name and `YOUR-DEPLOYMENT-NAME` with your model deployment name.
+
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python](../includes/chat-completion-python.md)]
@@ -53,3 +54,9 @@ zone_pivot_groups: openai-chat-completions
 [!INCLUDE [.NET](../includes/chat-completion-dotnet.md)]
 
 ::: zone-end
+
+## Related content
+
+- [Use the Responses API](responses.md)
+- [Explore Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Generate embeddings](../tutorials/embeddings.md)

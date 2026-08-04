@@ -2,7 +2,7 @@
 author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
-ms.date: 6/29/2026
+ms.date: 7/17/2026
 ms.topic: include
 ms.author: pafarley
 ms.reviewer: pafarley
@@ -93,7 +93,9 @@ ai-usage: ai-assisted
 | `de-DE` | German (Germany) | Standard | `de-DE-RalfNeural` (Male) |  | ❌ |
 | `de-DE` | German (Germany) | Standard | `de-DE-TanjaNeural` (Female) |  | ❌ |
 | `de-DE` | German (Germany) | Standard | `de-DE-Klaus:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `de-DE` | German (Germany) | Standard | `de-DE-Klaus:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `de-DE` | German (Germany) | Standard | `de-DE-Mia:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `de-DE` | German (Germany) | Standard | `de-DE-Mia:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `el-GR` | Greek (Greece) | Standard | `el-GR-AthinaNeural` (Female) |  | ❌ |
 | `el-GR` | Greek (Greece) | Standard | `el-GR-NestorasNeural` (Male) |  | ❌ |
 | `en-AU` | English (Australia) | Multilingual | `en-AU-WilliamMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
@@ -113,6 +115,7 @@ ai-usage: ai-assisted
 | `en-AU` | English (Australia) | Standard | `en-AU-TinaNeural` (Female) |  | ❌ |
 | `en-AU` | English (Australia) | Neural HD Omni | `en-au-cyanspark:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-AU` | English (Australia) | Standard | `en-AU-Isla:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `en-AU` | English (Australia) | Standard | `en-AU-Isla:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-AU` | English (Australia) | Neural HD Omni | `en-au-siennatopaz:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-CA` | English (Canada) | Standard | `en-CA-ClaraNeural` (Female) |  | ❌ |
 | `en-CA` | English (Canada) | Standard | `en-CA-LiamNeural` (Male) |  | ❌ |
@@ -159,6 +162,7 @@ ai-usage: ai-assisted
 | `en-IN` | English (India) | Standard | `en-IN-NeerjaNeural` (Female) | **Styles**<br/>`cheerful`, `empathetic`, `newscast`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-IN` | English (India) | Standard | `en-IN-PrabhatNeural` (Male) |  | ❌ |
 | `en-IN` | English (India) | Standard | `en-IN-RehaanNeural` (Male) |  | ❌ |
+| `en-IN` | English (India) | Neural HD | `en-IN-Lavanya:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-KE` | English (Kenya) | Standard | `en-KE-AsiliaNeural` (Female) |  | ❌ |
 | `en-KE` | English (Kenya) | Standard | `en-KE-ChilembaNeural` (Male) |  | ❌ |
 | `en-NG` | English (Nigeria) | Standard | `en-NG-EzinneNeural` (Female) |  | ❌ |
@@ -259,47 +263,40 @@ ai-usage: ai-assisted
 | `en-US` | English (United States) | Neural HD | `en-Multitalker:DragonHDLatestNeural`<sup>1,2</sup> (Neutral) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Andrew-Preview:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Andrew3:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-ashlyra:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Ava-Preview:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-ava:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Ava3:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-blushzephyr:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-burgundysolar:DragonHDOmniLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-copperaria:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-coralbreeze:DragonHDOmniLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-coralspark:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-emma:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Ethan:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `en-US` | English (United States) | Standard | `en-US-Ethan:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Evelyn:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-goldenspark:DragonHDOmniLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Grant:MAI-Voice-1`<sup>1</sup> (Male) | **Styles**<br/>`anger`, `confusion`, `determination`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealousy`, `joy`, `neutral`, `professional`, `regret`, `relief`, `sadness`, `shouting`, `softvoice`, `surprise`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Grant:MAI-Voice-2`<sup>1</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Standard | `en-US-Grant:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Harper:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `en-US` | English (United States) | Standard | `en-US-Harper:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Iris:MAI-Voice-1`<sup>1</sup> (Female) | **Styles**<br/>`anger`, `confusion`, `determination`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealousy`, `joy`, `narration`, `neutral`, `regret`, `relief`, `sadness`, `shouting`, `softvoice`, `surprise`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Iris:MAI-Voice-2`<sup>1</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Standard | `en-US-Iris:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Jasper:MAI-Voice-1`<sup>1</sup> (Male) | **Styles**<br/>`anger`, `confusion`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealous`, `joy`, `learning`, `media`, `persuasive`, `regret`, `sadness`, `sales`, `surprise`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Jasper:MAI-Voice-2`<sup>1</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Standard | `en-US-Jasper:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-jelly:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Jimmie:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Joy:MAI-Voice-1`<sup>1</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-June:MAI-Voice-1`<sup>1</sup> (Female) | **Styles**<br/>`anger`, `callcenter`, `confusion`, `customerservice`, `disgust`, `embarrassment`, `fear`, `generalconversation`, `happiness`, `jealous`, `joy`, `learning`, `professional`, `regret`, `sadness`, `surprise`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Juno:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Mila:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-noirtulipan:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Olivia:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `en-US` | English (United States) | Standard | `en-US-Olivia:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Reed:MAI-Voice-1`<sup>1</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-rojocomet:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-sagemeadow:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Serena-Preview:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-slatenocturne:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-solarclover:DragonHDOmniLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-tealcadenza:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Tessa:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Tiana:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Tyler:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Vance:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-verdeadamant:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD Omni | `en-us-vermilionlaurel:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `fr-Multitalker:DragonHDLatestNeural`<sup>1,2</sup> (Neutral) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `zh-Multitalker:DragonHDLatestNeural`<sup>1,2</sup> (Neutral) |  | ❌ |
 | `en-ZA` | English (South Africa) | Standard | `en-ZA-LeahNeural` (Female) |  | ❌ |
@@ -343,6 +340,7 @@ ai-usage: ai-assisted
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-VeraNeural` (Female) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-XimenaNeural` (Female) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-Marta:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `es-ES` | Spanish (Spain) | Standard | `es-ES-Marta:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `es-GQ` | Spanish (Equatorial Guinea) | Standard | `es-GQ-TeresaNeural` (Female) |  | ❌ |
 | `es-GQ` | Spanish (Equatorial Guinea) | Standard | `es-GQ-JavierNeural` (Male) |  | ❌ |
 | `es-GT` | Spanish (Guatemala) | Standard | `es-GT-MartaNeural` (Female) |  | ❌ |
@@ -369,7 +367,9 @@ ai-usage: ai-assisted
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-RenataNeural` (Female) |  | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-YagoNeural` (Male) |  | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-Alejo:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `es-MX` | Spanish (Mexico) | Standard | `es-MX-Alejo:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-Valeria:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `es-MX` | Spanish (Mexico) | Standard | `es-MX-Valeria:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `es-NI` | Spanish (Nicaragua) | Standard | `es-NI-YolandaNeural` (Female) |  | ❌ |
 | `es-NI` | Spanish (Nicaragua) | Standard | `es-NI-FedericoNeural` (Male) |  | ❌ |
 | `es-PA` | Spanish (Panama) | Standard | `es-PA-MargaritaNeural` (Female) |  | ❌ |
@@ -431,7 +431,9 @@ ai-usage: ai-assisted
 | `fr-FR` | French (France) | Standard | `fr-FR-YvesNeural` (Male) |  | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-YvetteNeural` (Female) |  | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-Marc:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `fr-FR` | French (France) | Standard | `fr-FR-Marc:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-Soleil:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `fr-FR` | French (France) | Standard | `fr-FR-Soleil:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `ga-IE` | Irish (Ireland) | Standard | `ga-IE-OrlaNeural`<sup>3</sup> (Female) |  | ❌ |
 | `ga-IE` | Irish (Ireland) | Standard | `ga-IE-ColmNeural`<sup>3</sup> (Male) |  | ❌ |
 | `gl-ES` | Galician | Standard | `gl-ES-SabelaNeural`<sup>3</sup> (Female) |  | ❌ |
@@ -450,23 +452,33 @@ ai-usage: ai-assisted
 | `hi-IN` | Hindi (India) | Standard | `hi-IN-SwaraNeural` (Female) | **Styles**<br/>`cheerful`, `empathetic`, `newscast`<br/>**Roles**<br/>Not supported | ❌ |
 | `hi-IN` | Hindi (India) | Standard | `hi-IN-MadhurNeural` (Male) |  | ❌ |
 | `hi-IN` | Hindi (India) | Standard | `hi-IN-Arjun:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `sad`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
+| `hi-IN` | Hindi (India) | Standard | `hi-IN-Arjun:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `sad`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `hi-IN` | Hindi (India) | Standard | `hi-IN-Dhruv:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `hi-IN` | Hindi (India) | Standard | `hi-IN-Dhruv:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `hi-IN` | Hindi (India) | Standard | `hi-IN-Kavya:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `hi-IN` | Hindi (India) | Standard | `hi-IN-Kavya:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `hi-IN` | Hindi (India) | Standard | `hi-IN-Priya:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `hi-IN` | Hindi (India) | Standard | `hi-IN-Priya:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `hr-HR` | Croatian (Croatia) | Standard | `hr-HR-GabrijelaNeural` (Female) |  | ❌ |
 | `hr-HR` | Croatian (Croatia) | Standard | `hr-HR-SreckoNeural` (Male) |  | ❌ |
 | `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-NoemiNeural` (Female) |  | ❌ |
 | `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-TamasNeural` (Male) |  | ❌ |
 | `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Bence:MAI-Voice-2`<sup>1</sup> (Male) |  | ❌ |
+| `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Bence:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
 | `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Levente:MAI-Voice-2`<sup>1</sup> (Male) |  | ❌ |
+| `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Levente:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
 | `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Lilla:MAI-Voice-2`<sup>1</sup> (Female) |  | ❌ |
+| `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Lilla:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Réka:MAI-Voice-2`<sup>1</sup> (Female) |  | ❌ |
+| `hu-HU` | Hungarian (Hungary) | Standard | `hu-HU-Réka:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `hy-AM` | Armenian (Armenia) | Standard | `hy-AM-AnahitNeural`<sup>3</sup> (Female) |  | ❌ |
 | `hy-AM` | Armenian (Armenia) | Standard | `hy-AM-HaykNeural`<sup>3</sup> (Male) |  | ❌ |
 | `id-ID` | Indonesian (Indonesia) | Standard | `id-ID-GadisNeural` (Female) |  | ❌ |
 | `id-ID` | Indonesian (Indonesia) | Standard | `id-ID-ArdiNeural` (Male) |  | ❌ |
 | `id-ID` | Indonesian (Indonesia) | Neural HD | `id-ID-Ardi:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
+| `id-ID` | Indonesian (Indonesia) | Standard | `id-ID-Cahya:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
 | `id-ID` | Indonesian (Indonesia) | Neural HD | `id-ID-Gadis:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
+| `id-ID` | Indonesian (Indonesia) | Standard | `id-ID-Sari:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `is-IS` | Icelandic (Iceland) | Standard | `is-IS-GudrunNeural`<sup>3</sup> (Female) |  | ❌ |
 | `is-IS` | Icelandic (Iceland) | Standard | `is-IS-GunnarNeural`<sup>3</sup> (Male) |  | ❌ |
 | `it-IT` | Italian (Italy) | Neural HD | `it-IT-Isabella:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
@@ -492,7 +504,9 @@ ai-usage: ai-assisted
 | `it-IT` | Italian (Italy) | Standard | `it-IT-PierinaNeural` (Female, Child) |  | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-RinaldoNeural` (Male) |  | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-Luca:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `it-IT` | Italian (Italy) | Standard | `it-IT-Luca:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-Rosa:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `it-IT` | Italian (Italy) | Standard | `it-IT-Rosa:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `iu-CANS-CA` | Inuktitut (Syllabics, Canada) | Standard | `iu-Cans-CA-SiqiniqNeural`<sup>3</sup> (Female) |  | ❌ |
 | `iu-CANS-CA` | Inuktitut (Syllabics, Canada) | Standard | `iu-Cans-CA-TaqqiqNeural`<sup>3</sup> (Male) |  | ❌ |
 | `iu-LATN-CA` | Inuktitut (Latin, Canada) | Standard | `iu-Latn-CA-SiqiniqNeural`<sup>3</sup> (Female) |  | ❌ |
@@ -507,6 +521,8 @@ ai-usage: ai-assisted
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-NaokiNeural` (Male) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-ShioriNeural` (Female) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Multilingual | `ja-JP-MasaruMultilingualNeural`<sup>1,2</sup> (Male) |  | ❌ |
+| `ja-JP` | Japanese (Japan) | Standard | `ja-JP-Haruto:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
+| `ja-JP` | Japanese (Japan) | Standard | `ja-JP-Sakura:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `jv-ID` | Javanese (Latin, Indonesia) | Standard | `jv-ID-SitiNeural`<sup>3</sup> (Female) |  | ❌ |
 | `jv-ID` | Javanese (Latin, Indonesia) | Standard | `jv-ID-DimasNeural`<sup>3</sup> (Male) |  | ❌ |
 | `ka-GE` | Georgian (Georgia) | Standard | `ka-GE-EkaNeural`<sup>3</sup> (Female) |  | ❌ |
@@ -530,7 +546,9 @@ ai-usage: ai-assisted
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-SoonBokNeural` (Female) |  | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-YuJinNeural` (Female) |  | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-Haena:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
+| `ko-KR` | Korean (Korea) | Standard | `ko-KR-Haena:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-Junho:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `relieved`, `sad`, `softvoice`<br/>**Roles**<br/>Not supported | ❌ |
+| `ko-KR` | Korean (Korea) | Standard | `ko-KR-Junho:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `relieved`, `sad`, `softvoice`<br/>**Roles**<br/>Not supported | ❌ |
 | `lo-LA` | Lao (Laos) | Standard | `lo-LA-KeomanyNeural`<sup>3</sup> (Female) |  | ❌ |
 | `lo-LA` | Lao (Laos) | Standard | `lo-LA-ChanthavongNeural`<sup>3</sup> (Male) |  | ❌ |
 | `lt-LT` | Lithuanian (Lithuania) | Standard | `lt-LT-OnaNeural`<sup>3</sup> (Female) |  | ❌ |
@@ -564,7 +582,9 @@ ai-usage: ai-assisted
 | `nl-NL` | Dutch (Netherlands) | Standard | `nl-NL-MaartenNeural` (Male) |  | ❌ |
 | `nl-NL` | Dutch (Netherlands) | Standard | `nl-NL-ColetteNeural` (Female) |  | ❌ |
 | `nl-NL` | Dutch (Netherlands) | Standard | `nl-NL-Fleur:MAI-Voice-2`<sup>1</sup> (Female) |  | ❌ |
+| `nl-NL` | Dutch (Netherlands) | Standard | `nl-NL-Fleur:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `nl-NL` | Dutch (Netherlands) | Standard | `nl-NL-Sander:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `nl-NL` | Dutch (Netherlands) | Standard | `nl-NL-Sander:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `or-IN` | Odia (India) | Standard | `or-IN-SubhasiniNeural`<sup>3</sup> (Female) |  | ❌ |
 | `or-IN` | Odia (India) | Standard | `or-IN-SukantNeural`<sup>3</sup> (Male) |  | ❌ |
 | `pa-IN` | Punjabi (India) | Standard | `pa-IN-OjasNeural`<sup>3</sup> (Male) |  | ❌ |
@@ -595,24 +615,35 @@ ai-usage: ai-assisted
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-ValerioNeural` (Male) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-YaraNeural` (Female) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Caio:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Caio:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Luana:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Luana:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Pedro:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Pedro:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Rafael:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-Rafael:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `pt-PT` | Portuguese (Portugal) | Standard | `pt-PT-RaquelNeural` (Female) | **Styles**<br/>`sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `pt-PT` | Portuguese (Portugal) | Standard | `pt-PT-DuarteNeural` (Male) |  | ❌ |
 | `pt-PT` | Portuguese (Portugal) | Standard | `pt-PT-FernandaNeural` (Female) |  | ❌ |
 | `pt-PT` | Portuguese (Portugal) | Standard | `pt-PT-Rui:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
+| `pt-PT` | Portuguese (Portugal) | Standard | `pt-PT-Rui:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `ro-RO` | Romanian (Romania) | Standard | `ro-RO-AlinaNeural` (Female) |  | ❌ |
 | `ro-RO` | Romanian (Romania) | Standard | `ro-RO-EmilNeural` (Male) |  | ❌ |
 | `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Andrei:MAI-Voice-2`<sup>1</sup> (Male) |  | ❌ |
+| `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Andrei:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
 | `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Elena:MAI-Voice-2`<sup>1</sup> (Female) |  | ❌ |
+| `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Elena:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Ioana:MAI-Voice-2`<sup>1</sup> (Female) |  | ❌ |
+| `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Ioana:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Radu:MAI-Voice-2`<sup>1</sup> (Male) |  | ❌ |
+| `ro-RO` | Romanian (Romania) | Standard | `ro-RO-Radu:MAI-Voice-2-Flash`<sup>1</sup> (Male) |  | ❌ |
 | `ru-RU` | Russian (Russia) | Standard | `ru-RU-SvetlanaNeural` (Female) |  | ❌ |
 | `ru-RU` | Russian (Russia) | Standard | `ru-RU-DmitryNeural` (Male) |  | ❌ |
 | `ru-RU` | Russian (Russia) | Standard | `ru-RU-DariyaNeural` (Female) |  | ❌ |
 | `ru-RU` | Russian (Russia) | Standard | `ru-RU-Lev:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `ru-RU` | Russian (Russia) | Standard | `ru-RU-Lev:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `ru-RU` | Russian (Russia) | Standard | `ru-RU-Masha:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `ru-RU` | Russian (Russia) | Standard | `ru-RU-Masha:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `si-LK` | Sinhala (Sri Lanka) | Standard | `si-LK-ThiliniNeural`<sup>3</sup> (Female) |  | ❌ |
 | `si-LK` | Sinhala (Sri Lanka) | Standard | `si-LK-SameeraNeural`<sup>3</sup> (Male) |  | ❌ |
 | `sk-SK` | Slovak (Slovakia) | Standard | `sk-SK-ViktoriaNeural` (Female) |  | ❌ |
@@ -650,11 +681,15 @@ ai-usage: ai-assisted
 | `th-TH` | Thai (Thailand) | Standard | `th-TH-NiwatNeural` (Male) |  | ❌ |
 | `th-TH` | Thai (Thailand) | Standard | `th-TH-AcharaNeural` (Female) |  | ❌ |
 | `th-TH` | Thai (Thailand) | Standard | `th-TH-Krit:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `th-TH` | Thai (Thailand) | Standard | `th-TH-Krit:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `th-TH` | Thai (Thailand) | Standard | `th-TH-Nattapong:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `th-TH` | Thai (Thailand) | Standard | `th-TH-Nattapong:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `tr-TR` | Turkish (Türkiye) | Standard | `tr-TR-EmelNeural` (Female) |  | ❌ |
 | `tr-TR` | Turkish (Türkiye) | Standard | `tr-TR-AhmetNeural` (Male) |  | ❌ |
 | `tr-TR` | Turkish (Türkiye) | Standard | `tr-TR-Aydın:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `tr-TR` | Turkish (Türkiye) | Standard | `tr-TR-Aydın:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `tr-TR` | Turkish (Türkiye) | Standard | `tr-TR-Elif:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `tr-TR` | Turkish (Türkiye) | Standard | `tr-TR-Elif:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `nostalgic`, `reflective`, `saddisappointed`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `uk-UA` | Ukrainian (Ukraine) | Standard | `uk-UA-PolinaNeural` (Female) |  | ❌ |
 | `uk-UA` | Ukrainian (Ukraine) | Standard | `uk-UA-OstapNeural` (Male) |  | ❌ |
 | `ur-IN` | Urdu (India) | Standard | `ur-IN-GulNeural` (Female) |  | ❌ |
@@ -665,12 +700,11 @@ ai-usage: ai-assisted
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | Standard | `uz-UZ-SardorNeural`<sup>3</sup> (Male) |  | ❌ |
 | `vi-VN` | Vietnamese (Vietnam) | Standard | `vi-VN-HoaiMyNeural` (Female) |  | ❌ |
 | `vi-VN` | Vietnamese (Vietnam) | Standard | `vi-VN-NamMinhNeural` (Male) |  | ❌ |
+| `vi-VN` | Vietnamese (Vietnam) | Standard | `vi-VN-Linh:MAI-Voice-2-Flash`<sup>1</sup> (Female) |  | ❌ |
 | `wuu-CN` | Chinese (Wu, Simplified) | Standard | `wuu-CN-XiaotongNeural`<sup>3</sup> (Female) |  | ❌ |
 | `wuu-CN` | Chinese (Wu, Simplified) | Standard | `wuu-CN-YunzheNeural`<sup>3</sup> (Male) |  | ❌ |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Standard | `yue-CN-XiaoMinNeural`<sup>3</sup> (Female) |  | ❌ |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Standard | `yue-CN-YunSongNeural`<sup>3</sup> (Male) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Ivoryserenade:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Xiaoshuang:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `comforting`, `customer-service`, `debating`, `disappointed`, `excited`, `fearful`, `sad`, `shy`, `sorry`, `strict`, `voice-assistant`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`affectionate`, `angry`, `anxious`, `cheerful`, `curious`, `disappointed`, `empathetic`, `encouraging`, `excited`, `fearful`, `guilty`, `lonely`, `poetry-reading`, `sad`, `sentimental`, `sorry`, `story-telling`, `surprised`, `tired`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Xiaochen:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
@@ -680,7 +714,6 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Xiaoyue:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Yunqi:DragonHDOmniLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Maroonallegro:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Peachgranite:DragonHDOmniLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `assistant`, `calm`, `chat`, `chat-casual`, `cheerful`, `customerservice`, `disgruntled`, `excited`, `fearful`, `friendly`, `gentle`, `lyrical`, `newscast`, `poetry-reading`, `sad`, `serious`, `sorry`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunxiNeural` (Male) | **Styles**<br/>`angry`, `assistant`, `chat`, `cheerful`, `depressed`, `disgruntled`, `embarrassed`, `fearful`, `narration-relaxed`, `newscast`, `sad`, `serious`<br/>**Roles**<br/>`Boy`, `Narrator`, `YoungAdultMale` | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunjianNeural` (Male) | **Styles**<br/>`angry`, `cheerful`, `depressed`, `disgruntled`, `documentary-narration`, `narration-relaxed`, `sad`, `serious`, `sports-commentary`, `sports-commentary-excited`<br/>**Roles**<br/>Not supported | ❌ |
@@ -691,6 +724,7 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaochenMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaohan:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `complaining`, `fearful`, `gentle`, `sad`, `shy`, `strict`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaohanNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `calm`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoke:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`angry`, `customer-service`, `cutesy`, `excited`, `fearful`, `sad`, `sorry`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaomengNeural` (Female) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaomoNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `calm`, `cheerful`, `depressed`, `disgruntled`, `embarrassed`, `envious`, `fearful`, `gentle`, `sad`, `serious`<br/>**Roles**<br/>`Boy`, `Girl`, `OlderAdultFemale`, `OlderAdultMale`, `SeniorFemale`, `SeniorMale`, `YoungAdultFemale`, `YoungAdultMale` | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoqiuNeural` (Female) |  | ❌ |
@@ -723,9 +757,13 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-YunyiMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunzeNeural` (Male) | **Styles**<br/>`angry`, `calm`, `cheerful`, `depressed`, `disgruntled`, `documentary-narration`, `fearful`, `sad`, `serious`<br/>**Roles**<br/>`OlderAdultMale`, `SeniorMale` | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Bo:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Bo:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Lan:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `joyful`, `sad`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Lan:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `joyful`, `sad`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Mei:MAI-Voice-2`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Mei:MAI-Voice-2-Flash`<sup>1</sup> (Female) | **Styles**<br/>`angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Wei:MAI-Voice-2`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `sad`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Wei:MAI-Voice-2-Flash`<sup>1</sup> (Male) | **Styles**<br/>`angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `regretful`, `sad`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN-GUANGXI` | Chinese (Guangxi Accent Mandarin, Simplified) | Standard | `zh-CN-guangxi-YunqiNeural`<sup>1,3</sup> (Male) |  | ❌ |
 | `zh-CN-henan` | Chinese (Zhongyuan Mandarin Henan, Simplified) | Standard | `zh-CN-henan-YundengNeural`<sup>3</sup> (Male) |  | ❌ |
 | `zh-CN-liaoning` | Chinese (Northeastern Mandarin, Simplified) | Standard | `zh-CN-liaoning-XiaobeiNeural`<sup>1,3</sup> (Female) |  | ❌ |

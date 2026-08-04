@@ -4,7 +4,7 @@ description: Learn about Microsoft Translator Pro and how it enables speech-to-s
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
 ms.date: 05/26/2026
 ms.custom: FY25Q1-Linter

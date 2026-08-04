@@ -6,7 +6,7 @@ ms.reviewer: andyaviles
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/15/2026
+ms.date: 07/13/2026
 ms.custom: include
 ---
 
@@ -14,9 +14,11 @@ ms.custom: include
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry account and project. For more information, see the [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md).
-- Azure CLI installed (optional, for applying resource locks via command line).
+- Azure CLI installed. Required for the lock management, Cosmos DB restore, and verification steps in this article.
+- Azure Cosmos DB continuous backup (7-day or 30-day tier) enabled on the Cosmos DB account that hosts the `enterprise_memory` database, before any incident occurs. Point-in-time restore is unavailable unless you configured this feature in advance.
 - Appropriate RBAC roles:
-  - **Owner** or **Contributor** on the resource group to deploy and configure resources.
+  - **Contributor** on the resource group to deploy and configure resources.
+  - **Owner** on the resource group or individual resources to create and manage resource locks. The **Contributor** role doesn't include `Microsoft.Authorization/locks/write`.
   - **User Access Administrator** to assign RBAC roles to managed identities.
   - **Cosmos DB Operator** for Azure Cosmos DB configuration.
   - **Search Service Contributor** for Azure AI Search configuration.
@@ -83,7 +85,11 @@ az lock create \
 To verify the lock was applied:
 
 ```azurecli
-az lock list --resource-group "<your-resource-group>" --output table
+az lock list \
+  --resource-group "<your-resource-group>" \
+  --resource "<your-foundry-account>" \
+  --resource-type "Microsoft.CognitiveServices/accounts" \
+  --output table
 ```
 
 Expected output shows the lock name and type for your resources.
@@ -92,11 +98,11 @@ Expected output shows the lock name and type for your resources.
 
 ### Implement least privilege access
 
-Use Azure role-based access control (RBAC) to limit access to control and data planes. Grant only required permissions and audit them regularly.
+Use Azure role-based access control (RBAC) to limit access to control and data planes. Grant only the required permissions and audit them regularly.
 
 In production, don't grant standing delete permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing write permissions.
 
-You can also destroy data through Agent Service REST APIs. Built-in AI roles like [Foundry User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these data plane operations. For more information, see [Azure AI Foundry REST API reference](https://ai.azure.com/api-reference/). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+You can also destroy data through Agent Service REST APIs. Built-in AI roles like [Foundry User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these data plane operations. For more information, see [Microsoft Foundry REST API reference](https://ai.azure.com/api-reference/). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
 
 [!INCLUDE [role-rename-note](./role-rename-note.md)]
 
@@ -127,6 +133,35 @@ Configure these resources before an incident happens. The recovery steps in this
 - [Azure Cosmos DB high availability](/azure/cosmos-db/high-availability)
 - [Azure AI Search service reliability](/azure/search/search-reliability)
 - [Azure Storage redundancy](/azure/storage/common/storage-redundancy)
+
+### Configure Cosmos DB with Azure CLI
+
+Use these Azure CLI commands to configure the recommended Cosmos DB settings before an incident occurs.
+
+To enable continuous backup with point-in-time restore:
+
+```azurecli
+az cosmosdb update \
+  --name <account-name> \
+  --resource-group <resource-group> \
+  --backup-policy-type Continuous \
+  --continuous-tier Continuous7Days
+```
+
+**Reference:** [az cosmosdb update](/cli/azure/cosmosdb#az-cosmosdb-update)
+
+To enable read replication to a failover region and enable service-managed failover:
+
+```azurecli
+az cosmosdb update \
+  --name <account-name> \
+  --resource-group <resource-group> \
+  --locations regionName=<primary-region> failoverPriority=0 isZoneRedundant=true \
+              regionName=<secondary-region> failoverPriority=1 isZoneRedundant=true \
+  --enable-automatic-failover true
+```
+
+**Reference:** [az cosmosdb update](/cli/azure/cosmosdb#az-cosmosdb-update)
 
 ### Deployment modes and recovery implications
 
@@ -161,15 +196,21 @@ The following Bicep snippet shows a minimal template for Cosmos DB with continuo
 ```bicep
 param location string = resourceGroup().location
 param cosmosDbName string
+param failoverRegion string
 
-resource cosmosDb 'Microsoft.DocumentDB/databaseAccounts@2024-05-15' = {
+resource cosmosDb 'Microsoft.DocumentDB/databaseAccounts@2026-03-15' = {
   name: cosmosDbName
   location: location
   properties: {
     databaseAccountOfferType: 'Standard'
+    consistencyPolicy: {
+      defaultConsistencyLevel: 'Session'
+    }
     locations: [
       { locationName: location, failoverPriority: 0, isZoneRedundant: true }
+      { locationName: failoverRegion, failoverPriority: 1, isZoneRedundant: true }
     ]
+    enableAutomaticFailover: true
     backupPolicy: {
       type: 'Continuous'
       continuousModeProperties: { tier: 'Continuous7Days' }
@@ -195,6 +236,9 @@ User‑uploaded files attached within conversation threads generally can't be re
 
 ## Back up and restore agent data
 
+> [!IMPORTANT]
+> The procedures in this section require [Standard agent deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). In Basic mode, Microsoft manages state stores and these recovery options aren't available.
+
 Conversation thread history durability depends on the underlying Standard mode state stores: Cosmos DB `enterprise_memory` database, Azure AI Search indexes, and Storage blobs for attachments. There's no built-in one-click export or import feature for complete conversation histories.
 
 ### Back up agent definitions
@@ -206,20 +250,41 @@ Store agent JSON definitions and knowledge source references in source control. 
 1. Include tool bindings, knowledge file references, and connection configurations alongside each agent definition.
 1. Automate this process in a CI/CD pipeline on a regular schedule (for example, daily or after each deployment).
 
+The following Python snippet uses the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) to list all agents and save each definition as a JSON file:
+
+```python
+import json
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+with AIProjectClient(
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential()
+) as client:
+    agents = client.agents.list_agents()
+    for agent in agents:
+        with open(f"{agent.id}.json", "w") as f:
+            json.dump(agent.model_dump(), f, indent=2)
+        print(f"Saved agent: {agent.name} ({agent.id})")
+```
+
+**Reference:** [AIProjectClient.agents.list_agents()](/python/api/overview/azure/ai-projects-readme)
+
 > [!TIP]
-> You can automate agent export by using the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) for Python or the [REST API](https://ai.azure.com/api-reference/). The SDK provides methods to list agents, retrieve their configurations, and serialize them to JSON for version control.
+> You can also export agent configurations by using the [REST API](https://ai.azure.com/api-reference/). The REST API provides full access to agent resources for automation in any language or CI/CD pipeline.
 
 ### Restore from Cosmos DB point-in-time backup
 
-If the `enterprise_memory` database or its containers are accidentally deleted:
+If you accidentally delete the `enterprise_memory` database or its containers:
 
-1. Open the [Azure portal](https://portal.azure.com) and navigate to your Cosmos DB account.
-1. Select **Point in time restore** and choose a restore timestamp before the deletion occurred.
-1. Specify a new target account name for the restored data.
-1. After the restore completes, update the Foundry Agent Service connection to point to the restored Cosmos DB account.
+1. Open the [Azure portal](https://portal.azure.com) and go to your Cosmos DB account.
+1. Select **Point in time restore** and choose a restore timestamp from before the deletion.
+1. Enter a new target account name for the restored data.
+1. After the restore finishes, update the Foundry Agent Service connection to point to the restored Cosmos DB account. In the Foundry portal, go to your project, select **Settings** > **Connected resources**, find the Cosmos DB connection, and update the endpoint to the new restored account name.
 1. Verify agent functionality by running a test conversation in the restored environment.
 
-You can also initiate a restore by using the Azure CLI:
+You can also start a restore by using the Azure CLI:
 
 ```azurecli
 az cosmosdb restore \
@@ -231,11 +296,11 @@ az cosmosdb restore \
 ```
 
 > [!NOTE]
-> Cosmos DB point-in-time restore creates a new account. You must update the Agent Service connection string and reapply role assignments if you use system-assigned managed identities. User-assigned managed identities reduce this overhead.
+> The restored account is always created in the same subscription and resource group as the source account. If the source resource group was deleted, recreate it with the same name before running this command. The `--location` parameter sets the write region for the restored account, not the target resource group location. After restore, you must update the Agent Service connection string and reapply role assignments if you use system-assigned managed identities. User-assigned managed identities reduce this overhead.
 
 ### Preserve compliance data
 
-Connect to Microsoft Purview to preserve lineage and classification metadata even if operational thread data is lost. This ensures eDiscovery and audit capabilities survive a disaster.
+Connect to Microsoft Purview to preserve lineage and classification metadata even if operational thread data is lost. This connection ensures eDiscovery and audit capabilities survive a disaster.
 
 ### Rebuild Azure AI Search indexes
 

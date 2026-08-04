@@ -269,7 +269,7 @@ The Azure SDK for JavaScript/TypeScript provides the following APIs for document
 The Azure SDK for Java provides the following APIs for document deletion:
 
 + [IndexActionType](/java/api/com.azure.search.documents.models.indexactiontype)
-+ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
++ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedsender)
 
 Code sample: [IndexContentManagementExample.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/IndexContentManagementExample.java)
 
@@ -384,7 +384,7 @@ The Azure SDK for JavaScript/TypeScript provides the following APIs for bulk doc
 The Azure SDK for Java provides the following APIs for bulk document deletion:
 
 + [IndexActionType](/java/api/com.azure.search.documents.models.indexactiontype)
-+ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
++ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedsender)
 
 Code sample: [IndexContentManagementExample.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/IndexContentManagementExample.java)
 

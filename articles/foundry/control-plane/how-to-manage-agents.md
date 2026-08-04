@@ -4,7 +4,7 @@ description: "Learn how to view your agent inventory, monitor agent health, and 
 author: santiagxf
 ms.author: lagayhar
 ms.reviewer: fasantia
-ms.date: 04/13/2026
+ms.date: 07/15/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Manage agents at scale in Microsoft Foundry Control Plane
 
-Microsoft Foundry Control Plane provides centralized management and observability for agents that run across supported platforms and infrastructures. With Foundry Control Plane, you can manage agents that are distributed across multiple projects within a subscription.
+Microsoft Foundry Control Plane provides centralized management and observability for agents that run across supported platforms and infrastructures. By using Foundry Control Plane, you can manage agents that are distributed across multiple projects within a subscription.
 
 This article explains how to view your agent inventory, monitor agent health, and perform lifecycle operations by using the Foundry portal.
 
@@ -90,7 +90,7 @@ You can monitor versions consumed by your users and new versions under developme
 :::image type="content" source="media/how-to-manage-agents/inventory-foundry-agent.png" alt-text="Screenshot of multiple Foundry agents listed in an inventory." lightbox="media/how-to-manage-agents/inventory-foundry-agent.png":::
 
 > [!NOTE]
-> Foundry classic agents and Azure OpenAI assistants aren't supported.
+> Classic agents and Azure OpenAI assistants aren't supported.
 
 ### Azure SRE Agent
 

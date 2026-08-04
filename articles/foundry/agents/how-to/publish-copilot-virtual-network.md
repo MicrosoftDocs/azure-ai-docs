@@ -22,14 +22,12 @@ This article shows how to publish a Foundry agent to Microsoft 365 Copilot and T
 
 When you finish, users in your tenant can use your agent in Microsoft 365 Copilot and Teams, including when the agent stays on a private network.
 
-> [!IMPORTANT]
-> Publishing agents to Microsoft 365 Copilot and Microsoft Teams is an "Early Access Preview" and is licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" and "Early Access Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
+> [!WARNING]
+> When you publish agents to Microsoft 365 and Teams, certain data associated with publishing and using the agent in Microsoft 365 and Teams is processed and stored by those services and is subject to the terms, compliance commitments, data residency commitments, and data handling practices applicable to Microsoft 365 and Teams.
 >
-> Use of Azure AI Foundry Agent Service to host agents that operate with third-party servers or agents, is at your own risk. We recommend reviewing all data being shared with third-party servers or agents and being cognizant of third-party practices for retention and location of data.
+> This data can include data necessary to publish the agent, such as the agent's name, icon, and description, as well as data contained in responses provided by the agent when users in your organization submit queries to the agent from Microsoft 365 and Teams.
 >
-> External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](/legal/microsoft-365/supplemental-terms).
->
-> It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
+> Before you publish an agent to Microsoft 365 and Teams, evaluate whether the resulting data flows and processing are consistent with your organization's compliance, data residency, and governance requirements.
 
 ## Prerequisites
 
@@ -203,16 +201,13 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 {
     "agent_endpoint": {
-        "protocols": [
-            "responses",
-            "activity"
-        ],
+        "protocol_configuration": {
+            "responses": {},
+            "activity": {}
+        },
         "authorization_schemes": [
             {
-                "type": "Entra",
-                "isolation_key_source": {
-                    "kind": "Entra"
-                }
+                "type": "Entra"
             },
             {
                 "type": "BotServiceRbac"
@@ -225,9 +220,6 @@ Foundry-Features: AgentEndpoints=V1Preview
 ## Step 4: Publish the agent to Microsoft 365
 
 Publish the agent by calling the **Microsoft 365 publish** API with the `{{token}}` from the first step. Replace the placeholders using these values:
-
-> [!NOTE]
-> The Microsoft 365 publish API is in preview. The request format might change in a future version.
 
 | Placeholder | Description | Where to get it |
 |---|---|---|

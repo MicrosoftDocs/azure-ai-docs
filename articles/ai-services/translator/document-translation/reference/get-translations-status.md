@@ -5,7 +5,7 @@ description: The get translations status method returns a list of batch requests
 manager: mcleans
 ms.author: lajanuar
 author: laujan
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ---

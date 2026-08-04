@@ -4,11 +4,12 @@ titleSuffix: Foundry Tools
 description: Learn how document-based PII redaction in Azure Language detects and redacts sensitive data from native documents while preserving file structure.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 04/21/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -141,6 +142,14 @@ See [language support](language-support.md) and [quotas and limits](../concepts/
 ## Pricing
 
 Document-based PII redaction uses Azure AI Language pricing. For current pricing details, see [Azure AI Language pricing](https://aka.ms/unifiedLanguagePricing).
+
+## Try it in the Microsoft Foundry portal
+
+Document-based PII detection now includes an initial playground experience in the Microsoft Foundry portal. The playground loads a prepared sample document by default, so you can evaluate the feature immediately without providing your own file.
+
+When you select **Detect**, the playground submits the document through the existing asynchronous native-file document-based PII pipeline—the same workflow described in [How Document-based PII works](#how-document-based-pii-works). After the job completes, the playground shows the redacted output side-by-side with the source document and surfaces entity categories, confidence scores, and file-fidelity results so you can assess both redaction accuracy and how well the output preserves the original document formatting.
+
+For step-by-step instructions, see [Use the document PII playground in Microsoft Foundry](document-based-pii-playground.md).
 
 ## Next steps
 

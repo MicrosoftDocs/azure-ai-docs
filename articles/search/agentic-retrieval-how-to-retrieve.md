@@ -3,7 +3,7 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -41,6 +41,12 @@ To set up a pipeline that connects Azure AI Search to Foundry Agent Service via 
 
 ::: zone pivot="csharp"
 
++ If you [call the MCP endpoint through the Azure OpenAI Responses API](#authenticate-to-the-mcp-endpoint), you need:
+
+  + A deployed LLM and the **Cognitive Services OpenAI User** role (or an API key) on the Foundry resource. You can reuse the LLM and resource specified in your knowledge base, if applicable.
+
+  + The [`Azure.AI.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI) and [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) packages.
+
 + Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
   + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
@@ -50,6 +56,12 @@ To set up a pipeline that connects Azure AI Search to Foundry Agent Service via 
 ::: zone-end
 
 ::: zone pivot="python"
+
++ If you [call the MCP endpoint through the Azure OpenAI Responses API](#authenticate-to-the-mcp-endpoint), you need:
+
+  + A deployed LLM and the **Cognitive Services OpenAI User** role (or an API key) on the Foundry resource. You can reuse the LLM and resource specified in your knowledge base, if applicable.
+
+  + The [`openai`](https://pypi.org/project/openai/) and [`azure-identity`](https://pypi.org/project/azure-identity/) packages.
 
 + Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
@@ -703,8 +715,6 @@ x-ms-query-source-authorization: {{userAccessToken}}
 
 ## Review the response
 
-Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. The activity array contains details about the partial response as errors.
-
 The retrieve action returns three main components:
 
 # [2026-05-01-preview](#tab/2026-05-01-preview)
@@ -754,11 +764,11 @@ Key points:
 + Retrieve responses don't include `@search.rerankerBoostedScore`.
 
 + The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
-  + A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
+  + A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Empty responses](#empty-responses).
 
 ### Activity array
 
-The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline and errors for any retrieval failures, such as inaccessible knowledge sources.
+The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline. For a `206 Partial Content` response, the array includes errors for failed knowledge sources. A `502 Bad Gateway` response might provide failure details only in the top-level error.
 
 The output includes the following components.
 
@@ -1129,7 +1139,7 @@ The following response excerpt shows activity records with `modelName`.
 
 ### Require a knowledge source to succeed
 
-Set `failOnError` in `knowledgeSourceParams` to mark a knowledge source as required. Use this parameter when a partial answer would be misleading or noncompliant if that source is unavailable.
+Set `failOnError` in `knowledgeSourceParams` to mark a knowledge source as required. Use this parameter when a partial answer would be misleading or noncompliant if that source is unavailable. In `2026-05-01-preview`, the request returns `502 Bad Gateway` if a required source fails, even if another source succeeds. For handling guidance, see [Troubleshoot the retrieve action](#troubleshoot-the-retrieve-action).
 
 :::zone pivot="csharp"
 
@@ -1681,7 +1691,57 @@ Content-Type: application/json
 
 :::zone-end
 
-## Troubleshoot empty responses
+## Troubleshoot the retrieve action
+
+In `2026-05-01-preview`, the response status indicates whether retrieval succeeded, partly succeeded, or failed, and what to do next. Use the following table to map each status to its meaning, and then see the corresponding section for troubleshooting guidance.
+
+| Status | Meaning |
+| --- | --- |
+| `200 OK` | Retrieval succeeded. A document can still be omitted if its content exceeds the output budget. For more information, see [Empty responses](#empty-responses). |
+| [`400 Bad Request`](#400-bad-request) | The retrieve request failed validation before retrieval began. |
+| [`206 Partial Content`](#206-partial-content) | At least one source succeeded, and no failed source is marked [`failOnError`](#require-a-knowledge-source-to-succeed). The response contains results from the sources that succeeded. |
+| [`502 Bad Gateway`](#502-bad-gateway) | Every selected source failed, or a source marked `failOnError: true` failed. |
+
+For any non-`200` response, record the API version, timestamp, sanitized request body, response headers, and request or correlation ID. These details help you diagnose the failure and share the issue with support, if necessary.
+
+### `400 Bad Request`
+
+Use the top-level error to identify the invalid request property. Common causes include:
+
++ A `knowledgeSourceName` in `knowledgeSourceParams` isn't attached to the knowledge base, or its `kind` doesn't match the attached source.
++ A request value is outside its supported range, or one option requires another option that isn't enabled. For example, `includeReferenceSourceData` requires `includeReferences`.
+
+Before you retry the request, correct the property identified by the top-level error.
+
+### `206 Partial Content`
+
+Inspect each [`activity`](#activity-array) entry that contains an `error`. A source retrieval activity identifies the failed knowledge source, and a model activity identifies the failed processing stage. The response body still contains the results that succeeded.
+
+For source retrieval activity errors, common causes include:
+
++ Invalid query-time input, such as a malformed [`filterAddOn`](#filter-search-index-knowledge-sources-at-query-time) expression.
++ Knowledge source or index configuration drift, such as a renamed field, missing [semantic configuration](semantic-how-to-configure.md), or invalid [vectorizer](vector-search-how-to-configure-vectorizer.md).
++ Missing or invalid dependency authorization, or insufficient [permissions](#enforce-permissions-at-query-time-preview) for the identity used to query the source.
++ Dependency [throttling](search-limits-quotas-capacity.md), timeout, or transient availability failures.
+
+For a model activity error, use the activity `type` to identify the failed processing stage. For example, a `modelWebSummarization` error indicates that [web result summarization](agentic-knowledge-source-how-to-web.md) failed.
+
+If your application permits partial results, process the successful results and record each failed source or model stage. Correct configuration, authorization, and permission errors before you retry. For throttling, timeout, or transient availability failures, use bounded retries with backoff.
+
+If results are unsafe without a specific source and its source type supports [`alwaysQuerySource`](#require-a-knowledge-source-to-succeed), set both `alwaysQuerySource` and `failOnError`. The first option ensures the source is selected, and the second returns a hard error if querying it fails. [MCP server knowledge sources](agentic-knowledge-source-how-to-mcp-server.md) don't support `alwaysQuerySource`; for those sources, `failOnError` applies only when the source is selected. `failOnError` doesn't apply to model activity failures.
+
+### `502 Bad Gateway`
+
+The top-level error describes one of two hard-failure paths:
+
++ **Every selected source failed:** Each selected source returned an error. A source that completes successfully with zero matching documents isn't a failed source. Inspect every source failure for a shared configuration, authorization, dependency, or availability issue.
++ **A `failOnError` source failed:** A required source couldn't be queried. Other sources might have succeeded, but the service doesn't return a partial result because the required source failed.
+
+The underlying source failures are generally the same kinds as those described for `206 Partial Content`: invalid source-specific input, source or index configuration drift, dependency authorization or permissions, throttling, timeouts, or transient dependency availability.
+
+A hard `502` response might omit the `activity` array and provide the source name and underlying failure only in the top-level error message. Correct configuration, authorization, and permission errors before you retry. Use bounded retries with backoff only for throttling, timeout, or transient availability failures. Don't interpret a `502 Bad Gateway` response as an Azure AI Search outage without examining the underlying source failure.
+
+### Empty responses
 
 A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document exceeded the maximum output size. The references array and grounded response content are empty for that document. To retain more content, increase `maxOutputSizeInTokens`.
 
@@ -1696,30 +1756,211 @@ To avoid this behavior, index large source documents as smaller chunks with stab
 
 In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Claude](https://claude.ai), and [Cursor](https://cursor.com), can invoke this tool to query the knowledge base.
 
-### MCP endpoint format
+### Authenticate to the MCP endpoint
 
-Each knowledge base has an MCP endpoint at the following URL.
+Each knowledge base has an MCP endpoint at the following URL:
 
 ```
-https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
+https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
 ```
 
 The API version you specify determines what the connection returns. With `2026-05-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
 
-### Authenticate to the MCP endpoint
+How you authenticate to this endpoint depends on your MCP client. When you use the Azure OpenAI Responses API with the `knowledge_base_retrieve` MCP tool, you authenticate both the Responses API call to Azure OpenAI and the MCP request to Azure AI Search. If your MCP client calls this endpoint directly, you authenticate only to Azure AI Search.
 
-The MCP endpoint requires authentication through custom headers. You have two options:
+For Azure AI Search authentication, use one of the following methods:
 
-+ **(Recommended)** Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
++ [Pass a bearer token](#use-a-bearer-token-for-mcp-authentication) in the `Authorization` header (recommended)
++ [Pass an admin key](#use-an-admin-key-for-mcp-authentication) in the `api-key` header
 
-+ Pass an admin key in the `api-key` header. An admin key provides full read-write access to the search service, so use it with caution. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
+> [!NOTE]
+> MCP clients configure custom headers differently. For example, [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect) injects headers through project connections, while clients such as [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) require headers in MCP server JSON.
+
+### Use a bearer token for MCP authentication
+
+The recommended method for MCP authentication is a bearer token, which avoids storing sensitive keys in configuration files. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
+
+:::zone pivot="csharp"
+
+```csharp
+#pragma warning disable OPENAI001
+
+using Azure.AI.OpenAI;
+using Azure.Core;
+using Azure.Identity;
+using OpenAI.Responses;
+using System;
+using System.Collections.Generic;
+
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!; // Example: https://<your-resource-name>.openai.azure.com
+string mcpServerUrl = Environment.GetEnvironmentVariable("AZURE_SEARCH_MCP_ENDPOINT")!; // Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+DefaultAzureCredential credential = new();
+
+// Create the Azure OpenAI Responses client
+AzureOpenAIClient azureClient = new(new Uri(openAiEndpoint), credential);
+ResponsesClient openAIClient = azureClient.GetResponsesClient();
+
+// Get a bearer token for Azure AI Search
+string searchToken = credential.GetToken(
+    new TokenRequestContext(new[] { "https://search.azure.com/.default" })
+).Token;
+
+// Configure the MCP tool for knowledge base retrieval
+McpTool mcpTool = ResponseTool.CreateMcpTool(
+    serverLabel: "search_kb",
+    serverUri: new Uri(mcpServerUrl),
+    headers: new Dictionary<string, string>
+    {
+        ["Authorization"] = $"Bearer {searchToken}",
+    },
+    allowedTools: new McpToolFilter { ToolNames = { "knowledge_base_retrieve" } },
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
+);
+
+// Build the response request with the MCP tool attached
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+            "What causes the strongest nighttime brightness patterns in this dataset?")
+    },
+    Tools = { mcpTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+import os
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from openai import AzureOpenAI
+
+openai_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"] # Example: https://<your-resource-name>.openai.azure.com
+mcp_server_url = os.environ["AZURE_SEARCH_MCP_ENDPOINT"] # Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+credential = DefaultAzureCredential()
+
+# Create token providers for Azure OpenAI and Azure AI Search
+openai_token_provider = get_bearer_token_provider(
+    credential, "https://cognitiveservices.azure.com/.default"
+)
+search_token_provider = get_bearer_token_provider(
+    credential, "https://search.azure.com/.default"
+)
+
+# Create the Azure OpenAI client
+client = AzureOpenAI(
+    azure_endpoint=openai_endpoint,
+    azure_ad_token_provider=openai_token_provider,
+    api_version=os.environ["OPENAI_API_VERSION"], # Example: 2025-04-01-preview
+)
+
+# Create a response using the MCP tool configuration
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="What causes the strongest nighttime brightness patterns in this dataset?",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "search_kb",
+            "server_url": mcp_server_url,
+            "allowed_tools": ["knowledge_base_retrieve"],
+            "headers": {
+                "Authorization": f"Bearer {search_token_provider()}"
+            },
+            "require_approval": "never",
+        }
+    ],
+)
+
+print(response.output_text)
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```http
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+### Use an admin key for MCP authentication
+
+An admin key grants full read-write access to the search service, so use it only in development environments or when a bearer token isn't available. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
 
 > [!TIP]
-> Each MCP client configures custom headers differently. For example:
->
-> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
->
-> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
+> The following example shows only the header that differs from the bearer token example. For the full setup, see [Use a bearer token for MCP authentication](#use-a-bearer-token-for-mcp-authentication).
+
+:::zone pivot="csharp"
+
+```csharp
+#pragma warning disable OPENAI001
+
+using OpenAI.Responses;
+using System;
+using System.Collections.Generic;
+
+string mcpServerUrl = Environment.GetEnvironmentVariable("AZURE_SEARCH_MCP_ENDPOINT")!; // Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+string searchAdminKey = Environment.GetEnvironmentVariable("AZURE_SEARCH_ADMIN_KEY")!; // Example: <your-search-admin-key>
+
+McpTool mcpTool = ResponseTool.CreateMcpTool(
+    serverLabel: "search_kb",
+    serverUri: new Uri(mcpServerUrl),
+    headers: new Dictionary<string, string> { ["api-key"] = searchAdminKey },
+    allowedTools: new McpToolFilter { ToolNames = { "knowledge_base_retrieve" } },
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
+);
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+import os
+
+mcp_server_url = os.environ["AZURE_SEARCH_MCP_ENDPOINT"] # Example: https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
+search_admin_key = os.environ["AZURE_SEARCH_ADMIN_KEY"] # Example: <your-search-admin-key>
+
+tools = [
+    {
+        "type": "mcp",
+        "server_label": "search_kb",
+        "server_url": mcp_server_url,
+        "allowed_tools": ["knowledge_base_retrieve"],
+        "headers": {"api-key": search_admin_key},
+        "require_approval": "never",
+    }
+]
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```http
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
 
 ## Review the MCP response
 

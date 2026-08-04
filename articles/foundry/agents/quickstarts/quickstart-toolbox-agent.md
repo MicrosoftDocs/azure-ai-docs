@@ -86,7 +86,7 @@ azd env set FOUNDRY_PROJECT_ENDPOINT "$(azd env get-value FOUNDRY_PROJECT_ENDPOI
 
 :::zone pivot="azd"
 
-The sample includes a [`toolbox.yaml`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/toolbox.yaml) in `src/toolbox-agent` that defines both tools behind one endpoint. Create the toolbox from that file:
+The sample includes a [`toolbox.yaml`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/src/agent-framework-agent-with-foundry-toolbox-responses/toolbox.yaml) in `src/toolbox-agent` that defines both tools behind one endpoint. Create the toolbox from that file:
 
 ```bash
 azd ai toolbox create my-toolbox --from-file ./src/toolbox-agent/toolbox.yaml
@@ -240,12 +240,11 @@ with (
     )
     print(f"Created toolbox version {created.version} for {created.name}")
 
-    toolbox = project_client.toolboxes.get(name=toolbox_name)
     mcp_endpoint = (
-        f"{endpoint}/toolboxes/{toolbox.name}/versions/"
-        f"{toolbox.default_version}/mcp?api-version=v1"
+        f"{endpoint}/toolboxes/{created.name}/versions/"
+        f"{created.version}/mcp?api-version=v1"
     )
-    print(f"Default toolbox version: {toolbox.default_version}")
+    print(f"Toolbox version: {created.version}")
     print(f"Toolbox MCP endpoint: {mcp_endpoint}")
 ```
 
@@ -393,6 +392,8 @@ with (
                     "Use the Microsoft Learn documentation."
                 ),
             )
+            if response.status != "completed":
+                raise RuntimeError(f"Agent invocation failed: {response.error}")
             print(response.output_text)
     finally:
         if original_agent_endpoint is not None:

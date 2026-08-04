@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 07/13/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom:
@@ -14,6 +14,7 @@ ms.custom:
   - doc-kit-assisted
 recommendations: false
 ai-usage: ai-assisted
+zone_pivot_groups: openai-portal-js-python-ts-cs
 ---
 
 # Use the GPT Realtime API via WebSockets
@@ -31,6 +32,44 @@ Before you can use GPT real-time audio, you need:
 - **Required libraries**:
   - Python: `pip install websockets azure-identity`
   - JavaScript/Node.js: `npm install ws @azure/identity`
+
+## Voice-agent quickstart
+
+Follow the instructions in this section to get started with a voice-agent
+session via the Realtime API over WebSockets. Use this quickstart for
+conversation-style speech-to-speech experiences where your app sends input,
+receives model responses, and can invoke tools. Use the transcription and
+translation sections later in this article for those dedicated session types.
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript quickstart](../includes/realtime-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+[!INCLUDE [Python quickstart](../includes/realtime-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](../includes/realtime-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-portal.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [C# quickstart](../includes/realtime-csharp.md)]
+
+::: zone-end
 
 [!INCLUDE [realtime-audio-websockets 2](../includes/how-to-realtime-audio-websockets-2.md)]
 
@@ -465,7 +504,7 @@ if __name__ == "__main__":
 
 ## Translate audio in real time
 
-The following examples show how to stream microphone audio to the `gpt-realtime-translate` model for real-time translation.
+The following examples show how to stream microphone audio to the `gpt-realtime-translate` model for real-time translation. Translation sessions use the `/openai/v1/realtime/translations` endpoint with the `model` query parameter.
 
 ### Translation example
 

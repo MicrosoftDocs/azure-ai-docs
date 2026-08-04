@@ -3,9 +3,9 @@
  description: include file
  #services: cognitive-services
  author: laujan
- ms.service: azure-ai-language
+ ms.service: azure-language-foundry-tools
  ms.topic: include
- ms.date: 04/15/2026
+ ms.date: 06/30/2026
  ms.author: lajanuar
 ms.custom: include, build-2024, ignite-2024
 ---
