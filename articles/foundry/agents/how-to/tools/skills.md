@@ -30,11 +30,7 @@ In this article, you learn how to:
 - Attach skills to a toolbox.
 
 > [!CAUTION]
-> If you use Skills with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Microsoft has no responsibility to you or others in relation to these uses. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms.  You are responsible for any usage and associated costs.
->
-> Review all data shared with and received from Third-Party Systems. Be aware of third-party practices for handling, sharing, retention, and location of data. It's your responsibility to manage whether your data flows outside of your organization’s Azure compliance and geographic boundaries and any related implications. Ensure that appropriate permissions, boundaries, and approvals are provisioned.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases, and making all appropriate decisions and customizations.  This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. [Learn more](../../../responsible-ai/agents/transparency-note.md).
+> Customers are responsible for understanding the behaviors of any skills deployed and the data handling practices of any external endpoints receiving data.
 
 ## Feature support
 
@@ -243,7 +239,7 @@ The Skills API is versioned: creating a skill version auto-creates the skill if 
 | `SkillVersion` | `id`, `skill_id`, `name`, `version`, `description`, `created_at` | An immutable snapshot of the skill content. |
 
 > [!TIP]
-> For an end-to-end Python CRUD walkthrough — create two versions, switch `default_version`, fetch, list, delete — see the [`sample_skills_crud.py`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/hosted_agents/sample_skills_crud.py) sample in the `azure-ai-projects` SDK.
+> For an end-to-end Python CRUD walkthrough — create two versions, switch `default_version`, fetch, list, delete — see the [`sample_skills_crud.py`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/skills/sample_skills_crud.py) sample in the `azure-ai-projects` SDK.
 
 ### Create a skill version
 

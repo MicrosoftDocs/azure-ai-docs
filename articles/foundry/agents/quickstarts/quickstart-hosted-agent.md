@@ -221,7 +221,7 @@ that folder:
 FOUNDRY_PROJECT_ENDPOINT=<your-project-endpoint>
 FOUNDRY_MODEL_NAME=<your-model-deployment-name>
 FOUNDRY_HOSTED_AGENT_NAME=basic-agent
-FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/01-basic>
+FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/01-basic/src/agent-framework-agent-basic-responses>
 ```
 
 ## Step 4: Deploy the hosted agent with Python
@@ -753,6 +753,7 @@ In this quickstart, you:
 * [What is Microsoft Foundry Canvas?](../concepts/foundry-canvas.md)
 * [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
+* [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
 * [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)

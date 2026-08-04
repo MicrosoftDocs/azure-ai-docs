@@ -4,8 +4,11 @@ author: msakande
 ms.author: mopeakande
 manager: mcleans
 ms.date: 07/24/2026
+manager: mcleans
+ms.date: 07/24/2026
 ms.service: microsoft-foundry
 ms.topic: include
+ai-usage: ai-assisted
 ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
@@ -35,12 +38,14 @@ Foundry Models support several [deployment types](../../foundry-models/concepts/
 ## Country/region availability
 
 You can access Models from partners and community with pay-as-you-go billing only if your Azure subscription belongs to a billing account in a country or region where the model provider made the offer available (see the "Offer availability region" column of the tables in each model provider's section). Availability varies per model provider and model SKU. If the offer is available in the relevant country or region, you must have a project or hub in the [Azure region](#region-availability-by-deployment-type) where the model is available for deployment or fine-tuning, as applicable.
+You can access Models from partners and community with pay-as-you-go billing only if your Azure subscription belongs to a billing account in a country or region where the model provider made the offer available (see the "Offer availability region" column of the tables in each model provider's section). Availability varies per model provider and model SKU. If the offer is available in the relevant country or region, you must have a project or hub in the [Azure region](#region-availability-by-deployment-type) where the model is available for deployment or fine-tuning, as applicable.
 
 ## Anthropic
 
 Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
 > [!NOTE]
+> [!INCLUDE [claude-versions-description](claude-versions-description.md)] 
 > [!INCLUDE [claude-versions-description](claude-versions-description.md)] 
 
 #### Subscription type and region support

@@ -2,8 +2,8 @@
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.date: 04/07/2026
-ms.service: azure-language-foundry-tools
+ms.date: 06/30/2026
+ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
   - build-2024

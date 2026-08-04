@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/29/2026
+ms.date: 07/24/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -41,7 +41,7 @@ Server events and ordering match the existing Responses streaming event model.
 
 ### Start a turn
 
-Send a `response.create` event on the open socket. The following examples connect to the WebSocket endpoint and ask the model a question. WebSocket mode supports both API key and Microsoft Entra ID authentication — choose the tab that matches your auth method.
+Send a `response.create` event on the open socket. The following examples connect to the WebSocket endpoint and ask the model a question. WebSocket mode supports both API key and Microsoft Entra ID authentication - choose the tab that matches your auth method.
 
 # [API key](#tab/api-key)
 
@@ -78,7 +78,7 @@ import json
 
 # Acquire a token for the Azure OpenAI resource
 credential = DefaultAzureCredential()
-token = credential.get_token("https://cognitiveservices.azure.com/.default").token
+token = credential.get_token("https://ai.azure.com/.default").token
 
 ws = create_connection(
     f"wss://{YOUR_RESOURCE_NAME}.openai.azure.com/openai/v1/responses",
@@ -160,11 +160,11 @@ If a `previous_response_id` isn't in the in-memory cache, behavior depends on wh
 - With `store=true`, the service might hydrate older response IDs from persisted state. Continuation still works but usually loses the in-memory latency benefit.
 - With `store=false`, there's no persisted fallback. If the ID is uncached, the request returns `previous_response_not_found`.
 
-If a turn fails (`4xx` or `5xx`), the service evicts the referenced `previous_response_id` from the connection-local cache. This prevents reusing stale cached state for that failed continuation.
+If a turn fails (`4xx` or `5xx`), the service evicts the referenced `previous_response_id` from the connection-local cache. This eviction prevents reusing stale cached state for that failed continuation.
 
 ## Compaction
 
-If you use context compaction, there are two different continuation patterns.
+If you use context compaction, two different continuation patterns exist.
 
 ### Server-side compaction
 

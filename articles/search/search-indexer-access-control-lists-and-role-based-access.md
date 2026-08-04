@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 07/28/2026
 ai-usage: ai-assisted
 ---
 
@@ -52,8 +52,6 @@ This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob kn
 + The following indexer features don't support permission inheritance in indexed documents originating from ADLS Gen2. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
-
-  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 
   + [Knowledge store](knowledge-store-concept-intro.md)
 
@@ -154,7 +152,6 @@ Key points about the configuration that make it work for this scenario:
 
 + `isADLSGen2` is set to true, meeting the data source requirement for this scenario.
 + `ingestionPermissionOptions` specifies user and group IDs.
-+ `disableImageVerbalization` is set to true because the GenAI Prompt skill that backs this experience isn't currently supported in ADLS Gen2 permission inheritance.
 
 ```http
 # Create / Update Azure Blob Knowledge Source

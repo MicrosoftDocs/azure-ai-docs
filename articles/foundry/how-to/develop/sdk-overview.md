@@ -219,9 +219,15 @@ AIProjectClient projectClient = new(
 **Create an OpenAI-compatible client from your project:**
 
 ```csharp
-var responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForModel("gpt-5.2");
-var response = responseClient.CreateResponse("What is the speed of light?");
-Console.WriteLine(response.GetOutputText());
+using Azure.AI.Extensions.OpenAI;
+
+const string deploymentName = "gpt-5.2";
+
+// Get an OpenAI-compatible client from the project
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForModel(deploymentName);
+
+Response response = responsesClient.CreateResponse("What is the speed of light?");
+Console.WriteLine(response.Output[0].Content[0].Text);
 ```
 ::: zone-end
 

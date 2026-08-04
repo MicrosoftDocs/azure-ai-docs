@@ -7,7 +7,7 @@ ms.reviewer: josander
 reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/24/2026
+ms.date: 07/29/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -33,7 +33,7 @@ Every model in the Foundry catalog belongs to exactly one of these five stages:
 
 > [!NOTE]
 > - **Fine-tuned models** follow a separate retirement schedule for training and deployment. See [Fine-tuned models](#fine-tuned-models) for details.
-> - **Foundry Models (catalog)**: Some model providers define a shorter GA lifecycle—for example, 12 months instead of 18. When a shorter lifecycle applies, it is noted directly on the model in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
+> - Generally available models from Anthropic, DeepSeek, Fireworks, and Mistral AI follow a 12-month lifecycle instead of the standard 18-month lifecycle. For model-specific retirement dates, see the [Model retirement schedule](../concepts/model-retirement-schedule.md).
 
 ## Model launch and availability
 

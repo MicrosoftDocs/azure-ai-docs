@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 07/24/2026
+ms.date: 07/30/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -44,7 +44,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.1-codex-max | 2025-12-04 | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -116,7 +116,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.1-codex-max | 2025-12-04 | - | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -189,6 +189,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -240,6 +241,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ |
@@ -532,6 +534,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5-nano | 2025-08-07 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | - | - | - | - | - | ✅ | - | - |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -556,6 +559,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.3-codex | 2026-02-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | model-router | 2025-05-19 | ✅ | - | - | - | ✅ |
 | model-router | 2025-08-07 | ✅ | - | - | - | ✅ |
 | model-router | 2025-11-18 | ✅ | - | - | - | ✅ |

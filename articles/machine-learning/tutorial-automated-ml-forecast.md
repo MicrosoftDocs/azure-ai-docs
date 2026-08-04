@@ -9,15 +9,15 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sooryar
-ms.date: 07/21/2026
+ms.date: 07/31/2026
 ms.custom: automl
 ai-usage: ai-assisted
 #Customer intent: As a non-coding data scientist, I want to use automated machine learning to build a demand forecasting model.
 ---
 
-# Tutorial: Forecast demand with no-code automated machine learning in the Azure Machine Learning studio
+# Tutorial: Forecast demand by using no-code automated machine learning in Azure Machine Learning studio
 
-Learn how to create a [time-series forecasting model](concept-automated-ml.md#time-series-forecasting) without writing a single line of code using automated machine learning in Azure Machine Learning studio. This model predicts rental demand for a bike sharing service.  
+Learn how to create a [time-series forecasting model](concept-automated-ml.md#time-series-forecasting) without writing a single line of code by using automated machine learning in Azure Machine Learning studio. This model predicts rental demand for a bike sharing service.  
 
 You don't write any code in this tutorial. Instead, you use the studio interface to perform training. You learn how to do the following tasks:
 
@@ -28,7 +28,7 @@ You don't write any code in this tutorial. Instead, you use the studio interface
 > * Explore the experiment results.
 > * Deploy the best model.
 
-Also try automated machine learning for other model types:
+To try automated machine learning for other model types, see:
 
 * For a no-code example of a classification model, see [Tutorial: Create a classification model with automated ML in Azure Machine Learning](tutorial-first-experiment-automated-ml.md).
 * For a code-first example of an object detection model, see [Tutorial: Train an object detection model with AutoML and Python](tutorial-auto-train-image-models.md).
@@ -37,7 +37,7 @@ Also try automated machine learning for other model types:
 
 * An Azure Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md). 
 
-* Download the [bike-no.csv](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv) data file.
+* Download the [bike-no.csv](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-bike-share/bike-no.csv) data file.
 
 ## Sign in to the studio
 
@@ -65,13 +65,13 @@ For this tutorial, you create your automated ML experiment run in Azure Machine 
 
 ## Configure your task type and dataset
 
-On the **Task type & data** tab, you specify the data asset for the experiment and the machine learning model to use to train the data. In this tutorial, you use the [bike-no.csv](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv) file. If you haven't downloaded the file, do so now.
+On the **Task type & data** tab, specify the data asset for the experiment and the machine learning model to use to train the data. In this tutorial, use the [bike-no.csv](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-bike-share/bike-no.csv) file. If you didn't download the file, download it now.
 
 1. On the **Task type and data** form, select **Time series forecasting** as the task type.
 
 1. Select **Create** to create a new data asset from the downloaded file. 
 
-1. On the **Data type** page, give your dataset a name and provide an optional description. Set the dataset type to **Tabular**. Select **Next** to continue.
+1. On the **Data type** page, enter a name for your dataset and provide an optional description. Set the dataset type to **Tabular**. Select **Next** to continue.
 
 1. On the **Data source** page, select **From local files**.
 
@@ -80,12 +80,12 @@ Additional options appear in the left menu for you to configure the data source.
 1. Select **Next** to continue to the **Destination storage type** page, where you specify the Azure Storage location to upload your data asset.
 
    1. For the **Datastore type**, select **Azure Blob Storage**.
-   1. In the list of datastores, select the default datastore that was automatically set up during your workspace creation: "workspaceblobstore".
+   1. In the list of datastores, select the default datastore that the workspace creation process automatically sets up: `workspaceblobstore`.
    1. Select **Next**.
 
 1. On the **File and folder selection** page, use the **Upload files or folder** dropdown menu and select the **Upload files** option. 
 
-   1. Choose the **bike-no.csv** file on your local computer. This is the file you downloaded as a [prerequisite](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv).
+   1. Choose the **bike-no.csv** file on your local computer. This file is the one you downloaded as a [prerequisite](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-bike-share/bike-no.csv).
 
    1. After the files upload, select **Next**.
 
@@ -96,12 +96,12 @@ Additional options appear in the left menu for you to configure the data source.
     | File format    | Defines the layout and type of data stored in a file.                                                                                             | Delimited                    |
     | Delimiter      | One or more characters for specifying the boundary between  separate, independent regions in plain text or other data streams.             | Comma                        |
     | Encoding       | Identifies what bit to character schema table to use to read your dataset.                                                                        | UTF-8                        |
-    | Column headers | Indicates how the headers of the dataset, if any, will be treated.                                                                                | Only first file has headers  |
+    | Column headers | Indicates how the headers of the dataset, if any, are treated.                                                                                | Only first file has headers  |
     | Skip rows      | Indicates how many, if any, rows are skipped in the dataset.                                                                                      | None                         |
 
 1. Select **Next** to continue to the **Schema** page. This page is also prepopulated based on your **Settings** selections. 
     
-    1. For this tutorial, choose to ignore the **casual** and **registered** columns. These columns are a breakdown of the **cnt** column, so we don't include them.
+    1. For this tutorial, choose to ignore the **casual** and **registered** columns. These columns are a breakdown of the **cnt** column, so don't include them.
 
     1. Also for this tutorial, leave the defaults for the **Properties** and **Type**. 
     
@@ -134,11 +134,11 @@ Follow these steps to complete the job configuration:
 
     | Additional configurations | Description | Value for tutorial |
     |------|---------|---|
-    | Primary metric | Evaluation metric that the machine learning algorithm will be measured by. | Normalized root mean squared error |
+    | Primary metric | Evaluation metric that the machine learning algorithm is measured by. | Normalized root mean squared error |
     | Explain best model | Automatically shows explainability on the best model created by automated ML. | Enable |
     | Blocked models | Algorithms you want to exclude from the training job | Extreme Random Trees |
     | Additional forecasting settings | These settings help improve the accuracy of your model. <br><br> _Forecast target lags:_ how far back you want to construct the lags of the target variable <br> _Target rolling window_: specifies the size of the rolling window over which features, such as the _max_, _min_, and _sum_, are generated. | <br><br>Forecast target lags: None <br> Target rolling window size: None |
-    | Limits | If a criterion is met, the training job is stopped. | Max concurrent trials: 6 <br>   Metric score threshold: None <br> Experiment timeout (minutes): 180 |
+    | Limits | If a criterion is met, the training job stops. | Max concurrent trials: 6 <br>   Metric score threshold: None <br> Experiment timeout (minutes): 180 |
     
 
 1. On the **[Optional] Validate and test** form:
@@ -178,7 +178,7 @@ After you load and configure your data, set up your remote compute target.
   
         1. Select **Create** to create the compute target. 
 
-            **This takes a couple of minutes to complete.** 
+            **This step takes a couple of minutes to complete.** 
 
         1. After creation, select your new compute target from the dropdown list.
 
@@ -192,7 +192,7 @@ To run your experiment, select **Submit training job**. The **Job details** scre
 >[!IMPORTANT]
 > Preparation takes **10-15 minutes** to prepare the experiment job.
 > Once running, it takes **2-3 minutes more for each iteration**.<br><br>
-> In production, you'd likely walk away for a bit as this process takes time. While you wait, we suggest you start exploring the tested algorithms on the **Models** tab as they complete. 
+> In production, you'd likely walk away for a bit as this process takes time. While you wait, start exploring the tested algorithms on the **Models** tab as they complete. 
 
 ##  Explore models
 
@@ -200,7 +200,7 @@ Navigate to the **Models + child jobs** tab to see the algorithms (models) teste
 
 While you wait for all of the experiment models to finish, select the **Algorithm name** of a completed model to explore its performance details. 
 
-The following example navigates to select a model from the list of models that the job created. Then, you select the **Overview** and **Metrics** tabs to view the selected model's properties, metrics, and performance charts.
+The following example shows selecting a model from the list of models that the job created. Then, you select the **Overview** and **Metrics** tabs to view the selected model's properties, metrics, and performance charts.
 
 :::image type="content" source="./media/tutorial-automated-ml-forecast/explore-models.gif" alt-text="Screenshot of navigating through model exploration interface showing Overview and Metrics tabs for viewing model properties and performance charts.":::
 
@@ -271,5 +271,5 @@ In this tutorial, you used automated ML in the Azure Machine Learning studio to 
 + For more information on [FAQs on forecasting](how-to-automl-forecasting-faq.md).
 
 >[!NOTE]
-> This bike share dataset has been modified for this tutorial. This dataset was made available as part of a [Kaggle competition](https://www.kaggle.com/c/bike-sharing-demand/data) and was originally available via [Capital Bikeshare](https://www.capitalbikeshare.com/system-data). It can also be found within the [UCI Machine Learning Database](http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset).<br><br>
+> This bike share dataset is modified for this tutorial. This dataset was made available as part of a [Kaggle competition](https://www.kaggle.com/c/bike-sharing-demand/data) and was originally available via [Capital Bikeshare](https://www.capitalbikeshare.com/system-data). You can also find it within the [UCI Machine Learning Database](http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset).<br><br>
 > Source: Fanaee-T, Hadi, and Gama, Joao, Event labeling combining ensemble detectors and background knowledge, Progress in Artificial Intelligence (2013): pp. 1-15, Springer Berlin Heidelberg.

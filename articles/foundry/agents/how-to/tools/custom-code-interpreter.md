@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 07/28/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -24,6 +24,8 @@ A custom code interpreter gives you full control over the runtime environment fo
 Use a custom code interpreter when the built-in [Code Interpreter tool for agents](code-interpreter.md) doesn't meet your requirements—for example, when you need specific Python packages, custom container images, or dedicated compute resources.
 
 For more information about MCP and how agents connect to MCP tools, see [Connect to Model Context Protocol servers (preview)](model-context-protocol.md).
+
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
 ## Usage support
 
@@ -118,20 +120,53 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
-# Configure the custom code interpreter MCP tool
-custom_code_interpreter = MCPTool(
-    server_label="custom-code-interpreter",
-    server_url=MCP_SERVER_URL,
-    project_connection_id=MCP_CONNECTION_ID,
+# Add the custom code interpreter MCP server to a toolbox. Using a toolbox is the
+# recommended way to give agents tools: you curate tools once and reuse the toolbox
+# across agents. See /azure/foundry/agents/concepts/toolbox-overview
+toolbox = project.toolboxes.create_toolbox_version(
+    name="custom-code-interpreter-toolbox",
+    description="Toolbox with the custom code interpreter MCP server",
+    tools=[
+        MCPTool(
+            server_label="custom-code-interpreter",
+            server_url=MCP_SERVER_URL,
+            project_connection_id=MCP_CONNECTION_ID,
+        )
+    ],
 )
 
-# Create an agent with the custom code interpreter
+# The toolbox exposes an MCP-compatible endpoint.
+TOOLBOX_MCP_URL = (
+    f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+    f"/versions/{toolbox.version}/mcp?api-version=v1"
+)
+
+# Create a remote-tool project connection that points at the toolbox endpoint.
+# Use a user Entra token so the caller's identity is passed through
+# (audience https://ai.azure.com). Create the connection once, for example with
+# the Azure Developer CLI:
+#
+#    azd ai connection create custom-code-interpreter-toolbox-conn \
+#      --kind remote-tool \
+#      --target "<TOOLBOX_MCP_URL>" \
+#      --auth-type user-entra-token \
+#      --audience https://ai.azure.com
+TOOLBOX_CONNECTION_NAME = "custom-code-interpreter-toolbox-conn"
+
+# Create an agent that uses the toolbox as an MCP tool
 agent = project.agents.create_version(
     agent_name="CustomCodeInterpreterAgent",
     definition=PromptAgentDefinition(
         model="gpt-5-mini",
         instructions="You are a helpful assistant that can run Python code to analyze data and solve problems.",
-        tools=[custom_code_interpreter],
+        tools=[
+            MCPTool(
+                server_label="toolbox",
+                server_url=TOOLBOX_MCP_URL,
+                require_approval="never",
+                project_connection_id=TOOLBOX_CONNECTION_NAME,
+            )
+        ],
     ),
     description="Agent with custom code interpreter for data analysis.",
 )
@@ -159,6 +194,83 @@ Response: The factorial of 10 is 3,628,800. I calculated this using Python's mat
 Agent deleted
 ```
 
+### Use a hosted agent
+
+This sample uses `FoundryChatClient` from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using `MCPStreamableHTTPTool`.
+
+```python
+import asyncio
+import httpx
+
+from agent_framework import Agent, MCPStreamableHTTPTool
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import MCPTool
+
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+MCP_SERVER_URL = "https://your-mcp-server-url"
+# Optional: set to your project connection ID if your MCP server requires authentication
+MCP_CONNECTION_ID = "your-mcp-connection-id"
+
+
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = "Bearer " + self._token_provider()
+        yield request
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # 1. Create the custom code interpreter MCP tool and add it to a toolbox. Using a toolbox is the
+    #    recommended way to give agents tools: curate tools once and reuse the
+    #    toolbox across agents. See /azure/foundry/agents/concepts/toolbox-overview
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+    toolbox = project.toolboxes.create_toolbox_version(
+        name="custom-code-interpreter-toolbox",
+        description="Toolbox with the custom code interpreter MCP server",
+        tools=[
+            MCPTool(
+                server_label="custom-code-interpreter",
+                server_url=MCP_SERVER_URL,
+                project_connection_id=MCP_CONNECTION_ID,
+            )
+        ],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant that can run Python code to analyze data and solve problems.",
+        tools=[mcp_tool],
+    )
+
+    result = await agent.run("Calculate the factorial of 10 using Python.")
+    print(result.text)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
 :::zone-end
 
 :::zone pivot="csharp"
@@ -183,17 +295,48 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Create agent with custom code interpreter MCP tool
-// Code runs in a sandboxed Azure Container Apps session
-McpTool tool = ResponseTool.CreateMcpTool(
+// Add the custom code interpreter MCP server to a toolbox. Using a toolbox is the
+// recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+// Code runs in a sandboxed Azure Container Apps session.
+McpTool customCodeInterpreter = ResponseTool.CreateMcpTool(
     serverLabel: "custom-code-interpreter",
     serverUri: new Uri(mcpServerUrl));
-tool.ProjectConnectionId = mcpConnectionId;
+customCodeInterpreter.ProjectConnectionId = mcpConnectionId;
+
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "custom-code-interpreter-toolbox",
+        tools: [ProjectsAgentTool.AsProjectTool(customCodeInterpreter)],
+        description: "Toolbox with the custom code interpreter MCP server");
+
+// The toolbox exposes an MCP-compatible endpoint.
+var toolboxMcpUrl = new Uri(
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}" +
+    $"/versions/{toolboxVersion.Version}/mcp?api-version=v1");
+
+// Create a remote-tool project connection that points at the toolbox endpoint.
+// Use a user Entra token so the caller's identity is passed through
+// (audience https://ai.azure.com). Create the connection once, for example
+// with the Azure Developer CLI:
+//
+//    azd ai connection create custom-code-interpreter-toolbox-conn \
+//      --kind remote-tool \
+//      --target "<toolboxMcpUrl>" \
+//      --auth-type user-entra-token \
+//      --audience https://ai.azure.com
+var toolboxConnectionName = "custom-code-interpreter-toolbox-conn";
+
+McpTool toolboxTool = ResponseTool.CreateMcpTool(
+    serverLabel: "toolbox",
+    serverUri: toolboxMcpUrl,
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval));
+toolboxTool.ProjectConnectionId = toolboxConnectionName;
 
 DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that can run Python code to analyze data and solve problems.",
-    Tools = { tool }
+    Tools = { toolboxTool }
 };
 
 AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
@@ -225,6 +368,69 @@ The factorial of 10 is 3,628,800.
 Agent deleted
 ```
 
+### Use a hosted agent
+
+This sample uses the Microsoft Agent Framework to connect a hosted agent to the toolbox MCP endpoint.
+
+```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
+using Azure.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+
+const string AgentInstructions = "You are a helpful assistant that can run Python code to analyze data and solve problems.";
+const string AgentName = "CustomCodeInterpreterAgent";
+
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+string mcpServerUrl = "https://your-mcp-server-url";
+string mcpConnectionId = "your-mcp-connection-id";
+
+DefaultAzureCredential credential = new();
+
+// 1. Create the custom code interpreter MCP tool and add it to a toolbox. Using a toolbox is the
+//    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: credential);
+McpTool customCodeInterpreter = ResponseTool.CreateMcpTool(
+    serverLabel: "custom-code-interpreter",
+    serverUri: new Uri(mcpServerUrl));
+customCodeInterpreter.ProjectConnectionId = mcpConnectionId;
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "custom-code-interpreter-toolbox",
+        tools: [ProjectsAgentTool.AsProjectTool(customCodeInterpreter)],
+        description: "Toolbox with the custom code interpreter MCP server");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// 3. Attach the toolbox to the hosted agent.
+AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+
+// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call.
+ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(
+        name: AgentName,
+        instructions: AgentInstructions,
+        chatClient: chatClient,
+        toolboxClient: toolboxClient));
+});
+```
+
 :::zone-end
 
 :::zone pivot="typescript"
@@ -246,9 +452,41 @@ export async function main(): Promise<void> {
   const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
   const openai = project.getOpenAIClient();
 
-  // Create agent with custom code interpreter MCP tool
-  // The custom code interpreter uses require_approval: "never" because code
-  // runs in a sandboxed Azure Container Apps session
+  // Add the custom code interpreter MCP server to a toolbox. Using a toolbox is
+  // the recommended way to give agents tools. Code runs in a sandboxed Azure
+  // Container Apps session, so the tool uses require_approval: "never".
+  // See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "custom-code-interpreter-toolbox",
+    [
+      {
+        type: "mcp",
+        server_label: "custom-code-interpreter",
+        server_url: MCP_SERVER_URL,
+        require_approval: "never",
+      },
+    ],
+    { description: "Toolbox with the custom code interpreter MCP server" },
+  );
+
+  // The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // Create a remote-tool project connection that points at the toolbox endpoint.
+  // Use a user Entra token so the caller's identity is passed through
+  // (audience https://ai.azure.com). Create the connection once, for example
+  // with the Azure Developer CLI:
+  //
+  //    azd ai connection create custom-code-interpreter-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "custom-code-interpreter-toolbox-conn";
+
+  // Create an agent that uses the toolbox as an MCP tool
   const agent = await project.agents.createVersion("CustomCodeInterpreterAgent", {
     kind: "prompt",
     model: "gpt-5-mini",
@@ -257,9 +495,10 @@ export async function main(): Promise<void> {
     tools: [
       {
         type: "mcp",
-        server_label: "custom-code-interpreter",
-        server_url: MCP_SERVER_URL,
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
         require_approval: "never",
+        project_connection_id: toolboxConnectionName,
       },
     ],
   });
@@ -298,6 +537,9 @@ Agent deleted
 
 :::zone pivot="java"
 
+> [!TIP]
+> **Recommended:** For most agents, add tools through a [toolbox](../../concepts/toolbox-overview.md) and attach the toolbox to your agent as an MCP tool. The Java SDK doesn't yet expose a toolbox creation API, so create the toolbox by using the [Python](?pivots=python), [REST API](?pivots=rest), [C#](?pivots=csharp), or [TypeScript](?pivots=typescript) example, or the [Foundry portal](toolbox.md), and then reference its MCP endpoint from your Java agent as an `McpTool`. The following example attaches the toolbox MCP endpoint that contains the custom code interpreter to the agent.
+
 Add the dependency to your `pom.xml`:
 
 ```xml
@@ -329,9 +571,9 @@ public class CustomCodeInterpreterExample {
     public static void main(String[] args) {
         // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
         String projectEndpoint = "your_project_endpoint";
-        String mcpServerUrl = "https://your-mcp-server-url";
-        // Optional: set to your project connection ID if your MCP server requires authentication
-        String mcpConnectionId = "your-mcp-connection-id";
+        String toolboxMcpUrl = projectEndpoint + "/toolboxes/custom-code-interpreter-toolbox/versions/1/mcp?api-version=v1";
+        // Set to the remote-tool project connection that points at the toolbox MCP endpoint.
+        String toolboxConnectionId = "custom-code-interpreter-toolbox-conn";
 
         // Create clients to call Foundry API
         AgentsClientBuilder builder = new AgentsClientBuilder()
@@ -341,16 +583,16 @@ public class CustomCodeInterpreterExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create custom code interpreter MCP tool
-        // Uses require_approval: "never" because code runs in a sandboxed Container Apps session
-        McpTool customCodeInterpreter = new McpTool("custom-code-interpreter")
-            .setServerUrl(mcpServerUrl)
-            .setProjectConnectionId(mcpConnectionId)
+        // Attach the toolbox MCP endpoint as an MCP tool.
+        // Uses require_approval: "never" because code runs in a sandboxed Container Apps session.
+        McpTool toolboxTool = new McpTool("toolbox")
+            .setServerUrl(toolboxMcpUrl)
+            .setProjectConnectionId(toolboxConnectionId)
             .setRequireApproval("never");
 
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can run Python code to analyze data and solve problems.")
-            .setTools(Collections.singletonList(customCodeInterpreter));
+            .setTools(Collections.singletonList(toolboxTool));
 
         AgentVersionDetails agent = agentsClient.createAgentVersion(
             "CustomCodeInterpreterAgent", agentDefinition);
@@ -401,7 +643,43 @@ export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.
 
 ### Code example
 
-#### 1. Create an agent with custom code interpreter
+#### 1. Create a toolbox with the custom code interpreter
+
+Add the custom code interpreter by creating a toolbox. Then, attach the toolbox to your agent as an MCP tool. For more information, see [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/custom-code-interpreter-toolbox/versions?api-version=v1" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "description": "Toolbox with the custom code interpreter MCP server",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "custom-code-interpreter",
+        "server_url": "<MCP_SERVER_URL>",
+        "project_connection_id": "<MCP_PROJECT_CONNECTION_ID>",
+        "require_approval": "never"
+      }
+    ]
+  }'
+```
+
+The toolbox exposes an MCP-compatible endpoint at `$FOUNDRY_PROJECT_ENDPOINT/toolboxes/custom-code-interpreter-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+#### 2. Create a remote-tool connection to the toolbox
+
+Create a remote-tool project connection that points to the toolbox endpoint. Use a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`):
+
+```bash
+azd ai connection create custom-code-interpreter-toolbox-conn \
+  --kind remote-tool \
+  --target "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/custom-code-interpreter-toolbox/versions/<version>/mcp?api-version=v1" \
+  --auth-type user-entra-token \
+  --audience https://ai.azure.com
+```
+
+#### 3. Create an agent that uses the toolbox
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
@@ -416,17 +694,17 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
       "tools": [
         {
           "type": "mcp",
-          "server_label": "custom-code-interpreter",
-          "server_url": "<MCP_SERVER_URL>",
-          "project_connection_id": "<MCP_PROJECT_CONNECTION_ID>",
-          "require_approval": "never"
+          "server_label": "toolbox",
+          "server_url": "'$FOUNDRY_PROJECT_ENDPOINT'/toolboxes/custom-code-interpreter-toolbox/versions/<version>/mcp?api-version=v1",
+          "require_approval": "never",
+          "project_connection_id": "custom-code-interpreter-toolbox-conn"
         }
       ]
     }
   }'
 ```
 
-#### 2. Create a response
+#### 4. Create a response
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \

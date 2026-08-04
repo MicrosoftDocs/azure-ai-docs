@@ -80,6 +80,7 @@ The Foundry platform automatically injects the following environment variables i
 | `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint, such as `https://{account}.services.ai.azure.com/api/projects/{project}`. |
 | `FOUNDRY_AGENT_SESSION_ID` | The agent's session ID. |
 | `FOUNDRY_PROJECT_ARM_ID` | The project's full ARM resource ID. |
+| `FOUNDRY_HOSTING_ENVIRONMENT` | Set to `1` when the agent is deployed in Foundry. Use this value to determine whether your agent is running in Foundry or another environment, such as a local environment. |
 
 > [!NOTE]
 > **Reserved prefix:** The platform reserves all `AGENT_*` and `FOUNDRY_*` environment variables for platform use and automatically injects them into the container.

@@ -162,7 +162,7 @@ This example uses synchronous methods of the [SearchIndexClient](/java/api/com.a
 
 You create two helper classes, `Hotel.java` and `Address.java`, to define the structure of a hotel document and its address. The `Hotel` class includes fields for a hotel ID, name, description, category, tags, parking, renovation date, rating, and address. The `Address` class includes fields for street address, city, state/province, postal code, and country/region.
 
-In the azure-search-documents client library, you can use [SearchableField](/java/api/com.azure.search.documents.indexes.searchablefield) and [SimpleField](/java/api/com.azure.search.documents.indexes.simplefield) to streamline field definitions. Both are annotations that you can apply to fields or methods to generate a [SearchField](/java/api/com.azure.search.documents.indexes.models.searchfield):
+In the azure-search-documents client library, you can use `SearchableField` and `SimpleField` to streamline field definitions. Both are annotations that you can apply to fields or methods to generate a [SearchField](/java/api/com.azure.search.documents.indexes.models.searchfield):
 
 + `SimpleField` can be any data type, is always nonsearchable (ignored for full-text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, apply any attributes that are necessary for the scenario, such as `isKey = true` for a document ID.
 + `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties.
@@ -186,7 +186,7 @@ Azure AI Search searches over content stored in the service. In this step, you l
 
 In Azure AI Search, search documents are data structures that are both inputs to indexing and outputs from queries. As obtained from an external data source, document inputs might be rows in a database, blobs in Azure Blob Storage, or JSON documents on disk. In this example, you take a shortcut and embed JSON documents for four hotels directly.
 
-When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) object. An `IndexDocumentsBatch` object contains a collection of [IndexActions](/java/api/com.azure.search.documents.models.indexaction), each of which contains a document and a property telling Azure AI Search what action to perform ([upload, merge, delete, and mergeOrUpload](/azure/search/search-what-is-data-import#indexing-actions)).
+When uploading documents, you must use an `IndexDocumentsBatch` object. An `IndexDocumentsBatch` object contains a collection of [IndexActions](/java/api/com.azure.search.documents.models.indexaction), each of which contains a document and a property that tells Azure AI Search what action to perform ([upload, merge, delete, and mergeOrUpload](/azure/search/search-what-is-data-import#indexing-actions)).
 
 In `App.java`, you create an array of documents and index actions, and then pass the array to `IndexDocumentsBatch`. The following documents conform to the hotels-quickstart index, as defined by the hotel class.
 
@@ -230,7 +230,7 @@ private static void uploadDocuments(SearchClient searchClient)
 }
 ```
 
-The `uploadDocuments` method creates an [IndexDocumentsBatch](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) and calls [indexDocuments](/java/api/com.azure.search.documents.searchclient) on a [SearchClient](/java/api/com.azure.search.documents.searchclient) to upload the documents. This quickstart creates `SearchClient` independently using [SearchClientBuilder](/java/api/com.azure.search.documents.searchclientbuilder), which requires configuring the endpoint and credentials separately.
+The `uploadDocuments` method creates an `IndexDocumentsBatch` and calls [indexDocuments](/java/api/com.azure.search.documents.searchclient) on a [SearchClient](/java/api/com.azure.search.documents.searchclient) to upload the documents. This quickstart creates `SearchClient` independently by using [SearchClientBuilder](/java/api/com.azure.search.documents.searchclientbuilder), which requires configuring the endpoint and credentials separately.
 
 ```java
 uploadDocuments(searchClient);
@@ -258,7 +258,7 @@ You can get query results as soon as the first document is indexed, but actual t
 
 This section adds two pieces of functionality: query logic and results. For queries, use the [search](/java/api/com.azure.search.documents.searchclient) method. This method takes search text (the query string) and other [options](/java/api/com.azure.search.documents.models.searchoptions).
 
-The [SearchPagedIterable](/java/api/com.azure.search.documents.util.searchpagediterable) class represents the results.
+The `SearchPagedIterable` class represents the results.
 
 In `App.java`, the `WriteDocuments` method prints search results to the console.
 

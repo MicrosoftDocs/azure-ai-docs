@@ -128,6 +128,8 @@ items:
       href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
       href: ../../how-to/develop/langchain-hosted-agents.md
+    - name: Use a toolbox
+      href: ../../agents/how-to/tools/use-toolbox-hosted-agent.md
     - name: Deploy from source code
       href: ../../agents/how-to/deploy-hosted-agent-code.md
   - name: Run, test, and debug
@@ -174,7 +176,7 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a voice agent (preview)
       href: ../../agents/how-to/build-voice-agent.md
-    - name: Add a content safety guardrail
+    - name: Add hosted agent guardrails
       href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
