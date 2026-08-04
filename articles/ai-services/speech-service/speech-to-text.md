@@ -54,6 +54,8 @@ See the [Diarization quickstart](./get-started-stt-diarization.md) to get starte
 
 The phrase lists feature allows you to provide the speech recognition model with a list of specific words or phrases that are likely to be spoken in the audio. This helps improve the accuracy of transcription, especially for domain-specific terminology, proper nouns, or uncommon words. By using phrase lists, you can guide the model to better recognize and transcribe these terms correctly.
 
+See the [Phrase list quickstart](./improve-accuracy-phrase-list.md) to get started.
+
 ### Language detection
 
 Language detection enables the speech recognition model to automatically identify the language being spoken in the audio input. This is useful in scenarios where the language of the audio is not known beforehand or when you have multilingual audio content. By detecting the language, the model can apply the appropriate language-specific recognition algorithms, which can significantly improve transcription accuracy.
