@@ -35,7 +35,7 @@ Selecting the Serverless pricing model does not require selecting a pre-provisio
 
 The Serverless pricing model is a consumption-based offering that automatically scales compute and storage based on your workload. It eliminates the need to provision capacity upfront, allowing you to pay only for the resources you use.
 
-With the Serverless model, you don't configure replicas, partitions, or search units. Instead, the service manages capacity dynamically in response to query volume, indexing activity, and workload complexity.
+When you use the Serverless model, you don't configure replicas, partitions, or search units. Instead, the service manages capacity dynamically in response to query volume, indexing activity, and workload complexity.
 
 Billing is based on two primary dimensions:
 
@@ -72,7 +72,7 @@ With the Dedicated tiers, you explicitly configure replicas, partitions, and sea
 Billing is based on:
 
 - **[Service tier](#tier-descriptions)**: The pre-selected provisioned capacity.
-- **Search units (SUs)**: The billing unit for Dedicated services, calculated as replicas × partitions. You're billed at a fixed hourly rate based on the number of search units and selected service tier.
+- **Search units (SUs)**: The billing unit for Dedicated services, calculated as replicas × partitions. You pay a fixed hourly rate based on the number of search units and selected service tier.
 
 This model is designed for workloads with steady, predictable demand, where consistent performance, low latency, and controlled scaling are important.
 
@@ -101,9 +101,9 @@ Some tiers are designed for certain types of work:
 
 There is also a free, limited search service tier:
 
-- **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling is not supported. Some premium features are unavailable, and the service might be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
+- **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling isn't supported. Some premium features are unavailable, and the service might be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
 
-Billing rates are shown in the [Azure portal](https://portal.azure.com/auth/login/) when you're creating a new Azure AI Search service in the **Select Pricing Tier** page. 
+You see billing rates in the [Azure portal](https://portal.azure.com/auth/login/) when you create a new Azure AI Search service in the **Select Pricing Tier** page. 
 
 :::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Screenshot of the Azure portal Select a pricing tier chart listing the service tiers and their associated SKU." border="true":::
 

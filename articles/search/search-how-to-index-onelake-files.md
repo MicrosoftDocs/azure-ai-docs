@@ -48,7 +48,7 @@ This article uses the REST APIs to illustrate each step.
   + [Use data pipelines](/fabric/data-engineering/tutorial-lakehouse-data-ingestion) from [Microsoft Fabric](https://fabric.microsoft.com/)
   + [Add shortcuts](/fabric/onelake/create-onelake-shortcut) from external data sources like [Amazon S3](/fabric/onelake/create-s3-shortcut) or [Google Cloud Storage](/fabric/onelake/create-gcs-shortcut).  
 
-+ An Azure AI Search service, Basic pricing tier or higher, configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The Azure AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
++ An Azure AI Search service, Basic pricing tier or higher, configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The Azure AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
   
 + An Administrator or Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
 
@@ -108,7 +108,7 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 
 ## Prepare data for indexing
 
-Before you set up indexing, review your source data to determine whether any changes should be made to your data in the lakehouse. An indexer can index content from one container (the lakehouse) at a time. By default, all files in the lakehouse are processed. You have several options for more selective processing:
+Before you set up indexing, review your source data to determine whether you need to make any changes to your data in the lakehouse. An indexer can index content from one container (the lakehouse) at a time. By default, the indexer processes all files in the lakehouse. To process files more selectively, consider the following options:
 
 + Place files in a virtual folder. An indexer [data source definition](#define-the-data-source) includes a "query" parameter that can be either a lakehouse subfolder or shortcut. If this value is specified, only those files in the subfolder or shortcut within the lakehouse are indexed.
 
