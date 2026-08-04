@@ -223,7 +223,7 @@ The SDK includes a browser-compatible version where you must specify the host UR
 import { FoundryLocalManager } from "foundry-local-sdk/browser";
 
 // Specify the service URL
-// Run the Foundry Local service using the CLI: `foundry service start`
+// Run the Foundry Local service using the CLI: `foundry server start`
 // and use the URL from the CLI output
 const host = "HOST";
 
@@ -234,7 +234,7 @@ const manager = new FoundryLocalManager({ host });
 ```
 
 > [!NOTE]
-> The browser version doesn't support the `init`, `isServiceRunning`, and `startService` methods. You must ensure that the Foundry Local service is running before using the SDK in a browser environment. You can start the service using the Foundry Local CLI: `foundry service start`. You can glean the service URL from the CLI output.
+> The browser version doesn't support the `init`, `isServiceRunning`, and `startService` methods. You must ensure that the Foundry Local service is running before using the SDK in a browser environment. You can start the service using the Foundry Local CLI: `foundry server start`. You can glean the service URL from the CLI output.
 
 #### Example Usage
 
@@ -242,7 +242,7 @@ const manager = new FoundryLocalManager({ host });
 import { FoundryLocalManager } from "foundry-local-sdk/browser";
 
 // Specify the service URL
-// Run the Foundry Local service using the CLI: `foundry service start`
+// Run the Foundry Local service using the CLI: `foundry server start`
 // and use the URL from the CLI output
 const host = "HOST";
 
