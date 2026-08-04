@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 06/02/2026
+ms.date: 07/20/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -54,7 +54,9 @@ In this tutorial, you:
 
 + A text embedding model deployed to your project for [query-time vectorization](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries). This solution uses `text-embedding-3-large`.
 
-+ An LLM deployed to your project for the agent. This solution uses `gpt-4.1-mini`.
++ An LLM deployed to your project for the agent. This solution uses `gpt-5-mini`.
+
+    GPT-4 family models are deprecated. For retirement dates and current status in Microsoft Foundry, see [Model retirement schedule - Microsoft Foundry](/azure/foundry/openai/concepts/model-retirement-schedule).
 
 + Permissions to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
 
@@ -131,7 +133,7 @@ To configure access for this solution:
    PROJECT_RESOURCE_ID = /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.CognitiveServices/accounts/{account-name}/projects/{project-name}
    AZURE_OPENAI_ENDPOINT = https://{your-resource-name}.openai.azure.com
    AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
-   AGENT_MODEL = gpt-4.1-mini
+    AGENT_MODEL = gpt-5-mini
    ```
 
    You can find the endpoints and resource ID in the Azure portal:
@@ -185,7 +187,7 @@ load_dotenv(override=True) # Take environment variables from .env
 project_endpoint = os.environ["PROJECT_ENDPOINT"]
 project_resource_id = os.environ["PROJECT_RESOURCE_ID"]
 project_connection_name = os.getenv("PROJECT_CONNECTION_NAME", "earthknowledgeconnection")
-agent_model = os.getenv("AGENT_MODEL", "gpt-4.1-mini")
+agent_model = os.getenv("AGENT_MODEL", "gpt-5-mini")
 agent_name = os.getenv("AGENT_NAME", "earth-knowledge-agent")
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
 credential = DefaultAzureCredential()
@@ -614,7 +616,7 @@ To optimize performance and reduce latency, consider the following strategies:
 
 + Summarize message threads.
 
-+ Use `gpt-4.1-mini` or a smaller model that performs faster.
++ Use `gpt-5-mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` on the [retrieve action](agentic-retrieval-how-to-retrieve.md) to govern the size of the response or `maxRuntimeInSeconds` for time-bound processing.
 
