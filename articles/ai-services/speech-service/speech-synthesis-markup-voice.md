@@ -127,6 +127,12 @@ In HD voices (DragonHD, DragonHD Omni, and DragonHD Flash), styles and paralingu
 | **SSML (style markers)** | &lt;speak&gt;<br>&lt;voice name="en-us-Ava:DragonHDLatestNeural"&gt;<br>[whispering] Don’t tell anyone…<br>[ecstatic] This is amazing!<br>&lt;/voice&gt;<br>&lt;/speak&gt; |
 | **Plain Text (after chosing the voice)** | [whispering] Don’t tell anyone…<br>[ecstatic] This is amazing! |
 
+> [!NOTE]
+> A style marker applies to all subsequent sentences until the style is reset.
+> - Use `[Neutral]` to switch to the default style.
+> - `\r\n`, the `<p>` tag, and automatic sentence boundaries switch to the default style.
+> - The `<break>` tag does not switch to the default style.
+
 #### Supported styles for Dragon HD
 The following Styles and Paralinguistic tags are supported in HD voices
 
@@ -137,7 +143,7 @@ The following Styles and Paralinguistic tags are supported in HD voices
 
 > [!NOTE]
 > Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
-> Paralingsuitics are available on all voices with all languages.
+> Paralinguistics are available on all voices with all languages.
 
 #### Supported styles for Dragon HD Omni
 The following Styles and Paralinguistic tags are supported in HDOmni voices
