@@ -128,8 +128,6 @@ Here are some best practices for prompts:
 
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
 
-- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit to fewer than 2,000 words or phrases.
-
 - Prompts that aren't related to speech tasks (for example, `Tell me a story.`) are typically disregarded.
 
 #### More configuration options
@@ -154,9 +152,6 @@ curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtote
   "profanityFilterMode": "Masked"
 }'
 ```
-
-Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM Speech. You can omit these options from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options).
-
 
 #### Sample response
 
