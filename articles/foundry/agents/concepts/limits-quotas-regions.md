@@ -155,14 +155,6 @@ The following table shows which tools each model supports. For the image generat
 | MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No | No |
 | Meta-Llama-3.1-405B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | Mistral-large-2407 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
-| claude-haiku-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-mythos-preview | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-1 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | Yes | Yes |
-| claude-opus-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-7 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
 | codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | computer-use-preview | No | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No | No |
 | gpt-35-turbo | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
