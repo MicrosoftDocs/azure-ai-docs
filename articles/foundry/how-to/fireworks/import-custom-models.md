@@ -56,7 +56,7 @@ Support for deploying custom models is available in all global [Azure regions](/
 
 Before you import a model, review the architecture, file, and preview feature requirements.
 
-### Supported model architectures
+### Supported architectures
 
 Custom model weights must match supported Fireworks base models. For the list of current models, see [Fireworks model PTU sizing](../../openai/how-to/provisioned-throughput-sizing.md#fireworks-on-microsoft-foundry-models).
 
