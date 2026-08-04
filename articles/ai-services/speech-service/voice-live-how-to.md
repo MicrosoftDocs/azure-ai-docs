@@ -163,6 +163,8 @@ Here's an example that enables Live-Reference AEC:
 }
 ```
 
+For a working browser example that captures two-channel audio (microphone plus playback reference) and streams it to the service, see the [Live-Reference AEC sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/live-reference-aec).
+
 ## Conversational enhancements
 
 The Voice Live API offers conversational enhancements to provide robustness to the natural end-user conversation flow.
