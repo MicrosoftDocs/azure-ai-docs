@@ -3,10 +3,10 @@ title: Include file
 description: Include file
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 08/05/2026
 ms.author: lajanuar
-ms.reviewer: maanavd
-reviewer: maanavdalal
+ms.reviewer: waynechuang
+ms.reviewer: wayne-ch
 author: laujan
 ai-usage: ai-assisted
 ---
