@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools document s
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 03/23/2026
+ms.date: 08/04/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
@@ -71,6 +71,10 @@ Content extraction forms the foundation of Content Understanding document analys
 - Retrieval-augmented generation (RAG)
   - **RAG solutions**: Content extraction forms the foundation of effective RAG systems by transforming raw multimodal data into structured, searchable formats that are optimized for retrieval. To learn more about building RAG solutions, see [Retrieval-augmented generation](../concepts/retrieval-augmented-generation.md).
 
+#### Extraction mode
+
+Use `extractionMode` to choose how to analyze document content. Use layout-aware extraction for structured documents, where tables, sections, and reading order matter. Use faster text-only extraction to produce clean Markdown for RAG and document ingestion scenarios.
+
 ### Field extraction
 
 With field extraction, you can extract, classify, and generate structured data from various documents and forms that are customized to meet your requirements. The process of transforming unstructured content into organized, actionable information simplifies data management, improves searchability, and supports automated workflows.
@@ -80,6 +84,8 @@ For example, you can extract customer details, billing addresses, and itemized c
 To maximize efficiency, use prebuilt analyzer templates, such as templates tailored for invoices. You can also design custom analyzers from scratch to enhance precision through labeling of more sample documents.
 
 The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field. 
+
+Use confidence scores and source grounding to route low-confidence or insufficiently grounded extractions for human review. Continue high-confidence, grounded results through downstream automated workflows.
 
 #### Field extraction methods
 
