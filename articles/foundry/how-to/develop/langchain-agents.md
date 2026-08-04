@@ -832,15 +832,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 ### Resolve tool execution errors
 
-- If Code Interpreter returns a `400` response, retry the request. If the error
-	continues, confirm that the project region and chat model support Code
-	Interpreter.
-- If image generation returns `DeploymentNotFound`, deploy `gpt-image-1.5` in
-	the project or update `model_deployment` to the name of an existing image
-	model deployment.
-- If an MCP request doesn't pause for approval, make the prompt explicitly
-	require use of the MCP tool. Approval occurs only when the model selects the
-	tool.
+- If Code Interpreter returns a `400` response, retry the request. If the error continues, confirm that the project region and chat model support Code Interpreter.
+- If image generation returns `DeploymentNotFound`, deploy `gpt-image-1.5` in the project or update `model_deployment` to the name of an existing image model deployment.
+- If an MCP request doesn't pause for approval, make the prompt explicitly require use of the MCP tool. Approval occurs only when the model selects the tool.
 
 > [!div class="nextstepaction"]
 > [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
