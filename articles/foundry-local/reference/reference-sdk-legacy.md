@@ -10,7 +10,7 @@ author: laujan
 ms.topic: concept-article
 ms.date: 08/05/2026
 zone_pivot_groups: foundry-local-sdk
-ms.reviewer: wayne-ch
+reviewer: wayne-ch
 ms.reviewer: waynechuang
 ai-usage: ai-assisted
 ---

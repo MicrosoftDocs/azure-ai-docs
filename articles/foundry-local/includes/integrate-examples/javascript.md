@@ -6,7 +6,7 @@ ms.custom: build-2025
 ms.topic: include
 ms.date: 08/05/2026
 ms.author: lajanuar
-ms.reviewer: wayne-ch
+reviewer: wayne-ch
 author: laujan
 ms.reviewer: waynechuang
 ai-usage: ai-assisted

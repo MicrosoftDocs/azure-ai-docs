@@ -8,7 +8,7 @@ ms.custom: build-2025, dev-focus
 ms.author: lajanuar
 ms.reviewer: waynechuang
 author: laujan
-ms.reviewer: wayne-ch
+reviewer: wayne-ch
 ms.topic: reference
 ms.date: 08/05/2026
 ai-usage: ai-assisted
