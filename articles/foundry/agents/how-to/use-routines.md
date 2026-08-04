@@ -1,11 +1,11 @@
 ﻿---
 title: "Automate agents with routines (preview)"
-description: "Create, manage, and monitor routines that automatically trigger agents on a schedule or at a specific time in Microsoft Foundry."
+description: "Create, manage, and monitor routines that trigger agents on a schedule, at a specific time, or in response to an external event."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/08/2026
+ms.date: 08/03/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -21,37 +21,13 @@ zone_pivot_groups: foundry-routines-config
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-A *routine* is a named automation rule that triggers an agent on a schedule or at a specific time. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
+A *routine* is a named automation rule that triggers an agent on a schedule, at a specific time, or in response to an external event. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
 
-This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, and the Python and JavaScript SDKs.
+This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, the Python SDK, .NET SDK, JavaScript SDK, or the Azure Developer CLI.
 
 > [!NOTE]
 > Routines are in preview. Send the `Foundry-Features: Routines=V1Preview` header on every REST call. All routine operations are on the data plane under your project endpoint.
 
-
-## Supported trigger types
-
-Routines support the following trigger types:
-
-| Trigger type | Description |
-|---|---|
-| `schedule` | Recurring trigger defined by a cron expression. Minimum interval is five minutes. |
-| `timer` | One-shot trigger that fires at a specific future date/time or after a duration. |
-| `github_issue` | Event-based trigger that fires when an issue is opened or closed in a watched GitHub repository. |
-
-## Supported action types
-
-Each routine specifies exactly one action that runs when the routine fires. Two action types are supported:
-
-| Action type | Description |
-|---|---|
-| `invoke_agent_responses_api` | Invokes the agent through the Responses API. Provide either the agent name or endpoint ID. |
-| `invoke_agent_invocations_api` | Invokes the agent through the Invocations API. Requires the endpoint-scoped agent identifier. |
-
-For required and optional fields of each action type, see [Action fields](#action-fields).
-
-> [!NOTE]
-> Routines can't invoke an agent that requires an end-user identity to be passed at run time. A routine runs unattended, so there's no signed-in user to delegate. Use routines only with agents that authenticate through their own configured identity, not on-behalf-of the caller.
 
 ## Prerequisites
 
@@ -59,9 +35,9 @@ For required and optional fields of each action type, see [Action fields](#actio
 - **Foundry User** role or higher on the project scope.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- An agent that authenticates through its configured identity. Routines can't invoke an agent that requires an end-user identity to be passed at run time. A routine runs unattended, so there's no signed-in user to delegate. Use routines only with agents that authenticate through their own configured identity, not on-behalf-of the caller.
 
-> [!NOTE]
-> Routines are available in a subset of regions in preview. Confirm that your Foundry project is provisioned in one of the supported regions before you create a routine:
+Routines are available in a subset of regions in preview. Confirm that your Foundry project is provisioned in one of the supported regions before you create a routine:
 >
 > - East US
 > - East US 2
@@ -74,13 +50,11 @@ For required and optional fields of each action type, see [Action fields](#actio
 
 :::zone pivot="programming-language-python"
 
-- Install the `azure-ai-projects` SDK, version 2.2.0 or later (preview):
+- Install the `azure-ai-projects` SDK, version 2.3.0 or later:
 
   ```bash
   pip install "azure-ai-projects>=2.3.0"
   ```
-
-  Version 2.2.0 introduces the duration shorthand (`"30m"`, `"2h"`) for timer triggers.
 
 - Install `azure-identity` for authentication:
 
@@ -92,10 +66,10 @@ For required and optional fields of each action type, see [Action fields](#actio
 
 :::zone pivot="programming-language-csharp"
 
-- Install the `Azure.AI.Projects` NuGet package (preview):
+- Install the `Azure.AI.Projects` NuGet package:
 
   ```bash
-  dotnet add package Azure.AI.Projects --prerelease
+  dotnet add package Azure.AI.Projects
   ```
 
 - Install `Azure.Identity` for authentication:
@@ -140,6 +114,28 @@ For required and optional fields of each action type, see [Action fields](#actio
   ```
 
 :::zone-end
+
+## Supported trigger types
+
+Routines support the following trigger types:
+
+| Trigger type | Description |
+|---|---|
+| `schedule` | Recurring trigger defined by a cron expression. |
+| `timer` | One-shot trigger that fires at a specific future date/time or after a duration. |
+| `github_issue` | Event-based trigger that fires when an issue is opened or closed in a watched GitHub repository. |
+| `custom` | Event-based trigger from an external provider. In the preview, the `teams` provider fires when a new message is posted to a watched Microsoft Teams channel. |
+
+## Supported action types
+
+Each routine specifies exactly one action that runs when the routine fires. Two action types are supported:
+
+| Action type | Description |
+|---|---|
+| `invoke_agent_responses_api` | Invokes an agent through the Responses API. Provide either the agent name or endpoint ID. |
+| `invoke_agent_invocations_api` | Invokes an agent through the Invocations API. Provide either the agent name or endpoint ID. |
+
+For required and optional fields of each action type, see [Action fields](#action-fields).
 
 ## Create a routine
 
@@ -262,7 +258,7 @@ routine = client.beta.routines.create_or_update(
         "type": "invoke_agent_responses_api",
         "agent_name": agent_name,  # required
         "input": "Summarize activity from the last 24 hours.",  # optional
-        # "conversation_id": "...",  # optional
+        # "conversation": "...",  # optional
     },
 )
 
@@ -349,7 +345,7 @@ const routine = await client.beta.routines.createOrUpdate("daily-summary", {
     type: "invoke_agent_responses_api",
     agent_name: agentName,  // required
     input: "Summarize activity from the last 24 hours.",  // optional
-    // conversation_id: "...",  // optional
+    // conversation: "...",  // optional
   },
 });
 
@@ -389,10 +385,7 @@ action:
 azd ai routine create --file routine.yaml
 ```
 
-The minimum interval between fires is five minutes. Set `time_zone` to any IANA zone (for example, `America/Los_Angeles`); omit it to interpret `cron` in UTC.
-
-> [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
+Set `time_zone` to any IANA zone (for example, `America/Los_Angeles`); omit it to interpret `cron` in UTC.
 
 :::zone-end
 
@@ -552,18 +545,15 @@ action:
 azd ai routine create --file routine.yaml
 ```
 
-> [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
-
 :::zone-end
 
 ### Event-based triggers
 
-An event-based trigger runs an agent when an external event occurs, such as a GitHub issue being opened. Event-based triggers rely on a connector connection that Foundry provisions in your account's connector namespace and uses to authenticate to the external system. The trigger references this connection by ID. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
+An event-based trigger runs an agent when an external event occurs, such as a GitHub issue being opened or a message being posted to a Microsoft Teams channel. Event-based triggers rely on a connector connection that Foundry provisions in your account's connector namespace and uses to authenticate to the external system. The trigger references this connection by ID. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
-An event-based routine runs under the identity of the routine creator. The connection uses the routine creator's identity to authenticate with the external system, such as GitHub, so the routine watches and acts on that system with that person's access. If the routine creator loses access to the connected resource, the routine stops firing.
+An event-based routine runs under the identity of the routine creator. The connection uses the routine creator's identity to authenticate with the external system, such as GitHub or Microsoft Teams, so the routine watches and acts on that system with that person's access. If the routine creator loses access to the connected resource, the routine stops firing.
 
-The preview supports the `github_issue` event-based trigger.
+The preview supports two event-based triggers: the `github_issue` trigger and the `custom` trigger with the `teams` provider.
 
 > [!IMPORTANT]
 > Non-Microsoft tools including third-party MCP servers available in the Foundry Tools Catalog ("Third-Party Tools") are Non-Microsoft Products under your agreement governing use of Azure. When you connect to a Third-Party Tool, you do so at your own risk. You're responsible for any terms and charges for Third-Party Tools. Microsoft has no responsibility to you or others in relation to your use of Third-Party Tools. Carefully review and track the Third-Party Tools you add to your MCP client.
@@ -581,6 +571,8 @@ A `github_issue` trigger fires when an issue is opened or closed in a watched Gi
 The trigger relies on a GitHub connector connection. Foundry provisions the connection to GitHub in your account's connector namespace and authenticates to GitHub through it. The `connection_id` you set on the trigger references this connection. Each tab shows how to create the connection and the routine that uses it. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
 The `issue_event` field accepts `opened` or `closed` only.
+
+When an issue event fires, the GitHub issue payload replaces `action.input`. The configured input applies only to manual test dispatches.
 
 :::zone pivot="foundry-portal"
 
@@ -846,6 +838,233 @@ action:
 
 ```bash
 azd ai routine create on-issue-opened --file routine.yaml
+```
+
+> [!NOTE]
+> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
+
+:::zone-end
+
+#### Teams message trigger
+
+A `custom` trigger fires on an event from an external provider. In the preview, the `teams` provider supports the `on_new_channel_message` event, which fires when a new message is posted to a watched Microsoft Teams channel. When the trigger fires, Foundry forwards the Teams message payload to the agent as its input, so the agent can respond to the message.
+
+The trigger requires a Microsoft Teams connector connection. Foundry provisions the connection in your account's connector namespace and uses it to authenticate to Teams. The `connection_id` in the trigger's `parameters` references this connection. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
+
+The `parameters` object scopes the trigger to a single Teams channel. Set `threadType` to `channel`, `groupId` to the ID of the Teams team that contains the channel, and `channelId` to the ID of the channel to watch. You can obtain the team and channel IDs from Microsoft Teams or Microsoft Graph. The authenticated Teams connection must have access to the team and channel specified by `groupId` and `channelId`.
+
+:::zone pivot="foundry-portal"
+
+To connect Teams in the portal, follow the portal steps in [Add managed MCP servers powered by connector namespaces](tools/connectors.md?pivots=foundry-portal). After the connection exists, create the routine that references it through the REST API, an SDK, or the Azure Developer CLI, as shown in the other tabs.
+
+:::zone-end
+
+:::zone pivot="programming-language-rest"
+
+First create the Teams connector connection, then reference it by name in the trigger's `connection_id` parameter.
+
+**Step 1: Acquire tokens.** You need a catalog token to discover the connector and an Azure Resource Manager token to create the connection.
+
+```bash
+CATALOG_TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
+ARM_TOKEN=$(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)
+```
+
+**Step 2: Discover the Teams connector** to get its `entityId`. The catalog is served from `eastus` regardless of your project's region.
+
+```bash
+RESPONSE=$(curl -sS -X POST "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools" \
+  -H "Authorization: Bearer $CATALOG_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filters": [
+      { "field": "type",             "operator": "eq", "values": ["tools"] },
+      { "field": "annotations/name", "operator": "eq", "values": ["teams"] }
+    ],
+    "pageSize": 1
+  }')
+ENTITY_ID=$(echo "$RESPONSE" | jq -r '.value[0].entityId')
+```
+
+**Step 3: Create the project connection.** Set `target` to the literal `https://placeholder`; the platform rewrites it after consent.
+
+```bash
+SUBSCRIPTION_ID=<your-subscription-id>
+RESOURCE_GROUP=<your-resource-group>
+ACCOUNT_NAME=<your-foundry-account-name>
+PROJECT_NAME=<your-project-name>
+CONNECTION_NAME=teams-conn
+
+CONNECTION_URL="https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.CognitiveServices/accounts/$ACCOUNT_NAME/projects/$PROJECT_NAME/connections/$CONNECTION_NAME?api-version=2025-04-01-preview"
+
+curl -sS -X PUT "$CONNECTION_URL" \
+  -H "Authorization: Bearer $ARM_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "authType": "OAuth2",
+      "category": "RemoteTool",
+      "connectorName": "teams",
+      "target": "https://placeholder",
+      "metadata": {
+        "type": "gateway_connector",
+        "toolEntityId": "'"$ENTITY_ID"'"
+      }
+    }
+  }'
+```
+
+**Step 4: Authorize Teams.** Get a one-time OAuth consent link, then open it in a browser and sign in with your Microsoft account.
+
+```bash
+CALLER_OID=$(az ad signed-in-user show --query id -o tsv)
+CALLER_TID=$(az account show --query tenantId -o tsv)
+
+curl -sS -X POST "$CONNECTION_URL&action=listConsentLinks" \
+  -H "Authorization: Bearer $ARM_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "parameters": [{
+      "objectId":      "'"$CALLER_OID"'",
+      "parameterName": "token",
+      "redirectUrl":   "https://ai.azure.com/nextgen/authConsentPopup",
+      "tenantId":      "'"$CALLER_TID"'"
+    }]
+  }' | jq -r '.value[0].link'
+```
+
+For the complete connector reference, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
+
+**Step 5: Create the routine** that references the connection by name.
+
+```bash
+curl -sS -X PUT "$PROJECT_ENDPOINT/routines/teams-new-message" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Foundry-Features: Routines=V1Preview" \
+  -d '{
+    "description": "Invokes an agent when a new message is posted to a Teams channel.",
+    "enabled": true,
+    "triggers": {
+      "incoming": {
+        "type": "custom",
+        "provider": "teams",
+        "event_name": "on_new_channel_message",
+        "parameters": {
+          "connection_id": "teams-conn",
+          "threadType": "channel",
+          "groupId": "<your-team-group-id>",
+          "channelId": "<your-channel-id>"
+        }
+      }
+    },
+    "action": {
+      "type": "invoke_agent_responses_api",
+      "agent_name": "'"$AGENT_NAME"'"
+    }
+  }'
+```
+
+> [!NOTE]
+> For a `custom` Teams trigger, the incoming Teams message payload becomes the agent input when an event fires. Any `input` you set on the action applies only to manual test dispatches.
+
+:::zone-end
+
+:::zone pivot="programming-language-python"
+
+The Python SDK creates the routine but not the Teams connector connection. Create the connection first in the [Foundry portal](tools/connectors.md?pivots=foundry-portal), with the [REST API](tools/connectors.md?pivots=programming-language-rest), or with the [Azure Developer CLI](tools/connectors.md?pivots=azd), then reference it by name in the trigger's `connection_id` parameter.
+
+```python
+routine = client.beta.routines.create_or_update(
+    routine_name="teams-new-message",
+    description="Invokes an agent when a new message is posted to a Teams channel.",
+    enabled=True,
+    triggers={
+        "incoming": {
+            "type": "custom",
+            "provider": "teams",
+            "event_name": "on_new_channel_message",
+            "parameters": {
+                "connection_id": "teams-conn",   # required: project connection to Teams
+                "threadType": "channel",
+                "groupId": "<your-team-group-id>",
+                "channelId": "<your-channel-id>",
+            },
+        }
+    },
+    action={
+        "type": "invoke_agent_responses_api",
+        "agent_name": agent_name,
+    },
+)
+```
+
+> [!NOTE]
+> For a `custom` Teams trigger, the incoming Teams message payload becomes the agent input when an event fires. Any `input` you set on the action applies only to manual test dispatches.
+
+:::zone-end
+
+:::zone pivot="programming-language-javascript"
+
+The JavaScript SDK creates the routine but not the Teams connector connection. Create the connection first in the [Foundry portal](tools/connectors.md?pivots=foundry-portal), with the [REST API](tools/connectors.md?pivots=programming-language-rest), or with the [Azure Developer CLI](tools/connectors.md?pivots=azd), then reference it by name in the trigger's `connection_id` parameter.
+
+```javascript
+const routine = await client.beta.routines.createOrUpdate("teams-new-message", {
+  description: "Invokes an agent when a new message is posted to a Teams channel.",
+  enabled: true,
+  triggers: {
+    incoming: {
+      type: "custom",
+      provider: "teams",
+      event_name: "on_new_channel_message",
+      parameters: {
+        connection_id: "teams-conn",   // required: project connection to Teams
+        threadType: "channel",
+        groupId: "<your-team-group-id>",
+        channelId: "<your-channel-id>",
+      },
+    },
+  },
+  action: {
+    type: "invoke_agent_responses_api",
+    agent_name: agentName,
+  },
+});
+```
+
+> [!NOTE]
+> For a `custom` Teams trigger, the incoming Teams message payload becomes the agent input when an event fires. Any `input` you set on the action applies only to manual test dispatches.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Create the Teams connector connection first by following the azd steps in [Add managed MCP servers powered by connector namespaces](tools/connectors.md?pivots=azd). After the connection exists, reference it by name in the trigger's `connection_id` parameter.
+
+Because the `custom` trigger takes a nested `parameters` object, create the routine from a YAML manifest:
+
+```yaml
+# routine.yaml
+name: teams-new-message
+description: Invokes an agent when a new message is posted to a Teams channel.
+enabled: true
+triggers:
+  incoming:
+    type: custom
+    provider: teams
+    event_name: on_new_channel_message
+    parameters:
+      connection_id: teams-conn
+      threadType: channel
+      groupId: <your-team-group-id>
+      channelId: <your-channel-id>
+action:
+  type: invoke_agent_responses_api
+  agent_name: <your-agent-name>
+```
+
+```bash
+azd ai routine create teams-new-message --file routine.yaml
 ```
 
 > [!NOTE]
@@ -1535,6 +1754,25 @@ azd ai routine delete once-on-release-day
 | `repository` | string | Yes | The GitHub repository that scopes which issues can fire the trigger. Maximum 128 characters. |
 | `issue_event` | string | Yes | The GitHub issue event that fires the routine. Supported values: `opened`, `closed`. |
 
+### Custom (Teams) trigger fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | string | Yes | Must be `"custom"`. |
+| `provider` | string | Yes | The external provider that emits the event. In the preview, use `"teams"`. |
+| `event_name` | string | Yes | The provider event that fires the routine. For the `teams` provider, use `"on_new_channel_message"`. |
+| `parameters` | object | Yes | Provider-specific settings that scope the trigger. |
+
+For the `teams` provider, `parameters` accepts the following fields:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `connection_id` | string | Yes | The project connection that authenticates to Microsoft Teams. |
+| `threadType` | string | Yes | The Teams thread type. Use `"channel"` for a channel message. |
+| `groupId` | string | Yes | The ID of the Teams team (group) that contains the channel. |
+| `channelId` | string | Yes | The ID of the Teams channel to watch. |
+
+
 ## Dispatch behavior and retry policy
 
 When a trigger fires or you call `:dispatch_async` manually, Foundry acknowledges that the run was enqueued. The acknowledgment doesn't mean the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to confirm completion.
@@ -1563,8 +1801,7 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 Routines let an external trigger start an agent. A hosted agent can also schedule *itself* to run again at a future time by calling the built-in `reminder_preview` toolbox tool. Use this pattern when the agent decides during a run that it needs to follow up later, such as to check back on a long-running task.
 
-> [!NOTE]
-> The reminder tool is available only for hosted agents. You can't use the reminder tool with prompt agents.
+The reminder tool is available only for hosted agents. You can't use the reminder tool with prompt agents.
 
 When the agent calls the reminder tool, it specifies a delay in minutes. After that delay, Foundry re-invokes the same agent on the same conversation. The agent can then continue its work or check on external systems.
 
