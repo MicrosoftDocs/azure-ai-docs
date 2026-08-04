@@ -51,7 +51,7 @@ Before you begin, you need:
 * The Python packages used in this path:
 
   ```bash
-  pip install "azure-ai-projects>=2.3.0" azure-ai-agentserver-optimization azure-identity python-dotenv
+  pip install "azure-ai-projects>=2.4.0" azure-ai-agentserver-optimization azure-identity python-dotenv
   ```
 
 * An existing Foundry project that already contains the hosted agent,
@@ -288,7 +288,6 @@ import time
 from azure.ai.agentserver.optimization import load_config
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-  JobStatus,
   OptimizationAgentIdentifier,
   OptimizationEvaluatorRef,
   OptimizationJob,
@@ -306,11 +305,9 @@ agent_name = os.environ["FOUNDRY_AGENT_NAME"]
 dataset_name = os.environ["DATASET_NAME"]
 evaluator_name = os.environ["EVALUATOR_NAME"]
 dataset_version = os.environ.get("DATASET_VERSION", "1")
-poll_interval = int(os.environ.get("POLL_INTERVAL_SECONDS", "10"))
 eval_model = os.environ.get("EVAL_MODEL", "gpt-4o")
 optimization_model = os.environ.get("OPTIMIZATION_MODEL", "gpt-5")
-
-terminal_statuses = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
+poll_interval_seconds = int(os.environ.get("POLL_INTERVAL_SECONDS", "10"))
 
 optimization_config = load_config() # Reads agent optimization config from .agent_configs/baseline/metadata.yaml
 
@@ -318,46 +315,40 @@ with (
   DefaultAzureCredential() as credential,
   AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
-  job = project_client.beta.agents.create_optimization_job(
-    job=OptimizationJob(
-      inputs=OptimizationJobInputs(
-        agent=OptimizationAgentIdentifier(agent_name=agent_name),
-        train_dataset=OptimizationReferenceDatasetInput(
-          name=dataset_name,
-          version=dataset_version,
-        ),
-        evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
-        options=OptimizationOptions(
-          max_candidates=2,
-          eval_model=eval_model,
-          optimization_model=optimization_model,
-          optimization_config={
-            "system_prompt": optimization_config.instructions,
-            **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
-            **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
-          }
-        ),
-      )
+  job = OptimizationJob(
+    inputs=OptimizationJobInputs(
+      agent=OptimizationAgentIdentifier(agent_name=agent_name),
+      train_dataset=OptimizationReferenceDatasetInput(
+        name=dataset_name,
+        version=dataset_version,
+      ),
+      evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
+      options=OptimizationOptions(
+        max_candidates=2,
+        eval_model=eval_model,
+        optimization_model=optimization_model,
+        optimization_config={
+          "system_prompt": optimization_config.instructions,
+          **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
+          **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
+        }
+      ),
     )
   )
+  poller = project_client.beta.agents.begin_create_optimization_job(job=job)
 
-  print(f"Created optimization job: {job.id}")
-  print(f"Initial status: {job.status}")
+  print(f"Optimization job started, waiting for completion...")
+  while not poller.done():
+    print(f"\tstatus=`{poller.status()}`")
+    time.sleep(poll_interval_seconds)
 
-  while job.status not in terminal_statuses:
-    time.sleep(poll_interval)
-    job = project_client.beta.agents.get_optimization_job(job_id=job.id)
-    print(f"Status: {job.status}")
+  result = poller.result()
 
-  if job.status == JobStatus.FAILED:
-    message = job.error.message if job.error else "<no error message>"
-    raise RuntimeError(f"Optimization job failed: {message}")
+  if result:
+    print(f"Baseline candidate: {result.baseline}")
+    print(f"Best candidate: {result.best}")
 
-  if job.result:
-    print(f"Baseline candidate: {job.result.baseline}")
-    print(f"Best candidate: {job.result.best}")
-
-    for candidate in job.result.candidates or []:
+    for candidate in result.candidates or []:
       print(
         f"{candidate.name}: candidate_id={candidate.candidate_id}, "
         f"avg_score={candidate.avg_score:.4f}, "
