@@ -9,7 +9,7 @@ ms.topic: troubleshooting
 ms.date: 08/05/2026
 ms.author: lajanuar
 author: laujan
-ms.reviewer: wayne-ch
+reviewer: wayne-ch
 ms.reviewer: waynechuang
 ai-usage: ai-assisted
 ---
