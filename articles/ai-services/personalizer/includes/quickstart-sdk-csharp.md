@@ -1,7 +1,7 @@
 ---
 title: include file
 description: include file
-manager: nitinme
+manager: mcleans
 ms.author: jacodel
 author: jcodella
 ms.service: azure-ai-personalizer

@@ -7,7 +7,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 01/30/2026
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 
 ---

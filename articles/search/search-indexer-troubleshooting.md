@@ -3,14 +3,14 @@ title: Indexer Troubleshooting
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: troubleshooting-general
-ms.date: 10/23/2025
+ms.date: 07/07/2026
 ms.update-cycle: 365-days
 ---
 
 # Indexer troubleshooting guidance for Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Occasionally, indexers run into problems that don't produce errors or that occur on other Azure services, such as during authentication or when connecting. This article focuses on troubleshooting indexer problems when there are no messages to guide you. It also provides troubleshooting for errors that come from non-search resources used during indexing. 
 
@@ -24,13 +24,13 @@ These are some best practices and recommendations when working with indexers:
 ### Indexers are designed to run on a schedule
 
 - For reliable indexing, configure your indexers to run on a [regular schedule](search-howto-schedule-indexers.md). Scheduled runs automatically pick up any documents missed in previous runs due to transient errors, network interruptions, or temporary service issues. This approach helps maintain data consistency and minimizes the need for manual intervention.  
-- For [large data sources](search-how-to-large-index.md), the initial enumeration and indexing can take hours or even days. Running your indexer on a schedule allows that progress continues and errors are retried automatically. Avoid relying solely on manual or on-demand indexer runs, as these do not provide the same reliability or transient error recovery.
+- For [large data sources](search-how-to-large-index.md), the initial enumeration and indexing can take hours or even days. Running your indexer on a schedule allows that progress continues and errors are retried automatically. Avoid relying solely on manual or on-demand indexer runs, as these options don't provide the same reliability or transient error recovery.
 
 ### Indexers provide best-effort indexing over time
 
-- Built-in indexers are designed to process all documents without permanent errors over time, if not in the current run, then in subsequent scheduled runs. They offer a convenient, low/no-code way to index data for common scenarios, enabling faster development and easier maintenance. However, if they have AI enrichment capabilities, they are not optimized for very large-scale workloads. For guidance on handling large datasets, see [how to index large data sets](search-how-to-large-index.md).
+- Built-in indexers process documents without permanent errors and retry across scheduled runs. They offer a convenient, low-code or no-code way to index data for common scenarios, enabling faster development and easier maintenance. When an indexer runs a skillset, each run has a fixed execution time limit. Indexers that run in the [multitenant execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) have a two-hour maximum run time. This limit is the most common case, used when skillsets don't require shared private links. Indexers configured to use [shared private links](search-indexer-howto-access-private.md) run in a private execution environment with a 24-hour maximum. For the full table, see [Indexer limits](search-limits-quotas-capacity.md#indexer-limits). If per-document skillset processing prevents the indexer from finishing before the time limit, it stops and leaves remaining documents unprocessed. Complete processing isn't guaranteed when document volume, file size, skillset complexity, or execution environment prevent the indexer from finishing within its maximum run time. Partitioning your data source can reduce this risk but doesn't eliminate it, particularly if you later add large volumes of files to a partition. This behavior is expected. For strategies to manage large datasets and support incremental recovery, see [Index large data sets](search-how-to-large-index.md) and [Schedule indexers](search-howto-schedule-indexers.md). If your solution requires strict control over when the indexer processes documents, use the Push API alternative in this article.
 - If your solution requires strict control over indexing timelines, use the Push APIs instead, such as the [Documents Index REST API](/rest/api/searchservice/documents) or the [IndexDocuments method (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocuments). These options give you full control of the indexing pipeline.
-- Indexers can occasionally fall out of schedule. While this is uncommon and auto-recovery mechanisms exist, recovery may take time. This behavior is expected.
+- Indexers can occasionally fall out of schedule. While this condition is uncommon and auto-recovery mechanisms exist, recovery might take time. This behavior is expected.
 
 <a name="connection-errors"></a>
 
@@ -40,11 +40,11 @@ For data sources under Azure network security, indexers are limited in how they 
 
 ### Error connecting to a Microsoft Foundry resource on a private connection
 
-If you get an error code 403 with the following message, you might have a problem with how the resource endpoint is specified in a skillset:
+If you get error code 403 with the following message, you might have a problem with how the resource endpoint is specified in a skillset:
 
 * `"A Virtual Network is configured for this resource. Please use the correct endpoint for making requests. Check https://aka.ms/cogsvc-vnet for more details."`
 
-This error occurs if you've [configured a shared private link](search-indexer-howto-access-private.md) for connections to an Azure Foundry resource and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.services.ai.azure.com`). A custom domain might be missing if you created the resource in the Foundry portal instead of the Azure portal.
+This error occurs if you [configured a shared private link](search-indexer-howto-access-private.md) for connections to an Azure Foundry resource and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.services.ai.azure.com`). A custom domain might be missing if you created the resource in the Foundry portal instead of the Azure portal.
 
 If the Foundry resource isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) to attach the resource.
 
@@ -56,9 +56,9 @@ Azure Storage, Azure Cosmos DB, and Azure SQL provide a configurable firewall. T
 * `This request is not authorized to perform this operation`
 * `Credentials provided in the connection string are invalid or have expired`
 
-There are two options for allowing indexers to access these resources in such an instance:
+To allow indexers to access these resources, use one of the following options:
 
-* Configure an inbound rule for the IP address of your search service and the IP address range of `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags). Details for configuring IP address range restrictions for each data source type can be found from the following links:
+* Configure an inbound rule for the IP address of your search service and the IP address range of `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags). For details about configuring IP address range restrictions for each data source type, see the following links:
 
   * [Azure Storage](/azure/storage/common/storage-network-security#grant-access-from-an-internet-ip-range)
   * [Azure Cosmos DB](/azure/cosmos-db/how-to-configure-firewall)
@@ -86,24 +86,24 @@ Usually, network errors are generic. Some common errors include:
 * `The server was not found or was not accessible`
 * `Verify that the instance name is correct and that the source is configured to allow remote connections`
 
-When you receive any of those errors:
+When you receive any of these errors:
 
-* Make sure your source is accessible by trying to connect to it directly and not through the search service
-* Check your resource in the Azure portal for any current errors or outages
-* Check for any network outages in [Azure Status](https://azure.status.microsoft/status)
-* Verify you're using a public DNS for name resolution and not an [Azure Private DNS](/azure/dns/private-dns-overview)
+* Make sure you can access your source by trying to connect to it directly and not through the search service.
+* Check your resource in the Azure portal for any current errors or outages.
+* Check for any network outages in [Azure Status](https://azure.status.microsoft/status).
+* Verify you're using a public DNS for name resolution and not an [Azure Private DNS](/azure/dns/private-dns-overview).
 
 ## Azure SQL Database serverless indexing (error code 40613)
 
 If your SQL database is on a [serverless compute tier](/azure/azure-sql/database/serverless-tier-overview), make sure that the database is running (and not paused) when the indexer connects to it.
 
-If the database is paused, the first sign in from your search service is expected to auto-resume the database, but instead returns an error stating that the database is unavailable, giving error code 40613. After the database is running, retry the sign in to establish connectivity.
+If the database is paused, the first sign in from your search service auto-resumes the database, but instead returns an error stating that the database is unavailable, giving error code 40613. After the database is running, retry the sign in to establish connectivity.
 
 <a name='azure-active-directory-conditional-access-policies'></a>
 
 ## Microsoft Entra Conditional Access policies
 
-When you create a SharePoint indexer, there's a step requiring you to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, the indexer is probably blocked from the SharePoint document library by a [Conditional Access](/azure/active-directory/conditional-access/overview) policy.
+When you create a SharePoint indexer, you need to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, a [Conditional Access](/azure/active-directory/conditional-access/overview) policy is probably blocking the indexer from the SharePoint document library.
 
 To update the policy and allow indexer access to the document library:
 
@@ -111,19 +111,19 @@ To update the policy and allow indexer access to the document library:
 
 1. Select **Policies** on the left menu. If you don't have access to view this page, you need to either find someone who has access or get access.
 
-1. Determine which policy is blocking the SharePoint indexer from accessing the document library. The policy that might be blocking the indexer includes the user account that you used to authenticate during the indexer creation step in the **Users and groups** section. The policy also might have **Conditions** that:
+1. Determine which policy is blocking the SharePoint indexer from accessing the document library. The policy that might block the indexer includes the user account that you used to authenticate during the indexer creation step in the **Users and groups** section. The policy also might have **Conditions** that:
 
     * Restrict **Windows** platforms.
     * Restrict **Mobile apps and desktop clients**.
-    * Have **Device state** configured to **Yes**.
+    * Set **Device state** to **Yes**.
 
-1. Once you've confirmed which policy is blocking the indexer, make an exemption for the indexer. Start by retrieving the search service IP address.
+1. Once you confirm which policy is blocking the indexer, make an exemption for the indexer. Start by retrieving the search service IP address.
 
     First, obtain the fully qualified domain name (FQDN) of your search service. The FQDN looks like `<your-search-service-name>.search.windows.net`. You can find the FQDN in the Azure portal.
 
     :::image type="content" source="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the search service Overview page." border="true" lightbox="media/search-get-started-rest/get-endpoint.png":::
 
-    Now that you have the FQDN, get the IP address of the search service by performing a `nslookup` (or a `ping`) of the FQDN. In the following example, you would add "150.0.0.1" to an inbound rule on the Azure Storage firewall. It might take up to 15 minutes after the firewall settings have been updated for the search service indexer to be able to access the Azure Storage account.
+    Now that you have the FQDN, get the IP address of the search service by performing a `nslookup` (or a `ping`) of the FQDN. In the following example, you add `150.0.0.1` to an inbound rule on the Azure Storage firewall. It might take up to 15 minutes after the firewall settings are updated for the search service indexer to access the Azure Storage account.
 
     ```azurepowershell
     nslookup contoso.search.windows.net
@@ -140,13 +140,13 @@ To update the policy and allow indexer access to the document library:
 
     Extra IP addresses are used for requests that originate from the indexer's [multitenant execution environment](search-indexer-securing-resources.md#network-access-and-indexer-execution-environments). You can get this IP address range from the service tag.
 
-    The IP address ranges for the `AzureCognitiveSearch` service tag can be either obtained via the [discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) or the [downloadable JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
+    You can get the IP address ranges for the `AzureCognitiveSearch` service tag through the [discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) or the [downloadable JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
 
-    For this exercise, assuming the search service is the Azure Public cloud, the [Azure Public JSON file](https://www.microsoft.com/download/details.aspx?id=56519) should be downloaded.
+    For this exercise, assuming the search service is the Azure Public cloud, download the [Azure Public JSON file](https://www.microsoft.com/download/details.aspx?id=56519).
 
    ![Download JSON file](media\search-indexer-troubleshooting\service-tag.png "Download JSON file")
 
-    From the JSON file, assuming the search service is in West Central US, the list of IP addresses for the multitenant indexer execution environment are listed below.
+    From the JSON file, assuming the search service is in West Central US, the list of IP addresses for the multitenant indexer execution environment are listed.
 
     ```json
         {
@@ -188,7 +188,7 @@ To update the policy and allow indexer access to the document library:
 
 ## Indexing unsupported document types
 
-If you're indexing content from Azure Blob Storage, and the container includes blobs of an [unsupported content type](search-how-to-index-azure-blob-storage.md#SupportedFormats), the indexer skips that document. In other cases, there might be problems with individual documents. 
+If you're indexing content from Azure Blob Storage and the container includes blobs of an [unsupported content type](search-how-to-index-azure-blob-storage.md#SupportedFormats), the indexer skips that document. In other cases, there might be problems with individual documents. 
 
 In this situation, you can [set configuration options](search-how-to-index-azure-blob-storage.md#DealingWithErrors) to allow indexer processing to continue if there are problems with individual documents.
 
@@ -205,12 +205,12 @@ api-key: [admin key]
 
 ## Missing documents
 
-Indexers extract documents or rows from an external [data source](/rest/api/searchservice/data-sources/create) and create *search documents*, which are then indexed by the search service. Occasionally, a document that exists in data source fails to appear in a search index. This unexpected result can occur due to the following reasons:
+Indexers extract documents or rows from an external [data source](/rest/api/searchservice/data-sources/create) and create *search documents*, which the search service indexes. Occasionally, a document that exists in the data source fails to appear in a search index. This unexpected result can occur due to the following reasons:
 
-* The document was updated after the indexer was run. If your indexer is on a [schedule](search-howto-schedule-indexers.md), it eventually reruns and picks up the document.
+* You updated the document after the indexer ran. If your indexer is on a [schedule](search-howto-schedule-indexers.md), it eventually reruns and picks up the document.
 * The indexer timed out before the document could be ingested. There are [maximum processing time limits](search-limits-quotas-capacity.md#indexer-limits) after which no documents are processed. You can check indexer status in the Azure portal or by calling [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status).
-* [Field mappings](search-indexer-field-mappings.md) or [AI enrichment](./cognitive-search-concept-intro.md) have changed the document and its articulation in the search index is different from what you expect.
-* Change tracking values are erroneous or prerequisites are missing. If your high watermark value is a date set to a future time, then any documents that have an earlier date are skipped by the indexer. You can determine your indexer's change tracking state using the 'initialTrackingState' and 'finalTrackingState' fields in the [indexer status](/rest/api/searchservice/indexers/get-status). Indexers for Azure SQL and MySQL must have an index on the high water mark column of the source table, or queries used by the indexer might time out. 
+* [Field mappings](search-indexer-field-mappings.md) or [AI enrichment](./cognitive-search-concept-intro.md) changed the document and its articulation in the search index is different from what you expect.
+* Change tracking values are erroneous or prerequisites are missing. If your high watermark value is a date set to a future time, the indexer skips any documents that have an earlier date. You can determine your indexer's change tracking state using the `initialTrackingState` and `finalTrackingState` fields in the [indexer status](/rest/api/searchservice/indexers/get-status). Indexers for Azure SQL and MySQL must have an index on the high water mark column of the source table, or queries used by the indexer might time out. 
 
 > [!TIP]
 > If documents are missing, check the [query](/rest/api/searchservice/documents/search-post) you're using to make sure it isn't excluding the document in question. To query for a specific document, use the [Lookup Document REST API](/rest/api/searchservice/documents/get?).
@@ -221,7 +221,7 @@ The blob indexer [finds and extracts text from blobs in a container](search-how-
 
 * The document only contains scanned images. PDF blobs that have non-text content, such as scanned images (JPGs), don't produce results in a standard blob indexing pipeline. If you have image content with text elements, you can use [OCR or image analysis](cognitive-search-concept-image-scenarios.md) to find and extract the text.
 
-* The blob indexer is configured to only index metadata. To extract content, the blob indexer must be configured to [extract both content and metadata](search-how-to-index-azure-blob-storage.md#PartsOfBlobToIndex):
+* The blob indexer is configured to only index metadata. To extract content, you must configure the blob indexer to [extract both content and metadata](search-how-to-index-azure-blob-storage.md#PartsOfBlobToIndex):
 
 
 ```http
@@ -245,24 +245,24 @@ An indexer might show a different document count than either the data source, th
 
 - The index can lag in showing the real document count, especially in the Azure portal.
 - The indexer has a Deleted Document Policy. The deleted documents get counted by the indexer if the documents are indexed before they get deleted.
-- If the ID column in the data source isn't unique. This applies to data sources that have the concept of columns, such as Azure Cosmos DB.
-- If the data source definition has a different query than the one you're using to estimate the number of records. In example, in your database, you're querying the database record count, while in the data source definition query, you might be selecting just a subset of records to index.
-- The counts are being checked at different intervals for each component of the pipeline: data source, indexer and index.
+- If the ID column in the data source isn't unique. This condition applies to data sources that have the concept of columns, such as Azure Cosmos DB.
+- If the data source definition has a different query than the one you're using to estimate the number of records. For example, in your database, you're querying the database record count, while in the data source definition query, you might be selecting just a subset of records to index.
+- The counts are checked at different intervals for each component of the pipeline: data source, indexer, and index.
 - The data source has a file that's mapped to many documents. This condition can occur when [indexing blobs](search-how-to-index-azure-blob-json.md) and "parsingMode" is set to **`jsonArray`** and **`jsonLines`**.
 
 ## Documents processed multiple times
 
-Indexers use a conservative buffering strategy to ensure that every new and changed document in the data source is picked up during indexing. In certain situations, these buffers can overlap, causing an indexer to index a document two or more times resulting in the processed documents count to be more than actual number of documents in the data source. This behavior does **not** affect the data stored in the index, such as duplicating documents, only that it can take longer to reach eventual consistency. This condition is especially prevalent if any of the following criteria are true:
+Indexers use a conservative buffering strategy to ensure that every new and changed document in the data source is picked up during indexing. In certain situations, these buffers can overlap, causing an indexer to index a document two or more times. As a result, the processed documents count is more than the actual number of documents in the data source. This behavior doesn't affect the data stored in the index, such as duplicating documents, only that it can take longer to reach eventual consistency. This condition is especially prevalent if any of the following criteria are true:
 
-- On-demand indexer requests are issued in quick succession
-- The data source's topology includes multiple replicas and partitions (one such example is discussed [here](/azure/cosmos-db/consistency-levels))
-- The data source is an Azure SQL database and the column chosen as "high water mark" is of type `datetime2`
+- On-demand indexer requests are issued in quick succession.
+- The data source's topology includes multiple replicas and partitions (one such example is discussed [here](/azure/cosmos-db/consistency-levels)).
+- The data source is an Azure SQL database and the column chosen as "high water mark" is of type `datetime2`.
 
-Indexers aren't intended to be invoked multiple times in quick succession. If you need updates quickly, the supported approach is to push updates to the index while simultaneously updating the data source. For on-demand processing, we recommend that you pace your requests in five-minute intervals or more, and run the indexer on a schedule.
+Indexers aren't intended to be invoked multiple times in quick succession. If you need updates quickly, the supported approach is to push updates to the index while simultaneously updating the data source. For on-demand processing, pace your requests in five-minute intervals or more, and run the indexer on a schedule.
 
 ### Example of duplicate document processing with 30 second buffer
 
-Conditions under which a document is processed twice is explained in the following timeline that notes each action and counter action. The following timeline illustrates the issue:
+The following timeline explains the conditions under which a document is processed twice. It notes each action and counter action. The following timeline illustrates the issue:
 
 | Timeline (hh:mm:ss) | Event | Indexer High Water Mark | Comment |
 |---------------------|-------|-------------------------|---------|
@@ -287,20 +287,19 @@ Conditions under which a document is processed twice is explained in the followi
 | 00:01:42 | Indexer processes `doc2` for the fourth time | 00:01:32 | |
 | 00:01:43 | Indexer ends | 00:01:40 | Notice this indexer execution started more than 30 seconds after the last write to the data source and also processed `doc2`. This is the expected behavior because if all indexer executions before 00:01:35 are eliminated, this becomes the first and only execution to process `doc1` and `doc2`. |
 
-In practice, this scenario only happens when on-demand indexers are manually invoked within minutes of each other, for certain data sources. It can result in mismatched numbers (like the indexer processed 345 documents total according to the indexer execution stats, but there are 340 documents in the data source and index) or potentially increased billing if you're running the same skills for the same document multiple times. Running an indexer using a schedule is the preferred recommendation.
+In practice, this scenario only happens when you manually invoke on-demand indexers within minutes of each other, for certain data sources. It can result in mismatched numbers (like the indexer processed 345 documents total according to the indexer execution stats, but there are 340 documents in the data source and index) or potentially increased billing if you're running the same skills for the same document multiple times. Running an indexer using a schedule is the preferred recommendation.
 
 ## Parallel indexing
 
-When multiple indexers are operating simultaneously, it's typical for some to enter a queue, waiting for available resources to begin execution. The number of indexers that can run concurrently depends on several factors. If the indexers aren't linked with [skillsets](cognitive-search-working-with-skillsets.md), the capacity to run in parallel relies on the number of [replicas and partitions](search-capacity-planning.md#concepts-search-units-replicas-partitions) set up in the AI Search service.
+When multiple indexers run at the same time, some indexers typically enter a queue and wait for available resources before they start. Several factors determine how many indexers can run concurrently. If the indexers don't link to [skillsets](cognitive-search-working-with-skillsets.md), the number of [replicas and partitions](search-capacity-planning.md) in the AI Search service determines how many indexers can run in parallel.
 
-On the other hand, if an indexer is associated with a skillset, it operates within the AI Search's internal clusters. The ability to run concurrently in this case is determined by the complexity of the skillset and whether other skillsets are running simultaneously. Built-in indexers are designed to reliably extract data from the source, so no data is missed if running on a schedule. However, it's expected that the indexer processes of parallelization and scaling out require some time to complete. 
+If you associate an indexer with a skillset, it runs within the AI Search internal clusters. The complexity of the skillset and whether other skillsets run at the same time determine how many indexers can run concurrently. Built-in indexers reliably extract data from the source, so no data is missed if they run on a schedule. However, the indexer processes for parallelization and scaling out need some time to complete. 
 
 ## Indexing documents with sensitivity labels
 
-If you have [sensitivity labels set on documents](/microsoft-365/compliance/sensitivity-labels), you might not be able to index them. If you're getting errors, remove the labels prior to indexing.
+If you [set sensitivity labels on documents](/microsoft-365/compliance/sensitivity-labels), you might not be able to index them. If you get errors, remove the labels before indexing.
 
-
-## See also
+## Related content
 
 * [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md)
 * [Monitor indexer-based indexing](search-monitor-indexers.md)

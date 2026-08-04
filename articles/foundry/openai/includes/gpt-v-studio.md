@@ -3,7 +3,7 @@ title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Microsoft 
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Microsoft Foundry to deploy and use an image-capable model.
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

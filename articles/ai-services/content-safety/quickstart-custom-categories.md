@@ -3,7 +3,7 @@ title: "Quickstart: Custom categories (preview)"
 titleSuffix: Azure AI services
 description: Use the custom categories API to create your own content categories and train the Content Safety model for your use case.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 09/02/2025
@@ -14,6 +14,9 @@ zone_pivot_groups: programming-languages-content-safety-foundry-rest
 
 
 # Quickstart: Custom categories (standard mode) (preview)
+
+> [!IMPORTANT]
+> Custom categories (standard) is retiring on September 1, 2026. Migrate to the [Custom text API in Foundry Custom text classification - Foundry Tools | Microsoft Learn](../language-service/custom-text-classification/overview.md).
 
 Follow this guide to use Azure AI Content Safety Custom categories (standard) REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content. 
 

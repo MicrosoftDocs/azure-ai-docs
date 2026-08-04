@@ -3,7 +3,7 @@ title: What's new in Custom Vision?
 titleSuffix: Foundry Tools
 description: This article contains news about Custom Vision.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: whats-new
 ms.date: 01/22/2025

@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to create and configure Azure resources for translation services.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.date: 11/18/2025
-ms.service: azure-ai-translator
+manager: mcleans
+ms.date: 06/29/2026
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 
 ---
@@ -17,7 +17,7 @@ Azure Translator in Foundry Tools is a cloud-based neural machine translation (N
 
 If you already have an Azure Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Microsoft Foundry portal for NMT deployment. For more information, *see* [How to use Foundry Tools](../../connect-services-foundry-portal.md).
 
-By default, Azure Translator utilizes neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, **using an LLM model requires you to have a Foundry resource**.
+By default, Azure Translator utilizes neural Machine Translation (NMT) technology. With the newest release, you now can optionally select either the standard NMT translation or a supported Large Language Model (LLM) deployment types, for example, GPT-5.4. However, **using an LLM model requires you to have a Foundry resource**.
 
 The following table provides an overview of the resource solutions for Translator within the Azure AI ecosystem:
 

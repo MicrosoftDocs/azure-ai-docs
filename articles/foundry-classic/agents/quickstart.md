@@ -3,7 +3,7 @@ title: "Quickstart - Create a new Foundry Agent Service project (classic)"
 description: "Use this guide to start using Foundry Agent Service. (classic)"
 author: aahill
 ms.author: aahi
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart

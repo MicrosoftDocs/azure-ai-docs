@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Connect to Azure AI Search using keys
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports both identity-based and key-based authentication (default) for connections to your search service.
 
 A request made to a search service endpoint is accepted if both the request and the API key are valid and if the search service is configured to allow API keys on a request.

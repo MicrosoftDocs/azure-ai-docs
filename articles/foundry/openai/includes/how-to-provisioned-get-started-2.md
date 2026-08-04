@@ -21,8 +21,8 @@ After your provisioned deployment is in place, consider purchasing an Azure Rese
 Follow this order of operations to avoid purchasing a reservation for capacity that doesn't exist or doesn't match your deployed PTUs:
 
 1. Use Foundry to deploy your model in a region with available quota. This step confirms capacity is available.
-1. After deployment, note the deployment details: deployment type (Global Provisioned, Data Zone Provisioned, or Regional Provisioned), region, and subscription.
-1. Purchase a new reservation that matches those details, or verify that an existing reservation already covers the deployment.
+1. After deployment, note the deployment details: deployment type (Global Provisioned, Data Zone Provisioned, or Regional Provisioned), region (for Data Zone and Regional deployments), and subscription.
+1. Purchase a new reservation that matches those details, or verify that an existing reservation already covers the deployment. For Global deployments, the reservation region doesn't need to match the deployment region because a single Global reservation can cover Global PTU deployments across multiple regions.
 
 For guidance on sizing, pricing, and managing reservations, see [PTU billing and cost management](../concepts/provisioned-throughput-billing.md).
 

@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Use groundedness detection"
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include

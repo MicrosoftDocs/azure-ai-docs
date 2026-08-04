@@ -3,11 +3,14 @@ title: Query Types
 description: Learn about query types in Azure AI Search, including full-text, vector, hybrid, filter, autocomplete, and geospatial queries for building search experiences.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Querying in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Azure AI Search supports query constructs for a broad range of scenarios, from free-form text search, to highly specified query patterns, to vector search. All queries execute over a search index that stores searchable content.
 

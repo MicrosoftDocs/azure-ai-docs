@@ -1,7 +1,7 @@
 ---
 title: 'Non-English translation disclaimer'
 description: include 
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure

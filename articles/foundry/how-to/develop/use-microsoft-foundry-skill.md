@@ -94,7 +94,7 @@ and [Get started with Foundry MCP Server](../../mcp/get-started.md).
 
 ### [Coding agents such as Copilot CLI and Claude Code](#tab/coding-agents)
 
-The [Azure Skills Plugin](https://github.com/microsoft/azure-skills) bundles a curated set of Azure skills—including the Foundry Skill, Azure MCP Server configuration, and Foundry MCP Server—into a single install. Together, they give coding agents an optimized experience for building with Foundry and other Azure services.
+The [Azure Skills Plugin](https://github.com/microsoft/azure-skills) bundles a curated set of Azure skills, including the Foundry Skill, Azure MCP Server configuration, and Foundry MCP Server, into a single install. Together, they give coding agents an optimized experience for building with Foundry and other Azure services.
 
 #### [Copilot CLI](#tab/copilot-cli)
 Run the plugin commands inside Copilot CLI.
@@ -145,7 +145,7 @@ Run the plugin commands inside Claude Code.
 
 ---
 
-#### [Install just the Foundry Skill](#tab/foundry-skill-alone)
+### Install just the Foundry Skill
 
 If your host already has MCP server configuration and you only need the skill
 content, install the `microsoft-foundry` skill directly:
@@ -252,11 +252,10 @@ recommendations.
 
 | File or folder | How the skill uses it |
 | --- | --- |
-| `azure.yaml` | Finds `azd` services, agent project folders, deployment host settings, and environment bindings. |
+| `azure.yaml` | Finds `azd` services, agent project folders, deployment host settings, environment bindings, and local agent configuration for create, deploy, invoke, and evaluation workflows. |
 | `.azure/<environment>/.env` | Resolves authenticated `azd` environment values such as subscription, resource group, project endpoint, agent name, registry, and Application Insights connection string. |
 | `.foundry/agent-metadata.yaml` | Stores Foundry-specific overlay state such as evaluation suite references, dataset references, local cache paths, result summaries, and non-`azd` overrides. |
 | `.foundry/agent-metadata.<env>.yaml` | Stores environment-specific overlay state for a target such as production or CI. |
-| `agent.yaml` | Provides local agent configuration for create, deploy, invoke, and evaluation workflows. |
 | `eval.yaml` | Defines local evaluation intent, such as dataset file, evaluator names, pass threshold, sample count, trace lookback, and generation instructions. |
 
 For deployment and evaluation workflows, prefer `.foundry/agent-metadata.yaml`

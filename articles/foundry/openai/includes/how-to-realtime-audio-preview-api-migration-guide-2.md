@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: alexeyo
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include
 ---
 

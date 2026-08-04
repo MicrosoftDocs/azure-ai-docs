@@ -1,9 +1,9 @@
 ---
 title: "Configure Agent 365 data collection for Microsoft Foundry"
 description: "Learn how to enable or disable Microsoft Agent 365 data collection on a Foundry resource, and how to enforce settings across a subscription with Azure Policy."
-author: deeikele
-ms.author: deeikele
-ms.reviewer: jburchel
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: deeikele
 ms.date: 03/19/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -217,6 +217,6 @@ resource "azapi_update_resource" "enable_agent365" {
 ## Related content
 
 - [Microsoft Agent 365 integration with Foundry](../concepts/agent-365-integration.md)
-- [Publish an agent as a digital worker in Agent 365](agent-365.md)
+- [Publish an agent as an autopilot in Agent 365](agent-365.md)
 - [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md)
 - [Agent 365 overview](/microsoft-agent-365/overview)

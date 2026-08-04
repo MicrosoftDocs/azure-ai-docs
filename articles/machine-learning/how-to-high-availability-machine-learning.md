@@ -17,17 +17,17 @@ monikerRange: 'azureml-api-2'
 
 To maximize your uptime, plan ahead to maintain business continuity and prepare for disaster recovery with Azure Machine Learning. 
 
-Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. We recommend having a disaster recovery plan in place for handling regional service outages. In this article, you learn how to:
+Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. Have a disaster recovery plan in place for handling regional service outages. In this article, you learn how to:
 
-* Plan for a multi-regional deployment of Azure Machine Learning and associated resources.
-* Maximize chances to recover logs, notebooks, docker images, and other metadata.
+* Plan for a multiregional deployment of Azure Machine Learning and associated resources.
+* Maximize chances to recover logs, notebooks, Docker images, and other metadata.
 * Design for high availability of your solution.
 * Initiate a failover to another region.
 
 > [!IMPORTANT]
-> Azure Machine Learning itself doesn't provide automatic failover or disaster recovery. Backup and restore of workspace metadata such as run history is unavailable.
+> Azure Machine Learning itself doesn't provide automatic failover or disaster recovery. Backup and restore of workspace metadata such as run history isn't available.
 
-In case you accidentally deleted your workspace or corresponding components, this article also provides you with currently supported recovery options.
+If you accidentally deleted your workspace or corresponding components, this article also provides you with currently supported recovery options.
 
 ## Understand Azure services for Azure Machine Learning
 
@@ -49,7 +49,7 @@ Azure services include:
 
 * **Other data stores**: Azure Machine Learning can mount other data stores such as Azure Storage and Azure Data Lake Storage for training data. These data stores are provisioned within your subscription. You're responsible for configuring their high-availability settings. To see other data store options, see [Create datastores](how-to-datastore.md).
 
-The following table shows the Azure services are managed by Microsoft and which are managed by you. It also indicates the services that are highly available by default.
+The following table shows which Azure services are managed by Microsoft and which are managed by you. It also indicates the services that are highly available by default.
 
 | Service | Managed by | High availability by default |
 | ----- | ----- | ----- |
@@ -180,7 +180,7 @@ The following artifacts can be exported and imported between workspaces by using
 | Models | [az ml model download --name {NAME} --version {VERSION}](/cli/azure/ml/model#az-ml-model-download) | [az ml model create](/cli/azure/ml/model#az-ml-model-create) |
 | Environments | [az ml environment share --name my-environment --version {VERSION} --resource-group {RESOURCE_GROUP} --workspace-name {WORKSPACE} --share-with-name {NEW_NAME_IN_REGISTRY} --share-with-version {NEW_VERSION_IN_REGISTRY} --registry-name {REGISTRY_NAME}](/cli/azure/ml/environment#az-ml-environment-share) | [az ml environment create](/cli/azure/ml/environment#az-ml-environment-create) |
 | Azure Machine Learning jobs | [az ml job download -n {NAME} -g {RESOURCE_GROUP} -w {WORKSPACE_NAME}](/cli/azure/ml/job#az-ml-job-download) | [az ml job create -f {FILE} -g {RESOURCE_GROUP} -w {WORKSPACE_NAME}](/cli/azure/ml/job#az-ml-job-create) |
-| Data assets | [az ml data share --name {DATA_NAME} --version {VERSION} --resource-group {RESOURCE_GROUP} --workspace-name {WORKSPACE} --share-with-name {NEW_NAME_IN_REGISTRy} --share-with-version {NEW_VERSION_IN_REGISTRY} --registry-name {REGISTRY_NAME}](/cli/azure/ml/data#az-ml-data-create) | [az ml data create -f {FILE} -g {RESOURCE_GROUP} --registry-name {REGISTRY_NAME}]() |
+| Data assets | [az ml data share --name {DATA_NAME} --version {VERSION} --resource-group {RESOURCE_GROUP} --workspace-name {WORKSPACE} --share-with-name {NEW_NAME_IN_REGISTRY} --share-with-version {NEW_VERSION_IN_REGISTRY} --registry-name {REGISTRY_NAME}](/cli/azure/ml/data#az-ml-data-share) | [az ml data create -f {FILE} -g {RESOURCE_GROUP} --registry-name {REGISTRY_NAME}](/cli/azure/ml/data#az-ml-data-create) |
 
 
 > [!TIP]

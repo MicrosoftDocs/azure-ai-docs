@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Shaper cognitive skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Shaper** skill is used to reshape or modify the structure of the [in-memory enrichment tree](cognitive-search-working-with-skillsets.md#enrichment-tree) created by a skillset. If skill outputs can't be mapped directly to search fields, you can add a **Shaper** skill to create the data shape you need for your search index or knowledge store.
 
 Primary use-cases for this skill include:

@@ -3,7 +3,7 @@ title: Connect different data sources to Metrics Advisor
 titleSuffix: Azure AI services
 description: Add different data feeds to Metrics Advisor
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
 ms.date: 06/12/2025

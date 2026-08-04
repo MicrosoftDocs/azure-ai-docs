@@ -1,7 +1,7 @@
 ---
 title: "Foundry Tools products and pricing"
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 8/1/2024
 ---

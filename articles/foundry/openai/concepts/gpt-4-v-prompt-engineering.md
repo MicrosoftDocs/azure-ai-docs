@@ -6,8 +6,8 @@ ms.author: pafarley
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 01/30/2026
-manager: nitinme
+ms.date: 07/29/2026
+manager: mcleans
 ai-usage: ai-assisted
 
 ms.custom:

@@ -3,10 +3,10 @@ title: Translator Translate Method
 titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure Translator to translate text method.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 

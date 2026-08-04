@@ -3,8 +3,8 @@ title: Data limits for Language service features
 titleSuffix: Foundry Tools
 description: Data and service limitations for Azure Language in Foundry Tools features.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: limits-and-quotas
 ms.date: 04/03/2026
 ms.author: lajanuar

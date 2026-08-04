@@ -14,6 +14,8 @@ ms.custom:
 
 # Connect to Azure Storage using a managed identity (Azure AI Search)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to configure a search service connection to an Azure Storage account using a managed identity instead of providing credentials in the connection string.
 
 You can use a system-assigned managed identity or a user-assigned managed identity. Managed identities are Microsoft Entra logins and require role assignments for access to Azure Storage. 

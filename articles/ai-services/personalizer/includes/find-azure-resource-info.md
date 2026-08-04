@@ -2,7 +2,7 @@
 title: Find your Personalizer resource endpoint and key
 titleSuffix: Azure AI services
 author: jcodella
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: include 
 ms.date: 01/19/2024

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-labelledby="svg-title svg-desc">
+  <title id="svg-title">Agent optimizer architecture</title>
+  <desc id="svg-desc">Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup using load_config(), which resolves from environment variables, the API, or defaults. During optimization, the agent optimizer evaluates the baseline, generates candidate configurations, evaluates candidates, and ranks them by score.</desc>
+
+  <defs>
+    <style>
+      .box-bg { fill: #ffffff; stroke: #0078d4; stroke-width: 1.5; }
+      .box-header-bg { fill: #0078d4; }
+      .header-text { font-family: "Segoe UI", sans-serif; font-size: 13px; font-weight: 600; fill: #ffffff; }
+      .body-text { font-family: "Segoe UI", sans-serif; font-size: 12px; fill: #333333; }
+      .code-text { font-family: "Cascadia Code", Consolas, monospace; font-size: 11px; fill: #1b1b1b; }
+      .muted-text { font-family: "Segoe UI", sans-serif; font-size: 11px; fill: #666666; font-style: italic; }
+      .arrow-line { stroke: #505050; stroke-width: 1.5; fill: none; }
+      .arrow-label { font-family: "Segoe UI", sans-serif; font-size: 11px; fill: #505050; }
+      .step-num { font-family: "Segoe UI", sans-serif; font-size: 12px; font-weight: 600; fill: #0078d4; }
+    </style>
+    <marker id="arrow-end" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#505050" />
+    </marker>
+  </defs>
+
+  <!-- Your Agent box -->
+  <rect class="box-bg" x="30" y="20" width="310" height="170" rx="6" ry="6" />
+  <rect class="box-header-bg" x="30" y="20" width="310" height="30" rx="6" ry="6" />
+  <rect class="box-header-bg" x="30" y="38" width="310" height="12" />
+  <text class="header-text" x="185" y="41" text-anchor="middle">Your Agent (Hosted in Foundry)</text>
+
+  <text class="code-text" x="50" y="76">main.py</text>
+  <text class="code-text" x="70" y="96">└─ load_config()</text>
+  <text class="muted-text" x="198" y="96">reads optimized config</text>
+  <text class="muted-text" x="198" y="112">at startup</text>
+  <text class="body-text" x="86" y="118">│</text>
+  <text class="body-text" x="86" y="132">▼</text>
+  <text class="code-text" x="50" y="150">agent_optimization/</text>
+  <text class="body-text" x="70" y="170">Resolves: env var → API → defaults</text>
+
+  <!-- Agent Optimizer box -->
+  <rect class="box-bg" x="30" y="270" width="310" height="150" rx="6" ry="6" />
+  <rect class="box-header-bg" x="30" y="270" width="310" height="30" rx="6" ry="6" />
+  <rect class="box-header-bg" x="30" y="288" width="310" height="12" />
+  <text class="header-text" x="185" y="291" text-anchor="middle">Agent Optimizer</text>
+
+  <text class="step-num" x="50" y="322">1.</text>
+  <text class="body-text" x="68" y="322">Evaluate baseline</text>
+  <text class="step-num" x="50" y="346">2.</text>
+  <text class="body-text" x="68" y="346">Generate candidate configs</text>
+  <text class="step-num" x="50" y="370">3.</text>
+  <text class="body-text" x="68" y="370">Evaluate candidates</text>
+  <text class="step-num" x="50" y="394">4.</text>
+  <text class="body-text" x="68" y="394">Rank by score</text>
+
+  <!-- Left arrow: config flows up from optimizer to agent -->
+  <line class="arrow-line" x1="120" y1="270" x2="120" y2="190" marker-end="url(#arrow-end)" />
+  <text class="arrow-label" x="128" y="234">Config</text>
+
+  <!-- Right arrow: optimizer invokes agent during eval -->
+  <line class="arrow-line" x1="260" y1="190" x2="260" y2="270" marker-end="url(#arrow-end)" />
+  <text class="arrow-label" x="268" y="234">Invoked during eval</text>
+</svg>

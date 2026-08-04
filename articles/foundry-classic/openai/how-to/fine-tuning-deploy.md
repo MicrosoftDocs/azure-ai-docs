@@ -1,7 +1,7 @@
 ---
 title: "Deploy a fine-tuned model (classic)"
 description: "Learn how to deploy your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:

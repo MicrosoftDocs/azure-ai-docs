@@ -4,7 +4,7 @@ description: "Learn how to disable preview features in Microsoft Foundry by usin
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne, meerakurup
-ms.date: 03/11/2026
+ms.date: 06/19/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Disable preview features in Microsoft Foundry
 
-Restrict preview features in Microsoft Foundry to keep production environments focused on generally available capabilities. This article covers two approaches:
+Restrict preview features in Microsoft Foundry so production environments stay focused on generally available capabilities. This article covers two approaches:
 
 - **Azure tags** hide preview surfaces in the Foundry portal (current and classic portals).
 - **Custom RBAC roles** block specific preview operations at the API level.

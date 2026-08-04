@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/20/2026
 ms.author: lajanuar
 ---
 * [Transparency note for Azure Language in Foundry Tools](/azure/ai-foundry/responsible-ai/language-service/transparency-note)

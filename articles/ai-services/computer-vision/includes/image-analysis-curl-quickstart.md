@@ -3,9 +3,9 @@ title: "Quickstart: Image Analysis REST API"
 titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Image Analysis REST API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 09/30/2024
 ms.author: pafarley

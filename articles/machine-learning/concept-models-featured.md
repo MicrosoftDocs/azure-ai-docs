@@ -7,20 +7,21 @@ reviewer: santiagxf
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-ms.date: 07/29/2025
+ms.date: 07/16/2026
 ms.author: scottpolly
 ms.reviewer: jturuk
 ms.custom: references_regions, tool_generated
-ms.collection: ce-skilling-ai-copilot 
+ms.collection: ce-skilling-ai-copilot
+ai-usage: ai-assisted
 
 ---
 
 # Featured models of Foundry model catalog
 
-The Foundry model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via standard deployments. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](concept-model-catalog.md#deployment-options) to find models in the catalog that are available for deployment via managed compute or standard deployment.
+The Foundry model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that you can deploy and host on Microsoft's servers via standard deployments. For some of these models, you can also host them on your infrastructure for deployment via managed compute. To find models in the catalog that are available for deployment via managed compute or standard deployment, see [Available models for supported deployment options](concept-model-catalog.md#deployment-options).
 
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../ai-foundry/model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing by using the [Azure AI model inference](../ai-foundry/model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../foundry/media/models-featured/models-catalog.gif" alt-text="An animation showing Foundry model catalog section and the models available." lightbox="../foundry/media/models-featured/models-catalog.gif":::
 
@@ -48,11 +49,15 @@ Azure OpenAI in Microsoft Foundry Models offers a diverse set of models with dif
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
+| [o3](https://ai.azure.com/explore/models/o3/version/2025-04-16/registry/azure-openai) | [chat-completion (with images)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |  - **Input:** text and image (200,000 tokens) <br /> - **Output:** text (100,000 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs  |
+| [o4-mini](https://ai.azure.com/explore/models/o4-mini/version/2025-04-16/registry/azure-openai) | [chat-completion (with images)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |  - **Input:** text and image (200,000 tokens) <br /> - **Output:** text (100,000 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs  |
 | [o3-mini](https://ai.azure.com/explore/models/o3-mini/version/2025-01-31/registry/azure-openai) | [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) |  - **Input:** text and image (200,000 tokens) <br /> - **Output:** text (100,000 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs  |
 | [o1](https://ai.azure.com/explore/models/o1/version/2024-12-17/registry/azure-openai) | [chat-completion (with images)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) | - **Input:** text and image (200,000 tokens) <br /> - **Output:** text (100,000 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs|
-| [o1-preview](https://ai.azure.com/explore/models/o1-preview/version/1/registry/azure-openai) | [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [o1-mini](https://ai.azure.com/explore/models/o1-mini/version/1/registry/azure-openai) | [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) |   - **Input:** text (128,000 tokens) <br /> - **Output:** text (65,536 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
-| [gpt-4o-realtime-preview](https://ai.azure.com/explore/models/gpt-4o-realtime-preview/version/2024-10-01/registry/azure-openai) | real-time |   - **Input:** control, text, and audio (131,072 tokens) <br /> - **Output:** text and audio (16,384 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
+| [gpt-4o-realtime-preview](https://ai.azure.com/explore/models/gpt-4o-realtime-preview/version/2024-12-17/registry/azure-openai) | real-time |   - **Input:** control, text, and audio (131,072 tokens) <br /> - **Output:** text and audio (16,384 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
+| [gpt-4.1](https://ai.azure.com/explore/models/gpt-4.1/version/2025-04-14/registry/azure-openai) | [chat-completion (with images)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |  - **Input:** text and image (1,047,576 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [gpt-4.1-mini](https://ai.azure.com/explore/models/gpt-4.1-mini/version/2025-04-14/registry/azure-openai) | [chat-completion (with images)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |  - **Input:** text and image (1,047,576 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [gpt-4.1-nano](https://ai.azure.com/explore/models/gpt-4.1-nano/version/2025-04-14/registry/azure-openai) | [chat-completion (with images)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |  - **Input:** text and image (1,047,576 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [gpt-4o](https://ai.azure.com/explore/models/gpt-4o/version/2024-11-20/registry/azure-openai) | [chat-completion (with image and audio content)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |   - **Input:** text, image, and audio (131,072 tokens) <br /> - **Output:** text (16,384 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs  |
 | [gpt-4o-mini](https://ai.azure.com/explore/models/gpt-4o-mini/version/2024-07-18/registry/azure-openai) | [chat-completion (with image and audio content)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |  - **Input:** text, image, and audio (131,072 tokens) <br /> - **Output:** text (16,384 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | [embeddings](../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/machine-learning/context/context) |  - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (3,072 dim.) |

@@ -3,9 +3,9 @@ title: Best practices for adding users to a Face service
 titleSuffix: Foundry Tools
 description: Learn about the process of Face enrollment to register users in a face recognition service.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: best-practice

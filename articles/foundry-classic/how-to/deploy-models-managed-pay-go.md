@@ -4,12 +4,13 @@ description: "Learn how to deploy protected AI Models from partners and communit
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.custom:
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 4/09/2026
+ms.date: 06/16/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 #CustomerIntent: As a developer or data scientist, I want to deploy protected AI Models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing so that I can use these specialized models in my applications.
 ---
@@ -123,6 +124,7 @@ The following sections list the supported models for managed compute deployment 
 
 | Model | Task |
 |--|--|
+| [bosonai-higgs-audio-3-instruct](https://ai.azure.com/explore/models/bosonai-higgs-audio-3-instruct/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Chat completion |
 | [bosonai-higgs-audio-v3-stt](https://ai.azure.com/explore/models/bosonai-higgs-audio-v3-stt/version/2/registry/azureml-bosonai-p/?cid=learnDocs) | Automatic speech recognition |
 | [Higgs-Audio-v2.5](https://ai.azure.com/explore/models/Higgs-Audio-v2.5/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Audio generation |
 
@@ -148,6 +150,27 @@ The following sections list the supported models for managed compute deployment 
 |--|--|
 | [Mercury](https://ai.azure.com/explore/models/Mercury/version/1/registry/azureml-inceptionlabs/?cid=learnDocs) | Chat completion, Text generation, Summarization |
 
+### Insilico Medicine
+
+| Model | Task |
+|--|--|
+| [LFM2-2.6B-InsilicoMMAI-Chem-SSRS-1.1](https://ai.azure.com/explore/models/LFM2-2.6B-InsilicoMMAI-Chem-SSRS-1.1/version/1/registry/azureml-insilicomedicine-p/?cid=learnDocs) | Chat completion |
+
+### NTT Data Corporation
+
+| Model | Task |
+|--|--|
+| [tsuzumi2](https://ai.azure.com/explore/models/tsuzumi2/version/2/registry/azureml-nttdatacorp-p/?cid=learnDocs) | Chat completion |
+
+### Nixtla
+
+| Model | Task |
+|--|--|
+| [TimeGPT-1](https://ai.azure.com/explore/models/TimeGPT-1/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
+| [TimeGPT-1-long-horizon](https://ai.azure.com/explore/models/TimeGPT-1-long-horizon/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
+| [TimeGPT-2.1](https://ai.azure.com/explore/models/TimeGPT-2.1/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
+| [TimeGPT-2-mini](https://ai.azure.com/explore/models/TimeGPT-2-mini/version/1/registry/azureml-nixtla/?cid=learnDocs) | Time series forecasting |
+
 ### NVIDIA
 
 NVIDIA inference microservices (NIM) are containers that NVIDIA builds for optimized pretrained and customized AI models serving on NVIDIA GPUs. You can deploy NVIDIA NIMs available on Foundry model catalog with a Standard subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace.
@@ -160,6 +183,7 @@ Some special things to note about NIMs are:
 
 | Model | Task |
 |--|--|
+| [NVIDIA-Nemotron-3-Ultra-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Ultra-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Question answering, Summarization, Text generation, Text summarization |
 | [NVIDIA-Nemotron-3-Super-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Super-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Question answering, Summarization, Text generation, Text summarization |
 | [Openfold3_1_2_0-NIM-microservice](https://ai.azure.com/explore/models/Openfold3_1_2_0-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Biomolecular complex structure prediction |
 | [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
@@ -181,6 +205,8 @@ Some special things to note about NIMs are:
 | [Evo2-40b-NIM-microservice](https://ai.azure.com/explore/models/Evo2-40b-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Genomics |
 | [Boltz2-NIM-microservice](https://ai.azure.com/explore/models/Boltz2-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Structure-Prediction |
 | [Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Summarization |
+| [NVIDIA-Nemotron-3-Content-Safety-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Content-Safety-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Text classification, Image classification|
+| [Nemotron-Content-Safety-Reasoning-4B-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-Content-Safety-Reasoning-4B-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Text classification |
 
 #### Consume NVIDIA NIM deployments
 
@@ -219,11 +245,35 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 | [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
 | [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
 
+### PriorLabs
+
+| Model | Task |
+|--|--|
+| [TabPFN-2.5](https://ai.azure.com/explore/models/TabPFN-2.5/version/2/registry/azureml-priorlabs-p/?cid=learnDocs) | Regression, Classification, Forecasting |
+
+### RezolveAI
+
+| Model | Task |
+|--|--|
+| [brainpowa-general-conversational-m-v1](https://ai.azure.com/explore/models/brainpowa-general-conversational-m-v1/version/1/registry/azureml-rezolveai-p/?cid=learnDocs) | Chat completion |
+| [brainpowa-general-conversational-l-v1](https://ai.azure.com/explore/models/brainpowa-general-conversational-l-v1/version/1/registry/azureml-rezolveai-p/?cid=learnDocs) | Chat completion |
+| [brainpowa-general-toolcalling-m-v1](https://ai.azure.com/explore/models/brainpowa-general-toolcalling-m-v1/version/1/registry/azureml-rezolveai-p/?cid=learnDocs) | Chat completion |
+
+### Theai-Inc
+
+| Model | Task |
+|--|--|
+| [inworld-tts-1-5-max](https://ai.azure.com/explore/models/inworld-tts-1-5-max/version/1/registry/azureml-inworld-p/?cid=learnDocs) | Text to speech |
+| [inworld-tts-1-5-mini](https://ai.azure.com/explore/models/inworld-tts-1-5-mini/version/1/registry/azureml-inworld-p/?cid=learnDocs) | Text to speech |
+
 ### Voyage AI
 
 | Model | Task |
 |--|--|
 | [voyage-3.5-embedding-model](https://ai.azure.com/explore/models/voyage-3.5-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-4-lite-embedding](https://ai.azure.com/explore/models/voyage-4-lite-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-4-embedding](https://ai.azure.com/explore/models/voyage-4-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-4-large-embedding](https://ai.azure.com/explore/models/voyage-4-large-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 
 ## Related content
 

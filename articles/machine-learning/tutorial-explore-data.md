@@ -44,7 +44,7 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 
 ## Download the data used in this tutorial
 
-For data ingestion, Azure Data Explorer handles raw data in [these formats](/azure/data-explorer/ingestion-supported-formats). This tutorial uses a [CSV-format credit card client data sample](https://azuremlexamples.blob.core.windows.net/datasets/credit_card/default_of_credit_card_clients.csv). The steps take place in an Azure Machine Learning resource. In that resource, you create a local folder with the suggested name of **data**, directly under the folder where this notebook is located.
+For data ingestion, Azure Data Explorer handles raw data in [these formats](/azure/data-explorer/ingestion-supported-formats). This tutorial uses a CSV-format credit card client data sample. The steps take place in an Azure Machine Learning resource. In that resource, you create a local folder with the suggested name of **data**, directly under the folder where this notebook is located.
 
 > [!NOTE]
 > This tutorial depends on data placed in an Azure Machine Learning resource folder location. For this tutorial, 'local' means a folder location in that Azure Machine Learning resource.

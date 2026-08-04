@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Add custom analyzers to string fields in an Azure AI Search index
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A *custom analyzer* is a component of lexical analysis over plain text content. It's a user-defined combination of one tokenizer, one or more token filters, and one or more character filters. A custom analyzer is specified within a search index, and then referenced by name on field definitions that require custom analysis. A custom analyzer is invoked on a per-field basis. Attributes on the field determine whether it's used for indexing, queries, or both.
 
 In a custom analyzer, character filters prepare the input text before it's processed by the tokenizer (for example, removing markup). Next, the tokenizer breaks text into tokens. Finally, token filters modify the tokens emitted by the tokenizer. For concepts and examples, see [Analyzers in Azure AI Search](search-analyzers.md) and [Tutorial: Create a custom analyzer for phone numbers](tutorial-create-custom-analyzer.md).

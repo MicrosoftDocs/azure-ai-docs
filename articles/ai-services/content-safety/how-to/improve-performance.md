@@ -3,7 +3,7 @@ title: "Mitigate false results in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn techniques to improve the performance of Azure AI Content Safety models by handling false positives and false negatives.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 09/16/2025

@@ -3,8 +3,8 @@ title: "Recording custom voice samples - Speech service"
 titleSuffix: Foundry Tools
 description: Make a production-quality custom voice by preparing a robust script, hiring good voice talent, and recording professionally.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
 ms.author: pafarley

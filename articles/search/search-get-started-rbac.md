@@ -11,6 +11,8 @@ zone_pivot_groups: search-python-rest
 
 # Quickstart: Connect to a search service
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 ::: zone pivot="python"
 
 [!INCLUDE [Python](includes/quickstarts/search-get-started-rbac-python.md)]

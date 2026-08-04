@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to create your own custom model with Azure OpenAI by using the Microsoft Foundry portal.
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 11/11/2024
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

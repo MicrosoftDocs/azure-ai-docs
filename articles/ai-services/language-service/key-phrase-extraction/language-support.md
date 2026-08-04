@@ -3,10 +3,10 @@ title: Language support for Key Phrase Extraction
 titleSuffix: Foundry Tools
 description: Use this article to find the natural languages supported by Key Phrase Extraction.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---

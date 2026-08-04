@@ -3,10 +3,10 @@ title: Entity Metadata provided by Named Entity Recognition (NER)
 titleSuffix: Foundry Tools
 description: View entity metadata values for named entity recognition (NER) named entities.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 04/01/2026
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---

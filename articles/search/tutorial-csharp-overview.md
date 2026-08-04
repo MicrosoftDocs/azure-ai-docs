@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Step 1 - Overview of adding search to a static web app with .NET
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This tutorial builds a website that searches through a catalog of books and then deploys the website to an Azure Static Web App. 
 
 ## What does the sample do?

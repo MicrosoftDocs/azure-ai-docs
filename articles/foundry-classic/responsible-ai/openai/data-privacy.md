@@ -3,7 +3,7 @@ title: "Data, privacy, and security for Foundry Models sold by Azure in Microsof
 description: "This document details issues for data, privacy, and security for Models sold by Azure (classic)"
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

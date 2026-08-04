@@ -5,8 +5,9 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
-ms.custom: include, classic-and-new
+ms.date: 07/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 This article shows you how to use the v1 Azure OpenAI API. The v1 API simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
@@ -79,10 +80,10 @@ Key differences from the previous API:
 
 Set the following environment variables before running the code:
 
-| Variable          | Value                                                     |
-|-------------------|-----------------------------------------------------------|
-| `OPENAI_BASE_URL` | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` |
-| `OPENAI_API_KEY`  | Your Azure OpenAI API key                                 |
+| Variable          | Value                                                       |
+| ----------------- | ----------------------------------------------------------- |
+| `OPENAI_BASE_URL` | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`    |
+| `OPENAI_API_KEY`  | Your Azure OpenAI API key                                   |
 
 Then create the client without parameters:
 
@@ -351,33 +352,29 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 ```javascript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://ai.azure.com/.default');
-const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+const openai = new OpenAI({
+    baseURL: endpoint,
     apiKey: tokenProvider
 });
 
-const messages = [
-    { role: 'system', content: 'You are a helpful assistant.' },
-    { role: 'user', content: 'Tell me about the attention is all you need paper' }
-];
+async function main() {
+    const result = await openai.chat.completions.create({
+        model: "MAI-DS-R1", // Replace with your model deployment name.
+        messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: "Explain the attention mechanism." }
+        ]
+    });
+    console.log(result.choices[0]?.message.content ?? "No response returned.");
+}
 
-// Make the API request with top-level await
-const result = await client.chat.completions.create({ 
-    messages, 
-    model: 'MAI-DS-R1', // model deployment name
-    max_tokens: 100 
-});
-
-// Print the full response
-console.log('Full response:', result);
-
-// Print just the message content from the response
-console.log('Response content:', result.choices[0].message.content);
+main().catch(console.error);
 ```
 
 # [Go](#tab/go)
@@ -504,7 +501,7 @@ The following sections summarize changes between API versions.
 
 - [`GPT-image-1` support](/azure/ai-foundry/openai/how-to/dall-e)
 - [Reasoning summary for `o3` and `o4-mini`](/azure/ai-foundry/openai/how-to/reasoning)
-- [Evaluation API](/azure/ai-foundry/openai/authoring-reference-preview#evaluation---create)
+- [Evaluation API](/rest/api/microsoft-foundry/azureopenai/evals?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 
 ### Changes between 2025-03-01-preview and 2025-02-01-preview
 
@@ -547,7 +544,7 @@ The following sections summarize changes between API versions.
 ### Changes between 2024-05-01-preview and 2024-07-01-preview API specification
 
 - [Batch API support added](../how-to/batch.md).
-- [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17).
+- [Vector store chunking strategy parameters](/rest/api/microsoft-foundry/azureopenai/vector_stores?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 - `max_num_results` that the file search tool should output.
 
 ### Changes between 2024-04-01-preview and 2024-05-01-preview API specification

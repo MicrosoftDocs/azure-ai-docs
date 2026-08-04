@@ -6,11 +6,11 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: troubleshooting
-ms.date: 01/05/2026
-ms.author: jburchel
-author: jonburchel
-reviewer: maanavdalal
-ms.reviewer: maanavd
+ms.date: 08/05/2026
+ms.author: lajanuar
+author: laujan
+reviewer: wayne-ch
+ms.reviewer: waynechuang
 ai-usage: ai-assisted
 ---
 

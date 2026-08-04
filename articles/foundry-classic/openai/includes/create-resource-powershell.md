@@ -2,7 +2,7 @@
 title: 'Create and manage Azure OpenAI in Microsoft Foundry Models deployments with the Azure PowerShell'
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure PowerShell to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: devx-track-azurepowershell

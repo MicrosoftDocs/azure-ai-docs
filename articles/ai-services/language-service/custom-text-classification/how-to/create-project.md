@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about the steps for using Azure resources with custom text classification.
 #services: cognitive-services
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---
@@ -66,7 +66,7 @@ Once your resource and storage container are configured, create a new custom tex
 
 ## Import a custom text classification project (REST API)
 
-If you already labeled data, you can use it to get started with the service. Make sure that your labeled data follows the [accepted data formats](../concepts/data-formats.md).
+If you already labeled data, use it to get started with the service. Make sure that your labeled data follows the [accepted data formats](../concepts/evaluation-metrics.md#accepted-data-formats).
 
 [!INCLUDE [Import project](../includes/rest-api/import-project.md)]
 
@@ -82,6 +82,6 @@ If you already labeled data, you can use it to get started with the service. Mak
 
 ## Next steps
 
-* You should plan the [project schema](design-schema.md) used to label your data.
+* You should plan the [project schema](build-train-deploy-model.md#prepare-your-data-and-define-a-schema) used to label your data.
 
-* After your project is created, you can start [labeling your data](tag-data.md). Labeling informs your text classification model how to interpret text and is used for training and evaluation.
+* After your project is created, you can start [labeling your data](build-train-deploy-model.md#label-your-data). Labeling informs your text classification model how to interpret text and is used for training and evaluation.

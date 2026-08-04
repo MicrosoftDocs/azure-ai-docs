@@ -2,14 +2,14 @@
 title: "File search tool for Microsoft Foundry agents"
 description: "Configure the file search tool for Microsoft Foundry agents. Upload files, create vector stores, and query documents with Python, C#, and REST examples."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/07/2026
-author: jonburchel
+ms.date: 07/29/2026
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
@@ -17,7 +17,8 @@ zone_pivot_groups: selection-file-search-upload-new
 ---
 
 # File search tool for agents
-Use the file search tool to enable Microsoft Foundry agents to search through your documents and retrieve relevant information. File search augments agents with knowledge from outside the Foundry model powering the agent, such as proprietary product information or user-provided documents.
+
+Use the file search tool to ground Microsoft Foundry agents in your own data. With file search, agents can retrieve relevant information from your documents and use it to generate more accurate, context-aware responses, augmenting agents with knowledge such as proprietary product information or user-provided documents.
 
 In this article, you learn how to:
 
@@ -25,8 +26,7 @@ In this article, you learn how to:
 - Configure an agent with file search enabled
 - Query your documents through the agent
 
-> [!NOTE]
-> By using the standard agent setup, the improved file search tool ensures your files remain in your own storage. Your Azure AI Search resource ingests the files, so you maintain complete control over your data.
+By using the standard agent setup, the file search tool ensures your files remain in your own storage. Your Azure AI Search resource ingests the files, so you maintain complete control over your data.
 
 > [!IMPORTANT]
 > File search has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for model usage.
@@ -64,7 +64,9 @@ The following examples show how to upload a file, create a vector store, configu
 :::zone pivot="python"
 ## Create an agent with the file search tool
 
-The following code sample shows how to create an agent with the file search tool enabled. You need to upload files and create a vector store before running this code. See the sections below for details.
+The following code sample shows how to add the file search tool to a toolbox and attach the toolbox to an agent. You need to upload files and create a vector store before running this code. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from pathlib import Path
@@ -140,12 +142,112 @@ The following output comes from the preceding code sample:
 
 - Reference: [Azure SDK for Python sample: file search](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/sample_agent_file_search_in_stream.py)
 - Reference: [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample creates the file-search toolbox with the Azure AI Projects SDK, then uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using [`MCPStreamableHTTPTool`](https://aka.ms/foundry-toolbox-maf). Set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+from pathlib import Path
+
+import httpx
+from agent_framework import Agent, MCPStreamableHTTPTool
+from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import FileSearchTool
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
+        yield request
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # Load the file to be indexed for search.
+    asset_file_path = (Path(__file__).parent / "../assets/product_info.md").resolve()
+
+    # Create vector store and upload file.
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+    openai = project.get_openai_client()
+    vector_store = openai.vector_stores.create(name="ProductInfoStore")
+
+    with asset_file_path.open("rb") as file_handle:
+        vector_store_file = openai.vector_stores.files.upload_and_poll(
+            vector_store_id=vector_store.id,
+            file=file_handle,
+        )
+
+    # 1. Add the file search tool to a toolbox. Using a toolbox is the recommended way
+    #    to give agents tools: you curate tools once and reuse the toolbox across agents.
+    #    See /azure/foundry/agents/concepts/toolbox-overview
+    toolbox = project.toolboxes.create_toolbox_version(
+        name="file-search-toolbox",
+        description="Toolbox with the file search tool",
+        tools=[FileSearchTool(vector_store_ids=[vector_store.id])],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(
+        auth=_ToolboxAuth(token_provider),
+        timeout=120.0,
+    )
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant that can search through files to find information.",
+        tools=[mcp_tool],
+    )
+
+    result = await agent.run("What is the weather today? Do a file search to find the answer.")
+    print(f"Agent: {result.text}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent searches the indexed file content from the vector store and returns a grounded response. Console output shows the final response text containing the answer derived from the uploaded file.
+
+```console
+Agent: The weather today is sunny with a high of 75F.
+```
+
+For the full sample, see [foundry_chat_client_with_file_search.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_file_search.py).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 ## File search sample with agent
 
-In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search.  The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample8_FileSearch.md) in the Azure SDK for .NET repository on GitHub.
+In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample8_FileSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -209,6 +311,99 @@ The following output comes from the preceding code sample:
 ```console
 The code for 'banana' is 673457. I couldn't find any documented code for 'orange' in the files I have access to.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample creates the file-search toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke file search through the toolbox MCP endpoint. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
+using Azure.Identity;
+using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+using OpenAI.Files;
+using OpenAI.VectorStores;
+
+const string AgentInstructions = "You are a helpful assistant that can search through uploaded files to answer questions.";
+const string AgentName = "FileSearchAgent";
+
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+DefaultAzureCredential credential = new();
+
+// 1. Create the file search tool and add it to a toolbox. Using a toolbox is the
+//    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
+
+// Create a toy example file and upload it using OpenAI mechanism.
+string filePath = "sample_file_for_upload.txt";
+File.WriteAllText(
+    path: filePath,
+    contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457.");
+OpenAIFileClient fileClient = projectClient.ProjectOpenAIClient.GetOpenAIFileClient();
+OpenAIFile uploadedFile = fileClient.UploadFile(filePath: filePath, purpose: FileUploadPurpose.Assistants);
+File.Delete(filePath);
+
+// Create the VectorStore and provide it with uploaded file ID.
+VectorStoreClient vctStoreClient = projectClient.ProjectOpenAIClient.GetVectorStoreClient();
+VectorStoreCreationOptions options = new()
+{
+    Name = "MySampleStore",
+    FileIds = { uploadedFile.Id }
+};
+VectorStore vectorStore = vctStoreClient.CreateVectorStore(options: options);
+
+ProjectsAgentTool fileSearchTool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }));
+
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "file-search-toolbox",
+        tools: [fileSearchTool],
+        description: "Toolbox with the file search tool");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// 3. Attach the toolbox to the hosted agent.
+AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+
+// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call.
+ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(
+        name: AgentName,
+        instructions: AgentInstructions,
+        chatClient: chatClient,
+        toolboxClient: toolboxClient));
+});
+```
+
+### Expected output
+
+The hosted agent uses the toolbox MCP endpoint to search the vector store configured in the file-search toolbox and answers with grounded content.
+
+```console
+Response: The youngest employee is Alice Johnson, who is 28 years old.
+File Citation - File Id: file-abc123
+```
+
+For a maintained .NET Agent Framework integration, see [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
+
+---
 
 ## File search sample with agent in streaming scenarios
 
@@ -287,11 +482,48 @@ class FileSearchStreamingDemo
         };
         VectorStore vectorStore = projectClient.ProjectOpenAIClient.GetProjectVectorStoresClient().CreateVectorStore(options);
 
-        // Create an agent capable of using File search.
+        // 1. Add the file search tool to a toolbox. Using a toolbox is the recommended
+        //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+        AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+        ProjectsAgentTool fileSearchTool = ProjectsAgentTool.AsProjectTool(
+            ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }));
+
+        ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+            .GetAgentToolboxes().CreateToolboxVersion(
+                toolboxName: "file-search-toolbox",
+                tools: [fileSearchTool],
+                description: "Toolbox with the file search tool");
+
+        // 2. The toolbox exposes an MCP-compatible endpoint.
+        var toolboxMcpUrl = new Uri(
+            $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}" +
+            $"/versions/{toolboxVersion.Version}/mcp?api-version=v1");
+
+        // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+        //    Use a user Entra token so the caller's identity is passed through
+        //    (audience https://ai.azure.com). Create the connection once, for example
+        //    with the Azure Developer CLI:
+        //
+        //    azd ai connection create file-search-toolbox-conn \
+        //      --kind remote-tool \
+        //      --target "<toolboxMcpUrl>" \
+        //      --auth-type user-entra-token \
+        //      --audience https://ai.azure.com
+        var toolboxConnectionName = "file-search-toolbox-conn";
+
+        // 4. Attach the toolbox to the prompt agent as an MCP tool.
+        McpTool toolboxTool = ResponseTool.CreateMcpTool(
+            serverLabel: "toolbox",
+            serverUri: toolboxMcpUrl,
+            toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+                GlobalMcpToolCallApprovalPolicy.NeverRequireApproval));
+        toolboxTool.ProjectConnectionId = toolboxConnectionName;
+
         DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
         {
             Instructions = "You are a helpful agent that can help fetch data from files you know about.",
-            Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
+            Tools = { toolboxTool }
         };
         AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
@@ -351,7 +583,7 @@ Response done with full message: Your previous question was about the documented
 :::zone pivot="typescript"
 ## Sample file search with agent
 
-The following TypeScript sample shows how to create an agent with the file search tool enabled. You need to upload files and create a vector store before running this code. See the [File search behavior by agent setup type](#file-search-behavior-by-agent-setup-type) section below for details. For a JavaScript example, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFileSearch.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript sample shows how to add the file search tool to a toolbox and attach the toolbox to an agent. You need to upload files and create a vector store before running this code. See the [File search behavior by agent setup type](#file-search-behavior-by-agent-setup-type) section below for details. For a JavaScript example, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFileSearch.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -382,15 +614,52 @@ export async function main(): Promise<void> {
   const fileStream = fs.createReadStream(assetFilePath);
   const file = await openai.vectorStores.files.uploadAndPoll(vectorStore.id, fileStream);
 
-  // Create agent with file search tool
+  console.log("Creating a toolbox with the file search tool...");
+
+  // 1. Add the file search tool to a toolbox. Using a toolbox is the recommended
+  //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "file-search-toolbox",
+    [
+      {
+        type: "file_search",
+        file_search: {
+          vector_store_ids: [vectorStore.id],
+        },
+      },
+    ],
+    { description: "Toolbox with the file search tool" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create file-search-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "file-search-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
   const agent = await project.agents.createVersion("agent-file-search", {
     kind: "prompt",
     model: "gpt-5-mini",
     instructions: "You are a helpful assistant that can search through product information.",
     tools: [
       {
-        type: "file_search",
-        vector_store_ids: [vectorStore.id],
+        type: "mcp",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
+        require_approval: "never",
+        project_connection_id: toolboxConnectionName,
       },
     ],
   });
@@ -436,19 +705,22 @@ main().catch((err) => {
 
 ## Use file search in a Java agent
 
+> [!TIP]
+> Most agents use a [toolbox](../../concepts/toolbox-overview.md) to add the file search tool and attach the toolbox to your agent as an MCP tool. If you are using the Java SDK, an API for creating toolboxes is not yet available. Create a toolbox by using the Python, REST API, C#,TypeScript, or the [Foundry portal](../../how-to/tools/toolbox.md), then reference it's MCP endpoint from your Java agent as an `McpTool`.
+
 Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
 ### Create an agent with file search
 
-Before running this sample, create a file and vector store using the `{projectEndpoint}/openai/v1/files` and `{projectEndpoint}/openai/v1/vector_stores` REST endpoints. See the **REST API** tab for the curl commands, or the [Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/) for a complete example that includes file upload.
+Before running this sample, create a file and vector store using the `{projectEndpoint}/openai/v1/files` and `{projectEndpoint}/openai/v1/vector_stores` REST endpoints. Then create a file-search toolbox out of band by using the Python, REST, C#, or TypeScript example, or the Foundry portal. Create the remote-tool project connection for the toolbox MCP endpoint before you attach it to the Java agent.
 
 ```java
 import com.azure.ai.agents.AgentsClient;
@@ -457,21 +729,21 @@ import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.AzureCreateResponseOptions;
-import com.azure.ai.agents.models.FileSearchTool;
+import com.azure.ai.agents.models.McpTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 public class FileSearchExample {
     public static void main(String[] args) {
         // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
         String projectEndpoint = "your_project_endpoint";
-        // Create a vector store first using the {projectEndpoint}/openai/v1/vector_stores API
-        String vectorStoreId = "your_vector_store_id";
+        String toolboxMcpUrl = projectEndpoint
+            + "/toolboxes/file-search-toolbox/versions/1/mcp?api-version=v1";
+        String toolboxConnectionName = "file-search-toolbox-conn";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -480,15 +752,18 @@ public class FileSearchExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create file search tool with vector store IDs
-        FileSearchTool fileSearchTool = new FileSearchTool(
-            Arrays.asList(vectorStoreId)
-        );
+        // The Java SDK doesn't yet expose a toolbox creation API. Create the
+        // toolbox with Python, REST, C#, TypeScript, or the Foundry portal, then
+        // attach its MCP endpoint as an MCP tool.
+        McpTool toolboxTool = new McpTool("toolbox")
+            .setServerUrl(toolboxMcpUrl)
+            .setProjectConnectionId(toolboxConnectionName)
+            .setRequireApproval("never");
 
-        // Create agent with file search tool
+        // Create agent with the toolbox MCP tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can search through files to answer questions.")
-            .setTools(Collections.singletonList(fileSearchTool));
+            .setTools(Collections.singletonList(toolboxTool));
 
         AgentVersionDetails agent = agentsClient.createAgentVersion("file-search-agent", agentDefinition);
         System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
@@ -555,29 +830,109 @@ curl --request POST \
   }'
 ```
 
-## Create an agent with the file search tool
+## Add file search to a toolbox and create an agent
+
+The recommended way to add file search is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+### Upload files for toolbox use
+
+To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header. Use the project GUID from `properties.amlWorkspace.internalId`.
+
+1. Upload your file: `POST {account_endpoint}/openai/v1/files` with `purpose=assistants` and header `x-aml-project-id: {project-guid}`.
+1. Create a vector store: `POST {account_endpoint}/openai/v1/vector_stores` with the returned file ID and the same `x-aml-project-id` header.
+
+The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`.
+
+1. Create a toolbox that contains the file search tool:
+
+    ```bash
+    curl --request POST \
+      --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/file-search-toolbox/versions?api-version=v1" \
+      -H "Content-Type: application/json" \
+      --data '{
+        "description": "Toolbox with the file search tool",
+        "tools": [
+          {
+            "type": "file_search",
+            "file_search": {
+              "vector_store_ids": ["'$VECTOR_STORE_ID'"]
+            },
+            "max_num_results": 20
+          }
+        ]
+      }'
+    ```
+
+   The toolbox exposes an MCP-compatible endpoint at `$FOUNDRY_PROJECT_ENDPOINT/toolboxes/file-search-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+1. Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`).
+
+    ```bash
+    azd ai connection create file-search-toolbox-conn \
+      --kind remote-tool \
+      --target "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/file-search-toolbox/versions/<version>/mcp?api-version=v1" \
+      --auth-type user-entra-token \
+      --audience https://ai.azure.com
+    ```
+
+1. Create an agent that uses the toolbox by attaching it as an MCP tool.
+
+    ```bash
+    curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $AGENT_TOKEN" \
+      -d '{
+        "name": "<AGENT_NAME>-file-search",
+        "description": "Agent with file search",
+        "definition": {
+          "kind": "prompt",
+          "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+          "tools": [
+            {
+              "type": "mcp",
+              "server_label": "toolbox",
+              "server_url": "'$FOUNDRY_PROJECT_ENDPOINT'/toolboxes/file-search-toolbox/versions/<version>/mcp?api-version=v1",
+              "require_approval": "never",
+              "project_connection_id": "file-search-toolbox-conn"
+            }
+          ],
+          "instructions": "You are a customer support chatbot. Use file search results from the vector store to answer questions based on the uploaded files."
+        }
+      }'
+    ```
+
+### Dynamic vector store selection (parameter override)
+
+When you add file search to a toolbox, you can supply `vector_store_ids` in two ways:
+
+- **Pinned at toolbox creation** — include `vector_store_ids` in the tool configuration (as shown in the previous example). The vector store is fixed for every call and can't be overridden at runtime.
+- **Dynamic at runtime (parameter override)** — omit `vector_store_ids` from the tool configuration. Callers supply it in the `tools/call` arguments, so each call can target a different vector store. This enables scenarios like multitenant document stores where every request searches a different set of files.
+
+Create the toolbox without `vector_store_ids`:
 
 ```bash
-curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+curl --request POST \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/file-search-toolbox/versions?api-version=v1" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
-    "name": "<AGENT_NAME>-file-search",
-    "description": "Agent with file search",
-    "definition": {
-      "kind": "prompt",
-      "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
-      "tools": [
-        {
-          "type": "file_search",
-          "vector_store_ids": ["'$VECTOR_STORE_ID'"],
-          "max_num_results": 20
-        }
-      ],
-      "instructions": "You are a customer support chatbot. Use file search results from the vector store to answer questions based on the uploaded files."
-    }
+  --data '{
+    "description": "File search with dynamic vector store",
+    "tools": [
+      { "type": "file_search" }
+    ]
   }'
 ```
+
+When you omit `vector_store_ids`, callers pass it in the `tools/call` arguments:
+
+```json
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"file_search","arguments":{"queries":["search text"],"vector_store_ids":["<VECTOR_STORE_ID>"]}}}
+```
+
+> [!NOTE]
+> The REST API, Python SDK, .NET SDK, JavaScript SDK, and Azure Developer CLI support dynamic `vector_store_ids`. The Foundry portal UI currently requires `vector_store_ids` when you add a File Search tool.
+
+> [!IMPORTANT]
+> When you use File Search through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to any vector stores referenced in the tool configuration or provided at runtime.
 
 ## Create response with file search
 

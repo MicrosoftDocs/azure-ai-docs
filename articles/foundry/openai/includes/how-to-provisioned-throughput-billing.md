@@ -81,6 +81,8 @@ Reservations and deployments are loosely coupled: you create deployments and res
 |---|---|
 | **Purchased in the Azure portal** | Azure Reservations are purchased via the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations). |
 | **Purchased per deployment type** | Global Provisioned, Data Zone Provisioned, and Regional Provisioned reservations are separate purchases. A Global Provisioned reservation doesn't cover a Regional Provisioned deployment. |
+| **Global reservations aren't region-specific** | A single Global reservation can apply to Global PTU deployments across multiple regions, as long as you have enough reserved units to cover the total PTUs deployed. You can still purchase a Global reservation per region to maintain a one-to-one mapping if preferred. |
+| **Global reservations can be consolidated** | Because a Global reservation benefits deployments across multiple regions, you can consolidate into a single reservation. For example, if you have 50 Global PTUs in East US, 100 in West Europe, and 200 in Australia East, you can purchase a single Global reservation for 350 units in any region to cover all deployments across all three regions. |
 | **Discounted rate for a term commitment** | In exchange for a 1-month or 1-year term commitment, you receive a discounted effective $/PTU/hr rate compared to hourly billing. The discount varies by model family and term length. For current rates, see [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/microsoft-foundry) or use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). |
 | **Flexibly scoped** | A reservation can be scoped to cover an individual resource group or subscription, a group of subscriptions in a management group, or all subscriptions in a billing account. All matching deployments within the covered scope share the discount, up to the reservation's PTU quantity. See [How reservation matching works](#how-reservation-matching-works). |
 | **Overlapping and updatable** | New reservations can be purchased to cover the same scope as existing reservations, allowing you to discount new provisioned deployments. The scope of existing reservations can be updated at any time without penalty. For example, you can update the scope of your existing reservation to cover a new subscription. |
@@ -97,14 +99,14 @@ To verify that your existing deployments are covered after purchasing a reservat
 The reservation discount applies automatically when all three conditions match between a running deployment and a reservation:
 
 - **Deployment type**: The deployment type (Global, Data Zone, or Regional) must match.
-- **Region**: The Azure region of the deployment must match.
+- **Region**: For Data Zone and Regional deployments, the Azure region of the deployment must match the reservation's region. Global reservations aren't region-specific, and a single Global reservation can cover Global PTU deployments across multiple regions, as long as the total deployed PTUs don't exceed the reservation quantity.
 - **Scope**: The reservation scope must include the deployment's subscription or resource group.
 
 Matching isn't by model or deployment ID. Multiple deployments that satisfy all three conditions share the same reservation up to its PTU quantity.
 
 ### Reservation overage example
 
-Suppose you have a 500 PTU Global Provisioned reservation in East US 2 for a given subscription. Your existing deployments consume 300 PTUs across Azure OpenAI models. You then add a DeepSeek-R1 deployment:
+Suppose you purchase a 500 PTU Global Provisioned reservation (purchased in East US 2) for a given subscription. Because it's a Global reservation, it covers matching Global PTU deployments across all regions within the reservation's scope, not just East US 2. If your existing Global deployments already consume 300 PTUs across Azure OpenAI models in various regions and you add a DeepSeek-R1 Global deployment in Australia East:
 
 | DeepSeek PTUs added | Covered by reservation | Hourly overage |
 |---|---|---|

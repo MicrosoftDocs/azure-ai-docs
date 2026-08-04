@@ -1,6 +1,6 @@
 ---
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

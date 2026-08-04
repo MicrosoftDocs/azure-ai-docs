@@ -3,7 +3,7 @@ title: Azure AI Content Safety Service encryption of data at rest
 description: Learn how Azure AI Content Safety encrypts your data when it's persisted to the cloud.
 titleSuffix: Azure AI services
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 09/16/2025

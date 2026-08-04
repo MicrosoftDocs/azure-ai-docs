@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include
 ---
 
@@ -40,8 +40,32 @@ The GPT real-time models are available for global deployments.
 - `gpt-realtime-mini` (version `2025-10-06`)
 - `gpt-realtime-mini` (version `2025-12-15`)
 - `gpt-realtime-1.5` (`2026-02-23`)
+- `gpt-realtime-2` (`2026-05-07`)
+- `gpt-realtime-translate` (`2026-05-06`)
+- `gpt-realtime-whisper` (`2026-05-06`)
+- `gpt-live-transcribe` (`2026-07-29`)
 
 For more information, see the [models and versions documentation](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#audio-models).
+
+For region-by-region model support, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).
+
+> [!NOTE]
+> Azure OpenAI prices `gpt-realtime-translate`, `gpt-realtime-whisper`, and `gpt-live-transcribe` models by duration. For current rates, see the **Audio Models** section on the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+
+### Language support guidance
+
+The realtime translation and transcription models are designed for multilingual audio scenarios. Language quality can vary by scenario, acoustics, and speaking style.
+
+- If you use transcription settings, pass an ISO-639-1 language hint (for example, `en`) when available to improve accuracy and latency.
+- Validate your required languages with production-like audio before rollout.
+- For broader language and locale references, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
+
+### Use existing realtime quickstarts with these models
+
+The WebRTC, WebSocket, and SIP quickstarts in this documentation work with these models. Use the same sample code, and change only your deployment name:
+
+- Set `AZURE_OPENAI_DEPLOYMENT_NAME` to your `gpt-realtime-translate` deployment for real-time translation scenarios.
+- Set `AZURE_OPENAI_DEPLOYMENT_NAME` to your `gpt-realtime-whisper` or `gpt-live-transcribe` deployment for real-time transcription scenarios.
 
 The Realtime API supports up to 32,000 input tokens and 4,096 output tokens.
 

@@ -4,11 +4,11 @@ titleSuffix: Foundry Tools
 description: In this article, you learn about the Whisper model from OpenAI that you can use for speech to text and speech translation.
 author: PatrickFarley
 reviewer: patrickfarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.custom: dev-focus
-ms.date: 05/21/2026
+ms.date: 07/27/2026
 ai-usage: ai-assisted
 ms.author: pafarley
 ms.reviewer: pafarley
@@ -21,19 +21,64 @@ The Whisper model is a speech-to-text model from OpenAI that you can use to tran
 
 Whisper models are available via Azure OpenAI in Microsoft Foundry Models or via Azure Speech in Foundry Tools. The features differ for those offerings. In [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model), Whisper is just one of several models that you can use for speech-to-text.
 
-To get started right away:
-- [Whisper quickstart via Azure OpenAI](../../ai-foundry/openai/whisper-quickstart.md)
-- [Real-time speech-to-text quickstart via Azure Speech](./get-started-speech-to-text.md)
+## Choose a workflow
+
+- **Offline (file-based)**: Upload a complete prerecorded file and receive one completed transcript.
+- **Realtime (streaming)**: Stream audio continuously and receive transcript updates while audio is still in progress.
+
+## Offline transcription workflow
+
+For offline transcription in Foundry Models, use the Audio API transcription path (`POST /v1/audio/transcriptions`). Current model IDs include `whisper` and `gpt-transcribe`.
+
+The Audio API transcription path is the HTTP route for file-based transcription. Depending on the endpoint format that you use, the route is either `/audio/transcriptions` (deployment-style endpoints) or `/openai/v1/audio/transcriptions` (v1 endpoints).
+
+To get started with offline workflows, see:
+- [Whisper quickstart via Azure OpenAI](../../foundry/openai/whisper-quickstart.md)
 - [Batch transcription with Whisper via Azure Speech](./batch-transcription-create.md#use-a-whisper-model)
 
-## Whisper model or Azure Speech models
+### Offline language hints
+
+For offline transcription, set a language hint when you know the expected language. Language hints can improve stability for short or noisy audio.
+
+The following example shows the `language` form field with a transcription request:
+
+```bash
+curl $AZURE_OPENAI_ENDPOINT/openai/deployments/YourDeploymentName/audio/transcriptions?api-version=2025-03-01-preview \
+ -H "api-key: $AZURE_OPENAI_API_KEY" \
+ -H "Content-Type: multipart/form-data" \
+ -F file="@./sample.wav" \
+ -F language="en"
+```
+
+If you use the v1 endpoint format, call `POST /openai/v1/audio/transcriptions`.
+
+## Realtime transcription workflow
+
+`gpt-transcribe` is an offline transcription model and isn't a Realtime API model. For real-time streaming transcription, use GPT Realtime Whisper or GPT Live Transcribe models.
+
+Get started with realtime workflows:
+- [Real-time speech-to-text quickstart via Azure Speech](./get-started-speech-to-text.md)
+
+## Compare offline and realtime transcription
+
+Use offline and realtime transcription for different workloads.
+
+| Area | Offline transcription (`gpt-transcribe`) | Realtime transcription (`gpt-realtime-whisper`, `gpt-live-transcribe`) |
+|---|---|---|
+| API interaction model | One HTTP request per file, then one response. | Long-lived realtime session with streaming events. |
+| Audio input pattern | Upload a complete prerecorded file. | Stream audio chunks from a live source. |
+| Result pattern | Returns a completed transcript after processing. | Returns incremental transcript updates as audio arrives. |
+| Latency profile | Better for file workflows where end-to-end latency isn't critical. | Better for low-latency live scenarios such as captions and monitoring. |
+| Typical scenarios | Prerecorded media processing, post-call transcription, and async pipelines. | Live captions, voice agents, and interactive real-time experiences. |
+
+## Whisper models vs. Azure Speech models
 
 Choose based on your scenario — the following table summarizes recommendations. If you use Azure Speech, you can choose from several models, including Whisper.
 
 | Scenario | Whisper model | Azure Speech models |
 |---------|---------------|------------------------|
 | Real-time transcriptions, captions, and subtitles for audio and video. | Not available | Recommended |
-| Transcriptions, captions, and subtitles for prerecorded audio and video. | The Whisper model via [Azure OpenAI](../../ai-foundry/openai/whisper-quickstart.md) is recommended for fast processing of individual audio files. The Whisper model via [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model) is recommended for batch processing of large files. For more information, see [Whisper model via Azure Speech batch transcription or via Azure OpenAI?](#whisper-model-via-azure-speech-or-via-azure-openai) | Recommended for batch processing of large files, diarization, and word level timestamps. |
+| Transcriptions, captions, and subtitles for prerecorded audio and video. | The Whisper model via [Azure OpenAI](../../foundry/openai/whisper-quickstart.md) is recommended for fast processing of individual audio files. The Whisper model via [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model) is recommended for batch processing of large files. For more information, see [Whisper model via Azure Speech batch transcription or via Azure OpenAI?](#whisper-model-via-azure-speech-or-via-azure-openai) | Recommended for batch processing of large files, diarization, and word level timestamps. |
 | Transcript of phone call recordings and analytics such as call summary, sentiment, key topics, and custom insights. | Available | Recommended |
 | Real-time transcription and analytics to assist call center agents with customer questions. | Not available | Recommended |
 | Transcript of meeting recordings and analytics such as meeting summary, meeting chapters, and action item extraction. | Available | Recommended |
@@ -45,9 +90,11 @@ Choose based on your scenario — the following table summarizes recommendations
 | Translate prerecorded audio from other languages into English. | Recommended | Also available via the [speech translation API](./speech-translation.md). |
 | Translate prerecorded audio into languages other than English. | Not available | Recommended via the [speech translation API](./speech-translation.md). |
 
+
+
 ## Whisper model via Azure Speech or via Azure OpenAI?
 
-If you decide to use the Whisper model, you have two options. You can choose whether to use the Whisper Model via [Azure OpenAI](../../ai-foundry/openai/whisper-quickstart.md) or via [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model). In either case, the readability of the transcribed text is the same. 
+If you decide to use the Whisper model, you have two options. You can choose whether to use the Whisper Model via [Azure OpenAI](../../foundry/openai/whisper-quickstart.md) or via [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model). In either case, the readability of the transcribed text is the same. 
 
 Whisper Model via Azure OpenAI might be best for:
 - Quickly transcribing audio files one at a time.
@@ -69,5 +116,5 @@ Regional support is another consideration.
 ## Related content
 
 - [Use Whisper models via the Azure Speech batch transcription API](./batch-transcription-create.md#use-a-whisper-model)
-- [Try the speech-to-text quickstart for Whisper via Azure OpenAI](../../ai-foundry/openai/whisper-quickstart.md)
+- [Try the speech-to-text quickstart for Whisper via Azure OpenAI](../../foundry/openai/whisper-quickstart.md)
 - [Try the real-time speech-to-text quickstart via Azure Speech](./get-started-speech-to-text.md)

@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: The Speech SDK supports numerous programming languages for speech to text and text to speech conversion, along with speech translation. This article discusses memory management tooling built into the SDK.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.reviewer: rhurey

@@ -12,6 +12,8 @@ ms.custom:
 
 # Manage concurrency in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 When managing Azure AI Search resources such as indexes and data sources, it's important to update resources safely, especially if resources are accessed concurrently by different components of your application.
 
 * Resource update operations may not complete immediately. For example, [updating an index](search-howto-reindex.md#update-an-index-schema) or an [indexer](search-how-to-create-indexers.md) may take several seconds to complete. Resource updates are *serialized*, which means multiple update operations may not run simultaneously on the same resource.

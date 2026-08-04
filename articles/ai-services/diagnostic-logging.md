@@ -3,8 +3,8 @@ title: Enable diagnostic logging
 titleSuffix: Foundry Tools
 description: This guide provides step-by-step instructions to enable diagnostic logging for a Foundry Tools. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025
 ms.author: pafarley

@@ -1,12 +1,60 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 02/20/2026
+ms.date: 07/21/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 ---
+
+### July 2026 release
+
+Voice Live API version `2026-07-15` is generally available and is now the default service version used by the SDKs.
+
+New features:
+- Azure realtime native voices — added 12 native voice options (Aarti, Andrew, Ava, Denise, Diya, Elsa, Florian, Francisca, Meera, Xiaoxiao, Ximena, and Yunxi) for use with the `azure-realtime` model.
+- Parallel tool calls — control whether the model can invoke tools in parallel.
+- Echo cancellation reference source — configure the echo cancellation reference path and stereo channel input on `AudioEchoCancellation`.
+- Streaming text input — incrementally stream text input into a conversation item with new input text delta and done events.
+- Hosted agent invocation passthrough — attach input data for a hosted agent invocation on a single response request and receive streaming invocation deltas.
+- Session expiration — sessions now expose a server-set expiration time.
+
+Breaking change:
+- The image content part URL field is renamed from `url` to `image_url` to match the wire format. Update image input construction to use the new field name.
+
+Updated SDK versions:
+- Python `azure-ai-voicelive` 1.3.0
+- C# `Azure.AI.VoiceLive` 1.2.0
+- Java `azure-ai-voicelive` 1.1.0
+- JavaScript `@azure/ai-voicelive` 1.1.0
+
+### May 2026 release
+
+The Voice Live evaluation harness is available in preview. Evaluate the quality of your Voice Live voice agents by running pre-recorded audio through different session configurations and scoring responses with Microsoft Foundry built-in evaluators. For more information, see [How to evaluate Voice Live agents](../../how-to-voice-live-evaluate.md).
+
+### April 2026 release
+
+Voice Live API version `2026-04-10` is available, adding new generally available features and preview capabilities. For the full API reference, see [Voice Live API Reference 2026-04-10](../../voice-live-api-reference-2026-04-10.md).
+
+The following previously preview features are now generally available:
+- [Proactive messages](../../how-to-voice-live-proactive-messages.md) — allow your voice agent to speak first before user interaction.
+- [Auto-truncation](../../how-to-voice-live-auto-truncation.md) — handle voice interruptions in chat history.
+- [MCP server integration](../../how-to-voice-live-mcp-server.md) — add Model Context Protocol servers to Voice Live sessions.
+- [Voice Agent integration with Foundry Agent Service](../../how-to-voice-agent-integration.md) — build real-time voice agents with Foundry Agent Service.
+- Java and JavaScript SDK support.
+
+New GA feature:
+- [Telemetry and tracing](../../how-to-voice-live-telemetry.md) — built-in OpenTelemetry instrumentation for monitoring Voice Live sessions.
+
+New preview feature:
+- [MAI Transcribe](../../mai-transcribe.md) is available in preview as a speech recognition model option for Voice Live.
+
+Updated GA SDK versions:
+- Python `azure-ai-voicelive` 1.2.0
+- C# `Azure.AI.VoiceLive` 1.1.0
+- Java `azure-ai-voicelive` 1.0.0
+- JavaScript `@azure/ai-voicelive` 1.0.0
 
 ### February 2026 release
 

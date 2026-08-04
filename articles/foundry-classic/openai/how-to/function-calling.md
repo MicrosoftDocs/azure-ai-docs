@@ -10,7 +10,7 @@ ms.custom:
   - classic-and-new
 ms.topic: how-to
 ms.date: 02/10/2026
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW
 ---
@@ -50,6 +50,12 @@ ROBOTS: NOINDEX, NOFOLLOW
 * `gpt-5.4` (`2026-03-05`)
 * `gpt-5.4-mini` (`2026-03-17`)
 * `gpt-5.4-nano` (`2026-03-17`)
+* `gpt-5.5` (`2026-04-24`)
+* `gpt-5.6-sol` (`2026-07-09`)
+* `gpt-5.6-terra` (`2026-07-09`)
+* `gpt-5.6-luna` (`2026-07-09`)
+* `gpt-chat-latest` (`2026-05-05`)
+* `gpt-chat-latest` (`2026-05-28`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 

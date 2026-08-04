@@ -3,7 +3,7 @@ title: Cost management with Azure AI Metrics Advisor
 titleSuffix: Azure AI services
 description: Learn about cost management and pricing for Azure AI Metrics Advisor
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: concept-article
 ms.date: 06/12/2025

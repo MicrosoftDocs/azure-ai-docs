@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Return a semantic answer in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 When invoking [semantic ranking and captions](semantic-how-to-query-request.md), you can optionally extract content from the top-matching documents that "answers" the query directly. One or more answers can be included in the response, which you can then render on a search page to improve the user experience of your app.
 
 A semantic answer is verbatim content in your search index that a reading comprehension model has recognized as an answer to the query posed in the request. It's not a generated answer. For guidance on a chat-style user interaction model that uses generative AI to compose answers from your content, see [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
@@ -55,9 +57,9 @@ To return a semantic answer, the query must have the semantic `"queryType"`, `"q
 
 + A query string must not be null and should be formulated as question.
 
-+ `"queryType"` must be set to "semantic.
++ `"queryType"` must be set to "semantic".
 
-+ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true#querylanguage).
++ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true#querylanguage).
 
 + A `"semanticConfiguration"` determines which string fields provide tokens to the extraction model. The same fields that produce captions also produce answers. See [Create a semantic configuration](semantic-how-to-configure.md) for details.
 

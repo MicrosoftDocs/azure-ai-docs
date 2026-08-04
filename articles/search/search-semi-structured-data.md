@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Index nested JSON blobs from Azure Storage using REST
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search can index JSON documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read semi-structured data. Semi-structured data contains tags or markings that separate content within the data. It splits the difference between unstructured data, which must be fully indexed, and formally structured data that adheres to a data model, such as a relational database schema that can be indexed on a per-field basis.
 
 This tutorial shows you how to index nested JSON arrays, using a REST client and the [Search REST APIs](/rest/api/searchservice/) to:

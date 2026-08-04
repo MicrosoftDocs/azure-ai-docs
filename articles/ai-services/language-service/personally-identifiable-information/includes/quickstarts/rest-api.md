@@ -1,9 +1,9 @@
 ---
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.date: 11/18/2025
-ms.service: azure-ai-language
+manager: mcleans
+ms.date: 04/30/2026
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.custom:
   - language-service-pii
@@ -113,28 +113,28 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2022-05-01 \
 
 ```json
 {
-	"kind": "PiiEntityRecognitionResults",
-	"results": {
-		"documents": [{
-			"redactedText": "Call our office at ************, or send an email to *******************",
-			"id": "1",
-			"entities": [{
-				"text": "312-555-1234",
-				"category": "PhoneNumber",
-				"offset": 19,
-				"length": 12,
-				"confidenceScore": 0.8
-			}, {
-				"text": "support@contoso.com",
-				"category": "Email",
-				"offset": 53,
-				"length": 19,
-				"confidenceScore": 0.8
-			}],
-			"warnings": []
-		}],
-		"errors": [],
-		"modelVersion": "2021-01-15"
-	}
+    "kind": "PiiEntityRecognitionResults",
+    "results": {
+        "documents": [{
+            "redactedText": "Call our office at ************, or send an email to *******************",
+            "id": "1",
+            "entities": [{
+                "text": "312-555-1234",
+                "category": "PhoneNumber",
+                "offset": 19,
+                "length": 12,
+                "confidenceScore": 0.8
+            }, {
+                "text": "support@contoso.com",
+                "category": "Email",
+                "offset": 53,
+                "length": 19,
+                "confidenceScore": 0.8
+            }],
+            "warnings": []
+        }],
+        "errors": [],
+        "modelVersion": "2021-01-15"
+    }
 }
 ```

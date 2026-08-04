@@ -1,7 +1,7 @@
 ---
 title: "Quotas and limits for Foundry Agent Service (classic)"
 description: "Learn the quotas and limits for Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors. (classic)"
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry

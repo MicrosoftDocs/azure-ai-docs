@@ -5,11 +5,11 @@ ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 02/10/2026
+ms.date: 07/28/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: lebaro #amipatel
-manager: nitinme
+manager: mcleans
 reviewer: lebaro-msft #amibp
 ms.custom:
   - build-2025, pilot-ai-workflow-jan-2026
@@ -38,7 +38,7 @@ Highlights of the Foundry playgrounds experience include:
 
 - **AgentOps support** for evaluations and tracing in the **Agents playground.**
 - **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Foundry to VS Code for multilingual code samples.
-- **Images playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
+- **Images playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), gpt-image-2, and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
 - **Video playground** for Azure OpenAI Sora-2.
 
 - **Audio playground** for models such as [gpt-4o-audio-preview](https://ai.azure.com/resource/models/gpt-4o-audio-preview/version/2024-12-17/registry/azure-openai/?cid=learnDocs), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai/?cid=learnDocs), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai/?cid=learnDocs) models.
@@ -91,7 +91,7 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 The agents playground lets you explore, prototype, and test agents without running any code. From this page, you can quickly iterate and experiment with new ideas. 
 
-To get started with the agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
+To get started with the agents playground, see the [Quickstart: Create a new agent](../agents/quickstart.md).
 
 [!INCLUDE [evaluations-agent-playground-classic](../includes/evaluations-agent-playground-classic.md)]
 
@@ -303,9 +303,8 @@ The images playground is ideal for developers who build image generation flows. 
 
 You can use the images playground with these models:
 
-- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
-- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
-- [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) and gpt-image-2 from Azure OpenAI.
+- [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs), [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs), FLUX.2-pro, and FLUX.2-flex from Black Forest Labs.
 
 Follow these steps to use the images playground:
 
@@ -343,7 +342,7 @@ By using the images playground, you can explore and validate the following aspec
     - How can I balance creativity versus prompt fidelity?
 
 - **Model Comparison**
-    - How do results differ between models, such as SDXL versus DALL·E?
+    - How do results differ between models, such as gpt-image-1 versus FLUX.1-Kontext-pro?
     - Which model performs better for realistic faces versus artistic compositions?
 
 - **Composition Control**
@@ -371,6 +370,6 @@ By using the images playground, you can explore and validate the following aspec
 ## Related content
 
 - [Use the chat playground in Foundry portal](../quickstarts/get-started-playground.md)
-- [Quickstart: Create a new agent (Preview)](../../ai-services/agents/quickstart.md)
+- [Quickstart: Create a new agent (Preview)](../agents/quickstart.md)
 - [Basic Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
 

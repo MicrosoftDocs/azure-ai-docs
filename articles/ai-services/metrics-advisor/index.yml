@@ -8,7 +8,7 @@ metadata:
   titleSuffix: Foundry Tools
   description: 'Metrics Advisor is a time series monitoring platform that provides a set of APIs for data ingestion, anomaly detection, and diagnostics, without needing to know machine learning.'
   author: alvinashcraft
-  manager: nitinme
+  manager: mcleans
   ms.service: azure-ai-metrics-advisor
   ms.topic: landing-page
   ms.date: 06/12/2025

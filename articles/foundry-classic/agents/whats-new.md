@@ -1,7 +1,7 @@
 ---
 title: "What's new in Foundry Agent Service? (classic)"
 description: "Learn about new feature updates and additions for your AI Agents. (classic)"
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry

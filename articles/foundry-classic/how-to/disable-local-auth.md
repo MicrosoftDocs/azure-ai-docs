@@ -2,8 +2,8 @@
 title: "Disable Shared Key Access to the Hub Storage Account (classic)"
 description: "Disable shared-key access to the default storage account used by your Microsoft Foundry hub and projects. (classic)"
 ai-usage: ai-assisted
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.custom:

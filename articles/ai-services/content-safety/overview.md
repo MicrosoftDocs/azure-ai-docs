@@ -3,7 +3,7 @@ title: What is Azure AI Content Safety?
 titleSuffix: Azure AI services
 description: Learn how to use Content Safety to track, flag, assess, and filter inappropriate material in user-generated content.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: overview
 ms.date: 09/16/2025

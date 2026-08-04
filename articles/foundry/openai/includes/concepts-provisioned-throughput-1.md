@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/25/2026
+ms.date: 07/15/2026
 ms.custom: include
 ---
 
@@ -100,7 +100,7 @@ Before creating a provisioned deployment, estimate how many PTUs your workload r
 
 The sizing calculation uses these factors to convert your expected token volumes into a single **normalized TPM** figure, then divides by the model's **Input TPM per PTU** value to arrive at the required PTU count.
 
-You can size manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry (classic) portal for a guided estimate.
+You can size manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/nextgen/goto/build/models/ptu-calculator) in the Foundry portal for a guided estimate.
 
 For the complete sizing methodology, including formulas, worked examples, and the capacity calculator reference, see [Determine PTU sizing for a workload](../how-to/provisioned-throughput-sizing.md).
 
@@ -174,5 +174,5 @@ Use Microsoft Cost Management to track and analyze your PTU usage and reservatio
 - [PTU costs and billing](../concepts/provisioned-throughput-billing.md)
 - [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md)
 - [Enable priority processing for Microsoft Foundry models](../concepts/priority-processing.md)
-- [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai)
+- [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/microsoft-foundry)
 - [Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)

@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Step 3 - Deploy the search-enabled .NET website
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Deploy the search-enabled website as an Azure Static Web Apps site. This deployment includes both the React app for the web pages, and the Function app for search operations.  
 
 The static web app pulls the information and files for deployment from GitHub using your fork of the azure-search-static-web-app repository.  

@@ -3,8 +3,8 @@ title: Migrate to custom voice REST API - Speech service
 titleSuffix: Foundry Tools
 description: This document helps developers migrate code from v3 text to speech REST API to custom voice REST API.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley

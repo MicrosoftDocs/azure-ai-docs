@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 07/27/2026
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -48,6 +48,12 @@ Speed up development by using these templates for common AI scenarios, including
 > [!TIP]
 > Each template includes a GitHub README with setup, deployment, and customization instructions. Start there for the fastest path forward.
 
+## Build agents with agent templates
+
+Agent templates are starter manifests that you can deploy directly in the Foundry portal. Each manifest defines a working agent configuration, so you can deploy it, inspect how it's built, and adapt it as a starting point for your own agent.
+
+Use agent templates to learn and experiment as you build your own agents. They shorten the path from idea to a running agent, giving you a concrete example to explore instead of starting from scratch.
+
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
@@ -58,8 +64,8 @@ Speed up development by using these templates for common AI scenarios, including
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 1. Select **Discover** from the upper-right navigation.
-1. Select **Solution templates** from the left pane.
-1. Select **Open in GitHub** to view the entire sample application.
+1. Select **Solution templates** or **Agents** from the left pane.
+1. If you're viewing a solution template, select **Open in GitHub** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
 [!INCLUDE [ai-template-get-started 1](../../includes/how-to-develop-ai-template-get-started-1.md)]

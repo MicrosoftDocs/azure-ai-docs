@@ -4,10 +4,10 @@ description: "Learn how to plan for high availability and resiliency for Microso
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ms.reviewer: andyaviles
-ms.date: 04/15/2026
+ms.date: 07/13/2026
 ms.custom:
   - dev-focus
   - classic-and-new
@@ -22,7 +22,7 @@ ai-usage: ai-assisted
 
 Plan ahead to maintain business continuity and prepare for disaster recovery with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
 
-Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. This article walks you through configuring multi-region deployments, hardening infrastructure resources, designing model deployment resiliency, and preparing failover procedures for Foundry projects and Agent Services.
+Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. This article walks you through configuring multiregion deployments, hardening infrastructure resources, designing model deployment resiliency, and preparing failover procedures for Foundry projects and Agent Services.
 
 > [!IMPORTANT]
 > Foundry itself doesn't provide automatic failover or disaster recovery.

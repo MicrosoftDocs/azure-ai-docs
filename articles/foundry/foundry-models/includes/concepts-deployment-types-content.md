@@ -17,12 +17,14 @@ When you deploy a model in Microsoft Foundry, you choose a deployment type that 
 
 The service offers two main categories: *standard* (pay-per-token) and *provisioned* (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements.
 
+[!INCLUDE [try-instant-models](../../includes/try-instant-models.md)]
+
 :::image type="content" source="../media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot of the Foundry portal deployment dialog showing the deployment type selection box with Global Standard selected." lightbox="../media/add-model-deployments/models-deploy-deployment-type.png":::
 
 > [!IMPORTANT]
 > **Data residency for all deployment types**: Data stored at rest remains in the designated Azure geography. However, inferencing data is processed as follows:
 > - **Global** types: May be processed in any Azure region
-> - **DataZone** types: Processed only within the Microsoft-specified data zone (US or EU)
+> - **DataZone** types: The service processes data only within the Microsoft-specified data zone (US, EU, or Asia Pacific (APAC)).
 > - **Standard/Regional** types: Processed in the deployment region
 >
 > [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
@@ -31,10 +33,11 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 
 | Deployment type | SKU code | Data processing | Billing | Best for |
 | --------------- | -------- | --------------- | ------- | -------- |
+| [Instant (preview)](../../concepts/instant-models.md) | N/A — no deployment needed | Any Azure region | Pay-per-token (global quota) | Getting started, prototyping, trying new models |
 | [Global Standard](#global-standard) | `GlobalStandard` | Any Azure region | Pay-per-token | General workloads, highest quota |
 | [Global Provisioned](#global-provisioned) | `GlobalProvisionedManaged` | Any Azure region | Reserved PTU | Predictable high-throughput |
 | [Global Batch](#global-batch) | `GlobalBatch` | Any Azure region | 50% discount, 24-hr | Large async jobs |
-| [Data Zone Standard](#data-zone-standard) | `DataZoneStandard` | Within data zone | Pay-per-token | EU/US data zone compliance |
+| [Data Zone Standard](#data-zone-standard) | `DataZoneStandard` | Within data zone | Pay-per-token | EU/US/APAC data zone compliance |
 | [Data Zone Provisioned](#data-zone-provisioned) | `DataZoneProvisionedManaged` | Within data zone | Reserved PTU | Data zone + predictable throughput |
 | [Data Zone Batch](#data-zone-batch) | `DataZoneBatch` | Within data zone | 50% discount | Large async jobs with data zone |
 | [Standard](#standard) | `Standard` | Single region | Pay-per-token | Regional compliance, low volume |
@@ -59,10 +62,12 @@ Use the following criteria to select a deployment type:
 - **No restrictions**: Use Global Standard or Global Provisioned
 - **EU data zone**: Use DataZone Standard or DataZone Provisioned in an EU region
 - **US data zone**: Use DataZone Standard or DataZone Provisioned in a US region
+- **APAC data zone**: Use DataZone Standard or DataZone Provisioned in an APAC region.
 - **Single region only**: Use Standard or Regional Provisioned
 
 ### By workload pattern
 
+- **Quick start, prototyping, or trying a new model**: Use [instant access (preview)](../../concepts/instant-models.md) (no deployment needed)
 - **Variable, bursty traffic**: Use Standard or Global Standard (pay-per-token)
 - **Consistent high volume**: Use Provisioned types (reserved capacity)
 - **Large batch jobs (not time-sensitive)**: Use Global Batch or DataZone Batch (50% cost savings)
@@ -91,8 +96,11 @@ For **Global** deployment types, prompts and responses might be processed in any
 
 - **United States**: Data processed anywhere within the US
 - **European Union**: Data processed within the [EU Data Boundary](/privacy/eudb/eu-data-boundary-learn)
+- **Asia Pacific**: Data processed within the APAC data zone (Australia, Japan, Korea, Singapore, India)
 
 The EU Data Zone processes data within regions located in countries covered by the [Azure EU Data Boundary](/privacy/eudb/eu-data-boundary-learn). As of May 2026, this includes regions in: France, Germany, Italy, Netherlands, Norway, Poland, Spain, Sweden, and Switzerland. Additional regions within the EU Data Boundary may be added without prior notice to improve capacity and availability.
+
+The APAC Data Zone processes data within regions located in Australia, Japan, Korea, Singapore, and India. Additional regions within the APAC Data Zone might be added without prior notice to improve capacity and availability.
 
 Learn more in the "Model region availability by deployment type" section of [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
@@ -139,7 +147,7 @@ Common use cases:
 
 - SKU name in code: `DataZoneStandard`
 
-Data Zone Standard deployments dynamically route traffic to datacenters within the Microsoft-defined data zone (US or EU). This deployment type provides higher default quotas than geography-based deployment types while keeping data within the specified zone.
+Data Zone Standard deployments dynamically route traffic to datacenters within the Microsoft-defined data zone (US, EU, or APAC). This deployment type provides higher default quotas than geography-based deployment types while keeping data within the specified zone.
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, consider provisioned deployment types.
 
@@ -149,13 +157,13 @@ Data Zone Standard supports priority processing (preview) for faster response ti
 
 - SKU name in code: `DataZoneProvisionedManaged`
 
-Data Zone Provisioned deployments dynamically route traffic within the Microsoft-specified data zone (US or EU) while providing reserved model processing capacity. This deployment type combines data zone compliance with high and predictable throughput.  
+Data Zone Provisioned deployments dynamically route traffic within the Microsoft-specified data zone (US, EU, or APAC) while providing reserved model processing capacity. This deployment type combines data zone compliance with high and predictable throughput.  
 
 ## Data Zone Batch
 
 - SKU name in code: `DataZoneBatch`
 
-Data Zone Batch deployments provide the same functionality as [Global Batch](../../openai/how-to/batch.md), including 50% cost savings and 24-hour turnaround. Traffic is routed only to datacenters within the Microsoft-defined data zone (US or EU).
+Data Zone Batch deployments provide the same functionality as [Global Batch](../../openai/how-to/batch.md), including 50% cost savings and 24-hour turnaround. Traffic is routed only to datacenters within the Microsoft-defined data zone (US, EU, or APAC).
 
 ## Standard
 

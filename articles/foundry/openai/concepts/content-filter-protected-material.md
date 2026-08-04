@@ -3,7 +3,7 @@ title: "Protected Material Detection Filter"
 description: "Learn about the Protected Material Detection Filter for identifying and flagging known protected text and code content in large language model outputs."
 author: ssalgadodev
 ms.author: ssalgado
-ms.date: 11/05/2025
+ms.date: 07/31/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

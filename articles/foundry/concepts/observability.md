@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 04/03/2026
+ms.date: 07/31/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: concept-article
@@ -17,7 +17,7 @@ ms.custom:
 
 # Observability in generative AI
 
-The AI application lifecycle requires robust evaluation frameworks to ensure AI systems deliver accurate, relevant, and reliable outputs. Without rigorous assessment, AI systems risk generating responses that are inaccurate, inconsistent, poorly grounded, or potentially harmful. Observability enables teams to measure and improve both the quality and safety of AI outputs throughout the development lifecycle—from model selection through production monitoring.
+The AI application lifecycle requires robust evaluation frameworks to ensure AI systems deliver accurate, relevant, and reliable outputs. Without rigorous assessment, AI systems risk generating responses that are inaccurate, inconsistent, poorly grounded, or potentially harmful. Observability enables teams to measure and improve both the quality and safety of AI outputs throughout the development lifecycle - from model selection through production monitoring.
 
 ## What is observability?
 
@@ -93,7 +93,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | -----| -----| ----|
 | How to set up tracing? | Configure distributed tracing | [Trace overview](../observability/concepts/trace-agent-concept.md) <br></br> [Trace with Agents SDK](../observability/how-to/trace-agent-setup.md) |
 | What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/tests/Samples/Evaluation) |
-| What data should you use? | Upload or generate relevant dataset | [Select or create a dataset](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) |
+| What data should you use? | Upload or generate relevant dataset | [Select data source](../how-to/evaluate-generative-ai-app.md#step-3-select-data-source) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../observability/how-to/evaluate-agent.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
 | How did my model/AI application perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../observability/how-to/cluster-analysis.md) |
 | How can I improve? | Analyze results and optimize agents | Analyze evaluation failures with [cluster analysis](../observability/how-to/cluster-analysis.md). <br></br> Optimize agents and [re-evaluate](../observability/how-to/evaluate-agent.md). <br></br> Review [evaluation results](../how-to/evaluate-results.md). |
@@ -104,7 +104,7 @@ To learn which regions support AI-assisted evaluators, the rate limits that appl
 
 ## Pricing
 
-Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/foundryobservability/).
+Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/foundryobservability/).
 
 [!INCLUDE [evaluations-agent-playground](../includes/evaluations-agent-playground.md)]
 

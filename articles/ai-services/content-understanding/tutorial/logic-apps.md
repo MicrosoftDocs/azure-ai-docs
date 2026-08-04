@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to build an Azure Logic Apps workflow that automatically processes documents with Azure Content Understanding in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 05/07/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: tutorial
 ai-usage: ai-assisted
 ---

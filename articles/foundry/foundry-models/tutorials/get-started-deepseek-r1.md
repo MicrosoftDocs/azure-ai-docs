@@ -1,10 +1,10 @@
 ---
-title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models"
-description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
+title: "Tutorial: Get started with a DeepSeek reasoning model in Foundry Models"
+description: "Learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: tutorial
-ms.date: 02/17/2026
+ms.date: 07/28/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: rasavage
@@ -14,16 +14,16 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ai-usage: ai-assisted
-#CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
+#CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
 ---
 
-# Tutorial: Get started with DeepSeek-R1 reasoning model in Microsoft Foundry Models
+# Tutorial: Get started with a DeepSeek reasoning model in Microsoft Foundry Models
 
 [!INCLUDE [get-started-deepseek-r1 1](../includes/tutorials-get-started-deepseek-r1-1.md)]
 
 ## Create the resources
 
-To create a Foundry project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../../quickstarts/get-started-code.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../../quickstarts/get-started-code.md?pivots=programming-language-bicep).
+To create a Foundry project that supports deployment for DeepSeek-V4-Pro, follow these steps. You can also create the resources by using [Azure CLI](../../quickstarts/get-started-code.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../../quickstarts/get-started-code.md?pivots=programming-language-bicep).
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 1. The project you're working on appears in the upper-left corner.  
@@ -34,7 +34,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 1. Add a model to your project. Select **Build** in the middle of the page, then **Model**.
 1. Select **Deploy base model** to open the model catalog.
-1. Find and select the **DeepSeek-R1** model tile to open its model card and select **Deploy**. You can select **Quick deploy** to use the defaults, or select **Customize deployment** to see and change the deployment settings.
+1. Find and select the **DeepSeek-V4-Pro** model tile to open its model card. Select **Deploy** > **Default settings** to use the default settings, or select **Deploy** > **Custom settings** to see and change the deployment settings.
 
 When the deployment finishes, you land on its playground, where you can start to interact with the deployment. Confirm your deployment is ready by verifying the deployment status shows **Succeeded**. Note the **deployment name** and **endpoint URI** from the deployment details—you need both for the code section.
 
@@ -56,7 +56,7 @@ The following code examples demonstrate how to:
     > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application.
 
 1. Create a chat completion client connected to your model deployment
-1. Send a basic prompt to the DeepSeek-R1 model
+1. Send a basic prompt to the DeepSeek-V4-Pro model
 1. Receive and display the response
 
 **Expected output:** A JSON response containing the model's answer, reasoning process (within `<think>` tags), token usage statistics (prompt tokens, completion tokens, total tokens), and model information.
@@ -71,10 +71,10 @@ The following code examples demonstrate how to:
 - [OpenAI JavaScript client](https://github.com/openai/openai-node)
 - [OpenAI .NET client](https://github.com/openai/openai-dotnet)
 - [DefaultAzureCredential class](/dotnet/api/azure.identity.defaultazurecredential)
-- [Chat completions API reference](../../openai/latest.md#create-chat-completion)
+- [Chat completions API reference](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1&preserve-view=true)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
-Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../quotas-limits.md) that apply to DeepSeek models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 [!INCLUDE [get-started-deepseek-r1 2](../includes/tutorials-get-started-deepseek-r1-2.md)]
 

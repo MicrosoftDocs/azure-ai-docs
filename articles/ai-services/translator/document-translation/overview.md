@@ -1,12 +1,12 @@
 ---
-title: What is Azure Translator document translation in Foundry Tools?
+title: What is Azure Translator document translation?
 titleSuffix: Foundry Tools
-description: Learn about Azure Translator in Foundry Tools document translation for batch and single-file translation while preserving document structure and formatting.
+description: Learn about Azure Translator document translation for batch and single-file translation while preserving document structure and formatting.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 02/06/2026
+ms.date: 07/30/2026
 ms.author: lajanuar
 ms.custom: references_regions, pilot-ai-workflow-jan-2026
 recommendations: false
@@ -19,8 +19,9 @@ ai-usage: ai-assisted
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
+<!-- markdownlint-disable MD025 -->
 
-# What is Azure Translator document translation in Foundry Tools?
+# What is Azure Translator document translation?
 
 Document translation is a cloud-based machine translation feature of [Azure Translator in Foundry Tools](../overview.md). Translate multiple and complex documents across all [supported languages and dialects](../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
 
@@ -38,8 +39,8 @@ Before you start, you need:
 * A Translator resource. For resource creation and endpoint/key retrieval steps, see [Use Document translation APIs programmatically](how-to-guides/use-rest-api-programmatically.md).
 * An Azure Blob Storage account with source and target containers. For setup guidance, see [Create Azure Blob Storage containers](how-to-guides/use-rest-api-programmatically.md#create-azure-blob-storage-containers).
 * A way to authorize access to your storage URLs:
-	* [Shared access signature (SAS) tokens](how-to-guides/create-sas-tokens.md), or
-	* [Managed identities for Document translation](how-to-guides/create-use-managed-identities.md).
+  * [Shared access signature (SAS) tokens](how-to-guides/create-sas-tokens.md), or
+  * [Managed identities for Document translation](how-to-guides/create-use-managed-identities.md).
 
 ### Synchronous translation prerequisites
 
@@ -55,17 +56,17 @@ Before you start, you need:
 
 ### [Asynchronous (batch)](#tab/async)
 
-|Feature | Description |
-| ---------| -------------|
-|**Translate large files**| Translate whole documents asynchronously.|
-|**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-|**Translate image file formats (preview)** | &bull; [Translate text within an image while maintaining the original design and layout](reference/start-batch-translation.md#translate-image-files).<br>&bull; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bull; **Pricing**: Calculated on a per-image basis. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).|
-|[**Translate image text in Word document files (.docx)**](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) API for `.docx` file format.|
-|**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
-|**Apply custom glossaries**|Translate documents using custom glossaries.|
-|**Automatically detect document language**|Let the Document translation service determine the language of the document.|
-|**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
+| Feature | Description |
+| --- | --- |
+| **Translate large files** | Translate whole documents asynchronously. |
+| **Translate numerous files** | Translate multiple files across all supported languages and dialects while preserving document structure and data format. |
+| **Translate image file formats** 🆕 | &bull; [Translate text within an image while maintaining the original design and layout](reference/start-batch-translation.md#translate-image-files).<br>&bull; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bull; **Pricing**: Calculated on a per-image basis. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator). |
+| [**Translate image text in Word documents (.docx) and PowerPoint files (.pptx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx). | This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) API for `.docx` and `.pptx` file formats. |
+| **Preserve source file presentation** | Translate files while preserving the original layout and format. |
+| **Apply custom translation** | Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models. |
+| **Apply custom glossaries** | Translate documents using custom glossaries. |
+| **Automatically detect document language** | Let the Document translation service determine the language of the document. |
+| **Translate documents with content in multiple languages** | Use the autodetect feature to translate documents with content in multiple languages into your target language. |
 
 ### [Synchronous](#tab/sync)
 
@@ -114,7 +115,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+|**Client libraries (SDKs)**|Use the [Document translation client libraries](document-sdk-overview.md) for [C#/.NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
 
 ### [Synchronous](#tab/sync)
 
@@ -122,10 +123,10 @@ Use synchronous document translation to translate a single file and return the t
 
 |Development option|Description|
 |---|---|
-|**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** is not selected, then select **Playgrounds** > **Translator**.|
+|**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **new Foundry** is not selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
 |**REST API**|Integrate synchronous document translation into your applications by using the [REST API](reference/translate-document.md).|
-|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
+|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [Document translation client libraries](document-sdk-overview.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../containers/translate-document-parameters.md).|
 
 ---
@@ -152,7 +153,7 @@ The [Get supported document formats method](reference/get-supported-document-for
 |Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
 |M&#8203;HTML|`mhtml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
 |Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
-|Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook.|
+|Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook. Unicode-format .msg files only. ANSI-format .msg files are not supported.|
 |Microsoft PowerPoint|`ppt`, `pptx`| A presentation file used to display content in a slideshow format.|
 |Microsoft Word|`doc`, `docx`| A text document file.|
 |Rich text format|`rtf`|A text document containing formatting.|

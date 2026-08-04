@@ -33,7 +33,7 @@ This article covers the **Foundry (classic)** portal and APIs. For the current p
 
 ## Microsoft Foundry API and SDKs
 
-The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
+The [Microsoft Foundry API](/rest/api/microsoft-foundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
 
 - Python
 - C#

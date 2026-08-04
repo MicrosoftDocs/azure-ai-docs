@@ -2,7 +2,7 @@
 title: 'Environment variables'
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: set up environment variables for your key and endpoint
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

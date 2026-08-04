@@ -4,7 +4,7 @@ description: "Set up Claude Code CLI and VS Code extension to use Claude models 
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 07/14/2026
 ms.custom: dev-focus, doc-kit-assisted
 author: msakande
 ms.author: mopeakande
@@ -31,9 +31,9 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to [Microsoft Foundry](https://ai.azure.com/) with Contributor permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../../foundry-classic/how-to/deploy-models-serverless-availability.md#region-availability) for Claude models. Claude models are currently available in **East US 2** and **Sweden Central** only.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../concepts/models-from-partners.md#region-availability-by-deployment-type) for Claude model deployments.
 - **Contributor** or **Owner** role on your Foundry resource group. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
-- Access to [Azure Marketplace](../../foundry-models/how-to/configure-marketplace.md) to deploy Foundry Models from partners.
+- Access to [Azure Marketplace](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community) to deploy Foundry Models from partners.
 - For Windows, use Git Bash (included with [Git for Windows](https://gitforwindows.org/)) or install WSL2 (recommended for full Linux compatibility). See [Install WSL](/windows/wsl/install).
 - (Optional) [Azure CLI](/cli/azure/install-azure-cli) installed with `az login` completed for Microsoft Entra ID authentication.
 
@@ -47,10 +47,12 @@ In this article, you learn how to:
 
 ## Deploy a Claude model in Foundry
 
-Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). Claude Code uses different models for different tasks:
+Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Most Claude models support global standard deployment. For more information on supported deployment types, see [Claude models in Microsoft Foundry](../concepts/claude-models.md#deployment-types).
+
+Claude Code uses different models for different tasks:
 
 > [!IMPORTANT]
-> Claude models in Microsoft Foundry are currently in preview. Model availability might change. Check the [Foundry Models from partners](../concepts/models-from-partners.md#anthropic) page for the latest list of available models.
+> Availability of Claude models in Microsoft Foundry might change. Check the [Foundry Models from partners](../concepts/models-from-partners.md#anthropic) page for the latest list of available models.
 
 | Claude Code role | Recommended deployment | Purpose |
 | --- | --- | --- |
@@ -58,13 +60,11 @@ Before configuring Claude Code, deploy the available [Claude models](../concepts
 | Fast model | `claude-haiku-4-5` | Quick operations — file reads, small edits |
 | Extended thinking | `claude-opus-4-6` | Complex reasoning tasks (optional) |
 
-Other Claude models available in Foundry include `claude-sonnet-4-5`, `claude-opus-4-5`, and `claude-opus-4-1`.
-
 ### Deploy model directly in Foundry
 
 To deploy a model:
 
-1. Follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md) to deploy a Claude model, such as Opus 4.6.
+1. Follow the instructions in [Deploy and use Claude models in Microsoft Foundry](use-foundry-models-claude.md#deploy-claude-models) to deploy a Claude model, such as Opus 4.6.
 
 1. After deployment, select the deployment's **Details** tab and note your **Target URI** and **Key**. You need these values for configuration.
 
@@ -267,13 +267,13 @@ The Claude Code VS Code extension provides a native graphical interface for Clau
 1. Select **Edit in settings.json** and add the following configuration:
 
     ```json
-    {
-      "Claude Code: Environment Variables": {
-        "CLAUDE_CODE_USE_FOUNDRY": "1",
-        "ANTHROPIC_FOUNDRY_RESOURCE": "<your-resource-name>",
-        "ANTHROPIC_FOUNDRY_API_KEY": "<optional-for-non-entra-auth>"
+      {
+        "Claude Code: Environment Variables": [
+          { "name": "CLAUDE_CODE_USE_FOUNDRY", "value": "1" },
+          { "name": "ANTHROPIC_FOUNDRY_RESOURCE", "value": "<your-resource-name>" },
+          { "name": "ANTHROPIC_FOUNDRY_API_KEY", "value": "<optional-for-non-entra-auth>" }
+        ]
       }
-    }
     ```
 
 1. Select the **Spark icon** in the sidebar to open the Claude Code panel.
@@ -561,11 +561,12 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 | "Failed to get token from azureADTokenProvider: ChainedTokenCredential authentication failed" | Sign in with `az login`, or set `ANTHROPIC_FOUNDRY_API_KEY` for API key authentication. |
 | "The model `<model-name>` is not available on your foundry deployment" | Deploy the missing model in the Foundry portal. Claude Code requires each model role (Sonnet, Haiku, Opus) to have a corresponding deployment. |
 | "Token tenant does not match resource tenant" | Your Azure CLI is signed in to a different tenant than your Foundry resource. Run `az login --tenant <tenant-id>` to sign in to the correct tenant. |
-| Deployment creation fails in the Foundry portal | Verify you have **Contributor** or **Owner** role on the resource group, and your subscription has [Azure Marketplace access](../../foundry-models/how-to/configure-marketplace.md) enabled. |
+| Deployment creation fails in the Foundry portal | Verify you have **Contributor** or **Owner** role on the resource group, and your subscription has [Azure Marketplace access](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community) enabled. |
 | Claude Code prompts for Anthropic login | Verify `CLAUDE_CODE_USE_FOUNDRY=1` is set. Without this variable, Claude Code uses the default Anthropic API. |
 
 ## Related content
 
+- [Claude models in Microsoft Foundry](../concepts/claude-models.md)
 - [Deploy and use Claude models in Microsoft Foundry](use-foundry-models-claude.md)
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
