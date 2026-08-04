@@ -31,7 +31,7 @@ In the Serverless model, **performance optimization directly affects cost**. Cos
 - Queries and indexing consume compute, measured in Compute Units per hour (CU/h).
 - Active indexes consume compute based on their resource usage and how long they remain active.
 - An index stays active for 10 minutes after its last query or indexing request before it goes inactive.
-- Inactive indexes have no minimum or reserved compute charge. The compute usage for inactive indexes scales to zero. There is no minimum compute charge when an index is inactive.
+- Inactive indexes have no minimum or reserved compute charge. The compute usage for inactive indexes scales to zero. There's no minimum compute charge when an index is inactive.
 - Storage is billed separately based on index size on disk and continues whether or not an index is in use.
 - Agentic retrieval consumes compute for each query executed against knowledge sources backed by Azure AI Search indexes, plus a separate orchestration charge for generating those queries and merging the results into a single response.
 
