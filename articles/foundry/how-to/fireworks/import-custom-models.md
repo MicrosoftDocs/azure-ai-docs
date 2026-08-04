@@ -18,7 +18,9 @@ Import and deploy your own model weights on Foundry using the Fireworks inferenc
 
 In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own weights*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem. You can also import LoRA adapters (preview) and draft models for speculative decoding (preview) when your base model and deployment type support those features.
 
-LoRA adapters are lightweight fine-tuning artifacts that modify a base model without uploading a full copy of the model weights. Speculative decoding uses a smaller draft model to propose tokens that a target model verifies, which can reduce generation latency for supported workloads.
+LoRA adapters are lightweight fine-tuning artifacts that modify a base model without uploading a full copy of the model weights. See [below](#lora-requirements-preview) for specific requirements for deploying LoRA weights.
+
+Speculative decoding uses a smaller draft model to propose tokens that a target model verifies, which can reduce generation latency for supported workloads.
 
 > [!NOTE]
 > This custom model import guide uses the Fireworks on Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Use Fireworks models on Foundry](enable-fireworks-models.md).
@@ -52,21 +54,11 @@ Support for deploying custom models is available in all global [Azure regions](/
 
 ## Model requirements
 
-Custom models must match a supported Fireworks model and include the files required for the model type you import. Review the supported models, file requirements, and preview constraints before starting the import process.
+Before you import a model, review the architecture, file, and preview feature requirements.
 
-### Supported architectures
+### Supported model architectures
 
-Custom models must be based on one of the following model architectures:
-
-|Model Architecture|Versions|
-|---|---|
-|DeepSeek|v3.1, V4 Pro|
-|Gemma|4 26B A4B IT, 4 31B IT|
-|GLM|4.7, 5.1|
-|Kimi|K2 Instruct 0905, K2 Thinking, K2.6|
-|Llama|3.1 8B Instruct|
-|Ministral|3 3B Instruct 2512|
-|Qwen|3.5 9B, 3.5 35B A3B, 3.5 112B A10B, 3.5 397B|
+Custom model weights must match supported Fireworks base models. For the list of current models, see [Fireworks model PTU sizing](../../openai/how-to/provisioned-throughput-sizing.md#fireworks-on-microsoft-foundry-models).
 
 ### Required model files
 
@@ -79,6 +71,16 @@ Your model directory must include the files required for the model weight type y
 | `tokenizer.model`, `tokenizer.json`, or `tokenizer_config.json` | Required | Not required; inherited from the base model | Required |
 | `adapter_config.json` | Not applicable | Required | Not applicable |
 | `adapter_model.bin` or `adapter_model.safetensors` | Not applicable | Required | Not applicable |
+
+### LoRA Requirements (Preview)
+
+LoRA deployments to Fireworks automatically merge the LoRA weights into a full-weight version of the model to provide predictable performance.
+
+All Fireworks base models support LoRA deployment with the following exceptions:
+
+* Ministral 3 3B Intruct 2512
+* Qwen 3.5 35B A3B
+* Qwen 3.5 4B
 
 ## Import a custom model
 
