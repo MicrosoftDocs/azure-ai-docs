@@ -22,7 +22,7 @@ All customers can also configure content filters and create custom content polic
 | Medium, high      | Yes | Yes | Content detected at severity level low isn't filtered, content at medium and high is filtered.|
 | High              | Yes| Yes | Content detected at severity levels low and medium isn't filtered. Only content at severity level high is filtered. |
 | No filters | Yes | If approved<sup>1</sup>| No content is blocked or annotated. Requires approval for completion<sup>1</sup>.|
-|Annotate only | Yes| If approved<sup>1</sup>| Disables the filter functionality, so content will not be blocked, but annotations are returned via API response. Requires approval for completion<sup>1</sup>.|
+|Annotate only | Yes| If approved<sup>1</sup>| Disables the filter functionality, so content isn't blocked, but annotations are returned via API response. Requires approval for completion<sup>1</sup>.|
 
 <sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control and can turn off content filters. Apply for modified content filters via this form: [Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified content filters via this form: [Azure Government - Request Modified Content Filtering](https://aka.ms/AOAIGovModifyContentFilter).
 
