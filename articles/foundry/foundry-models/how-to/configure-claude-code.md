@@ -70,7 +70,7 @@ To deploy a model:
 
 ### Alternative: Deploy model using Model Router
 
-[Model Router](../../openai/concepts/model-router.md) is a Foundry model that intelligently routes each prompt to the best underlying model based on query complexity, cost, and performance. Model Router version `2025-11-18` supports select Claude models (`claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`), alongside other Foundry models.
+[Model Router](../../openai/concepts/model-router.md) is a Foundry model that intelligently routes each prompt to the best underlying model based on query complexity, cost, and performance. Model Router version `2025-11-18` supports select Claude models (`claude-haiku-4-5`, `claude-opus-4-7`, `claude-opus-4-6`, and `claude-sonnet-4-5`), alongside other Foundry models.
 
 > [!NOTE]
 > Model Router doesn't currently support `claude-sonnet-4-6` or `claude-opus-4-6`. If you need these models, deploy and reference them directly instead of using Model Router.
