@@ -13,6 +13,7 @@ ms.custom:
 ms.date: 07/20/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Deploy Azure AI Search using an Azure Resource Manager template
@@ -49,7 +50,7 @@ Select the following image to sign in to Azure and open a template. The template
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.search%2Fazure-search-create%2Fazuredeploy.json":::
 
-The Azure portal displays a form that you can use to easily provide parameter values. Some parameters are prefilled with the default values from the template. Provide your subscription, resource group, location, and service name. If you want to use Microsoft Foundry in an [AI enrichment](cognitive-search-concept-intro.md) pipeline, such as for analyzing binary image files for text, choose a location that offers both Azure AI Search and Microsoft Foundry. Unless you use a keyless connection (preview), your Azure AI Search service and Microsoft Foundry resource must be in the same region for AI enrichment workloads. After you complete the form, agree to the terms and conditions, and then select the purchase button to complete your deployment.
+The Azure portal displays a form that you can use to easily provide parameter values. Some parameters are prefilled with the default values from the template. Provide your subscription, resource group, location, and service name. If you want to use Microsoft Foundry in an [AI enrichment](cognitive-search-concept-intro.md) pipeline, such as for analyzing binary image files for text, choose a location that offers both Azure AI Search and Microsoft Foundry. Unless you use a keyless connection, your Azure AI Search service and Microsoft Foundry resource must be in the same region for AI enrichment workloads. After you complete the form, agree to the terms and conditions, and then select the purchase button to complete your deployment.
 
 > [!div class="mx-imgBorder"]
 > ![Azure portal display of template](./media/search-get-started-arm/arm-portalscrnsht.png)
