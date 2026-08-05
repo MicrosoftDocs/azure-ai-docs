@@ -61,7 +61,7 @@ In semantic ranking, the query subsystem passes search results as an input to su
 
 1. The semantic ranker starts with a [BM25-ranked result](index-similarity-and-scoring.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
 
-1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
+1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keywords", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
 
 1. The system trims excessively long strings to ensure the overall length meets the input requirements of the summarization step. This trimming exercise is why it's important to add fields to your semantic configuration in priority order. If you have very large documents with text-heavy fields, the system ignores anything after the maximum limit.
 
