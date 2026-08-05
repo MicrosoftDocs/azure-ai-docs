@@ -7,7 +7,7 @@ ms.reviewer: liulewis
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/08/2026
+ms.date: 08/05/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-memory-store
@@ -84,9 +84,9 @@ pip install "azure-ai-projects>=2.3.0" azure-identity
 Install the required packages:
 
 ```bash
-dotnet add package Azure.AI.Projects
-dotnet add package Azure.AI.Projects.Agents
-dotnet add package Azure.AI.Extensions.OpenAI
+dotnet add package Azure.AI.Projects --version 2.1.0-beta.4
+dotnet add package Azure.AI.Projects.Agents --version 2.1.0-beta.4
+dotnet add package Azure.AI.Extensions.OpenAI --version 2.1.0-beta.4
 dotnet add package Azure.Identity
 ```
 
@@ -989,8 +989,43 @@ for item in forget_response.output:
 
 :::zone pivot="csharp"
 
+This example reuses the `responseClient` created in [Create a conversation](#create-a-conversation).
+
 ```csharp
-// This code snippet is currently unavailable.
+using Azure.AI.Extensions.OpenAI;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001
+#pragma warning disable OPENAI001
+
+static void PrintMemoryCommands(ResponseResult response)
+{
+    foreach (ResponseItem item in response.OutputItems)
+    {
+        switch (item.AsAgentResponseItem())
+        {
+            case MemoryCommandToolCall command:
+                Console.WriteLine($"Arguments: {command.Arguments}");
+                Console.WriteLine($"Status: {command.Status}");
+                break;
+            case MemoryCommandToolCallOutput output:
+                Console.WriteLine($"Status: {output.Status}");
+                break;
+        }
+    }
+}
+
+// Ask the agent to remember information
+ResponseResult rememberResponse = responseClient.CreateResponse(
+    [ResponseItem.CreateUserMessageItem(
+        "Remember that my preferred seat is aisle.")]);
+PrintMemoryCommands(rememberResponse);
+
+// Ask the agent to forget information
+ResponseResult forgetResponse = responseClient.CreateResponse(
+    [ResponseItem.CreateUserMessageItem(
+        "Forget my preferred seat.")]);
+PrintMemoryCommands(forgetResponse);
 ```
 
 :::zone-end
@@ -1597,7 +1632,20 @@ print(f"Kind: {created.kind}")
 :::zone pivot="csharp"
 
 ```csharp
-// This code snippet is currently unavailable.
+using Azure.AI.Projects.Memory;
+
+#pragma warning disable AAIP001
+
+// Create a memory item directly
+MemoryItem created = projectClient.MemoryStores.CreateMemory(
+    name: memoryStoreName,
+    scope: "defaultUser",
+    content: "User prefers concise changelogs with impact-first summaries.",
+    kind: MemoryItemKind.UserProfile);
+
+Console.WriteLine($"Memory ID: {created.MemoryId}");
+Console.WriteLine($"Content: {created.Content}");
+Console.WriteLine($"Kind: {created.Kind}");
 ```
 
 :::zone-end
@@ -1675,7 +1723,18 @@ print(f"Kind: {item.kind}")
 :::zone pivot="csharp"
 
 ```csharp
-// This code snippet is currently unavailable.
+using Azure.AI.Projects.Memory;
+
+#pragma warning disable AAIP001
+
+// Retrieve a memory item by ID
+MemoryItem item = projectClient.MemoryStores.GetMemory(
+    name: memoryStoreName,
+    memoryId: "<memory-item-id>");
+
+Console.WriteLine($"Memory ID: {item.MemoryId}");
+Console.WriteLine($"Content: {item.Content}");
+Console.WriteLine($"Kind: {item.Kind}");
 ```
 
 :::zone-end
@@ -1745,7 +1804,22 @@ print(f"Total memories: {count}")
 :::zone pivot="csharp"
 
 ```csharp
-// This code snippet is currently unavailable.
+using Azure.AI.Projects.Memory;
+
+#pragma warning disable AAIP001
+
+// List all memory items in the store
+int count = 0;
+foreach (MemoryItem item in projectClient.MemoryStores.GetMemories(
+    name: memoryStoreName,
+    scope: "defaultUser"))
+{
+    count++;
+    Console.WriteLine(
+        $"- {item.MemoryId} [{item.Kind}]: {item.Content}");
+}
+
+Console.WriteLine($"Total memories: {count}");
 ```
 
 :::zone-end
@@ -1821,7 +1895,17 @@ print(f"Updated: {updated.content}")
 :::zone pivot="csharp"
 
 ```csharp
-// This code snippet is currently unavailable.
+using Azure.AI.Projects.Memory;
+
+#pragma warning disable AAIP001
+
+// Update a memory item by ID
+MemoryItem updated = projectClient.MemoryStores.UpdateMemory(
+    name: memoryStoreName,
+    memoryId: "<memory-item-id>",
+    content: "User prefers detailed technical explanations with examples.");
+
+Console.WriteLine($"Updated: {updated.Content}");
 ```
 
 :::zone-end
@@ -1886,7 +1970,17 @@ print("Memory item deleted successfully")
 :::zone pivot="csharp"
 
 ```csharp
-// This code snippet is currently unavailable.
+using Azure.AI.Projects.Memory;
+
+#pragma warning disable AAIP001
+
+// Delete a memory item by ID
+MemoryDeletionResult result = projectClient.MemoryStores.DeleteMemory(
+    name: memoryStoreName,
+    memoryId: "<memory-item-id>");
+
+Console.WriteLine(
+    $"Memory item {result.MemoryId} deleted: {result.Deleted}");
 ```
 
 :::zone-end
