@@ -16,8 +16,8 @@ items:
     href: ../../agents/how-to/deploy-hosted-agent-code.md
   - name: Build with AI and coding agents
     href: ../../how-to/develop/use-microsoft-foundry-skill.md
-  - name: Add tools and knowledge
-    href: ../../agents/concepts/tool-catalog.md
+  - name: Add tools and knowledge with Toolbox
+    href: ../../agents/concepts/toolbox-overview.md
   - name: Start from a template
     href: ../../how-to/develop/ai-template-get-started.md
 

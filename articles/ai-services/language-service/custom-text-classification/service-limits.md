@@ -5,8 +5,8 @@ description: Learn about the data and rate limits when using custom text classif
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.date: 04/30/2026
-ms.service: azure-language-foundry-tools
+ms.date: 06/30/2026
+ms.service: azure-ai-language
 ms.topic: limits-and-quotas
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions

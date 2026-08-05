@@ -3,7 +3,7 @@ title: "Enable incoming A2A on a Foundry agent"
 description: "Expose your Foundry Agent Service agent as an A2A endpoint so other agents can discover and call it using the Agent2Agent protocol."
 author: aahill
 ms.author: aahi
-ms.date: 05/28/2026
+ms.date: 07/29/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 
 You can expose your Foundry Agent Service agent as an Agent2Agent (A2A) endpoint so that other agents can discover and call it through the [A2A protocol](https://a2a-protocol.org/latest/). When incoming A2A is enabled, Foundry publishes an agent card for your agent and accepts inbound A2A requests from external callers.
 
-> [!NOTE]
-> Foundry Agent Service supports A2A protocol **version 1.0** and **version 0.3**. New integrations should target version 1.0. For details about how clients select a version, see [A2A protocol versions](#a2a-protocol-versions).
+Foundry Agent Service supports A2A protocol **version 1.0** and **version 0.3**. New integrations should target version 1.0. For details about how clients select a version, see [A2A protocol versions](#a2a-protocol-versions).
 
 ## Supported agent types
 
@@ -375,7 +374,7 @@ curl --request PUT \
   --header "Content-Type: application/json" \
   --data '{
     "properties": {
-      "authType": "AgenticIdentity",
+      "authType": "AgenticIdentityToken",
       "category": "RemoteA2A",
       "target": "'"$TARGET_A2A_URL"'",
       "audience": "https://ai.azure.com",
@@ -406,7 +405,7 @@ Create the connection:
 ```powershell
 $body = @{
     properties = @{
-        authType = "AgenticIdentity"
+        authType = "AgenticIdentityToken"
         category = "RemoteA2A"
         target = $TARGET_A2A_URL
         audience = "https://ai.azure.com"

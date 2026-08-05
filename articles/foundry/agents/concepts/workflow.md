@@ -9,7 +9,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026 
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 07/31/2026
 ms.reviewer: fniedtner
 ms.author: ssalgado
 manager: mcleans

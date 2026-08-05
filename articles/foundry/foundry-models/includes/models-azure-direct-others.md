@@ -1,9 +1,11 @@
 ---
 title: Other Foundry Models sold by Azure
 manager: mcleans
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
+ms.date: 07/23/2026
 ms.date: 07/23/2026
 ms.author: mopeakande
 author: msakande
@@ -105,7 +107,7 @@ For model availability across all regions, grouped by deployment category, see [
 | `mistral-document-ai-2512` | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |
 | `mistral-medium-3-5` <br> **Preview** | chat-completion | - **Input:** text (128,000 tokens), image <br /> - **Output:** text (128,000 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON  |
 | `mistral-ocr-4-0` <br> **Preview** | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |
-| `Mistral-Large-3` | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
+| `Mistral-Large-3` <br> **Preview** | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
 
 Several Mistral models are also available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
 
@@ -145,7 +147,7 @@ For model availability across all regions, grouped by deployment category, see [
 ## Related content
 
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
-- [Model deprecation and retirement for Foundry Models](../../concepts/model-lifecycle-retirement.md)
+- [Microsoft Foundry Models lifecycle and support policy](../../openai/concepts/model-retirements.md)
 - [Deployment overview for Foundry Models](../../../foundry-classic/concepts/deployments-overview.md)
 - [Add and configure models to Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)

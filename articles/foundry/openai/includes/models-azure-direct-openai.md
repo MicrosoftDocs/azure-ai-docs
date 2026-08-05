@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 07/22/2026
+ms.date: 07/27/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new, doc-kit-assisted
@@ -423,11 +423,12 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-translate` (2026-05-06) | Audio model for real-time multilingual translation with translated speech and text output. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-whisper` (2026-05-06) | Audio model for real-time low-latency transcription. |Input: 32,000  <br> Output: 4,096 | September 2024 |
+|`gpt-live-transcribe` (2026-07-29) | Audio model for real-time low-latency transcription. Current recommended model for realtime transcription scenarios. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2.1` (2026-07-07)<br>`gpt-realtime-2.1-mini` (2026-07-07) | Audio models for real-time audio processing. Minor updates over `gpt-realtime-2` with improved silence and noise handling. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 
 > [!NOTE]
-> `gpt-realtime-translate` and `gpt-realtime-whisper` use hourly billing. Most other realtime models use token-based input and output pricing. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+> `gpt-realtime-translate`, `gpt-realtime-whisper`, and `gpt-live-transcribe` use duration-based billing. Most other realtime models use token-based input and output pricing. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ### Audio API
 
@@ -438,10 +439,16 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 |  Model ID  | Description | Max request (audio file size) |
 | ----- | ----- | ----- |
 | `whisper` | General-purpose speech recognition model. | 25 MB |
+| `gpt-transcribe` | Offline speech-to-text model for file transcription via `POST /v1/audio/transcriptions`. Supports language hints. | 25 MB |
 | `gpt-4o-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o. | 25 MB|
 | `gpt-4o-mini-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o mini. | 25 MB|
 | `gpt-4o-transcribe-diarize` (2025-10-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. | 25 MB|
 | `gpt-4o-mini-transcribe` (2025-12-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
+
+> [!IMPORTANT]
+> `gpt-transcribe` is an offline transcription model and isn't a Realtime API model. For streaming transcription, use `gpt-realtime-whisper` or `gpt-live-transcribe`.
+> `gpt-realtime-whisper` and `gpt-live-transcribe` appear in the **GPT-4o audio models** table because they're Realtime API models, not `/audio` API speech-to-text models.
+
 
 #### Speech translation models
 

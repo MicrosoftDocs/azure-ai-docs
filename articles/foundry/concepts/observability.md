@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 04/03/2026
+ms.date: 07/31/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: concept-article
@@ -17,7 +17,7 @@ ms.custom:
 
 # Observability in generative AI
 
-The AI application lifecycle requires robust evaluation frameworks to ensure AI systems deliver accurate, relevant, and reliable outputs. Without rigorous assessment, AI systems risk generating responses that are inaccurate, inconsistent, poorly grounded, or potentially harmful. Observability enables teams to measure and improve both the quality and safety of AI outputs throughout the development lifecycle—from model selection through production monitoring.
+The AI application lifecycle requires robust evaluation frameworks to ensure AI systems deliver accurate, relevant, and reliable outputs. Without rigorous assessment, AI systems risk generating responses that are inaccurate, inconsistent, poorly grounded, or potentially harmful. Observability enables teams to measure and improve both the quality and safety of AI outputs throughout the development lifecycle - from model selection through production monitoring.
 
 ## What is observability?
 
@@ -104,7 +104,7 @@ To learn which regions support AI-assisted evaluators, the rate limits that appl
 
 ## Pricing
 
-Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/foundryobservability/).
+Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/foundryobservability/).
 
 [!INCLUDE [evaluations-agent-playground](../includes/evaluations-agent-playground.md)]
 

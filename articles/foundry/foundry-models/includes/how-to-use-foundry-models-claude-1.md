@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/20/2026
+ms.date: 07/24/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -28,7 +28,7 @@ For the full list of available Claude models, model versions, capabilities, quot
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). See [subscription type and region support](#subscription-type-and-region-support) for more details.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in a supported deployment location. All Claude models (Hosted on Azure and Hosted on Anthropic infrastructure) support Global Standard deployments. The Hosted on Azure versions of some Claude models are also available for Data Zone Standard (US) deployment. For the exact Azure regions where Claude models are available for deployment, see [Region availability by deployment type](../concepts/models-from-partners.md#region-availability-by-deployment-type).
-- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md).
+- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community).
 - **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## Subscription type and region support

@@ -352,8 +352,8 @@ items:
     - name: Speech to text
       displayName: "Quickstart: Recognize and convert speech to text"
       href: ../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/foundry/context/context
-    - name: Speech to text with Whisper
-      displayName: "Quickstart: Speech to text with the Azure OpenAI Whisper model"
+    - name: Speech to text with transcription models
+      displayName: "Quickstart: Speech to text with Azure OpenAI transcription models"
       href: ../../openai/whisper-quickstart.md
     - name: Text to speech
       displayName: "Quickstart: Convert text to speech"
@@ -391,8 +391,8 @@ items:
     - name: GPT Realtime Translate
       displayName: GPT Realtime Translate real-time translation model
       href: ../../openai/concepts/gpt-realtime-translate.md
-    - name: GPT Realtime Whisper
-      displayName: GPT Realtime Whisper streaming transcription model
+    - name: GPT Realtime Transcribe
+      displayName: GPT Realtime Transcribe streaming transcription model
       href: ../../openai/concepts/gpt-realtime-whisper.md
 
 - name: Fine-tuning
@@ -442,7 +442,7 @@ items:
   items:
   - name: Prompt engineering techniques
     href: ../../openai/concepts/prompt-engineering.md
-  - name: Get started with DeepSeek-R1 reasoning model
+  - name: Get started with a DeepSeek reasoning model
     href: ../../foundry-models/tutorials/get-started-deepseek-r1.md
   - name: System message design
     href: ../../openai/concepts/advanced-prompt-engineering.md

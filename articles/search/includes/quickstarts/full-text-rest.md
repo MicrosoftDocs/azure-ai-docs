@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/02/2026
+ms.date: 07/20/2026
 ---
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
@@ -72,7 +72,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 ### Output
 
-Each request returns different JSON based on the operation.  The key output is from `### Run a query`, which should look similar to the following:
+Each request returns different JSON based on the operation. The key output is from `### Run a query`, which should look similar to the following:
 
 ```json
 {
@@ -142,11 +142,11 @@ Authorization: Bearer {{token}}
 
 Key points about the index schema:
 
-+ Use string fields (`Edm.String`) to make numeric data full-text searchable. Other [supported data types](/rest/api/searchservice/supported-data-types), such as `Edm.Int32`, are filterable, sortable, facetable, and retrievable but aren't searchable.
+- Use string fields (`Edm.String`) to make numeric data full-text searchable. Other [supported data types](/rest/api/searchservice/supported-data-types), such as `Edm.Int32`, are filterable, sortable, facetable, and retrievable but aren't searchable.
 
-+ Most of the fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
+- Most of the fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
 
-+ Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
+- Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
 
 ### Upload documents to the index
 

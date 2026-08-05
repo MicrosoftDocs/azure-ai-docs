@@ -5,8 +5,9 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: limits-and-quotas
-ms.date: 06/02/2026
+ms.date: 08/04/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ms.custom:
   - references_regions
 #customer intent: As a developer making decisions about the infrastructure we use, planning to optimize for usage need, capacity, and cost, I want to understand the limits, quotas, and capacities associated with Azure AI Search services, detailing how these factors depend on the chosen pricing tier.
@@ -26,6 +27,23 @@ Azure AI Search supports two pricing models, each with associated service tiers.
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
 To learn more, see [Choose a pricing model and service tier](search-sku-tier.md).
+
+## Diagnose quota, capacity, or limit failures
+
+Quota and capacity failures come from separate controls. Use the error from the completed operation to find which one applies.
+
+If a create, scale, or upgrade operation is still running, wait for the provisioning state to become `Succeeded` or `Failed`. An operation in progress isn't evidence of a quota or capacity problem. If a scale operation fails, see [Errors during scaling](search-capacity-planning.md#errors-during-scaling).
+
+| Failure | Likely cause | First action |
+| --- | --- | --- |
+| Service creation blocked in a subscription and region | Subscription quota | In the **Quotas** service, check the limit for your tier and region, then [request more services](search-create-service-portal.md#add-more-services-to-your-subscription). |
+| Create, scale, or upgrade fails even though quota is available | Regional capacity constraint | Check the footnotes in [region support](search-region-support.md) for constrained tiers, then [choose another region](search-region-capacity.md#capacity-constraint-options). |
+| Replica, partition, tier, or object request rejected | Service or index limit | Compare your configuration and object counts with [service limits](#service-limits) and [index limits](#index-limits). |
+| The search service returns throttling responses under load | Throttling | Reduce the request rate or add search units. See [Throttling limits](#throttling-limits). |
+| Indexing fails near a storage or vector limit | Storage or vector quota | Compare `storageSize` with [partition storage](#partition-storage-gb) for disk and `vectorIndexSize` with [vector index size limits](#vector-index-size-limits) for memory. |
+| Indexer, skill, or vectorizer reports a 429 from another service | Azure OpenAI or other service quota | Follow the quota guidance for the service that issued the error, such as [Azure OpenAI](/azure/ai-services/openai/quotas-limits). |
+
+Available subscription quota doesn't guarantee regional capacity, and requesting more quota doesn't resolve a capacity constraint. If the failure persists, open an Azure support request that includes the subscription, region, tier, requested configuration, full error text, UTC time, and any correlation or operation ID.
 
 ## Subscription limits
 <!-- [!INCLUDE [azure-search-limits-per-subscription](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-subscription.md)] -->
@@ -126,9 +144,9 @@ Each index supports up to the following number of documents:
 + 288 billion on L1
 + 576 billion on L2
 
-Each document can be up to approximately 16 megabytes in size. The document size limit actually applies to the size of the indexing API request payload, which is 16 megabytes. That payload can be a single document or a batch of documents. For a batch with a single document, the maximum document size is 16 MB of JSON.
+Each document can be up to approximately 16 MB in size. The document size limit actually applies to the size of the indexing API request payload, which is 16 MB. That payload can be a single document or a batch of documents. For a batch with a single document, the maximum document size is 16 MB of JSON.
 
-The document size limit applies to *push mode* indexing that uploads documents to a search service. If you're using an indexer for *pull mode* indexing, your source files can be any file size, subject to [indexer limits](#indexer-limits). For the blob indexer, file size limits are larger for higher tiers. For example, the S1 limit is 128 megabytes, the S2 limit is 256 megabytes, and so forth.
+The document size limit applies to *push mode* indexing that uploads documents to a search service. If you're using an indexer for *pull mode* indexing, your source files can be any file size, subject to [indexer limits](#indexer-limits). For the blob indexer, file size limits are larger for higher tiers. For example, the S1 limit is 128 MB, and the S2 limit is 256 MB.
 
 When you estimate document size, remember to index only the fields that add value to your search scenarios. Exclude source fields that have no purpose in the queries you intend to run.
 

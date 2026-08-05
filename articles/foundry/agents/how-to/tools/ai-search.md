@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 07/28/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -19,13 +19,15 @@ zone_pivot_groups: selection-ai-search-tool
 
 # Connect an Azure AI Search index to Foundry agents
 
-> [!TIP]
-> For a managed knowledge base experience, see [Foundry IQ](../foundry-iq-connect.md). For tool optimization, see [best practices](../../concepts/tool-best-practice.md).
-
 Ground your Foundry agent's responses in your proprietary content by connecting it to an Azure AI Search index. The [Azure AI Search](../../../../search/search-what-is-azure-search.md) tool retrieves indexed documents so the Foundry model powering the agent can generate answers with inline citations, enabling accurate, source-backed responses.
 
-> [!IMPORTANT]
-> If you want to use a private virtual network with the Azure AI Search tool, make sure you use Microsoft Entra project managed identity to authenticate in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking.
+If you want to use a private virtual network with the Azure AI Search tool, make sure you use Microsoft Entra project managed identity to authenticate in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking.
+
+For a managed knowledge base experience, see [Foundry IQ](../foundry-iq-connect.md).
+
+For tool optimization, see [best practices](../../concepts/tool-best-practice.md).
+
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
 ## Usage support
 
@@ -69,7 +71,7 @@ The following table shows SDK and setup support.
 | `query_type` | No | Defaults to `vector_semantic_hybrid`. Supported values: `simple`, `vector`, `semantic`, `vector_simple_hybrid`, `vector_semantic_hybrid`. |
 | `filter` | No | Applies to all queries the agent makes to the index. |
 
-## Code example
+## Add Azure AI Search to a toolbox
 
 > [!NOTE]
 > - You need the latest SDK package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
@@ -178,31 +180,85 @@ The agent queries the search index and returns a response with inline citations.
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_azure_ai_search_tool()` to attach an indexed Azure AI Search resource. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the Azure AI Search tool and `ai-search-toolbox`, then connect to its MCP endpoint with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx azure-ai-projects`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, update the search connection and index names, and sign in with `az login`.
 
 ```python
 import asyncio
 import os
 
-from agent_framework import Agent
+import httpx
+from agent_framework import Agent, MCPStreamableHTTPTool
 from agent_framework.foundry import FoundryChatClient
 from azure.ai.projects import AIProjectClient
-from azure.identity import AzureCliCredential
+from azure.ai.projects.models import (
+    AISearchIndexResource,
+    AzureAISearchQueryType,
+    AzureAISearchTool,
+    AzureAISearchToolResource,
+)
+from azure.identity import AzureCliCredential, get_bearer_token_provider
 
 SEARCH_CONNECTION_NAME = "my-search-connection"
 SEARCH_INDEX_NAME = "my-search-index"
 
 
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
+        yield request
+
+
 async def main() -> None:
     credential = AzureCliCredential()
+    PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-    # Resolve the project connection ID from the connection name
-    # (same pattern as the Prompt Agents tab).
-    project = AIProjectClient(
-        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-        credential=credential,
+    # 1. Add the Azure AI Search tool to a toolbox. Using a toolbox is the recommended way
+    #    to give agents tools: you curate tools once and reuse the toolbox across agents.
+    #    See /azure/foundry/agents/concepts/toolbox-overview
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+    azs_connection = project.connections.get(SEARCH_CONNECTION_NAME)
+    connection_id = azs_connection.id
+    ai_search_tool = AzureAISearchTool(
+        azure_ai_search=AzureAISearchToolResource(
+            indexes=[
+                AISearchIndexResource(
+                    project_connection_id=connection_id,
+                    index_name=SEARCH_INDEX_NAME,
+                    query_type=AzureAISearchQueryType.SIMPLE,
+                ),
+            ]
+        )
     )
-    connection_id = project.connections.get(SEARCH_CONNECTION_NAME).id
+    toolbox = project.toolboxes.create_toolbox_version(
+        name="ai-search-toolbox",
+        description="Toolbox with the Azure AI Search tool",
+        tools=[ai_search_tool],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(
+        credential,
+        "https://ai.azure.com/.default",
+    )
+    http_client = httpx.AsyncClient(
+        auth=_ToolboxAuth(token_provider),
+        timeout=120.0,
+    )
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
 
     agent = Agent(
         # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
@@ -211,14 +267,7 @@ async def main() -> None:
             "You are a helpful assistant. Always cite sources from the search index "
             "using `[message_idx:search_idx\u2020source]`."
         ),
-        tools=[
-            FoundryChatClient.get_azure_ai_search_tool(
-                index_connection_id=connection_id,
-                index_name=SEARCH_INDEX_NAME,
-                query_type="simple",
-                top_k=5,
-            )
-        ],
+        tools=[mcp_tool],
     )
 
     result = await agent.run("Tell me about the mental health services available from Premera.")
@@ -240,7 +289,7 @@ if __name__ == "__main__":
 
 ### Expected outcome
 
-The agent queries the specified Azure AI Search index and returns a response grounded in the indexed content. Console output shows the final response text followed by URL citations parsed from the response annotations. For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+The agent queries the specified Azure AI Search index through the toolbox MCP endpoint and returns a response grounded in the indexed content. Console output shows the final response text followed by URL citations parsed from the response annotations.
 
 ---
 
@@ -252,7 +301,9 @@ The agent queries the specified Azure AI Search index and returns a response gro
 
 The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Extensions.OpenAI](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples) to query an index. For asynchronous C# examples, see the [GitHub repo](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples).
 
-This example shows how to use the Azure AI Search tool with agents to query an index.
+This example shows how to use the Azure AI Search tool with agents to query an index. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```csharp
 using System;
@@ -286,7 +337,7 @@ AzureAISearchToolIndex index = new()
 // Create the agent definition with the Azure AI Search tool.
 DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
-    Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
+    Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `【message_idx:search_idx†source】`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
 };
 
@@ -332,9 +383,78 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersi
 
 The agent queries the specified index for information about the sleeping bag. The response includes the temperature rating and a formatted citation with the document title and URL. The response status is `Completed`, and the agent version is successfully deleted.
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample creates the Azure AI Search toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke the tool through the toolbox MCP endpoint. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT` project endpoint and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, update the search connection and index names, and sign in with `az login`.
+
+```csharp
+using System.IO;
+using System.Runtime.CompilerServices;
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
+using Azure.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+var searchConnectionName = "my-search-connection";
+var searchIndexName = "my-search-index";
+
+var openAiEndpoint = new Uri(projectEndpoint).GetLeftPart(UriPartial.Authority);
+DefaultAzureCredential credential = new();
+
+// 1. Create the Azure AI Search tool and add it to a toolbox. Using a toolbox is the
+//    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
+AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: searchConnectionName);
+AzureAISearchToolIndex index = new()
+{
+    ProjectConnectionId = aiSearchConnection.Id,
+    IndexName = searchIndexName,
+    TopK = 5,
+    Filter = "category eq 'sleeping bag'",
+    QueryType = AzureAISearchQueryType.Simple
+};
+ProjectsAgentTool aiSearchTool = new AzureAISearchTool(
+    new AzureAISearchToolOptions(indexes: [index]));
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "ai-search-toolbox",
+        tools: [aiSearchTool],
+        description: "Toolbox with the Azure AI Search tool");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// 3. Attach the toolbox to the hosted agent.
+var openAIClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+
+// ToolboxMcpClient discovers tools from the toolbox MCP endpoint and calls them
+// through tools/call. ToolboxHandler maps model tool calls to that MCP client.
+var toolboxClient = new ToolboxMcpClient(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
+});
+```
+
+### Expected output
+
+The hosted agent queries the specified Azure AI Search index through the toolbox MCP endpoint and returns a grounded response with citations from the indexed content.
+
+---
+
 ## Use agents with Azure AI Search tool for streaming scenarios
 
-This example shows how to use the Azure AI Search tool with agents to query an index in a streaming scenario.
+This example shows how to add the Azure AI Search tool to a toolbox, attach the toolbox as an MCP tool, and query an index in a streaming scenario.
 
 ```csharp
 using System;
@@ -365,11 +485,49 @@ AzureAISearchToolIndex index = new()
     QueryType = AzureAISearchQueryType.Simple
 };
 
-// Create the agent definition with the Azure AI Search tool.
+// 1. Add the Azure AI Search tool to a toolbox. Using a toolbox is the recommended
+//    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+ProjectsAgentTool aiSearchTool = new AzureAISearchTool(
+    new AzureAISearchToolOptions(indexes: [index]));
+
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "ai-search-toolbox",
+        tools: [aiSearchTool],
+        description: "Toolbox with the Azure AI Search tool");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+var toolboxMcpUrl = new Uri(
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}" +
+    $"/versions/{toolboxVersion.Version}/mcp?api-version=v1");
+
+// 3. Create a remote-tool project connection that points at the toolbox endpoint.
+//    Use a user Entra token so the caller's identity is passed through
+//    (audience https://ai.azure.com). Create the connection once, for example
+//    with the Azure Developer CLI:
+//
+//    azd ai connection create ai-search-toolbox-conn \
+//      --kind remote-tool \
+//      --target "<toolboxMcpUrl>" \
+//      --auth-type user-entra-token \
+//      --audience https://ai.azure.com
+var toolboxConnectionName = "ai-search-toolbox-conn";
+
+// 4. Attach the toolbox to a prompt agent as an MCP tool.
+McpTool toolboxTool = ResponseTool.CreateMcpTool(
+    serverLabel: "toolbox",
+    serverUri: toolboxMcpUrl,
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval));
+toolboxTool.ProjectConnectionId = toolboxConnectionName;
+
+// Create the agent definition with the toolbox MCP tool.
 DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
-    Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
+    Tools = { toolboxTool }
 };
 
 // Create the agent version with the agent definition.
@@ -440,11 +598,53 @@ The streaming response displays the agent's response creation, text deltas as th
 
 The following example shows how to use the Azure AI Search tool with the REST API to query an index. The example uses cURL, but you can use any HTTP client.
 
-Before running this sample, obtain a bearer token for authentication. Use the Azure CLI to get a token:
+Before running this sample, get a bearer token for authentication. Use the Azure CLI to get a token:
 
 ```bash
 export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
+
+The recommended way to add Azure AI Search is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+1. Create a toolbox that contains the Azure AI Search tool:
+
+```bash
+curl --request POST \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/ai-search-toolbox/versions?api-version=v1" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "description": "Toolbox with the Azure AI Search tool",
+    "tools": [
+      {
+        "type": "azure_ai_search",
+        "azure_ai_search": {
+          "indexes": [
+            {
+              "project_connection_id": "'$AZURE_AI_SEARCH_CONNECTION_ID'",
+              "index_name": "'$AI_SEARCH_INDEX_NAME'",
+              "query_type": "semantic",
+              "top_k": 5
+            }
+          ]
+        }
+      }
+    ]
+  }'
+```
+
+   The toolbox exposes an MCP-compatible endpoint at `$FOUNDRY_PROJECT_ENDPOINT/toolboxes/ai-search-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+1. Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`).
+
+```bash
+azd ai connection create ai-search-toolbox-conn \
+  --kind remote-tool \
+  --target "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/ai-search-toolbox/versions/<version>/mcp?api-version=v1" \
+  --auth-type user-entra-token \
+  --audience https://ai.azure.com
+```
+
+1. Create a response that uses the toolbox by attaching it as an MCP tool.
 
 ```bash
 curl --request POST \
@@ -452,22 +652,16 @@ curl --request POST \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
-    "model": "$FOUNDRY_MODEL_DEPLOYMENT_NAME",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Tell me about the mental health services available from Premera.",
     "tool_choice": "required",
     "tools": [
       {
-        "type": "azure_ai_search",
-        "azure_ai_search": {
-          "indexes": [
-            {
-              "project_connection_id": "$AZURE_AI_SEARCH_CONNECTION_ID",
-              "index_name": "$AI_SEARCH_INDEX_NAME",
-              "query_type": "semantic",
-              "top_k": 5
-            }
-          ]
-        }
+        "type": "mcp",
+        "server_label": "toolbox",
+        "server_url": "'$FOUNDRY_PROJECT_ENDPOINT'/toolboxes/ai-search-toolbox/versions/<version>/mcp?api-version=v1",
+        "require_approval": "never",
+        "project_connection_id": "ai-search-toolbox-conn"
       }
     ]
   }'
@@ -480,7 +674,7 @@ The API returns a JSON response containing the agent's answer about mental healt
 
 :::zone pivot="typescript"
 
-This sample demonstrates how to create an AI agent with Azure AI Search capabilities by using the `AzureAISearchTool` and synchronous Azure AI Projects client. The agent can search indexed content and provide responses with citations from search results.
+This sample demonstrates how to create an AI agent with Azure AI Search capabilities by adding the search tool to a toolbox and attaching the toolbox as an MCP tool. The agent can search indexed content and provide responses with citations from search results.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -500,13 +694,13 @@ export async function main(): Promise<void> {
   // Get connection ID from connection name
   const aiSearchConnection = await project.connections.get(SEARCH_CONNECTION_NAME);
 
-  // Define Azure AI Search tool that searches indexed content
-  const agent = await project.agents.createVersion("MyAISearchAgent", {
-    kind: "prompt",
-    model: "gpt-4.1-mini",
-    instructions:
-      "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
-    tools: [
+  console.log("Creating a toolbox with the Azure AI Search tool...");
+
+  // 1. Add the Azure AI Search tool to a toolbox. Using a toolbox is the recommended
+  //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "ai-search-toolbox",
+    [
       {
         type: "azure_ai_search",
         azure_ai_search: {
@@ -518,6 +712,41 @@ export async function main(): Promise<void> {
             },
           ],
         },
+      },
+    ],
+    { description: "Toolbox with the Azure AI Search tool" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create ai-search-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "ai-search-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
+  const agent = await project.agents.createVersion("MyAISearchAgent", {
+    kind: "prompt",
+    model: "gpt-4.1-mini",
+    instructions:
+      "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
+    tools: [
+      {
+        type: "mcp",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
+        require_approval: "never",
+        project_connection_id: toolboxConnectionName,
       },
     ],
   });
@@ -609,67 +838,8 @@ Add the dependency to your `pom.xml`:
 
 ### Create an agent with Azure AI Search
 
-```java
-import com.azure.ai.agents.AgentsClient;
-import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.ResponsesClient;
-import com.azure.ai.agents.models.*;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.openai.models.responses.Response;
-import com.openai.models.responses.ResponseCreateParams;
-
-import java.util.Arrays;
-import java.util.Collections;
-
-public class AzureAISearchExample {
-    public static void main(String[] args) {
-        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
-        String projectEndpoint = "your_project_endpoint";
-        String searchConnectionId = "your-search-connection-id";
-        String searchIndexName = "my-search-index";
-
-        AgentsClientBuilder builder = new AgentsClientBuilder()
-            .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(projectEndpoint);
-
-        AgentsClient agentsClient = builder.buildAgentsClient();
-        ResponsesClient responsesClient = builder.buildResponsesClient();
-
-        // Create Azure AI Search tool with index configuration
-        AzureAISearchTool aiSearchTool = new AzureAISearchTool(
-            new AzureAISearchToolResource(Arrays.asList(
-                new AISearchIndexResource()
-                    .setProjectConnectionId(searchConnectionId)
-                    .setIndexName(searchIndexName)
-                    .setQueryType(AzureAISearchQueryType.SIMPLE)
-            ))
-        );
-
-        // Create agent with AI Search tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
-            .setInstructions("You are a helpful assistant that can search through indexed documents. "
-                + "Always provide citations for answers using the tool.")
-            .setTools(Collections.singletonList(aiSearchTool));
-
-        AgentVersionDetails agent = agentsClient.createAgentVersion("ai-search-agent", agentDefinition);
-        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
-
-        // Create a response
-        AgentReference agentReference = new AgentReference(agent.getName())
-            .setVersion(agent.getVersion());
-
-        Response response = responsesClient.createAzureResponse(
-            new AzureCreateResponseOptions().setAgentReference(agentReference),
-            ResponseCreateParams.builder()
-                .input("Search for information about Azure AI services"));
-
-        System.out.println("Response: " + response.output());
-
-        // Clean up
-        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
-    }
-}
-```
+> [!TIP]
+> **Recommended:** For most agents, add the Azure AI Search tool through a [toolbox](../../concepts/toolbox-overview.md) and attach the toolbox to your agent as an MCP tool. The Java SDK doesn't yet expose a toolbox creation API, so create the toolbox by using the [Python](?pivots=python), [REST API](?pivots=rest-api), [C#](?pivots=csharp), or [TypeScript](?pivots=typescript) example, or the [Foundry portal](../../how-to/tools/toolbox.md), and then reference its MCP endpoint from your Java agent as an `McpTool`.
 
 :::zone-end
 
@@ -677,14 +847,14 @@ public class AzureAISearchExample {
 
 Keep these constraints in mind when using the Azure AI Search tool:
 
-- A Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+- A Foundry resource with basic agent deployments doesn't support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 - **Private virtual network access**: If you use a private virtual network with the Azure AI Search tool, you must use Microsoft Entra project managed identity (keyless authentication) in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking. If you disabled public network access on your Azure AI Search resource, configure the connection to use managed identity instead of an API key.
 - The Azure AI Search tool can only target one index.
 - Your Azure AI Search resource and your Microsoft Foundry Agent must be in the same tenant.
 
 ## Verify results
 
-After you run a sample, validate that the agent is grounding responses from your index.
+After running a sample, validate that the agent grounds responses from your index.
 
 1. Ask a question that you know is answered in a specific indexed document.
 1. Confirm the response includes citations formatted as `[message_idx:search_idx†source]`.
@@ -763,11 +933,11 @@ Use one of the following options.
 #### [Foundry portal](#tab/portal)
 
 1. Go to the [Foundry portal](https://ai.azure.com).
-1. Open your project, then select **Operate** > **Admin**.
+1. Open your project, and then select **Operate** > **Admin**.
 1. Select your project name in the **Manage all projects** list.
 1. Select **Add connection**.
 1. Select **Azure AI Search** from the list of available services.
-1. Browse for and select your Azure AI Search service, then select the type of **Authentication** to use.
+1. Browse for and select your Azure AI Search service, and then select the type of **Authentication** to use.
 1. Select **Add connection**.
 
 For more detailed steps, see [Add a new connection to your project](../../../how-to/connections-add.md).

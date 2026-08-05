@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 05/25/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -102,7 +102,7 @@ You can use input audio properties to configure the input audio stream.
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
 | `input_audio_sampling_rate` | integer  | Optional | The sampling rate of the input audio.<br/><br/>The supported values are `16000` and `24000`. The default value is `24000`. |
-| `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice without requiring any client-side echo cancellation.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation.<br/><br/>The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.  |
+| `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation. The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.<br/><br/>By default, the service uses its own internal audio as the echo reference, so client-side echo cancellation isn't required. To enable Live-Reference AEC and use the audio your client actually plays back as the reference, set `reference_source` to `client` and `channels` to `2`. For more information, see [Live-Reference AEC (acoustic echo cancellation)](#live-reference-aec-acoustic-echo-cancellation). |
 | `input_audio_noise_reduction`   | object   | Optional | Enhances the input audio quality by suppressing or removing environmental background noise.<br/><br/>Set the `type` property of `input_audio_noise_reduction` to enable noise suppression.<br/><br/>The supported value for `type` is `azure_deep_noise_suppression`, which optimizes for speakers closest to the microphone.<br/><br/>You can set this property to `near_field` or `far_field` if you're using the [Azure OpenAI Realtime API](../../ai-foundry/openai/realtime-audio-reference.md#realtimeaudioinputaudionoisereductionsettings). |
 
 Here's an example of input audio properties in a session object:
@@ -119,11 +119,51 @@ Here's an example of input audio properties in a session object:
 
 Noise suppression enhances the input audio quality by suppressing or removing environmental background noise. Noise suppression helps the model understand the end-user with higher accuracy and improves accuracy of signals like interruption detection and end-of-turn detection.
 
-Server echo cancellation enhances the input audio quality by removing the echo from the model's own voice. In this way, client-side echo cancellation isn't required. Server echo cancellation is useful when the model's voice is played back to the end-user through a speaker. This helps avoiding the microphone picking up the model's own voice.
+Server echo cancellation enhances the input audio quality by removing the echo from the model's own voice. In this way, client-side echo cancellation isn't required. Server echo cancellation is useful when the model's voice is played back to the end-user through a speaker. This process helps avoid the microphone picking up the model's own voice.
 
 > [!NOTE]
-> The service assumes the client plays response audio as soon as it receives them. If playback is delayed for more than two seconds, echo cancellation quality is impacted.
+> This timing assumption applies to the default server reference (`reference_source` set to `server`). The service assumes the client plays response audio as soon as it receives it. If playback is delayed for more than two seconds, echo cancellation quality is impacted. To avoid this limitation, use [Live-Reference AEC](#live-reference-aec-acoustic-echo-cancellation), where your client supplies the playback reference directly.
 
+#### Live-Reference AEC (acoustic echo cancellation)
+
+By default, server echo cancellation uses the service's own internal audio as the echo reference signal. With Live-Reference AEC, your client supplies the audio it actually plays back as the reference instead. Echo cancellation remains in the service. It uses the client-provided reference to reflect the real playback path, including device output, volume, and any client-side resampling or mixing.
+
+Use Live-Reference AEC when the audio the end-user hears differs from the raw model output. For example, use it when your client processes or mixes audio before playback, or when device output introduces echo that the internal reference doesn't capture. This scenario is common in client-side playback paths, such as a web or mobile app.
+
+To enable Live-Reference AEC:
+
+1. Set `input_audio_format` to `pcm16`.
+1. In `input_audio_echo_cancellation`, set `reference_source` to `client` and `channels` to `2`.
+1. Send interleaved stereo PCM16 audio. Channel 0 contains microphone audio, and channel 1 contains playback reference audio. For each sample pair, send the microphone sample first, followed by the corresponding playback reference sample.
+
+Only the following `reference_source` and `channels` combinations are supported:
+
+| `reference_source` | `channels` | Behavior |
+|---|---|---|
+| `server` | `1` | Default. The service uses its internal audio as the echo reference. |
+| `client` | `2` | Live-Reference AEC. The service uses the playback reference audio sent by your client. |
+
+You can't change `reference_source`, `channels`, `input_audio_format`, or `input_audio_sampling_rate` during a session.
+
+Live-Reference AEC is available starting with API version `2026-07-15`.
+
+Here's an example that enables Live-Reference AEC:
+
+```json
+{
+    "type": "session.update",
+    "session": {
+        "input_audio_format": "pcm16",
+        "input_audio_echo_cancellation": {
+            "type": "server_echo_cancellation",
+            "reference_source": "client",
+            "channels": 2
+        }
+    }
+}
+```
+
+For a working browser example that captures two-channel audio (microphone plus playback reference) and streams it to the service, see the [Live-Reference AEC sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/live-reference-aec).
 
 ## Conversational enhancements
 
@@ -257,7 +297,7 @@ The `voice` object has the following properties:
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
+| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaMultilingualNeural`. |
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
@@ -265,12 +305,28 @@ See [How to customize Voice Live input and output](./voice-live-how-to-customize
 
 ### Azure standard voices
 
+#### MAI-Voice-2-Flash (Preview)
+MAI-Voice-2-Flash is an ultra-fast, low-latency, high-fidelity expressive TTS model that's optimized for real-time responsiveness in Voice Live.
+Here's an example for a MAI-Voice-2-Flash voice:
+
+```JSON
+{
+ "voice": {
+   "name": "en-US-Harper:MAI-Voice-2-Flash",
+   "type": "azure-standard"
+ }
+}
+```
+
+For the full list of Mai-voice-2-flash voices, see [MAI voices](./mai-voices.md).
+
+#### Azure Neural Voice
 Here's a partial message example for a standard (`azure-standard`) voice:
 
 ```json
 {
   "voice": {
-    "name": "en-US-AvaNeural",
+    "name": "en-US-AvaMultilingualNeural",
     "type": "azure-standard"
   }
 }
@@ -278,9 +334,9 @@ Here's a partial message example for a standard (`azure-standard`) voice:
 
 For the full list of standard voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
-### Azure high definition voices
+### Azure high definition (HD) voices
 
-Here's an example `session.update` message for a standard high definition voice:
+Here's an example `session.update` message for a standard high definition (HD) voice:
 
 ```json
 {
@@ -292,7 +348,7 @@ Here's an example `session.update` message for a standard high definition voice:
 }
 ```
 
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
+For the full list of high definition (HD) voices, see [high definition (HD) voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
 
 > [!NOTE]
 > High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2

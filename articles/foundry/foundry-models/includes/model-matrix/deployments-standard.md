@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 07/20/2026
+ms.date: 07/30/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -44,7 +44,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.1-codex-max | 2025-12-04 | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -77,9 +77,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-realtime-mini | 2025-12-15 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-translate | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-whisper | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
-| model-router | 2025-05-19 | - | - | - | - | - | ✅ | - | - | - | - |
-| model-router | 2025-08-07 | - | - | - | - | - | ✅ | - | - | - | - |
-| model-router | 2025-11-18 | - | - | - | - | - | ✅ | - | - | - | - |
+| model-router | 2025-05-19 | - | - | - | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | - | - | - | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-deep-research | 2025-06-26 | - | - | - | - | - | - | - | - | ✅ | - |
@@ -116,7 +116,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.1-codex-max | 2025-12-04 | - | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -189,6 +189,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -211,6 +212,9 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-realtime-mini | 2025-12-15 | - | - | - | - | ✅ |
 | gpt-realtime-translate | 2026-05-06 | - | - | - | - | ✅ |
 | gpt-realtime-whisper | 2026-05-06 | - | - | - | - | ✅ |
+| model-router | 2025-05-19 | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | - | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | - | ✅ |
@@ -237,6 +241,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5-pro | 2025-10-06 | ✅ | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | ✅ |
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ |
+| gpt-5.1-codex-max | 2025-12-04 | ✅ | ✅ |
 | gpt-5.1-codex-mini | 2025-11-13 | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ |
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ |
@@ -276,9 +281,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3.1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -305,6 +307,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2 | 2026-02-20 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
+| MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2e | 2026-04-09 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -329,9 +332,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3.1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -358,6 +358,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2 | 2026-02-20 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
+| MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2e | 2026-04-09 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -381,9 +382,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3.1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -410,6 +408,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2 | 2026-02-20 | - | - | - | - | ✅ |
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | ✅ |
+| MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | ✅ |
 | MAI-Image-2e | 2026-04-09 | - | - | - | - | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -433,9 +432,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ |
 | DeepSeek-R1 | 1 | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ |
-| DeepSeek-V3.1 | 1 | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ |
@@ -462,6 +458,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2 | 2026-02-20 | - | ✅ |
 | MAI-Image-2.5 | 2026-06-02 | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | ✅ |
+| MAI-Image-2.5-Pro | 2026-06-19 | - | ✅ |
 | MAI-Image-2e | 2026-04-09 | - | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ |
@@ -509,9 +506,9 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | ✅ | - | - | - | ✅ |
-| model-router | 2025-05-19 | - | - | ✅ | - | - | - | - |
-| model-router | 2025-08-07 | - | - | ✅ | - | - | - | - |
-| model-router | 2025-11-18 | - | - | ✅ | - | - | - | - |
+| model-router | 2025-05-19 | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | - | - | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | - | - | ✅ | - | - | - | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -537,6 +534,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5-nano | 2025-08-07 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
 | gpt-5.1 | 2025-11-13 | ✅ | - | - | - | - | - | ✅ | - | - |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -561,6 +559,10 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.3-codex | 2026-02-24 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| model-router | 2025-05-19 | ✅ | - | - | - | ✅ |
+| model-router | 2025-08-07 | ✅ | - | - | - | ✅ |
+| model-router | 2025-11-18 | ✅ | - | - | - | ✅ |
 
 # [Middle East & Africa](#tab/az-mea)
 
@@ -569,47 +571,6 @@ Not available
 ---
 
 #### Availability for other Foundry Models sold by Azure
-
-# [Americas](#tab/az-americas)
-
-| **Model** | **Version** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westcentralus** | **westus** | **westus2** | **westus3** |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V4-Pro | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| FLUX.2-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| grok-4-1-fast-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| grok-4-1-fast-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-
-# [Europe](#tab/az-europe)
-
-| **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **polandcentral** | **spaincentral** | **swedencentral** | **westeurope** |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| FLUX.2-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-
-# [Asia Pacific](#tab/az-apac)
-
-Not available
-
-# [Middle East & Africa](#tab/az-mea)
-
-Not available
-
----
-
-#### Availability for other model collections in Foundry Models
 
 # [Americas](#tab/az-americas)
 

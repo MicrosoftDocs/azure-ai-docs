@@ -17,8 +17,6 @@ ms.custom: dev-focus, doc-kit-assisted
 # Manage compliance and security in Microsoft Foundry
 Learn how Microsoft Foundry Control Plane helps you manage compliance, enforce guardrail controls, and integrate security tooling such as Microsoft Defender for Cloud across subscriptions.
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 Use the compliance workspace tabs to reach the right surface quickly.
 
 | Tab | Navigation | Outcome |
@@ -175,9 +173,9 @@ To review Defender security recommendations, follow these steps:
 
 1. Select a recommendation to view details, and select links to take remediation action in the Azure portal.
 
-## Enable enterprise-grade data security and compliance for Foundry with Microsoft Purview (preview)
+## Enable enterprise-grade data security and compliance for Foundry with Microsoft Purview
 
-By enabling Microsoft Purview on your Azure subscription, you can access, process, and store prompt and response data from Microsoft Foundry apps and agents. The data includes associated metadata. This integration supports key data security and compliance scenarios, such as:
+When a Foundry admin enables Microsoft Purview on their Azure subscription, AI interaction data from all applications and agents in that subscription flows into Microsoft Purview for centralized compliance, governance, and AI data posture management. This integration supports key data security and compliance scenarios, such as:
 
 - Microsoft Purview Audit
 - Sensitive information type (SIT) classification
@@ -193,31 +191,36 @@ This capability helps your organization manage and monitor AI-generated data in 
 
 - For all other authentication scenarios, user interactions are visible in Microsoft Purview Audit and DSPM for AI activity explorer classifications, but aren't enforced by data security policies.
 
-- Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
+- Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters or an Agent 365 subscription. If pay-as-you-go billing isn't set up and the tenant doesn't have an Agent 365 subscription, only Purview Audit is supported. Learn more about [Microsoft Purview](/Office365/ServiceDescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description#microsoft-purview-for-agentic-workloads).
 
 - Integration with Microsoft Purview for the preceding features in Foundry doesn't yet support network isolation.
 
-This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview data security and compliance protections for generative AI apps](/purview/ai-microsoft-purview).
+This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview data security and compliance protections for generative AI apps](/purview/ai-microsoft-purview). 
 
 ### Enable Microsoft Purview in Foundry
 
-You must have the Foundry Account Owner role to enable Microsoft Purview integration.
+To enable Microsoft Purview, you need the **Azure AI Account Owner** role.
+
+When you turn on the integration, interaction data from Foundry applications and agents is sent to your tenant's Microsoft Purview account, and data security policies that your tenant's security admins create in Purview are enforced in Foundry. This integration lets your organization:
+
+- Monitor sensitive data flowing through AI agents.
+- Detect risky user interactions and insider threats.
+- Enforce Data Loss Prevention (DLP) policies and compliance standards.
 
 To enable Microsoft Purview in Foundry:
 
 1. On the toolbar, select **Operate**.
-
 1. On the left pane, select **Compliance**.
+1. Select the **Data security and governance** tab.
+1. At the top of the tab, use the subscription dropdown to select the Azure subscription.
+1. Turn on the **Powered by Microsoft Purview** toggle.
 
-1. Select the **Security posture** tab.
+1. Select the **Data security and governance** tab.
 
-1. Select the Azure subscription.
+> [!NOTE]
+> The toggle takes effect only if Microsoft Purview is present in the tenant. Billing happens in Purview and is based on pay-as-you-go (PAYG) meters and the policies created in Purview. If PAYG billing isn't set up in Purview, only Microsoft Purview Audit integration is supported.
 
-1. Turn on the **Microsoft Purview** toggle.
-
-    :::image type="content" source="media/how-to-manage-compliance-security/microsoft-purview-toggle.png" alt-text="Screenshot of the toggle for enabling Microsoft Purview on the tab for security posture.":::
-
-Repeat the preceding steps for other Azure subscriptions, as appropriate.
+Repeat the preceding steps for other Azure subscriptions, as appropriate. For more information, select **About Microsoft Purview** on the tab, or **Go to Microsoft Purview** to open the Microsoft Purview portal.
 
 ## Related content
 

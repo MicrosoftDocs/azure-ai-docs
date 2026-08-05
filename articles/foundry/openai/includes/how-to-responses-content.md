@@ -2548,7 +2548,7 @@ The following table lists the supported file types for image inputs.
 | WebP        | `image/webp`      |
 | Non-animated GIF | `image/gif`  |
 
-In a single request, you can include up to 100 images. Each individual image file must be under 50 MB, and the combined size of all images in the request must also be under 50 MB.
+In a single request, you can include up to 50 images. Each individual image file must be under 50 MB, and the combined size of all images in the request must also be under 50 MB.
 
 Images must meet these additional requirements:
 

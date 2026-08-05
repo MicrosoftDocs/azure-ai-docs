@@ -6,10 +6,16 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/19/2026
+ms.date: 07/23/2026
 ms.custom: include
 ---
 
+
+## July 2026
+
+### Regional expansion
+
+Model router is now available in three additional regions: **Australia East**, **South India**, and **West US 3**, with both Global Standard and Data Zone Standard deployment types. For the full list of supported regions, see the [Model router concepts guide](/azure/ai-foundry/openai/concepts/model-router).
 
 ## May 2026
 

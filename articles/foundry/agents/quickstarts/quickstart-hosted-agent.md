@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI, the Python SDK, the Microsoft Foundry Toolkit for Visual Studio Code extension, the Microsoft Foundry Skill, or the Foundry Agent Canvas in the GitHub Copilot App."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI, the Python SDK, the Microsoft Foundry Toolkit for Visual Studio Code extension, the Microsoft Foundry Skill, or Microsoft Foundry Canvas in the GitHub Copilot App."
 author: aahill
 ms.author: aahi
 ms.date: 07/23/2026
@@ -72,7 +72,7 @@ Before you begin, you need:
 :::zone pivot="canvas"
 
 * [GitHub Copilot App](https://github.com/features/copilot).
-* The Foundry Agent Canvas extension. To install it, in the GitHub Copilot App open **Settings** > **Plugins**, search for `foundry-agent-canvas`, and select **Install**. For other install options, see [What is the Foundry Agent Canvas?](../concepts/foundry-agent-canvas.md#install-the-foundry-agent-canvas)
+* The Microsoft Foundry Canvas extension. To install it, in the GitHub Copilot App open **Settings** > **Plugins**, search for `microsoft-foundry`, and select **Install**. For more information, see [What is Microsoft Foundry Canvas?](../concepts/foundry-canvas.md#install-microsoft-foundry-canvas)
 * [Azure Developer CLI (azd) 1.27.1 or later](/azure/developer/azure-developer-cli/install-azd). The canvas uses `azd` to test and deploy the agent.
 * The `azd microsoft.foundry` extension. Install and verify the extension after `azd` is installed:
 
@@ -227,7 +227,7 @@ that folder:
 FOUNDRY_PROJECT_ENDPOINT=<your-project-endpoint>
 FOUNDRY_MODEL_NAME=<your-model-deployment-name>
 FOUNDRY_HOSTED_AGENT_NAME=basic-agent
-FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/01-basic>
+FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/01-basic/src/agent-framework-agent-basic-responses>
 ```
 
 ## Step 4: Deploy the hosted agent with Python
@@ -491,19 +491,19 @@ When deployment finishes, the agent appears under **Hosted Agents** in the Found
 
 :::zone pivot="canvas"
 
-The Foundry Agent Canvas guides you through building and deploying a hosted agent from a side panel in the GitHub Copilot App. As you make choices in the canvas, it passes each step to Copilot with the relevant context from your Foundry project.
+The Microsoft Foundry Canvas guides you through building and deploying a hosted agent from a side panel in the GitHub Copilot App. As you make choices in the canvas, it passes each step to Copilot with the relevant context from your Foundry project.
 
 ## Step 1: Open the canvas
 
 1. In the GitHub Copilot App, prompt Copilot to create a Foundry hosted agent. For example:
 
     ```prompt
-    Create a Foundry hosted agent using the Foundry Agent Canvas
+    Create a Foundry hosted agent using Microsoft Foundry Canvas
     ```
 
 1. The canvas opens in the right panel. If it doesn't open automatically, open it from the right panel.
 
-:::image type="content" source="../media/agent-canvas/agent-canvas-overview.png" alt-text="Screenshot of the Foundry Agent Canvas open in the right panel of the GitHub Copilot App. The canvas shows three stages: Create new hosted agents, Build current hosted agent, and Deploy and test. The Create stage is expanded with Inspire me, Help me decide, and Hello world options next to the Copilot conversation." lightbox="../media/agent-canvas/agent-canvas-overview.png":::
+:::image type="content" source="../media/agent-canvas/agent-canvas-overview.png" alt-text="Screenshot of Microsoft Foundry Canvas open in the right panel of the GitHub Copilot App. The canvas shows three stages: Create new hosted agents, Build current hosted agent, and Deploy and test. The Create stage is expanded with Inspire me, Help me decide, and Hello world options next to the Copilot conversation." lightbox="../media/agent-canvas/agent-canvas-overview.png":::
 
 The canvas walks you through three stages, which map to the following steps:
 
@@ -745,7 +745,7 @@ In this quickstart, you:
 * Uploaded and routed a hosted agent version with the Python SDK or scaffolded the sample with Azure Developer CLI.
 * Tested the agent locally.
 * Deployed the agent to Foundry Agent Service.
-* Sent test prompts from the Python SDK, Azure Developer CLI, VS Code, the Foundry Agent Canvas, or a coding agent that
+* Sent test prompts from the Python SDK, Azure Developer CLI, VS Code, Foundry canvas, or a coding agent that
   uses the Microsoft Foundry Skill.
 
 ## Next step
@@ -756,9 +756,10 @@ In this quickstart, you:
 ## Related content
 
 * [What are hosted agents?](../concepts/hosted-agents.md)
-* [What is the Foundry Agent Canvas?](../concepts/foundry-agent-canvas.md)
+* [What is Microsoft Foundry Canvas?](../concepts/foundry-canvas.md)
 * [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
+* [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
 * [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)

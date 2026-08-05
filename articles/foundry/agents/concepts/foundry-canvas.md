@@ -1,6 +1,6 @@
 ---
-title: "What is the Foundry Agent Canvas?"
-description: "Learn how the Foundry Agent Canvas, a GitHub Copilot App extension, helps you design, configure, test, and deploy Microsoft Foundry hosted agents from a side panel."
+title: "What is Microsoft Foundry Canvas?"
+description: "Learn how Microsoft Foundry Canvas, a GitHub Copilot App extension, helps you design, configure, test, and deploy Foundry hosted agents from a side panel."
 author: MuyangAmigo
 ms.author: junjieli
 ms.manager: mcleans
@@ -11,14 +11,14 @@ ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer, I want to understand what the Foundry Agent Canvas is and what it does so that I can decide whether to use it to build hosted agents.
+#CustomerIntent: As a developer, I want to understand what Microsoft Foundry Canvas is and what it does so that I can decide whether to use it to build hosted agents.
 ---
 
-# What is the Foundry Agent Canvas?
+# What is Microsoft Foundry Canvas?
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The Foundry Agent Canvas is a GitHub Copilot App extension that you use to design, configure, test, and deploy Microsoft Foundry hosted agents from a side panel. It pairs a visual canvas with the Copilot chat session, so you can browse your Foundry project resources, assemble an agent, and hand off each step to Copilot without leaving your editor.
+Microsoft Foundry Canvas is a GitHub Copilot App extension that you use to design, configure, test, and deploy Foundry hosted agents from a side panel. It pairs a visual canvas with the Copilot chat session, so you can browse your Foundry project resources, assemble an agent, and hand off each step to Copilot without leaving your editor.
 
 The canvas is for developers who want a guided, visual way to build hosted agents while keeping the flexibility of a Copilot-driven, code-based workflow.
 
@@ -28,7 +28,7 @@ You open the canvas from a Copilot conversation. When you ask Copilot to create 
 
 This split keeps the visual experience and the code in sync: the canvas surfaces what's available in your project, and Copilot does the file edits and command runs. You stay in control of the generated code the whole time.
 
-:::image type="content" source="../media/agent-canvas/agent-canvas-overview.png" alt-text="Screenshot of the Foundry Agent Canvas open in the right panel of the GitHub Copilot App. The canvas shows three stages: Create new hosted agents, Build current hosted agent, and Deploy and test. The Create stage is expanded with Inspire me, Help me decide, and Hello world options next to the Copilot conversation." lightbox="../media/agent-canvas/agent-canvas-overview.png":::
+:::image type="content" source="../media/agent-canvas/agent-canvas-overview.png" alt-text="Screenshot of Microsoft Foundry Canvas open in the right panel of the GitHub Copilot App. The canvas shows three stages: Create new hosted agents, Build current hosted agent, and Deploy and test. The Create stage is expanded with Inspire me, Help me decide, and Hello world options next to the Copilot conversation." lightbox="../media/agent-canvas/agent-canvas-overview.png":::
 
 ## What you can do with the canvas
 
@@ -43,13 +43,11 @@ With the canvas, you can:
 - **Test before you ship.** Run the agent locally in an embedded Agent Inspector, and send any errors straight back to Copilot as fix requests.
 - **Deploy without leaving the editor.** Publish the finished agent to Foundry Agent Service with **Deploy to Foundry**.
 
-## Install the Foundry Agent Canvas
+## Install Microsoft Foundry Canvas
 
-You can install the canvas in a few ways. Choose whichever method fits your setup.
+To install the canvas, in the GitHub Copilot App, open **Settings** > **Plugins**, search for `microsoft-foundry`, and select **Install**.
 
-- In the GitHub Copilot App, open **Settings** > **Plugins**, search for `foundry-agent-canvas`, and select **Install**.
-- On the [Foundry Agent Canvas listing](https://awesome-copilot.github.com/extension/foundry-agent-canvas/), select **Open in GitHub Copilot App** to install it.
-- Ask Copilot to install the extension into user scope. For example: *Install the canvas extension https://github.com/microsoft/foundry-toolkit/tree/main/foundry-agent-canvas in user scope*.
+:::image type="content" source="../media/agent-canvas/agent-canvas-install.png" alt-text="Screenshot of the Plugins page in the GitHub Copilot App Settings, with foundry entered in the search box and the microsoft-foundry plugin listed under awesome-copilot." lightbox="../media/agent-canvas/agent-canvas-install.png":::
 
 ## How agent building works
 

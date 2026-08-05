@@ -10,5 +10,5 @@ ms.author: mattwoj
 ---
 
 > [!IMPORTANT]
-> Starting 20 September 2023 you won't be able to create new Personalizer resources. The Personalizer service is being retired 1 October 2026.
+> Starting 20 September 2023, you can't create new Personalizer resources. The Personalizer service is retiring 25 August 2026.
 > We recommend migrating to the open-source [microsoft/learning-loop](https://github.com/microsoft/learning-loop).

@@ -4,7 +4,7 @@ description: Set up a SharePoint in Microsoft 365 indexer to automate indexing o
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/23/2026
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2025
@@ -148,48 +148,57 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Search for or navigate to **Microsoft Entra ID**, and then select **Add** > **App registration**. 
+1. Search for or navigate to **Microsoft Entra ID**.
 
-1. Select **+ New registration**:
+1. On the **Overview** page, select **+ Add** > **App registration**.
+
     1. Enter a name for your app.
-    1. Select **Single tenant**.
-    1. Skip the URI designation step. No redirect URI required.
+    1. Select **Single tenant only - *tenant name***.
+    1. Skip the URI designation step. No redirect URI is required.
     1. Select **Register**.
 
-1. On the navigation pane under **Manage**, select **API permissions**, and then **Add a permission**. Select **Microsoft Graph**.
+1. From the left pane, select **Manage** > **API permissions**.
 
-    + If your indexer uses application API permissions, choose **Application** permissions.
-      - For standard indexing, select:
-        - `Files.Read.All`
-        - `Sites.Read.All`
+1. Select **+ Add a permission**, and then select **Microsoft Graph**.
+
+    + If your indexer uses application API permissions, select **Application permissions**.
+
+      + For standard indexing, select:
+
+        + `Files.Read.All`
+        + `Sites.Read.All`
         
         :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
 
-      - If you're enabling [ACL ingestion (preview)](search-indexer-sharepoint-access-control-lists.md), the required permissions depend on which item types (document library files, list items, ASPX pages) and group types (Microsoft Entra vs. SharePoint site groups) you index. See [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario) before completing this step. For the cross-scenario summary, see [Choose your permissions setup](#choose-your-permissions-setup).
+      + If you're enabling [ACL ingestion (preview)](search-indexer-sharepoint-access-control-lists.md), the required permissions depend on which item types (document library files, list items, ASPX pages) and group types (Microsoft Entra vs. SharePoint site groups) you index. Before you complete this step, see [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario). For the cross-scenario summary, see [Choose your permissions setup](#choose-your-permissions-setup).
 
-          Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
+        Using application permissions means the indexer accesses the SharePoint site in a service context. Therefore, when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [Available authentication methods for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
 
-    + If the indexer uses delegated API permissions, select **Delegated permissions** and then select `Delegated - Files.Read.All`, `Delegated - Sites.Read.All`, and `Delegated - User.Read`.
+    + If your indexer uses delegated API permissions, select **Delegated permissions**, and then select:
 
+      + `Files.Read.All`
+      + `Sites.Read.All`
+      + `User.Read`
 
       :::image type="content" source="media/search-howto-index-sharepoint-online/delegated-api-permissions.png" alt-text="Screenshot showing delegated API permissions." lightbox="media/search-howto-index-sharepoint-online/delegated-api-permissions.png":::
 
       Delegated permissions allow the search client to connect to SharePoint under the security identity of the current user.
 
-1. Give admin consent.
+1. Select **Grant admin consent for *tenant name***.
 
-    Tenant admin consent is required when using application API permissions. Some tenants are locked down in such a way that tenant admin consent is required for delegated API permissions as well. If either of these conditions apply, you need to have a tenant admin grant consent for this Microsoft Entra application before creating the indexer.
-
+    Tenant admin consent is required when using application API permissions. Some tenants are locked down in such a way that tenant admin consent is also required for delegated API permissions. If either condition applies, a tenant administrator must grant consent for this Microsoft Entra application before creating the indexer.
 
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png" alt-text="Screenshot showing Microsoft Entra app grant admin consent." lightbox="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png":::
 
-1. Select the **Authentication** tab.
+1. From the left pane, select **Manage** > **Authentication (Preview)**.
 
-1. Set **Allow public client flows** to **Yes**, and then select **Save**.
+1. On the **Redirect URI configuration** tab, select **+ Add Redirect URI**.
 
-1. Select **+ Add a platform**, and then **Mobile and desktop applications**. Check `https://login.microsoftonline.com/common/oauth2/nativeclient`, and then select **Configure**.
+    1. Select **Mobile and desktop applications**.
+    1. Select the `https://login.microsoftonline.com/common/oauth2/nativeclient` redirect URI.
+    1. Select **Configure**.
 
-    :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-authentication-configuration.png" alt-text="Screenshot showing Microsoft Entra app authentication configuration." lightbox="media/search-howto-index-sharepoint-online/aad-app-authentication-configuration.png" :::
+1. On the **Settings** tab, enable the **Allow public client flows** toggle, and then select **Save**.
 
 1. Configure the indexer [authentication method](#available-authentication-methods-for-application-api-permissions-only) according to your solution needs.
 
@@ -302,7 +311,13 @@ api-key: [admin key]
 }
 ```
 
-For user-assigned managed identities, supply the `identity` block in the data source and omit `FederatedCredentialApplicationId` from the connection string. For system-assigned managed identities, set `FederatedCredentialApplicationId` in the connection string (see the connection-string formats below).
+Federated credential configurations require `FederatedCredentialApplicationId` in the connection string. The value differs by identity type:
+
+- **System-assigned managed identity**: Set `FederatedCredentialApplicationId` to the service's system-assigned managed identity application (client) ID. Omit the `identity` block.
+- **User-assigned managed identity**: Supply the `identity` block with the user-assigned managed identity resource path. Set `FederatedCredentialApplicationId` to the user-assigned managed identity's own application (client) ID.
+
+> [!NOTE]
+> `ApplicationId` and `FederatedCredentialApplicationId` are different values. `ApplicationId` is your registered Entra ingestion app that holds the SharePoint permissions. `FederatedCredentialApplicationId` is the application (client) ID of the managed identity itself, which is the entity whose token proves the managed identity's identity.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
@@ -335,7 +350,7 @@ The format of the connection string changes based on whether the indexer is usin
 
 + Application API permissions with secretless (federated identity credential) connection string format:
 
-    `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];FederatedCredentialApplicationId=[Entra application (client) ID that the FIC federates to];TenantId=[SharePoint site tenant id]`
+    `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];FederatedCredentialApplicationId=[managed identity's application (client) ID];TenantId=[SharePoint site tenant id]`
 
 The following table describes each connection string field.
 
@@ -345,7 +360,7 @@ The following table describes each connection string field.
 | `ApplicationId` | Yes | Microsoft Entra application (client) ID of the ingestion app. Must be a valid GUID. |
 | `TenantId` | Optional | Microsoft Entra tenant GUID. Required when the SharePoint site is in a different tenant from the search service. |
 | `ApplicationSecret` | Conditional | Client secret of the ingestion app. Use for secret-based authentication. |
-| `FederatedCredentialApplicationId` | Conditional (FIC mode) | Microsoft Entra application (client) ID that the federated identity credential federates to. Must be a valid GUID. |
+| `FederatedCredentialApplicationId` | Conditional (federated identity credential) | Microsoft Entra application (client) ID used to validate the managed identity. Must be a valid GUID. For a system-assigned managed identity, use the identity's application (client) ID. For a user-assigned managed identity, use the identity's own application (client) ID. For a cross-tenant user-assigned managed identity with `federatedIdentityClientId` set in the `identity` block, use the multi-tenant app's client ID. |
 
 > [!IMPORTANT]
 > `FederatedCredentialApplicationId` and `ApplicationSecret` are mutually exclusive. Connection strings that combine them are rejected on data source create or update.
@@ -360,10 +375,12 @@ You can get the managed identity `object (principal) ID` from the [Configuring t
 When setting up permissions, consider the following information:
 > If the SharePoint site is in the same tenant as the search service and system-assigned managed identity is enabled, `TenantId` doesn't have to be included in the connection string. If the SharePoint site is in a different tenant from the search service, `TenantId` must be included.
 
-The following example shows a data source created with `FederatedCredentialApplicationId`:
+The following examples show data sources created with `FederatedCredentialApplicationId`:
+
+**System-assigned managed identity with federated credential:**
 
 ```http
-PUT https://[service name].search.windows.net/datasources/sharepoint-ds?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -371,11 +388,53 @@ api-key: [admin key]
   "name": "sharepoint-ds",
   "type": "sharepoint",
   "credentials": {
-    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[Entra application (client) ID that the FIC federates to]"
+    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[system-assigned managed identity's application (client) ID]"
   },
   "container": { "name": "defaultSiteLibrary" }
 }
 ```
+
+**User-assigned managed identity with federated credential (single-tenant):**
+
+```json
+{
+  "name": "sharepoint-uami-fed",
+  "type": "sharepoint",
+  "credentials": {
+    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[user-assigned managed identity application (client) ID]"
+  },
+  "container": { "name": "defaultSiteLibrary" },
+  "identity": {
+    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+    "userAssignedIdentity": "/subscriptions/[subscription-id]/resourceGroups/[resource-group]/providers/Microsoft.ManagedIdentity/userAssignedIdentities/[uami-name]"
+  }
+}
+```
+
+> [!NOTE]
+> For a user-assigned managed identity, `FederatedCredentialApplicationId` must equal the user-assigned managed identity's application (client) ID, not the ingestion app's ID (`ApplicationId`). If you omit the `identity` block, the indexer falls back to the system-assigned managed identity.
+
+**Cross-tenant user-assigned managed identity with federated credential (advanced):**
+
+Before using this configuration, ensure your user-assigned managed identity is configured with a federated identity credential that trusts the multi-tenant Entra app. For setup steps, see [Configuring the registered application with a managed identity](#configuring-the-registered-application-with-a-managed-identity).
+
+```json
+{
+  "name": "sharepoint-uami-crosstenantfed",
+  "type": "sharepoint",
+  "credentials": {
+    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[multi-tenant app client ID]"
+  },
+  "container": { "name": "defaultSiteLibrary" },
+  "identity": {
+    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+    "userAssignedIdentity": "/subscriptions/[subscription-id]/resourceGroups/[resource-group]/providers/Microsoft.ManagedIdentity/userAssignedIdentities/[uami-name]",
+    "federatedIdentityClientId": "[multi-tenant app client ID]"
+  }
+}
+```
+
+Use the cross-tenant user-assigned managed identity configuration when the user-assigned managed identity itself federates to a multi-tenant Entra app. In this case, set `federatedIdentityClientId` in the `identity` block to the multi-tenant app's client ID, and set `FederatedCredentialApplicationId` in the connection string to the **same** multi-tenant app's client ID. Setting `FederatedCredentialApplicationId` to the user-assigned managed identity's own client ID in this scenario fails validation.
 
 If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md) or [preserves and honors Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md), review the related articles before you create the indexer. Each feature has specific data source, index, and skillset configuration steps.
 
@@ -562,7 +621,8 @@ If you index document metadata (`"dataToExtract": "contentAndMetadata"`), you ca
 | metadata_spo_item_content_type | Edm.String | The content type of the item. | 
 | metadata_spo_item_extension | Edm.String | The extension of the item. |
 | metadata_spo_item_weburi | Edm.String | The URI of the item. |
-| metadata_spo_item_path | Edm.String | The combination of the parent path and item name. | 
+| metadata_spo_item_path | Edm.String | The combination of the parent path and item name. |
+| metadata_spo_site_url | Edm.String | The URL of the SharePoint site. Required when you enable SharePoint site group resolution. See [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support). |
 
 The SharePoint in Microsoft 365 indexer also supports metadata specific to each document type. For more information, see [Content metadata properties used in Azure AI Search](search-blob-metadata-properties.md).
 

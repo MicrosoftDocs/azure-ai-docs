@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 02/23/2026
+ms.date: 07/29/2026
 author: alexeyo26
 ms.author: alexeyo
 recommendations: false
