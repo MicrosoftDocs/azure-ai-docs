@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1170" height="834" viewBox="0 0 1170 834" role="img" aria-labelledby="diagramTitle diagramDesc">
+  <title id="diagramTitle">Reasoning context modes across three conversation turns</title>
+  <desc id="diagramDesc">A comparison of two reasoning context modes across three turns. In current_turn mode, earlier reasoning isn't rendered into the next turn. In all_turns mode, available, compatible reasoning from earlier turns is rendered when the request can access the response history. Input and output carry forward in both modes.</desc>
+
+  <defs>
+    <style>
+      .h    { font-family: "Segoe UI", Helvetica, Arial, sans-serif; fill: #000000; }
+      .b    { font-family: "Segoe UI", Helvetica, Arial, sans-serif; fill: #000000; font-size: 12px; }
+      .m    { font-family: "Cascadia Code", Consolas, "Courier New", monospace; fill: #000000; }
+      .cell { fill: none; stroke: #605E5C; stroke-width: 1; }
+      .in   { fill: #CFE4FA; stroke: #0078D4; stroke-width: 2; }
+      .out  { fill: #DFF6DD; stroke: #107C10; stroke-width: 2; }
+      .rsn  { fill: #E8DAEF; stroke: #5C2D91; stroke-width: 2; }
+      .drop { fill: #F3F2F1; stroke: #605E5C; stroke-width: 2; stroke-dasharray: 8 5; }
+    </style>
+    <marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#605E5C"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5C2D91"/>
+    </marker>
+  </defs>
+
+  <rect width="1170" height="834" fill="#ffffff"/>
+
+  <text class="h" x="30" y="47" font-size="22">Reasoning context modes across three conversation turns</text>
+  <text class="m" x="30" y="125" font-size="15">reasoning.context</text>
+
+  <text class="h" x="385"  y="128" font-size="17" text-anchor="middle">Turn 1</text>
+  <text class="h" x="705"  y="128" font-size="17" text-anchor="middle">Turn 2</text>
+  <text class="h" x="1025" y="128" font-size="17" text-anchor="middle">Turn 3</text>
+
+  <!-- ============ Track A: current_turn ============ -->
+  <text class="m" x="30" y="259" font-size="15">"current_turn"</text>
+  <text class="b" x="30" y="302">Reasoning from earlier</text>
+  <text class="b" x="30" y="320">turns isn't rendered into</text>
+  <text class="b" x="30" y="338">the next turn's context.</text>
+
+  <rect class="cell" x="270" y="160" width="230" height="250" rx="8"/>
+  <rect class="cell" x="590" y="160" width="230" height="250" rx="8"/>
+  <rect class="cell" x="910" y="160" width="230" height="250" rx="8"/>
+
+  <rect class="in"   x="290" y="180" width="190" height="64" rx="8"/>
+  <text class="b" x="385" y="212" text-anchor="middle" dominant-baseline="central">Input</text>
+  <rect class="drop" x="290" y="252" width="190" height="64" rx="8"/>
+  <text class="b" x="385" y="276" text-anchor="middle" dominant-baseline="central">Reasoning</text>
+  <text class="b" x="385" y="294" text-anchor="middle" dominant-baseline="central">dropped after turn</text>
+  <rect class="out"  x="290" y="324" width="190" height="64" rx="8"/>
+  <text class="b" x="385" y="356" text-anchor="middle" dominant-baseline="central">Output</text>
+
+  <rect class="in"   x="610" y="180" width="190" height="64" rx="8"/>
+  <text class="b" x="705" y="212" text-anchor="middle" dominant-baseline="central">Input</text>
+  <rect class="drop" x="610" y="252" width="190" height="64" rx="8"/>
+  <text class="b" x="705" y="276" text-anchor="middle" dominant-baseline="central">Reasoning</text>
+  <text class="b" x="705" y="294" text-anchor="middle" dominant-baseline="central">dropped after turn</text>
+  <rect class="out"  x="610" y="324" width="190" height="64" rx="8"/>
+  <text class="b" x="705" y="356" text-anchor="middle" dominant-baseline="central">Output</text>
+
+  <rect class="in"   x="930" y="180" width="190" height="64" rx="8"/>
+  <text class="b" x="1025" y="212" text-anchor="middle" dominant-baseline="central">Input</text>
+  <rect class="rsn"  x="930" y="252" width="190" height="64" rx="8"/>
+  <text class="b" x="1025" y="276" text-anchor="middle" dominant-baseline="central">Reasoning</text>
+  <text class="b" x="1025" y="294" text-anchor="middle" dominant-baseline="central">current turn only</text>
+  <rect class="out"  x="930" y="324" width="190" height="64" rx="8"/>
+  <text class="b" x="1025" y="356" text-anchor="middle" dominant-baseline="central">Output</text>
+
+  <line x1="504" y1="284" x2="584" y2="284" stroke="#605E5C" stroke-width="2" marker-end="url(#arrowGrey)"/>
+  <text class="h" x="545" y="262" font-size="10" text-anchor="middle">input +</text>
+  <text class="h" x="545" y="274" font-size="10" text-anchor="middle">output</text>
+  <line x1="824" y1="284" x2="904" y2="284" stroke="#605E5C" stroke-width="2" marker-end="url(#arrowGrey)"/>
+  <text class="h" x="865" y="262" font-size="10" text-anchor="middle">input +</text>
+  <text class="h" x="865" y="274" font-size="10" text-anchor="middle">output</text>
+
+  <line x1="30" y1="425" x2="1140" y2="425" stroke="#D2D0CE" stroke-width="1"/>
+
+  <!-- ============ Track B: all_turns ============ -->
+  <text class="m" x="30" y="544" font-size="15">"all_turns"</text>
+  <text class="b" x="30" y="587">Compatible reasoning items</text>
+  <text class="b" x="30" y="605">from earlier turns are</text>
+  <text class="b" x="30" y="623">rendered into the next turn.</text>
+
+  <rect class="cell" x="270" y="445" width="230" height="250" rx="8"/>
+  <rect class="cell" x="590" y="445" width="230" height="250" rx="8"/>
+  <rect class="cell" x="910" y="445" width="230" height="250" rx="8"/>
+
+  <rect class="in"  x="290" y="465" width="190" height="64" rx="8"/>
+  <text class="b" x="385" y="497" text-anchor="middle" dominant-baseline="central">Input</text>
+  <rect class="rsn" x="290" y="537" width="190" height="64" rx="8"/>
+  <text class="b" x="385" y="561" text-anchor="middle" dominant-baseline="central">Reasoning</text>
+  <text class="b" x="385" y="579" text-anchor="middle" dominant-baseline="central">carried forward</text>
+  <rect class="out" x="290" y="609" width="190" height="64" rx="8"/>
+  <text class="b" x="385" y="641" text-anchor="middle" dominant-baseline="central">Output</text>
+
+  <rect class="in"  x="610" y="465" width="190" height="64" rx="8"/>
+  <text class="b" x="705" y="497" text-anchor="middle" dominant-baseline="central">Input</text>
+  <rect class="rsn" x="610" y="537" width="190" height="64" rx="8"/>
+  <text class="b" x="705" y="561" text-anchor="middle" dominant-baseline="central">Reasoning</text>
+  <text class="b" x="705" y="579" text-anchor="middle" dominant-baseline="central">carried forward</text>
+  <rect class="out" x="610" y="609" width="190" height="64" rx="8"/>
+  <text class="b" x="705" y="641" text-anchor="middle" dominant-baseline="central">Output</text>
+
+  <rect class="in"  x="930" y="465" width="190" height="64" rx="8"/>
+  <text class="b" x="1025" y="497" text-anchor="middle" dominant-baseline="central">Input</text>
+  <rect class="rsn" x="930" y="537" width="190" height="64" rx="8" stroke-width="3"/>
+  <text class="b" x="1025" y="561" text-anchor="middle" dominant-baseline="central">Reasoning</text>
+  <text class="b" x="1025" y="579" text-anchor="middle" dominant-baseline="central">turns 1 to 3 available</text>
+  <rect class="out" x="930" y="609" width="190" height="64" rx="8"/>
+  <text class="b" x="1025" y="641" text-anchor="middle" dominant-baseline="central">Output</text>
+
+  <line x1="504" y1="569" x2="584" y2="569" stroke="#5C2D91" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <text class="h" x="545" y="529" font-size="10" text-anchor="middle">input +</text>
+  <text class="h" x="545" y="541" font-size="10" text-anchor="middle">output +</text>
+  <text class="h" x="545" y="553" font-size="10" text-anchor="middle">reasoning</text>
+  <line x1="824" y1="569" x2="904" y2="569" stroke="#5C2D91" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <text class="h" x="865" y="529" font-size="10" text-anchor="middle">input +</text>
+  <text class="h" x="865" y="541" font-size="10" text-anchor="middle">output +</text>
+  <text class="h" x="865" y="553" font-size="10" text-anchor="middle">reasoning</text>
+
+  <!-- ============ Note ============ -->
+  <rect x="30" y="730" width="1110" height="74" rx="8" fill="none" stroke="#605E5C" stroke-width="1"/>
+  <text class="h" x="585" y="758" font-size="13" text-anchor="middle" dominant-baseline="central">In both modes, reasoning items stay opaque: the API never returns their reasoning text.</text>
+  <text class="h" x="585" y="778" font-size="13" text-anchor="middle" dominant-baseline="central">Because all_turns renders more items into context, it consumes more of the context window.</text>
+</svg>
