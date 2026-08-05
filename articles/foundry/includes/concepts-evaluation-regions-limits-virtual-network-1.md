@@ -57,7 +57,6 @@ These regions support the following safety evaluators: Hate and unfairness, Sexu
 | East US 2 | France Central | Australia East |
 | North Central US | Sweden Central |  |
 |  | Switzerland West |  |
-|  | Switzerland North |  |
 |  | Germany West Central |  |
 
 Supported regions for Groundedness Pro:
