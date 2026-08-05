@@ -20,4 +20,4 @@ Chat models are language models optimized for conversational interfaces. Unlike 
 Use the message format described in this article instead of prompting chat models like older completion models. Otherwise, the models might produce verbose or less useful responses.
 
 > [!TIP]
-> For new apps, consider building on the [Responses API](../how-to/responses.md) instead of Chat Completions. To upgrade an existing app, see [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses).
+> For new apps, consider building on the [Responses API](../how-to/responses.md) instead of Chat Completions. To upgrade an existing app, see [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses) and [Upgrade your Azure OpenAI app from Chat Completions to the Responses API](/azure/developer/ai/how-to/azure-openai-to-responses).
