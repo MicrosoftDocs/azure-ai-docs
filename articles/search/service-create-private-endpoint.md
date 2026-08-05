@@ -1,7 +1,7 @@
 ---
 title: Create a Private Endpoint for a Secure Connection
 description: Set up a private endpoint in a virtual network for a secure client connection to an Azure AI Search service.
-ms.date: 06/08/2026
+ms.date: 08/05/2026
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -199,11 +199,11 @@ Download and then connect to the virtual machine as follows:
 
 ## Test connections
 
-In this section, you verify private network access to the search service and connect privately to the using the Private Endpoint.
+In this section, you verify private network access to the search service and connect to it privately by using the private endpoint.
 
 When the search service endpoint is private, some portal features are disabled. You can view and manage service level settings, but portal access to index data and various other components in the service, such as the index, indexer, and skillset definitions, is restricted for security reasons.
 
-1. In the Remote Desktop of *myVM*, open PowerShell.
+1. In the Remote Desktop of *my-vm*, open PowerShell.
 
 1. Enter `nslookup [search service name].search.windows.net`.
 
@@ -226,7 +226,7 @@ When the search service endpoint is private, some portal features are disabled. 
 
 1. Completing the quickstart from the VM is your confirmation that the service is fully operational.
 
-1. Close the remote desktop connection to *myVM*.
+1. Close the remote desktop connection to *my-vm*.
 
 1. To verify that your service isn't accessible on a public endpoint, open a REST client on your local workstation and attempt the first several tasks in the quickstart. If you receive an error that the remote server doesn't exist, you successfully configured a private endpoint for your search service.
 
@@ -234,13 +234,13 @@ When the search service endpoint is private, some portal features are disabled. 
 
 ## Use the Azure portal to access a private search service
 
-When the search service endpoint is private, some portal features are disabled. You can view and manage service level information, but index, indexer, and skillset information are hidden for security reasons.
+When the search service endpoint is private, some portal features are disabled. You can view and manage service level settings, but portal access to index data and various other components in the service, such as the index, indexer, and skillset definitions, is restricted for security reasons.
 
 To work around this restriction, connect to Azure portal from a browser on a virtual machine inside the virtual network. The Azure portal uses the private endpoint on the connection and gives you visibility into content and operations.
 
 1. Follow the [steps to provision a VM that can access the search service through a private endpoint](#create-virtual-machine-private-endpoint).
 
-1. On a virtual machine in your virtual network, open a browser and sign in to the Azure portal. the Azure portal uses the private endpoint attached to the virtual machine to connect to your search service.
+1. On a virtual machine in your virtual network, open a browser and sign in to the Azure portal. The Azure portal uses the private endpoint attached to the virtual machine to connect to your search service.
 
 ## Disable public network access
 

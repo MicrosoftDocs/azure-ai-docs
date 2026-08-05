@@ -6,7 +6,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 04/24/2026
+ms.date: 08/05/2026
 ai-usage: ai-assisted
 ---
 
@@ -30,7 +30,7 @@ Semantic ranker is a collection of query-side capabilities that improve the qual
 
 Secondary ranking and "answers" apply to the query response. Query rewrite is part of the query request.
 
-Here are the capabilities of the semantic reranker.
+Here are the capabilities of the semantic ranker.
 
 | Capability | Description |
 |---------|-------------|
@@ -68,7 +68,7 @@ In semantic ranking, the query subsystem passes search results as an input to su
    | Semantic field | Token limit |
    |-----------|-------------|
    | "title"   | 128 tokens |
-   | "keywords | 128 tokens |
+   | "keywords" | 128 tokens |
    | "content" | remaining tokens |
 
 1. The summarization output is a summary string for each document, composed of the most relevant information from each field. The system sends summary strings to the ranker for scoring, and to machine reading comprehension models for captions and answers.
