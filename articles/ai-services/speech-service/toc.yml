@@ -150,8 +150,8 @@ items:
       href: improve-accuracy-phrase-list.md
     - name: Display text formatting
       href: display-text-format.md
-    - name: Whisper model from OpenAI
-      href: whisper-overview.md
+    - name: Transcription models from OpenAI
+      href: transcribe-overview.md
     - name: Speech to text FAQ
       displayName: FAQ,STT,frequently asked questions
       href: faq-stt.yml

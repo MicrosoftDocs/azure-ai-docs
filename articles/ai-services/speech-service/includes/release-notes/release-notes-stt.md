@@ -335,9 +335,9 @@ You can create speech to text applications that use diarization to distinguish b
 
 #### Whisper general availability (GA)
 
-The Whisper speech to text model with Azure Speech is now generally available.
+The Whisper speech-to-text model with Azure Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models.
+To learn more about when to use Azure Speech versus Azure OpenAI in Microsoft Foundry Models, see [What are OpenAI transcription models?](../../transcribe-overview.md)
 
 ### February 2024 release
 
@@ -356,11 +356,11 @@ We're thrilled to unveil a groundbreaking addition to our real-time speech model
 
 Key Highlights:
 - Bilingual Support: With our latest release, users can seamlessly switch between English and Spanish or between English and French during real-time speech interactions. This functionality is tailored to accommodate bilingual speakers who frequently transition between these two languages.
-- Enhanced User Experience: Bilingual speakers, whether at work, home, or in various community settings, will find this feature immensely beneficial. The model's ability to comprehend and respond to both English and Spanish in real time opens up new possibilities for effective and fluid communication.
+- Enhanced user experience: Bilingual speakers, whether at work, home, or in various community settings, find this feature immensely beneficial. The model's ability to comprehend and respond to both English and Spanish in real time opens up new possibilities for effective and fluid communication.
 
 How to Use:
 
-Choose es-US (Spanish and English) or fr-CA (French and English) when you call the Speech Service API or try it out on Speech Studio. Feel free to speak either language or mix them together—the model is designed to adapt dynamically, providing accurate and context-aware responses in both languages.
+Choose `es-US` (Spanish and English) or `fr-CA` (French and English) when you call the Speech Service API or try it out on Speech Studio. Feel free to speak either language or mix them together. The model is designed to adapt dynamically, providing accurate and context-aware responses in both languages.
 
 It's time to elevate your communication game with our latest feature release—seamless, multi-lingual communication at your fingertips!
 
@@ -398,7 +398,7 @@ Azure Speech now supports OpenAI's Whisper model via the batch transcription API
 > [!NOTE]
 > Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI.
+To learn more about when to use Azure Speech vs. Azure OpenAI, see [What are OpenAI transcription models?](../../transcribe-overview.md)
 
 #### Speech to text REST API v3.2 public preview
 
@@ -434,8 +434,8 @@ Speech to text supports two new locales as shown in the following table. Refer t
 - Added sample codes showing how to use Pronunciation Assessment in streaming mode in your own application.
   - **C#**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#:~:text=PronunciationAssessmentWithStream).
   - **C++**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#:~:text=PronunciationAssessmentWithStream).
-  - **java**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
-  - **javascript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
+  - **Java**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
+  - **JavaScript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
   - **Objective-C**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#L831).
   - **Python**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#L915).
   - **Swift**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios).
