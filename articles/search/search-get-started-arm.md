@@ -13,7 +13,6 @@ ms.custom:
 ms.date: 07/20/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
-ai-usage: ai-assisted
 ---
 
 # Quickstart: Deploy Azure AI Search using an Azure Resource Manager template
