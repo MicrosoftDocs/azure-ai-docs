@@ -60,7 +60,7 @@ Use one of the following embedding models for integrated vectorization. Deployme
 
 <sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
-<sup>3</sup> For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) (preview) to create the skillset, both resources must be in the same region.
+<sup>3</sup> For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
 <sup>4</sup> The Azure Vision multimodal embedding model is available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
@@ -527,7 +527,7 @@ To vectorize your chunked content, the skillset needs an embedding skill that po
 
 <!--### [REST](#tab/embedding-skill-rest)-->
 
-1. After the built-in chunking skill in the `skills` array, call the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) (preview). You can paste one of the following definitions.
+1. After the built-in chunking skill in the `skills` array, call the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) or [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md). You can paste one of the following definitions.
 
    ```HTTP
         {
@@ -737,7 +737,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
 
 <!--### [REST](#tab/vectorizer-rest)-->
 
-1. Add the [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) or [Azure Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) (preview) after `vectorSearch.profiles`. You can paste one of the following definitions.
+1. Add the [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) or [Azure Vision vectorizer (preview)](vector-search-vectorizer-ai-services-vision.md) after `vectorSearch.profiles`. You can paste one of the following definitions.
 
    ```HTTP
          "profiles": [ ... ],

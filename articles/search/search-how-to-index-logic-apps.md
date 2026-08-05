@@ -147,7 +147,7 @@ It also supports the following query actions:
 
 - Deletion detection isn't supported. You must manually [delete orphaned documents](search-how-to-delete-documents.md#delete-a-single-document) from the index.
 
-- Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
+- Duplicate documents in the search index are a known issue with this feature. If this occurs, consider deleting the objects and starting over.
 
 - No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow.
 
