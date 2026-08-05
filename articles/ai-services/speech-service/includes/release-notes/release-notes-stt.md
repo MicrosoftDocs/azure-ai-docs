@@ -3,11 +3,21 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 05/22/2026
+ms.date: 08/05/2026
 ms.author: pafarley
 ms.custom: references_regions
 ai-usage: ai-assisted
 ---
+
+### July 2026 release
+
+#### Monolingual post-stream refinement general availability
+
+Monolingual post-stream refinement is now generally available for real-time speech to text. It improves final transcript accuracy by running a second recognition pass in parallel with real-time streaming, without affecting first-token latency. For more information, see [Post-stream refinement](../../how-to-recognize-speech.md#post-stream-refinement) and [How to use post-processing](../../how-to-post-processing.md).
+
+#### Multilingual post-stream refinement (public preview)
+
+Multilingual post-stream refinement is now available in public preview for real-time speech to text. A single recognition session can transcribe multiple supported languages, including language switching, while maintaining low-latency intermediate results. Enable post-stream refinement and use open-range automatic language detection with Speech SDK version 1.50 or later. For more information, see [Post-stream refinement](../../how-to-recognize-speech.md#post-stream-refinement) and [How to use post-processing](../../how-to-post-processing.md).
 
 ### May 2026 release
 
