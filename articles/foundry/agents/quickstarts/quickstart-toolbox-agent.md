@@ -449,7 +449,7 @@ azd env set TOOLBOX_ENDPOINT ""
 Delete the agent and its Azure resources:
 
 > [!WARNING]
-> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. Delete any resources you no longer need from the existing project separately.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```bash
 azd down

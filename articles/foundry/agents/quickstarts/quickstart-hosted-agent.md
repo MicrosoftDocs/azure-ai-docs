@@ -654,7 +654,7 @@ Delete the resources when you're finished so you stop incurring charges.
 :::zone pivot="azd"
 
 > [!WARNING]
-> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. Delete any resources you no longer need from the existing project separately.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```azurecli
 azd down
@@ -679,7 +679,7 @@ When the environment created the project, `azd` lists the resources, prompts for
 The canvas creates an `azd`-backed workspace, so you clean up with `azd down` from the workspace folder.
 
 > [!WARNING]
-> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. Delete any resources you no longer need from the existing project separately.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```azurecli
 azd down
