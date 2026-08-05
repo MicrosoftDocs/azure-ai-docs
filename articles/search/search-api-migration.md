@@ -8,8 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: upgrade-and-migration-article
-ms.date: 06/02/2026
-ai-usage: ai-assisted
+ms.date: 06/11/2026
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -360,7 +359,7 @@ Use the instructions in this section to migrate vector fields, configuration, an
 
     ```http
     {
-        "search": (this parameter is ignored in vector search),
+        "search": "*", //Required by the API but ignored for ranking in vector-only queries
         "vectors": [
           {
             "value": [
@@ -382,7 +381,7 @@ Use the instructions in this section to migrate vector fields, configuration, an
 
     ```http
     {
-      "search": "(this parameter is ignored in vector search)",
+      "search": "*", //Required by the API but ignored for ranking in vector-only queries
       "vectorQueries": [
         {
           "kind": "vector",
