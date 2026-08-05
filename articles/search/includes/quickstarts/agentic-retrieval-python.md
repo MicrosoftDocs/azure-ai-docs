@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -51,14 +51,14 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-python-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Go to the quickstart folder and open it in Visual Studio Code.
 
     ```bash
     cd azure-search-python-samples/Quickstart-Agentic-Retrieval
     code .
     ```
 
-1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you got in [Get endpoints](#get-endpoints).
 
 1. Rename `sample.env` to `.env`.
 
@@ -86,7 +86,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 ### Output
 
-Each code cell prints its output to the notebook. The following example is the output after running all cells:
+Each code cell prints its output to the notebook. The following example shows the output after running all cells:
 
 ```
 Documents uploaded to index 'earth-at-night' successfully.
@@ -502,7 +502,7 @@ print("references_content:\n", references_content)
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `quickstart-agentic-retrieval.ipynb` deleted the objects you created in this quickstart.
+Otherwise, the following code from `quickstart-agentic-retrieval.ipynb` deletes the objects you created in this quickstart.
 
 ### Delete the knowledge base
 
