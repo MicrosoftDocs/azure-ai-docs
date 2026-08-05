@@ -11,15 +11,13 @@ ai-usage: ai-assisted
 
 ### July 2026 release
 
-#### Multilingual post-stream refinement (public preview)
-
-Multilingual post-stream refinement is now available in public preview for real-time speech to text. A single recognition session can transcribe multiple supported languages, including language switching, while maintaining low-latency intermediate results. Enable post-stream refinement and use open-range automatic language detection with Speech SDK version 1.50 or later. For more information, see [How to recognize speech](../../how-to-recognize-speech.md).
-
-### June 2026 release
-
 #### Monolingual post-stream refinement general availability
 
 Monolingual post-stream refinement is now generally available for real-time speech to text. It improves final transcript accuracy by running a second recognition pass in parallel with real-time streaming, without affecting first-token latency. For more information, see [How to recognize speech](../../how-to-recognize-speech.md).
+
+#### Multilingual post-stream refinement (public preview)
+
+Multilingual post-stream refinement is now available in public preview for real-time speech to text. A single recognition session can transcribe multiple supported languages, including language switching, while maintaining low-latency intermediate results. Enable post-stream refinement and use open-range automatic language detection with Speech SDK version 1.50 or later. For more information, see [How to recognize speech](../../how-to-recognize-speech.md).
 
 ### May 2026 release
 
