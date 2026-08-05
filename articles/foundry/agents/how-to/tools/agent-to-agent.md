@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 08/05/2026
 author: mattwojo
 reviewer: zhuoqunli
 ms.author: mattwoj
@@ -76,6 +76,8 @@ Create a project connection for your A2A endpoint so you can store authenticatio
 For details about supported authentication approaches, see [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md).
 
 If you are connecting to a Foundry agent as the target, set the connection **target** to the target agent's A2A base path, `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a`, and use the audience `https://ai.azure.com`. Don't set an agent card path. Foundry resolves the default agent card path automatically and negotiates the A2A protocol version for you. The target agent must have incoming A2A enabled; see [Enable incoming A2A on a Foundry agent](../enable-agent-to-agent-endpoint.md).
+
+If the endpoint requires authentication to read its agent card, set `send_credentials_for_agent_card` to `true` in the A2A tool definition. Agent Service fetches the agent card anonymously by default. For more information, see [Credentials for the agent card request](../../concepts/agent-to-agent-authentication.md#credentials-for-the-agent-card-request).
 
 ### Create the connection in the Foundry portal
 
