@@ -132,7 +132,7 @@ Here are some best practices for prompts:
 
 #### More configuration options
 
-You can combine extra configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features, such as `diarization`, `profanityFilterMode`, and `channels`.
+You can combine extra configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features, such as `diarization`, `phraseList`, `locales`, `profanityFilterMode`, and `channels`.
 
 ```azurecli-interactive
 curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
@@ -149,6 +149,10 @@ curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtote
     "maxSpeakers": 2,
     "enabled": true
   },
+  "phraseList":{
+    "phrases":["Kenichi Kumatani","John McDonough"]
+  },
+  "locales":[],
   "profanityFilterMode": "Masked"
 }'
 ```
