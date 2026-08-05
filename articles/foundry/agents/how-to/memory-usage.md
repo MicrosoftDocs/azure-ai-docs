@@ -1645,7 +1645,7 @@ MemoryItem created = projectClient.MemoryStores.CreateMemory(
 
 Console.WriteLine($"Memory ID: {created.MemoryId}");
 Console.WriteLine($"Content: {created.Content}");
-Console.WriteLine($"Kind: {created.Kind}");
+Console.WriteLine($"Scope: {created.Scope}");
 ```
 
 :::zone-end
@@ -1734,7 +1734,7 @@ MemoryItem item = projectClient.MemoryStores.GetMemory(
 
 Console.WriteLine($"Memory ID: {item.MemoryId}");
 Console.WriteLine($"Content: {item.Content}");
-Console.WriteLine($"Kind: {item.Kind}");
+Console.WriteLine($"Scope: {item.Scope}");
 ```
 
 :::zone-end
@@ -1816,7 +1816,7 @@ foreach (MemoryItem item in projectClient.MemoryStores.GetMemories(
 {
     count++;
     Console.WriteLine(
-        $"- {item.MemoryId} [{item.Kind}]: {item.Content}");
+  $"- {item.MemoryId} [{item.Scope}]: {item.Content}");
 }
 
 Console.WriteLine($"Total memories: {count}");
