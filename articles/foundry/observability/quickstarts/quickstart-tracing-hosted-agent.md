@@ -93,10 +93,10 @@ Traces can be viewed in the Foundry portal after invocation.
 
 ## Clean up resources
 
-Tracing data is stored in Application Insights and follows your workspace's data retention settings. No additional resources are created in this quickstart. To clean up the previous quickstart, run `azd down` from your agent project directory. What the command deletes depends on whether initialization created or reused the Foundry project.
+Tracing data is stored in Application Insights and follows your workspace's data retention settings. This quickstart doesn't create any extra resources. To clean up the previous quickstart, run `azd down` from your agent project directory. What the command deletes depends on whether initialization created or reused the Foundry project.
 
 > [!WARNING]
-> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. Delete any resources you no longer need from the existing project separately.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ## Troubleshooting
 
