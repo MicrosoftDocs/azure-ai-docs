@@ -160,7 +160,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | March | REST API | [Search Management 2025-02-01-preview](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true). Preview release of REST APIs for control plane operations. Adds support for in-place upgrade to higher capacity partitions, in-place upgrade to higher tiers, and Azure Confidential Compute. |
 | February | Security | [Customer-managed keys support for Managed HSM](search-security-manage-encryption-keys.md). Use either Azure Key Vault or Azure Key Vault Managed HSM (Hardware Security Module) to store customer-managed keys for extra encryption of sensitive content. |
 
-## Previous year's announcements
+## Pre-2025 announcements
 
 + [2024 announcements](/previous-versions/azure/search/search-whats-new-2024)
 + [2023 announcements](/previous-versions/azure/search/search-whats-new-2023)

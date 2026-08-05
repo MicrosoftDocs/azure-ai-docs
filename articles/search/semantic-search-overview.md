@@ -30,7 +30,7 @@ Semantic ranker is a collection of query-side capabilities that improve the qual
 
 Secondary ranking and "answers" apply to the query response. Query rewrite is part of the query request.
 
-Here are the capabilities of the semantic ranker.
+Semantic ranker has the following capabilities:
 
 | Capability | Description |
 |---------|-------------|
@@ -59,7 +59,7 @@ Semantic ranking has three steps:
 
 In semantic ranking, the query subsystem passes search results as an input to summarization and ranking models. Because the ranking models have input size constraints and are processing intensive, search results must be sized and structured (summarized) for efficient handling.
 
-1. The semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
+1. The semantic ranker starts with a [BM25-ranked result](index-similarity-and-scoring.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
 
 1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
 

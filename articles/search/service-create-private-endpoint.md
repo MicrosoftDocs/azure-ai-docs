@@ -30,7 +30,7 @@ This article walks you through these steps:
 1. [Create an Azure virtual network](#create-the-virtual-network) (or use an existing one)
 1. [Configure a search service with a private endpoint](#create-a-search-service-with-a-private-endpoint)
 1. [Create an Azure virtual machine](#create-a-virtual-machine) in the same virtual network
-1. [Test the connection](#connect-to-the-vm) from the virtual machine
+1. [Test the connection](#test-connections) from the virtual machine
 
 Private endpoints are provided by [Azure Private Link](/azure/private-link/private-link-overview), as a separate billable service. For more information about costs, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
 
@@ -199,9 +199,7 @@ Download and then connect to the virtual machine as follows:
 
 ## Test connections
 
-In this section, you verify private network access to the search service and connect to it privately by using the private endpoint.
-
-When the search service endpoint is private, some portal features are disabled. You can view and manage service level settings, but portal access to index data and various other components in the service, such as the index, indexer, and skillset definitions, is restricted for security reasons.
+In this section, you use `nslookup` in PowerShell and a REST client from the virtual machine to confirm the search service resolves to a private IP address and is reachable over the private endpoint.
 
 1. In the Remote Desktop of *my-vm*, open PowerShell.
 
@@ -234,7 +232,7 @@ When the search service endpoint is private, some portal features are disabled. 
 
 ## Use the Azure portal to access a private search service
 
-When the search service endpoint is private, some portal features are disabled. You can view and manage service level settings, but portal access to index data and various other components in the service, such as the index, indexer, and skillset definitions, is restricted for security reasons.
+When the search service endpoint is private, some portal features are disabled. You can still view and manage service-level settings, but portal access to index data and other components of the service (such as the index, indexer, and skillset definitions) is restricted for security reasons.
 
 To work around this restriction, connect to Azure portal from a browser on a virtual machine inside the virtual network. The Azure portal uses the private endpoint on the connection and gives you visibility into content and operations.
 
