@@ -75,7 +75,10 @@ For model availability across all regions, grouped by deployment category, see [
 | `gpt-5.6-luna` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
 
 > [!NOTE]
-> Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-5.6` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
+> Keep the following in mind when you deploy and call the `gpt-5.6` models:
+>
+> - Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-5.6` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
+> - These models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For more information, see [Tool calling with reasoning models](../how-to/reasoning.md#tool-calling-with-reasoning-models).
 
 ## GPT-5.5
 
