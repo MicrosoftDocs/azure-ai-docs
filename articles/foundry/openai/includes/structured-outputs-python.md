@@ -2,13 +2,13 @@
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 12/6/2025
+ms.date: 08/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: structured-outputs
 ai-usage: ai-assisted
 
-ms.custom: classic-and-new
+ms.custom: classic-and-new, doc-kit-assisted
 ---
 
 ## Getting started
@@ -179,6 +179,44 @@ name='Science Fair' date='Friday' participants=['Alice', 'Bob']
 
 ---
 
+## Use structured outputs with the Responses API
+
+For the Responses API, use OpenAI Python 2.x and pass a Pydantic model to `responses.parse` by using the `text_format` parameter. The SDK converts the model to a JSON Schema under `text.format` and returns the parsed value in `output_parsed`.
+
+```python
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from openai import OpenAI
+from pydantic import BaseModel
+
+# Configure access.
+endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+openai = OpenAI(base_url=endpoint, api_key=token_provider)
+
+# Define the structured response.
+class CalendarEvent(BaseModel):
+    name: str
+    date: str
+    participants: list[str]
+
+# Parse the response directly into the Pydantic model.
+response = openai.responses.parse(
+    model="gpt-5-mini",
+  input="Extract the event information from: Alice and Bob are going to a science fair on Friday.",
+    text_format=CalendarEvent,
+)
+
+print(response.output_parsed)
+```
+
+Output:
+
+```output
+name='Science Fair' date='Friday' participants=['Alice', 'Bob']
+```
+
 ## Function calling with structured outputs
 
 Structured Outputs for function calling can be enabled with a single parameter, by supplying `strict: true`. 
@@ -253,3 +291,5 @@ response = client.chat.completions.create(
 print(response.choices[0].message.tool_calls[0].function)
 print(response.model_dump_json(indent=2))
 ```
+
+---

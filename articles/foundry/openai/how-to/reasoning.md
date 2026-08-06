@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 07/29/2026
+ms.date: 08/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -71,10 +71,13 @@ ChatCompletionOptions options = new ChatCompletionOptions
     MaxOutputTokenCount = 100000
 };
 
-ChatCompletion completion = client.CompleteChat(
-         new DeveloperChatMessage("You are a helpful assistant"),
-         new UserChatMessage("Tell me about the bitter lesson")
-    );
+ChatMessage[] messages =
+[
+    new DeveloperChatMessage("You are a helpful assistant"),
+    new UserChatMessage("Tell me about the bitter lesson")
+];
+
+ChatCompletion completion = client.CompleteChat(messages, options);
 
 Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
@@ -376,10 +379,13 @@ ChatCompletionOptions options = new ChatCompletionOptions
     MaxOutputTokenCount = 100000
 };
 
-ChatCompletion completion = client.CompleteChat(
-         new DeveloperChatMessage("You are a helpful assistant"),
-         new UserChatMessage("Tell me about the bitter lesson")
-    );
+ChatMessage[] messages =
+[
+    new DeveloperChatMessage("You are a helpful assistant"),
+    new UserChatMessage("Tell me about the bitter lesson")
+];
+
+ChatCompletion completion = client.CompleteChat(messages, options);
 
 Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
@@ -558,6 +564,81 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 ```
 
 ---
+
+## Tool calling with reasoning models
+
+Use the [Responses API](./responses.md) when you combine reasoning with function or custom tools. The `gpt-5.6` and later models support the Chat Completions API and they support tools, but the Chat Completions API doesn't support the two together. A Chat Completions request that includes `tools` fails with the following error:
+
+```output
+Function tools with reasoning_effort are not supported for gpt-5.6-sol in /v1/chat/completions. To use function tools, use /v1/responses or set reasoning_effort to 'none'.
+```
+
+The request fails even when you don't send `reasoning_effort`, because these models default to `medium`. Sending `tools` is enough to trigger the error. An application that calls tools through Chat Completions can start failing after you upgrade its deployment from an earlier reasoning model.
+
+You have two ways to resolve it:
+
+- **Recommended**: Send tool-calling requests to the Responses API. This path supports the full range of `reasoning_effort` values, returns reasoning items you can carry across turns, and is the surface where new reasoning features ship first. For a migration walkthrough, see [Upgrade your Azure OpenAI app from Chat Completions to the Responses API](/azure/developer/ai/how-to/azure-openai-to-responses).
+- If you must stay on Chat Completions, set `reasoning_effort` to `none` on every request that sends `tools`. The model then calls tools without reasoning, which loses the planning quality that reasoning provides.
+
+The following request shows the Chat Completions workaround:
+
+```bash
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+      "model": "gpt-5.6-sol",
+      "messages": [
+          {"role": "user", "content": "What is the weather in Seattle?"}
+      ],
+      "reasoning_effort": "none",
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "get_weather",
+            "description": "Get the current weather for a city.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "city": {"type": "string"}
+              },
+              "required": ["city"]
+            }
+          }
+        }
+      ]
+  }'
+```
+
+In .NET, set the same value through `ChatCompletionOptions.ReasoningEffortLevel`:
+
+```csharp
+using OpenAI.Chat;
+
+ChatTool getWeatherTool = ChatTool.CreateFunctionTool(
+    functionName: "get_weather",
+    functionDescription: "Get the current weather for a city.",
+    functionParameters: BinaryData.FromString("""
+        {
+          "type": "object",
+          "properties": { "city": { "type": "string" } },
+          "required": ["city"]
+        }
+        """));
+
+ChatCompletionOptions options = new ChatCompletionOptions
+{
+    ReasoningEffortLevel = ChatReasoningEffortLevel.None,
+    MaxOutputTokenCount = 100000
+};
+options.Tools.Add(getWeatherTool);
+```
+
+For the full type surface, see the [OpenAI .NET library](https://github.com/openai/openai-dotnet).
+
+> [!NOTE]
+> `ChatReasoningEffortLevel` is marked experimental in the OpenAI .NET library, so it emits the `OPENAI001` diagnostic. Suppress it with `#pragma warning disable OPENAI001` as shown in the earlier samples, or add `<NoWarn>$(NoWarn);OPENAI001</NoWarn>` to your project file. Token-based authentication uses the same diagnostic.
 
 ## Reasoning mode
 
@@ -1278,9 +1359,9 @@ Input and output limits share the available context budget and aren't additive. 
 | **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)** | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000 <br><br>Input:<br>922,000<br>Output:<br>128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
 | **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
 | **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Chat Completions API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
+| Chat Completions API | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅ | ✅ | ✅ | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
 | Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
-| Functions/Tools | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
+| Functions/Tools | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
 | Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | - | ✅ |✅| ✅| ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
 | `max_completion_tokens` <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
 | System Messages <sup>3</sup> | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
@@ -1296,13 +1377,14 @@ Input and output limits share the available context budget and aren't additive. 
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.<br><br>
 <sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to.<br><br>
 <sup>7</sup> `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.<br><br>
-<sup>8</sup> The `gpt-5.6` models support `all_turns` for the `reasoning.context` parameter and use it by default. Earlier reasoning models support only `auto` and `current_turn`.
+<sup>8</sup> The `gpt-5.6` models support `all_turns` for the `reasoning.context` parameter and use it by default. Earlier reasoning models support only `auto` and `current_turn`.<br><br>
+<sup>9</sup> The `gpt-5.6` and later models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For details and workarounds, see [Tool calling with reasoning models](#tool-calling-with-reasoning-models).
 
 ### NEW GPT-5 reasoning features
 
 | Feature | Description |
 |----|----|
-|`reasoning_effort` | `max` is only supported with `gpt-5.6` and Responses API <br> `xhigh` is only supported with `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, and `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` isn't supported with `gpt-5.1` or greater <sup>*</sup> <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
+|`reasoning_effort` | `max` is only supported with `gpt-5.6` and Responses API <br> `xhigh` is only supported with `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, and `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` isn't supported with `gpt-5.1` or greater <sup>*</sup> <br> With `gpt-5.6` and later models on the Chat Completions API, `none` is the only value you can combine with function tools. See [Tool calling with reasoning models](#tool-calling-with-reasoning-models). <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` |
 |`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
 | [`reasoning.context`](#preserve-reasoning-across-calls) | Controls which available reasoning items the model renders into its next context. `all_turns` is only supported with `gpt-5.6`, which uses it by default.<br><br>**Options:** `auto`, `current_turn`, `all_turns`. |
 | [`reasoning.mode`](#reasoning-mode) | Selects standard or pro execution for `gpt-5.6` with the Responses API. Pro mode performs more model work on a request before returning a single answer, which increases latency and token usage. Azure OpenAI uses `standard` as the default.<br><br>**Options:** `standard`, `pro`. |
