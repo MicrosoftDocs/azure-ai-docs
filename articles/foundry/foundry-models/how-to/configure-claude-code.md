@@ -47,7 +47,7 @@ In this article, you learn how to:
 
 ## Deploy a Claude model in Foundry
 
-Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Most Claude models support global standard deployment. For more information on supported deployment types, see [Claude models in Microsoft Foundry](../concepts/claude-models.md#deployment-types).
+Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Most Claude models support global standard deployment. For more information on supported deployment types, see [Claude models in Microsoft Foundry](../concepts/claude-models.md#deployment-types-and-regions).
 
 Claude Code uses different models for different tasks:
 
