@@ -551,7 +551,7 @@ api-key: {{admin-api-key}}
 
 **Key points:**
 
-+ The filter mode can affect the number of results available to the semantic ranker. As a best practice, it's smart to give the semantic ranker the maximum number of documents (50). If prefilters or postfilters are too selective, you might be underserving the semantic ranker by giving it fewer than 50 documents to work with.
++ The filter mode can affect the number of results available to the semantic ranker. As a best practice, give the semantic ranker the maximum number of documents (50). If prefilters or postfilters are too selective, you might underserve the semantic ranker by giving it fewer than 50 documents to work with.
 
 + `preFilter` is applied before query execution. If prefilter reduces the search area to 100 documents, the vector query executes over the `DescriptionVector` field for those 100 documents, returning the k=50 best matches. Those 50 matching documents then pass to RRF for merged results, and then to semantic ranker.
 
@@ -595,7 +595,7 @@ Both `k` and `top` are optional. Unspecified, the default number of results in a
 
 If you're using semantic ranker in 2024-05-01-preview or later, it's a best practice to set `k` and `maxTextRecallSize` to sum to at least 50 total.  You can then restrict the results returned to the user with the `top` parameter. 
 
-If you're using semantic ranker in an API version earlier than 2024-05-01-preview, do the following:
+If you're using semantic ranker in an API version earlier than 2024-05-01-preview, follow these steps:
 
 + For keyword-only search (no vectors) set `top` to 50
 + For hybrid search set `k` to 50, to ensure that the semantic ranker gets at least 50 results. 

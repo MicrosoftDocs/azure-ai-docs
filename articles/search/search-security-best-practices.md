@@ -121,7 +121,7 @@ The workflow for authorizing control plane operations is:
 
 ### Authorize data plane operations
 
-Data plane operations target content hosted on a search service, such as index creation, document loading, and queries. Authorization is available through role-based access control, API keys, or both. For configuration steps, see [(Recommended) Enable role-based access control](#recommended-enable-role-based-access-control) and [Configure API key authentication](#configure-api-key-authentication).
+Data plane operations target content hosted on a search service, such as index creation, document loading, and queries. Authorize these operations through role-based access control, API keys, or both. For configuration steps, see [(Recommended) Enable role-based access control](#recommended-enable-role-based-access-control) and [Configure API key authentication](#configure-api-key-authentication).
 
 ### Grant access to individual indexes
 
