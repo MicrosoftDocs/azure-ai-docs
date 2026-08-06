@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 07/22/2026
+ms.date: 07/29/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -250,10 +250,94 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 
 ---
 
+## How reasoning works
+
+Reasoning models generate **reasoning tokens** in addition to the input and output tokens you're already familiar with. The model uses those tokens to work through your prompt: breaking the problem apart, weighing approaches, and abandoning paths that don't hold up. Reasoning tokens never appear in the message content, but they occupy space in the context window and are billed as output tokens.
+
+To see how many reasoning tokens a request consumed, check `completion_tokens_details.reasoning_tokens` in a Chat Completions API response, or `output_tokens_details.reasoning_tokens` in a Responses API response.
+
+The `gpt-5.4` and `gpt-5.5` models support interleaved thinking with the Responses API. They can produce visible output before and between periods of reasoning, and reason between tool calls.
+
+Across a multi-turn conversation, input and output tokens carry forward from each turn. What happens to the reasoning from earlier turns depends on the model and on the `reasoning.context` value you set.
+
+:::image type="content" source="../media/how-to/reasoning/reasoning-context-modes.svg" alt-text="Diagram showing that current_turn drops earlier reasoning, while all_turns carries compatible reasoning across three turns." lightbox="../media/how-to/reasoning/reasoning-context-modes.svg":::
+
+To choose a mode, see [Preserve reasoning across calls](#preserve-reasoning-across-calls).
+
+### Manage the context window
+
+Reasoning tokens share the context window with your input and the visible output. A single request can spend anywhere from a few hundred to tens of thousands of reasoning tokens depending on how hard the problem is, so leave room for them when you size a request.
+
+The usage object reports the exact count for each request:
+
+```json
+{
+  "usage": {
+    "input_tokens": 75,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 1186,
+    "output_tokens_details": {
+      "reasoning_tokens": 1024
+    },
+    "total_tokens": 1261
+  }
+}
+```
+
+Context window sizes differ by model. For the limits that apply to your deployment, see [API & feature support](#api--feature-support).
+
+### Control costs
+
+Reasoning tokens are billed as output tokens, so a request that thinks longer costs more even when the visible answer is short. To cap the total the model generates, set `max_output_tokens` with the Responses API or `max_completion_tokens` with the Chat Completions API. Both limits cover reasoning tokens, visible output tokens, and formatting tokens.
+
+Capping output addresses only half of a multi-turn workload. Reasoning models also resend a growing conversation on every turn, and `all_turns` adds earlier reasoning items on top of that. To reduce what you pay for those repeated input tokens, see [Prompt caching](./prompt-caching.md).
+
+### Allocate space for reasoning
+
+If generation reaches the context window limit or the token cap you set, the response comes back incomplete:
+
+```json
+{
+  "status": "incomplete",
+  "incomplete_details": {
+    "reason": "max_output_tokens"
+  }
+}
+```
+
+This condition can occur before the model produces any visible output. You pay for input and reasoning tokens but receive no answer. Check `status` on every response so your application handles this case instead of treating it as an empty result.
+
+To avoid running out of room, reserve at least 25,000 tokens for reasoning and output while you're getting a feel for a workload. Once you know how many reasoning tokens your prompts typically consume, tune the buffer to match.
+
+### Keep reasoning items in context
+
+When a reasoning model calls functions through the Responses API, pass the reasoning items from the previous response back along with your function output. If the model called several functions in a row, send every reasoning item, function call item, and function call output item since the last user message. The model then continues the same line of reasoning instead of starting over, which reaches a good answer in fewer tokens.
+
+The simplest approach is to pass all output items from the previous response into the next request, either with `previous_response_id` or by copying the items into the next `input` array. Reasoning items that aren't relevant to your functions are ignored, and the relevant ones are retained.
+
+If you trim or reorder context before sending it, keep everything between the last user message and your function call output intact.
+
 ## Reasoning effort
 
+The `reasoning_effort` parameter tells the model how much to think before it answers. Supported values vary by model and include `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, and `max`. Defaults vary by model as well. For the values each model accepts, see [API & feature support](#api--feature-support).
+
+| Effort | Best for |
+| --- | --- |
+| `none` | Latency-critical work that doesn't benefit from reasoning or chained tool calls, such as voice, fast information retrieval, and classification. |
+| `low` | Efficient reasoning with a modest latency increase. Suits tool use, planning, search, and multistep decisions where speed and cost matter. |
+| `medium` | A balanced starting point for most workloads, especially when the task involves planning, complex reasoning, or judgment. |
+| `high` | Hard reasoning, complex debugging, deep planning, and high-value tasks where quality matters more than latency. |
+| `xhigh` | Deep research, asynchronous workflows, and agentic tasks with long runs. Use it when your evaluations show a gain that justifies the extra latency and cost. |
+| `max` | Your most complex tasks. If you currently use `xhigh`, compare both settings before you switch. |
+
+Reasoning models adapt within a setting, spending fewer tokens on simple tasks and thinking harder on complex ones. The higher the effort, the longer the model spends on the request, which generally produces more [reasoning tokens](#how-reasoning-works).
+
 > [!NOTE]
-> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `reasoning_effort` can be set to `low`, `medium`, or `high` for all reasoning models except `o1-mini`. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
+> `o1-mini` doesn't support `reasoning_effort`.
+
+For a faster first visible token in latency-sensitive applications, prompt the model to produce a short preamble before it reasons more deeply.
 
 ### Developer messages
 
@@ -474,6 +558,25 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 ```
 
 ---
+
+## Reasoning mode
+
+The `gpt-5.6` models support two execution modes in the Responses API. Standard mode is the default on Azure OpenAI. Set `reasoning.mode` to `pro` for difficult tasks that justify more model work and can absorb the extra latency.
+
+Mode and effort are independent controls. The mode selects standard or pro execution, and `reasoning_effort` controls how much reasoning the model applies within that mode.
+
+```json
+{
+  "model": "gpt-5.6",
+  "reasoning": {
+    "mode": "pro",
+    "effort": "medium"
+  },
+  "input": "Review this database migration plan and identify potential failure modes."
+}
+```
+
+Pro mode aggregates the work it performs into a single answer and bills those tokens at the model's standard rates. Because it performs more work than standard mode, expect higher token usage and higher cost. Existing pro model deployments keep their current behavior and pricing.
 
 ## Reasoning summary
 
@@ -697,6 +800,223 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
 
 > [!NOTE]
 > Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
+
+## Preserve reasoning across calls
+
+Conversation state and reasoning state aren't the same thing. Passing messages across calls gives the model the visible conversation history. Persisted reasoning goes a step further: on models that support it, the model can also render its own reasoning items from earlier turns into the current context.
+
+Persisted reasoning is about continuity, not transparency. The reasoning items stay opaque, and the API never returns their reasoning text. Set `reasoning.context` to control which of the available reasoning items the model can draw on.
+
+| Value | Behavior |
+| --- | --- |
+| `auto` | Uses the model's default. Omitting `reasoning.context` has the same effect. |
+| `current_turn` | Makes the active turn's reasoning available to the model, but doesn't render reasoning from earlier turns into the next sample. |
+| `all_turns` | Renders available, compatible reasoning items from earlier turns into the next sample. Only the `gpt-5.6` models support this value. |
+
+The `gpt-5.6` models support `all_turns` and use it by default. Earlier reasoning models default to `current_turn`.
+
+> [!IMPORTANT]
+> Because `all_turns` renders more reasoning items into context, it increases the tokens billed for a request. If you upgrade an existing workload to a `gpt-5.6` model, expect higher token consumption on multi-turn conversations even when your code doesn't change. Set `reasoning.context` to `current_turn` to keep the earlier behavior.
+
+Keep these behaviors in mind:
+
+- Setting `reasoning.context` doesn't create reasoning items that aren't already available. It only controls which existing items the model renders.
+- `all_turns` has an effect only when the request can reach earlier response items. Use `previous_response_id`, attach the response to a conversation, or replay the complete response history yourself.
+- On the first request in a conversation, `current_turn` and `all_turns` behave the same way, because no earlier reasoning exists yet.
+- Each response reports the mode it actually used in its `reasoning.context` field, as either `current_turn` or `all_turns`. Check that field to confirm the effective mode.
+
+### Continue reasoning with stored responses
+
+When you store responses, `previous_response_id` is the shortest way to make earlier reasoning available to the model.
+
+# [C#](#tab/csharp)
+
+A C# example for `reasoning.context` isn't available yet. Select the **Python** or **REST** tab to see how to set the mode and read the effective value back from the response.
+
+# [Python](#tab/python)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+)
+
+# First turn: no earlier reasoning exists yet.
+first = client.responses.create(
+    model="gpt-5.6",  # replace with your model deployment name
+    input="Inspect this repository and identify the likely bug.",
+    reasoning={"context": "current_turn"},
+)
+
+# Second turn: previous_response_id gives the model access to earlier items.
+second = client.responses.create(
+    model="gpt-5.6",
+    previous_response_id=first.id,
+    input="Now patch the bug and explain the change.",
+    reasoning={"context": "all_turns"},
+)
+
+print(second.output_text)
+print(second.reasoning.context)  # effective mode: current_turn or all_turns
+```
+
+# [REST](#tab/REST)
+
+```bash
+# First turn: no earlier reasoning exists yet.
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+      "model": "gpt-5.6",
+      "input": "Inspect this repository and identify the likely bug.",
+      "reasoning": {"context": "current_turn"}
+  }'
+
+# Second turn: pass the ID returned by the first response.
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+      "model": "gpt-5.6",
+      "previous_response_id": "resp_abc123",
+      "input": "Now patch the bug and explain the change.",
+      "reasoning": {"context": "all_turns"}
+  }'
+```
+
+# [Output](#tab/output)
+
+The second call prints the model's answer, followed by the effective reasoning context mode:
+
+```output
+<model response text>
+all_turns
+```
+
+---
+
+Use `current_turn` when you replay older response items that the model no longer needs. Those items can stay in the request payload for continuity, but the service doesn't render them into the new sample, which reduces the rendered context in long-running workflows.
+
+### Preserve reasoning without stored responses
+
+In stateless mode, reasoning items in the response's `output` array include an `encrypted_content` property by default. Stateless mode applies when you set `store` to `false`, and when your organization uses Zero Data Retention. You don't need to request the property: the API still accepts `reasoning.encrypted_content` in the `include` parameter for compatibility, but no longer requires it.
+
+To use `all_turns` in this mode, keep every output item, append the next user message, and replay the complete history.
+
+# [C#](#tab/csharp)
+
+A C# example for stateless persisted reasoning isn't available yet. Select the **Python** or **REST** tab to see how to replay encrypted reasoning items across turns.
+
+# [Python](#tab/python)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+)
+
+history = [{"role": "user", "content": "Inspect this repository and identify the likely bug."}]
+
+# Stateless requests return encrypted reasoning items in the output array.
+first = client.responses.create(
+    model="gpt-5.6",  # replace with your model deployment name
+    store=False,
+    input=history,
+    reasoning={"context": "current_turn"},
+)
+
+# Replay every output item, including the encrypted reasoning.
+history.extend(item.model_dump() for item in first.output)
+history.append({"role": "user", "content": "Now patch the bug and explain the change."})
+
+second = client.responses.create(
+    model="gpt-5.6",
+    store=False,
+    input=history,
+    reasoning={"context": "all_turns"},
+)
+
+print(second.output_text)
+```
+
+# [REST](#tab/REST)
+
+```bash
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+      "model": "gpt-5.6",
+      "store": false,
+      "input": "Inspect this repository and identify the likely bug.",
+      "reasoning": {"context": "current_turn"}
+  }'
+```
+
+The reasoning items in the `output` array carry an `encrypted_content` property. Send those items back, along with the next user message, in the `input` array of your next request and set `reasoning.context` to `all_turns`.
+
+# [Output](#tab/output)
+
+Each reasoning item in the `output` array includes the encrypted payload that you replay in the next request:
+
+```json
+{
+  "id": "rs_<reasoning_item_id>",
+  "type": "reasoning",
+  "summary": [],
+  "encrypted_content": "<encrypted reasoning payload>",
+  "status": null
+}
+```
+
+---
+
+For more information about encrypted reasoning items, see [Encrypted reasoning items](./responses.md#encrypted-reasoning-items).
+
+## Phase parameter
+
+In long-running or tool-heavy workflows that use `gpt-5.5` and `gpt-5.4` in the Responses API, mark each assistant message with a `phase` value. The parameter is optional, but omitting it can cause the model to treat a preamble as the final answer and stop early.
+
+Use `commentary` for intermediate assistant updates, such as the preamble a model produces before a tool call, and `final_answer` for the completed response. Don't add `phase` to user messages.
+
+```json
+{
+  "model": "gpt-5.5",
+  "input": [
+    {
+      "role": "assistant",
+      "phase": "commentary",
+      "content": "I'll inspect the logs, then summarize the root cause and the fix."
+    },
+    {
+      "role": "assistant",
+      "phase": "final_answer",
+      "content": "Root cause: a cache invalidation race."
+    },
+    {
+      "role": "user",
+      "content": "Now give me a rollout-safe fix plan."
+    }
+  ]
+}
+```
+
+When you continue a conversation by using `previous_response_id`, the service preserves the earlier assistant state for you. If you replay assistant history yourself, keep each message's original `phase` value.
 
 ## Python lark
 
@@ -965,6 +1285,7 @@ Input and output limits share the available context budget and aren't additive. 
 | `max_completion_tokens` <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
 | System Messages <sup>3</sup> | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
 | [Reasoning summary](#reasoning-summary) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Persisted reasoning](#preserve-reasoning-across-calls)<sup>8</sup> | ✅ | ✅ | ✅ | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | Streaming | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
 
 
@@ -974,7 +1295,8 @@ Input and output limits share the available context budget and aren't additive. 
 <sup>4</sup> `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1` keep in mind that you may need to update your code to explicitly pass a reasoning_effort level if you want reasoning_effort to occur.<br><br>
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.<br><br>
 <sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to.<br><br>
-<sup>7</sup> `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.
+<sup>7</sup> `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.<br><br>
+<sup>8</sup> The `gpt-5.6` models support `all_turns` for the `reasoning.context` parameter and use it by default. Earlier reasoning models support only `auto` and `current_turn`.
 
 ### NEW GPT-5 reasoning features
 
@@ -982,14 +1304,14 @@ Input and output limits share the available context budget and aren't additive. 
 |----|----|
 |`reasoning_effort` | `max` is only supported with `gpt-5.6` and Responses API <br> `xhigh` is only supported with `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, and `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` isn't supported with `gpt-5.1` or greater <sup>*</sup> <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
 |`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
+| [`reasoning.context`](#preserve-reasoning-across-calls) | Controls which available reasoning items the model renders into its next context. `all_turns` is only supported with `gpt-5.6`, which uses it by default.<br><br>**Options:** `auto`, `current_turn`, `all_turns`. |
+| [`reasoning.mode`](#reasoning-mode) | Selects standard or pro execution for `gpt-5.6` with the Responses API. Pro mode performs more model work on a request before returning a single answer, which increases latency and token usage. Azure OpenAI uses `standard` as the default.<br><br>**Options:** `standard`, `pro`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
 | **custom tool type** | Enables raw text (non-json) outputs |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
 
 <sup>*</sup> `gpt-5-codex` also does not support `reasoning_effort` `minimal`.
-
-For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbook guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and their [GPT-5 feature guide](https://platform.openai.com/docs/guides/latest-model).
 
 # [O-Series Reasoning Models](#tab/o-series)
 
@@ -1007,6 +1329,7 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 | `max_completion_tokens` <sup>1</sup> |  ✅ | ✅ | ✅ | ✅ |✅ |✅ |
 | System Messages <sup>2</sup> | ✅ | ✅| ✅ | ✅ | ✅ | ✅ |
 | [Reasoning summary](#reasoning-summary) |  ✅ | - | ✅ | ✅ | -  | -  |
+| [Persisted reasoning](#preserve-reasoning-across-calls) | - | - | - | - | - | - |
 | Streaming <sup>3</sup>  | ✅ | - | ✅ | ✅| ✅ | - |
 
 <sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API.<br><br>
@@ -1024,6 +1347,14 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 The following are currently unsupported with reasoning models:
 
 - `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
+
+## Prompting guidance
+
+Reasoning models work best when you give them a clear goal, firm constraints, and an explicit output contract. Unlike non-reasoning models, they don't need you to prescribe every intermediate step.
+
+- State the task, the constraints, and the output format you expect.
+- Treat `reasoning_effort` as a tuning knob rather than the first thing you reach for when quality drops.
+- For agentic or research-heavy workflows, define what counts as done and how the model should verify its own work.
 
 ## Markdown output
 

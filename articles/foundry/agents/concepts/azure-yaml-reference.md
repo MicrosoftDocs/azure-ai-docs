@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: reference
-ms.date: 07/01/2026
+ms.date: 07/23/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -35,9 +35,9 @@ An environment is a named configuration, such as `dev`, `staging`, or `prod`, th
 | Command | What it does |
 | ------- | ------------ |
 | `azd provision` | Creates Azure resources, such as the Foundry project, model deployments, and container registry. |
-| `azd deploy` | Builds and packages your agent, uploads it, and creates the hosted agent version. |
+| `azd deploy` | Packages and uploads source for a remote build, builds and publishes a container image, or deploys a prebuilt image, then creates the hosted agent version. |
 | `azd up` | Combines `provision` and `deploy` in one command. |
-| `azd down` | Deletes all provisioned resources. |
+| `azd down` | Deletes the resource group when the current environment created the Foundry project. Leaves an existing project and its resources in place. |
 | `azd env set` | Sets an environment variable, for example `azd env set FOUNDRY_MODEL_NAME=gpt-5.4-mini`. |
 
 ## The split-service model
