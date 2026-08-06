@@ -128,10 +128,10 @@ In HD voices (DragonHD, DragonHD Omni, and DragonHD Flash), styles and paralingu
 | **Plain Text (after chosing the voice)** | [whispering] Don’t tell anyone…<br>[ecstatic] This is amazing! |
 
 > [!NOTE]
-> A style marker applies to all subsequent sentences until the style is reset.
+> A style marker applies to all subsequent sentences until you reset the style.
 > - Use `[Neutral]` to switch to the default style.
 > - `\r\n`, the `<p>` tag, and automatic sentence boundaries switch to the default style.
-> - The `<break>` tag does not switch to the default style.
+> - The `<break>` tag doesn't switch to the default style.
 
 #### Supported styles for Dragon HD
 The following Styles and Paralinguistic tags are supported in HD voices
