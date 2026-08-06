@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 02/25/2026
+ms.date: 07/13/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
 
@@ -33,6 +34,10 @@ Real-time speech to text transcribes audio as it's recognized from a microphone 
 - Enabling interactive voice response systems to transcribe user queries and commands. 
 
 Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and [Speech to text REST API for short audio](rest-speech-to-text-short.md). 
+
+### Multichannel transcription (preview)
+
+Real-time speech to text can transcribe up to two audio channels independently and tag each result with its source channel. This capability is useful for stereo sources in which each channel carries a distinct speaker, such as the two sides of a customer support call. For more information, see [How to transcribe multichannel audio in real time](how-to-recognize-speech-multichannel.md).
 
 ## Fast transcription
 
