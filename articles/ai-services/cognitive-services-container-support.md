@@ -8,6 +8,7 @@ ms.service: foundry-tools
 ms.topic: overview
 ms.date: 02/05/2026
 ms.author: aahi
+ai-usage: ai-assisted
 keywords: on-premises, Docker, container, Kubernetes
 #Customer intent: As a potential customer, I want to know more about how Foundry Tools provides and supports Docker containers for each service.
 ---
@@ -76,6 +77,7 @@ Foundry Tools containers provide the following set of Docker containers, each of
 |--|--|--|--|
 | [Speech API][sp-containers-stt] |  **Speech to text** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/speech-to-text/about)) | Transcribes continuous real-time speech into text. | Generally available. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Speech API][sp-containers-cstt] | **Custom Speech to text** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/custom-speech-to-text/about)) | Transcribes continuous real-time speech into text using a custom model. | Generally available <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
+| [Speech API][sp-containers-ft] | **Fast transcription** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/fast-transcription/about)) | Transcribes complete audio files synchronously and faster than real-time. Supports speaker diarization and multi-channel audio processing. | Public preview. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Speech API][sp-containers-ntts] | **Neural Text to speech** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/neural-text-to-speech/about)) | Converts text to natural-sounding speech using deep neural network technology, allowing for more natural synthesized speech. | Generally available. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Speech API][sp-containers-lid] | **Speech language identification** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/language-detection/about)) | Determines the language of spoken audio. | Preview |
 
@@ -133,6 +135,7 @@ Install and explore the functionality provided by containers in Foundry Tools:
 [sp-containers-lid]: speech-service/speech-container-lid.md
 [sp-containers-stt]: speech-service/speech-container-stt.md
 [sp-containers-cstt]: speech-service/speech-container-cstt.md
+[sp-containers-ft]: speech-service/speech-container-ft.md
 [sp-containers-ntts]: speech-service/speech-container-ntts.md
 [ta-containers]: language-service/overview.md#deploy-on-premises-using-docker-containers
 [ta-containers-keyphrase]: language-service/key-phrase-extraction/how-to/use-containers.md
