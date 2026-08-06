@@ -8,7 +8,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/06/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -68,13 +68,13 @@ We recommend role-based access control for production deployments. If roles aren
 
 - On the parent resource of your project, you need the **Foundry Project Manager** role to create a project connection for MCP authentication and either **Foundry User** or **Foundry Project Manager** to use the MCP tool in agents.
 
+- (Conditional) On the parent resource of your project, assign the **Cognitive Services User** role to your search service's system-assigned managed identity. This step is required only if your knowledge base specifies an LLM. Depending on its configuration, the knowledge base uses this identity to call the LLM for query planning, answer synthesis, or both. For more information, see [Connect to Azure AI Search using a managed identity](/azure/search/search-how-to-managed-identities).
+
 - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
 
 #### [Azure AI Search](#tab/search)
 
-- On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes.
-
-- If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
+- On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes. If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
 
 - For indexed content with access control lists (ACLs), include [permission metadata fields](/azure/search/search-document-level-access-overview) in your search index and pass user tokens via the `x-ms-query-source-authorization` header at query time to filter results based on the user's identity. For more information, see [Query-time ACL and RBAC enforcement](/azure/search/search-query-access-control-rbac-enforcement).
 
