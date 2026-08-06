@@ -5,12 +5,18 @@ ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 08/05/2026
 ms.author: pafarley
-ms.custom: references_regions
+ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 ### July 2026 release
 
+#### Real-time multichannel speech to text (public preview)
+
+Real-time multichannel speech to text is now available in public preview with Speech SDK version
+1.51.0 or later. Transcribe up to two channels from stereo audio independently, with each
+recognition result tagged by its source channel. For more information, see
+[How to transcribe multichannel audio in real time](../../how-to-recognize-speech-multichannel.md).
 #### Monolingual post-stream refinement general availability
 
 Monolingual post-stream refinement is now generally available for real-time speech to text. It improves final transcript accuracy by running a second recognition pass in parallel with real-time streaming, without affecting first-token latency. For more information, see [Post-stream refinement](../../how-to-recognize-speech.md#post-stream-refinement) and [How to use post-processing](../../how-to-post-processing.md).
@@ -88,7 +94,7 @@ You can now control the influence of phrase lists on speech recognition results 
 
 Speech to text 5.0.3-preview
 - Fixed vulnerabilities
-- Support user set redis endpoint for diarization.
+- Support user set Redis endpoint for diarization.
 - STT backend/frontend engine update
 - Added coverage of locales previously supported in version 4.12.
 
@@ -319,9 +325,9 @@ Automatic multi-lingual speech translation is available in public preview. This 
 
 For a detailed introduction, visit [Speech translation overview](../../speech-translation.md). Additionally, you can refer to the code samples at [how to translate speech](../../how-to-translate-speech.md). This new feature is fully supported by all SDK versions from 1.37.0 onwards.
 
-#### Real-time speech to text with diariazation (GA)
+#### Real-time speech to text with diarization (GA)
 
-Real-time speech to text with diariazation is now generally available.
+Real-time speech to text with diarization is now generally available.
 
 You can create speech to text applications that use diarization to distinguish between the different speakers who participate in the conversation. For more information about real-time diarization, Check out the [real-time diarization quickstart](../../get-started-stt-diarization.md).
 
