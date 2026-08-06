@@ -1,0 +1,10 @@
+flowchart LR
+    A["Choose how to run a model"] --> B{"Need a deployment?"}
+    B -->|No| I["Instant access (preview): no deployment"]
+    B -->|Yes| C{"Model type"}
+    C -->|"Foundry Models"| S["Serverless API (preferred)"]
+    C -->|"Open-source or custom"| M["Managed compute (preview): Foundry-managed GPUs"]
+    S --> S1["Global (first)"]
+    S1 --> S2["Data Zone"]
+    S2 --> S3["Single region (last)"]
+    M --> M1["Dedicated accelerators"]
