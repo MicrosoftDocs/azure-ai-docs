@@ -3,7 +3,7 @@ title: "Quickstart: Trace your hosted agent"
 description: "View end-to-end traces for a deployed hosted agent in Foundry Agent Service. The hosting libraries integrate the Microsoft OpenTelemetry distro for out-of-the-box instrumentation—just invoke your agent and review traces in the Foundry portal."
 author: lgayhardt
 ms.author: lagayhar
-ms.date: 06/17/2026
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -31,7 +31,7 @@ Before you begin, you need:
 * A deployed, invokable hosted agent from [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md), and the `azd` project directory you created in that quickstart.
 * The **Foundry User** role on the Foundry resource.
 * To use the UI path, access to the [Foundry portal](https://ai.azure.com). For the azd path, see the next requirements.
-* [Azure Developer CLI (AZD) 1.25.3 or later](/azure/developer/azure-developer-cli/install-azd) with the `azd microsoft.foundry` extension:
+* [Azure Developer CLI (azd) 1.27.1 or later](/azure/developer/azure-developer-cli/install-azd) with the `azd microsoft.foundry` extension:
 
     ```bash
     azd ext install microsoft.foundry
@@ -93,10 +93,10 @@ Traces can be viewed in the Foundry portal after invocation.
 
 ## Clean up resources
 
-Tracing data is stored in Application Insights and follows your workspace's data retention settings. No additional resources are created in this quickstart. To remove everything you created across this and the previous quickstart, run `azd down` from your agent project directory.
+Tracing data is stored in Application Insights and follows your workspace's data retention settings. This quickstart doesn't create any extra resources. To clean up the previous quickstart, run `azd down` from your agent project directory. What the command deletes depends on whether initialization created or reused the Foundry project.
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Application Insights, and the hosted agent.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ## Troubleshooting
 

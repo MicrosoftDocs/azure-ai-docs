@@ -33,29 +33,20 @@ The recommended starting point is **server-side tracing**. Foundry enables it au
 
 Foundry stores traces in [Application Insights](/azure/azure-monitor/app/app-insights-overview) by using [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
 
-1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
-1. Open your Foundry project.
-1. In the left navigation, select **Agents**.
-1. At the top, select **Traces**.
-1. On the right, select **Connect**, to create or connect an Application Insights resource:
-   - To connect an existing resource, select the resource and then select **Connect**.
-   - To create a new resource, select **Create new** and complete the wizard.
+[!INCLUDE [trace setup connection from traces](../../includes/trace-setup-connection-from-traces.md)]
 
-:::image type="content" source="../../media/observability/tracing/traces-connect.png" alt-text="Screenshot of the Agents tab showing traces and the connect button." lightbox="../../media/observability/tracing/traces-connect.png":::
+   - To connect an existing resource, select the resource, and then select **Connect**.
+   - To create a new resource, select **Create new**, and then complete the
+     wizard.
 
    A confirmation message appears when the connection succeeds.
 
+[!INCLUDE [trace setup connection from project details](../../includes/trace-setup-connection-from-project-details.md)]
+
+For Entra-authenticated trace ingestion, see [Configure Microsoft Entra
+authentication for Foundry Agent trace ingestion (preview)](trace-ingestion-entra-authentication.md).
+
 After you connect the resource, your project is ready to use tracing.
-
-If you don’t see the message bar or Connect button, here’s an alternative way to enable Azure Monitor Application Insights.
-
-1. Select the **Project details** from the dropdown menu from your project name.
-    :::image type="content" source="../../media/observability/tracing/project-details.png" alt-text="Screenshot of project name menu with project details highlighted." lightbox="../../media/observability/tracing/project-details.png":::
-1. Navigate to the **Connected resources** tab then select **Add connection**.
-     :::image type="content" source="../../media/observability/tracing/connected-resources-add-connection.png" alt-text="Screenshot of project details with connected resources tab select highlighting add connection." lightbox="../../media/observability/tracing/connected-resources-add-connection.png":::
-1. Select **Application Insights** in the *Choose a connection* menu.
-    :::image type="content" source="../../media/observability/tracing/choose-connection.png" alt-text="Screenshot of Choose a connection with Application Insights highlighted." lightbox="../../media/observability/tracing/choose-connection.png":::
-
 > [!IMPORTANT]
 > Make sure you have the permissions you need to query telemetry.
 >

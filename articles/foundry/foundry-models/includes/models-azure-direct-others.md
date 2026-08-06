@@ -107,7 +107,7 @@ For model availability across all regions, grouped by deployment category, see [
 | `mistral-document-ai-2512` | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |
 | `mistral-medium-3-5` <br> **Preview** | chat-completion | - **Input:** text (128,000 tokens), image <br /> - **Output:** text (128,000 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON  |
 | `mistral-ocr-4-0` <br> **Preview** | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |
-| `Mistral-Large-3` | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
+| `Mistral-Large-3` <br> **Preview** | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
 
 Several Mistral models are also available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
 

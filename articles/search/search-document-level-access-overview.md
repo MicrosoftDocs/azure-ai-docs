@@ -1,7 +1,7 @@
 ---
 title: Document-Level Access Control
 description: Learn how Azure AI Search enforces document-level access control with security filters, ACLs, RBAC scopes, SharePoint permissions, and Purview sensitivity labels.
-ms.date: 07/07/2026
+ms.date: 08/05/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -169,7 +169,7 @@ After you synchronize labels, two query paths consume the same indexed label met
 
 - **Knowledge sources and agentic retrieval (MCP)**: Set `ingestionPermissionOptions` to include `sensitivityLabel` on the knowledge source. The retrieve action and MCP `knowledge_base_retrieve` tool return per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` that clients can use for display banners and policy enforcement. For setup, see [Creating knowledge source](agentic-knowledge-source-overview.md#creating-knowledge-sources) and [Inspect sensitivity label metadata in retrieve responses](agentic-retrieval-how-to-retrieve.md#inspect-sensitivity-label-metadata-in-the-response-preview).
 
-If the knowledge source points to a chunked index, such one populated through integrated vectorization or a custom Text Split skill, the skillset must also [project the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this projection, chunk-level references aren't filtered.
+If the knowledge source points to a chunked index, such as one populated through integrated vectorization or a custom Text Split skill, the skillset must also [project the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this projection, chunk-level references aren't filtered.
 
 For more information, see [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 

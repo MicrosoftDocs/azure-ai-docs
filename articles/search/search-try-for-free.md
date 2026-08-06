@@ -30,7 +30,7 @@ The free account is active for 30 days and includes credits that allow you to cr
 
 ## Choose a region
 
-You can optionally integrate Azure AI Search with Foundry Tools for [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md). For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection (preview) or key-based connection. Key-based connections require both services to be in the same region.
+You can optionally integrate Azure AI Search with Foundry Tools for [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md). For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection or key-based connection. Key-based connections require both services to be in the same region.
 
 Before you create resources for a key-based connection, confirm regional support:
 
