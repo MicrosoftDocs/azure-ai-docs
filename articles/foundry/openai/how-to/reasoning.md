@@ -635,7 +635,7 @@ ChatCompletionOptions options = new ChatCompletionOptions
 options.Tools.Add(getWeatherTool);
 ```
 
-Reference: [ChatCompletionOptions.ReasoningEffortLevel](/dotnet/api/openai.chat.chatcompletionoptions.reasoningeffortlevel), [ChatReasoningEffortLevel](/dotnet/api/openai.chat.chatreasoningeffortlevel), [ChatTool.CreateFunctionTool](/dotnet/api/openai.chat.chattool.createfunctiontool)
+For the full type surface, see the [OpenAI .NET library](https://github.com/openai/openai-dotnet).
 
 > [!NOTE]
 > `ChatReasoningEffortLevel` is marked experimental in the OpenAI .NET library, so it emits the `OPENAI001` diagnostic. Suppress it with `#pragma warning disable OPENAI001` as shown in the earlier samples, or add `<NoWarn>$(NoWarn);OPENAI001</NoWarn>` to your project file. Token-based authentication uses the same diagnostic.
