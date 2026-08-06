@@ -17,7 +17,7 @@ In this article, you learn how to add a new model deployment to a Foundry Models
 
 To complete this article, you need the following:
 
-* An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. For more information, see [Upgrade from GitHub Models to Foundry Models](../how-to/quickstart-github-models.md).
+* An Azure subscription.
 
 * A Foundry project. This project type is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../how-to/create-projects.md).
 

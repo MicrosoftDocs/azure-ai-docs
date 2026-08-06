@@ -1,10 +1,10 @@
 ---
-title: "Upgrade from GitHub Models to Microsoft Foundry Models"
-description: "Learn how to upgrade from GitHub Models to Microsoft Foundry Models for production-ready AI applications with enhanced features."
+title: "Migrate from GitHub Models to Microsoft Foundry Models"
+description: "GitHub Models was retired on July 30, 2026. Learn how to migrate your application to Microsoft Foundry Models for production-ready AI applications."
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 07/29/2026
+ms.date: 08/06/2026
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new
@@ -13,9 +13,9 @@ author: msakande
 ms.author: mopeakande
 recommendations: false
 ai-usage: ai-assisted
-#CustomerIntent: As a developer using GitHub Models, I want to learn how to upgrade my endpoint to Microsoft Foundry Models so that I can access enhanced features and capabilities for my AI applications.
+#CustomerIntent: As a developer whose application used the retired GitHub Models service, I want to learn how to migrate my endpoint to Microsoft Foundry Models so that my AI application keeps working and I can access enhanced features and capabilities.
 ---
 
-# Upgrade from GitHub Models to Microsoft Foundry Models
+# Migrate from GitHub Models to Microsoft Foundry Models
 
 [!INCLUDE [quickstart-github-models content](../includes/how-to-quickstart-github-models-content.md)]

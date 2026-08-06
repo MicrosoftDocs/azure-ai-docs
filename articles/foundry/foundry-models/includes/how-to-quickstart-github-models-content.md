@@ -5,65 +5,63 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/29/2026
+ms.date: 08/06/2026
 ms.custom: include, classic-and-new
 ---
 
-In this article, you learn to develop a generative AI application by starting from GitHub Models and then upgrade your experience by deploying a Foundry Tools resource with Microsoft Foundry Models.
+> [!IMPORTANT]
+> GitHub Models was retired on July 30, 2026. The playground, model catalog, inference API, and bring your own key (BYOK) support are no longer available to any customer. For more information, see [GitHub Models](https://docs.github.com/en/github-models/) in the GitHub documentation.
+>
+> If your application still calls the GitHub Models inference endpoint, migrate it to Microsoft Foundry Models by following the steps in this article. GitHub Models was a separate service from GitHub Copilot and is unrelated to GitHub Copilot.
 
-[GitHub Models](https://docs.github.com/en/github-models/) are useful when you want to find and experiment with AI models for free as you develop a generative AI application. When you're ready to bring your application to production, upgrade your experience by deploying a Foundry Tools resource in an Azure subscription and start using Foundry Models. You don't need to change anything else in your code.
-
-The playground and free API usage for GitHub Models are [rate limited](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you need to wait for the rate limit that you hit to reset before you can make more requests.
+In this article, you learn how to move a generative AI application from the retired GitHub Models service to Microsoft Foundry Models by deploying a Foundry Tools resource in an Azure subscription. Both services use the same inference API, so you typically only need to change the endpoint and credentials in your code.
 
 ## Prerequisites
 
 You need:
 
-- A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin. Alternatively, you can wait until you're ready to deploy your model to production, at which point you'll be prompted to create or update your Azure account to a standard account.
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community). [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
- 
 
-## Upgrade to Foundry Models
+## Migrate to Foundry Models
 
-The rate limits for the playground and free API usage help you experiment with models and develop your AI application. When you're ready to bring your application to production, use a key and endpoint from a paid Azure account. You don't need to change anything else in your code.
+Unlike GitHub Models, which was free with rate limits, Foundry Models usage is billed to your Azure subscription based on the [deployment type](../concepts/deployment-types.md) you choose.
 
-> [!NOTE]
-> GitHub Models are free with rate limits. After you upgrade to Foundry Models, usage is billed to your Azure subscription based on the [deployment type](../concepts/deployment-types.md) you choose.
+To replace your GitHub Models endpoint and token with a Foundry Models endpoint and key:
 
-To get the key and endpoint:
-
-1. Go to [GitHub Models](https://github.com/marketplace/models) and select a model to land on its playground. This article uses Mistral Medium 3 (25.05).
-
-1. Type in some prompts or use some of the suggested prompts to interact with the model in the playground.
-
-1. Select **Use this model** from the playground. This action opens up a window to "Get started with Models in your codebase".
-
-1. In the "Configure authentication" step, select **Get Microsoft Foundry key** from the "Azure AI" section.
-
-    :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="Screenshot that shows how to get the Microsoft Foundry key from the playground of a GitHub model." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
-
-1. If you're already signed in to your Azure account, skip this step. However, if you don't have an Azure account or you're not signed in to your account, follow these steps:
-
-    1. If you don't have an Azure account, select **Create my account** and follow the steps to create one.
-
-    1. Alternatively, if you have an Azure account, select **Sign back in** to sign in to your Azure account. If your existing account is a free account, you first have to upgrade to a standard plan. 
-
-1.  You're taken to [Foundry > GitHub](https://ai.azure.com/GitHub) and land on the home page in a Foundry project.
+1. Sign in to the [Foundry portal](https://ai.azure.com) with your Azure account.
 
     > [!TIP]
     > If you land in the Foundry (classic) experience, toggle the **New Foundry** switcher in the upper-right navigation to switch to the new Foundry experience.
 
 1. Follow the steps in [Deploy a model](../how-to/deploy-foundry-models.md#deploy-a-model) to deploy the model of your choice, test it in the Playground, and inference the deployed model with code.
 
-1. Verify the deployment works by sending a test prompt in the Playground. If you receive a response, your model is ready to use from code.
+1. On the Foundry homepage, copy the **API key** and **Project endpoint**, and use them in place of the GitHub Models endpoint and personal access token in your application.
+
+1. Verify the migration works by sending a test prompt from the Playground or from your code. If you receive a response, your model is ready to use.
 
 > [!IMPORTANT]
-> Unlike GitHub Models where all the models are already configured, the Foundry Tools resource allows you to control which models are available in your endpoint and under which configuration. Add as many models as you plan to use before indicating them in the `model` parameter. Learn how to [add more models](../how-to/create-model-deployments.md) to your resource.
+> Unlike GitHub Models, where all the models were already configured, the Foundry Tools resource allows you to control which models are available in your endpoint and under which configuration. Add as many models as you plan to use before indicating them in the `model` parameter. Learn how to [add more models](../how-to/create-model-deployments.md) to your resource.
+
+## Use your Foundry models in the IDE
+
+The GitHub Models playground is no longer available. To experiment with models from your editor instead, add your Foundry deployment to Visual Studio Code as a bring your own key (BYOK) language model:
+
+1. In Visual Studio Code, open the model picker in the Chat view and select **Manage Language Models** (gear icon), or run the **Chat: Manage Language Models** command from the Command Palette.
+
+1. Select **Add Models**, and then select **Azure** from the provider list.
+
+1. Enter a group name for the models, and then enter the endpoint URL and API key that you copied from the Foundry portal.
+
+1. Select the model from the model picker in chat.
+
+Alternatively, select **Install Model Providers** in the Language Models editor and install the [Foundry Toolkit for VS Code](https://aka.ms/AIToolkit) extension, which adds Foundry's cloud-hosted and local models to the model picker.
+
+For more information, see [Language models in Visual Studio Code](https://code.visualstudio.com/docs/agent-customization/language-models#_add-a-model-from-a-built-in-provider).
 
 ## Explore additional features
 
-Foundry Models supports features that aren't available in GitHub Models:
+Foundry Models supports features that GitHub Models didn't offer:
 
 * **[Model catalog](https://ai.azure.com/explore/models)** — Browse, compare, and evaluate models from Azure, partners, and the open-source community.
 * **[Keyless authentication](../how-to/configure-entra-id.md)** — Use Microsoft Entra ID for token-based authentication without managing API keys.
@@ -75,9 +73,10 @@ Foundry Models supports features that aren't available in GitHub Models:
 
 | Issue | Resolution |
 | --- | --- |
+| Requests to the GitHub Models endpoint fail | The GitHub Models inference API was retired on July 30, 2026. Point your application at a Foundry Models endpoint as described in this article. |
 | Model not available in your region | Check the model's region availability by selecting **View availability** in the **Quick facts** section of its model card. Switch to a project in a supported region. |
 | Authentication error after key swap | Verify you copied the correct key from the Foundry portal. On the Foundry homepage, copy the **API key** and **Project endpoint** to view your key and endpoint. |
-| Rate limit errors after upgrade | Foundry Models rate limits depend on your [deployment type](../concepts/deployment-types.md). Scale up or choose a higher-throughput deployment. |
+| Rate limit errors after migrating | Foundry Models rate limits depend on your [deployment type](../concepts/deployment-types.md). Scale up or choose a higher-throughput deployment. |
 
 ## Related content
 

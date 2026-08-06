@@ -55,7 +55,7 @@ items:
     href: ../../foundry-models/how-to/deploy-foundry-models.md
   - name: Deploy Foundry Models using code
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Upgrade from GitHub Models to Microsoft Foundry Models
+  - name: Migrate from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Troubleshoot deployments and monitoring
     href: ../../how-to/troubleshoot-deploy-and-monitor.md
