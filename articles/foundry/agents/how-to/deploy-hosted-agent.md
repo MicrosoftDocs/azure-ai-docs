@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/06/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -332,7 +332,13 @@ When you create a version, the platform automatically provisions the agent. Ther
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentEndpointProtocol, ContainerConfiguration
+from azure.ai.projects.models import (
+    AgentEndpointProtocol,
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+    SessionConfiguration,
+)
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -359,7 +365,10 @@ agent = project.agents.create_version(
         ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
-        }
+        },
+        session_configuration=SessionConfiguration(
+            idle_timeout_seconds=300
+        ),
     )
 )
 
@@ -385,6 +394,7 @@ Key parameters:
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
 | `protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
+| `session_configuration.idle_timeout_seconds` | Idle duration before a session's sandbox is suspended, from 300 through 3,600 seconds. The default is 900 seconds. |
 
 ### Poll for version status
 
@@ -497,12 +507,17 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
       ],
       "environment_variables": {
         "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
+      },
+      "session_configuration": {
+        "idle_timeout_seconds": 300
       }
     }
   }'
 ```
 
 Creating an agent also creates version `1` and triggers provisioning.
+
+The optional `session_configuration` applies to sessions created for this agent version. Set `idle_timeout_seconds` from 300 through 3,600 seconds. If you omit it, the server default is 900 seconds. When a session reaches the idle timeout, the platform suspends its sandbox and persists its state until the session is referenced again.
 
 To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
@@ -578,7 +593,7 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
 
 ## Clean up resources
 
-To prevent charges, clean up resources when finished. Agent compute is deprovisioned after 15 minutes of inactivity, so there's no cost when an agent isn't serving requests.
+To prevent charges, clean up resources when finished. Agent compute is deprovisioned after the configured idle timeout, which is 15 minutes by default, so there's no cost when an agent isn't serving requests.
 
 :::zone pivot="azd"
 

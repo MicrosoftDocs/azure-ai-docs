@@ -140,7 +140,7 @@ A session ID identifies a logical session with persisted state, including $HOME 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state. A session is permanently deleted after 30 days of inactivity.
+- **Session lifetime**: The idle timeout is configurable per agent version from 5 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. A session is permanently deleted after 30 days of inactivity.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -161,7 +161,7 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 | State | What happens |
 |-------|----------------------------------------------|
 | **Active** | Compute is running. Requests are routed to it. $HOME and /files content are available. |
-| **Idle** | No requests for 15 minutes. Compute is deprovisioned. Session state ($HOME, /files) is persisted. |
+| **Idle** | No requests for the configured idle timeout. Compute is deprovisioned. Session state ($HOME, /files) is persisted. |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
 
 Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts, releases it after 15 minutes without a request, and restores `$HOME` and `/files` when the session resumes, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
@@ -215,11 +215,11 @@ Hosted agent sandboxes support the following CPU and memory combinations:
 
 ### Session storage
 
-Each session has a persistent `$HOME`. Its contents are preserved when compute is deprovisioned after 15 minutes of inactivity, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
+Each session has a persistent `$HOME`. Its contents are preserved when compute is deprovisioned after the configured idle timeout, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size.
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it until the configured idle timeout is reached, and tears it down when the session ends. The idle timeout can be 5 through 60 minutes and defaults to 15 minutes. Sessions have a maximum lifetime of 30 days. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
