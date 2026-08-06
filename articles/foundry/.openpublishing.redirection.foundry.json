@@ -41,6 +41,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/foundry-classic/foundry-status-dashboard-documentation.md",
+      "redirect_url": "https://azure.status.microsoft/en-us/status",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/how-to/create-azure-ai-project-template.md",
       "redirect_url": "/azure/ai-foundry/how-to/create-resource-template",
       "redirect_document_id": false
