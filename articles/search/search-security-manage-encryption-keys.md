@@ -3,7 +3,7 @@ title: Configure Customer-Managed Keys for Azure AI Search
 description: Supplement server-side encryption in Azure AI Search using customer managed keys (CMK) or bring your own keys (BYOK) that you create and manage in Azure Key Vault.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/10/2026
+ms.date: 08/05/2026
 ms.update-cycle: 365-days
 ms.custom:
   - references_regions
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 Enabling customer‑managed keys (CMK) adds additional security on top of the default encryption at rest when using [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). When you enable CMK, you control the encryption keys used to protect your data, including the ability to:
 
 - Rotate keys on a customer‑defined schedule
-- Disable or revoke keys to block access to encrypted content *(cached keys may persist for up to 60 minutes)*
+- Disable or revoke keys to block access to encrypted content *(cached keys might persist for up to 60 minutes)*
 - Audit key usage through Azure Key Vault logging
 
 You can create, store, and manage keys by using either:
@@ -781,7 +781,7 @@ The response should include the following statement:
 
 ## Rotate or update encryption keys
 
-Use the following instructions to rotate keys or to migrate from Azure Key Vault to the Hardware Security Model (HSM). 
+Use the following instructions to rotate keys or to migrate from Azure Key Vault to the Hardware Security Module (HSM). 
 
 For key rotation, use the [autorotation capabilities of Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation). If you use autorotation, omit the key version in object definitions. The latest key is used, rather than a specific version.
 

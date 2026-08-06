@@ -3,7 +3,7 @@ title: Create a Knowledge Base
 description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/20/2026
+ms.date: 08/06/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -359,7 +359,7 @@ The following JSON is an example response for a knowledge base.
 ```
 
 > [!NOTE]
-> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2026-05-01-preview. For more information about which properties each version supports, see the next section.
+> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2026-05-01-preview. For more information about which properties each version supports, see [Create a knowledge base](#create-a-knowledge-base).
 
 ## Create a knowledge base
 
