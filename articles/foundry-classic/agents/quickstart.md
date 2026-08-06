@@ -12,6 +12,7 @@ ms.custom:
   - azure-ai-agents
   - build-2025
 zone_pivot_groups: agents-quickstart
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Create a new agent (classic)
@@ -19,7 +20,7 @@ zone_pivot_groups: agents-quickstart
 [!INCLUDE [classic-banner](../includes/agents-classic.md)]
 
 > [!NOTE]
-> This quickstart is for the previous version of agents. See the [**quickstart for Microsoft Foundry**](../quickstarts/get-started-code.md) to use the new version of the API.
+> This quickstart is for the previous version of agents. See the [**quickstart for Microsoft Foundry**](../../foundry/quickstarts/get-started-code.md) to use the new version of the API.
 
 Foundry Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
