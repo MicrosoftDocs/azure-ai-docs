@@ -7,7 +7,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 08/06/2026
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -320,9 +320,9 @@ We recommend the [latest preview REST API](/rest/api/searchservice/documents/sea
 
 1. Add a `hybridSearch` query parameter object to set the maximum number of documents recalled through the BM25-ranked results of a hybrid query. It has two properties:
 
-   + `maxTextRecallSize` specifies the number of BM25-ranked results to provide to the Reciprocal Rank Fusion (RRF) ranker used in hybrid queries. The default is 1,000. The maximum is 10,000.
+    + `maxTextRecallSize` specifies the number of BM25-ranked results to provide to the Reciprocal Rank Fusion (RRF) ranker used in hybrid queries. The default is 1,000. The maximum is 10,000.
 
-   + `countAndFacetMode` reports the count and facet scope for a hybrid query. The default, `countAllResults`, uses the full hybrid result set, including all documents that match the text query, even if some of those text matches aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Use `countRetrievableResults` to scope count and facets to the documents retrieved for ranking, including `maxTextRecallSize` BM25-ranked documents and the `k` vector matches.
+    + `countAndFacetMode` reports the count and facet scope for a hybrid query. The default, `countAllResults`, uses the full hybrid result set, including all documents that match the text query, even if some of those text matches aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Use `countRetrievableResults` to scope count and facets to the documents retrieved for ranking, including `maxTextRecallSize` BM25-ranked documents and the `k` vector matches.
 
 1. Set `maxTextRecallSize`:
 
@@ -516,7 +516,7 @@ api-key: {{admin-api-key}}
 
 ### Example: Semantic hybrid search with filter
 
-Here's the last query in the collection. It's the same semantic hybrid query as the previous example, but with a filter.
+This example adds a `ParkingIncluded` filter to a semantic hybrid query.
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-04-01
@@ -551,7 +551,7 @@ api-key: {{admin-api-key}}
 
 **Key points:**
 
-+ The filter mode can affect the number of results available to the semantic reranker. As a best practice, it's smart to give the semantic ranker the maximum number of documents (50). If prefilters or postfilters are too selective, you might be underserving the semantic ranker by giving it fewer than 50 documents to work with.
++ The filter mode can affect the number of results available to the semantic ranker. As a best practice, it's smart to give the semantic ranker the maximum number of documents (50). If prefilters or postfilters are too selective, you might be underserving the semantic ranker by giving it fewer than 50 documents to work with.
 
 + `preFilter` is applied before query execution. If prefilter reduces the search area to 100 documents, the vector query executes over the `DescriptionVector` field for those 100 documents, returning the k=50 best matches. Those 50 matching documents then pass to RRF for merged results, and then to semantic ranker.
 
@@ -595,7 +595,7 @@ Both `k` and `top` are optional. Unspecified, the default number of results in a
 
 If you're using semantic ranker in 2024-05-01-preview or later, it's a best practice to set `k` and `maxTextRecallSize` to sum to at least 50 total.  You can then restrict the results returned to the user with the `top` parameter. 
 
-If you're using semantic ranker in previous APIs do the following:
+If you're using semantic ranker in an API version earlier than 2024-05-01-preview, do the following:
 
 + For keyword-only search (no vectors) set `top` to 50
 + For hybrid search set `k` to 50, to ensure that the semantic ranker gets at least 50 results. 
