@@ -63,10 +63,12 @@ items:
   items:
    - name: Optimize agent prompts
      href: ../../observability/how-to/prompt-optimizer.md
-   - name: Optimize hosted agents (preview)
+   - name: Optimize agents overview (preview)
+     href: ../../agents/concepts/agent-optimizer-overview.md
+   - name: Optimize a prompt agent
+     href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
+   - name: Optimize a hosted agent
      items:
-     - name: Overview
-       href: ../../agents/concepts/agent-optimizer-overview.md
      - name: Quickstart
        href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
      - name: Make your agent optimization-ready

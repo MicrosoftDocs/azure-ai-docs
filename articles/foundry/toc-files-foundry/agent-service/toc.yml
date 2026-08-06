@@ -45,6 +45,10 @@ items:
       href: ../../agents/how-to/configure-agent.md
     - name: Best practices
       href: ../../agents/concepts/tool-best-practice.md
+    - name: Agent optimizer overview
+      href: ../../agents/concepts/agent-optimizer-overview.md
+    - name: Optimize a prompt agent
+      href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Deploy and share
@@ -86,7 +90,7 @@ items:
       href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
     - name: Evaluate an agent
       href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
-    - name: Optimize an agent
+    - name: Optimize a hosted agent
       href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
     - name: Trace an agent
       href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
@@ -144,8 +148,6 @@ items:
       href: ../../agents/how-to/multiplex-session-users.md
     - name: Pass isolation keys (protocol 1.0.0)
       href: ../../agents/how-to/pass-isolation-keys.md
-    - name: Agent optimizer overview
-      href: ../../agents/concepts/agent-optimizer-overview.md
     - name: Make your agent optimizer-ready
       href: ../../agents/how-to/make-agent-optimizer-ready.md
     - name: Create an evaluation dataset
