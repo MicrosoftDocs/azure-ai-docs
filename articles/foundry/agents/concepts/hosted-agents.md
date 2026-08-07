@@ -183,9 +183,7 @@ For configuration and analysis guidance, see [Enable tracing in your project](..
 
 ### Toolbox in Foundry
 
-Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with custom Bing search), Azure AI Search, OpenAPI, custom MCP connections, and A2A. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. Your agent code connects to the endpoint by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
-
-Custom Bing search is available through a toolbox `web_search` tool that includes a top-level `custom_search_configuration` object referencing a Grounding with Bing Custom Search connection.
+Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. Your agent code connects to the endpoint by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 
