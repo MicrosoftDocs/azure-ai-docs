@@ -1,16 +1,16 @@
 ---
 title: "Enable tool search in a toolbox"
-description: "Use tool search in Microsoft Foundry to help agents dynamically discover relevant tools from a large toolbox, reducing context overhead and improving tool selection accuracy."
+description: "Learn how to enable tool search in Microsoft Foundry so agents dynamically discover relevant tools, reduce context overhead, and improve selection."
 author: mattwojo
 ms.author: mattwoj
 reviewer: lindazqli
 ms.reviewer: zhuoqunli
-ms.date: 07/20/2026
+ms.date: 08/05/2026
 manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-foundry-tool-search
 ---
@@ -77,9 +77,7 @@ Use Foundry Toolkit for Visual Studio Code to enable tool search when you create
 1. Select **Tool search**.
 1. Select **Publish**.
 
-:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-tool-search.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Build a Custom Toolbox view with the Tool search checkbox selected." lightbox="../../media/tools/toolbox/toolbox-vscode-tool-search.png":::
-
-Publishing a new toolbox creates its first version. That version becomes the default version automatically. For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#step-1-create-a-toolbox-version).
+Publishing a new toolbox creates its first version. That version becomes the default version automatically. For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#create-a-toolbox-version).
 
 :::zone-end
 
@@ -89,9 +87,9 @@ Publishing a new toolbox creates its first version. That version becomes the def
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool, ToolSearchToolboxTool
+from azure.ai.projects.models import MCPToolboxTool, ToolSearchToolboxTool
 
-client = AIProjectClient(
+project = AIProjectClient(
     endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
@@ -99,14 +97,14 @@ client = AIProjectClient(
 # ToolSearchToolboxTool() enables tool search — other tools in the toolbox are discovered on
 # demand through tool_search instead of being listed up front. Add as many MCP servers as you need;
 # tool search keeps the agent's initial tool surface small regardless of toolbox size.
-inner_mcp_tool = MCPTool(
+inner_mcp_tool = MCPToolboxTool(
     server_label="github",
     server_url="https://api.githubcopilot.com/mcp",
     require_approval="never",
     project_connection_id="github-mcp-conn",
 )
 
-toolbox_version = client.beta.toolboxes.create_version(
+toolbox_version = project.toolboxes.create_version(
     name="my-toolbox",
     description="Large toolbox with tool search enabled",
     tools=[inner_mcp_tool, ToolSearchToolboxTool()],
@@ -171,17 +169,19 @@ AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenPro
 AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
 
 // ToolSearchToolboxTool enables tool search — other tools are discovered on demand via tool_search
-ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
-    serverLabel: "github",
-    serverUri: new Uri("https://api.githubcopilot.com/mcp"),
-    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)));
+MCPToolboxTool mcpTool = new(serverLabel: "github")
+{
+  ServerUri = new Uri("https://api.githubcopilot.com/mcp"),
+  ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(
+    GlobalMcpToolCallApprovalPolicy.NeverRequireApproval),
+};
 ToolSearchToolboxTool searchTool = new()
 {
     Name = "ToolBoxSearch",
     Description = "Search for tools by capability"
 };
 
-ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+ToolboxVersion toolboxVersion = toolboxClient.CreateVersion(
     name: "my-toolbox",
     tools: [mcpTool, searchTool],
     description: "Large toolbox with tool search enabled");
@@ -202,7 +202,7 @@ const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential(
 // { type: "toolbox_search" } enables tool search — other tools in the toolbox are
 // discovered on demand through tool_search instead of being listed up front. Add as many MCP
 // servers as you need; tool search keeps the agent's initial tool surface small regardless of size.
-const toolboxVersion = await project.beta.toolboxes.createVersion(
+const toolboxVersion = await project.toolboxes.createVersion(
   "my-toolbox",
   [
     {
@@ -223,7 +223,7 @@ console.log(`Created toolbox \`${toolboxVersion.name}\` (version ${toolboxVersio
 
 ## Verify tool search is active
 
-Use the version-specific endpoint to confirm that `tool_search` appears in `tools/list` and that no other toolbox tools are exposed in the initial listing.
+Use the version-specific endpoint to confirm that `tool_search`, `call_tool`, and any pinned tools appear in `tools/list`. Ordinary unpinned toolbox tools must remain hidden from the initial listing.
 
 :::zone pivot="vscode"
 
@@ -246,11 +246,11 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp import ClientSession
 
 url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
+expected_pinned_tools = {"calendar_events"}  # Match the tools configured with pin=True.
 
 token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
 headers = {
     "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Toolboxes=V1Preview",
 }
 
 async def verify_toolbox():
@@ -258,15 +258,19 @@ async def verify_toolbox():
         async with ClientSession(read, write) as session:
             await session.initialize()
 
-            # List available tools -- only tool_search should appear initially
+            # List the two meta-tools and any explicitly pinned tools.
             tools_result = await session.list_tools()
             print(f"Tools found: {len(tools_result.tools)}")
             for tool in tools_result.tools:
                 print(f"  - {tool.name}: {(tool.description or '')[:80]}")
 
-            # Confirm tool_search is present
-            names = [t.name for t in tools_result.tools]
-            assert "tool_search" in names, "tool_search not found -- check toolbox_search config"
+            names = {tool.name for tool in tools_result.tools}
+            meta_tools = {"tool_search", "call_tool"}
+            assert meta_tools <= names, "Tool Search meta-tools are missing -- check toolbox_search config"
+            assert expected_pinned_tools <= names, "A configured pinned tool is missing"
+
+            unexpected_tools = names - meta_tools - expected_pinned_tools
+            assert not unexpected_tools, f"Unpinned tools are visible: {sorted(unexpected_tools)}"
 
 asyncio.run(verify_toolbox())
 ```
@@ -283,7 +287,6 @@ Use the version-specific endpoint (`/versions/{version}/mcp`) to validate before
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
 ```
@@ -294,7 +297,6 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","method":"notifications/initialized"}
 ```
@@ -305,24 +307,23 @@ Foundry-Features: Toolboxes=V1Preview
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
-Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
 
-In `result.tools`, `tool_search` should be present and all other toolbox tools should be absent from the initial listing.
+In `result.tools`, confirm that `tool_search`, `call_tool`, and every tool configured with `pin: true` are present. All ordinary unpinned toolbox tools should be absent from the initial listing.
 
 :::zone-end
 
 :::zone pivot="dotnet"
 
-Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure.com/.default` and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
 
 :::zone-end
 
 :::zone pivot="javascript"
 
-Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default` and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
 
 :::zone-end
 
@@ -386,7 +387,7 @@ In the .NET SDK, attach `tool_configs` to the MCP tool entry when constructing t
 
 :::zone pivot="javascript"
 
-In JavaScript, include `tool_configs` on the MCP tool object passed to `project.beta.toolboxes.createVersion`. The configuration shape is identical to the JSON shown in the **REST API** tab.
+In JavaScript, include `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`. The configuration shape is identical to the JSON shown in the **REST API** tab.
 
 :::zone-end
 
@@ -488,7 +489,7 @@ In the .NET SDK, set `additional_search_text` (and optionally `pin`) inside `too
 
 :::zone pivot="javascript"
 
-In JavaScript, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool object passed to `project.beta.toolboxes.createVersion`. The shape matches the JSON shown in the **REST API** tab.
+In JavaScript, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`. The shape matches the JSON shown in the **REST API** tab.
 
 :::zone-end
 
@@ -526,7 +527,7 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 - **Returned tools persist for the turn.** Once a tool is returned by `tool_search`, the model can call it multiple times without re-searching.
 - **Pinned tools always appear in `tools/list`.** Tools with `"pin": True` in `tool_configs` appear alongside `tool_search` and `call_tool` on every turn, regardless of search queries.
 - **Auto-pinning surfaces frequently used tools automatically.** Foundry tracks per-user tool call frequency and promotes the most-called tools to `tools/list` after a short warmup period. The hot set is per-user and updates as usage patterns shift.
-- **OAuth consent may be required.** If any tool in the toolbox connects to an OAuth-based MCP server, the first call returns a `CONSENT_REQUIRED` error (code `-32007`) with a consent URL in the response. Open that URL in a browser, complete the OAuth flow, then retry. Subsequent calls succeed without re-prompting. See [Troubleshoot toolbox errors](toolbox.md#troubleshoot) for handling this error.
+- **OAuth consent might be required.** If any tool in the toolbox connects to an OAuth-based MCP server, the first call returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL in the response. Open that URL in a browser, complete the OAuth flow, then retry. Subsequent calls succeed without re-prompting. See [Troubleshoot toolbox errors](toolbox.md#troubleshoot) for handling this error.
 
 ## Best practices
 
@@ -549,7 +550,6 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 
 ## Related content
 
+- [JavaScript toolbox search sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/toolboxes/toolboxToolSearch.js)
 - [Curate intent-based toolbox in Foundry](toolbox.md)
-- [Model Context Protocol (MCP)](model-context-protocol.md)
 - [Tools overview](../../concepts/tool-catalog.md)
-- [Best practices for tools](../../concepts/tool-best-practice.md)

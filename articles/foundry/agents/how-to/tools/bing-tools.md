@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/03/2026
+ms.date: 08/05/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -39,7 +39,7 @@ The grounding process involves several key steps:
 >[!NOTE]
 > Start with the [web search tool](./web-search.md). Learn more about the differences between web search and Grounding with Bing Search (or Grounding with Bing Custom Search) in the [web grounding overview](./web-overview.md).
 
-### Usage support
+**Usage support**
 
 The following table shows SDK and setup support.
 
@@ -56,8 +56,9 @@ Before you begin, make sure you have:
 
 - An Azure subscription with the right permissions.
 - Azure RBAC roles:
-  - **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
-  - **Foundry Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
+  - **Contributor** on the target resource group while you create the Bing resource and retrieve its keys. These roles are provisioning operations. Use Microsoft Entra Privileged Identity Management (PIM) to activate the role just in time, and deactivate it when provisioning is complete. Day-to-day agent developers and users don't need this role.
+  - **Foundry Project Manager** on the Foundry project to create project connections.
+  - **Foundry User** on the Foundry project to create and run agents. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
 
     [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - A Foundry project created with a configured endpoint.
@@ -71,14 +72,19 @@ Before you begin, make sure you have:
   - For REST samples, environment variables set up:
     - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
     - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
-    - `BING_PROJECT_CONNECTION_ID`: Your Grounding with Bing Search project connection ID.
-    - `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`: Your Grounding with Bing Custom Search project connection ID.
-    - `BING_CUSTOM_SEARCH_INSTANCE_NAME`: Your custom search instance name.
     - `AGENT_TOKEN`.
-- A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project. A paid subscription is required to create a Grounding with Bing Search or Grounding with Bing Custom Search resource.
 - The Grounding with Bing Search tool works in a network-secured Foundry project, but it behaves like a public endpoint. Consider this behavior when you use the tool in a network-secured environment.
 
-## Setup
+## Choose a web grounding scenario
+
+| Scenario | Choose it when | Start here |
+| --- | --- | --- |
+| General Web Search | Your agent needs current information from the public web without a separate Bing resource or project connection. | [Add web search directly to a prompt agent](web-search.md#add-web-search-directly-to-an-agent). |
+| Domain-restricted Bing Custom Search | You want the Web Search API surface, but results must come from domains configured in your Bing Custom Search instance. | [Configure domain-restricted Web Search](web-search.md#domain-restricted-search-with-bing-custom-search). |
+| Deep research | Your `o3-deep-research` agent needs multi-step research and synthesis. | [Use direct Web Search for deep research](web-search.md#deep-research-with-web-search). |
+| Bing grounding tools | You need the explicit `bing_grounding` or `bing_custom_search_preview` tool type with a Bing project connection. | [Prepare a Bing grounding workflow](#prepare-a-bing-grounding-workflow). |
+
+## Set up a project connection
 
 In this section, you add a project connection for the Bing resource and capture the values used in the samples. SDK samples use the project connection name and resolve the connection ID at runtime. REST samples use the project connection ID. You can use this [bicep template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/45-basic-agent-bing) to create a basic agent with Grounding with Bing Search tool enabled.
 
@@ -88,7 +94,7 @@ If you already have a project connection ID for the Bing resource you want to us
 
    For step-by-step instructions, see [Add a new connection to your project](../../../how-to/connections-add.md).
    >[!IMPORTANT]
-   > - You need the **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
+  > - To create a Bing resource and retrieve its keys, activate **Contributor** on the target resource group just in time through Microsoft Entra PIM. Deactivate the role after provisioning. Day-to-day agent developers and users don't need this role.
    > - To find the resource keys, go to your Grounding with Bing resource in the [Azure portal](https://portal.azure.com) > **Resource Management** > **Keys**.
 
 1. Get the project connection name and ID from the connection details, then set the values as environment variables.
@@ -104,17 +110,26 @@ If you already have a project connection ID for the Bing resource you want to us
 
   `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
-## Available tools
+## Prepare a Bing grounding workflow
 
-| Tool | Description | Use case |
-| --- | --- | --- |
-| Grounding with Bing Search | Gives agents standard access to Bing's search capabilities. | Scenarios requiring broad knowledge access. |
-| Grounding with Bing Custom Search (preview) | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from domains you choose. | Scenarios requiring information management. |
+Choose one workflow before opening a language tab. Both workflows require a paid Bing resource and a project connection.
+
+### Ground responses with standard Bing Search
+
+**Additional prerequisites:** Create a Grounding with Bing Search resource, connect it to your Foundry project, and record the connection name for SDK samples or the connection ID for REST samples. For REST, also set `BING_PROJECT_CONNECTION_ID`.
+
+**Outcome:** Your agent can search the broad public web and return a grounded response with source citations.
+
+### Restrict grounding with Bing Custom Search
+
+**Additional prerequisites:** Create a Grounding with Bing Custom Search resource and instance, configure the instance with public domains, connect the resource to your Foundry project, and record the connection name or ID. For REST, also set `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID` and `BING_CUSTOM_SEARCH_INSTANCE_NAME`.
+
+**Outcome:** Your agent searches only the public, Bing-indexed domains configured in your custom search instance and returns citations from those domains.
 
 > [!NOTE]
 > See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
-## Code examples
+## Run a Bing grounding example
 
 > [!NOTE]
 > - You need the latest SDK package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
@@ -124,9 +139,9 @@ If you already have a project connection ID for the Bing resource you want to us
 
 The following examples demonstrate how to create an agent with Grounding with Bing Search tools, and how to use the agent to respond to user queries. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
-#### Grounding with Bing Search
+#### Ground responses with Bing Search
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -185,7 +200,7 @@ for event in stream_response:
         print(f"Follow-up response created with ID: {event.response.id}")
     elif event.type == "response.output_text.delta":
         print(f"Delta: {event.delta}")
-    elif event.type == "response.text.done":
+    elif event.type == "response.output_text.done":
         print(f"\nFollow-up response done!")
     elif event.type == "response.output_item.done":
         if event.item.type == "message":
@@ -229,7 +244,7 @@ Follow-up completed!
 Full response: Today's date is December 12, 2025, and the weather in Seattle is...
 ```
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_bing_grounding_tool()` to attach Bing grounding via a project connection. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
@@ -299,7 +314,7 @@ For Bing Custom Search, use `FoundryChatClient.get_bing_custom_search_tool(conne
 
 ---
 
-### Grounding with Bing Custom Search (preview)
+### Restrict grounding with Bing Custom Search (preview)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -364,7 +379,7 @@ for event in stream_response:
         print(f"Follow-up response created with ID: {event.response.id}")
     elif event.type == "response.output_text.delta":
         print(f"Delta: {event.delta}")
-    elif event.type == "response.text.done":
+    elif event.type == "response.output_text.done":
         print(f"\nFollow-up response done!")
     elif event.type == "response.output_item.done":
         if event.item.type == "message":
@@ -423,9 +438,9 @@ The following C# examples demonstrate how to create an agent with Grounding with
 
 To enable your Agent to use Bing search API, use `BingGroundingTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
-#### Grounding with Bing Search
+#### Ground responses with Bing Search
 
 ```csharp
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -479,7 +494,10 @@ foreach (ResponseItem item in response.OutputItems)
 }
 
 // Validate and print the response
-Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+if (response.Status != ResponseStatus.Completed)
+{
+  throw new InvalidOperationException($"Response failed with status {response.Status}.");
+}
 Console.WriteLine($"{response.GetOutputText()}{citation}");
 
 // Clean up resources by deleting the agent version
@@ -508,7 +526,7 @@ This example creates an agent that uses the Grounding with Bing Search tool and 
 Euler's identity is considered one of the most elegant equations in mathematics... [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
 ```
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateBingGroundingTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
@@ -568,7 +586,7 @@ For Bing Custom Search, use `FoundryAITool.CreateBingCustomSearchTool(...)` with
 
 ---
 
-## Grounding with Bing in streaming scenarios
+## Stream a grounded Bing response
 
 ```csharp
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -682,7 +700,7 @@ Euler's Identity is one of the most elegant equations in mathematics... [Euler's
 :::zone pivot="rest"
 The following REST API examples demonstrate how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to respond to user queries.
 
-### Grounding with Bing Search
+### Ground responses with Bing Search
 
 ### Authentication setup
 
@@ -716,7 +734,7 @@ Before running REST API calls, configure authentication:
                "count": 7,
                "market": "en-US",
                "set_lang": "en",
-               "freshness": "7d"
+               "freshness": "week"
              }
            ]
          }
@@ -741,12 +759,31 @@ This REST API request creates a response using Grounding with Bing Search. The r
 
 ### Expected output
 
-JSON response with:
-- `id`: Response identifier
-- `output_text`: Generated text with grounded information
-- `citations`: Array of URL citations used to generate the response
+The response contains an `output` array. URL citations are annotations on an `output_text` content item:
 
-### Grounding with Bing Custom Search (preview)
+```json
+{
+  "id": "resp_<id>",
+  "status": "completed",
+  "output": [
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "<grounded response>",
+          "annotations": [
+            { "type": "url_citation", "url": "https://example.com/source" }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Restrict grounding with Bing Custom Search (preview)
 
 ```bash
 curl --request POST \
@@ -768,7 +805,7 @@ curl --request POST \
             "count": 7,
             "market": "en-US",
             "set_lang": "en",
-            "freshness": "7d"
+            "freshness": "week"
           }
         ]
       }
@@ -794,18 +831,15 @@ This REST API request creates a response using Grounding with Bing Custom Search
 
 ### Expected output
 
-JSON response with:
-- `id`: Response identifier
-- `output_text`: Generated text with information from your custom domain set
-- `citations`: Array of URL citations from your configured domains
+The response uses the same `output` array shape shown in the preceding REST example. Citation annotations contain URLs from your configured domains.
 
 :::zone-end
 
 :::zone pivot="typescript"
 
-The following TypeScript examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries. For JavaScript examples, see the [agent tools JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries. For JavaScript examples, see the [agent tools JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools) in the Azure SDK for JavaScript repository on GitHub.
 
-#### Grounding with Bing Search
+#### Ground responses with Bing Search
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -850,7 +884,7 @@ export async function main(): Promise<void> {
     },
     {
       body: {
-        agent: { name: agent.name, type: "agent_reference" },
+        agent_reference: { name: agent.name, type: "agent_reference" },
         tool_choice: "required",
       },
     },
@@ -933,7 +967,7 @@ Agent deleted
 Bing grounding agent sample completed!
 ```
 
-### Grounding with Bing Custom Search (preview)
+### Restrict grounding with Bing Custom Search (preview)
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -998,7 +1032,7 @@ export async function main(): Promise<void> {
     },
     {
       body: {
-        agent: { name: agent.name, type: "agent_reference" },
+        agent_reference: { name: agent.name, type: "agent_reference" },
       },
     },
   );
@@ -1180,14 +1214,14 @@ Developers and end users don't have access to raw content returned from Groundin
 
 According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/bing/apis/grounding-legal-enterprise#use-and-display-requirements#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find this information in the API response, in the `arguments` parameter. To render the webpage, replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like `https://www.bing.com/search?q={search query}`.
 
-:::image type="content" source="../../../agents/media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../../agents/media/tools/bing/website-citations.png":::
+:::image type="content" source="../../../agents/media/tools/bing/website-citations.png" alt-text="Screenshot of Bing search results showing website and search query citations." lightbox="../../../agents/media/tools/bing/website-citations.png":::
 
 ## Grounding with Bing Custom Search configuration
 
 Grounding with Bing Custom Search is a powerful tool that you can use to select a subspace of the web to limit your agent’s grounding knowledge. Here are a few tips to help you take full advantage of this capability: 
 
 - If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
-- You need at least the contributor role for the Bing Custom Search resource to create a configuration.
+- To create a Bing Custom Search configuration, activate the **Contributor** role on the Bing Custom Search resource just in time through Microsoft Entra PIM. Deactivate the role after configuration. Day-to-day agent developers and users don't need this role.
 - You can only block certain domains and perform a search against the rest of the web (a competitor's site, for example). 
 - Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing. 
   - Domain (for example, `https://www.microsoft.com`) 
@@ -1212,7 +1246,7 @@ When you add the Grounding with Bing Search or Grounding with Bing Custom Search
 - Within one run, the AI model evaluates the tool outputs and might decide to invoke the tool again for more information and context. The AI model might also decide which pieces of tool outputs are used to generate the response.
 - Foundry Agent Service returns **AI model generated responses** as output, so end-to-end latency is impacted by model pre-processing and post-processing.
 - The Grounding with Bing Search and Grounding with Bing Custom Search tools don't return the tool output to developers and end users.
-- Grounding with Bing Search and Grounding with Bing Custom Search only work with agents that aren't using VPN or private endpoints. The agent must have normal network access.
+- Grounding with Bing Search works from a network-secured Foundry project, but Bing traffic uses public egress and doesn't traverse or honor VPN or private endpoint routing.
 - Use the default citations pattern (the links sent in `annotation`) for links from the Grounding with Bing tools. Don't ask the model to generate citation links.
 
 ## Troubleshooting
@@ -1236,8 +1270,9 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 
 **Solution**: 
 1. Verify you have the required RBAC roles:
-   - **Contributor** or **Owner** role for creating Bing resources
-   - **Foundry Project Manager** role for creating project connections
+  - For Bing resource provisioning, activate **Contributor** on the target resource group just in time through Microsoft Entra PIM. Deactivate it after provisioning. Day-to-day agent developers and users don't need this role.
+  - **Foundry Project Manager** on the Foundry project for creating project connections.
+  - **Foundry User** on the Foundry project for creating and running agents.
 1. Check that your Azure credentials are properly configured:
    - For Python/TypeScript: `DefaultAzureCredential` can authenticate
    - For REST: Bearer token is valid and not expired
@@ -1247,11 +1282,7 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 
 **Problem**: Grounding with Bing Search requests time out or can't connect.
 
-**Solution**: Grounding with Bing Search and Grounding with Bing Custom Search don't work with VPN or Private Endpoints. Ensure:
-- Your network has normal internet access.
-- You're not using a VPN connection.
-- Private Endpoints aren't configured for the agent service.
-- Firewall rules allow outbound connections to Bing services.
+**Solution**: Bing traffic uses public egress even when the Foundry project is network secured. Ensure your network and firewall policies allow the required public outbound traffic. Don't expect VPN or private endpoint routing to carry the Bing request.
 
 ### Custom search returns no results
 
@@ -1300,13 +1331,16 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 
 Admins can use RBAC role assignments to enable or disable the use of Grounding with Bing and Grounding with Bing Custom Search within the subscription or resource group. 
 
-1. The admin registers `Microsoft.Bing` in the Azure subscription. The admin needs permissions to perform the `/register/action` operation for the resource provider. The Contributor and Owner roles include this permission. For more information about how to register, see [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
-1. After the admin registers `Microsoft.Bing`, users with permissions can create, delete, or retrieve the resource key for a Grounding with Bing and/or Grounding with Bing Custom Search resource. These users need the **Contributor** or **Owner** role at the subscription or resource group level. 
-1. After creating a Grounding with Bing and/or Grounding with Bing Custom Search resource, users with permissions can create a Microsoft Foundry connection to connect to the resource and use it as a tool in Foundry Agent Service. These users need at least the **Foundry Project Manager** role. 
+1. To register `Microsoft.Bing`, the admin activates **Contributor** at subscription scope just in time through Microsoft Entra PIM. Subscription scope is required because resource provider registration uses the `/register/action` operation. After registration, the admin deactivates the role. For more information, see [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
+1. To create the Grounding with Bing Search or Grounding with Bing Custom Search resource and retrieve its key, the provisioning user activates **Contributor** on the target resource group just in time through Microsoft Entra PIM. After provisioning, the user deactivates the role.
+1. To create the Microsoft Foundry connection, assign the provisioning user the **Foundry Project Manager** role on the Foundry project.
+
+Day-to-day agent developers and users need **Foundry User** on the Foundry project. They don't need **Contributor** for the subscription or resource group.
 
 ### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
 
-1. The admin needs the **Owner** or **Contributor** role in the subscription.
+To delete Bing resources, unregister the `Microsoft.Bing` resource provider, and create the Azure Policy, an admin needs **Owner** or **Contributor** at subscription scope. These roles are required for subscription governance operations. Activate the role just in time through Microsoft Entra PIM, and deactivate it after completing this procedure. Day-to-day agent developers and users don't need either role.
+
 1. The admin deletes all Grounding with Bing Search and Grounding with Bing Custom Search resources in the subscription.
 1. The admin unregisters the `Microsoft.Bing` resource provider in the subscription (you can't unregister before deleting all resources). For more information, see [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
 1. The admin creates an Azure Policy to disallow creation of Grounding with Bing Search and Grounding with Bing Custom Search resources in their subscription, following the [sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
