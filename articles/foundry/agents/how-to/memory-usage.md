@@ -1,6 +1,6 @@
 ---
-title: Create and Use Memory
-description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions
+title: Create and use memory in Foundry Agent Service
+description: Learn how to create and manage memory stores in Foundry Agent Service so agents retain context across sessions and personalize interactions.
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: liulewis
@@ -31,14 +31,32 @@ Memory stores act as persistent storage, defining which types of information are
 
 This article explains how to create, manage, and use memory stores. For conceptual information, see [Memory in Foundry Agent Service](../concepts/what-is-memory.md).
 
-### Usage support
+For a first end-to-end success, follow this path:
+
+1. [Create a memory store](#create-a-memory-store) for the agent.
+1. [Attach the memory search tool](#use-memories-via-an-agent-tool) to the agent.
+1. [Create a conversation](#create-a-conversation), send a preference, and wait for the configured update delay so the service can remember it.
+1. Start a new conversation in the same example and ask a related question to confirm that the agent recalls the preference.
+
+Choose a workflow based on how directly you need to control memory:
+
+| Scenario | Start with | Use it to |
+| --- | --- | --- |
+| **Administration** | [Create a memory store](#create-a-memory-store) | Configure, update, list, or delete stores and retention settings. |
+| **Commands** | [Apply direct remember-or-forget behavior](#apply-direct-remember-or-forget-behavior) | Honor an explicit user request to remember or forget information immediately. |
+| **Items** | [Manage memory items](#manage-memory-items) | Create, inspect, update, or delete individual records directly. |
+
+**Example coverage**
+
+A checkmark means this article includes an example for that language. A dash means an example isn't currently included; it doesn't indicate whether the SDK supports the operation.
 
 | Capability | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API |
 | --- | --- | --- | --- | --- | --- |
-| Create, update, list, and delete memory stores | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| Attach memory to a prompt agent | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| Update and search memories | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| Create, read, update, list, and delete memory items | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| **Create, update, list, and delete memory stores** | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| **Attach memory to a prompt agent** | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| **Update and search memories** | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| **Apply direct remember-or-forget commands** | ✔️ | — | ✔️ | ✔️ | ✔️ |
+| **Create, read, update, list, and delete memory items** | ✔️ | — | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -50,7 +68,7 @@ This article explains how to create, manage, and use memory stores. For conceptu
 
 ### Authorization and permissions
 
-We recommend [role-based access control](../../concepts/rbac-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+Use [role-based access control](../../concepts/rbac-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 To configure role-based access:
 
@@ -97,8 +115,10 @@ dotnet add package Azure.Identity
 Install the required packages:
 
 ```bash
-npm install @azure/ai-projects@2 @azure/identity
+npm install @azure/ai-projects @azure/identity
 ```
+
+Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
 
 :::zone-end
 
@@ -177,6 +197,7 @@ Use memory store options to control extraction behavior and retention defaults. 
 
 ```python
 import os
+from datetime import timedelta
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MemoryStoreDefaultDefinition, MemoryStoreDefaultOptions
 from azure.identity import DefaultAzureCredential
@@ -193,7 +214,7 @@ options = MemoryStoreDefaultOptions(
     chat_summary_enabled=True,
     user_profile_enabled=True,
     procedural_memory_enabled=True,
-    default_ttl_seconds=30 * 24 * 60 * 60,
+    default_ttl_seconds=timedelta(days=30),
     user_profile_details="Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials"
 )
 
@@ -824,21 +845,21 @@ Console.WriteLine(
 ```typescript
 import { setTimeout } from "timers/promises";
 
-const openaiClient = project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Create a conversation with the agent with memory tool enabled
-const conversation = await openaiClient.conversations.create();
+const conversation = await openai.conversations.create();
 console.log(`Created conversation (id: ${conversation.id})`);
 
 // Create an agent response to initial user message
-const response = await openaiClient.responses.create(
+const response = await openai.responses.create(
   {
     conversation: conversation.id,
     input: "I prefer dark roast coffee",
   },
   {
     body: {
-      agent: { name: agent.name, type: "agent_reference" },
+      agent_reference: { name: agent.name, type: "agent_reference" },
     },
     // To scope memories to an end user, uncomment:
     // headers: { "x-memory-user-id": "<user-id>" },
@@ -852,18 +873,18 @@ console.log("Waiting for memories to be stored...");
 await setTimeout(65_000);
 
 // Create a new conversation to demonstrate cross-session recall
-const newConversation = await openaiClient.conversations.create();
+const newConversation = await openai.conversations.create();
 console.log(`Created new conversation (id: ${newConversation.id})`);
 
 // Create an agent response with stored memories
-const newResponse = await openaiClient.responses.create(
+const newResponse = await openai.responses.create(
   {
     conversation: newConversation.id,
     input: "Please order my usual coffee",
   },
   {
     body: {
-      agent: { name: agent.name, type: "agent_reference" },
+      agent_reference: { name: agent.name, type: "agent_reference" },
     },
   },
 );
@@ -1033,7 +1054,7 @@ PrintMemoryCommands(forgetResponse);
 :::zone pivot="typescript"
 
 ```typescript
-const openaiClient = project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Configure the memory search tool
 const tools = [
@@ -1045,7 +1066,7 @@ const tools = [
 ];
 
 // Ask the agent to remember information
-const rememberResponse = await openaiClient.responses.create({
+const rememberResponse = await openai.responses.create({
   model: chatModelDeployment,
   input: "Remember that my preferred seat is aisle.",
   tools: tools as any,
@@ -1062,7 +1083,7 @@ for (const item of rememberResponse.output) {
 }
 
 // Ask the agent to forget information
-const forgetResponse = await openaiClient.responses.create({
+const forgetResponse = await openai.responses.create({
   model: chatModelDeployment,
   input: "Forget my preferred seat.",
   tools: tools as any,
@@ -1593,7 +1614,7 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store:search_m
 
 ### Retrieve static or contextual memories
 
-Often, user profile memories can't be retrieved based on semantic similarity to a user's message. We recommend that you inject static memories into the beginning of each conversation and use contextual memories to generate each agent response.
+Often, you can't retrieve user profile memories based on semantic similarity to a user's message. Inject static memories into the beginning of each conversation, and use contextual memories to generate each agent response.
 
 - To retrieve static memories, call `search_memories` with a `scope` but without `items` or `previous_search_id`. This returns user profile memories associated with the scope.
 
@@ -2182,7 +2203,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 :::zone pivot="python"
 
 - [Azure AI Projects client library for Python: Memory samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
-- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
+- [Memory store REST API reference](https://ai.azure.com/api-reference)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
 - [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
@@ -2193,7 +2214,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 
 - [Azure AI Extensions for OpenAI: Memory search tool sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample5_MemorySearchTool.md)
 - [Azure AI Projects client library for .NET: Memory store sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md)
-- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
+- [Memory store REST API reference](https://ai.azure.com/api-reference)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
 - [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
@@ -2203,7 +2224,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 :::zone pivot="typescript"
 
 - [Azure AI Projects client library for JavaScript: Memory samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2/javascript/memories)
-- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
+- [Memory store REST API reference](https://ai.azure.com/api-reference)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
 - [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
@@ -2214,7 +2235,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 
 - [Azure AI Agents client library for Java: Memory samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/memory)
 - [Azure AI Agents client library for Java: Memory search agent sample](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/MemorySearchAgent.java)
-- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
+- [Memory store REST API reference](https://ai.azure.com/api-reference)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
 - [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
@@ -2223,7 +2244,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 
 :::zone pivot="rest"
 
-- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
+- [Memory store REST API reference](https://ai.azure.com/api-reference)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
 - [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)

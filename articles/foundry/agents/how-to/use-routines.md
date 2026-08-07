@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/03/2026
+ms.date: 08/05/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -53,7 +53,7 @@ Routines are available in a subset of regions in preview. Confirm that your Foun
 - Install the `azure-ai-projects` SDK, version 2.3.0 or later:
 
   ```bash
-  pip install "azure-ai-projects>=2.3.0"
+  pip install "azure-ai-projects>=2.4.0"
   ```
 
 - Install `azure-identity` for authentication:
@@ -66,15 +66,12 @@ Routines are available in a subset of regions in preview. Confirm that your Foun
 
 :::zone pivot="programming-language-csharp"
 
-- Install the `Azure.AI.Projects` NuGet package:
+- Install the coherent routines preview package set and Azure Identity. Stable 2.0.1 packages don't include routines:
 
   ```bash
-  dotnet add package Azure.AI.Projects
-  ```
-
-- Install `Azure.Identity` for authentication:
-
-  ```bash
+  dotnet add package Azure.AI.Projects --version 2.1.0-beta.4
+  dotnet add package Azure.AI.Projects.Agents --version 2.1.0-beta.4
+  dotnet add package Azure.AI.Extensions.OpenAI --version 2.1.0-beta.4
   dotnet add package Azure.Identity
   ```
 
@@ -82,11 +79,13 @@ Routines are available in a subset of regions in preview. Confirm that your Foun
 
 :::zone pivot="programming-language-javascript"
 
-- Install the `@azure/ai-projects` npm package (preview):
+- Install the `@azure/ai-projects` npm package. Routine operations are in preview:
 
   ```bash
   npm install @azure/ai-projects @azure/identity
   ```
+
+- Use Node.js 22 or later.
 
 :::zone-end
 
@@ -114,6 +113,28 @@ Routines are available in a subset of regions in preview. Confirm that your Foun
   ```
 
 :::zone-end
+
+## Create and test a scheduled routine
+
+For the fastest path to a working routine, use the scheduled routine example and verify the complete lifecycle:
+
+1. [Create a recurring scheduled routine](#schedule-trigger) that invokes your agent.
+1. [Dispatch the routine manually](#test-a-routine-manually) instead of waiting for its schedule.
+1. [Inspect the run history](#view-run-history) and confirm that the run completes.
+1. [Delete the routine](#delete-a-routine) after you finish testing.
+
+## Choose a trigger or task
+
+After the scheduled routine succeeds, choose the trigger or management task that fits your scenario.
+
+| Goal | Use this section |
+|---|---|
+| Run once at a future time | [Timer trigger](#timer-trigger) |
+| Respond to an opened or closed issue | [GitHub issue trigger](#github-issue-trigger) |
+| Respond to a new channel message | [Teams message trigger](#teams-message-trigger) |
+| Pause, resume, inspect, update, or remove routines | [Enable and disable a routine](#enable-and-disable-a-routine) and [List and retrieve routines](#list-and-retrieve-routines) |
+| Check action and trigger request fields | [Action fields](#action-fields) and [Trigger fields](#trigger-fields) |
+| Diagnose a routine that doesn't create, fire, or complete | [Troubleshooting](#troubleshooting) |
 
 ## Supported trigger types
 
@@ -243,6 +264,8 @@ agent_name = os.environ["AGENT_NAME"]
 client = AIProjectClient(endpoint=endpoint, credential=DefaultAzureCredential())
 
 # Using Responses API action
+from datetime import datetime, timezone
+
 routine = client.beta.routines.create_or_update(
     routine_name="daily-summary",
     description="Runs a daily summary agent on weekday mornings.",
@@ -328,10 +351,10 @@ const { DefaultAzureCredential } = require("@azure/identity");
 const endpoint = process.env.PROJECT_ENDPOINT;
 const agentName = process.env.AGENT_NAME;
 
-const client = new AIProjectClient(endpoint, new DefaultAzureCredential());
+const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
 
 // Using Responses API action
-const routine = await client.beta.routines.createOrUpdate("daily-summary", {
+const routine = await project.beta.routines.createOrUpdate("daily-summary", {
   description: "Runs a daily summary agent on weekday mornings.",
   enabled: true,
   triggers: {
@@ -431,11 +454,7 @@ curl -sS -X PUT "$PROJECT_ENDPOINT/routines/once-on-release-day" \
   }'
 ```
 
-The `at` field accepts:
-
-- An ISO 8601 timestamp with an explicit UTC offset, for example `"2026-06-01T09:00:00Z"`.
-- A local timestamp paired with `time_zone`, for example `"at": "2026-09-01T09:00:00", "time_zone": "America/Los_Angeles"`.
-- A positive duration from the current time, for example `"30m"` (30 minutes from now) or `"2h"` (two hours from now).
+Set `at` to an ISO 8601 timestamp with an explicit UTC offset, for example, `"2026-06-01T09:00:00Z"`.
 
 :::zone-end
 
@@ -449,8 +468,7 @@ routine = client.beta.routines.create_or_update(
     triggers={
         "release-day": {
             "type": "timer",
-            "at": "2026-09-01T09:00:00Z",  # required
-            # "time_zone": "UTC",           # optional; required when 'at' has no UTC offset
+            "at": datetime(2026, 9, 1, 9, 0, tzinfo=timezone.utc),
         }
     },
     action={
@@ -491,14 +509,13 @@ ProjectsRoutine routine = await routinesClient.CreateOrUpdateAsync(
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-const routine = await client.beta.routines.createOrUpdate("once-on-release-day", {
+const routine = await project.beta.routines.createOrUpdate("once-on-release-day", {
   description: "Runs the agent once on release day.",
   enabled: true,
   triggers: {
     "release-day": {
       type: "timer",
-      at: "2026-09-01T09:00:00Z",  // required
-      // time_zone: "UTC",          // optional; required when 'at' has no UTC offset
+      at: new Date("2026-09-01T09:00:00Z"),
     },
   },
   action: {
@@ -565,8 +582,6 @@ The preview supports two event-based triggers: the `github_issue` trigger and th
 #### GitHub issue trigger
 
 A `github_issue` trigger fires when an issue is opened or closed in a watched GitHub repository. When the trigger fires, Foundry forwards the GitHub issue payload to the agent as its input, so the agent can triage or act on the issue.
-
-:::image type="content" source="../media/routines/routine-github-trigger.png" alt-text="Screenshot showing the New routine dialog in the Foundry portal with a GitHub issue trigger selected, displaying fields for repository owner and repository name.":::
 
 The trigger relies on a GitHub connector connection. Foundry provisions the connection to GitHub in your account's connector namespace and authenticates to GitHub through it. The `connection_id` you set on the trigger references this connection. Each tab shows how to create the connection and the routine that uses it. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
@@ -757,7 +772,7 @@ ProjectsRoutine routine = await routinesClient.CreateOrUpdateAsync(
 The JavaScript SDK creates the routine but not the GitHub connector connection. Create the connection first in the [Foundry portal](tools/connectors.md?pivots=foundry-portal), with the [REST API](tools/connectors.md?pivots=programming-language-rest), or with the [Azure Developer CLI](tools/connectors.md?pivots=azd), then reference it by name in the trigger's `connection_id` field.
 
 ```javascript
-const routine = await client.beta.routines.createOrUpdate("on-issue-opened", {
+const routine = await project.beta.routines.createOrUpdate("on-issue-opened", {
   description: "Triages a GitHub issue when it is opened in the watched repository.",
   enabled: true,
   triggers: {
@@ -784,7 +799,7 @@ const routine = await client.beta.routines.createOrUpdate("on-issue-opened", {
 
 :::zone pivot="azd"
 
-### Step 1: Create the GitHub OAuth2 connection
+### Create the GitHub OAuth2 connection
 
 Before you can create a GitHub issue routine, register the GitHub connector as a project connection. Use `azd ai connection create` with `--connector-name github`:
 
@@ -793,7 +808,7 @@ azd ai connection create github-conn \
   --connector-name github
 ```
 
-### Step 2: Complete OAuth consent
+### Complete OAuth consent
 
 The connection is created in an `Unauthenticated` state. Retrieve the consent URL and open it in a browser:
 
@@ -803,7 +818,7 @@ azd ai connection show github-conn
 
 Sign in to GitHub once and authorize the application. After consent is recorded, `overallStatus` transitions to `Connected`.
 
-### Step 3: Create the routine
+### Create the routine
 
 Reference the connection by name in the routine's `connection_id`. Create the routine inline:
 
@@ -851,7 +866,7 @@ A `custom` trigger fires on an event from an external provider. In the preview, 
 
 The trigger requires a Microsoft Teams connector connection. Foundry provisions the connection in your account's connector namespace and uses it to authenticate to Teams. The `connection_id` in the trigger's `parameters` references this connection. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
-The `parameters` object scopes the trigger to a single Teams channel. Set `threadType` to `channel`, `groupId` to the ID of the Teams team that contains the channel, and `channelId` to the ID of the channel to watch. You can obtain the team and channel IDs from Microsoft Teams or Microsoft Graph. The authenticated Teams connection must have access to the team and channel specified by `groupId` and `channelId`.
+The `parameters` object scopes the trigger to a single Teams channel. Set `thread_type` to `channel`, `group_id` to the ID of the Teams team that contains the channel, and `channel_id` to the ID of the channel to watch. You can obtain the team and channel IDs from Microsoft Teams or Microsoft Graph. The authenticated Teams connection must have access to the specified team and channel.
 
 :::zone pivot="foundry-portal"
 
@@ -952,9 +967,9 @@ curl -sS -X PUT "$PROJECT_ENDPOINT/routines/teams-new-message" \
         "event_name": "on_new_channel_message",
         "parameters": {
           "connection_id": "teams-conn",
-          "threadType": "channel",
-          "groupId": "<your-team-group-id>",
-          "channelId": "<your-channel-id>"
+          "thread_type": "channel",
+          "group_id": "<your-team-group-id>",
+          "channel_id": "<your-channel-id>"
         }
       }
     },
@@ -986,9 +1001,9 @@ routine = client.beta.routines.create_or_update(
             "event_name": "on_new_channel_message",
             "parameters": {
                 "connection_id": "teams-conn",   # required: project connection to Teams
-                "threadType": "channel",
-                "groupId": "<your-team-group-id>",
-                "channelId": "<your-channel-id>",
+                "thread_type": "channel",
+                "group_id": "<your-team-group-id>",
+                "channel_id": "<your-channel-id>",
             },
         }
     },
@@ -1009,7 +1024,7 @@ routine = client.beta.routines.create_or_update(
 The JavaScript SDK creates the routine but not the Teams connector connection. Create the connection first in the [Foundry portal](tools/connectors.md?pivots=foundry-portal), with the [REST API](tools/connectors.md?pivots=programming-language-rest), or with the [Azure Developer CLI](tools/connectors.md?pivots=azd), then reference it by name in the trigger's `connection_id` parameter.
 
 ```javascript
-const routine = await client.beta.routines.createOrUpdate("teams-new-message", {
+const routine = await project.beta.routines.createOrUpdate("teams-new-message", {
   description: "Invokes an agent when a new message is posted to a Teams channel.",
   enabled: true,
   triggers: {
@@ -1019,9 +1034,9 @@ const routine = await client.beta.routines.createOrUpdate("teams-new-message", {
       event_name: "on_new_channel_message",
       parameters: {
         connection_id: "teams-conn",   // required: project connection to Teams
-        threadType: "channel",
-        groupId: "<your-team-group-id>",
-        channelId: "<your-channel-id>",
+        thread_type: "channel",
+        group_id: "<your-team-group-id>",
+        channel_id: "<your-channel-id>",
       },
     },
   },
@@ -1055,9 +1070,9 @@ triggers:
     event_name: on_new_channel_message
     parameters:
       connection_id: teams-conn
-      threadType: channel
-      groupId: <your-team-group-id>
-      channelId: <your-channel-id>
+      thread_type: channel
+      group_id: <your-team-group-id>
+      channel_id: <your-channel-id>
 action:
   type: invoke_agent_responses_api
   agent_name: <your-agent-name>
@@ -1083,9 +1098,10 @@ Invokes the agent through the Responses API.
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"invoke_agent_responses_api"`. |
-| `agent_name` | string | Yes | The project-scoped agent name. Maximum 256 characters. |
-| `input` | string | No | The input passed to the agent. For a `github_issue` trigger, the GitHub issue payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
-| `conversation_id` | string | No | An existing conversation to continue during the dispatch. Maximum 256 characters. |
+| `agent_name` | string | Conditional | The project-scoped agent name. Specify exactly one of `agent_name` or `agent_endpoint_id`. Maximum 256 characters. |
+| `agent_endpoint_id` | string | Conditional | The legacy hosted-agent endpoint ID. Specify exactly one of `agent_name` or `agent_endpoint_id`. |
+| `input` | JSON value | No | The input passed to the agent. For a `github_issue` trigger, the GitHub issue payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
+| `conversation` | string | No | An existing conversation to continue during the dispatch. Maximum 256 characters. |
 
 ### Invocations API action (`invoke_agent_invocations_api`)
 
@@ -1094,8 +1110,9 @@ Invokes the agent through the Invocations API.
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"invoke_agent_invocations_api"`. |
-| `agent_name` | string | Yes | The project-scoped agent name. Maximum 256 characters. |
-| `input` | string | No | The input passed to the agent. For a `github_issue` trigger, the GitHub issue payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
+| `agent_name` | string | Conditional | The project-scoped agent name. Specify exactly one of `agent_name` or `agent_endpoint_id`. Maximum 256 characters. |
+| `agent_endpoint_id` | string | Conditional | The legacy hosted-agent endpoint ID. Specify exactly one of `agent_name` or `agent_endpoint_id`. |
+| `input` | JSON value | No | The input passed to the agent. For a `github_issue` trigger, the GitHub issue payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
 | `session_id` | string | No | An existing hosted-agent session to continue during the dispatch. Maximum 256 characters. |
 
 
@@ -1109,8 +1126,6 @@ Routines start enabled if you set `"enabled": true` at creation. You can pause a
 1. Select **Routines** in the left navigation.
 1. Find the routine and select it.
 1. Select **Pause** in the top right to pause the routine, or select **Resume** to re-enable a paused routine.
-
-   :::image type="content" source="../media/routines/routine-detail-actions.png" alt-text="Screenshot of a routine detail page showing the Pause button in the top right, the overflow menu with Test run, Edit, and Delete options, and the table of past runs below." lightbox="../media/routines/routine-detail-actions.png":::
 
 From the same page, you can also:
 
@@ -1173,11 +1188,11 @@ Console.WriteLine($"Enabled: {enabled.IsEnabled}");    // true
 
 ```javascript
 // Disable
-const disabled = await client.beta.routines.disable("daily-summary");
+const disabled = await project.beta.routines.disable("daily-summary");
 console.log(`Enabled: ${disabled.enabled}`);   // false
 
 // Enable
-const enabled = await client.beta.routines.enable("daily-summary");
+const enabled = await project.beta.routines.enable("daily-summary");
 console.log(`Enabled: ${enabled.enabled}`);    // true
 ```
 
@@ -1210,14 +1225,14 @@ Foundry queues the run immediately with the routine's current agent and prompt. 
 
 :::zone pivot="programming-language-rest"
 
-Use the `dispatch_async` operation to queue the run. The dispatch payload type must match the routine's action type: use `invoke_agent_responses_api` for Responses API routines and `invoke_agent_invocations_api` for Invocations API routines.
+Use the `dispatch_async` operation to queue the run. You can omit `payload` to run the routine with its configured action input. If you include `payload`, its type must match the routine's action type: use `invoke_agent_responses_api` for Responses API routines and `invoke_agent_invocations_api` for Invocations API routines.
 
 | Payload field | Type | Required | Description |
 |---|---|---|---|
-| `type` | string | Yes | Must match the routine's action type: `"invoke_agent_responses_api"` or `"invoke_agent_invocations_api"`. |
-| `input` | string | No | Override input sent to the downstream target for testing. Maximum 32,768 characters. |
+| `type` | string | Yes when `payload` is present | Must match the routine's action type: `"invoke_agent_responses_api"` or `"invoke_agent_invocations_api"`. |
+| `input` | JSON value | Yes when `payload` is present | Override input sent to the downstream target for testing. |
 
-**Responses API routine – with optional input override:**
+**Responses API routine with an input override:**
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
@@ -1232,7 +1247,7 @@ curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
   }'
 ```
 
-**Invocations API routine – with optional input override:**
+**Invocations API routine with an input override:**
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/my-invocations-routine:dispatch_async" \
@@ -1330,7 +1345,7 @@ RoutineDispatchResult result2 = await routinesClient.DispatchAsync(
 
 ```javascript
 // Responses API routine
-const result = await client.beta.routines.dispatch("daily-summary", {
+const result = await project.beta.routines.dispatch("daily-summary", {
   payload: {
     type: "invoke_agent_responses_api",
     input: "Run the daily summary for testing.",  // optional
@@ -1339,7 +1354,7 @@ const result = await client.beta.routines.dispatch("daily-summary", {
 console.log(`dispatch_id: ${result.dispatch_id}`);
 
 // Invocations API routine
-const result2 = await client.beta.routines.dispatch("my-invocations-routine", {
+const result2 = await project.beta.routines.dispatch("my-invocations-routine", {
   payload: {
     type: "invoke_agent_invocations_api",
     input: "Run the agent for testing.",  // optional
@@ -1443,7 +1458,7 @@ await foreach (RoutineRun run in routinesClient.GetRoutineRunsAsync("daily-summa
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-for await (const run of client.beta.routines.listRuns("daily-summary")) {
+for await (const run of project.beta.routines.listRuns("daily-summary")) {
   console.log(`${run.id}  phase=${run.phase}  source=${run.attempt_source}`);
   if (run.phase === "failed") {
     console.log(`  error: ${run.error_type} - ${run.error_message}`);
@@ -1521,12 +1536,12 @@ Console.WriteLine(routine);
 
 ```javascript
 // List all routines
-for await (const r of client.beta.routines.list()) {
+for await (const r of project.beta.routines.list()) {
   console.log(`${r.name}  enabled=${r.enabled}`);
 }
 
 // Get a single routine
-const routine = await client.beta.routines.get("daily-summary");
+const routine = await project.beta.routines.get("daily-summary");
 console.log(routine);
 ```
 
@@ -1636,7 +1651,7 @@ Console.WriteLine($"Updated at: {updated.UpdatedAt}");
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-const updated = await client.beta.routines.createOrUpdate("daily-summary", {
+const updated = await project.beta.routines.createOrUpdate("daily-summary", {
   description: "Updated: runs at 08:00 UTC on weekdays.",
   enabled: true,
   triggers: {
@@ -1712,7 +1727,7 @@ Console.WriteLine("Routine deleted.");
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-await client.beta.routines.delete("daily-summary");
+await project.beta.routines.delete("daily-summary");
 console.log("Routine deleted.");
 ```
 
@@ -1741,8 +1756,7 @@ azd ai routine delete once-on-release-day
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"timer"`. |
-| `at` | string | Yes | A future timer expression. Accepts an ISO 8601 timestamp with an explicit UTC offset (for example, `"2026-06-01T09:00:00Z"`), a local timestamp paired with `time_zone`, or a positive duration from now (for example, `"30m"` or `"2h"`). |
-| `time_zone` | string | No | An IANA or Windows time zone identifier. Required when `at` is a local timestamp without a UTC offset. |
+| `at` | string | No | A future ISO 8601 timestamp with an explicit UTC offset, for example, `"2026-06-01T09:00:00Z"`. SDKs use a timezone-aware date-time value. Set `at` explicitly for a usable one-time timer. |
 
 ### GitHub issue trigger fields
 
@@ -1768,9 +1782,9 @@ For the `teams` provider, `parameters` accepts the following fields:
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `connection_id` | string | Yes | The project connection that authenticates to Microsoft Teams. |
-| `threadType` | string | Yes | The Teams thread type. Use `"channel"` for a channel message. |
-| `groupId` | string | Yes | The ID of the Teams team (group) that contains the channel. |
-| `channelId` | string | Yes | The ID of the Teams channel to watch. |
+| `thread_type` | string | Yes | The Teams thread type. Use `"channel"` for a channel message. |
+| `group_id` | string | Yes | The ID of the Teams team (group) that contains the channel. |
+| `channel_id` | string | Yes | The ID of the Teams channel to watch. |
 
 
 ## Dispatch behavior and retry policy
@@ -1796,6 +1810,17 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 - The default delivery policy is three total attempts with exponential backoff starting at 1 second and capped at 5 seconds.
 - The downstream HTTP request has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, and worker concurrency limits aren't included in that per-request timeout.
+
+## Troubleshooting
+
+| Issue | Resolution |
+|---|---|
+| The routine can't invoke the agent because of its identity configuration. | Use an agent that authenticates through its configured identity. Don't use an agent that requires an end-user identity at run time. For an event-based routine, also confirm that the routine creator still has access to the connected resource. |
+| The routine feature isn't available in the project. | Confirm that the project is in a [supported preview region](#prerequisites). If **Routines** doesn't appear in the Foundry portal, the feature isn't enabled for the region or subscription. |
+| The scheduled routine is rejected or fires at an unexpected time. | Use a five-field cron expression with an interval of at least five minutes. Set `time_zone` to the intended IANA or Windows time zone identifier. |
+| A GitHub or Teams event doesn't fire the routine. | Complete connector consent, confirm that the connection is connected, and verify that the authenticated identity can access the configured repository, team, and channel. |
+| The downstream agent call times out. | Inspect the run history for the last dispatch error. Each attempt has a 30-second downstream timeout and follows the documented [retry policy](#retry-and-timeout-defaults). |
+| A manual dispatch fails. | Omit `payload` to use the configured action input. If you include `payload`, match its `type` to the routine action and provide `input` as a JSON value. Also confirm that the action specifies exactly one of `agent_name` or `agent_endpoint_id`. |
 
 ## Let an agent schedule its own reminders
 
@@ -1823,7 +1848,6 @@ This preview has the following known issues and limitations:
 
 ## Related content
 
-- [Create a Foundry project](../../how-to/create-projects.md)
+- [JavaScript routine samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2/javascript/routine)
 - [Create and configure agents](configure-agent.md)
-- [Model Context Protocol (MCP)](tools/model-context-protocol.md)
 - [Use toolboxes with agents](tools/toolbox.md)
