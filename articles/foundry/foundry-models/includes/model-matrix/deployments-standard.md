@@ -61,6 +61,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-12-15 | - | - | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-chat-latest | 2026-08-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-28 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
 | gpt-chat-latest | 2026-06-24 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
@@ -133,6 +134,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-12-15 | - | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-chat-latest | 2026-08-06 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-28 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-06-24 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
