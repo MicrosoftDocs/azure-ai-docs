@@ -27,7 +27,7 @@ Azure Translator supports language translation for more than 100 languages. If y
 
 ### Document translation client library releases (GA)
 
-The following Document translation client libraries are now generally available. Both libraries use Document translation API version **2026-03-01** by default and support asynchronous batch translation and synchronous single-document translation.
+The following document translation client libraries are now generally available. Both libraries use Document translation API version **2026-03-01** by default and support asynchronous batch translation and synchronous single-document translation.
 
 * [.NET/C# package 3.0.0](https://www.nuget.org/packages/Azure.AI.Translation.Document/3.0.0)
 * [JavaScript package 1.0.0](https://www.npmjs.com/package/@azure/ai-translation-document/v/1.0.0)
@@ -85,7 +85,7 @@ Azure Translator Document Translation API version `2026-03-01` introduces expand
 
 * The batch API now enables you to [submit image files for translation](document-translation/reference/start-batch-translation.md#translate-image-files).
 * This update eliminates the requirement to preprocess images by converting them to PDF format or using scanned PDF translation pipelines
-* For pricing details, *see* [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)
+* For pricing details, *see* [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 
 ## November 2025
 
