@@ -295,7 +295,7 @@ The pattern is the same for every connection kind and auth type:
      #       - project_connection_id: <azure-ai-search-connection-name>
      #         index_name: <search-index-name>
      # For Bing Custom Search, set the instance in the tool entry:
-     # - type: bing_custom_search
+     # - type: web_search
      #   name: bing
      #   custom_search_configuration:
      #     project_connection_id: <bing-connection-name>
