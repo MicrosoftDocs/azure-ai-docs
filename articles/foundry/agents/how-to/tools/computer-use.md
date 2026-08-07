@@ -1,12 +1,12 @@
 ---
 title: "Use the computer use tool for agents"
-description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, TypeScript, Java SDK, and REST API samples for Foundry Agent Service."
+description: "Learn how to build Foundry Agent Service agents that interpret screenshots and automate user interface actions with SDK and REST API samples."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 08/05/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-computer-use
 ---
 
-# Use the computer use tool for agents (Preview)
+# Use the computer use tool for agents (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!WARNING]
@@ -25,14 +25,6 @@ zone_pivot_groups: selection-computer-use
 Create agents that interpret screenshots and automate UI interactions like clicking, typing, and scrolling. The computer use tool uses the `computer-use-preview` Foundry model to propose actions based on visual content, enabling agents to interact with desktop and browser applications through their user interfaces.
 
 This guide shows how to integrate the computer use tool into an application loop (screenshot → action → screenshot) by using the latest SDKs.
-
-### Usage support
-
-The following table shows SDK and setup support.
-
-| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -46,16 +38,26 @@ The following table shows SDK and setup support.
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
+## Usage support
+
+The following table shows SDK and setup support.
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
 ## Run the maintained SDK samples (recommended)
 
-The code snippets in this article focus on the agent and Responses API integration. For an end-to-end runnable sample that includes helper code and sample screenshots, use the SDK samples on GitHub.
+The code snippets in this article focus on the agent and Responses API integration. They depend on helper code and sample screenshots, so they aren't standalone. Use these maintained samples and helpers:
 
-- Python: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/tools
-- TypeScript: https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentComputerUse.js
-- .NET (computer use tool sample): https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample33_Computer_Use.md
+- **Python**: [Computer use sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/sample_agent_computer_use.py) and [computer use helper](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/computer_use_util.py).
+- **.NET**: [Agent Framework computer use sample](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step15_ComputerUse).
+- **Java**: [Computer use sample](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/tools/ComputerUseSync.java) and [computer use helper](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/tools/ComputerUseUtil.java).
+
+The Python and Java helpers simulate a state machine by returning pre-captured screenshots for requested actions. They don't replace application-owned code that validates and executes actions in a sandbox, captures the resulting state, and requires explicit user approval before acknowledging pending safety checks.
 
 > [!TIP]
-> The SDK samples include helper utilities for screenshot capture, action execution, and image encoding. Clone the repository or copy these files to your project before running the samples.
+> Clone the sample repository so that the helper files and pre-captured screenshot assets remain in their expected relative locations.
 
 ## Request access 
 
@@ -75,9 +77,9 @@ You need the latest SDK package. The .NET SDK is currently in preview.
 :::zone pivot="python"
 ### Screenshot initialization for computer use tool execution
 
-The following code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+The following excerpts demonstrate how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. The Prompt Agents excerpts depend on the maintained Python sample and helper linked earlier. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -194,6 +196,15 @@ while True:
     action = computer_call.action
     call_id = computer_call.call_id
 
+    # Never execute an action with pending safety checks without user approval.
+    safety_checks = computer_call.pending_safety_checks or []
+    if safety_checks:
+      for check in safety_checks:
+        print(f"Safety check: {check.code}: {check.message}")
+      if input("Approve this action? Type yes to continue: ").lower() != "yes":
+        print("Action rejected by the user.")
+        break
+
     # Handle the action and get the screenshot info
     screenshot_info, current_state = handle_computer_action_and_take_screenshot(action, current_state, screenshots)
 
@@ -204,6 +215,7 @@ while True:
             {
                 "call_id": call_id,
                 "type": "computer_call_output",
+                "acknowledged_safety_checks": safety_checks,
                 "output": {
                     "type": "computer_screenshot",
                     "image_url": screenshot_info["url"],
@@ -250,7 +262,7 @@ OpenAI news - Latest Updates
 Agent deleted
 ```
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_computer_use_tool()` to attach the computer use preview tool. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` (point `FOUNDRY_MODEL` at a `computer-use-preview` deployment), and sign in with `az login`. The screenshot-capture loop is application-specific; see the upstream sample helper file referenced below.
 
@@ -309,7 +321,7 @@ For a full screenshot-loop implementation, see the [Foundry provider samples](ht
 
 The following C# code sample demonstrates how to create an agent with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
@@ -497,7 +509,7 @@ OpenAI news - Latest Updates
 Agent deleted
 ```
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateComputerTool(...)` from `Microsoft.Agents.AI.Foundry` to give the agent the computer use tool. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_COMPUTER_USE_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. This sample omits the screenshot helpers — see the full sample for the action loop and asset utilities.
 
@@ -586,11 +598,13 @@ For the full screenshot helper implementation and end-to-end action loop, see [A
 :::zone pivot="typescript"
 ## Sample for use of an Agent with Computer Use tool
 
-The following TypeScript code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. For a JavaScript example, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentComputerUse.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript excerpt demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations. It imports a local `computerUseUtil.js` helper and expects screenshot assets that aren't included in this article. Treat the excerpt as an integration outline, and supply application-owned action execution, screenshot capture, and explicit safety approval before acknowledging pending safety checks.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
+import { createInterface } from "node:readline/promises";
+import { stdin, stdout } from "node:process";
 import {
   SearchState,
   loadScreenshotAssets,
@@ -659,7 +673,7 @@ Be direct and efficient. When you reach the search results page, read and descri
       truncation: "auto",
     },
     {
-      body: { agent: { name: agent.name, type: "agent_reference" } },
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
     },
   );
 
@@ -689,6 +703,20 @@ Be direct and efficient. When you reach the search results page, read and descri
     const action: ComputerAction = computerCall.action;
     const callId: string = computerCall.call_id;
 
+    // Never execute an action with pending safety checks without user approval.
+    const safetyChecks = computerCall.pending_safety_checks ?? [];
+    if (safetyChecks.length > 0) {
+      for (const check of safetyChecks) {
+        console.warn(`Safety check: ${check.code}: ${check.message}`);
+      }
+      const prompt = createInterface({ input: stdin, output: stdout });
+      const answer = await prompt.question("Approve this action? Type yes to continue: ");
+      prompt.close();
+      if (answer.toLowerCase() !== "yes") {
+        throw new Error("Action rejected by the user.");
+      }
+    }
+
     console.log(`Processing computer call (ID: ${callId})`);
 
     // Handle the action and get the screenshot info
@@ -708,6 +736,7 @@ Be direct and efficient. When you reach the search results page, read and descri
           {
             call_id: callId,
             type: "computer_call_output",
+            acknowledged_safety_checks: safetyChecks,
             output: {
               type: "computer_screenshot",
               image_url: screenshotInfo.url,
@@ -717,7 +746,7 @@ Be direct and efficient. When you reach the search results page, read and descri
         truncation: "auto",
       },
       {
-        body: { agent: { name: agent.name, type: "agent_reference" } },
+        body: { agent_reference: { name: agent.name, type: "agent_reference" } },
       },
     );
 
@@ -848,7 +877,7 @@ public class ComputerUseExample {
 }
 ```
 
-For a complete computer use loop with screenshot handling, see the [ComputerUseSync.java sample](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/tools/ComputerUseSync.java).
+For the complete simulated loop, use the maintained [ComputerUseSync.java sample](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/tools/ComputerUseSync.java) with its [ComputerUseUtil.java helper](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/tools/ComputerUseUtil.java). The helper maps requested actions to pre-captured screenshots. Replace that simulation with your application's action executor, screenshot capture, and safety approval flow.
 
 :::zone-end
 
@@ -975,7 +1004,7 @@ The following table lists some of the differences between the computer use tool 
 
 ## Regional support 
 
-To use the computer use tool, you need a [computer use model](../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions:
+To use the computer use tool, you need a [computer use model](../../../foundry-models/concepts/models-sold-directly-by-azure.md) deployment. The computer use model is available in the following regions:
 
 | Region | Status |
 |--------|--------|
@@ -1088,7 +1117,7 @@ In all cases where `pending_safety_checks` are returned, hand over actions to th
 | Issue | Cause | Resolution |
 |---|---|---|
 | You don't see a `computer_call` in the response. | The agent isn't configured with the computer use tool, the deployment isn't a computer use model, or the prompt doesn't require UI interaction. | Confirm the agent has a `computer_use_preview` tool, your deployment is the `computer-use-preview` model, and your prompt requires a UI action (type, click, or screenshot). |
-| The sample code fails with missing helper files or screenshots. | The snippets reference helper utilities and sample images that aren't part of this documentation repo. | Run the maintained SDK samples in the "Run the maintained SDK samples" section, or copy the helper file and sample images from the SDK repo into your project. |
+| The sample code fails with missing helper files or screenshots. | The excerpts reference helper utilities and sample images that aren't part of this documentation repo. | Clone one of the maintained samples in the "Run the maintained SDK samples" section so its helper and assets remain in their expected relative locations. For TypeScript, provide your own helper and screenshot assets. |
 | The loop stops at the iteration limit. | The task needs more turns, or the app isn't applying the actions the model requests. | Increase the iteration limit, and verify that your code executes the requested action and sends a new screenshot after each turn. |
 | You receive `pending_safety_checks`. | The service detected a potential security risk (for example, prompt injection or a sensitive domain). | Pause automation, require an end user to review the request, and only continue after you send `acknowledged_safety_checks` with the next `computer_call_output`. |
 | The model repeats "take a screenshot" without making progress. | The screenshot isn't updating, is low quality, or doesn't show the relevant UI state. | Send a fresh screenshot after each action and use a higher-detail image when needed. Ensure the screenshot includes the relevant UI. |
