@@ -54,6 +54,39 @@ You need the following role assignments:
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
+## Configure the base URL correctly
+
+When you enter **Base URL** in the connection wizard, provide the gateway base
+path only. Foundry appends the request route based on the model protocol.
+
+| Protocol style | Full endpoint example | Base URL to enter in Foundry |
+|---|---|---|
+| Azure OpenAI (deployment-based) | `https://<your-ai-services-account>.services.ai.azure.com/openai/deployments/<deployment-name>/chat/completions?api-version=2024-10-21` | `https://<your-ai-services-account>.services.ai.azure.com/openai` |
+| OpenAI-compatible v1 API | `https://<your-ai-services-account>.services.ai.azure.com/openai/v1/chat/completions` | `https://<your-ai-services-account>.services.ai.azure.com/openai/v1` |
+
+Current behavior:
+
+- Foundry appends `chat/completions` for OpenAI-compatible chat models.
+- For deployment-based routing, Foundry adds
+   `deployments/{deployment-name}` when the connection is configured to use a
+   deployment path.
+
+Example:
+
+If **Base URL** is
+   `https://<your-ai-services-account>.services.ai.azure.com/openai/v1`, Foundry calls `https://<your-ai-services-account>.services.ai.azure.com/openai/v1/chat/completions`.
+
+## Choose the correct API key and header
+
+If you select **API key** authentication, use the key source and header format
+that match your topology:
+
+| Connection pattern | API key to provide | API key header name |
+|---|---|---|
+| Direct model endpoint in a Foundry project (without API Management or another gateway) | Use the project API key for your Foundry project endpoint. | `api-key` |
+| Azure API Management gateway | In the Azure portal, open your API Management resource, then go to **APIs** > **Subscriptions** > your project subscription, and copy the subscription key. | Use the header expected by your API Management policy or API definition. |
+| External gateway (non-Azure) | Use the API key issued by that gateway provider. | Use the header required by the gateway documentation. |
+
 ::: zone pivot="foundry-portal"
 
 ## Create a model connection
@@ -314,6 +347,74 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 | Agent returns `model not found` error | Confirm the `FOUNDRY_MODEL_DEPLOYMENT_NAME` value uses the correct format: `<connection-name>/<model-name>`. |
 | Timeout errors from the gateway | Check that your gateway endpoints are accessible from the Agent Service network. For private networks, see the network isolation guidance in the Limitations section. |
 | Authentication failures | For API Management, verify your subscription key. For Model Gateway, verify the API key or OAuth 2.0 configuration. |
+
+### Enable Application Insights logging in API Management
+
+1. In the Azure portal, go to your API Management resource.
+1. Select **Monitoring** > **Application Insights**.
+1. Select **+ Add**.
+1. Select your Application Insights resource, and then select **Create**.
+1. Select **APIs** > **All APIs** > **Settings**.
+1. Find **Diagnostic Logs** for Application Insights, and enable it.
+1. Set sampling to `100%` for testing.
+1. Set **Always log errors** to **Yes**.
+1. Set verbosity to **Information**.
+1. Select **Save**.
+1. Send a few test calls to your API Management endpoint.
+
+### See logs
+
+In Application Insights, open **Logs** and run these queries.
+
+Incoming requests:
+
+```kusto
+requests
+| order by timestamp desc
+| take 100
+```
+
+API Management backend calls:
+
+```kusto
+dependencies
+| project timestamp, name, target, data, resultCode, duration
+| order by timestamp desc
+```
+
+Exceptions:
+
+```kusto
+exceptions
+| order by timestamp desc
+```
+
+Custom or API Management traces:
+
+```kusto
+traces
+| order by timestamp desc
+```
+
+### For detailed API Management gateway logs
+
+You can also send gateway diagnostics to Log Analytics for deeper
+gateway-level investigation.
+
+1. In API Management, select **Monitoring** > **Diagnostic settings**.
+1. Select **Add diagnostic setting**.
+1. Send logs to a **Log Analytics workspace**.
+
+Then run:
+
+```kusto
+ApiManagementGatewayLogs
+| order by TimeGenerated desc
+| take 100
+```
+
+Application Insights is best for request and dependency tracing.
+`ApiManagementGatewayLogs` is best for detailed gateway-level diagnostics.
 
 ## Supported configurations
 
