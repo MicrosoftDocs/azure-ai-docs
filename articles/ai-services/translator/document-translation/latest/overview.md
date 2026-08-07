@@ -104,7 +104,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|Use the [Document translation client libraries](../document-sdk-overview.md) for [C#/.NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), [JavaScript/TypeScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
+|**Client libraries (SDKs)**|Use the [Document translation client libraries](../document-sdk-overview.md) for [.NET/C#](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), [JavaScript/TypeScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
 
 ### [**Synchronous**](#tab/sync)
 

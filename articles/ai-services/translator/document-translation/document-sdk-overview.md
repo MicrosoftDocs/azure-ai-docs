@@ -46,7 +46,7 @@ Document translation SDK supports the following programming languages:
 
 This section provides a version-based description of Document translation feature and capability releases, changes, updates, and enhancements.
 
-### [C#/.NET](#tab/csharp)
+### [.NET/C#](#tab/csharp)
 
 **Version 3.0.0** </br>
 
@@ -94,7 +94,7 @@ The Document translation SDK enables the use and management of the Translation s
 
 ### 1. Install the SDK client library
 
-### [C#/.NET](#tab/csharp)
+### [.NET/C#](#tab/csharp)
 
 ```dotnetcli
 dotnet add package Azure.AI.Translation.Document --version 3.0.0
@@ -130,7 +130,7 @@ npm install @azure/ai-translation-document@1.0.0
 
 ### 2. Import the SDK client library into your application
 
-### [C#/.NET](#tab/csharp)
+### [.NET/C#](#tab/csharp)
 
 ```csharp
 using System;
@@ -170,7 +170,7 @@ import com.azure.core.credential.AzureKeyCredential;
 
 ### 3. Authenticate the client
 
-### [C#/.NET](#tab/csharp)
+### [.NET/C#](#tab/csharp)
 
 Create an instance of the `DocumentTranslationClient` object to interact with the Document translation SDK, and then call methods on that client object to interact with the service. The `DocumentTranslationClient` is the primary interface for using the Document translation client library. It provides both synchronous and asynchronous methods to perform operations.
 
@@ -274,7 +274,7 @@ SingleDocumentTranslationClient client =
 
 ### 4. Build your application
 
-### [C#/.NET](#tab/csharp)
+### [.NET/C#](#tab/csharp)
 
 ***Asynchronous batch translation***
 

@@ -29,7 +29,7 @@ Azure Translator supports language translation for more than 100 languages. If y
 
 The following Document translation client libraries are now generally available. Both libraries use Document translation API version **2026-03-01** by default and support asynchronous batch translation and synchronous single-document translation.
 
-* [.NET package 3.0.0](https://www.nuget.org/packages/Azure.AI.Translation.Document/3.0.0)
+* [.NET/C# package 3.0.0](https://www.nuget.org/packages/Azure.AI.Translation.Document/3.0.0)
 * [JavaScript package 1.0.0](https://www.npmjs.com/package/@azure/ai-translation-document/v/1.0.0)
 
 For installation, authentication, and sample guidance, see [Document translation SDKs](document-translation/document-sdk-overview.md).
