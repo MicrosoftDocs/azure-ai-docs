@@ -24,6 +24,7 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one [agent](../../agents/overview.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
+- Access to the [Foundry portal](https://ai.azure.com).
 - Python 3.9 or later (required for Python SDK steps).
 - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If those Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure) (protection level set to **Protected**), also assign the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) to read that data.
 
@@ -68,14 +69,13 @@ Use these definitions to interpret the dashboard:
 
 Use the Monitor settings panel to configure telemetry, evaluations, and security checks for your agents. These settings control which charts the dashboard shows and which evaluations run.
 
-:::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel.png" alt-text="Screenshot showing the Monitor Settings panel in Foundry with options for operational metrics, continuous evaluation, scheduled evaluations, red team scans, and alerts configuration." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel.png":::
+:::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel-new.png" alt-text="Screenshot showing the Monitor Settings panel in Foundry with options for operational metrics, continuous evaluation, scheduled evaluations, red team scans, and alerts configuration." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel-new.png":::
 
 To access Monitor settings, select the gear icon on the **Monitor** tab. The following table describes each monitoring feature:
 
 | Setting | Purpose | Configuration Options |
 |---------|---------|----------------------|
-| **Continuous evaluation** | Runs evaluations on sampled agent responses. | Enable or disable<br>Add evaluators<br>Set the sample rate |
-| **Scheduled evaluations (preview)** | Runs evaluations on a schedule to validate performance against benchmarks. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
+| **Recurring evaluations (preview)** | Runs evaluations on a schedule to validate performance against benchmarks. | Use the evaluation creation wizard to create and schedule a recurring evaluation. |
 | **Red team scans (preview)** | Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
 | **Alerts (preview)** | Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
 
@@ -83,7 +83,7 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 
 ## Set up continuous evaluation
 
-Use the Python or .NET SDK to set up continuous evaluation rules for agent responses.
+Use the Foundry portal, the Python SDK, or the .NET SDK to set up recurring evaluations for monitoring your agents.
 
 # [Python](#tab/python)
 
@@ -101,6 +101,10 @@ dotnet add package Azure.AI.Projects.Agents
 dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
+
+# [Foundry portal](#tab/portal)
+
+N/A
 
 ---
 
@@ -189,11 +193,20 @@ Console.WriteLine(
 
 References: [AIProjectClient](/dotnet/api/azure.ai.projects.aiprojectclient), [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential)
 
+# [Foundry portal](#tab/portal)
+
+1. Open the [Foundry portal](https://ai.azure.com) and go to your project.
+1. On the **Build** page, select **Agents**.
+1. Use the agent creation wizard to create an agent.
+
 ---
 
-### Create a continuous evaluation rule
+### Create a recurring evaluation
 
-Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [Built in evaluators](../../concepts/built-in-evaluators.md).
+Configure recurring evaluations in one of two ways:
+
+- **Scheduled evaluation** runs on a fixed schedule.
+- **Continuous evaluation** samples live traffic as it occurs.
 
 # [Python](#tab/python)
 
@@ -216,6 +229,41 @@ eval_object = openai_client.evals.create(
 )
 print(f"Evaluation created (id: {eval_object.id}, name: {eval_object.name})")
 
+// Create scheduled recurring evaluation by creating the schedule.
+
+trace_source: dict = {
+    "type": "agent_filter",
+    "agent_name": agent_name,
+    "start_time": start_time,
+    "end_time": end_time,
+    "max_traces": args.max_traces
+}
+
+eval_run_object = {
+    "eval_id": eval_object.id,
+    "name": "trace_eval_with_smart_filter",
+    "data_source": {
+        "type": "azure_ai_trace_data_source_preview",
+        "trace_source": trace_source,
+    },
+}
+
+print("Creating Schedule for agent trace evaluation")
+
+schedule = Schedule(
+    display_name="Agent Trace Evaluation Eval Run Schedule",
+    enabled=True,
+    trigger=RecurrenceTrigger(interval=1, schedule=DailyRecurrenceSchedule(hours=[9])),  # Every day at 9 AM
+    task=EvaluationScheduleTask(eval_id=eval_object.id, eval_run=eval_run_object),
+)
+schedule_response = project_client.beta.schedules.create_or_update(
+    schedule_id="agent-trace-eval-run-schedule-9am", schedule=schedule
+)
+
+print(f"Schedule created for agent trace evaluation: {schedule_response.schedule_id}")
+
+// Create continuous recurring evaluation by creating evaluation rule.
+
 continuous_eval_rule = project_client.evaluation_rules.create_or_update(
     id="my-continuous-eval-rule",
     evaluation_rule=EvaluationRule(
@@ -232,7 +280,7 @@ print(
 )
 ```
 
-References: [EvaluationRuleEventType](/python/api/azure-ai-projects/azure.ai.projects.models.evaluationruleeventtype), [EvaluationRule](/python/api/azure-ai-projects/azure.ai.projects.models.evaluationrule)
+References: [Schedule](/python/api/azure-ai-projects/azure.ai.projects.models.schedule), [EvaluationRuleEventType](/python/api/azure-ai-projects/azure.ai.projects.models.evaluationruleeventtype), [EvaluationRule](/python/api/azure-ai-projects/azure.ai.projects.models.evaluationrule)
 
 # [C#](#tab/csharp)
 
@@ -267,7 +315,37 @@ string evaluationId = evalDoc.RootElement.GetProperty("id").GetString()!;
 string evaluationName = evalDoc.RootElement.GetProperty("name").GetString()!;
 Console.WriteLine($"Evaluation created (id: {evaluationId}, name: {evaluationName})");
 
-// Create the continuous evaluation rule
+// Create scheduled recurring evaluation by creating the schedule.
+
+
+var runObject = BinaryData.FromObjectAsJson(new
+    {
+        eval_id = evaluationId,
+        name = evaluationName,
+        data_source = new
+        {
+            type = "azure_ai_trace_data_source_preview",
+            trace_source = new
+            {
+                type: "agent_filter",
+                agent_name: agent_name,
+                start_time: start_time,
+                end_time: end_time,
+                max_traces: args.max_traces
+            }
+        }
+    });
+
+RecurrenceTrigger trigger = new(interval: 1, new DailyRecurrenceSchedule(hours: [9]));
+EvaluationScheduleTask scheduleTask = new(evalId: evaluationId, evalRun: runObject);
+ProjectsSchedule schedule = new(enabled: true, trigger: trigger, task: scheduleTask)
+{
+    DisplayName = "Agent Eval Run Schedule"
+};
+ProjectsSchedule scheduleResponse = projectClient.Schedules.CreateOrUpdate(id: "agent-eval-run-schedule-9am", resource: schedule);
+
+// Create continuous recurring evaluation by creating evaluation rule.
+
 ContinuousEvaluationRuleAction continuousAction = new(evaluationId)
 {
     MaxHourlyRuns = 100,
@@ -291,7 +369,26 @@ Console.WriteLine(
     $" (id: {continuousEvalRule.Id}, name: {continuousEvalRule.DisplayName})");
 ```
 
-References: [EvaluationRuleEventType](/dotnet/api/azure.ai.projects.evaluation.evaluationruleeventtype), [EvaluationRule](/dotnet/api/azure.ai.projects.evaluation.evaluationrule)
+References: [EvaluationScheduleTask](/dotnet/api/azure.ai.projects.evaluation.evaluationscheduletask), [EvaluationRuleEventType](/dotnet/api/azure.ai.projects.evaluation.evaluationruleeventtype), [EvaluationRule](/dotnet/api/azure.ai.projects.evaluation.evaluationrule)
+
+# [Foundry portal](#tab/portal)
+
+1. Open the [Foundry portal](https://ai.azure.com) and go to your project.
+1. On **Build**, select the **Evaluations** tab.
+1. Select the **Recurring Configs** subtab to view your recurring evaluation configurations.
+
+   :::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-configuration-list-view.png" alt-text="Screenshot of the recurring configurations in Foundry showing list of recurring configurations created for your agents." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-configuration-list-view.png":::
+
+1. Select **Create** to open the recurring evaluation creation wizard.
+1. Select the agents that you want to monitor.
+1. Select the evaluation turn level.
+1. Choose a recurring evaluation type:
+    - **Scheduled evaluation** runs on a fixed schedule.
+    - **Continuous evaluation** samples live traffic as it occurs.
+1. Select a data source available for your evaluation type, such as **Live traffic** for agent traces or **Dataset** for a golden dataset.
+1. For **Live traffic**, optionally select **Random** or [**Intelligent sampling**](../../how-to/develop/cloud-evaluation.md#intelligent-sampling). Then set the maximum number of traces or runs available for the selected evaluation type.
+ 
+:::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-create-wizard.png" alt-text="Screenshot of creating recurring evaluation configuration in Foundry with various options." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-create-wizard.png":::
 
 ---
 
@@ -341,6 +438,12 @@ if (runs.GetArrayLength() > 0)
     }
 }
 ```
+
+# [Foundry portal](#tab/portal)
+
+1. On **Build**, select the **Evaluations** tab.
+1. Select the **Recurring Configs** subtab.
+1. Select the recurring evaluation that you want to review.
 
 ---
 
