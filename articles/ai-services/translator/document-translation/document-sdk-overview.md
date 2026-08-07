@@ -1,13 +1,13 @@
 ---
 title: Document translation SDKs
 titleSuffix: Foundry Tools
-description: Use the Document translation SDKs for C#, Java, and Python to add batch and synchronous document translation to your applications.
+description: Use the Document translation SDKs for C#, Java, JavaScript, and Python to add batch and synchronous document translation to your applications.
 author: laujan
 manager: mcleans
 ms.service: azure-translator-foundry-tools
-ms.custom: devx-track-python, devx-track-java
+ms.custom: devx-track-dotnet, devx-track-js, devx-track-python, devx-track-java
 ms.topic: how-to
-ms.date: 07/30/2026
+ms.date: 08/07/2026
 ms.author: lajanuar
 recommendations: false
 ai-usage: ai-assisted
@@ -37,8 +37,9 @@ Document translation SDK supports the following programming languages:
 
 | Language and SDK version | Package | Client library | Default API version |
 | --- | --- | --- | --- |
-| `.NET/C# 2.0.0` | [NuGet](https://www.nuget.org/packages/Azure.AI.Translation.Document/2.0.0) | [Azure SDK for .NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true) | `2024-05-01` |
+| `.NET/C# 3.0.0` | [NuGet](https://www.nuget.org/packages/Azure.AI.Translation.Document/3.0.0) | [Azure SDK for .NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true) | `2026-03-01` |
 | `Python 2.0.0` | [PyPI](https://pypi.org/project/azure-ai-translation-document/2.0.0/) | [Azure SDK for Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true) | `2026-03-01` |
+| `JavaScript/TypeScript 1.0.0` | [npm](https://www.npmjs.com/package/@azure/ai-translation-document/v/1.0.0) | [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md) | `2026-03-01` |
 | `Java 2.0.0` | [Maven Central](https://central.sonatype.com/artifact/com.azure/azure-ai-translation-document/2.0.0) | [Azure SDK for Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true) | `2026-03-01` |
 
 ## Changelog and release history
@@ -47,9 +48,9 @@ This section provides a version-based description of Document translation featur
 
 ### [C#/.NET](#tab/csharp)
 
-**Version 2.0.0** </br>
+**Version 3.0.0** </br>
 
-##### [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/CHANGELOG.md#200-2024-11-15)
+##### [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/CHANGELOG.md#300-2026-08-01)
 
 ##### [README](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/README.md)
 
@@ -64,6 +65,16 @@ This section provides a version-based description of Document translation featur
 ##### [README](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-document/README.md)
 
 ##### [Samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/translation/azure-ai-translation-document/samples)
+
+### [JavaScript/TypeScript](#tab/javascript)
+
+**Version 1.0.0** </br>
+
+##### [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/CHANGELOG.md#100-2026-08-01)
+
+##### [README](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md)
+
+##### [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-document/samples)
 
 ### [Java](#tab/java)
 
@@ -86,17 +97,23 @@ The Document translation SDK enables the use and management of the Translation s
 ### [C#/.NET](#tab/csharp)
 
 ```dotnetcli
-dotnet add package Azure.AI.Translation.Document --version 2.0.0
+dotnet add package Azure.AI.Translation.Document --version 3.0.0
 ```
 
 ```powershell
-Install-Package Azure.AI.Translation.Document -Version 2.0.0
+Install-Package Azure.AI.Translation.Document -Version 3.0.0
 ```
 
 ### [Python](#tab/python)
 
 ```bash
 pip install azure-ai-translation-document==2.0.0
+```
+
+### [JavaScript/TypeScript](#tab/javascript)
+
+```bash
+npm install @azure/ai-translation-document@1.0.0
 ```
 
 ### [Java](#tab/java)
@@ -127,6 +144,16 @@ using Azure.AI.Translation.Document;
 from azure.ai.translation.document import DocumentTranslationClient
 from azure.ai.translation.document import SingleDocumentTranslationClient
 from azure.core.credentials import AzureKeyCredential
+```
+
+### [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import {
+  DocumentTranslationClient,
+  SingleDocumentTranslationClient,
+} from "@azure/ai-translation-document";
+import type { KeyCredential } from "@azure/core-auth";
 ```
 
 ### [Java](#tab/java)
@@ -188,6 +215,29 @@ endpoint = "<endpoint>"
 key = "<api-key>"
 
 client = SingleDocumentTranslationClient(endpoint, AzureKeyCredential(key))
+```
+
+### [JavaScript/TypeScript](#tab/javascript)
+
+Create a `DocumentTranslationClient` for batch translation or a
+`SingleDocumentTranslationClient` for synchronous translation.
+
+***Asynchronous batch translation***
+
+```typescript
+const endpoint = "<endpoint>";
+const credential: KeyCredential = { key: "<api-key>" };
+
+const client = new DocumentTranslationClient(endpoint, credential);
+```
+
+***Synchronous single document translation***
+
+```typescript
+const endpoint = "<endpoint>";
+const credential: KeyCredential = { key: "<api-key>" };
+
+const client = new SingleDocumentTranslationClient(endpoint, credential);
 ```
 
 ### [Java](#tab/java)
@@ -270,6 +320,37 @@ result = poller.result()
 ***Synchronous single document translation***
 
 [Single document translation](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-document/samples/sample_single_document_translation.py)
+
+### [JavaScript/TypeScript](#tab/javascript)
+
+***Asynchronous batch translation***
+
+Batch translation requires source and target Azure Blob Storage container URLs.
+Include SAS tokens in the URLs when your authorization configuration requires
+them.
+
+```typescript
+const poller = client.startTranslation({
+  inputs: [
+    {
+      source: { sourceUrl: "<source-container-url>" },
+      targets: [
+        {
+          targetUrl: "<target-container-url>",
+          language: "<target-language-code>",
+        },
+      ],
+    },
+  ],
+});
+
+const result = await poller.pollUntilDone();
+console.log(`Translation status: ${result.status}`);
+```
+
+***Synchronous single document translation***
+
+For a complete example, see [Synchronous document translation](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md#synchronous-document-translation).
 
 ### [Java](#tab/java)
 
