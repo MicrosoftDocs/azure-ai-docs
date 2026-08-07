@@ -37,12 +37,6 @@ speechConfig.SpeechRecognitionLanguage = "en-US";
 speechConfig.SetProperty(PropertyId.Speech_EnableMultiChannelProcessing, "true");
 ```
 
-The `Speech_EnableMultiChannelProcessing` property is available in the Speech SDK version 1.51.0 or later. If you use an earlier SDK, set the same property by name for backward compatibility:
-
-```csharp
-speechConfig.SetProperty("SPEECH-EnableMultiChannelProcessing", "true");
-```
-
 ## Provide stereo audio
 
 Multichannel transcription accepts a stereo audio file or a stereo stream. To transcribe a file, create an [`AudioConfig`](/dotnet/api/microsoft.cognitiveservices.speech.audio.audioconfig) instance from the file name:

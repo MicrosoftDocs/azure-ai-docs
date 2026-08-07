@@ -39,12 +39,6 @@ speechConfig->SetSpeechRecognitionLanguage("en-US");
 speechConfig->SetProperty(PropertyId::Speech_EnableMultiChannelProcessing, "true");
 ```
 
-The `Speech_EnableMultiChannelProcessing` property is available in the Speech SDK version 1.51.0 or later. If you use an earlier SDK, set the same property by name for backward compatibility:
-
-```cpp
-speechConfig->SetProperty("SPEECH-EnableMultiChannelProcessing", "true");
-```
-
 ## Provide stereo audio
 
 Multichannel transcription accepts a stereo audio file or a stereo stream. To transcribe a file, create an [`AudioConfig`](/cpp/cognitive-services/speech/audio-audioconfig) instance from the file name:
