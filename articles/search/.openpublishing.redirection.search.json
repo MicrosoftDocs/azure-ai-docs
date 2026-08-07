@@ -66,18 +66,23 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/search/tutorial-csharp-deploy-static-web-app.md",
+            "redirect_url": "/azure/search/tutorial-csharp-deploy-web-search",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/search/tutorial-javascript-create-load-index.md",
-            "redirect_url": "/azure/search/tutorial-csharp-create-load-index",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/tutorial-javascript-deploy-static-web-app.md",
-            "redirect_url": "/azure/search/tutorial-csharp-deploy-static-web-app",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/tutorial-javascript-search-query-integration.md",
-            "redirect_url": "/azure/search/tutorial-csharp-search-query-integration",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
         },
         {
@@ -87,17 +92,17 @@
         },
         {
             "source_path_from_root": "/articles/search/tutorial-python-create-load-index.md",
-            "redirect_url": "/azure/search/tutorial-csharp-create-load-index",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/tutorial-python-deploy-static-web-app.md",
-            "redirect_url": "/azure/search/tutorial-csharp-deploy-static-web-app",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/tutorial-python-search-query-integration.md",
-            "redirect_url": "/azure/search/tutorial-csharp-search-query-integration",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
         },
         {
@@ -659,6 +664,11 @@
             "source_path_from_root": "/articles/search/search-security-overview.md",
             "redirect_url": "/azure/search/search-security-built-in",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-csharp-create-load-index.md",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
+            "redirect_document_id": false
         }
     ]
   }
