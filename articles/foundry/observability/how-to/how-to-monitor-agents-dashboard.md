@@ -5,7 +5,7 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: none
-ms.date: 04/30/2026
+ms.date: 08/08/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
