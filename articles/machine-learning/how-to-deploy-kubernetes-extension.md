@@ -7,7 +7,7 @@ ms.author: scottpolly
 ms.reviewer: bozhlin
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 01/28/2026
+ms.date: 08/08/2026
 ms.topic: how-to
 ms.custom: cliv2, sdkv2, devx-track-azurecli, dev-focus
 ai-usage: ai-assisted
@@ -47,6 +47,7 @@ In this article, you learn about:
 - Azure Machine Learning doesn't support attaching an AKS cluster cross subscription. If you have an AKS cluster in a different subscription, you must first [connect it to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster) and specify in the same subscription as your Azure Machine Learning workspace.
 - Azure Machine Learning doesn't guarantee support for all preview stage features in AKS. For example, [Microsoft Entra pod-managed identity](/azure/aks/use-azure-ad-pod-identity) (deprecated) isn't supported. Use [Microsoft Entra Workload ID](/azure/aks/workload-identity-overview) instead.
 - If you followed the steps in the [Azure Machine Learning AKS v1 document](v1/how-to-create-attach-kubernetes.md) to create or attach your AKS as an inference cluster, use the following link to [clean up the legacy azureml-fe related resources](v1/how-to-create-attach-kubernetes.md#delete-azureml-fe-related-resources) before you continue the next step.
+- The Azure Machine Learning extension isn't currently supported on `arm64` architectures. Use node pools with the `amd64` architecture (the standard Kubernetes term for x86-64) for the extension. An AKS node pool can't mix `amd64` and `arm64` VM SKUs, so choose VM SKUs with the supported `amd64` architecture, and don't combine architectures in the same node pool. If your cluster has mixed node pools, use `nodeSelector` to target the extension deployment and your workloads to nodes with the supported architecture.
 
 
 ## Review Azure Machine Learning extension configuration settings
