@@ -55,7 +55,7 @@ ms.custom: references_regions
 | `it-IT` | Italian (Italy) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `ja-JP` | Japanese (Japan) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `ko-KR` | Korean (Korea) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
-| `ms-MY` | Malay (Malaysia) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
+| `ms-MY` | Malay (Malaysia) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `nb-NO` | Norwegian Bokmål (Norway) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `nl-BE` | Dutch (Belgium) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `nl-NL` | Dutch (Netherlands) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
