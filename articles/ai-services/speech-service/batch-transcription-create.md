@@ -43,6 +43,8 @@ To create a batch transcription job, use the [Transcriptions - Submit](/rest/api
 
 For more information, see [Request configuration options](#request-configuration-options).
 
+For end-to-end guidance on language identification, fallback locales, diarization, and response verification, see [Configure language identification and diarization for speech transcription](configure-language-identification-diarization.md).
+
 > [!TIP]
 > A transcription request can contain URIs for one or more audio files. Separate short and long audio files into different requests. Long audio files require more processing time and the service might retry them multiple times due to insufficient computing resources. This condition prolongs the overall completion time of that request. However, bundling many long audio files together in a single request is a good way to save time.
 
