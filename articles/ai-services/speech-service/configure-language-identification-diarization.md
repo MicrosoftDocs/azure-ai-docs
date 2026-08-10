@@ -213,7 +213,7 @@ Reference: [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submi
 > [!CAUTION]
 > Batch language identification supports base models. If you specify language identification together with a custom model, the service uses base models for the candidate locales, which can produce unexpected recognition results.
 
-For diarization, use mono audio. Diarization isn't supported for stereo recordings. Set `maxSpeakers` to a realistic upper bound for the conversation; if the recording contains more speakers than the configured maximum, the service can combine speakers.
+For diarization, use mono audio. Diarization isn't supported for stereo recordings. Set `maxSpeakers` to a realistic upper bound for the conversation. If the recording contains more speakers than the configured maximum, the service can combine speakers.
 
 ## Run a preflight verification checklist
 
