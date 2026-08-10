@@ -9,7 +9,7 @@ ms.author: lajanuar
 reviewer: wayne-ch
 ms.reviewer: waynechuang
 author: laujan
-ms.date: 08/05/2026
+ms.date: 08/06/2026
 ai-usage: ai-assisted
 ---
 
@@ -28,7 +28,7 @@ The Foundry Local command-line interface (CLI) lets you browse the model catalog
 
 ## Install the Foundry Local CLI
 
-Install Foundry Local by using the package manager for your operating system.
+Install Foundry Local by using the package manager or installer for your operating system.
 
 ### [Windows](#tab/windows)
 
@@ -36,12 +36,11 @@ Install Foundry Local by using the package manager for your operating system.
 winget install Microsoft.FoundryLocal
 ```
 
-### [macOS](#tab/macos)
+### [macOS Apple Silicon](#tab/macos)
 
-```bash
-brew tap microsoft/foundrylocal
-brew install foundrylocal
-```
+Download the current macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer). Homebrew isn't supported for the current CLI preview.
+
+If you download the `.pkg`, open it with macOS Installer.
 
 ---
 
@@ -52,7 +51,7 @@ foundry --version
 ```
 
 > [!TIP]
-> If you see a service connection error after installation (for example, `Request to local service failed`), run `foundry server restart`.
+> If you see a server connection error after installation (for example, `Request to local service failed`), run `foundry server restart`.
 
 ## Browse the model catalog
 
@@ -140,7 +139,7 @@ Verify the Foundry Local daemon is running and get the local endpoint URL:
 foundry server status
 ```
 
-If the local service isn't responding, restart the daemon:
+If the local server isn't responding, restart the daemon:
 
 ```bash
 foundry server restart
