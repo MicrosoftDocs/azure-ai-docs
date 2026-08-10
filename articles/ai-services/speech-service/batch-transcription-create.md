@@ -321,7 +321,7 @@ The following example shows the usage of the `languageIdentification` property w
 Azure Speech in Foundry Tools supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
 
 > [!NOTE]
-> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../../ai-foundry/openai/whisper-quickstart.md). For more information about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models, see [What is the Whisper model?](./whisper-overview.md)
+> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../../ai-foundry/openai/whisper-quickstart.md). For more information about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models, see [What are OpenAI transcription models?](./transcribe-overview.md)
 
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 

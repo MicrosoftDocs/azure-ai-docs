@@ -3,7 +3,7 @@ title: "Quickstart: Deploy your first hosted agent"
 description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI, the Python SDK, the Microsoft Foundry Toolkit for Visual Studio Code extension, the Microsoft Foundry Skill, or Microsoft Foundry Canvas in the GitHub Copilot App."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -25,11 +25,17 @@ Before you begin, you need:
 
 :::zone pivot="azd"
 
-* [Azure Developer CLI (azd) 1.25.3 or later](/azure/developer/azure-developer-cli/install-azd).
+* [Azure Developer CLI (azd) 1.27.1 or later](/azure/developer/azure-developer-cli/install-azd).
 * The `azd microsoft.foundry` extension. Install and verify the extension after `azd` is installed:
 
     ```azurecli
     azd ext install microsoft.foundry
+    ```
+
+* An authenticated `azd` session. Sign in after you install the extension:
+
+    ```azurecli
+    azd auth login
     ```
 
 :::zone-end
@@ -67,7 +73,7 @@ Before you begin, you need:
 
 * [GitHub Copilot App](https://github.com/features/copilot).
 * The Microsoft Foundry Canvas extension. To install it, in the GitHub Copilot App open **Settings** > **Plugins**, search for `microsoft-foundry`, and select **Install**. For more information, see [What is Microsoft Foundry Canvas?](../concepts/foundry-canvas.md#install-microsoft-foundry-canvas)
-* [Azure Developer CLI (azd) 1.25.3 or later](/azure/developer/azure-developer-cli/install-azd). The canvas uses `azd` to test and deploy the agent.
+* [Azure Developer CLI (azd) 1.27.1 or later](/azure/developer/azure-developer-cli/install-azd). The canvas uses `azd` to test and deploy the agent.
 * The `azd microsoft.foundry` extension. Install and verify the extension after `azd` is installed:
 
     ```azurecli
@@ -139,7 +145,7 @@ This command creates a virtual environment, installs dependencies, launches the 
 
 ## Step 4: Deploy to Foundry Agent Service
 
-Build and deploy the agent container:
+Deploy the agent source code. `azd` packages the source as a ZIP file and uploads it to Foundry. Foundry resolves dependencies, builds the hosted agent remotely, and deploys it:
 
 ```azurecli
 azd deploy
@@ -648,13 +654,13 @@ Delete the resources when you're finished so you stop incurring charges.
 :::zone pivot="azd"
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and the hosted agent. If you provisioned into a resource group that contains other resources, `azd down` deletes those resources too.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```azurecli
 azd down
 ```
 
-`azd` lists the resources it deletes and prompts for confirmation. Cleanup takes about 2–5 minutes.
+When the environment created the project, `azd` lists the resources, prompts for confirmation, and deletes them in about 2-5 minutes.
 
 :::zone-end
 
@@ -673,13 +679,13 @@ azd down
 The canvas creates an `azd`-backed workspace, so you clean up with `azd down` from the workspace folder.
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and the hosted agent. If you provisioned into a resource group that contains other resources, `azd down` deletes those resources too.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```azurecli
 azd down
 ```
 
-`azd` lists the resources it deletes and prompts for confirmation. Cleanup takes about 2–5 minutes.
+When the environment created the project, `azd` lists the resources, prompts for confirmation, and deletes them in about 2-5 minutes.
 
 :::zone-end
 
@@ -723,7 +729,7 @@ in this article or delete the resource group from the Azure portal.
 | `ResourceNotFound` or `DeploymentNotFound` | Verify the endpoint URL and model deployment name in the Foundry portal under **Build** > **Deployments**. |
 | `create_version_from_code` fails with `Hosted agent provisioning failed` | Check that `main.py` and `requirements.txt` are at the root of the zip you uploaded, and verify that the model deployment name in `.env` exists in the target Foundry project. |
 | `Connection refused` on local run | Ensure no other process is using port 8088. |
-| `azd ai agent init` fails | Run `azd version` to verify 1.25.0 or later. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). Run `azd ext list` and upgrade the agent extension with `azd ext upgrade azure.ai.agents` to get 0.1.34-preview or later. |
+| `azd ai agent init` fails | Run `azd version` to verify 1.27.1 or later. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). Run `azd ext show azure.ai.agents` to verify 1.0.0-beta.4 or later. Upgrade with `azd ext upgrade azure.ai.agents`. |
 | Microsoft Foundry Toolkit extension not found | Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) from the Marketplace and switch to the prerelease channel. |
 | Coding agent doesn't load the Microsoft Foundry Skill | Install or reload the skill by following [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md). |
 | Coding agent can't run the local smoke test | Use the Azure Developer CLI or VS Code tab in this article for local testing. Continue to remote validation only after you review why local validation isn't available. |
@@ -750,10 +756,5 @@ In this quickstart, you:
 ## Related content
 
 * [What are hosted agents?](../concepts/hosted-agents.md)
-* [What is Microsoft Foundry Canvas?](../concepts/foundry-canvas.md)
-* [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
 * [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
-* [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md)
-* [Agent development lifecycle](../concepts/development-lifecycle.md)
-* [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)

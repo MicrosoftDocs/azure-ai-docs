@@ -4,7 +4,7 @@ description: "Set up Claude Code CLI and VS Code extension to use Claude models 
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 07/14/2026
+ms.date: 08/05/2026
 ms.custom: dev-focus, doc-kit-assisted
 author: msakande
 ms.author: mopeakande
@@ -47,7 +47,7 @@ In this article, you learn how to:
 
 ## Deploy a Claude model in Foundry
 
-Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Most Claude models support global standard deployment. For more information on supported deployment types, see [Claude models in Microsoft Foundry](../concepts/claude-models.md#deployment-types).
+Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Most Claude models support global standard deployment. For more information on supported deployment types, see [Claude models in Microsoft Foundry](../concepts/claude-models.md#deployment-types-and-regions).
 
 Claude Code uses different models for different tasks:
 
@@ -70,10 +70,10 @@ To deploy a model:
 
 ### Alternative: Deploy model using Model Router
 
-[Model Router](../../openai/concepts/model-router.md) is a Foundry model that intelligently routes each prompt to the best underlying model based on query complexity, cost, and performance. Model Router version `2025-11-18` supports select Claude models (`claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`), alongside other Foundry models.
+[Model Router](../../openai/concepts/model-router.md) is a Foundry model that intelligently routes each prompt to the best underlying model based on query complexity, cost, and performance. Model Router version `2025-11-18` supports select Claude models (`claude-haiku-4-5`, `claude-opus-4-7`, `claude-opus-4-6`, and `claude-sonnet-4-5`), alongside other Foundry models.
 
 > [!NOTE]
-> Model Router doesn't currently support `claude-sonnet-4-6` or `claude-opus-4-6`. If you need these models, deploy and reference them directly instead of using Model Router.
+> Model Router might not yet support some newer Claude models. If you need such models, deploy and reference them directly instead of using Model Router.
 
 Benefits for Claude Code users:
 

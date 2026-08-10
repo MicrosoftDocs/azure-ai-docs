@@ -5,7 +5,7 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 08/06/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -76,7 +76,7 @@ To add a model, first identify the model that you want to deploy. Query the avai
 
     Reference: [az cognitiveservices account](/cli/azure/cognitiveservices/account)
 
-1. Check which models are available to you and under which SKU. SKUs, also known as [deployment types](../concepts/deployment-types.md), define how Azure infrastructure processes requests. Models might offer different deployment types. The following command lists all the model definitions available:
+1. Check which models are available to you and under which SKU. Each [deployment type](../concepts/deployment-types.md) is represented by a SKU code in the CLI and ARM, and it defines how Azure infrastructure processes requests. Models might offer different deployment types. The following command lists all the model definitions available:
     
     ```azurecli
     az cognitiveservices account list-models \

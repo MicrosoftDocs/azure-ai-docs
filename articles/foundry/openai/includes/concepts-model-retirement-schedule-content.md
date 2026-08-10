@@ -193,7 +193,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| Mistral-Large-3 | 1 | GA | — | — |
+| Mistral-Large-3 | 1 | Preview | — | — |
 | mistral-document-ai-2505 | 1 | Retired | 2026-07-20 | mistral-document-ai-2512, mistral-ocr-4-0 |
 | mistral-document-ai-2512 | 1 | GA | — | mistral-ocr-4-0 |
 
@@ -237,7 +237,7 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 |-------|---------|-----------|-----------------|-------------|
 | claude-haiku-4-5 | — | Preview | 2026-10-19 | — |
 | claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
-| claude-opus-4-1 | — | Preview | 2026-08-05 | claude-opus-4-8 |
+| claude-opus-4-1 | — | Retired | 2026-08-05 | claude-opus-5 |
 | claude-opus-4-5 | — | Preview | 2026-10-19 | — |
 | claude-opus-4-6 | — | Preview | 2027-02-02 | — |
 | claude-opus-4-7 | — | Preview | 2027-04-06 | — |

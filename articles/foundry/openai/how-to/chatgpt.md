@@ -10,7 +10,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 07/22/2026
+ms.date: 08/06/2026
 manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
@@ -20,6 +20,9 @@ zone_pivot_groups: openai-chat-completions
 # Work with chat completion models
 
 [!INCLUDE [chatgpt 1](../includes/how-to-chatgpt-1.md)]
+
+> [!NOTE]
+> Reasoning models, such as the GPT-5 series, behave differently on this API. They use `max_completion_tokens` instead of `max_tokens`, and they don't support `temperature`, `top_p`, or the penalty parameters. On the `gpt-5.6` and later models, a Chat Completions request that includes function tools fails unless you set `reasoning_effort` to `none`. Use the [Responses API](responses.md) for tool calling with reasoning models. For details, see [Azure OpenAI reasoning models](reasoning.md).
 
 ## Prerequisites
 
@@ -58,5 +61,6 @@ In the code samples, replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resourc
 ## Related content
 
 - [Use the Responses API](responses.md)
+- [Azure OpenAI reasoning models](reasoning.md)
 - [Explore Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Generate embeddings](../tutorials/embeddings.md)

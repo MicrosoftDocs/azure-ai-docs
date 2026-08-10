@@ -96,7 +96,7 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
 
 1. In the **Analyze content** action parameters, complete the following fields:
 
-   - **Analyzer ID**: Enter `prebuilt-invoice` (or one of the other [prebuilt analyzers](../concepts/prebuilt-analyzers.md))to use the built-in invoice analyzer.
+   - **Analyzer ID**: Enter `prebuilt-invoice` (or one of the other [prebuilt analyzers](../concepts/prebuilt-analyzers.md)) to use the built-in invoice analyzer.
    - **File Content**: Select this field. In the dynamic content pop-up that appears, choose **File content**. This sends the OneDrive file to the Content Understanding analyzer for processing. When the **File content** badge appears in the field, this step is complete.
    - **Input File URL**: Leave this field empty, because you're supplying the file content directly from OneDrive.
 
@@ -164,5 +164,5 @@ Before testing, review what the workflow does:
 
 ## Next steps
 
-- [Explore prebuilt analyzers](../concepts/prebuilt-analyzers.md)
-- [Build a robotic process automation solution](robotic-process-automation.md)
+- [Explore prebuilt analyzers](../concepts/prebuilt-analyzers.md).
+- [Build a robotic process automation solution](../tutorial/robotic-process-automation.md).
