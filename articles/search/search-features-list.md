@@ -17,9 +17,6 @@ Azure AI Search provides information retrieval and uses optional AI integration 
 
 The following table summarizes features by category. There's feature parity in all Azure public, private, and sovereign clouds, but some features aren't supported in [specific regions](search-region-support.md) or [specific tiers](search-sku-tier.md#feature-availability-by-tier).
 
-> [!NOTE]
-> Looking for preview features? See the [preview features list](search-api-preview.md).
-
 ## Agentic retrieval
 
 | Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | Features |

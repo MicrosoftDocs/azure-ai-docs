@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 08/05/2026
 author: mattwojo
 reviewer: zhuoqunli
 ms.author: mattwoj
@@ -42,6 +42,29 @@ To learn more on optimizing tool usage, see [best practices](../../concepts/tool
 >
 > For a complete mapping of classic agent tools to their replacements in the new API, see [Agent tool availability](../../how-to/migrate.md#agent-tool-availability).
 
+## Prerequisites
+
+- An Azure subscription with an active Foundry project.
+- A model deployment (for example, `gpt-4.1-mini`) in your Foundry project.
+- Required Azure roles on the Foundry project:
+  - **Foundry Project Manager** to create the A2A project connection.
+  - **Foundry User** to create and test the agent.
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
+- SDK installation:
+  - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
+  - C#: `Azure.AI.Projects` NuGet package
+  - TypeScript: Node.js 22 or later and the `@azure/ai-projects` npm package. The A2A tool is in preview.
+  - Java: `com.azure:azure-ai-agents:2.0.0` Maven dependency
+- Values to update in code:
+  - Project endpoint URL (for example, `https://<resource>.ai.azure.com/api/projects/<project>`).
+  - Model deployment name (for example, `gpt-4.1-mini`).
+  - A2A connection name (created in the Foundry portal).
+  - A2A base URI (optional, only needed for non-`RemoteA2A` connections).
+- An A2A connection configured in your Foundry project. For connection setup and REST examples, see [Create an A2A connection](#create-an-a2a-connection).
+- For a Foundry agent target, use its [A2A base path](../enable-agent-to-agent-endpoint.md#verify-the-agent-card), enable incoming A2A, and grant the calling identity the **Foundry Agent Consumer** role or higher on the target project. For the role requirement, see [Configure authentication for incoming requests](../enable-agent-to-agent-endpoint.md#configure-authentication-for-incoming-requests).
+- Foundry agent targets support A2A protocol versions 1.0 and 0.3. Version 1.0 uses JSON-RPC. Only text modality is supported, and streaming responses aren't supported. For details, see [A2A limitations](../enable-agent-to-agent-endpoint.md#limitations).
+
 ## Usage support
 
 The following table shows SDK and setup support.
@@ -50,32 +73,15 @@ The following table shows SDK and setup support.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-## Prerequisites
-
-- An Azure subscription with an active Foundry project.
-- A model deployment (for example, `gpt-4.1-mini`) in your Foundry project.
-- Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Foundry User** for building an agent.
-
-  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
-- SDK installation:
-  - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
-  - C#: `Azure.AI.Projects` NuGet package
-  - TypeScript (GA): `@azure/ai-projects` npm package
-  - Java: `com.azure:azure-ai-agents:2.0.0` Maven dependency
-- Values to update in code:
-  - Project endpoint URL (for example, `https://<resource>.ai.azure.com/api/projects/<project>`).
-  - Model deployment name (for example, `gpt-4.1-mini`).
-  - A2A connection name (created in the Foundry portal).
-  - A2A base URI (optional, only needed for non-`RemoteA2A` connections).
-- An A2A connection configured in your Foundry project. For connection setup and REST examples, see [Create an A2A connection](#create-an-a2a-connection).
-
 ## Create an A2A connection
 
 Create a project connection for your A2A endpoint so you can store authentication securely and reuse it across agent versions.
 
 For details about supported authentication approaches, see [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md).
 
-If you are connecting to a Foundry agent as the target, set the connection **target** to the target agent's A2A base path, `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a`, and use the audience `https://ai.azure.com`. Don't set an agent card path. Foundry resolves the default agent card path automatically and negotiates the A2A protocol version for you. The target agent must have incoming A2A enabled; see [Enable incoming A2A on a Foundry agent](../enable-agent-to-agent-endpoint.md).
+If you're connecting to a Foundry agent as the target, set the connection **target** to the target agent's A2A base path, `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a`, and use the audience `https://ai.azure.com`. Don't set an agent card path. Foundry resolves the default agent card path automatically and negotiates the A2A protocol version for you. You also don't need to set the optional `send_credentials_for_agent_card` field, because Foundry doesn't require the agent card fetch to carry separate credentials. However, the target agent must have incoming A2A enabled; see [Enable incoming A2A on a Foundry agent](../enable-agent-to-agent-endpoint.md).
+
+For other endpoints, if the endpoint requires authentication to read its agent card, set `send_credentials_for_agent_card` to `true` in the A2A tool definition. Otherwise, Agent Service fetches the agent card anonymously by default. For more information, see [Credentials for the agent card request](../../concepts/agent-to-agent-authentication.md#credentials-for-the-agent-card-request).
 
 ### Create the connection in the Foundry portal
 
@@ -99,7 +105,7 @@ Use your connection name in code. Your code uses this name to retrieve the full 
 
 Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -158,7 +164,7 @@ project.agents.delete_version(agent_name=agent.name, agent_version=agent.version
 
 The agent responds with information about the secondary agent's capabilities, demonstrating successful A2A communication.
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `a2a-toolbox` and connect to its MCP endpoint with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx azure-ai-projects`, replace `PROJECT_ENDPOINT` with your project endpoint, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
@@ -170,7 +176,7 @@ from agent_framework import Agent, MCPStreamableHTTPTool
 from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential, get_bearer_token_provider
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import A2APreviewTool
+from azure.ai.projects.models import A2APreviewToolboxTool
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 A2A_CONNECTION_NAME = "my-a2a-connection"
@@ -179,10 +185,10 @@ A2A_CONNECTION_NAME = "my-a2a-connection"
 credential = AzureCliCredential()
 project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
 a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
-toolbox = project.toolboxes.create_toolbox_version(
+toolbox = project.toolboxes.create_version(
     name="a2a-toolbox",
     description="Toolbox with the A2A tool",
-    tools=[A2APreviewTool(project_connection_id=a2a_connection.id)],
+    tools=[A2APreviewToolboxTool(project_connection_id=a2a_connection.id)],
 )
 ```
 
@@ -194,7 +200,7 @@ class _ToolboxAuth(httpx.Auth):
         self._token_provider = token_provider
 
     def auth_flow(self, request):
-        request.headers["Authorization"] = f"******"
+        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
         yield request
 
 
@@ -249,7 +255,7 @@ For the complete hosted-agent toolbox pattern, see the [full sample](https://aka
 
 This example creates an agent that can call a remote A2A endpoint. For the connection setup steps, see [Create an A2A connection](#create-an-a2a-connection). Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to compose two agents in-process by exposing one agent as a function tool of another.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 ```csharp
 using System;
@@ -311,7 +317,7 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersi
 
 The console displays the agent's response text from the A2A endpoint. After completion, the agent version is deleted to clean up resources.
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample creates the `a2a-toolbox` with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke the A2A tool through the toolbox MCP endpoint. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
@@ -393,10 +399,12 @@ For a maintained .NET Agent Framework integration, see [Use a toolbox with a hos
 
 Use these examples to create a project connection that stores your authentication information.
 
-To get an access token for the Azure Resource Manager endpoint:
+Get a short-lived access token for the Azure Resource Manager endpoint and keep it in the current shell. Don't print, log, commit, or persist the token. Request a new token after it expires:
 
 ```azurecli
-az account get-access-token --scope https://management.azure.com/.default --query accessToken -o tsv
+ARM_TOKEN=$(az account get-access-token \
+  --scope https://management.azure.com/.default \
+  --query accessToken -o tsv)
 ```
 
 ### Key-based
@@ -404,7 +412,7 @@ az account get-access-token --scope https://management.azure.com/.default --quer
 ```bash
 curl --request PUT \
   --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
-  --header 'Authorization: Bearer {{token}}' \
+  --header "Authorization: Bearer $ARM_TOKEN" \
   --header 'Content-Type: application/json' \
   --data '{
     "tags": null,
@@ -507,7 +515,7 @@ curl --request PUT \
   }'
 ```
 
-### Foundry Project Managed Identity
+### Foundry project managed identity
 
 ```bash
 curl --request PUT \
@@ -570,10 +578,10 @@ curl --request PUT \
 Get an access token:
 
 ```azurecli
-az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv
+AGENT_TOKEN=$(az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv)
 ```
 
-Use that token as `{{agent_token}}` in the request.
+Use `AGENT_TOKEN` to authorize requests to the project data plane.
 
 The recommended way to add an A2A tool is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
 
@@ -582,6 +590,7 @@ The recommended way to add an A2A tool is through a toolbox, then attach the too
 ```bash
 curl --request POST \
   --url '{{project_endpoint}}/toolboxes/a2a-toolbox/versions?api-version=v1' \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H 'Content-Type: application/json' \
   -d '{
     "description": "Toolbox with the A2A tool",
@@ -612,7 +621,7 @@ curl --request POST \
     ```bash
     curl --request POST \
       --url '{{project_endpoint}}/agents/{{agent_name}}/versions?api-version=v1' \
-      -H 'Authorization: Bearer {{agent_token}}' \
+      -H "Authorization: Bearer $AGENT_TOKEN" \
       -H 'Content-Type: application/json' \
       -d '{
       "description": "Test agent version description",
@@ -652,11 +661,12 @@ azd ai connection create my-a2a-conn \
   --auth-type none
 
 # Custom-keys header
+# Set A2A_AUTHORIZATION_HEADER in your shell without committing its value.
 azd ai connection create my-a2a-conn \
   --kind remote-a2a \
   --target https://your-remote-agent.azurecontainerapps.io \
   --auth-type custom-keys \
-  --custom-key "Authorization=******"
+  --custom-key "Authorization=$A2A_AUTHORIZATION_HEADER"
 
 # OAuth — bring your own app registration
 azd ai connection create my-a2a-conn \
@@ -790,7 +800,7 @@ const response = await openai.responses.create(
   },
   {
     body: {
-      agent: { name: agent.name, type: "agent_reference" },
+      agent_reference: { name: agent.name, type: "agent_reference" },
       tool_choice: "required",
     },
   },
@@ -889,4 +899,4 @@ The A2A tool allows you to pass custom headers, such as authentication keys or s
 - [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md)
 - [Register and manage custom agents](../../../control-plane/register-custom-agent.md)
 - [Best practices for tools](../../concepts/tool-best-practice.md)
-- [Foundry project REST API (preview)](../../../reference/foundry-project-rest-preview.md)
+- [Microsoft Foundry REST API reference](https://ai.azure.com/api-reference)

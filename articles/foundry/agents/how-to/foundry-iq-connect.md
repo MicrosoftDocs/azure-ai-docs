@@ -8,7 +8,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/06/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -48,7 +48,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 ## Prerequisites
 
 - An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
-- A [Microsoft Foundry project](../../how-to/create-projects.md) with an [LLM deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) with an [LLM deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`. Hub-based projects aren't supported.
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 - The latest preview Python SDK (version 2.0.0 or later) or the 2026-05-01-preview REST API version.
 
@@ -68,13 +68,13 @@ We recommend role-based access control for production deployments. If roles aren
 
 - On the parent resource of your project, you need the **Foundry Project Manager** role to create a project connection for MCP authentication and either **Foundry User** or **Foundry Project Manager** to use the MCP tool in agents.
 
+- (Conditional) On the parent resource of your project, assign the **Cognitive Services User** role to your search service's system-assigned managed identity. This step is required only if your knowledge base specifies an LLM. Depending on its configuration, the knowledge base uses this identity to call the LLM for query planning, answer synthesis, or both. For more information, see [Connect to Azure AI Search using a managed identity](/azure/search/search-how-to-managed-identities).
+
 - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
 
 #### [Azure AI Search](#tab/search)
 
-- On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes.
-
-- If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
+- On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes. If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
 
 - For indexed content with access control lists (ACLs), include [permission metadata fields](/azure/search/search-document-level-access-overview) in your search index and pass user tokens via the `x-ms-query-source-authorization` header at query time to filter results based on the user's identity. For more information, see [Query-time ACL and RBAC enforcement](/azure/search/search-query-access-control-rbac-enforcement).
 
@@ -89,7 +89,7 @@ Use the following values in the code samples.
 | Value | Where to get it | Example |
 |---|---|---|
 | Project endpoint (`project_endpoint`) | Find it in your project details in the Microsoft Foundry portal. | `https://your-resource.services.ai.azure.com/api/projects/your-project` |
-| Project resource ID (`project_resource_id`) | Copy the project ARM resource ID from Azure portal or use Azure CLI to query the resource ID. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.MachineLearningServices/workspaces/.../projects/...` |
+| Project resource ID (`project_resource_id`) | Copy the project ARM resource ID from Azure portal or use Azure CLI to query the resource ID. Your Microsoft Foundry project must have the `Microsoft.CognitiveServices/accounts` namespace. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.CognitiveServices/accounts/.../projects/...` |
 | Azure AI Search endpoint (`search_service_endpoint`) | Find it on your Azure AI Search service **Overview** page (the service URL) in the Azure portal. | `https://your-search-service.search.windows.net` |
 | Knowledge base name (`knowledge_base_name`) | Use the knowledge base name you created in Azure AI Search. | `hr-policy-kb` |
 | Project connection name (`project_connection_name`) | Choose a name for the project connection you create. | `my-kb-mcp-connection` |
@@ -114,7 +114,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 # Provide connection details
 credential = DefaultAzureCredential()
-project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
+project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{account_name}/projects/{project_name}
 project_connection_name = "{project_connection_name}"
 mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
 

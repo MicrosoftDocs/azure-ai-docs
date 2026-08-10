@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/21/2026
+ms.date: 08/04/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -43,3 +43,7 @@ To view security alerts:
 - [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai)
 - [Microsoft responsible AI resources](https://www.microsoft.com/ai/tools-practices)
 - [Microsoft Azure Learning courses on responsible AI](/ai)
+
+## Report a security or safety issue
+
+[!INCLUDE [report-security-safety-issue](report-security-safety-issue.md)]
