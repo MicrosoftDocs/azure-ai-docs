@@ -335,6 +335,24 @@ Deploy in **Audit** mode first, review the egress decisions, refine your rules, 
 > [!NOTE]
 > Audit mode changes only how **Deny** actions behave: a request that would be denied is logged instead of blocked. **Transform** and **Rewrite** actions are applied in both Audit and Enforce modes, so header transforms and redirects still take effect while you audit.
 
+### Common egress control use cases
+
+Use egress controls to limit a hosted agent to the external services required
+for its task. The following patterns are common starting points:
+
+| Use case | Policy approach |
+| --- | --- |
+| Discover an agent's outbound dependencies | Start with **Audit** mode and a **Deny** default action. Run representative tasks, review the egress decisions, and add the required hosts before you enforce the policy. |
+| Restrict a coding agent to approved package and source repositories | Allow the package registries, download hosts, and source-control APIs that the agent needs. Use a **Deny** default action for all other destinations. |
+| Limit an integration agent to approved SaaS APIs | Allow only the API hosts for the services that the agent integrates with, such as an issue tracker or source-control provider. |
+| Add request metadata for an enterprise API | Use a **Transform** rule with a static header value to add a workload identifier or correlation tag. Don't put credentials or other secrets in a static header value. |
+| Route requests through an enterprise gateway | Use a **Rewrite** rule to redirect a matched host to an approved gateway. Test rewrites in a nonproduction environment before you use them with agent workloads. |
+
+Package managers and SDKs can follow redirects or use separate download
+hosts. Don't assume that the registry host is the only destination required.
+Use Audit mode with representative workloads to identify the complete host
+set.
+
 ### Add egress rules by using the Azure Developer CLI
 
 Add the RAI policy ARM resource to your `azd` project's Bicep infrastructure. The `azd provision` command deploys the resource through ARM.
@@ -604,4 +622,3 @@ The following capabilities aren't available yet and are planned for future updat
 - [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md) — create the RAI policy you reference here.
 - [Networking options for Foundry Agent Service](../concepts/networking-options.md) — how egress controls fit with virtual network and private networking options.
 - [Deploy a hosted agent](deploy-hosted-agent.md) — the full deployment workflow for hosted agents.
-
