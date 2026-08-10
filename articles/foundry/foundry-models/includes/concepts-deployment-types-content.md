@@ -130,7 +130,7 @@ Global Standard deployments use Azure's global infrastructure to dynamically rou
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits.md). For applications that require lower latency variance at large workload usage, consider provisioned throughput.
 
-Global Standard supports priority processing (preview) for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
+Global Standard supports priority processing for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models](../../openai/concepts/priority-processing.md).
 
 ## Global Provisioned
 
@@ -166,7 +166,7 @@ Data Zone Standard deployments dynamically route traffic to datacenters within t
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, consider provisioned deployment types.
 
-Data Zone Standard supports priority processing (preview) for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
+Data Zone Standard supports priority processing for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models](../../openai/concepts/priority-processing.md).
 
 ## Data Zone Provisioned
 
