@@ -3,7 +3,7 @@ title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
 ms.date: 08/05/2026
 ms.service: azure-ai-search
-ms.topic: overview
+ms.topic: whats-new
 ms.custom:
   - references_regions
   - ignite-2024
@@ -15,10 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-Learn about the latest updates to Azure AI Search functionality, docs, and samples.
-
-> [!NOTE]
-> Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+Learn about the latest updates to Azure AI Search functionality, documentation, and samples.
 
 ## June 2026
 
