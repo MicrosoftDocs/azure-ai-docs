@@ -163,22 +163,22 @@ To take advantage of prompt caching, a request must meet both of these requireme
 
 When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits show up as [`cached_tokens`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) under [`prompt_tokens_details`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) in the chat completions response.
 
-On GPT-5.6 models and later model families, Standard pay-as-you-go deployments report cache reads in `cached_tokens` and cache writes in `cache_write_tokens`. The following excerpt shows these fields in a Chat Completions response:
+On GPT-5.6 models and later model families, Standard pay-as-you-go deployments report cache reads in `cached_tokens` and cache writes in `cache_write_tokens`. The following excerpt shows these fields in a Chat Completions response. JSON property order isn't significant and might vary.
 
 ```json
 {
   "usage": {
-    "completion_tokens": 1518,
     "prompt_tokens": 1566,
+    "completion_tokens": 1518,
     "total_tokens": 3084,
-    "completion_tokens_details": {
-      "audio_tokens": null,
-      "reasoning_tokens": 576
-    },
     "prompt_tokens_details": {
       "audio_tokens": null,
       "cached_tokens": 1408,
       "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "audio_tokens": null,
+      "reasoning_tokens": 576
     }
   }
 }
