@@ -6,11 +6,11 @@ ms.reviewer: deeikele
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/04/2026
+ms.date: 08/10/2026
 ms.custom: include
 ---
 
-## Benefits of CMKs
+## Benefits of customer-managed keys (CMKs)
 
 - The ability to use your own keys to encrypt data at rest.
 - Integration with organizational security and compliance policies.
@@ -43,6 +43,9 @@ To configure a CMK for Foundry, you need:
 
   - Owner or User Access Administrator role on the key vault to assign RBAC roles. For Managed HSM, Managed HSM Administrator role to assign local RBAC role assignments.
   - Contributor or Owner role on the Foundry resource to configure encryption settings.
+ 
+> [!IMPORTANT]
+> Grant the key permissions to the managed identity *before* you enable CMK. If the identity can't access the key when encryption is enabled, the operation fails. When you use a user-assigned managed identity, this ordering applies to that identity. When you use a system-assigned managed identity, you must create the resource first and then grant permissions, because the identity doesn't exist until after provisioning.
 
 Before you configure a CMK, be sure to deploy your resources in a supported region. For more information on regional support for Foundry features, see [Microsoft Foundry feature availability across cloud regions](../reference/region-support.md).
 
@@ -121,9 +124,13 @@ Managed HSM uses a separate, local RBAC system from Azure RBAC. Assign roles by 
 
 For more information, see [Managed HSM access control](/azure/key-vault/managed-hsm/access-control).
 
-### Step 3: Enable the CMK in Foundry
+### Step 3: Enable the CMK
 
-You can enable CMKs either during the creation of a Foundry resource or by updating an existing resource. During resource creation, the wizard guides you to use a user-assigned or system-assigned managed identity. It also guides you to select a key vault or Managed HSM where your key is stored.
+You can enable CMKs either during the creation of a Foundry resource or by updating an existing resource. Choose the method that fits your workflow:
+
+#### Portal
+
+During resource creation, the wizard guides you to use a user-assigned or system-assigned managed identity. It also guides you to select a key vault or Managed HSM where your key is stored.
 
 If you're updating an existing Foundry resource, use these steps to enable a CMK:
 
@@ -138,6 +145,143 @@ If you're updating an existing Foundry resource, use these steps to enable a CMK
 1. Select **Save**.
 
 To verify the configuration, go to **Resource Management** > **Encryption** and confirm that **Customer-Managed Keys** shows as the active encryption type with your key store and key name displayed.
+
+#### Infrastructure as code (Bicep or ARM)
+
+You can also enable a CMK with a template, such as Bicep or ARM. In the account's `encryption` property, set `keySource` to `Microsoft.KeyVault` and provide the key store URI and key name in `keyVaultProperties`. The `keyVersion` property is optional.
+
+When you use a user-assigned managed identity, also set `identityClientId` to the client ID of that identity. This value tells the resource which identity to use when it accesses the key.
+
+##### User-assigned managed identity
+
+With a user-assigned identity, you can grant key store access before you create the Foundry resource, so a single deployment is sufficient.
+
+```bicep
+resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
+  name: aiFoundryName
+  location: location
+  kind: 'AIServices'
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${userAssignedIdentityId}': {}
+    }
+  }
+  properties: {
+    encryption: {
+      keySource: 'Microsoft.KeyVault'
+      keyVaultProperties: {
+        keyVaultUri: keyVaultUri
+        keyName: keyName
+        keyVersion: keyVersion // Optional — omit to enable automatic key rotation.
+        identityClientId: userAssignedIdentityClientId
+      }
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> The `keyVersion` property is optional. If you omit `keyVersion` or set it to an empty string (`''`), the resource automatically uses the latest key version when the key rotates in your key store. If you specify a `keyVersion`, you must manually update the resource each time you rotate the key.
+
+For a complete example, see [Customer-managed keys with a user-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
+
+##### System-assigned managed identity
+
+When you use a system-assigned managed identity, the identity doesn't exist until the resource is created. Configure CMK by using two deployments:
+
+1. Create the Foundry resource with `SystemAssigned` identity and without the `encryption` property. This deployment provisions the system-assigned identity.
+
+1. Grant the system-assigned identity access to your key vault, then update the resource to add the `encryption` property.
+
+> [!IMPORTANT]
+> This sequence is required because the system-assigned identity's principal ID isn't known until after provisioning. With a user-assigned identity, you can grant key store access before you create the Foundry resource, so a single deployment is sufficient.
+
+After creating the resource, allow time for the managed identity's principal ID to propagate before you assign key vault permissions. If the role assignment fails, wait a few minutes and retry.
+
+The Bicep approach uses two files: `main.bicep` creates the resource without encryption, and `updateEncryption.bicep` grants key vault access and applies encryption.
+
+```bicep
+// main.bicep — First deployment: create the resource with SystemAssigned identity
+resource account 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+  name: aiFoundryName
+  location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
+  kind: 'AIServices'
+  sku: {
+    name: 'S0'
+  }
+  properties: {
+    publicNetworkAccess: 'Enabled'
+    allowProjectManagement: true
+    customSubDomainName: aiFoundryName
+    disableLocalAuth: false
+  }
+}
+
+// Second deployment: grant key vault access and apply encryption
+module encryptionUpdate 'updateEncryption.bicep' = {
+  name: 'updateEncryption'
+  params: {
+    aiFoundryName: account.name
+    aiFoundryPrincipal: account.identity.principalId
+    keyVaultName: keyVaultName
+    keyVaultUri: keyVaultUri
+    keyName: keyName
+    keyVersion: keyVersion
+    location: location
+  }
+}
+```
+
+The `updateEncryption.bicep` module grants key vault permissions and then applies encryption on the existing resource. It supports both permission models:
+
+- **Azure RBAC**: Assign the Key Vault Crypto User role to the system-assigned identity.
+- **Vault access policies**: Grant `get`, `wrapKey`, and `unwrapKey` permissions to the system-assigned identity.
+
+For a complete example, see [Customer-managed keys with system-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/30-customer-managed-keys).
+
+#### Azure CLI
+
+You can also use Azure CLI for the system-assigned identity sequence:
+
+```azurecli
+# First deployment: create the resource with system-assigned identity (no encryption)
+az cognitiveservices account create \
+  --name <resource-name> \
+  --resource-group <resource-group> \
+  --location <location> \
+  --kind AIServices \
+  --sku S0 \
+  --assign-identity
+
+# Retrieve the system-assigned identity principal ID
+principalId=$(az cognitiveservices account show \
+  --name <resource-name> \
+  --resource-group <resource-group> \
+  --query identity.principalId -o tsv)
+
+# Grant key vault access (RBAC model)
+az role assignment create \
+  --role "Key Vault Crypto User" \
+  --assignee-object-id $principalId \
+  --assignee-principal-type ServicePrincipal \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.KeyVault/vaults/<key-vault-name>
+
+# Or grant key vault access (access policy model)
+# az keyvault set-policy \
+#   --name <key-vault-name> \
+#   --object-id $principalId \
+#   --key-permissions get wrapKey unwrapKey
+
+# Second deployment: update the resource to enable CMK encryption
+az cognitiveservices account update \
+  --name <resource-name> \
+  --resource-group <resource-group> \
+  --encryption "{\"keySource\":\"Microsoft.KeyVault\",\"keyVaultProperties\":{\"keyVaultUri\":\"https://<key-vault-name>.vault.azure.net\",\"keyName\":\"<key-name>\",\"keyVersion\":\"<key-version>\"}}"
+```
 
 ## Vault access: Azure RBAC vs. vault access policies
 
@@ -179,3 +323,4 @@ To maintain optimal security and compliance, implement the following practices:
 - [Azure Managed HSM documentation](/azure/key-vault/managed-hsm/)
 - [GitHub Bicep example: Customer-managed keys with a user-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
 - [Overview of Azure managed identities](/entra/identity/managed-identities-azure-resources/overview)
+- 
