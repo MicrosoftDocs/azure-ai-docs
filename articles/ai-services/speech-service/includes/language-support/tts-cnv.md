@@ -45,35 +45,35 @@ ms.custom: references_regions
 | `fi-FI` | Finnish (Finland) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `fr-BE` | French (Belgium) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `fr-CA` | French (Canada) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
-| `fr-CH` | French (Switzerland) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
+| `fr-CH` | French (Switzerland) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `fr-FR` | French (France) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `he-IL` | Hebrew (Israel) | Neural voice<br/><br/>Multi-style voice |
 | `hi-IN` | Hindi (India) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `hr-HR` | Croatian (Croatia) | Neural voice<br/><br/>Multi-style voice |
-| `hu-HU` | Hungarian (Hungary) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
+| `hu-HU` | Hungarian (Hungary) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `id-ID` | Indonesian (Indonesia) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `it-IT` | Italian (Italy) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `ja-JP` | Japanese (Japan) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `ko-KR` | Korean (Korea) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `ms-MY` | Malay (Malaysia) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `nb-NO` | Norwegian Bokmål (Norway) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
-| `nl-BE` | Dutch (Belgium) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
+| `nl-BE` | Dutch (Belgium) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `nl-NL` | Dutch (Netherlands) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `pl-PL` | Polish (Poland) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `pt-BR` | Portuguese (Brazil) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `pt-PT` | Portuguese (Portugal) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `ro-RO` | Romanian (Romania) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
-| `ru-RU` | Russian (Russia) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
+| `ru-RU` | Russian (Russia) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `sk-SK` | Slovak (Slovakia) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
 | `sl-SI` | Slovenian (Slovenia) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
-| `sv-SE` | Swedish (Sweden) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
-| `ta-IN` | Tamil (India) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multilingual voice primary and secondary |
-| `ta-MY` |Tamil (Malaysia)| Neural voice<br/><br/>Multi-style voice|
-| `te-IN` | Telugu (India) | Neural voice<br/><br/>Multi-style voice |
+| `sv-SE` | Swedish (Sweden) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
+| `ta-IN` | Tamil (India) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multilingual voice primary and secondary |
+| `ta-MY` |Tamil (Malaysia)| HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice|
+| `te-IN` | Telugu (India) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
 | `th-TH` | Thai (Thailand) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `tr-TR` | Turkish (Türkiye) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
-| `vi-VN` | Vietnamese (Vietnam) | Neural voice<br/><br/>Multi-style voice |
+| `vi-VN` | Vietnamese (Vietnam) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
 | `zh-CN` | Chinese (Mandarin, Simplified) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary<br/><br/>HD voice|
 | `zh-HK` | Chinese (Cantonese, Traditional) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `zh-SG` |  Chinese (Simplified, Singapore) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
-| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
+| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
