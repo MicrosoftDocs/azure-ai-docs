@@ -5,11 +5,10 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
-ms.date: 04/10/2026
+ms.date: 07/20/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 > [!IMPORTANT]
-> Preview API versions `2024-12-01-preview` and `2025-05-01-preview` will be retired by July 15, 2026. If you're still using a preview API, update your code to target the latest API version `2025-11-01 (GA)`.
->
-> APIs versions `2024-12-01-preview` and `2025-05-01-preview` are in public preview. These previews are provided without a service-level agreement and are not recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
+> API version `2026-06-01-preview` is in public preview. Previews are provided without a service-level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
