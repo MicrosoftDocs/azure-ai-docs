@@ -78,7 +78,7 @@ LoRA deployments to Fireworks automatically merge the LoRA weights into a full-w
 
 All Fireworks base models support LoRA deployment with the following exceptions:
 
-* Ministral 3 3B Intruct 2512
+* Ministral 3 3B Instruct 2512
 * Qwen 3.5 35B A3B
 * Qwen 3.5 4B
 
