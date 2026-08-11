@@ -1,7 +1,7 @@
 ---
 title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
-author: aahil
+author: aahill
 ms.author: aahi
 ms.date: 07/14/2026
 ms.service: microsoft-foundry

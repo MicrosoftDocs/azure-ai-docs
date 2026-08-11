@@ -6,7 +6,7 @@ ms.reviewer: anksing
 ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 7/27/2026
+ms.date: 07/27/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---

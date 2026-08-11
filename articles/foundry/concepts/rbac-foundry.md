@@ -58,7 +58,7 @@ To publish agents, you need the **Foundry Project Manager** role (minimum) on th
 
 ## Manage role assignments
 
-To manage roles in Foundry, you must have permission to assign and remove roles in Azure. The Azure built-in **Owner** role includes that permission. You can assign roles through the Foundry portal (Admin page), Azure portal IAM, or Azure CLI. You can remove roles by using Azure portal IAM or Azure CLI.
+To manage roles in Foundry, you must have permission to assign and remove roles in Azure. The Azure built-in **Owner** role includes that permission. You can assign roles through the Foundry portal (**Manage** pane), Azure portal IAM, or Azure CLI. You can remove roles by using Azure portal IAM or Azure CLI.
 
 # [Foundry portal](#tab/foundry)
 In the Foundry portal, manage permissions by:
