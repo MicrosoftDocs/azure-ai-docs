@@ -170,15 +170,27 @@ How you send data to the index affects both cost and throughput:
 
 - **Index only new or changed data**: Avoid full reindexing when possible. Sending only additions and updates reduces the number of documents processed, lowering compute cost and improving ingestion speed.
 
-- **Use change detection for incremental indexing**: Detect what changed before you reprocess content. Incremental indexing avoids repeated work on unchanged documents and keeps reprocessing costs down.
-
 - **Skip image extraction unless you need it**: Image extraction adds extra processing work and can become a separate cost driver. Turn it on only for documents or workflows that actually need image content.
-
-- **Target skills to relevant fields and documents**: Scope enrichment skills to the specific fields or documents they need. Avoid running skills across content that doesn't need enrichment, especially when the outputs aren't used downstream.
 
 - **Account for index size growth**: Where possible, create smaller indexes. As an index grows, indexing costs increase because more data must be stored and maintained, and operations require more compute. For very large datasets, consider partitioning data across multiple indexes to help manage performance and costs. Although costs rise with index size, the increase is sublinear. Larger indexes cost more per operation, but not proportionally more.
 
 For more guidance, see [Tips for better performance in Azure AI Search](./search-performance-tips.md).
+
+### Optimize indexer operations
+
+Serverless indexer compute usage depends on the work performed during each indexer run. For row-oriented sources, use the number of documents processed as an indicator of workload volume. For file-based sources such as Azure Blob Storage and Azure Data Lake Storage Gen2, monitor the amount of source data processed. Actual compute usage also depends on document payloads, index structure, enrichment, and other processing performed during the run.
+
+To reduce indexer compute usage:
+
+- **Use change detection and incremental indexing**: Process only new or changed data instead of repeatedly indexing the full data source.
+
+- **Right-size indexer schedules**: Choose a schedule that meets your data freshness requirements. Use Compute Unit telemetry to evaluate the effect of schedule frequency.
+
+- **Reduce unnecessary document content**: Remove content that doesn't need to be indexed, and exclude files or file types that aren't required.
+
+- **Scope enrichment skills carefully**: Run skills only on fields and documents that require enrichment, and avoid generating outputs that aren't used downstream. Billable skills can incur separate transaction charges.
+
+- **Monitor failed and repeated runs**: An indexer can consume compute for work completed before it fails. Review execution history and Compute Unit usage to identify recurring failures and retry patterns.
 
 ### Optimize your queries
 
