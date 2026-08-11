@@ -250,6 +250,9 @@ items:
       items:
       - name: Use the Azure OpenAI Responses API
         href: ../../openai/how-to/responses.md
+      - name: Migrate from Chat Completions to Responses API
+        displayName: Migrate Python apps from Azure OpenAI Chat Completions to the Responses API
+        href: /azure/developer/ai/how-to/azure-openai-to-responses?context=/azure/foundry/context/context
       - name: Text generation
         displayName: How to generate text responses with Microsoft Foundry Models
         href: ../../foundry-models/how-to/generate-responses.md
