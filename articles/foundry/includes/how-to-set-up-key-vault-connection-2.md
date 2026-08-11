@@ -41,7 +41,7 @@ az deployment group create \
 After deployment completes:
 
 1. In the Foundry portal, select **Manage** in the upper-right navigation.
-1. Select **Project details** in the left pane.
+1. Select **Resource details** in the left pane.
 1. Select the **Connected resources** tab and confirm the Azure Key Vault connection appears in the list.
 1. Select the connection to view its properties and verify the Key Vault resource ID.
 

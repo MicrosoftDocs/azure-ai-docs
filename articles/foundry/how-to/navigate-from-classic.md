@@ -181,7 +181,7 @@ The following table maps frequently used classic portal locations to their curre
 | Tracing and monitoring | **Tracing** in the left pane | **Operate** > **Tracing** |
 | Manage quotas | **Management center** > **Quota** | **Manage** > **Quota** |
 | Manage users and permissions | **Management center** > **Users** | **Manage** > **Project details** > **Users** |
-| View all projects and resources | **Management center** > **All resources** | **Operate** > **Admin** |
+| View all projects and resources | **Management center** > **All resources** | Project name dropdown > **View all projects** |
 | Connected resources | **Management center** > **Connected resources** | **Manage** > **Project details** > **Connected resources** |
 | Guardrails and content filters | **Guardrails + controls** in the left pane | **Operate** > **Compliance** |
 
