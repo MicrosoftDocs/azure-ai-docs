@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/07/2026
+ms.date: 08/11/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -184,7 +184,7 @@ On GPT-5.6 models and later model families, Standard pay-as-you-go deployments r
 }
 ```
 
-After the first 1,024 tokens, cache hits occur for every 128 additional identical tokens.
+On GPT-5.5 and earlier models, cache hits after the first 1,024 tokens occur in 128-token increments. This rounding doesn't apply to GPT-5.6 models and later model families.
 
 A single character difference in the first 1,024 tokens results in a cache miss, which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default for supported models.
 
