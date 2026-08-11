@@ -72,7 +72,7 @@ Your model directory must include the files required for the model weight type y
 | `adapter_config.json` | Not applicable | Required | Not applicable |
 | `adapter_model.bin` or `adapter_model.safetensors` | Not applicable | Required | Not applicable |
 
-### LoRA Requirements (Preview)
+### LoRA requirements (preview)
 
 Fireworks automatically merge the LoRA weights into a full-weight version of the model for LoRA deployments to Fireworks. This approach provides predictable performance.
 
