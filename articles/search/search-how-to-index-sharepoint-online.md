@@ -776,13 +776,6 @@ You can also continue indexing if errors happen at any point of processing, eith
 }
 ```
 
-If a file on the SharePoint site has encryption enabled, you might see the following error message:
- 
-```
-Code: resourceModified Message: The resource has changed since the caller last read it; usually an eTag mismatch Inner error: Code: irmEncryptFailedToFindProtector
-```
-
-The error message also includes the SharePoint site ID, drive ID, and drive item ID in the following pattern: `<sharepoint site id> :: <drive id> :: <drive item id>`. Use this information to identify which item is failing on the SharePoint end. The user can then remove the encryption from the item to resolve the issue.
 
 ## Related content
 

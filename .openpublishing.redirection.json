@@ -2677,6 +2677,16 @@
       "source_path": "articles/foundry-classic/openai/concepts/legacy-models.md",
       "redirect_url": "/azure/foundry-classic/openai/concepts/retired-models",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-embeddings.md",
+      "redirect_url": "/azure/foundry/openai/how-to/embeddings",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-image-embeddings.md",
+      "redirect_url": "/azure/foundry/openai/how-to/embeddings",
+      "redirect_document_id": false
     }, 
     {
       "source_path": "articles/foundry/openai/concepts/legacy-models.md",

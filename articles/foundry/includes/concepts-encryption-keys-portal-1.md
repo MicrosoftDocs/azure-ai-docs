@@ -157,7 +157,7 @@ When you use a user-assigned managed identity, also set `identityClientId` to th
 With a user-assigned identity, you can grant key store access before you create the Foundry resource, so a single deployment is sufficient.
 
 ```bicep
-resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
+resource account 'Microsoft.CognitiveServices/accounts@2026-05-01-preview' = {
   name: aiFoundryName
   location: location
   kind: 'AIServices'
@@ -203,7 +203,7 @@ The Bicep approach uses two files: `main.bicep` creates the resource without enc
 
 ```bicep
 // main.bicep — First deployment: create the resource with SystemAssigned identity
-resource account 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+resource account 'Microsoft.CognitiveServices/accounts@2026-05-01' = {
   name: aiFoundryName
   location: location
   identity: {
