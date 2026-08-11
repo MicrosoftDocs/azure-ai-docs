@@ -282,6 +282,8 @@ items:
           href: search-markdown-data-tutorial.md
         - name: Index multiple Azure data sources
           href: tutorial-multiple-data-sources.md
+        - name: Configure multiple blob indexers
+          href: search-how-to-multiple-indexers-one-index.md
         - name: Create a custom analyzer
           href: tutorial-create-custom-analyzer.md
     - name: Logic Apps workflows
