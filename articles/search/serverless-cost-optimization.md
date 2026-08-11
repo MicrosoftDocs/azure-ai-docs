@@ -73,9 +73,9 @@ Different operations have different cost profiles:
 
 ### Monitor compute usage
 
-Monitoring compute consumption helps you identify expensive operations, optimize query patterns, and estimate costs. The Compute Unit (CU) cost of every request is returned in the `x-ms-request-charge` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in Azure Monitor. For more guidance on the types of monitoring data available and methods for analyzing that data, see [Monitor Azure AI Search](/azure/azure-monitor/fundamentals/overview).
+Monitoring compute consumption helps you identify expensive operations, optimize query patterns, and estimate costs. The Compute Unit (CU) cost of every request is returned in the `x-ms-azs-compute-units-consumed` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in Azure Monitor. For more guidance on the types of monitoring data available and methods for analyzing that data, see [Monitor Azure AI Search](/azure/azure-monitor/fundamentals/overview).
 
-- **Header**: `x-ms-request-charge: <value>`
+- **Header**: `x-ms-azs-compute-units-consumed: <value>`
 - **Value**: A floating-point number representing the CUs consumed.
 
 Example:
@@ -83,7 +83,7 @@ Example:
 ```http
 Status: 200 OK
 Content-Type: application/json
-x-ms-request-charge: 12.45
+x-ms-azs-compute-units-consumed: 12.45
 ```
 
 In this example, the request consumed 12.45 compute units. You can use this value to identify high-cost operations and compare the relative cost of different query patterns.
@@ -123,7 +123,7 @@ To estimate serverless costs:
 
 1. Index representative sample data.
 1. Run typical indexing and query workloads.
-1. Record the `x-ms-request-charge` value returned for each operation.
+1. Record the `x-ms-azs-compute-units-consumed` value returned for each operation.
 1. Use Azure Monitor metrics to measure aggregate usage over time.
 1. Extrapolate costs based on expected production traffic.
 
