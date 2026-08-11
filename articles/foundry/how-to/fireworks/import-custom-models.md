@@ -74,7 +74,7 @@ Your model directory must include the files required for the model weight type y
 
 ### LoRA Requirements (Preview)
 
-LoRA deployments to Fireworks automatically merge the LoRA weights into a full-weight version of the model to provide predictable performance.
+Fireworks automatically merge the LoRA weights into a full-weight version of the model for LoRA deployments to Fireworks. This approach provides predictable performance.
 
 All Fireworks base models support LoRA deployment with the following exceptions:
 
