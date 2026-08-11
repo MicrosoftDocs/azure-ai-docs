@@ -7,8 +7,9 @@ ms.custom:
   - references_regions
   - ignite-2025
   - build-2026
+  - doc-kit-assisted
 ms.topic: reference
-ms.date: 06/02/2026
+ms.date: 08/08/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -141,6 +142,8 @@ Alternatively, it can be defined as:
 The file reference object can be generated in one of following ways:
 
 + Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to `true`. This setting creates a `/document/file_data` path that's an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Azure Blob Storage.
+
+  `allowSkillsetToReadFileData` makes the downloaded file data available to the skill. It doesn't increase the [blob indexer limits](search-limits-quotas-capacity.md#indexer-limits) or the Content Understanding service limits described in [Data limits](#data-limits).
 
 + Having a custom skill returning a JSON object definition that provides `$type`, `data`, or `url` and `sastoken`. The `$type` parameter must be set to `file`, and  `data` must be the base 64-encoded byte array of the file content. The `url` parameter must be a valid URL with access to download the file at that location.
 
