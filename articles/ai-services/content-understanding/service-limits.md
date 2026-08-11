@@ -58,6 +58,7 @@ The currently supported models are:
 |Chat Completion | gpt-5.1 | `2025-12-11` |
 |Chat Completion | gpt-5 | `2025-12-11` |
 |Chat Completion | gpt-5-mini | `2025-12-11` |
+|Chat Completion | gpt-5-nano | `2025-12-11` |
 |Chat Completion | gpt-4.1 | `2025-04-14` |
 |Chat Completion | gpt-4.1-mini | `2025-04-14` |
 |Chat Completion | gpt-4.1-nano | `2025-04-14` |
