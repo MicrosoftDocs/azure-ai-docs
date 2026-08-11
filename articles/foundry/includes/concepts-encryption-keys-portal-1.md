@@ -45,7 +45,7 @@ To configure a CMK for Foundry, you need:
   - Contributor or Owner role on the Foundry resource to configure encryption settings.
  
 > [!IMPORTANT]
-> Grant the key permissions to the managed identity *before* you enable CMK. If the identity can't access the key when encryption is enabled, the operation fails. When you use a user-assigned managed identity, this ordering applies to that identity. When you use a system-assigned managed identity, you must create the resource first and then grant permissions, because the identity doesn't exist until after provisioning.
+> Grant the managed identity access to the key *before* you enable CMK. If the identity can't access the key when encryption is enabled, the operation fails. When you use a user-assigned managed identity, you can grant access before you create the resource. When you use a system-assigned managed identity, create the resource first and then grant access, because the identity doesn't exist until after provisioning.
 
 Before you configure a CMK, be sure to deploy your resources in a supported region. For more information on regional support for Foundry features, see [Microsoft Foundry feature availability across cloud regions](../reference/region-support.md).
 
