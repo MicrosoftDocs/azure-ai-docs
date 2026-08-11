@@ -294,15 +294,9 @@ items:
       href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
-    - name: Embeddings (Azure OpenAI)
+    - name: Embeddings
       displayName: Learn how to generate embeddings
       href: ../../openai/how-to/embeddings.md
-    - name: Text embeddings (Foundry Models)
-      displayName: How to generate embeddings with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
-    - name: Image embeddings
-      displayName: How to generate image embeddings with Microsoft Foundry Models service
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
     - name: Embeddings tutorial
       displayName: "Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search"
       href: ../../openai/tutorials/embeddings.md
