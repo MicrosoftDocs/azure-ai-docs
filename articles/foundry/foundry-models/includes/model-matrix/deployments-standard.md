@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 07/30/2026
+ms.date: 08/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -204,6 +204,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-chat-latest | 2026-08-06 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
 | gpt-realtime-1.5 | 2026-02-23 | - | - | - | - | ✅ |
@@ -256,6 +257,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ |
+| gpt-chat-latest | 2026-08-06 | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | ✅ |
 | gpt-image-1-mini | 2025-10-06 | - | ✅ |
