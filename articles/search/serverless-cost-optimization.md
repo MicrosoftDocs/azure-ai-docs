@@ -240,6 +240,8 @@ Vector queries are compute-intensive because they require similarity calculation
 
 - **Use hybrid search selectively**: Hybrid queries run both keyword and vector retrieval. Use only when necessary for relevance.
 
+- **Tune `maxTextRecallSize` for hybrid queries**: Set `hybridSearch.maxTextRecallSize` to control how many BM25-ranked text results are available to Reciprocal Rank Fusion (RRF). The default is 1,000, and the supported range is 1 through 10,000. Lowering the value can reduce text retrieval and result-fusion work, which can reduce resource utilization and latency. However, it can exclude relevant keyword results, including exact terms, IDs, and acronyms that vector search might miss. Test representative queries, and compare relevance, latency, and the `x-ms-azs-compute-units-consumed` response header before selecting a value. Control vector candidates separately by setting `k` on each vector query.
+
 - **Apply filters before vector queries**: Narrow the candidate set before vector search to reduce the amount of data processed. See [How filtering works in vector queries](./vector-search-filters.md#how-filtering-works-in-vector-queries).
 
 ## Reduce costs by minimizing usage
