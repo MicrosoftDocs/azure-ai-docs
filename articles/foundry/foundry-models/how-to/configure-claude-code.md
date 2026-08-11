@@ -138,7 +138,7 @@ You use either your Foundry resource name or the base URL to configure Claude Co
 
 To find your Foundry resource name from the Foundry portal:
 
-1. Go to the top left navigation and select the project name > **Project details**.
+1. Go to the top left navigation and select **Manage** > **Project details**.
 1. Copy the value of **Parent resource** from the **Project details** page.
 
 To find your base URL from the Foundry portal:
@@ -554,7 +554,7 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 | ----- | -------- |
 | Authorization failed (HTTP 401/403) | Verify that `az login` completed successfully or that the API key is set correctly. Check that your account has access to the Foundry resource. |
 | Claude Code starts but can't find models | Verify `ANTHROPIC_FOUNDRY_RESOURCE` matches your resource name and that the `ANTHROPIC_DEFAULT_*_MODEL` values match your deployment names. |
-| Rate limit exceeded (HTTP 429) | Check your quotas in the Foundry portal under **Operate** > **Quotas**. Consider adjusting your token limits per the [Claude Code configuration documentation](https://code.claude.com/docs/en/model-config). |
+| Rate limit exceeded (HTTP 429) | Check your quotas in the Foundry portal under **Manage** > **Quota**. Consider adjusting your token limits per the [Claude Code configuration documentation](https://code.claude.com/docs/en/model-config). |
 | VS Code extension not connecting | Ensure environment variables are set before launching VS Code. Try launching VS Code from the terminal after setting variables. |
 | WSL + VS Code extension issues | The extension might check for the API key on the Windows host instead of within WSL. Set the environment variable on both the Windows host and WSL, then launch a new terminal from WSL and run `code .` |
 | Region errors | Claude models are only available in East US 2 and Sweden Central. |

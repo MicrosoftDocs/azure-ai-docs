@@ -668,7 +668,7 @@ For the full sample including authenticated API patterns, see [Agent_Step17_Open
 
 In this example, you add an authenticated OpenAPI tool to a toolbox, attach the toolbox as an MCP tool, and use the agent in a scenario that requires authentication. You use the TripAdvisor specification.
 
-The TripAdvisor service requires key-based authentication. To create a connection in the Azure portal, open Microsoft Foundry and, at the left panel select **Management center** and then select **Connected resources**. Finally, create new connection of **Custom keys** type. Name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
+The TripAdvisor service requires key-based authentication. To create a connection, open Microsoft Foundry, select **Manage** in the upper-right navigation, select **Project details**, and then select the **Connected resources** tab. Finally, create new connection of **Custom keys** type. Name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
 
 ```csharp
 class OpenAPIConnectedDemo

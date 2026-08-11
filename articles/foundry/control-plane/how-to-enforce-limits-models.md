@@ -47,7 +47,7 @@ You can configure token limits for specific model deployments within your projec
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** > **Admin**.
+1. Select **Manage** > **AI Gateway**.
 
 1. In the **AI Gateway** list, select the gateway that you want to use.
 

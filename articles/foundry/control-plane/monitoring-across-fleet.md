@@ -72,13 +72,9 @@ Follow these steps for each project where you want to configure monitoring:
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. On the toolbar, select **Operate**.
+1. On the toolbar, select **Manage**.
 
-1. On the left pane, select **Admin**.
-
-1. Under **All projects**, in the search box, enter your project name.
-
-1. Select the project.
+1. On the left pane, select **Project details**.
 
 1. Select the **Connected resources** tab.
 

@@ -24,7 +24,7 @@ This article shows you how to enable AI Gateway for a Microsoft Foundry resource
   - To create an APIM instance: **Contributor** or **Owner** on the target resource group (or subscription).
   - To manage an existing APIM instance: **API Management Service Contributor** (or **Owner**) on the APIM instance. For more information, see [How to use role-based access control in Azure API Management](/azure/api-management/api-management-role-based-access-control).
 
-- Access to the Foundry portal (**Admin console**) for the target Foundry resource.
+- Access to the Foundry portal (**Manage** > **AI Gateway**) for the target Foundry resource.
   - For example: **Foundry Account Owner** or **Foundry Owner** on the Foundry resource. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
     [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
@@ -52,9 +52,7 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** > **Admin console**.
-
-1. Open the **AI Gateway** tab.
+1. Select **Manage** > **AI Gateway**.
 
 1. Select **Add AI Gateway**.
 
@@ -73,7 +71,7 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
     > [!NOTE]
     > AI Gateway includes a free tier for Azure API Management. For current details about costs and free-tier eligibility, see [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/).
 
-    :::image type="content" source="../media/enable-ai-api-management-gateway-portal/create-ai-gateway-portal.png" alt-text="Screenshot of AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="../media/enable-ai-api-management-gateway-portal/create-ai-gateway-portal.png":::
+    :::image type="content" source="../media/enable-ai-api-management-gateway-portal/create-ai-gateway-portal.png" alt-text="Screenshot of the AI Gateway pane showing options to create or select an API Management instance." lightbox="../media/enable-ai-api-management-gateway-portal/create-ai-gateway-portal.png":::
 
 1. Name the gateway, and select **Add** to create or associate the APIM instance.
 
@@ -153,9 +151,9 @@ Once you configure AI Gateway for your resource and project, you can:
 | Requests bypass the gateway. | The project wasn't enabled before requests were made, or the gateway isn't fully provisioned. | Verify the gateway status shows **Enabled** for both the resource and project. |
 | Permission error when creating gateway. | Missing required RBAC role. | Verify you have **Contributor** or **Owner** on the resource group (to create) or **API Management Service Contributor** on an existing instance. |
 | Existing API Management instance does not appear in the list when selecting **Use existing APIM**. | The API Management instance does not meet the eligibility requirements or the user does not have sufficient permissions. | Verify that the API Management instance is in the same tenant and uses a supported service tier, and that you have the API Management Service Contributor role (or Owner) on the instance. |
-| Token limits don't apply to requests. | Limits aren't configured, or the project isn't using the gateway. | Verify the project is enabled for AI Gateway, then configure token limits in the Admin console. |
+| Token limits don't apply to requests. | Limits aren't configured, or the project isn't using the gateway. | Verify the project is enabled for AI Gateway, then configure token limits on the **Manage** > **AI Gateway** pane. |
 | 500 errors on model calls after gateway setup. | The auto-created APIM endpoints may not be fully provisioned, or the model deployment isn't correctly mapped through the gateway. | Wait several minutes for provisioning to complete. Verify the model deployment is accessible without the gateway first. Check the APIM **Monitoring** > **Logs** for detailed error information. If the issue persists, try removing and re-adding the project to the gateway. |
-| Projects don't appear in the AI Gateway tab after association. | The project list may take time to refresh, or the project was created before the gateway was enabled. | Refresh the page or navigate away and return to the AI Gateway tab. If projects still don't appear, verify the gateway status shows **Enabled** at the resource level. For existing projects, you must manually add them to the gateway by selecting **Add project to gateway**. |
+| Projects don't appear on the AI Gateway pane after association. | The project list may take time to refresh, or the project was created before the gateway was enabled. | Refresh the page or navigate away and return to the AI Gateway pane. If projects still don't appear, verify the gateway status shows **Enabled** at the resource level. For existing projects, you must manually add them to the gateway by selecting **Add project to gateway**. |
 
 For tools-specific troubleshooting, see [Tools governance with AI Gateway](/azure/ai-foundry/agents/how-to/tools/governance#troubleshooting).
 
@@ -168,7 +166,7 @@ Disabling and deleting an AI Gateway are different operations:
 
 ### Disable AI Gateway for a project
 
-1. Select **Operate** > **Admin console**, and then open the **AI Gateway** tab.
+1. Select **Manage** > **AI Gateway**.
 1. Select the AI Gateway name to view its associated projects.
 1. Locate the project, and then select **Remove project from gateway**. The **Gateway status** column updates to **Disabled**.
 
@@ -178,7 +176,7 @@ Disabling a project leaves the gateway in place, so other projects continue to r
 
 To completely delete an AI Gateway, remove it from the Foundry resource and then delete the underlying API Management instance. Disabling a project alone doesn't delete the gateway or stop API Management charges.
 
-1. In the **AI Gateway** tab, disable the gateway for every project that's associated with it, as described in the previous section.
+1. On the **AI Gateway** pane, disable the gateway for every project that's associated with it, as described in the previous section.
 1. Select the AI Gateway, and then select the option to delete it from the Foundry resource.
 1. In the [Azure portal](https://portal.azure.com), open the resource group that contains the API Management instance.
 1. Delete the API Management instance that has the same name as the AI Gateway, unless another workload still uses it. Deleting the instance stops the associated charges and completes the removal.

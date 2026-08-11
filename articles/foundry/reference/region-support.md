@@ -50,7 +50,7 @@ Use this process before you create resources:
 
 1. Select a candidate project region from the **Foundry projects** list in this article.
 1. Verify feature-specific support in the **Foundry features** list links.
-1. Check available quota for a specific model and region. In the Foundry portal, go to **Operate** > **Quota** and turn on the **Show all** toggle to see all models and regions, including models you haven't deployed yet. For more information, see [Quota in Foundry Control Plane](../control-plane/overview.md#quota).
+1. Check available quota for a specific model and region. In the Foundry portal, go to **Manage** > **Quota** and turn on the **Show all** toggle to see all models and regions, including models you haven't deployed yet. For more information, see [Quota in Foundry Control Plane](../control-plane/overview.md#quota).
 1. Confirm the final service list in [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/).
 
 [!INCLUDE [reference-region-support-gov](../includes/reference-region-support-gov.md)]

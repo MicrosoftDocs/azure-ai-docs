@@ -63,10 +63,10 @@ To manage roles in Foundry, you must have permission to assign and remove roles 
 # [Foundry portal](#tab/foundry)
 In the Foundry portal, manage permissions by:
 
-1. Open the **Admin** page in [Foundry](https://ai.azure.com), then select **Operate** > **Admin**.
-1. Select your project name.
+1. In [Foundry](https://ai.azure.com), select **Manage** > **Project details**.
+1. Select the **Users** tab.
 1. Select **Add user** to manage project access. This action is available only if you have role-assignment permissions.
-1. Apply the same flow for Foundry resource-level access.
+1. Apply the same flow on the **Resource details** page for Foundry resource-level access.
 
 # [Azure portal](#tab/portal)
 You can manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)**.

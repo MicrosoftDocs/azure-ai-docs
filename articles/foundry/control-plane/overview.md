@@ -88,7 +88,7 @@ Foundry Control Plane supports the following tasks.
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-The capabilities described previously are organized into panes that you access by selecting **Operate** on the upper-right toolbar of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription. These features are currently available through the Foundry portal only.
+The capabilities described previously are organized into panes that you access by selecting **Operate** on the upper-right toolbar of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription. Project-scoped settings, such as **Quota** and **AI Gateway**, are on the **Manage** toolbar button instead. These features are currently available through the Foundry portal only.
 
 Each pane within **Operate** is designed around a specific job. These panes help various roles, from builders to administrators, manage AI systems at scale.
 
@@ -138,7 +138,7 @@ Policy management in Foundry enables administrators and developers alike to embe
 
 ### Quota
 
-Use the **Quota** pane to view, adjust, and request quotas.
+Use the **Quota** pane, on the **Manage** toolbar button, to view, adjust, and request quotas.
 
 :::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota pane that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
