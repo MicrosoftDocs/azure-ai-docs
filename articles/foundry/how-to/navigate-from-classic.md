@@ -155,7 +155,7 @@ These features are available only in the current Foundry portal:
 
 ## Navigate the portal
 
-The classic portal uses a single customizable left pane for all navigation, with **Management center** at the bottom. The current portal splits features across six top-level sections, each with its own left pane.
+The classic portal uses a single customizable left pane for all navigation, with **Management center** at the bottom. The current portal splits features across five top-level sections, each with its own left pane.
 
 :::image type="content" source="../media/navigate-from-classic/foundry-home.png" alt-text="Screenshot of home page of the current Foundry portal.":::
 
@@ -164,8 +164,7 @@ The classic portal uses a single customizable left pane for all navigation, with
 | **Home** | Selected project | Project overview and quick actions |
 | **Discover** | Selected project | Model catalog and model benchmarks |
 | **Build** | Selected project | Agents, models, playgrounds, evaluations, fine-tuning |
-| **Operate** | All projects | Compliance, fleet health, tracing, assets |
-| **Manage** | Selected project and its resource | Quota, AI Gateway, resource details, project details |
+| **Operate** | All projects | Admin, quota, compliance, fleet health, tracing |
 | **Docs** | N/A | Documentation links |
 
 The following table maps frequently used classic portal locations to their current equivalents.
@@ -179,10 +178,10 @@ The following table maps frequently used classic portal locations to their curre
 | View evaluations | **Evaluation** in the left pane | **Build** > [**Evaluations**](evaluate-generative-ai-app.md) |
 | Fine-tune a model | **Fine-tuning** in the left pane | **Build** > [**Fine-tuning**](../openai/how-to/fine-tuning.md) |
 | Tracing and monitoring | **Tracing** in the left pane | **Operate** > **Tracing** |
-| Manage quotas | **Management center** > **Quota** | **Manage** > **Quota** |
-| Manage users and permissions | **Management center** > **Users** | **Manage** > **Project details** > **Users** |
-| View all projects and resources | **Management center** > **All resources** | Project name dropdown > **View all projects** |
-| Connected resources | **Management center** > **Connected resources** | **Manage** > **Project details** > **Connected resources** |
+| Manage quotas | **Management center** > **Quota** | **Operate** > **Quota** |
+| Manage users and permissions | **Management center** > **Users** | **Operate** > **Admin** |
+| View all projects and resources | **Management center** > **All resources** | **Operate** > **Admin** |
+| Connected resources | **Management center** > **Connected resources** | **Operate** > **Admin** > select a project |
 | Guardrails and content filters | **Guardrails + controls** in the left pane | **Operate** > **Compliance** |
 
 ## Switch between portal experiences
