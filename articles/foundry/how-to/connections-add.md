@@ -80,8 +80,8 @@ It supports three connection types: __Jobs__, __Genie__, and __Other__. You can 
 Follow these steps to create a new connection that's available for the current project.
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
-1. Select __Manage__ in the upper-right navigation.
-1. Select __Project details__ in the left pane.
+1. Select **Manage** in the upper-right navigation.
+1. Select **Project details** in the left pane.
 1. Select the **Connected resources** tab.
 1. Select **Add connection**.
 1. Select the service you want to connect to from the list of available external resources. For example, select __Azure AI Search__.
