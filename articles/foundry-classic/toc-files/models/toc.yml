@@ -92,7 +92,9 @@ items:
   - name: FLUX models in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
   - name: MAI image models in Foundry Models
-    href: ../../../foundry/foundry-models/how-to/use-foundry-models-mai-image.md
+    href: ../../foundry-models/how-to/use-foundry-models-mai-image.md
+  - name: MAI-Thinking-1 in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-mai-thinking.md
   - name: Develop with LangChain and LangGraph
     href: ../../how-to/develop/langchain.md
   - name: Develop with Llama-Index
