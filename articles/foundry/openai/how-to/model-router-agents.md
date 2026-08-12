@@ -3,7 +3,7 @@ title: "Use model router with Foundry agents"
 description: "Learn how model router selects the optimal model per request for your Foundry agents, reducing costs while maintaining quality across tool-calling, RAG, and multi-turn scenarios."
 author: sanjeev3
 ms.author: sajagtap
-ms.date: 06/18/2026
+ms.date: 08/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -47,18 +47,11 @@ Key benefits for agent workloads:
 
 ## Supported tool types
 
-Model router works with all Foundry Agent Service tool types:
+Model router works with supported Foundry Agent Service tools. When an agent uses tools, model router can select eligible OpenAI, open-source (OSS), and Anthropic models from the configured routing pool. A model is eligible only when it supports the requested tool and deployment configuration.
 
-| Tool type | Description | Routing behavior |
-| --- | --- | --- |
-| FunctionTool | Client-side function calling with custom APIs | Mid-tier models handle structured tool calls efficiently |
-| WebSearchTool | Built-in server-side web search | Routes based on query complexity — simple lookups vs. research synthesis |
-| CodeInterpreterTool | Sandboxed code execution | Higher-capability models for code generation; mid-tier for simple computations |
-| FileSearchTool | Document retrieval with vector stores (RAG) | Full-capability models for synthesis across retrieved documents |
-| MCPTool | External tools via Model Context Protocol | Routes based on orchestration complexity |
+Tool support varies by model and region. For the current compatibility matrix, see [Tool support by region and model](../../agents/concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
-> [!IMPORTANT]
-> If you use Agent service tools in your flows, only OpenAI models are used for routing.
+To route agentic requests to Claude models, deploy the Claude models separately and include them in the model router deployment.
 
 ## How routing works with agents
 
@@ -120,7 +113,7 @@ You can create multiple model router deployments, each with its own routing mode
 
 | Deployment name | Routing mode | Model subset | Agent use case |
 | --- | --- | --- | --- |
-| `router-frontier` | Quality | gpt-5, gpt-5-chat, o4-mini | Research agent — complex reasoning and synthesis |
+| `router-frontier` | Quality | gpt-5.6-sol, gpt-5, o4-mini | Research agent — complex reasoning and synthesis |
 | `router-balanced` | Balanced | gpt-5-mini, gpt-4.1, gpt-4.1-mini | General assistant — mixed-complexity conversations |
 | `router-efficient` | Cost | gpt-5-nano, gpt-4.1-nano | Triage agent — classification and simple Q&A |
 
@@ -138,7 +131,7 @@ project = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-# Research agent — uses a Quality-mode router with gpt-5 and o4-mini
+# Research agent — uses a Quality-mode router with gpt-5.6-sol, gpt-5, and o4-mini
 research_agent = project.agents.create_agent(
     model="router-frontier",
     name="research-agent",
