@@ -4,13 +4,14 @@ description: Set up a OneLake indexer to automate indexing of content and metada
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/04/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
 ms.custom:
   - build-2024
   - ignite-2024
   - sfi-image-nochange
   - sfi-ropc-nochange
+  - doc-kit-assisted
 ---
 
 # Index data from OneLake files and shortcuts
@@ -24,7 +25,7 @@ ms.custom:
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [Microsoft OneLake](/fabric/onelake/onelake-overview).
+In this article, you learn how to configure a OneLake files indexer for extracting searchable data and metadata from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [Microsoft OneLake](/fabric/onelake/onelake-overview).
 
 To configure and run the indexer, you can use:
 
@@ -41,6 +42,8 @@ This article uses the REST APIs to illustrate each step.
 + A lakehouse in a Fabric workspace. Follow this tutorial to [create a lakehouse](/fabric/data-engineering/tutorial-build-lakehouse).
 
 + Textual data. If you have binary data, you can use [AI enrichment](cognitive-search-concept-intro.md) image analysis to extract text or generate descriptions of images. File content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
+
+  Source-file processing and AI enrichment have separate limits. A downstream skill or external service can accept less data than the indexer extracts, so check the [reference article for each skill](cognitive-search-predefined-skills.md) in your skillset.
 
 + Unstructured content in the **Files** location of your lakehouse. You can add data by:
 

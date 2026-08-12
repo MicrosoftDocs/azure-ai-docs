@@ -1,12 +1,13 @@
 ---
 title: Document-Level Access Control
 description: Learn how Azure AI Search enforces document-level access control with security filters, ACLs, RBAC scopes, SharePoint permissions, and Purview sensitivity labels.
-ms.date: 08/05/2026
+ms.date: 08/08/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
   - build-2025
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -36,7 +37,7 @@ Azure AI Search provides four primary approaches to enforce document-level permi
 | Security filters | String comparison. Your application passes in a user or group identity as a string, which populates a filter on a query, excluding any documents that don't match on the string. <br><br>Security filters are a technique for achieving document-level access control. This approach isn't bound to an API so you can use any version or package. |
 | POSIX-like ACL / RBAC scopes (preview) | The Microsoft Entra security principal behind the query token is compared to the permission metadata of documents returned in search results, excluding any documents that don't match on permissions. Access control lists (ACL) permissions apply to Azure Data Lake Storage (ADLS) Gen2 directories and files. Role-based access control (RBAC) scopes apply to ADLS Gen2 content and to Azure blobs. <br><br>Built-in support for identity-based access at the document level is in preview, available in REST APIs and preview Azure SDK packages that provide the feature. For evidence of feature support, check the [SDK version support details](#retrieve-acl-permissions-metadata-during-data-ingestion-process-preview). |
 | Microsoft Purview sensitivity labels (preview) | Indexer extracts sensitivity labels defined in Microsoft Purview from supported data sources (Azure Blob Storage, ADLS Gen2, SharePoint in Microsoft 365, OneLake). These labels are stored as metadata and evaluated at query time to enforce user access based on Microsoft Entra tokens and Purview policy assignments. Labels are also surfaced through [knowledge sources](agentic-knowledge-source-overview.md) and the [agentic retrieval response](agentic-retrieval-how-to-retrieve.md#inspect-sensitivity-label-metadata-in-the-response-preview), allowing AI agents and chat apps consuming a knowledge base to receive the same label-aware filtering. This approach aligns Azure AI Search authorization with your enterprise's Microsoft Information Protection model.|
-| SharePoint in Microsoft 365 ACLs (preview) | When configured, Azure AI Search indexers extract SharePoint document, list item, and ASPX site page permissions directly from Microsoft 365 ACLs. Starting in the 2026-05-01-preview REST API, ACL changes for items with unique permissions are also picked up incrementally on each successful indexer run. Access checks use Microsoft Entra user and group memberships, with SharePoint site groups also supported in the same preview (subject to extra configuration). Requires Microsoft Graph `Sites.FullControl.All` (to read SharePoint content and ACLs) on the app registration; `User.Read.All` is additionally required when you index list items or ASPX site pages (to resolve the email addresses returned by the SharePoint REST API into Microsoft Entra object IDs). For the full per-scenario permission matrix, including minimum-permission combinations, see [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario). |
+| SharePoint in Microsoft 365 ACLs (preview) | Azure AI Search indexers extract permission metadata from supported SharePoint content and use it for query-time access checks. For supported content, principals, group relationships, synchronization behavior, and permissions, see [Use a SharePoint indexer to ingest permission metadata](search-indexer-sharepoint-access-control-lists.md). |
 
 ## Choose an approach
 
@@ -48,8 +49,6 @@ Use the following criteria to identify the approach that best fits your data sou
 | Content in ADLS Gen2 or Azure Blob Storage with existing ACL or RBAC assignments. | POSIX-like ACL / RBAC scopes | Native Microsoft Entra integration; query-time enforcement uses permission metadata written to the index by the documented synchronization mechanism. |
 | Enterprise content already governed by Microsoft Purview information protection policies. | Microsoft Purview sensitivity labels | Reuses centralized classification and policy assignments across Azure AI Search. |
 | Content sourced from SharePoint in Microsoft 365 (libraries, lists, ASPX site pages). | SharePoint in Microsoft 365 ACLs | Honors native SharePoint permissions, including SharePoint site groups. |
-
-For a side-by-side feature comparison (supported principals, item types, sync behavior, and API surface), see the linked pattern sections later in this article and [How to index SharePoint in Microsoft 365 document-level permissions (preview)](search-indexer-sharepoint-access-control-lists.md).
 
 ## Pattern for security trimming using filters
 
@@ -116,31 +115,9 @@ If your skillset chunks documents, such as with the Text Split skill for integra
 
 ## Pattern for SharePoint in Microsoft 365 basic ACL permissions ingestion (preview)
 
-For SharePoint in Microsoft 365 content, Azure AI Search can apply document-level permissions based on SharePoint ACLs. With this integration, only users or groups that have access to the source item in SharePoint can retrieve it from search results. The match takes effect after the ACL metadata is written to the index by the next successful [scheduled indexer](search-howto-schedule-indexers.md) runs that follow the source change. ACL ingestion applies to documents in libraries, items in [SharePoint lists](search-how-to-index-sharepoint-online.md#index-sharepoint-lists), and [ASPX site pages](search-how-to-index-sharepoint-online.md#index-aspx-site-pages).
+For indexed SharePoint content, Azure AI Search can store source permissions as metadata and use them to filter query results. You can access this capability in preview through the SharePoint in Microsoft 365 indexer and the `2026-05-01-preview` REST API or an equivalent preview SDK package.
 
-SharePoint ACL support is available in preview through the SharePoint indexer using the [2026-05-01-preview REST API](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or supported SDK.
-
-This pattern includes the following components:
-
-- Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-query-time-enforcement) for enablement and limitations.
-- During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
-- Starting in the 2026-05-01-preview REST API, SharePoint ACL synchronization follows this model:
-  - Changes on items with unique permissions are detected and refreshed on each successful indexer run.
-  - Changes inherited from parent scopes (site, library, list, or folder) require an explicit refresh, such as `/resync` with `options: ["permissions"]` or `/resetdocs`. For more information, see [Synchronize permissions between indexed and source content](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content).
-
-- At query time, Azure AI Search checks the Microsoft Entra principal in the query token against SharePoint ACL metadata stored in the index. It excludes any items the caller isn't authorized to access.
-
-During the preview, the following principal types are supported in SharePoint ACLs:
-
-- Microsoft Entra user accounts
-- Microsoft Entra security groups
-- Microsoft 365 groups
-- Mail-enabled security groups
-- SharePoint site groups (preview, starting in the 2026-05-01-preview REST API). Requires extra index configuration. For more information, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
-
-[SharePoint Information Management policies](/sharepoint/intro-to-info-mgmt-policies) that gate user access aren't evaluated, ingested, or honored at query time.
-
-For configuration details and full limitations, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](search-indexer-sharepoint-access-control-lists.md). For an end-to-end configuration walkthrough including SharePoint site group support, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
+For permission requirements, supported group relationships, permission synchronization, and limitations, see [Use a SharePoint indexer to ingest permission metadata](search-indexer-sharepoint-access-control-lists.md).
 
 If your skillset chunks documents (for example, with the Text Split skill for integrated vectorization), the ACL fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
