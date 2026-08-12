@@ -5,7 +5,7 @@ author: jonburchel
 reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
-ms.date: 04/25/2026
+ms.date: 08/12/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -2588,8 +2588,7 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [File Search](file-search.md) | ✅ Supported | Through private endpoint |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
 
-> [!NOTE]
-> File input and output are supported in network-isolated environments. You can upload files to File Search vector stores and to Code Interpreter, and download files that Code Interpreter generates.
+File input and output are supported in network-isolated environments. You can upload files to File Search vector stores and to Code Interpreter, and download files that Code Interpreter generates.
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
