@@ -4,7 +4,7 @@ description: "Learn how to use the model router in Azure OpenAI to select the be
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 03/18/2026
+ms.date: 08/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -118,8 +118,8 @@ If you've created an AI agent in Foundry, you can connect your model router depl
 
 For detailed guidance on routing patterns, supported tool types, cost implications, and code examples for agents, see [Use model router with Foundry agents](model-router-agents.md).
 
-> [!IMPORTANT]
-> If you use Agent service tools in your flows, only OpenAI models will be used for routing.
+> [!NOTE]
+> For agentic requests, model router can select eligible OpenAI, open-source (OSS), and Anthropic models from your routing pool. Model and tool compatibility determine which models are eligible for each request. For current compatibility, see [Tool support by region and model](../../agents/concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 ### Output format 
 
