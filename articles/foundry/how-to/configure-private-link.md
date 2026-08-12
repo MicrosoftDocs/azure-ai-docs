@@ -251,7 +251,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | Fabric IQ | ⚠️ Partial | Via MCP. Support depends on the Fabric item type: data agents support tenant-level and workspace-level private link, ontologies support tenant-level private link, and Power BI semantic models support public access only. See [Virtual network support](../agents/how-to/tools/fabric-iq.md#virtual-network-support). |
 | Fabric Data Agent | ❌ Not supported | Fabric resource must have public network access enabled (Workspace-level private link Fabric unsupported) |
 | Logic Apps | ❌ Not supported | Under development |
-| File Search | ❌ Not supported | Under development |
+| File Search | ✅ Supported | Through private endpoint |
 | Browser Automation | ❌ Not supported | Under development |
 | Computer Use | ❌ Not supported | Under development |
 | Image Generation | ❌ Not supported | Under development |
