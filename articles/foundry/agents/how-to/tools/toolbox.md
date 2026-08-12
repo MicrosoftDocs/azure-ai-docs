@@ -2576,7 +2576,7 @@ resources:
 
 ## Virtual network support
 
-When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
+When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), all toolbox tool types are supported. The following table shows how traffic flows for each tool type in a network-isolated environment.
 
 | Tool type | VNet support | Traffic flow |
 | --------- | ------------ | ------------ |
@@ -2585,8 +2585,11 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [Code Interpreter](code-interpreter.md) | ✅ Supported | Microsoft backbone network |
 | [Web Search](web-search.md) | ✅ Supported | Public endpoint |
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
-| [File Search](file-search.md) | ❌ Not supported | Not yet available |
+| [File Search](file-search.md) | ✅ Supported | Through private endpoint |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
+
+> [!NOTE]
+> File input and output are supported in network-isolated environments. You can upload files to File Search vector stores and to Code Interpreter, and download files that Code Interpreter generates.
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
