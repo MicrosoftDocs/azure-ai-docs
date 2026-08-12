@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## View usage metrics
@@ -39,6 +40,9 @@ You can see a breakdown of costs for priority and standard requests in the Azure
 For information about pricing for priority processing, see the [Azure OpenAI Service pricing overview](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ## Enable priority processing at the request level
+
+> [!IMPORTANT]
+> Starting September 25, 2026, the service processes requests that set `service_tier` to `flex` only when the targeted model deployment supports Flex processing. Requests to unsupported models return HTTP 400 with an `invalid_request_error` and no longer fall back to standard processing. Before this change takes effect, verify that your model supports Flex processing. If standard processing is acceptable, retry the request with `service_tier` set to `default`.
 
 Enabling priority processing at the request level is **optional**. Both the chat completions API and responses API have an optional attribute `service_tier` that specifies the processing type to use when serving a request. The following example shows how to set `service_tier` to `priority` in a responses request.
 

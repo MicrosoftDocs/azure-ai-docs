@@ -16,4 +16,16 @@ ms.custom:
 
 # Deployment types for Microsoft Foundry Models
 
-[!INCLUDE [deployment-types content](../includes/concepts-deployment-types-content.md)]
+[!INCLUDE [deployment-types intro](../includes/concepts-deployment-types-content-1.md)]
+
+[!INCLUDE [try-instant-models](../../includes/try-instant-models.md)]
+
+[!INCLUDE [deployment-types comparison](../includes/concepts-deployment-types-content-2.md)]
+
+[!INCLUDE [instant models note](../includes/concepts-deployment-types-content-3-instant-foundry.md)]
+
+[!INCLUDE [deployment-types choose](../includes/concepts-deployment-types-content-4.md)]
+
+[!INCLUDE [deployment-types workload pattern](../includes/concepts-deployment-types-content-5-workload-foundry.md)]
+
+[!INCLUDE [deployment-types details](../includes/concepts-deployment-types-content-6.md)]

@@ -21,4 +21,12 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 
-[!INCLUDE [deployment-types content](../../../foundry/foundry-models/includes/concepts-deployment-types-content.md)]
+[!INCLUDE [deployment-types intro](../../../foundry/foundry-models/includes/concepts-deployment-types-content-1.md)]
+
+[!INCLUDE [deployment-types comparison](../../../foundry/foundry-models/includes/concepts-deployment-types-content-2.md)]
+
+[!INCLUDE [deployment-types choose](../../../foundry/foundry-models/includes/concepts-deployment-types-content-4.md)]
+
+[!INCLUDE [deployment-types workload pattern](../../../foundry/foundry-models/includes/concepts-deployment-types-content-5-workload-classic.md)]
+
+[!INCLUDE [deployment-types details](../../../foundry/foundry-models/includes/concepts-deployment-types-content-6.md)]
