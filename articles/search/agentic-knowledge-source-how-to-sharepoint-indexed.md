@@ -3,8 +3,9 @@ title: Create a SharePoint (Indexed) Knowledge Source
 description: Learn how to create an indexed SharePoint knowledge source, which ingests content from SharePoint sites into a searchable index on Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/04/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -29,10 +30,12 @@ An *indexed SharePoint knowledge source* (preview) ingests SharePoint content in
 
 When you create an indexed SharePoint knowledge source, you specify a SharePoint connection string, models, and properties to automatically generate the following Azure AI Search objects:
 
-+ A data source that points to SharePoint sites.
++ A data source that points to SharePoint sites and uses the connection string unchanged. The generated data source follows the SharePoint indexer's [`TenantId` rules](search-how-to-index-sharepoint-online.md#connection-string-format).
 + A skillset that chunks and optionally vectorizes multimodal content.
 + An index that stores enriched content and meets the criteria for agentic retrieval.
 + An indexer that uses the previous objects to drive the indexing and enrichment pipeline.
+
+The generated indexer conforms to the *SharePoint in Microsoft 365 indexer*, whose prerequisites, supported document formats, and limitations also apply to indexed SharePoint knowledge sources. For more information, see the [SharePoint indexer documentation](search-how-to-index-sharepoint-online.md) and [indexer limits](search-limits-quotas-capacity.md#indexer-limits). If the generated skillset calls an external service, that skill's input and service limits also apply.
 
 ### Usage support
 
@@ -301,6 +304,8 @@ After the knowledge base is configured, [call the retrieve action or MCP endpoin
 
 To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
+For missing, unexpected, or failed results from an indexed SharePoint permission query, see [Troubleshoot SharePoint permission filtering](troubleshoot-sharepoint-query-permission-filtering.md).
+
 ### Surface document-embedded images
 
 To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
@@ -310,6 +315,8 @@ To surface document-embedded images (such as diagrams or scans) in answer synthe
 [!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Known errors
+
+The generated SharePoint data source and indexer use the same Microsoft Entra tenant validation and authentication behavior as directly configured SharePoint indexers. For tenant-related failures, review the [generated indexer's status and execution history](search-monitor-indexers.md), and then follow the [`Invalid AAD tenant` remediation](cognitive-search-common-errors-warnings.md#error-invalid-aad-tenant).
 
 When you create this knowledge source with `contentExtractionMode` set to `standard`, you might get the following error.
 
