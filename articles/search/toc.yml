@@ -282,6 +282,8 @@ items:
           href: search-markdown-data-tutorial.md
         - name: Index multiple Azure data sources
           href: tutorial-multiple-data-sources.md
+        - name: Configure multiple blob indexers
+          href: search-how-to-multiple-indexers-one-index.md
         - name: Create a custom analyzer
           href: tutorial-create-custom-analyzer.md
     - name: Logic Apps workflows
@@ -604,6 +606,8 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
+      - name: Troubleshoot SharePoint permission filtering
+        href: troubleshoot-sharepoint-query-permission-filtering.md
     - name: Microsoft Purview sensitivity labels (preview)
       items:
       - name: Pull sensitivity labels into an index
@@ -625,8 +629,6 @@ items:
   items:
   - name: API versions
     href: search-api-versions.md
-  - name: Preview features
-    href: search-api-preview.md
   - name: Develop in .NET
     href: search-how-to-dotnet-sdk.md
   - name: Handle concurrent updates
@@ -643,15 +645,13 @@ items:
     items:
     - name: Create a demo app
       href: search-create-app-portal.md
-    - name: Add search to a static web app
+    - name: Add search to a C# web app
       items:
       - name: Overview
         href: tutorial-csharp-overview.md
-      - name: Create a search index
-        href: tutorial-csharp-create-load-index.md
-      - name: Deploy static web app
-        href: tutorial-csharp-deploy-static-web-app.md
-      - name: Explore the code
+      - name: 1 - Deploy to Azure Container Apps
+        href: tutorial-csharp-deploy-web-search.md
+      - name: 2 - Explore the code
         href: tutorial-csharp-search-query-integration.md
 
 - name: Monitoring

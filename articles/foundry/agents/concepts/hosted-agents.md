@@ -182,10 +182,8 @@ Hosted agents provide built-in observability. The platform automatically injects
 For configuration and analysis guidance, see [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md).
 
 ### Toolbox in Foundry
-> [!IMPORTANT]
-> Adding tools directly to hosted agent's definition is not supported. We recommend using toolboxes in Foundry.
 
-Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint by using standard MCP client libraries. The platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). To connect tools in a hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based, and more, use the toolbox in Foundry.
+Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. Your agent code connects to the endpoint by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 

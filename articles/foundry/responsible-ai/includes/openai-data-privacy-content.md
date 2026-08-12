@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/18/2026
+ms.date: 08/04/2026
 ai-usage: ai-assisted
 ms.custom: include, classic-and-new
 ---
@@ -166,4 +166,4 @@ To learn more about Microsoft's privacy and security commitments see the [Micros
 - Compare [Foundry Models sold by Azure in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md) 
 - [Limited access to Azure OpenAI Service](../openai/limited-access.md)
 - Report abuse of Azure OpenAI Service through the [Report Abuse Portal](https://msrc.microsoft.com/report/abuse)
-- Report problematic to [cscraireport@microsoft.com](mailto:cscraireport@microsoft.com)
+- **Report a security or safety issue:** [!INCLUDE [report-security-safety-issue](../../includes/report-security-safety-issue.md)]

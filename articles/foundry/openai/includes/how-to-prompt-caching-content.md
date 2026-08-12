@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/04/2026
+ms.date: 08/11/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -25,7 +25,7 @@ If requests for the same prefix and `prompt_cache_key` combination exceed approx
 
 ## Configure prompt cache breakpoints
 
-On GPT-5.6 models and later model families, use explicit cache breakpoints to mark the end of a reusable prompt prefix. Both the Responses API and Chat Completions API support breakpoints. Content after the breakpoint can change without invalidating the cached prefix.
+On GPT-5.6 models and later model families, use explicit cache breakpoints to mark the end of a reusable prompt prefix. Both the Responses API and Chat Completions API support breakpoints. Azure OpenAI uses the same request structures as the OpenAI APIs, but set `model` to your Azure model deployment name. Content after the breakpoint can change without invalidating the cached prefix.
 
 Standard pay-as-you-go deployments support prompt cache breakpoints. [Provisioned Throughput managed (PTU-M)](../concepts/provisioned-throughput.md) deployments don't support prompt cache breakpoints.
 
@@ -51,38 +51,40 @@ Add `prompt_cache_breakpoint: { "mode": "explicit" }` to a supported prompt cont
 - Breakpoints from earlier conversation turns are read-only. They can match the cache, but the request doesn't write them again.
 - For cache reads, Azure OpenAI considers up to the latest 50 breakpoints in the conversation.
 
-The following Responses API request marks the end of reusable developer instructions:
+In the following examples, the rendered prefix through the explicit breakpoint must contain at least 1,024 tokens to be cacheable.
+
+The following Responses API request uses the default `implicit` mode and adds an explicit breakpoint after a stable reference file:
 
 ```json
 {
-  "model": "<your-gpt-5.6-deployment>",
-  "prompt_cache_key": "support-assistant-v1",
-  "prompt_cache_options": { "mode": "explicit", "ttl": "30m" },
+  "model": "<your-gpt-5.6-deployment-name>",
+  "prompt_cache_key": "tenant:contoso:product-manual-v2",
   "input": [
     {
       "type": "message",
-      "role": "developer",
-      "content": [{
-        "type": "input_text",
-        "text": "<at least 1,024 tokens of reusable instructions>",
-        "prompt_cache_breakpoint": { "mode": "explicit" }
-      }]
-    },
-    {
-      "type": "message",
       "role": "user",
-      "content": "<variable user input>"
+      "content": [
+        {
+          "type": "input_file",
+          "file_id": "<product-manual-file-id>",
+          "prompt_cache_breakpoint": { "mode": "explicit" }
+        },
+        {
+          "type": "input_text",
+          "text": "Summarize the troubleshooting procedures."
+        }
+      ]
     }
   ]
 }
 ```
 
-The following Chat Completions API request marks the end of a reusable system message:
+The following Chat Completions API request uses `explicit` mode and marks the end of a reusable system message:
 
 ```json
 {
-  "model": "<your-gpt-5.6-deployment>",
-  "prompt_cache_key": "support-assistant-v1",
+  "model": "<your-gpt-5.6-deployment-name>",
+  "prompt_cache_key": "tenant:contoso:support-policy-v2",
   "prompt_cache_options": { "mode": "explicit", "ttl": "30m" },
   "messages": [
     {
@@ -146,7 +148,7 @@ For `gpt-5.4` and older models, if you don't specify a retention policy, the def
 
 ```json
 {
-  "model": "gpt-5.4",
+  "model": "<your-gpt-5.4-deployment-name>",
   "input": "Your prompt goes here...",
   "prompt_cache_retention": "24h"
 }
@@ -161,33 +163,28 @@ To take advantage of prompt caching, a request must meet both of these requireme
 
 When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits show up as [`cached_tokens`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) under [`prompt_tokens_details`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) in the chat completions response.
 
-On GPT-5.6 models and later model families, Standard pay-as-you-go deployments report cache reads in `cached_tokens` and cache writes in `cache_write_tokens`.
+On GPT-5.6 models and later model families, Standard pay-as-you-go deployments report cache reads in `cached_tokens` and cache writes in `cache_write_tokens`. The following excerpt shows these fields in a Chat Completions response. JSON property order isn't significant and might vary.
 
 ```json
 {
-  "created": 1729227448,
-  "model": "<your-gpt-5.6-deployment>",
-  "object": "chat.completion",
-  "service_tier": null,
-  "system_fingerprint": "fp_50cdd5dc04",
   "usage": {
-    "completion_tokens": 1518,
     "prompt_tokens": 1566,
+    "completion_tokens": 1518,
     "total_tokens": 3084,
-    "completion_tokens_details": {
-      "audio_tokens": null,
-      "reasoning_tokens": 576
-    },
     "prompt_tokens_details": {
       "audio_tokens": null,
       "cached_tokens": 1408,
       "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "audio_tokens": null,
+      "reasoning_tokens": 576
     }
   }
 }
 ```
 
-After the first 1,024 tokens, cache hits occur for every 128 additional identical tokens.
+On GPT-5.5 and earlier models, cache hits after the first 1,024 tokens occur in 128-token increments. This rounding doesn't apply to GPT-5.6 models and later model families.
 
 A single character difference in the first 1,024 tokens results in a cache miss, which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default for supported models.
 

@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 08/04/2026
+ms.date: 08/11/2026
 author: alvinashcraft
 ms.author: aashcraft
 recommendations: false

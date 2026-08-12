@@ -78,11 +78,7 @@ items:
     - name: Use structured outputs
       href: ../../foundry-models/how-to/use-structured-outputs.md
   - name: Work with embedding models
-    items:
-    - name: Work with text embeddings
-      href: ../../foundry-models/how-to/use-embeddings.md
-    - name: Work with image embeddings
-      href: ../../foundry-models/how-to/use-image-embeddings.md
+    href: ../../openai/how-to/embeddings.md 
   - name: Work with image models
     href: ../../how-to/use-image-models.md
   - name: Claude in Foundry Models

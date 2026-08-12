@@ -1,11 +1,10 @@
 ---
 title: Create an Indexed OneLake Knowledge Source for Agentic Retrieval
-description: Learn how to create an indexed OneLake knowledge source in Azure AI Search. An indexed OneLake knowledge source specifies a lakehouse, models, and properties that create an enrichment pipeline for agentic retrieval workloads.
+description: Learn how to create an indexed OneLake knowledge source that defines a lakehouse, models, and enrichment pipeline for agentic retrieval in Azure AI Search.
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2025
+ms.custom: [ignite-2025, doc-kit-assisted]
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -36,7 +35,7 @@ When you create an indexed OneLake knowledge source, you specify an external dat
 + An index that stores enriched content and meets the criteria for agentic retrieval.
 + An indexer that uses the previous objects to drive the indexing and enrichment pipeline.
 
-The generated indexer conforms to the *OneLake indexer*, whose prerequisites, supported tasks, supported document formats, supported shortcuts, and limitations also apply to OneLake knowledge sources. For more information, see the [OneLake indexer documentation](search-how-to-index-onelake-files.md).
+The generated indexer conforms to the *OneLake indexer*, whose prerequisites, supported tasks, supported document formats, supported shortcuts, and limitations also apply to OneLake knowledge sources. For more information, see the [OneLake indexer documentation](search-how-to-index-onelake-files.md) and [indexer limits](search-limits-quotas-capacity.md#indexer-limits). If the generated skillset calls an external service, that skill's input and service limits also apply.
 
 ### Usage support
 

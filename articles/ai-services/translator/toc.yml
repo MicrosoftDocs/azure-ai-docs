@@ -179,6 +179,10 @@ items:
         href: document-translation/latest/rest-api/get-supported-document-formats.md
       - name: Get supported glossary formats
         href: document-translation/latest/rest-api/get-supported-glossary-formats.md
+        
+- name: Document translation SDK guide
+  displayName: batch,c#,dotnet,.net,python,java,blob,set up,install,cli,storage,domain,custom domain
+  href: document-translation/document-sdk-overview.md        
 
 - name: Document translation (legacy)
   items:
@@ -239,10 +243,6 @@ items:
         href: document-translation/reference/get-supported-document-formats.md
       - name: Get supported glossary formats
         href: document-translation/reference/get-supported-glossary-formats.md
-
-  - name: Document translation SDK guide
-    displayName: batch,c#,dotnet,.net,python,java,blob,set up,install,cli,storage,domain,custom domain
-    href: document-translation/document-sdk-overview.md
 
 - name: Microsoft Foundry tools
   items:

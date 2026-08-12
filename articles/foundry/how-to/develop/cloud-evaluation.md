@@ -8,7 +8,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/04/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -22,7 +22,7 @@ In this article, you learn how to run evaluations in the cloud for predeployment
 
 Use cloud evaluations for most scenarios - especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#) to automatically evaluate sampled agent responses in production.
 
-Cloud evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Cloud evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Evaluators are managed in the [evaluator catalog](../evaluate-generative-ai-app.md) with the same project-scope, role-based access control.
+Cloud evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Cloud evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). You manage evaluators in the [evaluator catalog](../evaluate-generative-ai-app.md) with the same project-scope, role-based access control.
 
 > [!TIP]
 > For complete runnable examples, see the [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) on GitHub.
@@ -138,6 +138,9 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 ```
 
+> [!TIP]
+> To use a model connected through Admin connections as a target, judge model, or for simulating conversations, see [Use admin-connected models in cloud evaluations](evaluate-admin-connected-models.md).
+
 ## <a name = "uploading-evaluation-data"></a> Prepare input data
 
 Most evaluation scenarios require input data. You can provide data in two ways:
@@ -214,14 +217,14 @@ Not all scenarios support both source types. The following matrix shows which so
 
 ## Dataset evaluation
 
-Evaluate pre-computed responses in a JSONL file using the `jsonl` data source type. This scenario is useful when you already have model outputs and want to assess their quality.
+Evaluate precomputed responses in a JSONL file by using the `jsonl` data source type. This scenario is useful when you already have model outputs and want to assess their quality.
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
 
 ### Define the data schema and evaluators
 
-Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use the `data_mapping` parameter to connect fields from your input data to evaluator parameters with `{{item.field}}` syntax. Always include `data_mapping` with the required input fields for each evaluator. Your field names must match those in your JSONL file — for example, if your data has `"question"` instead of `"query"`, use `"{{item.question}}"` in the mapping. For the required parameters per evaluator, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
+Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use the `data_mapping` parameter to connect fields from your input data to evaluator parameters by using `{{item.field}}` syntax. Always include `data_mapping` with the required input fields for each evaluator. Your field names must match those in your JSONL file. For example, if your data has `"question"` instead of `"query"`, use `"{{item.question}}"` in the mapping. For the required parameters per evaluator, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
 
 # [Python](#tab/python)
 
@@ -331,7 +334,7 @@ curl --request POST \
 
 ### Create evaluation and run
 
-Create the evaluation, then start a run against your uploaded dataset. The run executes each evaluator on every row in the dataset.
+Create the evaluation, and then start a run against your uploaded dataset. The run executes each evaluator on every row in the dataset.
 
 # [Python](#tab/python)
 
@@ -2555,6 +2558,7 @@ If an agent evaluator returns an error for unsupported tools:
 
 ## Related content
 
+- [Use admin-connected models in cloud evaluations](evaluate-admin-connected-models.md)
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 - [Trace-based evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_traces.py)
 - [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md)

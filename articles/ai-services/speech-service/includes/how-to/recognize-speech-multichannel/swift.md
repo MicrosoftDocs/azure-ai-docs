@@ -31,12 +31,6 @@ speechConfig.speechRecognitionLanguage = "en-US"
 speechConfig.setPropertyTo("true", by: SPXPropertyId.speechEnableMultiChannelProcessing)
 ```
 
-The multichannel property is available in the Speech SDK version 1.51.0 or later. If you use an earlier SDK, set the same property by name for backward compatibility:
-
-```swift
-speechConfig.setPropertyTo("true", byName: "SPEECH-EnableMultiChannelProcessing")
-```
-
 ## Provide stereo audio
 
 Multichannel transcription accepts a stereo audio file or a stereo stream. To transcribe a file, create an `SPXAudioConfiguration` instance from the file name:

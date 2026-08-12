@@ -7,8 +7,9 @@ ms.custom:
   - references_regions
   - ignite-2025
   - build-2026
+  - doc-kit-assisted
 ms.topic: reference
-ms.date: 06/02/2026
+ms.date: 08/08/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -39,6 +40,8 @@ You can use the Azure Content Understanding skill for both content extraction an
 + The Azure Content Understanding skill allows chunks to span multiple pages via semantic units.
 
 + The Azure Content Understanding skill is more cost effective than the Document Layout skill because the Content Understanding API is less expensive.
+
++ Azure Content Understanding can generate AI-based descriptions for images, charts, diagrams, and embedded figures. Embedded figure descriptions are incorporated directly into markdown content generated for retrieval. These descriptions are searchable and can improve RAG grounding and multimodal retrieval quality. 
 
 The Azure Content Understanding skill is generally available in the [`2026-04-01` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true). Starting with the [`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-based descriptions for document-embedded images, charts, and diagrams. To enable descriptions, you must deploy an Azure OpenAI chat completion model in the Foundry resource attached to the skillset. This API version also adds *semantic* chunking, a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities require opt-in. When the new parameters are omitted, the skill behaves the same as in the stable `2026-04-01` API version.
 
@@ -139,6 +142,8 @@ Alternatively, it can be defined as:
 The file reference object can be generated in one of following ways:
 
 + Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to `true`. This setting creates a `/document/file_data` path that's an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Azure Blob Storage.
+
+  `allowSkillsetToReadFileData` makes the downloaded file data available to the skill. It doesn't increase the [blob indexer limits](search-limits-quotas-capacity.md#indexer-limits) or the Content Understanding service limits described in [Data limits](#data-limits).
 
 + Having a custom skill returning a JSON object definition that provides `$type`, `data`, or `url` and `sastoken`. The `$type` parameter must be set to `file`, and  `data` must be the base 64-encoded byte array of the file content. The `url` parameter must be a valid URL with access to download the file at that location.
 
