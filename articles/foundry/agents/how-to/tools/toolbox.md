@@ -1833,7 +1833,8 @@ The `reminder_preview` tool enables a hosted agent to schedule *itself* to run a
 
 ## Virtual network support
 
-When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), all toolbox tool types are supported. The following table shows how traffic flows for each tool type in a network-isolated environment.
+When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), it supports all toolbox tool types. The following table shows how traffic flows for each tool type in a network-isolated environment.
+
 
 | Tool type | VNet support | Traffic flow |
 | --------- | ------------ | ------------ |
