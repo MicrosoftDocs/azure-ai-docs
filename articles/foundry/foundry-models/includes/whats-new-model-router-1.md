@@ -24,6 +24,8 @@ Model router version `2025-11-18` now supports 27 models. The routing pool adds 
 
 The routing pool removes the retired `gpt-5-chat`, `gpt-5.2-chat`, `gpt-5.3-chat`, `DeepSeek-V3.1`, and `claude-opus-4.1` models.
 
+Configuring a custom model subset is optional. If you previously configured a subset that contains any of these removed models, replace them with models from the current [supported models](../../openai/concepts/model-router.md) list. If you use the default routing pool, no action is required.
+
 ### Agentic routing expands to more model providers
 
 For agentic requests, model router can now select eligible open-source (OSS) and Anthropic models in addition to OpenAI models. Model and tool compatibility determine which models are eligible for each request. For more information, see [Use model router with Foundry agents](../../openai/how-to/model-router-agents.md).
