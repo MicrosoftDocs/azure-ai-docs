@@ -1,7 +1,7 @@
 ---
 title: "Customize a model with fine-tuning"
 description: "Learn how to fine-tune and customize Foundry models by using Python, REST APIs, or the Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:
@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 12/01/2025
+ms.date: 07/30/2026
 author: ssalgadodev
 ms.author: ssalgado
 zone_pivot_groups: openai-fine-tuning

@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
@@ -410,7 +410,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             # Create turn detection configuration
             turn_detection_config = ServerVad(
                 threshold=0.5,
-                prefix_padding_ms=300,
+                prefix_padding_ms=400,
                 silence_duration_ms=500)
 
             # Create session configuration

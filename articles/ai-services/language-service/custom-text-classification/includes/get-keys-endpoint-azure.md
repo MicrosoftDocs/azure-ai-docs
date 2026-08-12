@@ -1,9 +1,9 @@
 ---
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 * Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home)

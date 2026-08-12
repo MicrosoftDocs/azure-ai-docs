@@ -5,7 +5,7 @@ ms.service: azure-ai-anomaly-detector
 ms.topic: whats-new
 ms.author: aashcraft
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 06/12/2025
 ---
 

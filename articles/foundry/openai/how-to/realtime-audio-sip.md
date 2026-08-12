@@ -1,11 +1,11 @@
 ---
 title: "Use the GPT Realtime API via SIP"
 description: "Learn how to use the GPT Realtime API for speech and audio via SIP."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 02/12/2026
+ms.date: 07/29/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom:

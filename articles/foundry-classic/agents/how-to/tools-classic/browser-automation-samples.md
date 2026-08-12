@@ -2,14 +2,14 @@
 title: "Use the Browser Automation Tool in Foundry Agent Service (classic)"
 description: "Learn how to use the Browser Automation tool in Foundry Agent Service to automate website tasks with AI agents. Follow the steps and run the sample. (classic)"
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents
 ai-usage: ai-assisted

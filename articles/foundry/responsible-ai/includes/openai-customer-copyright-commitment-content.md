@@ -3,7 +3,6 @@ title: include file
 description: include file
 author: alvinashcraft
 ms.author: aashcraft
-ms.reviewer: nitinme
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
@@ -29,7 +28,7 @@ Universal required mitigations must be implemented to maintain CCC coverage for 
 
 |**Category**|**Required Mitigation**|**Effective Date**|
 |---|---|---|
-| Metaprompt | The customer offering must include a metaprompt directing the model to prevent copyright infringement in its output, for example, the sample metaprompt, "To Avoid Copyright Infringements" at: [System message framework and template recommendations for Large Language Models(LLMs)](/azure/ai-foundry/openai/concepts/system-message)|December 1, 2023|
+| Metaprompt | The customer offering must include a metaprompt directing the model to prevent copyright infringement in its output, for example, the sample system message component, "Protected Material – Text" at: [Safety system message templates](/azure/foundry/openai/concepts/safety-system-message-templates). |December 1, 2023|
 | Testing and Evaluation Report | The customer offering must have been subjected to evaluations (e.g., guided red teaming, systematic measurement, or other equivalent approach) by the customer using tests designed to detect the output of third-party content. Significant ongoing reproduction of third-party content determined through evaluation must be addressed. The report of results and mitigations must be retained by the customer and provided to Microsoft in the event of a claim. Customer is under no obligation to conduct direct testing of Microsoft services to maintain CCC coverage. More information on guided red teaming is at: [Red teaming large language models (LLMs)](/azure/ai-foundry/openai/concepts/red-teaming). More information on systematic measurement is at: [Overview of Responsible AI practices for Azure OpenAI models - Foundry Tools - Microsoft Learn.](../openai/overview.md) |December 1, 2023|
 
 ## Additional Required Mitigations Per Azure OpenAI Use Case
@@ -51,7 +50,7 @@ The required mitigations are set forth here:
 | Text generation | Journalistic content, writing assistance, or other open text generation scenarios | Guardrails | The protected material text model must be configured on in filter mode. The jailbreak model (i.e., Prompt Shield for jailbreak attacks) must be configured on in filter mode.|December 1, 2023 |
 |  |  |  | If using the asynchronous filter feature, Output Content retroactively flagged as protected material text is not covered by the CCC.   | May 21, 2024 |
 
-**Image generation models, OpenAI Whisper model, and all other use cases:**
+**Image generation models, OpenAI transcription models, and all other use cases:**
 
 No additional requirements.
 

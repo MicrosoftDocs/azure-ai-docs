@@ -4,7 +4,7 @@ description: "Learn how to use Ask AI in the Microsoft Foundry portal to detect 
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 05/27/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -14,6 +14,7 @@ ms.custom: doc-kit-assisted
 ---
 
 # Upgrade or switch models with Ask AI (preview)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use Ask AI — the built-in chat assistant in the Microsoft Foundry portal — to detect deprecated or outdated models, compare alternatives, and upgrade deployed models or agents to newer versions. Review upgrade recommendations, evaluate the new model, compare performance, and update your agent — all from the Ask AI chat panel.
@@ -49,7 +50,7 @@ Use Ask AI to check whether any of your deployed models are deprecated or have n
     :::image type="content" source="../../media/observability/model-upgrade-ask-ai.png" alt-text="Screenshot of Ask AI displaying a list of recommended model upgrades with version comparison details." lightbox="../../media/observability/model-upgrade-ask-ai.png":::
 
 1. Review the list of recommended models that Ask AI displays. Key differences between your current model and the recommended alternatives are highlighted.
-1. Select a model name to view its details in the model catalog, or select **Deploy** to go to the model deployment page. To learn how to deploy a model, see [Add and configure models to Foundry Models](../../foundry-models/how-to/create-model-deployments.md).
+1. Select a model name to view its details in the model catalog, or select **Deploy** to go to the model deployment page. To learn how to deploy a model, see [Deploy Microsoft Foundry Models in the Foundry portal](../../foundry-models/how-to/deploy-foundry-models.md).
 
     :::image type="content" source="../../media/observability/model-upgrade-selected-model.png" alt-text="Screenshot of a model detail page showing model capabilities, with Ask AI suggesting related model pages to review." lightbox="../../media/observability/model-upgrade-selected-model.png":::
 
@@ -98,7 +99,7 @@ If the new model doesn't meet your requirements after the update, revert to the 
 
 | Issue | Resolution |
 |-------|------------|
-| Ask AI doesn't suggest any model upgrades | Verify that your deployed model has a newer version available in the [model catalog](../../foundry-models/how-to/create-model-deployments.md). Ask AI only recommends upgrades when newer versions exist. |
+| Ask AI doesn't suggest any model upgrades | Verify that your deployed model has a newer version available in the [model catalog](../../foundry-models/how-to/deploy-foundry-models.md). Ask AI only recommends upgrades when newer versions exist. |
 | Evaluation run fails to start | Confirm that your evaluation dataset is in CSV or JSONL format, and that you have the **Foundry User** role (or higher) on the project. |
 | New model performs worse than the current model | Use [compare](../../how-to/evaluate-results.md#compare-the-evaluation-results) to review per-metric scores. Consider testing with a different model or adjusting agent instructions before switching. |
 | Agent update doesn't take effect | Check the agent version history in **Agent Playground** to confirm the new version was created. To revert, see [Roll back to a previous model](#roll-back-to-a-previous-model). |
@@ -107,7 +108,7 @@ If the new model doesn't meet your requirements after the update, revert to the 
 
 After you upgrade your model and verify agent performance, consider monitoring ongoing model performance or exploring cost optimization options.
 
-- [What is Ask AI?](../../concepts/ask-ai.md)
+- [Ask AI for help](../../concepts/ask-ai.md)
 - [Optimize cost and performance with Ask AI](../../control-plane/how-to-optimize-cost-performance.md)
 - [Model versions in Foundry Models](../../foundry-models/concepts/model-versions.md)
 - [Evaluate your generative AI app](../../how-to/evaluate-generative-ai-app.md)

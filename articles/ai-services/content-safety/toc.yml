@@ -31,6 +31,8 @@ items:
     href: concepts/harm-categories.md
   - name: Microsoft Foundry portal
     href: /azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context
+  - name: Content Provenance Detection
+    href: ./concepts/provenance-detection.md
 - name: Quickstarts
   items:
   - name: Prompt Shields
@@ -77,6 +79,8 @@ items:
     href: how-to/improve-performance.md
   - name: Use Content Safety in Foundry portal
     href: how-to/foundry.md
+  - name: Use Content Provenance Detection API
+    href: how-to/how-to-provenance-detection.md
   - name: Containers (preview)
     items:
     - name: Content Safety containers overview
@@ -93,6 +97,8 @@ items:
     href: how-to/embedded-content-safety.md
   - name: Encryption of data at rest
     href: how-to/encrypt-data-at-rest.md
+  - name: Migrate from Azure Content Moderator to Azure AI Content Safety
+    href: ../content-moderator/content-moderator.md?context=/azure/ai-services/content-safety/context/context
   - name: Migrate from public preview to GA
     href: how-to/migrate-to-general-availability.md
   - name: Enterprise readiness

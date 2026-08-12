@@ -2,7 +2,7 @@
 title: 'Get the key and endpoint'
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: To successfully make a call against Azure OpenAI, you need an endpoint and a key.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: In this guide, you learn how to configure OpenSSL for Linux with the Azure Speech in Foundry Tools SDK.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-python, linux-related-content
 ms.topic: how-to
 ms.date: 02/25/2026

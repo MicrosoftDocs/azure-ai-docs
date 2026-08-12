@@ -2,7 +2,7 @@
 title: 'Quickstart: Deploy Using Terraform'
 description: 'In this article, you create an Azure AI Search service using Terraform.'
 ms.topic: quickstart
-ms.date: 05/29/2025
+ms.date: 07/20/2026
 ms.update-cycle: 365-days
 ms.custom:
   - devx-track-terraform
@@ -17,17 +17,19 @@ ai-usage: ai-assisted
 
 # Quickstart: Deploy Azure AI Search service using Terraform
 
-This article shows how to use Terraform to create an [Azure AI Search service](./search-what-is-azure-search.md) using [Terraform](/azure/developer/terraform/quickstart-configure).
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+This article shows how to use Terraform to create an [Azure AI Search service](./search-what-is-azure-search.md) by using [Terraform](/azure/developer/terraform/quickstart-configure).
 
 [!INCLUDE [Terraform abstract](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
 In this article, you learn how to:
 
 > [!div class="checklist"]
-> * Create a random pet name for the Azure resource group name using [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet)
-> * Create an Azure resource group using [azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
-> * Create a random string using [random_string](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string)
-> * Create an Azure AI Search service using [azurerm_search_service](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/search_service)
+> * Create a random pet name for the Azure resource group name by using [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet)
+> * Create an Azure resource group by using [azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
+> * Create a random string by using [random_string](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string)
+> * Create an Azure AI Search service by using [azurerm_search_service](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/search_service)
 
 ## Prerequisites
 
@@ -36,9 +38,9 @@ In this article, you learn how to:
 ## Implement the Terraform code
 
 > [!NOTE]
-> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform)
+> For more information, see [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform).
 
-1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
+1. Create a directory to test and run the sample Terraform code. Make it the current directory.
 
 1. Create a file named `main.tf` and insert the following code:
 
@@ -70,7 +72,7 @@ In this article, you learn how to:
 
 ## Verify the results
 
-1. Get the Azure resource name in which the Azure AI Search service was created.
+1. Get the Azure resource name where you created the Azure AI Search service.
 
     ```console
     resource_group_name=$(terraform output -raw resource_group_name)

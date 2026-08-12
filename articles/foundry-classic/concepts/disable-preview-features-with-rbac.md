@@ -2,8 +2,8 @@
 title: "Disable preview features with role-based access control (classic)"
 description: "Learn how to disable preview features in Microsoft Foundry using role-based access control (RBAC). Create custom roles to manage feature access effectively. (classic)"
 #customer intent: As an IT admin, I want to disable preview features in Microsoft Foundry through role-based access control so that my organization complies with enterprise policies.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: meerakurup
 ms.date: 02/23/2026
 ms.topic: concept-article
@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Disable preview features in Microsoft Foundry by using role-based access control (classic)
 
-**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/disable-preview-features-with-rbac.md)
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/disable-preview-features.md)
 
 Some features in Microsoft Foundry are in preview. You can block access to specific preview features by creating a custom Azure role that excludes the corresponding permissions, and then assigning that role to users.
 

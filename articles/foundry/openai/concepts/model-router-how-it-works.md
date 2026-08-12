@@ -3,7 +3,7 @@ title: "How model router works in Microsoft Foundry"
 description: "Learn how model router analyzes prompts, scores candidate models, and routes requests to optimize cost, quality, and latency in Microsoft Foundry."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 04/22/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference

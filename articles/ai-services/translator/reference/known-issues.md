@@ -2,8 +2,8 @@
 title: Azure Translator in Foundry Tools known issues
 titlesuffix: Foundry Tools
 description: Known and common issues with Azure Translator in Foundry Tools.
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 04/09/2026
 ms.author: lajanuar

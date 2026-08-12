@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Azure and customers share responsibility for liveness detection solutions, covering connections, client apps, devices, and abuse monitoring.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.date: 01/30/2026
 ms.topic: concept-article
 ---

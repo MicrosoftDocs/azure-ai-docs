@@ -10,6 +10,8 @@ items:
     href: whats-new.md
   - name: Features
     href: search-features-list.md
+  - name: Preview terms
+    href: search-preview-terms.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
   - name: Try for free
@@ -69,16 +71,18 @@ items:
     href: search-manage.md
   - name: Quotas, limits, and planning
     items:
-    - name: Supported regions
-      href: search-region-support.md
-    - name: Supported tiers
+    - name: Plan and manage costs
+      href: search-sku-manage-costs.md
+    - name: Optimize costs with Serverless pricing
+      href: serverless-cost-optimization.md
+    - name: Pricing models and service tiers
       href: search-sku-tier.md
     - name: Service limits
       href: search-limits-quotas-capacity.md
     - name: Plan and manage capacity
       href: search-capacity-planning.md
-    - name: Plan and manage costs
-      href: search-sku-manage-costs.md
+    - name: Supported regions
+      href: search-region-support.md
     - name: Handling regional capacity constraints 
       href: search-region-capacity.md
   - name: Reliability and tenancy
@@ -95,6 +99,8 @@ items:
       items:
       - name: REST
         href: search-manage-rest.md
+      - name: Page list API results (preview)
+        href: search-how-to-page-list-results.md
       - name: PowerShell
         href: search-manage-powershell.md
       - name: Azure CLI
@@ -156,7 +162,9 @@ items:
       items:
       - name: Chunk documents
         href: vector-search-how-to-chunk-documents.md
-      - name: Chunk and vectorize by document layout
+      - name: Chunk and vectorize with Content Understanding
+        href: search-how-to-semantic-chunking-content-understanding.md
+      - name: Chunk and vectorize with Document Layout
         href: search-how-to-semantic-chunking.md
       - name: Generate embeddings
         href: vector-search-how-to-generate-embeddings.md
@@ -164,6 +172,8 @@ items:
         href: search-how-to-integrated-vectorization.md
       - name: Use embedding models from Microsoft Foundry
         href: vector-search-integrated-vectorization-ai-studio.md
+      - name: Use Azure API Management with Azure OpenAI skills and vectorizers
+        href: search-how-to-configure-azure-openai-api-management.md
       - name: Reduce vector size
         items:
         - name: Understand vector quotas and limits
@@ -188,6 +198,8 @@ items:
       items:
       - name: What is an indexer?
         href: search-indexer-overview.md
+      - name: Indexer execution on Serverless and S3 HD
+        href: search-indexer-high-density-serverless-overview.md
       - name: Create and manage
         items:
         - name: Create an indexer
@@ -210,7 +222,7 @@ items:
             href: search-how-to-index-azure-data-lake-storage.md
           - name: Blobs
             href: search-how-to-index-azure-blob-storage.md
-          - name: Files
+          - name: Files (preview)
             href: search-file-storage-integration.md
           - name: Tables
             href: search-how-to-index-azure-tables.md
@@ -220,11 +232,11 @@ items:
           items:
           - name: Azure Cosmos DB for NoSQL
             href: search-how-to-index-cosmosdb-sql.md
-          - name: Azure Cosmos DB for MongoDB
+          - name: Azure Cosmos DB for MongoDB (preview)
             href: search-how-to-index-cosmosdb-mongodb.md
-          - name: Azure Cosmos DB for Apache Gremlin
+          - name: Azure Cosmos DB for Apache Gremlin (preview)
             href: search-how-to-index-cosmosdb-gremlin.md
-        - name: Azure DB for MySQL
+        - name: Azure DB for MySQL (preview)
           href: search-how-to-index-mysql.md
         - name: Azure SQL
           items:
@@ -236,7 +248,7 @@ items:
             href: search-how-to-index-sql-server.md
         - name: OneLake
           href: search-how-to-index-onelake-files.md
-        - name: SharePoint in Microsoft 365
+        - name: SharePoint in Microsoft 365 (preview)
           href: search-how-to-index-sharepoint-online.md
       - name: Index whole files
         items:
@@ -272,6 +284,8 @@ items:
           href: search-markdown-data-tutorial.md
         - name: Index multiple Azure data sources
           href: tutorial-multiple-data-sources.md
+        - name: Configure multiple blob indexers
+          href: search-how-to-multiple-indexers-one-index.md
         - name: Create a custom analyzer
           href: tutorial-create-custom-analyzer.md
     - name: Logic Apps workflows
@@ -479,14 +493,28 @@ items:
         href: agentic-knowledge-source-how-to-search-index.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
+      - name: Azure SQL (preview)
+        href: agentic-knowledge-source-how-to-azure-sql.md
+      - name: File (preview)
+        href: agentic-knowledge-source-how-to-file.md
       - name: OneLake
         href: agentic-knowledge-source-how-to-onelake.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
+      - name: Configure freshness-aware retrieval (preview)
+        href: agentic-retrieval-how-to-configure-freshness.md
     - name: Create a remote source
       items:
+      - name: Fabric Data Agent (preview)
+        href: agentic-knowledge-source-how-to-fabric-data-agent.md
+      - name: Fabric Ontology (preview)
+        href: agentic-knowledge-source-how-to-fabric-ontology.md
+      - name: MCP Server (preview)
+        href: agentic-knowledge-source-how-to-mcp-server.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-remote.md
+      - name: Work IQ (preview)
+        href: agentic-knowledge-source-how-to-work-iq.md
       - name: Web
         href: agentic-knowledge-source-how-to-web.md
       - name: Manage web access
@@ -495,12 +523,14 @@ items:
     items:
     - name: Create a knowledge base
       href: agentic-retrieval-how-to-create-knowledge-base.md
+    - name: Query a knowledge base via API or MCP
+      href: agentic-retrieval-how-to-retrieve.md
     - name: Enable answer synthesis (preview)
       href: agentic-retrieval-how-to-answer-synthesis.md
+    - name: Enable image serving (preview)
+      href: agentic-retrieval-how-to-image-serving.md
     - name: Set retrieval reasoning effort (preview)
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
-    - name: Query a knowledge base via APIs or MCP
-      href: agentic-retrieval-how-to-retrieve.md
     - name: Build an end-to-end retrieval solution
       href: agentic-retrieval-how-to-create-pipeline.md
   - name: Migrate agentic retrieval code
@@ -564,7 +594,7 @@ items:
       href: search-document-level-access-overview.md
     - name: Use security filters
       href: search-security-trimming-for-azure-search.md
-    - name: ACLs or RBAC scopes
+    - name: ACLs or RBAC scopes (preview)
       items:
       - name: Push document-level permissions to an index
         href: search-index-access-control-lists-and-rbac-push-api.md
@@ -578,9 +608,11 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
-    - name: Sensitivity labels
+      - name: Troubleshoot SharePoint permission filtering
+        href: troubleshoot-sharepoint-query-permission-filtering.md
+    - name: Microsoft Purview sensitivity labels (preview)
       items:
-      - name: Pull Purview sensitivity labels into an index
+      - name: Pull sensitivity labels into an index
         href: search-indexer-sensitivity-labels.md
       - name: Query honoring sensitivity labels
         href: search-query-sensitivity-labels.md
@@ -599,8 +631,6 @@ items:
   items:
   - name: API versions
     href: search-api-versions.md
-  - name: Preview features
-    href: search-api-preview.md
   - name: Develop in .NET
     href: search-how-to-dotnet-sdk.md
   - name: Handle concurrent updates
@@ -617,15 +647,13 @@ items:
     items:
     - name: Create a demo app
       href: search-create-app-portal.md
-    - name: Add search to a static web app
+    - name: Add search to a C# web app
       items:
       - name: Overview
         href: tutorial-csharp-overview.md
-      - name: Create a search index
-        href: tutorial-csharp-create-load-index.md
-      - name: Deploy static web app
-        href: tutorial-csharp-deploy-static-web-app.md
-      - name: Explore the code
+      - name: 1 - Deploy to Azure Container Apps
+        href: tutorial-csharp-deploy-web-search.md
+      - name: 2 - Explore the code
         href: tutorial-csharp-search-query-integration.md
 
 - name: Monitoring
@@ -640,6 +668,8 @@ items:
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
       href: search-monitor-indexers.md
+    - name: Monitoring data reference
+      href: monitor-azure-cognitive-search-data-reference.md
     - name: Troubleshoot storage metrics
       href: troubleshoot-storage-metrics.md
   - name: Visualize resource logs
@@ -714,8 +744,6 @@ items:
     - name: Azure Policy built-ins
       displayName: samples, policies, definitions
       href: ./policy-reference.md
-    - name: Monitoring data reference
-      href: monitor-azure-cognitive-search-data-reference.md
   - name: Data
     items:
     - name: Data types

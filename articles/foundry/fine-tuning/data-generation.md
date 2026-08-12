@@ -1,12 +1,12 @@
 ---
 title: "Generate synthetic data with Microsoft Foundry (Preview)"
 description: "Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview)."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.custom: ignite-2025, doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/11/2026
+ms.date: 07/31/2026
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: williamliang

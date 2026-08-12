@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how to extract and label medical information from unstructured clinical text with Text Analytics for health.
 #services: cognitive-services
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/19/2026
 ms.author: lajanuar
 ms.custom: language-service-health
 ---

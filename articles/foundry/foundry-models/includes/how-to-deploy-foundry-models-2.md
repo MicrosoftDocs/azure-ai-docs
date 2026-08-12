@@ -41,12 +41,14 @@ For more information about quota, see [Microsoft Foundry Models quotas and limit
 | --- | --- |
 | Quota exceeded | [Request more quota](https://aka.ms/oai/stuquotarequest) or reallocate TPM from existing deployments. |
 | Region not supported | Check [regional availability](../quotas-limits.md) and deploy in a supported region. |
-| Marketplace subscription error | Verify you have the [required permissions](../how-to/configure-marketplace.md) to subscribe to Azure Marketplace offerings. |
+| Marketplace subscription error | Verify you have the [required permissions](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community) to subscribe to Azure Marketplace offerings. |
 | Deployment status shows **Failed** | Confirm that the model is available in your selected region and that you have sufficient quota. |
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#deploy-and-manage-models) — role requirements for model deployment.
 - [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
 - [Deployment types for Foundry Models](../concepts/deployment-types.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy models using Azure CLI and Bicep](../how-to/create-model-deployments.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)

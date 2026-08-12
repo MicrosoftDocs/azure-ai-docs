@@ -3,8 +3,8 @@ title: "How to use model router for Microsoft Foundry"
 description: "Learn how to use the model router in Azure OpenAI to select the best model for your task."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.date: 03/18/2026
+manager: mcleans
+ms.date: 08/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -28,6 +28,9 @@ Model router is a trained language model that selects the best large language mo
 Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
 
 To deploy programmatically without the portal, use the REST API examples in the deployment sections that follow.
+
+> [!NOTE]
+> If your organization uses the [built-in Azure Policy for model deployment](/azure/ai-foundry/how-to/model-deployment-policy), make sure the policy's allowed publishers include `Microsoft` (the publisher of model router) and the publisher of each model you deploy for routing (for example, `Anthropic` for Claude models). Otherwise, the policy blocks the deployment.
 
 By default, model router deploys with the **Balanced** routing mode and routes across the full supported model set. You only need to change the routing mode or select a model subset when you want custom routing behavior.
 
@@ -115,8 +118,8 @@ If you've created an AI agent in Foundry, you can connect your model router depl
 
 For detailed guidance on routing patterns, supported tool types, cost implications, and code examples for agents, see [Use model router with Foundry agents](model-router-agents.md).
 
-> [!IMPORTANT]
-> If you use Agent service tools in your flows, only OpenAI models will be used for routing.
+> [!NOTE]
+> For agentic requests, model router can select eligible OpenAI, open-source (OSS), and Anthropic models from your routing pool. Model and tool compatibility determine which models are eligible for each request. For current compatibility, see [Tool support by region and model](../../agents/concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 ### Output format 
 
@@ -219,6 +222,10 @@ The following example response was generated using API version `2025-11-18`:
 }
 
 ```
+
+## Govern model router deployments with Azure Policy
+
+If your organization restricts which models developers can deploy, model router honors the same built-in Foundry model deployment policy that governs standard model deployments. Policy is enforced at deploy time across the Foundry portal, REST API, Azure CLI, and ARM templates. For the IT admin assignment steps and the developer experience, see [Govern model router deployments with Azure Policy](../../how-to/model-router-policy.md).
 
 ## Evaluate model router for your workload
 

@@ -3,8 +3,8 @@ title: "Upload training and testing datasets for custom speech - Speech service"
 titleSuffix: Foundry Tools
 description: Learn about how to upload data to test or train a custom speech model.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley
@@ -25,6 +25,17 @@ Follow these steps to upload datasets for training (fine-tuning) your custom spe
 > Repeat the steps to upload testing datasets (such as **Audio** only) that you need [later when you create a test](./how-to-custom-speech-inspect-data.md). You can upload multiple datasets for training and testing.
 
 ::: zone pivot="ai-foundry-portal"
+
+# [Foundry (new)](#tab/foundry-new)
+
+In the new Microsoft Foundry portal, you provide training and validation datasets directly in the **Fine-tune a model** wizard that you opened when you [started custom speech fine-tuning](./how-to-custom-speech-create-project.md).
+
+1. On the **Training data** pane, connect a data source and select the dataset that you want to use for training. Then select **Next**.
+1. On the **Validation data** pane, select the dataset that you want to use to evaluate the fine-tuned model. Then select **Next**.
+
+Keep the **Fine-tune a model** pane open and continue with [Train a custom speech model](./how-to-custom-speech-train-model.md) to submit the fine-tuning job.
+
+# [Foundry (classic)](#tab/foundry-classic)
 
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
@@ -53,6 +64,8 @@ Follow these steps to upload datasets for training (fine-tuning) your custom spe
 1. Repeat the steps to upload testing datasets (such as **Audio** only) that you need [later when you create a test](./how-to-custom-speech-inspect-data.md). You can upload multiple datasets for training and testing.
 
 1. Repeat the previous steps to upload audio data [that you use later for testing](./how-to-custom-speech-inspect-data.md). In the **Add data** wizard, select **Audio** for the type of data you want to add. 
+
+---
 
 ::: zone-end
 

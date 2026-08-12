@@ -2,14 +2,14 @@
 title: "Use web search tool in Foundry Agent Service"
 description: "Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/07/2026
-author: jonburchel
+ms.date: 08/05/2026
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: 
     - azure-ai-agents
@@ -28,10 +28,12 @@ The web search tool in Foundry Agent Service enables the agent's Foundry model t
 > [!IMPORTANT]
 > - Web Search uses Grounding with Bing Search and Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and Grounding with Bing Custom Search. When you use Grounding with Bing Search and Grounding with Bing Custom Search, data transfers occur outside compliance and geographic boundaries.
-> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
+> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis) for details.
 > - See the [management section](#administrator-control-for-the-web-search-tool) for information about how Azure admins can manage access to use of web search.
 
-### Usage support
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
+
+**Usage support**
 
 The following table shows SDK and setup support.
 
@@ -43,18 +45,39 @@ The following table shows SDK and setup support.
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
 - The latest SDK package. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
+- **Foundry User** role on the Foundry project to create and run agents.
+
+    [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
+- **Foundry Project Manager** role on the Foundry project if you create the remote-tool project connection for domain-restricted search.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and a model deployment name.
 
-## Code examples
+## Choose a web grounding scenario
+
+| Scenario | Choose it when | Start here |
+| --- | --- | --- |
+| General Web Search | Your agent needs current information from the public web without a separate Bing resource or project connection. | [Add web search directly to a prompt agent](#add-web-search-directly-to-an-agent). |
+| Domain-restricted Bing Custom Search | Search results must come from public domains configured in your Bing Custom Search instance. | [Configure domain-restricted search](#domain-restricted-search-with-bing-custom-search). |
+| Deep research | Your `o3-deep-research` agent needs multi-step research and synthesis. | [Use direct web search for deep research](#deep-research-with-web-search). |
+| Bing grounding tools | You need the explicit `bing_grounding` or `bing_custom_search_preview` tool type with a Bing project connection. | [Use Grounding with Bing Search tools](bing-tools.md). |
+
+## Add web search directly to an agent
+
+Start with the **Prompt Agents** tab. It adds `WebSearchTool` directly to a server-side agent and doesn't require a toolbox or a separate Bing project connection. This path provides the shortest route to a grounded response with citations.
+
+The **Hosted Agents** tab uses `WebSearchToolboxTool` to add web search to a [toolbox](../../concepts/toolbox-overview.md), then connects to the toolbox MCP endpoint. Keep the direct-agent and toolbox tool types separate because they apply to different API surfaces.
 
 > [!NOTE]
-> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
+> For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
 :::zone pivot="python"
-### General Web Search
+### General web search
 
-The following example shows how to set up the AI Project client by using the Azure Identity library for authentication.
+The following example shows how to give an agent access to web search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### Prompt agents
+
+#### Create the agent and run a search
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -107,7 +130,7 @@ for event in stream_response:
         print(f"Follow-up response created with ID: {event.response.id}")
     elif event.type == "response.output_text.delta":
         print(f"Delta: {event.delta}")
-    elif event.type == "response.text.done":
+    elif event.type == "response.output_text.done":
         print(f"\nFollow-up response done!")
     elif event.type == "response.output_item.done":
         if event.item.type == "message":
@@ -137,17 +160,118 @@ Full response: Based on current data ...
 Agent deleted
 ```
 
-### Domain-Restricted Search with Bing Custom Search
+### Hosted agents
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using `MCPStreamableHTTPTool`. Install the package with `pip install agent-framework-foundry httpx`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
+
+#### Create a toolbox and run a hosted agent
+
+```python
+import asyncio
+import httpx
+
+from agent_framework import Agent, MCPStreamableHTTPTool
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import WebSearchToolboxTool, WebSearchApproximateLocation
+
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+
+
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = "Bearer " + self._token_provider()
+        yield request
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # 1. Create the web search tool and add it to a toolbox. Using a toolbox is the
+    #    recommended way to give agents tools: curate tools once and reuse the
+    #    toolbox across agents. See /azure/foundry/agents/concepts/toolbox-overview
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+    toolbox = project.toolboxes.create_version(
+        name="web-search-toolbox",
+        description="Toolbox with the web search tool",
+        tools=[
+            WebSearchToolboxTool(
+                user_location=WebSearchApproximateLocation(
+                    country="GB", city="London", region="London"
+                )
+            )
+        ],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a research assistant. Use web search to find current information.",
+        tools=[mcp_tool],
+    )
+
+    result = await agent.run("What are the latest updates to Microsoft Foundry?")
+    print(f"Agent: {result.text}")
+
+    # Print any URL citations returned by the web search tool.
+    for message in result.messages:
+        for content in message.contents:
+            for annotation in getattr(content, "annotations", None) or []:
+                url = getattr(annotation, "url", None)
+                if url:
+                    title = getattr(annotation, "title", None) or ""
+                    print(f"URL Citation: [{title}]({url})")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent answers using fresh information from the web and prints any URL citations the tool returned. Output varies as content on the web changes:
+
+```console
+Agent: The latest updates to Microsoft Foundry include ...
+URL Citation: [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
+```
+
+The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries (for example, a `@tool`-decorated function) to the `tools` list. For more, see [Quickstart: Use the Foundry Responses API](../../quickstarts/responses-api.md).
+
+---
+
+### Domain-restricted search with Bing Custom Search
 
 The following example shows how to restrict web search to specific domains using a Bing Custom Search instance. This approach gives you control over which websites your agent can search.
+
+#### Create the toolbox and domain-restricted agent
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    WebSearchTool,
+    WebSearchToolboxTool,
     WebSearchConfiguration,
+    MCPTool,
 )
 
 # Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -162,18 +286,50 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
-# Create an agent with the web search tool and custom search configuration
+# 1. Add the web search tool and custom search configuration to a toolbox.
+toolbox = project.toolboxes.create_version(
+    name="web-search-toolbox",
+    description="Toolbox with the web search tool",
+    tools=[
+        WebSearchToolboxTool(
+            custom_search_configuration=WebSearchConfiguration(
+                project_connection_id=BING_CUSTOM_SEARCH_CONNECTION_ID,
+                instance_name=BING_CUSTOM_SEARCH_INSTANCE_NAME,
+            )
+        )
+    ],
+)
+
+# 2. The toolbox exposes an MCP-compatible endpoint.
+TOOLBOX_MCP_URL = (
+    f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+    f"/versions/{toolbox.version}/mcp?api-version=v1"
+)
+
+# 3. Create a remote-tool project connection that points at the toolbox endpoint.
+#    Use a user Entra token so the caller's identity is passed through
+#    (audience https://ai.azure.com). Create the connection once, for example with
+#    the Azure Developer CLI:
+#
+#    azd ai connection create web-search-toolbox-conn \
+#      --kind remote-tool \
+#      --target "<TOOLBOX_MCP_URL>" \
+#      --auth-type user-entra-token \
+#      --audience https://ai.azure.com
+TOOLBOX_CONNECTION_NAME = "web-search-toolbox-conn"
+
+# 4. Attach the toolbox to a prompt agent as an MCP tool.
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
         model="gpt-5-mini",
         instructions="You are a helpful assistant that can search the web",
         tools=[
-            WebSearchTool(
-                custom_search_configuration=WebSearchConfiguration(
-                    project_connection_id=BING_CUSTOM_SEARCH_CONNECTION_ID,
-                    instance_name=BING_CUSTOM_SEARCH_INSTANCE_NAME,
-                )
+            MCPTool(
+                server_label="toolbox",
+                server_url=TOOLBOX_MCP_URL,
+                require_approval="never",
+                project_connection_id=TOOLBOX_CONNECTION_NAME,
             )
         ],
     ),
@@ -195,7 +351,7 @@ for event in stream_response:
         print(f"Response created with ID: {event.response.id}")
     elif event.type == "response.output_text.delta":
         print(f"Delta: {event.delta}")
-    elif event.type == "response.text.done":
+    elif event.type == "response.output_text.done":
         print(f"\nResponse done!")
     elif event.type == "response.output_item.done":
         if event.item.type == "message":
@@ -232,7 +388,7 @@ Agent deleted
 Grounding with Bing Custom Search is a powerful tool that you can use to select a subspace of the web to limit your agent's grounding knowledge. Here are a few tips to help you take full advantage of this capability:
 
 - If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date.
-- You need at least the **Contributor** role for the Bing Custom Search resource to create a configuration.
+- To create a configuration, activate the **Contributor** role on the Bing Custom Search resource just in time through Microsoft Entra PIM. Deactivate the role after configuration. Day-to-day agent developers and runtime users don't need this role.
 - You can block certain domains and perform a search against the rest of the web (a competitor's site, for example).
 - Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing.
 - You can specify different levels of granularity:
@@ -240,9 +396,11 @@ Grounding with Bing Custom Search is a powerful tool that you can use to select 
   - Domain and path (for example, `https://www.microsoft.com/surface`)
   - Webpage (for example, `https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`)
 
-### Deep Research with Web Search
+### Deep research with web search
 
-The following example shows how to use the `o3-deep-research` model with the web search tool. This approach replaces the deprecated [Deep Research tool](../../../../foundry-classic/agents/how-to/tools-classic/deep-research.md), enabling multi-step research using public web data directly through the web search tool.
+The following example shows how to use the `o3-deep-research` model with the direct web search preview tool. This approach replaces the deprecated [Deep Research tool](../../../../foundry-classic/agents/how-to/tools-classic/deep-research.md). Don't route web search through a toolbox for deep research because the model requires the direct Responses web search tool.
+
+#### Create the deep research agent
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -259,7 +417,7 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
-# Create agent with web search tool using o3-deep-research model
+# Create a prompt agent with the direct web search preview tool.
 agent = project.agents.create_version(
     agent_name="MyDeepResearchAgent",
     definition=PromptAgentDefinition(
@@ -289,7 +447,7 @@ for event in stream_response:
         print(f"Response created with ID: {event.response.id}")
     elif event.type == "response.output_text.delta":
         print(f"Delta: {event.delta}")
-    elif event.type == "response.text.done":
+    elif event.type == "response.output_text.done":
         print(f"\nResponse done!")
     elif event.type == "response.completed":
         print(f"\nResponse completed!")
@@ -303,9 +461,15 @@ print("Agent deleted")
 
 :::zone pivot="csharp"
 
-### General Web Search
+### General web search
+
+The following example shows how to give an agent access to web search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### Prompt agents
 
 In this example, you use the agent to perform the web search in the given location. The example in this section uses synchronous calls. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample13_WebSearch.md) in the Azure SDK for .NET repository on GitHub.
+
+#### Create the agent and run a search
 
 ```csharp
 using System;
@@ -361,7 +525,83 @@ The London Underground currently has service disruptions on ...
 Agent deleted
 ```
 
-### Domain restricted web search
+### Hosted agents
+
+This sample creates the web-search toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke web search through the toolbox MCP endpoint. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+#### Create a toolbox and run a hosted agent
+
+```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Extensions.OpenAI;
+using Azure.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+
+const string AgentInstructions = "You are a helpful assistant that can search the web to find current information and answer questions accurately.";
+const string AgentName = "WebSearchAgent";
+
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
+string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+DefaultAzureCredential credential = new();
+
+// 1. Create the web search tool and add it to a toolbox. Using a toolbox is the
+//    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: credential);
+ProjectsAgentTool webTool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateWebSearchTool(userLocation: WebSearchToolLocation.CreateApproximateLocation(
+        "GB", "London", "London")));
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "web-search-toolbox",
+        tools: [webTool],
+        description: "Toolbox with the web search tool");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+
+// 3. Attach the toolbox to the hosted agent.
+AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+
+// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call.
+ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(
+        name: AgentName,
+        instructions: AgentInstructions,
+        chatClient: chatClient,
+        toolboxClient: toolboxClient));
+});
+```
+
+### Expected output
+
+The agent answers using fresh information from the web and prints any URL citations the tool returned. Output varies as content on the web changes:
+
+```console
+Response: Today in Seattle it is mostly cloudy with a high near 55°F ...
+Title: National Weather Service – Seattle
+URL: https://www.weather.gov/sew/
+```
+
+The hosted agent connects to one toolbox endpoint and discovers the web search tool at runtime. You can add other tools to the toolbox without changing the hosted-agent code.
+
+---
+
+### Domain-restricted web search
 To enable your Agent to use Web Search with Grounding with Bing Custom Search instance.
 
 1. First, create the project client and define the values used in the next steps.
@@ -407,7 +647,7 @@ AgentVersion agentVersion = await projectClient.AgentAdministrationClient.Create
     options: new(agentDefinition));
 ```
 
-3. To get the formatted annotation we have created the `GetFormattedAnnotation` method.
+1. Call the `GetFormattedAnnotation` method to format the annotation.
 
 ```C# Snippet:Sample_FormatReference_WebSearchCustomStreaming
 private static string GetFormattedAnnotation(ResponseItem item)
@@ -511,7 +751,7 @@ await foreach (StreamingResponseUpdate streamResponse in responseClient.CreateRe
 Console.WriteLine($"{text}{annotation}");
 ```
 
-5. Finally, delete all the resources we have created in this sample.
+1. Delete all resources that the sample created.
 
 Synchronous sample:
 ```C# Snippet:Sample_Cleanup_WebSearchCustomStreaming_Sync
@@ -534,7 +774,7 @@ Agent deleted
 :::zone-end
 
 :::zone pivot="rest-api"
-### General Web Search
+### General web search
 
 Get an access token:
 
@@ -542,24 +782,57 @@ Get an access token:
 export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
 
-The following example shows how to create a response by using an agent that has the web search tool enabled.
+The recommended way to add web search is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
 
-```bash
-curl --request POST \
-  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  --data '{
-    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
-    "input": "Tell me about the latest news about AI",
-    "tool_choice": "required",
-    "tools": [
-      {
-        "type": "web_search"
-      }
-    ]
-  }'
-```
+1. Create a toolbox that contains the web search tool:
+
+    ```bash
+    curl --request POST \
+      --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/web-search-toolbox/versions?api-version=v1" \
+            -H "Authorization: Bearer $AGENT_TOKEN" \
+      -H "Content-Type: application/json" \
+      --data '{
+        "description": "Toolbox with the web search tool",
+        "tools": [
+          { "type": "web_search" }
+        ]
+      }'
+    ```
+
+   The toolbox exposes an MCP-compatible endpoint at `$FOUNDRY_PROJECT_ENDPOINT/toolboxes/web-search-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+1. Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`).
+    
+    ```bash
+    azd ai connection create web-search-toolbox-conn \
+      --kind remote-tool \
+      --target "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/web-search-toolbox/versions/<version>/mcp?api-version=v1" \
+      --auth-type user-entra-token \
+      --audience https://ai.azure.com
+    ```
+
+1. Create a response that uses the toolbox by attaching it as an MCP tool.
+
+    ```bash
+    curl --request POST \
+      --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+      -H "Authorization: Bearer $AGENT_TOKEN" \
+      -H "Content-Type: application/json" \
+      --data '{
+        "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+        "input": "Tell me about the latest news about AI",
+        "tool_choice": "required",
+        "tools": [
+          {
+            "type": "mcp",
+            "server_label": "toolbox",
+            "server_url": "'$FOUNDRY_PROJECT_ENDPOINT'/toolboxes/web-search-toolbox/versions/<version>/mcp?api-version=v1",
+            "require_approval": "never",
+            "project_connection_id": "web-search-toolbox-conn"
+          }
+        ]
+      }'
+    ```
 
 #### Expected output
 
@@ -571,10 +844,12 @@ The following example shows the expected output when using the web search tool v
   "object": "response",
   "created_at": 1702345678,
   "status": "completed",
-  "output_text": "Here is a grounded response with citations.",
-  "output_items": [
+    "output": [
     {
+            "id": "msg_abc123xyz",
       "type": "message",
+            "role": "assistant",
+            "status": "completed",
       "content": [
         {
           "type": "output_text",
@@ -593,7 +868,7 @@ The following example shows the expected output when using the web search tool v
   ]
 }
 ```
-### Domain restricted web search
+### Domain-restricted web search
 
 Get an access token:
 
@@ -601,36 +876,69 @@ Get an access token:
 export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
 
-The following example shows how to create a response by using an agent that has the web search tool enabled.
+The recommended way to add domain-restricted web search is through a toolbox, then attach the toolbox to your agent as an MCP tool.
 
-```bash
-curl --request POST \
-  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  --data '{
-    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
-    "input": "Tell me about the latest news about AI",
-    "tool_choice": "required",
-    "tools": [
-      {
-        "type": "web_search",
-        "custom_search_configuration": [
+1. Create a toolbox that contains the domain-restricted web search tool:
+
+    ```bash
+    curl --request POST \
+      --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/web-search-toolbox/versions?api-version=v1" \
+            -H "Authorization: Bearer $AGENT_TOKEN" \
+      -H "Content-Type: application/json" \
+      --data '{
+        "description": "Toolbox with the domain-restricted web search tool",
+        "tools": [
           {
-            "project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
-            "instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'",
+            "type": "web_search",
+            "custom_search_configuration": {
+              "project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
+              "instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'"
+            }
           }
         ]
-      }
-    ]
-  }'
-```
+      }'
+    ```
+
+1. Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`).
+
+    ```bash
+    azd ai connection create web-search-toolbox-conn \
+      --kind remote-tool \
+      --target "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/web-search-toolbox/versions/<version>/mcp?api-version=v1" \
+      --auth-type user-entra-token \
+      --audience https://ai.azure.com
+    ```
+    
+1. Create a response that uses the toolbox by attaching it as an MCP tool.
+
+    ```bash
+    curl --request POST \
+      --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+    -H "Authorization: Bearer $AGENT_TOKEN" \
+      -H "Content-Type: application/json" \
+      --data '{
+        "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+        "input": "Tell me about the latest news about AI",
+        "tool_choice": "required",
+        "tools": [
+          {
+            "type": "mcp",
+            "server_label": "toolbox",
+            "server_url": "'$FOUNDRY_PROJECT_ENDPOINT'/toolboxes/web-search-toolbox/versions/<version>/mcp?api-version=v1",
+            "require_approval": "never",
+            "project_connection_id": "web-search-toolbox-conn"
+          }
+        ]
+      }'
+    ```
 :::zone-end
 
 :::zone pivot="typescript"
 ## Use the web search tool with TypeScript
 
-The following TypeScript example demonstrates how to create an agent with the web search tool. For an example that uses JavaScript, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentWebSearch.js) example in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript example demonstrates how to create an agent with the web search tool. For an example that uses JavaScript, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentWebSearch.js) in the Azure SDK for JavaScript repository on GitHub.
+
+### Create a toolbox-backed agent
 
 ```typescript
 // Copyright (c) Microsoft Corporation.
@@ -658,14 +966,13 @@ export async function main(): Promise<void> {
   const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
   const openai = project.getOpenAIClient();
 
-  console.log("Creating agent with web search tool...");
+  console.log("Creating a toolbox with the web search tool...");
 
-  // Create Agent with web search tool
-  const agent = await project.agents.createVersion("agent-web-search", {
-    kind: "prompt",
-    model: "gpt-5-mini",
-    instructions: "You are a helpful assistant that can search the web",
-    tools: [
+  // 1. Add the web search tool to a toolbox. Using a toolbox is the recommended
+  //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "web-search-toolbox",
+    [
       {
         type: "web_search",
         user_location: {
@@ -674,6 +981,40 @@ export async function main(): Promise<void> {
           city: "London",
           region: "London",
         },
+      },
+    ],
+    { description: "Toolbox with the web search tool" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create web-search-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "web-search-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
+  const agent = await project.agents.createVersion("agent-web-search", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful assistant that can search the web",
+    tools: [
+      {
+        type: "mcp",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
+        require_approval: "never",
+        project_connection_id: toolboxConnectionName,
       },
     ],
   });
@@ -691,7 +1032,7 @@ export async function main(): Promise<void> {
       input: "Show me the latest London Underground service updates",
     },
     {
-      body: { agent: { name: agent.name, type: "agent_reference" } },
+    body: { agent_reference: { name: agent.name, type: "agent_reference" } },
     },
   );
   console.log(`Response: ${response.output_text}`);
@@ -727,13 +1068,16 @@ Agent deleted
 
 ## Use web search in a Java agent
 
+> [!TIP]
+> **Recommended:** For most agents, add the web search tool through a [toolbox](../../concepts/toolbox-overview.md) and attach the toolbox to your agent as an MCP tool. The Java SDK doesn't yet expose a toolbox creation API, so create the toolbox by using the [Python](?pivots=python), [REST API](?pivots=rest-api), [C#](?pivots=csharp), or [TypeScript](?pivots=typescript) example, or the [Foundry portal](../../how-to/tools/toolbox.md). Then, reference its MCP endpoint from your Java agent as an `McpTool`. The following example attaches the web search tool directly to the agent.
+
 Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
@@ -767,7 +1111,7 @@ public class WebSearchExample {
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
         // Create web search tool with user location
-        WebSearchPreviewTool webSearchTool = new WebSearchTool();
+        WebSearchTool webSearchTool = new WebSearchTool();
 
         // Create agent with web search tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
@@ -807,6 +1151,57 @@ Response: [ResponseOutputItem with web search results about renewable energy tre
 
 You can configure web search behavior when you create your agent.
 
+### Web search response format over MCP
+
+> [!NOTE]
+> When Web Search returns results over MCP, the response is a `resource` content item containing the synthesized answer with inline Markdown source links. URL citations are in `content[].resource._meta.annotations[]`. For example:
+>
+> ```json
+> {
+>   "jsonrpc": "2.0",
+>   "id": "ws-call-1",
+>   "result": {
+>     "_meta": {
+>       "tool_configuration": {
+>         "type": "web_search",
+>         "name": "web-search-default"
+>       }
+>     },
+>     "content": [
+>       {
+>         "type": "resource",
+>         "resource": {
+>           "uri": "about:web-search-answer",
+>           "mimeType": "text/plain",
+>           "text": "Here are the latest updates on Azure OpenAI Service...\n\n- **GPT-image-1 Release (January 7, 2026)** Microsoft introduced GPT-image-1 ([serverless-solutions.com](https://...)).\n\n..."
+>         },
+>         "annotations": {
+>           "audience": ["assistant"]
+>         },
+>         "_meta": {
+>           "annotations": [
+>             {
+>               "type": "url_citation",
+>               "url": "https://www.serverless-solutions.com/blog/...",
+>               "title": "Microsoft expands Foundry with powerful new OpenAI models",
+>               "start_index": 741,
+>               "end_index": 879
+>             }
+>           ],
+>           "action": {
+>             "type": "search",
+>             "query": "Azure OpenAI service updates 2026",
+>             "queries": ["Azure OpenAI service updates 2026"]
+>           },
+>           "response_id": "resp_001fcebcc300..."
+>         }
+>       }
+>     ],
+>     "isError": false
+>   }
+> }
+> ```
+
 ### Optional parameters for general web search
 
 - `user_location`: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a country/region/city.
@@ -845,9 +1240,9 @@ Before running the following commands, make sure that you:
 
 1. Have [Azure CLI](/cli/azure/install-azure-cli) installed.
 1. Are signed in to Azure by using `az login`. 
-1. Have Owner or Contributor access to the subscription. 
+1. Activate **Contributor** at subscription scope just in time through Microsoft Entra PIM. Subscription scope is required because this setting applies to all Foundry resources in the subscription. Deactivate the role after changing the setting. Day-to-day agent developers and runtime users don't need this role.
 
-### Disable Web Search 
+### Disable web search
 
 To disable the web search tool for all accounts in a subscription, run the following command: 
 
@@ -860,7 +1255,7 @@ az feature register \
 
 This command disables web search across all accounts in the specified subscription. 
 
-### Enable Web Search 
+### Enable web search
 
 To enable the web search tool, run the following command: 
 

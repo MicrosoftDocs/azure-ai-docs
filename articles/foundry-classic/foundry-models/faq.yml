@@ -3,7 +3,7 @@ metadata:
   title: Microsoft Foundry Models frequently asked questions
   titleSuffix: Microsoft Foundry
   description: Get answers to the most popular questions about Foundry Models
-  manager: nitinme
+  manager: mcleans
   ms.service: microsoft-foundry
   ms.subservice: foundry-model-inference
   ms.topic: faq

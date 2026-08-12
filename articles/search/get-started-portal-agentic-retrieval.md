@@ -7,14 +7,17 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 02/23/2026
+ms.date: 07/20/2026
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Agentic retrieval in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
-In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
+In this quickstart, use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 
 The portal guides you through the process of creating the following objects:
 
@@ -25,7 +28,7 @@ The portal guides you through the process of creating the following objects:
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
 
 > [!IMPORTANT]
-> The portal now uses the 2025-11-01-preview REST APIs for knowledge sources and knowledge bases. If you previously created agentic retrieval objects in the portal, those objects use the 2025-08-01-preview and are subject to breaking changes. We recommend that you [migrate existing objects and code](agentic-retrieval-how-to-migrate.md) as soon as possible.
+> Some agentic retrieval features are generally available in the 2026-04-01 REST API through programmatic access. The Azure portal continues to use 2026-05-01-preview for the full feature set. If you previously created agentic retrieval objects in the portal, those objects might be subject to breaking changes. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
 
 ## Prerequisites
 
@@ -97,7 +100,7 @@ To prepare the sample data for this quickstart:
 
 A knowledge source is a reusable reference to your source data. In this section, you create a [blob knowledge source](agentic-knowledge-source-how-to-blob.md), which triggers the creation of a *data source*, *skillset*, *index*, and *indexer* to automate data indexing and enrichment. You review these objects in a later section.
 
-You also configure a *vectorizer*, which uses your deployed embedding model to convert text into vectors and match documents based on semantic similarity. The vectorizer, vector fields, and vectors will be added to the auto-generated index.
+You also configure a *vectorizer*, which uses your deployed embedding model to convert text into vectors and match documents based on semantic similarity. The vectorizer, vector fields, and vectors are added to the auto-generated index.
 
 To create the knowledge source for this quickstart:
 
@@ -155,7 +158,7 @@ To create the knowledge base for this quickstart:
 
 ## Test agentic retrieval
 
-The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base, whose responses include references to your knowledge sources and debug information about the retrieval process.
+The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base. The responses include references to your knowledge sources and debug information about the retrieval process.
 
 To query the knowledge base:
 
@@ -235,7 +238,7 @@ To query the knowledge base:
 
    The activity log offers insight into the steps taken during retrieval, including query planning and execution, semantic ranking, and answer synthesis. For more information, see [Review the activity array](agentic-retrieval-how-to-retrieve.md#activity-array).
 
-## Review the created objects
+## Review the generated objects
 
 Azure AI Search automatically generates a data source, skillset, index, and indexer for each blob knowledge source. These objects form an end-to-end pipeline for data ingestion, enrichment, chunking, and vectorization. You can review these objects to learn how your data is processed for agentic retrieval.
 
@@ -243,13 +246,13 @@ To review the auto-generated objects:
 
 1. From the left pane, select **Search management**.
 
+1. Check the indexer for success or failure messages. Connection or quota errors appear here.
+
 1. Check the data source to verify the connection to your blob storage container.
 
 1. Check the skillset to see how your content is chunked and vectorized using your embedding model.
 
-1. Check the index to see how your content is indexed and exposed for retrieval, including which fields are searchable and filterable and which fields store vectors for similarity search.
-
-1. Check the indexer for success or failure messages. Connection or quota errors appear here.
+1. Check the index to see how your content is indexed and exposed for retrieval, including which fields are searchable and filterable and which fields store vectors for similarity search. Use Search Explorer to run queries against the generated index.
 
 ## Clean up resources
 

@@ -3,10 +3,10 @@ title: Bank statement US extraction model - Document Intelligence
 titleSuffix: Foundry Tools
 description: OCR and machine learning based bank statement US extraction in Document Intelligence extracts key data from bank statements.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 04/03/2026
 ms.author: lajanuar
 ms.custom: references_regions
 monikerRange: '>=doc-intel-4.0.0'

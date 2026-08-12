@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure Content Understanding in Foundry Tools.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -26,20 +26,16 @@ Content Understanding provides several categories of analyzers to support differ
 - **[Content extraction analyzers](#content-extraction-analyzers)** - Focus on OCR and layout analysis with progressively richer extraction capabilities for basic text extraction, layout analysis, and barcode detection.
 - **[Base analyzers](#base-analyzers)** - Fundamental content processing capabilities for each modality, used as parent analyzers when creating custom analyzers for document, image, audio, and video content.
 - **[RAG analyzers](#retrieval-augmented-generation-rag-analyzers)** - Optimized for retrieval-augmented generation scenarios with semantic analysis and markdown extraction for document ingestion, search applications, and knowledge bases.
-- **[Domain-specific analyzers](#domain-specific-analyzer-reference)** - Preconfigured analyzers for common document categories with specialized field extraction for invoice processing, tax forms, ID verification, mortgage documents, and contracts.
+- **[Domain-specific analyzers](#domain-specific-analyzers-in-detail)** - Preconfigured analyzers for common document categories with specialized field extraction for invoice processing, tax forms, ID verification, mortgage documents, and contracts.
 - **[Utility analyzers](#utility-analyzers)** - Specialized tools for schema generation and field extraction to discover document structure and extract key-value pairs.
 
 ### Content extraction analyzers
 
 Content extraction analyzers focus on optical character recognition and layout analysis. These analyzers are built on top of `prebuilt-document` and provide progressively richer extraction capabilities.
 
-#### `prebuilt-read`
+> [!NOTE]
+> In the `2026-06-01-preview` API version, `prebuilt-read`, `prebuilt-layout`, and `prebuilt-digitalParse` return embedded document metadata, such as author, creation date, and title. In the `2025-11-01` GA version, only `prebuilt-digitalParse` returns metadata by default. For information on how different extraction operations are billed, see the [Pricing explainer](/azure/ai-services/content-understanding/pricing-explainer#document-content-extraction-meters).
 
-* Extracts content elements such as words, paragraphs, formulas, and barcodes from documents.
-* Provides basic optical character recognition (OCR) capabilities.
-* Provides foundational text extraction without layout analysis.
-
-This prebuilt doesn't require a language model or embedding model.
 
 #### `prebuilt-layout`
 
@@ -49,6 +45,23 @@ This prebuilt doesn't require a language model or embedding model.
 * Captures annotations such as highlights, underlines, and strikethroughs in digital PDFs.
 * Provides detailed layout information beyond basic text extraction.
 * Detects figure types including charts, diagrams, pictures, icons, and other images, providing location information (PDF files only).
+* Detects signatures and returns their location, along with any recognized text (`2026-06-01-preview` API version).
+
+This prebuilt doesn't require a language model or embedding model.
+
+#### `prebuilt-read`
+
+* Extracts content elements such as words, paragraphs, formulas, and barcodes from documents.
+* Provides basic optical character recognition (OCR) capabilities.
+* Provides foundational text extraction without layout analysis.
+
+This prebuilt doesn't require a language model or embedding model.
+
+
+#### `prebuilt-digitalParse`
+ 
+- Extracts machine-readable content from documents by directly analyzing the file’s internal structure and encoding.
+- For scanned or image-based documents, use `prebuilt-read` or `prebuilt-layout`.
 
 This prebuilt doesn't require a language model or embedding model.
 
@@ -75,6 +88,7 @@ Content Understanding provides a set of analyzers optimized for retrieval-augmen
 * Analyzes charts and diagrams, providing structured output as chart.js syntax for charts or mermaid.js syntax for diagrams<sup>1</sup>.
 * Captures hand-written annotations and markup on the document.
 * Generates a one-paragraph summary of the entire document content.
+* Produces chunked output ready for embedding and vector indexing, preserving document structure across chunk boundaries with support for both fixed-size and layout-aware semantic chunking.
 * Supports a [wide range of file formats](/azure/ai-services/content-understanding/service-limits#input-file-limits) including PDF, images, Office documents, and text files.
 * Recommended for document ingestion in RAG workflows.
 
@@ -103,17 +117,21 @@ Content Understanding provides a set of analyzers optimized for retrieval-augmen
 
 ### Domain-specific analyzers
 
-Domain-specific analyzers are preconfigured for common document categories in popular industries. These analyzers provide specialized field extraction for specific document types and formats, powered by rich knowledge bases of real-world examples. 
+Domain-specific analyzers are preconfigured for common categories in popular industries. These analyzers provide specialized field extraction for specific document types and formats, powered by rich knowledge bases of real-world examples. 
 
 Key categories include:
 
-* **Finance and tax**: Extract structured data from invoices, receipts, bank statements, credit card statements, and comprehensive US tax forms including 1040, W-2, 1099 variants, and 1098 series. Tuned schemas capture amounts, dates, tax identifiers, and financial entities. See the [financial documents](#financial-documents) and [tax documents](#tax-documents-us) sections.
-* **Identity verification**: Process passports, driver's licenses, ID cards, health insurance cards, and identity documents from multiple countries and regions with `prebuilt-idDocument` and related analyzers. Extract personal information, document numbers, and verification details with support for worldwide formats. See the [identity documents](#identity-documents) section.
-* **Mortgage and lending**: Automate extraction from US mortgage applications (Form 1003), appraisal reports (Form 1004), verification of employment (Form 1005), and closing disclosures. Capture borrower details, property information, loan terms, and financial disclosures. See the [mortgage documents](#mortgage-documents-us) section.
-* **Procurement and contracts**: Process purchase orders, contracts, procurement documents, and credit memos to extract vendor information, line items, pricing, terms, and contractual obligations. See the [procurement documents](#procurement-documents) and [legal and business documents](#legal-and-business-documents) sections.
-* **Utilities and billing**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data. See the [financial documents](#financial-documents) and [other specialized analyzers](#other-specialized-analyzers) sections.
+* **Procurement documents**: Extract structured data from procurement documents like invoices, receipts, and purchase orders. Tuned schemas capture line items, dates, and other key fields from procurement documents. See the [procurement documents](#procurement-documents) section.
+* **Tax documents (US)**: Extract data from a comprehensive set of US tax forms, including Form 1040, W-2, and many more tax forms. Tuned schemas capture tax identifiers, amounts, and other meaningful tax fields. See the [tax documents](#tax-documents-us) section.
+* **Legal documents**: Extract key information from contracts and business agreements. See the [legal and business documents](#legal-documents) section. 
+* **Identity verification**: Process passports, health insurance cards, and other identification documents from multiple countries and regions. See the [identity documents](#identity-documents) section.
+* **Financial documents**: Extract structured data from credit card statements, credit memos, and other bank statements. See the [financial documents](#financial-documents) section. 
+* **Mortgage documents (US)**: Automate extraction from US mortgage documents, like appraisals, employment verifications, underwriting summaries, and closing disclosures. Includes a composed analyzer that automatically classifies and routes a wide range of mortgage documents. See the [mortgage documents](#mortgage-documents-us) section.
+* **Personal records**: Extract information from personal documents like pay stubs, marriage certificates, and utility bills. See the [personal records](#personal-records) sections. 
+* **Other prebuilt analyzers**: Analyze specialized content, such as call center recordings to extract topics, sentiment, and key insights. See the [other specialized analyzers](#other-prebuilt-analyzers) sections.
 
-See the [complete list of domain-specific analyzers](#domain-specific-analyzer-reference) at the end of this article.
+
+See the [complete list of domain-specific analyzers](#domain-specific-analyzers-in-detail) at the end of this article.
 
 ### Utility analyzers
 
@@ -179,35 +197,29 @@ POST /analyzers/myIdDocument:copy
 
 This operation creates a new analyzer with a fixed definition copied from the prebuilt analyzer at the time of the copy operation.
 
-## Domain-specific analyzer reference
+## Domain-specific analyzers (in detail)
 
 The following sections list all available domain-specific analyzers for specialized document processing. These prebuilt models enable you to add intelligent domain-specific document processing to your apps and flows without having to train and build your own models.
 
 For information about supported file formats and input requirements, see [Service limits](../service-limits.md).
 
-### Financial documents
+### Procurement documents
 
+* `prebuilt-procurement` - A composed prebuilt analyzer that classifies and routes a procurement document to the correct procurement analyzer for extraction.
 * `prebuilt-invoice` - Invoices, utility bills, sales orders, purchase orders
 * `prebuilt-receipt` - Sales receipts from retail and dining establishments
 * `prebuilt-receipt.generic` - General sales receipts
 * `prebuilt-receipt.hotel` - Hotel receipts and folios
-* `prebuilt-creditCard` - Credit card statements
-* `prebuilt-creditMemo` - Credit memos and refund documents
-* `prebuilt-check.us` - US bank checks
-* `prebuilt-bankStatement.us` - US bank statements
+* `prebuilt-utilityBill` - Utility bills (electricity, water, gas, internet, phone)
+* `prebuilt-purchaseOrder` - Purchase order forms
+* `prebuilt-creditMemo` - Credit memo documents.
 
-### Identity documents
-
-* `prebuilt-idDocument` - Driver licenses, identification cards (IDs), residency permits, passports (worldwide), Social Security cards (US), military IDs (US), PAN cards (India), Aadhaar cards (India)
-* `prebuilt-idDocument.generic` - Generic identification documents from various regions
-* `prebuilt-idDocument.passport` - Passport books and passport cards (worldwide)
-* `prebuilt-healthInsuranceCard.us` - US health insurance cards
 
 ### Tax documents (US)
 
 #### Income tax forms
 
-* `prebuilt-tax.us` - General US tax forms
+* `prebuilt-tax.us` - A composed prebuilt analyzer that classifies and routes a US tax form to the correct tax analyzer for extraction
 * `prebuilt-tax.us.1040` - Form 1040 (US Individual Income Tax Return)
 * `prebuilt-tax.us.1040Senior` - Form 1040 for senior taxpayers
 * `prebuilt-tax.us.1040Schedule1` - Additional Income and Adjustments to Income
@@ -269,29 +281,52 @@ For information about supported file formats and input requirements, see [Servic
 * `prebuilt-tax.us.w2` - Wage and Tax Statement
 * `prebuilt-tax.us.w4` - Employee's Withholding Certificate
 
+#### Schedule K-1 tax forms (preview)
+* `prebuilt-tax.us.1041ScheduleK1` - Estate and Trust Schedule K-1 (Form 1041)
+* `prebuilt-tax.us.1120SScheduleK1` - S-Corporation Schedule K-1 (Form 1120-S)
+* `prebuilt-tax.us.1065ScheduleK1` - Partnership Schedule K-1 (Form 1065)
+* `prebuilt-tax.us.8865ScheduleK1` - Foreign Partnership Schedule K-1 (Form 8865)
+
+#### State-specific tax forms (preview)
+* `prebuilt-tax.us.mn.m1` - Minnesota Form M1 — Individual Income Tax Return
+
+### Legal documents
+
+* `prebuilt-contract` - Business contracts and agreements
+
+### Identity documents
+
+* `prebuilt-idDocument` - Driver licenses, identification cards (IDs), residency permits, passports (worldwide), Social Security cards (US), military IDs (US), PAN cards (India), Aadhaar cards (India)
+* `prebuilt-idDocument.generic` - Generic identification documents from various regions
+* `prebuilt-idDocument.passport` - Passport books and passport cards (worldwide)
+* `prebuilt-healthInsuranceCard.us` - US health insurance cards
+
+### Financial documents
+
+* `prebuilt-creditCard` - Credit card statements
+* `prebuilt-creditMemo` - Credit memos and refund documents
+* `prebuilt-check.us` - US bank checks
+* `prebuilt-bankStatement.us` - US bank statements
+
 ### Mortgage documents (US)
 
-* `prebuilt-mortgage.us` - General US mortgage documents
+* `prebuilt-mortgage.us` - A composed prebuilt analyzer that classifies and routes a mortgage document to the correct mortgage analyzer for extraction
 * `prebuilt-mortgage.us.1003` - Uniform Residential Loan Application
 * `prebuilt-mortgage.us.1004` - Uniform Residential Appraisal Report
 * `prebuilt-mortgage.us.1005` - Verification of Employment
 * `prebuilt-mortgage.us.1008` - Uniform Underwriting and Transmittal Summary
 * `prebuilt-mortgage.us.closingDisclosure` - Closing Disclosure
 
-### Legal and business documents
-
-* `prebuilt-contract` - Business contracts and agreements
-* `prebuilt-marriageCertificate.us` - US marriage certificates
-
-### Procurement documents
-
-* `prebuilt-procurement` - Purchase orders, invoices, and procurement-related documents
-* `prebuilt-purchaseOrder` - Purchase order forms
-
-### Other specialized analyzers
+### Personal records
 
 * `prebuilt-payStub.us` - US pay stubs and earnings statements
+* `prebuilt-marriageCertificate.us` - US marriage certificates
+* `prebuilt-healthInsuranceCard.us` - US health insurance cards
 * `prebuilt-utilityBill` - Utility bills (electricity, water, gas, internet, phone)
+
+### Other prebuilt analyzers
+
+* `prebuilt-callCenter` - Call recordings to extract topics, sentiment, and key topics
 
 ## Next steps
 

@@ -8,8 +8,8 @@ ms.topic: how-to
 ms.date: 01/05/2026
 ms.reviewer: scottpolly
 reviewer: scottpolly
-ms.author: jburchel
-author: jonburchel
+ms.author: scottpolly
+author: s-polly
 ai-usage: ai-assisted
 ms.custom:
   - hub-only

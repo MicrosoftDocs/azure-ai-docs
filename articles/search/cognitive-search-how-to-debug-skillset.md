@@ -12,6 +12,8 @@ ms.custom:
 
 # Debug an Azure AI Search skillset in Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Start a portal-based debug session to identify and resolve errors, validate changes, and push changes to an existing skillset in your Azure AI Search service.
 
 A debug session is a cached indexer and skillset execution, scoped to a single document, that you can use to edit and test skillset changes interactively. When you're finished debugging, you can save your changes to the skillset. 

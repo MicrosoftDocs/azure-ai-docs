@@ -1,9 +1,9 @@
 ---
-title: "GPT Realtime Whisper overview"
-description: "Learn about GPT Realtime Whisper, a streaming transcription model for low-latency real-time captioning and monitoring of live audio."
+title: "GPT Realtime Transcribe overview"
+description: "Learn about GPT Realtime Transcribe, a streaming transcription model for low-latency real-time captioning and monitoring of live audio."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
@@ -13,6 +13,6 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# GPT Realtime Whisper overview
+# GPT Realtime Transcribe overview
 
-[!INCLUDE [GPT Realtime Whisper](../includes/gpt-realtime-whisper.md)]
+[!INCLUDE [GPT Realtime Transcribe](../includes/gpt-realtime-whisper.md)]

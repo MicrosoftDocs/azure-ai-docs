@@ -1,26 +1,26 @@
 ---
 title: Indexer Errors and Warnings
-description: This article provides information and solutions to common errors and warnings you might encounter during AI enrichment in Azure AI Search.
+description: Learn how to troubleshoot common errors and warnings you might encounter during indexing AI enrichment in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - doc-kit-assisted
 ms.topic: error-reference
-ms.date: 04/23/2026
+ms.date: 08/08/2026
+ai-usage: ai-assisted
 ms.update-cycle: 180-days
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article provides information and solutions to common errors and warnings you might encounter during indexing and AI enrichment in Azure AI Search.
 
-Indexing stops when the error count exceeds ['maxFailedItems'](cognitive-search-concept-troubleshooting.md#tip-2-see-what-works-even-if-there-are-some-failures). 
-
-If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/indexers/create#indexingparameters).
+Indexing stops when the error count exceeds [maxFailedItems](cognitive-search-concept-troubleshooting.md#tip-2-see-what-works-even-if-there-are-some-failures). To let indexers skip failed documents, configure [maxFailedItems` and `maxFailedItemsPerBatch](/rest/api/searchservice/indexers/create#indexingparameters).
 
 > [!NOTE]
-> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
-
-The error information in this article can help you resolve errors, allowing indexing to continue.
+> Each failed document and its document key, when available, appear as an error in the indexer execution status. If you configure the indexer to tolerate failures, you can use [Documents - Index](/rest/api/searchservice/documents/index) to upload the documents later.
 
 Warnings don't stop indexing, but they do indicate conditions that could result in unexpected outcomes. Whether you take action or not depends on the data and your scenario.
 
@@ -420,7 +420,7 @@ For example, if the column used for change detection is of type datetime, but th
 
 Check the data type for the 'High Water Mark' column in the source and update the indexer configuration accordingly. Once verified and updated, reset and rerun the indexer to process the column values.
 
-## `Error: Access denied to Virtual Network/Firewall rules.`
+## `Error: Access denied to Virtual Network/Firewall rules`
 
 This error typically occurs due to one of the following:
 - Firewall restrictions on Azure resources required by your indexer, depending on your configuration. These resources may include: the [data source](search-data-sources-gallery.md#generally-available-data-sources-by-azure-ai-search), Azure Storage account (used for [debug sessions](cognitive-search-debug-session.md), [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) or [knowledge store](knowledge-store-concept-intro.md)), Azure Function (used for [web API custom skills](cognitive-search-custom-skill-web-api.md)), or Microsoft Foundry deployments used during [AI enrichment](cognitive-search-concept-intro.md).
@@ -430,7 +430,7 @@ Ensure that the indexer has access to your setup components by reviewing your re
 - [Firewall and IP restriction settings](search-indexer-howto-access-ip-restricted.md)
 - [Shared private link setup](search-indexer-howto-access-private.md)
 
-## `Error: Credentials provided in the connection string are invalid or have expired.`
+## `Error: Credentials provided in the connection string are invalid or have expired`
 
 This error occurs when the Azure AI Search indexer cannot authenticate using the provided connection string or it has issues accessing the storage account to verify the credentials. 
 
@@ -440,6 +440,20 @@ This error occurs when the Azure AI Search indexer cannot authenticate using the
 | Managed identity not enabled or access not granted | The AI Search service [managed identity](search-how-to-managed-identities.md) is enabled but lacks the required access roles. | - Enable system or user-assigned [managed identity](search-how-to-managed-identities.md) on the search Service.<br>- Assign appropriate role(s) to the identity (for example, `Storage Blob Data Reader` for blob containers). Each [data source](search-data-sources-gallery.md) has its own permission requirements. |
 | Network/firewall blocks identity access | The resource contacted is configured to restrict network access. | Configure [network settings](search-indexer-howto-access-ip-restricted.md) to allow Azure AI Search access. |
 | Key authorization has been disabled | Shared key access removed on the source, but the Search service data source configuration still uses key-based authentication. | Use [managed identity](search-how-to-managed-identities.md) authentication and ensure role-based permissions are in place. From an Azure Storage perspective, this means that [shared key authorization functionality is blocked](/azure/storage/common/shared-key-authorization-prevent), either from the storage account itself, or enforced through enterprise-level Azure Policies. |
+
+## `Error: Invalid AAD tenant`
+
+This message can appear when a SharePoint in Microsoft 365 indexer can't authenticate to the Microsoft Entra tenant that owns the SharePoint site. `TenantId` is optional in the SharePoint data source connection string, but any value you provide must be the Microsoft Entra tenant ID (GUID) for that site. This tenant isn't necessarily the Microsoft Entra tenant associated with your search service.
+
+Use the following guidance to resolve the error:
+
++ For a cross-tenant SharePoint connection, include the SharePoint site's Microsoft Entra tenant ID as `TenantId` in the connection string.
++ For a connection within the same Microsoft Entra tenant, either include the SharePoint site's tenant ID or enable the search service's system-assigned managed identity. When you omit `TenantId`, the indexer uses the Microsoft Entra resource tenant associated with that identity.
++ If neither an explicit `TenantId` nor the resource tenant is available, the indexer reports: `Ensure service managed identity is enabled for your service, or TenantId is specified in your connection string.`
+
+A malformed value that isn't a GUID can cause failure when you create or update the data source. A well-formed ID for the wrong Microsoft Entra tenant can pass data source validation but fail when the indexer authenticates. For execution failures, go to the search service in the Azure portal, select **Search Management** > **Indexers**, select the indexer, and review its **Execution History** and status details.
+
+For connection string formats and instructions to find the SharePoint site's Microsoft Entra tenant ID, see [Configure the SharePoint in Microsoft 365 indexer](search-how-to-index-sharepoint-online.md#configure-the-sharepoint-in-microsoft-365-indexer).
 
 ## `Error: Error detecting index schema from data source`
 

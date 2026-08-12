@@ -1,12 +1,12 @@
 ---
-title: "Agent tools overview for Microsoft Foundry Agent Service"
-description: "Explore the tools available for agents in Foundry Agent Service, including built-in tools, web search, custom options, and the Foundry tool catalog. Get started today."
-author: jonburchel
+title: "Types of tools in Microsoft Foundry Agent Service"
+description: "Explore the types of tools available for agents in Foundry Agent Service, including built-in tools like web search and code interpreter, and custom tools like MCP, A2A, and OpenAPI."
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 04/23/2026
-ms.manager: nitinme
+ms.date: 07/28/2026
+ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -14,12 +14,13 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Agent tools overview for Foundry Agent Service
+# Types of tools in Foundry Agent Service
 
-Tools extend what your agents can do in Microsoft Foundry Agent Service. An agent on its own uses a Foundry model to generate text, but tools let it take action - searching the web, running code, querying your data, or calling your own APIs. This article explains what tools are, the types of tools available, how to use a tool in an agent, and how to manage authentication. It also introduces the Foundry tool catalog where you discover and configure tools. To use tools, you need access to a Foundry project and permission to manage tools in that project.
+Tools extend what your agents can do in Microsoft Foundry Agent Service. While an agent can use a Foundry model to generate responses, tools enable it to perform actions such as searching the web, running code, accessing enterprise data, and calling external services or APIs. This article introduces the available tool types, explains how to connect tools to agents, and describes authentication and authorization considerations.
 
-> [!NOTE]
-> The Foundry tool catalog and the core tools framework are generally available. Some individual tools are still in preview, as noted in the tool listings throughout this article. Each tool's own page also indicates its preview status with a banner. Preview tools are subject to [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+The recommended way to make tools available to agents is through a [toolbox](toolbox-overview.md). A toolbox exposes tools through a managed MCP endpoint, centralizes credential and policy management, and lets you update or version tools without modifying agent code. Although tools can also be attached directly to individual agents, a toolbox simplifies management and promotes tool reuse across agents. To use tools, you must have permissions in your Foundry project to manage tools and access the Foundry tool catalog. For more information, see [What is a toolbox?](toolbox-overview.md) and [Create and manage a toolbox in Foundry](../how-to/tools/toolbox.md).
+
+The  Foundry tools catalog and Toolboxes are generally available. Some individual tools are in preview and are identified in the tool listings and tool-specific documentation. Preview tools are subject to [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## What are tools?
 
@@ -34,7 +35,7 @@ Tools enable agents to go beyond text generation. For example, an agent can:
 
 ## Types of tools
 
-Foundry Agent Service provides two categories of tools: built-in tools that are ready to use after basic configuration, and custom tools that let you bring your own capabilities.
+Foundry Agent Service groups tools into two categories: built-in tools that are ready to use after basic configuration, and custom tools that let you bring your own capabilities. Whichever category a tool belongs to, the recommended way to make it available to an agent is through a [toolbox](toolbox-overview.md).
 
 ### Built-in tools
 
@@ -61,24 +62,14 @@ The most common custom tool options include:
 
 For the complete list of custom tool options, see [All custom tools](#all-custom-tools).
 
-### Toolbox (preview)
-
-A *toolbox* is a curated bundle of tools - such as web search, Azure AI Search, code interpreter, file search, MCP servers, and OpenAPI tools - that you configure once and expose as a single MCP-compatible endpoint. Instead of attaching each tool individually to every agent definition, define the collection in a toolbox and connect any agent to the toolbox endpoint. Because a toolbox exposes an MCP-compatible endpoint, any MCP-capable runtime can consume it - including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and custom code.
-
-Toolboxes support versioning. Create multiple versions, test a new version against the version-specific endpoint, and then promote it to default when it's ready. Agents that connect to the Toolbox consumer endpoint automatically receive the promoted default version without code changes. For details, see [Manage toolbox versions](../how-to/tools/toolbox.md#promote-a-version-to-default).
-
-Manage authentication for tools in a toolbox centrally. The toolbox handles credential injection, token refresh, and policy enforcement at runtime by using Microsoft Entra ID and OAuth, so consuming agents don't need to manage credentials for each tool individually. For authentication details, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
-
-For setup steps, see [Create and use a Foundry Toolbox](../how-to/tools/toolbox.md).
-
 ## Use a tool in an agent
 
-To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the web search tool enabled and sends a query:
+To add a tool to an agent, put the tool in a [toolbox](toolbox-overview.md) and attach the toolbox to the agent as an MCP tool. The following example creates a toolbox with the web search tool, attaches the toolbox to an agent, and sends a query:
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
+from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool, MCPTool
 
 # Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 PROJECT_ENDPOINT = "your_project_endpoint"
@@ -90,13 +81,45 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
-# Create an agent with web search enabled
+# 1. Add the tool to a toolbox. Using a toolbox is the recommended way to give
+#    agents tools: you curate tools once and reuse the toolbox across agents.
+toolbox = project.toolboxes.create_toolbox_version(
+    name="web-search-toolbox",
+    description="Toolbox with the web search tool",
+    tools=[WebSearchTool()],
+)
+
+# 2. The toolbox exposes an MCP-compatible endpoint.
+TOOLBOX_MCP_URL = (
+    f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+    f"/versions/{toolbox.version}/mcp?api-version=v1"
+)
+
+# 3. Create a remote-tool project connection that points at the toolbox endpoint.
+#    Call a user Entra token so the caller's identity is passed through.
+#    Create the connection once with the Azure Developer CLI:
+#    
+#    azd ai connection create web-search-toolbox-conn \
+#      --kind remote-tool \
+#      --target "<TOOLBOX_MCP_URL>" \
+#      --auth-type user-entra-token \
+#      --audience https://ai.azure.com
+TOOLBOX_CONNECTION_NAME = "web-search-toolbox-conn"
+
+# 4. Attach the toolbox to the agent as an MCP tool.
 agent = project.agents.create_version(
     agent_name="web-search-agent",
     definition=PromptAgentDefinition(
         model="gpt-4.1-mini",
         instructions="You are a helpful assistant that can search the web.",
-        tools=[WebSearchTool()],
+        tools=[
+            MCPTool(
+                server_label="toolbox",
+                server_url=TOOLBOX_MCP_URL,
+                require_approval="never",
+                project_connection_id=TOOLBOX_CONNECTION_NAME,
+            )
+        ],
     ),
 )
 
@@ -272,7 +295,7 @@ The following table lists all custom tool options for connecting your own capabi
 | [Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md) | Connect your agent to tools hosted on an MCP server endpoint. |
 | [OpenAPI tool](../how-to/tools/openapi.md) | Connect your agent to external APIs using an OpenAPI 3.0 or 3.1 specification. |
 | [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md) | Connect your agent to other agents through A2A-compatible endpoints. |
-| [Toolbox (preview)](../how-to/tools/toolbox.md) | Bundle multiple tools into a single MCP endpoint for reuse across agents. |
+| [Toolbox](../how-to/tools/toolbox.md) | Bundle multiple tools into a single MCP endpoint for reuse across agents. |
 
 ## Key concepts
 
@@ -280,7 +303,7 @@ Use these definitions to keep terminology consistent:
 
 | Term | Meaning |
 | --------- | --------- |
-| Foundry Tools | The portal experience where you discover, configure, and manage tools for agents and workflows. |
+| Foundry Tools | The portal experience where you discover, configure, and manage tools for agents. |
 | Tool catalog | The browsable list of available tools, including public and organizational tools. |
 | Private tool catalog | An organization-scoped catalog for tools that only users in your organization can discover and configure. |
 | MCP server | A server that exposes tools by using the Model Context Protocol (MCP). |
@@ -310,7 +333,7 @@ The MCP tool can pass custom headers that a remote MCP server might require for 
 
 ## Discover and manage tools in the portal
 
-In the Foundry portal, go to your project and select **Build** > **Tools** to open Foundry Tools. From there, you can browse the tool catalog, configure tools, and add them to agents or workflows. If you need tools that are only visible within your organization, create a [private tool catalog](../how-to/private-tool-catalog.md).
+In the Foundry portal, go to your project and select **Build** > **Tools** to open Foundry Tools. From there, you can browse the tool catalog, configure tools, and add them to agents. If you need tools that are only visible within your organization, create a [private tool catalog](../how-to/private-tool-catalog.md).
 
 To explore tools while you build, use the Agents playground. For more information, see [Microsoft Foundry Playgrounds](../../concepts/concept-playgrounds.md).
 
@@ -341,9 +364,9 @@ When you select a tool, Foundry Tools shows the setup details you need to config
 
 ### Manage configured tools
 
-In your tools list, you can find the tools you configured, along with details such as endpoints and authentication settings. You can also add tools to agents and workflows.
+In your tools list, you can find the tools you configured, along with details such as endpoints and authentication settings. You can also add tools to agents.
 
-Before you delete a tool, check which agents or workflows use it. Deleting a tool can break runs that depend on it.
+Before you delete a tool, check which agents use it. Deleting a tool can break runs that depend on it.
 
 <!--
 :::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the Foundry portal." lightbox="../media/tool-catalog/tool-view.png" :::
@@ -366,7 +389,7 @@ Use these checks to resolve common issues:
 ## Related content
 
 - [Tool best practices for Foundry Agent Service](tool-best-practice.md)
-- [Create and use a Foundry Toolbox (preview)](../how-to/tools/toolbox.md)
+- [Create and use a Foundry Toolbox](../how-to/tools/toolbox.md)
 - [Set up MCP server authentication](../how-to/mcp-authentication.md)
 - [Govern MCP tools by using an AI gateway](../how-to/tools/governance.md)
 - [Create a private tool catalog](../how-to/private-tool-catalog.md)

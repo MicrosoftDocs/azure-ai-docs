@@ -1,11 +1,12 @@
 ---
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 01/22/2026
+ms.date: 07/31/2026
 ms.author: fasantia
 author: santiagxf
+ai-usage: ai-assisted
 ---
 
 # [Python](#tab/python)
@@ -22,9 +23,9 @@ For Microsoft Entra ID authentication, also install:
 pip install azure-identity
 ```
 
-Use the package to consume the model. The following example shows how to create a client to consume chat completions with Microsoft Entra ID and make a test call to the chat completions endpoint with your model deployment.
+Use the package to consume the model. The following example shows how to create a client and make a test call to the Responses API by using Microsoft Entra ID and your model deployment.
 
-Replace `<resource>` with your Foundry resource name. Find it in the Azure portal or by running `az cognitiveservices account list`. Replace `DeepSeek-V3.1` with your actual deployment name.
+Replace `<resource>` with your Foundry resource name. Find it in the Azure portal or by running `az cognitiveservices account list`. Replace `deepseek-v3-0324` with your actual deployment name.
 
 ```python
 from openai import OpenAI
@@ -40,15 +41,12 @@ client = OpenAI(
     api_key=token_provider,
 )
 
-completion = client.chat.completions.create(
-    model="DeepSeek-V3.1",  # Required: your deployment name
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "What is Azure AI?"}
-    ]
+response = client.responses.create(
+    model="deepseek-v3-0324",  # Replace with your model deployment name.
+    input="What is Azure AI?",
 )
 
-print(completion.choices[0].message.content)
+print(response.output_text)
 ```
 
 Expected output
@@ -73,21 +71,16 @@ For Microsoft Entra ID authentication, also install the `Azure.Identity` package
 dotnet add package Azure.Identity
 ```
 
-Import the following namespaces:
+Then, use the package to consume the model. The following example shows how to create a client and make a test call to the Responses API by using Microsoft Entra ID and your model deployment.
+
+Replace `<resource>` with your Foundry resource name (find it in the Azure portal). Replace `deepseek-v3-0324` with your actual deployment name.
 
 ```csharp
 using Azure.Identity;
 using OpenAI;
-using OpenAI.Chat;
+using OpenAI.Responses;
 using System.ClientModel.Primitives;
-```
 
-Then, use the package to consume the model. The following example shows how to create a client to consume chat completions with Microsoft Entra ID, and then make a test call to the chat completions endpoint with your model deployment.
-
-Replace `<resource>` with your Foundry resource name (find it in the Azure portal). Replace `gpt-4o-mini` with your actual deployment name.
-
-
-```csharp
 #pragma warning disable OPENAI001
 
 BearerTokenPolicy tokenPolicy = new(
@@ -95,20 +88,18 @@ BearerTokenPolicy tokenPolicy = new(
     "https://ai.azure.com/.default"
 );
 
-ChatClient client = new(
-    model: "gpt-4o-mini", // Your deployment name
+OpenAIResponseClient client = new(
+    model: "deepseek-v3-0324", // Replace with your model deployment name.
     authenticationPolicy: tokenPolicy,
-    options: new OpenAIClientOptions() {
+    options: new OpenAIClientOptions()
+    {
         Endpoint = new Uri("https://<resource>.openai.azure.com/openai/v1/")
     }
 );
 
-ChatCompletion completion = client.CompleteChat(
-    new SystemChatMessage("You are a helpful assistant."),
-    new UserChatMessage("What is Azure AI?")
-);
+OpenAIResponse response = client.CreateResponse("What is Azure AI?");
 
-Console.WriteLine(completion.Content[0].Text);
+Console.WriteLine(response.GetOutputText());
 ```
 
 Expected output:
@@ -133,9 +124,9 @@ For Microsoft Entra ID authentication, also install:
 npm install @azure/identity
 ```
 
-Then, use the package to consume the model. The following example shows how to create a client to consume chat completions with Microsoft Entra ID, and then make a test call to the chat completions endpoint with your model deployment.
+Then, use the package to consume the model. The following example shows how to create a client and make a test call to the Responses API by using Microsoft Entra ID and your model deployment.
 
-Replace `<resource>` with your Foundry resource name (find it in the Azure portal or by running `az cognitiveservices account list`). Replace `DeepSeek-V3.1` with your actual deployment name.
+Replace `<resource>` with your Foundry resource name (find it in the Azure portal or by running `az cognitiveservices account list`). Replace `deepseek-v3-0324` with your actual deployment name.
 
 ```javascript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
@@ -151,15 +142,12 @@ const client = new OpenAI({
     apiKey: tokenProvider
 });
 
-const completion = await client.chat.completions.create({
-    model: "DeepSeek-V3.1", // Required: your deployment name
-    messages: [
-        { role: "system", content: "You are a helpful assistant." },
-        { role: "user", content: "What is Azure AI?" }
-    ]
+const response = await client.responses.create({
+    model: "deepseek-v3-0324", // Replace with your model deployment name.
+    input: "What is Azure AI?"
 });
 
-console.log(completion.choices[0].message.content);
+console.log(response.output_text);
 ```
 
 Expected output:
@@ -184,16 +172,19 @@ For Microsoft Entra ID authentication, also add:
 </dependency>
 ```
 
-Then, use the package to consume the model. The following example shows how to create a client to consume chat completions with Microsoft Entra ID, and then make a test call to the chat completions endpoint with your model deployment.
+Then, use the package to consume the model. The following example shows how to create a client and make a test call to the Responses API by using Microsoft Entra ID and your model deployment.
 
-Replace `<resource>` with your Foundry resource name (find it in the Azure portal). Replace `DeepSeek-V3.1` with your actual deployment name.
+Replace `<resource>` with your Foundry resource name (find it in the Azure portal). Replace `deepseek-v3-0324` with your actual deployment name.
 
 ```java
-import com.openai.client.OpenAIClient;
-import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.azure.identity.AuthenticationUtil;
 import com.azure.identity.DefaultAzureCredential;
 import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.openai.models.chat.completions.*;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
 
 DefaultAzureCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
 
@@ -207,14 +198,19 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
     ))
     .build();
 
-ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-    .addSystemMessage("You are a helpful assistant.")
-    .addUserMessage("What is Azure AI?")
-    .model("DeepSeek-V3.1") // Required: your deployment name
+ResponseCreateParams params = ResponseCreateParams.builder()
+    .model("deepseek-v3-0324") // Replace with your model deployment name.
+    .input("What is Azure AI?")
     .build();
 
-ChatCompletion completion = client.chat().completions().create(params);
-System.out.println(completion.choices().get(0).message().content());
+Response response = client.responses().create(params);
+
+// The Responses API has no single output-text accessor; concatenate the output items.
+response.output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(outputText -> System.out.println(outputText.text()));
 ```
 
 Expected output:
@@ -227,56 +223,52 @@ Reference: [OpenAI Java SDK](https://github.com/openai/openai-java) and [Default
 
 # [REST](#tab/rest)
 
-Explore the API design in the reference section to see which parameters are available. Indicate the authentication token in the header `Authorization`. For example, the [Chat completion](../../openai/latest.md#create-chat-completion) reference section details how to use the `/chat/completions` route to generate predictions based on chat-formatted instructions. The path `/models` is included in the root of the URL:
+Explore the API design in the [reference section](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1&preserve-view=true) to see which parameters are available. Insert the authentication (bearer) token in the `Authorization` header.
+
+For example, the [Responses API](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1&preserve-view=true) reference section details how to use the `/responses` route to generate predictions. The `/openai/v1/` path is included in the root of the URL:
 
 __Request__
 
-Replace `<resource>` with your Foundry resource name (find it in the Azure portal or by running `az cognitiveservices account list`). Replace `MAI-DS-R1` with your actual deployment name.
+Replace `<resource>` with your Foundry resource name (find it in the Azure portal or by running `az cognitiveservices account list`). Replace `deepseek-v3-0324` with your actual deployment name.
 
-The base_url will accept both `https://<resource>.openai.azure.com/openai/v1/` and `https://<resource>.services.ai.azure.com/openai/v1/` formats.
+The base URL accepts both `https://<resource>.openai.azure.com/openai/v1/` and `https://<resource>.services.ai.azure.com/openai/v1/` formats.
 
 ```bash
-curl -X POST https://<resource>.openai.azure.com/openai/v1/chat/completions \
+curl -X POST https://<resource>.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-      "model": "MAI-DS-R1",
-      "messages": [
-      {
-        "role": "system",
-        "content": "You are a helpful assistant."
-      },
-      {
-        "role": "user",
-        "content": "Explain what the bitter lesson is?"
-      }
-    ]
-  }'
+      "model": "deepseek-v3-0324",
+      "input": "Explain what the bitter lesson is?"
+    }'
 ```
 
 __Response__
 
-If authentication is successful, you receive a `200 OK` response with chat completion results in the response body:
+If authentication is successful, you receive a `200 OK` response with the response results in the response body:
 
 ```json
 {
-  "id": "chatcmpl-...",
-  "object": "chat.completion",
-  "created": 1738368234,
-  "model": "MAI-DS-R1",
-  "choices": [
+  "id": "resp_...",
+  "object": "response",
+  "created_at": 1738368234,
+  "model": "deepseek-v3-0324",
+  "status": "completed",
+  "output": [
     {
-      "index": 0,
-      "message": {
-        "role": "assistant",
-        "content": "The bitter lesson refers to a key insight in AI research that emphasizes the importance of general-purpose learning methods that leverage computation, rather than human-designed domain-specific approaches. It suggests that methods which scale with increased computation tend to be more effective in the long run."
-      },
-      "finish_reason": "stop"
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "The bitter lesson refers to a key insight in AI research that emphasizes the importance of general-purpose learning methods that leverage computation, rather than human-designed domain-specific approaches. It suggests that methods which scale with increased computation tend to be more effective in the long run."
+        }
+      ]
     }
   ],
   "usage": {
-    "prompt_tokens": 28,
-    "completion_tokens": 52,
+    "input_tokens": 28,
+    "output_tokens": 52,
     "total_tokens": 80
   }
 }
@@ -284,14 +276,15 @@ If authentication is successful, you receive a `200 OK` response with chat compl
 
 Tokens must be issued with scope `https://ai.azure.com/.default`.
 
-For testing purposes, the easiest way to get a valid token for your user account is to use the Azure CLI. In a console, run the following Azure CLI command:
+For testing purposes, the easiest way to get a valid token for your user account is to use the Azure CLI. In a console, sign in and request a token by running the following Azure CLI commands:
 
 ```azurecli
-az account get-access-token --resource https://cognitiveservices.azure.com --query "accessToken" --output tsv
+az login
+az account get-access-token --resource https://ai.azure.com --query "accessToken" --output tsv
 ```
 
 This command outputs an access token that you can store in the `$AZURE_OPENAI_AUTH_TOKEN` environment variable.
 
-Reference: [Chat Completions API](../../openai/latest.md#create-chat-completion)
+Reference: [Responses API](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1&preserve-view=true)
 
 ---

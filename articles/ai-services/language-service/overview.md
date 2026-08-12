@@ -3,11 +3,12 @@ title: What is Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 03/30/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -16,7 +17,7 @@ ms.author: lajanuar
 Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Microsoft Foundry, REST APIs, and client libraries. For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server), which is available both as a remote server in the **Microsoft Foundry Tool Catalog** and as a local server for self-hosted environments.
 
 ## Core capabilities
-
+<!-- markdownlint-disable MD036 -->
 **Recommended for new development**
 
 Core capabilities are the primary, actively evolving features of Azure Language. These features receive ongoing investment and feature updates, and are recommended for new development and long-term planning. If you are starting a new project or designing a future architecture, use core capabilities as the foundation for your natural language processing workflows.
@@ -48,6 +49,10 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
 
+***Document PII***
+
+The Document PII playground in Microsoft Foundry is generally available. It ships with curated sample documents and expected outputs, so you can evaluate detection of common PII types - including names, addresses, financial IDs, and health identifiers - without uploading your own data. A single view lets you compare detection results across entity types before you transition to uploading real documents for live testing. The playground uses the same Document PII model and policies as the production API, so results align with production behavior. For more information, see [Document-based PII overview](./personally-identifiable-information/document-based-pii-overview.md).
+
 ### Language detection
 
 [Language detection](./language-detection/overview.md) evaluates text and detects a wide range of languages and variant dialects.
@@ -58,15 +63,13 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 [Custom named entity recognition (CNER)](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
 
-:::image type="content" source="media/studio-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/studio-examples/custom-named-entity-recognition.png":::
+:::image type="content" source="media/foundry-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/foundry-examples/custom-named-entity-recognition.png":::
 
 ### Prebuilt NER
 
 [Prebuilt named entity recognition (NER)](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
 
 :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry." lightbox="media/overview/named-entity-recognition.png":::
-
-
 
 ### Text analytics for health
 
@@ -193,7 +196,7 @@ This section helps you decide which core Language feature you should use for you
 
 | What do you want to do? | Document format | Your best solution | Is this solution customizable?* |
 | --------- | --------- | --------- | --------- |
-| Detect and/or redact sensitive information such as `PII` and `PHI`. | Unstructured text, <br> transcribed conversations | [PII detection](./personally-identifiable-information/overview.md) | |
+| Detect and redact sensitive information such as `PII` and `PHI`. | Unstructured text, <br> transcribed conversations, <br> native documents (.pdf, .docx, .txt) | [PII detection](./personally-identifiable-information/overview.md) | |
 | Extract categories of information without creating a custom model. | Unstructured text | The [preconfigured NER feature](./named-entity-recognition/overview.md) | |
 | Extract categories of information using a model specific to your data. | Unstructured text | [Custom NER](./custom-named-entity-recognition/overview.md) | ✓ |
 | Extract medical information from clinical/medical documents, without building a model. | Unstructured text | [Text analytics for health](./text-analytics-for-health/overview.md) | |

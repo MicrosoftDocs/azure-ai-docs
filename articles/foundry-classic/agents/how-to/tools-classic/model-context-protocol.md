@@ -2,14 +2,14 @@
 title: "Connect to a Model Context Protocol Server Endpoint in Foundry Agent Service (Preview) (classic)"
 description: "Learn how to add MCP servers to Foundry Agent Service. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ---
 

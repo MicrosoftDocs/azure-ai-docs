@@ -1,7 +1,7 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models REST API reference"
-description: "Learn how to use Azure OpenAI's REST API. In this article, you learn about authorization options,  how to structure a request and receive a response."
-manager: nitinme
+title: "Azure OpenAI image and audio REST API reference (2024-10-21)"
+description: "Reference for the Azure OpenAI image generation and audio (speech) REST API operations in the 2024-10-21 GA release."
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: reference
@@ -16,6 +16,6 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Azure OpenAI in Microsoft Foundry Models REST API reference
+# Azure OpenAI image and audio REST API reference (2024-10-21)
 
 [!INCLUDE [reference content](includes/reference-content.md)]

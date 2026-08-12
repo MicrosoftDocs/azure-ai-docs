@@ -2,16 +2,16 @@
 title: "Use the image generation tool (preview) in Foundry Agent Service"
 description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
-ms.date: 03/30/2026
-author: jonburchel
+ms.date: 08/05/2026
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-image-generation
 ---
@@ -20,9 +20,20 @@ zone_pivot_groups: selection-image-generation
 
 > [!IMPORTANT] 
 > - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
-> - You also need a compatible orchestrator model (`gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, or `gpt-5` series) deployed in the same Foundry project.
+> - You also need a compatible orchestrator model deployed in the same Foundry project. See [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
 The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. The agent's Foundry model orchestrates the image generation request and returns base64-encoded output that you can save to a file.
+
+## Prerequisites
+
+- An Azure account with an active subscription.
+- A Foundry project.
+- A basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md).
+- Permissions to create and manage agent versions in the project.
+- Approval to use `gpt-image-1`. [Apply for access to GPT Image models](https://aka.ms/oai/gptimage1access) before you deploy the model.
+- Two model deployments in the same Foundry project:
+  - A compatible Azure OpenAI model deployment for the agent (for example, `gpt-5`).
+  - An image generation model deployment (`gpt-image-1`) in a supported region.
 
 ## Usage support
 
@@ -32,30 +43,28 @@ The following table shows SDK and setup support.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-## Prerequisites
-
-- An Azure account with an active subscription.
-- A Foundry project.
-- A basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md).
-- Permissions to create and manage agent versions in the project.
-- Two model deployments in the same Foundry project:
-  - A compatible Azure OpenAI model deployment for the agent (for example, `gpt-4o`).
-  - An image generation model deployment (`gpt-image-1`).
-
 ## Configure the image generation tool
 
-1. Deploy your orchestrator model (for example, `gpt-4o`) to your Foundry project.
+1. Deploy your orchestrator model (for example, `gpt-5`) to your Foundry project.
 1. Deploy `gpt-image-1` to the same Foundry project.
 1. Confirm your region and model support for image generation. See [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## Code examples
 
-Before you start, install the latest SDK package. The .NET SDK is currently in preview. For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
+Use the runtime and install command in your selected language section. The .NET SDK is currently in preview. For general SDK setup, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 ## Create an agent with the image generation tool
 
-This sample creates an agent with the image generation tool, generates an image, and saves it to a file.
+This sample creates an agent with the image generation tool, generates an image, and saves it to a file. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+Use Python 3.9 or later for the prompt-agent sample. Install its dependencies:
+
+```bash
+python -m pip install azure-ai-projects azure-identity
+```
+
+### Prompt agents
 
 ```python
 import base64
@@ -80,7 +89,7 @@ openai = project.get_openai_client()
 agent = project.agents.create_version(
     agent_name="agent-image-generation",
     definition=PromptAgentDefinition(
-        model="gpt-4.1-mini",
+        model="gpt-5",
         instructions="Generate images based on user prompts.",
         tools=[ImageGenTool(model=IMAGE_MODEL, quality="low", size="1024x1024")],
     ),
@@ -108,6 +117,66 @@ if image_data and image_data[0]:
         f.write(base64.b64decode(image_data[0]))
     print(f"Image saved to: {file_path}")
 ```
+
+### Hosted agents
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_image_generation_tool()` to attach the image generation tool. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import base64
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+IMAGE_MODEL = "gpt-image-1"
+
+
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="Generate images based on user prompts.",
+        tools=[
+            FoundryChatClient.get_image_generation_tool(
+                model=IMAGE_MODEL,
+                quality="low",
+                size="1024x1024",
+            )
+        ],
+    )
+
+    result = await agent.run("Generate an image of the Microsoft logo.")
+
+    # Extract and save the generated image from the raw response.
+    for output in result.raw_representation.output:
+        if output.type == "image_generation_call":
+            file_path = os.path.abspath("microsoft.png")
+            with open(file_path, "wb") as f:
+                f.write(base64.b64decode(output.result))
+            print(f"Image saved to: {file_path}")
+
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The tool returns base64-encoded image bytes, which the sample saves to disk; the model's text reply is also printed:
+
+```console
+Image saved to: /path/to/microsoft.png
+Agent: Here is the generated Microsoft logo image.
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
@@ -115,10 +184,23 @@ if image_data and image_data[0]:
 
 In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
 
+Use the .NET 8 SDK or later. Add the required packages to your project:
+
+```bash
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Extensions.OpenAI
+dotnet add package Azure.Identity
+```
+
 ```csharp
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
+using Azure.Core;
+using Azure.Core.Pipeline;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -141,7 +223,7 @@ AIProjectClient projectClient = new(
 // when creating this tool. The ImageGenerationTool parameters include
 // the image generation model, image quality and resolution.
 // Supported image generation models include gpt-image-1.
-DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5")
 {
 Instructions = "Generate images based on user prompts.",
 Tools = {
@@ -211,6 +293,8 @@ Agent deleted
 :::zone pivot="rest-api"
 ## Create an agent with the image generation tool
 
+Use a Bash-compatible shell with Azure CLI, `curl`, `jq`, and a `base64` command that supports `--decode`. Set `FOUNDRY_PROJECT_ENDPOINT` before you run the requests.
+
 Get an access token:
 
 ```bash
@@ -228,7 +312,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
     "description": "Test agent for image generation capabilities",
     "definition": {
       "kind": "prompt",
-      "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+      "model": "gpt-5",
       "tools": [
         {
           "type": "image_generation"
@@ -245,7 +329,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "x-ms-oai-image-generation-deployment: $IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME" \
+  -H "x-ms-oai-image-generation-deployment: gpt-image-1" \
   -d '{
     "agent": {
       "type": "agent_reference",
@@ -299,11 +383,21 @@ To extract and save the image, pipe the response through `jq` and `base64`:
 RESPONSE=$(curl -s -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "x-ms-oai-image-generation-deployment: $IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME" \
+  -H "x-ms-oai-image-generation-deployment: gpt-image-1" \
   -d '{ ... }')
 
 echo "$RESPONSE" | jq -r '.output[] | select(.type=="image_generation_call") | .result' \
   | base64 --decode > generated_image.png
+```
+
+## Clean up the REST agent
+
+Delete the agent after you save the generated image:
+
+```bash
+curl --request DELETE \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/agents/image-gen-agent?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 :::zone-end
@@ -311,7 +405,13 @@ echo "$RESPONSE" | jq -r '.output[] | select(.type=="image_generation_call") | .
 :::zone pivot="typescript"
 ## Create an agent with image generation tool
 
-This sample demonstrates how to create an AI agent with image generation capabilities by using the Azure AI Projects client. The agent generates images based on text prompts and saves them to files. For a JavaScript example, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentImageGeneration.js) in the Azure SDK for JavaScript repository on GitHub.
+This sample demonstrates how to create an AI agent with image generation capabilities by using the Azure AI Projects client. The agent generates images based on text prompts and saves them to files. For a JavaScript example, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentImageGeneration.js) in the Azure SDK for JavaScript repository on GitHub.
+
+Use Node.js 22 or later. Install the required packages:
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -332,7 +432,7 @@ export async function main(): Promise<void> {
   // Create Agent with image generation tool
   const agent = await project.agents.createVersion("agent-image-generation", {
     kind: "prompt",
-    model: "gpt-4.1-mini",
+    model: "gpt-5",
     instructions: "Generate images based on user prompts",
     tools: [
       {
@@ -350,7 +450,7 @@ export async function main(): Promise<void> {
       input: "Generate an image of Microsoft logo.",
     },
     {
-      body: { agent: { name: agent.name, type: "agent_reference" } },
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
       headers: { "x-ms-oai-image-generation-deployment": IMAGE_MODEL },
     },
   );
@@ -396,14 +496,19 @@ Image downloaded and saved to: /path/to/microsoft.png
 
 ## Use image generation in a Java agent
 
-Add the dependency to your `pom.xml`:
+Use JDK 17 or later and Maven 3.8 or later. Add the dependencies to your `pom.xml`:
 
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
+  <dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.18.4</version>
+  </dependency>
 ```
 
 ### Create an agent with image generation
@@ -417,10 +522,13 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
 import java.util.Collections;
 
 public class ImageGenerationExample {
-    public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
         // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
         String projectEndpoint = "your_project_endpoint";
         String imageModel = "gpt-image-1";
@@ -439,7 +547,7 @@ public class ImageGenerationExample {
             .setSize(ImageGenToolSize.fromString("1024x1024"));
 
         // Create agent with image generation tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5")
             .setInstructions("You are a creative assistant that can generate images based on descriptions.")
             .setTools(Collections.singletonList(imageGenTool));
 
@@ -455,10 +563,27 @@ public class ImageGenerationExample {
             ResponseCreateParams.builder()
                 .input("Generate an image of a sunset over a mountain range"));
 
-        // The response output includes image_generation_call items with base64-encoded image data.
-        // Extract and save the image using the response output items.
         System.out.println("Response status: " + response.status().map(Object::toString).orElse("unknown"));
-        System.out.println("Output items: " + response.output().size());
+
+        Path imagePath = Path.of("generated-image.png");
+        boolean imageSaved = false;
+        for (var outputItem : response.output()) {
+          if (outputItem.isImageGenerationCall()) {
+            String result = outputItem.asImageGenerationCall().result()
+              .orElseThrow(() -> new IllegalStateException("Image result is missing."));
+            Files.write(imagePath, Base64.getDecoder().decode(result));
+            long imageSize = Files.size(imagePath);
+            if (imageSize == 0) {
+              throw new IllegalStateException("The generated image is empty.");
+            }
+            System.out.printf("Image saved to: %s (%d bytes)%n", imagePath.toAbsolutePath(), imageSize);
+            imageSaved = true;
+            break;
+          }
+        }
+        if (!imageSaved) {
+          throw new IllegalStateException("No image_generation_call output found.");
+        }
 
         // Clean up
         agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
@@ -466,27 +591,19 @@ public class ImageGenerationExample {
 }
 ```
 
-> [!NOTE]
-> The `response.output()` list contains `image_generation_call` items with base64-encoded image data in the `result` field. Use `java.util.Base64.getDecoder().decode()` to convert the result to bytes and write them to a file.
-
 ### Expected output
 
 ```output
 Agent created: image-gen-agent (version 1)
 Response status: completed
-Output items: 2
+Image saved to: <path>/generated-image.png (<bytes> bytes)
 ```
 
 :::zone-end
 
 ## When to use the image generation tool
 
-The image generation tool in Agent Service offers advantages over the Azure OpenAI Image API:
-
-| Advantage | Description |
-| --- | --- |
-| Streaming | Display partial image outputs during generation to improve perceived latency. |
-| Flexible inputs | Accept image file IDs as inputs, in addition to raw image bytes. | 
+Use the image generation tool when an agent needs to generate an image from a text prompt as part of a conversation or multistep workflow. Use the Azure OpenAI Image API directly for image editing, masks, or partial-image streaming.
 
 ## Optional parameters
 
@@ -500,16 +617,14 @@ Customize image generation by specifying these optional parameters when you crea
 | `output_format` | Output format. One of `png`, `webp`, or `jpeg`. |
 | `output_compression` | Compression level for `webp` and `jpeg` output (0-100). |
 | `moderation` | Moderation level for the generated image. One of `auto` or `low`. |
-| `partial_images` | Number of partial images to generate in streaming mode (0-3). |
-| `input_image_mask` | Optional mask for inpainting. Provide `image_url` (base64) or `file_id`. |
 
 > [!NOTE]
-> Image generation time varies based on the `quality` setting and prompt complexity. For time-sensitive applications, consider using `quality: "low"` or enabling `partial_images` for streaming.
+> Image generation time varies based on the `quality` setting and prompt complexity. For time-sensitive applications, consider using `quality: "low"`.
 
 Use the Responses API if you want to: 
 
 - Build conversational image experiences with GPT Image. 
-- Stream partial image results during generation for a smoother user experience. 
+- Include image generation in a multistep agent workflow.
 
 ## Write effective text-to-image prompts
 
@@ -535,7 +650,7 @@ If you see only text output and no `image_generation_call` item, the request mig
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| Image generation fails | Missing deployment | Verify both the orchestrator model (for example, `gpt-4o`) and `gpt-image-1` deployments exist in the same Foundry project. |
+| Image generation fails | Missing deployment | Verify both the orchestrator model (for example, `gpt-5`) and `gpt-image-1` deployments exist in the same Foundry project. |
 | Image generation fails | Missing or incorrect header | Verify the header `x-ms-oai-image-generation-deployment` is present on the Responses request and matches your image generation deployment name. |
 | Agent uses wrong deployment | Model name misconfiguration | Confirm the orchestrator model name in your agent definition differs from the image generation deployment name. |
 | Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See [Guardrails and controls overview](../../../guardrails/guardrails-overview.md) for guidelines on acceptable prompts. |

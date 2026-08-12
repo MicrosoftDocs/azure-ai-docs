@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Content Understanding."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-content-understanding
+manager: mcleans
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
-ms.date: 03/31/2026
+ms.date: 07/16/2026
 ai-usage: ai-assisted
 ---
 
@@ -27,13 +27,13 @@ Content Understanding can process audio input or voice audio, image files, docum
 
 ### Authenticate 
 
-Content Understanding first requires users to authenticate access to Content Understanding API by using Foundry Tools API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service. Apart from authenticating access with API Key, Content Understanding also supports Azure Active Directory (Azure AD) and Entra ID Authentication. For more information, see [Authenticate requests to Foundry Tools](/azure/ai-services/authentication?tabs=powershell), which has additional information on Azure AD, Entra ID, and authorizing access to managed identities. 
+Content Understanding requires you to authenticate API access by using a Foundry Tools resource key or a Microsoft Entra ID token. Each request to the service URL must include an authentication header that validates access to your subscription. For more information, see [Authentication in Foundry Tools](/azure/ai-services/authentication?tabs=powershell).
 
 ### Secure data in transit 
 
-All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). 
+All Foundry Tools endpoints use HTTPS to encrypt data in transit. The client operating system must support Transport Layer Security (TLS) 1.2 or 1.3. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls).
 
-### Encrypts input data for processing 
+### Encrypt input data for processing
 
 When you submit your files to a Content Understanding operation, it starts the process of analyzing the input. Your data and results are then temporarily encrypted and stored in Azure Storage in the same region as your Content Understanding resource before being sent to Azure OpenAI for further processing. While compute resources aren't dedicated per customer, requests are processed in logically isolated, sandboxed containers to ensure workload separation and prevent cross-tenant data exposure. 
 
@@ -48,7 +48,7 @@ Processing locations depend on the type of operation:
 
 ### Retrieve the results 
 
-The "Get Result" operation is authenticated against the same API key that was used to call the "Analyze" operation to ensure no other customer can access your data. It returns the analysis job completion status, When the status shows as succeeded, the operation also returns the extracted results in JSON format. 
+The **Get Result** operation uses the same authentication credentials as the **Analyze** operation to ensure no other customer can access your data. It returns the analysis job completion status. When the status is `Succeeded`, the operation also returns the extracted results in JSON format.
 
  
 
@@ -62,10 +62,17 @@ Input documents and intermediate representations are written to secure Microsoft
 
 ### Face 
 
-Face is a gated feature as it processes biometric data. We detect faces in the input files and group them by their similarity. All intermediate data don't persist beyond the processing of the request. The face groupings associated with analysis results are persisted for 48 hours unless the user explicitly deletes face data. For more information, refer to the [Data and Privacy for Face documentation](/azure/ai-foundry/responsible-ai/face/data-privacy-security). 
+Face is a gated feature as it processes biometric data. The service detects faces in the input files and groups them by their similarity. The service doesn't persist any intermediate data beyond the processing of the request. The face groupings associated with analysis results persist for 48 hours unless the user explicitly deletes face data. For more information, see the [Data and Privacy for Face documentation](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
- 
+### Labeled data for custom analyzers
+
+A Content Understanding Studio project can use an associated, customer-owned Azure Storage account to hold labeled sample documents for custom analyzer training. How the built analyzer uses this data depends on the API version.
+
+| API version | Labeled data behavior |
+| --- | --- |
+| `2025-11-01` | The built analyzer retains the labeled training data and uses it at analysis time. |
+| `2026-06-01-preview` | Training distills information from the labeled samples into the built analyzer. The analyzer doesn't retain the labeled documents or require access to them at analysis time. |
 
 ### Azure OpenAI 
 
-Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying Foundry Tools. Refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information.
+Content Understanding also uses an Azure OpenAI model after the underlying Foundry Tools process each modality input. For more information, see [Data, privacy, and security for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy).

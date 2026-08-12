@@ -2,7 +2,7 @@
 title: "Azure OpenAI in Microsoft Foundry Models dynamic quota (classic)"
 description: "Learn how to use Azure OpenAI dynamic quota (classic)"
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

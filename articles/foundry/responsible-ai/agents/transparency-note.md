@@ -3,7 +3,7 @@ title: "Transparency Note for Foundry Agent Service"
 description: "Transparency Note for Foundry Agent Service"
 author: aahill
 ms.author: aahi
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article

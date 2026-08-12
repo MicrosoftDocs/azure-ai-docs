@@ -1,7 +1,7 @@
 ---
 title: "GPT-5 vs GPT-4.1 - choosing the right model for your use case"
 description: "Compare GPT-5 and GPT-4.1 to choose the best Azure OpenAI model for your use case, covering reasoning depth, latency, cost, and ideal scenarios for each"
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry

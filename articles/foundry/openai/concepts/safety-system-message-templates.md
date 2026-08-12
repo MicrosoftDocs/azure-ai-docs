@@ -4,12 +4,12 @@ description: "Use these safety system message templates as a starting point to r
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 07/29/2026
 ms.custom: 
   - classic-and-new
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted

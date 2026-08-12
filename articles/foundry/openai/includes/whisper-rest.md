@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -72,7 +72,7 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 
 ## Create a REST API request and response
 
-In a bash shell, run the following command. You need to replace `YourDeploymentName` with the deployment name you chose when you deployed the Whisper model. The deployment name isn't necessarily the same as the model name. Entering the model name results in an error unless you chose a deployment name that's identical to the underlying model name.
+In a bash shell, run the following command. Replace `YourDeploymentName` with the deployment name you chose when you deployed the transcription model. The deployment name isn't necessarily the same as the model name. Entering the model name results in an error unless you chose a deployment name that's identical to the underlying model name.
 
 ```bash
 curl $AZURE_OPENAI_ENDPOINT/openai/deployments/YourDeploymentName/audio/transcriptions?api-version=2024-02-01 \

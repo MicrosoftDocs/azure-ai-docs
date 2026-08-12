@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: alexeyo26
 ms.author: alexeyo
 ms.service: microsoft-foundry

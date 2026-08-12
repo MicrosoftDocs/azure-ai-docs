@@ -3,10 +3,10 @@ title: Disaster recovery guidance - Document Intelligence
 titleSuffix: Foundry Tools
 description: Learn how to use the copy model API to back up your Document Intelligence resources.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 05/23/2026
 ms.author: lajanuar
 ---
 

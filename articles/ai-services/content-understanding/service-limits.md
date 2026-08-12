@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Quick reference, detailed description, and best practices for working within Azure Content Understanding in Foundry Tools service Quotas and Limits
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
-ms.date: 05/04/2026
-ms.service: azure-ai-content-understanding
+manager: mcleans
+ms.date: 07/27/2026
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: limits-and-quotas
 ms.custom:
   - build-2025
@@ -51,10 +51,20 @@ The currently supported models are:
 
 | Model Type | Model | Version |
 |--|--|--|
+|Chat Completion | gpt-5.5 | `2025-12-11` |
+|Chat Completion | gpt-5.4 | `2025-12-11` |
+|Chat Completion | gpt-5.4-mini | `2025-12-11` |
 |Chat Completion | gpt-5.2 | `2025-12-11` |
+|Chat Completion | gpt-5.1 | `2025-12-11` |
+|Chat Completion | gpt-5 | `2025-12-11` |
+|Chat Completion | gpt-5-mini | `2025-12-11` |
+|Chat Completion | gpt-5-nano | `2025-12-11` |
 |Chat Completion | gpt-4.1 | `2025-04-14` |
 |Chat Completion | gpt-4.1-mini | `2025-04-14` |
 |Chat Completion | gpt-4.1-nano | `2025-04-14` |
+|Chat Completion | gpt-4o | `2024-11-20` |
+|Chat Completion | gpt-4o | `2024-08-06` |
+|Chat Completion | gpt-4o-mini | `2024-07-18` |
 |Embeddings | text-embedding-3-small |  |
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
@@ -62,23 +72,25 @@ The currently supported models are:
 [!INCLUDE [gpt-4x-deprecation-notice](includes/gpt-4x-deprecation-notice.md)]
 
 
-For the model retirement schedule, see [Model retirements](/azure/foundry/openai/concepts/model-retirement-schedule).
+> [!NOTE]
+> Model availability changes over time. For the model retirement schedule, see [OpenAI model retirement schedule](/azure/foundry/openai/concepts/model-retirement-schedule).
 
 ## Input file limits
 
 ### Document and text
 
-| Supported file types | File size | Length | Extraction meter |
-| --- | --- | --- | --- |
-| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | ≤ 300 pages | Basic (OCR) or Standard (Layout) |
-| ✓ `.docx`, `.xlsx`, `.pptx` | ≤ 200 MB | ≤ 1M characters | Minimal |
-| ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters | Minimal |
+#### Operation limits
 
-<sup>‡</sup> **Page counting for non-paginated files**: For billing purposes, Content Understanding uses page-equivalent rules: text files and email files (TXT, HTML, MD, XML, MSG, EML) count 3,000 characters as one page (rounded up). Spreadsheets (XLSX) count one sheet as one page (including hidden sheets). Presentations (PPTX) count one slide as one page. Word documents (DOCX) use native pagination.
+| Supported file types | Async file size | Async length | Sync file size | Sync length |
+| --- | --- | --- | --- | --- |
+| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | ≤ 300 pages | ≤ 10 MB | ≤ 5 pages<sup>2</sup> |
+| ✓ `.docx`, `.xlsx`, `.pptx` <br/> ✓ `.docm`, `.xlsm`, `.pptm` <br/> ✓ `.doc`, `.xls`, `.ppt` | ≤ 200 MB | ≤ 10M characters | ≤ 10 MB | ≤ 30K characters |
+| ✓ `.odt`, `.ods`, `.odp` <br/> ✓ `.epub` | ≤ 200 MB | ≤ 10M characters | ≤ 10 MB | ≤ 30K characters |
+| ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.xml`, `.json`, `.csv`, `.tsv`, `.kml` <br/> ✓ `.eml`, `.msg` | ≤ 200 MB | ≤ 10M characters | ≤ 10 MB | ≤ 30K characters |
 
-> [!NOTE]
-> [Pro mode (`2025-05-01-preview`)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
-> Total input can't exceed 100 MB and 150 pages.
+<sup>1</sup> **Page counting for non-paginated files**: For billing purposes, Content Understanding uses page-equivalent rules: text files and email files (TXT, HTML, MD, XML, MSG, EML) count 3,000 characters as one page (rounded up). Spreadsheets (XLSX) count one sheet as one page (including hidden sheets). Presentations (PPTX) count one slide as one page. Word documents (DOCX) use native pagination.
+
+<sup>2</sup> If there are more than five pages in the document, the service processes only the first five pages. The request can optionally specify the page range to process. 
 
 ### Image
 
@@ -90,9 +102,9 @@ For the model retirement schedule, see [Model retirements](/azure/foundry/openai
 
 | Supported file types | File size | Length |
 | --- | --- |  --- |
-| ✓ `.wav` (PCM: `pcm_s8`, `pcm_u8`, `pcm_s16*`, `pcm_u16*`, `pcm_s24*`, `pcm_u24*`, `pcm_s32*`, `pcm_u32*`, `pcm_f32*`, `pcm_f64*`) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, AC-3) | Max: 300 MB<sup>†</sup> | Max: Two hours<sup>†</sup> |
+| ✓ `.wav` (PCM: `pcm_s8`, `pcm_u8`, `pcm_s16*`, `pcm_u16*`, `pcm_s24*`, `pcm_u24*`, `pcm_s32*`, `pcm_u32*`, `pcm_f32*`, `pcm_f64*`) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, AC-3) | Max: 300 MB<sup>3</sup> | Max: Two hours<sup>3</sup> |
 
-<sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files 300 MB or less or two hours or less.
+<sup>3</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files 300 MB or less or two hours or less.
 
 ### Video
 

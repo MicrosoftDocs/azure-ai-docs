@@ -8,8 +8,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 05/07/2026
 ms.reviewer: meerakurup
-ms.author: jburchel
-author: jonburchel
+ms.author: scottpolly
+author: s-polly
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to let my Foundry managed network securely reach on-premises resources through Azure Application Gateway.
 ---

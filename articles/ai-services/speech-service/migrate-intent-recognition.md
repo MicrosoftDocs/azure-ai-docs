@@ -1,7 +1,7 @@
 ---
 title: Migrate from retired intent recognition in Azure Speech in Foundry Tools
 description: Learn about the retirement of intent recognition in Azure Speech in Foundry Tools and how to migrate to Azure Language in Foundry Tools Service or Azure OpenAI.
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 10/31/2025
 ai-usage: ai-assisted

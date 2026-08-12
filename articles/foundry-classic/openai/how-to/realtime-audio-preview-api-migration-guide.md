@@ -1,7 +1,7 @@
 ---
 title: "Migration from Preview to GA version of Realtime API (classic)"
 description: "Step-by-step guide for migrating from Preview (Beta) to Generally Available version of OpenAI GPT Realtime API protocol. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

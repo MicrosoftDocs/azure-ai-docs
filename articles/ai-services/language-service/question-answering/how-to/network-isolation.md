@@ -1,11 +1,11 @@
 ---
 title: Network isolation and Private Link - custom question answering
 description: Users can restrict public access to custom question answering resources.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 12/15/2025
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 #  Network isolation and private endpoints

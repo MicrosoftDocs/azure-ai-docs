@@ -2,8 +2,8 @@
 title: "Quickstart: Image Analysis client library for Python"
 description: Get started with the Image Analysis client library for Python with this quickstart.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 09/30/2024
 ms.author: pafarley

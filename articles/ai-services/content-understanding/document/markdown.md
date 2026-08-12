@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Description of the supported Markdown elements returned as part of the Content Understanding Document response and how to use the response in your applications.
 author: PatrickFarley 
 ms.author: paulhsu
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
 ms.custom:
   - build-2025
@@ -55,6 +55,8 @@ Detected images, including figures and charts, are represented using standard Ma
 | enableFigureDescription | `![detected text](figures/path "description")` | Includes generated image description |
 | enableFigureDescription + enableFigureAnalysis | `![detected text](figures/path "description")` followed by a chart, markdown table, or mermaid diagram | Image with description and appended figure analysis (chart, table, or diagram) |
 | enableFigureAnalysis only | `![detected text](figures/path)` followed by a chart, markdown table, or mermaid diagram | Image without description and appended figure analysis (chart, table, or diagram) |
+
+When a figure has no detected text, the service inserts a single space as the alt text so the image renders correctly, for example `![ ](figures/1.1)`.
  
 
 ### Examples
@@ -168,6 +170,31 @@ Popular Markdown extensions and viewers support visual rendering of both Chart.j
 - **Mermaid**: Renders flowcharts, sequence diagrams, and other diagram types
 - Most modern Markdown processors include plugins for both formats
 
+## Signatures
+
+Detected signatures are represented as Markdown images, similar to figures. The alt text contains any text recognized inside the signature region.
+
+> [!NOTE]
+> Signature detection is available only in the `2026-06-01-preview` API version.
+>
+> Because signatures vary widely in style, orientation, and legibility, the accuracy of text recognized within a signature region can vary and might be lower than for standard printed text. Treat the recognized text as a supplementary signal rather than an authoritative transcription.
+
+| Content type | Markdown pattern | Example |
+| --- | --- | --- |
+| Signature | `![{recognized text}](signatures/{path})` | `![Mary Hell](signatures/1.1)` |
+
+When a signature has no recognized text, the service inserts a single space as the alt text so the image renders correctly:
+
+```md
+![ ](signatures/1.1)
+```
+
+When a signature is associated with a page region, such as a footer, it's encoded as an HTML comment together with that region:
+
+```md
+<!-- PageFooter="![Mary Hell](signatures/1.1)" -->
+```
+
 ## Lines and paragraphs
 
 Paragraphs are represented in Markdown as a block of text separated by blank lines. When lines are available, each document line maps to a separate line in the Markdown.
@@ -236,7 +263,7 @@ Contact our support team at [support@contoso.com](mailto:support@contoso.com "Em
 
 See the [official documentation][docs] for detailed instructions.
 
-[docs]: https://docs.microsoft.com
+[docs]: https://learn.microsoft.com
 ```
 
 ## Annotations

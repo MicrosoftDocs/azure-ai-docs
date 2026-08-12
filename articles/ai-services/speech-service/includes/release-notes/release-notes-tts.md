@@ -1,13 +1,58 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 10/21/2025
+ms.date: 05/22/2026
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### July 2026 release
+
+#### Public preview of MAI-Voice-2-Flash
+
+MAI-Voice-2-Flash is a new neural text-to-speech model optimized for fast, low-latency speech generation. It delivers high-fidelity, natural, and expressive speech across 15 languages and supports gated instant voice cloning. Built for real-time conversational experiences, MAI-Voice-2-Flash combines human-like intonation, rhythm, and emotional nuance with industry-leading responsiveness, making it ideal for voice agents, AI assistants, customer service automation, and other interactive applications where latency and cost are critical. For more details, see [here](../../mai-voices.md?tabs=mai-voice-2-flash).
+
+| Voice ID | Gender | Recommended use case |
+|--------|--------|----------|
+| `en-US-Ethan:MAI-Voice-2-Flash` | Male | Voice agents, AI assistants, conversational applications, emotional styles |
+| `en-US-Harper:MAI-Voice-2-Flash` | Female | Customer service, AI assistants, conversational applications, emotional styles |
+| `en-US-Olivia:MAI-Voice-2-Flash` | Female | Voice agents, customer engagement, emotional styles |
+| `de-DE-Klaus:MAI-Voice-2-Flash` | Male | German conversational AI, customer support, emotional styles |
+| `de-DE-Mia:MAI-Voice-2-Flash` | Female | German voice assistants, customer engagement, emotional styles |
+| `fr-FR-Marc:MAI-Voice-2-Flash` | Male | French conversational AI, interactive experiences, emotional styles |
+| `fr-FR-Soleil:MAI-Voice-2-Flash` | Female | French customer service, conversational applications, emotional styles |
+| `es-ES-Marta:MAI-Voice-2-Flash` | Female | Spanish narration, customer engagement, expressive storytelling |
+| `es-MX-Alejo:MAI-Voice-2-Flash` | Male | Latin American conversational AI, emotional styles |
+| `es-MX-Valeria:MAI-Voice-2-Flash` | Female | Customer service, voice assistants, emotional styles |
+| `it-IT-Luca:MAI-Voice-2-Flash` | Male | Italian conversational AI, interactive applications |
+| `it-IT-Rosa:MAI-Voice-2-Flash` | Female | Customer engagement, customer support, emotional styles |
+| `pt-BR-Caio:MAI-Voice-2-Flash` | Male | Brazilian Portuguese voice agents, emotional styles |
+| `pt-BR-Luana:MAI-Voice-2-Flash` | Female | Conversational AI, customer support, emotional styles |
+| `ko-KR-Haena:MAI-Voice-2-Flash` | Female | Korean AI assistants, customer engagement |
+| `ko-KR-Junho:MAI-Voice-2-Flash` | Male | Conversational AI, interactive applications |
+| `zh-CN-Bo:MAI-Voice-2-Flash` | Male | Mandarin voice agents, conversational AI, emotional styles |
+| `zh-CN-Mei:MAI-Voice-2-Flash` | Female | Customer service, AI assistants, emotional styles |
+
+#### Neural HD introducing a new voice in `en-IN`
+| **Voice name** | Gender | Recommended use case |
+| -------------------- | -------- | ----- |
+| `en-IN-Lavanya:DragonHDLatestNeural` | Female |  Chat, Customer Service, E-learning |
+
+### May 2026 release
+
+#### Custom voice fine-tuning in the Microsoft Foundry (new) portal
+
+Fine-tuning workflows for custom voice are now available via the Microsoft Foundry (new) portal. The playground experience walks you through model selection, voice talent registration, training data upload, model training, and endpoint deployment from the **Fine-tune a model** pane.
+
+- [Create a professional voice](../../professional-voice-create-project.md)
+- [Create a personal voice project](../../personal-voice-create-project.md)
+
+#### Custom avatar usage in Microsoft Foundry
+
+After you deploy a custom avatar, you can now try it directly from the fine-tuning job's **Use your avatar** box by selecting **Try Text to Speech Avatar** or **Try Voice Live**. You can also open the playgrounds from the **Models** navigation and select your custom avatar from the **Custom** tab. For more information, see [Create a custom text to speech avatar](../../text-to-speech-avatar/custom-avatar-create.md).
 
 ### March 2026 release
 
@@ -1483,13 +1528,13 @@ Visit the [Audio Content Creation tool](https://speech.microsoft.com/audioconten
 - [SSML silence tag](../../speech-synthesis-markup-structure.md#add-silence) support.
 - General TTS voice quality improvements: Improved word-level pronunciation accuracy in nb-NO. Reduced 53% pronunciation error.
 
-> Read more at [this tech blog](https://techcommunity.microsoft.com/t5/azure-ai/neural-text-to-speech-previews-five-new-languages-with/ba-p/1907604).
+> For more information, see [Neural Text-to-Speech previews five new languages with innovative models in the low-resource setting](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/neural-text-to-speech-previews-five-new-languages-with-innovative-models-in-the-/1907604).
 
 ### October 2020 release
 
 #### New features
 - Jenny supports a new `newscast` style. See [how to use the speaking styles in SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
-- **Neural voices upgraded to HiFiNet vocoder, with higher audio fidelity and faster synthesis speed**. This benefits customers whose scenario relies on hi-fi audio or long interactions, including video translation, audio books, or online education materials. [Read more about the story and hear the voice samples on our tech community blog](https://techcommunity.microsoft.com/t5/azure-ai/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio/ba-p/1847860)
+- **Neural voices upgraded to HiFiNet vocoder, with higher audio fidelity and faster synthesis speed**. This benefits customers whose scenario relies on hi-fi audio or long interactions, including video translation, audio books, or online education materials. [Read more about the story and hear the voice samples on our tech community blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio-fidelity-and-faste/1847860)
 - **[Custom voice](https://speech.microsoft.com/customvoice) & [Audio Content Creation Studio](https://speech.microsoft.com/audiocontentcreation) localized to 17 locales**. Users can easily switch the UI to a local language for a more friendly experience.
 - **Audio Content Creation**: Added style degree control for XiaoxiaoNeural; Refined the customized break feature to include incremental breaks of 50ms.
 
@@ -1510,7 +1555,7 @@ Visit the [Audio Content Creation tool](https://speech.microsoft.com/audioconten
 
 * **Containers: Neural text to speech Container released in public preview with 16 voices available in 14 languages.** Learn more on [how to deploy Speech Containers for Neural text to speech](../../speech-container-howto.md)
 
-Read the [full announcement of the TTS updates for Ignite 2020](https://techcommunity.microsoft.com/t5/azure-ai/ignite-neural-tts-updates-new-language-support-more-voices/ba-p/1698544)
+Read the [full announcement of the TTS updates for Ignite 2020](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/ignite-2020-neural-tts-updates-new-language-support-more-voices-and-flexible-dep/1698544)
 
 ### August 2020 release
 

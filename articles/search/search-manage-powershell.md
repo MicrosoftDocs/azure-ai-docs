@@ -15,6 +15,8 @@ ms.custom:
 
 # Manage your Azure AI Search service using PowerShell
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can run PowerShell cmdlets and scripts on Windows, Linux, or in Azure Cloud Shell to create and configure Azure AI Search.
 
 Use the [**Az.Search** module](/powershell/module/az.search/) to perform the following tasks:
@@ -29,7 +31,7 @@ Use the [**Az.Search** module](/powershell/module/az.search/) to perform the fol
 > * [Scale up or down with replicas and partitions](#scale-replicas-and-partitions)
 > * [Create a shared private link resource](#create-a-shared-private-link-resource)
 
-Occasionally, questions are asked about tasks *not* on the above list.
+The following information answers common questions about tasks that aren't in the preceding list.
 
 You can't change the name or region of a service programmatically or in the Azure portal. Dedicated resources are allocated when a service is created, so changing the underlying hardware (location or node type) requires a new service.
 

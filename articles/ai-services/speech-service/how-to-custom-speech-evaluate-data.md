@@ -3,8 +3,8 @@ title: Test accuracy of a custom speech model - Speech service
 titleSuffix: Foundry Tools
 description: In this article, you learn how to quantitatively measure and improve the quality of our speech to text model or your custom model.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025
 ms.author: pafarley
@@ -32,6 +32,12 @@ After you [upload training and testing datasets](how-to-custom-speech-upload-dat
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+In the new Microsoft Foundry portal, you don't create a separate accuracy test. The accuracy evaluation runs automatically against the validation dataset that you specified on the **Validation data** pane of the **Fine-tune a model** wizard. To view the accuracy scores, see [Get test results](#get-test-results).
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 To test your fine-tuned custom speech model, follow these steps:
 
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -54,6 +60,8 @@ To test your fine-tuned custom speech model, follow these steps:
 1. Review the settings and select **Create test**. You're taken back to the **Test models** page. The status of the data is **Processing**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the test as processing." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model-status-processing.png":::
+
+---
 
 ::: zone-end
 
@@ -267,7 +275,15 @@ Get the test results and [evaluate](#evaluate-word-error-rate-wer) the word erro
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+After training completes, select the custom model to open its details page, and then select the **Validations** tab to view the accuracy scores.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 When the test status is **Succeeded**, you can view the results. Select the test to view the results.
+
+---
 
 ::: zone-end
 

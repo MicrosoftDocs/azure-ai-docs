@@ -3,7 +3,7 @@ title: "How to use model router for Microsoft Foundry (classic)"
 description: "Learn how to use the model router in Azure OpenAI to select the best model for your task. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/18/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
@@ -27,12 +27,15 @@ Model router for Microsoft Foundry is a deployable AI chat model that selects th
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](../../../foundry/openai/how-to/model-router.md) to see the latest features.
+> The [Microsoft Foundry (new)](../../../foundry/what-is-foundry.md) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](../../../foundry/openai/how-to/model-router.md) to see the latest features.
 [!INCLUDE [model-router-supported](../../../foundry/openai/includes/model-router-supported.md)]
 
 ## Deploy a model router model
 
 Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). To deploy programmatically without the portal, use the REST API examples in the deployment sections that follow.
+
+> [!NOTE]
+> If your organization uses the [built-in Azure Policy for model deployment](/azure/ai-foundry/how-to/model-deployment-policy), make sure the policy's allowed publishers include `Microsoft` (the publisher of model router) and the publisher of each model you deploy for routing (for example, `Anthropic` for Claude models). Otherwise, the policy blocks the deployment.
 
 By default, model router deploys with the **Balanced** routing mode and routes across the full supported model set. You don't need to configure optional routing settings unless you want custom routing behavior.
 

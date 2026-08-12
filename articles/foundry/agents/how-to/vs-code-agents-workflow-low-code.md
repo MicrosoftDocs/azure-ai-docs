@@ -1,5 +1,5 @@
 ---
-title: "Add declarative agent workflows in Visual Studio Code"
+title: "Add declarative agent workflows in Microsoft Foundry Toolkit for Visual Studio Code extension"
 description: "Add and test declarative agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension. Convert YAML workflows to Agent Framework code."
 manager: mcleans
 ms.service: microsoft-foundry
@@ -16,7 +16,7 @@ ms.custom: doc-kit-assisted
 ---
 
 # Add declarative agent workflows in Visual Studio Code
-Declarative agent workflows define predefined sequences of actions for your agents using configurations rather than explicit programming logic. In this article, you add [Foundry Agent workflows](../concepts/workflow.md) to an agent and test them by using the [Microsoft Foundry for Visual Studio Code (VS Code) extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+Declarative agent workflows define predefined sequences of actions for your agents using configurations rather than explicit programming logic. In this article, you add [Foundry Agent workflows](../concepts/workflow.md) to an agent and test them by using the [Microsoft Foundry for Visual Studio Code extension](https://aka.ms/foundrytk).
 
 After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstarts/get-started-code?tabs=portal#create-an-agent) in the portal, you can add workflows to orchestrate multiple agents into predefined action sequences for complex automation scenarios.
 
@@ -24,7 +24,7 @@ After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstart
 
 - A Foundry project with at least one deployed agent. To create one in the Foundry portal, see [Quickstart: Chat with an agent](/azure/ai-foundry/quickstarts/get-started-code?tabs=portal#create-an-agent).
 - At least one workflow created in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about workflows, see [Foundry Agent workflows](../concepts/workflow.md).
-- The [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
+- The [Microsoft Foundry for Visual Studio Code extension](https://aka.ms/foundrytk) installed.
 - A [GitHub Copilot](https://github.com/features/copilot) subscription (required for converting YAML workflows to Agent Framework code).
 
 ## View a declarative agent workflow
@@ -32,7 +32,8 @@ After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstart
 To view and edit a declarative agent workflow in VS Code for the Web, first navigate to the workflow in the Foundry portal:
 
 1. In the Foundry portal, open your project that contains the workflow.
-1. Select the **Workflows** tab from the left-hand menu.
+1. Select the **Agents** tab from the left-hand menu.
+1. On the **Agents** page, select the **Workflows** tab.
 1. Select the workflow you want to open.
 
 Then choose one of the following options to open the workflow in VS Code for the Web.
@@ -53,9 +54,9 @@ Then choose one of the following options to open the workflow in VS Code for the
 
 ## Test a workflow in the playground
 
-Test your declarative agent workflow by using the remote agent playground in the VS Code extension.
+Test your declarative agent workflow by using the remote agent playground in the Microsoft Foundry Toolkit for Visual Studio Code extension.
 
-1. In the **My Resources** section of the VS Code extension, locate and select your Foundry project.
+1. In the **My Resources** section of the Microsoft Foundry Toolkit for Visual Studio Code extension, locate and select your Foundry project.
 1. Select **Declarative Agents**.
 1. Select the version of the workflow you want to test. 
 1. The **Remote Agent Playground** pane opens and starts a conversation with your agent.

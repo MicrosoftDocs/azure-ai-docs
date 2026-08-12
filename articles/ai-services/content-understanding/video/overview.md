@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools video solutions.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/23/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -37,7 +37,6 @@ From there you can customize the analyzer for more fine-grained control of the o
 For example, customization allows you to:
 - **Define custom fields:** to identify what products and brands are seen or mentioned in the video.
 - **Generate custom segments:** to segment a news broadcast into chapters based on the topics or news stories discussed.
-- **Identify prominent people using face description:** enabling a customer to label celebrities in footage with name and title based on the generative model's world knowledge, for example, `Satya Nadella`.
 
 ## Why use Content Understanding for video?
 
@@ -97,9 +96,6 @@ See the following walkthrough for RAG on Video using Content Understanding:
 
 - [Content extraction](#content-extraction-capabilities)
 - [Field extraction](#field-extraction-and-segmentation)
-
-> [!NOTE]
-> Face identification and grouping capabilities are only available in the preview API version and are not included in the GA release.
 
 Two stages transform the raw video into structured insights. The following diagram shows how content extraction feeds into field extraction.
 
@@ -165,20 +161,6 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
   }
 }
 ```
-### Face description fields
-
-> [!NOTE]
->
->  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
-
-The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the video. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
-
-**Examples:**
-
-* **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
-* **Example field: nameOfProminentPerson:** Provides a name if possible of a celebrity in the video (for example, `Satya Nadella`)
-* **Example field: faceSmilingFrowning:** Provides a description of whether a person is smiling or frowning
-
 ### Segmentation mode
 
 > [!NOTE]
@@ -244,10 +226,6 @@ See [Language and region support](../language-region-support.md).
 ## Data privacy and security
 
 As with all Foundry Tools, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
-
-> [!IMPORTANT]
->
-> If you process **Biometric Data** (for example, enable **Face Description**), you must meet all notice, consent, and deletion requirements under applicable laws. See [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Related content
 

@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Azure Translator in Foundry Tools"
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-translator
+manager: mcleans
+ms.service: azure-translator-foundry-tools
 ms.topic: concept-article
 ms.date: 04/01/2026
 ---

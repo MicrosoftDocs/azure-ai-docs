@@ -1,10 +1,17 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 7/1/2025
+ms.date: 08/06/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
+
+### 2026-July release
+
+#### Fast transcription container (preview)
+
+The [fast transcription container](../../speech-container-ft.md) is now available in preview.
 
 ### 2025-June release
 

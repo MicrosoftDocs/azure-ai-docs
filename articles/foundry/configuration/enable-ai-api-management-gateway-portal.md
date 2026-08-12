@@ -2,19 +2,19 @@
 title: "Configure AI Gateway in your Foundry resources"
 description: "Enable AI Gateway with Azure API Management to apply tokens-per-minute limits and token quotas to model deployments in Microsoft Foundry."
 #customer intent: As an IT admin, I want to enforce token limits on AI model deployments so that I can prevent excessive usage and align with organizational policies.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ankamene
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 03/16/2026
+ms.date: 08/03/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Configure AI Gateway in your Foundry resources
-This article shows you how to enable AI Gateway for a Microsoft Foundry resource using the Foundry portal. AI Gateway uses Azure API Management behind the scenes to provide token limits, quotas, and governance for model deployments.
+This article shows you how to enable AI Gateway for a Microsoft Foundry resource by using the Foundry portal. AI Gateway uses Azure API Management behind the scenes to provide token limits, quotas, and governance for model deployments.
 
 ## Prerequisites
 
@@ -33,19 +33,18 @@ This article shows you how to enable AI Gateway for a Microsoft Foundry resource
 
 ## Requirements for using an existing API Management instance
 
-When you select **Use existing APIM**, only API Management instances that meet all of the following requirements are listed:
+When you select **Use existing APIM**, the list shows only API Management instances that meet all of the following requirements:
 
 > [!div class="checklist"]
 > * The API Management instance is in the **same Microsoft Entra tenant** and the same **subscription** as the Foundry resource.
 > * You have at least the **API Management Service Contributor** role (or Owner) on the API Management instance.
-> * The API Management instance is in a subscription that you can access from the Foundry portal.
-> * The API Management instance must be created in one of the **[v2 tiers](/azure/api-management/v2-service-tiers-overview)**.
-> * The API Management instance isn't already associated with another AI Gateway.
+> * You can access the API Management instance from the Foundry portal.
+> * The API Management instance is created in one of the **[v2 tiers](/azure/api-management/v2-service-tiers-overview)**.
 
-If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.
+If you don't see your API Management instance in the list, check that the instance meets the requirements and that you have the required permissions.
 
 > [!NOTE]
-> If your Foundry resource has public network access disabled, make sure that your API Management instance is also privately accessible to integrate with your private Foundry resource. In this case, use a Standard v2 or Premium v2 instance with a private endpoint, or a Premium v2 instance that's injected in a virtual network. For more information, see [Azure API Management networking options](/azure/api-management/virtual-network-concepts).
+> If you disable public network access for your Foundry resource, make sure that your API Management instance is also privately accessible to integrate with your private Foundry resource. In this case, use a Standard v2 or Premium v2 instance with a private endpoint, or a Premium v2 instance that's injected in a virtual network. For more information, see [Azure API Management networking options](/azure/api-management/virtual-network-concepts).
 
 ## Create an AI Gateway
 
@@ -96,11 +95,20 @@ Confirm that traffic routes through AI Gateway:
 
 1. In the Azure portal, open the API Management instance connected to your Foundry resource.
 
-1. Select **Monitoring** > **Metrics**. In the **Metric** dropdown, select **Requests**. Make a test call to a model deployment in the enabled project, then verify that the request count increments.
+1. Select **Monitoring** > **Metrics**. In the **Metric** dropdown, select **Requests**. Make a test call to a model deployment in the enabled project, and then verify that the request count increments.
 
-1. To check detailed logs, select **Monitoring** > **Logs** and run a query against the **GatewayLogs** table. Look for entries with a `200` response code and an API name that matches your AI Gateway.
+1. To collect detailed logs, select **Monitoring** > **Diagnostic settings** > **Add diagnostic setting**. Select **Logs related to ApiManagement Gateway**, send the logs to a Log Analytics workspace, and select **Resource specific** as the destination table.
 
-1. If you configured token limits, verify they apply by testing a request that exceeds the limit. The API Management instance returns a `429 Too Many Requests` response when the limit is exceeded.
+1. Select **Monitoring** > **Logs**, and run the following query:
+
+  ```kusto
+  ApiManagementGatewayLogs
+  | where TimeGenerated > ago(1h)
+  ```
+
+  Look for entries with a `200` response code and an API name that matches your AI Gateway.
+
+1. If you configured token limits, verify they apply by testing a request that exceeds the limit. A request that exceeds the TPM limit returns `429 Too Many Requests`. A request that exceeds the total token quota returns `403 Forbidden`.
 
 ## AI Gateway architecture
 
@@ -115,13 +123,23 @@ AI Gateway enables:
 - Compliance boundaries for regulated workloads (enforce predictable usage ceilings).
 - Registration of [custom agents for governance](../control-plane/register-custom-agent.md).
 
+## Use AI Gateway with multiple projects
+
+You enable AI Gateway at the Foundry resource level, and all projects in that resource share the same gateway and its underlying API Management instance. You don't assign a separate gateway to each project. Instead, you add individual projects to the gateway and give each one its own token limits and quotas:
+
+- New projects created in the resource have AI Gateway enabled by default.
+- You must manually add existing projects. Select the AI Gateway name, locate the project, and select **Add project to gateway**.
+- Set per-project [token limits](../control-plane/how-to-enforce-limits-models.md) so that each project has an independent capacity ceiling on the shared gateway.
+
+If you need projects to route through completely separate gateways (for example, separate API Management instances for strict isolation or different networking requirements), place those projects in separate Foundry resources and enable an AI Gateway on each resource. 
+
 ## Governance scenarios
 
 Once you configure AI Gateway for your resource and project, you can:
 
 * [Configure token limits for models](../control-plane/how-to-enforce-limits-models.md).
-* [Add custom agents to Control Plane](../control-plane/register-custom-agent.md).
-* [Govern MCP and A2A agent tools](/azure/ai-foundry/agents/how-to/tools/governance).
+* [Register custom agents in the Foundry control plane](../control-plane/register-custom-agent.md).
+* [Govern MCP tools by using an AI gateway (preview)](/azure/ai-foundry/agents/how-to/tools/governance).
 
 ## Troubleshooting
 
@@ -134,21 +152,40 @@ Once you configure AI Gateway for your resource and project, you can:
 | Project shows **Gateway status** as **Disabled**. | Existing projects aren't automatically enabled for AI Gateway. | Select the AI Gateway, locate the project, and select **Add project to gateway**. |
 | Requests bypass the gateway. | The project wasn't enabled before requests were made, or the gateway isn't fully provisioned. | Verify the gateway status shows **Enabled** for both the resource and project. |
 | Permission error when creating gateway. | Missing required RBAC role. | Verify you have **Contributor** or **Owner** on the resource group (to create) or **API Management Service Contributor** on an existing instance. |
-| Existing API Management instance does not appear in the list when selecting **Use existing APIM**. | The API Management instance does not meet the eligibility requirements or the user does not have sufficient permissions. | Verify that the API Management instance is in the same tenant, uses a supported SKU, is not already associated with another AI Gateway, and that you have the API Management Service Contributor role (or Owner) on the instance. |
+| Existing API Management instance does not appear in the list when selecting **Use existing APIM**. | The API Management instance does not meet the eligibility requirements or the user does not have sufficient permissions. | Verify that the API Management instance is in the same tenant and uses a supported service tier, and that you have the API Management Service Contributor role (or Owner) on the instance. |
 | Token limits don't apply to requests. | Limits aren't configured, or the project isn't using the gateway. | Verify the project is enabled for AI Gateway, then configure token limits in the Admin console. |
 | 500 errors on model calls after gateway setup. | The auto-created APIM endpoints may not be fully provisioned, or the model deployment isn't correctly mapped through the gateway. | Wait several minutes for provisioning to complete. Verify the model deployment is accessible without the gateway first. Check the APIM **Monitoring** > **Logs** for detailed error information. If the issue persists, try removing and re-adding the project to the gateway. |
 | Projects don't appear in the AI Gateway tab after association. | The project list may take time to refresh, or the project was created before the gateway was enabled. | Refresh the page or navigate away and return to the AI Gateway tab. If projects still don't appear, verify the gateway status shows **Enabled** at the resource level. For existing projects, you must manually add them to the gateway by selecting **Add project to gateway**. |
 
 For tools-specific troubleshooting, see [Tools governance with AI Gateway](/azure/ai-foundry/agents/how-to/tools/governance#troubleshooting).
 
+## Disable or delete an AI Gateway
+
+Disabling and deleting an AI Gateway are different operations:
+
+- **Disable** stops routing a single project's traffic through the gateway. The gateway and its API Management instance keep running and stay available for other projects.
+- **Delete** removes the gateway from the Foundry resource and, when you also delete the underlying API Management instance, fully removes the gateway and stops its charges.
+
+### Disable AI Gateway for a project
+
+1. Select **Operate** > **Admin console**, and then open the **AI Gateway** tab.
+1. Select the AI Gateway name to view its associated projects.
+1. Locate the project, and then select **Remove project from gateway**. The **Gateway status** column updates to **Disabled**.
+
+Disabling a project leaves the gateway in place, so other projects continue to route through it.
+
+### Delete an AI Gateway
+
+To completely delete an AI Gateway, remove it from the Foundry resource and then delete the underlying API Management instance. Disabling a project alone doesn't delete the gateway or stop API Management charges.
+
+1. In the **AI Gateway** tab, disable the gateway for every project that's associated with it, as described in the previous section.
+1. Select the AI Gateway, and then select the option to delete it from the Foundry resource.
+1. In the [Azure portal](https://portal.azure.com), open the resource group that contains the API Management instance.
+1. Delete the API Management instance that has the same name as the AI Gateway, unless another workload still uses it. Deleting the instance stops the associated charges and completes the removal.
+
 ## Clean up resources
 
-If you created a dedicated APIM instance for this purpose:
-
-1. Confirm that no other workloads depend on it.
-1. Disable the AI Gateway for all projects in the Foundry resource it's associated with.
-1. Remove linked resources in Azure portal.
-1. Delete the APIM instance with the same name as the AI Gateway in Azure portal (if it isn't used for any other purpose).
+If you created a dedicated API Management instance for the AI Gateway and no longer need it, [delete the AI Gateway](#delete-an-ai-gateway) and the API Management instance. Before you delete the instance, confirm that no other workloads depend on it.
 
 ## Related content
 

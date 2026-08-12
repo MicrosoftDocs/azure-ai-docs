@@ -1,7 +1,7 @@
 ---
 title: "Tutorial 5: Develop a feature set with a custom source"
 titleSuffix: Azure Machine Learning managed feature store - basics
-description: This is part 5 of the managed feature store tutorial series
+description: "Part 5 of the Azure Machine Learning managed feature store tutorial series: develop a feature set with a custom source."
 services: machine-learning
 ms.service: azure-machine-learning
 
@@ -20,7 +20,7 @@ ms.custom:
 
 # Tutorial 5: Develop a feature set with a custom source
 
-An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about feature stores, visit the [feature store concepts](./concept-what-is-managed-feature-store.md) resource.
+An Azure Machine Learning managed feature store helps you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
 
 > [!IMPORTANT]
 > Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
@@ -34,7 +34,7 @@ An Azure Machine Learning managed feature store lets you discover, create, and o
 >   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
 > 
 
-Part 1 of this tutorial series showed how to create a feature set specification with custom transformations, enable materialization and perform a backfill. Part 2 showed how to experiment with features in the experimentation and training flows. Part 3 explained recurrent materialization for the `transactions` feature set, and showed how to run a batch inference pipeline on the registered model. Part 4 described how to run batch inference.
+Tutorial 1 showed how to create a feature set specification with custom transformations, and then use that feature set to generate training data, enable materialization, and perform a backfill. Tutorial 2 showed how to experiment with features to improve model performance, and then train and register a model that uses features. Tutorial 3 showed how to enable recurrent materialization for the `transactions` feature set and run a batch inference pipeline. Tutorial 4 showed how to enable online materialization and run online inference.
 
 In this tutorial, you'll
 
@@ -48,7 +48,7 @@ In this tutorial, you'll
 > [!NOTE]
 > This tutorial uses an Azure Machine Learning notebook with **Serverless Spark Compute**.
 
-* Be sure to complete the previous tutorials in this series. This tutorial reuses the feature store and other resources created in those earlier tutorials.
+* Be sure to complete Tutorials 1 through 4 in this series. This tutorial reuses the feature store and other resources that you created in those earlier tutorials.
 
 ## Set up
 
@@ -67,7 +67,7 @@ You can create a new notebook and execute the instructions in this tutorial, ste
     1. Select **Configure session** in the top status bar
     1. Select the **Python packages** tab, select **Upload Conda file**
     1. Select **Upload Conda file**
-    1. Upload the *conda.yml* file that you [uploaded in the first tutorial](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment)
+    1. Upload the *conda.yml* file that you [uploaded in Tutorial 1](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
     1. Optionally, increase the session time-out (idle time) to avoid frequent prerequisite reruns
 
 ## Set up the root directory for the samples
@@ -171,5 +171,5 @@ If you created a resource group for the tutorial, you can delete that resource g
 
 ## Next steps
 
-* [Network isolation with feature store](./tutorial-network-isolation-for-feature-store.md)
+* [Tutorial 6: Network isolation for feature store](./tutorial-network-isolation-for-feature-store.md)
 * [Azure Machine Learning feature stores samples repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/featurestore_sample)

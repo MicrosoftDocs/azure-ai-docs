@@ -4,18 +4,24 @@ description: Set up an Azure Files indexer to automate indexing of file shares i
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 08/08/2026
 ms.update-cycle: 180-days
-ms.custom:
-  - ignite-2023
-  - ignite-2024
-  - sfi-ropc-nochange
+ai-usage: ai-assisted
+ms.custom: [ignite-2023, ignite-2024, sfi-ropc-nochange, doc-kit-assisted]
 ---
 
-# Index data from Azure Files
+# Index data from Azure Files (preview)
 
-> [!IMPORTANT] 
-> Azure Files indexer is currently in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Use a [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) to create the indexer data source.
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Files and makes it searchable in Azure AI Search. Inputs to the indexer are your files in a single share. Output is a search index with searchable content and metadata stored in individual fields.
 
@@ -32,6 +38,8 @@ To configure and run the indexer, you can use:
 + An [SMB file share](/azure/storage/files/files-smb-protocol) providing the source content. [NFS shares](/azure/storage/files/files-nfs-protocol#support-for-azure-storage-features) are not supported.
 
 + Files containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis.
+
++ Source files processed by the Azure Files indexer use the [shared source-file size and extracted-character limits for blob-like indexers](search-limits-quotas-capacity.md#indexer-limits).
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content.
 
@@ -67,10 +75,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 You can use 2020-06-30-preview or later for "type": `"azurefile"`. We recommend the latest preview API.
 
-1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
+1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
 
     ```http
-    POST /datasources?api-version=2024-05-01-preview
+    POST /datasources?api-version=2026-05-01-preview
     {
         "name" : "my-file-datasource",
         "type" : "azurefile",

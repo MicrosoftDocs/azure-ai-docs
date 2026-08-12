@@ -1,11 +1,11 @@
 ---
-title: "Build with agents, conversations, and responses in Foundry Agent Service"
-description: "Learn how to create agents, manage conversations, and generate responses in Microsoft Foundry Agent Service with code examples in Python, C#, JavaScript, Java, and REST API."
-manager: nitinme
+title: "Build with runtime components in Foundry Agent Service"
+description: "Learn how agents, conversations, and responses work together in Foundry Agent Service, and choose the runtime components your application needs."
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 04/10/2026
+ms.date: 08/05/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -16,22 +16,28 @@ ai-usage: ai-assisted
 
 Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent uses a model from the Foundry model catalog, along with instructions and tools. A conversation persists history across turns. A response is the output the agent produces when it processes input.
 
-This article walks through each component and shows how to use them together in code. You'll learn how to create an agent, start a conversation, generate responses (with or without an agent), add follow-up messages, and stream results—with examples in Python, C#, JavaScript, Java, and REST API.
+Choose components based on the behavior and state your application needs:
 
+| Component | Relationship | Use it when |
+| --- | --- | --- |
+| **Agent** | Supplies reusable model, instructions, and tools to a response. | Multiple requests need the same behavior or tool configuration. |
+| **Conversation** | Supplies persisted input and output items to responses. | Later turns need server-side history. |
+| **Response** | Runs a model or agent against input and produces output items. | Every interaction needs one unit of execution, with or without an agent or conversation. |
 
-## How runtime components work together
+Start with a response for a single interaction. Add an agent for reusable behavior, a conversation for persisted history, or both. For implementation details, go directly to [create an agent](#create-an-agent), [generate responses](#generate-responses), or [work with conversations and conversation items](#conversations-and-conversation-items).
 
-When you work with an agent, you follow a consistent pattern:
+The components work together in a predictable lifecycle. For example, consider a support assistant that answers a follow-up question:
 
-- **Create an agent**: Define an agent to start sending messages and receiving responses.
-- **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
-- **Generate a response**: The agent's Foundry model processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
-- **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
-- **Retrieve the response**: Display the generated response to the user.
+1. The application selects an agent that defines the support instructions and tools.
+1. It creates a conversation and adds the customer's first question as an input item.
+1. A response runs the agent against the conversation and appends output items.
+1. The next response uses the same conversation, so the agent can answer a follow-up question in context.
+
+Without a conversation, the application can instead carry context forward by referencing a previous stored response or by resending earlier items. Streaming and background mode change how the application receives a response, not the relationship among agents, conversations, and responses.
 
 The following diagram illustrates how these components interact in a typical agent loop.
 
-:::image type="content" source="../media/runtime-components.png" alt-text="Diagram that shows the agent runtime loop: an agent definition and optional conversation history feed response generation, which can call tools, append items back into the conversation, and produce output items you display to the user.":::
+:::image type="content" source="../media/runtime-components.png" alt-text="Diagram that shows an agent and conversation providing input to a response, which calls tools and returns output for the next turn.":::
 
 You provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
 
@@ -63,9 +69,11 @@ dotnet add package Azure.Identity
 # [JavaScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects@2.0.0
+npm install @azure/ai-projects
 npm install @azure/identity
 ```
+
+Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
 
 # [Java](#tab/java)
 
@@ -73,12 +81,12 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.15.4</version>
+    <version>1.18.4</version>
 </dependency>
 ```
 
@@ -142,7 +150,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create a prompt agent
-AgentVersion agent = await projectClient.Agents
+ProjectsAgentVersion agent = await projectClient.AgentAdministrationClient
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
@@ -228,7 +236,7 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 > [!NOTE]
 > Agents are now identified using the agent name and agent version. They don't have a GUID called `AgentID` anymore.
 
-For additional agent types (workflow, hosted), see [Agent development lifecycle](./development-lifecycle.md).
+For additional agent types (hosted), see [Agent development lifecycle](./development-lifecycle.md).
 
 ## Create an agent with tools
 
@@ -275,7 +283,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with a web search tool
-AgentVersion agent = await projectClient.Agents
+ProjectsAgentVersion agent = await projectClient.AgentAdministrationClient
     .CreateAgentVersionAsync(
         agentName: "my-tool-agent",
         options: new(
@@ -462,27 +470,23 @@ const AGENT_NAME = "your_agent_name";
 
 // Create clients to call Foundry API
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Generate a response using the agent
-const response = await openai.responses.create({
-  input: "What is the largest city in France?",
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
+const response = await openai.responses.create(
+  { input: "What is the largest city in France?" },
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 console.log(response.output_text);
 
 // Ask a follow-up question using the previous response
-const followUp = await openai.responses.create({
-  input: "What is the population of that city?",
-  previous_response_id: response.id,
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
+const followUp = await openai.responses.create(
+  {
+    input: "What is the population of that city?",
+    previous_response_id: response.id,
   },
-});
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 console.log(followUp.output_text);
 ```
 
@@ -652,15 +656,12 @@ const PROJECT_ENDPOINT = "your_project_endpoint";
 const AGENT_NAME = "your_agent_name";
 
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
-const response = await openai.responses.create({
-  input: "What happened in the news today?",
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
+const response = await openai.responses.create(
+  { input: "What happened in the news today?" },
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 
 // Print each output item, including tool calls
 for (const item of response.output) {
@@ -857,32 +858,27 @@ const PROJECT_ENDPOINT = "your_project_endpoint";
 const AGENT_NAME = "your_agent_name";
 
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Generate a response without storing
-const response = await openai.responses.create({
-  input: "What is the largest city in France?",
-  store: false,
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
+const response = await openai.responses.create(
+  { input: "What is the largest city in France?", store: false },
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 console.log(response.output_text);
 
 // Carry forward context client-side by passing previous output as input
-const followUp = await openai.responses.create({
-  input: [
-    { role: "user", content: "What is the largest city in France?" },
-    { role: "assistant", content: response.output_text },
-    { role: "user", content: "What is the population of that city?" },
-  ],
-  store: false,
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
+const followUp = await openai.responses.create(
+  {
+    input: [
+      { role: "user", content: "What is the largest city in France?" },
+      { role: "assistant", content: response.output_text },
+      { role: "user", content: "What is the population of that city?" },
+    ],
+    store: false,
   },
-});
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 console.log(followUp.output_text);
 ```
 
@@ -1046,7 +1042,7 @@ const PROJECT_ENDPOINT = "your_project_endpoint";
 
 // Create clients to call Foundry API
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Create a conversation with an initial user message
 const conversation = await openai.conversations.create({
@@ -1310,31 +1306,23 @@ const PROJECT_ENDPOINT = "your_project_endpoint";
 const AGENT_NAME = "your_agent_name";
 
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Create a conversation for multi-turn chat
 const conversation = await openai.conversations.create();
 
 // First turn
-const response = await openai.responses.create({
-  conversation: conversation.id,
-  input: "What is the largest city in France?",
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
+const response = await openai.responses.create(
+  { conversation: conversation.id, input: "What is the largest city in France?" },
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 console.log(response.output_text);
 
 // Follow-up turn in the same conversation
-const followUp = await openai.responses.create({
-  conversation: conversation.id,
-  input: "What is the population of that city?",
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
+const followUp = await openai.responses.create(
+  { conversation: conversation.id, input: "What is the population of that city?" },
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 console.log(followUp.output_text);
 ```
 
@@ -1509,17 +1497,13 @@ const AGENT_NAME = "your_agent_name";
 
 // Create clients to call Foundry API
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Stream a response using the agent
-const stream = await openai.responses.create({
-  input: "Explain how agents work in one paragraph.",
-  stream: true,
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
+const stream = await openai.responses.create(
+  { input: "Explain how agents work in one paragraph.", stream: true },
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 for await (const event of stream) {
   if (event.type === "response.output_text.delta") {
     process.stdout.write(event.delta);
@@ -1673,17 +1657,16 @@ const PROJECT_ENDPOINT = "your_project_endpoint";
 const AGENT_NAME = "your_agent_name";
 
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 // Start a background response using the agent
-let response = await openai.responses.create({
-  input: "Write a detailed analysis of renewable energy trends.",
-  background: true,
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
+let response = await openai.responses.create(
+  {
+    input: "Write a detailed analysis of renewable energy trends.",
+    background: true,
   },
-});
+  { body: { agent_reference: { name: AGENT_NAME, type: "agent_reference" } } },
+);
 
 // Poll until the response completes
 while (response.status === "queued" || response.status === "in_progress") {
@@ -1699,12 +1682,10 @@ console.log(response.output_text);
 import com.azure.ai.agents.*;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AzureCreateResponseOptions;
-import com.azure.core.util.IterableStream;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
-import com.openai.models.responses.ResponseStreamEvent;
-import com.openai.helpers.ResponseAccumulator;
+import com.openai.models.responses.ResponseStatus;
 
 String projectEndpoint = "your_project_endpoint";
 String agentName = "your_agent_name";
@@ -1718,18 +1699,19 @@ ResponsesClient responsesClient = builder.buildResponsesClient();
 // Start a background response using the agent
 AgentReference agentRef = new AgentReference(agentName);
 
-ResponseAccumulator accumulator = ResponseAccumulator.create();
-IterableStream<ResponseStreamEvent> events =
-    responsesClient.createStreamingAzureResponse(
-        new AzureCreateResponseOptions()
-            .setAgentReference(agentRef),
-        ResponseCreateParams.builder()
-            .input("Write a detailed analysis of "
-                + "renewable energy trends."));
-for (ResponseStreamEvent event : events) {
-    accumulator.accumulate(event);
+Response response = responsesClient.createAzureResponse(
+  new AzureCreateResponseOptions().setAgentReference(agentRef),
+  ResponseCreateParams.builder()
+    .input("Write a detailed analysis of renewable energy trends.")
+    .background(true));
+
+while (response.status().orElse(null) == ResponseStatus.QUEUED
+  || response.status().orElse(null) == ResponseStatus.IN_PROGRESS) {
+  Thread.sleep(1000);
+  response = responsesClient.getResponseService().retrieve(response.id());
 }
-Response response = accumulator.response();
+
+System.out.println("Response status: " + response.status().orElse(null));
 System.out.println(response.output());
 ```
 
@@ -1870,7 +1852,7 @@ console.log(`Memory store: ${memoryStore.name}`);
 
 ```java
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.MemoryStoresClient;
+import com.azure.ai.agents.BetaMemoryStoresClient;
 import com.azure.ai.agents.models.MemoryStoreDefaultDefinition;
 import com.azure.ai.agents.models.MemoryStoreDetails;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -1878,10 +1860,11 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 String projectEndpoint = "your_project_endpoint";
 
 // Create memory stores client
-MemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
+BetaMemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint)
-    .buildMemoryStoresClient();
+    .beta()
+    .buildBetaMemoryStoresClient();
 
 // Create a memory store
 MemoryStoreDefaultDefinition definition =

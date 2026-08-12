@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how to best use Azure Content Understanding in Foundry Tools for document, image, video, and audio file content and field extractions.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
-ms.date: 01/29/2026
+manager: mcleans
+ms.date: 07/16/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -82,6 +82,21 @@ Explicitly set the method (`extract`, `generate`, or `classify`) for each field 
 > [!NOTE]
 > `extract` is only supported for document analyzers.
 
+
+## Use Content Understanding to improve retrieval from complex documents in Azure AI Search
+
+If you're already using Azure AI Search for RAG, knowledge bases, or agent applications, consider using Content Understanding to enrich documents before indexing.
+
+Content Understanding helps preserve document structure and visual content during ingestion by extracting:
+
+- Sections and document hierarchy
+- Tables, including cross-page tables
+- Figures and images
+- AI-generated descriptions for visual content
+- Markdown-formatted content optimized for retrieval workflows
+
+Content Understanding integrates with Azure AI Search to make more of your document content available for indexing, retrieval, and grounding in RAG and agent experiences. For more information, see the [Azure AI Search -  Content Understanding skill](/azure/search/cognitive-search-skill-content-understanding).
+
 ## Optimize classification and categorization
 
 Content Understanding automatically handles visual template variations within semantic categories. Follow these guidelines:
@@ -125,7 +140,12 @@ Prioritize refining field descriptions before adding labeled training examples. 
 
 ### Add training examples for low confidence
 
-If accuracy or confidence scores are lower than expected with zero-shot extraction, add similar documents to the knowledge base as training examples to improve accuracy.
+If accuracy or confidence scores are lower than expected with zero-shot extraction, add similar documents to the knowledge base as training examples to improve accuracy. When you add training examples, follow these guidelines:
+
+* **Cover your templates and formats**: Include an example for each distinct layout or template your analyzer needs to handle, not just one example overall.
+* **Evaluate before and after training**: Test extraction quality on a representative set of documents before you add examples, and test again after training, so you can confirm training improved results instead of just changing them.
+
+For more information, see [Improve analyzer training with labeled examples](../document/analyzer-improvement.md#improve-analyzer-training-with-labeled-examples).
 
 ## Optimize audio and video processing
 
@@ -146,5 +166,3 @@ Speech transcripts, optical character recognition (OCR) text, and video key fram
 * [Create a custom analyzer](../tutorial/create-custom-analyzer.md)
 * [Prebuilt analyzers](prebuilt-analyzers.md)
 * [Service quotas and limits](../service-limits.md)
-
-

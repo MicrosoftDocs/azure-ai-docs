@@ -1,34 +1,38 @@
 ---
 title: "How to use the deep research tool (classic)"
-description: "Find code samples and instructions for using deep research in the Foundry Agent Service. (classic)"
+description: "Learn how to maintain classic Foundry agents that use the deprecated deep research tool with pinned packages and supported API samples."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/27/2026
-author: jonburchel
+ms.date: 08/05/2026
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.custom: references_regions
+ms.custom: references_regions, doc-kit-assisted
+ai-usage: ai-assisted
 zone_pivot_groups: selection-deep-research
 ---
 
 # How to use the Deep Research tool (classic)
 
 > [!IMPORTANT]
-> The Deep Research tool is deprecated. We recommend that you use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or an MCP tool instead. For migration guidance, see the [web search tool documentation](../../../../foundry/agents/how-to/tools/web-search.md).
+> Don't use the classic Deep Research tool for new workloads. The tool is deprecated, classic agents retire on March 31, 2027, and the `o3-deep-research` model version `2025-06-26` retires on December 26, 2026.
+>
+> For the current path, use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or an MCP tool on the `2025-11-15-preview` API. Use this article only to maintain a classic workload while you migrate.
 
 > [!NOTE]
 > * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
-> * This tool is only available in `2025-05-15-preview` API. We highly recommend that you migrate to use the `2025-11-15-preview` API. This enables you to use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or MCP tool.
+> * This tool is only available in the `2025-05-15-preview` API. Migrate to the `2025-11-15-preview` API to use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or an MCP tool.
 
-Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
+Use the deprecated samples in this article only with the pinned classic packages and `2025-05-15-preview` API.
 
 ## Prerequisites
 
 * The requirements in the [Deep Research overview](./deep-research.md).
+* Sign in locally by using `az login`. The samples use `DefaultAzureCredential` and require access to the Foundry project and its Grounding with Bing Search connection.
 * Your Microsoft Foundry Project endpoint.
 
     
@@ -36,169 +40,84 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
-* The deployment names of your `o3-deep-research-model` and `gpt-4o` models. You can find them in **Models + Endpoints** in the left navigation menu.
+* A deployment of the `o3-deep-research` model and a compatible orchestration model. Deployment names are user-defined; find them in **Models + Endpoints** in the left navigation menu.
 
-   :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
+  :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="Screenshot of the Foundry portal showing deep research and orchestration model deployments." lightbox="../../media/tools/deep-research/model-deployments.png":::
     
-    Save the name of your `o3-deep-research` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and the `gpt-4o` deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`.
+    Save the `o3-deep-research` deployment name as `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and the orchestration-model deployment name as `MODEL_DEPLOYMENT_NAME`.
+
+  * A Grounding with Bing Search project connection. For C# and TypeScript, save its full connection ID as `AZURE_BING_CONNECTION_ID`. For Python, save its connection name as `BING_RESOURCE_NAME`.
+
+  Use only these classic runtime and package combinations:
+
+  | Language | Runtime | Packages |
+  | --- | --- | --- |
+  | C# | .NET 8 or later | `Azure.AI.Agents.Persistent` `1.2.0-beta.6` and `Azure.Identity` |
+  | TypeScript | Node.js 20 or later | `@azure/ai-agents` `1.2.0-beta.2` and `@azure/identity` |
+  | Python | Python 3.9 or later | `azure-ai-projects` `1.1.0b4`, `azure-ai-agents` `1.2.0b6`, and `azure-identity` |
+
+  Don't install a 2.x Foundry SDK package for these samples. The 2.x packages use the current Foundry API surface, not classic threads and runs.
 
 > [!NOTE]
-> Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
+> Other GPT-series models including GPT-4o-mini and the GPT-4.1 series aren't supported for scope clarification.
 
 :::zone pivot="csharp"
 
-* The connection ID for your Grounding with Bing Search resource. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**. Then select your bing resource.
-    
-    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+## Install and authenticate
 
-    Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
-
-    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
-
-## Create an agent with the Deep Research tool
-
->[!NOTE]
-> You need version `1.1.0-beta.4` or later of the `Azure.AI.Agents.Persistent` package, and the `Azure.Identity` package.
-
-```csharp
-using Azure;
-using Azure.AI.Agents.Persistent;
-using Azure.Identity;
-using System.Collections.Generic;
-using System.Text;
-
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var deepResearchModelDeploymentName = System.Environment.GetEnvironmentVariable("DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME");
-var connectionId = System.Environment.GetEnvironmentVariable("AZURE_BING_CONECTION_ID");
-PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
-
-// DeepResearchToolDefinition should be initialized with the name of deep research model and the Bing connection ID,
-// needed to perform the search in the internet.
-
-DeepResearchToolDefinition deepResearch = new(
-    new DeepResearchDetails(
-        model: deepResearchModelDeploymentName,
-        bingGroundingConnections: [
-            new DeepResearchBingGroundingConnection(connectionId)
-        ]
-    )
-);
-
-// NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
-PersistentAgent agent = client.Administration.CreateAgent(
-    model: modelDeploymentName,
-    name: "Science Tutor",
-    instructions: "You are a helpful Agent that assists in researching scientific topics.",
-    tools: [deepResearch]
-);
-
-//Create a thread and run and wait for the run to complete.
-
-PersistentAgentThreadCreationOptions threadOp = new();
-threadOp.Messages.Add(new ThreadMessageOptions(
-        role: MessageRole.User,
-        content: "Research the current state of studies on orca intelligence and orca language, " +
-        "including what is currently known about orcas' cognitive capabilities, " +
-        "communication systems and problem-solving reflected in recent publications in top their scientific" +
-        "journals like Science, Nature and PNAS."
-    ));
-ThreadAndRunOptions opts = new()
-{
-    ThreadOptions = threadOp,
-};
-ThreadRun run = client.CreateThreadAndRun(
-    assistantId: agent.Id,
-    options: opts
-);
-
-Console.WriteLine("Start processing the message... this may take a few minutes to finish. Be patient!");
-do
-{
-    Thread.Sleep(TimeSpan.FromMilliseconds(500));
-    run = client.Runs.GetRun(run.ThreadId, run.Id);
-}
-while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress);
-
-// We will create a helper function PrintMessagesAndSaveSummary, which prints the response from the agent,
-// and replaces the reference placeholders by links in Markdown format.
-// It also saves the research summary in the file for convenience.
-
-static void PrintMessagesAndSaveSummary(IEnumerable<PersistentThreadMessage> messages, string summaryFilePath)
-{
-    string lastAgentMessage = default;
-    foreach (PersistentThreadMessage threadMessage in messages)
-    {
-        StringBuilder sbAgentMessage = new();
-        Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-        foreach (MessageContent contentItem in threadMessage.ContentItems)
-        {
-            if (contentItem is MessageTextContent textItem)
-            {
-                string response = textItem.Text;
-                if (textItem.Annotations != null)
-                {
-                    foreach (MessageTextAnnotation annotation in textItem.Annotations)
-                    {
-                        if (annotation is MessageTextUriCitationAnnotation uriAnnotation)
-                        {
-                            response = response.Replace(uriAnnotation.Text, $" [{uriAnnotation.UriCitation.Title}]({uriAnnotation.UriCitation.Uri})");
-                        }
-                    }
-                }
-                if (threadMessage.Role == MessageRole.Agent)
-                    sbAgentMessage.Append(response);
-                Console.Write($"Agent response: {response}");
-            }
-            else if (contentItem is MessageImageFileContent imageFileItem)
-            {
-                Console.Write($"<image from ID: {imageFileItem.FileId}");
-            }
-            Console.WriteLine();
-        }
-        if (threadMessage.Role == MessageRole.Agent)
-            lastAgentMessage = sbAgentMessage.ToString();
-    }
-    if (!string.IsNullOrEmpty(lastAgentMessage))
-    {
-        File.WriteAllText(
-            path: summaryFilePath,
-            contents: lastAgentMessage);
-    }
-}
-
-//List the messages, print them and save the result in research_summary.md file.
-//The file will be saved next to the compiled executable.
-
-Pageable<PersistentThreadMessage> messages
-    = client.Messages.GetMessages(
-        threadId: run.ThreadId, order: ListSortOrder.Ascending);
-PrintMessagesAndSaveSummary([.. messages], "research_summary.md");
-
-// NOTE: Comment out these two lines if you want to delete the agent.
-client.Threads.DeleteThread(threadId: run.ThreadId);
-client.Administration.DeleteAgent(agentId: agent.Id);
+```dotnetcli
+dotnet add package Azure.AI.Agents.Persistent --version 1.2.0-beta.6
+dotnet add package Azure.Identity
+az login
 ```
+
+## Set environment variables
+
+```powershell
+$env:PROJECT_ENDPOINT = "<your-project-endpoint>"
+$env:MODEL_DEPLOYMENT_NAME = "<your-orchestration-model-deployment>"
+$env:DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME = "<your-deep-research-deployment>"
+$env:AZURE_BING_CONNECTION_ID = "<your-bing-connection-id>"
+```
+
+## Run the maintained sample
+
+Use the [complete C# Deep Research sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample31_PersistentAgents_DeepResearch.md). It contains synchronous and asynchronous paths that create the agent and thread, poll the run, render citations, write `research_summary.md`, and delete the resources.
+
+In the linked sample, correct the environment-variable lookup from `AZURE_BING_CONECTION_ID` to `AZURE_BING_CONNECTION_ID` before you run it.
+
+Expected output resembles:
+
+```output
+Start processing the message... this might take a few minutes to finish.
+<timestamp> - Agent: <research summary with citation links>
+```
+
+Keep the sample's `DeleteThread` and `DeleteAgent` calls enabled so the run doesn't leave classic agent resources behind.
 
 :::zone-end 
 
 :::zone pivot="typescript"
 
-* The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Select **Connected resources**, then select your Grounding with Bing Search resource.
-    
-    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+## Install and authenticate
 
-    Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
+```bash
+npm install @azure/ai-agents@1.2.0-beta.2 @azure/identity
+az login
+```
 
-    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search resource ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
+## Set environment variables
 
-    Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
+```bash
+export PROJECT_ENDPOINT="<your-project-endpoint>"
+export MODEL_DEPLOYMENT_NAME="<your-orchestration-model-deployment>"
+export DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME="<your-deep-research-deployment>"
+export AZURE_BING_CONNECTION_ID="<your-bing-connection-id>"
+```
 
-## Create an agent with the Deep Research tool
+## Run the TypeScript sample
 
-> [!NOTE]
-> You need the latest preview version of the `@azure/ai-projects` package.
+The package release doesn't include a complete Deep Research sample, so use this inline sample for an existing classic workload.
 
 ```typescript
 import type {
@@ -210,13 +129,11 @@ import type {
 import { AgentsClient, isOutputOfType } from "@azure/ai-agents";
 import { DefaultAzureCredential } from "@azure/identity";
 
-import "dotenv/config";
-
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project endpoint>";
-const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"];
 const deepResearchModelDeploymentName =
   process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"];
-const bingConnectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-id>";
+const bingConnectionId = process.env["AZURE_BING_CONNECTION_ID"];
 
 /**
  * Fetches and prints new agent response from the thread
@@ -328,6 +245,15 @@ function createResearchSummary(message: ThreadMessage): void {
 }
 
 export async function main(): Promise<void> {
+  if (
+    !projectEndpoint ||
+    !modelDeploymentName ||
+    !deepResearchModelDeploymentName ||
+    !bingConnectionId
+  ) {
+    throw new Error("Set all environment variables listed in this section");
+  }
+
   // Create an Azure AI Client
   const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 
@@ -335,8 +261,8 @@ export async function main(): Promise<void> {
   const deepResearchTool: DeepResearchToolDefinition = {
     type: "deep_research",
     deepResearch: {
-      deepResearchModel: deepResearchModelDeploymentName,
-      deepResearchBingGroundingConnections: [
+      model: deepResearchModelDeploymentName,
+      bingGroundingConnections: [
         {
           connectionId: bingConnectionId,
         },
@@ -360,11 +286,12 @@ export async function main(): Promise<void> {
   const message = await client.messages.create(
     thread.id,
     "user",
-    "Research the current scientific understanding of orca intelligence and communication, focusing on recent (preferably past 5 years) peer-reviewed studies, comparisons with other intelligent species such as dolphins or primates, specific cognitive abilities like problem-solving and social learning, and detailed analyses of vocal and non-vocal communication systems—please include notable authors or landmark papers if applicable.",
+    "Research recent peer-reviewed studies of orca intelligence " +
+      "and communication. Include notable authors and papers.",
   );
   console.log(`Created message, ID: ${message.id}`);
 
-  console.log("Start processing the message... this may take a few minutes to finish. Be patient!");
+  console.log("Start processing the message... this might take a few minutes to finish.");
 
   // Create and poll the run
   const run = await client.runs.create(thread.id, agent.id);
@@ -401,9 +328,10 @@ export async function main(): Promise<void> {
     createResearchSummary(finalMessage);
   }
 
-  // Clean-up and delete the agent once the run is finished
+  // Clean up the thread and agent once the run is finished
+  await client.threads.delete(thread.id);
   await client.deleteAgent(agent.id);
-  console.log("Deleted agent");
+  console.log("Deleted thread and agent");
 }
 
 main().catch((err) => {
@@ -411,34 +339,52 @@ main().catch((err) => {
 });
 ```
 
+### Expected output
+
+The report content varies. A successful run produces output similar to:
+
+```output
+Created agent, ID: <agent-id>
+Created thread, ID: <thread-id>
+Created message, ID: <message-id>
+Run finished with status: completed, ID: <run-id>
+Research summary created:
+<research summary with URL citations>
+Deleted thread and agent
+```
+
 :::zone-end 
 
 :::zone pivot="python"
 
-* The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
-    
-    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+## Install and authenticate
 
-    Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
+Create a virtual environment, install the exact classic preview packages, and sign in:
 
-## Create an agent with the Deep Research tool
-
-The Deep Research tool requires version `1.1.0b3` or later (but earlier than `2.0.0`) of the `azure-ai-projects` library, which targets the `2025-05-15-preview` API. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
-
-```console
-python -m venv env
-# after creating the virtual environment, activate it with:
-.\env\Scripts\activate
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --pre "azure-ai-projects==1.1.0b4" "azure-ai-agents==1.2.0b6"
+python -m pip install azure-identity
+az login
 ```
 
-You can install the package with the following command:
+## Set environment variables
 
-```console
-pip install --pre "azure-ai-projects>=1.1.0b3,<2.0.0"
+```powershell
+$env:PROJECT_ENDPOINT = "<your-project-endpoint>"
+$env:MODEL_DEPLOYMENT_NAME = "<your-orchestration-model-deployment>"
+$env:DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME = "<your-deep-research-deployment>"
+$env:BING_RESOURCE_NAME = "<your-bing-connection-name>"
 ```
+
+## Run the Python sample
+
+The inline sample is synchronous. For a complete asynchronous variant from the same classic SDK generation, see the [version-pinned Python sample](https://github.com/Azure/azure-sdk-for-python/blob/05f1eae0b18abc85f5ffb759f943268dac9e06c5/sdk/ai/azure-ai-agents/samples/agents_async/sample_agents_deep_research_async.py).
 
 ```python
-import os, time
+import os
+import time
 from typing import Optional
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
@@ -534,12 +480,13 @@ message = agents_client.messages.create(
     thread_id=thread.id,
     role="user",
     content=(
-        "Assess the UK outlook for 2026 - economic growth and inflation, based on IMF sources and provide a detailed report."
+      "Assess the UK outlook for 2026 economic growth and inflation "
+      "from IMF sources. Provide a detailed report."
     ),
 )
 print(f"Created message, ID: {message.id}")
 
-print(f"Start processing the message... this may take a few minutes to finish. Be patient!")
+print("Start processing the message... this might take a few minutes to finish.")
 # Poll the run as long as run status is queued or in progress
 run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
 last_message_id = None
@@ -566,21 +513,45 @@ final_message = agents_client.messages.get_last_message_by_role(
 if final_message:
     create_research_summary(final_message)
 
-# Clean-up and delete the agent once the run is finished.
-# NOTE: Comment out this line if you plan to reuse the agent later.
+# Clean up the thread, agent, and clients once the run is finished.
+agents_client.threads.delete(thread.id)
 agents_client.delete_agent(agent.id)
-print("Deleted agent")
+agents_client.close()
+project_client.close()
+print("Deleted thread and agent, and closed the clients")
+```
+
+### Expected output
+
+The report content varies. A successful run produces output similar to:
+
+```output
+Created agent, ID: <agent-id>
+Created thread, ID: <thread-id>
+Created message, ID: <message-id>
+Run finished with status: RunStatus.COMPLETED, ID: <run-id>
+Research summary written to 'research_summary.md'.
+Deleted thread and agent, and closed the clients
 ```
 
 :::zone-end 
 
 > [!NOTE]
 > * Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
-> * Currently, Foundry Agent Playground UI only supports starting runs in streaming mode, and as a result, users might experience connection drops and timeouts. Use the supported methods above which uses runs in non-streaming mode.
+> * The Foundry Agent Playground only starts streaming runs, so you might experience connection drops and timeouts. Use the nonstreaming samples in this article.
 
-## Next steps
+## Troubleshooting
 
-* [Reference documentation](https://aka.ms/azsdk/azure-ai-projects/python/reference)
-* [Asynchronous sample on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_async/sample_agents_deep_research_async.py) 
-* [Library source code](https://aka.ms/azsdk/azure-ai-projects/python/code) 
-* [Package (PyPi)](https://aka.ms/azsdk/azure-ai-projects/python/package) 
+| Symptom | Resolution |
+| --- | --- |
+| The sample reports a missing deployment variable | Set `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` to your `o3-deep-research` deployment name and `MODEL_DEPLOYMENT_NAME` to your orchestration-model deployment name. |
+| The deployment isn't available | Confirm both deployments are supported in the project region and belong to the same subscription and region as the parent Foundry resource. |
+| The TypeScript sample doesn't compile | Use Node.js 20 or later and install the preview packages specified in this article. |
+| Bing grounding fails | Verify the Bing project connection ID and the calling identity's access to the connection. |
+| A run takes several minutes or times out | Use nonstreaming runs, poll until a terminal status, and increase the client timeout for long research tasks. |
+
+## Related content
+
+* [Use the current web search tool](../../../../foundry/agents/how-to/tools/web-search.md)
+* [Review the maintained C# Deep Research sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample31_PersistentAgents_DeepResearch.md)
+* [Review the version-pinned Python async sample](https://github.com/Azure/azure-sdk-for-python/blob/05f1eae0b18abc85f5ffb759f943268dac9e06c5/sdk/ai/azure-ai-agents/samples/agents_async/sample_agents_deep_research_async.py)

@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: This article contains news about Personalizer.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: whats-new
 ms.date: 01/19/2024

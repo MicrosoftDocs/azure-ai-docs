@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - ignite-2025
@@ -57,8 +57,10 @@ The Content Understanding API returns analysis results in a structured JSON form
         "sections": [ /* section elements */ ],
         "tables": [ /* table elements */ ],
         "figures": [ /* figure elements */ ],
+        "signatures": [ /* signature elements */ ],
         "hyperlinks": [ /* hyperlink elements */ ],
-        "annotations": [ /* annotation elements */ ]
+        "annotations": [ /* annotation elements */ ],
+        "metadata": { /* document metadata */ }
       }
     ]
   }
@@ -76,6 +78,7 @@ You can extract the following document elements through document analysis:
   * [Barcodes](#barcodes)
   * [Formulas](#formulas)
   * [Figures](#figures)
+  * [Signatures](#signatures)
   * [Hyperlinks](#hyperlinks)
   * [Annotations](#annotations)
 * Document structure
@@ -84,6 +87,7 @@ You can extract the following document elements through document analysis:
   * [Lines](#lines)
   * [Tables](#tables)
   * [Sections](#sections)
+* [Document metadata](#document-metadata)
   
 
 Not all content and layout elements are applicable or currently supported by all document file types.
@@ -263,6 +267,32 @@ JSON example:
   ]
 }
 ```
+
+#### Signatures
+
+A *signature* is a content element that represents a signature detected in the document. Signature detection helps you process contracts, invoices, and legal or HR documents where you need to locate signature regions. Each signature includes its position in the document, and any text recognized inside the signature region is captured through the associated elements.
+
+JSON example:
+
+```json
+{
+  "signatures": [
+    {
+      "id": "1.1",
+      "source": "D(1,5.4868,7.7451,6.9187,7.7397,6.9146,8.6099,5.491,8.6152)",
+      "span": {
+        "offset": 1498,
+        "length": 20
+      },
+      "elements": [
+        "/paragraphs/48"
+      ]
+    }
+  ]
+}
+```
+
+When a signature appears in a recognized page region, such as a footer, it can also include a `role` property that identifies that region.
 
 #### Hyperlinks
 
@@ -519,6 +549,54 @@ Page numbers are one indexed. The bounding polygon describes a sequence of point
 
 > [!NOTE]
 > Currently, Content Understanding returns only a four-point quadrilateral as a bounding polygon. Future versions might return a different number of points to describe more complex shapes, such as curved lines or nonrectangular images. Currently, source is returned only for elements from rendered files (PDF/image).
+
+## Document metadata
+
+Content Understanding can extract embedded metadata from the source document, such as the author, creation date, and title. The service returns this information in a `metadata` object on each content element. The `metadata` object is a flat map of string keys to string values. Only keys with an extracted value are included, so the set of keys varies by document and file type. When no metadata is available, such as for a plain image, the service omits the `metadata` object.
+
+> [!NOTE]
+> Document metadata is available in the `2026-06-01-preview` API version.
+
+JSON example:
+
+```json
+{
+  "metadata": {
+    "contentType": "application/pdf",
+    "pageCount": "1",
+    "author": "John Doe",
+    "createdAt": "2026-06-05T16:17:45+08:00",
+    "language": "en"
+  }
+}
+```
+
+The following table describes the metadata keys that Content Understanding can return. The available keys depend on the file type and on the metadata present in the source document.
+
+| Key | Description | Example |
+| --- | --- | --- |
+| `contentType` | MIME type of the document. | `application/pdf` |
+| `createdAt` | Creation timestamp in ISO 8601 format. For email messages, this value is the sent date. | `2025-03-30T05:01:00Z` |
+| `author` | Document author. | `John Doe` |
+| `lastModifiedAt` | Last-modified timestamp in ISO 8601 format. | `2025-04-01T10:30:00Z` |
+| `lastModifiedBy` | Name of the last person to modify the document. | `John Doe` |
+| `pageCount` | Total page or slide count. | `3` |
+| `characterCount` | Total character count. | `2379` |
+| `wordCount` | Total word count. | `596` |
+| `sourceContentEncoding` | Character encoding of the source document, following the IANA character sets registry. | `UTF-8` |
+| `title` | Document title. | `Quarterly Report` |
+| `description` | Document description or summary. | |
+| `keywords` | Keywords, joined with a comma and a space. | `finance, report` |
+| `language` | Language declared in the source document, in BCP-47 format. | `en-US` |
+| `identifier` | Unique document identifier (EPUB). | `urn:isbn:9780123456789` |
+| `publisher` | Document publisher (EPUB). | |
+| `subject` | Subject line for email messages. | `Quarterly Report` |
+| `messageFrom` | Email sender, in RFC 5322 address format. | `Joe Public <john@example.com>` |
+| `messageTo` | Email To recipients, joined with a comma and a space. | `Mary Smith <mary@x.test>` |
+| `messageCc` | Email Cc recipients, joined with a comma and a space. | |
+| `messageBcc` | Email Bcc recipients, joined with a comma and a space. | |
+
+The available keys depend on the file type. For example, Office documents (such as `.docx`, `.xlsx`, and `.pptx`) can include `author`, `createdAt`, and `title`; PDFs can include `author`, `language`, and `pageCount`; email messages (`.eml` and `.msg`) can include `messageFrom`, `messageTo`, and `subject`; and most image formats return only `contentType`, while TIFF also includes `pageCount`.
 
 ## Related content
 

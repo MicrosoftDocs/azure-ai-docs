@@ -1,10 +1,10 @@
 ---
 title: "Migrate to the new Foundry Agent Service"
-description: "Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns."
+description: "Learn how to migrate Assistants API and classic agent workloads to Foundry Agent Service by mapping threads, runs, and SDK patterns to the new API."
 author: aahill
 ms.author: aahi
-manager: nitinme
-ms.date: 04/10/2026
+manager: mcleans
+ms.date: 08/05/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -20,6 +20,22 @@ ai-usage: ai-assisted
 
 Foundry Agent Service provides an upgraded developer experience for building intelligent agents that are easy to build, version, operate, and observe. The new agents API introduces a modernized SDK, new enterprise-grade capabilities, and preserves the identity, governance, and observability features you rely on today.
 
+Choose the path that matches your current application:
+
+| Starting point | Begin with | Continue with |
+| --- | --- | --- |
+| **OpenAI Assistants API** | [Migrate assistants to new agents](#migrate-assistants-to-new-agents) | Replace threads and runs with conversations and responses. |
+| **Classic Foundry agents** | [Migrate classic agents to new agents](#migrate-classic-agents-to-new-agents) | Check tool availability, then replace threads and runs. |
+| **Existing thread or run integration** | [Migrate threads to conversations](#migrate-threads-to-conversations) | [Migrate runs to responses](#migrate-runs-to-responses). |
+| **Assistants API migration suited to automation** | [Run the migration tool](#run-the-migration-tool) | Review the generated assets and verify the migration. |
+
+At minimum, complete these four steps:
+
+1. Compare your current tools with [agent tool availability](#agent-tool-availability), and choose replacements for tools that don't carry over.
+1. Migrate the agent definition by following the [classic agents](#migrate-classic-agents-to-new-agents) or [Assistants API](#migrate-assistants-to-new-agents) path.
+1. Replace [threads with conversations](#migrate-threads-to-conversations) and [runs with responses](#migrate-runs-to-responses).
+1. [Verify your migration](#verify-your-migration), including state, tool calls, outputs, and error handling.
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -29,7 +45,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 # [Python](#tab/python)
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.3.0"
 ```
 
 # [C#](#tab/csharp)
@@ -44,9 +60,11 @@ dotnet add package Azure.Identity
 # [JavaScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects@2.0.0
+npm install @azure/ai-projects
 npm install @azure/identity
 ```
+
+Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
 
 # [Java](#tab/java)
 
@@ -54,12 +72,12 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.15.4</version>
+    <version>1.18.4</version>
 </dependency>
 ```
 
@@ -105,12 +123,11 @@ import { AIProjectClient } from "@azure/ai-projects";
 import { DefaultAzureCredential }
     from "@azure/identity";
 
-const projectClient = new AIProjectClient(
+const project = new AIProjectClient(
     process.env["PROJECT_ENDPOINT"],
     new DefaultAzureCredential()
 );
-const openAIClient = await projectClient
-    .getOpenAIClient();
+const openai = project.getOpenAIClient();
 ```
 
 # [Java](#tab/java)
@@ -145,7 +162,7 @@ The new agents provide the following benefits:
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
 - **Background mode**. Support for long-running tools (like image-generation), and durable streams (supports disconnect/reconnect scenarios)
 - **Future-proof.** New features and model support are only added to the new agents.
-- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and Hosted agents (preview).
+- **New agent types.** Create prompt-based agents and Hosted agents.
 
 **Enterprise readiness**
 
@@ -169,7 +186,7 @@ The following table summarizes the main API changes between the previous and cur
 | -------- | ------- | ------ |
 | Threads | Conversations | Supports streams of items, not just messages. |
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
-| Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and Hosted agents with stateful context by default for any Foundry model. |
+| Assistants / agents | Agents (new) | Support for enterprise-ready prompt and Hosted agents with stateful context by default for any Foundry model. |
 
 ## Agent tool availability
 
@@ -183,7 +200,7 @@ The following table compares agent tools available in classic agents and the new
 | Browser Automation | Yes (Public Preview) | Yes (Public Preview) |
 | Code Interpreter | Yes (GA) | Yes (GA) |
 | Computer Use | Yes (Public Preview) | Yes (Public Preview) |
-| Connected Agents | Yes (Public Preview) | No (Recommendation: Workflow and A2A tool) |
+| Connected Agents | Yes (Public Preview) | No (Recommendation: A2A tool) |
 | Deep Research | Yes (Public Preview) | No (Recommendation: Deep Research model with Web Search tool) |
 | Fabric Data Agent | Yes (Public Preview) | Yes (Public Preview) |
 | File Search | Yes (GA) | Yes (GA) |
@@ -197,7 +214,7 @@ The following table compares agent tools available in classic agents and the new
 | Web Search | No | Yes (GA) |
 
 > [!IMPORTANT]
-> In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project.get_openai_client()`. In C#, use `projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent()`. In JavaScript, call `projectClient.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
+> In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project.get_openai_client()`. In C#, use `projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent()`. In JavaScript, call `project.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
 
 ## Migrate threads to conversations
 
@@ -297,7 +314,7 @@ conversation = openai.conversations.create(
 
 ```csharp
 ProjectResponsesClient responsesClient =
-    projectClient.OpenAI
+    projectClient.ProjectOpenAIClient
         .GetProjectResponsesClientForAgent(
             "my-awesome-agent");
 
@@ -310,7 +327,7 @@ var result = responsesClient.CreateResponse(
 
 ```javascript
 const conversation =
-    await openAIClient.conversations.create({
+    await openai.conversations.create({
         items: [
             {
                 type: "message",
@@ -460,7 +477,7 @@ var followUp = responsesClient.CreateResponse(
 # [JavaScript](#tab/javascript)
 
 ```javascript
-await openAIClient.conversations.items.create(
+await openai.conversations.items.create(
     conversation.id,
     {
         items: [
@@ -620,7 +637,7 @@ response = openai.responses.create(
 
 ```csharp
 ProjectResponsesClient responsesClient =
-    projectClient.OpenAI
+    projectClient.ProjectOpenAIClient
         .GetProjectResponsesClientForAgent(
             "my-agent");
 
@@ -636,18 +653,16 @@ var result = responsesClient.CreateResponse(
 const conversationId =
     "conv_11112222AAAABBBB";
 
-const response =
-    await openAIClient.responses.create({
+const response = await openai.responses.create(
+    {
         input:
             "Hi, Agent! Draw a graph for a "
             + "line with a slope of 4 and "
             + "y-intercept of 9.",
         conversation: conversationId,
-        agent_reference: {
-            name: "my-agent",
-            type: "agent_reference",
-        },
-    });
+    },
+    { body: { agent_reference: { name: "my-agent", type: "agent_reference" } } },
+);
 ```
 
 # [Java](#tab/java)
@@ -903,7 +918,7 @@ agent = project.agents.create_version(
 # [C#](#tab/csharp)
 
 ```csharp
-var agent = await projectClient.Agents
+var agent = await projectClient.AgentAdministrationClient
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
@@ -925,7 +940,7 @@ var agent = await projectClient.Agents
 
 ```javascript
 const agent =
-    await projectClient.AgentAdministrationClient.createVersion(
+    await project.agents.createVersion(
         "my-agent",
         {
             kind: "prompt",
@@ -1135,7 +1150,7 @@ agent = project.agents.create_version(
 # [C#](#tab/csharp)
 
 ```csharp
-var agent = await projectClient.Agents
+var agent = await projectClient.AgentAdministrationClient
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
@@ -1491,7 +1506,7 @@ for item in response.output:
 # [C#](#tab/csharp)
 
 ```csharp
-var agent = await projectClient.Agents
+var agent = await projectClient.AgentAdministrationClient
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
@@ -1509,7 +1524,7 @@ var agent = await projectClient.Agents
             }));
 
 ProjectResponsesClient responsesClient =
-    projectClient.OpenAI
+    projectClient.ProjectOpenAIClient
         .GetProjectResponsesClientForAgent(
             "my-agent");
 
@@ -1553,11 +1568,10 @@ const agent =
         }
     );
 
-const openAIClient =
-    await projectClient.getOpenAIClient();
+const openai = project.getOpenAIClient();
 
 const conversation =
-    await openAIClient.conversations.create({
+    await openai.conversations.create({
         items: [
             {
                 type: "message",
@@ -1571,18 +1585,16 @@ const conversation =
         ],
     });
 
-const response =
-    await openAIClient.responses.create({
+const response = await openai.responses.create(
+    {
         input:
             "Please address the user as "
             + "Jane Doe. The user has a "
             + "premium account",
         conversation: conversation.id,
-        agent_reference: {
-            name: agent.name,
-            type: "agent_reference",
-        },
-    });
+    },
+    { body: { agent_reference: { name: agent.name, type: "agent_reference" } } },
+);
 
 // Print the response output
 for (const item of response.output) {
@@ -1663,8 +1675,8 @@ After you migrate your code, confirm that everything works correctly:
 | --------- | ------- | ------------ |
 | **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project.get_openai_client()` to obtain the OpenAI client, then call `openai.conversations.create()`. |
 | **C#**: `Azure.AI.Extensions.OpenAI` namespace not found | The `Azure.AI.Extensions.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects` (which brings in `Azure.AI.Extensions.OpenAI` and `Azure.AI.Projects.Agents` as dependencies). |
-| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0` or later: `npm install @azure/ai-projects@2.0.0`. |
-| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml` dependencies. |
+| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects` 2.4.0 or later: `npm install @azure/ai-projects`. |
+| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.2.0` to your `pom.xml` dependencies. |
 | `create_agent()` is removed | Earlier SDK versions used `create_agent()`, which was removed in v2.0.0. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
 | `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../concepts/limits-quotas-regions.md). |

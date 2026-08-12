@@ -3,8 +3,8 @@ title: Implement language identification - Speech service
 titleSuffix: Foundry Tools
 description: Learn how language identification can determine the language being spoken in audio when compared against a list of provided languages.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 12/19/2025
@@ -23,6 +23,8 @@ Language identification (LID) use cases include:
 - Speech translation when you need to identify the language in an audio source and then translate it to another language.
 
 For speech recognition, the initial latency is higher with language identification. You should only include this optional feature as needed.
+
+For a cross-workload configuration checklist that also covers diarization, see [Configure language identification and diarization for speech transcription](configure-language-identification-diarization.md).
 
 ## Set configuration options
 
@@ -1079,3 +1081,4 @@ For more information about containers, see the [language identification speech c
 - [Try the speech to text quickstart](get-started-speech-to-text.md)
 - [Improve recognition accuracy with custom speech](custom-speech-overview.md)
 - [Use batch transcription](batch-transcription.md)
+- [Configure language identification and diarization for transcription](configure-language-identification-diarization.md)

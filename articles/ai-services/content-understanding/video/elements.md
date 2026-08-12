@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools audiovisual analysis and content extraction capabilities for audio and video inputs.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -71,8 +71,6 @@ The following audiovisual elements can be extracted:
 | [**Key frames**](#key-frames) | ✗ | ✓ | No |
 | [**Camera shots**](#camera-shots) | ✗ | ✓ | Yes |
 | [**Field extraction**](#field-extraction) | ✓ | ✓ | No |
-
-Face also requires `enableFace: true` in analyzer configuration and limited access registration.
 
 ### Markdown content elements
 For details on the markdown format for audiovisual content see [AudioVisual Markdown](markdown.md).

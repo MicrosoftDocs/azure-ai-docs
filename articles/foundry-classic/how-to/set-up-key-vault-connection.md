@@ -1,8 +1,8 @@
 ---
 title: "Set up an Azure Key Vault Connection (classic)"
 description: "Learn how to securely connect your Azure Key Vault to Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration. (classic)"
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: andyaviles
 ms.date: 02/24/2026
 ms.topic: how-to

@@ -11,6 +11,8 @@ ms.date: 01/23/2026
 
 # Security filters for trimming results in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 For search solutions that can't use the [built-in access control list (ACL) support](search-document-level-access-overview.md)  for document-level authorization, Azure AI Search supports creating a filter that trims search results based on a string containing a group or user identity.
 
 This article describes a pattern for security filtering having the following steps:

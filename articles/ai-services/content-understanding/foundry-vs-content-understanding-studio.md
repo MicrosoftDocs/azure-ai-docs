@@ -1,13 +1,13 @@
 ---
-title: Feature comparison for Content Understanding in Foundry and Content Understanding Studio
+title: Content Understanding Studio and Microsoft Foundry
 titleSuffix: Foundry Tools
-description: Learn about the available options in Foundry and Content Understanding Studio.
+description: Compare API versions, prebuilt analyzer availability, and customization features in Content Understanding Studio and Microsoft Foundry.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
-ms.date: 01/29/2026
+manager: mcleans
+ms.date: 08/06/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - ignite-2024-understanding-release
@@ -15,54 +15,40 @@ ms.custom:
   - ignite-2025
 ---
 
-# Compare Content Understanding in Foundry and Content Understanding Studio
+# Content Understanding Studio and Microsoft Foundry
 
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
-
-## Overview
-
-Azure Content Understanding in Foundry Tools transforms unstructured content—documents, images, audio, and video—into structured, searchable data. The Foundry experience is complemented by Content Understanding Studio, which is designed for customers who are transitioning from Azure Document Intelligence in Foundry Tools or need advanced analyzer refinement capabilities. This article describes the capabilities available and planned in each experience.
+Content Understanding Studio and the Content Understanding playground in Microsoft Foundry (new) are two experiences for working with Azure Content Understanding. Both experiences use the same underlying Content Understanding service, Microsoft Foundry resource, and Azure authentication.
 
 ## Quick comparison
 
-Foundry portal and Content Understanding Studio have parity for most features. See the chart for key differences.
+Use this comparison to select an experience for your development and testing workflow.
 
-| Feature category | Foundry (new) | Foundry (classic) | Content Understanding Studio |
-|------------------|-----------------|-----------------|-----------------|
-| **API version support** | 2025-11-01 GA API support | 2025-05-01-preview | 2025-11-01 GA API support |
-| **Read and layout playground** | ✅ | ✅ | ✅ |
-| **Supports in-context learning (data labeling)?** | ❌  | ❌ | ✅ |
+| Feature | Content Understanding Studio | Foundry (new) |
+|---------|--------------------------------|---------------|
+| **API versions** | `2025-11-01` (GA) and `2026-06-01-preview` | `2026-06-01-preview` |
+| **Read and Layout analyzers** | ✓ | ✓ |
+| **Prebuilt analyzers** | All | Partial set |
+| **Search analyzers** | ✓ | ✓ |
+| **Audio, video, and image modality analyzers** | ✓ | ✓ |
+| **Create custom analyzers** | ✓ | ❌ |
+| **In-context learning with data labeling** | ✓ | ❌ |
 
-## What is offered in Foundry and Content Understanding Studio?
-
-Content Understanding is available in Foundry (classic) and in the updated Foundry (new) portal, with more features coming soon.
-
-The **Foundry (new) portal** offers the ability to:
-
-* Try read and layout analyzers interactively in the built-in playgrounds.
 
 > [!NOTE]
-> In Foundry (classic), the supported Content Understanding API is 2025-05-01-preview. The updated Foundry (new) platform will soon support all the new features of the Content Understanding GA API 2025-11-01.
+> Content Understanding Studio supports the `2025-11-01` GA API and the `2026-06-01-preview` API. The Content Understanding playground in Foundry (new) supports the `2026-06-01-preview` API. Preview APIs are provided without a service-level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-**Content Understanding Studio** is a complementary UX experience designed to create a smooth transition path for Document Intelligence customers. It brings familiar studio-based workflows—including testing, model refinement, and labeling—while extending capabilities to new multimodal capabilities and adding the power of generative AI models. Content Understanding Studio offers the following key capabilities:
+## Choose an experience
 
-* Improve custom analyzers by using data labeling techniques to optimize performance.
-* Build classification-based custom analyzers for classification scenarios.
-* Apply existing Document Intelligence expertise and patterns with familiar core concepts.
+Use [Content Understanding Studio](https://contentunderstanding.ai.azure.com/) when you need the complete prebuilt analyzer catalog, custom analyzer authoring and building, in-context learning with data labeling, or the `2025-11-01` GA API. If you primarily work in Microsoft Foundry, use the [Content Understanding playground](https://ai.azure.com/) for supported analyzers and switch to Studio when you need these Studio-only capabilities.
 
-**Both experiences** offer the ability to:
+The analyzer gallery in each experience shows which analyzers are available for the selected API version. For analyzer descriptions, see [Prebuilt analyzers](concepts/prebuilt-analyzers.md).
 
-* Try out prebuilt analyzers on your own data.
-* Develop custom analyzers by using AI-assisted tools for output tailored to your scenario.
-* Test custom analyzers on your own data.
+## Foundry (classic) deprecation
 
-## Summary
+> [!IMPORTANT]
+> Foundry (classic) was deprecated on July 15, 2026, and is no longer available as a Content Understanding experience. Use Content Understanding Studio or Foundry (new).
 
-* **Foundry (new)** is ideal for users who want to explore Content Understanding with built-in playgrounds for read and layout analyzers.
-* **Foundry (classic)** supports the preview API, 2025-05-01-preview. It includes some preview features, like Pro mode, that aren't yet available in the GA API. Migrate to the new GA API when possible to continue getting the best experience from Content Understanding.
-* **Content Understanding Studio** is best suited for users focused on building and refining analyzers, with a streamlined interface and guided setup. It's the ideal choice for Document Intelligence customers transitioning to Content Understanding, offering the same studio-based approach you already know while extending to analyze documents, images, audio, and video with enhanced classification and in-context learning capabilities.
+## Related content
 
-
-## Next steps
-
-* Check out the quickstart to [Get started with Content Understanding Studio](quickstart/content-understanding-studio.md).
+- [Get started with Content Understanding Studio](quickstart/content-understanding-studio.md).
+- [Explore prebuilt analyzers](concepts/prebuilt-analyzers.md).

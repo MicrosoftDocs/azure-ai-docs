@@ -7,16 +7,19 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 03/25/2026
+ai-usage: ai-assisted
 ---
 
 # Generate embeddings for search queries and documents
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Azure AI Search doesn't host embedding models, so you're responsible for creating vectors for query inputs and outputs. Choose one of the following approaches:
 
 | Approach | Description |
 | --- | --- |
 | [Integrated vectorization](vector-search-integrated-vectorization.md) | Use built-in data chunking and vectorization in Azure AI Search. This approach takes a dependency on indexers, skillsets, and built-in or custom skills that point to external embedding models, such as those in Microsoft Foundry. |
-| Manual vectorization | Manage data chunking and vectorization yourself. For indexing, you [push prevectorized documents](vector-search-how-to-create-index.md#load-vector-data-for-indexing) into vector fields in a search index. For querying, you [provide precomputed vectors](#generate-an-embedding-for-an-improvised-query) to the search engine. For demos of this approach, see the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/tree/main) GitHub repository. |
+| Manual vectorization | Manage data chunking and vectorization yourself. For indexing, you [push prevectorized documents](vector-search-how-to-create-index.md#load-vector-data-for-indexing) into vector fields in a search index. For querying, you [provide precomputed vectors](#generate-an-embedding-for-an-ad-hoc-query) to the search engine. For demos of this approach, see the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/tree/main) GitHub repository. |
 
 We recommend integrated vectorization for most scenarios. Although you can use any supported embedding model, this article uses Azure OpenAI models for illustration.
 
@@ -77,7 +80,7 @@ One step involves selecting an embedding model to vectorize your plain text cont
 
 Your model must already be deployed, and you must have permission to access it. For more information, see [Deployment overview for Foundry Models](/azure/ai-foundry/concepts/deployments-overview).
 
-## Generate an embedding for an improvised query
+## Generate an embedding for an ad hoc query
 
 If you don't want to use integrated vectorization, you can manually generate an embedding and paste it into the `vectorQueries.vector` property of a vector query. For more information, see [Create a vector query in Azure AI Search](vector-search-how-to-query.md).
 

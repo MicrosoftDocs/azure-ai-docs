@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how to use Azure Content Understanding in Foundry Tools image solutions
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/31/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -38,20 +38,6 @@ Content Understanding offers several key benefits for extracting information fro
 
 :::image type="content" source="../media/image/image-flow-diagram.jpg" alt-text="Screenshot of a data flow diagram for image processing in content understanding.":::
 
-## Face description fields
-
-> [!NOTE]
->
->  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
-
-The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the images. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
-
-**Examples:**
-
-* **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
-* **Example field: nameOfProminentPerson:** Provides a name if possible of a celebrity in the image (for example, `Satya Nadella`)
-* **Example field: faceSmilingFrowning:** Provides a description of whether a person is smiling or frowning
-
 ## Get started
 
 Get started with processing images with Content Understanding by following our [REST API quickstart](../quickstart/use-rest-api.md?tabs=image) or visiting [Microsoft Foundry](https://aka.ms/cu-landing) for a no-code experience. 
@@ -59,9 +45,6 @@ Get started with processing images with Content Understanding by following our [
 > [!NOTE]
 > Image analyzers are not optimized for scenarios where analysis is based primarily on extracted text. If your main goal is to extract and analyze text from images, consider using a document field extraction schema instead.
 
-
-> [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. For related information, see [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Related content
 

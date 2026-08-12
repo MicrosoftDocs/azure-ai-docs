@@ -3,14 +3,14 @@ title: Integrate Azure Functions with Foundry Agents
 titleSuffix: Microsoft Foundry
 description: Build custom agent tools with Azure Functions using queue-based integration. Step-by-step guide with code examples for Foundry agents.
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, doc-kit-assisted
 zone_pivot_groups: selection-azure-function-tool
@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 
 Learn how to integrate [Azure Functions](/azure/azure-functions/functions-overview) with Microsoft Foundry agents by using a queue-based tool approach. This article shows you how to build custom serverless tools that an agent's Foundry model can call asynchronously through Azure Queue storage. By using this approach, your agents can access enterprise systems and complex business logic with scale-to-zero pricing.
 
-Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation. 
+Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation.
 
 Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-functions/flex-consumption-plan) is ideal for hosting your custom tools because it provides:
 
@@ -394,7 +394,7 @@ Add the Azure AI Agents dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>

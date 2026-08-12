@@ -1,8 +1,8 @@
 ---
 title: "Use Azure Policies with hubs and projects (classic)"
 description: "Learn how to use Azure Policy with Microsoft Foundry to make sure your hubs and projects are compliant with your requirements. (classic)"
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ms.date: 01/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform

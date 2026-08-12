@@ -4,12 +4,14 @@ description: Learn how to configure security features in Azure AI Search to prot
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 08/06/2026
 ai-usage: ai-assisted
 ms.custom: horz-security
 ---
 
 # Secure an Azure AI Search service
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This article provides security best practices to help protect your Azure AI Search service. You're responsible for implementing these customer-configurable security controls. For information about Microsoft's built-in protections, such as network architecture, encryption, and compliance certifications, see [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md).
 
@@ -119,7 +121,7 @@ The workflow for authorizing control plane operations is:
 
 ### Authorize data plane operations
 
-Data plane operations target content hosted on a search service, such as index creation, document loading, and queries. Authorization is available through role-based access control, API keys, or both. For configuration steps, see the previous sections on [role-based access control](#recommended-enable-role-based-access-control) and [API key authentication](#configure-api-key-authentication).
+Data plane operations target content hosted on a search service, such as index creation, document loading, and queries. Authorize these operations through role-based access control, API keys, or both. For configuration steps, see [(Recommended) Enable role-based access control](#recommended-enable-role-based-access-control) and [Configure API key authentication](#configure-api-key-authentication).
 
 ### Grant access to individual indexes
 

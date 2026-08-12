@@ -1,12 +1,13 @@
 ---
-title: Create a Search Service in the Azure Portal
-description: Learn how to set up an Azure AI Search service in the Azure portal. Choose a resource group, region, and pricing tier.
+title: Create a search service in the Azure portal
+description: Learn how to set up an Azure AI Search service in the Azure portal, including resource group, region, and pricing tier selection.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 09/25/2025
+ms.date: 07/20/2026
+ai-usage: ai-assisted
 ms.custom:
   - references_regions
   - build-2024
@@ -15,7 +16,11 @@ ms.custom:
 
 # Create an Azure AI Search service in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [Azure AI Search](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
+
+Most modern AI apps use Azure AI Search as part of a larger architecture (for example, with Microsoft Foundry agents, vectorization pipelines, or chat-based apps). This article focuses on creating the underlying search service.
 
 The easiest way to create a search service is through the [Azure portal](https://portal.azure.com), which is covered in this article.
 
@@ -35,16 +40,17 @@ You can also use:
 Some properties are fixed for the lifetime of the search service. Before you create your service, decide on the following properties:
 
 | Property | Description |
-|--|--|
+| -- | -- |
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
-| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. After you create your service, you can [switch between Basic and Standard (S1, S2, and S3) tiers](search-capacity-planning.md#change-your-pricing-tier). |
+| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. After you create your service, you need to [Choose a pricing model and service tier](search-sku-tier.md). |
 | [Compute type](search-security-best-practices.md#optional-enable-confidential-computing) | Determines virtualization and security model. You can choose between standard VMs (recommended) and confidential VMs, which are intended for select workloads requiring data-in-use privacy and isolation. |
+
 ## Subscribe to Azure
 
 Azure AI Search requires a free or Standard Azure subscription.
 
-To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. You can complete all of our quickstarts and most of our tutorials on the Free tier. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
+To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. You can complete all of the quickstarts and most of the tutorials on the Free tier. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
 
 > [!IMPORTANT]
 > To make room for other services, Microsoft might delete free services that are inactive for an extended period of time.
@@ -95,7 +101,7 @@ When naming your service, follow these rules:
 ## Choose a region
 
 > [!IMPORTANT]
-> Due to high demand, Azure AI Search is currently unavailable for new instances in some regions.
+> Region and tier availability can change over time. Check [Azure AI Search regional availability](search-region-support.md) during service creation.
 
 If you use multiple Azure services, putting all of them in the same region minimizes or voids bandwidth charges. There are no charges for data egress among same-region services.
 
@@ -115,20 +121,21 @@ In most cases, choose a region near you, unless any of the following apply:
 
 1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in different Azure regions, each with two or more replicas so that they can be spread across multiple [availability zones](/azure/reliability/reliability-ai-search#availability-zone-support). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service. For more information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
 
-1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal search](multimodal-search-overview.md) powered by Foundry Tools? For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection (preview) or key-based connection. Key-based connections require both services to be in the same region.
+1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal search](multimodal-search-overview.md) powered by Foundry Tools? For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection or key-based connection. Key-based connections require both services to be in the same region.
 
-   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Microsoft Foundry are in the same region.
+   - Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Microsoft Foundry are in the same region.
 
-   + Check [Azure Vision in Foundry Tools regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure Vision and accessed through a Microsoft Foundry resource. However, they're generally available in fewer regions than the Microsoft Foundry resource itself.
+   - Check [Azure Vision in Foundry Tools regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure Vision and accessed through a Microsoft Foundry resource. However, they're generally available in fewer regions than the Microsoft Foundry resource itself.
 
 ## Choose a tier
 
 Azure AI Search is offered in multiple [pricing tiers](https://azure.microsoft.com/pricing/details/search/):
 
-+ Free
-+ Basic
-+ Standard
-+ Storage Optimized
+- Free
+- Basic
+- Standard
+- Storage Optimized
+- Serverless Developer
 
 Each tier has its own [capacity and limits](search-limits-quotas-capacity.md), and some features are tier dependent. For information about computing characteristics, feature availability, and region availability, see [Choose a service tier for Azure AI Search](search-sku-tier.md).
 
@@ -137,7 +144,7 @@ The Basic and Standard tiers are the most common for production workloads, but m
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier page in the Azure portal." border="true":::
 
 > [!NOTE]
-> Services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+> Newer services have larger partitions and higher vector quotas at every billable tier. For current details, see [Service limits in Azure AI Search](search-limits-quotas-capacity.md).
 
 ## Choose a compute type
 
@@ -161,26 +168,26 @@ Your service is deployed within minutes, and you can monitor its progress with A
 
 ## Configure authentication
 
-When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with role-based access.
+When you create a search service, key-based authentication is the default, but it's not the most secure option. Replace it with role-based access.
 
 To enable role-based access for your service:
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. From the left pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Select **Both** until you assign roles, after which you can select **Role-based access control**.
+1. From the left pane, select **Settings** > **Keys**. You can connect to your service by using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Select **Both** until you assign roles, after which you can select **Role-based access control**.
 
    :::image type="content" source="media/search-create-service-portal/authentication-options.png" lightbox="media/search-create-service-portal/authentication-options.png" alt-text="Screenshot of the Keys tab with authentication options." border="true":::
 
 ## Scale your service
 
-After deploying your search service, you can [scale it to meet your needs](search-limits-quotas-capacity.md). Azure AI Search offers two scaling dimensions: *replicas* and *partitions*. Replicas allow your service to handle a higher load of search queries, while partitions allow your service to store and search through more documents.
+After deploying your search service, you can [scale it to meet your needs](search-limits-quotas-capacity.md). Azure AI Search offers two scaling dimensions: *replicas* and *partitions*. Replicas increase your service's capacity to handle more search query traffic. Partitions increase your service's capacity to store and search through more documents.
 
-Scaling is available only on billable tiers. On the Free tier, you can't scale your service or configure replicas and partitions.
+You can scale your service only on billable tiers. On the Free tier, you can't scale your service or configure replicas and partitions.
 
 > [!IMPORTANT]
 > Your service must have [two replicas for read-only SLA and three replicas for read/write SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
-Adding resources will increase your monthly bill. Use the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications. You can adjust resources based on load, such as increasing resources for initial indexing and decreasing them later for incremental indexing.
+Adding resources increases your monthly bill. Use the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications. You can adjust resources based on load, such as increasing resources for initial indexing and decreasing them later for incremental indexing.
 
 To scale your service:
 
@@ -225,13 +232,13 @@ To request more subscription quota:
 
    :::image type="content" source="media/search-create-service-portal/quota-overview-page.png" lightbox="media/search-create-service-portal/quota-overview-page.png" alt-text="Screenshot of the Search tile on the Overview page.":::
 
-1. Set filters to review the existing quota for search services in your current subscription. We recommend filtering by usage.
+1. Set filters to review the existing quota for search services in your current subscription. Filter by usage.
 
     :::image type="content" source="media/search-create-service-portal/usage-filter.png" lightbox="media/search-create-service-portal/usage-filter.png" alt-text="Screenshot of the Usage filter for search services in your current subscription.":::
 
 1. Next to the tier and region that need more quotas, select **Request adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="14">.
 
-1. In **New Quota Request**, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
+1. In **New Quota Request**, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request isn't automatically approved, and an incident report is generated on your behalf for investigation and resolution.
 
 1. Submit your request.
 
@@ -239,7 +246,7 @@ To request more subscription quota:
 
 ## Next steps
 
-Now that you've deployed your search service, continue in the Azure portal to create your first index:
+Now that you deployed your search service, continue in the Azure portal to create your first index:
 
 > [!div class="nextstepaction"]
 > [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md)

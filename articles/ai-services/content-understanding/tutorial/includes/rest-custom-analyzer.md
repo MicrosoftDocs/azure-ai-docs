@@ -1,9 +1,9 @@
 ---
 title: "Tutorial: Create a custom analyzer using the Content Understanding REST API"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to create a custom analyzer with Content Understanding using the REST API.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 01/30/2026
 ms.author: paulhsu
@@ -204,7 +204,6 @@ Create a JSON file named `request_body.json` with the following content:
   "config": {
     "locales": ["en-US", "fr-FR"],
     "returnDetails": true,
-    "disableFaceBlurring": false
   },
    "fieldSchema": {
     "fields": {
@@ -287,7 +286,7 @@ The `201 Created` response includes an `Operation-Location` header with a URL th
 
 ```
 201 Created
-Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-05-01-preview
+Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-11-01
 ```
 
 When the operation finishes, an HTTP GET on the operation location URL returns `"status": "succeeded"`.

@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Create custom analyzers and apply in context learning to improve them using Content Understanding Studio
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ms.custom:
   - ignite-2024-understanding-release

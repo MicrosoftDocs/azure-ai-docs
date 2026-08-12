@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI in Microsoft Foundry Models fine-tuning gpt-4o-mini (classic)"
 description: "Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18 (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: tutorial

@@ -3,7 +3,7 @@ title: "Sora 2 video generation overview (preview)"
 description: "Learn about Sora 2, an AI model for generating realistic and imaginative video scenes from text instructions, including safety, limitations, and supported features."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

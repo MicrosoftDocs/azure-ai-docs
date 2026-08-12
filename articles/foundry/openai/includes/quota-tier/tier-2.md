@@ -1,13 +1,14 @@
 ---
 title: Quota tier 2
 description: Quota tier limits for tier 2
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/27/2026
+ai-usage: ai-assisted
 ---
 
 
@@ -42,6 +43,7 @@ ms.date: 05/12/2026
 | gpt-5-pro                      | GlobalStandard    | 3,500       | 350,000     |
 | gpt-5.1                        | DataZoneStandard  | 6,700       | 670,000     |
 | gpt-5.1                        | GlobalStandard    | 20,000      | 2,000,000   |
+| gpt-5.1                        | Standard          | 6,700       | 670,000     |
 | gpt-5.1-chat                   | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-5.1-codex                  | DataZoneStandard  | 6,700       | 670,000     |
 | gpt-5.1-codex                  | GlobalStandard    | 2,000       | 2,000,000   |
@@ -61,6 +63,12 @@ ms.date: 05/12/2026
 | gpt-5.4-nano                   | GlobalStandard    | 16,000      | 16,000,000  |
 | gpt-5.5                        | DataZoneStandard  | 0           | 0           |
 | gpt-5.5                        | GlobalStandard    | 0           | 0           |
+| gpt-5.6-luna                   | DataZoneStandard  | 667         | 667,000     |
+| gpt-5.6-luna                   | GlobalStandard    | 2,000       | 2,000,000   |
+| gpt-5.6-sol                    | DataZoneStandard  | 667         | 667,000     |
+| gpt-5.6-sol                    | GlobalStandard    | 2,000       | 2,000,000   |
+| gpt-5.6-terra                  | DataZoneStandard  | 667         | 667,000     |
+| gpt-5.6-terra                  | GlobalStandard    | 2,000       | 2,000,000   |
 | gpt-chat-latest                | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 18          | -           |

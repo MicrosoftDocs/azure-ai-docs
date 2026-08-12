@@ -48,7 +48,7 @@ Set the environment variables used in this article:
 import os
 
 # Option 1: Project endpoint (recommended)
-os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+os.environ["FOUNDRY_PROJECT_ENDPOINT"] = (
 	"https://<resource>.services.ai.azure.com/api/projects/<project>"
 )
 
@@ -79,7 +79,7 @@ from azure.identity import DefaultAzureCredential
 from langchain_azure_ai.callbacks.tracers import AzureAIOpenTelemetryTracer
 
 tracer = AzureAIOpenTelemetryTracer(
-	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+	project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
 	credential=DefaultAzureCredential(),
 	name="langchain-tracing-sample",
 	agent_id="support-bot",

@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -39,6 +39,10 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](../../search-get-started-rbac.md).
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
 ## Set up the environment
 
 1. Use Git to clone the sample repository.
@@ -47,14 +51,14 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-python-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Go to the quickstart folder and open it in Visual Studio Code.
 
     ```bash
     cd azure-search-python-samples/Quickstart-Agentic-Retrieval
     code .
     ```
 
-1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you got in [Get endpoints](#get-endpoints).
 
 1. Rename `sample.env` to `.env`.
 
@@ -82,7 +86,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 ### Output
 
-Each code cell prints its output to the notebook. The following example is the output after running all cells:
+Each code cell prints its output to the notebook. The following example shows the output after running all cells:
 
 ```
 Documents uploaded to index 'earth-at-night' successfully.
@@ -278,7 +282,7 @@ print(f"Knowledge source '{knowledge_source_name}' created or updated successful
 
 To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`.
 
-`output_mode` is set to `ANSWER_SYNTHESIS`, enabling natural-language answers that cite the retrieved documents and follow the provided `answer_instructions`.
+`output_mode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answer_instructions`.
 
 ```python
 # Create a knowledge base
@@ -296,7 +300,7 @@ knowledge_base = KnowledgeBase(
             name=knowledge_source_name
         )
     ],
-    output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
+    output_mode="answerSynthesis",
     answer_instructions="Provide a 2 sentence concise and informative answer based on the retrieved documents."
 )
 
@@ -367,7 +371,7 @@ req = KnowledgeBaseRetrievalRequest(
         )
     ],
     include_activity=True,
-    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort()
 )
 
 result = agent_client.retrieve(retrieval_request=req)
@@ -453,7 +457,7 @@ req = KnowledgeBaseRetrievalRequest(
         )
     ],
     include_activity=True,
-    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort()
 )
 
 result = agent_client.retrieve(retrieval_request=req)
@@ -498,7 +502,7 @@ print("references_content:\n", references_content)
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `quickstart-agentic-retrieval.ipynb` deleted the objects you created in this quickstart.
+Otherwise, the following code from `quickstart-agentic-retrieval.ipynb` deletes the objects you created in this quickstart.
 
 ### Delete the knowledge base
 

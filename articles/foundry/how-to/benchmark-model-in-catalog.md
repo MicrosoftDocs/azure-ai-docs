@@ -8,7 +8,7 @@ ms.custom:
   - ai-learning-hub
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 05/27/2026
 ms.reviewer: skohlmeier
 ms.author: lagayhar  
 author: lgayhardt
@@ -151,5 +151,5 @@ For side-by-side model comparisons, [compare models](#compare-models) to evaluat
 ## Related content
 
 - [Model leaderboards in Foundry portal](../concepts/model-benchmarks.md) - Learn about the benchmarks, datasets, and metrics behind the leaderboard scores.
-- [Evaluate generative AI apps with Foundry](evaluate-generative-ai-app.md) - Run evaluations on your own data to measure model performance for your scenario.
-- [View evaluation results in Foundry portal](evaluate-results.md) - Interpret and compare evaluation results across runs.
+- [Run evaluations from the Foundry portal](evaluate-generative-ai-app.md) - Run evaluations on your own data to measure model performance for your scenario.
+- [See Evaluation Results in Foundry portal](evaluate-results.md) - Interpret and compare evaluation results across runs.

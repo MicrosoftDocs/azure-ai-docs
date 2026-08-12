@@ -2,14 +2,14 @@
 title: "How to upload files using the file search tool (classic)"
 description: "Find code samples and instructions for uploading files to Foundry Agent Service. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
-author: jonburchel
+author: mattwojo
 reviewer: lindazqli
-ms.author: jburchel
+ms.author: mattwoj
 ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-bing-grounding-code
 ms.custom: azure-ai-agents-code

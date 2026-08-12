@@ -1,12 +1,43 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 4/21/2026
+ms.date: 08/05/2026
 ms.author: pafarley
-ms.custom: references_regions
+ms.custom: references_regions, doc-kit-assisted
+ai-usage: ai-assisted
 ---
+
+### July 2026 release
+
+#### Real-time multichannel speech to text (public preview)
+
+Real-time multichannel speech to text is now available in public preview with Speech SDK version
+1.51.0 or later. Transcribe up to two channels from stereo audio independently, with each
+recognition result tagged by its source channel. For more information, see
+[How to transcribe multichannel audio in real time](../../how-to-recognize-speech-multichannel.md).
+#### Monolingual post-stream refinement general availability
+
+Monolingual post-stream refinement is now generally available for real-time speech to text. It improves final transcript accuracy by running a second recognition pass in parallel with real-time streaming, without affecting first-token latency. For more information, see [Post-stream refinement](../../how-to-recognize-speech.md#post-stream-refinement) and [How to use post-processing](../../how-to-post-processing.md).
+
+#### Multilingual post-stream refinement (public preview)
+
+Multilingual post-stream refinement is now available in public preview for real-time speech to text. A single recognition session can transcribe multiple supported languages, including language switching, while maintaining low-latency intermediate results. Enable post-stream refinement and use open-range automatic language detection with Speech SDK version 1.50 or later. For more information, see [Post-stream refinement](../../how-to-recognize-speech.md#post-stream-refinement) and [How to use post-processing](../../how-to-post-processing.md).
+
+### May 2026 release
+
+#### Custom speech fine-tuning in the Microsoft Foundry (new) portal
+
+The custom speech fine-tuning workflow is now documented for the Microsoft Foundry (new) portal. The wizard-driven experience walks you through project creation, data upload, data inspection, model training, evaluation, and endpoint deployment. For more information, see [Create a custom speech project](../../how-to-custom-speech-create-project.md).
+
+#### LLM Speech API Generally Availability
+
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+
+#### Speech Transcription SDK general availability
+
+The Speech Transcription SDK is now generally available (version 1.0.0) for C#, Python, Java, and JavaScript/TypeScript. The SDK provides a unified client for the Fast Transcription and LLM Speech capabilities of the Speech service. For more information, see [What is the Speech Transcription SDK?](../../transcription-sdk.md).
 
 ### April 2026 release
 
@@ -63,7 +94,7 @@ You can now control the influence of phrase lists on speech recognition results 
 
 Speech to text 5.0.3-preview
 - Fixed vulnerabilities
-- Support user set redis endpoint for diarization.
+- Support user set Redis endpoint for diarization.
 - STT backend/frontend engine update
 - Added coverage of locales previously supported in version 4.12.
 
@@ -294,9 +325,9 @@ Automatic multi-lingual speech translation is available in public preview. This 
 
 For a detailed introduction, visit [Speech translation overview](../../speech-translation.md). Additionally, you can refer to the code samples at [how to translate speech](../../how-to-translate-speech.md). This new feature is fully supported by all SDK versions from 1.37.0 onwards.
 
-#### Real-time speech to text with diariazation (GA)
+#### Real-time speech to text with diarization (GA)
 
-Real-time speech to text with diariazation is now generally available.
+Real-time speech to text with diarization is now generally available.
 
 You can create speech to text applications that use diarization to distinguish between the different speakers who participate in the conversation. For more information about real-time diarization, Check out the [real-time diarization quickstart](../../get-started-stt-diarization.md).
 
@@ -310,9 +341,9 @@ You can create speech to text applications that use diarization to distinguish b
 
 #### Whisper general availability (GA)
 
-The Whisper speech to text model with Azure Speech is now generally available.
+The Whisper speech-to-text model with Azure Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models.
+To learn more about when to use Azure Speech versus Azure OpenAI in Microsoft Foundry Models, see [What are OpenAI transcription models?](../../transcribe-overview.md)
 
 ### February 2024 release
 
@@ -331,11 +362,11 @@ We're thrilled to unveil a groundbreaking addition to our real-time speech model
 
 Key Highlights:
 - Bilingual Support: With our latest release, users can seamlessly switch between English and Spanish or between English and French during real-time speech interactions. This functionality is tailored to accommodate bilingual speakers who frequently transition between these two languages.
-- Enhanced User Experience: Bilingual speakers, whether at work, home, or in various community settings, will find this feature immensely beneficial. The model's ability to comprehend and respond to both English and Spanish in real time opens up new possibilities for effective and fluid communication.
+- Enhanced user experience: Bilingual speakers, whether at work, home, or in various community settings, find this feature immensely beneficial. The model's ability to comprehend and respond to both English and Spanish in real time opens up new possibilities for effective and fluid communication.
 
 How to Use:
 
-Choose es-US (Spanish and English) or fr-CA (French and English) when you call the Speech Service API or try it out on Speech Studio. Feel free to speak either language or mix them together—the model is designed to adapt dynamically, providing accurate and context-aware responses in both languages.
+Choose `es-US` (Spanish and English) or `fr-CA` (French and English) when you call the Speech Service API or try it out on Speech Studio. Feel free to speak either language or mix them together. The model is designed to adapt dynamically, providing accurate and context-aware responses in both languages.
 
 It's time to elevate your communication game with our latest feature release—seamless, multi-lingual communication at your fingertips!
 
@@ -373,7 +404,7 @@ Azure Speech now supports OpenAI's Whisper model via the batch transcription API
 > [!NOTE]
 > Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI.
+To learn more about when to use Azure Speech vs. Azure OpenAI, see [What are OpenAI transcription models?](../../transcribe-overview.md)
 
 #### Speech to text REST API v3.2 public preview
 
@@ -409,8 +440,8 @@ Speech to text supports two new locales as shown in the following table. Refer t
 - Added sample codes showing how to use Pronunciation Assessment in streaming mode in your own application.
   - **C#**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#:~:text=PronunciationAssessmentWithStream).
   - **C++**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#:~:text=PronunciationAssessmentWithStream).
-  - **java**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
-  - **javascript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
+  - **Java**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
+  - **JavaScript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
   - **Objective-C**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#L831).
   - **Python**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#L915).
   - **Swift**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios).

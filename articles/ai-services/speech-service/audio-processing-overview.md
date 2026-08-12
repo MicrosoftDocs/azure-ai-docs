@@ -2,8 +2,8 @@
 title: Audio processing - Speech service
 titleSuffix: Foundry Tools
 description: An overview of audio processing pipelines and capabilities of the Microsoft Audio Stack.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 04/09/2026
 author: PatrickFarley

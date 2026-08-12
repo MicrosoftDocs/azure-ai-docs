@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools features that can improve extraction quality and performance.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
-ms.date: 01/29/2026
+manager: mcleans
+ms.date: 07/16/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - ignite-2025
@@ -29,13 +29,13 @@ Most enterprises face the following challenges when handling various documents a
 Azure Content Understanding in Foundry Tools provides critical features for post-processing your extracted output.
 
 | Feature | Purpose | Value |
-|--------|---------|-------|
+| --- | --- | --- |
 | **Confidence scoring** | Quantifies the analyzer's certainty in each prediction through confidence scores. | Enables STP (Straight Through Processing) |
 | **Grounding** | Provides references/citations for every extracted output to the original document content | Ensures traceability, compliance, and user trust |
-| **Labeled samples** | Provides examples to the analyzer on new patterns using examples and correcting the predicted outputs for incorrect values, improving overall accuracy and extraction quality. | Rapidly adapts to new formats or edge cases |
+| **Labeled samples** | Provides corrected sample documents that show the analyzer relevant values, layouts, terminology, and domain conventions. Labeled training is available in the GA and preview APIs; optimized training and no runtime labeled data are preview capabilities. | Rapidly adapts to new formats or edge cases |
 
 > [!NOTE]
-> These features are only available for extractive fields (`method: "extract"`).
+> In the `2025-11-01` GA and `2026-06-01-preview` APIs, confidence scores and grounding are available for all document field types (`extract`, `classify`, and `generate` methods).
 
 Learn more about these features below.
 
@@ -68,12 +68,10 @@ Grounding ensures that every field, answer, or classification includes a referen
 ### Why grounding matters
 
 In enterprise workflows, accuracy isn't enough; you also need traceability. When a model extracts a customer name or a termination clause, you must be able to validate where that information came from. Grounding is critical for:
-- Maintaining clear traceability and localization of extracted data for any extracted output like clauses, financial numbers, tables, insurance ID, etc.
-- Ensure transparency with internal compliance checks.
-- Use efficient human-in-the-loop validation from the actual reference source. Navigate to the page, section, and content that provided the field value.
-- Maintaining clear traceability and localization of extracted data for extracted outputs such as clauses, financial numbers, tables, and insurance IDs.
-- Ensuring transparency with internal compliance checks.
-- Supporting efficient human-in-the-loop validation. Navigate to the page, section, and content that provided the field value.
+
+* Maintaining clear traceability and localization for extracted clauses, financial numbers, tables, and insurance IDs.
+* Ensuring transparency with internal compliance checks.
+* Supporting efficient human-in-the-loop validation by identifying the page, section, and content that provided the field value.
 
 ### Example
 
@@ -97,46 +95,57 @@ Spans indicate the element's logical position using character offset and length.
 With this grounding data, your legal team can verify the extraction by jumping directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output.
 
 
-## Labeled samples (In-context learning): Improve with examples
+## Improve analyzer training with labeled examples
 
-If the context for all fields is clearly present in the test document, a zero-shot extraction call might be sufficient. Start by following the [best practices for schema definitions](../concepts/best-practices.md). If you still see incorrect field values or confidence scores below your straight-through processing threshold, use labeled samples (in-context learning) to improve the analyzer.
+Both the `2025-11-01` GA API and the `2026-06-01-preview` API support training custom document analyzers with labeled sample documents. Both versions use the same labeling workflow in Content Understanding Studio.
 
-The analyzer uses these examples at analysis time to adapt to new formats, naming conventions, or extraction rules.
+> [!IMPORTANT]
+> Training supports document analyzers only, and it doesn't currently support fields that use the `generate` method.
 
-To improve extraction quality:
-- For datasets with minimal template variations, you can add just a single labeled example. 
-- For more complex variations, add a sample per template to cover key scenarios.
+If the context for all fields is clearly present in the test document, a zero-shot extraction call might be sufficient. Start by following the [best practices for schema definitions](../concepts/best-practices.md). If you still see incorrect field values or confidence scores below your straight-through processing threshold, use labeled samples to improve the analyzer.
 
+The labeled sample documents provide the domain context. By correcting field values in representative documents, you show the analyzer the relevant layouts, terminology, value patterns, and conventions for your scenario.
 
-### Why labeled samples matter
+Labeled samples work to improve extraction quality:
 
-To manage diverse layout changes across different versions, templates, languages, or regions, help the analyzer learn by adding examples.
-
-In-context learning helps you:
-- Provide context for the analyzer to recognize the different ways the field could be represented in input documents and thus improve model accuracy.
-- Rapidly onboard new templates within a single analyzer.
-- Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
+* For datasets with minimal template variations, add a single labeled sample.
+* For more complex variations, add a representative sample for each template or format.
+* For documents that generate low confidence scores, incomplete extraction, or incorrect values.
+* Evaluate extraction quality before and after training to confirm that the samples improve results.
 
 To add a labeled sample, go to a document extraction result page in the Foundry portal and select the **Label data** tab. Upload a sample, and then select **Auto label**. Auto label runs the existing analyzer and prepopulates results that you can edit.
 
 :::image type="content" source="../media/document/in-context-learning.png" lightbox="../media/document/in-context-learning.png" alt-text="Screenshot of auto labeling an invoice sample.":::
 
-Then you can edit the fields by selecting the correct values. Once you save it, it shows with the **corrected** tag for all the extracted fields that were corrected. 
+Edit any incorrect or missing field values. After you save the sample, corrected fields display the **corrected** tag.
 
 :::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels.":::
 
 > [!NOTE]
 > You add labeled samples in Content Understanding Studio. After you add samples, rebuild the analyzer so the analyzer can use the samples.
 
-### Limitations
+For example, if invoices from a new vendor produce a low confidence score or incorrect **Amount due** value, add a representative invoice and correct its labeled values. The document itself provides the context about that vendor's layout and invoice conventions.
 
-Labeled samples don't correct text recognition issues. For example, if the letter `l` is recognized as the digit `1`, labeling the value as the letter `l` doesn't improve extraction quality. OCR errors aren't currently in scope for analyzer improvement with labeling.
+The analyzer then generalizes the pattern to extract the value from similar document templates.
 
-### Example
+### Preview API improvements
 
-You start receiving invoices from a new vendor and see lower-than-expected confidence scores on the **Amount due** field, or the analyzer extracts an incorrect total amount. Add an example invoice with labeled values to improve extraction quality for those variations.
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
-The analyzer will now generalize better on this pattern to correctly extract the value for similar templates of documents.
+The `2026-06-01-preview` API uses the same labeled sample workflow but improves how training uses the documents. When you rebuild the analyzer, training distills the relevant patterns and domain context from the labeled samples into the built analyzer.
+
+The preview training approach:
+
+* Reduces token consumption when the analyzer runs compared with the GA training approach.
+* Doesn't include or retain the labeled sample documents in the built analyzer.
+* Doesn't require the built analyzer to access the labeled sample documents at analysis time.
+
+The labeled sample documents remain in the storage account associated with your Content Understanding Studio project only for design purposes. For more information, see [Data, privacy, and security for Content Understanding](/azure/ai-foundry/responsible-ai/content-understanding/data-privacy).
+
+
+## Limitations
+
+Labeled samples don't correct text recognition problems. For example, if the letter `l` is recognized as the digit `1`, labeling the value as the letter `l` doesn't improve extraction quality.
 
 ## A complete workflow
 
@@ -148,13 +157,9 @@ When you build an intelligent document automation pipeline, these capabilities h
 To ensure quality and trust for enterprise-scale document understanding:
 - **Grounding** gives your team full traceability to every field.
 - **Confidence scores** help you automate, because human review is needed only when confidence is low.
-- **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few labeled examples.
+- **Labeled samples** provide examples that help the analyzer adapt to domain context, new contract templates, or edge cases.
 
 ## Next steps
 
 * [Review analyzer best practices](../concepts/best-practices.md)
 * [Build a custom analyzer in the Studio](../quickstart/content-understanding-studio.md)
-
-
-
-

@@ -7,7 +7,7 @@ ms.reviewer: josander
 reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/29/2026
+ms.date: 07/29/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -33,13 +33,17 @@ Every model in the Foundry catalog belongs to exactly one of these five stages:
 
 > [!NOTE]
 > - **Fine-tuned models** follow a separate retirement schedule for training and deployment. See [Fine-tuned models](#fine-tuned-models) for details.
-> - **Foundry Models (catalog)**: Some model providers define a shorter GA lifecycle—for example, 12 months instead of 18. When a shorter lifecycle applies, it is noted directly on the model in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
+> - Generally available models from Anthropic, DeepSeek, Fireworks, and Mistral AI follow a 12-month lifecycle instead of the standard 18-month lifecycle. For model-specific retirement dates, see the [Model retirement schedule](../concepts/model-retirement-schedule.md).
 
 ## Model launch and availability
 
 New models become available through deployment types in this order:
 
 :::image type="content" source="../media/concepts/lifecycle-availability-rollout.png" alt-text="Screenshot showing the order of deployment type availability for models." lightbox="../media/concepts/lifecycle-availability-rollout.png":::
+
+> [!NOTE]
+> Although all models launch with availablility through global standard deployment, they aren't guaranteed to be available for deployment through the other deployment types.
+> For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
 
 | Order | Deployment type | When available |
 |-------|----------------|---------------|
@@ -48,8 +52,6 @@ New models become available through deployment types in this order:
 | 3 | **Data Zone Standard** and **Data Zone Provisioned** | After Global Provisioned—data processing stays within a defined geographic boundary |
 | 4 | **Standard** and **Provisioned** | Last—regional-only, as older models retire and capacity is reallocated |
 
-> [!TIP]
-> For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
 
 ## Lifecycle and availability variations
 
@@ -125,11 +127,11 @@ For **Global Standard**, **Data Zone Standard**, and **Standard** deployment typ
 
 ### Example: gpt-4o → gpt-5.1 upgrade
 
-When gpt-4o versions `2024-05-13` and `2024-08-06` retired on **2026-03-31**, they were auto-upgraded to gpt-5.1 on the Standard SKU. Before the upgrade, gpt-5.1 had no Standard presence at all. After the upgrade, gpt-5.1 Standard was added to all eight regions that previously had those gpt-4o versions (centralus, eastus, eastus2, northcentralus, southcentralus, swedencentral, westus, westus3). Version `2024-11-20` was unaffected (retires 2026-10-01).
+When gpt-4o version `2024-05-13` retires on **2026-10-01**, the service automatically upgrades it to gpt-5.1 on the Standard SKU in each region where that version is currently available. If gpt-5.1 doesn't yet have a Standard presence in one of those regions, the upgrade process adds it there. Check the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) for the current retirement date and replacement model before this upgrade occurs, since these details are subject to change.
 
 ## Migration to a replacement model
 
-When a model you use enters the Legacy or Deprecated stage, check the "Suggested Replacement" column in the [Model Retirement Schedule](../concepts/model-retirements.md) and follow the steps in [Working with models](/azure/foundry/openai/how-to/working-with-models) to deploy, test, and migrate to the replacement.
+When a model you use enters the Legacy or Deprecated stage, check the "Suggested Replacement" column in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) and follow the steps in [Working with models](/azure/foundry/openai/how-to/working-with-models) to deploy, test, and migrate to the replacement.
 
 ## Notifications
 
@@ -196,7 +198,8 @@ At deployment retirement, inference and deployment return error responses.
 | gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
 | gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
 | gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
-| o4-mini | 2025-04-16 | Base model retirement | One year after training retirement |
+| o4-mini | 2025-04-16 | No earlier than 2027-04-16<sup>1</sup> | 2027-10-16
+|
 
 <sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
@@ -208,15 +211,15 @@ At deployment retirement, inference and deployment return error responses.
 | **Can I control when my Standard deployment auto-upgrades?** | Yes. Set the `versionUpgradeOption` property on your deployment to one of three values: `OnceNewDefaultVersionAvailable` (upgrade when a new default is set), `OnceCurrentVersionExpired` (upgrade only at retirement), or `NoAutoUpgrade` (never auto-upgrade—deployment stops working at retirement). You can configure this setting via REST API, Azure PowerShell, or the Foundry portal. | [Working with models—upgrade configuration](/azure/foundry/openai/how-to/working-with-models#model-deployment-upgrade-configuration) |
 | **How do I migrate a Provisioned deployment?** | Provisioned deployments aren't auto-upgraded. You have two options: *In-place migration* (Azure handles traffic migration over a 20–30 minute window with no downtime) or *Side-by-side (multi-deployment) migration* (you create a new deployment, test, switch traffic, and delete the old one). | [Managing models on provisioned deployment types](/azure/foundry/openai/how-to/working-with-models#managing-models-on-provisioned-deployment-types) |
 | **Will my quota carry over to the replacement model?** | For Standard auto-upgrades, yes—quota is handled automatically. For Provisioned deployments, you must ensure quota is available for the target model before migrating. PTU capacity is model-agnostic and fungible across provisioned managed deployments. | [Provisioned throughput—quota](/azure/foundry/openai/concepts/provisioned-throughput) |
-| **Can I get an exception to extend a model's retirement date?** | No. Retirement dates aren't extendable. Plan your migration using the timelines published in the [Model Retirement Schedule](../concepts/model-retirements.md) and the [Models API](/rest/api/aiservices/accountmanagement/models). | N/A |
+| **Can I get an exception to extend a model's retirement date?** | No. Retirement dates aren't extendable. Plan your migration using the timelines published in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) and the [Models API](/rest/api/aiservices/accountmanagement/models). | N/A |
 | **What tools can help me evaluate a replacement model?** | Use the model leaderboard in the [Foundry portal](https://ai.azure.com/explore/models) to compare benchmarks, the model comparison feature when deploying, and [Evaluations](/azure/foundry/openai/concepts/model-retirements?tabs=text#preparation-for-model-retirements-and-version-upgrades) for custom workload testing. Apply prompt engineering and fine-tuning as needed to match prior accuracy. | [Preparation for model retirements](/azure/foundry/openai/concepts/model-retirements?tabs=text#preparation-for-model-retirements-and-version-upgrades) |
-| **Do embeddings models follow the same lifecycle?** | Embeddings models (text-embedding-3-large, text-embedding-3-small, text-embedding-ada-002) have extended timelines and are handled differently from inference models. Check the [Model Retirement Schedule](../concepts/model-retirements.md) for specific dates. | [Model retirements—embeddings](/azure/foundry/openai/concepts/model-retirements) |
+| **Do embeddings models follow the same lifecycle?** | Embeddings models (text-embedding-3-large, text-embedding-3-small, text-embedding-ada-002) have extended timelines and are handled differently from inference models. Check the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) for specific dates. | [Model retirement schedule](../concepts/model-retirement-schedule.md) |
 | **How do Priority Processing and Batch deployments upgrade?** | Priority Processing follows the same upgrade process as Standard deployments (auto-upgrade supported). Batch deployments follow the side-by-side (multi-deployment) migration approach—deploy the new model, resubmit jobs, then retire the old deployment. | [Working with models](/azure/foundry/openai/how-to/working-with-models) |
 | **I can't find "Microsoft Foundry" in Azure Service Health—how do I set up alerts?** | Select `Azure OpenAI Service` as the service name when configuring Service Health alerts. There's no separate "Microsoft Foundry" service in Service Health. | [Set up Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal) |
 
 ## Related content
 
-- [Model Retirement Schedule](../concepts/model-retirements.md) for specific dates for all current, deprecated, and retired models
+- [Model retirement schedule](../concepts/model-retirement-schedule.md) for specific dates for all current, deprecated, and retired models
 - [Models API reference](/rest/api/aiservices/accountmanagement/models) to programmatically query `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model
 - [Model versions in Microsoft Foundry Models](../../foundry-models/concepts/model-versions.md) for how version upgrades work
 - [Getting started with model evaluation](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880)

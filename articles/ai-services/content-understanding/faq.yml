@@ -4,9 +4,9 @@ metadata:
   description: Get answers to frequently asked questions about the Document Intelligence service.
   author: PatrickFarley 
   ms.author: pafarley
-  manager: nitinme
+  manager: mcleans
   ms.date: 03/31/2026
-  ms.service: azure-ai-content-understanding
+  ms.service: azure-content-understanding-foundry-tools
   ms.topic: faq
   ms.custom:
     - build-2025
@@ -83,11 +83,3 @@ sections:
           * **Generative features**: When using AI-powered features, you incur contextualization charges (fixed rate per content unit) plus token-based charges from your Microsoft Foundry model deployments (input/output tokens and embeddings).
           
           For detailed pricing information, examples, and cost optimization tips, see the [Pricing explainer](pricing-explainer.md) and [Content Understanding pricing page](https://azure.microsoft.com/pricing/details/content-understanding/).
-      - question: |
-          How do the face capabilities in Content Understanding differ from the Azure AI Face service?
-        answer: |
-          In the GA API version (2025-11-01), Content Understanding provides face-related capabilities focused on privacy and description rather than identification:
-          * **Face blurring**: By default automatically blurs faces in video and image content to protect privacy.
-          * **Face description**: Use generative models to generate textual descriptions of faces in your content, capturing attributes, characteristics and celebrity identification.
-          
-          Content Understanding doesn't include the full Azure AI Face service features such as face recognition, verification, identification, or person directory capabilities in this API version.

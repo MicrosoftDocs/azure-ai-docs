@@ -3,8 +3,8 @@ title: Human-labeled transcriptions guidelines - Speech service
 titleSuffix: Foundry Tools
 description: You use human-labeled transcriptions with your audio data to improve speech recognition accuracy. This kind of transcription is especially helpful when words are deleted or incorrectly replaced. 
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley

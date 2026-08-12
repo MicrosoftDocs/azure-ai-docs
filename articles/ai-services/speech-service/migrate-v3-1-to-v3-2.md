@@ -3,8 +3,8 @@ title: Migrate from v3.1 to v3.2 REST API - Speech service
 titleSuffix: Foundry Tools
 description: This document helps developers migrate code from v3.1 to v3.2 of the Speech to text REST API.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 10/28/2025
 ms.author: pafarley
@@ -21,7 +21,7 @@ The Speech to text REST API is used for [fast transcription](./fast-transcriptio
 > [!IMPORTANT]
 > Speech to text REST API version `2025-10-15` is the latest version that's generally available. 
 > - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
-> - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` were retired on March 31, 2026. 
+> - Speech to text REST API `v3.0`, `3.2-preview.1`, and `3.2-preview.2` were retired on March 31, 2026. 
 > 
 > For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), [v3.2 to 2024-11-15](migrate-2024-11-15.md) and [2024-11-15 to 2025-10-15](migrate-2025-10-15.md) migration guides.
 
@@ -49,7 +49,7 @@ The `LanguageIdentificationMode` is added to `LanguageIdentificationProperties` 
 Azure Speech in Foundry Tools now supports OpenAI's Whisper model via Speech to text REST API v3.2. To learn more, check out the [Create a batch transcription](./batch-transcription-create.md#use-a-whisper-model) guide. 
 
 > [!NOTE]
-> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../ai-foundry/openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models. 
+> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see the [quickstart](../../ai-foundry/openai/whisper-quickstart.md). To learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models, see [What are OpenAI transcription models?](./transcribe-overview.md)
 
 ## Custom speech
 

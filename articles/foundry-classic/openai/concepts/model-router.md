@@ -3,7 +3,7 @@ title: "Model router for Microsoft Foundry concepts (classic)"
 description: "Learn about the model router feature in Azure OpenAI in Microsoft Foundry Models. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/18/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
@@ -30,7 +30,7 @@ Model router is a trained language model that intelligently routes your prompts 
 To try model router quickly, follow [How to use model router](../how-to/model-router.md). After you deploy model router, send a request to the deployment. Model router selects an underlying model for each request based on your routing settings.
 
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-foundry.md) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation]() to see the latest features.
+> The [Microsoft Foundry (new)](../../../foundry/what-is-foundry.md) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](../../../foundry/openai/concepts/model-router.md) to see the latest features.
 
 [!INCLUDE [model-router 1](../../../foundry/openai/includes/concepts-model-router-1.md)]
 

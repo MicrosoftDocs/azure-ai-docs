@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Compress vectors using scalar or binary quantization
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports scalar and binary quantization for reducing the size of vectors in a search index. Quantization is recommended because it reduces both memory and disk storage for float16 and float32 embeddings. To offset the effects of lossy compression, you can add oversampling and rescoring.
 
 To use built-in quantization, follow these steps:

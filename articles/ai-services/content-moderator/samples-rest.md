@@ -3,8 +3,8 @@ title: Code samples - Content Moderator, C#
 titleSuffix: Azure AI services
 description: Use Content Moderator feature based samples in your applications through REST API calls.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-content-moderator
+manager: mcleans
+ms.service: azure-content-moderator
 ms.topic: sample
 ms.date: 06/12/2025
 ms.author: pafarley

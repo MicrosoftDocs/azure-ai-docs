@@ -5,11 +5,14 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/25/2026
+ms.date: 07/21/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-python-rest
 ---
 
 # Quickstart: Connect to a search service
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 ::: zone pivot="python"
 

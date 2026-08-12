@@ -2,13 +2,14 @@
 title: Audio concepts in Azure Speech in Foundry Tools
 titleSuffix: Foundry Tools
 description: An overview of audio concepts in Azure Speech in Foundry Tools.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 07/13/2026
 ms.reviewer: jagoerge
 ms.author: pafarley
 author: PatrickFarley
+ai-usage: ai-assisted
 ---
 
 # Audio concepts in Azure Speech in Foundry Tools
@@ -29,7 +30,7 @@ The sample rate needs to be twice the highest frequency of the audio. For human 
 Uncompressed audio samples are represented by a number of bits that define their accuracy or resolution. For human speech, 13 bits are needed, which is rounded up to a 16-bit sample. A higher bit depth is needed for professional audio or music. Legacy telephony systems often use 8 bits with compression, but it isn't ideal for quality.
  
 ### Channels
-The Speech service typically expects and provides a mono-channel stream. The behavior of stereo and multichannel files is API-specific. For example, the speech to text REST API splits a stereo file and generates a result for each channel. Text to speech is mono only.
+The Speech service typically expects and provides a mono-channel stream. The behavior of stereo and multichannel files is API-specific. For example, the speech to text REST API splits a stereo file and generates a result for each channel. Real-time speech to text can also transcribe up to two channels independently and tag each result with its source channel. For more information, see [How to transcribe multichannel audio in real time](../how-to-recognize-speech-multichannel.md). Text to speech is mono only.
  
 ## Audio formats and codecs
  

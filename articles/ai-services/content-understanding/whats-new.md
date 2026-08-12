@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
-ms.date: 05/04/2026
+manager: mcleans
+ms.date: 08/04/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: whats-new
 ms.custom:
   - references_regions
@@ -21,10 +21,78 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
-> [!IMPORTANT]
-> Preview API versions `2025-05-01-preview` and `2024-12-01-preview` will be retired by July 15, 2026. If you're still using a preview API, update your code to target the latest API version `2025-11-01 (GA)`.
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## July 2026
+
+### Agentic mode for document analysis (preview)
+
+Content Understanding now supports agentic mode for document analyzers, available with API version `2026-06-01-preview`. Set `config.workflow` to `"agentic"` to enable agentic mode. Agentic mode reasons over a document to build answers for scenarios where the result isn't a single extractable value, such as multistep calculations, validation against a set of conditions, and analysis that requires visual inspection of tables or figures. The initial preview supports one input file per analysis request. For details, see [Agentic mode overview for document analysis](concepts/agentic-mode.md).
+
+Use `"default"`, or omit the `workflow` property, to let the service select a standard workflow based on the analyzer configuration. The service returns a resolved, versioned workflow family value that makes the applicable contextualization rate explicit.
+
+
+### Synchronous Read and Layout operations (preview)
+
+Content Understanding now supports synchronous operations for the `prebuilt-read` and `prebuilt-layout` analyzers in the `2026-06-01-preview` API. These operations process small documents and images in memory and return structured content directly in the response, without requiring you to poll for an analysis result. For details, see [Quickstart: Use synchronous Content Understanding operations](quickstart/use-synchronous-rest-api.md).
+
+### Improved custom analyzer training with labeled samples (preview)
+
+The `2025-11-01` GA API and `2026-06-01-preview` API both support training custom document analyzers with labeled sample documents. The samples provide domain context through their layouts, terminology, values, and conventions; customers don't provide domain context separately. The preview API uses the same labeling workflow, but distills lessons from the samples into the built analyzer. This approach reduces token consumption at analysis time, and the built analyzer neither retains nor requires access to the labeled documents. Training supports documents only and doesn't currently support generative fields. For details, see [Improve analyzer training with labeled examples](document/analyzer-improvement.md#improve-analyzer-training-with-labeled-examples).
+
+### Training data storage and retention (preview)
+
+Each Content Understanding Studio project has an associated storage account that holds the labeled documents used for training. With the `2026-06-01-preview` API, a built analyzer doesn't retain that training data or require it at analysis time. For details, see [Data, privacy, and security for Content Understanding](/azure/ai-foundry/responsible-ai/content-understanding/data-privacy).
+
+### Confidence and grounding for all document field types (preview and GA)
+
+Confidence scores and source grounding are now available for all document field types, including fields that use the `generate` and `classify` methods, not only `extract` fields. Enable this behavior with the existing `estimateFieldSourceAndConfidence` and `estimateSourceAndConfidence` settings. For details, see [Validate document analyzer quality with confidence, grounding, and labeled samples](document/analyzer-improvement.md).
+
+### Automatic field normalization (preview and GA)
+
+Content Understanding automatically normalizes supported typed field values, such as dates and numbers, to a canonical format. You can't configure normalization. The field's returned value is the normalized value. The response doesn't include separate raw and normalized values. For more information, see [What is a Content Understanding analyzer?](concepts/analyzer-reference.md).
+
+### Integrations documentation
+
+New articles explain how to use Content Understanding with the
+[Microsoft Agent Framework](integrations/agent-framework.md),
+[LangChain](integrations/langchain.md),
+[Logic Apps](integrations/logic-apps.md), and
+[MarkItDown](integrations/markitdown.md).
+
+### Signature detection
+
+Content Understanding can now detect signatures in documents. The analysis result includes a `signatures` array with the location of each signature and any text recognized inside the signature region. Signature detection helps you process contracts, invoices, and legal or HR documents. This capability is available in the `2026-06-01-preview` API version. For more information, see [Signatures](document/elements.md#signatures).
+
+### Document metadata extraction
+
+Content Understanding can now extract embedded metadata from documents, such as the author, creation date, title, and language. The analysis result includes a `metadata` object on each content element, and the available fields depend on the file type. This capability is available in the `2026-06-01-preview` API version. For more information, see [Document metadata](document/elements.md#document-metadata).
+
+### New prebuilt tax analyzers (preview)
+
+Content Understanding now includes new prebuilt tax analyzers for US Schedule K-1 forms and Minnesota Form M1. These additions expand domain-specific support for tax document processing in the `2026-06-01-preview` API. For details, see [Domain-specific analyzers](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
+
+### Classification enhancements
+
+Content Understanding now supports layout-based feature extraction and in-page segmentation in the `2026-06-01-preview` API. Layout-aware classification can use section markers, table headers, and figure descriptions to improve accuracy on unstructured or visually dense pages. In-page segmentation can split a single page into multiple segments when it contains content from different document types. The response includes a confidence score for each segment's split and category assignment. For details, see [Classification enhancements](concepts/classifier.md#classification-enhancements-2026-06-01-preview).
+
+### Azure AI Search skill updates
+
+The Azure Content Understanding skill in Azure AI Search now supports AI-based descriptions for embedded images, charts, and diagrams, and semantic chunking that respects paragraph boundaries and uses token-based chunk lengths in the `2026-05-01-preview` API. For details, see [Azure Content Understanding skill](/azure/search/cognitive-search-skill-content-understanding).
+
+### Expanded generative model support
+
+Content Understanding now supports the GPT-5.x model family, including GPT-5.5, GPT-5.4, and GPT-5.4-mini, as generative models. For the full list of supported models, see [Service quotas and limits](service-limits.md#supported-generative-models).
 
 ## May 2026
+
+### MarkItDown integration
+
+Content Understanding is now integrated with [MarkItDown](https://github.com/microsoft/markitdown), Microsoft's open-source tool for converting documents and other file types to Markdown. Use the [Azure Content Understanding](https://github.com/microsoft/markitdown#azure-content-understanding) capability to convert images, audio, video, and documents into Markdown for use with language models and agent pipelines.
+
+### Built-in RBAC roles for Content Understanding
+
+Added RBAC built-in roles for **Cognitive Service Content Understanding Owner**, **Contributor**, and **Reader** to allow granular access control. For more information, see [Managed identities](concepts/secure-communications.md#managed-identities).
 
 ### Content Understanding Studio new GPT-5.2 support regions
 
@@ -55,9 +123,9 @@ Content Understanding now supports the GPT-5.2 model as the recommended completi
 
 The Content Understanding document loader for LangChain is now available in the [`langchain-azure-ai`](https://github.com/langchain-ai/langchain-azure/tree/main/libs/azure-ai/langchain_azure_ai/document_loaders) package. Use it to load and process documents through Content Understanding directly from your LangChain pipelines. See the [demo notebook](https://github.com/langchain-ai/langchain-azure/blob/main/libs/azure-ai/docs/content_understanding_loader_demo.ipynb) for a usage walkthrough.
 
-### Azure AI Agent framework integration (preview)
+### Microsoft Agent Framework integration (preview)
 
-Content Understanding is now available as a package for the Azure AI Agent framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
+Content Understanding is now available as a package for the Microsoft Agent Framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
 
 ### SDK updates: `to_llm_input()` helper (preview)
 
@@ -196,7 +264,6 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 - Managed capacity for the preview generative models is retired. To use Content Understanding, you always bring your own Foundry large language model and embedding deployments.
 - Dedicated classifier APIs are deprecated because classification now lives inside the analyzer API as the `contentCategories` feature.
 - Video segmentation can now be done using the `contentCategories` capability, unifying the API for splitting files across document and video analyzers.
-- The preview API (`2025-05-01-preview`) doesn't carry forward Pro mode for cross-file analysis or the person directory with Face API integration.
 
 ## October 2025
 Content Understanding preview version introduces the following updates:
@@ -214,13 +281,13 @@ With the [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analy
 
 Content Understanding pro mode adds reasoning, support for multiple input documents, and the ability to configure an external knowledge base for linking, enrichment, and validation. These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
 
-The `pro` mode (preview) is currently limited to documents as inputs, with support for other types of content coming soon. Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema. Learn more about the [pro mode (preview)](concepts/standard-pro-modes.md).
+The `pro` mode (preview) is currently limited to documents as inputs, with support for other types of content coming soon. Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema.
 
 ### Foundry experience
 
 With this release, the following updates are now available to the Content Understanding experience in Microsoft Foundry:
 
-* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now by using pro mode, you can bring in your own reference data and create a task that executes multistep reasoning on your data. Read more about the two different task types in [Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal](./how-to/content-understanding-foundry-classic.md).
+* Added support for creating both `standard` mode and `pro` mode tasks in the Content Understanding experience in Foundry (classic). This experience is now retired. For current options, see [Content Understanding Studio and Microsoft Foundry](foundry-vs-content-understanding-studio.md).
 * Try-out experiences are now available for general document analysis and invoice analysis. Try out these prebuilt features on your own data and start getting insights without having to create a custom task. 
 
 ### Document classification and splitting
@@ -239,19 +306,12 @@ This release introduces a new [classification API](concepts/classifier.md). This
 
 * Added support for whole video fields. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
 * Added support for video chapters via segmentation. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
-* Added support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval.
-* Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#face-description-fields).
 
 ### Improvements to audio processing
 
 * Added more locales for audio transcription. Learn more about [audio capabilities](audio/overview.md).
 * Added support for multilingual audio processing. Learn more about [language handling improvements in audio](audio/overview.md#language-handling).
 * Increased maximum supported file size to 1 GB and length to 4 hours. Learn more about [audio service limits](service-limits.md).
-
-### Face API (preview)
-
-This release adds new face detection and recognition capabilities to Content Understanding. You can create a directory of faces and persons. Use the directory to recognize the faces in the processed content. Learn more about [detecting and recognizing faces](face/overview.md).
-
 
 ## April 2025
 

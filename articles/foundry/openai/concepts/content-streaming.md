@@ -3,11 +3,11 @@ title: "Content Streaming in Azure OpenAI"
 description: "Learn about content streaming options in Azure OpenAI, including default and asynchronous filtering modes, and their impact on latency and performance."
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 01/15/2026
+ms.date: 07/31/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new

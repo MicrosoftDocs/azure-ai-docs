@@ -3,8 +3,8 @@ title: Migrate to v3.x of the Read OCR container
 titleSuffix: Foundry Tools
 description: Learn how to migrate to the v3 Read OCR containers. 
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.author: pafarley
@@ -77,4 +77,4 @@ Set the timer with `Queue:Azure:QueueVisibilityTimeoutInMilliseconds`, which set
 * Review [OCR overview](overview-ocr.md) to learn more about recognizing printed and handwritten text
 * Refer to the [Read API](/rest/api/computervision/read/read) for details about the methods supported by the container.
 * Refer to [Frequently asked questions (FAQ)](FAQ.yml) to resolve issues related to Azure Vision functionality.
-* Use more [Azure AI containers](../cognitive-services-container-support.md)
+* Use more [Azure AI containers](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

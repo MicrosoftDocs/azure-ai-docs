@@ -11,7 +11,7 @@ ms.topic: how-to
 ms.date: 01/22/2026
 ms.author: mopeakande
 ms.reviewer: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 zone_pivot_groups: azure-ai-managed-compute-deployment
 ai-usage: ai-assisted

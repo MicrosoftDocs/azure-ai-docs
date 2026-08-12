@@ -184,7 +184,7 @@ Microsoft Foundry supports chargeback at the project level, so FinOps teams and 
 Every Foundry project is automatically tagged with a `project` tag on its underlying usage. In Cost Management, filter the cost analysis view by the `project` tag to see spend broken down per project. You don't need to add tags manually.
 
 > [!NOTE]
-> Project-level cost attribution is currently supported for Models sold by Azure (Azure Direct models, including Azure OpenAI). It isn't yet supported for models served through Azure Marketplace.
+> Project-level cost attribution is currently supported for Models sold by Azure (including Azure OpenAI). It isn't yet supported for models served through Azure Marketplace.
 
 ### View costs by project
 
@@ -208,8 +208,8 @@ Every Foundry project is automatically tagged with a `project` tag on its underl
 
 ## Related content
 
+- [Instant access to models in Microsoft Foundry (preview)](instant-models.md)
 - [Microsoft Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/)
-- [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).
 - Learn about how to [prevent unexpected costs](/azure/cost-management-billing/understand/analyze-unexpected-charges).

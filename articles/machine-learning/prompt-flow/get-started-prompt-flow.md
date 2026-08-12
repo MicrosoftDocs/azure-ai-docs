@@ -9,12 +9,13 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar 
-ms.date: 07/17/2025
+ms.date: 07/31/2026
 ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Get started with prompt flow
@@ -26,7 +27,7 @@ This article walks you through the main user journey of using prompt flow in Azu
 ## Prerequisites 
 
 - An Azure Machine Learning workspace. The default storage for the workspace must be blob type.
-- An Azure OpenAI account, or an existing Azure OpenAI connection with a deployment. For more information, see [Create a resource and deploy a model using Azure OpenAI](/azure/cognitive-services/openai/how-to/create-resource).
+- An Azure OpenAI account, or an existing Azure OpenAI connection with a deployment. For more information, see [Create a resource and deploy a model using Azure OpenAI](/azure/ai-services/openai/how-to/create-resource).
   >[!NOTE]
   >If you want to secure your prompt flow with a virtual network, also follow the instructions at [Secure prompt flow with workspace managed virtual network](how-to-secure-prompt-flow.md#secure-prompt-flow-with-workspace-managed-virtual-network).
 
@@ -36,13 +37,13 @@ This article walks you through the main user journey of using prompt flow in Azu
 A connection helps securely store and manage secret keys or other sensitive credentials required for interacting with Large Language Models (LLM) and other external tools such as Azure Content Safety. Connection resources are shared with all members in the workspace.
 
 > [!NOTE]
-> The LLM tool in prompt flow does not support reasoning models (such as OpenAI o1 or o3). For reasoning model integration, use the Python tool to call the model APIs directly. For more information, see [Call a reasoning model from the Python tool](tools-reference/python-tool.md#call-a-reasoning-model-from-the-python-tool).. 
+> The LLM tool in prompt flow doesn't support reasoning models, such as OpenAI o-series reasoning models. For reasoning model integration, use the Python tool to call the model APIs directly. For more information, see [Call a reasoning model from the Python tool](tools-reference/python-tool.md#call-a-reasoning-model-from-the-python-tool).
 
 1. To check if you already have an Azure OpenAI connection, select **Prompt flow** from the Azure Machine Learning studio left menu and then select the **Connections** tab on the **Prompt flow** screen.
 
    :::image type="content" source="./media/get-started-prompt-flow/connection-creation-entry-point.png" alt-text="Screenshot of the connections tab with create highlighted." lightbox = "./media/get-started-prompt-flow/connection-creation-entry-point.png":::
 
-   If you already see a connection whose provider is **AzureOpenAI**, you can skip the rest of this setup process. Note that this connection must have a deployment to be able to run the LLM nodes in the example flow. For more information, see [Deploy a model](/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
+   If you already see a connection whose provider is **AzureOpenAI**, you can skip the rest of this setup process. This connection must have a deployment to run the LLM nodes in the example flow. For more information, see [Deploy a model](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
 
 1. If you don't have an Azure OpenAI connection, select **Create** and then select **AzureOpenAI** from the dropdown menu.
 
@@ -110,7 +111,7 @@ For this sample, the input is a URL to classify. The flow uses a Python script t
 
 For each LLM node, you need to select a **Connection** to set the LLM API keys. Select your Azure OpenAI connection.
 
-Depending on the connection type, you must select a **deployment_name** or a model from the dropdown list. For an Azure OpenAI connection, select a deployment. If you don't have a deployment, create one in the Azure OpenAI portal by following instructions at [Deploy a model](/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
+Depending on the connection type, select a **deployment_name** or a model from the dropdown list. For an Azure OpenAI connection, select a deployment. If you don't have a deployment, create one in the Azure OpenAI portal by following the instructions at [Deploy a model](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
 
 >[!NOTE]
 >If you use an OpenAI connection rather than an Azure OpenAI connection, you need to select a model rather than a deployment in the **Connection** field.
@@ -169,7 +170,7 @@ After the flow runs successfully with a single row of data, test whether it perf
 
 You need to prepare test data first. Azure Machine Learning supports CSV, TSV, and JSONL file formats for data.
 
-- Go to GitHub and download [data.csv](https://github.com/Azure/azureml-assets/blob/main/assets/promptflow/data/web-classification/data.csv), the golden dataset for the Web Classification sample.
+- Go to GitHub and download [data.csv](https://github.com/Azure/azureml-assets), the golden dataset for the Web Classification sample.
 
 Use the **Batch run & Evaluate** wizard to configure and submit a batch run and optionally an evaluation method. Evaluation methods are also flows, which use Python or LLM to calculate metrics like accuracy and relevance score.
 

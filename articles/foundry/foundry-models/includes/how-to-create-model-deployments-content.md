@@ -5,7 +5,7 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 08/06/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -23,7 +23,7 @@ To complete this article, you need the following:
 
 * Azure role-based access control (RBAC) permissions to create and manage deployments. You need the **Cognitive Services Contributor** role or equivalent permissions for the Foundry resource.
 
-* [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md). [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+* [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community). [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
 
 ::: zone pivot="programming-language-cli"
 
@@ -76,7 +76,7 @@ To add a model, first identify the model that you want to deploy. Query the avai
 
     Reference: [az cognitiveservices account](/cli/azure/cognitiveservices/account)
 
-1. Check which models are available to you and under which SKU. SKUs, also known as [deployment types](../concepts/deployment-types.md), define how Azure infrastructure processes requests. Models might offer different deployment types. The following command lists all the model definitions available:
+1. Check which models are available to you and under which SKU. Each [deployment type](../concepts/deployment-types.md) is represented by a SKU code in the CLI and ARM, and it defines how Azure infrastructure processes requests. Models might offer different deployment types. The following command lists all the model definitions available:
     
     ```azurecli
     az cognitiveservices account list-models \
@@ -146,7 +146,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/aifoundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
 
 **Inference keys**
 
@@ -272,7 +272,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/aifoundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
 
 **Inference keys**
 
@@ -292,7 +292,9 @@ az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 
 ## Related content
 
+- [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#deploy-and-manage-models) — role requirements for model deployment and quota management.
 - [Generate text responses with Foundry Models](../how-to/generate-responses.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy Foundry Models to managed compute](../how-to/deploy-foundry-models.md)
 - [Quotas and limits for Foundry Models](../quotas-limits.md)

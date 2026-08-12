@@ -3,7 +3,7 @@ title: "Foundry Models from partners and community (classic)"
 description: "Learn about Microsoft Foundry Models from partners and community, including their capabilities, supported input and output types, and language support for AI applications. (classic)"
 author: msakande
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 ms.date: 04/17/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-models

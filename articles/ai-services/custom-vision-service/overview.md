@@ -3,7 +3,7 @@ title: What is Custom Vision?
 titleSuffix: Foundry Tools
 description: Learn how to use the Azure AI Custom Vision service to build custom AI models to detect objects or classify images.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-custom-vision
 ms.topic: overview

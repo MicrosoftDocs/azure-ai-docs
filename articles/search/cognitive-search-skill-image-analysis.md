@@ -11,6 +11,8 @@ ms.date: 09/17/2025
 
 # Image Analysis cognitive skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Image Analysis** skill extracts a rich set of visual features based on the image content. For example, you can generate a caption from an image, generate tags, or identify celebrities and landmarks. This article is the reference documentation for the **Image Analysis** skill. See [Extract text and information from images](cognitive-search-concept-image-scenarios.md) for usage instructions.
 
 This skill uses the machine learning models provided by [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview). **Image Analysis** works on images that meet the following requirements:

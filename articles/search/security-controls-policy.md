@@ -11,6 +11,8 @@ ms.custom:
 ---
 # Azure Policy Regulatory Compliance controls for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you're using [Azure Policy](/azure/governance/policy/overview) to enforce the recommendations in
 [Microsoft cloud security benchmark](/azure/security/benchmarks/introduction), then you probably already know
 that you can create policies for identifying and fixing noncompliant services. These policies might
@@ -30,7 +32,7 @@ page lists the **compliance domains** and **security controls** for Azure AI Sea
 assign the built-ins for a **security control** individually to help make your Azure resources
 compliant with the specific standard.
 
-[!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr-policy-includes/includes/policy/standards/intro-warning.md)]
+[!INCLUDE [azure-policy-compliancecontrols-introwarning](~/reusable-content/ce-skilling/azure/includes/policy/standards/intro-warning.md)]
 
 [!INCLUDE [azure-policy-compliancecontrols-search](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.search.md)]
 

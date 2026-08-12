@@ -4,10 +4,9 @@ titleSuffix: Foundry Tools
 description: "Transparency note for QnA Maker."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.subservice: azure-ai-qna-maker
 ms.date: 5/5/2021
 
 ---

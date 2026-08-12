@@ -6,11 +6,20 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 04/22/2026
+ms.date: 07/28/2026
 ai-usage: ai-assisted
 ---
 
 # GenAI Prompt skill
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](../ai-foundry/what-is-foundry.md). Use this skill to create new information that can be indexed and stored as searchable content.
 
@@ -28,7 +37,7 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 
 ## Supported models
 
-- You can use any [chat completion inference model](../ai-foundry/foundry-models/concepts/models.md) deployed in Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
+- You can use any [chat completion inference model](../ai-foundry/foundry-models/concepts/models.md) deployed in Foundry, such as GPT models, DeepSeek-R#, Llama-4-Maverick, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
 
 - For image verbalization, the model you use to analyze the image determines what image formats are supported.
 
@@ -73,7 +82,7 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 
 | Property | Type | Required | Notes |
 |----------|------|----------|-------|
-| `uri` | string | Yes | Public endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul> |
+| `uri` | string | Yes | Endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul><p>[Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are also supported, including API Management custom domains. For setup, including authentication, RBAC, and optional private connectivity, see [Use Azure API Management with Azure OpenAI skills and vectorizers](search-how-to-configure-azure-openai-api-management.md). |
 | `apiKey` | string | Cond.* | Secret key for the model. Leave blank when using managed identity. |
 | `authIdentity` | string | Cond.* | **User-assigned** managed identity client ID (*Azure OpenAI only*). Leave blank to use the **system-assigned** identity. |
 | `commonModelParameters` | object | No | Standard generation controls such as `temperature`, `maxTokens`, etc. |
@@ -222,10 +231,43 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 | Both `apiKey` and `authIdentity` supplied | **Error** |
 | Unsupported model for multimodal prompt | **Error** |
 | Input exceeds model token limit | **Error** |
-| Model returns invalid JSON for `json_schema` | **Warning** – raw string returned in `response` |
+| Model returns invalid JSON for `json_schema` | **Warning**: Raw string returned in `response` |
 
+## Security considerations for managed identity authentication
 
-### See also
+When the GenAI Prompt skill uses managed identity authentication, Azure AI Search obtains a Microsoft Entra access token for the Foundry Tools audience (`https://cognitiveservices.azure.com`) and includes it in requests sent to the endpoint specified by `uri`. Managed identity authentication applies when `authIdentity` is set, or when both `apiKey` and `authIdentity` are empty and the service uses the system-assigned identity.
+
+The endpoint referenced by `uri` is expected to be your own Azure OpenAI or Foundry resource. Supported domains are:
+
+- `openai.azure.com`
+- `cognitiveservices.azure.com`
+- `services.ai.azure.com`
+
+[Azure API Management (APIM)](/azure/api-management/api-management-key-concepts) endpoints (`*.azure-api.net`) and custom domains that front these resources are also supported. Because a custom domain or APIM hostname can't be verified from its name alone, Azure AI Search validates these endpoints with a live connectivity check at configuration time rather than by domain matching. You're responsible for configuring and maintaining the relationship between the endpoint and the Azure OpenAI or Foundry resource behind it.
+
+> [!NOTE]
+> A managed identity token issued for the Foundry Tools audience is valid against any Foundry Tools or Azure OpenAI resource the identity is authorized on. Sending it to an untrusted endpoint could expose the token.
+
+### Recommended security practices
+
+To help maintain a secure deployment, follow these practices:
+
+- Set `uri` only to endpoints you own and trust. Prefer the Foundry Tools domains listed earlier. If you use an APIM or custom-domain endpoint, confirm it fronts your own resource before enabling managed identity. A trusted-looking hostname isn't proof of ownership.
+- Apply the principle of least privilege to the managed identity used by the search service:
+  - On Azure OpenAI, assign only **Cognitive Services OpenAI User**.
+  - On Foundry, assign only **Foundry User**. Avoid granting broader roles.
+- Use [Network Security Perimeter (NSP)](search-security-network-security-perimeter.md) and private endpoints or VNet integration to restrict which endpoints the search service can reach and which sources the target resource accepts requests from.
+- If you use an APIM or custom-domain endpoint, ensure the gateway validates inbound requests and forwards them only to the intended backend. You should also review its access policies periodically.
+- Prefer managed identity over `apiKey`. If you use `apiKey`, store and rotate it securely and don't embed it in source control. The service rejects configurations that set both `apiKey` and `authIdentity`.
+- Periodically review skillset definitions, managed identity role assignments, and APIM and custom-domain configurations to confirm that `uri` values, access controls, and identity permissions remain current and appropriate. Review configuration changes through your established change-management and security-review processes.
+- Monitor Azure OpenAI, Foundry Tools, and Foundry sign-in logs, authentication events, and access logs for unexpected or unauthorized activity.
+- Remove unused skills, endpoints, role assignments, and API keys that are no longer required.
+
+### Restrict access to skillset configuration
+
+Users who can create, modify, or run skillsets control both the destination endpoint (`uri`) and the authentication configuration used by the skill. Because the skill sends a managed identity token for the Foundry Tools audience to that endpoint, restrict these permissions to trusted administrators and follow your standard change-management and security-review processes when configuring managed identity–enabled skills.
+
+## See also
 
 - [Azure AI Search built-in indexers](search-indexer-overview.md)
 - [Integrated vectorization](vector-search-integrated-vectorization.md)

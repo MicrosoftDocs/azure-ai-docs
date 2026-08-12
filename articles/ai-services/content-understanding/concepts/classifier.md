@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools classifier solutions.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
-ms.date: 03/23/2026
-ms.service: azure-ai-content-understanding
+manager: mcleans
+ms.date: 07/09/2026
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -15,6 +15,7 @@ ai-usage: ai-assisted
 ---
 
 # Content Understanding classification/segmentation
+
 
 Content Understanding lets you implement classification and splitting as part of the analyzer operation request. You can perform content classification and content extraction as part of a single API call. 
 
@@ -65,6 +66,8 @@ When you run the `analyze` operation, it includes an `enableSegment` property th
 * To treat the entire input file as multiple documents combined together for classification, set `enableSegment` to `true`. When you do so, the service returns categories for the segments within the input file automatically.
 * To treat the entire input file as a single document, set `enableSegment` to `false`.
 
+By default, segments start at page boundaries. The `2026-06-01-preview` API version adds in-page segmentation, which can split a single page into multiple segments when it contains content from different document types. In-page segmentation is controlled by a separate `allowInPageSegments` field, so you can opt in to sub-page splits without changing existing `enableSegment` behavior. For more information, see [Classification enhancements (2026-06-01 preview)](#classification-enhancements-2026-06-01-preview).
+
 > [!NOTE]
 > For videos, only segmentation is supported. You must define a single `contentCategories` with `enableSegment` set to `true`. Use the `description` field to specify criteria for splitting the video into segments.
 
@@ -81,9 +84,86 @@ At the top layer, you can also set `omitContent` to `true` to omit the original 
 
 #### Hierarchical classifier
 
-The analyzer operation supports hierarchical splitting and classification. For example, within the base analyzer operation, you can set the `analyzerID` for content categories to a custom analyzer that performs additional classification or splitting. Hierarchical analyzers support scenarios such as categorizing document types like invoices, contracts, and receipts, where the `analyzerID` for each category can itself be an analyze operation with additional classification enabled for different document subtypes.
+The analyzer operation supports hierarchical splitting and classification. In the base analyzer operation, set `analyzerId` on each content category to a custom analyzer that performs additional classification or splitting. This approach supports scenarios such as invoices, contracts, and receipts, where each category's `analyzerId` can point to another analyzer operation that classifies different document subtypes.
 
 Document inputs support five levels of nesting, and video inputs support two.
+
+### Classification enhancements (2026-06-01 preview)
+
+The preceding sections describe GA behavior. This section describes preview-only capabilities that require API version `2026-06-01-preview`.
+
+The `2026-06-01-preview` API version includes two enhancements to document classification and splitting. To use these enhancements, target the preview API version when you submit an analyze request.
+
+> [!IMPORTANT]
+> These features are in public preview. Preview capabilities are provided without a service-level agreement and aren't recommended for production workloads.
+
+#### Layout-based feature extraction (preview)
+
+In the `2026-06-01-preview` API, the classifier adds rich classification signals such as layout-based document features - section markers, table headers, figure descriptions, and more.
+
+Layout-aware sampling improves classification accuracy in scenarios where the distinguishing content is highly unstructured or spread across a page. For example:
+
+* Pages that are sparse in text, for example X-ray images or scanned diagnostic reports.
+* Figure-heavy pages, where a figure description carries most of the classification signal.
+* Pages where key section headers or table headers appear in the middle of the page.
+
+No configuration change is required. When you call the preview API, the classifier automatically uses the layout-based features.
+
+#### In-page segmentation (preview)
+
+The `2026-06-01-preview` API adds *in-page* segmentation, which can split a single page into multiple segments when the page contains content that belongs to different document types.
+
+In-page segmentation is helpful for scenarios such as:
+
+* **Medical records** where a single page mixes content types, for example a patient demographics section followed by a referral order on the same page.
+* **Tax packages** where multiple schedules or forms are stacked on the same page, for example K-1 schedules.
+* **Multi-form packets** where consecutive forms don't always start on a new page.
+
+To enable in-page segmentation, set `allowInPageSegments` to `true` when you create or update a custom analyzer (you can't set this field in an analyze request). The response from the analyzer includes per-segment page ranges, each segment's category, a confidence score, and a source expression that identifies the segment's bounding position on the page.
+
+The following example shows the `segments` array in an analyze response, where a single page is split into a credit card segment and an identity card segment:
+
+```json
+"segments": [
+    {
+        "span": {
+            "offset": 0,
+            "length": 301
+        },
+        "segmentId": "segment1",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "category": "Credit_card",
+        "confidence": 0.98,
+        "source": "D(1,1.32,1.49,3.13,1.49,3.13,3.86,1.32,3.86)"
+    },
+    {
+        "span": {
+            "offset": 301,
+            "length": 798
+        },
+        "segmentId": "segment2",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "category": "Identity_card",
+        "confidence": 0.99,
+        "source": "D(1,1.16,4.95,3.82,4.95,3.82,8.52,1.16,8.52)"
+    }
+]
+```
+
+##### API fields
+
+The following API fields support in-page segmentation:
+
+| Field | Type | Description |
+|---|---|---|
+| `ContentAnalyzerConfig.allowInPageSegments` | `boolean` | Set when you create or update a custom analyzer. When `true`, segments can cover a portion of a page instead of full pages. |
+| `DocumentContentSegment.segmentId` | `string` | Stable identifier for the segment, such as `segment1`. |
+| `DocumentContentSegment.span` | `Span` | `offset` and `length` of the segment within the parent content text in Markdown format. |
+| `DocumentContentSegment.confidence` | `float32` | Value in `[0–1]`. Confidence score for segmentation and category classification. |
+| `DocumentContentSegment.source` | `SourceExpression` | Bounding position of the segment on the page, as a polygon expression of the form `D(pageNumber, x1, y1, x2, y2, x3, y3, x4, y4)`. Pass this value as a `range` to a sub-analyzer. |
+
 
 ## Classifier limits
 

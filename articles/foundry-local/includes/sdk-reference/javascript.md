@@ -4,11 +4,11 @@ description: Include file
 ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: include
-ms.date: 01/05/2026
-ms.author: jburchel
-ms.reviewer: maanavd
-reviewer: maanavdalal
-author: jonburchel
+ms.date: 08/05/2026
+ms.author: lajanuar
+ms.reviewer: waynechuang
+reviewer: wayne-ch
+author: laujan
 ai-usage: ai-assisted
 ---
 
@@ -223,7 +223,7 @@ The SDK includes a browser-compatible version where you must specify the host UR
 import { FoundryLocalManager } from "foundry-local-sdk/browser";
 
 // Specify the service URL
-// Run the Foundry Local service using the CLI: `foundry service start`
+// Run the Foundry Local service using the CLI: `foundry server start`
 // and use the URL from the CLI output
 const host = "HOST";
 
@@ -234,7 +234,7 @@ const manager = new FoundryLocalManager({ host });
 ```
 
 > [!NOTE]
-> The browser version doesn't support the `init`, `isServiceRunning`, and `startService` methods. You must ensure that the Foundry Local service is running before using the SDK in a browser environment. You can start the service using the Foundry Local CLI: `foundry service start`. You can glean the service URL from the CLI output.
+> The browser version doesn't support the `init`, `isServiceRunning`, and `startService` methods. You must ensure that the Foundry Local service is running before using the SDK in a browser environment. You can start the service using the Foundry Local CLI: `foundry server start`. You can glean the service URL from the CLI output.
 
 #### Example Usage
 
@@ -242,7 +242,7 @@ const manager = new FoundryLocalManager({ host });
 import { FoundryLocalManager } from "foundry-local-sdk/browser";
 
 // Specify the service URL
-// Run the Foundry Local service using the CLI: `foundry service start`
+// Run the Foundry Local service using the CLI: `foundry server start`
 // and use the URL from the CLI output
 const host = "HOST";
 
@@ -346,4 +346,4 @@ await whisperModel.unload();
 References:
 
 - [Transcribe audio files with Foundry Local](../../how-to/how-to-transcribe-audio.md)
-- [Audio Transcription Sample (GitHub)](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/audio-transcription-foundry-local)
+- [Audio Transcription Sample (GitHub)](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/javascript/foundry-local/audio-transcription-foundry-local)

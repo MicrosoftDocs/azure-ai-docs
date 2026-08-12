@@ -3,7 +3,7 @@ title: "Configure Read Aloud"
 titleSuffix: Azure AI services
 description: Learn how to configure the various options for Read Aloud in Immersive Reader.
 author: sharmas
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to

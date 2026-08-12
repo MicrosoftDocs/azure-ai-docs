@@ -1,7 +1,7 @@
 ---
 title: "Speech to text with Whisper (classic)"
 description: "Learn how to use the Azure OpenAI Whisper model for speech to text conversion. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:
