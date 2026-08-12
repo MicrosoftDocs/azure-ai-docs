@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 Model router is now available in 28 Azure regions. All 28 regions support Global Standard and Data Zone Standard deployments. For the full list, see [Supported regions](../../openai/concepts/model-router.md#supported-regions).
 
-### Model refresh adds GPT-5.6 and Claude Opus 4.8
+### Model refresh adds GPT-5.6 family and Claude Opus 4.8
 
 Model router version `2025-11-18` now supports 27 models. The routing pool adds `gpt-5.6-sol`, `gpt-5.6-terra`, and `gpt-5.6-luna` version `2026-07-09`, and `claude-opus-4-8` version `1`. To use `claude-opus-4-8` with model router, first deploy it to your Foundry resource.
 
