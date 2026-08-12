@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/07/2026
+ms.date: 08/11/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -163,28 +163,28 @@ To take advantage of prompt caching, a request must meet both of these requireme
 
 When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits show up as [`cached_tokens`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) under [`prompt_tokens_details`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2025-04-01-preview&preserve-view=true) in the chat completions response.
 
-On GPT-5.6 models and later model families, Standard pay-as-you-go deployments report cache reads in `cached_tokens` and cache writes in `cache_write_tokens`. The following excerpt shows these fields in a Chat Completions response:
+On GPT-5.6 models and later model families, Standard pay-as-you-go deployments report cache reads in `cached_tokens` and cache writes in `cache_write_tokens`. The following excerpt shows these fields in a Chat Completions response. JSON property order isn't significant and might vary.
 
 ```json
 {
   "usage": {
-    "completion_tokens": 1518,
     "prompt_tokens": 1566,
+    "completion_tokens": 1518,
     "total_tokens": 3084,
-    "completion_tokens_details": {
-      "audio_tokens": null,
-      "reasoning_tokens": 576
-    },
     "prompt_tokens_details": {
       "audio_tokens": null,
       "cached_tokens": 1408,
       "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "audio_tokens": null,
+      "reasoning_tokens": 576
     }
   }
 }
 ```
 
-After the first 1,024 tokens, cache hits occur for every 128 additional identical tokens.
+On GPT-5.5 and earlier models, cache hits after the first 1,024 tokens occur in 128-token increments. This rounding doesn't apply to GPT-5.6 models and later model families.
 
 A single character difference in the first 1,024 tokens results in a cache miss, which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default for supported models.
 

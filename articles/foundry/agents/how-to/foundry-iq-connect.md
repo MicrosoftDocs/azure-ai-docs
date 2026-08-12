@@ -8,7 +8,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/06/2026
+ms.date: 08/07/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -58,7 +58,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 
 ### Authentication and permissions
 
-We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend role-based access control for production deployments. To assign the roles in this section, you need the **Owner** or **User Access Administrator** role on both resources, or another role that grants `Microsoft.Authorization/roleAssignments/write`. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 #### [Microsoft Foundry](#tab/foundry)
 

@@ -606,6 +606,8 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
+      - name: Troubleshoot SharePoint permission filtering
+        href: troubleshoot-sharepoint-query-permission-filtering.md
     - name: Microsoft Purview sensitivity labels (preview)
       items:
       - name: Pull sensitivity labels into an index
