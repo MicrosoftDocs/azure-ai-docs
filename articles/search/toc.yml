@@ -10,6 +10,8 @@ items:
     href: whats-new.md
   - name: Features
     href: search-features-list.md
+  - name: Preview terms
+    href: search-preview-terms.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
   - name: Try for free
