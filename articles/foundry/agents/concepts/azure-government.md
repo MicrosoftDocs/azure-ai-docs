@@ -60,6 +60,8 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Azure AI Search | Yes |
 | Azure Functions | Yes |
 | Function calling | Yes |
+| MCP servers | Yes |
+| OpenAPI tool | Yes |
 | Web search | No |
 | Grounding with Bing | No |
 | Image Generation | No |
@@ -67,9 +69,7 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Computer Use | No |
 | Microsoft Fabric | No |
 | SharePoint | No |
-| MCP servers | No |
 | Agent-to-Agent (A2A) | No |
-| OpenAPI tool | No |
 
 ## Publishing
 
