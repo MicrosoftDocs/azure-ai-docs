@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 ## Supported models
 
 > [!NOTE]
-> You don't need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. Model router invokes the deployments if they're selected for routing.
+> You don't need to separately deploy the supported large language models for use with model router, except for the Claude models. To use model router with your Claude models, first deploy them from the model catalog. Model router invokes the deployments if you select them for routing.
 
 ### Model router version `2025-11-18` (latest)
 
