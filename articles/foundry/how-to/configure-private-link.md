@@ -250,7 +250,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | Agent-to-Agent (A2A) | ✅ Supported | Through your VNet subnet |
 | Fabric Data Agent | ❌ Not supported | Fabric resource must have public network access enabled (Workspace-level private link Fabric unsupported) |
 | Logic Apps | ❌ Not supported | Under development |
-| File Search | ❌ Not supported | Under development |
+| File Search | ✅ Supported | Through private endpoint |
 | Browser Automation | ❌ Not supported | Under development |
 | Computer Use | ❌ Not supported | Under development |
 | Image Generation | ❌ Not supported | Under development |
