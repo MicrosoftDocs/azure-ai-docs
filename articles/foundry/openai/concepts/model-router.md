@@ -4,7 +4,7 @@ description: "Learn about the model router feature in Azure OpenAI in Microsoft 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 05/31/2026
+ms.date: 08/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
@@ -30,6 +30,41 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 
 [!INCLUDE [model-router 1](../includes/concepts-model-router-1.md)]
 
+## Supported regions
+
+Model router supports Global Standard and Data Zone Standard deployments in all of the following regions.
+
+| Region | Global Standard | Data Zone Standard |
+| :--- | :---: | :---: |
+| Australia East | Supported | Supported |
+| Brazil South | Supported | Supported |
+| Canada East | Supported | Supported |
+| Central US | Supported | Supported |
+| East US | Supported | Supported |
+| East US 2 | Supported | Supported |
+| France Central | Supported | Supported |
+| Germany West Central | Supported | Supported |
+| Italy North | Supported | Supported |
+| Japan East | Supported | Supported |
+| Japan West | Supported | Supported |
+| Korea Central | Supported | Supported |
+| North Central US | Supported | Supported |
+| Poland Central | Supported | Supported |
+| South Africa North | Supported | Supported |
+| South Central US | Supported | Supported |
+| South India | Supported | Supported |
+| Southeast Asia | Supported | Supported |
+| Spain Central | Supported | Supported |
+| Sweden Central | Supported | Supported |
+| Switzerland North | Supported | Supported |
+| Switzerland West | Supported | Supported |
+| UK South | Supported | Supported |
+| UK West | Supported | Supported |
+| West Central US | Supported | Supported |
+| West Europe | Supported | Supported |
+| West US | Supported | Supported |
+| West US 3 | Supported | Supported |
+
 ## Routing mode
 
 With the latest version, if you choose custom deployment, you can select the **routing mode** to optimize for quality or cost while maintaining a baseline level of performance. Setting a routing mode is optional, and if you don’t set one, your deployment defaults to the Balanced mode.
@@ -37,7 +72,7 @@ With the latest version, if you choose custom deployment, you can select the **r
 Available routing modes:
 
 | Mode | Description |
-|------|-----------|
+| ------ | ----------- |
 | Balanced (default) | Considers both cost and quality dynamically. Perfect for general-purpose scenarios |
 | Quality | Prioritizes for maximum accuracy. Best for complex reasoning or critical outputs |
 | Cost | Prioritizes for more cost savings. Ideal for high-volume, budget-sensitive workloads |
