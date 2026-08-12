@@ -68,7 +68,7 @@ Model router doesn't process audio input.
 
 | Issue | Resolution |
 | ------- | ------------ |
-| Deployment fails | Verify your Foundry resource is in a [supported region](#supported-regions). |
+| Deployment fails | Verify your Foundry resource is in a [supported region](../concepts/model-router.md#supported-regions). |
 | Claude models not routing | Ensure Claude models are deployed separately before enabling in model router. |
 | Context exceeded error | Reduce prompt size or use model subset to select models with larger context windows. |
 | Unexpected model selection | Review your routing mode setting (Balanced, Cost, Quality) and model subset configuration. |
