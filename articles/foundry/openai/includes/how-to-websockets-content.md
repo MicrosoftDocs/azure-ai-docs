@@ -153,6 +153,8 @@ ws.send(json.dumps({
 
 WebSocket mode uses the same `previous_response_id` chaining as HTTP mode, but adds a lower-latency continuation path on the active socket.
 
+For multi-agent workflows, inject developer-defined function outputs into the active response so the waiting agent can resume while other agents continue. See [Use multi-agent orchestration with the Azure OpenAI Responses API](../how-to/responses-multi-agent.md#choose-http-or-websocket-mode).
+
 On an active WebSocket connection, the service keeps one previous-response state in a connection-local in-memory cache (the most recent response). Continuing from that response is fast because the service reuses connection-local state. Because this state is retained only in memory and isn't written to disk, WebSocket mode is compatible with `store=false`.
 
 If a `previous_response_id` isn't in the in-memory cache, behavior depends on whether you store responses:
