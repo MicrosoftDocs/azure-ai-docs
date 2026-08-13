@@ -5,7 +5,7 @@ keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 04/02/2026
+ms.date: 08/13/2026
 ms.topic: reference
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
@@ -15,7 +15,7 @@ ms.custom: doc-kit-assisted
 
 # Available tools and example prompts for Foundry MCP Server (preview)
 
-Foundry MCP Server exposes 38 tools across 10 categories that let you manage agents, datasets, evaluations, model deployments, and more — all through conversational prompts instead of API calls. Use this reference to explore each tool and try the example prompts in your own project.
+Foundry MCP Server exposes 41 tools across 11 categories that let you manage agents, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. This reference also covers six Toolbox management tools that are in progress.
 
 > [!TIP]
 > Before using these tools, complete the [Foundry MCP Server setup](get-started.md).
@@ -74,6 +74,31 @@ Example prompts:
 | `agent_container_status_get` | read | Check the current status of a hosted agent container (Starting, Running, Stopped, Failed, and so on). | Agent name | Current container status. |
 | `agent_definition_schema_get` | read | Return the complete JSON schema for agent definitions, including all tool types. | None | Full JSON schema for agent definitions. |
 
+## Toolbox management (in progress)
+
+Retrieve, version, update, and delete toolboxes in a Foundry project.
+
+> [!IMPORTANT]
+> These tools are under development. Their inputs and behavior might change before they're available in the Foundry MCP Server public preview.
+
+Example prompts:
+
+- "Show me the `customer-support-tools` toolbox."
+- "Get version 2 of `customer-support-tools`."
+- "Create a new version of `customer-support-tools`."
+- "Update `customer-support-tools` with my latest tool definitions."
+- "Delete version 1 of `customer-support-tools`."
+- "Delete the `old-support-tools` toolbox."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `toolbox_get` | read | Retrieve a toolbox. | Toolbox identifier | Toolbox details. |
+| `toolbox_version_get` | read | Retrieve a specific toolbox version. | Toolbox identifier, version identifier | Toolbox version details. |
+| `toolbox_version_create` | write | Create a version for an existing toolbox. | Toolbox identifier and version details | Created toolbox version. |
+| `toolbox_update` | write | Update an existing toolbox. | Toolbox identifier and updated toolbox details | Updated toolbox details. |
+| `toolbox_delete` | write | Delete a toolbox. | Toolbox identifier | Deletion confirmation. |
+| `toolbox_version_delete` | write | Delete a specific toolbox version. | Toolbox identifier, version identifier | Deletion confirmation. |
+
 ## Dataset management
 
 Create, retrieve, and version evaluation datasets in a Foundry project.
@@ -107,7 +132,7 @@ Example prompts:
 | --- | --- | --- | --- | --- |
 | `evaluation_agent_batch_eval_create` | write | Create a batch evaluation run that calls a specific agent. Supports built-in and custom evaluators, plus synthetic data generation. | Agent name/version, evaluator names, dataset (optional for synthetic generation), number of synthetic queries (optional) | Evaluation run ID and status. |
 | `evaluation_dataset_batch_eval_create` | write | Create a batch evaluation run against a JSONL dataset. Supports built-in and custom evaluators. | Dataset name/version, evaluator names | Evaluation run ID and status. |
-| `evaluation_get` | read | List evaluation runs in the Foundry project. | Evaluation run ID (optional) | List of evaluation runs with status and scores, or details for a specific run. |
+| `evaluation_get` | read | List evaluation groups or runs in the Foundry project. Set `isRequestForRuns` to true to list runs within a specific evaluation group. | Evaluation group ID (optional), evaluation run ID (optional), `isRequestForRuns` flag | List of evaluation groups or runs with status and scores, or details for a specific item. |
 | `evaluation_comparison_create` | write | Create comparison results between a baseline and treatment evaluation runs. | Baseline run ID, treatment run IDs | Comparison insight ID. |
 | `evaluation_comparison_get` | read | Get or list evaluation comparison insights. | Comparison insight ID (optional) | Comparison results with statistical analysis. |
 
@@ -230,6 +255,24 @@ Example prompts:
 | --- | --- | --- | --- | --- |
 | `prompt_optimize` | write | Optimize a developer prompt (system message) for better LLM performance using the Azure OpenAI Prompt Optimizer. | Prompt text, target model, refinement instructions (optional) | Optimized prompt text with explanation of changes. |
 
+## Continuous evaluation
+
+Enable, monitor, and manage continuous evaluation for agents. Continuous evaluation automatically evaluates agent responses on an ongoing basis. The tool auto-detects the agent kind (prompt or hosted) and configures the appropriate evaluation mechanism — evaluation rules for prompt agents, or scheduled evaluation runs for hosted agents.
+
+Example prompts:
+
+- "Enable continuous evaluation for my `customer-support-agent` using Relevance and Groundedness evaluators."
+- "Set up continuous evaluation for my hosted agent `triage-agent` to run every 2 hours."
+- "Show me the continuous evaluation configuration for `customer-support-agent`."
+- "Disable continuous evaluation for my `old-test-agent`."
+- "Update continuous evaluation for `customer-support-agent` to sample 50% of responses."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `continuous_eval_create` | write | Enable or update continuous evaluation for an agent. Auto-detects agent kind and configures the appropriate evaluation mechanism. Creates the evaluation group if needed. | Agent name, evaluator names, model deployment name (for quality evaluators), enabled flag, interval hours (hosted agents), sampling rate (prompt agents), scenario (standard or business) | Continuous evaluation configuration with ID, status, and schedule details. |
+| `continuous_eval_get` | read | Get continuous evaluation configuration for an agent. Returns all configurations, or filter by scenario for prompt agents. | Agent name, scenario filter (optional) | List of continuous evaluation configurations with evaluator details, schedule, and status. |
+| `continuous_eval_delete` | write | Delete a continuous evaluation configuration for an agent. Use `continuous_eval_get` to find configuration IDs. | Configuration ID, agent name | Deletion confirmation. |
+
 ## Example workflows
 
 **Agent evaluation workflow:**
@@ -245,6 +288,13 @@ Example prompts:
 1. "Deploy GPT-5.4 as `customer-service-bot` with 15 capacity units."
 1. "Monitor the request latency for my new deployment."
 1. "Recommend more cost-effective alternatives based on current usage."
+
+**Continuous evaluation setup:**
+
+1. "List all agents in my project."
+1. "Enable continuous evaluation for my `customer-support-agent` using Relevance, Groundedness, and Safety evaluators with `gpt-4o`."
+1. "Show me the continuous evaluation configuration for `customer-support-agent`."
+1. "Update continuous evaluation to sample 25% of responses with a maximum of 10 runs per hour."
 
 **Resource management and cleanup:**
 
