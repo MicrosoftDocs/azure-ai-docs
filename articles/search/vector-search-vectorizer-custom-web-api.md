@@ -157,4 +157,3 @@ Keep the following considerations in mind when implementing a web API endpoint f
 + [Integrated vectorization](vector-search-integrated-vectorization.md)
 + [How to configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
 + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
-+ [Hugging Face Embeddings Generator power skill (can be used for a custom web API vectorizer as well)](https://github.com/Azure-Samples/azure-search-power-skills/tree/main/Vector/EmbeddingGenerator)
