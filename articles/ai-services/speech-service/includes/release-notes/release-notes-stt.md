@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 #### Improved pronunciation assessment models
 
-We've updated the pronunciation assessment models for `en-US`, `zh-CN`, `es-ES`, `es-MX`, `fr-FR`, and `pt-BR`. These updates improve the Pearson Correlation Coefficients (PCC) for more precise and dependable evaluations.
+We updated the pronunciation assessment models for `en-US`, `zh-CN`, `es-ES`, `es-MX`, `fr-FR`, and `pt-BR`. These updates improve the Pearson correlation coefficients (PCC) for more precise and dependable evaluations.
 
 You can use the updated models through the API and the Microsoft Foundry playground.
 
