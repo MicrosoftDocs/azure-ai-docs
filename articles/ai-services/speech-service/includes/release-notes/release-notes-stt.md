@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 #### Improved pronunciation assessment models
 
-We updated the pronunciation assessment models for `en-US`, `zh-CN`, `es-ES`, `es-MX`, `fr-FR`, and `pt-BR`. The updates improve the Pearson Correlation Coefficients (PCC) for more precise and dependable evaluations.
+We've updated the pronunciation assessment models for `en-US`, `zh-CN`, `es-ES`, `es-MX`, `fr-FR`, and `pt-BR`. These updates improve the Pearson Correlation Coefficients (PCC) for more precise and dependable evaluations.
 
 You can use the updated models through the API and the Microsoft Foundry playground.
 
@@ -41,7 +41,7 @@ The custom speech fine-tuning workflow is now documented for the Microsoft Found
 
 #### LLM Speech API Generally Availability
 
-LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md).
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multilingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
 
 #### Speech Transcription SDK general availability
 
