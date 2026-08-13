@@ -78,7 +78,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
     The URL path looks similar to `.../groups/<workspace_id>/aiskills/<artifact_id>...`. Both values are GUIDs.
 
   1. In the Foundry portal, open your project.
-  1. In the left pane, select **Management center**, and then select **Connected resources**.
+  1. Select **Manage** in the upper-right navigation, select **Project details**, and then select the **Connected resources** tab.
   1. Create a connection of type **Microsoft Fabric**.
   1. Enter the `workspace_id` and `artifact_id` values.
   1. Save the connection, and then copy the connection **ID**.
