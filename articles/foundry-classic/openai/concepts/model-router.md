@@ -12,10 +12,6 @@ ms.custom:
   - classic-and-new
   - build-2025
   - dev-focus
-ms.custom:
-- classic-and-new
-- build-2025
-- dev-focus
 - references_regions
 - doc-kit-assisted
 ai-usage: ai-assisted
