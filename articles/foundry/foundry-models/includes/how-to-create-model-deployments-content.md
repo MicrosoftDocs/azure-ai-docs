@@ -5,11 +5,9 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/06/2026
+ms.date: 08/13/2026
 ms.custom: include, classic-and-new
 ---
-
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 In this article, you learn how to add a new model deployment to a Foundry Models endpoint. The deployment is available for inference in your Foundry resource when you specify the deployment name in your requests.
 
@@ -27,11 +25,7 @@ To complete this article, you need the following:
 
 ::: zone pivot="programming-language-cli"
 
-* Install the [Azure CLI](/cli/azure/) (version 2.60 or later) and the `cognitiveservices` extension.
-
-    ```azurecli
-    az extension add -n cognitiveservices
-    ```
+* Install the [Azure CLI](/cli/azure/) (version 2.60 or later). The `az cognitiveservices` commands used in this article are part of the core CLI, so no extra extension is required.
 
 * Some commands in this tutorial use the `jq` tool, which might not be installed on your system. For installation instructions, see [Download `jq`](https://stedolan.github.io/jq/download/).
 
@@ -57,6 +51,7 @@ To add a model, first identify the model that you want to deploy. Query the avai
 1. If you have more than one subscription, select the subscription where your resource is located.
 
     ```azurecli
+    subscriptionId="<subscription-id>"
     az account set --subscription $subscriptionId
     ```
 
@@ -93,7 +88,7 @@ To add a model, first identify the model that you want to deploy. Query the avai
       "format": "Microsoft",
       "version": "1",
       "sku": "GlobalStandard",
-      "capacity": 1
+      "capacity": 1000
     }
     ```
 
@@ -129,7 +124,7 @@ To add a model, first identify the model that you want to deploy. Query the avai
 
     The output should display `"Succeeded"`. The model is ready to use after provisioning completes.
 
-    Reference: [az cognitiveservices account list-models](/cli/azure/cognitiveservices/account#az-cognitiveservices-account-deployment-show)
+    Reference: [az cognitiveservices account deployment show](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
 
 You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability is useful if you want to test different configurations for a given model, including content filters.
 
@@ -143,10 +138,12 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 **Inference endpoint**
 
 ```azurecli
-az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
+az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure OpenAI Legacy API - Latest moniker"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint using the OpenAI v1 API, call the `/openai/v1/` route on the endpoint URL, `https://<resource-name>.openai.azure.com/openai/v1/` and pass the deployment name in the `model` field of your request. The `/openai/v1/` route uses implicit versioning, so you don't pass an `api-version`.
+
+See the [Azure OpenAI v1 API reference](/rest/api/microsoft-foundry/azureopenai/models/) for all supported operations.
 
 **Inference keys**
 
@@ -235,25 +232,25 @@ cd azureai-model-inference-bicep/infra
 1. Run the deployment:
 
     ```azurecli
-    RESOURCE_GROUP="<resource-group-name>"
-    ACCOUNT_NAME="<azure-ai-model-inference-name>" 
-    MODEL_NAME="Phi-4-mini-instruct"
-    PROVIDER="Microsoft"
-    VERSION=1
+    resourceGroupName="<resource-group-name>"
+    accountName="<azure-ai-model-inference-name>"
+    modelName="Phi-4-mini-instruct"
+    provider="Microsoft"
+    version=1
     
     az deployment group create \
-        --resource-group $RESOURCE_GROUP \
+        --resource-group $resourceGroupName \
         --template-file ai-services-deployment-template.bicep \
-        --parameters accountName=$ACCOUNT_NAME modelName=$MODEL_NAME modelVersion=$VERSION modelPublisherFormat=$PROVIDER
+        --parameters accountName=$accountName modelName=$modelName modelVersion=$version modelPublisherFormat=$provider
     ```
 
 1. Verify the deployment completed successfully:
 
     ```azurecli
     az cognitiveservices account deployment show \
-        --deployment-name $MODEL_NAME \
-        -n $ACCOUNT_NAME \
-        -g $RESOURCE_GROUP \
+        --deployment-name $modelName \
+        -n $accountName \
+        -g $resourceGroupName \
     | jq '.properties.provisioningState'
     ```
 
@@ -269,10 +266,12 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 **Inference endpoint**
 
 ```azurecli
-az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
+az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure OpenAI Legacy API - Latest moniker"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/microsoft-foundry/modelinference/) for all supported operations.
+To make requests to the Foundry Models endpoint using the OpenAI v1 API, call the `/openai/v1/` route on the endpoint URL, `https://<resource-name>.openai.azure.com/openai/v1/` and pass the deployment name in the `model` field of your request. The `/openai/v1/` route uses implicit versioning, so you don't pass an `api-version`.
+
+See the [Azure OpenAI v1 API reference](/rest/api/microsoft-foundry/azureopenai/models/) for all supported operations.
 
 **Inference keys**
 
@@ -288,7 +287,7 @@ az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 | **Quota exceeded** | Your subscription reached the deployment quota for the selected SKU or region. | Check your quota in the Foundry portal or request an increase through Azure support. |
 | **Authorization failed** | The identity used doesn't have the required RBAC role. | Assign the **Cognitive Services Contributor** role on the Foundry resource. |
 | **Model not available** | The model isn't available in your region or subscription. | Run `az cognitiveservices account list-models` to check available models and regions. |
-| **Extension not found** | The `cognitiveservices` CLI extension isn't installed. | Run `az extension add -n cognitiveservices` to install the extension. |
+| **Command not recognized** | Your Azure CLI is out of date. | Update to version 2.60 or later with `az upgrade`. The `az cognitiveservices` commands are part of the core CLI and don't require a separate extension. |
 
 ## Related content
 
