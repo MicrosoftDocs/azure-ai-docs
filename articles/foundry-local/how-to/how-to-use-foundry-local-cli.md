@@ -38,9 +38,24 @@ winget install Microsoft.FoundryLocal
 
 ### [macOS Apple Silicon](#tab/macos)
 
-Download the current macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer). Homebrew isn't supported for the current CLI preview.
+Install Foundry Local by using Homebrew:
 
-If you download the `.pkg`, open it with macOS Installer.
+```bash
+brew tap microsoft/foundrylocal
+brew install foundrylocal
+```
+
+If you're upgrading from Foundry Local 0.8.x, stop the old service before upgrading:
+
+```bash
+foundry service stop
+brew update
+brew upgrade microsoft/foundrylocal/foundrylocal
+```
+
+For later upgrades, run `brew update` and `brew upgrade microsoft/foundrylocal/foundrylocal`.
+
+Alternatively, download the current macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer). If you download the `.pkg`, open it with macOS Installer.
 
 ---
 
