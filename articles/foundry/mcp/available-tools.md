@@ -15,7 +15,7 @@ ms.custom: doc-kit-assisted
 
 # Available tools and example prompts for Foundry MCP Server (preview)
 
-Foundry MCP Server exposes 41 tools across 11 categories that let you manage agents, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. This reference also covers six Toolbox management tools that are in progress.
+Foundry MCP Server exposes 47 tools across 12 categories that let you manage agents, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use this reference to explore each tool and try the example prompts in your own project.
 
 > [!TIP]
 > Before using these tools, complete the [Foundry MCP Server setup](get-started.md).
@@ -74,12 +74,9 @@ Example prompts:
 | `agent_container_status_get` | read | Check the current status of a hosted agent container (Starting, Running, Stopped, Failed, and so on). | Agent name | Current container status. |
 | `agent_definition_schema_get` | read | Return the complete JSON schema for agent definitions, including all tool types. | None | Full JSON schema for agent definitions. |
 
-## Toolbox management (in progress)
+## Toolbox management
 
 Retrieve, version, update, and delete toolboxes in a Foundry project.
-
-> [!IMPORTANT]
-> These tools are under development. Their inputs and behavior might change before they're available in the Foundry MCP Server public preview.
 
 Example prompts:
 
