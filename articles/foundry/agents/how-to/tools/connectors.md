@@ -569,7 +569,7 @@ For other languages and runtime options, see [Connect agents to MCP servers](mod
 The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) provides commands to create and manage connector connections through the `microsoft.foundry` extension. The `azd` path supports **OAuth2** connectors, which are the connectors supported in Foundry today.
 
 > [!TIP]
-> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same Azure Developer CLI flows shown below so the agent can generate connector wiring commands for you.
+> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same Azure Developer CLI flows shown in this article so the agent can generate connector wiring commands for you.
 
 ### Step 1: Install prerequisites
 
