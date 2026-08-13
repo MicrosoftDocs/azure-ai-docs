@@ -5,11 +5,12 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: limits-and-quotas
-ms.date: 08/04/2026
+ms.date: 08/08/2026
 ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ms.custom:
   - references_regions
+  - doc-kit-assisted
 #customer intent: As a developer making decisions about the infrastructure we use, planning to optimize for usage need, capacity, and cost, I want to understand the limits, quotas, and capacities associated with Azure AI Search services, detailing how these factors depend on the chosen pricing tier.
 ---
 
@@ -217,6 +218,7 @@ Maximum running times exist to provide balance and stability to the service as a
 > [!NOTE]
 > In the Serverless pricing model, indexer behavior differs from Dedicated services. Capacity isn't defined by replicas or partitions. Instead, per-service object limits, per-index storage caps, and service-level throttling govern indexing limits. As a result, some limits, such as maximum execution time, aren't fixed values.
 
+### Indexer object and throughput limits
 
 | Resource | Free&nbsp;<sup>1</sup> | Basic&nbsp;<sup>2</sup> | S1 | S2 | S3 | S3&nbsp;HD&nbsp;<sup>3</sup> | L1 | L2 | Serverless Developer |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -226,8 +228,6 @@ Maximum running times exist to provide balance and stability to the service as a
 | Maximum indexing load per invocation | 10,000 docs | Limited only by max docs | Limited only by max docs | Limited only by max docs | Limited only by max docs | N/A | No limit | No limit | Limited only by max docs |
 | Minimum schedule | 5 min | 5 min | 5 min | 5 min | 5 min | 5 min | 5 min | 5 min | 5 min |
 | Maximum running time <sup>5</sup> | 1-3 or 3-10 min | 2 or 24 hours | 2 or 24 hours | 2 or 24 hours | 2 or 24 hours | N/A | 2 or 24 hours | 2 or 24 hours | 2 hours |
-| Blob indexer <sup>7</sup>: maximum blob size, MB | 16 | 16 | 128 | 256 | 256 | N/A  | 256 | 256 | 256 |
-| Blob indexer: maximum characters of content extracted from a blob <sup>6</sup> <sup>8</sup> | 256,000 | 512,000 | 4&nbsp;mil | 8&nbsp;mil | 16&nbsp;mil | N/A | 4&nbsp;mil | 4&nbsp;mil | 16&nbsp;mil |
 
 <sup>1</sup> Free services have indexer maximum execution time of 3 minutes for blob sources and 1 minute for all other data sources. Indexer invocation is once every 180 seconds. For AI indexing that calls Foundry Tools, free services are limited to 20 free transactions per indexer per day, where a transaction is defined as a document that successfully passes through the enrichment pipeline. (Tip: You can reset an indexer to reset its count.)
 
@@ -239,12 +239,28 @@ Maximum running times exist to provide balance and stability to the service as a
 
 <sup>5</sup> Regarding the 2 or 24 hour maximum duration for indexers: a 2-hour maximum is the most common and it's what you should plan for. It refers to indexers that run in the [public environment](search-howto-run-reset-indexers.md#indexer-execution-environment), which offloads computationally intensive processing and leaves more resources for queries. The 24-hour limit applies if you configure the indexer to run in a private environment using only the infrastructure that's allocated to your search service. Some older indexers are incapable of running in the public environment, and those indexers always have a 24-hour processing range. If you have unscheduled indexers that run continuously for 24 hours, you can assume those indexers couldn't be migrated to the newer infrastructure. As a general rule, for indexing jobs that can't finish within two hours, put the indexer on a [5-minute schedule](search-howto-schedule-indexers.md) so that the indexer can quickly pick up where it left off. On the Free tier, the 3-10 minute maximum running time is for indexers with skillsets.
 
-<sup>6</sup> The maximum number of characters is based on Unicode code units, specifically UTF-16.
+### Source-file limits for blob-like indexers
 
-<sup>7</sup> When using `delimitedText` parsing mode for CSV files, a buffer size limit of 10MB per file row applies.
+File processing happens in stages, and each stage has its own limits:
 
-<sup>8</sup> When using `delimitedText` parsing mode for CSV files, the “maximum extracted content size” limit doesn't apply.
+1. A data source connector downloads a source item, subject to source-specific connector limits.
+1. Azure AI Search extracts the item's content, subject to the maximum source-file size and extracted-character limits in the following table.
+1. Optionally, a skillset sends that content to downstream services, where an individual skill's input limit can be smaller than what the indexer extracts.
 
+The maximum source-file size and extracted-character limits in the following table apply to the Azure Blob Storage, ADLS Gen2, SharePoint in Microsoft 365, OneLake, and Azure Files indexers. For per-skill limits, check the [reference article for each skill](cognitive-search-predefined-skills.md) in your skillset.
+
+| Resource | Free | Basic | S1 | S2 | S3 | S3&nbsp;HD | L1 | L2 | Serverless Developer |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Maximum source-file size, MB <sup>2</sup> <sup>4</sup> | 16 | 16 | 128 | 256 | 256 | N/A | 256 | 256 | 256 |
+| Maximum characters extracted from a source file <sup>1</sup> <sup>3</sup> <sup>4</sup> | 256,000 | 512,000 | 4&nbsp;mil | 8&nbsp;mil | 16&nbsp;mil | N/A | 4&nbsp;mil | 4&nbsp;mil | 16&nbsp;mil |
+
+<sup>1</sup> The maximum number of characters is based on Unicode code units, specifically UTF-16.
+
+<sup>2</sup> When using `delimitedText` parsing mode for CSV files, a buffer size limit of 10MB per file row applies.
+
+<sup>3</sup> When using `delimitedText` parsing mode for CSV files, the “maximum extracted content size” limit doesn't apply.
+
+<sup>4</sup> Blob-like indexers include the Azure Blob Storage indexer (blob indexer), ADLS Gen2 indexer, SharePoint in Microsoft 365 indexer, OneLake indexer, and Azure Files indexer. The direct-upload file knowledge source doesn't use an indexer and has [separate limits](agentic-knowledge-source-how-to-file.md#supported-formats-and-limits).
 
 ## Shared private link resource limits
 
@@ -320,9 +336,9 @@ Per-knowledge-base limits on knowledge sources depend on the API version used to
 
 ## Data limits (AI enrichment)
 
-Data limits apply to an [AI enrichment pipeline](cognitive-search-concept-intro.md) that makes calls to Azure Language in Foundry Tools for [entity recognition](cognitive-search-skill-entity-recognition-v3.md), [entity linking](cognitive-search-skill-entity-linking-v3.md), [key phrase extraction](cognitive-search-skill-keyphrases.md), [sentiment analysis](cognitive-search-skill-sentiment-v3.md), [language detection](cognitive-search-skill-language-detection.md), and [personal-information detection](cognitive-search-skill-pii-detection.md).
+Data limits apply to an [AI enrichment pipeline](cognitive-search-concept-intro.md) that calls Azure Language in Foundry Tools. The maximum input is 50,000 characters, as measured by [`String.Length`](/dotnet/api/system.string.length), for the [Entity Recognition skill](cognitive-search-skill-entity-recognition-v3.md#data-limits), [Entity Linking skill](cognitive-search-skill-entity-linking-v3.md#data-limits), [Key Phrase Extraction skill](cognitive-search-skill-keyphrases.md#data-limits), [Language Detection skill](cognitive-search-skill-language-detection.md#data-limits), and [PII Detection skill](cognitive-search-skill-pii-detection.md#data-limits). The [Sentiment skill](cognitive-search-skill-sentiment-v3.md#data-limits) has a 5,000-character maximum.
 
-The maximum size of a record is 50,000 characters as measured by [`String.Length`](/dotnet/api/system.string.length). If you need to break up your data before sending it to the sentiment analyzer, use the [Text Split skill](cognitive-search-skill-textsplit.md).
+Use the [Text Split skill](cognitive-search-skill-textsplit.md) when you need to divide larger text before downstream processing.
 
 These limits apply to both Dedicated and Serverless pricing models.
 

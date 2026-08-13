@@ -72,8 +72,6 @@ The following audiovisual elements can be extracted:
 | [**Camera shots**](#camera-shots) | ✗ | ✓ | Yes |
 | [**Field extraction**](#field-extraction) | ✓ | ✓ | No |
 
-Face also requires `enableFace: true` in analyzer configuration and limited access registration.
-
 ### Markdown content elements
 For details on the markdown format for audiovisual content see [AudioVisual Markdown](markdown.md).
 

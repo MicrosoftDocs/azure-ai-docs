@@ -4,8 +4,9 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/30/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights (preview)
@@ -85,6 +86,18 @@ This preview supports basic ACLs for documents, list items, and modern ASPX site
 | External/guest users | Access for guests. | ❌ | Not supported. |
 | Information Management policies | Policies to define specific permissions requirements. | ❌ | Not supported in preview. |
 | Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md). |
+
+### Supported group relationships
+
+Microsoft Entra group transitivity applies within Microsoft Entra. It doesn't expand Microsoft Entra groups that are members of SharePoint groups.
+
+| Permission relationship | Supported | Guidance |
+|---|---|---|
+| User or Microsoft Entra group assigned directly to the SharePoint item | Yes | The indexer stores the user or Microsoft Entra group object ID in the item's permission metadata. |
+| User reaches an assigned Microsoft Entra group through transitive Microsoft Entra group nesting | Yes | Query-time Microsoft Graph resolution expands the user's transitive Microsoft Entra group memberships. |
+| User assigned directly to a SharePoint site group that has access to the item | Yes | Configure [SharePoint groups support](#configure-sharepoint-groups-support). |
+| Microsoft Entra group nested within a SharePoint group | No | SharePoint group resolution doesn't expand the nested Microsoft Entra group. Results that depend on this relationship are filtered out. Add users directly to the SharePoint group or grant permission through a supported Microsoft Entra group assignment. |
+| Other mixed SharePoint and Microsoft Entra nesting directions | Not specified | Don't infer support from Microsoft Entra transitivity. This preview limitation is scoped to Microsoft Entra groups nested within SharePoint groups. |
 
 ## How hierarchical permissions are evaluated
 
@@ -418,6 +431,8 @@ After indexing your data and ACLs, you can [query the index](search-query-access
 | Permissions are stale after changing a site, library, list, or folder ACL | Call [`/resync` with `options: ["permissions"]`](#resync-acls-across-the-full-data-source). See [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content) for context. |
 | `federatedCredentialId` is rejected when configuring `sharePointConnectorAppRegistration` | Use the ID (GUID) of the federated identity credential on the app registration, not the app object ID or the managed identity principal ID. |
 | The indexer returns `401 Unauthorized` and `FederatedCredentialApplicationId` is set | Verify you used the managed identity's Application ID (found in **Enterprise applications**), not the app registration's Application (client) ID or any Object ID. For a user-assigned managed identity, use the **Client ID** from the managed identity resource's **Properties** page. See [Find the correct Microsoft Entra identifiers](#find-the-correct-microsoft-entra-identifiers). |
+
+For missing, unexpected, or failed query-time results after ACL metadata is indexed, see [Troubleshoot SharePoint permission filtering](troubleshoot-sharepoint-query-permission-filtering.md).
 
 ## Related content
 

@@ -50,7 +50,6 @@ To help answer these questions, here are descriptions of some terminology used t
 
 * **Permissions**: Allowed or denied actions that an identity can perform on a resource, such as reading, writing, deleting, or managing both control plane and data plane operations.
 * **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
-* **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
 * **Role**: A named collection of permissions that defines which actions can be performed on Azure resources at a given scope.
 
 An identity gets a *role* with specific *permissions* at a selected *scope* based on your enterprise requirements.

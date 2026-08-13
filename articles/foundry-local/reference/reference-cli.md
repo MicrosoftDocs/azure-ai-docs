@@ -10,7 +10,7 @@ ms.reviewer: waynechuang
 author: laujan
 reviewer: wayne-ch
 ms.topic: reference
-ms.date: 08/05/2026
+ms.date: 08/06/2026
 ai-usage: ai-assisted
 ---
 
@@ -29,18 +29,15 @@ This article provides a comprehensive reference for the Foundry Local command-li
 
 ## Install Foundry Local
 
-Install Foundry Local by using the package manager for your operating system.
+Install Foundry Local by using the package manager or installer for your operating system.
 
 - **Windows**: Open a terminal and run:
-  ```bash
-  winget install Microsoft.FoundryLocal
-  ```
-- **macOS**: Open a terminal and run:
-  ```bash
-  brew tap microsoft/foundrylocal
-  brew install foundrylocal
-  ```
-  Alternatively, download the installer from the [foundry-samples GitHub repository](https://aka.ms/foundry-local-installer).
+
+    ```bash
+    winget install Microsoft.FoundryLocal
+    ```
+
+- **macOS Apple Silicon**: Download the current macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer). Homebrew isn't supported for the current CLI preview. If you download the `.pkg`, open it with macOS Installer.
 
 Verify the installation:
 
@@ -51,31 +48,31 @@ foundry --version
 Make sure you have admin rights to install software.
 
 > [!TIP]
-> If you see a service connection error after installation (for example, `Request to local service failed`), run `foundry server restart`.
+> If you see a server connection error after installation (for example, `Request to local service failed`), run `foundry server restart`.
 
 ## Quick verification
 
-Run these commands to confirm the CLI is installed and the service is reachable.
+Run these commands to confirm the CLI is installed and the local server is reachable.
 
 1. Show CLI help:
 
-	```bash
-	foundry --help
-	```
+    ```bash
+    foundry --help
+    ```
 
-	This command prints usage information and the list of available command groups.
+    This command prints usage information and the list of available command groups.
 
-	Reference: [Overview](#overview)
+    Reference: [Overview](#overview)
 
 1. Check the server status:
 
-	```bash
-  foundry server status
-	```
+    ```bash
+    foundry server status
+    ```
 
-  This command prints whether the Foundry Local daemon is running and includes its local endpoint.
+    This command prints whether the Foundry Local daemon is running and includes its local endpoint.
 
-  Reference: [Server commands](#server-commands)
+    Reference: [Server commands](#server-commands)
 
 ## Overview
 
@@ -100,7 +97,7 @@ The following table summarizes the top-level commands:
 | `foundry server` | Starts, stops, restarts, inspects, and troubleshoots the local Foundry daemon. |
 | `foundry cache` | Inspects and manages downloaded model cache entries. |
 | `foundry config` | Views and edits persistent Foundry CLI settings. |
-| `foundry status` | Shows system, service, model, and connectivity diagnostics. |
+| `foundry status` | Shows system, server, model, and connectivity diagnostics. |
 | `foundry report` | Opens a pre-filled GitHub issue with diagnostics. |
 | `foundry transcribe` | Starts an interactive local speech transcription session or transcribes a file. |
 
@@ -122,8 +119,8 @@ The following table summarizes the commands related to managing and running mode
 | `foundry model list` | Lists all available models for local use. On first run, it downloads execution providers (EPs) for your hardware. |
 | `foundry model info <model>` | Displays detailed information about a specific model. |
 | `foundry model download <model>` | Downloads a model to the local cache without running it. |
-| `foundry model load <model>` | Loads a model into the service. |
-| `foundry model unload <model>` | Unloads a model from the service. |
+| `foundry model load <model>` | Loads a model into the local daemon. |
+| `foundry model unload <model>` | Unloads a model from the local daemon. |
 
 ### Model list ordering
 
@@ -138,12 +135,14 @@ Use the explicit options for `foundry model list` to narrow or expand the result
 
 | **Option** | **Description** |
 | --- | --- |
-| `--device <device>` | Filters models by device. |
-| `--type <type>` | Filters models by type. |
+| `--device <kind>` | Filters models by device kind: `cpu`, `gpu`, or `npu`. |
+| `--type <task>` | Filters models by task: `chat`, `speech`, or `embedding`. |
 | `--search <query>` | Filters models by a search query. |
 | `--cached` | Filters the list to cached models. |
 | `--loaded` | Filters the list to loaded models. |
 | `--variants` | Includes model variants in the list. |
+| `--limit <n>` | Limits the number of rows in the output. |
+| `-v`, `--verbose` | Includes License, Display Name, and Model ID columns. |
 
 ### Examples
 
@@ -154,6 +153,8 @@ foundry model list --search qwen
 foundry model list --cached
 foundry model list --loaded
 foundry model list --variants
+foundry model list --limit 20
+foundry model list --verbose
 ```
 
 These examples filter or expand the model list by using the supported options.
@@ -179,7 +180,7 @@ Why is the sky blue?
 
 ## Server commands
 
-The following table summarizes the commands related to managing and running the Foundry Local service:
+The following table summarizes the commands related to managing and running the Foundry Local server:
 
 | **Command** | **Description** |
 | --- | --- |
@@ -192,6 +193,15 @@ The following table summarizes the commands related to managing and running the 
 | `foundry server restart --port <port> --idle-timeout 0` | Restarts the local service on the specified TCP port and keeps the daemon running. |
 | `foundry server status` | Displays the daemon state, local service URLs, process ID, uptime, and log location. |
 | `foundry server logs` | Displays the Foundry Local daemon and SDK logs. |
+
+### Server logs options
+
+Use these options with `foundry server logs`:
+
+| **Option** | **Description** |
+| --- | --- |
+| `-n`, `--lines <n>` | Shows the specified number of recent log lines. The default is `50`. |
+| `-f`, `--follow` | Streams new log lines as they're appended. |
 
 ### Fixed-port local server
 
@@ -223,7 +233,9 @@ The following table summarizes the commands for managing the local cache where m
 | `foundry cache location` | Shows the current cache directory. |
 | `foundry cache list` | Lists all models stored in the local cache. |
 | `foundry cache cd <path>` | Changes the cache directory to the specified path. |
-| `foundry cache remove <model>` | Removes a model from the local cache. |
+| `foundry cache remove [<model>]` | Removes a cached model. If you omit `<model>`, the command removes all cached models after confirmation. |
+
+Use `foundry cache remove <model> --force` to remove a cached model without confirmation.
 
 
 ## Execution providers
@@ -260,17 +272,17 @@ Connect [Open WebUI](https://github.com/open-webui/open-webui) to Foundry Local 
 
 1. Start a model and leave the terminal open:
 
-   ```bash
-  foundry run qwen2.5-0.5b
-   ```
+    ```bash
+    foundry run qwen2.5-0.5b
+    ```
 
 1. Get your local endpoint URL:
 
-   ```bash
-  foundry server status
-   ```
+    ```bash
+    foundry server status
+    ```
 
-   Copy the endpoint URL. Foundry Local assigns a dynamic port each time the service starts.
+   Copy the endpoint URL. Foundry Local assigns a dynamic port each time the server starts.
 
 1. Install and launch [Open WebUI](https://github.com/open-webui/open-webui), then open `http://localhost:8080` in your browser.
 
@@ -291,32 +303,24 @@ Connect [Open WebUI](https://github.com/open-webui/open-webui) to Foundry Local 
 Run the command for your operating system to upgrade Foundry Local.
 
 - **Windows**:
-  ```bash
-  winget upgrade --id Microsoft.FoundryLocal
-  ```
-- **macOS**:
-  ```bash
-  brew upgrade foundrylocal
-  ```
+
+    ```bash
+    winget upgrade --id Microsoft.FoundryLocal
+    ```
+
+- **macOS Apple Silicon**: Download the newer macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer), and install the newer package.
 
 ## Uninstall Foundry Local
 
-Run the command for your operating system to uninstall Foundry Local.
+To uninstall Foundry Local on Windows, run:
 
-- **Windows**:
-  ```bash
-  winget uninstall Microsoft.FoundryLocal
-  ```
-- **macOS**:
-  ```bash
-  brew rm foundrylocal
-  brew untap microsoft/foundrylocal
-  brew cleanup --scrub
-  ```
+```bash
+winget uninstall Microsoft.FoundryLocal
+```
 
 ## Troubleshooting
 
-### Service connection problems
+### Server connection problems
 
 If you see this error when you run a command like `foundry model list`:
 
@@ -326,10 +330,10 @@ Uri: http://127.0.0.1:0/foundry/list
 
 The requested address is not valid in its context. (127.0.0.1:0)
 
-Please check service status with 'foundry server status'.
+Please check server status with 'foundry server status'.
 ```
 
-Restart the service:
+Restart the server:
 
 ```bash
 foundry server restart
