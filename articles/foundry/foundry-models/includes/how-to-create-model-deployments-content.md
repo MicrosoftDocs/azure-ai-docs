@@ -141,7 +141,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure OpenAI Legacy API - Latest moniker"]'
 ```
 
-To make requests to the Foundry Models endpoint using the OpenAI v1 API, call the `/openai/v1/` route on the endpoint URL, `https://<resource-name>.openai.azure.com/openai/v1/` and pass the deployment name in the `model` field of your request. The `/openai/v1/` route uses implicit versioning, so you don't pass an `api-version`.
+To make requests to the Foundry Models endpoint by using the OpenAI v1 API, call the `/openai/v1/` route on the endpoint URL, `https://<resource-name>.openai.azure.com/openai/v1/` and pass the deployment name in the `model` field of your request. The `/openai/v1/` route uses implicit versioning, so you don't pass an `api-version`.
 
 See the [Azure OpenAI v1 API reference](/rest/api/microsoft-foundry/azureopenai/models/) for all supported operations.
 
