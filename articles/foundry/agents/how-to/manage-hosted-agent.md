@@ -3,7 +3,7 @@ title: "Manage hosted agents"
 description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/12/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -88,12 +88,12 @@ az rest --method GET \
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-project = AIProjectClient(
+project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
 
-for agent in project.agents.list():
+for agent in project_client.agents.list():
     print(agent.name)
 ```
 
@@ -127,7 +127,7 @@ The response includes the agent's latest version, status, and definition.
 :::zone pivot="python"
 
 ```python
-agent = project.agents.get(agent_name="my-agent")
+agent = project_client.agents.get(agent_name="my-agent")
 print(f"Name: {agent.name}")
 print(f"Status: {agent.versions['latest']['status']}")
 ```
@@ -157,7 +157,7 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-agent_version = project.agents.get_version(
+agent_version = project_client.agents.get_version(
     agent_name="my-agent", agent_version="1"
 )
 print(f"Version: {agent_version.version}")
@@ -195,7 +195,7 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-for version in project.agents.list_versions(agent_name="my-agent"):
+for version in project_client.agents.list_versions(agent_name="my-agent"):
     print(f"Version: {version.version}, Status: {version['status']}")
 ```
 
@@ -241,7 +241,7 @@ Replace `responses` with `invocations` if your agent uses the Invocations protoc
 ```python
 from azure.ai.projects.models import ContainerConfiguration, HostedAgentDefinition, ProtocolVersionRecord
 
-agent = project.agents.create_version(
+agent = project_client.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         cpu="1",
@@ -311,7 +311,29 @@ The response `version` field contains the assigned `draft-{timestamp}` identifie
 
 :::zone pivot="python"
 
-Draft versions are currently available through the REST API only. Switch to the **REST** tab for an example, and call the same `${BASE_URL}/agents/${AGENT_NAME}/versions` endpoint with `"draft": true` in the request body.
+```python
+from azure.ai.projects.models import (
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+)
+
+draft = project_client.agents.create_version(
+    agent_name="my-agent",
+    definition=HostedAgentDefinition(
+        cpu="1",
+        memory="2Gi",
+        container_configuration=ContainerConfiguration(
+            image="myregistry.azurecr.io/my-agent:experimental"
+        ),
+        protocol_versions=[
+            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+        ],
+    ),
+    draft=True,
+)
+print(f"Created draft version: {draft.version}")
+```
 
 :::zone-end
 
@@ -340,10 +362,10 @@ Poll the version status after creation:
 ```python
 import time
 
-def wait_for_version_active(project, agent_name, agent_version, max_attempts=60):
+def wait_for_version_active(project_client, agent_name, agent_version, max_attempts=60):
     for attempt in range(max_attempts):
         time.sleep(10)
-        version = project.agents.get_version(
+        version = project_client.agents.get_version(
             agent_name=agent_name, agent_version=agent_version
         )
         status = version["status"]
@@ -375,7 +397,10 @@ az rest --method POST \
 
 :::zone pivot="python"
 
-Not supported as a standalone command. Use the REST API.
+```python
+project_client.agents.disable(agent_name="my-agent")
+print("Disabled agent: my-agent")
+```
 
 :::zone-end
 
@@ -399,7 +424,10 @@ az rest --method POST \
 
 :::zone pivot="python"
 
-Not supported as a standalone command. Use the REST API.
+```python
+project_client.agents.enable(agent_name="my-agent")
+print("Enabled agent: my-agent")
+```
 
 :::zone-end
 
@@ -428,7 +456,7 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.agents.delete_version(agent_name="my-agent", agent_version="1")
+project_client.agents.delete_version(agent_name="my-agent", agent_version="1")
 ```
 
 :::zone-end
@@ -457,7 +485,7 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.agents.delete(agent_name="my-agent")
+project_client.agents.delete(agent_name="my-agent")
 ```
 
 :::zone-end
@@ -497,7 +525,34 @@ Timeouts:
 
 :::zone pivot="python"
 
-Viewing container logs isn't currently supported through the Python SDK. Use the REST API or Azure Developer CLI.
+Stream logs from a specific agent session:
+
+```python
+def iter_sse_frames(stream):
+    buffer = ""
+    for chunk in stream:
+        buffer += chunk.decode("utf-8", errors="replace")
+        while "\n\n" in buffer:
+            frame, buffer = buffer.split("\n\n", 1)
+            event_name = None
+            data_lines = []
+            for line in frame.splitlines():
+                if line.startswith("event: "):
+                    event_name = line[7:]
+                elif line.startswith("data: "):
+                    data_lines.append(line[6:])
+            if event_name or data_lines:
+                yield event_name, "\n".join(data_lines)
+
+
+raw_stream = project_client.agents.get_session_log_stream(
+    agent_name="my-agent",
+    agent_version="1",
+    session_id="<session-id>",
+)
+for event_name, data in iter_sse_frames(raw_stream):
+    print(f"SSE event: {event_name}\nSSE data: {data}\n")
+```
 
 :::zone-end
 
@@ -579,7 +634,7 @@ endpoint_config = AgentEndpointConfig(
     ),
 )
 
-project.agents.update_details(
+project_client.agents.update_details(
     agent_name="my-agent",
     agent_endpoint=endpoint_config,
 )
@@ -620,7 +675,7 @@ echo "Agent identity principal ID: ${AGENT_IDENTITY}"
 :::zone pivot="python"
 
 ```python
-agent = project.agents.get(agent_name="my-agent")
+agent = project_client.agents.get(agent_name="my-agent")
 agent_identity = agent.instance_identity["principal_id"]
 print(f"Agent identity principal ID: {agent_identity}")
 ```

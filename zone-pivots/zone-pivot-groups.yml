@@ -2078,12 +2078,23 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
   - id: vscode
     title: VS Code
   - id: foundry-skills
     title: Foundry Skills
   - id: canvas
     title: Foundry Agent Canvas
+# Owner: johmil
+- id: mcp-authentication-language
+  title: Programming language
+  prompt: Choose a programming language
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
 # Owner: johmil
 - id: hosted-agent-optimize-quickstart-method
   title: Optimization method

@@ -5,7 +5,7 @@ description: "Learn how to configure your agent's stable endpoint, select the ac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 04/14/2026
+ms.date: 08/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -304,7 +304,34 @@ Content-Type: application/merge-patch+json
 #### [Python SDK](#tab/python)
 
 ```python
-# Agent card update via SDK is not yet supported. Use the REST API.
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import AgentCard, AgentCardSkill
+from azure.identity import DefaultAzureCredential
+PROJECT_ENDPOINT = (
+    "https://{account}.services.ai.azure.com/api/projects/{project}"
+)
+AGENT_NAME = "name-of-your-existing-agent"
+# Create the project client.
+project_client = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+# Add the agent card.
+patched_agent = project_client.agents.update_details(
+    agent_name=AGENT_NAME,
+  agent_card=AgentCard(
+        version="1.0.0",
+        description="A competitive intelligence analyst.",
+    skills=[AgentCardSkill(
+            id="competitor-analysis",
+            name="Competitor Analysis",
+            description="Analyzes competitor products and market positioning.",
+            tags=["research", "analysis", "market-intel"],
+            examples=["Compare our pricing with a competitor."],
+        )],
+    ),
+)
+print(f"Added an agent card to: {patched_agent.name}")
 ```
 
 ---

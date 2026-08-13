@@ -13,6 +13,7 @@ ms.custom:
   - build-2025
   - dev-focus
   - doc-kit-assisted
+  - references_regions
 ai-usage: ai-assisted
 ---
 
@@ -32,38 +33,38 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 
 ## Supported regions
 
-Model router supports Global Standard and Data Zone Standard deployments in all of the following regions.
+Model router supports Global Standard deployments in all of the following regions. A check mark (✅) indicates that the deployment type is available. A hyphen (-) indicates that it's not available.
 
 | Region | Global Standard | Data Zone Standard |
 | :--- | :---: | :---: |
-| Australia East | Supported | Supported |
-| Brazil South | Supported | Supported |
-| Canada East | Supported | Supported |
-| Central US | Supported | Supported |
-| East US | Supported | Supported |
-| East US 2 | Supported | Supported |
-| France Central | Supported | Supported |
-| Germany West Central | Supported | Supported |
-| Italy North | Supported | Supported |
-| Japan East | Supported | Supported |
-| Japan West | Supported | Supported |
-| Korea Central | Supported | Supported |
-| North Central US | Supported | Supported |
-| Poland Central | Supported | Supported |
-| South Africa North | Supported | Supported |
-| South Central US | Supported | Supported |
-| South India | Supported | Supported |
-| Southeast Asia | Supported | Supported |
-| Spain Central | Supported | Supported |
-| Sweden Central | Supported | Supported |
-| Switzerland North | Supported | Supported |
-| Switzerland West | Supported | Supported |
-| UK South | Supported | Supported |
-| UK West | Supported | Supported |
-| West Central US | Supported | Supported |
-| West Europe | Supported | Supported |
-| West US | Supported | Supported |
-| West US 3 | Supported | Supported |
+| Australia East | ✅ | ✅ |
+| Brazil South | ✅ | - |
+| Canada East | ✅ | - |
+| Central US | ✅ | ✅ |
+| East US | ✅ | ✅ |
+| East US 2 | ✅ | ✅ |
+| France Central | ✅ | ✅ |
+| Germany West Central | ✅ | ✅ |
+| Italy North | ✅ | ✅ |
+| Japan East | ✅ | ✅ |
+| Japan West | ✅ | ✅ |
+| Korea Central | ✅ | ✅ |
+| North Central US | ✅ | ✅ |
+| Poland Central | ✅ | ✅ |
+| South Africa North | ✅ | - |
+| South Central US | ✅ | ✅ |
+| South India | ✅ | ✅ |
+| Southeast Asia | ✅ | ✅ |
+| Spain Central | ✅ | ✅ |
+| Sweden Central | ✅ | ✅ |
+| Switzerland North | ✅ | ✅ |
+| Switzerland West | ✅ | - |
+| UK South | ✅ | - |
+| UK West | ✅ | - |
+| West Central US | ✅ | - |
+| West Europe | ✅ | ✅ |
+| West US | ✅ | ✅ |
+| West US 3 | ✅ | ✅ |
 
 > [!NOTE]
 > The models available to model router in each region are limited to the supported underlying models available in that region. This regional expansion lets you use model router to route requests across the available supported models in each listed region.

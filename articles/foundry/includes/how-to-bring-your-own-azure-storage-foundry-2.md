@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/12/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Configure capability host for agents (combined resource and project steps)
@@ -16,7 +17,7 @@ You create two capability hosts - one at the resource level and one at the proje
 
 1. Create a resource-level connection (as described earlier) if you don't already have one.
    > [!NOTE]
-   > Select **Operate** > **Admin** > your project > **Add connection** and choose **Azure Storage**.
+   > As described in the previous section, select **Manage** > **Resource details** > **Connected resources** > **Add connection** and choose **Azure Storage**.
 1. Create a resource-level capability host that references that connection.
 1. Create or open a project under the resource.
 1. Create a project-level capability host that references the resource-level capability host.

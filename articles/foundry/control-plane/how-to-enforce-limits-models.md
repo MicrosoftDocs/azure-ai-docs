@@ -47,7 +47,7 @@ You can configure token limits for specific model deployments within your projec
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** > **Admin**.
+1. Select **Manage** > **AI Gateway**.
 
 1. In the **AI Gateway** list, select the gateway that you want to use.
 
@@ -104,7 +104,7 @@ For more information, see [AI gateway in Azure API Management](/azure/api-manage
 | Limits aren't enforced | Misconfiguration or project not linked | Reopen settings and confirm that the enforcement toggle is on. Confirm that AI Gateway is enabled for the project and that correct limits are configured. |
 | Latency is high after enablement | API Management cold start or region mismatch | Check API Management region versus resource region. Call the model directly and compare the result with the call proxied through AI Gateway to identify if performance problems are related to the gateway. |
 
-If the admin console is slow, retry after a brief interval.
+If the **AI Gateway** pane is slow, retry after a brief interval.
 
 ## Related content
 

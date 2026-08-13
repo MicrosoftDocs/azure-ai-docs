@@ -8,11 +8,12 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/04/2025
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
-1. In the Foundry portal, select **Operate** in the upper-right navigation.
-1. Select **Admin** in the left pane.
-1. Select your project name in the table.
+1. In the Foundry portal, select **Manage** in the upper-right navigation.
+1. Select **Project details** in the left pane.
+1. Select the **Users** tab.
 1. Select **Add user** in the upper right.
 1. Enter the email address of the team member.
 1. Select **Add**.

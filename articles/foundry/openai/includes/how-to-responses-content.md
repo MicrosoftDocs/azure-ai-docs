@@ -10,7 +10,7 @@ ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
 
-Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
+Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [multi-agent orchestration](../how-to/responses-multi-agent.md) to delegate independent work to parallel subagents, or use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
 
 For complete request and response parameter descriptions, see the [Responses API parameter reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 
