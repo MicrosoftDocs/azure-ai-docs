@@ -23,7 +23,9 @@ For a field-by-field description of every service and property, see [azure.yaml 
 ## Prerequisites
 
 * An Azure subscription with permission to create resources, such as the Contributor role on the target subscription or resource group.
+* Azure Developer CLI (`azd`) version 1.27.1 or later. For installation instructions, see [Install azd](/azure/developer/azure-developer-cli/install-azd).
 * The [Azure Developer CLI Foundry extensions](install-cli-foundry-extensions.md) installed.
+* The `azure.ai.agents` extension version `1.0.0-beta.8` or later and the `azure.ai.projects` extension version `1.0.0-beta.4` or later. For installation and version verification, see [Install the Azure Developer CLI Foundry extensions](install-cli-foundry-extensions.md).
 * An authenticated Azure session (`azd auth login`).
 * A hosted agent project. To scaffold one, see [Initialize a hosted agent project](init-agent-project.md).
 * Sufficient model quota in your target region for the deployment you declare.
@@ -78,7 +80,7 @@ To connect to an existing project instead of provisioning a new one, set the `en
 
 The model version and SKU are illustrative. When you run `azd ai agent init`, the CLI resolves the current values from the model catalog.
 
-To reference the deployment from your agent, expose the deployment name as an environment variable. During `azd ai agent init`, the CLI records the deployment name you select in your `azd` environment as `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and the agent reads it with `${AZURE_AI_MODEL_DEPLOYMENT_NAME}`, as shown in the next step. To change the deployment later, run `azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME <deployment-name>`.
+To reference the deployment from your agent, expose the deployment name as an environment variable. During `azd ai agent init`, the CLI records the deployment name you select in your `azd` environment as `MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME`, and the agent reads it with `${MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME}`, as shown in the next step. To change the deployment later, run `azd env set MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME <deployment-name>`.
 
 ## Configure the agent service
 
@@ -98,7 +100,7 @@ The `azure.ai.agent` service carries the agent definition. Set `kind: hosted` fo
             - protocol: responses
               version: 2.0.0
         env:
-            AZURE_AI_MODEL_DEPLOYMENT_NAME: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+            MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME: ${MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME}
         startupCommand: python main.py
         container:
             resources:
@@ -170,6 +172,13 @@ Then wire the toolbox into the agent by adding its service name to both the agen
         # ... rest of the agent configuration
 ```
 
+> [!NOTE]
+> In a split-service project, `uses` orders deployment but your application
+> connects to the toolbox endpoint at runtime. Pass the toolbox name or endpoint
+> through `env`, then use `FOUNDRY_PROJECT_ENDPOINT` in agent code to construct
+> the consumer endpoint. For a complete pattern, see [Use a toolbox with a
+> hosted agent](tools/use-toolbox-hosted-agent.md).
+
 ## Split large definitions with $ref
 
 As a project grows, you can move a service or a list entry into its own file and include it with `$ref`. Relative paths resolve from the file that contains the reference:
@@ -201,6 +210,11 @@ azd ai agent init --deploy-mode code
 
 To deploy a prebuilt image instead of building from source, set the `image` field on the agent service to the image URL. For the `codeConfiguration` fields that `code` mode uses, see [Deploy a hosted agent from source code](deploy-hosted-agent-code.md).
 
+> [!NOTE]
+> In unified `azure.yaml`, `codeConfiguration.entryPoint` is a single source
+> filename or assembly name. `azd` combines it with the configured runtime when
+> it creates the hosted-agent version.
+
 ## Choose infrastructure
 
 The `azd ai agent init` command doesn't use Bicep by default. It doesn't create an `infra/` directory. Instead, `azd` generates the infrastructure from your `azure.yaml` services when you provision. To create infrastructure-as-code files that you can customize and check in, eject them:
@@ -214,6 +228,22 @@ azd ai agent init --infra=terraform
 ```
 
 When an `infra` block is present in `azure.yaml`, `azd` uses those files instead of synthesizing infrastructure.
+
+## Explore advanced capabilities
+
+Add these optional configurations when your agent needs capabilities beyond the
+basic project, model, connection, toolbox, and deploy-mode setup.
+
+| Capability | Use it when | Reference |
+| --- | --- | --- |
+| Private networking | You need an account private endpoint and either customer-managed or Microsoft-managed agent egress. | [Private-network configuration](../concepts/azure-yaml-reference.md#private-network-configuration) |
+| Source-code deployment | You want Agent Service to build a ZIP package from your Python or .NET source. | [Source-code deployment](../concepts/azure-yaml-reference.md#source-code-deployment) |
+| Prebuilt image deployment | Your CI system builds, scans, and publishes the container image. | [Container builds and prebuilt images](../concepts/azure-yaml-reference.md#container-builds-and-prebuilt-images) |
+| Responsible AI policies | You need a Responsible AI policy on the hosted-agent version. | [Responsible AI policies](../concepts/azure-yaml-reference.md#responsible-ai-policies) |
+| Memory stores | Your application uses durable memory with chat and embedding model deployments. | [Memory stores](../concepts/azure-yaml-reference.md#memory-stores) |
+| Agent endpoint and discovery card | You expose agent protocols for discovery, endpoint authorization, or A2A. | [Configure an agent endpoint](../concepts/azure-yaml-reference.md#configure-an-agent-endpoint) |
+| Activity and WebSocket protocols | You need Microsoft 365 and Teams Activity support or WebSocket invocations. | [Additional runtime protocols and Activity endpoints](../concepts/azure-yaml-reference.md#additional-runtime-protocols-and-activity-endpoints) |
+| Agent identity and platform environment | Your code uses the platform identity, injected environment variables, or deployed endpoint URLs. | [Platform environment, identity, and endpoints](../concepts/azure-yaml-reference.md#platform-environment-identity-and-endpoints) |
 
 ## Complete example
 
@@ -272,7 +302,7 @@ services:
             - protocol: responses
               version: 2.0.0
         env:
-            AZURE_AI_MODEL_DEPLOYMENT_NAME: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+            MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME: ${MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME}
         startupCommand: python main.py
         toolboxes:
             - agent-tools
@@ -322,7 +352,7 @@ If your editor supports the YAML language server, the schema annotation at the t
 | Model deployment fails | The model name or version isn't available, or you're out of quota in the region. | Verify the deployment's `model.name` and `model.version` exist in the catalog, and confirm quota in your target region. |
 | An unknown service appears in `uses` | A name in a `uses` list doesn't match a service key. | Make sure every entry in `uses` matches a service name defined under `services`. |
 | A `${VAR}` value is empty at runtime | The variable isn't set in the active `azd` environment. | Set it with `azd env set <VAR> <value>` before you provision or run. |
-| `azd ai agent run` can't reach the model | The agent's deployment name or endpoint is wrong. | Confirm `AZURE_AI_MODEL_DEPLOYMENT_NAME` matches a deployment, and don't override the platform-injected `FOUNDRY_PROJECT_ENDPOINT`. |
+| `azd ai agent run` can't reach the model | The agent's deployment name or endpoint is wrong. | Confirm `MICROSOFT_FOUNDRY_MODEL_DEPLOYMENT_NAME` matches a deployment, and don't override the platform-injected `FOUNDRY_PROJECT_ENDPOINT`. |
 
 ## Clean up resources
 
