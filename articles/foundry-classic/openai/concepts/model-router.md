@@ -36,7 +36,7 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 
 ## Supported regions
 
-Model router supports Global Standard deployments in all of the following regions. A check mark (✅) indicates that the deployment type is available. A hyphen (-) indicates that it isn't available.
+Model router supports Global Standard deployments in all of the following regions. A check mark (✅) indicates that the deployment type is available. A hyphen (-) indicates that it's not available.
 
 | Region | Global Standard | Data Zone Standard |
 | :--- | :---: | :---: |
