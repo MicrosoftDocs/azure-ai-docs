@@ -61,8 +61,8 @@ This article shows you how to create a toolbox, add and configure tools, verify 
 
 If you're using GitHub Copilot for Azure to scaffold a hosted agent that consumes the toolbox, the following skill references describe the same endpoint contract (env var, headers, MCP protocol, citation patterns, and troubleshooting) that the agent must implement:
 
-- [Toolbox reference](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/toolbox-reference.md) for guidance on endpoint format, MCP protocol, OAuth consent handling, citation patterns, and troubleshooting.
-- [Use toolbox in a hosted agent](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/use-toolbox-in-hosted-agent.md) to find guidance on endpoint resolution, env-var contract, payload shape, code integration patterns, and tracing.
+- [Toolbox reference](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/toolbox/toolbox.md) for guidance on endpoint format, MCP protocol, OAuth consent handling, citation patterns, and troubleshooting.
+- [Use toolbox in a hosted agent](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/use-toolbox-in-hosted-agent.md) to find guidance on endpoint resolution, env-var contract, payload shape, code integration patterns, and tracing.
 
 **Quick path**
 
@@ -682,7 +682,7 @@ ResponsesAgentServerHost().run()
 
 ### Copilot SDK
 
-**Hosted integration fragment requirements:** Install the GitHub Copilot SDK for your runtime. The outline depends on application-owned `McpBridge` and `_get_toolbox_token` helpers that aren't implemented here. Follow the existing [toolbox endpoint and authentication contract](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/toolbox-reference.md) and [hosted-agent integration patterns](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/use-toolbox-in-hosted-agent.md). A maintained full sample isn't yet available.
+**Hosted integration fragment requirements:** Install the GitHub Copilot SDK for your runtime. The outline depends on application-owned `McpBridge` and `_get_toolbox_token` helpers that aren't implemented here. Follow the existing [toolbox endpoint and authentication contract](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/toolbox/toolbox.md) and [hosted-agent integration patterns](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/use-toolbox-in-hosted-agent.md). A maintained full sample isn't yet available.
 
 Use the GitHub Copilot SDK to build a toolbox-powered agent that bridges Copilot's tool invocation to the Foundry toolbox MCP endpoint.
 
