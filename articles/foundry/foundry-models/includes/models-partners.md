@@ -46,7 +46,6 @@ Anthropic's flagship product is Claude, a frontier AI model trusted by leading e
 
 > [!NOTE]
 > [!INCLUDE [claude-versions-description](claude-versions-description.md)] 
-> [!INCLUDE [claude-versions-description](claude-versions-description.md)] 
 
 #### Subscription type and region support
 
