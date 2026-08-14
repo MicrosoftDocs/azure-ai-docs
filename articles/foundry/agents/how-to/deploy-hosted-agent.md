@@ -156,7 +156,7 @@ Instead of hard-coding secrets (API keys, tokens, endpoints) into `azure.yaml` o
 
 #### Placeholder syntax
 
-A placeholder has the form `${{connections.<name>.<path>}}`, where `<name>` is the connection's resource name (visible in the portal under **Project details** > **Connected resources**) and `<path>` is one of:
+A placeholder has the form `${{connections.<name>.<path>}}`, where `<name>` is the connection's resource name (visible in the portal under **Manage** > **Project details** > **Connected resources**) and `<path>` is one of:
 
 | Path | Resolves to |
 |------|-------------|

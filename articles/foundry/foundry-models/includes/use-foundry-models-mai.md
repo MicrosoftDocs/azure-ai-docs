@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
 
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
 MAI Image models are a family of image models developed by Microsoft AI that deliver state-of-the-art text-to-image generation and for some models, image-to-image edits. These models are offered as part of Microsoft Foundry Models sold by Azure, providing secure, enterprise-grade access through Microsoft Foundry.
 
 In this article, you learn how to:
@@ -47,7 +49,7 @@ To learn more about the individual models, see [MAI image model capabilities](#m
 
 To deploy an MAI image model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
-Alternatively, you can deploy the model by using the Azure CLI. The following code shows deployment of `MAI-Image-2.5` To deploy a different model, replace the model name and version in the lines `--model-name MAI-Image-2.5` and `--model-version 2026-06-02` with the values for your desired model.
+Alternatively, you can deploy the model by using the Azure CLI. The following code shows deployment of `MAI-Image-2.5`. To deploy a different model, replace the model name and version in the lines `--model-name MAI-Image-2.5` and `--model-version 2026-06-02` with the values for your desired model.
 
 Replace `<ACCOUNT_NAME>`, `<RESOURCE_GROUP>`, `<DEPLOYMENT_NAME>` with your values.
 

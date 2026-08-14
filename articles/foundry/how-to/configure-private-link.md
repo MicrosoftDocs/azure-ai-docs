@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 06/30/2026
+ms.date: 08/14/2026
 ms.reviewer: meerakurup
 ms.author: scottpolly 
 author: s-polly 
@@ -251,7 +251,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | Fabric IQ | ⚠️ Partial | Via MCP. Support depends on the Fabric item type: data agents support tenant-level and workspace-level private link, ontologies support tenant-level private link, and Power BI semantic models support public access only. See [Virtual network support](../agents/how-to/tools/fabric-iq.md#virtual-network-support). |
 | Fabric Data Agent | ❌ Not supported | Fabric resource must have public network access enabled (Workspace-level private link Fabric unsupported) |
 | Logic Apps | ❌ Not supported | Under development |
-| File Search | ❌ Not supported | Under development |
+| File Search | ✅ Supported | Through private endpoint |
 | Browser Automation | ❌ Not supported | Under development |
 | Computer Use | ❌ Not supported | Under development |
 | Image Generation | ❌ Not supported | Under development |
@@ -296,7 +296,6 @@ The following features in Foundry do not yet support network isolation.
 
 | Feature | Network Isolation Status | Notes |
 |---------|--------------------------|-------|
-| Synthetic Data Gen for Evaluations | Not supported | Bring your own data to run evaluations. |
 | Workflow Agents | Partially supported | Inbound access is supported in the UI, SDK, and CLI. Outbound with virtual network injection isn't currently supported for Workflow Agents. |
 | AI Gateway (APIM) | Partially supported via Foundry UI | You can create a new AI Gateway with your private Foundry resource in the new Foundry portal but this gateway is automatically public. To complete any data plane actions with a private Foundry, your AI Gateway must also have network isolation configured which is set-up through the Azure Portal. For more information, see [Networking for AI Gateway](/azure/api-management/virtual-network-concepts). |
 | Certain Agent Tools | Partially supported | See [Agent tools with network isolation](#agent-tools-with-network-isolation) for detailed tool-by-tool support status. |

@@ -3,7 +3,7 @@ title: "Enable incoming A2A on a Foundry agent"
 description: "Expose your Foundry Agent Service agent as an A2A endpoint so other agents can discover and call it using the Agent2Agent protocol."
 author: aahill
 ms.author: aahi
-ms.date: 07/29/2026
+ms.date: 08/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -136,42 +136,40 @@ Install the required package:
 pip install "azure-ai-projects>=2.3.0"
 ```
 
-Use the `update_details` method to add the A2A protocol to your agent's endpoint:
+Use the `update_details` method to add the agent card and A2A protocol to your agent's endpoint:
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    A2AProtocolConfiguration,
-    AgentEndpointConfig,
-    ProtocolConfiguration,
-    ResponsesProtocolConfiguration,
+    A2AProtocolConfiguration, AgentCard, AgentCardSkill, AgentEndpointConfig,
+    ProtocolConfiguration, ResponsesProtocolConfiguration,
 )
-
-# Format: "https://{account}.ai.azure.com/api/projects/{project}"
-PROJECT_ENDPOINT = "your_project_endpoint"
-AGENT_NAME = "your_agent_name"
-
-project_client = AIProjectClient(
-    endpoint=PROJECT_ENDPOINT,
+# Create the project client.
+project = AIProjectClient(
+    endpoint="your_project_endpoint",
     credential=DefaultAzureCredential(),
 )
-
-endpoint_config = AgentEndpointConfig(
-    protocol_configuration=ProtocolConfiguration(
-        responses=ResponsesProtocolConfiguration(),
-        a2a=A2AProtocolConfiguration(),
+# Add the agent card and enable the A2A protocol.
+patched_agent = project.agents.update_details(
+    agent_name="your_agent_name",
+    agent_endpoint=AgentEndpointConfig(
+        protocol_configuration=ProtocolConfiguration(
+            responses=ResponsesProtocolConfiguration(),
+            a2a=A2AProtocolConfiguration(),
+        ),
+    ),
+    agent_card=AgentCard(
+        version="1.0",
+        description="A helpful assistant that answers questions.",
+        skills=[AgentCardSkill(
+            id="general-qa", name="General Q&A",
+            description="Answers general questions.",
+        )],
     ),
 )
-
-patched_agent = project_client.agents.update_details(
-    agent_name=AGENT_NAME,
-    agent_endpoint=endpoint_config,
-)
+print(f"Enabled incoming A2A for agent: {patched_agent.name}")
 ```
-
-> [!NOTE]
-> Setting the agent card through the Python SDK isn't supported yet. Use the REST API to configure the agent card.
 
 ---
 

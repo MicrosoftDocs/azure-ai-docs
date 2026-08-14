@@ -4,7 +4,7 @@ description: "Learn about the latest news and features updates for Azure model r
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 03/18/2026
+ms.date: 08/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: whats-new

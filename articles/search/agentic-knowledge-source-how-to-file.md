@@ -3,8 +3,9 @@ title: Create a File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/20/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -79,6 +80,8 @@ The following limits apply to file knowledge sources.
 |--|--|
 | Maximum file size per upload | 50 MB |
 | Maximum files per file knowledge source | 100 |
+
+If you configure the file knowledge source to chunk or vectorize uploaded content, model and downstream processing limits also apply.
 
 > [!NOTE]
 > + Uploading the same file name doesn't replace an existing file. For more information, see [Upload files](#upload-files).

@@ -10,6 +10,8 @@ items:
     href: whats-new.md
   - name: Features
     href: search-features-list.md
+  - name: Preview terms
+    href: search-preview-terms.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
   - name: Try for free
@@ -282,6 +284,8 @@ items:
           href: search-markdown-data-tutorial.md
         - name: Index multiple Azure data sources
           href: tutorial-multiple-data-sources.md
+        - name: Configure multiple blob indexers
+          href: search-how-to-multiple-indexers-one-index.md
         - name: Create a custom analyzer
           href: tutorial-create-custom-analyzer.md
     - name: Logic Apps workflows
@@ -604,6 +608,8 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
+      - name: Troubleshoot SharePoint permission filtering
+        href: troubleshoot-sharepoint-query-permission-filtering.md
     - name: Microsoft Purview sensitivity labels (preview)
       items:
       - name: Pull sensitivity labels into an index

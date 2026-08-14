@@ -5,12 +5,12 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/06/2026
+ms.date: 08/10/2026
 ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
 
-Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
+Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [multi-agent orchestration](../how-to/responses-multi-agent.md) to delegate independent work to parallel subagents, or use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
 
 For complete request and response parameter descriptions, see the [Responses API parameter reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 
@@ -1864,7 +1864,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 ### Containers
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 20 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two Code Interpreter sessions are created. Each session incurs per-minute charges, with a minimum charge of five minutes. A session remains active as long as you access its container within the 20-minute idle timeout.
 
 The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
 

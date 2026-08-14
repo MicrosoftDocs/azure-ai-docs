@@ -385,9 +385,8 @@ The agent sends network egress decisions to the project's Application Insights r
 To locate the project's Application Insights resource:
 
 1. Go to the Foundry portal.
-1. Select the **Operate** tab.
-1. Select **Admin**.
-1. Search for and select your project.
+1. Select **Manage** in the upper-right navigation.
+1. Select **Project details** in the left pane.
 1. Open the **Connected resources** tab.
 1. Find the **AppInsights** connected resource and copy its **Target URI**.
 

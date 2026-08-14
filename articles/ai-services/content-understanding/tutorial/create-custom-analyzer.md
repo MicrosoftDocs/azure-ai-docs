@@ -5,7 +5,7 @@ description: Learn to create a custom analyzer with Azure Content Understanding 
 author: PatrickFarley 
 ms.author: paulhsu
 manager: mcleans
-ms.date: 03/16/2026
+ms.date: 07/16/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
@@ -56,6 +56,7 @@ Content Understanding analyzers define how to process and extract insights from 
 
 ## Related content
 
+* [Improve analyzer training with labeled examples](../document/analyzer-improvement.md#improve-analyzer-training-with-labeled-examples)
 * Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 * Explore more [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples)

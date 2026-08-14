@@ -4,12 +4,13 @@ description: Set up a SharePoint in Microsoft 365 indexer to automate indexing o
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/23/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
   - sfi-ropc-nochange
+  - doc-kit-assisted
 ---
 
 # Index content from SharePoint in Microsoft 365 (preview)
@@ -61,23 +62,19 @@ In Azure AI Search, an indexer extracts searchable data and metadata from a data
 
 ## Choose your permissions setup
 
-
 Before you create the app registration in [Step 3](#step-3-create-a-microsoft-entra-application-registration), identify your scenario in the following table. Note the required Microsoft Graph permissions, SharePoint API permissions, and credential type. Then, follow the linked steps later in this article to apply them.
 
 | Scenario | Microsoft Graph permissions | SharePoint API permissions | Credential | Apply in |
 |---|---|---|---|---|
 | Index document libraries only, no ACL ingestion | `Files.Read.All`, `Sites.Read.All` (application) or delegated equivalents | None | Client secret (application) or device code (delegated) | [Step 3](#step-3-create-a-microsoft-entra-application-registration), [Step 6](#step-6-create-an-indexer) |
 | Index lists, ASPX pages, or mixed content (no ACL ingestion) | `Files.Read.All`, `Sites.Read.All` (application) | None | Client secret or federated credential | [Step 3](#step-3-create-a-microsoft-entra-application-registration) |
-| Document library ACL ingestion, Microsoft Entra users and standard groups only | `Files.Read.All`, `Sites.FullControl.All` (or `Sites.Selected`) | None | Client secret or federated credential | [Step 3](#step-3-create-a-microsoft-entra-application-registration), [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario) |
-| ACL ingestion on lists, ASPX pages, or document libraries when SharePoint site groups must be honored | `Files.Read.All`, `Sites.FullControl.All` (or `Sites.Selected`) | `Sites.FullControl.All` (or `Sites.Selected`) | Federated credential (required) | [Configuring the registered application with a managed identity](#configuring-the-registered-application-with-a-managed-identity), [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario) |
-| Query-time resolution of SharePoint site groups | No additional Microsoft Graph permissions (inherits from the prior row when also indexing document libraries, lists, or ASPX pages) | `User.Read.All` | Federated credential | [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support) |
+| ACL ingestion or query-time resolution of SharePoint site groups | [See the ACL permission matrix](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario). | [See the ACL permission matrix](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario). | [See the ACL permission matrix](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario). | [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario) |
 
 When setting up permissions, consider the following information:
 
 - Delegated permissions are only viable for small testing and don't support ACL ingestion.
 - Federated credential is the recommended secretless authentication. It covers both indexer authentication and query-time SharePoint group resolution.
 - When you use `Sites.Selected`, grant the app explicit access to each target SharePoint site before indexing. Admin consent for `Sites.Selected` in Microsoft Entra ID doesn't by itself authorize the app to access site content. You must also assign a permission on each target site. If you add a site to the data source without an explicit site permission grant, the indexer fails. See [Grant site access when using `Sites.Selected`](#grant-site-access-when-using-sitesselected).
-- This matrix is the entry-point summary. For ACL-specific scenario details, see [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario) in the SharePoint ACL configuration article.
 
 ## Supported document formats
 
@@ -119,15 +116,17 @@ Here are some considerations when using this feature:
   
 Regardless of the approach you choose, whether building a custom connector with SharePoint webhooks or creating an Azure Logic Apps workflow, be sure to implement robust security measures. These measures include configuring shared private links, setting up firewalls, and preserving user permissions from the source and honoring those permissions at query time. You should also regularly audit and monitor your pipeline.
 
+If you index SharePoint ACLs, review the [supported group relationships](search-indexer-sharepoint-access-control-lists.md#supported-group-relationships). Microsoft Entra groups nested within SharePoint groups aren't expanded.
+
 ## Configure the SharePoint in Microsoft 365 indexer
 
 To set up the SharePoint in Microsoft 365 indexer, use a preview REST API. This section provides the steps. 
 
 ### (Optional) Step 1: Enable a system-assigned managed identity
 
-Enable a [system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) to automatically detect the tenant in which the search service is provisioned. 
+Enable a [system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) to automatically detect the Microsoft Entra tenant in which the search service is provisioned.
 
-Perform this step if the SharePoint site is in the same tenant as the search service. Skip this step if the SharePoint site is in a different tenant. The identity is used for tenant detection. You can also skip this step if you want to put the tenant ID in the [connection string](#connection-string-format). To use system-assigned or user-assigned managed identity for secretless indexing, configure the [application permissions with secretless authentication](#using-secretless-authentication-to-obtain-application-tokens).
+Perform this step if the SharePoint site and search service are in the same Microsoft Entra tenant. Skip this step if they're in different Microsoft Entra tenants. The identity is used for tenant detection. You can also skip this step if you want to put the Microsoft Entra tenant ID in the [connection string](#connection-string-format). To use system-assigned or user-assigned managed identity for secretless indexing, configure the [application permissions with secretless authentication](#using-secretless-authentication-to-obtain-application-tokens).
 
 :::image type="content" source="media/search-howto-index-sharepoint-online/enable-managed-identity.png" alt-text="Screenshot showing how to enable system assigned managed identity.":::
 
@@ -144,7 +143,7 @@ For the decision matrix that covers ACL and non-ACL scenarios, see [Choose your 
 
 ### Step 3: Create a Microsoft Entra application registration
 
-The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for authentication. Create the application registration in the same tenant as Azure AI Search.
+The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for authentication. Create the application registration before you configure its permissions and credentials.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -342,15 +341,15 @@ The format of the connection string changes based on whether the indexer is usin
 
 + Delegated API permissions connection string format
 
-    `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id]`
+    `SharePointOnlineEndpoint=[SharePoint site URL];ApplicationId=[Microsoft Entra application ID];TenantId=[SharePoint site's Microsoft Entra tenant ID]`
 
 + Application API permissions with application secret connection string format
 
-    `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];ApplicationSecret=[Azure AD App client secret];TenantId=[SharePoint site tenant id]`
+    `SharePointOnlineEndpoint=[SharePoint site URL];ApplicationId=[Microsoft Entra application ID];ApplicationSecret=[Microsoft Entra application client secret];TenantId=[SharePoint site's Microsoft Entra tenant ID]`
 
 + Application API permissions with secretless (federated identity credential) connection string format:
 
-    `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];FederatedCredentialApplicationId=[managed identity's application (client) ID];TenantId=[SharePoint site tenant id]`
+    `SharePointOnlineEndpoint=[SharePoint site URL];ApplicationId=[Microsoft Entra application ID];FederatedCredentialApplicationId=[managed identity's application (client) ID];TenantId=[SharePoint site's Microsoft Entra tenant ID]`
 
 The following table describes each connection string field.
 
@@ -358,7 +357,7 @@ The following table describes each connection string field.
 |---|---|---|
 | `SharePointOnlineEndpoint` | Yes | SharePoint site URL (for example, `https://[your-tenant-name].sharepoint.com`). |
 | `ApplicationId` | Yes | Microsoft Entra application (client) ID of the ingestion app. Must be a valid GUID. |
-| `TenantId` | Optional | Microsoft Entra tenant GUID. Required when the SharePoint site is in a different tenant from the search service. |
+| `TenantId` | Optional | Microsoft Entra tenant ID (GUID) for the tenant that owns the SharePoint site. This tenant isn't necessarily the Microsoft Entra tenant associated with the search service. Required when the SharePoint site and search service are in different Microsoft Entra tenants. |
 | `ApplicationSecret` | Conditional | Client secret of the ingestion app. Use for secret-based authentication. |
 | `FederatedCredentialApplicationId` | Conditional (federated identity credential) | Microsoft Entra application (client) ID used to validate the managed identity. Must be a valid GUID. For a system-assigned managed identity, use the identity's application (client) ID. For a user-assigned managed identity, use the identity's own application (client) ID. For a cross-tenant user-assigned managed identity with `federatedIdentityClientId` set in the `identity` block, use the multi-tenant app's client ID. |
 
@@ -368,12 +367,12 @@ The following table describes each connection string field.
 When setting up permissions, consider the following information:
 > For backward compatibility, the SharePoint indexer still accepts `FederatedCredentialObjectId` (the object/principal ID of the federated identity credential on the ingestion app) in the connection string, so existing data sources keep working without changes. Use `FederatedCredentialApplicationId` for new and updated data sources.
 
-You can get `tenantId` from the **Overview** page in the Microsoft Entra admin center in your Microsoft 365 subscription.
+To get `TenantId`, open the Microsoft Entra admin center for the tenant that owns the SharePoint site, and copy the **Tenant ID** from **Overview**.
 
 You can get the managed identity `object (principal) ID` from the [Configuring the registered application with a managed identity](#configuring-the-registered-application-with-a-managed-identity) section.
 
 When setting up permissions, consider the following information:
-> If the SharePoint site is in the same tenant as the search service and system-assigned managed identity is enabled, `TenantId` doesn't have to be included in the connection string. If the SharePoint site is in a different tenant from the search service, `TenantId` must be included.
+> If the SharePoint site and search service are in the same Microsoft Entra tenant and system-assigned managed identity is enabled, you don't have to include `TenantId` in the connection string. If they're in different Microsoft Entra tenants, you must include `TenantId`.
 
 The following examples show data sources created with `FederatedCredentialApplicationId`:
 
@@ -388,7 +387,7 @@ api-key: [admin key]
   "name": "sharepoint-ds",
   "type": "sharepoint",
   "credentials": {
-    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[system-assigned managed identity's application (client) ID]"
+    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Microsoft Entra application ID];TenantId=[SharePoint site's Microsoft Entra tenant ID];FederatedCredentialApplicationId=[system-assigned managed identity's application (client) ID]"
   },
   "container": { "name": "defaultSiteLibrary" }
 }
@@ -401,7 +400,7 @@ api-key: [admin key]
   "name": "sharepoint-uami-fed",
   "type": "sharepoint",
   "credentials": {
-    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[user-assigned managed identity application (client) ID]"
+    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Microsoft Entra application ID];TenantId=[SharePoint site's Microsoft Entra tenant ID];FederatedCredentialApplicationId=[user-assigned managed identity application (client) ID]"
   },
   "container": { "name": "defaultSiteLibrary" },
   "identity": {
@@ -416,14 +415,14 @@ api-key: [admin key]
 
 **Cross-tenant user-assigned managed identity with federated credential (advanced):**
 
-Before using this configuration, ensure your user-assigned managed identity is configured with a federated identity credential that trusts the multi-tenant Entra app. For setup steps, see [Configuring the registered application with a managed identity](#configuring-the-registered-application-with-a-managed-identity).
+Before using this configuration, ensure your user-assigned managed identity is configured with a federated identity credential that trusts the multitenant Microsoft Entra app. For setup steps, see [Configuring the registered application with a managed identity](#configuring-the-registered-application-with-a-managed-identity).
 
 ```json
 {
   "name": "sharepoint-uami-crosstenantfed",
   "type": "sharepoint",
   "credentials": {
-    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[multi-tenant app client ID]"
+    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Microsoft Entra application ID];TenantId=[SharePoint site's Microsoft Entra tenant ID];FederatedCredentialApplicationId=[multitenant app client ID]"
   },
   "container": { "name": "defaultSiteLibrary" },
   "identity": {
@@ -434,7 +433,7 @@ Before using this configuration, ensure your user-assigned managed identity is c
 }
 ```
 
-Use the cross-tenant user-assigned managed identity configuration when the user-assigned managed identity itself federates to a multi-tenant Entra app. In this case, set `federatedIdentityClientId` in the `identity` block to the multi-tenant app's client ID, and set `FederatedCredentialApplicationId` in the connection string to the **same** multi-tenant app's client ID. Setting `FederatedCredentialApplicationId` to the user-assigned managed identity's own client ID in this scenario fails validation.
+Use the cross-tenant user-assigned managed identity configuration when the user-assigned managed identity itself federates to a multitenant Microsoft Entra app. In this case, set `federatedIdentityClientId` in the `identity` block to the multitenant app's client ID, and set `FederatedCredentialApplicationId` in the connection string to the **same** multitenant app's client ID. Setting `FederatedCredentialApplicationId` to the user-assigned managed identity's own client ID in this scenario fails validation.
 
 If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md) or [preserves and honors Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md), review the related articles before you create the indexer. Each feature has specific data source, index, and skillset configuration steps.
 
@@ -742,6 +741,8 @@ When setting up permissions, consider the following information:
 
 ## Handle errors
 
+For an `Invalid AAD tenant` message, a missing Microsoft Entra tenant ID, or a tenant mismatch that appears in indexer execution history, see [Troubleshoot common indexer errors and warnings](cognitive-search-common-errors-warnings.md#error-invalid-aad-tenant).
+
 By default, the SharePoint in Microsoft 365 indexer stops as soon as it encounters a document with an unsupported content type, such as an image. Use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might need to index documents without knowing all the possible content types in advance. To continue indexing when the indexer encounters an unsupported content type, set the `failOnUnsupportedContentType` configuration parameter to false:
 
 ```http
@@ -761,11 +762,13 @@ For some documents, Azure AI Search is unable to determine the content type or c
 "parameters" : { "configuration" : { "failOnUnprocessableDocument" : false } }
 ```
 
-Azure AI Search limits the size of documents that it indexes. These limits are documented in [Service Limits in Azure AI Search](./search-limits-quotas-capacity.md). By default, oversized documents are treated as errors. However, you can still index storage metadata of oversized documents if you set the `indexStorageMetadataOnlyForOversizedDocuments` configuration parameter to true:
+SharePoint source files use the [shared source-file size and extracted-character limits for blob-like indexers](search-limits-quotas-capacity.md#indexer-limits). By default, oversized documents are treated as errors. However, you can still index storage metadata of oversized documents if you set the `indexStorageMetadataOnlyForOversizedDocuments` configuration parameter to true:
 
 ```http
 "parameters" : { "configuration" : { "indexStorageMetadataOnlyForOversizedDocuments" : true } }
 ```
+
+If you add a skillset, check each skill's input and downstream service limits separately. A skill can accept less data than the SharePoint indexer extracts.
 
 You can also continue indexing if errors happen at any point of processing, either while parsing documents or while adding documents to an index. To ignore a specific number of errors, set the `maxFailedItems` and `maxFailedItemsPerBatch` configuration parameters to the desired values. For example:
 
@@ -776,13 +779,6 @@ You can also continue indexing if errors happen at any point of processing, eith
 }
 ```
 
-If a file on the SharePoint site has encryption enabled, you might see the following error message:
- 
-```
-Code: resourceModified Message: The resource has changed since the caller last read it; usually an eTag mismatch Inner error: Code: irmEncryptFailedToFindProtector
-```
-
-The error message also includes the SharePoint site ID, drive ID, and drive item ID in the following pattern: `<sharepoint site id> :: <drive id> :: <drive item id>`. Use this information to identify which item is failing on the SharePoint end. The user can then remove the encryption from the item to resolve the issue.
 
 ## Related content
 

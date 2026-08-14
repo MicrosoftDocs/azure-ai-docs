@@ -7,8 +7,9 @@ ms.custom:
   - references_regions
   - ignite-2025
   - build-2026
+  - doc-kit-assisted
 ms.topic: reference
-ms.date: 06/02/2026
+ms.date: 08/08/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -18,13 +19,7 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+> Features, capabilities, or properties marked (preview) aren't covered by a service-level agreement, aren't recommended for production workloads, and might change or be constrained before they become generally available. If you choose to use preview functionality, whether it's standalone or part of a generally available feature, you're responsible for data handling, data access, responsible AI use, and other obligations described in the [Azure AI Search preview terms](search-preview-terms.md).
 
 The **Azure Content Understanding** skill uses [document analyzers](/azure/ai-services/content-understanding/document/overview) from [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/overview) to analyze unstructured documents and other content types, generating organized, searchable outputs that can be integrated into automation workloads. This skill extracts both text and images, including location metadata that preserves each image's position within the document. Image proximity to related content is especially useful for [multimodal search](multimodal-search-overview.md), [agentic retrieval](agentic-retrieval-overview.md), and [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG).
 
@@ -40,7 +35,9 @@ You can use the Azure Content Understanding skill for both content extraction an
 
 + The Azure Content Understanding skill is more cost effective than the Document Layout skill because the Content Understanding API is less expensive.
 
-The Azure Content Understanding skill is generally available in the [`2026-04-01` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true). Starting with the [`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-based descriptions for document-embedded images, charts, and diagrams. To enable descriptions, you must deploy an Azure OpenAI chat completion model in the Foundry resource attached to the skillset. This API version also adds *semantic* chunking, a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities require opt-in. When the new parameters are omitted, the skill behaves the same as in the stable `2026-04-01` API version.
++ Azure Content Understanding can generate AI-based descriptions for images, charts, diagrams, and embedded figures. Embedded figure descriptions are incorporated directly into markdown content generated for retrieval. These descriptions are searchable and can improve RAG grounding and multimodal retrieval quality. 
+
+The Azure Content Understanding skill is generally available in the [`2026-04-01` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true). Starting with the [`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-based descriptions for document-embedded images, charts, and diagrams. To enable descriptions, you must deploy an Azure OpenAI chat completion model in the Foundry resource attached to the skillset. This API version also adds *semantic* chunking (preview), a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities require opt-in. When the new parameters are omitted, the skill behaves the same as in the stable `2026-04-01` API version.
 
 ## Limitations
 
@@ -99,14 +96,14 @@ Parameters are case sensitive.
 | Parameter name | Allowed values | Description |
 |--------------------|----------------|-------------|
 | `extractionOptions` |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | Identify any extra content extracted from the document. Define an array of enums that correspond to the content to be included in the output. For example, if `extractionOptions` is `["images", "locationMetadata"]`, the output includes images and location metadata that provides page location and visual information related to where the content was extracted.  |
-| `modelName` | String, such as `"gpt-4.1"`. | Optional. Available starting with the `2026-05-01-preview` REST API. The name of the Azure OpenAI chat completion model used to generate descriptions of embedded images, charts, and diagrams. Image description is independent of `extractionOptions` and can be enabled without extracting images. Must be specified together with `modelDeployment`. For a list of supported models, see [Supported generative models](/azure/ai-services/content-understanding/service-limits#supported-generative-models). |
-| `modelDeployment` | String. | Optional. Available starting with the `2026-05-01-preview` REST API. The deployment name of the Azure OpenAI model in the Foundry resource that's attached to the skillset. Must be specified together with `modelName`. |
+| `modelName` (preview) | String, such as `"gpt-4.1"`. | Optional. Available starting with the `2026-05-01-preview` REST API. The name of the Azure OpenAI chat completion model used to generate descriptions of embedded images, charts, and diagrams. Image description is independent of `extractionOptions` and can be enabled without extracting images. Must be specified together with `modelDeployment`. For a list of supported models, see [Supported generative models](/azure/ai-services/content-understanding/service-limits#supported-generative-models). |
+| `modelDeployment` (preview) | String. | Optional. Available starting with the `2026-05-01-preview` REST API. The deployment name of the Azure OpenAI model in the Foundry resource that's attached to the skillset. Must be specified together with `modelName`. |
 | `chunkingProperties` | See the following table. | Options that encapsulate how to chunk text content. |
 
 | `chunkingProperties` parameters | Allowed values | Description |
 |--------------------|-------------|-------------|
-| `method` | `fixedSize` (default) or `semantic`. Available starting with the `2026-05-01-preview` REST API. | The chunking strategy. `fixedSize` uses character-based windowed chunking. `semantic` uses layout-aware chunking that respects paragraph boundaries and intelligently handles large tables that span chunk boundaries. |
-| `unit` | `characters` (with `fixedSize`) or `tokens` (with `semantic`, available starting with the `2026-05-01-preview` REST API). | Controls the cardinality of the chunk unit. Only the `fixedSize` + `characters` and `semantic` + `tokens` combinations are supported. If `unit` is omitted, it's inferred from `method`. |
+| `method` | `fixedSize` (default) or `semantic` (preview). Available starting with the `2026-05-01-preview` REST API. | The chunking strategy. `fixedSize` uses character-based windowed chunking. `semantic` uses layout-aware chunking that respects paragraph boundaries and intelligently handles large tables that span chunk boundaries. |
+| `unit` | `characters` (with `fixedSize`) or `tokens` (preview, with `semantic`, available starting with the `2026-05-01-preview` REST API). | Controls the cardinality of the chunk unit. Only the `fixedSize` + `characters` and `semantic` + `tokens` combinations are supported. If `unit` is omitted, it's inferred from `method`. |
 | `maximumLength` | When `unit` is `characters`, an integer between 300 and 50,000. When `unit` is `tokens`, an integer between 100 and 8,000. Default is 500. | The maximum chunk length, measured in the configured `unit`. |
 | `overlapLength` | Integer. The value must be less than half of `maximumLength`. | The length of overlap between two text chunks. Applies only when `method` is `fixedSize`. Must be omitted or set to `0` when `method` is `semantic`. |
 
@@ -139,6 +136,8 @@ Alternatively, it can be defined as:
 The file reference object can be generated in one of following ways:
 
 + Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to `true`. This setting creates a `/document/file_data` path that's an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Azure Blob Storage.
+
+  `allowSkillsetToReadFileData` makes the downloaded file data available to the skill. It doesn't increase the [blob indexer limits](search-limits-quotas-capacity.md#indexer-limits) or the Content Understanding service limits described in [Data limits](#data-limits).
 
 + Having a custom skill returning a JSON object definition that provides `$type`, `data`, or `url` and `sastoken`. The `$type` parameter must be set to `file`, and  `data` must be the base 64-encoded byte array of the file content. The `url` parameter must be a valid URL with access to download the file at that location.
 
@@ -266,7 +265,7 @@ The first example uses fixed-size chunking and demonstrates how to output text c
 
 `imagePath` represents the relative path of a stored image. If the knowledge store file projection is configured in the skillset, this path matches the relative path of the image stored in the knowledge store.
 
-### Example 2: Semantic chunking with image description
+### Example 2: Semantic chunking with image description (preview)
 
 This example, available starting with the `2026-05-01-preview` REST API, uses semantic chunking and produces AI-generated descriptions of embedded images, charts, and diagrams. The Foundry resource attached to the skillset must have the chat completion model identified by `modelName` and the deployed `modelDeployment`.
 

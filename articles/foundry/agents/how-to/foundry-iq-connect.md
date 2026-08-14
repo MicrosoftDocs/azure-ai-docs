@@ -8,7 +8,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/06/2026
+ms.date: 08/07/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -58,7 +58,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 
 ### Authentication and permissions
 
-We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend role-based access control for production deployments. To assign the roles in this section, you need the **Owner** or **User Access Administrator** role on both resources, or another role that grants `Microsoft.Authorization/roleAssignments/write`. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 #### [Microsoft Foundry](#tab/foundry)
 
@@ -295,18 +295,20 @@ Content-Type: application/json
 
 ---
 
-### Connect to a remote SharePoint knowledge source
+### (Optional) Enforce permissions with per-request headers
 
-[!INCLUDE [foundry-iq-limitation](../../includes/foundry-iq-limitation.md)]
+If any of your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user sees only the documents they're authorized to access. To enable this filtering, forward the signed-in user's identity token in the `x-ms-query-source-authorization` header of the MCP tool connection. Without the token, permission-enabled sources return results unfiltered. For more information, see [Enforce permissions at query time (preview)](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time-preview).
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time (preview)](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time).
+[!INCLUDE [vary-mcp-headers-per-request](../../includes/vary-mcp-headers-per-request.md)]
 
 #### [Python](#tab/python)
 
-```python
-from azure.identity import get_bearer_token_provider
+Update the agent from the previous step so the MCP tool reads its authorization header from a structured input:
 
-# Create MCP tool with SharePoint authorization header
+```python
+from azure.ai.projects.models import StructuredInputDefinition
+
+# Reference the token as a placeholder in the header
 mcp_kb_tool = MCPTool(
     server_label = "knowledge-base",
     server_url = mcp_endpoint,
@@ -314,22 +316,65 @@ mcp_kb_tool = MCPTool(
     allowed_tools = ["knowledge_base_retrieve"],
     project_connection_id = project_connection_name,
     headers = {
-        "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+        "x-ms-query-source-authorization": "{{search_auth_token}}"
     }
+)
+
+# Declare the structured input so the caller can supply the token per request
+agent = project_client.agents.create_version(
+    agent_name = agent_name,
+    definition = PromptAgentDefinition(
+        model = agent_model,
+        instructions = instructions,
+        tools = [mcp_kb_tool],
+        structured_inputs = {
+            "search_auth_token": StructuredInputDefinition(
+                description = "Per-user Azure AI Search bearer token",
+                required = True,
+                schema = {"type": "string"},
+            )
+        }
+    )
+)
+
+print(f"Agent '{agent_name}' created or updated successfully.")
+```
+
+When you invoke the agent, supply an Azure AI Search token in `structured_inputs`. This example resolves a token from the current `credential`. For a multi-user app, pass the token of each signed-in user instead. For example, use a token obtained through an on-behalf-of flow so the retrieval engine can filter results for that user.
+
+```python
+# Resolve an Azure AI Search token from the current credential (use a per-user token in production)
+from azure.identity import get_bearer_token_provider
+
+search_token = get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+
+openai_client = project_client.get_openai_client()
+conversation = openai_client.conversations.create()
+
+response = openai_client.responses.create(
+    conversation = conversation.id,
+    input = "{user_query}",
+    extra_body = {
+        "agent_reference": {"name": agent.name, "type": "agent_reference"},
+        "structured_inputs": {"search_auth_token": search_token},
+    },
 )
 ```
 
 #### [REST](#tab/rest)
 
-Get an access token for Azure AI Search:
+Update the agent creation request so the MCP tool reads its authorization header from a structured input:
 
-```azurecli
-az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
-```
+```http
+POST {project_endpoint}/agents?api-version=v1
+Authorization: Bearer {foundry_access_token}
+Content-Type: application/json
 
-Provide the header and token in the MCP tool configuration:
-
-```HTTP
+{
+  "name": "{agent_name}",
+  "definition": {
+    "model": "{deployed_llm}",
+    "instructions": "\nYou are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.\nEvery answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`\nIf you cannot find the answer in the provided knowledge base you must respond with \"I don't know\".\n",
     "tools": [
       {
         "server_label": "knowledge-base",
@@ -341,10 +386,46 @@ Provide the header and token in the MCP tool configuration:
         "project_connection_id": "{project_connection_name}",
         "type": "mcp",
         "headers": {
-            "x-ms-query-source-authorization": "{search-bearer-token}"
+          "x-ms-query-source-authorization": "{{search_auth_token}}"
         }
       }
-    ]
+    ],
+    "structured_inputs": {
+      "search_auth_token": {
+        "description": "Per-user Azure AI Search bearer token",
+        "required": true,
+        "schema": { "type": "string" }
+      }
+    },
+    "kind": "prompt"
+  }
+}
+```
+
+Get the signed-in user's access token for Azure AI Search:
+
+```azurecli
+az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
+```
+
+Supply the token in `structured_inputs` when you send the `POST` request to invoke the agent:
+
+```HTTP
+POST {project_endpoint}/openai/v1/responses
+Authorization: Bearer {foundry_access_token}
+Content-Type: application/json
+
+{
+  "conversation": "{conversation_id}",
+  "input": "{user_query}",
+  "agent_reference": {
+    "type": "agent_reference",
+    "name": "{agent_name}"
+  },
+  "structured_inputs": {
+    "search_auth_token": "{search_bearer_token}"
+  }
+}
 ```
 
 ---
