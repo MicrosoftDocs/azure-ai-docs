@@ -5,8 +5,9 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
+ms.date: 08/14/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 The Azure OpenAI Batch API efficiently handles large-scale and high-volume processing tasks. It processes asynchronous groups of requests with separate quota and offers a 24-hour target turnaround at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, you send a large number of requests in a single file instead of sending one request at a time. Global batch requests have a separate enqueued token quota, so your online workloads aren't disrupted.  
@@ -91,6 +92,14 @@ The following features aren't currently supported:
 
 [!INCLUDE [Quota](global-batch-limits.md)]
 
+## Batch job and output file retention
+
+Batch job records are retained for up to 365 days. During this retention period, you can list and retrieve a job. You can cancel the job if it remains in a cancellable state.
+
+By default, generated batch output files are retained for up to 365 days. Download any files that you need to retain longer.
+
+To use a shorter file-retention period, configure the relevant file type. Set `expires_after` when you upload an input file, or set `output_expires_after` when you create a batch job. Both explicit expiration settings accept 14 to 30 days and use `created_at` as the anchor. For examples, see the **Upload batch file** and **Create batch job** sections on the Python or REST API tab.
+
 ## Batch object
 
 | Property | Type | Definition |
@@ -100,7 +109,7 @@ The following features aren't currently supported:
 | `endpoint` | string | The API endpoint used by the batch. |
 | `errors` | object | Error information for the batch, if any. |
 | `input_file_id` | string | The ID of the input file for the batch. |
-| `completion_window` | string | The time frame within which the batch should be processed. |
+| `completion_window` | string | The target time frame for processing the batch. Currently, you must set this value to `24h`. Completion within 24 hours isn't guaranteed, and a job can continue until it finishes or you cancel it. |
 | `status` | string | The current status of the batch. Possible values: `validating`, `failed`, `in_progress`, `finalizing`, `completed`, `expired`, `cancelling`, `cancelled`. |
 | `output_file_id` | string | The ID of the file containing the outputs of successfully executed requests. |
 | `error_file_id` | string | The ID of the file containing the outputs of requests with errors. |
