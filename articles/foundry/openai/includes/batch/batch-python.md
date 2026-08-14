@@ -184,7 +184,7 @@ file_id = file.id
 
 ---
 
-The `expires_after` object makes the input file expire 14 days after it's created. Set `seconds` to a value from `1209600` through `2592000` to select an expiration period from 14 through 30 days. Setting an expiration also increases the input file limit. For details, see [Batch limits](#batch-limits).
+The `expires_after` object makes the input file expire 14 days after you create it. Set `seconds` to a value from `1209600` through `2592000` to select an expiration period from 14 through 30 days. Setting an expiration also increases the input file limit. For details, see [Batch limits](#batch-limits).
 
 **Output:**
 

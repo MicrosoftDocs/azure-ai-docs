@@ -127,7 +127,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/files \
 
 The above code assumes a particular file path for your test.jsonl file. Adjust this file path as necessary for your local system. 
 
-The optional `expires_after.seconds` and `expires_after.anchor` parameters make the input file expire 14 days after it's created. Set `expires_after.seconds` to a value from `1209600` through `2592000` to select an expiration period from 14 through 30 days. Setting an expiration also increases the input file limit. For details, see [Batch limits](#batch-limits).
+The optional `expires_after.seconds` and `expires_after.anchor` parameters set the input file to expire 14 days after creation. Set `expires_after.seconds` to a value from `1209600` through `2592000` to choose an expiration period from 14 through 30 days. Setting an expiration date also increases the input file limit. For details, see [Batch limits](#batch-limits).
 
 **Output:**
 
@@ -189,7 +189,8 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/batches \
   }'
 ```
 
-The optional `output_expires_after` object makes the output files expire 14 days after they're created. Set `seconds` to a value from `1209600` through `2592000` to select an expiration period from 14 through 30 days. The `anchor` value must be `created_at`.
+The optional `output_expires_after` object sets the output files to expire 14 days after they're created. Set `seconds` to a value from `1209600` through `2592000` to select an expiration period from 14 through 30 days. The `anchor` value must be `created_at`.
+
 
 > [!NOTE]
 > Currently the completion window must be set to `24h`. If you set any other value than `24h` your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
