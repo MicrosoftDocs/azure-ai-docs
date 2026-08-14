@@ -90,14 +90,17 @@ To subscribe from the Microsoft Foundry portal:
 1. Usage is metered and billed in CCU.
 
 
-## Where you see CCU
+## Where to view Claude pricing, usage, and cost
 
-| Surface | What appears |
+| Surface | What you can view |
 |---|---|
-| **Azure Cost Management** | Usage and cost rolled up as CCU |
-| **Microsoft Foundry portal — Pricing tab** | A link to the [Claude pricing](https://aka.ms/ccu-pricing) documentation |
-| **Microsoft Foundry portal — Monitoring tab** | Per-model token usage and request counts |
-| **Marketplace order / private offer** | A single CCU plan replaces previous per-model plans |
+| **Azure Cost Management** | Actual billed usage and cost, aggregated under the CCU meter rather than broken down by Claude model. For details, see [Monitor in Azure portal](../../concepts/manage-costs.md#monitor-in-azure-portal). |
+| **Microsoft Foundry portal — Pricing tab** | Model pricing. In the Foundry portal, select **Discover** > **Models**, select a Claude model, and then select **Pricing**. The tab links to the [Claude pricing](https://aka.ms/ccu-pricing) documentation. |
+| **Microsoft Foundry portal — Monitor tab** | Per-model token usage and request counts for Claude deployments. For CCU-based deployments, the tab also shows estimated cost. For details, see [Model deployment costs](../../concepts/manage-costs.md#model-deployment-costs). |
+| **Azure Marketplace private offer** | Contracted pricing. Discounts are applied during token-to-CCU conversion and reflected in billed CCU cost. |
+
+> [!NOTE]
+> For all Claude deployments, use the Foundry **Monitor** tab for per-model operational usage. For CCU-based deployments, the tab also provides an estimated-cost chart. Existing Claude deployments that use per-model token billing continue to show actual billed cost in Azure Cost Management, but the estimated-cost chart isn't available. Foundry estimates don't reflect private-offer discounts, so they can differ from actual billed cost. Use Azure Cost Management and your invoice for actual billed cost.
 
 ## Discounts and Azure Marketplace private offers
 
@@ -152,7 +155,7 @@ No. The system automatically bills new deployments in CCU. Existing deployments 
 
 ### Where do I see per-model usage if my invoice only shows CCU?
 
-You can see per-model token and request detail in the **Monitoring tab** of the Microsoft Foundry portal for operational and sizing visibility.
+You can see per-model token and request details in the **Monitor** tab of the Microsoft Foundry portal for operational and sizing visibility.
 
 ### How does CCU interact with MACC?
 
