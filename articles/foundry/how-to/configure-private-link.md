@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 06/30/2026
+ms.date: 08/14/2026
 ms.reviewer: meerakurup
 ms.author: scottpolly 
 author: s-polly 
@@ -296,7 +296,6 @@ The following features in Foundry do not yet support network isolation.
 
 | Feature | Network Isolation Status | Notes |
 |---------|--------------------------|-------|
-| Synthetic Data Gen for Evaluations | Not supported | Bring your own data to run evaluations. |
 | Workflow Agents | Partially supported | Inbound access is supported in the UI, SDK, and CLI. Outbound with virtual network injection isn't currently supported for Workflow Agents. |
 | AI Gateway (APIM) | Partially supported via Foundry UI | You can create a new AI Gateway with your private Foundry resource in the new Foundry portal but this gateway is automatically public. To complete any data plane actions with a private Foundry, your AI Gateway must also have network isolation configured which is set-up through the Azure Portal. For more information, see [Networking for AI Gateway](/azure/api-management/virtual-network-concepts). |
 | Certain Agent Tools | Partially supported | See [Agent tools with network isolation](#agent-tools-with-network-isolation) for detailed tool-by-tool support status. |
