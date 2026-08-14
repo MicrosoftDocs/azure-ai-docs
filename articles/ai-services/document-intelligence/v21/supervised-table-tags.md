@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 05/23/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 
@@ -16,7 +16,7 @@ monikerRange: 'doc-intel-2.1.0'
 
 # Train models with the sample-labeling tool
 
-**This content applies to:** ![Document Intelligence v2.1 checkmark](../media/yes-icon.png) **v2.1**.
+**This content applies to:** 🟩 **v2.1**.
 
 >[!TIP]
 >

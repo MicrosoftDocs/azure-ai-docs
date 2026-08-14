@@ -7,7 +7,7 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/27/2026
+ms.date: 08/13/2026
 ai-usage: ai-assisted
 ---
 
@@ -69,7 +69,8 @@ ai-usage: ai-assisted
 | gpt-5.6-sol                    | GlobalStandard    | 10,000      | 10,000,000  |
 | gpt-5.6-terra                  | DataZoneStandard  | 3,333       | 3,333,000   |
 | gpt-5.6-terra                  | GlobalStandard    | 10,000      | 10,000,000  |
-| gpt-chat-latest                | GlobalStandard    | 50,000      | 5,000,000   |
+| gpt-chat-latest<sup>1</sup>    | GlobalStandard    | 50,000      | 5,000,000   |
+| gpt-chat-latest<sup>2</sup>    | GlobalStandard    | 5,000       | 5,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 60          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 120         | -           |
