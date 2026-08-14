@@ -5,7 +5,10 @@ ms.topic: include
 ms.author: pafarley
 ---
 
-The Speech service phone set for `zh-TW` is based on the native phone <a href="https://zh.wikipedia.org/wiki/%E6%B3%A8%E9%9F%B3%E7%AC%A6%E8%99%9F" target="_blank">Bopomofo </a> set.
+The Speech service phone set `sapi` for `zh-TW` uses notation based on the native <a href="https://zh.wikipedia.org/wiki/%E6%B3%A8%E9%9F%B3%E7%AC%A6%E8%99%9F" target="_blank">Bopomofo</a> phone set.
+
+> [!IMPORTANT]
+> In SSML, set the `phoneme` element's `alphabet` attribute to `sapi`, not `bopomofo`.  For example: `<phoneme alphabet="sapi" ph="ㄋㄧˇ ㄏㄠˇ">你好</phoneme>`.
 
 ### Bopomofo Initials for zh-TW
 
