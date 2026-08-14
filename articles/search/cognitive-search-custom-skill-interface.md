@@ -5,8 +5,9 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 07/28/2026
 ms.update-cycle: 365-days
 ---
 
@@ -46,7 +47,11 @@ If your function or app uses Azure managed identities and Azure roles for authen
 
 + Your [custom skill definition](cognitive-search-custom-skill-web-api.md) must include an `authResourceId` property. This property takes an application (client) ID, in a [supported format](/azure/active-directory/develop/security-best-practices-for-app-registration#application-id-uri): `api://<appId>`.
 
+Ensure that `uri` points to the endpoint of the application identified by `authResourceId`. Mismatched values can cause authentication failures or requests being sent to an unintended endpoint. For security guidance, recommended practices, and steps to verify your configuration, see [Security considerations for managed identity authentication](cognitive-search-custom-skill-web-api.md#security-considerations-for-managed-identity-authentication).
+
 By default, the connection to the endpoint times out if a response isn't returned within a 30-second window (`PT30S`). The indexing pipeline is synchronous, and indexing produces a timeout error if a response isn't received in that time frame. You can increase the interval to a maximum value of 230 seconds by setting the `timeout` parameter (`PT230S`).
+
+If an endpoint protected by IP access restrictions doesn't respond, temporarily set `timeout` to a short value, such as `PT10S`, to surface the timeout error faster. For an Azure function app, manage inbound IP rules under **Settings** > **Networking** > **Access restrictions**. For the IP addresses to allow, see [Configure IP firewall rules to allow indexer connections](search-indexer-howto-access-ip-restricted.md).
 
 ## Format web API inputs
 

@@ -4,7 +4,7 @@ description: "Migrate from the legacy Agent Application publishing model to the 
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 04/14/2026
+ms.date: 07/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -131,7 +131,7 @@ During the transition, you may see different publishing experiences depending on
 
 **Do I need to migrate immediately?**
 
-No. Existing Agent Applications continue to work. However, new features (traffic splitting, multiple protocols, disable/enable, A2A) are only available on the new agent model.
+No. Existing Agent Applications continue to work. However, features such as multiple protocols, disable/enable, and A2A are only available on the new agent model.
 
 **Will my Agent Application stop working?**
 

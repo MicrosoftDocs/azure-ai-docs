@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 08/05/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -199,6 +199,28 @@ Follow these steps to configure authentication for an A2A connection:
 
 1. **Add the A2A tool to your agent**. Reference the project connection you created and configure which tools from the A2A endpoint your agent can invoke.
 
+## Credentials for the agent card request
+
+Before your agent can invoke an A2A endpoint, Agent Service fetches the remote agent's agent card. Whichever authentication method you choose, it applies only to tool calls by default, so the agent card fetch goes out anonymously. Most endpoints publish the agent card publicly, so that fetch succeeds.
+
+Some endpoints protect the agent card path itself and reject unauthenticated requests. For these endpoints, set `send_credentials_for_agent_card` to `true` in the A2A tool definition. Agent Service then sends the connection's credentials on the agent card request as well as on later tool calls.
+
+```json
+{
+  "type": "a2a_preview",
+  "base_url": "https://<a2a-endpoint>",
+  "project_connection_id": "<connection-id>",
+  "send_credentials_for_agent_card": true
+}
+```
+
+The `send_credentials_for_agent_card` property is optional and defaults to `false`, so existing tools keep fetching the agent card anonymously.
+
+Credentials go only to the host in `base_url`, and only over HTTPS. If the endpoint uses HTTP, or if you set the optional `agent_card_path` property to a full URL on a different host, Agent Service ignores this setting and fetches the agent card anonymously.
+
+> [!NOTE]
+> Enable this option only when the endpoint publisher confirms that the agent card path requires authentication. Sending credentials when the endpoint doesn't need them widens the exposure of your shared secret.
+
 ## Validate authentication
 
 After you configure authentication, test the connection to confirm it works correctly.
@@ -228,6 +250,7 @@ Use the following table to diagnose and resolve common authentication issues:
 | --- | --- | --- |
 | Key-based authentication fails with 401 Unauthorized | Invalid or expired token | Regenerate the token from the endpoint publisher and update the project connection. |
 | Key-based authentication fails with 400 Bad Request | Incorrect header name or value format | Check the endpoint documentation for the expected header format. Common formats include `Authorization: Bearer <token>` and `x-api-key: <key>`. |
+| Agent card fetch fails with 401 Unauthorized and `Failed to fetch agent card` | The endpoint requires authentication on the agent card path, but the A2A tool doesn't enable `send_credentials_for_agent_card` | Set `send_credentials_for_agent_card` to `true` in the A2A tool definition. See [Credentials for the agent card request](#credentials-for-the-agent-card-request). |
 | Microsoft Entra ID authentication fails with 403 Forbidden | The identity doesn't have the required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service. Role assignment changes can take up to 10 minutes to propagate. |
 | Microsoft Entra ID authentication fails with 401 Unauthorized | The underlying service doesn't accept Microsoft Entra ID tokens, or the audience is incorrect | Confirm the underlying service supports Microsoft Entra ID authentication. Check that the A2A endpoint is configured to accept tokens for the correct audience. |
 | Consent completes but tool calls fail | The user doesn't have permissions in the underlying service | Confirm the user has the required permissions in the underlying service. Also confirm the user has at least the **Foundry User** role on the Foundry project. |

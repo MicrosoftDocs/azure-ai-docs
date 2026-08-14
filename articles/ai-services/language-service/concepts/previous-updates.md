@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An archive of previous Azure Language in Foundry Tools updates.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: release-notes
 ms.date: 06/10/2026
 ms.author: lajanuar

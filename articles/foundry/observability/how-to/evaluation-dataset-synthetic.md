@@ -7,7 +7,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ---
 
@@ -47,35 +47,11 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 ## Prerequisites
 
-- Python SDK version `2.2.0` or later: `pip install "azure-ai-projects>=2.2.0" azure-identity`.
+- Python SDK version `2.4.0` or later: `pip install "azure-ai-projects>=2.4.0" azure-identity`.
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`.
 - Foundry User role or higher on the project.
 - An Azure OpenAI model deployment that supports the Responses API. The `simple_qna` recipe uses this model to synthesize question-and-answer pairs. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
-
-## Supported regions for Synthetic data generation
-
-Synthetic data generation is supported in the following regions:
-
-- UAE North
-- West US 3
-- North Central US
-- East US
-- West Europe
-- South Central US
-- Switzerland North
-- Sweden Central
-- East US 2
-- West US
-- France Central
-- South Africa North
-- Australia East
-- Japan East
-- UK South
-- Norway East
-- Poland Central
-- South India
-- Germany West Central
-- Italy North
+- A supported region. For the list, see [Supported regions for data generation](../../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
 ## Generate a dataset from the portal
 
@@ -120,13 +96,12 @@ from azure.ai.projects.models import (
     DataGenerationJobScenario,
     DataGenerationModelOptions,
     DatasetDataGenerationJobOutput,
-    JobStatus,
     PromptAgentDefinition,
     SimpleQnADataGenerationJobOptions,
 )
 
 MODEL_NAME = "gpt-4.1-mini"
-TERMINAL_STATUSES = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
+poll_interval_seconds = 10
 
 # 1. Reference (or create) a prompt agent whose instructions seed generation.
 agent = project_client.agents.create_version(
@@ -164,23 +139,17 @@ job = DataGenerationJob(
     ),
 )
 
-# 3. Submit and poll until complete.
-job = project_client.beta.datasets.create_generation_job(job=job)
-print(f"Submitted {job.id} (status: {job.status})")
-
-while job.status not in TERMINAL_STATUSES:
-    time.sleep(10)
-    job = project_client.beta.datasets.get_generation_job(job_id=job.id)
-    print(f"  status: {job.status}")
-
-if job.status != JobStatus.SUCCEEDED:
-    message = job.error.message if job.error is not None else "<no error message>"
-    raise RuntimeError(f"Job ended in {job.status}: {message}")
+# 3. Submit and wait for completion.
+poller = project_client.beta.datasets.begin_create_generation_job(job=job)
+while not poller.done():
+    print(f"\tstatus=`{poller.status()}`")
+    time.sleep(poll_interval_seconds)
+result = poller.result()
 
 # 4. Resolve the generated dataset.
 output_name = ""
 output_version = ""
-for output in (job.result.outputs if job.result is not None else None) or []:
+for output in (result.outputs if result is not None else None) or []:
     if isinstance(output, DatasetDataGenerationJobOutput):
         output_name = output.name or ""
         output_version = output.version or ""
@@ -197,18 +166,19 @@ The job produces a versioned dataset with single-turn `query` and `ground_truth`
 If you don't have a deployed agent yet, or if you want to generate data from a self-contained snippet of source material, pass the text as a `PromptDataGenerationJobSource`. This approach is useful for policy documents, FAQ content, or short specs.
 
 ```python
+import time
 from azure.ai.projects.models import (
     DataGenerationJob,
     DataGenerationJobInputs,
     DataGenerationJobOutputOptions,
     DataGenerationJobScenario,
     DataGenerationModelOptions,
-    JobStatus,
     PromptDataGenerationJobSource,
     SimpleQnADataGenerationJobOptions,
 )
 
 MODEL_NAME = "gpt-4.1-mini"
+poll_interval_seconds = 10
 
 job = DataGenerationJob(
     inputs=DataGenerationJobInputs(
@@ -233,10 +203,16 @@ job = DataGenerationJob(
     ),
 )
 
-job = project_client.beta.datasets.create_generation_job(job=job)
+poller = project_client.beta.datasets.begin_create_generation_job(job=job)
+# Optional: While SDK is polling, periodically print the job status until the job is complete
+print("Periodically check job status:")
+while not poller.done():
+    print(f"\tstatus=`{poller.status()}`")
+    time.sleep(poll_interval_seconds)
+result = poller.result()
 ```
 
-Poll and resolve the dataset by using the same pattern shown in the previous section.
+Resolve the dataset by using the same pattern shown in the previous section.
 
 ## Generate a dataset from reference files (SDK)
 
@@ -257,12 +233,12 @@ from azure.ai.projects.models import (
     DataGenerationJobScenario,
     DataGenerationModelOptions,
     FileDataGenerationJobSource,
-    JobStatus,
     SimpleQnADataGenerationJobOptions,
 )
 
 MODEL_NAME = "gpt-4.1-mini"
 REFERENCE_DOCUMENT = open("retail-agent-reference.md", "rb").read()
+poll_interval_seconds = 10
 
 # 1. Upload the reference document via the Azure OpenAI Files API.
 openai_client = project_client.get_openai_client()
@@ -297,14 +273,20 @@ job = DataGenerationJob(
     ),
 )
 
-job = project_client.beta.datasets.create_generation_job(job=job)
+poller = project_client.beta.datasets.begin_create_generation_job(job=job)
+# Optional: While SDK is polling, periodically print the job status until the job is complete
+print("Periodically check job status:")
+while not poller.done():
+    print(f"\tstatus=`{poller.status()}`")
+    time.sleep(poll_interval_seconds)
+result = poller.result()
 ```
 
 ## Run an evaluation against the generated dataset
 
 The generated dataset uses the standard `query` and `ground_truth` schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md) and [Evaluate your agent](evaluate-agent.md).
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md). For complete runnable end-to-end examples that generate synthetic data and evaluate the responses, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
 
 ## Manage data generation jobs
 
@@ -352,3 +334,5 @@ For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-
 - [Evaluate your agent](evaluate-agent.md)
 - [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
 - [Set up tracing for your agent](trace-agent-setup.md)
+- [Synthetic data + agent evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py)
+- [Synthetic data + model evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py)

@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Update the model for a hosted agent
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Change the AI model your hosted agent uses after initial deployment. Update the model deployment in `azure.yaml`, set the azd environment value that your agent reads at runtime, and redeploy the Microsoft Foundry hosted agent.
 

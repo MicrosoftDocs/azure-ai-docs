@@ -49,7 +49,7 @@ Follow these steps to go from zero to a working integration:
 1. **Set up your developer environment.** Install the CLI and SDK so you can build in code. See [Set up your developer environment](../how-to/develop/install-cli-sdk.md).
 1. **Choose a model.** Browse the catalog and compare options in the [Foundry Models overview](foundry-models-overview.md).
 1. **Build your first agent.** Start with a [prompt agent](../agents/quickstarts/prompt-agent.md), or go straight to a [Hosted agent](../agents/quickstarts/quickstart-hosted-agent.md) if you want to bring your own code.
-1. **Add tools and knowledge.** Extend your agent with tools, retrieval, and memory from the [tools overview](../agents/concepts/tool-catalog.md).
+1. **Add tools and knowledge.** Extend your agent with tools, retrieval, and memory. Start with the [toolbox overview](../agents/concepts/toolbox-overview.md), the recommended way to add tools to an agent.
 
 ## Related content
 

@@ -28,11 +28,13 @@ Risks are flagged by classification models designed to detect harmful content. F
 
 For more information about intervention points, see [Intervention points and controls](intervention-points.md).
 
+In addition to content safety controls, hosted agents support **network egress controls (preview)**, which govern the outbound connections an agent makes so it reaches only the destinations you allow. You configure egress controls in the same guardrail (RAI policy) and they apply only to hosted agents. To learn how to author and apply egress rules, see [Add guardrails to a hosted agent](../agents/how-to/add-hosted-agent-guardrails.md#network-egress-controls-preview).
+
 > [!NOTE]
 > Guardrails leverage classification models from [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety) to detect harmful content across supported risk categories.
 
 > [!IMPORTANT]
-> The guardrail system applies to all [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
+> The guardrail system applies to all [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio transcription models. For more information, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
 
 ## Prerequisites
 
@@ -82,7 +84,7 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 
 For a detailed breakdown of what each severity level detects, see [Content filtering categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories).
 
-For Azure Direct Models, only customers who have been approved for modified Guardrails can turn them off. Apply for modified Guardrails via this form: [Limited Access Review: Modified Guardrails](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified Guardrails via this form: [Azure Government - Request Modified Content Filtering](https://aka.ms/AOAIGovModifyContentFilter).
+For Models sold by Azure, only customers who have been approved for modified Guardrails can turn them off. Apply for modified Guardrails via this form: [Limited Access Review: Modified Guardrails](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified Guardrails via this form: [Azure Government - Request Modified Content Filtering](https://aka.ms/AOAIGovModifyContentFilter).
 
 ### Intervention point applicability
 

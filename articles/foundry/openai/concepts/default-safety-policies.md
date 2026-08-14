@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Default Guardrail policies for Azure OpenAI
 
-Azure OpenAI in Microsoft Foundry Models includes default safety policies applied to all models (excluding Whisper models). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
+Azure OpenAI in Microsoft Foundry Models includes default safety policies that apply to all models, excluding transcription models. These configurations provide a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
 
 Guardrails and controls ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides Guardrail capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more, see [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
 
@@ -29,7 +29,7 @@ When content is detected that exceeds the severity threshold for a risk category
 ## Prerequisites
 
 - An Azure subscription with access to Azure OpenAI Service
-- Deployed Azure OpenAI models (excluding Whisper, which uses different safety configurations)
+- Deployed Azure OpenAI models (excluding transcription models, which use different safety configurations)
 
 ## Text models
 

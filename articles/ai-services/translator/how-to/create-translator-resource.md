@@ -6,7 +6,7 @@ author: laujan
 ms.author: lajanuar
 manager: mcleans
 ms.date: 06/29/2026
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 
 ---

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article shows you how to detect and redact Personally Identifiable Information (PII) from speech, chat, and spoken-word transcriptions and call transcripts.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.author: lajanuar

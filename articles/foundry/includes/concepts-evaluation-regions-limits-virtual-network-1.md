@@ -6,7 +6,7 @@ ms.reviewer: skohlmeier
 ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include, references_regions
 ---
 
@@ -57,6 +57,7 @@ These regions support the following safety evaluators: Hate and unfairness, Sexu
 | East US 2 | France Central | Australia East |
 | North Central US | Sweden Central |  |
 |  | Switzerland West |  |
+|  | Germany West Central |  |
 
 Supported regions for Groundedness Pro:
 
@@ -73,6 +74,22 @@ AI red teaming is supported in the following regions.
 
 - East US 2
 - North Central US
+
+### Supported regions for data generation
+
+The following regions support synthetic data generation and trace-to-dataset generation:
+
+| Americas | Europe | Asia Pacific | Middle East & Africa |
+|--|--|--|--|
+| East US | France Central | Australia East | South Africa North |
+| East US 2 | Germany West Central | Japan East | UAE North |
+| North Central US | Italy North | South India |  |
+| South Central US | Norway East |  |  |
+| West US | Poland Central |  |  |
+| West US 3 | Sweden Central |  |  |
+|  | Switzerland North |  |  |
+|  | UK South |  |  |
+|  | West Europe |  |  |
 
 ### Azure OpenAI graders regional availability
 
@@ -98,7 +115,7 @@ Use exponential backoff when retrying failed requests.
 
 For network isolation, you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
 
-Virtual network support for evaluation requires network injection (subnet delegation), but if you **only need evaluation capabilities** and do not require full agent support (Cosmos DB, AI Search, or project capability host), consider using the simplified [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup) instead. It deploys a minimal network-secured environment tailored for evaluation scenarios with fewer resources and reduced complexity.
+Virtual network support for evaluation requires network injection (subnet delegation), but if you **only need evaluation and data generation capabilities** and don't require full agent support (Cosmos DB, AI Search, or project capability host), consider using the simplified [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup) instead. It deploys a minimal network-secured environment tailored for evaluation scenarios with fewer resources and reduced complexity.
 
 > [!NOTE]
 > If you connect Application Insights, evaluation data is sent to it.
@@ -124,3 +141,7 @@ Bringing your own virtual network for evaluation is supported in the following r
 | West US | Switzerland North |  |  |
 | West US 2 | UK South |  |  |
 | West US 3 | West Europe |  |  |
+
+## Virtual network support for data generation
+
+Data generation (synthetic data generation and trace-to-dataset generation) uses the same network injection (subnet delegation) and [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup) as evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md). Supported regions match [supported regions for data generation](#supported-regions-for-data-generation).

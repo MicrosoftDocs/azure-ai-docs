@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 07/09/2026
+ms.date: 07/21/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -168,7 +168,9 @@ Treat a Hosted agent like production application code.
 
 ### Versioning
 
-Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. Note that requests to create agent version with no change to the agent version parameters such as container image, environment variables, etc. will not result in a new version being created. You can split traffic between versions with weighted rollouts to support canary and blue-green deployments.
+Each call to create a version produces an **immutable agent version**. The version is a snapshot of the container image, resource allocation, environment variables, and protocol configuration. To update your agent, create and deploy a new version.
+
+An agent endpoint serves one version at a time and routes 100% of its traffic to that version. Traffic splitting between versions isn't supported.
 
 Environment variables are the primary mechanism for passing configuration to your container at runtime (for example, the project endpoint, model deployment name, and custom settings). They're set per version and are immutable once the version is created.
 
@@ -180,10 +182,8 @@ Hosted agents provide built-in observability. The platform automatically injects
 For configuration and analysis guidance, see [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md).
 
 ### Toolbox in Foundry
-> [!IMPORTANT]
-> Adding tools directly to hosted agent's definition is not supported. We recommend using toolboxes in Foundry.
 
-Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint by using standard MCP client libraries. The platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). To connect tools in a hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based, and more, use the toolbox in Foundry.
+Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. Your agent code connects to the endpoint by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 
@@ -233,26 +233,37 @@ Managed hosting runtime billing is based on consumption of CPU and memory resour
 
 Hosted agents are currently available in the following regions:
 
-- East US 2
-- North Central US
-- Sweden Central
+- Australia East
+- Brazil South
 - Canada Central
 - Canada East
-- Southeast Asia
-- Poland Central
-- South Africa North
-- Korea Central
-- South India
-- Brazil South
-- West US
-- West US 3
-- Norway East
-- Japan East
+- Central US
+- East US
+- East US 2
 - France Central
 - Germany West Central
-- Switzerland North
+- Italy North
+- Japan East
+- Japan West
+- Korea Central
+- North Central US
+- Norway East
+- Poland Central
+- South Africa North
+- South Central US
+- South India
+- Southeast Asia
 - Spain Central
-- Australia East
+- Sweden Central
+- Switzerland North
+- Switzerland West
+- UAE North
+- UK South
+- UK West
+- West Central US
+- West Europe
+- West US
+- West US 3
 
 > [!NOTE]
 > This list will be updated as additional regions become available.

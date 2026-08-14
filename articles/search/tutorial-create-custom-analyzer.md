@@ -7,7 +7,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 07/21/2026
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Create a custom analyzer for phone numbers

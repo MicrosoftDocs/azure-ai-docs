@@ -1,12 +1,12 @@
 ---
 title: "Connect agents to Microsoft 365 with Work IQ (preview)"
-description: "Learn how to connect your Microsoft Foundry agent to Work IQ, the intelligence layer that grounds agents in Microsoft 365 data such as emails, meetings, files, and chats."
+description: "Learn how to connect Foundry Agent Service agents to Work IQ so they can use Microsoft 365 emails, meetings, files, and chats as context."
 services: cognitive-services
 manager: mcleanbyron
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 05/06/2026
+ms.date: 08/05/2026
 author: mattwojo
 ms.author: mattwoj
 reviewer: lindazqli
@@ -14,6 +14,8 @@ ms.reviewer: zhuoqunli
 ms.custom:
  - dev-focus
  - doc-kit-assisted
+ - sfi-ga-flagged
+ - sfi-image-flagged
 ai-usage: ai-assisted
 zone_pivot_groups: selection-work-iq
 ---
@@ -22,38 +24,57 @@ zone_pivot_groups: selection-work-iq
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
+[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft 365 Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user and honor Microsoft 365 permissions.
+
+You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) protocol. Your agent delegates natural-language tasks to Work IQ as a peer agent — for example, "Summarize my recent emails about Project Contoso" — and Work IQ handles retrieval, reasoning, and response synthesis against the user's Microsoft 365 data.
+
+For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
+
 > [!WARNING]
 > When you connect to Work IQ, you may incur costs and data may be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It is your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
-> [!NOTE]
-> For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
+## Prerequisites
 
-[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft 365 Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user and honor Microsoft 365 permissions.
+Before you begin, make sure you have:
 
-You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) protocol. Your agent delegates natural-language tasks to Work IQ as a peer agent — for example, "Summarize my recent emails about Project Contoso" — and Work IQ handles retrieval, reasoning, and response synthesis against the user's Microsoft 365 data.
+- The commercial requirement for the connection you use:
+
+  | Connection path | Requirement type | Requirement |
+  | --- | --- | --- |
+  | Work IQ API through A2A, REST, or MCP | **Usage-based billing** | Enable [billing with Copilot Credits](/microsoft-365-copilot/usage-based-billing-overview-copilot-credits). This path doesn't use connector licensing. |
+  | Connector-backed Microsoft 365 tools | **Connector licensing** | Confirm the selected connector's prerequisites. A connector can require a [Microsoft 365 Copilot license](https://www.microsoft.com/microsoft-365-copilot/pricing/individuals) for each calling user. |
+
+- An active [Microsoft Foundry project](../../../how-to/create-projects.md) with a deployed model.
+- **Azure RBAC roles**:
+  - **Foundry User** role on the Foundry project for the developer identity, the agent's runtime identity, and any user identity involved in OAuth flows.
+  - **Foundry Project Manager** role on the Foundry project for creating a Foundry connection to the Work IQ endpoint.
+- A **Microsoft Entra Global Administrator** who can complete the one-time tenant setup by provisioning the Work IQ service principal and granting admin consent for `WorkIQAgent.Ask`. Activate this role just in time through Microsoft Entra Privileged Identity Management (PIM), and deactivate it after setup. Day-to-day Work IQ users don't need this role.
+- **Foundry Toolkit**: Install [Visual Studio Code](https://code.visualstudio.com/) and [Foundry Toolkit for Visual Studio Code](https://code.visualstudio.com/docs/intelligentapps/overview#_install-and-setup).
+- **JavaScript development**: Use Node.js 22 or later and install `@azure/ai-projects` 2.4.0 or later with `@azure/identity`.
+
+For direct A2A calls, Work IQ supports protocol versions 1.0 and 0.3. Send `A2A-Version: 1.0` to use v1 method names. Omitting the header defaults to v0.3. Include location metadata for time-sensitive requests, and use delegated user authentication.
+
+## Follow the setup dependency map
+
+Use this map to separate the agent-use flow from dependencies that an administrator completes once for the organization.
+
+| Goal | Depends on | Continue at |
+| --- | --- | --- |
+| Add Work IQ to an agent and send a query | An existing Work IQ connection, the signed-in user's Microsoft 365 permissions, and the billing or connector licensing listed in the prerequisites. | [Add the Work IQ tool to your agent](#add-the-work-iq-tool-to-your-agent) |
+| Create the first Work IQ connection for the organization | The Work IQ service principal, a single-tenant Entra app, delegated `WorkIQAgent.Ask` permission, and tenant-wide admin consent. | [Set up your Entra app](#set-up-your-entra-app-one-time-per-organization) |
+| Use a connector-backed Microsoft 365 tool | A connection for that connector and any connector-specific license required for the signed-in user. | [Add the Work IQ tool to your agent](#add-the-work-iq-tool-to-your-agent) |
+
+Complete the agent-use flow first when your organization already has a connection. Use the one-time tenant setup only when an administrator needs to create the first connection.
+
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
 ## Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Work IQ | ✔️ | ✔️ | ✔️ | — | ✔️ | ✔️ | ✔️ |
-
-## Prerequisites
-
-> [!NOTE]
-> Virtual network (VNet) integration is not supported. Your Foundry project must not use a VNet-restricted endpoint.
-
-Before you begin, make sure you have:
-
-- A [Microsoft 365 Copilot license](https://www.microsoft.com/microsoft-365-copilot/pricing/individuals). Users who call Work IQ tools through your agent must also have this license.
-- An active [Microsoft Foundry project](../../../how-to/create-projects.md) with a deployed model.
-- **Azure RBAC roles**:
-  - **Foundry User** role on the Foundry project for the developer identity, the agent's runtime identity, and any user identity involved in OAuth flows.
-  - **Foundry Project Manager** role on the Foundry project for creating a Foundry connection to the Work IQ endpoint.
-- A **Microsoft Entra Global Administrator** who can grant admin consent for `WorkIQAgent.Ask` in your tenant and create or delegate app registrations.
-- **Foundry Toolkit**: Install [Visual Studio Code](https://code.visualstudio.com/) and [Foundry Toolkit for Visual Studio Code](https://code.visualstudio.com/docs/intelligentapps/overview#_install-and-setup).
 
 ## How it works
 
@@ -80,11 +101,9 @@ Use Foundry Toolkit for Visual Studio Code to add Work IQ as a built-in tool whe
 1. Select **Add**.
 1. Select **Publish**.
 
-:::image type="content" source="../../media/tools/work-iq/toolbox-vscode-work-iq.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Add the Work IQ Tool dialog with Work IQ options and connection selectors." lightbox="../../media/tools/work-iq/toolbox-vscode-work-iq.png":::
+For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#create-a-toolbox-version).
 
-For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#step-1-create-a-toolbox-version).
-
-To add the Work IQ tool directly to an agent by using code or the REST API, select the Python, .NET, JavaScript, or REST API tab in this section.
+To add the Work IQ tool through a toolbox by using code or the REST API, select the Python, .NET, JavaScript, or REST API tab in this section.
 
 :::zone-end
 
@@ -93,23 +112,23 @@ To add the Work IQ tool directly to an agent by using code or the REST API, sele
 Install the package:
 
 ```bash
-pip install "azure-ai-projects>=2.2.0" python-dotenv
+pip install "azure-ai-projects>=2.3.0"
 ```
 
 Set the following environment variables:
 
 - `FOUNDRY_PROJECT_ENDPOINT` — your project endpoint, found in the Overview page of your Foundry project.
-- `FOUNDRY_MODEL_NAME` — the deployment name of the model the agent uses.
 - `WORK_IQ_PROJECT_CONNECTION_ID` — the fully qualified resource ID of the Work IQ project connection.
+
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent that connects to the tool through a toolbox.
+
+### Prompt agents
 
 ```python
 import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, WorkIQPreviewTool
-
-load_dotenv()
 
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
@@ -125,7 +144,7 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_NAME"],
+        model="gpt-5-mini",
             instructions="Use the available WorkIQ tools to answer questions and perform tasks.",
             tools=[tool_payload],
         ),
@@ -147,11 +166,85 @@ with (
 
 **Expected output**: The agent calls Work IQ with the user's query. Work IQ retrieves and synthesizes the user's relevant Microsoft 365 content, grounded in their permissions, and returns the answer.
 
+### Hosted agents
+
+Create a toolbox version with `WorkIQPreviewToolboxTool`. The toolbox-specific type is different from `WorkIQPreviewTool`, which adds Work IQ directly to a prompt agent.
+
+```python
+import os
+
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import WorkIQPreviewToolboxTool
+from azure.identity import DefaultAzureCredential
+
+project_endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+work_iq_connection_id = os.environ["WORK_IQ_PROJECT_CONNECTION_ID"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=project_endpoint,
+        credential=credential,
+    ) as project,
+):
+    toolbox = project.toolboxes.create_version(
+        name="work-iq-toolbox",
+        description="Toolbox with the Work IQ tool",
+        tools=[
+            WorkIQPreviewToolboxTool(
+                project_connection_id=work_iq_connection_id,
+            )
+        ],
+    )
+    print(f"Created toolbox: {toolbox.name}, version: {toolbox.version}")
+```
+
+The sample returns the new toolbox version:
+
+```output
+Created toolbox: work-iq-toolbox, version: <version>
+```
+
+Next, [connect the toolbox to a hosted agent](use-toolbox-hosted-agent.md). That workflow uses the hosted runtime integration to preserve the request context required for user-delegated Work IQ calls. For a complete Python implementation, see the [Agent Framework Teams activity sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework/responses/07-teams-activity).
+
+---
 :::zone-end
 
 :::zone pivot="rest-api"
 
-**Step 1:** Create the agent with the Work IQ tool:
+The recommended way to add Work IQ is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+**Step 1:** Create a toolbox that contains the Work IQ tool:
+
+```bash
+curl --request POST \
+  --url "{project_endpoint}/toolboxes/work-iq-toolbox/versions?api-version=v1" \
+  -H "Authorization: Bearer {token}" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "description": "Toolbox with the Work IQ tool",
+    "tools": [
+      {
+        "type": "work_iq_preview",
+        "project_connection_id": "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account}/projects/{project}/connections/{connection-name}"
+      }
+    ]
+  }'
+```
+
+The toolbox exposes an MCP-compatible endpoint at `{project_endpoint}/toolboxes/work-iq-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+**Step 2:** Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`):
+
+```bash
+azd ai connection create work-iq-toolbox-conn \
+  --kind remote-tool \
+  --target "{project_endpoint}/toolboxes/work-iq-toolbox/versions/<version>/mcp?api-version=v1" \
+  --auth-type user-entra-token \
+  --audience https://ai.azure.com
+```
+
+**Step 3:** Create the agent with the toolbox attached as an MCP tool:
 
 ```http
 POST {project_endpoint}/agents/{agent_name}/versions?api-version=v1
@@ -163,14 +256,17 @@ Content-Type: application/json
   "instructions": "You are a helpful assistant with access to the user's Microsoft 365 work context through Work IQ.",
   "tools": [
     {
-      "type": "work_iq_preview",
-      "project_connection_id": "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account}/projects/{project}/connections/{connection-name}"
+      "type": "mcp",
+      "server_label": "toolbox",
+      "server_url": "{project_endpoint}/toolboxes/work-iq-toolbox/versions/<version>/mcp?api-version=v1",
+      "require_approval": "never",
+      "project_connection_id": "work-iq-toolbox-conn"
     }
   ]
 }
 ```
 
-**Step 2:** Create a conversation session:
+**Step 4:** Create a conversation session:
 
 ```http
 POST {project_endpoint}/openai/v1/conversations
@@ -182,7 +278,7 @@ Content-Type: application/json
 
 The response includes a `id` field. Use it in the next step.
 
-**Step 3:** Send a request to the agent:
+**Step 5:** Send a request to the agent:
 
 ```http
 POST {project_endpoint}/openai/v1/responses
@@ -208,18 +304,21 @@ The response includes metadata about the agent execution and a `text` field in `
 
 :::zone pivot="dotnet"
 
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent that connects to the tool through a toolbox.
+
+### Prompt agents
+
 ```csharp
 using Azure.AI.Projects;
 using Azure.Identity;
 
 var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME");
 var workIQConnectionName = Environment.GetEnvironmentVariable("WORKIQ_CONNECTION_NAME");
 
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 AIProjectConnection workIQConnection = projectClient.Connections.GetConnection(workIQConnectionName);
-DeclarativeAgentDefinition agentDefinition = new(model: modelDeploymentName)
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that can access Microsoft 365 data through Work IQ. "
                  + "Use the Work IQ tool to search and retrieve information from emails, calendar events, "
@@ -247,6 +346,42 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
+### Hosted agents
+
+Create a toolbox version with `WorkIQPreviewToolboxTool`. The toolbox-specific type is different from `WorkIQPreviewTool`, which adds Work IQ directly to a prompt agent.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+string projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+string workIQConnectionName = Environment.GetEnvironmentVariable("WORKIQ_CONNECTION_NAME")
+    ?? throw new InvalidOperationException("WORKIQ_CONNECTION_NAME is not set.");
+
+DefaultAzureCredential credential = new();
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
+AIProjectConnection workIQConnection = projectClient.Connections.GetConnection(workIQConnectionName);
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateVersion(
+        name: "work-iq-toolbox",
+        tools: [new WorkIQPreviewToolboxTool(workIQConnection.Id)],
+        description: "Toolbox with the Work IQ tool");
+
+Console.WriteLine(
+    $"Created toolbox: {toolboxVersion.Name}, version: {toolboxVersion.Version}");
+```
+
+The sample returns the new toolbox version:
+
+```output
+Created toolbox: work-iq-toolbox, version: <version>
+```
+
+Next, [connect the toolbox to a hosted agent](use-toolbox-hosted-agent.md). For a complete C# implementation that registers Work IQ toolbox tools with Agent Framework, see the [Teams activity sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework/teams-activity).
+
+---
 :::zone-end
 
 :::zone pivot="javascript"
@@ -254,31 +389,65 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(
 ```javascript
 const { DefaultAzureCredential } = require("@azure/identity");
 const { AIProjectClient } = require("@azure/ai-projects");
-require("dotenv/config");
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"];
-const deploymentName = process.env["FOUNDRY_MODEL_NAME"];
 const workIqProjectConnectionId = process.env["WORKIQ_CONNECTION_ID"];
 
 async function main() {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  const openai = project.getOpenAIClient();
 
-  const tool = {
-    type: "work_iq_preview",
-    project_connection_id: workIqProjectConnectionId,
-  };
+  console.log("Creating a toolbox with the Work IQ tool...");
 
+  // 1. Add the Work IQ tool to a toolbox. Using a toolbox is the recommended
+  //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "work-iq-toolbox",
+    [
+      {
+        type: "work_iq_preview",
+        project_connection_id: workIqProjectConnectionId,
+      },
+    ],
+    { description: "Toolbox with the Work IQ tool" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${projectEndpoint}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create work-iq-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "work-iq-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
   const agent = await project.agents.createVersion("MyWorkIQAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "Use the available Work IQ tools to answer questions and perform tasks.",
-    tools: [tool],
+    tools: [
+      {
+        type: "mcp",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
+        require_approval: "never",
+        project_connection_id: toolboxConnectionName,
+      },
+    ],
   });
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   const userInput = "What meetings do I have scheduled today?";
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     { input: userInput },
     { body: { agent_reference: { name: agent.name, version: agent.version, type: "agent_reference" } } },
   );
@@ -295,6 +464,45 @@ main().catch((err) => {
 
 :::zone-end
 
+### Add Work IQ to a toolbox with the Azure Developer CLI
+
+Use the Azure Developer CLI to create the Work IQ A2A project connection, then reference it from a minimal toolbox YAML.
+
+```bash
+# Step 1. Create the Work IQ connection
+azd ai connection create my-workiq-conn \
+  --kind remote-a2a \
+  --target https://workiq.svc.cloud.microsoft/a2a/ \
+  --auth-type oauth2 \
+  --authorization-url https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/authorize \
+  --token-url https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token \
+  --client-id <oauth-client-id> \
+  --client-secret <oauth-client-secret> \
+  --scopes "api://workiq.svc.cloud.microsoft/WorkIQAgent.Ask offline_access"
+```
+
+> [!NOTE]
+> This article uses the Work IQ A2A endpoint `https://workiq.svc.cloud.microsoft/a2a/`. The previous toolbox catalog used `https://agent365.svc.cloud.microsoft/agents/agents/workiq` for its azd workflow; verify the endpoint if your Work IQ connection uses a different A2A or MCP target.
+
+```yaml
+# Step 2. Define the toolbox (my-toolbox.yaml)
+description: Work IQ toolbox
+tools:
+  - type: work_iq_preview
+    project_connection_id: my-workiq-conn
+```
+
+```bash
+# Step 3. Create the toolbox
+azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
+```
+
+### Use Work IQ with a hosted agent
+
+After you create `work-iq-toolbox`, follow [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md) to connect it to Agent Framework, run it locally, and deploy it to Foundry Agent Service. The hosted integration preserves the per-request context that Work IQ needs to act on behalf of each signed-in user.
+
+For end-to-end implementations, use the maintained [Python Teams activity sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework/responses/07-teams-activity) or [.NET Teams activity sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework/teams-activity).
+
 ## Authentication and security
 
 Work IQ uses Microsoft Entra ID delegated authentication. All requests run in the context of the signed-in user. Application-only (app-only) authentication isn't supported. Microsoft 365 permissions are enforced automatically — Work IQ agents can never access data that the signed-in user isn't already permitted to see.
@@ -303,11 +511,11 @@ Only **Bring your own Entra app** (On-Behalf-Of authentication) is supported for
 
 ### Set up your Entra app (one-time, per organization)
 
-An Entra admin must complete the following steps before you can create a Work IQ connection in Foundry.
+An Entra admin must complete the following one-time tenant operation before you can create a Work IQ connection in Foundry. For steps that require the Global Administrator role, use Microsoft Entra PIM to activate the role just in time, and deactivate it when setup is complete. Day-to-day Work IQ users don't need this role.
 
 #### Provision the Work IQ service principal (one-time)
 
-Before you create the app registration, a Global Administrator must provision the Work IQ service principal in your tenant. If this step is skipped, the **Work IQ** option won't appear when you search API permissions.
+Before you create the app registration, a Global Administrator must provision the Work IQ service principal as part of this one-time tenant operation. If you skip this step, the **Work IQ** option won't appear when you search API permissions.
 
 Follow [Step 1: Create the Work IQ service principal](/microsoft-365/copilot/extensibility/work-iq-api-quickstart?tabs=entra-admin#step-1-create-the-work-iq-service-principal-graph-explorer) in the Work IQ API quickstart. A 201 Created response from Graph Explorer confirms success. A conflict error means the principal already exists — continue to the next step.
 
@@ -318,15 +526,11 @@ Follow [Step 1: Create the Work IQ service principal](/microsoft-365/copilot/ext
 1. Copy the **Application (client) ID**. You need this value when creating the Foundry connection.
 1. Select **API permissions** > **Add a permission** > **APIs my organization uses**. Search for **Work IQ** (application ID `fdcc1f02-fc51-4226-8753-f668596af7f7`), select **Delegated permissions**, select **WorkIQAgent.Ask**, then select **Add permissions**.
 
-   :::image type="content" source="../../media/tools/work-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel in the Microsoft Entra admin center, showing the APIs my organization uses tab with Work IQ entered in the search box." lightbox="../../media/tools/work-iq/entra-api-permissions-search.png":::
-
-   :::image type="content" source="../../media/tools/work-iq/entra-work-iq-permission.png" alt-text="Screenshot of the Work IQ delegated permissions selection in the Microsoft Entra admin center, showing WorkIQAgent.Ask permission with Admin consent required." lightbox="../../media/tools/work-iq/entra-work-iq-permission.png":::
-
 1. Select **Grant admin consent for \[your tenant\]**. Review the confirmation dialog and select **Yes**.
 
    > [!IMPORTANT]
-   > Granting tenant-wide admin consent requires the **Global Administrator** role in Microsoft Entra ID. If you don't have this role, ask your organization's Global Administrator to complete this step.
-1. Select **Certificates & secrets** > **New client secret**. Add a description and expiration. Select **Add**, then immediately copy the secret **Value** — it's only shown once.
+  > Granting tenant-wide admin consent is a one-time tenant operation that requires the **Global Administrator** role in Microsoft Entra ID. Activate the role just in time through Microsoft Entra PIM, and deactivate it after granting consent. Day-to-day Work IQ users don't need this role. If you don't have this role, ask your organization's Global Administrator to complete this step.
+1. Select **Certificates & secrets** > **New client secret**. Add a description and expiration. Select **Add**, and then immediately copy the secret **Value** - it's only shown once. Store the secret in Azure Key Vault or another approved secret store. Never commit the secret to source control or print or log it. Rotate the secret before it expires.
 1. Copy your **Directory (tenant) ID** from the **Microsoft Entra ID** overview page.
 
 ### Fill in the Foundry connection values
@@ -344,7 +548,7 @@ In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go t
 
 Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save** to create the connection.
 
-:::image type="content" source="../../media/tools/work-iq/edit-connection-portal.png" alt-text="Screenshot of the Edit connection dialog in the Foundry portal, showing fields for Remote MCP Server endpoint, Authentication set to OAuth Identity Passthrough, Client ID, Client secret, Token URL, Auth URL, Refresh URL, and Scopes filled in for Work IQ." lightbox="../../media/tools/work-iq/edit-connection-portal.png":::
+:::image type="content" source="../../media/tools/work-iq/edit-connection-portal.png" alt-text="Screenshot of the Foundry portal showing authentication settings for a Work IQ connection." lightbox="../../media/tools/work-iq/edit-connection-portal.png":::
 
 > [!IMPORTANT]
 > Connection fields can't be edited after creation. If you enter incorrect values, delete the connection and create a new one.
@@ -421,27 +625,25 @@ A successful response returns HTTP 200 or 201. The response body includes a `pro
 
 ## Data governance and compliance
 
-Work IQ operates entirely within the Microsoft 365 trust boundary. The following commitments apply when you route agent requests through Work IQ.
+Work IQ permission-trims retrieval against Microsoft 365. A Foundry workflow can also send prompts and retrieved results to downstream Copilot and Foundry processing, so review the boundaries and regional configuration of every service in the request path.
 
 ### Data residency
 
-Work IQ retrieves data from your organization's Microsoft 365 tenant. Data doesn't leave your tenant or cross regional boundaries during retrieval. The data's location follows your Microsoft 365 tenant data residency configuration, not your Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Microsoft 365 retrieval follows your tenant's permissions and residency configuration. End-to-end processing also depends on your Copilot billing configuration and Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Privacy and data handling
 
-All Work IQ requests are governed by the [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy). Key commitments:
-
-- Work IQ doesn't use customer content to train or improve underlying AI models.
+Review the [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and the Foundry data handling requirements that apply to your deployment. Confirm the complete request path with your privacy and compliance teams.
 
 ### Access control and permissions
 
-Work IQ enforces Microsoft 365 permissions automatically on every request. Agents can only access data that the signed-in user is already authorized to see — no elevation of privilege is possible:
+Design the connection so retrieval uses the signed-in user's Microsoft 365 permissions. Test permission trimming with representative users and restricted content before deployment:
 
 - Role-based access control, sensitivity labels, and information barriers defined in Microsoft 365 are respected.
 
-### Compliance certifications
+### Compliance review
 
-Work IQ inherits Microsoft 365's compliance certifications. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Use your organization's Microsoft compliance resources to confirm which certifications and controls apply to the complete Work IQ and Foundry deployment.
 
 ## Admin management
 
@@ -458,10 +660,10 @@ Admin consent for `WorkIQAgent.Ask` is required before any user in your organiza
 
 | Symptom | Likely cause | Resolution |
 | --- | --- | --- |
-| `403 Forbidden` | User missing Microsoft 365 Copilot license | Assign the license and wait 15–30 minutes for provisioning. |
+| `403 Forbidden` | Billing isn't enabled for the Work IQ API, or a connector-specific license is missing. | Enable Copilot Credits billing for Work IQ API calls. For connector-backed tools, confirm the calling user meets that connector's license requirements. |
 | `401 Unauthorized` | Token audience mismatch | Ensure the token is issued for `api://workiq.svc.cloud.microsoft`, not for a different resource. |
 | `403 Forbidden` with `Required scopes = [...]` | Admin consent for `WorkIQAgent.Ask` not granted | An admin must grant consent for the app registration. |
-| Agent gets no response or empty result | Work IQ index hasn't built yet after license assignment | Wait 15–30 minutes and retry. |
+| Agent gets no response or empty result | Microsoft 365 content isn't available to the signed-in user or hasn't been indexed. | Confirm the user's source permissions, then retry after indexing completes. |
 | `Principal does not have access to API/Operation` | Agent identity missing Foundry User role at project scope | Assign **Foundry User** at both account scope and project scope. |
 
 ## Related content

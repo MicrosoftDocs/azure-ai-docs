@@ -4,7 +4,7 @@ metadata:
    description: Translator container Frequently asked questions
    author: laujan
    manager: mcleans
-   ms.service: azure-ai-translator
+   ms.service: azure-translator-foundry-tools
    ms.topic: faq
    ms.date: 06/04/2026
    ms.author: lajanuar

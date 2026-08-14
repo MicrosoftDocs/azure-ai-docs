@@ -3,7 +3,7 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 07/30/2026
 ai-usage: ai-assisted
 ---
 
@@ -34,15 +34,15 @@ Azure AI Search supports the following knowledge sources for agentic retrieval w
 |------|-------------|-------------------|
 | [Search index](agentic-knowledge-source-how-to-search-index.md) | Wraps an existing index. | Indexed |
 | [Azure blob](agentic-knowledge-source-how-to-blob.md) | Generates an indexer pipeline from a blob container. | Indexed |
-| [Azure SQL](agentic-knowledge-source-how-to-azure-sql.md) (preview) | Generates an indexer pipeline from an Azure SQL table or view. | Indexed |
-| [File](agentic-knowledge-source-how-to-file.md) (preview) | Uploads files directly to Azure AI Search. | Indexed |
+| [Azure SQL (preview)](agentic-knowledge-source-how-to-azure-sql.md) | Generates an indexer pipeline from an Azure SQL table or view. | Indexed |
+| [File (preview)](agentic-knowledge-source-how-to-file.md) | Uploads files directly to Azure AI Search. | Indexed |
 | [OneLake](agentic-knowledge-source-how-to-onelake.md) | Generates an indexer pipeline from a lakehouse. | Indexed |
-| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) (preview) | Generates an indexer pipeline from a SharePoint site. | Indexed |
-| [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md) (preview) | Retrieves content from SharePoint. | Remote |
-| [Fabric Data Agent](agentic-knowledge-source-how-to-fabric-data-agent.md) (preview) | Retrieves answers and embedded resources from a Microsoft Fabric data agent. | Remote |
-| [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md) (preview) | Retrieves entity- and relationship-based answers from a Microsoft Fabric ontology. | Remote |
-| [MCP server](agentic-knowledge-source-how-to-mcp-server.md) (preview) | Retrieves live, tool-backed results from an external MCP server. | Remote |
-| [Work IQ](agentic-knowledge-source-how-to-work-iq.md) (preview) | Retrieves organizational intelligence from Work IQ. | Remote |
+| [Indexed SharePoint (preview)](agentic-knowledge-source-how-to-sharepoint-indexed.md) | Generates an indexer pipeline from a SharePoint site. | Indexed |
+| [Remote SharePoint (preview)](agentic-knowledge-source-how-to-sharepoint-remote.md) | Retrieves content from SharePoint. | Remote |
+| [Fabric Data Agent (preview)](agentic-knowledge-source-how-to-fabric-data-agent.md) | Retrieves answers and embedded resources from a Microsoft Fabric data agent. | Remote |
+| [Fabric Ontology (preview)](agentic-knowledge-source-how-to-fabric-ontology.md) | Retrieves entity- and relationship-based answers from a Microsoft Fabric ontology. | Remote |
+| [MCP server (preview)](agentic-knowledge-source-how-to-mcp-server.md) | Retrieves live, tool-backed results from an external MCP server. | Remote |
+| [Work IQ (preview)](agentic-knowledge-source-how-to-work-iq.md) | Retrieves organizational intelligence from Work IQ. | Remote |
 | [Web](agentic-knowledge-source-how-to-web.md) | Retrieves real-time grounding data from Microsoft Bing. | Remote |
 
 ### Indexed knowledge sources

@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: reference
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Hosted agent runtime contract
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 A hosted agent is a container that fulfills a specific runtime contract with the Microsoft Foundry platform. This reference describes what the platform expects from your container and how the SDK adapter packages help you meet those requirements.
 
@@ -96,7 +94,7 @@ This minimal handler forwards user input to a model from the Foundry model catal
 
 ### [Python](#tab/python)
 
-From [`bring-your-own/responses/hello-world/main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/hello-world/main.py):
+From [`bring-your-own/responses/hello-world/main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/hello-world/src/hello-world-python-responses/main.py):
 
 ```python
 import asyncio

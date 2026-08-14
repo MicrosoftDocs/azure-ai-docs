@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.date: 04/01/2026
+ms.date: 06/30/2026
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:

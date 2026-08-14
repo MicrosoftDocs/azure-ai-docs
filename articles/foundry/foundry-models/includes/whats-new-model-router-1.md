@@ -6,10 +6,35 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/19/2026
+ms.date: 08/12/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
+
+## August 2026
+
+### Model router expands to 28 regions
+
+Model router is now available in 28 Azure regions. All 28 regions support Global Standard and Data Zone Standard deployments. For the full list, see [Supported regions](../../openai/concepts/model-router.md#supported-regions).
+
+### Model refresh adds GPT-5.6 family and Claude Opus 4.8
+
+Model router version `2025-11-18` now supports 27 models. The routing pool adds `gpt-5.6-sol`, `gpt-5.6-terra`, and `gpt-5.6-luna` version `2026-07-09`, and `claude-opus-4-8` version `1`. To use `claude-opus-4-8` with model router, first deploy it to your Foundry resource.
+
+The routing pool removes the retired `gpt-5-chat`, `gpt-5.2-chat`, `gpt-5.3-chat`, `DeepSeek-V3.1`, and `claude-opus-4.1` models.
+
+Configuring a custom model subset is optional. If you previously configured a subset that contains any of these removed models, replace them with models from the current [supported models](../../openai/concepts/model-router.md) list. If you use the default routing pool, no action is required.
+
+### Agentic routing expands to more model providers
+
+For agentic requests, model router can now select eligible open-source (OSS) and Anthropic models in addition to OpenAI models. Model and tool compatibility determine which models are eligible for each request. For more information, see [Use model router with Foundry agents](../../openai/how-to/model-router-agents.md).
+
+## July 2026
+
+### Regional expansion
+
+Model router is now available in three additional regions: **Australia East**, **South India**, and **West US 3**, with both Global Standard and Data Zone Standard deployment types. For the full list of supported regions, see the [Model router concepts guide](/azure/ai-foundry/openai/concepts/model-router).
 
 ## May 2026
 

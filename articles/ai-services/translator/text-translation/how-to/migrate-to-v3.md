@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article provides the steps to help you migrate from V2 to V3 of the Azure Translator.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: concept-article
 ms.date: 06/02/2026
 ms.author: lajanuar

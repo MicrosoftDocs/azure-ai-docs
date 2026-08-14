@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2024
   - build-2025
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Import data wizard in the Azure portal
@@ -36,7 +37,7 @@ Built-in sample data for the hotels-sample index is no longer available. However
 
 ### Data sources
 
-The wizard connects to the following data sources through [built-in indexers](search-indexer-overview.md#supported-data-sources) or [Logic Apps connectors](search-how-to-index-logic-apps.md#supported-connectors) (preview).
+The wizard connects to the following data sources through [built-in indexers](search-indexer-overview.md#supported-data-sources) or [Logic Apps connectors](search-how-to-index-logic-apps.md#supported-connectors).
 
 | Data source | Supported | Connection |
 |--|--|--|

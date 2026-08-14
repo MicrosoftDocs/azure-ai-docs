@@ -5,11 +5,12 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/13/2026
+ms.date: 07/21/2026
 ms.custom:
   - mode-ui
   - ignite-2023
   - ignite-2024
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Full-text search in the Azure portal
@@ -24,7 +25,7 @@ The wizard creates multiple objects on your search service, including a searchab
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md). This quickstart requires the Basic tier or higher for managed identity support.
++ An [Azure AI Search service](search-create-service-portal.md). This quickstart requires the Basic tier or higher for managed identity support. Managed identity is used for secure, keyless authentication between Azure AI Search and indexer data sources.
 
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 

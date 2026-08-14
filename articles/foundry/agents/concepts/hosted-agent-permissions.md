@@ -444,6 +444,38 @@ A middle-tier service that authenticates its own end users can scope a session t
 
 `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action`
 
+This data action is **not** included in any built-in role. Roles that previously granted it through the `Microsoft.CognitiveServices/*` data action — including **Foundry User** and **Foundry Owner** — no longer do. To grant it, create a custom role that includes the data action and assign that role to your middle-tier service's identity at the scope of the Foundry project or the specific agent.
+
+The following custom role definition grants only the impersonation data action:
+
+```json
+{
+  "Name": "Foundry Agent User Identity Impersonation",
+  "IsCustom": true,
+  "Description": "Lets a trusted middle-tier service delegate the end-user identity to a hosted agent via the x-ms-user-identity header.",
+  "Actions": [],
+  "NotActions": [],
+  "DataActions": [
+    "Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action"
+  ],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>"
+  ]
+}
+```
+
+Create the role, then assign it to the middle-tier identity:
+
+```azurecli
+az role definition create --role-definition custom-impersonation-role.json
+
+az role assignment create \
+  --assignee <middle-tier-identity-object-id> \
+  --role "Foundry Agent User Identity Impersonation" \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>
+```
+
 A caller that sends `x-ms-user-identity` without this permission receives a `403`. For how to use delegated identity, see [Isolate hosted agent sessions per user](../how-to/isolate-sessions-per-user.md#isolate-sessions-for-your-own-users).
 
 ## Agent observability

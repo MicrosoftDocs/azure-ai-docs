@@ -21,8 +21,8 @@ This table shows transcription features that the fast transcription API supports
 | Profanity filtering | ✅                                | ✅                              | ✅                     |
 | Specify locale      | ✅                                | ✅                              | ✅                     |
 | Custom prompting    | ❌                                | ✅                              | ❌                     |
-| Phrase list         | ✅                                | ❌<sup>1</sup>                  | ❌                     |
+| Phrase list         | ✅                                | ❌<sup>1</sup>                  | ✅                     |
 | Segment-level timestamps         | ✅                                | ✅                 | ✅                     |
-| Word-level timestamps         | ✅                                | ✅                 | ❌                     |
+| Word-level timestamps         | ✅                                | ✅                 | ✅                     |
 
 <sup>1</sup>For LLM Speech, use prompting to guide the output style instead of using explicit phrase list.

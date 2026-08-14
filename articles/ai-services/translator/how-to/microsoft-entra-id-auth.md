@@ -1,7 +1,7 @@
 ---
 title: Enable Microsoft Entra ID authentication
 description: How to enable Microsoft Entra ID authentication.
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: install-set-up-deploy
 manager: mcleans
 ms.author: lajanuar

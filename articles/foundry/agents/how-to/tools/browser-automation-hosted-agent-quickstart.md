@@ -86,7 +86,7 @@ AI agent definition added to your azd project successfully!
 1. Set the environment variables to point to your Playwright Workspace
     - **Playwright Workspace resource ID**: To get the resource ID, open the Playwright Workspace resource, go to the Overview page, select JSON View, and copy the Resource ID.
     ```
-    azd set env PLAYWRIGHT_SERVICE_RESOURCE_ID "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.LoadTestService/playwrightWorkspaces/<workspace-name>"
+    azd env set PLAYWRIGHT_SERVICE_RESOURCE_ID "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.LoadTestService/playwrightWorkspaces/<workspace-name>"
     ```
     - **Playwright Workspace service URL**: To get the service URL, open the Playwright Workspace resource and go to the Overview page. Copy the Browser endpoint (it starts with `wss://`).
     ```

@@ -32,7 +32,7 @@ PTU quota is granted per subscription, per region, and limits the total PTUs you
 
 To check current usage or request additional quota:
 
-1. Go to **Operate** > **Quota** > **Provisioned throughput unit** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Go to **Manage** > **Quota** > **Provisioned throughput unit** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select the desired subscription and region to view current usage.
 1. To request more quota, select **Request Quota** and complete the form.
 
@@ -43,7 +43,7 @@ To check current usage or request additional quota:
 
 To create a provisioned deployment, see [Quickstart: Create a provisioned throughput deployment](../provisioned-quickstart.md).
 
-PTU quota is shared across all provisioned deployments of the same deployment type within a region. If you have remaining quota after your initial deployment, you can use it to deploy other supported models without requesting more quota. Check your quota usage in the **Quota** page under **Operate** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+PTU quota is shared across all provisioned deployments of the same deployment type within a region. If you have remaining quota after your initial deployment, you can use it to deploy other supported models without requesting more quota. Check your quota usage in the **Quota** page under **Manage** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). 
 
 You can manage your quota by [requesting additional quota](https://aka.ms/oai/stuquotarequest), or by deleting existing deployments to free up PTUs for new deployments.
 

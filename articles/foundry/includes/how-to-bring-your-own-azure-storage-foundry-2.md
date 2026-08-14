@@ -8,23 +8,24 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/12/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
-## Configure capability host for Agents (combined resource + project steps)
+## Configure capability host for agents (combined resource and project steps)
 
-You create two capability hosts—one at the resource level and one at the project level—each referencing the same connection chain so Agents route to your storage.
+You create two capability hosts - one at the resource level and one at the project level - each referencing the same connection chain so agents route to your storage.
 
-1. Create a resource-level connection (as above) if not already present.
+1. Create a resource-level connection (as described earlier) if you don't already have one.
    > [!NOTE]
-   > As described in the previous section, select **Operate** > **Admin** > your project > **Add connection** and choose **Azure Storage**.
-1. Create a resource-level capability host referencing that connection.
-1. Create (or open) a project under the resource.
-1. Create a project-level capability host referencing the resource-level capability host.
-1. Verify Agents data now writes to the bound storage account.
+   > As described in the previous section, select **Manage** > **Resource details** > **Connected resources** > **Add connection** and choose **Azure Storage**.
+1. Create a resource-level capability host that references that connection.
+1. Create or open a project under the resource.
+1. Create a project-level capability host that references the resource-level capability host.
+1. Verify that agents data now writes to the bound storage account.
 
 ### Example (REST API)
 
-Use the [Capability Hosts - Create Or Update](/rest/api/azureml/capability-hosts/create-or-update) REST API to create a capability host:
+Use the [Capability Hosts - Create Or Update](/rest/api/microsoftfoundry/accountmanagement/account-capability-hosts/create-or-update) REST API to create a capability host. Replace `<connection-arm-resource-id>` with the full ARM resource ID of your blob storage connection.
 
 ```http
 PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/capabilityHosts/agents-host?api-version=2026-03-01
@@ -65,7 +66,7 @@ Set up [capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) to
 
 ### Create resource-level capability host
 
-1. Use the [Azure CLI](/cli/azure/ml/capability-host) or [Azure REST API](/rest/api/azureml/capability-hosts/create-or-update) sample to create a resource-level capability host.
+1. Use the [Azure REST API](/rest/api/microsoftfoundry/accountmanagement/account-capability-hosts/create-or-update) through `az rest` or `Invoke-AzRestMethod` to create a resource-level capability host. Dedicated Azure CLI and PowerShell cmdlets aren't available yet.
 
 1. Reference your previously created storage connection in the capability host configuration.
 
@@ -96,8 +97,7 @@ After you configure storage connections and capability hosts, confirm that data 
 If data doesn't appear in your storage account, check the following:
 
 - Both resource-level and project-level capability hosts exist and reference the correct connection.
-- The project managed identity has the `Storage Blob Data Contributor` role on the storage account.
-- The storage account has `allowSharedKeyAccess` set to `true`.
+- The project managed identity has the required storage roles: **Storage Account Contributor** on the storage account, **Storage Blob Data Contributor** on the `<workspaceId>-azureml-blobstore` container, and **Storage Blob Data Owner** on the `<workspaceId>-agents-blobstore` container. See [Standard agent setup](../agents/concepts/standard-agent-setup.md) for the complete role list.
 - Network settings on the storage account allow access from Microsoft Foundry.
 
 ## Set userOwnedStorage for Speech and Language
@@ -112,9 +112,11 @@ resource foundry 'Microsoft.CognitiveServices/accounts@2026-03-01' = {
   kind: 'AIServices'
   sku: { name: 'S0' }
   properties: {
-    userOwnedStorage: {
-      storageResourceId: storageAccount.id
-    }
+    userOwnedStorage: [
+      {
+        resourceId: storageAccount.id
+      }
+    ]
   }
 }
 ```
@@ -130,7 +132,7 @@ resource "azurerm_cognitive_account" "foundry" {
   sku_name            = "S0"
 
   storage { # userOwnedStorage equivalent
-    resource_id = azurerm_storage_account.speechlang.id
+    storage_account_id = azurerm_storage_account.speechlang.id
   }
 }
 ```

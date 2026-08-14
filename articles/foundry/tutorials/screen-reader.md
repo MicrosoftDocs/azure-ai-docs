@@ -56,7 +56,7 @@ To switch back to the classic experience:
 
 ## Projects
 
-You enter the portal with a selected project. The navigation sections **Home**, **Discover**, and **Build** display content for your selected project. The **Operate** section is different - it shows information for all your projects.
+You enter the portal with a selected project. The navigation sections **Home**, **Discover**, **Build**, and **Manage** display content for your selected project. The **Operate** section is different - it shows information for all your projects.
 
 To create or switch projects:
 1. In [!INCLUDE [foundry-link](../includes/foundry-link.md)], on the top banner, select **Foundry**.
@@ -69,7 +69,7 @@ To create or switch projects:
 
 In the new Foundry experience, use landmarks and headings to move between these areas:
 
-- Top banner navigation: **Home**, **Discover**, **Build**, **Operate**, and **Docs**.
+- Top banner navigation: **Home**, **Discover**, **Build**, **Operate**, **Manage**, and **Docs**.
 - Left pane navigation for the selected top-level area.
 - Page tabs, when available, as a third navigation level.
 
@@ -123,7 +123,7 @@ After you complete the steps in this article, verify the following outcomes:
 - You can move between major page landmarks, such as banner, navigation, and main content.
 - You can identify your current portal experience (new or classic) and switch experiences if needed.
 - You can return to your previous location after switching views or opening dialogs.
-- You can locate your selected project and move to key areas such as **Home**, **Discover**, **Build**, **Operate**, and **Docs**.
+- You can locate your selected project and move to key areas such as **Home**, **Discover**, **Build**, **Operate**, **Manage**, and **Docs**.
 
 ## Troubleshoot screen reader navigation
 

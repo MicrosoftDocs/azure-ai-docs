@@ -7,15 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Debug a hosted agent
-
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Diagnose and fix common issues when you build, run, and deploy agents with `azd ai agent` for Microsoft Foundry. Start with the diagnostic commands. Then use the symptom-based sections to troubleshoot authentication, local development, deployment, direct commands, logs, and routines.
 

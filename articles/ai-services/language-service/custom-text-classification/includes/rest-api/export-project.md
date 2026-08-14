@@ -2,9 +2,9 @@
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 06/09/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 Create a **POST** request using the following URL, headers, and JSON body to export your project.

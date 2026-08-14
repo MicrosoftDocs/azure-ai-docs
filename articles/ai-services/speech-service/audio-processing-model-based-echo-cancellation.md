@@ -5,7 +5,7 @@ description: An overview of model-based echo cancellation (V2) audio processing 
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 04/09/2026
+ms.date: 07/07/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: jagoerge
@@ -145,6 +145,47 @@ auto audioInput = AudioConfig::FromDefaultMicrophoneInput(
 
 auto recognizer = SpeechRecognizer::FromConfig(
     speechConfig, audioInput);
+```
+
+---
+
+### Override the echo cancellation model path
+
+By default, the Microsoft Audio Stack loads the echo cancellation model from the directory that contains the core Speech SDK library. If you deploy the model file to a different location, set the `AudioProcessing_EchoCancellationModelPath` property on `AudioProcessingOptions` to point to your custom model file.
+
+> [!NOTE]
+> The `AudioProcessing_EchoCancellationModelPath` override requires Speech SDK v1.51.0 or later.
+
+Set the property on the `AudioProcessingOptions` object before you pass it to `AudioConfig`. Audio processing options don't inherit properties from `SpeechConfig`, so the override only takes effect when it's set directly on the options object.
+
+### [C#](#tab/csharp)
+
+```csharp
+var audioProcessingOptions = AudioProcessingOptions.Create(
+    AudioProcessingConstants.AUDIO_INPUT_PROCESSING_ENABLE_V2,
+    PresetMicrophoneArrayGeometry.Mono,
+    SpeakerReferenceChannel.LastChannel);
+
+// Point the echo cancellation pipeline at a custom model file.
+audioProcessingOptions.SetProperty(PropertyId.AudioProcessing_EchoCancellationModelPath, @"C:\models\aec_v1.fpie");
+
+var audioInput = AudioConfig.FromDefaultMicrophoneInput(
+    audioProcessingOptions);
+```
+
+### [C++](#tab/cpp)
+
+```cpp
+auto audioProcessingOptions = AudioProcessingOptions::Create(
+    AUDIO_INPUT_PROCESSING_ENABLE_V2,
+    PresetMicrophoneArrayGeometry::Mono,
+    SpeakerReferenceChannel::LastChannel);
+
+// Point the echo cancellation pipeline at a custom model file.
+audioProcessingOptions->SetProperty(PropertyId::AudioProcessing_EchoCancellationModelPath, "C:\\models\\aec_v1.fpie");
+
+auto audioInput = AudioConfig::FromDefaultMicrophoneInput(
+    audioProcessingOptions);
 ```
 
 ---

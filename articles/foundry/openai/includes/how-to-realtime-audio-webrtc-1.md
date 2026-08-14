@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include
 ---
 
@@ -38,6 +38,7 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-realtime-2` (version 2026-05-07)
 - `gpt-realtime-translate` (version 2026-05-06)
 - `gpt-realtime-whisper` (version 2026-05-06)
+- `gpt-live-transcribe` (version 2026-07-29)
 
 Use the `/openai/v1` path in the request URL when calling the Realtime API.
 

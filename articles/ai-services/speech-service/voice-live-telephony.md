@@ -29,6 +29,7 @@ Alternatively, telephony integration is supported through third-party providers'
 - [**Twilio Media Streams**](https://www.twilio.com/docs/voice/media-streams)
 - [**Infobip Calls**](https://www.infobip.com/docs/voice-and-video/calls)
 - [**Genesys AudioHook**](https://developer.genesys.cloud/devapps/audiohook/)
+- [**Sinch Programmable Voice**](https://dev.bandwidth.com/docs/voice/programmable-voice/)
 
 
 :::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup." lightbox="media/voice-live/telephony.png":::
@@ -37,4 +38,3 @@ Alternatively, telephony integration is supported through third-party providers'
 ## Related content 
 
 - Learn more about [Voice Live API](/azure/ai-services/speech-service/voice-live).
-- Learn more about [Azure Communication Services](/azure/communication-services/overview). 

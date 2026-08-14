@@ -115,7 +115,7 @@ The machine learning CLI is an extension for the Azure CLI. It provides cross-pl
 
 ## VS Code
 
-You can use the VS Code extension to run and manage your training jobs. See the [VS Code resource management how-to guide](how-to-manage-resources-vscode.md#experiments) to learn more.
+Use the VS Code extension to run and manage your training jobs. To learn more, see the [VS Code resource management how-to guide](how-to-manage-resources-vscode.md).
 
 ## Next steps
 

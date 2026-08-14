@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Reference documentation for Azure Translator in Foundry Tools latest GA release operations and capabilities.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.custom: references_regions
 ms.date: 06/02/2026

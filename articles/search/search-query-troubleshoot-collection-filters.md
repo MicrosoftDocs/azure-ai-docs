@@ -6,8 +6,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 # Troubleshooting OData collection filters in Azure AI Search
 
@@ -15,7 +16,7 @@ ms.update-cycle: 365-days
 
 To [filter](query-odata-filter-orderby-syntax.md) on collection fields in Azure AI Search, you can use the [`any` and `all` operators](search-query-odata-collection-operators.md) together with **lambda expressions**. A lambda expression is a subfilter that is applied to each element of a collection.
 
-Not every feature of filter expressions is available inside a lambda expression. Which features are available differs depending on the data type of the collection field that you want to filter. This can result in an error if you try to use a feature in a lambda expression that isn't supported in that context. If you're encountering such errors while trying to write a complex filter over collection fields, this article will help you troubleshoot the problem.
+Not every feature of filter expressions is available inside a lambda expression. Which features are available depends on the data type of the collection field that you want to filter. This limitation can result in an error if you try to use a feature in a lambda expression that isn't supported in that context. If you encounter such errors while trying to write a complex filter over collection fields, this article helps you troubleshoot the problem.
 
 ## Common collection filter errors
 

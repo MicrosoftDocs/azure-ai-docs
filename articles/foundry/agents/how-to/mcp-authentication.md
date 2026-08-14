@@ -1,16 +1,17 @@
 ---
-title: "Set Up MCP Server Authentication"
-description: "Learn how to set up authentication for Model Context Protocol (MCP) servers used by agents in Microsoft Foundry Agent Service. Configure key-based, Entra, or OAuth auth."
+title: "Set up MCP server authentication"
+description: "Configure key-based, Microsoft Entra, or OAuth authentication for Model Context Protocol servers used by agents in Microsoft Foundry."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/09/2026
+ms.date: 08/11/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
+zone_pivot_groups: mcp-authentication-language
 ---
 
 # Set up authentication for Model Context Protocol (MCP) tools
@@ -176,24 +177,159 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
 - The user is prompted to sign in and give consent after reviewing the access needed. After giving consent successfully, the user sees a dialog like this example:
    :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot that shows the confirmation dialog after giving OAuth consent in the Foundry portal." lightbox="../../media/mcp/foundry-close-me.png":::
 
-- After the user has closed the dialog, you need to submit another response with the previous response ID
+- After the user closes the dialog, submit another response with the previous
+  response ID. Choose your programming language.
 
-   ```python
-   # Requires: azure-ai-projects >= 2.0.0
-   from azure.ai.projects import AIProjectClient
-   from azure.identity import DefaultAzureCredential
+:::zone pivot="python"
 
-   # Submit another response after user consent
-   response = client.responses.create(
-       previous_response_id="YOUR_PREVIOUS_RESPONSE_ID",
-       input=user_input,
-       extra_body={
-           "agent_reference": {"name": agent.name, "type": "agent_reference"},
-           "tool_choice": "required",
-           "stream": True
-       },
-   )
-   ```
+Install the Python packages:
+
+```bash
+pip install "azure-ai-projects>=2.0.0" azure-identity
+```
+
+Set `project_endpoint` and `agent_name` to the existing project endpoint and
+prompt agent name. The first response surfaces the OAuth consent link:
+
+```python
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+project_endpoint = "https://<resource>.services.ai.azure.com/api/projects/<project>"
+agent_name = "<agent-name>"
+user_input = "Use the MCP tool to complete my request."
+
+# Create clients to call the Foundry project and Responses APIs.
+project = AIProjectClient(
+   endpoint=project_endpoint,
+   credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Send a request that requires the user to authorize the MCP connection.
+response = openai.responses.create(
+   input=user_input,
+   tool_choice="required",
+   extra_body={
+      "agent_reference": {"name": agent_name, "type": "agent_reference"}
+   },
+)
+
+for item in response.output:
+   if item.type == "oauth_consent_request":
+      print(f"Open this URL to authorize access: {item.consent_link}")
+```
+
+After the user completes consent, continue from the previous response and
+consume the streamed response:
+
+```python
+# Continue the response after the user completes OAuth consent.
+stream = openai.responses.create(
+   previous_response_id=response.id,
+   input=user_input,
+   tool_choice="required",
+   stream=True,
+   extra_body={
+      "agent_reference": {"name": agent_name, "type": "agent_reference"}
+   },
+)
+
+for event in stream:
+   if event.type == "response.output_text.delta":
+      print(event.delta, end="", flush=True)
+print()
+```
+
+Reference: [`AIProjectClient`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient)
+and [Responses API](../../openai/how-to/responses.md).
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+Create a .NET console application and install the GA packages:
+
+```dotnetcli
+dotnet new console --name McpOAuthClient
+cd McpOAuthClient
+dotnet add package Azure.AI.Projects --version 2.0.1
+dotnet add package Azure.AI.Extensions.OpenAI --version 2.0.0
+dotnet add package Azure.Identity
+```
+
+Replace the contents of `Program.cs` with the following code. Set
+`projectEndpoint` and `agentName` to the existing project endpoint and prompt
+agent name:
+
+```csharp
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+var projectEndpoint =
+   "https://<resource>.services.ai.azure.com/api/projects/<project>";
+var agentName = "<agent-name>";
+var userInput = "Use the MCP tool to complete my request.";
+
+// Create clients to call the Foundry project and Responses APIs.
+AIProjectClient projectClient = new(
+   endpoint: new Uri(projectEndpoint),
+   tokenProvider: new DefaultAzureCredential());
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+   .GetProjectResponsesClientForAgent(agentName);
+
+// Send a request that requires the user to authorize the MCP connection.
+CreateResponseOptions initialOptions = new()
+{
+   ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+};
+initialOptions.InputItems.Add(
+   ResponseItem.CreateUserMessageItem(userInput));
+ResponseResult response = await responsesClient.CreateResponseAsync(
+   initialOptions);
+
+foreach (ResponseItem item in response.OutputItems)
+{
+   if (item.AsAgentResponseItem() is
+      OAuthConsentRequestResponseItem consentRequest)
+   {
+      Console.WriteLine(
+         $"Open this URL to authorize access: {consentRequest.ConsentLink}");
+   }
+}
+
+Console.WriteLine("Press Enter after you complete consent.");
+Console.ReadLine();
+
+// Continue the response after the user completes OAuth consent.
+CreateResponseOptions continuationOptions = new()
+{
+   PreviousResponseId = response.Id,
+   ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+};
+continuationOptions.InputItems.Add(
+   ResponseItem.CreateUserMessageItem(userInput));
+
+await foreach (StreamingResponseUpdate update in responsesClient
+   .CreateResponseStreamingAsync(continuationOptions))
+{
+   if (update is StreamingResponseOutputTextDeltaUpdate textDelta)
+   {
+      Console.Write(textDelta.Delta);
+   }
+}
+Console.WriteLine();
+```
+
+Reference: [`AIProjectClient`](/dotnet/api/azure.ai.projects.aiprojectclient),
+[`ProjectResponsesClient`](/dotnet/api/azure.ai.extensions.openai.projectresponsesclient),
+and [`OAuthConsentRequestResponseItem`](/dotnet/api/azure.ai.extensions.openai.oauthconsentrequestresponseitem).
+
+:::zone-end
 
 Once the user has signed in and given consent once, they don't need to give consent in the future.
 
@@ -291,7 +427,7 @@ After you configure authentication, verify the connection works correctly:
 | Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
 | Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling | Update `require_approval` to match your approval requirements. |
 | MCP server returns "unauthorized" despite valid credentials | The credential header name or format doesn't match what the MCP server expects | Check the MCP server's documentation for the exact header name (for example, `Authorization`, `X-API-Key`, or `Api-Key`) and value format (for example, `Bearer <token>` vs. just `<token>`). |
-| OAuth tokens expire and tool calls fail after some time. "Your session has expired. Please reauthenticate with the provided url." | The refresh token is invalid or the refresh URL is incorrect | Verify the refresh URL is correct. If you used the token URL as the refresh URL, confirm the OAuth provider supports token refresh at that endpoint. The user might need to consent again if refresh tokens are revoked. Make sure you add `offline_access` to the scope when creating OAuth auth connection.|
+| OAuth tokens expire and tool calls fail after some time. "Your session has expired. Please reauthenticate with the provided url." | The refresh token is invalid or the refresh URL is incorrect | Verify the refresh URL is correct. If you used the token URL as the refresh URL, confirm the OAuth provider supports token refresh at that endpoint. The user might need to consent again if refresh tokens are revoked. Make sure you add `offline_access` to the scope when creating OAuth auth connection. |
 | Private MCP server is unreachable from agent | The MCP server isn't on the dedicated MCP subnet, subnet delegation is missing, or private DNS resolution fails | Verify the MCP server is deployed on the MCP subnet with `Microsoft.App/environments` delegation. Check private DNS zone configuration. Deploy using the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-private-network-agent-tools) template. |
 
 ## Host a local MCP server

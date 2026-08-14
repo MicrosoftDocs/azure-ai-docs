@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 08/05/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -21,28 +21,22 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 and 3.1
 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`, `API key`, and `managed identity`. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).
 
-### Usage support
-
-The following table shows SDK and setup support.
-
-| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-
-> [!NOTE]
-> For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
 ## Prerequisites
 
 Before you begin, make sure you have:
 
 - An Azure subscription with the right permissions.
-- Azure RBAC role: Contributor or Owner on the Foundry project.
+- **Foundry User** role on the Foundry project to create and run agents.
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
+- **Foundry Project Manager** role on the Foundry project if you create a project connection for API key or token authentication.
 - A Foundry project created with an endpoint configured.
 - An AI model deployed in your project.
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
-  - Python: `azure-ai-projects`
+  - Python: `pip install azure-ai-projects jsonref`
   - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
   - Java: `com.azure:azure-ai-agents`
@@ -60,11 +54,34 @@ Before you begin, make sure you have:
   - `operationId` should only contain letters, `-`, and `_`.
   - Use descriptive names to help models efficiently decide which function to use.
   - Supported request body content types: `application/json`, `application/json-patch+json`
-- For managed identity authentication: Reader role or higher on target service resources.
+- For managed identity authentication: the least-privileged target-service role that permits the required API operations, assigned to the Foundry project's managed identity at the target resource scope.
 - For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../how-to/connections-add.md).
 
 > [!NOTE]
 > The `FOUNDRY_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
+
+## Usage support
+
+The following table shows SDK and setup support.
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+> [!NOTE]
+> For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
+
+## Run the anonymous first-success flow
+
+Start with the anonymous weather API to verify that your agent can load an OpenAPI specification and call an operation. This path doesn't require an external API credential or a Foundry project connection.
+
+1. Install the SDK package for your selected language from [Prerequisites](#prerequisites).
+1. Download [`weather_openapi.json`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json), and save it to the `assets` path used by the sample.
+1. Set your Foundry project endpoint and model deployment values.
+1. Run the anonymous sample in your selected language section.
+1. Confirm that the response contains current weather for Seattle, and then delete the agent version created by the sample.
+
+After the anonymous call succeeds, configure the authentication required by your target API. Keep [API key authentication](#authenticate-with-api-key), [bearer-token authentication](#set-up-a-bearer-token-connection), and [managed identity authentication](#authenticate-by-using-managed-identity-microsoft-entra-id) as separate variants.
 
 ## Understand limitations
 
@@ -72,7 +89,218 @@ Before you begin, make sure you have:
 - Supported request body content types: `application/json`, `application/json-patch+json`.
 - For API key authentication, use one API key security scheme per OpenAPI tool. If you need multiple security schemes, create multiple OpenAPI tools.
 
-## Code example
+## Add OpenAPI tools to a toolbox
+
+Use this pattern to expose any REST API described by an OpenAPI spec. Choose the `auth.type` that matches your API's security model.
+
+> [!IMPORTANT]
+> When you use managed identity auth, assign only the least-privileged RBAC role that permits the required API operations to your **Foundry project's** managed identity on the target service. For example, assign **Reader** on the target Azure resource only when the API needs read-only Azure Resource Manager access. Without the required assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
+
+:::zone pivot="rest"
+
+**Anonymous auth:**
+
+```json
+{
+  "description": "REST API via OpenAPI spec",
+  "tools": [
+    {
+      "type": "openapi",
+      "openapi": {
+        "name": "my-api",
+        "spec": { "<paste OpenAPI spec object here>" },
+        "auth": {
+          "type": "anonymous"
+        }
+      }
+    }
+  ]
+}
+```
+
+**Project connection auth:**
+
+Use this pattern when the API requires a key or token stored in a Foundry project connection.
+
+```json
+{
+  "description": "REST API with connection-based auth",
+  "tools": [
+    {
+      "type": "openapi",
+      "openapi": {
+        "name": "my-api",
+        "spec": { "<paste OpenAPI spec object here>" },
+        "auth": {
+          "type": "connection",
+          "security_scheme": {
+            "project_connection_id": "<CONNECTION_NAME>"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+**Managed identity auth:**
+
+Use this pattern when the target API authenticates via Microsoft Entra ID. The Foundry project's managed identity calls the API on behalf of the agent. Make sure the managed identity has the required RBAC role on the target service before using this pattern.
+
+```json
+{
+  "description": "REST API with managed identity auth",
+  "tools": [
+    {
+      "type": "openapi",
+      "openapi": {
+        "name": "my-api",
+        "spec": { "<paste OpenAPI spec object here>" },
+        "auth": {
+          "type": "managed_identity",
+          "security_scheme": {
+            "audience": "<TARGET_SERVICE_AUDIENCE>"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import OpenAPITool
+
+tools = [
+    OpenAPITool(
+        name="my-api",
+        spec={"<paste OpenAPI spec object here>"},
+        auth={"type": "anonymous"},
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+BinaryData specBytes = BinaryData.FromString("<OpenAPI spec JSON>");
+ProjectsAgentTool tool = new OpenAPITool(
+    new OpenApiFunctionDefinition(
+        name: "my-api",
+        spec: specBytes,
+        openApiAuthentication: new OpenApiAnonymousAuthDetails()
+    )
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "REST API via OpenAPI spec"
+);
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```javascript
+const tools = [
+  {
+    type: "openapi",
+    openapi: {
+      name: "my-api",
+      spec: { /* paste OpenAPI spec object here */ },
+      auth: {
+        type: "anonymous",
+      },
+    },
+  },
+];
+```
+
+:::zone-end
+
+### Create an OpenAPI toolbox with the Azure Developer CLI
+
+OpenAPI tools embed the spec directly under `tools:`. Connection-based auth (`connection_auth`) references a project connection; anonymous OpenAPI tools need no connection.
+
+**Step 1. (Optional) Create the auth connection**
+
+Skip this step for anonymous OpenAPI tools.
+
+```bash
+# API-key auth (passed by the platform on every call)
+# Set OPENAPI_AUTHORIZATION_HEADER in your shell without committing its value.
+azd ai connection create my-api-conn \
+  --kind remote-tool \
+  --target https://api.example.com \
+  --auth-type custom-keys \
+  --custom-key "Authorization=$OPENAPI_AUTHORIZATION_HEADER"
+```
+
+OpenAPI tools also accept `--auth-type oauth2` connections. For the full set of `azd ai connection create` flags, see [Toolbox MCP authentication and configuration](model-context-protocol.md#toolbox-mcp-authentication-and-configuration).
+
+**Step 2. Define the toolbox**
+
+The OpenAPI spec is inline under `tools[].openapi.spec`.
+
+```yaml
+# my-toolbox.yaml
+description: OpenAPI toolbox
+tools:
+  - type: openapi
+    name: my-api
+    openapi:
+      name: my-api
+      spec:
+        openapi: "3.0.1"
+        info:
+          title: "My API"
+          version: "1.0"
+        servers:
+          - url: https://api.example.com/v1
+        paths:
+          /search:
+            get:
+              operationId: search
+              parameters:
+                - name: query
+                  in: query
+                  required: true
+                  schema:
+                    type: string
+              responses:
+                "200":
+                  description: OK
+      auth:
+        type: connection_auth
+        connection_id: my-api-conn
+```
+
+For anonymous APIs, replace the `auth:` block with:
+
+```yaml
+      auth:
+        type: anonymous
+        security_scheme:
+          type: anonymous
+```
+
+**Step 3. Create the toolbox**
+
+```bash
+azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
+```
+
+## Before you run the code samples
+
+- Download the maintained [`tripadvisor_openapi.json`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/assets/tripadvisor_openapi.json) specification and save it to the `assets` path used by your language sample.
 
 > [!NOTE]
 > - You need the latest SDK package. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
@@ -90,7 +318,11 @@ Before you begin, make sure you have:
 
 :::zone pivot="python"
 
-### Complete example
+## Sample of using Agents with OpenAPI tool
+
+This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### Prompt agents
 
 ```python
 import os
@@ -107,7 +339,6 @@ from azure.ai.projects.models import (
 
 # Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 PROJECT_ENDPOINT = "your_project_endpoint"
-OPENAPI_CONNECTION_NAME = "my-openapi-connection"
 
 # Create clients to call Foundry API
 project = AIProjectClient(
@@ -133,71 +364,6 @@ weather_tool = OpenApiTool(
     )
 )
 
-# If you want to use key-based authentication
-# IMPORTANT: Your OpenAPI spec must include securitySchemes and security sections
-# Example spec structure for API key auth:
-# {
-#   "components": {
-#     "securitySchemes": {
-#       "apiKeyHeader": {
-#         "type": "apiKey",
-#         "name": "x-api-key",  # This must match the key name in your project connection
-#         "in": "header"
-#       }
-#     }
-#   },
-#   "security": [{"apiKeyHeader": []}]
-# }
-#
-# For Bearer token authentication, use this securitySchemes structure instead:
-# {
-#   "components": {
-#     "securitySchemes": {
-#       "bearerAuth": {
-#         "type": "apiKey",
-#         "name": "Authorization",
-#         "in": "header"
-#       }
-#     }
-#   },
-#   "security": [{"bearerAuth": []}]
-# }
-# Then set connection key = "Authorization" and value = "Bearer <token>"
-# The word "Bearer" followed by a space MUST be included in the value.
-
-openapi_connection = project.connections.get(OPENAPI_CONNECTION_NAME)
-connection_id = openapi_connection.id
-
-openapi_key_auth_tool = {
-    "type": "openapi",
-    "openapi": {
-        "name": "get_weather",
-        "spec": openapi_weather,  # Must include securitySchemes and security sections
-        "auth": {
-            "type": "project_connection",
-            "security_scheme": {
-                "project_connection_id": connection_id
-            }
-        },
-    }
-}
-
-# If you want to use Managed Identity authentication
-openapi_mi_auth_tool = {
-    "type": "openapi",
-    "openapi": {
-        "name": "get_weather",
-        "description": "Retrieve weather information for a location.",
-        "spec": openapi_weather,
-        "auth": {
-            "type": "managed_identity",
-            "security_scheme": {
-                "audience": "https://storage.azure.com"  # Resource identifier of the target service
-            }
-        },
-    }
-}
-
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
@@ -216,37 +382,113 @@ print(response.output_text)
 project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
-### What this code does
-
-This example creates an agent with an OpenAPI tool that calls the wttr.in weather API using anonymous authentication. When you run the code:
+This example creates a prompt agent with an OpenAPI tool that calls the wttr.in weather API using anonymous authentication. The tool is attached directly to the agent definition. When you run the code:
 
 1. It loads the weather OpenAPI specification from a local JSON file.
-1. Creates an agent with the weather tool configured for anonymous access.
+1. Creates a prompt agent with the weather tool configured for anonymous access.
 1. Sends a query asking about Seattle's weather.
 1. The agent uses the OpenAPI tool to call the weather API and returns formatted results.
 1. Cleans up by deleting the agent version.
 
-### Required inputs
+### Hosted agents
 
-- String values at top of script: `PROJECT_ENDPOINT`, `OPENAPI_CONNECTION_NAME`
-- Local file: `weather_openapi.json` (OpenAPI specification)
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint by using `MCPStreamableHTTPTool`. Install compatible package versions with `pip install "agent-framework-foundry==1.10.4" "azure-ai-projects>=2.3.0,<2.4.0" azure-identity httpx jsonref`, set the `FOUNDRY_PROJECT_ENDPOINT` environment variable, and sign in with `az login`. `OpenApiToolboxTool` is the toolbox-specific model; use `OpenApiTool` only when attaching the tool directly to a prompt agent.
+
+```python
+import asyncio
+import os
+import httpx
+import jsonref
+from typing import Any, cast
+
+from agent_framework import Agent, MCPStreamableHTTPTool
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    OpenApiToolboxTool,
+    OpenApiFunctionDefinition,
+    OpenApiAnonymousAuthDetails,
+)
+
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+
+
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._token_provider = token_provider
+
+    def auth_flow(self, request):
+        request.headers["Authorization"] = "Bearer " + self._token_provider()
+        yield request
+
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # 1. Create the OpenAPI tool and add it to a toolbox. Using a toolbox is the
+    #    recommended way to give agents tools: curate tools once and reuse the
+    #    toolbox across agents. See /azure/foundry/agents/concepts/toolbox-overview
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+
+    weather_asset_file_path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "../assets/weather_openapi.json")
+    )
+    with open(weather_asset_file_path, "r") as f:
+        openapi_weather = cast(dict[str, Any], jsonref.loads(f.read()))
+
+    weather_tool = OpenApiToolboxTool(
+        openapi=OpenApiFunctionDefinition(
+            name="get_weather",
+            spec=openapi_weather,
+            description="Retrieve weather information for a location.",
+            auth=OpenApiAnonymousAuthDetails(),
+        )
+    )
+
+    toolbox = project.toolboxes.create_version(
+        name="openapi-toolbox",
+        description="Toolbox with the OpenAPI weather tool",
+        tools=[weather_tool],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+    mcp_tool = MCPStreamableHTTPTool(
+        name="toolbox",
+        url=TOOLBOX_MCP_URL,
+        http_client=http_client,
+        load_prompts=False,
+    )
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant. Use the OpenAPI weather tool to answer questions.",
+        tools=[mcp_tool],
+    )
+
+    result = await agent.run("What's the weather in Seattle?")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
 
 ### Expected output
 
 ```console
-Agent created (id: asst_abc123, name: MyAgent23, version: 1)
-Response created: The weather in Seattle is currently cloudy with a temperature of 52°F (11°C)...
-
-Cleaning up...
-Agent deleted
+Agent: The weather in Seattle is currently cloudy with a temperature of 52°F (11°C)...
 ```
 
-### Common errors
-
-- `FileNotFoundError`: OpenAPI specification file not found at specified path
-- `AuthenticationError`: Invalid credentials or insufficient permissions, or missing `securitySchemes` in OpenAPI spec for API key authentication
-- Invalid `operationId` format in OpenAPI spec causes tool registration failure
-- **API key not injected**: Verify your OpenAPI spec includes both `securitySchemes` and `security` sections, and that the key name matches your project connection
+---
 
 :::zone-end
 
@@ -255,7 +497,7 @@ Agent deleted
 
 This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
 
@@ -346,77 +588,68 @@ The weather in Seattle, WA today is cloudy with temperatures around 52°F...
 - `UnauthorizedAccessException`: Invalid credentials or insufficient RBAC permissions
 - **API key not injected**: Verify your OpenAPI spec includes both `securitySchemes` (in `components`) and `security` sections with matching scheme names
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateOpenApiTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample creates the OpenAPI toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke the tool through the toolbox MCP endpoint. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT` project endpoint and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
+using System.IO;
+using System.Runtime.CompilerServices;
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
 using Azure.AI.Projects;
-using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
-using Microsoft.Agents.AI;
-using Microsoft.Agents.AI.Foundry;
-using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
-    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string GetFile([CallerFilePath] string pth = "")
+{
+    var dirName = Path.GetDirectoryName(pth) ?? "";
+    return Path.Combine(dirName, "Assets", "weather_openapi.json");
+}
+
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? "https://<account>.services.ai.azure.com/api/projects/<project>";
 string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
 
-const string AgentInstructions = "You are a helpful assistant that can use the countries API to retrieve information about countries by their currency code.";
+var openAiEndpoint = new Uri(projectEndpoint).GetLeftPart(UriPartial.Authority);
+DefaultAzureCredential credential = new();
 
-AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+// 1. Create the OpenAPI tool and add it to a toolbox. Using a toolbox is the
+//    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
+string filePath = GetFile();
+OpenAPIFunctionDefinition toolDefinition = new(
+    name: "get_weather",
+    spec: BinaryData.FromBytes(File.ReadAllBytes(filePath)),
+    auth: new OpenAPIAnonymousAuthenticationDetails()
+);
+toolDefinition.Description = "Retrieve weather information for a location.";
+ProjectsAgentTool openapiTool = new OpenAPITool(toolDefinition);
+ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+    .GetAgentToolboxes().CreateToolboxVersion(
+        toolboxName: "openapi-toolbox",
+        tools: [openapiTool],
+        description: "Toolbox with the OpenAPI weather tool");
 
-AITool openApiTool = FoundryAITool.CreateOpenApiTool(CreateOpenAPIFunctionDefinition());
+// 2. The toolbox exposes an MCP-compatible endpoint.
+string toolboxMcpEndpoint =
+    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
 
-AIAgent agent = aiProjectClient.AsAIAgent(
-    deploymentName,
-    instructions: AgentInstructions,
-    name: "OpenAPIToolsAgent",
-    tools: [openApiTool]);
+// 3. Attach the toolbox to the hosted agent.
+var openAIClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
 
-Console.WriteLine(await agent.RunAsync(
-    "What countries use the Euro (EUR) as their currency? Please list them."));
+// ToolboxMcpClient discovers tools from the toolbox MCP endpoint and calls them
+// through tools/call. ToolboxHandler maps model tool calls to that MCP client.
+var toolboxClient = new ToolboxMcpClient(toolboxMcpEndpoint, credential);
 
-static OpenApiFunctionDefinition CreateOpenAPIFunctionDefinition()
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 {
-    const string CountriesOpenApiSpec = """
-    {
-      "openapi": "3.1.0",
-      "info": {
-        "title": "REST Countries API",
-        "description": "Retrieve information about countries by currency code",
-        "version": "v3.1"
-      },
-      "servers": [ { "url": "https://restcountries.com/v3.1" } ],
-      "paths": {
-        "/currency/{currency}": {
-          "get": {
-            "description": "Get countries that use a specific currency code (e.g., USD, EUR, GBP)",
-            "operationId": "GetCountriesByCurrency",
-            "parameters": [
-              {
-                "name": "currency", "in": "path", "required": true,
-                "schema": { "type": "string" }
-              }
-            ],
-            "responses": {
-              "200": { "description": "Successful response with list of countries" },
-              "404": { "description": "No countries found for the currency" }
-            }
-          }
-        }
-      }
-    }
-    """;
-
-    return new OpenApiFunctionDefinition(
-        "get_countries",
-        BinaryData.FromString(CountriesOpenApiSpec),
-        new OpenAPIAnonymousAuthenticationDetails())
-    {
-        Description = "Retrieve information about countries by currency code"
-    };
-}
+    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
+});
 ```
 
 ### Expected output
@@ -433,9 +666,9 @@ For the full sample including authenticated API patterns, see [Agent_Step17_Open
 
 ## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
 
-In this example, you use services with an OpenAPI specification by using the agent in a scenario that requires authentication. You use the TripAdvisor specification.
+In this example, you add an authenticated OpenAPI tool to a toolbox, attach the toolbox as an MCP tool, and use the agent in a scenario that requires authentication. You use the TripAdvisor specification.
 
-The TripAdvisor service requires key-based authentication. To create a connection in the Azure portal, open Microsoft Foundry and, at the left panel select **Management center** and then select **Connected resources**. Finally, create new connection of **Custom keys** type. Name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
+The TripAdvisor service requires key-based authentication. To create a connection, open Microsoft Foundry, select **Manage** in the upper-right navigation, select **Project details**, and then select the **Connected resources** tab. Finally, create new connection of **Custom keys** type. Name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
 
 ```csharp
 class OpenAPIConnectedDemo
@@ -457,7 +690,7 @@ class OpenAPIConnectedDemo
             endpoint: new Uri(projectEndpoint),
             tokenProvider: new DefaultAzureCredential());
 
-        // Create an Agent with `OpenAPIAgentTool` and authentication by project connection security scheme.
+        // Create an OpenAPI tool with authentication by project connection security scheme.
         string filePath = GetFile();
         AIProjectConnection tripadvisorConnection = projectClient.Connections.GetConnection("tripadvisor");
         OpenAPIFunctionDefinition toolDefinition = new(
@@ -468,13 +701,48 @@ class OpenAPIConnectedDemo
             ))
         );
         toolDefinition.Description = "Trip Advisor API to get travel information.";
-        OpenAPITool openapiTool = new(toolDefinition);
+        ProjectsAgentTool openapiTool = new OpenAPITool(toolDefinition);
+
+        // 1. Add the authenticated OpenAPI tool to a toolbox. Using a toolbox is the
+        //    recommended way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+        AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+        ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
+            .GetAgentToolboxes().CreateToolboxVersion(
+                toolboxName: "openapi-toolbox",
+                tools: [openapiTool],
+                description: "Toolbox with the authenticated TripAdvisor OpenAPI tool");
+
+        // 2. The toolbox exposes an MCP-compatible endpoint.
+        var toolboxMcpUrl = new Uri(
+            $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}" +
+            $"/versions/{toolboxVersion.Version}/mcp?api-version=v1");
+
+        // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+        //    Use a user Entra token so the caller's identity is passed through
+        //    (audience https://ai.azure.com). Create the connection once, for example
+        //    with the Azure Developer CLI:
+        //
+        //    azd ai connection create openapi-toolbox-conn \
+        //      --kind remote-tool \
+        //      --target "<toolboxMcpUrl>" \
+        //      --auth-type user-entra-token \
+        //      --audience https://ai.azure.com
+        var toolboxConnectionName = "openapi-toolbox-conn";
+
+        // 4. Attach the toolbox to a prompt agent as an MCP tool.
+        McpTool toolboxTool = ResponseTool.CreateMcpTool(
+            serverLabel: "toolbox",
+            serverUri: toolboxMcpUrl,
+            toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+                GlobalMcpToolCallApprovalPolicy.NeverRequireApproval));
+        toolboxTool.ProjectConnectionId = toolboxConnectionName;
 
         // Create the agent definition and the agent version.
         DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
-            Tools = { openapiTool }
+            Tools = { toolboxTool }
         };
         AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
@@ -508,11 +776,12 @@ class OpenAPIConnectedDemo
 
 ### What this code does
 
-This C# example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
+This C# example demonstrates using an OpenAPI tool with API key authentication through a toolbox and project connection. When you run the code:
 
 1. It loads the TripAdvisor OpenAPI specification from a local file.
 1. Retrieves the `tripadvisor` project connection containing your API key.
-1. Creates an agent with the TripAdvisor tool configured to use the connection for authentication.
+1. Creates a toolbox version containing the TripAdvisor tool configured to use the connection for authentication.
+1. Attaches the toolbox to the agent as an MCP tool.
 1. Sends a request for hotel recommendations in Paris.
 1. The agent calls the TripAdvisor API using your stored API key and returns results.
 1. Cleans up by deleting the agent.
@@ -545,122 +814,10 @@ Here are 5 top hotels in Paris, France:
 
 ## Create a Java agent with OpenAPI tool capabilities
 
-This Java example creates an agent with an OpenAPI tool by using `com.azure:azure-ai-agents` and a local OpenAPI spec file. The sample uses anonymous authentication and calls a public API endpoint.
+This Java setup can reference MCP tools, but the Java SDK doesn't yet expose a toolbox creation API.
 
-```java
-import com.azure.ai.agents.AgentsClient;
-import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.ConversationsClient;
-import com.azure.ai.agents.ResponsesClient;
-import com.azure.ai.agents.models.*;
-import com.azure.core.util.BinaryData;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.azure.json.JsonProviders;
-import com.azure.json.JsonReader;
-import com.openai.models.conversations.Conversation;
-import com.openai.models.conversations.items.ItemCreateParams;
-import com.openai.models.responses.EasyInputMessage;
-import com.openai.models.responses.Response;
-import com.openai.models.responses.ResponseCreateParams;
-
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Map;
-
-public class OpenApiAgentJavaSample {
-    public static void main(String[] args) throws Exception {
-        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
-        String projectEndpoint = "your_project_endpoint";
-
-        AgentsClientBuilder builder = new AgentsClientBuilder()
-            .endpoint(projectEndpoint)
-            .credential(new DefaultAzureCredentialBuilder().build());
-
-        AgentsClient agentsClient = builder.buildAgentsClient();
-        ResponsesClient responsesClient = builder.buildResponsesClient();
-        ConversationsClient conversationsClient = builder.buildConversationsClient();
-
-        Map<String, BinaryData> spec = OpenApiFunctionDefinition.readSpecFromFile(
-            Paths.get("openapi_spec.json"));
-        
-        OpenApiFunctionDefinition toolDefinition = new OpenApiFunctionDefinition(
-            "httpbin_get",
-            spec,
-            new OpenApiAnonymousAuthDetails())
-            .setDescription("Get request metadata from an OpenAPI endpoint.");
-
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
-            .setInstructions("Use the OpenAPI tool for HTTP request metadata.")
-            .setTools(Arrays.asList(new OpenApiTool(toolDefinition)));
-
-        AgentVersionDetails agentVersion = agentsClient.createAgentVersion("openapiValidationAgentJava", agentDefinition);
-        System.out.println("Agent: " + agentVersion.getName() + ", version: " + agentVersion.getVersion());
-
-        Conversation conversation = conversationsClient.getConversationService().create();
-        conversationsClient.getConversationService().items().create(
-            ItemCreateParams.builder()
-                .conversationId(conversation.id())
-                .addItem(EasyInputMessage.builder()
-                    .role(EasyInputMessage.Role.USER)
-                    .content("Use the OpenAPI tool and summarize the returned URL and origin in one sentence.")
-                    .build())
-                .build());
-
-        try {
-            AgentReference agentReference = new AgentReference(agentVersion.getName()).setVersion(agentVersion.getVersion());
-            ResponseCreateParams.Builder options = ResponseCreateParams.builder().maxOutputTokens(300L);
-            Response response = responsesClient.createAzureResponse(
-                new AzureCreateResponseOptions().setAgentReference(agentReference),
-                options.conversation(conversation.id()));
-
-            String text = response.output().stream()
-                .filter(item -> item.isMessage())
-                .map(item -> item.asMessage().content()
-                    .get(item.asMessage().content().size() - 1)
-                    .asOutputText()
-                    .text())
-                .reduce((first, second) -> second)
-                .orElse("<no message output>");
-
-            System.out.println("Status: " + response.status().map(Object::toString).orElse("unknown"));
-            System.out.println("Response: " + text);
-        } finally {
-            agentsClient.deleteAgentVersion(agentVersion.getName(), agentVersion.getVersion());
-            System.out.println("Agent deleted");
-        }
-    }
-}
-```
-
-### What this code does
-
-This Java example creates an agent with an OpenAPI tool and runs a conversation-scoped response:
-
-1. Loads the OpenAPI specification from `openapi_spec.json`.
-1. Creates an agent version with `OpenApiTool`.
-1. Creates a conversation and adds a user message.
-1. Creates a response by passing `AgentReference` and conversation ID.
-1. Cleans up by deleting the agent version.
-
-### Required inputs
-
-- Inline string value: `projectEndpoint` (your Foundry project endpoint)
-- Local file: `openapi_spec.json` (OpenAPI 3.0 or 3.1 specification)
-
-### Expected output
-
-```console
-Agent: openapiValidationAgentJava, version: 1
-Status: completed
-Response: The API response reports URL ... and origin ...
-Agent deleted
-```
-
-### Common errors
-
-- `Invalid OpenAPI specification`: Parse the OpenAPI JSON into an object before passing it to `OpenApiFunctionDefinition`.
-- `Invalid conversation id`: Create a conversation and pass `conversation.id()` to `createAzureResponse` via `ResponseCreateParams.builder().conversation()`.
-- `AuthenticationFailedException`: Verify `DefaultAzureCredential` can get a token for your signed-in account.
+> [!TIP]
+> **Recommended:** For most agents, add the OpenAPI tool through a [toolbox](../../concepts/toolbox-overview.md) and attach the toolbox to your agent as an MCP tool. Create the toolbox by using the [Python](?pivots=python), [REST API](?pivots=rest-api), [C#](?pivots=csharp), or [TypeScript](?pivots=typescript) example, or the [Foundry portal](../../how-to/tools/toolbox.md), and then reference its MCP endpoint from your Java agent as an `McpTool`.
 
 :::zone-end
 
@@ -670,19 +827,22 @@ The following examples show how to call an OpenAPI tool by using the REST API.
 Get an access token:
 
 ```bash
-export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+AGENT_TOKEN=$(az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv)
 ```
 
 ### Anonymous authentication
 
+Add OpenAPI tools through a toolbox, and then attach the toolbox to your agent as an MCP tool. For more information, see [What is a toolbox?](../../concepts/toolbox-overview.md)
+
+1. Create a toolbox that contains the OpenAPI weather tool:
+
 ```bash
 curl --request POST \
-  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
-  --header "Authorization: Bearer $AGENT_TOKEN" \
-  --header "Content-Type: application/json" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/openapi-toolbox/versions?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
   --data '{
-    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
-    "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+    "description": "Toolbox with the OpenAPI weather tool",
     "tools": [
       {
         "type": "openapi",
@@ -740,7 +900,44 @@ curl --request POST \
   }'
 ```
 
+   The toolbox exposes an MCP-compatible endpoint at `$FOUNDRY_PROJECT_ENDPOINT/toolboxes/openapi-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
+
+1. Create a remote-tool project connection that points at the toolbox endpoint, using a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`).
+
+```bash
+azd ai connection create openapi-toolbox-conn \
+  --kind remote-tool \
+  --target "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/openapi-toolbox/versions/<version>/mcp?api-version=v1" \
+  --auth-type user-entra-token \
+  --audience https://ai.azure.com
+```
+
+1. Create a response that uses the toolbox by attaching it as an MCP tool.
+
+```bash
+curl --request POST \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  --header "Authorization: Bearer $AGENT_TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+    "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+    "tool_choice": "required",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "toolbox",
+        "server_url": "'$FOUNDRY_PROJECT_ENDPOINT'/toolboxes/openapi-toolbox/versions/<version>/mcp?api-version=v1",
+        "require_approval": "never",
+        "project_connection_id": "openapi-toolbox-conn"
+      }
+    ]
+  }'
+```
+
 ### API key authentication (project connection)
+
+Use this variant only after the anonymous flow succeeds. Configure the project connection and the OpenAPI `securitySchemes` entry as described in [Authenticate with API key](#authenticate-with-api-key).
 
 ```bash
 curl --request POST \
@@ -824,6 +1021,8 @@ curl --request POST \
   }'
 ```
 
+For a bearer-token API, keep the same `project_connection` request shape, but use a connection configured as described in [Set up a Bearer token connection](#set-up-a-bearer-token-connection). The connection value must include the `Bearer ` prefix.
+
 ### Managed identity authentication
 
 ```bash
@@ -900,9 +1099,9 @@ curl --request POST \
 
 This REST API example shows how to call an OpenAPI tool with different authentication methods. The request:
 
-1. Sends a query to the agent asking about Seattle's weather.
-1. Includes the OpenAPI tool definition inline with the weather API specification.
-1. Shows three authentication options (anonymous, API key via project connection, managed identity) as commented alternatives.
+1. For anonymous authentication, creates a toolbox containing the OpenAPI tool definition and weather API specification.
+1. Creates a response that attaches the toolbox as an MCP tool and asks about Seattle's weather.
+1. Shows additional direct REST tool definitions for API key via project connection and managed identity authentication.
 1. The agent uses the tool to call the weather API and returns formatted results.
 
 ### Required inputs
@@ -944,7 +1143,7 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ## Create an agent with OpenAPI tool capabilities
 
-The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by using the `OpenApiTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by adding the OpenAPI tool to a toolbox and attaching the toolbox as an MCP tool. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -996,13 +1195,50 @@ export async function main(): Promise<void> {
   const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
   const openai = project.getOpenAIClient();
 
-  // Create an agent with the OpenAPI weather tool
+  const weatherTool = createWeatherTool(weatherSpec);
+
+  console.log("Creating a toolbox with the OpenAPI weather tool...");
+
+  // 1. Add the OpenAPI tool to a toolbox. Using a toolbox is the recommended
+  //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
+  const toolbox = await project.toolboxes.createVersion(
+    "openapi-toolbox",
+    [weatherTool],
+    { description: "Toolbox with the OpenAPI weather tool" },
+  );
+
+  // 2. The toolbox exposes an MCP-compatible endpoint.
+  const toolboxMcpUrl =
+    `${PROJECT_ENDPOINT}/toolboxes/${toolbox.name}` +
+    `/versions/${toolbox.version}/mcp?api-version=v1`;
+
+  // 3. Create a remote-tool project connection that points at the toolbox endpoint.
+  //    Use a user Entra token so the caller's identity is passed through
+  //    (audience https://ai.azure.com). Create the connection once, for example
+  //    with the Azure Developer CLI:
+  //
+  //    azd ai connection create openapi-toolbox-conn \
+  //      --kind remote-tool \
+  //      --target "<toolboxMcpUrl>" \
+  //      --auth-type user-entra-token \
+  //      --audience https://ai.azure.com
+  const toolboxConnectionName = "openapi-toolbox-conn";
+
+  // 4. Attach the toolbox to a prompt agent as an MCP tool.
   const agent = await project.agents.createVersion("MyOpenApiAgent", {
     kind: "prompt",
     model: "gpt-4.1-mini",
     instructions:
       "You are a helpful assistant that can call external APIs defined by OpenAPI specs to answer user questions.",
-    tools: [createWeatherTool(weatherSpec)],
+    tools: [
+      {
+        type: "mcp",
+        server_label: "toolbox",
+        server_url: toolboxMcpUrl,
+        require_approval: "never",
+        project_connection_id: toolboxConnectionName,
+      },
+    ],
   });
 
   // Send a request and stream the response
@@ -1014,7 +1250,7 @@ export async function main(): Promise<void> {
     },
     {
       body: {
-        agent: { name: agent.name, type: "agent_reference" },
+        agent_reference: { name: agent.name, type: "agent_reference" },
         tool_choice: "required",
       },
     },
@@ -1043,8 +1279,8 @@ main().catch((err) => {
 This TypeScript example creates an agent with an OpenAPI tool for weather data by using anonymous authentication. When you run the code:
 
 1. It loads the weather OpenAPI specification from a local JSON file.
-1. Creates an agent with the weather tool configured.
-1. Sends a streaming request asking about Seattle's weather and outfit planning.
+1. Creates a toolbox version containing the weather tool.
+1. Attaches the toolbox to the agent as an MCP tool, then sends a streaming request asking about Seattle's weather and outfit planning.
 1. Processes the streaming response and displays deltas as they arrive.
 1. It forces tool usage by using `tool_choice: "required"` to ensure the API is called.
 1. Cleans up by deleting the agent.
@@ -1082,7 +1318,7 @@ OpenAPI agent sample completed!
 
 ## Create an agent that uses OpenAPI tools authenticated with a project connection
 
-The following TypeScript code example demonstrates how to create an AI agent that uses OpenAPI tools authenticated through a project connection. The agent loads the TripAdvisor OpenAPI specification from local assets and can invoke the API through the configured project connection. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApiConnectionAuth.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript code example demonstrates how to create an AI agent that uses OpenAPI tools authenticated through a project connection. The agent loads the TripAdvisor OpenAPI specification from local assets and can invoke the API through the configured project connection. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentOpenApiConnectionAuth.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -1160,7 +1396,7 @@ export async function main(): Promise<void> {
     },
     {
       body: {
-        agent: { name: agent.name, type: "agent_reference" },
+        agent_reference: { name: agent.name, type: "agent_reference" },
         tool_choice: "required",
       },
     },
@@ -1241,7 +1477,7 @@ When you connect an agent to an OpenAPI tool, the agent can send request paramet
 
 ## Authenticate with API key
 
-By using API key authentication, you can authenticate your OpenAPI spec by using various methods such as an API key or Bearer token. You can use only one API key security schema per OpenAPI spec. If you need multiple security schemas, create multiple OpenAPI spec tools.
+Use this variant for an API that expects a key in a header or query parameter. You can use only one API key security scheme per OpenAPI tool. If the API requires multiple security schemes, create multiple OpenAPI tools.
 
 1. Update your OpenAPI spec security schemas. It has a `securitySchemes` section and one scheme of type `apiKey`. For example:
 
@@ -1293,7 +1529,7 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
 
 ## Set up a Bearer token connection
 
-You can use token-based authentication (for example, a Bearer token) with the same `project_connection` auth type used for API keys. The key difference is how you configure both the OpenAPI spec and the project connection.
+Use this variant for an API that expects a bearer token in the `Authorization` header. It uses the same `project_connection` auth type as API-key authentication, but the OpenAPI security scheme and connection values differ.
 
 Your OpenAPI spec will look like this:
 ```yaml
@@ -1382,14 +1618,14 @@ To set up authentication by using Managed Identity:
 
 1. Make sure your Foundry resource has system assigned managed identity enabled.
 
-   :::image type="content" source="../../../agents/media/tools/managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../../agents/media/tools/managed-identity-portal.png":::
+  :::image type="content" source="../../../agents/media/tools/managed-identity-portal.png" alt-text="Screenshot of the Azure portal showing system-assigned managed identity settings." lightbox="../../../agents/media/tools/managed-identity-portal.png":::
 
 1. Create a resource for the service you want to connect to through OpenAPI spec.
 1. Assign proper access to the resource.
    1. Select **Access Control** for your resource.
    1. Select **Add** and then **add role assignment** at the top of the screen.
 
-      :::image type="content" source="../../../agents/media/tools/role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../../agents/media/tools/role-assignment-portal.png":::
+      :::image type="content" source="../../../agents/media/tools/role-assignment-portal.png" alt-text="Screenshot of the Azure portal showing the Add role assignment action." lightbox="../../../agents/media/tools/role-assignment-portal.png":::
         
    1. Select the proper role assignment needed, usually it requires at least the *READER* role. Then select **Next**.
    1. Select **Managed identity** and then select **select members**.
@@ -1429,4 +1665,4 @@ The following table helps you choose the right authentication method for your Op
 - [Set up your environment for Foundry Agent Service](../../../agents/environment-setup.md)
 - [Agent identity and authentication](../../concepts/agent-identity.md)
 - [Expose an API and configure scopes (Microsoft Entra ID)](/entra/identity-platform/quickstart-configure-app-expose-web-apis)
-- [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)
+- [Microsoft Foundry REST API reference](https://ai.azure.com/api-reference)

@@ -4,8 +4,9 @@ description: Set up a search indexer to index data stored in Azure Table Storage
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
@@ -174,7 +175,7 @@ To avoid a full scan, you can use table partitions to narrow the scope of each i
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your table entities.
 
-1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store content from entities:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store content from entities:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2026-04-01 

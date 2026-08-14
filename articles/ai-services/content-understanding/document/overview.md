@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools document s
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 03/23/2026
+ms.date: 07/16/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
@@ -33,7 +33,7 @@ Document analyzers can process complex documents in various formats and template
 * **Loan and mortgage applications:** Automate processing to enable quicker handling by banks, lenders, and government entities.
 * **Financial services:** Analyze complex documents like financial reports and asset management reports.
 * **Expense management:** Parse receipts and invoices from various retailers to validate expenses across different formats and templates.
-* **Document sets and knowledge base scenarios:** Extract key fields from document sets as a whole. Add reference data that handles tasks like validation and enrichment by applying multistep reasoning.
+* **Insurance policy analysis:** Parse the details of the insurance policy and build a complete understanding of the policy coverage and gaps using multistep reasoning, calculations, and validations.
 
 
 ## Key benefits
@@ -64,6 +64,8 @@ Content extraction forms the foundation of Content Understanding document analys
   - **Hyperlink elements**: Detects hyperlinks embedded within the document.
   - **Annotation elements**: Associates contents with its annotations such as strikethrough, underline, and highlight.
   - **Figure elements**: Detects and extracts figure elements into structured output.
+  - **Signature detection**: Detects signatures and returns their location, along with any text recognized inside the signature region.
+  - **Document metadata**: Extracts embedded metadata, such as author, creation date, and title, from supported file types.
 - Structure analysis
   - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
   - **Tabular data**: Recognizes and extracts table structures, including complex formats with spanning cells and multipage layouts.
@@ -79,7 +81,9 @@ For example, you can extract customer details, billing addresses, and itemized c
 
 To maximize efficiency, use prebuilt analyzer templates, such as templates tailored for invoices. You can also design custom analyzers from scratch to enhance precision through labeling of more sample documents.
 
-The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field. 
+The confidence and grounding API is an opt-in feature available for all document field types, whether they use the `extract`, `classify`, or `generate` method. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field.
+
+Supported typed field values, such as dates and numbers, are automatically normalized to a canonical format. Normalization isn't configurable. The field's returned value is the normalized value.
 
 #### Field extraction methods
 
@@ -88,6 +92,10 @@ Content Understanding provides versatile methods for field extraction, which ena
 - **Extract**: Extract specific data, like transaction dates from receipts or line items from invoices, for precise and focused information capture.
 - **Classify**: Categorize document content into predefined categories, such as classifying sentiment in customer call transcripts or classifying hotel receipt items.
 - **Generate**: Produce new insights or summaries from your documents, including document summaries, and chapter overviews to enhance content accessibility and comprehension.
+
+### Agentic mode (preview)
+
+For scenarios where the answer isn't directly present in a field and must be built from evidence across a document, use [agentic mode](../concepts/agentic-mode.md). Agentic mode reasons over a document to support multistep calculations, validation against a set of conditions, and analysis of complex tables or figures. It's available with API version `2026-06-01-preview`, and the initial preview supports one input file per analysis request.
 
 
 ## Input requirements

@@ -22,7 +22,7 @@ To complete this article, you need:
 * A Foundry project. This kind of project is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../../how-to/create-projects.md).
 
 
-* [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Foundry Models sold by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+* [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../concepts/models-from-partners.md#permissions-required-to-subscribe-to-models-from-partners-and-community). [Foundry Models sold by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
 
 * Install the [Azure CLI](/cli/azure/) and the `cognitiveservices` extension for Foundry Tools.
 
@@ -71,7 +71,7 @@ To add a model, first identify the model that you want to deploy. You can query 
     az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName --location $location --kind AIServices --sku S0
     ```
 
-1. Check which models are available to you and under which SKU. SKUs, also known as [deployment types](../../concepts/deployment-types.md), define how Azure infrastructure is used to process requests. Models might offer different deployment types. The following command lists all the model definitions available:
+1. Check which models are available to you and under which SKU. Each [deployment type](../../concepts/deployment-types.md) is represented by a SKU code in the CLI and ARM, and it defines how Azure infrastructure processes requests. Models might offer different deployment types. The following command lists all the model definitions available:
     
     ```azurecli
     az cognitiveservices account list-models \

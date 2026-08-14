@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search knowledge sources and indexe
 ms.reviewer: vaishalishah
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 07/28/2026
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
@@ -63,8 +63,6 @@ This article focuses on the indexing automation approaches, built on this founda
 + The following indexer features don't support permission inheritance in indexed documents originating from ADLS Gen2. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
-
-  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 
   + [Knowledge store](knowledge-store-concept-intro.md)
 

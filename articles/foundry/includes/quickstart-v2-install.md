@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 04/10/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 Make sure you install the correct version of the packages as shown here.
@@ -54,7 +55,7 @@ Make sure you install the correct version of the packages as shown here.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 

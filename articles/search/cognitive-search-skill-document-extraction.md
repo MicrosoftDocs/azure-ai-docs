@@ -5,9 +5,11 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - doc-kit-assisted
 ms.topic: reference
-ms.date: 01/07/2026
+ms.date: 08/08/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Document Extraction cognitive skill
@@ -81,6 +83,8 @@ Alternatively, it can be defined as:
 The file reference object can be generated one of three ways:
 
 + Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to "true".  This creates a path `/document/file_data` that is an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Blob storage.
+
+  `allowSkillsetToReadFileData` makes the downloaded file data available to the skill. It doesn't increase the [blob indexer file-size or extracted-content limits](search-limits-quotas-capacity.md#indexer-limits).
 
 + Setting the `imageAction` parameter on your indexer definition to a value other than `none`.  This creates an array of images  that follows the required convention for input to this skill if passed individually (that is, `/document/normalized_images/*`).
 

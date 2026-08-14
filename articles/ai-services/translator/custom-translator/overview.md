@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Custom Translator offers similar capabilities to what Microsoft Translator Hub does for Statistical Machine Translation (SMT), but exclusively for Neural Machine Translation (NMT) systems.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: overview

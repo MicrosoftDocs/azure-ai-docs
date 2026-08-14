@@ -9,23 +9,23 @@ ms.date: 03/19/2026
 ms.custom: include, classic-and-new
 ---
 
-To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
+To unlock the full potential of vision-enabled chat models, tailor the prompts to your specific needs. The following guidelines can help you enhance the accuracy and efficiency of your prompts.
 
 > [!NOTE]
 > These prompt engineering techniques apply to vision-enabled models including GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini. To deploy a vision-enabled model, see [Deploy models](../../../foundry-classic/how-to/deploy-models-managed.md).
 
 ## Fundamentals of writing an image prompt
 
-- **Contextual specificity:** Adding context to the scenario at hand gives the model a better understanding of an appropriate output. This level of specificity aids in focusing on relevant aspects and avoiding extraneous details.
-- **Task-oriented prompts:** Focusing on a specific task helps the model to develop the output while taking that perspective into consideration.  
-- **Handle refusals:** When the model indicates an inability to perform a task, refining the prompt can be an effective solution. More specific prompts can guide the model towards a clearer understanding and better execution of the task. Request explanations for generated responses, place the image before the text for single-image prompts, and ask the model to describe the image in detail first before completing your specific task.
-- **Add examples:** Add examples that represent the type of responses you're looking for
-- **Break down requests:** Try breaking down complex requests step-by-step to create manageable sub-goals
-- **Define output format:** Clearly mention the desired format for the output, such as markdown, JSON, HTML, etc. You can also suggest a specific structure, length, or specific attributes about the response.
+- **Contextual specificity:** Adding context to the scenario gives the model a better understanding of an appropriate output. This level of specificity helps focus on relevant aspects and avoid extraneous details.
+- **Task-oriented prompts:** Focusing on a specific task helps the model develop the output while taking that perspective into consideration.  
+- **Handle refusals:** When the model indicates an inability to perform a task, try refining the prompt. More specific prompts can guide the model toward a clearer understanding and better execution of the task. Request explanations for generated responses, place the image before the text for single-image prompts, and ask the model to describe the image in detail first before completing your specific task.
+- **Add examples:** Add examples that represent the type of responses you're looking for.
+- **Break down requests:** Try breaking down complex requests step-by-step to create manageable sub-goals.
+- **Define output format:** Clearly mention the desired format for the output, such as markdown, JSON, HTML, and so on. You can also suggest a specific structure, length, or specific attributes about the response.
 
 ## Example prompt inputs and outputs
 
-There are many ways to craft system prompts to tailor the output specifically to your needs. The following sample inputs and outputs showcase how adjusting your prompts can give you different results. Try out the model for yourself using these images and adjusting the system prompt in the [Microsoft Foundry playground](https://ai.azure.com/?cid=learnDocs).
+You can craft system prompts in many ways to tailor the output specifically to your needs. The following sample inputs and outputs showcase how adjusting your prompts can give you different results. Try the model for yourself by using these images and adjusting the system prompt in the [Microsoft Foundry playground](https://ai.azure.com/?cid=learnDocs).
 
 ### Contextual specificity
 
@@ -41,11 +41,11 @@ Context can help improve feedback from the model. For example, if you're working
 
 ### Task-oriented prompts
 
-Giving the model a specific task to follow is one way of sharpening the response. In this example, this prompt steers the model to concentrate on elements crucial for insurance assessments, thereby improving accuracy and relevancy.
+Giving the model a specific task to follow is one way to sharpen the response. In this example, the prompt steers the model to concentrate on elements crucial for insurance assessments, which improves accuracy and relevancy.
 
 |Basic prompt|Model output|
 |--------|-----------|
-| :::image type="content" source="../media/concepts/gpt-v/car-crash.jpg" lightbox="../media/concepts/gpt-v/car-crash.jpg" alt-text="Photograph of a car crashed into a pole."::: What is in this image? | `The image shows a silver sedan that has been in an accident. The front end of the car is damaged, with the hood crumpled, and the bumper partially detached. The car is resting against a utility pole on the sidewalk, and there is visible smoke coming from the engine area, indicating a recent crash. The setting appears to be a residential street, as indicated by the presence of houses in the background, a neatly trimmed hedge, and a sidewalk.` |
+| :::image type="content" source="../media/concepts/gpt-v/car-crash.jpg" lightbox="../media/concepts/gpt-v/car-crash.jpg" alt-text="Photograph of a car crashed into a pole."::: What is in this image? | `The image shows a silver sedan that was in an accident. The front end of the car is damaged, with the hood crumpled, and the bumper partially detached. The car is resting against a utility pole on the sidewalk, and there's visible smoke coming from the engine area, indicating a recent crash. The setting appears to be a residential street, as indicated by the presence of houses in the background, a neatly trimmed hedge, and a sidewalk.` |
 
 |Updated prompt|Model output|
 |--------|-----------|
@@ -53,7 +53,7 @@ Giving the model a specific task to follow is one way of sharpening the response
 
 ### Handling refusals
 
-When you receive a refusal output from a model, there are several ways you can tweak input to generate a more appropriate response. Below is one example of how to handle a refusal and progress. 
+When you receive a refusal output from a model, you can tweak the input to generate a more appropriate response. The following example shows how to handle a refusal and move forward. 
 
 |Basic prompt|Model output|
 |--------|-----------|
@@ -61,7 +61,7 @@ When you receive a refusal output from a model, there are several ways you can t
 
 |Follow up prompt|Model output|
 |--------|-----------|
-| What information do you need? | `I apologize for the confusion earlier. To plan a meal based on the image provided, I would need to know the following: `<br> `The number of people dining to ensure there's enough food for everyone.`<br>`Any dietary restrictions or preferences to accommodate (e.g., vegetarian, gluten-free, allergies).`<br>`The occasion or type of meal being planned (e.g., casual lunch, dinner party).`<br>`Desired balance of the meal in terms of food groups and nutrition.` <br>`With this information, I could help suggest how to portion the dishes, create a balanced meal, and ensure the meal meets the needs of all diners.`|
+| What information do you need? | `I apologize for the confusion earlier. To plan a meal based on the image provided, I would need to know the following: `<br> `The number of people dining to ensure there's enough food for everyone.`<br>`Any dietary restrictions or preferences to accommodate (for example, vegetarian, gluten-free, allergies).`<br>`The occasion or type of meal being planned (for example, casual lunch, dinner party).`<br>`Desired balance of the meal in terms of food groups and nutrition.` <br>`With this information, I could help suggest how to portion the dishes, create a balanced meal, and ensure the meal meets the needs of all diners.`|
 
 ### Adding examples
 
@@ -71,7 +71,7 @@ When you receive a refusal output from a model, there are several ways you can t
 
 |Updated prompt|Model output|
 |--------|-----------|
-| Q: What is this dog breed and what is its average weight & height? :::image type="content" source="../media/concepts/gpt-v/pomeranian.jpg" lightbox="../media/concepts/gpt-v/pomeranian.jpg" alt-text="Photograph of a pomeranian dog sitting on a pool diving board above the water."::: <br> A: Breed: pomeranian; average weight: 3-7 lbs; average height: 8-14 inches <br> :::image type="content" source="../media/concepts/gpt-v/bulldog.jpg" lightbox="../media/concepts/gpt-v/bulldog.jpg" alt-text="Photograph of a bulldog laying in a grass field."::: A: Breed: English bulldog; average weight: 50-55 lbs; average height: 14-16 inches :::image type="content" source="../media/concepts/gpt-v/border-collie.jpg" lightbox="../media/concepts/gpt-v/border-collie.jpg" alt-text="Photograph of a border collie dog laying in a grass field."::: | `A: Breed: Border Collie; average weight: 30-45 lbs; average height: 18-22 inches` |
+| Q: What is this dog breed and what is its average weight & height? :::image type="content" source="../media/concepts/gpt-v/pomeranian.jpg" lightbox="../media/concepts/gpt-v/pomeranian.jpg" alt-text="Photograph of a pomeranian dog sitting on a pool diving board above the water."::: <br> A: Breed: Pomeranian; average weight: 3-7 lbs; average height: 8-14 inches <br> :::image type="content" source="../media/concepts/gpt-v/bulldog.jpg" lightbox="../media/concepts/gpt-v/bulldog.jpg" alt-text="Photograph of a bulldog laying in a grass field."::: A: Breed: English bulldog; average weight: 50-55 lbs; average height: 14-16 inches :::image type="content" source="../media/concepts/gpt-v/border-collie.jpg" lightbox="../media/concepts/gpt-v/border-collie.jpg" alt-text="Photograph of a border collie dog laying in a grass field."::: | `A: Breed: Border Collie; average weight: 30-45 lbs; average height: 18-22 inches` |
 
 ### Breaking down requests
 

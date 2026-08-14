@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 07/14/2026
+ms.date: 08/05/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -108,6 +108,20 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
    > [!TIP]
    > To verify the deployment, navigate to your project's **Deployments** page and confirm the deployment **Status** shows **Succeeded**.
 
+## Improve prompt cache hit rate
+
+Prompt caching reuses processing for requests that share the same prompt prefix.
+To improve the prompt cache hit rate, set a stable identifier for each user or
+session, and reuse the same value for related requests. Use one of these options:
+
+* Set the `x-session-affinity` HTTP header.
+* Set the `user` request parameter.
+* Set the `prompt_cache_key` request parameter. This parameter takes priority
+  over `user` when both are present.
+
+For more information, see [Prompt caching](https://docs.fireworks.ai/guides/prompt-caching)
+in the Fireworks AI documentation.
+
 ## Available catalog models
 
 The following Fireworks models are available in the Foundry model catalog. In the Supported offers column, `PTU` includes both Global Provisioned throughput and Data Zone Provisioned throughput.
@@ -144,7 +158,9 @@ The following Fireworks models are available in the Foundry model catalog. In th
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
 
 > [!IMPORTANT]
-> The Pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, and `FW-GLM-5`.
+> The following deprecations affect only the Pay-per-token offering. The models aren't retiring. The Pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, and `FW-GLM-5`.
+>
+> Deprecation of the Pay-per-token offering for `FW-GLM-5.1` and `FW-MiniMax-M2.5` is scheduled for August 7, 2026. Provisioned throughput (PTU) remains available for all six models.
 >
 > Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
 

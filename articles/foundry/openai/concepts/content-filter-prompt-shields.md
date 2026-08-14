@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 02/13/2026
+ms.date: 07/31/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new

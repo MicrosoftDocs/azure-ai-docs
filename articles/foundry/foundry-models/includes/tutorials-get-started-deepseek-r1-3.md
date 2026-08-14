@@ -22,13 +22,13 @@ If you encounter issues while following this tutorial, use the following guidanc
 
 ### Deployment issues
 
-- **Deployment name vs. model name.** The `model` parameter in API calls refers to your **deployment name**, not the model name. If you customized the deployment name during creation, use that name instead of `DeepSeek-R1`.
+- **Deployment name vs. model name.** The `model` parameter in API calls refers to your **deployment name**, not the model name. If you customized the deployment name during creation, use that name instead of `DeepSeek-V4-Pro`.
 - **Deployment not ready.** If you receive a 404 error, verify that the deployment status shows **Succeeded** in the Foundry portal before making API calls.
 
 ### Rate limiting (429 errors)
 
 - **Implement retry logic.** Reasoning models generate longer responses that consume more tokens. Use exponential backoff to handle 429 (Too Many Requests) errors.
-- **Monitor token usage.** DeepSeek-R1 reasoning content (within `<think>` tags) counts toward your token limit. See [quotas and limits](../quotas-limits.md) for the current rate limits.
+- **Monitor token usage.** DeepSeek-V4-Pro reasoning content (within `<think>` tags) counts toward your token limit. See [quotas and limits](../quotas-limits.md) for the current rate limits.
 - **Request quota increases.** If you consistently hit rate limits, [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ### Package installation issues
@@ -43,7 +43,7 @@ In this tutorial, you accomplished the following:
 
 > [!div class="checklist"]
 > * Created Foundry resources for hosting AI models
-> * Deployed the DeepSeek-R1 reasoning model
+> * Deployed the DeepSeek-V4-Pro reasoning model
 > * Made authenticated API calls using Microsoft Entra ID
 > * Sent inference requests and received reasoning outputs
 > * Parsed reasoning content from model responses to understand the model's thought process

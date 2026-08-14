@@ -1,6 +1,16 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/content-understanding/face/overview.md",
+      "redirect_url": "/azure/ai-services/content-understanding/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/tutorial/logic-apps.md",
+      "redirect_url": "/azure/ai-services/content-understanding/integrations/logic-apps",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/language-service/question-answering/concepts/azure-resources.md",
       "redirect_url": "/azure/ai-services/language-service/question-answering/concepts/plan",
       "redirect_document_id": false
@@ -876,6 +886,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/whisper-overview.md",
+      "redirect_url": "/azure/ai-services/speech-service/transcribe-overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/anomaly-detector/how-to/postman.md",
       "redirect_url": "/azure/ai-services/anomaly-detector/overview",
       "redirect_document_id": false
@@ -1533,6 +1548,16 @@
     {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/accuracy-confidence.md",
       "redirect_url": "/azure/ai-services/content-understanding/concepts/best-practices",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/standard-pro-modes.md",
+      "redirect_url": "/azure/ai-services/content-understanding/quickstart/use-rest-api",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/tutorial/build-person-directory.md",
+      "redirect_url": "/azure/ai-services/content-understanding/quickstart/use-rest-api",
       "redirect_document_id": false
     },
     {
@@ -3097,12 +3122,17 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry.md",
-      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
+      "redirect_url": "/azure/ai-services/content-understanding/foundry-vs-content-understanding-studio",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry-pro-mode.md",
-      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
+      "redirect_url": "/azure/ai-services/content-understanding/foundry-vs-content-understanding-studio",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/how-to/content-understanding-foundry-classic.md",
+      "redirect_url": "/azure/ai-services/content-understanding/foundry-vs-content-understanding-studio",
       "redirect_document_id": false
     },
     {

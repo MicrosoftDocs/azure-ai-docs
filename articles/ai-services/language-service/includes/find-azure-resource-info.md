@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to create an Azure Language in Foundry Tools resource.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 06/20/2026
 ms.author: lajanuar

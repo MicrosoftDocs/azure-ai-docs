@@ -4,7 +4,7 @@ description: Configure IP firewall rules to allow data access by an Azure AI Sea
 ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 07/28/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 Azure AI Search makes external, outbound calls during indexer processing for content and skills, and for agentic retrieval requests that include calls to large language models (LLMs). If the target Azure resource uses IP firewall rules to filter incoming calls, you must create an inbound rule in your firewall that admits requests from Azure AI Search.
 
-This article explains how to find the IP address of your search service and configure an inbound IP rule on an Azure Storage account. While specific to Azure Storage, this approach also works for other Azure resources that use IP firewall rules for data access, such as Azure Cosmos DB and Azure SQL.
+This article explains how to find the IP address of your search service and configure an inbound IP rule on an Azure Storage account. While specific to Azure Storage, this approach also works for other Azure resources that use IP firewall rules for data access, such as Azure Cosmos DB, Azure SQL, and function apps hosting custom skills.
 
 ## Prerequisites
 
@@ -154,3 +154,4 @@ If you don't need key-based authentication, we recommend that you disable API ke
 - [Configure Azure Storage firewalls](/azure/storage/common/storage-network-security)
 - [Configure an IP firewall for Azure Cosmos DB](/azure/cosmos-db/how-to-configure-firewall)
 - [Configure IP firewall for Azure SQL Server](/azure/azure-sql/database/firewall-configure)
+- [Manage Azure Functions inbound access restrictions](/azure/azure-functions/functions-networking-options#inbound-access-restrictions)

@@ -3,8 +3,9 @@ title: Create a Blob Knowledge Source for Agentic Retrieval
 description: Learn how to create a blob knowledge source in Azure AI Search that ingests content from Azure Blob Storage or ADLS Gen2 for agentic retrieval.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/04/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -33,6 +34,8 @@ When you create a blob knowledge source, you specify an external data source, mo
 + A skillset that chunks and optionally vectorizes multimodal content from the container.
 + An index that stores enriched content and meets the criteria for agentic retrieval.
 + An indexer that uses the previous objects to drive the indexing and enrichment pipeline.
+
+The generated indexer conforms to the *blob indexer*, whose prerequisites, supported document formats, and limitations also apply to blob knowledge sources. For more information, see the [blob indexer documentation](search-how-to-index-azure-blob-storage.md) and [indexer limits](search-limits-quotas-capacity.md#indexer-limits). If the generated skillset calls an external service, that skill's input and service limits also apply.
 
 > [!NOTE]
 > If user access is specified at the document (blob) level in Azure Storage, a knowledge source can carry permission metadata forward to indexed content in Azure AI Search. For more information, see [ADLS Gen2 permission metadata](search-indexer-access-control-lists-and-role-based-access.md) or [Blob RBAC scopes](search-blob-indexer-role-based-access.md).

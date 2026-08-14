@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Integrate the Azure Translator prebuilt solutions into your applications, websites, tools, and other solutions.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
 ms.date: 04/24/2026
 ms.author: lajanuar

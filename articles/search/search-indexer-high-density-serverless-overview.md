@@ -1,12 +1,12 @@
 ﻿---
 title: Indexer Execution on Serverless and S3 HD
-description: Learn how Azure AI Search runs indexers on Serverless and S3 High Density (S3 HD) search services.
-author: gmndrg
-ms.author: gimondra
+description: Learn how Azure AI Search runs indexers, applies daily runtime quotas, and reports remaining capacity on Serverless and S3 HD services.
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Indexer execution on Serverless and Standard 3 High Density (S3 HD)
@@ -18,17 +18,17 @@ This article describes the indexer execution model that Azure AI Search uses for
 > [!IMPORTANT]
 > The capabilities described in this article are in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> + Indexer support on S3 HD requires the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or later.
+> + Indexer support on S3 HD requires the [`2025-11-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or later.
 > + Serverless indexer support requires the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or later.
 
 ## Where it applies
 
 The execution model in this article applies to:
 
-+ Serverless search services that run indexers using the `2026-05-01-preview` REST API or later.
-+ S3 HD search services that run indexers using the `2026-05-01-preview` REST API or later.
++ [Serverless search services](serverless-cost-optimization.md) that run indexers by using the `2026-05-01-preview` REST API or later.
++ S3 HD search services that run indexers by using the `2025-11-01-preview` REST API or later.
 
-Existing indexer definitions, data sources, skillsets, and knowledge sources work without modification on both options.
+Supported indexer definitions, data sources, skillsets, and indexer-backed knowledge sources work without modification on both options. File knowledge sources aren't supported on Serverless.
 
 ## Execution model
 
@@ -156,10 +156,12 @@ During the preview, Serverless indexers are designed to simplify ingestion for r
 
 For indexer limits on Serverless and S3 HD, see [Indexer limits](search-limits-quotas-capacity.md#indexer-limits).
 
+The service-level runtime quota and indexer limits don't replace the input, request, or processing limits of skills and external services in a skillset. Check each skill reference separately when you size an enrichment pipeline.
+
 ## Related content
 
 + [Indexers in Azure AI Search](search-indexer-overview.md)
 + [Run or reset indexers](search-howto-run-reset-indexers.md)
-+ [Monitor indexer status and results](search-howto-monitor-indexers.md)
++ [Monitor indexer status and results](search-monitor-indexers.md)
 + [Knowledge sources](agentic-knowledge-source-overview.md)
 + [Service limits in Azure AI Search](search-limits-quotas-capacity.md)

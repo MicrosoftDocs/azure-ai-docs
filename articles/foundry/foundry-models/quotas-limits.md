@@ -10,7 +10,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 07/10/2026
+ms.date: 07/17/2026
 ms.author: mopeakande
 ms.reviewer: haakar
 reviewer: haakar

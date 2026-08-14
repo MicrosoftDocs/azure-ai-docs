@@ -1,15 +1,16 @@
 ---
-title: Work with the Chat Completion API
+title: Work with the Chat Completions API
 titleSuffix: Azure OpenAI
-description: Learn how to work with the Chat Completion API using the Azure OpenAI .NET SDK.
+description: Learn how to work with the Chat Completions API using the Azure OpenAI .NET SDK.
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 03/04/2026
+ms.date: 07/22/2026
 manager: mcleans
 keywords: ChatGPT
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -25,9 +26,11 @@ ai-usage: ai-assisted
 1. Install the required NuGet packages:
 
     ```dotnetcli
-    dotnet add package OpenAI --prerelease
+    dotnet add package OpenAI
     dotnet add package Azure.Identity
     ```
+
+    The OpenAI package is stable. The Microsoft Entra ID examples use an experimental custom authentication constructor and suppress the `OPENAI001` warning.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to Azure:
 
@@ -37,7 +40,7 @@ ai-usage: ai-assisted
 
 ## Work with chat completion models
 
-The following code snippet shows the most basic way to interact with models that use the Chat Completion API.
+The following code snippet shows the most basic way to interact with models that use the Chat Completions API.
 
 > [!NOTE]
 > The [responses API](../how-to/responses.md) uses the same chat style of interaction, but supports the latest features that aren't supported with the older chat completions API.
@@ -111,11 +114,12 @@ Every response includes a `FinishReason`. The possible values for `FinishReason`
 * **Stop**: The API returned complete model output.
 * **Length**: Incomplete model output because of the `MaxOutputTokenCount` parameter or the token limit.
 * **ContentFilter**: Omitted content because of a content filter flag.
-* **null**: API response still in progress or incomplete.
+* **ToolCalls**: The model called a tool.
+* **FunctionCall**: The model called a function. This value is deprecated.
 
-Consider setting `MaxOutputTokenCount` to a slightly higher value than normal. A higher value ensures that the model doesn't stop generating text before it reaches the end of the message.
+Set `MaxOutputTokenCount` high enough for the expected response. A higher value helps prevent the model from stopping before it reaches the end of the message.
 
-## Work with the Chat Completion API
+## Work with the Chat Completions API
 
 OpenAI trained chat completion models to accept input formatted as a conversation. The messages parameter takes an array of message objects with a conversation organized by role. When you use the .NET SDK, you use strongly typed message classes for each role.
 
@@ -144,7 +148,7 @@ The system role, also known as the system message, is included at the beginning 
 * Instructions or rules you want the assistant to follow.
 * Data or information needed for the model, such as relevant questions from an FAQ.
 
-You can customize the system role for your use case or include basic instructions. The system role/message is optional, but we recommend that you at least include a basic one to get the best results.
+Customize the system role for your use case or include basic instructions. The system message is optional, but include at least a basic one to get the best results.
 
 ### Messages
 
@@ -189,8 +193,8 @@ You can also include relevant data or information in the system message to give 
 new SystemChatMessage(@"Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI in Microsoft Foundry Models. Only answer questions using the context below and if you're not sure of an answer, you can say 'I don't know'.
 
 Context:
-- Azure OpenAI provides REST API access to OpenAI's powerful language models including the GPT-3, Codex and Embeddings model series.
-- Azure OpenAI gives customers advanced language AI with OpenAI GPT-4o, GPT-image series, and Embeddings models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+- Azure OpenAI provides REST API access to OpenAI models, including GPT-5, GPT-4.1, and Embeddings model series.
+- Azure OpenAI gives customers advanced language AI with GPT-5, GPT-image, and Embeddings models with the security and enterprise capabilities of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition between the services.
 - At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes requiring applicants to show well-defined use cases, incorporating Microsoft's principles for responsible AI use."),
 new UserChatMessage("What is Azure OpenAI?")
 ```
@@ -199,17 +203,19 @@ new UserChatMessage("What is Azure OpenAI?")
 
 You can also give few-shot examples to the model. You can include a series of messages between the user and the assistant in the prompt as few-shot examples. By using these examples, you can seed answers to common questions to prime the model or teach particular behaviors to the model.
 
+This example uses current chat completion models such as `gpt-5-mini` and `gpt-5`.
+
 ```csharp
 new SystemChatMessage("Assistant is an intelligent chatbot designed to help users answer their tax related questions."),
 new UserChatMessage("When do I need to file my taxes by?"),
-new AssistantChatMessage("In 2023, you will need to file your taxes by April 18th. The date falls after the usual April 15th deadline because April 15th falls on a Saturday in 2023. For more details, see https://www.irs.gov/filing/individuals/when-to-file."),
+new AssistantChatMessage("Check the current individual filing deadline at https://www.irs.gov/filing/individuals/when-to-file."),
 new UserChatMessage("How can I check the status of my tax refund?"),
-new AssistantChatMessage("You can check the status of your tax refund by visiting https://www.irs.gov/refunds")
+new AssistantChatMessage("Check your refund status at https://www.irs.gov/refunds.")
 ```
 
 #### Use chat completion for nonchat scenarios
 
-The Chat Completion API is designed to work with multi-turn conversations, but it also works well for nonchat scenarios.
+The Chat Completions API is designed to work with multi-turn conversations, but it also works well for nonchat scenarios.
 
 For example, for an entity extraction scenario, you might use the following prompt:
 
@@ -225,12 +231,12 @@ new UserChatMessage("Hello. My name is Robert Smith. I'm calling from Contoso In
 
 ## Create a basic conversation loop
 
-The examples so far show the basic mechanics of interacting with the Chat Completion API. This example shows you how to create a conversation loop that performs the following actions:
+The preceding examples show the basic mechanics of interacting with the Chat Completions API. This example shows how to create a conversation loop that performs the following actions:
 
 - Continuously takes console input and properly formats it as part of the messages list as user role content.
 - Outputs responses that are printed to the console and formatted and added to the messages list as assistant role content.
 
-Every time a new question is asked, a running transcript of the conversation so far is sent along with the latest question. Because the model has no memory, you need to send an updated transcript with each new question or the model will lose the context of the previous questions and answers.
+Every time you ask a new question, the request sends the running conversation transcript along with the latest question. Because the model has no memory, send an updated transcript with each question or the model loses the context of previous questions and answers.
 
 # [Microsoft Entra ID](#tab/dotnet-secure)
 
@@ -324,9 +330,9 @@ The previous example runs until the model's token limit (context window) is reac
 
 It's your responsibility to ensure that the prompt and completion fall within the token limit. For longer conversations, you need to keep track of the token count and only send the model a prompt that falls within the limit. Alternatively, with the [responses API](../how-to/responses.md) you can have the API handle truncation and management of the conversation history for you.
 
-The following code sample shows a simple chat loop example that trims the conversation history when the number of stored messages approaches a limit. It removes the oldest non-system messages to keep the conversation within bounds.
+The following code sample trims the conversation at a 4,096-token demonstration threshold. Set `TokenLimit` to the context window of your deployed model for production use. The sample removes the oldest non-system messages to keep the conversation within bounds.
 
-You can install the [Microsoft.ML.Tokenizers](https://www.nuget.org/packages/Microsoft.ML.Tokenizers) and [Microsoft.ML.Tokenizers.Data.0200kBase](https://www.nuget.org/packages/Microsoft.ML.Tokenizers.Data.O200kBase) packages for accurate token counting:
+Install the [Microsoft.ML.Tokenizers](https://www.nuget.org/packages/Microsoft.ML.Tokenizers) and [Microsoft.ML.Tokenizers.Data.O200kBase](https://www.nuget.org/packages/Microsoft.ML.Tokenizers.Data.O200kBase) packages for accurate token counting:
 
 ```dotnetcli
 dotnet add package Microsoft.ML.Tokenizers
@@ -489,9 +495,9 @@ An alternative approach is to limit the conversation duration to the maximum tok
 
 ### Failed to create completion as the model generated invalid Unicode output
 
-| Error Code | Error Message | Workaround |
-|---|---|---|
-| 500 | 500 - InternalServerError: Error code: 500 - {"error": {"message": "Failed to create completion as the model generated invalid Unicode output"}} | You can minimize the occurrence of these errors by reducing the `Temperature` in your `ChatCompletionOptions` to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. |
+- **Error code:** 500
+- **Error message:** `500 - InternalServerError: Error code: 500 - {"error": {"message": "Failed to create completion as the model generated invalid Unicode output"}}`
+- **Workaround:** Set `Temperature` in `ChatCompletionOptions` to less than 1, and use a client with retry logic. Retrying the request often succeeds.
 
 ### Common errors
 

@@ -46,7 +46,24 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 1. Create a **package.json** file with the following content:
 
-    :::code language="json" source="~/cognitive-services-quickstart-code/javascript/speech/package.json":::
+    ```json
+    {
+      "name": "voice-live-quickstart",
+      "version": "1.0.0",
+      "type": "module",
+      "dependencies": {
+        "@azure/ai-voicelive": "^1.0.0",
+        "@azure/core-auth": "^1.0.0",
+        "@azure/identity": "^4.0.0",
+        "dotenv": "^16.0.0",
+        "node-record-lpcm16": "^1.0.1",
+        "speaker": "^0.5.5"
+      }
+    }
+    ```
+
+    > [!NOTE]
+    > The `node-record-lpcm16` and `speaker` packages are optional audio packages for microphone input and audio playback. They require [SoX](https://sox.sourceforge.io/) and native build tools. If you want to connect without audio hardware, use the `--no-audio` flag when running the sample.
 
 1. Install the dependencies:
 

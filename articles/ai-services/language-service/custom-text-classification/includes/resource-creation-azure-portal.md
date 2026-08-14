@@ -2,9 +2,9 @@
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---

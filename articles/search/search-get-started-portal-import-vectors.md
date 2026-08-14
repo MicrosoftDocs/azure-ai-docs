@@ -8,7 +8,8 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 03/13/2026
+ms.date: 07/20/2026
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Vector search in the Azure portal
@@ -62,6 +63,8 @@ The portal supports the following embedding models for integrated vectorization.
 <sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the Azure portal, this subdomain was automatically generated during resource setup.
 
 <sup>4</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
+
+For the latest model lifecycle guidance, including deprecations, see [Model retirement and deprecation](/azure/ai-foundry/openai/concepts/model-retirements).
 
 ### Public endpoint requirements
 

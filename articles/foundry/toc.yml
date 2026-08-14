@@ -20,7 +20,7 @@ items:
 - name: Agents
   href: toc-files-foundry/agent-service/toc.yml
 
-- name: Tools and knowledge
+- name: Toolboxes
   href: toc-files-foundry/tools-knowledge/toc.yml
 
 - name: Observability

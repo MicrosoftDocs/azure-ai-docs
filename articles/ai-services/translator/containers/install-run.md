@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use the Translator container and API to translate text and documents.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 ms.date: 05/19/2026
 ms.author: lajanuar

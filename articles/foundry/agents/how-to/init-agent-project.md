@@ -148,7 +148,7 @@ To manage an existing Foundry project through `azd`, run the wizard and select t
 azd ai agent init --project-id /subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account}/projects/{project}
 ```
 
-To find the project ID, open the [Foundry portal](https://ai.azure.com), go to **Operate** > **Admin**, select your Foundry project, and copy the **Resource ID** value.
+To find the project ID, open the [Foundry portal](https://ai.azure.com), go to **Manage** > **Project details**, and copy the **Resource ID** value.
 
 > [!WARNING]
 > When you initialize against an existing project with `--project-id`, the tooling skips the automatic role assignments that it performs when it creates a new project. Make sure the required roles are already assigned. For the full matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).

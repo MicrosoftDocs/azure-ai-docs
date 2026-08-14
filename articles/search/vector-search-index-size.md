@@ -5,7 +5,7 @@ ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ms.custom:
   - build-2024

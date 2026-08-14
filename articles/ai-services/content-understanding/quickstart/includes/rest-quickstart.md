@@ -5,13 +5,16 @@ manager: mcleans
 description: Get started with the Content Understanding REST API to extract structured data from documents, images, audio, and video files.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
-ms.date: 01/29/2026
+ms.date: 07/20/2026
 ms.author: paulhsu
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
 This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-11-01&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
+
+> [!TIP]
+> For interactive scenarios that need an immediate response from Read or Layout, see [Quickstart: Use synchronous Content Understanding operations](../use-synchronous-rest-api.md).
 
 ## Prerequisites
 
@@ -110,7 +113,6 @@ Content-Type: application/json
 request-id: aaa-bbb-ccc-ddd
 x-ms-request-id: aaa-bbb-ccc-ddd
 Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-11-01
-api-supported-versions: 2024-12-01-preview,2025-05-01-preview,2025-11-01
 x-envoy-upstream-service-time: 800
 apim-request-id: {request-id}
 Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
@@ -141,7 +143,7 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api
 The 200 (`OK`) JSON response includes a `status` field. If the operation isn't complete, `status` is `Running` or `NotStarted`. Poll the URL every 1–2 seconds until `status` is `Succeeded`.
 
 # [Document](#tab/document)
-```json
+```jsonc
 {
   "id": "ce05fb5a-579e-4f0b-afb5-3532bcddeaee",
   "status": "Succeeded",
@@ -439,11 +441,11 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
     ]
   },
   "usage": {
-    "documentStandardPages": 1,
+    "documentPagesStandard": 1,
     "contextualizationTokens": 2345,
     "tokens": {
-      "gpt-4.1-mini-input": 1234,
-      "gpt-4.1-mini-output": 567
+      "gpt-5.2-input": 1234,
+      "gpt-5.2-output": 567
     }
   }
 }
@@ -488,8 +490,8 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
   "usage": {
     "contextualizationTokens": 1000,
     "tokens": {
-      "gpt-4.1-mini-input": 199,
-      "gpt-4.1-mini-output": 106
+      "gpt-5.2-input": 199,
+      "gpt-5.2-output": 106
     }
   }
 }
@@ -540,7 +542,7 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
 
 # [Video](#tab/video)
 
-```json
+```jsonc
 {
   "id": "2689a699-fa3a-4ddf-9a27-c34ceaa6c597",
   "status": "Succeeded",
@@ -563,7 +565,7 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
         "endTimeMs": 15467,
         "width": 1080,
         "height": 608,
-        "KeyFrameTimesMs": [
+        "keyFrameTimesMs": [
           733,
           2067
           /*... (14 additional keyframes)*/
@@ -653,7 +655,7 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
         "endTimeMs": 23100,
         "width": 1080,
         "height": 608,
-        "KeyFrameTimesMs": [
+        "keyFrameTimesMs": [
           15467,
           16933
           /*... (7 additional keyframes)*/
@@ -678,7 +680,7 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
         "endTimeMs": 43233,
         "width": 1080,
         "height": 608,
-        "KeyFrameTimesMs": [
+        "keyFrameTimesMs": [
           23100,
           24833
           /*... (19 additional keyframes)*/
@@ -781,8 +783,8 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
     "videoHours": 0.013,
     "contextualizationTokens": 12222,
     "tokens": {
-      "gpt-4.1-mini-input": 8976,
-      "gpt-4.1-mini-output": 439
+      "gpt-5.2-input": 8976,
+      "gpt-5.2-output": 439
     }
   }
 }

@@ -42,7 +42,7 @@ url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_s
 
 You use this URL with either an api-key or Microsoft Entra ID token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. 
 
-Here's some sample python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
+Here's some sample Python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
 
 > [!NOTE]
 > Replace placeholder values in the code samples:
@@ -191,7 +191,7 @@ if __name__ == '__main__':
 
 ### Step 2: Set up your browser application
 
-Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following URL with the ephemeral token for authentication.
+Your browser application calls your token service to get the token and then initiates a WebRTC connection with the RealtimeAPI. To initiate the WebRTC connection, use the following URL with the ephemeral token for authentication.
 
 ```text
 https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
@@ -1151,6 +1151,6 @@ If you use a Network Firewall, the Realtime API requires the following `Allow` r
 
 ## Related content
 
-* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
+* Try the [real-time audio quickstart](../how-to/realtime-audio-websockets.md#voice-agent-quickstart).
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

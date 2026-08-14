@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the differences between NER API versions.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 04/04/2026
 ms.author: lajanuar

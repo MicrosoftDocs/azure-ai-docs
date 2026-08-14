@@ -3,6 +3,9 @@ items:
   tocHref: /azure/
   topicHref: /azure/index/
   items:
+  - name: Azure AI Search
+    tocHref: /azure/search/
+    topicHref: /azure/search/
   - name: Microsoft Foundry (classic)
     tocHref: /azure/foundry-classic/
     topicHref: /azure/foundry-classic/
@@ -118,9 +121,6 @@ items:
     - name: Document Intelligence
       tocHref: /azure/foundry/responsible-ai/document-intelligence/
       topicHref: /azure/ai-services/document-intelligence/
-    - name: Azure AI Search
-      tocHref: /azure/search/
-      topicHref: /azure/search/
     - name: Azure AI Search
       tocHref: /azure/foundry/responsible-ai/search/
       topicHref: /azure/search/

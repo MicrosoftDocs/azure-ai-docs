@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -49,13 +49,13 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-java-samples
     ```
 
-1. Navigate to the quickstart folder.
+1. Go to the quickstart folder.
 
     ```bash
     cd azure-search-java-samples/quickstart-agentic-retrieval
     ```
 
-1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you got in [Get endpoints](#get-endpoints).
 
 1. Rename `sample.env` to `.env`.
 
@@ -323,7 +323,7 @@ searchClient.uploadDocuments(documents);
 ```
 
 
-**Reference:** [SearchClient](/java/api/com.azure.search.documents.searchclient), [SearchDocument](/java/api/com.azure.search.documents.searchdocument)
+**Reference:** [SearchClient](/java/api/com.azure.search.documents.searchclient), [SearchDocument](/java/api/com.azure.search.documents)
 
 ### Create a knowledge source
 
@@ -352,7 +352,7 @@ indexClient.createOrUpdateKnowledgeSource(indexKnowledgeSource);
 
 To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`.
 
-`OutputMode` is set to `ANSWER_SYNTHESIS`, enabling natural-language answers that cite the retrieved documents and follow the provided `AnswerInstructions`.
+Set `OutputMode` to `ANSWER_SYNTHESIS` to enable natural-language answers that cite the retrieved documents and follow the provided `AnswerInstructions`.
 
 ```java
 AzureOpenAIVectorizerParameters openAiParameters =
@@ -545,7 +545,7 @@ printResult(responseText, retrievalResult);
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `AgenticRetrievalQuickstart.java` deleted the objects you created in this quickstart.
+Otherwise, the following code from `AgenticRetrievalQuickstart.java` deletes the objects you created in this quickstart.
 
 ### Delete the knowledge base
 

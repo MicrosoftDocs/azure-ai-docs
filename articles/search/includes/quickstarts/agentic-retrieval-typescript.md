@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/23/2026
+ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -51,13 +51,13 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-javascript-samples
     ```
 
-1. Navigate to the quickstart folder.
+1. Go to the quickstart folder.
 
     ```bash
     cd azure-search-javascript-samples/quickstart-agentic-retrieval-ts
     ```
 
-1. In `sample.env`, replace the placeholder values for `AZURE_SEARCH_ENDPOINT` and `AZURE_OPENAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
+1. In `sample.env`, replace the placeholder values for `AZURE_SEARCH_ENDPOINT` and `AZURE_OPENAI_ENDPOINT` with the URLs you got in [Get endpoints](#get-endpoints).
 
 1. Rename `sample.env` to `.env`.
 
@@ -71,7 +71,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     npm install
     ```
 
-   When the installation completes, you should see a `node_modules` folder in the project directory.
+   When the installation finishes, you see a `node_modules` folder in the project directory.
 
 1. Compile the TypeScript files to JavaScript.
 
@@ -94,7 +94,7 @@ npm start
 ```
 
 > [!NOTE]
-> This command runs the compiled `.js` files from the `dist` folder. TypeScript code must be transpiled to JavaScript before Node.js can execute it, which is why you previously ran `npm run build`.
+> This command runs the compiled `.js` files from the `dist` folder. Node.js requires TypeScript code to be transpiled to JavaScript before it can execute, which is why you previously ran `npm run build`.
 
 ### Output
 
@@ -581,7 +581,7 @@ console.log("\n✅ Quickstart completed successfully!");
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `index.ts` deleted the objects you created in this quickstart.
+Otherwise, the following code from `index.ts` deletes the objects you created in this quickstart.
 
 ```typescript
 await searchIndexClient.deleteKnowledgeBase('earth-knowledge-base');

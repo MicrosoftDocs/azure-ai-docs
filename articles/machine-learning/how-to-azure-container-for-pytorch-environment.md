@@ -8,9 +8,10 @@ ms.author: scottpolly
 ms.reviewer: parinitarahi
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.custom: build-2023, build-2023-dataai
+ms.custom: build-2023, build-2023-dataai, dev-focus
 ms.topic: how-to
-ms.date: 07/23/2025
+ms.date: 07/16/2026
+ai-usage: ai-assisted
 
 ---
 
@@ -27,7 +28,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Navigate to environments
 
-In the [Azure Machine Learning studio](https://ml.azure.com/registries/environments), navigate to the "Environments" section by selecting the "Environments" option.
+In [Azure Machine Learning studio](https://ml.azure.com), navigate to the **Environments** section by selecting the **Environments** option.
 
 :::image type="content" source="./media/how-to-azure-container-for-pytorch-environment/navigate-to-environments.png" alt-text="Screenshot of navigating to environments from Azure Machine Learning studio." lightbox= "./media/how-to-azure-container-for-pytorch-environment/navigate-to-environments.png":::
 
@@ -52,7 +53,7 @@ Go back and select the **Custom Environments** tab.
 
 ## Create custom environments
 
-Select **+ Create**. In the "Create Environment" window, provide a name and description for the environment, and select **Create a new docker context** in the "Select environment type" section.
+Select **+ Create**. In **Create Environment**, enter a name and description for the environment. In the **Select environment type** section, select **Create a new docker context**.
 
 :::image type="content" source="./media/how-to-azure-container-for-pytorch-environment/create-environment-window.png" alt-text="Screenshot of creating custom environment." lightbox= "./media/how-to-azure-container-for-pytorch-environment/create-environment-window.png":::
 
@@ -60,14 +61,14 @@ Paste the Docker image name that you copied previously. Configure your environme
 
 :::image type="content" source="./media/how-to-azure-container-for-pytorch-environment/configure-environment.png" alt-text="Screenshot of configuring the environment with name, packages with docker context." lightbox= "./media/how-to-azure-container-for-pytorch-environment/configure-environment.png":::
 
-Review your environment settings, add any tags if needed, and select the **Create** button to create your custom environment.
+Review your environment settings, add any tags if needed, and select **Create** to create your custom environment.
 
-You've now created a custom environment in Azure Machine Learning studio that you can use to run your machine learning models.
+You created a custom environment in Azure Machine Learning studio that you can use to run your machine learning models.
 
-## Next steps
+## Related content
 
 - Learn more about environment objects:
     - [What are Azure Machine Learning environments?](concept-environments.md)
-    - Learn more about [curated environments](concept-environments.md)
-- Learn more about [training models in Azure Machine Learning](concept-train-machine-learning-model.md)
-- [Azure Container for PyTorch (ACPT) reference](resource-azure-container-for-pytorch.md)
+    - Learn more about [curated environments](resource-curated-environments.md).
+- Learn more about [training models in Azure Machine Learning](concept-train-machine-learning-model.md).
+- [Azure Container for PyTorch (ACPT) reference](resource-azure-container-for-pytorch.md).

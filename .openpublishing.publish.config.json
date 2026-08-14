@@ -225,12 +225,6 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "azure-docs-pr-policy-includes",
-      "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
-      "branch": "main",
-      "branch_mapping": {}
-    },
-    {
         "path_to_root": "azure-policy-autogen-docs",
         "url": "https://github.com/MicrosoftDocs/azure-policy-autogen-docs",
         "branch": "main",

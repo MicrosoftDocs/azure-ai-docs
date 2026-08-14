@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use the Batch Document translation C#/.NET or Python client library (SDK) for cloud-based batch document translation service and process.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.custom: devx-track-dotnet, devx-track-python
 ms.topic: quickstart
 ms.date: 06/02/2026

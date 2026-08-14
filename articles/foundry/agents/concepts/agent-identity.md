@@ -251,7 +251,7 @@ To connect an MCP server or A2A endpoint with agent identity authentication, cre
 | Tool type | Auth type value | Connection category |
 | --- | --- | --- |
 | MCP server | `AgenticIdentityToken` | `RemoteTool` |
-| A2A endpoint | `AgenticIdentity` | `RemoteA2A` |
+| A2A endpoint | `AgenticIdentityToken` | `RemoteA2A` |
 
 When the agent invokes the tool, Agent Service uses the agent identity to obtain an access token scoped to the **audience** value, then passes that token to the tool endpoint for authentication.
 
