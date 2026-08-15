@@ -349,6 +349,9 @@ items:
       
   - name: Audio and speech
     items:
+    - name: GPT-Live
+      displayName: What is GPT-Live?
+      href: ../../../ai-services/speech-service/gpt-live.md?context=/azure/foundry/context/context
     - name: Audio generation
       displayName: "Quickstart: Get started with Azure OpenAI audio generation"
       href: ../../openai/audio-completions-quickstart.md
