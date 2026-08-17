@@ -74,6 +74,9 @@ AI red teaming is supported in the following regions.
 
 - East US 2
 - North Central US
+- France Central
+- Sweden Central
+- Switzerland West
 
 ### Supported regions for data generation
 
