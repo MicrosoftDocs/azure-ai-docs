@@ -94,7 +94,7 @@ Use [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-
 GET {endpoint}/servicestats?api-version=2026-05-01-preview
 ```
 
-The response includes an `indexersRuntime` section. The following JSON shows a service whose 24-hour daily quota hasn't been used:
+The response includes an `indexersRuntime` section. The following JSON shows a service whose 24-hour daily quota isn't used:
 
 ```json
 "indexersRuntime": {
