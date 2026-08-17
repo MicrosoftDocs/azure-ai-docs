@@ -69,7 +69,7 @@ The updated model is ready to use through the API and the Microsoft Foundry play
 ### March 2026 release
 
 * MAI-Transcribe-1 model public preview available in Azure Speech LLM Speech API. For more information, see [MAI-Transcribe-1](../../mai-transcribe.md).
-* [Fast Transcription API](../../fast-transcription-create.md) and [LLM Speech API](../../llm-speech.md) now support up to 5 hours per audio file input.
+* [Fast Transcription API](../../fast-transcription-create.md) and [LLM Speech API](../../llm-speech.md) now support up to five hours per audio file input.
 
 
 ### February 2026 release
@@ -490,7 +490,7 @@ Added support for Malayalam (India) with the `ml-IN` locale. See the complete [S
 
 #### New Speech to text-locales:
 
-Added 7 new locales as shown in the following table. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
+Added seven new locales as shown in the following table. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -566,7 +566,7 @@ Below is a list of the new locales. See the complete [Speech to text supported l
 
 #### New Speech to text-locales:
 
-Below is a list of the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
+The following list shows the new locales. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -594,7 +594,7 @@ Below is a list of the new locales. See the complete [Speech to text supported l
 
 #### New Speech to text-locales:
 
-Below is a list of the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
+The following list shows the new locales. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -619,7 +619,7 @@ Below is a list of the new locales. See the complete [Speech to text supported l
 ### August 2020 Release
 
 #### New speech to text locales:
-Speech to text released 26 new locales in August: 2 European languages `cs-CZ` and `hu-HU`, 5 English locales and 19 Spanish locales that cover most South American countries/regions. Below is a list of the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
+Speech-to-text added 26 new locales in August: two European languages `cs-CZ` and `hu-HU`, five English locales, and 19 Spanish locales that cover most South American countries and regions. The following list shows the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
