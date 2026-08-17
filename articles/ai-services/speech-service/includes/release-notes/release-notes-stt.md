@@ -69,7 +69,7 @@ The updated model is ready to use through the API and the Microsoft Foundry play
 ### March 2026 release
 
 * MAI-Transcribe-1 model public preview available in Azure Speech LLM Speech API. For more information, see [MAI-Transcribe-1](../../mai-transcribe.md).
-* [Fast Transcription API](../../fast-transcription-create.md) and [LLM Speech API](../../llm-speech.md) now support up to 5 hours per audio file input.
+* [Fast Transcription API](../../fast-transcription-create.md) and [LLM Speech API](../../llm-speech.md) now support up to five hours per audio file input.
 
 
 ### February 2026 release
