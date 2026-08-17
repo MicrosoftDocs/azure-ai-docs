@@ -28,6 +28,10 @@ cd Foundry-Local/samples/cs/audio-transcription-example
 
 ## Transcribe an audio file
 
+Copy and paste the following code into a C# file named `Program.cs`:
+
+:::code language="csharp" source="~/foundry-local-samples-main/samples/cs/audio-transcription-example/Program.cs" id="complete_code":::
+
 The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 
 ```bash
