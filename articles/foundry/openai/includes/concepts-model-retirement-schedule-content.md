@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/29/2026
+ms.date: 08/19/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -165,7 +165,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | model-router | 2025-05-19 | Preview | 2026-08-30 | — |
 | model-router | 2025-08-07 | Preview | 2026-08-30 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
-| MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
+| MAI-Image-2e | 2026-04-09 | Retired | 2026-08-19 | MAI-Image-2.5-Flash |
 | MAI-Image-2  | 2026-02-20 | Retired | 2026-08-15 | MAI-Image-2.5 |
 | MAI-Transcribe-1 | 2026-01-23 | Preview | 2026-09-15 | MAI-Transcribe-1.5 |
 
