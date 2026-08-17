@@ -3,7 +3,7 @@ title: "Manage hosted agent sessions"
 description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 08/12/2026
+ms.date: 08/17/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -111,6 +111,91 @@ project = AIProjectClient(
     endpoint="<your-project-endpoint>",
     credential=DefaultAzureCredential(),
 )
+```
+
+:::zone-end
+
+## Manage session idleness
+
+Configure the idle timeout when you create an agent version. The setting applies to sessions created for that version. Set `idle_timeout_seconds` from 300 through 3,600 seconds. If you omit the setting, the server default is 900 seconds.
+
+When a session reaches the idle timeout, the platform suspends its sandbox and saves its state. The platform provisions compute and restores the saved state when the session is referenced again. To change the timeout, create another agent version with the new value.
+
+:::zone pivot="python"
+
+Pass a `SessionConfiguration` in the hosted agent definition:
+
+```python
+from azure.ai.projects.models import (
+    AgentEndpointProtocol,
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+    SessionConfiguration,
+)
+
+agent = project.agents.create_version(
+    agent_name="my-agent",
+    definition=HostedAgentDefinition(
+        protocol_versions=[
+            ProtocolVersionRecord(
+                protocol=AgentEndpointProtocol.RESPONSES,
+                version="1.0.0",
+            )
+        ],
+        cpu="1",
+        memory="2Gi",
+        container_configuration=ContainerConfiguration(
+            image="your-registry.azurecr.io/your-image:tag"
+        ),
+        environment_variables={
+            "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
+        },
+        session_configuration=SessionConfiguration(
+            idle_timeout_seconds=300
+        ),
+    ),
+)
+
+print(f"Created version {agent.version} with a 5-minute idle timeout.")
+```
+
+Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [SessionConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.sessionconfiguration)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+Include `session_configuration` in the definition when you create an agent version:
+
+```bash
+AGENT_NAME="my-agent"
+
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --body '{
+        "definition": {
+            "kind": "hosted",
+            "container_configuration": {
+                "image": "your-registry.azurecr.io/your-image:tag"
+            },
+            "cpu": "1",
+            "memory": "2Gi",
+            "protocol_versions": [
+                {
+                    "protocol": "responses",
+                    "version": "1.0.0"
+                }
+            ],
+            "environment_variables": {
+                "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
+            },
+            "session_configuration": {
+                "idle_timeout_seconds": 300
+            }
+        }
+    }'
 ```
 
 :::zone-end
