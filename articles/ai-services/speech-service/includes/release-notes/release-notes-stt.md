@@ -566,7 +566,7 @@ Below is a list of the new locales. See the complete [Speech to text supported l
 
 #### New Speech to text-locales:
 
-Below is a list of the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
+The following list shows the new locales. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
