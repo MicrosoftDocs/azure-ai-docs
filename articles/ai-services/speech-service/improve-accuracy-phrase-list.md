@@ -21,6 +21,7 @@ A phrase list is a list of words or phrases you provide ahead of time to help im
 > Phrase list is a **runtime recognition feature** applied at the endpoint level. It works with:
 > - Real-time transcription (Speech SDK, Speech CLI, Speech Studio)
 > - Fast transcription API
+> - LLM Speech transcription API
 > - Voice Live API
 >
 > Phrase list works with both base and custom speech endpoints. It doesn't require model training and isn't available with batch transcription.
@@ -197,8 +198,8 @@ spx --% recognize --file "your\path\to\audio.wav" --phrases @phrases.txt
 
 Allowed characters include locale-specific letters and digits, white space characters, and special characters such as +, \-, $, :, (, ), {, }, \_, ., ?, @, \\, ’, &, \#, %, \^, \*, \`, \<, \>, ;, \/. The system removes other special characters from the phrase.
 
-## Implement phrase list in fast transcription
-You can add a list of phrases in fast transcription through the [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe).
+## Implement phrase list in fast and LLM Speech transcription
+You can add a list of phrases in fast and LLM Speech transcription through the [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe).
 
 ```azurecli-interactive
 curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
