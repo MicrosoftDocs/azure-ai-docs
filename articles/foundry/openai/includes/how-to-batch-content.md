@@ -92,13 +92,13 @@ The following features aren't currently supported:
 
 [!INCLUDE [Quota](global-batch-limits.md)]
 
-## Batch job and output file retention
+## Batch job record retention
 
-Batch job records are retained for up to 365 days. During this retention period, you can list and retrieve a job. You can cancel the job if it remains in a cancellable state.
+Batch job records are retained for up to 365 days after the job reaches a terminal state, such as `completed`, `failed`, `expired`, or `cancelled`. During this period, you can list and retrieve the job, and you can cancel it if it's still in a cancellable state.
 
-By default, generated batch output files are retained for up to 365 days. Download any files that you need to retain longer.
+This retention period applies to jobs created after this behavior took effect. Jobs created earlier aren't subject to this retention period and remain available.
 
-To use a shorter file-retention period, configure the relevant file type. Set `expires_after` when you upload an input file, or set `output_expires_after` when you create a batch job. Both explicit expiration settings accept 14 to 30 days and use `created_at` as the anchor. For examples, see the **Upload batch file** and **Create batch job** sections on the Python or REST API tab.
+Generated output and error files don't have a default expiration. They remain available until you delete them or set an explicit expiration. Set `expires_after` when you upload an input file, or set `output_expires_after` when you create a batch job. Both explicit expiration settings accept 14 to 30 days and use `created_at` as the anchor. For examples, see the **Upload batch file** and **Create batch job** sections on the Python or REST API tab.
 
 ## Batch object
 
