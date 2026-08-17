@@ -170,6 +170,35 @@ with project_client:
     print(f"Agent endpoint configured for agent: {patched_agent.name}")
 ```
 
+#### [JavaScript](#tab/javascript)
+
+```javascript
+const { AIProjectClient } = require("@azure/ai-projects");
+const { DefaultAzureCredential } = require("@azure/identity");
+
+const PROJECT_ENDPOINT =
+  "https://{account}.services.ai.azure.com/api/projects/{project}";
+const AGENT_NAME = "name-of-your-existing-agent";
+
+// Create the project client.
+const project = new AIProjectClient(
+  PROJECT_ENDPOINT,
+  new DefaultAzureCredential(),
+);
+
+// Pin the endpoint to version 2.
+const patchedAgent = await project.agents.patchAgentObject(AGENT_NAME, {
+  agentEndpoint: {
+    version_selector: {
+      version_selection_rules: [
+        { type: "FixedRatio", agent_version: "2", traffic_percentage: 100 },
+      ],
+    },
+  },
+});
+console.log(`Agent endpoint configured for agent: ${patchedAgent.name}`);
+```
+
 ---
 
 ### Enable protocols and authorization schemes
@@ -253,6 +282,37 @@ with project_client:
     print(f"Protocols and authorization updated for agent: {patched_agent.name}")
 ```
 
+#### [JavaScript](#tab/javascript)
+
+```javascript
+const { AIProjectClient } = require("@azure/ai-projects");
+const { DefaultAzureCredential } = require("@azure/identity");
+
+const PROJECT_ENDPOINT =
+  "https://{account}.services.ai.azure.com/api/projects/{project}";
+const AGENT_NAME = "name-of-your-existing-agent";
+
+// Create the project client.
+const project = new AIProjectClient(
+  PROJECT_ENDPOINT,
+  new DefaultAzureCredential(),
+);
+
+// Enable protocols and authorization schemes.
+const patchedAgent = await project.agents.patchAgentObject(AGENT_NAME, {
+  agentEndpoint: {
+    protocol_configuration: {
+      responses: {},
+      activity: {},
+      invocations: {},
+      a2a: {},
+    },
+    authorization_schemes: [{ type: "Entra" }, { type: "BotServiceRbac" }],
+  },
+});
+console.log(`Protocols and authorization updated for: ${patchedAgent.name}`);
+```
+
 ---
 
 ### Add an agent card
@@ -332,6 +392,39 @@ patched_agent = project_client.agents.update_details(
     ),
 )
 print(f"Added an agent card to: {patched_agent.name}")
+```
+
+#### [JavaScript](#tab/javascript)
+
+```javascript
+const { AIProjectClient } = require("@azure/ai-projects");
+const { DefaultAzureCredential } = require("@azure/identity");
+
+const PROJECT_ENDPOINT =
+  "https://{account}.services.ai.azure.com/api/projects/{project}";
+const AGENT_NAME = "name-of-your-existing-agent";
+
+// Create the project client.
+const project = new AIProjectClient(
+  PROJECT_ENDPOINT,
+  new DefaultAzureCredential(),
+);
+
+// Add the agent card.
+const patchedAgent = await project.agents.patchAgentObject(AGENT_NAME, {
+  agentCard: {
+    version: "1.0.0",
+    description: "A competitive intelligence analyst.",
+    skills: [{
+      id: "competitor-analysis",
+      name: "Competitor Analysis",
+      description: "Analyzes competitor products and market positioning.",
+      tags: ["research", "analysis", "market-intel"],
+      examples: ["Compare our pricing with a competitor."],
+    }],
+  },
+});
+console.log(`Added an agent card to: ${patchedAgent.name}`);
 ```
 
 ---
