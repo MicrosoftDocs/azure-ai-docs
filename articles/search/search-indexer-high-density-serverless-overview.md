@@ -119,7 +119,7 @@ Use [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API)
 GET {endpoint}/indexers('{indexerName}')/search.status?api-version=2026-05-01-preview
 ```
 
-The response includes a `runtime` section. The following JSON shows an indexer on a service whose 24-hour daily quota hasn't been used:
+The response includes a `runtime` section. The following JSON shows an indexer on a service whose 24-hour daily quota isn't used:
 
 ```json
 "runtime": {
