@@ -15,7 +15,7 @@ ms.custom: doc-kit-assisted
 
 # Available tools and example prompts for Foundry MCP Server (preview)
 
-This reference documents 49 Foundry MCP Server tools across 12 categories that let you manage agents, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use it to explore each tool and try the example prompts in your own project.
+This reference documents 50 Foundry MCP Server tools across 12 categories that let you manage agents, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use it to explore each tool and try the example prompts in your own project.
 
 > [!TIP]
 > Before using these tools, complete the [Foundry MCP Server setup](get-started.md).
@@ -179,19 +179,29 @@ Deploy, inspect, and remove model deployments, including Managed Compute deploym
 
 Example prompts:
 
-- "Deploy GPT-5-mini as `production-chatbot` with 20 capacity units."
+- "Use `model_deploy_azure_direct_model` to deploy GPT-5-mini as `production-chatbot` with 20 capacity units."
 - "Show me all my current model deployments."
 - "Show me all my Managed Compute deployments."
-- "Deploy `openai--gpt-oss-20b` as `gpt-oss-managed` using its A100_80GB deployment template."
+- "Use `model_deploy_managed_compute` to deploy `openai--gpt-oss-20b` as `gpt-oss-managed` using its A100_80GB deployment template."
 - "Delete the `old-test-deployment` that I'm no longer using."
+
+Choose explicit tools for each deployment type:
+
+| Deployment type | Create or update | Read |
+| --- | --- | --- |
+| Foundry Models sold by Azure | `model_deploy_azure_direct_model` | `model_deployment_get` |
+| Managed Compute | `model_deploy_managed_compute` | `model_managed_compute_deployment_get` |
+
+Don't use the deprecated `model_deploy` alias for new calls. For Managed Compute, first use `model_catalog_list` as a candidate signal, then call `model_details_get`. Use `model_deploy_managed_compute` only when `isFoundryManagedCompute` is `true`, and pass one of the resolved deployment templates. `model_deployment_delete` handles both deployment types.
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
-| `model_deploy` | write | Create or update a model deployment with specified capacity. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
-| `model_deploy_managed_compute` | write | Create a Managed Compute model deployment from a resolved deployment template. | Model name, deployment name, deployment template | Managed Compute deployment details. |
-| `model_deployment_get` | read | Get one or more model deployments from a Foundry account. Use `model_managed_compute_deployment_get` for Managed Compute deployments. | Deployment name (optional) | List of deployments or single deployment details with status and quota. |
-| `model_managed_compute_deployment_get` | read | Get one or more Managed Compute deployments from a Foundry account. | Deployment name (optional) | List of Managed Compute deployments or details for a specific deployment. |
-| `model_deployment_delete` | write | Delete a model deployment by name, including a Managed Compute deployment. | Deployment name | Deletion confirmation. |
+| `model_deploy_azure_direct_model` | write | Create or update a deployment for a Foundry Model sold by Azure. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
+| `model_deploy` | write | Deprecated backward-compatible alias of `model_deploy_azure_direct_model`. It has identical inputs and behavior. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
+| `model_deploy_managed_compute` | write | Create a distinct Managed Compute deployment from a registry model asset and resolved deployment template. | Deployment name, `modelAssetId`, `deploymentTemplate`, `acceleratorType` (optional), `instanceCount` (optional), `versionUpgradeOption` (optional) | Managed Compute deployment details. |
+| `model_deployment_get` | read | Get one or more deployments of Foundry Models sold by Azure. This tool doesn't return Managed Compute deployments. | Deployment name (optional) | List of deployments or details for a specific deployment. |
+| `model_managed_compute_deployment_get` | read | Get one or more Managed Compute deployments. This tool doesn't return deployments of Foundry Models sold by Azure. | Deployment name (optional) | List of Managed Compute deployments or details for a specific deployment. |
+| `model_deployment_delete` | write | Delete either deployment type. The tool checks deployments of Foundry Models sold by Azure first, then Managed Compute deployments. | Deployment name | Deletion confirmation. |
 
 ## Model analytics and recommendations
 
