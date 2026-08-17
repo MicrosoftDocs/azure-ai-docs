@@ -5,7 +5,10 @@ ms.topic: include
 ms.author: pafarley
 ---
 
-The Speech service phone set for `zh-HK` is based on the native phone <a href="https://en.wikipedia.org/wiki/Jyutping" target="_blank">Jyutping </a> set.
+The Speech service phone set `sapi` for `zh-HK` uses notation based on the native <a href="https://en.wikipedia.org/wiki/Jyutping" target="_blank">Jyutping</a> phone set.
+
+> [!IMPORTANT]
+> In SSML, set the `phoneme` element's `alphabet` attribute to `sapi`, not `jyutping`. For example: `<phoneme alphabet="sapi" ph="nei 5 hou 2">你好</phoneme>`.
 
 ### Jyutping Initials for zh-HK
 
@@ -68,3 +71,4 @@ The Speech service phone set for `zh-HK` is based on the native phone <a href="h
 | 4          | Low Falling                                    | 時                 |  si **4**      |
 | 5          | Low Rising                                     | 市                 |  si **5**      |
 | 6          | Low Level or Entering Low Level                | 是                 |  si **6**      |
+
