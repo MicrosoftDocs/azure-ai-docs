@@ -3,7 +3,7 @@ title: Run or Reset Indexers
 description: Run indexers in full, or reset an indexer, skills, or individual documents to refresh all or part of a search index or knowledge store.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 08/17/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -334,17 +334,19 @@ To check the reset status and see which document keys are queued for processing,
 
 1. After the indexer reprocesses the documents, run Get Indexer Status again. The indexer returns to the **`indexingAllDocs`** mode and processes any new or updated documents on the next run.
 
-## Check indexer runtime quota for S3 HD search services
+## Check indexer runtime quota for S3 HD and Serverless search services
 
-Applies to search services at the Standard 3 High Density (S3 HD) pricing tier.
+This section applies to Standard 3 High Density (S3 HD) and Serverless search services. For aggregate quota behavior and planning guidance, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
 
-To help you monitor indexer running times relative to the 24-hour window, [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics#servicestatistics?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) now return more information in the response.
+Each indexer run has a two-hour maximum. Separately, all indexers share 24 hours of cumulative runtime per service in each 24-hour UTC window.
+
+To help you monitor indexer running times relative to the 24-hour window, [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics?view=rest-searchservice-2026-05-01-preview&preserve-view=true#servicestatistics) and [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) now return more information in the response.
 
 ### Track cumulative runtime quota
 
-Track a search service's cumulative indexer runtime usage and determine how much runtime quota is left within the current 24-hour window period.
+Track a search service's cumulative indexer runtime usage and determine how much runtime quota is left within the current 24-hour window.
 
-Send a GET request to the search service resource provider. For help with setting up a REST client and getting an access token, see [Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest).
+Send a GET request to the search service endpoint. For help with setting up a REST client and getting an access token, see [Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest).
 
 ```http
 GET {{search-endpoint}}/servicestats?api-version=2026-05-01-preview 
@@ -352,7 +354,7 @@ GET {{search-endpoint}}/servicestats?api-version=2026-05-01-preview
   Authorization: Bearer {{accessToken}}
 ```
 
-Responses include `indexersRuntime` properties, showing start and end times, seconds used, seconds remaining, and cumulative runtime within the last 24 hours.
+Responses include `indexersRuntime` properties that show the window start and end times, cumulative seconds used by all indexers, and seconds remaining for the service.
 
 ### Track indexer runtime quota
 
@@ -364,7 +366,7 @@ GET {{search-endpoint}}/indexers/hotels-sample-indexer/search.status?api-version
   Authorization: Bearer {{accessToken}}
 ```
 
-Responses include a `runtime` properties, showing start and end times, seconds used, and seconds remaining.
+Responses include `runtime` properties that show the window start and end times, seconds used by the indexer, and seconds remaining for all indexers in the service.
 
 ## Next steps
 
