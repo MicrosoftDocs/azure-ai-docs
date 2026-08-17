@@ -117,7 +117,7 @@ Conversation PII preview version `2023-04-15-preview` supports the following lan
 * German
 * Spanish
 
-Conversation PII generally available (GA) version currently supports the following languages:
+Conversation PII `2024-11-01` (GA)  version currently supports the following languages:
 
 * English
 * French
