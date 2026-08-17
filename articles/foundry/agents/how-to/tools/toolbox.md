@@ -124,7 +124,7 @@ project = AIProjectClient(
 # Create toolbox version with web search and MCP tools
 toolbox_version = project.toolboxes.create_version(
     name="my-toolbox",
-    description="Toolbox with web search and an ",
+    description="Toolbox with web search and an MCP server",
     tools=[
         WebSearchToolboxTool(),
         MCPToolboxTool(
@@ -334,7 +334,7 @@ The pattern is the same for every connection kind and auth type:
 
    The first version becomes the default automatically. Use `azd ai toolbox list`, `azd ai toolbox show <name>`, `azd ai toolbox version list <name>`, and `azd ai toolbox delete <name> --force` to manage toolboxes.
 
-**Example:  with key-based auth**
+**Example: MCP server with key-based auth**
 
 ```bash
 # 1. Create the connection
@@ -570,7 +570,7 @@ For version-specific validation before you promote a new toolbox version, use th
 
 - `len(tools) > 0` — empty means the toolbox version wasn't provisioned correctly.
 - Each tool has `name`, `description`, and `inputSchema`. For tool naming conventions, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools).
-- `inputSchema` has a `properties` field (some s omit this field, which breaks OpenAI).
+- `inputSchema` has a `properties` field (some MCP servers omit this field, which breaks OpenAI).
 - Tool names are namespaced by tool type:
 
   | Tool type | Tool name format | Example |
