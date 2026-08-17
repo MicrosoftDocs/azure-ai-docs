@@ -424,15 +424,15 @@ The following table lists the request parameters for the image APIs:
 
 MAI image models have the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
 
-| Deployment Type | Tier | MAI-Image-2.5-Pro <br> (RPM) | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) | MAI-Image-2e <br> (RPM) | MAI-Image-2 <br> (RPM) |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| Global Standard | 0 <br> (Free) | 0 | 0 | 0 | 0 | 0 |
-| Global Standard | 1 | 2 | 2 | 2 | 18 | 9 |
-| Global Standard | 2 | 4 | 4 | 4 | 30 | 15 |
-| Global Standard | 3 | 6 | 6 | 6 | 60 | 30 |
-| Global Standard | 4 | 8 | 8 | 8 | 90 | 45 |
-| Global Standard | 5 | 10 | 10 | 10 | 120 | 60 |
-| Global Standard | 6 | 12 | 12 | 12 | 180 | 90 |
+| Deployment Type | Tier | MAI-Image-2.5-Pro <br> (RPM) | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) | MAI-Image-2e <br> (RPM) |
+| --- | :---: | :---: | :---: | :---: | :---: |
+| Global Standard | 0 <br> (Free) | 0 | 0 | 0 | 0 |
+| Global Standard | 1 | 2 | 2 | 2 | 18 |
+| Global Standard | 2 | 4 | 4 | 4 | 30 |
+| Global Standard | 3 | 6 | 6 | 6 | 60 |
+| Global Standard | 4 | 8 | 8 | 8 | 90 |
+| Global Standard | 5 | 10 | 10 | 10 | 120 |
+| Global Standard | 6 | 12 | 12 | 12 | 180 |
 
 To request a quota increase, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest). Requests are processed in the order they're received, and priority goes to customers who actively use their existing quota allocation.
 
