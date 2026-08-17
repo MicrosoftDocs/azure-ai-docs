@@ -490,7 +490,7 @@ Added support for Malayalam (India) with the `ml-IN` locale. See the complete [S
 
 #### New Speech to text-locales:
 
-Added 7 new locales as shown in the following table. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
+Added seven new locales as shown in the following table. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
