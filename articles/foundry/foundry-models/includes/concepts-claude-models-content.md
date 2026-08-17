@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/12/2026
+ms.date: 08/17/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -36,7 +36,7 @@ To compare both hosting options across data residency, SLAs, support paths, comp
 
 ## Available Claude models
 
-The following table compares model availability for both versions of Claude models in Foundry. For details on the features referenced in the table, see the [Capabilities](#capabilities) section.
+The following table compares model availability for both versions of Claude models in Foundry. For details on the features referenced in the table, see the [Capabilities and advanced features](#capabilities-and-advanced-features) section.
 
 > [!WARNING]
 > 1M context beta on **Claude Sonnet 4.5** was retired on April 30, 2026.
@@ -85,34 +85,43 @@ Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the fol
 
 <sup>1</sup>You can call the Messages API from the `anthropic` Python package, the `@anthropic-ai/foundry-sdk` JavaScript package, or directly through REST. The deployment endpoint follows the shape `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages`, and REST and JavaScript clients use the `anthropic-version: 2023-06-01` header.
 
-## Capabilities
+## Capabilities and advanced features
 
-Claude models in Foundry expose *core capabilities* for processing, analyzing, and generating content, and *tools* that let Claude interact with external systems, execute code, and perform automated tasks. 
+Claude models in Foundry expose *core capabilities* for processing, analyzing, and generating content, and *tools* that let Claude interact with external systems, execute code, and perform automated tasks. Claude's API surface is organized into five areas:
 
-The following table summarizes capabilities available for both the **Hosted on Azure** and **Hosted on Anthropic infrastructure** versions of Claude models in Foundry, including core capabilities and tools.
+- [Model capabilities](#model-capabilities)
+- [Tools](#tools)
+- [Tool infrastructure](#tool-infrastructure)
+- [Context management](#context-management)
+- [Files and assets](#files-and-assets)
+
+The following sections and tables summarize capabilities available across the **Hosted on Azure** and **Hosted on Anthropic infrastructure** versions of Claude models in Foundry. Unless noted, a capability applies to both versions.
 
 > [!TIP]
-> The *Hosted on Anthropic infrastructure version* of Claude models in Foundry supports more capabilities than the ones listed in this table. You can see them on the [Claude API docs: Features overview](https://docs.claude.com/en/docs/build-with-claude/overview) page.
+> The *Hosted on Anthropic infrastructure version* of Claude models in Foundry supports more capabilities than the ones listed in these tables. You can see the full list of capabilities on [Claude Platform Docs: Features overview](https://platform.claude.com/docs/en/build-with-claude/overview).
+> 
+> For more information about the available capabilities and advanced features for Claude models in Foundry, see the [Microsoft Developer Blog](https://aka.ms/ClaudeGAfeaturesblog).
+
+### Model capabilities
+
+Ways to steer Claude and Claude's direct outputs, including response format, reasoning depth, and input modalities.
 
 | Feature | Description |
 |---|---|
-| Streaming responses | Server-sent event streaming. |
-| Fine-grained tool streaming | Stream tool use parameters without buffering or JSON validation, reducing latency for large parameters. Requires the anthropic-beta header `fine-grained-tool-streaming-2025-05-14`. |
-| Prompt caching | Cache context to reduce cost and latency. |
-| Tool use with client-executed tools | Custom tools plus Anthropic-defined `bash`, `text editor`, `computer use`, and `memory`. |
-| Context editing | Automatically manage conversation context with configurable strategies, including clearing tool results and managing thinking blocks. Requires the anthropic-beta header `context-management-2025-06-27`. |
-| Extended thinking | Step-by-step reasoning for complex tasks. |
-| Effort | Control how many tokens Claude uses when responding, trading off between response thoroughness and token efficiency. |
-| Citations | Ground Claude's responses in sources, including `search_result` content blocks. |
-| Image support | Process and analyze content from images (provided as base64 or URL). |
-| PDF support | Process and analyze text and visual content from PDF documents. Provided as base64 or URL. |
-| 1M context window | Up to 1M tokens for processing large documents, extensive codebases, and long conversations. Support is subject to model eligibility. |
+| [Streaming messages](https://platform.claude.com/docs/en/build-with-claude/streaming) | When creating a Message, set `"stream": true` to incrementally stream the response using server-sent events (SSE). |
+| [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) | Enhanced reasoning capabilities for complex tasks, providing transparency into Claude's step-by-step thought process before delivering its final answer. See [Thinking and effort](#thinking-and-effort) for `thinking` parameter values per model. |
+| [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) | Let Claude dynamically decide when and how much to think. This feature is the only thinking mode on Claude 4.7 and later models. Use the `effort` parameter to control thinking depth. |
+| [Effort](https://platform.claude.com/docs/en/build-with-claude/effort) | Control how many tokens Claude uses when responding, trading off between response thoroughness and token efficiency. See [Thinking and effort](#thinking-and-effort) for `effort` parameter values per model. |
+| [Citations](https://platform.claude.com/docs/en/build-with-claude/citations) | Ground Claude's responses in sources, including [search results](https://platform.claude.com/docs/en/build-with-claude/search-results) content blocks `search_result`. |
+| [Images and vision](https://platform.claude.com/docs/en/build-with-claude/vision) | Process and analyze content from images. **Hosted on Azure** deployments only accept base64 encoded or URL-based images. |
+| [PDF support](https://platform.claude.com/docs/en/build-with-claude/pdf-support) | Process and analyze text and visual content from PDF documents. Provide PDFs as base64 or URL. |
+| [1M context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) | Up to 1 million tokens for processing large documents, extensive codebases, and long conversations. Support is subject to model eligibility. |
+| [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) | Constrain Claude's responses to follow a specific JSON schema, using two complementary features: JSON outputs (the `output_config.format` parameter) for structured responses, and strict tool use (`strict: true`) for validated tool inputs. For **Hosted on Azure** deployments, structured outputs also support the legacy parameter for JSON outputs (the `output_format` parameter). |
 
-#### Model-specific parameter values
 
-**Extended thinking**
+#### Thinking and effort
 
-The **Extended thinking** feature allows specific values for the `thinking` parameter type, depending on the model, as described in the following table. The `adaptive` type allows the model to decide whether to think, based on query complexity and effort level.
+The **Thinking** feature allows specific values for the `thinking` parameter type, depending on the model, as described in the following table. The `adaptive` type configures the **adaptive thinking** feature, allowing the model to decide whether to think, based on query complexity and effort level. For example, `thinking={"type": "adaptive"}`.
 
 | Model                   | `adaptive` | `enabled` | `disabled`       |
 |-------------------------|:----------:|:---------:|:----------------:|
@@ -128,9 +137,7 @@ The **Extended thinking** feature allows specific values for the `thinking` para
 
 <sup>1</sup> Thinking can be `disabled` only at effort `high` or below
 
-**Effort**
-
-The Effort feature allows specific `effort` levels for each model, as described in the following table. The `xhigh` level produces the same result as `max`.
+The **Effort** feature allows specific `effort` levels for each model, as described in the following table. The `xhigh` level produces the same result as `max`.
 
 | Model               | `low` | `medium` | `high` | `xhigh` | `max` |
 |---------------------|:-----:|:--------:|:------:|:-------:|:-----:|
@@ -142,6 +149,47 @@ The Effort feature allows specific `effort` levels for each model, as described 
 | `claude-opus-4-6`   | Yes   | Yes      | Yes    | No      | Yes   |
 | `claude-sonnet-5`   | Yes   | Yes      | Yes    | Yes     | Yes   |
 | `claude-sonnet-4-6` | Yes   | Yes      | Yes    | No      | Yes   |
+
+### Tools
+
+Let Claude take actions on the web or in your environment. This feature consists of built-in tools that Claude invokes through `tool_use`. The platform runs server-side tools, and you implement and execute client-side tools.
+
+
+| Feature | Description |
+|---|---|
+| Tool use with client-executed tools | Custom tools plus Anthropic-defined `bash`, `text editor`, `computer use`, and `memory`. For more information about these tools, see [Bash](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool), [Text editor](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool), [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), and [Memory](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool). |
+| [Web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool) | Discover current real-world data from across the web to use to augment Claude's knowledge. For **Hosted on Azure** deployments, only the `web_search_20250305` tool version is supported. |
+| [Web fetch](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool) | Retrieve and perform in-depth analysis of full content from specified web pages and PDF documents, augmenting Claude's context with live web content. On Foundry, web fetch requires a **Hosted on Anthropic infrastructure** deployment. For **Hosted on Azure** deployments, only the `web_fetch_20250910` tool version is supported. |
+
+### Tool infrastructure
+
+Discover, orchestrate, and scale tool use.
+
+| Feature | Description |
+|---|---|
+| [Fine-grained tool streaming](https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming) | Stream tool use parameters without buffering or JSON validation, reducing latency for large parameters. Requires the `anthropic-beta` header `fine-grained-tool-streaming-2025-05-14`. |
+| [MCP connector](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector) | Connect to remote MCP servers directly from the Messages API without a separate MCP client. |
+| [Tool search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) | Scale to thousands of tools by dynamically discovering and loading tools on demand using regex- and BM25-based search, optimizing context usage and improving tool selection accuracy. For **Hosted on Azure** deployments, both the `tool_search_tool_bm25_20251119` and `tool_search_tool_regex_20251119` tool versions are supported. The legacy aliases `tool_search_tool_bm25` and `tool_search_tool_regex` are also accepted. |
+
+### Context management
+
+Control and optimize Claude's context window for long-running sessions.
+
+| Feature | Description |
+|---|---|
+| [Automatic prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#automatic-caching) | Simplify prompt caching to a single API parameter. The system automatically caches the last cacheable block in your request, moving the cache point forward as conversations grow. |
+| [Prompt caching (5m)](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) | Provide Claude with more background knowledge and example outputs to reduce costs and latency. |
+| [Prompt caching (1hr)](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) | Extended 1-hour cache duration for less frequently accessed but important context, complementing the standard 5-minute cache. |
+| [Context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) | Automatically manage conversation context with configurable strategies, including clearing tool results and managing thinking blocks. Requires the anthropic-beta header `context-management-2025-06-27`. |
+| [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting) | Token counting enables you to determine the number of tokens in a message before sending it to Claude, helping you make informed decisions about your prompts and usage. |
+
+### Files and assets
+
+Manage the documents and data you provide to Claude. 
+
+| Feature | Description |
+|---|---|
+| [Files API](https://platform.claude.com/docs/en/build-with-claude/files) | Currently available only on **Hosted on Anthropic infrastructure** deployments. Upload and manage files to use with Claude without re-uploading content with each request. Supports PDFs, images, and text files. |
 
 ## Agent support
 
