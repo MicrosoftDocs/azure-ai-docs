@@ -161,7 +161,7 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 | State | What happens |
 |-------|----------------------------------------------|
 | **Active** | Compute is running. Requests are routed to it. $HOME and /files content are available. |
-| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists session state ($HOME, /files). |
+| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists session state ($HOME, `/files`). |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
 
 Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts, releases it after 15 minutes without a request, and restores `$HOME` and `/files` when the session resumes, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
