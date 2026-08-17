@@ -5,7 +5,7 @@ keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 08/13/2026
+ms.date: 08/17/2026
 ms.topic: reference
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
@@ -76,25 +76,27 @@ Example prompts:
 
 ## Toolbox management
 
-Retrieve, version, update, and delete toolboxes in a Foundry project.
+Create, retrieve, version, update, and delete toolboxes in a Foundry project.
 
 Example prompts:
 
 - "Show me the `customer-support-tools` toolbox."
 - "Get version 2 of `customer-support-tools`."
 - "Create a new version of `customer-support-tools`."
-- "Update `customer-support-tools` with my latest tool definitions."
-- "Delete version 1 of `customer-support-tools`."
+- "Set version 2 of `customer-support-tools` as the default."
+- "Set version 1 of `customer-support-tools` as the default, then delete version 2."
 - "Delete the `old-support-tools` toolbox."
+
+Toolbox versions are immutable. `toolbox_version_create` also creates the toolbox if it doesn't exist. For an existing toolbox, creating a version doesn't change the default version. Call `toolbox_update` with `defaultVersion` set to the new version to promote it. Before you delete the current default version, set another version as the default.
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
-| `toolbox_get` | read | Retrieve a toolbox. | Toolbox identifier | Toolbox details. |
-| `toolbox_version_get` | read | Retrieve a specific toolbox version. | Toolbox identifier, version identifier | Toolbox version details. |
-| `toolbox_version_create` | write | Create a version for an existing toolbox. | Toolbox identifier and version details | Created toolbox version. |
-| `toolbox_update` | write | Update an existing toolbox. | Toolbox identifier and updated toolbox details | Updated toolbox details. |
+| `toolbox_get` | read | Retrieve a toolbox and its current default version. | Toolbox identifier | Toolbox details. |
+| `toolbox_version_get` | read | List toolbox versions, or retrieve a specific version. | Toolbox identifier, version identifier for a specific version | Toolbox version list or details. |
+| `toolbox_version_create` | write | Create an immutable toolbox version. If the toolbox doesn't exist, this tool also creates it. | Toolbox identifier and version details | Created toolbox version. |
+| `toolbox_update` | write | Create or update a toolbox, including its default version. | Toolbox identifier, updated toolbox details, `defaultVersion` when changing the default | Created or updated toolbox details. |
 | `toolbox_delete` | write | Delete a toolbox. | Toolbox identifier | Deletion confirmation. |
-| `toolbox_version_delete` | write | Delete a specific toolbox version. | Toolbox identifier, version identifier | Deletion confirmation. |
+| `toolbox_version_delete` | write | Delete a specific toolbox version. To delete the current default, first set another version as the default. | Toolbox identifier, version identifier | Deletion confirmation. |
 
 ## Dataset management
 
