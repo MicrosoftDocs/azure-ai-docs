@@ -8,7 +8,7 @@ ms.service: azure-document-intelligence-foundry-tools
 ms.custom:
   - devx-track-python
 ms.topic: how-to
-ms.date: 05/06/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.0.0'
 ---
@@ -21,7 +21,7 @@ monikerRange: 'doc-intel-3.0.0'
 
 # SDK target: REST API 2022–08–31 v3.0
 
-![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2022–08–31 v3.0**
+🟩 **REST API version 2022–08–31 v3.0**
 
 > [!IMPORTANT]
 >

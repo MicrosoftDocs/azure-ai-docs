@@ -3,11 +3,19 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 08/05/2026
+ms.date: 08/13/2026
 ms.author: pafarley
 ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
+
+### August 2026 release
+
+#### Improved pronunciation assessment models
+
+We updated the pronunciation assessment models for `en-US`, `zh-CN`, `es-ES`, `es-MX`, `fr-FR`, and `pt-BR`. These updates improve the Pearson correlation coefficients (PCC) for more precise and dependable evaluations.
+
+You can use the updated models through the API and the Microsoft Foundry playground.
 
 ### July 2026 release
 
@@ -33,7 +41,7 @@ The custom speech fine-tuning workflow is now documented for the Microsoft Found
 
 #### LLM Speech API Generally Availability
 
-LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multilingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
 
 #### Speech Transcription SDK general availability
 
@@ -73,7 +81,7 @@ Speech to text 5.1.0
    - `transcribe`: Convert pre-recorded audio into text.
    - `translate`: Convert pre-recorded audio into text in a specified target language.
 
-  For more information, see [LLM speech](../../llm-speech.md). 
+  For more information, see [LLM speech](../../llm-speech.md).
 * Fast transcription is generally available. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 * To transcribe multi-lingual contents continuously and accurately in an audio file, you can now use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
 * Video translation is now available in the Azure Speech service. For more information, see [What is video translation?](../../video-translation-overview.md)

@@ -262,6 +262,9 @@ items:
       - name: Function calling
         displayName: How to use function calling with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/function-calling.md
+      - name: Multi-agent orchestration (preview)
+        displayName: Use multi-agent orchestration with the Azure OpenAI Responses API
+        href: ../../openai/how-to/responses-multi-agent.md
       - name: Structured outputs
         displayName: How to use structured outputs with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/structured-outputs.md

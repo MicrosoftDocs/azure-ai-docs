@@ -42,7 +42,7 @@ For information about pricing for priority processing, see the [Azure OpenAI Ser
 ## Enable priority processing at the request level
 
 > [!IMPORTANT]
-> Starting September 25, 2026, the service processes requests that set `service_tier` to `flex` only when the targeted model deployment supports Flex processing. Requests to unsupported models return HTTP 400 with an `invalid_request_error` and no longer fall back to standard processing. Before this change takes effect, verify that your model supports Flex processing. If standard processing is acceptable, retry the request with `service_tier` set to `default`.
+> Starting September 25, 2026, Foundry is retiring the automatic fallback from `flex` to standard processing for models that don't support Flex processing. Currently, such requests fall back to standard processing, but after the retirement date, they return HTTP 400 with an `invalid_request_error` instead. Before this change takes effect, verify that your model supports Flex processing. If standard processing is acceptable, set `service_tier` to `default` instead.
 
 Enabling priority processing at the request level is **optional**. Both the chat completions API and responses API have an optional attribute `service_tier` that specifies the processing type to use when serving a request. The following example shows how to set `service_tier` to `priority` in a responses request.
 

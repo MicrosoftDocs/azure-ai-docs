@@ -1,7 +1,7 @@
 ---
 title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
-author: aahil
+author: aahill
 ms.author: aahi
 ms.date: 07/14/2026
 ms.service: microsoft-foundry
@@ -100,9 +100,7 @@ To add a model connection in the Foundry portal:
 # [API Management](#tab/api-management)
 
 1. Sign in to [Microsoft Foundry](https://ai.azure.com).
-1. Select **Operate**, and then select **Admin**.
-1. Open the **All projects** tab.
-1. In the list of projects, find your project and select the link in the **Parent resource** column.
+1. Select **Manage**, and then select **Resource details**.
 1. Select the **Admin-connected models** tab, and then select **Add**.
     :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
 
@@ -178,9 +176,7 @@ To configure **Managed Identity** authentication to API Management, complete the
 # [Other source](#tab/other-sources)
 
 1. Sign in to [Microsoft Foundry](https://ai.azure.com).
-1. Select **Operate**, and then select **Admin**.
-1. Open the **All projects** tab.
-1. In the list of projects, find your project and select the link in the **Parent resource** column.
+1. Select **Manage**, and then select **Resource details**.
 1. Select the **Admin-connected models** tab, and then select **Add**.
     :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
 
@@ -259,7 +255,7 @@ For detailed connection specifications, see the [connection samples on GitHub](h
    > [!TIP]
    > A successful deployment returns `provisioningState: Succeeded` in the command output.
 
-1. Verify the connection in the Foundry portal. Go to the [Foundry portal](https://ai.azure.com), select **Operate**, and then select **Admin**. Open the **All projects** tab, select the link in the **Parent resource** column for your project, and then select the **Admin-connected models** tab. The new connection appears in the list with the models you configured.
+1. Verify the connection in the Foundry portal. Go to the [Foundry portal](https://ai.azure.com), select **Manage**, select **Resource details**, and then select the **Admin-connected models** tab. The new connection appears in the list with the models you configured.
 
 ::: zone-end
 
@@ -293,7 +289,7 @@ For a complete working example, see the [agent SDK samples on GitHub](https://gi
 
 After deploying your agent, confirm that the full pipeline works correctly:
 
-1. **Check connection status** — In the Foundry portal, select **Operate**, select **Admin**, and open the **All projects** tab. Select the link in the **Parent resource** column for your project, and then select the **Admin-connected models** tab. Verify the connection appears in the list. If it's missing, check the gateway endpoint URL and credentials.
+1. **Check connection status** — In the Foundry portal, select **Manage**, select **Resource details**, and then select the **Admin-connected models** tab. Verify the connection appears in the list. If it's missing, check the gateway endpoint URL and credentials.
 
 1. **Send a test prompt** — Use the SDK to create a conversation and send a request as described in the previous section. A successful response returns the model's reply text, confirming the agent can reach the model through your gateway.
 
