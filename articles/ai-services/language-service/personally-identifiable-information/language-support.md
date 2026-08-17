@@ -6,9 +6,10 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 06/10/2026
+ms.date: 08/17/2026
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
 # Personally Identifiable Information (PII) detection language support
@@ -120,6 +121,7 @@ Conversation PII generally available (GA) version currently supports the followi
 
 * English
 * French
+* German
 * Spanish
 
 # [Document-based PII](#tab/document-based-pii)
