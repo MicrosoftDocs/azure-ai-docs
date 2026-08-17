@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/06/2026
+ms.date: 08/10/2026
 ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
@@ -71,7 +71,7 @@ The Responses API supports the following models:
 - `gpt-5.6-sol` (Version: `2026-07-09`)
 - `gpt-5.6-terra` (Version: `2026-07-09`)
 - `gpt-5.6-luna` (Version: `2026-07-09`)
-- `gpt-chat-latest` (Versions: `2026-06-24`, `2026-05-28`, `2026-05-05`)
+- `gpt-chat-latest` (Versions: `2026-08-06`, `2026-06-24`, `2026-05-28`, `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)
@@ -1864,7 +1864,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 ### Containers
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 20 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two Code Interpreter sessions are created. Each session incurs per-minute charges, with a minimum charge of five minutes. A session remains active as long as you access its container within the 20-minute idle timeout.
 
 The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
 

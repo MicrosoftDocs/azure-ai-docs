@@ -26,9 +26,6 @@ If the user who created the project can assign roles (for example, by having the
 > [!TIP]
 > If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
 
-> [!TIP]
-> If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
-
 To assign these roles manually, use the following quick steps.
 
 ### Assign a role to your user principal
