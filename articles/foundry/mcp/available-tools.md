@@ -15,7 +15,7 @@ ms.custom: doc-kit-assisted
 
 # Available tools and example prompts for Foundry MCP Server (preview)
 
-Foundry MCP Server exposes 47 tools across 12 categories that let you manage agents, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use this reference to explore each tool and try the example prompts in your own project.
+This reference documents 49 Foundry MCP Server tools across 12 categories that let you manage agents, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use it to explore each tool and try the example prompts in your own project.
 
 > [!TIP]
 > Before using these tools, complete the [Foundry MCP Server setup](get-started.md).
@@ -156,34 +156,42 @@ Example prompts:
 
 ## Model catalog and details
 
-Explore and get details about models in the Foundry model catalog.
+Explore models in the Foundry model catalog, get model details, and determine whether a model can be deployed to Managed Compute.
 
 Example prompts:
 
 - "Show me all GPT-5.4 models available in the catalog."
 - "List all Microsoft-published models with MIT license."
 - "Get detailed information and code samples for GPT-5-mini."
+- "Show me models advertised for Managed Compute."
+- "Get Managed Compute details and deployment templates for `openai--gpt-oss-20b`."
+
+For Managed Compute, `isManagedCompute` in `model_catalog_list` identifies an advertised candidate. Confirm deployability with `model_details_get`: `isFoundryManagedCompute` is the authoritative signal, and the resolved deployment templates identify the available deployment options and accelerators.
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
-| `model_catalog_list` | read | List models from the Foundry model catalog with optional filters (publisher, license, task). | Search keywords, publisher, license type, task type (all optional) | List of models with name, publisher, license, and capabilities. |
-| `model_details_get` | read | Get full model details and code samples. | Model name or ID | Model specifications, pricing, supported regions, and code samples. |
+| `model_catalog_list` | read | List models from the Foundry model catalog with optional filters. For Managed Compute candidates, the response includes `isManagedCompute`. | Search keywords, publisher, license type, task type (all optional) | List of models with name, publisher, license, capabilities, and catalog deployment indicators. |
+| `model_details_get` | read | Get full model details and code samples. For Managed Compute, use `isFoundryManagedCompute` to confirm deployability. | Model name or ID | Model specifications, pricing, supported regions, code samples, and resolved deployment templates. |
 
 ## Model deployment management
 
-Deploy, inspect, and remove model deployments in a Foundry account.
+Deploy, inspect, and remove model deployments, including Managed Compute deployments, in a Foundry account.
 
 Example prompts:
 
 - "Deploy GPT-5-mini as `production-chatbot` with 20 capacity units."
 - "Show me all my current model deployments."
+- "Show me all my Managed Compute deployments."
+- "Deploy `openai--gpt-oss-20b` as `gpt-oss-managed` using its A100_80GB deployment template."
 - "Delete the `old-test-deployment` that I'm no longer using."
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
 | `model_deploy` | write | Create or update a model deployment with specified capacity. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
-| `model_deployment_get` | read | Get one or more model deployments from a Foundry account. | Deployment name (optional) | List of deployments or single deployment details with status and quota. |
-| `model_deployment_delete` | write | Delete a specific model deployment by name. | Deployment name | Deletion confirmation. |
+| `model_deploy_managed_compute` | write | Create a Managed Compute model deployment from a resolved deployment template. | Model name, deployment name, deployment template | Managed Compute deployment details. |
+| `model_deployment_get` | read | Get one or more model deployments from a Foundry account. Use `model_managed_compute_deployment_get` for Managed Compute deployments. | Deployment name (optional) | List of deployments or single deployment details with status and quota. |
+| `model_managed_compute_deployment_get` | read | Get one or more Managed Compute deployments from a Foundry account. | Deployment name (optional) | List of Managed Compute deployments or details for a specific deployment. |
+| `model_deployment_delete` | write | Delete a model deployment by name, including a Managed Compute deployment. | Deployment name | Deletion confirmation. |
 
 ## Model analytics and recommendations
 
@@ -205,19 +213,20 @@ Example prompts:
 
 ## Model monitoring and operations
 
-Track deployment health, monitor metrics, check deprecation status, and view quota usage.
+Track deployment health, monitor metrics, check deprecation status, and view quota usage, including Managed Compute accelerator quota.
 
 Example prompts:
 
 - "Show me the request metrics for my `production-chatbot` deployment."
 - "Check if any of my deployments are using deprecated model versions."
 - "Show me quota usage across all regions for my subscription."
+- "Show me A100_80GB, H100_80GB, MI300_192GB, and H200_141GB accelerator quota in East US 2."
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
 | `model_monitoring_metrics_get` | read | Get monitoring metrics (requests, latency, errors, quota) for a model deployment. | Deployment name, time range (optional) | Request count, latency percentiles, error rates, and token usage. |
 | `model_deprecation_info_get` | read | Get deployment info enriched with deprecation and retirement schedules. | Deployment name (optional) | Deployment details with deprecation dates and suggested replacements. |
-| `model_quota_list` | read | List available deployment quota and usage for a subscription in a region. | Region (optional) | Quota limits, current usage, and available capacity per model family. |
+| `model_quota_list` | read | List available deployment quota and usage for a subscription in a region, including Managed Compute accelerator quota. | Subscription, region | Quota limits, current usage, and available capacity per model family or accelerator. |
 
 ## Project connections
 
