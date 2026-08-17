@@ -619,7 +619,7 @@ Below is a list of the new locales. See the complete [Speech to text supported l
 ### August 2020 Release
 
 #### New speech to text locales:
-Speech to text released 26 new locales in August: 2 European languages `cs-CZ` and `hu-HU`, 5 English locales and 19 Spanish locales that cover most South American countries/regions. Below is a list of the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
+Speech-to-text added 26 new locales in August: two European languages `cs-CZ` and `hu-HU`, five English locales, and 19 Spanish locales that cover most South American countries and regions. The following list shows the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
