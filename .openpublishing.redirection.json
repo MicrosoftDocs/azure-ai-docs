@@ -498,6 +498,11 @@
       ]
     },
     {
+      "source_path": "articles/foundry/responsible-ai/content-understanding/provenance-disclosure.md",
+      "redirect_url": "/azure/foundry/responsible-ai/content-safety/provenance-disclosure",
+      "redirect_document_id": false,
+    },
+    {
       "source_path": "articles/machine-learning/v1/concept-automated-ml.md",
       "redirect_url": "/previous-versions/azure/machine-learning/concept-automated-ml",
       "redirect_document_id": false,
