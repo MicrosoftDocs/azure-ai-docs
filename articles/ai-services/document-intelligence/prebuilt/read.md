@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 06/25/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---
@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 
  ::: moniker range="doc-intel-4.0.0"
 
-**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
+**This content applies to:** 🟩 **v4.0 (GA)** | **Previous versions:** 🟦 [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) 🟦 [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
 
 > [!NOTE]
 >
@@ -427,11 +427,11 @@ Find more samples on GitHub:
 <!---------------------- v3.1 v3.0 v2.1 content ---------------------->
 
 ::: moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
+**This content applies to:** 🟩 **v3.1 (GA)** | **Latest version:** 🟪 [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** 🟦 [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
+**This content applies to:** 🟩 **v3.0 (GA)** | **Latest versions:** 🟪 [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) 🟪 [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=true)
 
 > [!IMPORTANT]
 >

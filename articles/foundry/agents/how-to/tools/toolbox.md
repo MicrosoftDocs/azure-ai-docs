@@ -82,22 +82,22 @@ SDKs and tooling support toolbox management operations, as shown in the followin
 | Toolbox version list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A | No. UI shows the latest version only. |
 | Guardrail (RAI policy) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-You can add the following tools to a toolbox. This table shows SDK and tooling support for each tool, whether the tool can also be attached directly to an agent (outside a toolbox), and whether the tool works when your project uses [network isolation (private link)](../../../how-to/configure-private-link.md). The **VNet support** column notes how traffic flows in a network-isolated environment.
+You can add the following tools to a toolbox. This table shows SDK and tooling support for each tool and whether the tool can also be attached directly to an agent (outside a toolbox). For how each tool's traffic flows when your project uses network isolation, see [Network isolation for a toolbox](toolbox-network-isolation.md).
 
-| Tool | In a toolbox | Direct tool integration | Python SDK | REST API | .NET SDK | JavaScript SDK | Azure Developer CLI | Foundry Toolkit | VNet support (traffic flow) |
-| ---- | ------------ | ----------------------- | ---------- | -------- | -------- | -------------- | --- | --------------- | --------------------------- |
-| [Model Context Protocol (MCP)](model-context-protocol.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✅ Supported (through your VNet subnet) |
-| [Web search](web-search.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✅ Supported (public endpoint) |
-| [Azure AI Search](ai-search.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✅ Supported (through private endpoint) |
-| [Code interpreter](code-interpreter.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✅ Supported (Microsoft backbone network) |
-| [File search](file-search.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ❌ Not supported |
-| [OpenAPI](openapi.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No | ✅ Supported (depends on target API network configuration) |
-| [Agent-to-agent (A2A)](agent-to-agent.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No | ✅ Supported (through private endpoint) |
-| [Browser automation](browser-automation.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No | ❌ Not supported |
-| [Fabric IQ](fabric-iq.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ❌ Not supported |
-| [Work IQ](work-iq.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ❌ Not supported |
-| [Tool search](tool-search.md) | ✅ Yes | ❌ No | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
-| [Skills](skills.md) | ✅ Yes | ❌ No | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No | N/A |
+| Tool | In a toolbox | Direct tool integration | Python SDK | REST API | .NET SDK | JavaScript SDK | Azure Developer CLI | Foundry Toolkit |
+| ---- | ------------ | ----------------------- | ---------- | -------- | -------- | -------------- | --- | --------------- |
+| [Model Context Protocol (MCP)](model-context-protocol.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Web search](web-search.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Azure AI Search](ai-search.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Code interpreter](code-interpreter.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [File search](file-search.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [OpenAPI](openapi.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Agent-to-agent (A2A)](agent-to-agent.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Browser automation](browser-automation.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Fabric IQ](fabric-iq.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Work IQ](work-iq.md) | ✅ Yes | ✅ Yes | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Tool search](tool-search.md) | ✅ Yes | ❌ No | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Skills](skills.md) | ✅ Yes | ❌ No | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 Tool availability also depends on your project's region and model. Before you deploy a toolbox, verify that your target region supports the tool types you plan to use. See [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 
@@ -1810,26 +1810,6 @@ The `reminder_preview` tool enables a hosted agent to schedule *itself* to run a
 | `500` with non-streaming `tools/call` | Non-streaming mode (`stream=False`) isn't supported for toolbox MCP endpoints. | Always use `stream=True` when calling toolbox MCP tools. |
 | `500` on `tools/list` | Transient server error | Retry after a few seconds. |
 | Environment variables overwritten at runtime | The platform reserves all environment variables prefixed with `FOUNDRY_` and might silently overwrite user-defined values. | Rename custom environment variables to avoid the `FOUNDRY_` prefix (for example, use `TOOLBOX_MCP_ENDPOINT` instead of `FOUNDRY_TOOLBOX_ENDPOINT`). |
-
-## Virtual network support
-
-When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), it supports all toolbox tool types. The following table shows how traffic flows for each tool type in a network-isolated environment.
-
-
-| Tool type | VNet support | Traffic flow |
-| --------- | ------------ | ------------ |
-| [MCP](model-context-protocol.md) | ✅ Supported | Through your VNet subnet |
-| [Azure AI Search](ai-search.md) | ✅ Supported | Through private endpoint |
-| [Code Interpreter](code-interpreter.md) | ✅ Supported | Microsoft backbone network |
-| [Web Search](web-search.md) | ✅ Supported | Public endpoint |
-| [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
-| [File Search](file-search.md) | ✅ Supported | Through private endpoint |
-| [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
-
-Network-isolated environments support file input and output. You can upload files to File Search vector stores and to Code Interpreter, and download files that Code Interpreter generates.
-
-
-For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
 The reminder tool is available only for hosted agents. You can't use the reminder tool with prompt agents.
 

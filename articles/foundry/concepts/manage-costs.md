@@ -113,6 +113,9 @@ To view detailed agent costs:
 1. Set the date range in the upper-right corner.
 You see total cost and an estimated cost chart for the selected range.
 
+> [!NOTE]
+> For Claude deployments, the Foundry **Monitor** tab shows token usage and request metrics. The estimated-cost chart is available for CCU-based Claude deployments, but not for existing Claude deployments that use per-model token billing. Actual billed cost for both deployment types remains available in Azure Cost Management. For details, see [Claude Consumption Units (CCU) billing in Microsoft Foundry](../foundry-models/concepts/claude-models-billing.md).
+
 **Reference:** [Monitor models](../foundry-models/how-to/monitor-models.md) 
 
 :::image type="content" source="media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="media/manage-costs/model-costs.png":::
