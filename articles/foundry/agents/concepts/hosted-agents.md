@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 08/13/2026
+ms.date: 08/18/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -164,9 +164,9 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 | **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists session state ($HOME, `/files`). |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
 
-Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts, releases it after 15 minutes without a request, and restores `$HOME` and `/files` when the session resumes, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
+Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts and releases it when the configured idle timeout elapses after the most recent request. When the session resumes, the platform restores `$HOME` and `/files`, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
 
-:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After 15 minutes without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
+:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After the configured idle timeout elapses without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
 
 ## Security and data handling
 
@@ -219,7 +219,9 @@ Each session has a persistent `$HOME`. The platform preserves its contents when 
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it until the configured idle timeout is reached, and tears it down when the session ends. The idle timeout can be 5 through 60 minutes and defaults to 15 minutes. Sessions have a maximum lifetime of 30 days. There's no replica count to configure and no warm pool to size.
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand and keeps its compute active while requests continue. Each request resets the idle timer. When the configured idle timeout elapses after the most recent request, the platform deprovisions the sandbox compute and persists the session state.
+
+The idle timeout can be 5 through 60 minutes and defaults to 15 minutes. The platform permanently deletes a session after 30 days of inactivity. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 

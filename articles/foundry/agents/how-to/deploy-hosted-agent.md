@@ -391,7 +391,7 @@ Key parameters:
 | `memory` | Memory allocation (for example, `"2Gi"`) |
 | `protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
 
-To configure when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
 
 ### Poll for version status
 
@@ -511,7 +511,7 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
 
 Creating an agent also creates version `1` and triggers provisioning.
 
-To configure when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
 
 To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 

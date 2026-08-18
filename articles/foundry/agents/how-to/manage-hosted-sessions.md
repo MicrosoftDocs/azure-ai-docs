@@ -160,7 +160,7 @@ agent = project.agents.create_version(
 print(f"Created version {agent.version} with a 5-minute idle timeout.")
 ```
 
-Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [SessionConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.sessionconfiguration)
+Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition)
 
 :::zone-end
 
