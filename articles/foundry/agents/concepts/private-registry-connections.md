@@ -21,14 +21,15 @@ from a private container registry. You create a Foundry project connection that
 uses OIDC token exchange and short-lived tokens instead of stored registry
 credentials.
 
-The pattern works with any registry that supports OIDC token exchange. For a
-walkthrough, see the setup examples for JFrog Artifactory and Docker
-Distribution.
+The pattern works with any registry that supports OIDC token exchange.
 
 The Entra application provides the audience value used during token exchange.
 The Foundry project managed identity (MI) authenticates with the registry's
 OIDC provider, which exchanges its token for short-lived image-pull
 credentials.
+
+For a walkthrough, see the setup examples for JFrog Artifactory and Docker
+Distribution.
 
 ## Prerequisites
 
