@@ -252,7 +252,7 @@ After the deployment finishes, verify that the managed virtual network is config
 
    The response shows the `isolationMode` set to your chosen mode (`AllowInternetOutbound` or `AllowOnlyApprovedOutbound`).
 
-1. List the outbound rules to confirm they were created:
+1. List the outbound rules to confirm they're created:
 
    ```azurecli
    az rest --method GET \
