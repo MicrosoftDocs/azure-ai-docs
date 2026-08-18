@@ -285,7 +285,7 @@ Primary changes:
 
 ## September 20, 2022
 **Announcement:**
-Beginning October 1, 2022, the Ubuntu 18 Data Science Virtual Machine (DSVM) will **not be** available on the marketplace. We recommend that users switch to the Ubuntu 20 DSVM as we continue to ship updates/patches on our latest Data Science VM – Ubuntu 20.04
+Starting October 1, 2022, the marketplace **won't** offer the Ubuntu 18 Data Science Virtual Machine (DSVM). Switch to the Ubuntu 20 DSVM. Microsoft continues to ship updates and patches for the latest Data Science VM – Ubuntu 20.04.
 
 Users who use the Azure Resource Manager (ARM) template/virtual machine scale, set to deploy the Ubuntu DSVM machines, should set the configuration to
 
