@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 # Bring your own registry for hosted agents
 
+**Overview**
+
 This article shows how to let a Microsoft Foundry hosted agent pull its image
 from a private container registry. You create a Foundry project connection that
 uses OIDC token exchange and short-lived tokens instead of stored registry
