@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 08/12/2026
+ms.date: 08/17/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -81,6 +81,8 @@ SDKs and tooling support toolbox management operations, as shown in the followin
 | Toolbox version create | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | Toolbox version list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A | No. UI shows the latest version only. |
 | Guardrail (RAI policy) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+You can also manage toolboxes conversationally with Foundry MCP Server. See [Manage toolboxes with Foundry MCP Server](#manage-toolboxes-with-foundry-mcp-server).
 
 You can add the following tools to a toolbox. This table shows SDK and tooling support for each tool and whether the tool can also be attached directly to an agent (outside a toolbox). For how each tool's traffic flows when your project uses network isolation, see [Network isolation for a toolbox](toolbox-network-isolation.md).
 
@@ -1282,6 +1284,31 @@ This operation isn't supported with the Azure Developer CLI. To delete a toolbox
 
 :::zone-end
 
+## Manage toolboxes with Foundry MCP Server
+
+Foundry MCP Server (preview) exposes toolbox management as MCP tools, so you can retrieve, version, update, and delete toolboxes from an MCP client such as GitHub Copilot in Visual Studio Code. To set up the server, see [Get started with Foundry MCP Server (preview)](../../../mcp/get-started.md).
+
+| Tool | Access | Description |
+| --- | --- | --- |
+| `toolbox_get` | read | Retrieve a toolbox and its current default version. |
+| `toolbox_version_get` | read | List toolbox versions, or retrieve a specific version. |
+| `toolbox_version_create` | write | Create an immutable toolbox version. If the toolbox doesn't exist, this tool also creates it. |
+| `toolbox_update` | write | Create or update a toolbox, including its default version. |
+| `toolbox_delete` | write | Delete a toolbox. |
+| `toolbox_version_delete` | write | Delete a specific toolbox version. |
+
+The same versioning rules apply as with the SDKs. Creating a version for an existing toolbox doesn't change the default version. To promote a version, call `toolbox_update` with `defaultVersion` set to the new version. Before you delete the current default version, set another version as the default.
+
+Example prompts:
+
+- "Show me the `customer-support-tools` toolbox."
+- "Get version 2 of `customer-support-tools`."
+- "Create a new version of `customer-support-tools`."
+- "Set version 2 of `customer-support-tools` as the default."
+- "Set version 1 of `customer-support-tools` as the default, then delete version 2."
+- "Delete the `old-support-tools` toolbox."
+
+For the full tool reference, see [Available tools and example prompts for Foundry MCP Server](../../../mcp/available-tools.md).
 
 ## Configure tools
 
@@ -1826,6 +1853,7 @@ Before deploying a toolbox, verify that your target region supports the tool typ
 ## Related content
 
 - [Connect agents to Model Context Protocol servers](model-context-protocol.md)
+- [Available tools and example prompts for Foundry MCP Server](../../../mcp/available-tools.md)
 - [Add MCP server authentication](../mcp-authentication.md)
 - [Web search tool](web-search.md)
 - [Azure AI Search tool](ai-search.md)
