@@ -4,7 +4,7 @@ description: Learn how to use OpenAI-compatible LangChain classes with chat and 
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/09/2026
+ms.date: 07/20/2026
 ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
@@ -389,12 +389,18 @@ You can easily instantiate a model by using `init_embeddings`:
 
 ```python
 from langchain.embeddings import init_embeddings
+from azure.identity import DefaultAzureCredential
 
-embed_model = init_embeddings("azure_ai:text-embedding-3-small")
+embed_model = init_embeddings(
+    "azure_ai:text-embedding-3-small",
+    credential=DefaultAzureCredential(),
+)
 ```
 
 **What this snippet does:** Creates an embeddings model client by using the
-`init_embeddings` convenience method.
+`init_embeddings` convenience method. Unlike `init_chat_model`, `init_embeddings`
+doesn't automatically fall back to `DefaultAzureCredential`, so pass a credential
+explicitly.
 
 All Foundry models supporting OpenAI-compatible APIs can be used with the client, but you need to deploy them to your Foundry resource first. Using `project_endpoint` (environment variable `FOUNDRY_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
 
@@ -496,9 +502,9 @@ that help troubleshoot endpoint or payload issues.
 You can configure the following environment variables. These values can also be configured when constructing the objects:
 
 | Variable | Role | Example | Parameter in constructor |
-|----------|------|---------|--------------------------|
+| --- | --- | --- | --- |
 | `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint. Use of the project endpoint requires Microsoft Entra ID authentication (recommended). | `https://contoso.services.ai.azure.com/api/projects/my-project` | `project_endpoint` |
-| `AZURE_OPENAI_ENDPOINT` | Root for OpenAI resources.  | `https://contoso.openai.azure.com` | None. |
+| `AZURE_OPENAI_ENDPOINT` | Root for OpenAI resources. | `https://contoso.openai.azure.com` | None. |
 | `OPENAI_BASE_URL` | Direct OpenAI-compatible endpoint used for model calls. | `https://contoso.services.ai.azure.com/openai/v1` | `endpoint` |
 | `OPENAI_API_KEY` or `AZURE_OPENAI_API_KEY` | API key used with `OPENAI_BASE_URL` or `AZURE_OPENAI_ENDPOINT` for key-based authentication. | `<your-api-key>` | `credential` |
 | `AZURE_OPENAI_DEPLOYMENT_NAME` | Model's deployment name in the Foundry or OpenAI resource. Check the name in the Foundry portal as deployment names can be different from the underlying model used. Any model supporting OpenAI-compatible APIs can be used, however, not all parameters might be supported. | `Mistral-Large-3` | `model` |

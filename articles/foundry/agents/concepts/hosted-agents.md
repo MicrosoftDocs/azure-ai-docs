@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 08/13/2026
+ms.date: 08/18/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -140,7 +140,7 @@ A session ID identifies a logical session with persisted state, including $HOME 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state. A session is permanently deleted after 30 days of inactivity.
+- **Session lifetime**: You can configure the idle timeout per agent version from 5 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -161,12 +161,12 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 | State | What happens |
 |-------|----------------------------------------------|
 | **Active** | Compute is running. Requests are routed to it. $HOME and /files content are available. |
-| **Idle** | No requests for 15 minutes. Compute is deprovisioned. Session state ($HOME, /files) is persisted. |
+| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists session state ($HOME, `/files`). |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
 
-Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts, releases it after 15 minutes without a request, and restores `$HOME` and `/files` when the session resumes, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
+Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts and releases it when the configured idle timeout elapses after the most recent request. When the session resumes, the platform restores `$HOME` and `/files`, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
 
-:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After 15 minutes without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
+:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After the configured idle timeout elapses without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
 
 ## Security and data handling
 
@@ -215,11 +215,13 @@ Hosted agent sandboxes support the following CPU and memory combinations:
 
 ### Session storage
 
-Each session has a persistent `$HOME`. Its contents are preserved when compute is deprovisioned after 15 minutes of inactivity, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
+Each session has a persistent `$HOME`. The platform preserves its contents when it deprovisions compute after the configured idle timeout. The platform restores the contents when the session resumes, so files written under `$HOME` survive idle periods. The platform writes files uploaded via the `/files` endpoint into `$HOME`, where they share the same storage. Each session has a total disk budget of up to **20 GiB at 1 vCPU or larger**, which scales down proportionally for smaller CPU tiers. The platform reserves about **20% of that budget for system use**, and it isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size.
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand and keeps its compute active while requests continue. Each request resets the idle timer. When the configured idle timeout elapses after the most recent request, the platform deprovisions the sandbox compute and persists the session state.
+
+The idle timeout can be 5 through 60 minutes and defaults to 15 minutes. The platform permanently deletes a session after 30 days of inactivity. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
