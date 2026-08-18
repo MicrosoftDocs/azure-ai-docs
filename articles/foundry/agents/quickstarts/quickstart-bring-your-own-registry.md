@@ -93,6 +93,10 @@ A successful response includes an `access_token`.
 
 ### Step 1: Create a registry connection
 
+You can create the registry connection using either approach:
+
+#### Option A: Azure CLI command
+
 ```azurecli
 az foundry registry create \
   --name "my-registry" \
@@ -104,6 +108,61 @@ az foundry registry create \
 ```
 
 Copy the registry ID from the output.
+
+#### Option B: Azure REST API
+
+First check whether the connection already exists:
+
+```powershell
+$connectionId = "/subscriptions/$env:AZURE_SUBSCRIPTION_ID/resourceGroups/$env:AZURE_RESOURCE_GROUP/providers/Microsoft.CognitiveServices/accounts/$env:FOUNDRY_ACCOUNT_NAME/projects/$env:FOUNDRY_PROJECT_NAME/connections/$env:FOUNDRY_CONNECTION_NAME"
+
+az rest `
+  --method get `
+  --url "https://management.azure.com${connectionId}?api-version=2025-10-01-preview"
+```
+
+If it exists and has the expected configuration, reuse it. Do not recreate or overwrite it.
+
+If it does not exist, create it:
+
+```powershell
+$connection = @{
+  properties = @{
+    category = "CustomKeys"
+    authType = "CustomKeys"
+    target = "https://$($env:JFROG_HOST)"
+    isSharedToAll = $true
+    useWorkspaceManagedIdentity = $false
+    metadata = @{
+      type = "registry_connection"
+      mode = "oauth_token_exchange"
+    }
+    credentials = @{
+      keys = @{
+        audience = $env:OIDC_AUDIENCE
+        tokenEndpoint = "/access/api/v1/oidc/token"
+        "body.provider_name" = $env:JFROG_OIDC_PROVIDER
+      }
+    }
+  }
+} | ConvertTo-Json -Depth 10
+
+az rest `
+  --method put `
+  --url "https://management.azure.com${connectionId}?api-version=2025-10-01-preview" `
+  --body $connection
+```
+
+**Important fields:**
+
+| Field | Value |
+|-------|-------|
+| `metadata.type` | `registry_connection` |
+| `metadata.mode` | `oauth_token_exchange` |
+| `target` | JFrog HTTPS origin |
+| `credentials.keys.audience` | Entra application client ID |
+| `credentials.keys.tokenEndpoint` | `/access/api/v1/oidc/token` |
+| `credentials.keys.body.provider_name` | JFrog OIDC provider name |
 
 ### Step 2: Update your agent configuration
 
