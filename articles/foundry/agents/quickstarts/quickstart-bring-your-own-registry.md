@@ -95,7 +95,9 @@ A successful response includes an `access_token`.
 
 You can create the registry connection using either approach:
 
-#### Option A: azd
+### [Azure Developer CLI](#tab/registry-azd)
+
+:::zone pivot="registry-azd"
 
 Install the `azure.ai.connections` extension and create the connection in your
 existing Foundry project:
@@ -128,7 +130,11 @@ azd ai agent init --no-prompt \
   --registry-connection private-registry
 ```
 
-#### Option B: Azure REST API
+:::zone-end
+
+### [Azure REST API](#tab/registry-rest)
+
+:::zone pivot="registry-rest"
 
 First check whether the connection already exists:
 
@@ -182,6 +188,8 @@ az rest `
 | `credentials.keys.audience` | Entra application client ID |
 | `credentials.keys.tokenEndpoint` | `/access/api/v1/oidc/token` |
 | `credentials.keys.body.provider_name` | JFrog OIDC provider name |
+
+:::zone-end
 
 ### Step 2: Update your agent configuration
 
