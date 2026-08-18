@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 07/21/2026
+ms.date: 08/05/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -107,6 +107,20 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
    > [!TIP]
    > To verify the deployment, navigate to your project's **Deployments** page and confirm the deployment **Status** shows **Succeeded**.
+
+## Improve prompt cache hit rate
+
+Prompt caching reuses processing for requests that share the same prompt prefix.
+To improve the prompt cache hit rate, set a stable identifier for each user or
+session, and reuse the same value for related requests. Use one of these options:
+
+* Set the `x-session-affinity` HTTP header.
+* Set the `user` request parameter.
+* Set the `prompt_cache_key` request parameter. This parameter takes priority
+  over `user` when both are present.
+
+For more information, see [Prompt caching](https://docs.fireworks.ai/guides/prompt-caching)
+in the Fireworks AI documentation.
 
 ## Available catalog models
 

@@ -3,7 +3,7 @@ title: "Manage hosted agent sessions"
 description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/12/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -346,24 +346,20 @@ Omit the body (or send `{}`) to let the platform pick the version using the agen
 ```python
 session = project.agents.create_session(
     agent_name="my-agent",
-    body={},
-    isolation_key="user-123",
 )
 print(f"Session created (ID: {session.agent_session_id}, status: {session.status})")
 ```
 
-The SDK requires the `isolation_key` keyword on `create_session` and `delete_session`. The server only enforces it when the agent endpoint is configured to read keys from headers—see [Isolation keys](#isolation-keys).
-
-To pin the session to a specific agent version, include `version_indicator` in the body:
+To pin the session to a specific agent version, pass `version_indicator`:
 
 ```python
+from azure.ai.projects.models import VersionRefIndicator
+
 session = project.agents.create_session(
     agent_name="my-agent",
-    body={
-        "version_indicator": {"type": "version_ref", "agent_version": "2"},
-    },
-    isolation_key="user-123",
+    version_indicator=VersionRefIndicator(agent_version="2"),
 )
+print(f"Created session {session.agent_session_id} for agent version 2")
 ```
 
 :::zone-end
@@ -463,7 +459,6 @@ az rest --method POST \
 project.agents.stop_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
 
@@ -503,7 +498,6 @@ az rest --method POST \
 project.agents.stop_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
 
@@ -539,7 +533,6 @@ az rest --method DELETE \
 project.agents.delete_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
 
@@ -556,9 +549,6 @@ Session management isn't currently available as a standalone command. Use the RE
 Upload and download files to agent session sandboxes. Each file is scoped to a specific session. The maximum file size for upload is 50 MB.
 
 A container can also write files directly into the session sandbox (under `$HOME`) and have them appear through these APIs. For an example, see the [note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent), which persists one notes file per session.
-
-> [!NOTE]
-> The Python SDK uses `session_id` as the keyword for `upload_session_file`, and `agent_session_id` for `get_session_files`, `download_session_file`, and `delete_session_file`. Use the keyword name shown in each example.
 
 ### Upload a file
 
@@ -579,15 +569,15 @@ az rest --method PUT \
 :::zone pivot="python"
 
 ```python
-project.agents.upload_session_file(
-    agent_name="my-agent",
-    session_id="<session-id>",
-    content_or_file_path="./data.csv",
-    path="data.csv",
-)
+with open("./data.csv", "rb") as file:
+    result = project.agents.upload_session_file(
+        agent_name="my-agent",
+        session_id="<session-id>",
+        content=file.read(),
+        path="data.csv",
+    )
+print(f"Uploaded {result.path} ({result.bytes_written} bytes)")
 ```
-
-The `content_or_file_path` parameter accepts a file path string. The SDK reads and uploads the file contents automatically.
 
 :::zone-end
 
@@ -616,13 +606,13 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-files = project.agents.get_session_files(
+files = project.agents.list_session_files(
     agent_name="my-agent",
-    agent_session_id="<session-id>",
+    session_id="<session-id>",
     path=".",
 )
-for entry in files.entries:
-    print(f"  {entry['name']} (size: {entry['size']}, directory: {entry['is_directory']})")
+for entry in files:
+    print(f"{entry.name} (size: {entry.size}, directory: {entry.is_directory})")
 ```
 
 :::zone-end
@@ -656,7 +646,7 @@ az rest --method GET \
 content_bytes = b"".join(
     project.agents.download_session_file(
         agent_name="my-agent",
-        agent_session_id="<session-id>",
+        session_id="<session-id>",
         path="data.csv",
     )
 )
@@ -693,7 +683,7 @@ az rest --method DELETE \
 ```python
 project.agents.delete_session_file(
     agent_name="my-agent",
-    agent_session_id="<session-id>",
+    session_id="<session-id>",
     path="data.csv",
 )
 ```

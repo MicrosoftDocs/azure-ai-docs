@@ -58,15 +58,13 @@ Before you register the custom agent that you added to a Foundry project, make s
 
 1. Ensure that an AI gateway is configured in your project:
 
-    1. On the toolbar, select **Operate**.
+    1. On the toolbar, select **Manage**.
 
-    1. On the left pane, select **Admin**.
-
-    1. Open the **AI Gateway** tab.
+    1. On the left pane, select **AI Gateway**.
 
     1. The pane lists all the AI gateways configured and mapped to a Foundry resource. Check if the Foundry resource that you want to use has an associated AI gateway.
 
-        :::image type="content" source="media/register-custom-agent/verify-ai-gateway.png" alt-text="Screenshot of the Foundry administration portal that shows steps for verifying if a project has an AI gateway configured." lightbox="media/register-custom-agent/verify-ai-gateway.png":::
+        :::image type="content" source="media/register-custom-agent/verify-ai-gateway.png" alt-text="Screenshot of the AI Gateway pane that shows steps for verifying if a project has an AI gateway configured." lightbox="media/register-custom-agent/verify-ai-gateway.png":::
 
     1. If the Foundry resource that you want to use doesn't have an AI gateway configured (it isn't listed), add one by using the **Add AI Gateway** option.
 
@@ -74,19 +72,15 @@ Before you register the custom agent that you added to a Foundry project, make s
 
 1. Ensure that you have observability configured in the project. Foundry Control Plane uses the Application Insights resource associated with your selected project for emitting data to help you diagnose your agent.
 
-    1. On the toolbar, select **Operate**.
+    1. On the toolbar, select **Manage**.
 
-    1. On the left pane, select **Admin**.
-
-    1. Under **All projects**, use the search box to look for your project.
-
-    1. Select the project.
+    1. On the left pane, select **Project details**.
 
     1. Select the **Connected resources** tab.
 
     1. Ensure that there's an associated resource in the **AppInsights** category.
 
-        :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the administration portal that shows steps to verify if a project has an associated Application Insights resource." lightbox="media/register-custom-agent/verify-app-insights.png":::
+        :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the Project details pane that shows steps to verify if a project has an associated Application Insights resource." lightbox="media/register-custom-agent/verify-app-insights.png":::
 
     1. If there's no associated resource, add one by selecting **Add connection** > **Application Insights**.
 

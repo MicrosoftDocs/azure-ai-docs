@@ -524,6 +524,27 @@ groups:
     title: Swift
   - id: programming-language-typescript
     title: TypeScript
+- id: programming-languages-speech-multichannel
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-swift
+    title: Swift
 - id: programming-languages-speech-translation
 # Owner: eur
   title: Programming languages
@@ -2057,12 +2078,23 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
   - id: vscode
     title: VS Code
   - id: foundry-skills
     title: Foundry Skills
   - id: canvas
     title: Foundry Agent Canvas
+# Owner: johmil
+- id: mcp-authentication-language
+  title: Programming language
+  prompt: Choose a programming language
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
 # Owner: johmil
 - id: hosted-agent-optimize-quickstart-method
   title: Optimization method

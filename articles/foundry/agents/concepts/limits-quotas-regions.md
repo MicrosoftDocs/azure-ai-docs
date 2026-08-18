@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 07/20/2026
+ms.date: 08/12/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -98,13 +98,16 @@ The following table shows which tools are available in each [supported region](#
 |---------------------|-----|-----------------|---------------------|-------------------|--------------|--------------------|-------------|----------|------------------------------------|-----------------------------|-------------------|-----|---------|------------|------------|
 | Australia East      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Brazil South        | yes | yes             | yes                 | yes               | no           | yes                | no          | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Canada Central      | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Canada East         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Central US          | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | East US             | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | East US 2           | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | France Central      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Germany West Central | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Italy North         | yes | yes             | yes                 | yes               | no           | yes                | no          | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Japan East          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Japan West          | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Korea Central       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | North Central US    | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Norway East         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
@@ -116,8 +119,11 @@ The following table shows which tools are available in each [supported region](#
 | Spain Central       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Sweden Central      | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Switzerland North   | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Switzerland West    | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | UAE North           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | UK South            | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| West Central US     | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| West Europe         | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | West US             | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | West US 3           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 
@@ -155,14 +161,6 @@ The following table shows which tools each model supports. For the image generat
 | MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No | No |
 | Meta-Llama-3.1-405B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | Mistral-large-2407 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
-| claude-haiku-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-mythos-preview | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-1 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | Yes | Yes |
-| claude-opus-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-7 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
 | codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | computer-use-preview | No | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No | No |
 | gpt-35-turbo | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |

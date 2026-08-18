@@ -55,9 +55,10 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
 | --- | :--- | :--- | :--- | :---: |
-| `gpt-chat-latest` (2026-06-24)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
-| `gpt-chat-latest` (2026-05-28)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
-| `gpt-chat-latest` (2026-05-05)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
+| `gpt-chat-latest` (2026-08-06)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | February 2026 |
+| `gpt-chat-latest` (2026-06-24)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
+| `gpt-chat-latest` (2026-05-28)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
+| `gpt-chat-latest` (2026-05-05)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
 
 > [!NOTE]
 > You might also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, the product name for this release is `gpt-chat-latest`. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. The team is also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
@@ -70,12 +71,15 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
 | --- | :--- | :--- | :--- | :---: |
-| `gpt-5.6-sol` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
-| `gpt-5.6-terra` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
-| `gpt-5.6-luna` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
+| `gpt-5.6-sol` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
+| `gpt-5.6-terra` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
+| `gpt-5.6-luna` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
 
 > [!NOTE]
-> Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-5.6` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
+> Keep the following in mind when you deploy and call the `gpt-5.6` models:
+>
+> - Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-5.6` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
+> - These models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For more information, see [Tool calling with reasoning models](../how-to/reasoning.md#tool-calling-with-reasoning-models).
 
 ## GPT-5.5
 
@@ -282,9 +286,9 @@ For model availability across all regions, grouped by deployment category, see [
 |  --- |  :--- |:--- |:---|:---: |
 | `computer-use-preview` (2025-03-11)  | Specialized model for use with the [Responses API](../how-to/responses.md) computer use tool <br> <br>- Tools <br>- Streaming<br>- Text (input/output)<br>- Image (input)   | 8,192 | 1,024 | October 2023 |
 
-## o-series models
+## O-Series models
 
-The Azure OpenAI o-series models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math, compared to previous iterations.
+The Azure OpenAI O-Series models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math, compared to previous iterations.
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 

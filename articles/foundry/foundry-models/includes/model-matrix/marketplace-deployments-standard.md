@@ -2,7 +2,7 @@
 title: Marketplace models - region availability for Standard deployment (All Geographies)
 description: Marketplace models - Regional availability for standard deployment options
 manager: mcleans
-ms.date: 07/09/2026
+ms.date: 08/05/2026
 ms.topic: include
 ms.custom:
   - references_regions
@@ -20,7 +20,6 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | claude-fable-5 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
 | claude-haiku-4-5 | 2 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-haiku-4-5 | 20251001 | - | - | - | - | - | ✅ | - | - | ✅ | - | - | - |
-| claude-opus-4-1 | 20250805 | - | - | - | - | - | ✅ | - | - | ✅ | - | - | - |
 | claude-opus-4-5 | 20251101 | - | - | - | - | - | ✅ | - | - | ✅ | - | - | - |
 | claude-opus-4-6 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
 | claude-opus-4-7 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
@@ -46,7 +45,6 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | claude-fable-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-haiku-4-5 | 2 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-haiku-4-5 | 20251001 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
-| claude-opus-4-1 | 20250805 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-5 | 20251101 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-6 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-7 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |

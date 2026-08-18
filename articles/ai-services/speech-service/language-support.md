@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 07/22/2026
+ms.date: 08/13/2026
 ms.author: pafarley
 ms.custom: references_regions, build-2024
 ai-usage: ai-assisted
@@ -160,7 +160,7 @@ The following table distinguishes locales that function as both cross-lingual so
 
 ## Visemes
 
-This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
+This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element).
 
 [!INCLUDE [Language support include](includes/language-support/viseme.md)]
 
@@ -170,8 +170,6 @@ This table lists all the locales supported for [viseme](speech-synthesis-markup-
 The table in this section summarizes the 33 supported locales for pronunciation assessment. Each language is available in all [speech-to-text regions](regions.md#regions). The latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency, and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is `en-US`.
 
 If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and you're uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario.
-
-If you're interested in languages not listed in the following table, fill out [this intake form](https://aka.ms/speechpa/intake) for further assistance.
 
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 

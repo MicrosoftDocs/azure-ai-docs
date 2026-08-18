@@ -47,7 +47,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 The data source definition specifies the data to index, credentials, and policies for identifying changes in the data. A data source is defined as an independent resource so that it can be used by multiple indexers.
 
-For this call, specify a [preview REST API version](search-api-preview.md) to create a data source that connects via an Azure Cosmos DB for Apache Gremlin. You can use 2021-04-01-preview or later. We recommend the latest preview API.
+For this call, specify a preview REST API version to create a data source that connects via Azure Cosmos DB for Apache Gremlin. You can use `2021-04-01-preview` or later. We recommend the [latest preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions).
 
 1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition: 
 

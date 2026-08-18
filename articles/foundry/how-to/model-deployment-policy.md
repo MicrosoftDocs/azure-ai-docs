@@ -5,7 +5,7 @@ description: "Govern AI model deployment in Microsoft Foundry portal with built-
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: aashishb
-ms.date: 05/29/2026
+ms.date: 08/07/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
@@ -24,10 +24,10 @@ Microsoft Foundry provides built-in Azure Policy definitions to help you govern 
 
 | Policy | Purpose | Status |
 |---|---|---|
-| **Foundry model deployments should only use approved models** | Restrict deployments to a specific list of models or publishers that your organization has explicitly approved. | Generally available |
+| **Foundry model deployments should only use approved models** | Restrict deployments to a specific list of models or publishers that your organization explicitly approves. | Generally available |
 | **Foundry model deployments should meet eligibility requirements** | Restrict deployments based on model attributes such as source (Direct from Azure) and lifecycle status (Preview). | Preview |
 
-Both policies are evaluated at **deployment time**. Models are not hidden from the catalog — instead, the **Deploy** action is disabled with a clear reason when a policy blocks the deployment. You can assign one or both policies depending on your governance needs.
+Both policies are evaluated at **deployment time**. The catalog doesn't hide models. Instead, the **Deploy** action is disabled with a clear reason when a policy blocks the deployment. You can assign one or both policies depending on your governance needs.
 
 > [!NOTE]
 > These policies also govern the underlying models that [model router](../openai/how-to/model-router-agents.md) selects from. Model router only routes requests to models that satisfy your assigned policies, so the same approval and eligibility rules apply whether you deploy a model directly or use model router to pick one per request. In addition, dedicated built-in policy definitions for model router are available in public preview. These definitions extend governance to other aspects of model router deployments, including deployment regions, required routing rules, and logging configurations. For more information, see [Govern model router deployments with Azure Policy](model-router-policy.md).
@@ -39,11 +39,11 @@ The two policies are complementary and address different governance questions:
 - **Approved models** answers *"Is this exact model on my organization's allow-list?"* — based on model identity.
 - **Eligibility requirements** answers *"Does this model meet my organization's standards for source and maturity?"* — based on model attributes.
 
-If both policies are assigned and a model is non-compliant with both, the **Deploy** experience shows the highest-priority reason first (approval, then eligibility), so users get one clear, actionable message.
+If you assign both policies and a model is noncompliant with both, the **Deploy** experience shows the highest-priority reason first (approval, then eligibility), so users get one clear, actionable message.
 
 ## Foundry model deployments should only use approved models
 
-Use this policy to restrict deployments to a specific list of models or publishers that your organization has explicitly approved.
+Use this policy to restrict deployments to a specific list of models or publishers that your organization explicitly approves.
 
 > [!NOTE]
 > This policy was previously named *Cognitive Services Deployments should only use approved Registry Models*. The policy definition ID is unchanged, so existing assignments continue to work without any action.
@@ -163,18 +163,18 @@ Reference:
 
 ---
 
-## Foundry model deployments must meet eligibility requirements (preview)
+## Foundry model deployments should meet eligibility requirements (preview)
 
 > [!IMPORTANT]
 > This policy is in **preview**. Preview features are made available for use, testing, and feedback purposes. Don't use them for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Use this policy to restrict deployments based on **model attributes** rather than specific model identity. This is useful when you want to enforce broader organizational standards — for example, "no preview models in production" or "only Microsoft-direct models" — without maintaining an explicit allow-list.
+Use this policy to restrict deployments based on **model attributes** rather than specific model identity. This restriction is useful when you want to enforce broader organizational standards - for example, "no preview models in production" or "only Microsoft-direct models" - without maintaining an explicit allow list.
 
 The policy currently supports the following attributes:
 
 | Parameter | Type | Default | Behavior when `true` |
 |---|---|---|---|
-| `onlyAllowDirectFromAzure` | Boolean | `false` | Denies deployment of models that are not Direct from Azure. |
+| `onlyAllowDirectFromAzure` | Boolean | `false` | Denies deployment of models that aren't Direct from Azure. |
 | `denyPreviewModels` | Boolean | `false` | Denies deployment of models whose lifecycle status is Preview. |
 
 Both parameters default to `false`, so an unconfigured assignment imposes no restrictions. Enable the toggles that match your organization's posture.
@@ -190,15 +190,15 @@ Both parameters default to `false`, so an unconfigured assignment imposes no res
     az account set --subscription "<subscription-id>"
     ```
 
-1. Find the policy definition ID:
+1. Find the policy definition ID. While the policy is in preview, its display name includes a `[Preview]:` prefix, so match on a substring instead of the full name:
 
     ```azurecli
     az policy definition list \
-       --query "[?displayName=='Foundry model deployments must meet eligibility requirements'].{name:name, id:id}" \
+       --query "[?contains(displayName, 'eligibility requirements')].{name:name, id:id, displayName:displayName}" \
        --output table
     ```
 
-1. Create a parameters file (example — block Preview models, allow any source):
+1. Create a parameters file (example - block Preview models, allow any source):
 
     ```json
     {
@@ -228,13 +228,13 @@ Both parameters default to `false`, so an unconfigured assignment imposes no res
 # [Azure portal](#tab/azureportal)
 
 1. From the [Azure portal](https://portal.azure.com/), select **Policy**.
-1. Select **Authoring** > **Definitions** and search for `Foundry model deployments must meet eligibility requirements`.
+1. Select **Authoring** > **Definitions** and search for `eligibility requirements`. While the policy is in preview, it appears as **[Preview]: Foundry model deployments should meet eligibility requirements**.
 1. Select **Assign**.
 1. On the **Basics** tab, set the **Scope** (management group, subscription, or resource group) and an **Assignment name**.
 1. On the **Parameters** tab, clear **Only show parameters that need input or review** to see all fields:
 
    - **Effect**: Set to [**Deny**](/azure/governance/policy/concepts/effect-deny) to block non-compliant deployments, or [**Audit**](/azure/governance/policy/concepts/effect-audit) to log them without blocking.
-   - **Only Allow Direct From Azure**: Set to `true` to deny deployment of models that are not Direct from Azure. Default is `false`.
+   - **Only Allow Direct From Azure**: Set to `true` to deny deployment of models that aren't Direct from Azure. Default is `false`.
    - **Deny Preview Models**: Set to `true` to deny deployment of models whose lifecycle status is Preview. Default is `false`.
 
 1. Select **Review + create** and then **Create** to assign the policy.
@@ -243,13 +243,13 @@ Both parameters default to `false`, so an unconfigured assignment imposes no res
 
 ## What developers see when a deployment is blocked
 
-When a developer attempts to deploy a model that is blocked by either policy, the **Deploy** action is disabled and a message explains why. The model itself remains visible in the catalog so the developer understands what was attempted.
+When a developer attempts to deploy a model that a policy blocks, the **Deploy** action is disabled and a message explains why. The model itself remains visible in the catalog so the developer understands what was attempted.
 
 | Scenario | What the developer sees |
 |---|---|
 | Model is approved and eligible | Deploy enabled. |
-| Model is not on the approved list | Deploy disabled — message indicates the model is not approved by the organization, with a pointer to contact the subscription or Foundry administrator. |
-| Model is approved but does not meet eligibility (for example, a Preview model when `denyPreviewModels` is on) | Deploy disabled — message indicates the model does not meet the organization's eligibility requirements (source or lifecycle status), with a pointer to contact the administrator. |
+| Model isn't on the approved list | Deploy disabled — message indicates the model isn't approved by the organization, with a pointer to contact the subscription or Foundry administrator. |
+| Model is approved but doesn't meet eligibility (for example, a Preview model when `denyPreviewModels` is on) | Deploy disabled — message indicates the model doesn't meet the organization's eligibility requirements (source or lifecycle status), with a pointer to contact the administrator. |
 | Multiple policies block the deployment | Deploy disabled — the highest-priority reason is shown (approval, then eligibility). |
 
 Each message includes the **policy name** and **assignment ID** so administrators can quickly identify which policy is enforcing the restriction.

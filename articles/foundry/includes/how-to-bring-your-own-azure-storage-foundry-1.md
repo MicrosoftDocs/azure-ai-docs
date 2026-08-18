@@ -12,13 +12,13 @@ ms.custom: include
 
 [!INCLUDE [feature-preview](feature-preview.md)]
 
-Microsoft Foundry brings Agents, Azure OpenAI, Speech, and Language services together under one unified resource type. Bring-your-own-storage (BYOS) lets you route data produced by these capabilities to an Azure Storage account that you own and govern. The configuration patterns align with (and provide backwards compatibility to) earlier standalone Speech and Language resource types.
+Microsoft Foundry brings Agents, Azure OpenAI, Speech, and Language services together under one unified resource type. Bring-your-own-storage (BYOS) lets you route data produced by these capabilities to an Azure Storage account that you own and govern. The configuration patterns align with (and provide backward compatibility to) earlier standalone Speech and Language resource types.
 
 This article shows you how to connect your storage to Foundry by using two overarching approaches:
 
-- Connections: recommended baseline for most features. Connections provide the shared data pointer.
-- Capability hosts: optionally override/explicitly bind a specific feature (for example, Agents standard setup) to one connection among several.
-- userOwnedStorage field: a resource-level binding used only by Speech and Language.
+- **Connections**: recommended baseline for most features. Connections provide the shared data pointer.
+- **Capability hosts**: optionally override or explicitly bind a specific feature (for example, Agents standard setup) to one connection among several.
+- **userOwnedStorage field:** a resource-level binding used only by Speech and Language.
 
 ## Prerequisites
 
@@ -31,6 +31,7 @@ Before connecting your storage, ensure you have:
    - `minimumTlsVersion` set to `TLS1_2`
    - `allowBlobPublicAccess` set to `false`
    - `allowCrossTenantReplication` set to `false`
+
 1. Contributor or Owner permissions on both the Foundry resource and the storage account.
 1. Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language).
 1. (Optional) A plan for customer-managed keys (CMK) encryption on the storage account.
@@ -42,9 +43,9 @@ Before connecting your storage, ensure you have:
 
 | Approach | What it is | Features supported | Scope | When to use |
 |----------|------------|--------------------|-------|-------------|
-| Foundry connections (shared data pointer) | Sub-resource holding endpoint + auth; grants project users indirect access | Agents, Evaluations, Datasets, Content Understanding | Resource or project level | Default pattern for most scenarios |
+| Foundry connections (shared data pointer) | Sub-resource holding endpoint and authentication; grants project users indirect access | Agents, Evaluations, Datasets, Content Understanding | Resource or project level | Default pattern for most scenarios |
 | Capability hosts (feature override binding) | Explicit per-feature binding selecting which connection a feature uses | Agents (standard setup) | Resource and project level | When multiple connections exist and you must force one for Agents |
-| userOwnedStorage field (resource storage binding) | Resource property assigning one storage account for Speech & Language (shared) | Speech, Language | Resource level only | To enable customer-managed storage for Speech & Language at creation time |
+| userOwnedStorage field (resource storage binding) | Resource property assigning one storage account for Speech and Language (shared) | Speech, Language | Resource level only | To enable customer-managed storage for Speech and Language at creation time |
 
 ### Foundry connections
 
@@ -60,7 +61,7 @@ See [Capability hosts](../agents/concepts/capability-hosts.md) for conceptual de
 
 The `userOwnedStorage` field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account.
 
-Speech and Language capabilities share the storage account but use different containers within it. The setting applies at the resource level and cannot be changed after creation without recreating the resource.
+Speech and Language capabilities share the storage account but use different containers within it. The setting applies at the resource level and can't be changed after creation without recreating the resource.
 
 If strict data isolation is required between Speech and Language scenarios, create separate Foundry resources with different storage accounts.
 

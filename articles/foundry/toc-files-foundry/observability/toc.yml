@@ -26,6 +26,8 @@ items:
      href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
    - name: Set up tracing
      href: ../../observability/how-to/trace-agent-setup.md
+   - name: Entra authentication for trace ingestion
+     href: ../../observability/how-to/trace-ingestion-entra-authentication.md
    - name: Replay agent traces
      href: ../../observability/how-to/trace-agent-replay.md
    - name: Add client-side tracing

@@ -5,12 +5,14 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/30/2026
+ms.date: 08/10/2026
 ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
 
-Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
+Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [multi-agent orchestration](../how-to/responses-multi-agent.md) to delegate independent work to parallel subagents, or use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
+
+For complete request and response parameter descriptions, see the [Responses API parameter reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 
 ## Prerequisites
 
@@ -69,7 +71,7 @@ The Responses API supports the following models:
 - `gpt-5.6-sol` (Version: `2026-07-09`)
 - `gpt-5.6-terra` (Version: `2026-07-09`)
 - `gpt-5.6-luna` (Version: `2026-07-09`)
-- `gpt-chat-latest` (Versions: `2026-06-24`, `2026-05-28`, `2026-05-05`)
+- `gpt-chat-latest` (Versions: `2026-08-06`, `2026-06-24`, `2026-05-28`, `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)
@@ -108,7 +110,7 @@ The Responses API supports the following models:
 - `o3` (Version: `2025-04-16`)
 - `o4-mini` (Version: `2025-04-16`)
 
-Not every model is available in every supported region. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability. For the full set of request and response parameters, see the [Responses API reference documentation](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
+Not every model is available in every supported region. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability.
 
 > [!NOTE]
 > Not currently supported:
@@ -1158,6 +1160,10 @@ Sample error event:
 
 Applications should detect these errors and gracefully stop or restart streaming. You aren't charged for tokens generated during failed streaming responses.
 
+## Structured outputs
+
+Use structured outputs to make a response follow a JSON Schema. In a Responses API request, define the schema in `text.format`. Chat Completions uses `response_format` instead. For SDK and REST examples, supported schema constraints, and limitations, see [Structured outputs](../how-to/structured-outputs.md).
+
 ## Function calling
 
 The Responses API supports function calling.
@@ -1858,7 +1864,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 ### Containers
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 20 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two Code Interpreter sessions are created. Each session incurs per-minute charges, with a minimum charge of five minutes. A session remains active as long as you access its container within the 20-minute idle timeout.
 
 The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
 
@@ -4298,5 +4304,5 @@ Computer use with Playwright has moved to the [dedicated computer use model guid
 - [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
 - [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [API version lifecycle](../api-version-lifecycle.md)
-- [Azure OpenAI REST API reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
+- [Responses API request and response parameter reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true)
 - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md)

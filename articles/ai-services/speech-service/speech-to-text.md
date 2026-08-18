@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 02/25/2026
+ms.date: 07/13/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
 
@@ -34,6 +35,10 @@ Real-time speech to text transcribes audio as it's recognized from a microphone 
 
 Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and [Speech to text REST API for short audio](rest-speech-to-text-short.md). 
 
+### Multichannel transcription (preview)
+
+Real-time speech to text can transcribe up to two audio channels independently and tag each result with its source channel. This capability is useful for stereo sources in which each channel carries a distinct speaker, such as the two sides of a customer support call. For more information, see [How to transcribe multichannel audio in real time](how-to-recognize-speech-multichannel.md).
+
 ## Fast transcription
 
 Use the fast transcription API to transcribe audio files and return results synchronously and faster than real-time audio. Use fast transcription in scenarios where you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
@@ -53,6 +58,8 @@ See the [Diarization quickstart](./get-started-stt-diarization.md) to get starte
 ### Phrase lists
 
 The phrase lists feature allows you to provide the speech recognition model with a list of specific words or phrases that are likely to be spoken in the audio. This helps improve the accuracy of transcription, especially for domain-specific terminology, proper nouns, or uncommon words. By using phrase lists, you can guide the model to better recognize and transcribe these terms correctly.
+
+See the [Phrase list quickstart](./improve-accuracy-phrase-list.md) to get started.
 
 ### Language detection
 
