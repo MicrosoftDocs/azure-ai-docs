@@ -91,7 +91,7 @@ A successful response includes an `access_token`.
 
 ## Deploy your agent
 
-### Step 1: Create a registry connection
+## Step 1: Create a registry connection
 
 You can create the registry connection using either approach:
 
@@ -183,7 +183,7 @@ az rest `
 | `credentials.keys.tokenEndpoint` | `/access/api/v1/oidc/token` |
 | `credentials.keys.body.provider_name` | JFrog OIDC provider name |
 
-### Step 2: Update your agent configuration
+## Step 2: Update your agent configuration
 
 In your `azure.yaml`, reference the private registry image and connection:
 
@@ -198,6 +198,8 @@ services:
     kind: hosted
     name: private-registry-agent
 ```
+
+## Network options
 
 Choose the option that matches your Foundry project network configuration:
 
