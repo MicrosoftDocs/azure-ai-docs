@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools document s
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 07/16/2026
+ms.date: 08/04/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
@@ -73,6 +73,10 @@ Content extraction forms the foundation of Content Understanding document analys
 - Retrieval-augmented generation (RAG)
   - **RAG solutions**: Content extraction forms the foundation of effective RAG systems by transforming raw multimodal data into structured, searchable formats that are optimized for retrieval. To learn more about building RAG solutions, see [Retrieval-augmented generation](../concepts/retrieval-augmented-generation.md).
 
+#### Extraction mode
+
+Use `extractionMode` to choose how to analyze document content. Use layout-aware extraction for structured documents, where tables, sections, and reading order matter. Use faster text-only extraction to produce clean Markdown for RAG and document ingestion scenarios.
+
 ### Field extraction
 
 With field extraction, you can extract, classify, and generate structured data from various documents and forms that are customized to meet your requirements. The process of transforming unstructured content into organized, actionable information simplifies data management, improves searchability, and supports automated workflows.
@@ -84,6 +88,8 @@ To maximize efficiency, use prebuilt analyzer templates, such as templates tailo
 The confidence and grounding API is an opt-in feature available for all document field types, whether they use the `extract`, `classify`, or `generate` method. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field.
 
 Supported typed field values, such as dates and numbers, are automatically normalized to a canonical format. Normalization isn't configurable. The field's returned value is the normalized value.
+
+Use confidence scores and source grounding to route low-confidence or insufficiently grounded extractions for human review. Continue high-confidence, grounded results through downstream automated workflows.
 
 #### Field extraction methods
 
