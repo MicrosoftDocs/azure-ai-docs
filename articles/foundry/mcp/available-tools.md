@@ -5,7 +5,7 @@ keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 08/17/2026
+ms.date: 08/18/2026
 ms.topic: reference
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
@@ -15,7 +15,7 @@ ms.custom: doc-kit-assisted
 
 # Available tools and example prompts for Foundry MCP Server (preview)
 
-This reference documents 50 Foundry MCP Server tools across 12 categories that let you manage agents, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use it to explore each tool and try the example prompts in your own project.
+This reference documents 79 Foundry MCP Server tools across 17 categories that let you manage agents, sessions, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use it to explore each tool and try the example prompts in your own project.
 
 > [!TIP]
 > Before using these tools, complete the [Foundry MCP Server setup](get-started.md).
@@ -74,6 +74,33 @@ Example prompts:
 | `agent_container_status_get` | read | Check the current status of a hosted agent container (Starting, Running, Stopped, Failed, and so on). | Agent name | Current container status. |
 | `agent_definition_schema_get` | read | Return the complete JSON schema for agent definitions, including all tool types. | None | Full JSON schema for agent definitions. |
 
+## Hosted agent sessions and files
+
+Create and manage isolated compute sessions for hosted agents. Inspect logs and manage files in each session's filesystem.
+
+Example prompts:
+
+- "Create a session for my hosted agent `data-analyst`."
+- "List the sessions for `data-analyst` and show the newest first."
+- "Stream up to 100 log lines from session `analysis-2026`."
+- "Upload `input.csv` to `/data/input.csv` in the session."
+- "Download `/data/results.csv` from the session."
+- "Delete session `analysis-2026` and release its compute resources."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `session_create` | write | Create a new session for a hosted agent. Sessions provide isolated compute environments for agent execution. | Agent name, session ID (optional) | Created session with its ID, status, and expiration. |
+| `session_get` | read | Get details for a specific hosted agent session. | Agent name, session ID | Session status, version, creation time, and expiration. |
+| `session_list` | read | List sessions for a hosted agent with pagination and sorting. | Agent name, limit, order, and `after` or `before` pagination cursor | Session list. |
+| `session_delete` | write | Delete a hosted agent session and release its compute resources. | Agent name, session ID | Operation result. |
+| `session_logstream` | read | Stream console output from a hosted agent session. The response is capped to prevent unbounded reads. | Agent name, session ID, maximum lines (optional) | Structured standard output and error log events. |
+| `session_file_list` | read | List files and directories at a path in a hosted agent session. | Agent name, session ID, path (optional) | File and directory list. |
+| `session_file_stat` | read | Get metadata for a file or directory in a hosted agent session. | Agent name, session ID, file path | Name, size, directory indicator, and last modified time. |
+| `session_file_mkdir` | write | Create a directory in a hosted agent session. | Agent name, session ID, path, create-parents flag (optional), permission mode (optional) | Operation result. |
+| `session_file_upload` | write | Upload base64-encoded content to a file in a hosted agent session. | Agent name, session ID, destination file path, base64 content | Operation result. |
+| `session_file_download` | read | Download a file from a hosted agent session. | Agent name, session ID, file path | Base64-encoded file content. |
+| `session_file_delete` | write | Delete a file or directory from a hosted agent session. | Agent name, session ID, file path, recursive flag (optional) | Operation result. |
+
 ## Toolbox management
 
 Create, retrieve, version, update, and delete toolboxes in a Foundry project.
@@ -100,7 +127,7 @@ Toolbox versions are immutable. `toolbox_version_create` also creates the toolbo
 
 ## Dataset management
 
-Create, retrieve, and version evaluation datasets in a Foundry project.
+Create, retrieve, version, and download evaluation datasets in a Foundry project.
 
 Example prompts:
 
@@ -108,12 +135,32 @@ Example prompts:
 - "Show me all datasets in my Foundry project."
 - "Get details for the `customer-support-qa` dataset version 2."
 - "List all versions of my `product-reviews` dataset."
+- "Get a download URL for the latest version of `customer-support-qa`."
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
 | `evaluation_dataset_create` | write | Create or update a dataset version from an Azure Blob Storage URI. | Dataset name, version, Blob Storage URI | Dataset metadata with name, version, and URI. |
 | `evaluation_dataset_get` | read | Get a dataset by name and version, or list all datasets in the project. | Dataset name and version (optional) | Dataset details or list of all datasets. |
 | `evaluation_dataset_versions_get` | read | List all versions of a specific dataset. | Dataset name | List of version numbers with metadata. |
+| `evaluation_dataset_sas_url_get` | read | Get a short-lived shared access signature (SAS) URL for downloading a dataset version's content. The version defaults to the latest. | Dataset name, dataset version (optional) | Short-lived dataset content URL. |
+
+## Data generation jobs
+
+Create and manage standalone data generation jobs for evaluation or fine-tuning data. Generate data from prompts, agents, traces, datasets, or uploaded files.
+
+Example prompts:
+
+- "Generate 100 evaluation question-and-answer samples from this prompt."
+- "Show me the status of data generation job `job-123`."
+- "Cancel data generation job `job-123`."
+- "Delete the completed data generation job `job-123`."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `data_generation_job_create` | write | Start a standalone data generation job for evaluation or fine-tuning data. | Job name, generation type, scenario, maximum samples, generation model deployment, and source inputs | Operation result. |
+| `data_generation_job_get` | read | Get one data generation job by ID, or list data generation jobs when the ID is omitted. | Job ID (optional) | Job details or job list. |
+| `data_generation_job_cancel` | write | Cancel a data generation job. | Job ID | Operation result. |
+| `data_generation_job_delete` | write | Delete a data generation job. | Job ID | Operation result. |
 
 ## Evaluation operations
 
@@ -135,6 +182,45 @@ Example prompts:
 | `evaluation_comparison_create` | write | Create comparison results between a baseline and treatment evaluation runs. | Baseline run ID, treatment run IDs | Comparison insight ID. |
 | `evaluation_comparison_get` | read | Get or list evaluation comparison insights. | Comparison insight ID (optional) | Comparison results with statistical analysis. |
 
+## Trace evaluation
+
+Run multi-turn conversation evaluations over agent traces or explicitly selected conversations and W3C trace IDs.
+
+Example prompts:
+
+- "Evaluate up to five traces from `customer-support-agent` from the last 24 hours for groundedness and task completion."
+- "Evaluate these conversation IDs for customer satisfaction at the conversation level."
+- "Evaluate these W3C trace IDs with my custom `tone-check` evaluator."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `evaluation_agent_traces_batch_eval_create` | write | Create a multi-turn batch evaluation over recent traces sampled from an agent. Creates an evaluation group when one isn't provided. | Evaluator names, agent name and version or agent ID, evaluation ID (optional), time range or lookback, maximum traces | Evaluation run. |
+| `evaluation_traces_batch_eval_create` | write | Create a multi-turn batch evaluation over trace data selected by conversation IDs or W3C trace IDs. Creates an evaluation group when one isn't provided. | Evaluator names, trace source type, conversation IDs or trace IDs, evaluation ID (optional), evaluation level (optional) | Evaluation run. |
+
+## Evaluation suites
+
+Create, version, run, update, and delete evaluation suites that group datasets, target agents, and evaluators. You can also generate suites from prompts, agents, traces, datasets, or uploaded files.
+
+Example prompts:
+
+- "Create an evaluation suite named `support-quality` for my support dataset and agent."
+- "Run version 2 of `support-quality`."
+- "Update the display name and tags for version 2 of `support-quality`."
+- "Generate an evaluation suite from recent traces for `customer-support-agent`."
+- "Show me all evaluation suite generation jobs."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `evaluation_suite_create` | write | Create an evaluation suite version that groups evaluators and can reference a dataset and target agent. | Suite name, evaluator names, dataset and target agent (optional), evaluation settings (optional) | Evaluation suite version. |
+| `evaluation_suite_get` | read | Get an evaluation suite version, list versions for a suite, or list suites. | Suite name (optional), version (optional), `listVersions` flag, and agent filter (optional) | Suite details, version list, or suite list. |
+| `evaluation_suite_update` | write | Update the display name, description, or tags on an evaluation suite version. | Suite name, version, fields to update | Operation result. |
+| `evaluation_suite_run` | write | Start an evaluation suite run. | Suite name, version (optional), evaluation name (optional), evaluation level (optional) | Evaluation run. |
+| `evaluation_suite_delete` | write | Delete an evaluation suite version. The version defaults to the latest. | Suite name, version (optional) | Operation result. |
+| `evaluation_suite_generation_job_create` | write | Start an evaluation suite generation job. | Suite name, generation model deployment, source inputs, generation settings | Generation job. |
+| `evaluation_suite_generation_job_get` | read | Get one evaluation suite generation job by ID, or list jobs when the ID is omitted. | Job ID (optional), limit and continuation token (optional) | Generation job details or job list. |
+| `evaluation_suite_generation_job_cancel` | write | Cancel an evaluation suite generation job. | Job ID | Operation result. |
+| `evaluation_suite_generation_job_delete` | write | Delete an evaluation suite generation job. | Job ID | Operation result. |
+
 ## Evaluator catalog
 
 Browse built-in evaluators and manage custom evaluators for use in evaluation runs.
@@ -153,6 +239,23 @@ Example prompts:
 | `evaluator_catalog_create` | write | Create a custom prompt-based or code-based evaluator. | Evaluator name, type (prompt or code), definition | Created evaluator metadata. |
 | `evaluator_catalog_update` | write | Update metadata (display name, description, category) for an existing custom evaluator. | Evaluator name, fields to update | Updated evaluator metadata. |
 | `evaluator_catalog_delete` | write | Delete a specific version of a custom evaluator. | Evaluator name, version | Deletion confirmation. |
+
+## Evaluator generation jobs
+
+Generate evaluators adaptively from prompts, agents, or datasets, and monitor or cancel the generation jobs.
+
+Example prompts:
+
+- "Generate an evaluator named `policy-compliance` from this policy prompt."
+- "Regenerate `policy-compliance` from version 2 of my support dataset using model deployment `gpt-4o`."
+- "Show me all running evaluator generation jobs."
+- "Cancel evaluator generation job `job-456`."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `evaluator_generation_job_create` | write | Start an adaptive evaluator generation job. Supplying an existing evaluator name regenerates it from updated source inputs. | Model deployment, evaluator name, prompt, agent, or dataset source inputs | Generation job. |
+| `evaluator_generation_job_get` | read | Get one evaluator generation job by ID, or list jobs when the ID is omitted. | Job ID (optional), status and agent filters (optional), pagination inputs (optional) | Generation job details or job list. |
+| `evaluator_generation_job_cancel` | write | Cancel an evaluator generation job. | Job ID | Operation result. |
 
 ## Model catalog and details
 
@@ -187,20 +290,19 @@ Example prompts:
 
 Choose explicit tools for each deployment type:
 
-| Deployment type | Create or update | Read |
-| --- | --- | --- |
-| Foundry Models sold by Azure | `model_deploy_azure_direct_model` | `model_deployment_get` |
-| Managed Compute | `model_deploy_managed_compute` | `model_managed_compute_deployment_get` |
+| Deployment type | Create or update |
+| --- | --- |
+| Foundry Models sold by Azure | `model_deploy_azure_direct_model` |
+| Managed Compute | `model_deploy_managed_compute` |
 
-Don't use the deprecated `model_deploy` alias for new calls. For Managed Compute, first use `model_catalog_list` as a candidate signal, then call `model_details_get`. Use `model_deploy_managed_compute` only when `isFoundryManagedCompute` is `true`, and pass one of the resolved deployment templates. `model_deployment_delete` handles both deployment types.
+Don't use the deprecated `model_deploy` alias for new calls. For Managed Compute, first use `model_catalog_list` as a candidate signal, then call `model_details_get`. Use `model_deploy_managed_compute` only when `isFoundryManagedCompute` is `true`, and pass one of the resolved deployment templates. Use `model_deployment_get` to retrieve either deployment type, and `model_deployment_delete` to delete either type.
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
 | `model_deploy_azure_direct_model` | write | Create or update a deployment for a Foundry Model sold by Azure. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
 | `model_deploy` | write | Deprecated backward-compatible alias of `model_deploy_azure_direct_model`. It has identical inputs and behavior. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
 | `model_deploy_managed_compute` | write | Create a distinct Managed Compute deployment from a registry model asset and resolved deployment template. | Deployment name, `modelAssetId`, `deploymentTemplate`, `acceleratorType` (optional), `instanceCount` (optional), `versionUpgradeOption` (optional) | Managed Compute deployment details. |
-| `model_deployment_get` | read | Get one or more deployments of Foundry Models sold by Azure. This tool doesn't return Managed Compute deployments. | Deployment name (optional) | List of deployments or details for a specific deployment. |
-| `model_managed_compute_deployment_get` | read | Get one or more Managed Compute deployments. This tool doesn't return deployments of Foundry Models sold by Azure. | Deployment name (optional) | List of Managed Compute deployments or details for a specific deployment. |
+| `model_deployment_get` | read | Get deployments of Foundry Models sold by Azure and Managed Compute deployments. With a name, the tool searches both resource types and can return both when they share that name. Without a name, it combines both lists. | Deployment name (optional) | Deployment details with `Kind` set to `ADM` or `Managed`. |
 | `model_deployment_delete` | write | Delete either deployment type. The tool checks deployments of Foundry Models sold by Azure first, then Managed Compute deployments. | Deployment name | Deletion confirmation. |
 
 ## Model analytics and recommendations
@@ -293,33 +395,49 @@ Example prompts:
 
 ## Example workflows
 
-**Agent evaluation workflow:**
-
-1. "List all agents in my project."
-1. "Evaluate my `customer-support-agent` v2 using Relevance, Groundedness, and Safety evaluators."
-1. "Compare my baseline evaluation against the new run."
-1. "Show me the comparison results with statistical significance."
-
 **Model deployment and optimization:**
 
-1. "Show me all GPT-5.4 models available in the catalog."
-1. "Deploy GPT-5.4 as `customer-service-bot` with 15 capacity units."
-1. "Monitor the request latency for my new deployment."
-1. "Recommend more cost-effective alternatives based on current usage."
+- "Show me the `gpt-5.6-sol` model in the catalog."
+- "Deploy `gpt-5.6-sol` as `customer-service-bot` with 15 capacity units."
+- "Monitor the request latency for my new deployment."
+- "Recommend more cost-effective alternatives based on current usage."
+
+**Managed Compute quota planning:**
+
+- "Use `model_quota_list` to show my Managed Compute accelerator quota and usage for subscription `<subscription-id>` in East US 2."
+- "Compare the available instances for `A100_80GB`, `H100_80GB`, `MI300_192GB`, and `H200_141GB`."
+- "I need four instances. Identify which accelerators currently have enough available quota, and remind me that quota availability doesn't guarantee deployment capacity."
+- "Before any deployment, show me the selected accelerator and instance count for review because Managed Compute allocates billable dedicated GPU capacity."
+
+**Managed Compute deployment lifecycle:**
+
+- "Use `model_catalog_list` to find models advertised for Managed Compute, where `isManagedCompute` is `true`."
+- "For `openai--gpt-oss-20b`, use `model_details_get` to confirm that `isFoundryManagedCompute` is `true`, and show its registry `modelAssetId`, resolved deployment templates, and accelerators."
+- "Use `model_quota_list` to check the selected accelerator in East US 2 before deployment."
+- "Review the deployment template, accelerator, and instance count with me. After I confirm the billable dedicated GPU allocation, use `model_deploy_managed_compute` to create `gpt-oss-managed-test` with the registry `modelAssetId`, one resolved `deploymentTemplate`, and the approved `instanceCount`."
+- "Use `model_deployment_get` to monitor `gpt-oss-managed-test` and verify that its `Kind` is `Managed`."
+- "When testing is complete and I confirm cleanup, use `model_deployment_delete` to delete `gpt-oss-managed-test`."
+
+**Agent evaluation workflow:**
+
+- "List all agents in my project."
+- "Evaluate my `customer-support-agent` v2 using Relevance, Groundedness, and Safety evaluators."
+- "Compare my baseline evaluation against the new run."
+- "Show me the comparison results with statistical significance."
 
 **Continuous evaluation setup:**
 
-1. "List all agents in my project."
-1. "Enable continuous evaluation for my `customer-support-agent` using Relevance, Groundedness, and Safety evaluators with `gpt-4o`."
-1. "Show me the continuous evaluation configuration for `customer-support-agent`."
-1. "Update continuous evaluation to sample 25% of responses with a maximum of 10 runs per hour."
+- "List all agents in my project."
+- "Enable continuous evaluation for my `customer-support-agent` using Relevance, Groundedness, and Safety evaluators with the existing `gpt-5.6-luna` deployment."
+- "Show me the continuous evaluation configuration for `customer-support-agent`."
+- "Update continuous evaluation to sample 25% of responses with a maximum of 10 runs per hour."
 
 **Resource management and cleanup:**
 
-1. "List all my current deployments and their usage."
-1. "Check which deployments are using deprecated model versions."
-1. "Show me my quota usage across all regions."
-1. "Delete unused test deployments to free up capacity."
+- "List all my current deployments and their usage."
+- "Check which deployments are using deprecated model versions."
+- "Show me my quota usage across all regions."
+- "Delete unused test deployments to free up capacity."
 
 ## Preview limitations
 
