@@ -200,6 +200,32 @@ az rest --method POST \
 
 :::zone-end
 
+:::zone pivot="azd"
+
+Add `sessionConfiguration` to the `azure.ai.agent` service in `azure.yaml`:
+
+```yaml
+services:
+  my-agent:
+    host: azure.ai.agent
+    kind: hosted
+    sessionConfiguration:
+      idleTimeoutSeconds: 300
+```
+
+Deploy the agent:
+
+```bash
+azd deploy
+```
+
+The `azure.ai.agents` extension validates the value and maps `sessionConfiguration.idleTimeoutSeconds` to the hosted agent version's `session_configuration.idle_timeout_seconds` property. The setting applies to both code and container deployment modes. If you omit `sessionConfiguration`, the extension omits the property from the request, and the service uses the 900-second default.
+
+> [!NOTE]
+> This configuration requires an `azure.ai.agents` extension version that supports `sessionConfiguration`. Until that version is available, use the Python SDK or REST API to set the idle timeout.
+
+:::zone-end
+
 ## Invoke an agent and let the platform create the session
 
 For most agents, you don't need to create a session in advance. When you invoke the agent without an `agent_session_id`, the service creates one and returns it on the response. Capture that ID and pass it on later calls when you want subsequent invocations to share the same sandbox state—for example, files you upload through the `/files` endpoint.
