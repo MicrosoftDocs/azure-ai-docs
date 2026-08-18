@@ -22,6 +22,10 @@ credentials.
 The pattern works with any registry that supports OIDC token exchange. The
 examples use JFrog Artifactory and Docker Distribution.
 
+The Entra application provides the audience value used during token exchange.
+The Foundry project managed identity authenticates with the registry's OIDC
+provider, which exchanges its token for short-lived image-pull credentials.
+
 ## Prerequisites
 
 - An Azure subscription.
