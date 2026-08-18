@@ -1,5 +1,5 @@
 ---
-title: "Private registry connections for hosted agents"
+title: "Bring your own registry for hosted agents"
 description: "Deploy a Microsoft Foundry hosted agent from your private container registry using OIDC-based authentication."
 author: aahill
 ms.author: aahi
@@ -12,7 +12,7 @@ ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Private registry connections for hosted agents
+# Bring your own registry for hosted agents
 
 Deploy a Microsoft Foundry hosted agent from a private container registry by
 using OIDC-based authentication. This approach uses short-lived tokens instead
