@@ -95,19 +95,38 @@ A successful response includes an `access_token`.
 
 You can create the registry connection using either approach:
 
-#### Option A: Azure CLI command
+#### Option A: azd
 
-```azurecli
-az foundry registry create \
-  --name "my-registry" \
-  --registry-type "oidc" \
-  --registry-url "https://<your-jfrog-instance>/artifactory/docker" \
-  --token-endpoint "https://<your-jfrog-instance>/artifactory/api/oauth/token" \
-  --project "<foundry-project-name>" \
-  --resource-group "<resource-group>"
+Install the `azure.ai.connections` extension and create the connection in your
+existing Foundry project:
+
+```bash
+azd extension install azure.ai.connections
+
+PROJECT_ID="<foundry-project-resource-id>"
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+
+azd ai connection create private-registry \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind custom-keys \
+  --target "https://<private-registry-host>" \
+  --auth-type custom-keys \
+  --custom-key "audience=<entra-audience-app-id>" \
+  --custom-key "tokenEndpoint=/access/api/v1/oidc/token" \
+  --custom-key "body.provider_name=<oidc-provider-name>" \
+  --metadata "type=registry_connection" \
+  --metadata "mode=oauth_token_exchange"
 ```
 
-Copy the registry ID from the output.
+Initialize the agent with the existing project and connection:
+
+```bash
+azd ai agent init --no-prompt \
+  --agent-name private-registry-agent \
+  --image <private-registry-host>/<repository>/agent:<tag> \
+  --project-id "$PROJECT_ID" \
+  --registry-connection private-registry
+```
 
 #### Option B: Azure REST API
 
@@ -169,10 +188,15 @@ az rest `
 In your `azure.yaml`, reference the private registry image and connection:
 
 ```yaml
-agent:
-  image:
-    name: "docker.artifactory.jfrog.io/your-repo/your-agent:latest"
-    registry_connection_id: "<registry-connection-id>"
+services:
+  private-registry-agent:
+    host: azure.ai.agent
+    image: "docker.artifactory.jfrog.io/your-repo/your-agent:latest"
+    docker:
+      imagePassthrough: true
+    registryConnectionId: "private-registry"
+    kind: hosted
+    name: private-registry-agent
 ```
 
 ## Scenario A: Foundry without VNet isolation
@@ -265,4 +289,3 @@ az foundry hosted-agent invoke \
 - Learn more about [hosted agent concepts](../concepts/hosted-agents.md).
 - Explore [Foundry permissions](../concepts/hosted-agent-permissions.md).
 - Set up [CI/CD for agents](set-up-cicd-hosted-agent.md).
-
