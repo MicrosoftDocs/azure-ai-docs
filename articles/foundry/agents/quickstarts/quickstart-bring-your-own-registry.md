@@ -113,7 +113,7 @@ In your `azure.yaml`, reference the private registry image and connection:
 agent:
   image:
     name: "docker.artifactory.jfrog.io/your-repo/your-agent:latest"
-    registry: "<registry-connection-id>"
+    registry_connection_id: "<registry-connection-id>"
 ```
 
 ## Scenario A: Foundry without VNet isolation
