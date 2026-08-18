@@ -199,17 +199,21 @@ services:
     name: private-registry-agent
 ```
 
-## Scenario A: Foundry without VNet isolation
+Choose the option that matches your Foundry project network configuration:
 
-For Foundry projects with public network access (no VNet injection):
+### [Without VNet isolation](#tab/without-vnet)
 
-### Deploy the agent
+For Foundry projects with public network access:
+
+:::zone pivot="without-vnet"
+
+#### Deploy the agent
 
 ```azurecli
 azd deploy
 ```
 
-### Verify the agent is active
+#### Verify the agent is active
 
 ```azurecli
 az foundry hosted-agent show \
@@ -220,7 +224,7 @@ az foundry hosted-agent show \
 
 Wait for the status to change to **Active**.
 
-### Invoke the agent
+#### Invoke the agent
 
 ```azurecli
 az foundry hosted-agent invoke \
@@ -229,33 +233,37 @@ az foundry hosted-agent invoke \
   --resource-group "<resource-group>"
 ```
 
-## Scenario B: Foundry with VNet isolation
+:::zone-end
+
+### [With VNet isolation](#tab/with-vnet)
 
 For Foundry projects deployed within a VNet with private endpoints:
 
-### Network requirements
+:::zone pivot="with-vnet"
 
-Before deployment, ensure:
-- Your JFrog token endpoint is accessible from within the Foundry VNet.
-- Set up a private link or private endpoint to your JFrog instance (if needed).
-- Configure firewall rules to allow outbound traffic from your Foundry VNet to the JFrog token endpoint.
+#### Network requirements
 
-### JFrog connectivity via Private Link
+Before deployment, ensure that your JFrog token endpoint is accessible from
+within the Foundry VNet.
+
+#### JFrog connectivity via Private Link
 
 If your JFrog instance supports Azure Private Link:
 
 1. Create a private endpoint in your Foundry VNet targeting the JFrog service.
-2. Configure DNS resolution in your Foundry VNet to route requests to your JFrog instance via the private endpoint.
+2. Configure DNS resolution in your Foundry VNet to route requests to your
+   JFrog instance through the private endpoint.
 
-### Deploy the agent
+#### Deploy the agent
 
 ```azurecli
 azd deploy
 ```
 
-Foundry automatically uses the registry connection to pull images over the VNet's private network path.
+Foundry automatically uses the registry connection to pull images over the
+VNet's private network path.
 
-### Verify the agent is active
+#### Verify the agent is active
 
 ```azurecli
 az foundry hosted-agent show \
@@ -266,7 +274,7 @@ az foundry hosted-agent show \
 
 Wait for the status to change to **Active**.
 
-### Invoke the agent
+#### Invoke the agent
 
 ```azurecli
 az foundry hosted-agent invoke \
@@ -274,6 +282,8 @@ az foundry hosted-agent invoke \
   --project "<foundry-project-name>" \
   --resource-group "<resource-group>"
 ```
+
+:::zone-end
 
 ## Troubleshooting
 
@@ -282,7 +292,7 @@ az foundry hosted-agent invoke \
 | Token exchange fails with "Public access is disabled" | Registry OIDC provider isn't accessible publicly | Verify your registry OIDC integration allows public token requests |
 | Token exchange fails with "invalid_subject" or "invalid_audience" | OIDC claim mappings don't match | Confirm issuer, subject, and audience values match in Entra ID and your registry |
 | Image pull fails after successful token exchange | Service account lacks permissions | Ensure the registry service account has read access to your image repository |
-| Agent deployment fails with connection timeout | VNet isolation blocks registry access | Set up a private link or firewall rule to allow outbound traffic to the registry token endpoint |
+| Agent deployment fails with connection timeout | VNet isolation blocks registry access | Set up a private link to allow access to the registry token endpoint |
 
 ## Next steps
 
