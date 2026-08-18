@@ -82,7 +82,7 @@ The Azure Content Understanding skill in Azure AI Search now supports AI-based d
 
 ### Expanded generative model support
 
-Content Understanding now supports the GPT-5.x model family, including GPT-5.5, GPT-5.4, and GPT-5.4-mini, as generative models. For the full list of supported models, see [Service quotas and limits](service-limits.md#supported-generative-models).
+Content Understanding now supports the GPT-5 series as generative models, including GPT-5, GPT-5.1, GPT-5.2, GPT-5.4, and GPT-5.5, along with the mini and nano variants where supported. For the full list of supported models, see [Service quotas and limits](service-limits.md#supported-generative-models).
 
 ## May 2026
 
