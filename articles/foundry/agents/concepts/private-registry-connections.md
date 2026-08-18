@@ -14,12 +14,13 @@ ai-usage: ai-assisted
 
 # Bring your own registry for hosted agents
 
-Deploy a Microsoft Foundry hosted agent from a private container registry by
-using OIDC-based authentication. This approach uses short-lived tokens instead
-of storing registry credentials in your Foundry configuration.
+This article shows how to let a Microsoft Foundry hosted agent pull its image
+from a private container registry. You create a Foundry project connection that
+uses OIDC token exchange and short-lived tokens instead of stored registry
+credentials.
 
-The examples use JFrog Artifactory and Docker Distribution. The same
-connection pattern works with any registry that supports OIDC token exchange.
+The pattern works with any registry that supports OIDC token exchange. The
+examples use JFrog Artifactory and Docker Distribution.
 
 ## Prerequisites
 
