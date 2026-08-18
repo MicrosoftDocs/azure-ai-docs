@@ -1,8 +1,8 @@
 ---
 title: "Quickstart: Deploy a hosted agent from a private registry"
 description: "Deploy a Microsoft Foundry hosted agent from your private container registry using OIDC-based authentication."
-author: aahill
-ms.author: aahi
+author: harsheetshah
+ms.author: harsheetshah
 ms.date: 08/18/2026
 ms.manager: mcleans
 ms.topic: quickstart
