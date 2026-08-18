@@ -11,6 +11,7 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
 
 # What is custom text to speech avatar?
@@ -63,12 +64,12 @@ Before you get started, here are some considerations:
 
 **Overview of the steps to create a custom photo avatar:**
 
-Currently the custom photo avatar training requires a manual offline process. Users can understand the brief steps of how to train it below:
+You can create a custom photo avatar in the Microsoft Foundry portal from a single reference image. The flow doesn't require a manual offline setup process.
 1. **Prepare training data.** A custom photo avatar can be trained using either a real person’s photo or a virtual human image. See [Create custom photo avatar](./custom-photo-avatar-create.md) for details.
    
 1. **Get consent video.** Obtain a video of the talent reading a consent statement. This is required when training a photo avatar from a real person’s photo. They must provide consent for the use of their image to train a custom photo avatar model.
 
-1. **Set up the avatar model.** The custom photo avatar training and deployment are handled through a manual process.
+1. **Create and use the avatar model.** In the Foundry project, start custom photo avatar authoring and use the resulting avatar model with batch or real-time synthesis.
 
 
 
