@@ -88,6 +88,8 @@ items:
       href: ../../agents/how-to/tools/browser-automation-hosted-agent-quickstart.md
     - name: Add persistent memory
       href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
+    - name: Deploy from a private registry
+      href: ../../agents/quickstarts/quickstart-bring-your-own-registry.md
     - name: Evaluate an agent
       href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
     - name: Optimize a hosted agent
