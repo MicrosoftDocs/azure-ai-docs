@@ -30,7 +30,7 @@ Users can now create custom photo avatars directly in Microsoft Foundry. Self-cr
 
 - A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../ai-foundry/how-to/create-projects.md).
 - Image to create the custom photo avatar, if you want to create an avatar from an existing image.
-- You need a video recording of the talent reading a consent statement acknowledging the use of their image and voice. You upload this video when you set up the avatar talent. Microsoft uses the video to confirm identity and uses the audio portion (about one minute) to help match the voice to the avatar. For more information, see [Prepare consent for real human photo](#step-3-prepare-consent-for-real-human-photo).
+- A video recording of the talent reading a consent statement acknowledging the use of their image and voice. You upload this video when you set up the avatar talent. Microsoft uses the video to confirm identity and uses the audio portion (about one minute) to help match the voice to the avatar. For more information, see [Prepare consent for real human photo](#step-3-prepare-consent-for-real-human-photo).
 
 ## Step 1: Start fine-tuning
 1. [!INCLUDE [foundry-sign-in](../../../foundry/includes/foundry-sign-in.md)]
@@ -54,7 +54,7 @@ To get the best results when creating an avatar, please follow these image prepa
 - Make sure the face is fully visible, without shadows or any hidden parts.
 
 ## Step 3: Prepare consent for real human photo
-If you are creating a custom photo avatar from a real person’s photo, you must obtain consent from that person. Provide a video of the person reading a consent statement acknowledging the use of their image, including about one minute of audio. Microsoft verifies that the recorded statement matches the predefined script, compares the face in the video with the photo to confirm they belong to the same person, and uses the consent audio to help match the voice to the avatar.
+If you're creating a custom photo avatar from a real person's photo, you must get consent from that person. Provide a video of the person reading a consent statement acknowledging the use of their image, including about one minute of audio. Microsoft verifies that the recorded statement matches the predefined script, compares the face in the video with the photo to confirm they belong to the same person, and uses the consent audio to help match the voice to the avatar.
 For an example of the consent statement see the verbal-statement-all-locales.txt file in the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt) GitHub repository.
 
 ## Step 4: Create custom photo avatar
