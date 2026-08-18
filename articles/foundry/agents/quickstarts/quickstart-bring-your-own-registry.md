@@ -116,13 +116,17 @@ agent:
     registry: "<registry-connection-id>"
 ```
 
-### Step 3: Deploy
+## Scenario A: Foundry without VNet isolation
+
+For Foundry projects with public network access (no VNet injection):
+
+### Deploy the agent
 
 ```azurecli
 azd deploy
 ```
 
-### Step 4: Verify the agent is active
+### Verify the agent is active
 
 ```azurecli
 az foundry hosted-agent show \
@@ -133,7 +137,63 @@ az foundry hosted-agent show \
 
 Wait for the status to change to **Active**.
 
-### Step 5: Invoke the agent
+### Invoke the agent
+
+```azurecli
+az foundry hosted-agent invoke \
+  --agent-name "<agent-name>" \
+  --project "<foundry-project-name>" \
+  --resource-group "<resource-group>"
+```
+
+## Scenario B: Foundry with VNet isolation
+
+For Foundry projects deployed within a VNet with private endpoints:
+
+### Network requirements
+
+Before deployment, ensure:
+- Your JFrog token endpoint is accessible from within the Foundry VNet.
+- Set up a private link or private endpoint to your JFrog instance (if needed).
+- Configure firewall rules to allow outbound traffic from your Foundry VNet to the JFrog token endpoint.
+
+### JFrog connectivity options
+
+**Option 1: Private Link (recommended)**
+
+If your JFrog instance supports Azure Private Link:
+
+1. Create a private endpoint in your Foundry VNet targeting the JFrog service.
+2. Configure DNS resolution in your Foundry VNet to route requests to your JFrog instance via the private endpoint.
+
+**Option 2: Firewall rules**
+
+If Private Link isn't available:
+
+1. Identify the JFrog token endpoint URL (for example, `https://<your-jfrog-instance>/artifactory/api/oauth/token`).
+2. Add a firewall rule to allow outbound HTTPS (port 443) from your Foundry VNet to the JFrog instance.
+3. Ensure DNS resolution works from within your Foundry VNet.
+
+### Deploy the agent
+
+```azurecli
+azd deploy
+```
+
+Foundry automatically uses the registry connection to pull images over the VNet's private network path.
+
+### Verify the agent is active
+
+```azurecli
+az foundry hosted-agent show \
+  --agent-name "<agent-name>" \
+  --project "<foundry-project-name>" \
+  --resource-group "<resource-group>"
+```
+
+Wait for the status to change to **Active**.
+
+### Invoke the agent
 
 ```azurecli
 az foundry hosted-agent invoke \
