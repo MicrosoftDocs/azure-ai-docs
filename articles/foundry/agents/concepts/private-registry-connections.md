@@ -94,12 +94,16 @@ Create the connection with these values:
 | `metadata.type` | `registry_connection` |
 | `metadata.mode` | `oauth_token_exchange` |
 
-## Create the agent
+## Create the registry connection
 
-Create the connection with `azd ai connection create` or the Azure REST API.
-Use the values from the registry tab you selected.
+If your Foundry project already exists, create the registry connection with
+Azure Developer CLI or the Azure REST API. If the project doesn't exist, use
+the Azure REST API to create the project and registry connection before you
+create the agent. Use the values from the registry tab you selected.
 
 ### [Azure Developer CLI](#tab/azd)
+
+Use this option when you already have a Foundry project.
 
 ```bash
 azd extension install azure.ai.connections
@@ -117,17 +121,10 @@ azd ai connection create private-registry \
   --metadata "mode=oauth_token_exchange"
 ```
 
-Initialize the agent with the existing project and connection:
-
-```bash
-azd ai agent init --no-prompt \
-  --agent-name private-registry-agent \
-  --image <registry-host>/<repository>/agent:<tag> \
-  --project-id <foundry-project-resource-id> \
-  --registry-connection private-registry
-```
-
 ### [Azure REST API](#tab/rest)
+
+Use this option for an existing project, or to create the project and registry
+connection before you create the agent.
 
 Check whether the connection exists before creating it. Reuse an existing
 connection with the expected configuration.
@@ -169,9 +166,21 @@ az rest `
   --body $connection
 ```
 
-## Configure your agent
+## Create the agent
 
-In your `azure.yaml`, reference the private registry image and connection:
+After the registry connection exists, initialize the agent with the existing
+project and connection:
+
+```bash
+azd ai agent init --no-prompt \
+  --agent-name private-registry-agent \
+  --image <registry-host>/<repository>/agent:<tag> \
+  --project-id <foundry-project-resource-id> \
+  --registry-connection private-registry
+```
+
+In the generated `azure.yaml`, reference the private registry image and
+connection:
 
 ```yaml
 services:
