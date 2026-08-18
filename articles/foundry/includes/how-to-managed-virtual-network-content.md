@@ -6,14 +6,18 @@ ms.author: scottpolly
 ms.reviewer: meerakurup
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/03/2026
+ms.date: 08/18/2026
 ms.custom: include, classic-and-new, dev-focus
 ai-usage: ai-assisted
 ---
 
-This article explains how to set up a managed virtual network for your Foundry resource. A managed virtual network streamlines and automates network isolation for your Foundry resource by provisioning a Microsoft-managed virtual network that secures the Agents service underlying compute within your Foundry projects. When you enable it, this managed network boundary secures Agents outbound network traffic, and the isolation mode you choose governs all the traffic. You can create the required private endpoints to dependent Azure services and apply the necessary network rules. You get a secure default without requiring you to build or maintain your own virtual network. This managed network restricts what your Agents can access, helping prevent data exfiltration while still allowing connectivity to approved Azure resources. 
+This article explains how to set up a managed virtual network for your Foundry resource. A managed virtual network streamlines and automates network isolation by provisioning a Microsoft-managed virtual network that secures the Agents service underlying compute within your Foundry projects.
 
-Managed virtual network now supports Prompt and Hosted Agent services with the new Responses API and in the new Foundry portal. The currently supported regions for managed virtual network with the new Agent service and new Foundry portal are the following: **East US, East US2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, Australia East, Sweden Central, Canada East, South Africa North, West US, West US 3, South India, and UK South.** 
+When you enable it, this managed network boundary secures Agents outbound network traffic, and the isolation mode you choose governs all the traffic. You can create the required private endpoints to dependent Azure services and apply the necessary network rules.
+
+You get a secure default without requiring you to build or maintain your own virtual network. This managed network restricts what your Agents can access, helping prevent data exfiltration while still allowing connectivity to approved Azure resources. 
+
+Managed virtual network now supports Prompt and Hosted Agent services with the new Responses API and in the new Foundry portal. The currently supported regions for managed virtual network with the new Agent service and new Foundry portal are the following: **East US, East US 2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, Australia East, Sweden Central, Canada East, South Africa North, West US, West US 3, South India, and UK South.** 
 
 Before continuing, consider the [limitations](#limitations) of the offering and review the prerequisites. 
 
@@ -26,7 +30,7 @@ When you enable managed virtual network isolation, you create a managed virtual 
 > [!NOTE]
 > The diagrams in this article represent logical connectivity only. Managed private endpoints in a Foundry managed virtual network don't create customer-visible network interfaces (NICs). Unlike standard VNet private endpoints that create a NIC with a private IP in your subnet, managed private endpoints are fully managed by Microsoft and abstracted from the customer's virtual network resources. You don't see these endpoints or associated NICs in your subscription.
 
-Two different configuration modes exist for outbound traffic from the managed virtual network:
+Three configuration modes exist for outbound traffic from the managed virtual network:
 
 | Outbound mode | Description | Scenarios |
 | --- | --- | --- |
@@ -68,10 +72,10 @@ Consider the following limitations before enabling managed network isolation for
   1. Bicep template in the folder [18-managed-virtual-network in foundry-samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network)
   1. Terraform template in the folder [18-managed-virtual-network in foundry-samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform/18-managed-virtual-network)
   1. `az rest` and Azure CLI commands `az cognitiveservices`. More on Azure CLI support in this article below.  
-1. There's no Azure portal UI support to create the managed network yet. Support is coming soon. 
+1. The Azure portal UI doesn't currently support creating the managed network. Use the Azure CLI, `az rest`, or the Bicep or Terraform templates instead. 
 1. After you create your Foundry resource, assign the Foundry resource's managed identity the built-in role of `Azure AI Enterprise Network Connection Approver` (role ID: `b556d68e-0be0-4f35-a333-ad7ee1ce17ea`) to ensure the required private endpoint to the Foundry resource is created and approved. 
 1. You can't disable managed virtual network isolation after enabling it. There's no upgrade path from custom virtual network set-up to managed virtual network. A Foundry resource redeployment is required. Deleting your Foundry resource deletes the managed virtual network.
-1. Support for managed virtual network is only in the following regions: **East US, East US2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, Australia East, Sweden Central, Canada East, South Africa North, West US, West US 3, South India, and UK South.** Additional region support to follow soon.
+1. Support for managed virtual network is only in the following regions: **East US, East US 2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, Australia East, Sweden Central, Canada East, South Africa North, West US, West US 3, South India, and UK South.** Additional region support to follow soon.
 1. If you require private access to on-premises resources for your Foundry resource, use [Application Gateway](/azure/application-gateway/overview) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
 1. If you create FQDN outbound rules when the managed virtual network is in **Allow Only Approved Outbound** mode, a managed Azure Firewall is created which comes with associated Firewall costs. For more on pricing, see [Pricing](#pricing). The FQDN outbound rules only support ports 80 and 443. 
 1. You can't bring your own Azure Firewall to the managed virtual network. A managed firewall is automatically created for your Foundry account when you use **Allow Only Approved Outbound** mode.
@@ -84,7 +88,7 @@ To get started deploying a managed virtual network Foundry resource, follow the 
 
 # [Azure CLI](#tab/azure-cli)
 
-### Step 1: Create the AI Services account with network injections
+### Create the AI Services account with network injections
 
 Create the account by setting `customSubDomainName`, `allowProjectManagement`, and `networkInjections` **at creation time**. You can't add these properties after creating the account.
 
@@ -93,7 +97,7 @@ Create the account by setting `customSubDomainName`, `allowProjectManagement`, a
 
 ```azurecli
 az rest --method PUT \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-03-01" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-05-01" \
   --body '{
     "location": "{region}",
     "kind": "AIServices",
@@ -119,11 +123,11 @@ Wait for `provisioningState` to reach `Succeeded` before proceeding:
 
 ```azurecli
 az rest --method GET \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-03-01" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-05-01" \
   --query "properties.provisioningState" -o tsv
 ```
 
-### Step 2: Get the managed identity principal ID
+### Get the managed identity principal ID
 
 Retrieve the system-assigned managed identity principal ID from the account:
 
@@ -134,7 +138,7 @@ az cognitiveservices account show \
   --query identity.principalId -o tsv
 ```
 
-### Step 3: Assign the Network Connection Approver role
+### Assign the Network Connection Approver role
 
 Assign the **Azure AI Enterprise Network Connection Approver** role (role ID: `b556d68e-0be0-4f35-a333-ad7ee1ce17ea`) to the Foundry account's managed identity. This role auto-approves managed network private endpoints.
 
@@ -149,7 +153,7 @@ az role assignment create \
 > [!NOTE]
 > If your target resources (Storage, Cosmos DB, AI Search) are in a different resource group, scope the role assignment to that resource group or to the subscription.
 
-### Step 4: Create the managed network
+### Create the managed network
 
 Create the managed network child resource on the account. This resource establishes the network isolation mode and provisions the network infrastructure.
 
@@ -195,6 +199,8 @@ You can deploy the solution by using either the Bicep or Terraform templates in 
 1. Configure the required variables for your environment (region, resource group, isolation mode, and any existing resource IDs).
 1. Run `terraform init`, `terraform plan`, and `terraform apply` to deploy.
 
+After the template finishes, confirm the configuration by following the steps in [Verify managed virtual network deployment](#verify-managed-virtual-network-deployment).
+
 ---
 
 For more details on the parameters required for managed virtual network deployment, see [Microsoft.CognitiveServices/accounts/managedNetworks](/azure/templates/microsoft.cognitiveservices/accounts/managednetworks).
@@ -234,23 +240,23 @@ After the deployment finishes, verify that the managed virtual network is config
 
 1. Test Agent connectivity by creating and running a basic Agent in your Foundry project. If the Agent completes successfully, the managed network is functioning correctly.
 
-# [az-rest](#tab/bicep)
+# [Bicep / Terraform](#tab/bicep)
 
 1. Confirm the Foundry resource exists and the managed network is enabled:
 
    ```azurecli
    az rest --method GET \
-     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default?api-version=2026-03-01" \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default?api-version=2026-05-01" \
      --query "properties.managedNetwork"
    ```
 
    The response shows the `isolationMode` set to your chosen mode (`AllowInternetOutbound` or `AllowOnlyApprovedOutbound`).
 
-1. List the managed private endpoints to confirm they were created:
+1. List the outbound rules to confirm they were created:
 
    ```azurecli
    az rest --method GET \
-     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2026-03-01" \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2026-05-01" \
      --query "value[].{name:name, type:properties.type, status:properties.status}"
    ```
 
@@ -350,13 +356,13 @@ az cognitiveservices account managed-network outbound-rule remove \
   --rule {rule-name}
 ```
 
-# [az-rest](#tab/bicep)
+# [Bicep / Terraform](#tab/bicep)
 
 To update outbound rules by using the ARM REST API, use the `az rest` command. The following example creates a private endpoint outbound rule to an Azure Cosmos DB resource:
 
 ```azurecli
 az rest --method PUT \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2026-03-01" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2026-05-01" \
   --body '{
     "properties": {
       "type": "PrivateEndpoint",
