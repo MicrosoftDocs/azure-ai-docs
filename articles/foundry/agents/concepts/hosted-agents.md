@@ -25,6 +25,7 @@ Choose Hosted agents over prompt-based agents when you need to:
 - **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
 - **Control compute resources** - specify CPU and memory for your agent's sandbox.
 - **Run stateful workloads** - persist files and state across turns via $HOME and the /files endpoint.
+- **Run long-lived work resiliently** - preserve in-progress agent work across process interruptions and replay streamed results to reconnecting clients.
 
 ### How it works
 
@@ -67,7 +68,7 @@ Hosted agent containers can expose one or more protocols. Each protocol is provi
 |----------|----------|-----|
 | Conversational chatbot or assistant | **Responses** | The platform manages conversation history, streaming events, and session lifecycle—use any OpenAI-compatible SDK as the client. |
 | Multi-turn Q&A with RAG or tools | **Responses** | Built-in conversation ID threading and tool result handling. |
-| Background / async processing | **Responses** | background: true with platform-managed polling and cancellation—no custom code needed. |
+| Background / async processing | **Responses** | `background: true` with platform-managed polling and cancellation. Opt in separately when the handler must recover after a process interruption. |
 | Agent published to Teams or Microsoft 365 | **Responses** + **Activity** | The Responses protocol powers the agent logic; the platform automatically bridges Responses to the Activity protocol for channel delivery. |
 | Webhook receiver (GitHub, Stripe, Jira, etc.) | **Invocations** | The external system sends its own payload format—you can't change it to match /responses. |
 | Non-conversational processing (classification, extraction, batch) | **Invocations** | The input is structured data, not a chat message. Arbitrary JSON in, arbitrary JSON out. |
@@ -91,7 +92,9 @@ The protocol you choose determines the payload your container receives, and how 
 | **Client SDK** | Any OpenAI-compatible SDK (Python, JS, C#) works out of the box | Custom client—you define the contract |
 | **Session history** | Platform-managed via conversation ID | You manage sessions (in-memory, Cosmos DB, etc.) |
 | **Streaming** | Platform-managed ResponseEventStream with lifecycle events | Raw SSE—you format and write events directly |
-| **Background / long-running** | Built-in (background: true + platform-managed polling) | Manual task tracking and custom polling endpoints |
+| **Background / long-running** | Built-in background mode and polling; optional resilient recovery for stored background responses | Resilient tasks in the AgentServer SDK; you define polling or streaming endpoints |
+
+Background mode and resilient execution solve different problems. Background mode lets work continue after the initiating request returns. Resilient execution preserves work after the hosting process stops. For the recovery model and application responsibilities, see [Resilience for long-running hosted agents](long-running-agent-resilience.md).
 
 #### Additional protocols
 
