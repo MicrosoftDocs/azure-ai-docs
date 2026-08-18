@@ -14,106 +14,105 @@ ai-usage: ai-assisted
 
 # Private registry connections for hosted agents
 
-Deploy a Microsoft Foundry hosted agent from your private container registry using OIDC-based authentication. This approach uses short-lived tokens instead of storing long-lived credentials in your Foundry configuration.
+Deploy a Microsoft Foundry hosted agent from a private container registry by
+using OIDC-based authentication. This approach uses short-lived tokens instead
+of storing registry credentials in your Foundry configuration.
 
-This article uses JFrog Artifactory as an example. The same steps work for any registry that supports OIDC token exchange.
+The examples use JFrog Artifactory and Docker Distribution. The same
+connection pattern works with any registry that supports OIDC token exchange.
 
 ## Prerequisites
 
 - An Azure subscription.
-- A Foundry project with `Foundry Project Manager` role. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+- A Foundry project with `Foundry Project Manager` role. See [Hosted agent permissions reference](hosted-agent-permissions.md).
 - [Azure CLI](/cli/azure/install-azure-cli) installed and authenticated.
-- A private container registry with OIDC support (for example, JFrog Artifactory).
+- A private container registry with OIDC support.
 - A container image in your registry.
 - Permissions to configure OIDC in your registry.
+- For Docker Distribution, an RFC 8693 token-exchange service and a registry
+  token service.
 
 ## Set up OIDC authentication
 
-### Step 1: Create a Microsoft Entra workload identity
+### Step 1: Create an Entra application
 
 ```azurecli
-# Create an app registration
 az ad app create --display-name "Foundry-Registry-Agent"
 ```
 
-Copy the `appId` output.
+Copy the application (client) ID. Use it as the audience when you configure
+your registry.
 
-```azurecli
-# Create a service principal
-az ad sp create --id <appId>
+## Configure the registry connection
 
-# Create a federated credential for OIDC token exchange
-az ad app federated-credential create \
-  --id <appId> \
-  --parameters '{
-    "name": "foundry-registry",
-    "issuer": "https://token.actions.githubusercontent.com",
-    "subject": "repo:foundry-project-<projectId>:ref:refs/heads/main",
-    "audiences": ["api://AzureADTokenExchange"]
-  }'
-```
+Choose the registry that hosts your image. In either tab:
 
-### Step 2: Configure your registry for OIDC
+1. Configure the registry to trust the Foundry project managed identity.
+2. Map the identity to a repository with image-pull permission.
+3. Create the Foundry project connection with `type` set to
+   `registry_connection` and `mode` set to `oauth_token_exchange`.
 
-#### JFrog Artifactory
+### [JFrog Artifactory](#tab/jfrog)
 
-1. In JFrog, go to **Administration** > **Integrations** > **OIDC**.
-2. Create an OIDC provider:
-   - **Issuer URL**: The Foundry issuer (provided by your Foundry project)
-   - **Audience**: `api://AzureADTokenExchange`
-   - **Service Account**: Create a service account with read access to your image repository
-3. Note the token endpoint: `https://<your-jfrog-instance>/artifactory/api/oauth/token`
+1. In JFrog, create an OIDC provider for the Foundry project managed identity.
+2. Give the provider read access to the image repository.
+3. Use `/access/api/v1/oidc/token` as the token endpoint.
+4. Record the JFrog OIDC provider name.
 
-#### Other registries
+Create the connection with these values:
 
-Configure your registry to:
-- Trust the Foundry OIDC issuer
-- Map OIDC subjects to a registry identity with image pull permissions
-- Expose a token endpoint that exchanges OIDC tokens for registry tokens
+| Field | Value |
+| --- | --- |
+| `target` | `https://<jfrog-host>` |
+| `credentials.keys.audience` | Entra application client ID |
+| `credentials.keys.tokenEndpoint` | `/access/api/v1/oidc/token` |
+| `credentials.keys.body.provider_name` | JFrog OIDC provider name |
 
-### Step 3: Test token exchange
+When you create the connection, also provide
+`body.provider_name=<oidc-provider-name>` as a custom key.
 
-```bash
-# Get an OIDC token
-OIDC_TOKEN=$(az account get-access-token \
-  --resource "api://AzureADTokenExchange" \
-  --output json | jq -r '.accessToken')
+### [Docker Distribution](#tab/docker-distribution)
 
-# Exchange for a registry token
-curl -X POST https://<your-jfrog-instance>/artifactory/api/oauth/token \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange" \
-  -d "subject_token=$OIDC_TOKEN" \
-  -d "subject_token_type=urn:ietf:params:oauth:token-type:access_token"
-```
+Docker Distribution doesn't provide OIDC by itself. Deploy an RFC 8693
+token-exchange service and a registry token service in front of the registry.
 
-A successful response includes an `access_token`.
+1. Configure the token-exchange service to validate the Foundry project
+   managed identity token.
+2. Configure the registry token service to authorize the exchanged credential
+   for the image repository.
+3. Return a short-lived `access_token` and `username` from the
+   token-exchange service.
+4. Record the token-exchange endpoint.
 
-## Deploy your agent
+Create the connection with these values:
 
-## Step 1: Create a registry connection
+| Field | Value |
+| --- | --- |
+| `target` | `https://<registry-host>` |
+| `credentials.keys.audience` | Entra application client ID |
+| `credentials.keys.tokenEndpoint` | `<token-exchange-path>` |
+| `metadata.type` | `registry_connection` |
+| `metadata.mode` | `oauth_token_exchange` |
 
-You can create the registry connection using either approach:
+## Create the agent
+
+Create the connection with `azd ai connection create` or the Azure REST API.
+Use the values from the registry tab you selected.
 
 ### [Azure Developer CLI](#tab/azd)
-
-Install the `azure.ai.connections` extension and create the connection in your
-existing Foundry project:
 
 ```bash
 azd extension install azure.ai.connections
 
-PROJECT_ID="<foundry-project-resource-id>"
 PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
 
 azd ai connection create private-registry \
   --project-endpoint "$PROJECT_ENDPOINT" \
   --kind custom-keys \
-  --target "https://<private-registry-host>" \
+  --target "https://<registry-host>" \
   --auth-type custom-keys \
-  --custom-key "audience=<entra-audience-app-id>" \
-  --custom-key "tokenEndpoint=/access/api/v1/oidc/token" \
-  --custom-key "body.provider_name=<oidc-provider-name>" \
+  --custom-key "audience=<entra-application-client-id>" \
+  --custom-key "tokenEndpoint=<token-exchange-path>" \
   --metadata "type=registry_connection" \
   --metadata "mode=oauth_token_exchange"
 ```
@@ -123,14 +122,15 @@ Initialize the agent with the existing project and connection:
 ```bash
 azd ai agent init --no-prompt \
   --agent-name private-registry-agent \
-  --image <private-registry-host>/<repository>/agent:<tag> \
-  --project-id "$PROJECT_ID" \
+  --image <registry-host>/<repository>/agent:<tag> \
+  --project-id <foundry-project-resource-id> \
   --registry-connection private-registry
 ```
 
 ### [Azure REST API](#tab/rest)
 
-First check whether the connection already exists:
+Check whether the connection exists before creating it. Reuse an existing
+connection with the expected configuration.
 
 ```powershell
 $connectionId = "/subscriptions/$env:AZURE_SUBSCRIPTION_ID/resourceGroups/$env:AZURE_RESOURCE_GROUP/providers/Microsoft.CognitiveServices/accounts/$env:FOUNDRY_ACCOUNT_NAME/projects/$env:FOUNDRY_PROJECT_NAME/connections/$env:FOUNDRY_CONNECTION_NAME"
@@ -140,16 +140,14 @@ az rest `
   --url "https://management.azure.com${connectionId}?api-version=2025-10-01-preview"
 ```
 
-If it exists and has the expected configuration, reuse it. Do not recreate or overwrite it.
-
-If it does not exist, create it:
+If the connection doesn't exist, create it with the registry-specific values:
 
 ```powershell
 $connection = @{
   properties = @{
     category = "CustomKeys"
     authType = "CustomKeys"
-    target = "https://$($env:JFROG_HOST)"
+    target = "https://<registry-host>"
     isSharedToAll = $true
     useWorkspaceManagedIdentity = $false
     metadata = @{
@@ -158,9 +156,8 @@ $connection = @{
     }
     credentials = @{
       keys = @{
-        audience = $env:OIDC_AUDIENCE
-        tokenEndpoint = "/access/api/v1/oidc/token"
-        "body.provider_name" = $env:JFROG_OIDC_PROVIDER
+        audience = "<entra-application-client-id>"
+        tokenEndpoint = "<token-exchange-path>"
       }
     }
   }
@@ -172,18 +169,7 @@ az rest `
   --body $connection
 ```
 
-**Important fields:**
-
-| Field | Value |
-|-------|-------|
-| `metadata.type` | `registry_connection` |
-| `metadata.mode` | `oauth_token_exchange` |
-| `target` | JFrog HTTPS origin |
-| `credentials.keys.audience` | Entra application client ID |
-| `credentials.keys.tokenEndpoint` | `/access/api/v1/oidc/token` |
-| `credentials.keys.body.provider_name` | JFrog OIDC provider name |
-
-## Step 2: Update your agent configuration
+## Configure your agent
 
 In your `azure.yaml`, reference the private registry image and connection:
 
@@ -191,7 +177,7 @@ In your `azure.yaml`, reference the private registry image and connection:
 services:
   private-registry-agent:
     host: azure.ai.agent
-    image: "docker.artifactory.jfrog.io/your-repo/your-agent:latest"
+    image: "<registry-host>/<repository>/agent:<tag>"
     docker:
       imagePassthrough: true
     registryConnectionId: "private-registry"
@@ -239,16 +225,16 @@ For Foundry projects deployed within a VNet with private endpoints:
 
 #### Network requirements
 
-Before deployment, ensure that your JFrog token endpoint is accessible from
+Before deployment, ensure that your registry token endpoint is accessible from
 within the Foundry VNet.
 
-#### JFrog connectivity via Private Link
+#### Registry connectivity via Private Link
 
-If your JFrog instance supports Azure Private Link:
+If your registry supports Azure Private Link:
 
-1. Create a private endpoint in your Foundry VNet targeting the JFrog service.
+1. Create a private endpoint in your Foundry VNet targeting your registry.
 2. Configure DNS resolution in your Foundry VNet to route requests to your
-   JFrog instance through the private endpoint.
+   registry through the private endpoint.
 
 #### Deploy the agent
 
@@ -285,11 +271,11 @@ az foundry hosted-agent invoke \
 |-------|-------|-----------|
 | Token exchange fails with "Public access is disabled" | Registry OIDC provider isn't accessible publicly | Verify your registry OIDC integration allows public token requests |
 | Token exchange fails with "invalid_subject" or "invalid_audience" | OIDC claim mappings don't match | Confirm issuer, subject, and audience values match in Entra ID and your registry |
-| Image pull fails after successful token exchange | Service account lacks permissions | Ensure the registry service account has read access to your image repository |
+| Image pull fails after successful token exchange | Registry identity lacks permissions | Ensure the registry identity has read access to your image repository |
 | Agent deployment fails with connection timeout | VNet isolation blocks registry access | Set up a private link to allow access to the registry token endpoint |
 
 ## Next steps
 
-- Learn more about [hosted agent concepts](../concepts/hosted-agents.md).
-- Explore [Foundry permissions](../concepts/hosted-agent-permissions.md).
-- Set up [CI/CD for agents](set-up-cicd-hosted-agent.md).
+- Learn more about [hosted agent concepts](hosted-agents.md).
+- Explore [Foundry permissions](hosted-agent-permissions.md).
+- Set up [CI/CD for agents](../quickstarts/set-up-cicd-hosted-agent.md).
