@@ -35,7 +35,7 @@ Text to speech avatar capabilities include:
 - Enables real-time avatar conversations through the [Voice Live in Foundry](https://ai.azure.com/nextgen/goto/discover/models/Azure-Speech-Voice-live/version/1/registry/azureml-cogsvc).
 - Create voice agent with avatar in [Voice Live](../voice-live.md). 
 
-By using text to speech avatar's advanced neural network models and Photo avatar's VASA-1 models, you can deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
+By using text to speech avatar's advanced neural network models and Photo avatar's Microsoft VASA model, you can deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
 
 ## Avatar voice and language
 
