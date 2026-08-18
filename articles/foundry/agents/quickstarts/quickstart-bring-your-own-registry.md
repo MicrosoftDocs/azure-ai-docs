@@ -157,22 +157,12 @@ Before deployment, ensure:
 - Set up a private link or private endpoint to your JFrog instance (if needed).
 - Configure firewall rules to allow outbound traffic from your Foundry VNet to the JFrog token endpoint.
 
-### JFrog connectivity options
-
-**Option 1: Private Link (recommended)**
+### JFrog connectivity via Private Link
 
 If your JFrog instance supports Azure Private Link:
 
 1. Create a private endpoint in your Foundry VNet targeting the JFrog service.
 2. Configure DNS resolution in your Foundry VNet to route requests to your JFrog instance via the private endpoint.
-
-**Option 2: Firewall rules**
-
-If Private Link isn't available:
-
-1. Identify the JFrog token endpoint URL (for example, `https://<your-jfrog-instance>/artifactory/api/oauth/token`).
-2. Add a firewall rule to allow outbound HTTPS (port 443) from your Foundry VNet to the JFrog instance.
-3. Ensure DNS resolution works from within your Foundry VNet.
 
 ### Deploy the agent
 
