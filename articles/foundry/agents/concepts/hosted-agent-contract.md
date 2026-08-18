@@ -162,7 +162,7 @@ Reference: [ResponsesAgentServerHost](https://github.com/microsoft-foundry/found
 
 ### [C#](#tab/csharp)
 
-From [`bring-your-own/responses/HelloWorld/Program.cs`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/bring-your-own/responses/HelloWorld/Program.cs):
+From [`bring-your-own/responses/HelloWorld/Program.cs`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/bring-your-own/responses/HelloWorld/src/hello-world-dotnet-responses/Program.cs):
 
 ```csharp
 using Azure.AI.AgentServer.Responses;
