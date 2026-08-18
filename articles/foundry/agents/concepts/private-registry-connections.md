@@ -1,22 +1,22 @@
 ---
-title: "Quickstart: Deploy a hosted agent from a private registry"
+title: "Private registry connections for hosted agents"
 description: "Deploy a Microsoft Foundry hosted agent from your private container registry using OIDC-based authentication."
 author: aahill
 ms.author: aahi
 ms.date: 08/18/2026
 ms.manager: mcleans
-ms.topic: quickstart
+ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Deploy a hosted agent from a private registry
+# Private registry connections for hosted agents
 
 Deploy a Microsoft Foundry hosted agent from your private container registry using OIDC-based authentication. This approach uses short-lived tokens instead of storing long-lived credentials in your Foundry configuration.
 
-This quickstart uses JFrog Artifactory as an example. The same steps work for any registry that supports OIDC token exchange.
+This article uses JFrog Artifactory as an example. The same steps work for any registry that supports OIDC token exchange.
 
 ## Prerequisites
 
