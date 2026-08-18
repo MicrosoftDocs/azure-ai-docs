@@ -141,7 +141,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| DeepSeek-R1 | 1 | Legacy | 2026-08-13 | DeepSeek-V4-Pro |
+| DeepSeek-R1 | 1 | Retired | 2026-08-13 | DeepSeek-V4-Pro |
 | DeepSeek-R1-0528 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Pro |
 | DeepSeek-V3-0324 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.1 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
@@ -166,7 +166,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | model-router | 2025-08-07 | Preview | 2026-08-30 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
 | MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
-| MAI-Image-2  | 2026-02-20 | Preview | 2026-08-15 | MAI-Image-2.5 |
+| MAI-Image-2  | 2026-02-20 | Retired | 2026-08-15 | MAI-Image-2.5 |
+| MAI-Transcribe-1 | 2026-01-23 | Preview | 2026-09-15 | MAI-Transcribe-1.5 |
 
 ### Mistral AI
 
@@ -301,9 +302,9 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| Stable-Diffusion-3.5-Large | 1 | Deprecated | 2026-07-31 | — |
-| Stable-Image-Core | 1 | Deprecated | 2026-07-31 | — |
-| Stable-Image-Ultra | 1 | Deprecated | 2026-07-31 | — |
+| Stable-Diffusion-3.5-Large | 1 | Retired | 2026-07-31 | — |
+| Stable-Image-Core | 1 | Retired | 2026-07-31 | — |
+| Stable-Image-Ultra | 1 | Retired | 2026-07-31 | — |
 
 ## Related content
 

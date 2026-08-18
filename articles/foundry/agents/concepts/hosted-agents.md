@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/13/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -28,7 +28,13 @@ Choose Hosted agents over prompt-based agents when you need to:
 
 ### How it works
 
-You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Microsoft Entra ID (agent identity), and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
+You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, assigns a dedicated Microsoft Entra ID (agent identity), and exposes a dedicated endpoint for the agent.
+
+At runtime, Agent Service provisions compute for the session and routes requests to your container. Your agent code handles those requests and can call Foundry models, Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
+
+The following diagram shows how responsibility is divided. You own the code that runs inside the sandbox. The platform owns the endpoint, identity, scaling, and session state around it.
+
+:::image type="content" source="../media/hosted-agents/hosted-agent-architecture.svg" alt-text="Diagram that shows the architecture of a hosted agent. Clients call a dedicated agent endpoint over the Responses, Invocations, Invocations (WebSocket), or Activity protocol, authenticated with Microsoft Entra ID. Agent Service holds the container image, agent versions, agent identity, and conversations, and starts a per-session VM-isolated sandbox that moves between active, idle, and resumed states. The sandbox calls models, a Toolbox MCP endpoint, and your own Azure services." lightbox="../media/hosted-agents/hosted-agent-architecture.svg":::
 
 > [!IMPORTANT]
 > When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations.
@@ -71,6 +77,10 @@ Hosted agent containers can expose one or more protocols. Each protocol is provi
 
 > [!TIP]
 > **Not sure?** Start with **Responses**. You can always add an Invocations endpoint later—a Hosted agent can support both protocols simultaneously.
+
+The protocol you choose determines the payload your container receives, and how much of the session, streaming, and background lifecycle the platform manages for you. A single agent can support more than one protocol, so this choice isn't permanent. Use the following decision tree to pick a starting point.
+
+:::image type="content" source="../media/hosted-agents/hosted-agent-protocol-choice.svg" alt-text="Decision tree for choosing a hosted agent protocol. If the client is a chat-style conversation, choose Responses. If the client needs real-time voice or two-way streaming, choose Invocations (WebSocket). Otherwise choose Invocations for webhooks, batch work, and custom payloads. Activity is bridged automatically when you publish to Teams or Microsoft 365. If you aren't sure, start with Responses, because an agent can expose more than one protocol." lightbox="../media/hosted-agents/hosted-agent-protocol-choice.svg":::
 
 #### Protocol comparison
 
@@ -153,6 +163,10 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 | **Active** | Compute is running. Requests are routed to it. $HOME and /files content are available. |
 | **Idle** | No requests for 15 minutes. Compute is deprovisioned. Session state ($HOME, /files) is persisted. |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
+
+Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts, releases it after 15 minutes without a request, and restores `$HOME` and `/files` when the session resumes, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
+
+:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After 15 minutes without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
 
 ## Security and data handling
 

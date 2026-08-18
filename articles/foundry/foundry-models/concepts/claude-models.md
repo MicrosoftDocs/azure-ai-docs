@@ -7,7 +7,7 @@ ms.reviewer: ambadal
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 08/12/2026
+ms.date: 08/17/2026
 ms.custom:
   - classic-and-new
   - doc-kit-assisted

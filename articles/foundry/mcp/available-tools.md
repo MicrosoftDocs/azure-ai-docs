@@ -5,7 +5,7 @@ keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 04/02/2026
+ms.date: 08/17/2026
 ms.topic: reference
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
@@ -15,7 +15,7 @@ ms.custom: doc-kit-assisted
 
 # Available tools and example prompts for Foundry MCP Server (preview)
 
-Foundry MCP Server exposes 38 tools across 10 categories that let you manage agents, datasets, evaluations, model deployments, and more — all through conversational prompts instead of API calls. Use this reference to explore each tool and try the example prompts in your own project.
+This reference documents 50 Foundry MCP Server tools across 12 categories that let you manage agents, toolboxes, datasets, evaluations, model deployments, continuous evaluation, and more — all through conversational prompts instead of API calls. Use it to explore each tool and try the example prompts in your own project.
 
 > [!TIP]
 > Before using these tools, complete the [Foundry MCP Server setup](get-started.md).
@@ -74,6 +74,30 @@ Example prompts:
 | `agent_container_status_get` | read | Check the current status of a hosted agent container (Starting, Running, Stopped, Failed, and so on). | Agent name | Current container status. |
 | `agent_definition_schema_get` | read | Return the complete JSON schema for agent definitions, including all tool types. | None | Full JSON schema for agent definitions. |
 
+## Toolbox management
+
+Create, retrieve, version, update, and delete toolboxes in a Foundry project.
+
+Example prompts:
+
+- "Show me the `customer-support-tools` toolbox."
+- "Get version 2 of `customer-support-tools`."
+- "Create a new version of `customer-support-tools`."
+- "Set version 2 of `customer-support-tools` as the default."
+- "Set version 1 of `customer-support-tools` as the default, then delete version 2."
+- "Delete the `old-support-tools` toolbox."
+
+Toolbox versions are immutable. `toolbox_version_create` also creates the toolbox if it doesn't exist. For an existing toolbox, creating a version doesn't change the default version. Call `toolbox_update` with `defaultVersion` set to the new version to promote it. Before you delete the current default version, set another version as the default.
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `toolbox_get` | read | Retrieve a toolbox and its current default version. | Toolbox identifier | Toolbox details. |
+| `toolbox_version_get` | read | List toolbox versions, or retrieve a specific version. | Toolbox identifier, version identifier for a specific version | Toolbox version list or details. |
+| `toolbox_version_create` | write | Create an immutable toolbox version. If the toolbox doesn't exist, this tool also creates it. | Toolbox identifier and version details | Created toolbox version. |
+| `toolbox_update` | write | Create or update a toolbox, including its default version. | Toolbox identifier, updated toolbox details, `defaultVersion` when changing the default | Created or updated toolbox details. |
+| `toolbox_delete` | write | Delete a toolbox. | Toolbox identifier | Deletion confirmation. |
+| `toolbox_version_delete` | write | Delete a specific toolbox version. To delete the current default, first set another version as the default. | Toolbox identifier, version identifier | Deletion confirmation. |
+
 ## Dataset management
 
 Create, retrieve, and version evaluation datasets in a Foundry project.
@@ -107,7 +131,7 @@ Example prompts:
 | --- | --- | --- | --- | --- |
 | `evaluation_agent_batch_eval_create` | write | Create a batch evaluation run that calls a specific agent. Supports built-in and custom evaluators, plus synthetic data generation. | Agent name/version, evaluator names, dataset (optional for synthetic generation), number of synthetic queries (optional) | Evaluation run ID and status. |
 | `evaluation_dataset_batch_eval_create` | write | Create a batch evaluation run against a JSONL dataset. Supports built-in and custom evaluators. | Dataset name/version, evaluator names | Evaluation run ID and status. |
-| `evaluation_get` | read | List evaluation runs in the Foundry project. | Evaluation run ID (optional) | List of evaluation runs with status and scores, or details for a specific run. |
+| `evaluation_get` | read | List evaluation groups or runs in the Foundry project. Set `isRequestForRuns` to true to list runs within a specific evaluation group. | Evaluation group ID (optional), evaluation run ID (optional), `isRequestForRuns` flag | List of evaluation groups or runs with status and scores, or details for a specific item. |
 | `evaluation_comparison_create` | write | Create comparison results between a baseline and treatment evaluation runs. | Baseline run ID, treatment run IDs | Comparison insight ID. |
 | `evaluation_comparison_get` | read | Get or list evaluation comparison insights. | Comparison insight ID (optional) | Comparison results with statistical analysis. |
 
@@ -132,34 +156,52 @@ Example prompts:
 
 ## Model catalog and details
 
-Explore and get details about models in the Foundry model catalog.
+Explore models in the Foundry model catalog, get model details, and determine whether a model can be deployed to Managed Compute.
 
 Example prompts:
 
 - "Show me all GPT-5.4 models available in the catalog."
 - "List all Microsoft-published models with MIT license."
 - "Get detailed information and code samples for GPT-5-mini."
+- "Show me models advertised for Managed Compute."
+- "Get Managed Compute details and deployment templates for `openai--gpt-oss-20b`."
+
+For Managed Compute, `isManagedCompute` in `model_catalog_list` identifies an advertised candidate. Confirm deployability with `model_details_get`: `isFoundryManagedCompute` is the authoritative signal, and the resolved deployment templates identify the available deployment options and accelerators.
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
-| `model_catalog_list` | read | List models from the Foundry model catalog with optional filters (publisher, license, task). | Search keywords, publisher, license type, task type (all optional) | List of models with name, publisher, license, and capabilities. |
-| `model_details_get` | read | Get full model details and code samples. | Model name or ID | Model specifications, pricing, supported regions, and code samples. |
+| `model_catalog_list` | read | List models from the Foundry model catalog with optional filters. For Managed Compute candidates, the response includes `isManagedCompute`. | Search keywords, publisher, license type, task type (all optional) | List of models with name, publisher, license, capabilities, and catalog deployment indicators. |
+| `model_details_get` | read | Get full model details and code samples. For Managed Compute, use `isFoundryManagedCompute` to confirm deployability. | Model name or ID | Model specifications, pricing, supported regions, code samples, and resolved deployment templates. |
 
 ## Model deployment management
 
-Deploy, inspect, and remove model deployments in a Foundry account.
+Deploy, inspect, and remove model deployments, including Managed Compute deployments, in a Foundry account.
 
 Example prompts:
 
-- "Deploy GPT-5-mini as `production-chatbot` with 20 capacity units."
+- "Use `model_deploy_azure_direct_model` to deploy GPT-5-mini as `production-chatbot` with 20 capacity units."
 - "Show me all my current model deployments."
+- "Show me all my Managed Compute deployments."
+- "Use `model_deploy_managed_compute` to deploy `openai--gpt-oss-20b` as `gpt-oss-managed` using its A100_80GB deployment template."
 - "Delete the `old-test-deployment` that I'm no longer using."
+
+Choose explicit tools for each deployment type:
+
+| Deployment type | Create or update | Read |
+| --- | --- | --- |
+| Foundry Models sold by Azure | `model_deploy_azure_direct_model` | `model_deployment_get` |
+| Managed Compute | `model_deploy_managed_compute` | `model_managed_compute_deployment_get` |
+
+Don't use the deprecated `model_deploy` alias for new calls. For Managed Compute, first use `model_catalog_list` as a candidate signal, then call `model_details_get`. Use `model_deploy_managed_compute` only when `isFoundryManagedCompute` is `true`, and pass one of the resolved deployment templates. `model_deployment_delete` handles both deployment types.
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
-| `model_deploy` | write | Create or update a model deployment with specified capacity. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
-| `model_deployment_get` | read | Get one or more model deployments from a Foundry account. | Deployment name (optional) | List of deployments or single deployment details with status and quota. |
-| `model_deployment_delete` | write | Delete a specific model deployment by name. | Deployment name | Deletion confirmation. |
+| `model_deploy_azure_direct_model` | write | Create or update a deployment for a Foundry Model sold by Azure. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
+| `model_deploy` | write | Deprecated backward-compatible alias of `model_deploy_azure_direct_model`. It has identical inputs and behavior. | Model name, deployment name, capacity units | Deployment details with endpoint and provisioned capacity. |
+| `model_deploy_managed_compute` | write | Create a distinct Managed Compute deployment from a registry model asset and resolved deployment template. | Deployment name, `modelAssetId`, `deploymentTemplate`, `acceleratorType` (optional), `instanceCount` (optional), `versionUpgradeOption` (optional) | Managed Compute deployment details. |
+| `model_deployment_get` | read | Get one or more deployments of Foundry Models sold by Azure. This tool doesn't return Managed Compute deployments. | Deployment name (optional) | List of deployments or details for a specific deployment. |
+| `model_managed_compute_deployment_get` | read | Get one or more Managed Compute deployments. This tool doesn't return deployments of Foundry Models sold by Azure. | Deployment name (optional) | List of Managed Compute deployments or details for a specific deployment. |
+| `model_deployment_delete` | write | Delete either deployment type. The tool checks deployments of Foundry Models sold by Azure first, then Managed Compute deployments. | Deployment name | Deletion confirmation. |
 
 ## Model analytics and recommendations
 
@@ -181,19 +223,20 @@ Example prompts:
 
 ## Model monitoring and operations
 
-Track deployment health, monitor metrics, check deprecation status, and view quota usage.
+Track deployment health, monitor metrics, check deprecation status, and view quota usage, including Managed Compute accelerator quota.
 
 Example prompts:
 
 - "Show me the request metrics for my `production-chatbot` deployment."
 - "Check if any of my deployments are using deprecated model versions."
 - "Show me quota usage across all regions for my subscription."
+- "Show me A100_80GB, H100_80GB, MI300_192GB, and H200_141GB accelerator quota in East US 2."
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
 | `model_monitoring_metrics_get` | read | Get monitoring metrics (requests, latency, errors, quota) for a model deployment. | Deployment name, time range (optional) | Request count, latency percentiles, error rates, and token usage. |
 | `model_deprecation_info_get` | read | Get deployment info enriched with deprecation and retirement schedules. | Deployment name (optional) | Deployment details with deprecation dates and suggested replacements. |
-| `model_quota_list` | read | List available deployment quota and usage for a subscription in a region. | Region (optional) | Quota limits, current usage, and available capacity per model family. |
+| `model_quota_list` | read | List available deployment quota and usage for a subscription in a region, including Managed Compute accelerator quota. | Subscription, region | Quota limits, current usage, and available capacity per model family or accelerator. |
 
 ## Project connections
 
@@ -230,6 +273,24 @@ Example prompts:
 | --- | --- | --- | --- | --- |
 | `prompt_optimize` | write | Optimize a developer prompt (system message) for better LLM performance using the Azure OpenAI Prompt Optimizer. | Prompt text, target model, refinement instructions (optional) | Optimized prompt text with explanation of changes. |
 
+## Continuous evaluation
+
+Enable, monitor, and manage continuous evaluation for agents. Continuous evaluation automatically evaluates agent responses on an ongoing basis. The tool auto-detects the agent kind (prompt or hosted) and configures the appropriate evaluation mechanism — evaluation rules for prompt agents, or scheduled evaluation runs for hosted agents.
+
+Example prompts:
+
+- "Enable continuous evaluation for my `customer-support-agent` using Relevance and Groundedness evaluators."
+- "Set up continuous evaluation for my hosted agent `triage-agent` to run every 2 hours."
+- "Show me the continuous evaluation configuration for `customer-support-agent`."
+- "Disable continuous evaluation for my `old-test-agent`."
+- "Update continuous evaluation for `customer-support-agent` to sample 50% of responses."
+
+| Tool | Access | Description | Key inputs | Returns |
+| --- | --- | --- | --- | --- |
+| `continuous_eval_create` | write | Enable or update continuous evaluation for an agent. Auto-detects agent kind and configures the appropriate evaluation mechanism. Creates the evaluation group if needed. | Agent name, evaluator names, model deployment name (for quality evaluators), enabled flag, interval hours (hosted agents), sampling rate (prompt agents), scenario (standard or business) | Continuous evaluation configuration with ID, status, and schedule details. |
+| `continuous_eval_get` | read | Get continuous evaluation configuration for an agent. Returns all configurations, or filter by scenario for prompt agents. | Agent name, scenario filter (optional) | List of continuous evaluation configurations with evaluator details, schedule, and status. |
+| `continuous_eval_delete` | write | Delete a continuous evaluation configuration for an agent. Use `continuous_eval_get` to find configuration IDs. | Configuration ID, agent name | Deletion confirmation. |
+
 ## Example workflows
 
 **Agent evaluation workflow:**
@@ -245,6 +306,13 @@ Example prompts:
 1. "Deploy GPT-5.4 as `customer-service-bot` with 15 capacity units."
 1. "Monitor the request latency for my new deployment."
 1. "Recommend more cost-effective alternatives based on current usage."
+
+**Continuous evaluation setup:**
+
+1. "List all agents in my project."
+1. "Enable continuous evaluation for my `customer-support-agent` using Relevance, Groundedness, and Safety evaluators with `gpt-4o`."
+1. "Show me the continuous evaluation configuration for `customer-support-agent`."
+1. "Update continuous evaluation to sample 25% of responses with a maximum of 10 runs per hour."
 
 **Resource management and cleanup:**
 
