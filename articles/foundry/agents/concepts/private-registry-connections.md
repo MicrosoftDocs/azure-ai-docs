@@ -95,9 +95,7 @@ A successful response includes an `access_token`.
 
 You can create the registry connection using either approach:
 
-### [Azure Developer CLI](#tab/registry-azd)
-
-:::zone pivot="registry-azd"
+### [Azure Developer CLI](#tab/azd)
 
 Install the `azure.ai.connections` extension and create the connection in your
 existing Foundry project:
@@ -130,11 +128,7 @@ azd ai agent init --no-prompt \
   --registry-connection private-registry
 ```
 
-:::zone-end
-
-### [Azure REST API](#tab/registry-rest)
-
-:::zone pivot="registry-rest"
+### [Azure REST API](#tab/rest)
 
 First check whether the connection already exists:
 
@@ -189,8 +183,6 @@ az rest `
 | `credentials.keys.tokenEndpoint` | `/access/api/v1/oidc/token` |
 | `credentials.keys.body.provider_name` | JFrog OIDC provider name |
 
-:::zone-end
-
 ### Step 2: Update your agent configuration
 
 In your `azure.yaml`, reference the private registry image and connection:
@@ -212,8 +204,6 @@ Choose the option that matches your Foundry project network configuration:
 ### [Without VNet isolation](#tab/without-vnet)
 
 For Foundry projects with public network access:
-
-:::zone pivot="without-vnet"
 
 #### Deploy the agent
 
@@ -241,13 +231,9 @@ az foundry hosted-agent invoke \
   --resource-group "<resource-group>"
 ```
 
-:::zone-end
-
 ### [With VNet isolation](#tab/with-vnet)
 
 For Foundry projects deployed within a VNet with private endpoints:
-
-:::zone pivot="with-vnet"
 
 #### Network requirements
 
@@ -290,8 +276,6 @@ az foundry hosted-agent invoke \
   --project "<foundry-project-name>" \
   --resource-group "<resource-group>"
 ```
-
-:::zone-end
 
 ## Troubleshooting
 
