@@ -202,10 +202,7 @@ azd deploy
 #### Verify the agent is active
 
 ```azurecli
-az foundry hosted-agent show \
-  --agent-name "<agent-name>" \
-  --project "<foundry-project-name>" \
-  --resource-group "<resource-group>"
+azd ai agent show
 ```
 
 Wait for the status to change to **Active**.
@@ -213,10 +210,7 @@ Wait for the status to change to **Active**.
 #### Invoke the agent
 
 ```azurecli
-az foundry hosted-agent invoke \
-  --agent-name "<agent-name>" \
-  --project "<foundry-project-name>" \
-  --resource-group "<resource-group>"
+azd ai agent invoke "<prompt>"
 ```
 
 ### [With VNet isolation](#tab/with-vnet)
@@ -248,10 +242,7 @@ VNet's private network path.
 #### Verify the agent is active
 
 ```azurecli
-az foundry hosted-agent show \
-  --agent-name "<agent-name>" \
-  --project "<foundry-project-name>" \
-  --resource-group "<resource-group>"
+azd ai agent show
 ```
 
 Wait for the status to change to **Active**.
@@ -259,10 +250,7 @@ Wait for the status to change to **Active**.
 #### Invoke the agent
 
 ```azurecli
-az foundry hosted-agent invoke \
-  --agent-name "<agent-name>" \
-  --project "<foundry-project-name>" \
-  --resource-group "<resource-group>"
+azd ai agent invoke "<prompt>"
 ```
 
 ## Troubleshooting
