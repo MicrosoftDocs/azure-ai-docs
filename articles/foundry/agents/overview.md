@@ -48,7 +48,7 @@ Foundry meets you anywhere on the spectrum from declarative to full code: define
 
 Foundry gives you several ways to build, from a single model call to a fully containerized agent. Choose your path based on what you're trying to do:
 
-- **Want the least to manage?** [Start with a prompt agent](../quickstarts/get-started-code.md). Configure instructions, a model, and tools; Foundry runs it with no code or infrastructure.
+- **Want the least to manage?** [Start with a prompt agent](./quickstarts/prompt-agent.md). Configure instructions, a model, and tools; Foundry runs it with no code or infrastructure.
 - **Want full control in Foundry?** [Deploy a hosted agent](quickstarts/quickstart-hosted-agent.md). Bring your own code and framework as a container; Foundry runs it with a managed endpoint, scaling, and identity.
 - **Already run agent code elsewhere?** [Call the Responses API](quickstarts/responses-api.md) directly to use Foundry models and tools, with no agent resource to manage.
 
