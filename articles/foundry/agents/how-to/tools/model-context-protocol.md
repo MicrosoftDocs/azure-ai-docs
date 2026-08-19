@@ -226,8 +226,10 @@ For general guidance on tool usage, see [Best practices for using tools in Micro
 When you use MCP servers, follow these practices:
 
 - Use an allow list of tools by using `allowed_tools`.
+- Treat tool descriptions, annotations, and results from remote MCP servers as untrusted input. They can contain indirect prompt injection instructions.
 - Require approval for high-risk operations, especially tools that write data or change resources.
 - Review the requested tool name and arguments before you approve.
+- Review `allowed_tools`, approval settings, and connection permissions when the server's operator, exposed tools, or behavior changes.
 - Log approvals and tool calls for auditing and troubleshooting.
 
 > [!TIP]

@@ -76,6 +76,10 @@ items:
       href: ../../agents/concepts/runtime-components.md
     - name: Runtime contract
       href: ../../agents/concepts/hosted-agent-contract.md
+    - name: Long-running agent resilience (preview)
+      href: ../../agents/concepts/long-running-agent-resilience.md
+    - name: Long-running agent API reference (preview)
+      href: ../../agents/concepts/long-running-agent-reference.md
   - name: Quickstarts
     items:
     - name: Deploy your first agent
@@ -156,6 +160,22 @@ items:
       href: ../../agents/how-to/optimize-agent-targets.md
     - name: Optimize agent prompts
       href: ../../observability/how-to/prompt-optimizer.md
+  - name: Build long-running agents (preview)
+    items:
+    - name: Deploy a crash-resilient long-running agent (preview)
+      href: ../../agents/how-to/deploy-resilient-agent.md
+    - name: Deploy a steerable agent (preview)
+      href: ../../agents/how-to/deploy-steerable-agent.md
+    - name: Recover work after a crash
+      href: ../../agents/how-to/recover-long-running-work.md
+    - name: Steer an in-flight turn
+      href: ../../agents/how-to/steer-hosted-agent.md
+    - name: Add human-in-the-loop approval
+      href: ../../agents/how-to/add-human-in-the-loop.md
+    - name: Stream with reconnect
+      href: ../../agents/how-to/stream-with-reconnect.md
+    - name: Manage durable state
+      href: ../../agents/how-to/manage-task-state.md
   - name: Deploy and operate
     items:
     - name: Deploy

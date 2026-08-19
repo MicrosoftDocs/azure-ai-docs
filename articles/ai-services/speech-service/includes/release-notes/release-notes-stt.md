@@ -3,7 +3,7 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 08/13/2026
+ms.date: 08/18/2026
 ms.author: pafarley
 ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
@@ -16,6 +16,12 @@ ai-usage: ai-assisted
 We updated the speech-to-text model for Czech (`cs-CZ`), Greek (`el-GR`), Finnish (`fi-FI`), Indonesian (`id-ID`), Dutch (`nl-NL`), Polish (`pl-PL`), Russian (`ru-RU`), Swedish (`sv-SE`), Thai (`th-TH`), and Turkish (`tr-TR`). English is supported alongside these languages for bilingual experiences. The update improves transcription quality, entity recognition rate, and delivers more accurate results for multilingual speech-to-text scenarios across these languages.
 
 For more information, see [How to recognize speech](../../how-to-recognize-speech.md) and [Speech to text supported languages](../../language-support.md?tabs=stt).
+
+#### Expanded monolingual post-stream refinement availability
+
+Monolingual post-stream refinement now supports 29 locales. This update adds Czech (`cs-CZ`), Greek (`el-GR`), Finnish (`fi-FI`), Indonesian (`id-ID`), Dutch (`nl-NL`), Polish (`pl-PL`), Russian (`ru-RU`), Swedish (`sv-SE`), Thai (`th-TH`), and Turkish (`tr-TR`). Region availability now also includes Central US, East Asia, and West Central US.
+
+For the complete availability lists, see [Speech to text supported languages](../../language-support.md?tabs=stt) and [Supported regions for Azure Speech](../../regions.md?tabs=stt).
 
 #### Improved pronunciation assessment models
 
