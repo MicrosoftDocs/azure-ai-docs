@@ -5,7 +5,7 @@ keywords: mcp, foundry mcp server, security, entra id, rbac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 04/02/2026
+ms.date: 08/19/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
@@ -151,6 +151,8 @@ Foundry MCP Server currently doesn't support network isolation. It exposes the p
 ### Data residency
 
 Foundry MCP Server uses a global stateless proxy architecture. Data created by backend services that interact with MCP Server stays encrypted at rest in the region you select. MCP Server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.  
+
+For information about Microsoft's commitments for processing and protecting Customer Data and Personal Data in Azure, see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA).
 
 > [!IMPORTANT]
 > By using this preview feature, you acknowledge and consent to any cross-region processing that might occur. For example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, don't use Foundry MCP Server or restrict its use to scenarios that remain within your selected region.

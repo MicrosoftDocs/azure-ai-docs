@@ -149,7 +149,7 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
 | Foundry tools don't appear in Agent Mode | Confirm the server is running (green indicator in **MCP: List Servers**). Check that you selected **Agent Mode** in the Copilot chat panel, then select the tools icon and search for *Foundry*. |
 | "Access denied" or permission errors | Verify you have Contributor or higher role on the Foundry project. The server uses On-Behalf-Of flow with your Entra ID credentials. |
 
-If these steps don't resolve a product or service issue, create an [Azure support request](https://portal.azure.com). Select **Technical** for **Issue type**, **Microsoft Foundry** for **Service**, and **Foundry MCP Server** for **Problem type**. For documentation feedback, use the feedback controls on this page. For how-to questions, ask the community on [Microsoft Q&A](/answers/tags/133/azure).
+If these steps don't resolve a product or service issue, create an [Azure support request](https://portal.azure.com). Select **Technical** for **Issue type**, **Microsoft Foundry** for **Service**, and **Foundry MCP Server** for **Problem type**. For documentation feedback, use the feedback controls on this page. For how-to questions, ask the community on [Microsoft Q&A](https://learn.microsoft.com/answers/tags/133/azure).
 
 ## Clean up resources
 
