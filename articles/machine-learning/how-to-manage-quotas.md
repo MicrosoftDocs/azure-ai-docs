@@ -264,7 +264,7 @@ To raise the limit for Azure Machine Learning VM quota above the default limit, 
 To raise the endpoint limit, [open an online customer support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest/). When requesting an endpoint limit increase, provide the following information:
 
 > [!NOTE]
-> After an Azure Machine Learning online endpoints quota or limit increase is fulfilled, especially a data-plane limit increase, re-create your online deployments for the new limit to take effect.
+> After an Azure Machine Learning online endpoints quota request that increases a data-plane limit is fulfilled, re-create the affected online deployments for the new limit to take effect.
 
 1. Select **Service and subscription limits (quotas)** as the **Issue type**.
 1. Select the subscription you want to use.
