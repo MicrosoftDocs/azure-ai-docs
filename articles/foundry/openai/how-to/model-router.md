@@ -241,7 +241,7 @@ Use the [Model Router Auto Evaluation toolkit](https://github.com/microsoft-foun
 - A self-contained HTML report with quality, cost, and latency charts.
 - Checkpoint and resume for large-scale runs (500+ prompts).
 
-For methodology details — including the cost formula, judge configuration, and sample-size guidance — see the toolkit's [methodology documentation](https://github.com/microsoft-foundry/Model-Router-Auto-Evaluation/blob/main/docs/methodology.md).
+For methodology details - including the cost formula, judge configuration, and sample-size guidance - see the toolkit's [methodology documentation](https://github.com/microsoft-foundry/Model-Router-Auto-Evaluation/blob/main/docs/methodology.md).
 
 ### Quality
 
