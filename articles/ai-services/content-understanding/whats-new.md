@@ -102,7 +102,6 @@ Content Understanding Studio now supports GPT-5.2 beyond the original East US 2 
 - East US
 - Australia East
 - Japan East
-- North Europe
 - South Central US
 - Southeast Asia
 - Sweden Central
