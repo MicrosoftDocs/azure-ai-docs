@@ -8,8 +8,9 @@ ms.service: azure-language-foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 08/19/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 keywords: on-premises, Docker, container
 ---
 # Install and run Named Entity Recognition containers

@@ -5,8 +5,9 @@ ms.service: azure-translator-foundry-tools
 ms.topic: install-set-up-deploy
 manager: mcleans
 ms.author: lajanuar
+ai-usage: ai-assisted
 author: laujan
-ms.date: 05/05/2026
+ms.date: 08/19/2026
 ---
 
 # Enable Microsoft Entra ID authentication

@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 04/17/2026
+ms.date: 08/19/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 # Multilingual and emoji support in Language features
 

@@ -3,10 +3,11 @@ title: What is Microsoft Translator Pro?
 description: Learn about Microsoft Translator Pro and how it enables speech-to-speech translated conversations within your enterprise ecosystem.
 author: laujan
 ms.author: lajanuar
+ai-usage: ai-assisted
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 05/26/2026
+ms.date: 08/19/2026
 ms.custom: FY25Q1-Linter
 ---
 

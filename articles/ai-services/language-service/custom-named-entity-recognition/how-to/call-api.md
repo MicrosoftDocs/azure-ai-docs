@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 05/20/2026
+ms.date: 08/19/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.devlang: csharp
 # ms.devlang: csharp, python
 ms.custom: language-service-custom-ner

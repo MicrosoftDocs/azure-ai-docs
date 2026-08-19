@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 04/17/2026
+ms.date: 08/19/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 # Azure Translator in Foundry Tools service limits

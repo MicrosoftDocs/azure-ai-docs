@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 04/15/2026
+ms.date: 08/19/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-ner, ignite-2024
 ---
 # How to use Named Entity Recognition (NER)

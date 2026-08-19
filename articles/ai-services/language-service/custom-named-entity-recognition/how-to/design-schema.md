@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 05/05/2026
+ms.date: 08/19/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-custom-ner
 ---
 # How to prepare data and define a schema for custom NER
