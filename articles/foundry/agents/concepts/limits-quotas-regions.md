@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/12/2026
+ms.date: 08/19/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -77,9 +77,9 @@ When you use a private network configuration, such as a network-secured standard
 
 For more information, see [Use a virtual network with Foundry Agent Service](../how-to/virtual-networks.md).
 
-### Supported models
+## Supported models
 
-Agent Service supports Azure OpenAI models and several Foundry models sold by Azure. Model availability can change over time and varies by region. To see the full list of models you can deploy for your project and region, use the Foundry portal model experience.
+Agent Service supports Azure OpenAI models and several Foundry models sold by Azure. Model availability can change over time and varies by region. To see the full list of models you can deploy for your project and region, use the [Foundry portal](https://ai.azure.com/catalog/models?capabilities=agentsv2&cid=learnDocs) model experience.
 
 ### Sovereign clouds
 
