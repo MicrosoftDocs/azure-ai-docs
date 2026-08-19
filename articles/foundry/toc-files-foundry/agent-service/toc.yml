@@ -1,17 +1,11 @@
 items:
 - name: Overview
-  items:
-  - name: What is Foundry Agent Service?
-    href: ../../agents/overview.md
-  - name: Choose how to build
-    href: ../../concepts/choose-build-approach.md
-  - name: Agent development lifecycle
-    href: ../../agents/concepts/development-lifecycle.md
-  - name: Quickstarts
-    href: ../../quickstarts/quickstarts.md
+  href: ../../agents/overview.md
 
 - name: Concepts
   items:
+  - name: Agent development lifecycle
+    href: ../../agents/concepts/development-lifecycle.md
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
   - name: Agent 365
