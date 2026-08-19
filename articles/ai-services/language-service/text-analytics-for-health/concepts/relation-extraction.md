@@ -7,8 +7,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 06/11/2026
+ms.date: 08/02/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-health
 ---
 # Relation extraction
