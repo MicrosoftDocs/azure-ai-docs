@@ -6,13 +6,16 @@ ms.reviewer: sgilley
 ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 08/19/2026
 ms.custom: include
 ---
 
-If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines thatodel a function should be called, it responds with a JSON object including the arguments for the function.
+> [!NOTE]
+> This example uses the OpenAI-compatible Chat Completions API through a Foundry Models endpoint. Function calling through the Responses API uses a different request and response format. For more information, see [Use the Azure OpenAI Responses API](../how-to/responses.md).
 
-The models formulate API calls and structure data outputs, all based on the functions you specify. It's important to note that while the models can generate these calls, it's up to you to execute them, ensuring you remain in control.
+If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function.
+
+The model generates function calls and structured arguments based on the functions you specify. Your application executes the functions and returns the results to the model, so you remain in control of the actions taken.
 
 At a high level, you can break down working with functions into three steps:
 
@@ -23,13 +26,14 @@ At a high level, you can break down working with functions into three steps:
 ## Prerequisites
 
 - A Foundry Model deployment that supports function calling through the Chat Completions API.
+- A Foundry resource endpoint in the format `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`.
 - For Microsoft Entra ID authentication:
     - A custom subdomain configured. For more information, see [Custom subdomain names](../../../ai-services/cognitive-services-custom-subdomains.md).
     - Packages: `pip install openai azure-identity`.
 
 ## Single tool/function calling example
 
-First demonstrate a toy function call that can check the time in three hardcoded locations with a single tool/function defined. We have added print statements to help make the code execution easier to follow:
+This example demonstrates a toy function call that checks the time in three hardcoded locations with a single tool/function defined. Print statements make the code execution easier to follow:
 
 # [Microsoft Entra ID](#tab/python-secure)
 
@@ -767,7 +771,7 @@ Here are a few tips to help you use functions safely and securely:
 *	**Consider Real-World Impact**: Be aware of the real-world impact of function calls that you plan to execute, especially those that trigger actions such as executing code, updating databases, or sending notifications.
 *	**Implement User Confirmation Steps**: Particularly for functions that take actions, we recommend including a step where the user confirms the action before execution.
 
-To learn more about responsible AI practices for Foundry Models, see the [Overview of responsible AI practices](/azure/foundry/responsible-use-of-ai-overview).
+To learn more about responsible AI practices for Foundry Models, see the [Overview of responsible AI practices](../../responsible-use-of-ai-overview.md).
 
 > [!IMPORTANT]
-> The `functions` and `function_call` parameters have been deprecated with the release of the [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json) version of the API. The replacement for `functions` is the [`tools`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter. The replacement for `function_call` is the [`tool_choice`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter.
+> In the Chat Completions API, the `functions` and `function_call` parameters are deprecated. Use the [`tools`](https://learn.microsoft.com/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter instead of `functions`, and use the [`tool_choice`](https://learn.microsoft.com/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter instead of `function_call`.
