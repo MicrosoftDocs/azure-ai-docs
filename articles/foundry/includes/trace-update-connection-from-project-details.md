@@ -13,8 +13,7 @@ ai-usage: ai-assisted
 
 If your project already has a connection to Application Insights and you want to convert it to use Microsoft Entra authentication, follow these steps. If you don't have an existing connection, skip to [Create a new connection](#create-a-new-connection).
 
-1. From your project name menu, select **Project details**.
-   :::image type="content" source="../media/observability/tracing/project-details-connection-update.png" alt-text="Screenshot of the project name menu showing the Project details option highlighted." lightbox="../media/observability/tracing/project-details-connection-update.png":::
+1. Select **Manage** in the upper-right navigation, and then select **Project details**.
 1. Select the existing Application Insights connection, and then select **Edit authentication**.
    :::image type="content" source="../media/observability/tracing/project-details-connection-update-authentication.png" alt-text="Screenshot of an Application Insights connection with the Edit authentication option highlighted." lightbox="../media/observability/tracing/project-details-connection-update-authentication.png":::
 1. Select **Project managed identity**, and then select **Save**.

@@ -4,7 +4,7 @@ description: Learn how Azure AI Search runs indexers, applies daily runtime quot
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 08/08/2026
+ms.date: 08/17/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
@@ -49,12 +49,14 @@ Indexer execution is governed by a daily runtime quota that resets at 00:00 UTC.
 + **Service level:** It applies to the search service as a whole.
 + **Cumulative:** Runtime from every indexer in the service counts toward the same budget. The quota isn't applied per indexer.
 
+All running indexers accrue time against one shared service budget. The service doesn't reserve runtime for individual indexers or automatically divide the quota equally among them. For example, the cumulative durations of 12 indexers that each run for two hours can consume all 24 aggregate runtime hours, whether the runs overlap or occur at different times.
+
 The following table lists the daily quota by SKU and the minimum API version that supports it:
 
 | SKU | Daily quota per 24-hour UTC window | Minimum API version |
 |-----|------------------------------------|---------------------|
-| S3 HD | 6 hours | `2025-11-01-preview` |
-| Serverless | 6 hours | `2026-05-01-preview` |
+| S3 HD | 24 hours | `2025-11-01-preview` |
+| Serverless | 24 hours | `2026-05-01-preview` |
 
 When the daily quota is exhausted:
 
@@ -72,6 +74,10 @@ To recover from quota exhaustion and reduce the likelihood of hitting it again:
 
 + Put indexers on [staggered schedules](search-howto-schedule-indexers.md) so that work spreads across the 24-hour window instead of running concurrently.
 
++ You can't pause or stop active runs. Use [Get Indexer Status](/rest/api/searchservice/indexers/get-status) to monitor them, and see [Run or reset indexers](search-howto-run-reset-indexers.md#indexer-execution) for runtime control behavior.
+
++ If runtime remains but indexer runs fail, see [Troubleshoot indexer issues](search-indexer-troubleshooting.md).
+
 + Reduce skillset cost. Skills that call external services, such as the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), consume runtime quickly. Lower the number of skills, batch documents, or [configure an enrichment cache](enrichment-cache-how-to-configure.md) to reuse prior results instead of reprocessing.
 
 + Monitor `remainingSeconds` proactively at both the service and indexer level so that you can throttle workloads before they fail.
@@ -88,12 +94,12 @@ Use [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-
 GET {endpoint}/servicestats?api-version=2026-05-01-preview
 ```
 
-The response includes an `indexersRuntime` section. The following JSON shows a service whose six-hour daily quota hasn't been used:
+The response includes an `indexersRuntime` section. The following JSON shows a service whose 24-hour daily quota isn't used:
 
 ```json
 "indexersRuntime": {
     "usedSeconds": 0,
-    "remainingSeconds": 21600,
+    "remainingSeconds": 86400,
     "beginningTime": "2026-05-16T00:00:00.000Z",
     "endingTime": "2026-05-17T00:00:00.000Z"
 }
@@ -113,12 +119,12 @@ Use [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API)
 GET {endpoint}/indexers('{indexerName}')/search.status?api-version=2026-05-01-preview
 ```
 
-The response includes a `runtime` section. The following JSON shows an indexer on a service whose six-hour daily quota hasn't been used:
+The response includes a `runtime` section. The following JSON shows an indexer on a service whose 24-hour daily quota isn't used:
 
 ```json
 "runtime": {
     "usedSeconds": 0,
-    "remainingSeconds": 21600,
+    "remainingSeconds": 86400,
     "beginningTime": "2026-05-16T00:00:00.000Z",
     "endingTime": "2026-05-17T00:00:00.000Z"
 }
@@ -143,6 +149,25 @@ During the preview, S3 HD indexer support is designed for workloads with no skil
 + Size skillset usage carefully. Skills that call external services, such as the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), significantly increase runtime and can consume the daily quota quickly, especially in multitenant scenarios.
 
 + Expect limited parallelism during the preview. Use scheduled, staggered runs for large indexer fleets so that work spreads across the 24-hour window rather than competing for the same budget.
+
+#### Illustrative split-and-embed workload
+
+In one controlled S3 HD test, a Split skill and one Azure OpenAI Embedding skill generated chunks and embeddings. The workload produced approximately 2.5 chunks per source document, and approximately 22,000 source documents were observed in this test during one 24-hour S3 HD test window.
+
+The following values are rounded, illustrative fair-share arithmetic based on the aggregate observation. They aren't measured per-indexer results.
+
+| Indexer count | Illustrative source documents per indexer per day |
+|---------------|---------------------------------------------------|
+| 100 | About 200 |
+| 500 | About 40 |
+| 1,000 | About 20 |
+
+The service doesn't reserve capacity or guarantee equal distribution, execution order, or throughput for these indexer counts.
+
+> [!NOTE]
+> This result was observed in one controlled test. It isn't a performance target, service guarantee, capacity commitment, sizing formula, or substitute for testing your workload.
+
+Throughput can vary materially with document complexity and profile, chunking, the number and type of skills and vector outputs, model latency, capacity, and quota, source and target performance, concurrency, scheduling order, throttling, region, failures and retries, document cracking or optical character recognition (OCR), and uneven tenant volumes. Test with representative production inputs before you plan capacity.
 
 ### Serverless
 

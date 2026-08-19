@@ -933,8 +933,8 @@ Use one of the following options.
 #### [Foundry portal](#tab/portal)
 
 1. Go to the [Foundry portal](https://ai.azure.com).
-1. Open your project, and then select **Operate** > **Admin**.
-1. Select your project name in the **Manage all projects** list.
+1. Open your project, and then select **Manage** > **Project details**.
+1. Select the **Connected resources** tab.
 1. Select **Add connection**.
 1. Select **Azure AI Search** from the list of available services.
 1. Browse for and select your Azure AI Search service, and then select the type of **Authentication** to use.

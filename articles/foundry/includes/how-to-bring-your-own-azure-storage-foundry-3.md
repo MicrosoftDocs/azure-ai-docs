@@ -6,7 +6,7 @@ ms.reviewer: andyaviles
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/18/2026
 ms.custom: include
 ---
 
@@ -36,7 +36,7 @@ If agents continue to write data to Microsoft-managed storage instead of your st
 If you get authorization or permission errors:
 
 - Confirm that the project managed identity (not the resource identity) has the required storage roles on the storage account and containers.
-- Confirm the storage account permits the authentication method your connection uses. [TO VERIFY: whether `allowSharedKeyAccess` must be `true`, or whether identity-based access is sufficient.]
+- Confirm the storage account permits the authentication method your connection uses. 
 - Check that network rules on the storage account allow traffic from Microsoft Foundry. If the storage account uses a firewall, add the appropriate exceptions.
 
 ### Speech or Language stops working after storage changes

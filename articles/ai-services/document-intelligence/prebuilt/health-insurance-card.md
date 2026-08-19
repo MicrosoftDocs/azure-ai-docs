@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 04/16/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0 || >=doc-intel-3.0.0'
 ---
@@ -14,15 +14,16 @@ monikerRange: 'doc-intel-4.0.0 || >=doc-intel-3.0.0'
 
 # Document Intelligence health insurance card model
 
-**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
+::: moniker range="doc-intel-4.0.0"
+**This content applies to:** 🟩 **v4.0** | **Previous versions:** 🟦 [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) 🟦 [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
+**This content applies to:** 🟩 **v3.1 (GA)** | **Latest version:** 🟪 [**v4.0**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** 🟦 [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
+**This content applies to:** 🟩 **v3.0 (GA)** | **Latest versions:** 🟪 [**v4.0**](?view=doc-intel-4.0.0&preserve-view=true) 🟪 [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=true)
 ::: moniker-end
 
 The Document Intelligence health insurance card model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from US health insurance cards. A health insurance card is a key document for care processing. It can be digitally analyzed for patient onboarding, financial coverage information, cashless payments, and insurance claim processing. The health insurance card model analyzes health card images; extracts key information such as insurer, member, prescription, and group number; and returns a structured JSON representation. Health insurance cards can be presented in various formats and quality including phone-captured images, scanned documents, and digital PDFs.

@@ -150,5 +150,7 @@ items:
     href: ../../agents/how-to/tools/governance.md
   - name: Identity and authentication
     href: ../../agents/how-to/tools/tool-authentication.md
+  - name: Network isolation
+    href: ../../agents/how-to/tools/toolbox-network-isolation.md
   - name: Best practices
     href: ../../agents/concepts/tool-best-practice.md

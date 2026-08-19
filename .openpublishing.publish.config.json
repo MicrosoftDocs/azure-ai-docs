@@ -135,6 +135,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "foundry-local-samples-main",
+      "url": "https://github.com/microsoft/Foundry-Local",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "foundry-samples-temp-fix",
       "url": "https://github.com/microsoft-foundry/foundry-samples",
       "branch": "temp-fix",
@@ -221,12 +227,6 @@
     {
       "path_to_root": "azureai-model-inference-bicep",
       "url": "https://github.com/Azure-Samples/azureai-model-inference-bicep",
-      "branch": "main",
-      "branch_mapping": {}
-    },
-    {
-      "path_to_root": "azure-docs-pr-policy-includes",
-      "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
       "branch": "main",
       "branch_mapping": {}
     },

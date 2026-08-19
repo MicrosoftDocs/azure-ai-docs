@@ -48,6 +48,9 @@ items:
     - name: Model versions (government)
       displayName: Model versions in Microsoft Foundry Models (government)
       href: ../../foundry-models/concepts/model-versions-gov.md
+    - name: Model upgrades and switches
+      displayName: Model migration process, upgrade or switch models in Microsoft Foundry
+      href: ../../foundry-models/concepts/model-migration.md
     - name: Automatic model updates for Azure OpenAI Models
       displayName: Working with models
       href: ../../openai/how-to/working-with-models.md
@@ -262,6 +265,9 @@ items:
       - name: Function calling
         displayName: How to use function calling with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/function-calling.md
+      - name: Multi-agent orchestration (preview)
+        displayName: Use multi-agent orchestration with the Azure OpenAI Responses API
+        href: ../../openai/how-to/responses-multi-agent.md
       - name: Structured outputs
         displayName: How to use structured outputs with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/structured-outputs.md

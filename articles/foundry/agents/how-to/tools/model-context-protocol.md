@@ -226,8 +226,10 @@ For general guidance on tool usage, see [Best practices for using tools in Micro
 When you use MCP servers, follow these practices:
 
 - Use an allow list of tools by using `allowed_tools`.
+- Treat tool descriptions, annotations, and results from remote MCP servers as untrusted input. They can contain indirect prompt injection instructions.
 - Require approval for high-risk operations, especially tools that write data or change resources.
 - Review the requested tool name and arguments before you approve.
+- Review `allowed_tools`, approval settings, and connection permissions when the server's operator, exposed tools, or behavior changes.
 - Log approvals and tool calls for auditing and troubleshooting.
 
 > [!TIP]
@@ -622,7 +624,7 @@ Before running the sample:
 1. At the top, select **Generate new token**, enter your password, and create a token that can read public repositories.
    - **Important:** Save the token, or keep the page open as once the page is closed, token can't be shown again.
 1. In the Azure portal, open Microsoft Foundry.
-1. In the left panel, select **Management center** and then select **Connected resources**.
+1. Select **Manage** in the upper-right navigation, select **Project details**, and then select the **Connected resources** tab.
 1. Create new connection of **Custom keys** type.
 1. Name it and add a key value pair.
 1. Set the key name to `Authorization` and the value should have a form of `Bearer your_github_token`.

@@ -31,7 +31,7 @@ Before following this quickstart, check that you have quota for your target regi
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 1. Select the subscription and the Foundry resource in the region where you have PTU quota.
-1. Select **Operate** in the upper-right navigation, then select **Quota** in the left pane.
+1. Select **Manage** in the upper-right navigation, then select **Quota** in the left pane.
 1. Select **Provisioned throughput unit** to see your available quota. If you don't have quota, select **Request Quota** and complete the form. Quota approval can take several days, and you receive an email notification when the request is approved.
 
     > [!TIP]

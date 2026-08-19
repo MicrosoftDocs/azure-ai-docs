@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: overview
-ms.date: 06/04/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ai-usage: ai-assisted

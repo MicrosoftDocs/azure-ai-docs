@@ -3,7 +3,7 @@ title: "Manage hosted agent sessions"
 description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/17/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-manage-method
 
 # Manage hosted agent sessions
 
-This article shows you how to manage sessions for Hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days, with a 15-minute idle timeout that deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#sessions-and-conversations).
+This article shows you how to manage sessions for hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days. The agent version's idle timeout can be 5 through 60 minutes and defaults to 15 minutes. When the timeout is reached, the platform deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#sessions-and-conversations).
 
 ## Sessions versus conversations
 
@@ -112,6 +112,117 @@ project = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 ```
+
+:::zone-end
+
+## Manage session idleness
+
+Configure the idle timeout when you create an agent version. The setting applies to sessions created for that version. Set `idle_timeout_seconds` from 300 through 3,600 seconds. If you omit the setting, the server default is 900 seconds.
+
+When a session reaches the idle timeout, the platform suspends its sandbox and saves its state. The platform provisions compute and restores the saved state when the session is referenced again. To change the timeout, create another agent version with the new value.
+
+:::zone pivot="python"
+
+Pass a `SessionConfiguration` in the hosted agent definition:
+
+```python
+from azure.ai.projects.models import (
+    AgentEndpointProtocol,
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+    SessionConfiguration,
+)
+
+agent = project.agents.create_version(
+    agent_name="my-agent",
+    definition=HostedAgentDefinition(
+        protocol_versions=[
+            ProtocolVersionRecord(
+                protocol=AgentEndpointProtocol.RESPONSES,
+                version="1.0.0",
+            )
+        ],
+        cpu="1",
+        memory="2Gi",
+        container_configuration=ContainerConfiguration(
+            image="your-registry.azurecr.io/your-image:tag"
+        ),
+        environment_variables={
+            "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
+        },
+        session_configuration=SessionConfiguration(
+            idle_timeout_seconds=300
+        ),
+    ),
+)
+
+print(f"Created version {agent.version} with a 5-minute idle timeout.")
+```
+
+Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+Include `session_configuration` in the definition when you create an agent version:
+
+```bash
+AGENT_NAME="my-agent"
+
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --body '{
+        "definition": {
+            "kind": "hosted",
+            "container_configuration": {
+                "image": "your-registry.azurecr.io/your-image:tag"
+            },
+            "cpu": "1",
+            "memory": "2Gi",
+            "protocol_versions": [
+                {
+                    "protocol": "responses",
+                    "version": "1.0.0"
+                }
+            ],
+            "environment_variables": {
+                "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
+            },
+            "session_configuration": {
+                "idle_timeout_seconds": 300
+            }
+        }
+    }'
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Add `sessionConfiguration` to the `azure.ai.agent` service in `azure.yaml`:
+
+```yaml
+services:
+  my-agent:
+    host: azure.ai.agent
+    kind: hosted
+    sessionConfiguration:
+      idleTimeoutSeconds: 300
+```
+
+Deploy the agent:
+
+```bash
+azd deploy
+```
+
+The `azure.ai.agents` extension validates the value and maps `sessionConfiguration.idleTimeoutSeconds` to the hosted agent version's `session_configuration.idle_timeout_seconds` property. The setting applies to both code and container deployment modes. If you omit `sessionConfiguration`, the extension omits the property from the request, and the service uses the 900-second default.
+
+> [!NOTE]
+> This configuration requires an `azure.ai.agents` extension version that supports `sessionConfiguration`. Until that version is available, use the Python SDK or REST API to set the idle timeout.
 
 :::zone-end
 
@@ -346,24 +457,20 @@ Omit the body (or send `{}`) to let the platform pick the version using the agen
 ```python
 session = project.agents.create_session(
     agent_name="my-agent",
-    body={},
-    isolation_key="user-123",
 )
 print(f"Session created (ID: {session.agent_session_id}, status: {session.status})")
 ```
 
-The SDK requires the `isolation_key` keyword on `create_session` and `delete_session`. The server only enforces it when the agent endpoint is configured to read keys from headers—see [Isolation keys](#isolation-keys).
-
-To pin the session to a specific agent version, include `version_indicator` in the body:
+To pin the session to a specific agent version, pass `version_indicator`:
 
 ```python
+from azure.ai.projects.models import VersionRefIndicator
+
 session = project.agents.create_session(
     agent_name="my-agent",
-    body={
-        "version_indicator": {"type": "version_ref", "agent_version": "2"},
-    },
-    isolation_key="user-123",
+    version_indicator=VersionRefIndicator(agent_version="2"),
 )
+print(f"Created session {session.agent_session_id} for agent version 2")
 ```
 
 :::zone-end
@@ -463,7 +570,6 @@ az rest --method POST \
 project.agents.stop_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
 
@@ -503,7 +609,6 @@ az rest --method POST \
 project.agents.stop_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
 
@@ -539,7 +644,6 @@ az rest --method DELETE \
 project.agents.delete_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
 
@@ -556,9 +660,6 @@ Session management isn't currently available as a standalone command. Use the RE
 Upload and download files to agent session sandboxes. Each file is scoped to a specific session. The maximum file size for upload is 50 MB.
 
 A container can also write files directly into the session sandbox (under `$HOME`) and have them appear through these APIs. For an example, see the [note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent), which persists one notes file per session.
-
-> [!NOTE]
-> The Python SDK uses `session_id` as the keyword for `upload_session_file`, and `agent_session_id` for `get_session_files`, `download_session_file`, and `delete_session_file`. Use the keyword name shown in each example.
 
 ### Upload a file
 
@@ -579,15 +680,15 @@ az rest --method PUT \
 :::zone pivot="python"
 
 ```python
-project.agents.upload_session_file(
-    agent_name="my-agent",
-    session_id="<session-id>",
-    content_or_file_path="./data.csv",
-    path="data.csv",
-)
+with open("./data.csv", "rb") as file:
+    result = project.agents.upload_session_file(
+        agent_name="my-agent",
+        session_id="<session-id>",
+        content=file.read(),
+        path="data.csv",
+    )
+print(f"Uploaded {result.path} ({result.bytes_written} bytes)")
 ```
-
-The `content_or_file_path` parameter accepts a file path string. The SDK reads and uploads the file contents automatically.
 
 :::zone-end
 
@@ -616,13 +717,13 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-files = project.agents.get_session_files(
+files = project.agents.list_session_files(
     agent_name="my-agent",
-    agent_session_id="<session-id>",
+    session_id="<session-id>",
     path=".",
 )
-for entry in files.entries:
-    print(f"  {entry['name']} (size: {entry['size']}, directory: {entry['is_directory']})")
+for entry in files:
+    print(f"{entry.name} (size: {entry.size}, directory: {entry.is_directory})")
 ```
 
 :::zone-end
@@ -656,7 +757,7 @@ az rest --method GET \
 content_bytes = b"".join(
     project.agents.download_session_file(
         agent_name="my-agent",
-        agent_session_id="<session-id>",
+        session_id="<session-id>",
         path="data.csv",
     )
 )
@@ -693,7 +794,7 @@ az rest --method DELETE \
 ```python
 project.agents.delete_session_file(
     agent_name="my-agent",
-    agent_session_id="<session-id>",
+    session_id="<session-id>",
     path="data.csv",
 )
 ```

@@ -5,12 +5,12 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/06/2026
+ms.date: 08/18/2026
 ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
 
-Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
+Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. Use [multi-agent orchestration](../how-to/responses-multi-agent.md) to delegate independent work to parallel subagents, or use [tool search](../how-to/tool-search.md) to load tool definitions only when the model needs them. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
 
 For complete request and response parameter descriptions, see the [Responses API parameter reference](/rest/api/microsoft-foundry/azureopenai/responses?view=rest-microsoft-foundry-v1-preview&preserve-view=true).
 
@@ -71,7 +71,7 @@ The Responses API supports the following models:
 - `gpt-5.6-sol` (Version: `2026-07-09`)
 - `gpt-5.6-terra` (Version: `2026-07-09`)
 - `gpt-5.6-luna` (Version: `2026-07-09`)
-- `gpt-chat-latest` (Versions: `2026-06-24`, `2026-05-28`, `2026-05-05`)
+- `gpt-chat-latest` (Versions: `2026-08-06`, `2026-06-24`, `2026-05-28`, `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)
@@ -115,7 +115,6 @@ Not every model is available in every supported region. Check the [models page](
 > [!NOTE]
 > Not currently supported:
 > - Image generation using multi-turn editing and streaming.
-> - Images can't be uploaded as a file and then referenced as input.
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
@@ -1864,7 +1863,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 ### Containers
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 20 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two Code Interpreter sessions are created. Each session incurs per-minute charges, with a minimum charge of five minutes. A session remains active as long as you access its container within the 20-minute idle timeout.
 
 The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
 
@@ -2344,7 +2343,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### File ID
 
-Upload an image with the Files API by using `purpose="vision"`, then reference the returned file ID in your request. This approach is useful when you want to reuse the same image across multiple requests without resending its bytes.
+Upload an image with the Files API by using `purpose="assistants"`, then reference the returned file ID in your request. This approach is useful when you want to reuse the same image across multiple requests without resending its bytes.
 
 # [Python](#tab/python)
 ```python
@@ -2360,7 +2359,7 @@ def create_file(file_path):
     with open(file_path, "rb") as file_content:
         result = client.files.create(
             file=file_content,
-            purpose="vision",
+            purpose="assistants",
         )
         return result.id
 
@@ -2391,6 +2390,7 @@ using Azure.Identity;
 using OpenAI;
 using OpenAI.Files;
 using OpenAI.Responses;
+using System.ClientModel;
 using System.ClientModel.Primitives;
 
 string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
@@ -2416,7 +2416,7 @@ byte[] imageBytes = await File.ReadAllBytesAsync("path_to_your_image.jpg");
 OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
     BinaryData.FromBytes(imageBytes),
     "path_to_your_image.jpg",
-    FileUploadPurpose.Vision);
+    FileUploadPurpose.Assistants);
 
 CreateResponseOptions options = new()
 {
@@ -2447,7 +2447,7 @@ const client = new OpenAI({
 
 const file = await client.files.create({
   file: fs.createReadStream("path_to_your_image.jpg"),
-  purpose: "vision",
+  purpose: "assistants",
 });
 
 const response = await client.responses.create({
@@ -2471,9 +2471,9 @@ console.log(response.output_text);
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.credential.AzureApiKeyCredential;
-import com.openai.models.FileCreateParams;
-import com.openai.models.FileObject;
-import com.openai.models.FilePurpose;
+import com.openai.models.files.FileCreateParams;
+import com.openai.models.files.FileObject;
+import com.openai.models.files.FilePurpose;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseInputImage;
@@ -2491,7 +2491,7 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
 FileObject uploaded = openAIClient.files().create(
     FileCreateParams.builder()
         .file(Paths.get("path_to_your_image.jpg"))
-        .purpose(FilePurpose.VISION)
+        .purpose(FilePurpose.ASSISTANTS)
         .build());
 
 ResponseInputImage image = ResponseInputImage.builder()
@@ -2518,9 +2518,9 @@ System.out.println(response.outputText());
 # [REST](#tab/rest)
 ```bash
 # Upload the image
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/files \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -F purpose="vision" \
+  -F purpose="assistants" \
   -F file="@path_to_your_image.jpg"
 
 # Use the returned file ID with Responses
@@ -2833,6 +2833,7 @@ using Azure.Identity;
 using OpenAI;
 using OpenAI.Files;
 using OpenAI.Responses;
+using System.ClientModel;
 using System.ClientModel.Primitives;
 
 string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
@@ -2858,7 +2859,7 @@ byte[] pdfBytes = await File.ReadAllBytesAsync("nucleus_sampling.pdf");
 OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
     BinaryData.FromBytes(pdfBytes),
     "nucleus_sampling.pdf",
-    FileUploadPurpose.UserData);
+    FileUploadPurpose.Assistants);
 
 CreateResponseOptions options = new()
 {
@@ -2915,9 +2916,9 @@ import com.azure.identity.AuthenticationUtil;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.credential.BearerTokenCredential;
-import com.openai.models.FileCreateParams;
-import com.openai.models.FileObject;
-import com.openai.models.FilePurpose;
+import com.openai.models.files.FileCreateParams;
+import com.openai.models.files.FileObject;
+import com.openai.models.files.FilePurpose;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseInputFile;
@@ -2935,7 +2936,7 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
 FileObject uploaded = openAIClient.files().create(
     FileCreateParams.builder()
         .file(Paths.get("document.pdf"))
-        .purpose(FilePurpose.USER_DATA)
+        .purpose(FilePurpose.ASSISTANTS)
         .build());
 
 ResponseInputFile file = ResponseInputFile.builder()
@@ -2961,7 +2962,7 @@ System.out.println(response.outputText());
 # [REST](#tab/rest)
 ```bash
 # Upload the PDF
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/files \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F purpose="assistants" \
   -F file="@your_file.pdf"

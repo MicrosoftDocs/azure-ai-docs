@@ -18,6 +18,8 @@ items:
   items:
   - name: Build with AI and coding agents
     href: ../../how-to/develop/use-microsoft-foundry-skill.md
+  - name: Foundry Skills scenarios and example prompts
+    href: ../../how-to/develop/foundry-skills-scenarios-example-prompts.md
   - name: Best practices for coding agents
     href: ../../agents/how-to/use-cli-with-coding-agents.md
   - name: Foundry Agent Canvas

@@ -663,6 +663,8 @@ Pro mode aggregates the work it performs into a single answer and bills those to
 
 When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. 
 
+The `reasoning.summary` parameter isn't supported when [multi-agent orchestration](responses-multi-agent.md) is enabled.
+
 > [!IMPORTANT]
 > Attempting to extract raw reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
 
@@ -1390,7 +1392,7 @@ Input and output limits share the available context budget and aren't additive. 
 | [`reasoning.mode`](#reasoning-mode) | Selects standard or pro execution for `gpt-5.6` with the Responses API. Pro mode performs more model work on a request before returning a single answer, which increases latency and token usage. Azure OpenAI uses `standard` as the default.<br><br>**Options:** `standard`, `pro`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
-| **custom tool type** | Enables raw text (non-json) outputs |
+| **custom tool type** | Enables raw text (non-JSON) outputs. |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
 
 <sup>*</sup> `gpt-5-codex` also does not support `reasoning_effort` `minimal`.

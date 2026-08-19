@@ -138,9 +138,8 @@ Use the Azure CLI or Foundry portal to manage role assignments. The Python SDK d
 # [Foundry portal](#tab/foundry)
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
-1. In the upper-right navigation, select **Operate**.
-1. In the left pane, select **Admin**.
-1. Select your project.
+1. In the upper-right navigation, select **Manage**.
+1. In the left pane, select **Project details**.
 1. In the upper right, select the trash can icon to delete the project.
 
 # [Python SDK](#tab/python)
