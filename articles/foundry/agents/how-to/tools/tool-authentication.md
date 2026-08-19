@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
 reviewer: zhuoqunli
-ms.date: 07/29/2026
+ms.date: 08/19/2026
 manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -204,6 +204,8 @@ toolbox_version = project.toolboxes.create_version(
 )
 print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
 ```
+
+For JavaScript, see the maintained [toolbox project-connection sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentToolboxSearchPreview.js) and [Work IQ sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentWorkIQ.js). The first sample creates an MCP-backed toolbox that uses a project connection and attaches it to an agent. The second sample shows how to reference the Work IQ project connection.
 
 ### 3. Connect the agent to the toolbox
 

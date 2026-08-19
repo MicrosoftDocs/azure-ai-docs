@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 07/28/2026
+ms.date: 08/19/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -130,6 +130,8 @@ response = openai.responses.create(
 )
 print(response.output_text)
 ```
+
+For an equivalent JavaScript flow, see the maintained [toolbox with guardrail sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentToolboxWithGuardrail.js). The sample creates a toolbox with web search, attaches the toolbox to an agent through its MCP endpoint, and sends a request.
 
 Each tool type has its own configuration. For detailed setup and code samples in all supported languages, see the individual tool how-to guides linked in the [types of tools](#types-of-tools) section.
 
