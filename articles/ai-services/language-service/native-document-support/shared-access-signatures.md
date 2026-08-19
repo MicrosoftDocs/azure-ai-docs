@@ -7,7 +7,7 @@ manager: mcleans
 ms.author: lajanuar
 ai-usage: ai-assisted
 author: laujan
-ms.date: 08/19/2026
+ms.date: 07/24/2026
 ---
 # SAS tokens for your storage containers
 

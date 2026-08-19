@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.custom:
 ms.topic: how-to
-ms.date: 08/19/2026
+ms.date: 08/01/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 keywords: on-premises, Docker, container

@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 08/19/2026
+ms.date: 07/25/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ms.custom: language-service-custom-named-entity-recognition

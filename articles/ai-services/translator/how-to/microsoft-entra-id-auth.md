@@ -7,7 +7,7 @@ manager: mcleans
 ms.author: lajanuar
 ai-usage: ai-assisted
 author: laujan
-ms.date: 08/19/2026
+ms.date: 08/04/2026
 ---
 
 # Enable Microsoft Entra ID authentication

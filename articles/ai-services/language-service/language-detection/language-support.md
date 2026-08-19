@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 08/19/2026
+ms.date: 08/16/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ms.custom: language-service-language-detection, ignite-2024

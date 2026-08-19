@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 08/19/2026
+ms.date: 08/14/2026
 ms.custom: FY25Q1-Linter
 ---
 

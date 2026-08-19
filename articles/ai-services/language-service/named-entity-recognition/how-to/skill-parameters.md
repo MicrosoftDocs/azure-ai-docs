@@ -8,7 +8,7 @@ ms.service: azure-language-foundry-tools
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 08/19/2026
+ms.date: 08/16/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---

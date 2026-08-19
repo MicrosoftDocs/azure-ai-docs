@@ -7,7 +7,7 @@ manager: mcleans
 ms.author: lajanuar
 ai-usage: ai-assisted
 author: laujan
-ms.date: 08/19/2026
+ms.date: 08/07/2026
 ms.custom: sfi-image-nochange
 ---
 # Managed identities for Language resources

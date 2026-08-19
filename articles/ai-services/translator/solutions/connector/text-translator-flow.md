@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 08/19/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---

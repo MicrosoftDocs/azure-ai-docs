@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 08/19/2026
+ms.date: 08/14/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ms.custom: language-service-ner, cogserv-non-critical-language

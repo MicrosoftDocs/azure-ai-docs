@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 08/19/2026
+ms.date: 08/06/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 #Customer intent: As a user of Azure Language service, I want to learn how encryption at rest works.
