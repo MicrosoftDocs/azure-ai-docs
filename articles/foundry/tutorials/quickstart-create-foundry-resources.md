@@ -83,7 +83,7 @@ Create a Foundry project to organize your work. The project contains models, age
 Deploy a model that you can use. This example uses **gpt-5.1-mini**, but you can choose any available model.
 
 > [!TIP]
-> You can skip this step altogether if you want to try an [instant model (preview)](../concepts/instant-models.md).
+> To try an [instant access model (preview)](../concepts/instant-models.md), you can skip this step.
 
 # [Azure CLI](#tab/azurecli)
 

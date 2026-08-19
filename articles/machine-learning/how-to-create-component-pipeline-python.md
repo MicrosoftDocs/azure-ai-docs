@@ -14,7 +14,7 @@ ms.custom:
   - sdkv2
   - build-2023
   - ignite-2023
-  - update-code
+  - update-code1
 
 #customer intent: As a machine learning engineer, I want to create a component-based machine learning pipeline so that I can take advantage of the flexibility and reuse provided by components.
 ---

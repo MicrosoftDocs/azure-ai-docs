@@ -4,18 +4,18 @@ titleSuffix: Foundry Tools
 description: This article shows you how to redact Personally Identifiable Information (PII) from native documents.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 05/21/2026
+ms.date: 07/21/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
+ai-usage: ai-assisted
 ---
-# Detect and redact Personally Identifiable Information in native documents (preview)
 
-> [!IMPORTANT]
->
-> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
+# Detect and redact PII in native documents
+
+> [!TIP]
+> Before writing code, try document-based PII detection in the Microsoft Foundry portal. The playground loads a prepared sample document, submits it through the existing asynchronous native-file document-based PII pipeline, and shows the redacted output side-by-side with the source. Results include entity categories, confidence scores, and file-fidelity output. For step-by-step instructions, see [Use the document PII playground in Microsoft Foundry](../document-based-pii-playground.md).
 
 Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
 
@@ -189,7 +189,7 @@ For this quickstart, you need a **source document** uploaded to your **source co
 
 * The source `location` value is the SAS URL for the **source document (blob)**, not the source container SAS URL.
 
-* The `redactionPolicy` possible values are `UseRedactionCharacterWithRefId` (default) or `UseEntityTypeName`. For more information, *see* [**PiiTask Parameters**](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
+* The `redactionPolicy` `policyKind` options are `noMask`, `characterMask` (default), and `entityMask`. For more information, *see* [**PiiTask Parameters**](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
 ### Run the POST request
 
@@ -262,6 +262,9 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 #### Examine the response
 
 You receive a 200 (Success) response with JSON output. The **status** field indicates the result of the operation. If the operation isn't complete, the value of **status** is "running" or "notStarted", and you should call the API again, either manually or through a script. We recommend an interval of one second or more between calls.
+
+> [!NOTE]
+> The Microsoft Foundry portal playground surfaces the same artifacts in a visual UI: entity categories and confidence scores appear in the **Details** pane, and the redacted document is shown side-by-side with the source to reflect file-fidelity results. This visual UI corresponds directly to the two output artifacts that the API writes to your target container: a redacted native file and a structured JSON result file containing extracted entities.
 
 #### Sample response
 

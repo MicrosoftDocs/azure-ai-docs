@@ -3,7 +3,7 @@ title: Include File
 description: Include file for cleaning up Azure AI Search resources on the free tier.
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/02/2026
+ms.date: 07/20/2026
 # Use this file for quickstarts that only use a free search service.
 ---
 

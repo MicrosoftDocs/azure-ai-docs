@@ -6,8 +6,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/29/2025
+ms.date: 07/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Understand how OData collection filters work in Azure AI Search
@@ -27,7 +28,7 @@ At least that's how it works conceptually. In reality, Azure AI Search implement
 
 There are three underlying reasons why filter features aren't fully supported for all types of collections:
 
-1. Only certain operators are supported for certain data types. For example, it doesn't make sense to compare the Boolean values `true` and `false` using `lt`, `gt`, and so on.
+1. Only certain operators are supported for certain data types. For example, it doesn't make sense to compare the Boolean values `true` and `false` by using comparison operators such as `lt` and `gt`.
 1. Azure AI Search doesn't support *correlated search* on fields of type `Collection(Edm.ComplexType)`.
 1. Azure AI Search uses inverted indexes to execute filters over all types of data, including collections.
 
@@ -98,7 +99,7 @@ So unlike the filter above, which basically says "match documents where a room h
 
 ## Inverted indexes and collections
 
-You might have noticed that there are far fewer restrictions on lambda expressions over complex collections than there are for simple collections like `Collection(Edm.Int32)`, `Collection(Edm.GeographyPoint)`, and so on. This is because Azure AI Search stores complex collections as actual collections of subdocuments, while simple collections aren't stored as collections at all.
+You might notice that lambda expressions have far fewer restrictions over complex collections than over simple collections, such as `Collection(Edm.Int32)` and `Collection(Edm.GeographyPoint)`. This difference exists because Azure AI Search stores complex collections as actual collections of subdocuments, while simple collections aren't stored as collections at all.
 
 For example, consider a filterable string collection field like `seasons` in an index for an online retailer. Some documents uploaded to this index might look like this:
 

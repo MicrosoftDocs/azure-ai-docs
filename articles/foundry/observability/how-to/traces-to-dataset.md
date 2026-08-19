@@ -7,7 +7,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ---
 # Convert agent traces into evaluation datasets (preview)
@@ -40,35 +40,12 @@ In the trace-based dataset flow, the **Intelligent sampling** option appears in 
 
 ## Prerequisites
 
-- Python SDK version `2.2.0` or later: `pip install "azure-ai-projects>=2.2.0" azure-identity` (SDK path only)
+- Python SDK version `2.4.0` or later: `pip install "azure-ai-projects>=2.4.0" azure-identity` (SDK path only)
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`
 - Foundry User role or higher on the project.
 - Set up tracing for a deployed agent that emits traces. Foundry agents emit traces automatically, and OpenTelemetry-instrumented third-party agents are also supported. For setup steps, see [Set up tracing for your agent](trace-agent-setup.md).
-
-## Supported regions for traces to dataset generation
-
-Traces to dataset generation is supported in the following regions:
-
-- UAE North
-- West US 3
-- North Central US
-- East US
-- West Europe
-- South Central US
-- Switzerland North
-- Sweden Central
-- East US 2
-- West US
-- France Central
-- South Africa North
-- Australia East
-- Japan East
-- UK South
-- Norway East
-- Poland Central
-- South India
-- Germany West Central
-- Italy North
+- The project's managed identity must have the Log Analytics Reader role on the connected Application Insights resource so the service can query trace data. If the tables that store your traces are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role.
+- A supported region. For the list, see [Supported regions for data generation](../../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
 ## Generate an evaluation dataset from traces (portal)
 
@@ -122,13 +99,12 @@ from azure.ai.projects.models import (
     DataGenerationJobOutputOptions,
     DataGenerationJobScenario,
     DatasetDataGenerationJobOutput,
-    JobStatus,
     TracesDataGenerationJobOptions,
     TracesDataGenerationJobSource,
 )
 
 AGENT_NAME = "retail-agent"
-TERMINAL_STATUSES = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
+poll_interval_seconds = 10
 
 # 1. Record the window around your traffic.
 end_time = datetime.now(tz=timezone.utc)
@@ -156,23 +132,17 @@ job = DataGenerationJob(
     ),
 )
 
-# 3. Submit and poll until complete.
-job = project_client.beta.datasets.create_generation_job(job=job)
-print(f"Submitted {job.id} (status: {job.status})")
-
-while job.status not in TERMINAL_STATUSES:
-    time.sleep(10)
-    job = project_client.beta.datasets.get_generation_job(job_id=job.id)
-    print(f"  status: {job.status}")
-
-if job.status != JobStatus.SUCCEEDED:
-    message = job.error.message if job.error is not None else "<no error message>"
-    raise RuntimeError(f"Job ended in {job.status}: {message}")
+# 3. Submit and wait for completion.
+poller = project_client.beta.datasets.begin_create_generation_job(job=job)
+while not poller.done():
+    print(f"\tstatus=`{poller.status()}`")
+    time.sleep(poll_interval_seconds)
+result = poller.result()
 
 # 4. Resolve the generated dataset.
 output_name = ""
 output_version = ""
-for output in (job.result.outputs if job.result is not None else None) or []:
+for output in (result.outputs if result is not None else None) or []:
     if isinstance(output, DatasetDataGenerationJobOutput):
         output_name = output.name or ""
         output_version = output.version or ""
@@ -180,8 +150,8 @@ for output in (job.result.outputs if job.result is not None else None) or []:
 
 dataset = project_client.datasets.get(name=output_name, version=output_version)
 print(f"Generated dataset: {dataset.name} v{dataset.version} (id: {dataset.id})")
-if job.result is not None and job.result.generated_samples is not None:
-    print(f"Generated samples: {job.result.generated_samples}")
+if result is not None and result.generated_samples is not None:
+    print(f"Generated samples: {result.generated_samples}")
 ```
 
 The job produces a versioned dataset registered in your project. The number of rows is capped by `max_samples` but might be lower if the window doesn't contain enough distinct, high-quality traces after intelligent sampling.
@@ -192,7 +162,7 @@ Whether you created the dataset from the portal or the SDK, you can preview it o
 
 After the dataset exists, evaluate your agent against it. The generated dataset uses the standard query-response schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md).
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md). For a complete runnable example that filters traces, generates an evaluation dataset, and scores it, see [sample_agent_trace_evaluation_smart_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py) on GitHub.
 
 ## Manage data generation jobs
 
@@ -232,3 +202,6 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 - [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
 - [Agent tracing in Microsoft Foundry](../concepts/trace-agent-concept.md)
 - [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
+- [Multi-turn trace evaluation by ID sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_by_id.py)
+- [Multi-turn trace evaluation by agent filter sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_agent_filter.py)
+- [Trace-based evaluation with intelligent sampling sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py)

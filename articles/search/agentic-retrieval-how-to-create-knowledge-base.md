@@ -3,7 +3,7 @@ title: Create a Knowledge Base
 description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/06/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -87,13 +87,17 @@ A knowledge base specifies:
 
 Use one of the following LLMs from Azure OpenAI in Foundry Models. Azure OpenAI determines regional availability for the deployment you select. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
 
+For the latest model lifecycle guidance, including deprecations, review [Model retirement and deprecation](/azure/ai-foundry/openai/concepts/model-retirements).
+
+GPT-4 family models are deprecated. For retirement dates and current status in Microsoft Foundry, see [Model retirement schedule - Microsoft Foundry](/azure/foundry/openai/concepts/model-retirement-schedule).
+
 | Model | Supported API versions |
 |--|--|
-| `gpt-4o` | 2025-11-01-preview, 2026-05-01-preview |
-| `gpt-4o-mini` | 2025-11-01-preview, 2026-05-01-preview |
-| `gpt-4.1` | 2025-11-01-preview, 2026-05-01-preview |
-| `gpt-4.1-mini` | 2025-11-01-preview, 2026-05-01-preview |
-| `gpt-4.1-nano` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4o` (deprecated) | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4o-mini` (deprecated) | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1` (deprecated) | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1-mini` (deprecated) | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1-nano` (deprecated) | 2025-11-01-preview, 2026-05-01-preview |
 | `gpt-5` | 2025-11-01-preview, 2026-05-01-preview |
 | `gpt-5-mini` | 2025-11-01-preview, 2026-05-01-preview |
 | `gpt-5-nano` | 2025-11-01-preview, 2026-05-01-preview |
@@ -355,7 +359,7 @@ The following JSON is an example response for a knowledge base.
 ```
 
 > [!NOTE]
-> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2026-05-01-preview. For more information about which properties each version supports, see the next section.
+> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2026-05-01-preview. For more information about which properties each version supports, see [Create a knowledge base](#create-a-knowledge-base).
 
 ## Create a knowledge base
 

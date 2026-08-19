@@ -21,7 +21,7 @@ You can verify current assignments by using [Check access for a user to a single
   [!INCLUDE [role-rename-note](./role-rename-note.md)]
 * Assign the **Foundry User** role on your Foundry resource to your **project's managed identity**.
 
-If the user who created the project can assign roles (for example, by having the Azure **Owner** role at subscription or resource group scope), both assignments are added automatically.
+If the user who created the project can assign roles (for example, by having the Azure Owner role at the subscription or resource group scope), both assignments are added automatically **when the project is created through the Microsoft Foundry portal UI**.
 
 > [!TIP]
 > If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.

@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: tutorial
-ms.date: 06/26/2026
+ms.date: 07/13/2026
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
@@ -42,7 +42,7 @@ The deployment provisions the following services. You interact with each service
 
 | Service | Role |
 | --- | --- |
-| Foundry (resource and project) | Orchestrates the agent runtime and hosts the project connection, the agent, and the `gpt-4.1` chat model that powers the agent. In part three, you also deploy the `text-embedding-3-large` embedding model that Azure AI Search uses to vectorize content. |
+| Foundry (resource and project) | Orchestrates the agent runtime and hosts the project connection, the agent, and a GPT-5 family model that powers the agent. In part three, you also deploy the `text-embedding-3-large` embedding model that Azure AI Search uses to vectorize content. |
 | Azure AI Search | Ingests and vectorizes your private blob content into a knowledge source, and then serves agentic retrieval through a knowledge base and its MCP endpoint. Makes a private outbound call to Azure Blob Storage for content access. For the Foundry embedding dependency, this tutorial uses the `openai_account` shared private link for the target resource, and the ingestion-time embedding call currently also relies on the trusted-service bypass. |
 | Azure Blob Storage | Stores the source documents that the knowledge source ingests and indexes for agentic retrieval. |
 | Azure Cosmos DB | Stores agent state for the standard agent setup, including messages, conversation history, and agent metadata. The deployment provisions it automatically, and you don't configure or use it directly. |

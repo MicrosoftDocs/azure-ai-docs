@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Use Docker containers for the summarization API to summarize text, on-premises.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 05/31/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---

@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: reference
-ms.date: 06/15/2026
+ms.date: 07/30/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Hosted agent runtime contract
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 A hosted agent is a container that fulfills a specific runtime contract with the Microsoft Foundry platform. This reference describes what the platform expects from your container and how the SDK adapter packages help you meet those requirements.
 
@@ -86,6 +84,16 @@ The adapter handles the following parts of the contract for you:
 
 You implement a handler function that receives parsed requests and returns responses.
 
+## Long-running and resilient execution (preview)
+
+The protocol adapters compose with the resilient task and streaming primitives in their AgentServer Core dependency. Use these primitives when work must survive a process interruption or clients must reconnect to replayed output.
+
+The Responses adapter can manage resilient execution for stored background responses. Your server opts in to resilient background processing, and your handler either safely reruns or resumes from a durable checkpoint. Foreground responses aren't re-invoked after the process stops.
+
+The Invocations adapter doesn't prescribe a status or polling contract. Register resilient tasks for durable execution, then define the response, polling, or stream endpoints that expose progress to your clients.
+
+For the execution model, checkpoint strategies, and client replay behavior, see [Resilience for long-running hosted agents](long-running-agent-resilience.md).
+
 ## Handler examples
 
 The complete bring-your-own samples for both protocols and both languages are in the [foundry-samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples) repository.
@@ -96,7 +104,7 @@ This minimal handler forwards user input to a model from the Foundry model catal
 
 ### [Python](#tab/python)
 
-From [`bring-your-own/responses/hello-world/main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/hello-world/main.py):
+From [`bring-your-own/responses/hello-world/main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/hello-world/src/hello-world-python-responses/main.py):
 
 ```python
 import asyncio
@@ -164,7 +172,7 @@ Reference: [ResponsesAgentServerHost](https://github.com/microsoft-foundry/found
 
 ### [C#](#tab/csharp)
 
-From [`bring-your-own/responses/HelloWorld/Program.cs`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/bring-your-own/responses/HelloWorld/Program.cs):
+From [`bring-your-own/responses/HelloWorld/Program.cs`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/bring-your-own/responses/HelloWorld/src/hello-world-dotnet-responses/Program.cs):
 
 ```csharp
 using Azure.AI.AgentServer.Responses;
@@ -316,6 +324,8 @@ These headers apply only to hosted agents on container protocol version 2.0.0. O
 
 Both headers are trustworthy - the platform generates them from verified identity - and neither is guaranteed when you run locally, so handle missing values gracefully.
 
+The AgentServer SDK exposes these as constants on `PlatformHeaders` and reads them for you - through `FoundryAgentRequestContext.Current` in .NET or `get_request_context()` in Python. For the complete platform header list, including response headers the runtime adds such as `x-agent-session-id`, `x-platform-server`, and `x-platform-error-source`, see the [Azure AI Agent Server Core library reference](/dotnet/api/overview/azure/ai.agentserver.core-readme).
+
 For how protocol 2.0.0 changes identity propagation, see [Migrate hosted agents](../how-to/migrate-hosted-agent-preview.md#container-protocol-200).
 
 ### Example: partition stored data per session
@@ -347,6 +357,23 @@ private static string GetFilePath(string sessionId)
 ---
 
 When more than one user can share a session, add `x-agent-user-id` to the key. See [Multiplex multiple users in one hosted agent session](../how-to/multiplex-session-users.md#partition-per-user-data-your-container-stores).
+
+## Forward custom request headers to your container
+
+The previous section covers headers the *platform* injects. Separately, the gateway forwards only a fixed set of *caller-supplied* request headers to your container. Any caller header outside that set is dropped at the gateway before the request reaches your container, which keeps credentials and internal headers out of your container by default.
+
+To pass your own contextual data to your container, use the pass-through client header prefix, `x-client-`. The platform forwards every header that starts with `x-client-` unchanged, so you can send values like a tenant ID or a feature flag without changing the request body, then read them in your handler like any other request header. The AgentServer SDK defines this prefix as `PlatformHeaders.ClientHeaderPrefix`; for the full platform header list, see the [Azure AI Agent Server Core library reference](/dotnet/api/overview/azure/ai.agentserver.core-readme).
+
+The gateway forwards these caller headers to the Responses and Invocations protocol endpoints:
+
+| Header or prefix | Purpose |
+| ---------------- | ------- |
+| `x-client-*` | Any custom header you prefix with `x-client-`. Use this prefix to pass your own contextual values - such as tenant, feature flags, or correlation tokens - through to your container. |
+| `accept`, `accept-encoding`, `accept-language`, `content-type`, `content-length`, `content-encoding` | Standard content-negotiation and body headers needed to parse the request. |
+| `traceparent`, `tracestate`, `baggage`, `x-ms-client-request-id`, `x-request-id`, `request-id`, `correlation-context`, `request-context`, `ms-cv` | Distributed-tracing and correlation IDs, so your container's logs link to the originating request. |
+| `user-agent` | Identifies the calling SDK or client, for diagnostics. |
+
+The gateway never forwards credential headers such as `Authorization`, or `Host`, `Cookie`, and `x-forwarded-*`. Any header that doesn't match the allowlist is dropped, so don't rely on custom headers outside the `x-client-*` prefix reaching your container.
 
 ## Related content
 

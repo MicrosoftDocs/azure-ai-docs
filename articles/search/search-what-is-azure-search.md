@@ -4,14 +4,15 @@ description: Learn how Azure AI Search helps you build rich search experiences a
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 08/05/2026
+ai-usage: ai-assisted
 ---
 
 # What is Azure AI Search?
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-Azure AI Search is a fully managed, cloud-hosted service that connects your data to AI. The service unifies access to enterprise and web content so agents and LLMs can use context, chat history, and multi-source signals to produce reliable, grounded answers.
+Azure AI Search is a fully managed, cloud-hosted service that connects your data to AI. The service unifies access to enterprise and web content so agents and large language models (LLMs) can use context, chat history, and multi-source signals to produce reliable, grounded answers.
 
 Azure AI Search is available in two pricing models:
 
@@ -49,7 +50,7 @@ When you create a search service, the following capabilities are included:
 
 + Easily implement search-related features: relevance tuning, faceted navigation, filters (including geo-spatial search), synonym mapping, and autocomplete.
 
-+ Provide enterprise security, access control, and compliance through Microsoft Entra, Azure Private Link, document-level access control, and role-based access.
++ Provide enterprise security, access control, and compliance through Microsoft Entra ID, Azure Private Link, document-level access control, and role-based access.
 
 + Scale and operate in production with Azure reliability, monitoring and diagnostics (logs, metrics, and alerts), and REST API or SDK tooling for automation.
 

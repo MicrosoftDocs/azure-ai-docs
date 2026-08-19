@@ -135,7 +135,7 @@ items:
           - name: Ruby
             href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
 
-- name: Document translation (2026-03-01)
+- name: Document translation (latest)
   items:
   - name: Overview
     displayName: ocr,batch,features,development,formats,file types
@@ -156,9 +156,9 @@ items:
       displayName: rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: document-translation/latest/quickstarts/synchronous.md
 
-  - name: Document translation REST APIs 2026-03-01
+  - name: Document translation REST API (2026-03-01)
     items:
-      - name: REST API guide
+      - name: Document Translation REST API guide (latest)
         displayName: resource,endpoint,region,location,resource,token,header,header value
         href: document-translation/latest/rest-api/guide-overview.md
       - name: Synchronous document translation
@@ -179,8 +179,12 @@ items:
         href: document-translation/latest/rest-api/get-supported-document-formats.md
       - name: Get supported glossary formats
         href: document-translation/latest/rest-api/get-supported-glossary-formats.md
+        
+- name: Document translation SDK guide
+  displayName: batch,c#,dotnet,.net,python,java,blob,set up,install,cli,storage,domain,custom domain
+  href: document-translation/document-sdk-overview.md        
 
-- name: Document translation
+- name: Document translation (legacy)
   items:
   - name: What is Azure Translator document translation?
     displayName: ocr,batch,features,development,formats,file types
@@ -217,9 +221,9 @@ items:
       displayName: user,delegation,shared access,tokens,storage explorer,azure,portal,blob,url
       href: document-translation/how-to-guides/create-sas-tokens.md
 
-  - name: Document translation REST APIs
+  - name: Document translation REST API (2024-05-01)
     items:
-      - name: Document translation operations
+      - name: Document translation operations (legacy)
         href: document-translation/reference/rest-api-guide.md
       - name: Synchronous document translation
         href: document-translation/reference/translate-document.md
@@ -239,10 +243,6 @@ items:
         href: document-translation/reference/get-supported-document-formats.md
       - name: Get supported glossary formats
         href: document-translation/reference/get-supported-glossary-formats.md
-
-  - name: Document translation SDK guide
-    displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
-    href: document-translation/document-sdk-overview.md
 
 - name: Microsoft Foundry tools
   items:

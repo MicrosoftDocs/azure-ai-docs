@@ -3,7 +3,7 @@ title: Configure Customer-Managed Keys for Azure AI Search
 description: Supplement server-side encryption in Azure AI Search using customer managed keys (CMK) or bring your own keys (BYOK) that you create and manage in Azure Key Vault.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 08/05/2026
 ms.update-cycle: 365-days
 ms.custom:
   - references_regions
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 Enabling customer‑managed keys (CMK) adds additional security on top of the default encryption at rest when using [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). When you enable CMK, you control the encryption keys used to protect your data, including the ability to:
 
 - Rotate keys on a customer‑defined schedule
-- Disable or revoke keys to block access to encrypted content *(cached keys may persist for up to 60 minutes)*
+- Disable or revoke keys to block access to encrypted content *(cached keys might persist for up to 60 minutes)*
 - Audit key usage through Azure Key Vault logging
 
 You can create, store, and manage keys by using either:
@@ -571,7 +571,7 @@ api-key: {{admin-api-key}}
 
 When `isServiceLevelKey` is `true`, the object inherits the service-level key and does not have an explicit object-level override.
 
-To decouple lifecycle for a specific object, set an explicit **object-level key** and set `isServiceLevelKey` to `false` in a create-or-update request.
+To decouple lifecycle for a specific object, set an explicit **object-level key** and set `isServiceLevelKey` to `false` in a `PUT` request that updates the object.
 
 ```http
 PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
@@ -602,7 +602,13 @@ Content-Type: application/json
 
 With this override, object-level key lifecycle is decoupled from the service-level default. You can rotate the object-level key independently without changing the service-level key used by other objects.
 
-To return an object to service-level CMK inheritance, update the object with isServiceLevelKey set to true and omit the object-level key details.
+When you enable service-level CMK, create requests can omit `encryptionKey` and the object inherits the service-level key by default. To switch an existing object from an explicit object-level key to service-level CMK inheritance, set `isServiceLevelKey` to `true` in an update request.
+
+In data plane API version `2026-05-01-preview`, request validation applies to the `encryptionKey` object. If you provide `encryptionKey`, `keyVaultUri` and `keyVaultKeyName` are required string fields, regardless of whether `isServiceLevelKey` is present or what value it has. This validation checks field presence, not key existence. Placeholder string values satisfy this schema validation, and missing required fields result in HTTP 400.
+
+When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. If you provide `keyVaultUri`, `keyVaultKeyName`, or `keyVaultKeyVersion` in the same request, the service ignores those values for key selection in that operation.
+
+For clarity and maintainability, provide the current service-level key values in the request and verify the effective key with a GET operation on the object.
 
 ```http
 PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
@@ -623,12 +629,17 @@ Content-Type: application/json
     }
   ],
   "encryptionKey": {
-    "isServiceLevelKey": true
+    "isServiceLevelKey": true,
+    "keyVaultUri": "<SERVICE-LEVEL-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<SERVICE-LEVEL-KEY-NAME>",
+    "keyVaultKeyVersion": "<SERVICE-LEVEL-KEY-VERSION>"
   }
 }
 ```
 
-After this update, the search object inherits the service-level key again. When you provide an explicit object-level key, setting `isServiceLevelKey` to `false` is optional because the explicit key definition overrides service-level inheritance.
+After this update, the search object inherits the service-level key. Verify the effective key by issuing a GET request and confirming `isServiceLevelKey` is `true`.
+
+To set an object-level key, provide `encryptionKey` with object-level key values and either set `isServiceLevelKey` to `false` or omit `isServiceLevelKey`. If `isServiceLevelKey` is `true`, the request doesn't switch the object to an object-level key. Omitting `encryptionKey` in an update request keeps the current encryption key configuration.
 
 ### [**Azure SDKs**](#tab/sdks)
 
@@ -770,7 +781,7 @@ The response should include the following statement:
 
 ## Rotate or update encryption keys
 
-Use the following instructions to rotate keys or to migrate from Azure Key Vault to the Hardware Security Model (HSM). 
+Use the following instructions to rotate keys or to migrate from Azure Key Vault to the Hardware Security Module (HSM). 
 
 For key rotation, use the [autorotation capabilities of Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation). If you use autorotation, omit the key version in object definitions. The latest key is used, rather than a specific version.
 

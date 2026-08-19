@@ -2,8 +2,8 @@
 title: Built-in policy definitions for Foundry Tools
 description: Lists Azure Policy built-in policy definitions for Foundry Tools. These built-in policy definitions provide common approaches to managing your Azure resources.
 ms.date: 10/02/2025
-author: nitinme
-ms.author: nitinme
+author: mattwojo
+ms.author: mattwoj
 ms.service: foundry-tools
 ms.topic: concept-article
 ms.custom: subject-policy-reference

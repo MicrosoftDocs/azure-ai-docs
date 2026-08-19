@@ -1,9 +1,9 @@
 ---
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 04/15/2026
+ms.date: 06/30/2026
 ms.custom: devx-track-java
 ms.author: lajanuar
 ---

@@ -4,7 +4,7 @@ description: Learn how to use langchain-azure-ai as an entry point for LangChain
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 07/20/2026
 ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
@@ -61,22 +61,16 @@ pip install -U "langchain-azure-ai[opentelemetry]"
 
 Use this map to pick the right namespace for your solution:
 
-
-
-
-
-
-
 | Capability | Namespace | Typical use |
-|---|---|---|
+| --- | --- | --- |
 | Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. [See detailed examples](langchain-agents.md). |
 | LangGraph hosting | `langchain_azure_ai.agents.hosting` | Host compiled LangGraph agents on Foundry Agent Service with Responses or Invocations protocols. [See detailed examples](langchain-hosted-agents.md). |
 | Foundry Content Safety | `langchain_azure_ai.agents.middleware` | Use Foundry Content Safety and Moderation to make sure you can deploy solution with the right guardrails. [See detailed examples](langchain-middleware.md). |
 | Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. [See detailed examples](langchain-models.md). |
-| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. [See detailed examples](langchain-models.md#use-embedding-models).|
+| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. [See detailed examples](langchain-models.md#use-embedding-models). |
 | Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
 | Retrievers | `langchain_azure_ai.retrievers` | Run retrieval over Azure-backed indexes and stores. |
-| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. [See detailed examples](langchain-memory.md). |
+| Chat history stores | `langchain_azure_ai.chat_history` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. [See detailed examples](langchain-memory.md). |
 | Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps; or an entire project Toolbox. [See detailed examples](langchain-toolbox.md) |
 | Foundry Toolbox | `langchain_azure_ai.tools` | Load managed tools and skills from a Foundry Toolbox through a single MCP endpoint. [See detailed examples](langchain-toolbox.md). |
 | Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. [See detailed examples](langchain-traces.md). |
@@ -109,7 +103,7 @@ export OPENAI_API_KEY="<your-key>"
 Once the environment variables are configured, you can use a model by:
 
 ```python
-import langchain.chat_models import init_chat_model
+from langchain.chat_models import init_chat_model
 
 model = init_chat_model("azure_ai:gpt-5.2")
 ```
@@ -119,7 +113,7 @@ You can also configure clients specifically. As an example, let's see `AzureAIOp
 ```python
 import os
 
-from azure.identity import DefaultAzureCredential
+from azure.identity import AzureCliCredential, DefaultAzureCredential
 from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 
 # Option A: Use a Foundry project endpoint (Microsoft Entra ID required).
@@ -129,17 +123,17 @@ model_from_project = AzureAIOpenAIApiChatModel(
   model="gpt-5.2",
 )
 
-# Option B: Use a service endpoint directly.
+# Option B: Use a service endpoint directly with an API key.
 model_from_endpoint = AzureAIOpenAIApiChatModel(
   endpoint=os.environ["OPENAI_BASE_URL"],
-  credential=DefaultAzureCredential(),
+  credential=os.environ["OPENAI_API_KEY"],
   model="gpt-5.2",
 )
 
 # Option C: Use a different credential strategy.
 model_with_cli_credential = AzureAIOpenAIApiChatModel(
   endpoint=os.environ["OPENAI_BASE_URL"],
-  credential="super-secret",
+  credential=AzureCliCredential(),
   model="gpt-5.2",
 )
 ```

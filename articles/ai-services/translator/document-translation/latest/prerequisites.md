@@ -5,7 +5,7 @@ description: Learn about the prerequisites and setup required to use the Documen
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: checklist
 ms.date: 06/02/2026
 ---

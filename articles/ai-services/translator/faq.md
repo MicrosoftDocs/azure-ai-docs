@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Get answers to frequently asked questions about the Azure Translator API in Foundry Tools.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: faq
 ms.date: 06/08/2026
 ms.author: lajanuar
@@ -69,5 +69,4 @@ No. Azure Translator doesn't store customer data submitted for translation perma
 ---
 > [!TIP]
 
-> If you can't find answers to your questions in this FAQ, try asking the Azure Translator API community on [StackOverflow](https://stackoverflow.com/search?q=%5Bmicrosoft-cognitive%5D+or+%5Bmicrosoft-cognitive%5D+translator&s=34bf0ce2-b6b3-4355-86a6-d45a1121fe27).
-
+> If you can't find answers to your questions in this FAQ, try asking the Azure Translator API community on [StackOverflow](https://stackoverflow.com/search?q=%5Bmicrosoft-cognitive%5D+or+%5Bmicrosoft-cognitive%5D+translator&s=aaaabbbb-0000-cccc-1111-dddd2222eeee).

@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: troubleshooting-general
-ms.date: 04/01/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ---
 

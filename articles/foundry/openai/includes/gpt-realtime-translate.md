@@ -32,7 +32,7 @@ Use GPT Realtime Translate when you need:
 
 ## Example use cases
 
-- **Live multilingual events**: Translate conference talks, webinars, or broadcasts in real time so audiences can listen in their preferred language. Pair with GPT Realtime Whisper to simultaneously provide source-language captions.
+- **Live multilingual events**: Translate conference talks, webinars, or broadcasts in real time so audiences can listen in their preferred language. Pair with GPT Realtime Transcribe to simultaneously provide source-language captions.
 - **Global customer support**: Route inbound calls through GPT Realtime Translate to bridge language gaps between customers and agents. The translated transcript gives agents a written record in their language for follow-up.
 - **International voice assistants**: Build once and deploy across languages. GPT Realtime Translate enables multilingual voice interactions without requiring per-language model deployments.
 

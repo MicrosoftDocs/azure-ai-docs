@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 05/15/2026
+ms.date: 08/15/2026
 ms.author: vikurpad
 ms.custom:
 monikerRange: '>=doc-intel-4.0.0'
@@ -16,7 +16,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Use Document Intelligence incremental classifiers
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** ![checkmark](../media/yes-icon.png)
+**This content applies to:** 🟩 **v4.0 (GA)**
 
 Azure Document Intelligence in Foundry Tools is a cloud-based Foundry Tools service that enables you to build intelligent document processing solutions. Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements.
 

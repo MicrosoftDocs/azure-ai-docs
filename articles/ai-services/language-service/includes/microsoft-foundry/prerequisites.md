@@ -3,7 +3,7 @@
  description: Microsoft foundry prerequisites
  #services: cognitive-services
  author: laujan
- ms.service: azure-ai-language
+ ms.service: azure-language-foundry-tools
  ms.topic: include
  ms.date: 04/28/2026
  ms.author: lajanuar

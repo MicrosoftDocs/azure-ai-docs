@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include
 ---
 
@@ -28,3 +28,4 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 - `gpt-realtime-2` (`2026-05-07`)
 - `gpt-realtime-translate` (`2026-05-06`)
 - `gpt-realtime-whisper` (`2026-05-06`)
+- `gpt-live-transcribe` (`2026-07-29`)

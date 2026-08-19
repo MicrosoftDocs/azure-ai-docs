@@ -5,7 +5,7 @@ description: "Learn how to configure your agent's stable endpoint, select the ac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 04/14/2026
+ms.date: 08/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -31,6 +31,7 @@ This article shows you how to select the active version, enable protocols, set a
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents. Principals that only interact with agents (without creating or editing them) should use the [Foundry Agent Consumer role](../../concepts/rbac-foundry.md) instead.
 - [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents. Principals that only interact with agents (without creating or editing them) should use the [Foundry Agent Consumer role](../../concepts/rbac-foundry.md) instead.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -138,8 +139,7 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
+    AgentEndpointConfig,
     FixedRatioVersionSelectionRule,
     VersionSelector,
 )
@@ -152,11 +152,10 @@ agent_name = "name-of-your-existing-agent"
 project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
+    endpoint_config = AgentEndpointConfig(
         version_selector=VersionSelector(
             version_selection_rules=[
                 FixedRatioVersionSelectionRule(agent_version="2", traffic_percentage=100),
@@ -164,7 +163,7 @@ with project_client:
         ),
     )
 
-    patched_agent = project_client.beta.agents.patch_agent_details(
+    patched_agent = project_client.agents.update_details(
         agent_name=agent_name,
         agent_endpoint=endpoint_config,
     )
@@ -190,13 +189,15 @@ Content-Type: application/merge-patch+json
 
 {
   "agent_endpoint": {
-    "protocols": ["activity", "responses", "invocations", "a2a"],
+    "protocol_configuration": {
+      "activity": {},
+      "responses": {},
+      "invocations": {},
+      "a2a": {}
+    },
     "authorization_schemes": [
       {
-        "type": "Entra",
-        "isolation_key_source": {
-          "kind": "Entra"
-        }
+        "type": "Entra"
       },
       {
         "type": "BotServiceRbac"
@@ -211,11 +212,14 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
-    EntraAuthorizationScheme,
+    A2AProtocolConfiguration,
+    ActivityProtocolConfiguration,
+    AgentEndpointConfig,
     BotServiceRbacAuthorizationScheme,
-    EntraIsolationKeySource,
+    EntraAuthorizationScheme,
+    InvocationsProtocolConfiguration,
+    ProtocolConfiguration,
+    ResponsesProtocolConfiguration,
 )
 from azure.identity import DefaultAzureCredential
 
@@ -226,26 +230,23 @@ agent_name = "name-of-your-existing-agent"
 project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
-        protocols=[
-            AgentEndpointProtocol.RESPONSES,
-            AgentEndpointProtocol.ACTIVITY,
-            AgentEndpointProtocol.INVOCATIONS,
-            AgentEndpointProtocol.A2A,
-        ],
+    endpoint_config = AgentEndpointConfig(
+        protocol_configuration=ProtocolConfiguration(
+            responses=ResponsesProtocolConfiguration(),
+            activity=ActivityProtocolConfiguration(),
+            invocations=InvocationsProtocolConfiguration(),
+            a2a=A2AProtocolConfiguration(),
+        ),
         authorization_schemes=[
-            EntraAuthorizationScheme(
-                isolation_key_source=EntraIsolationKeySource(),
-            ),
+            EntraAuthorizationScheme(),
             BotServiceRbacAuthorizationScheme(),
         ],
     )
 
-    patched_agent = project_client.beta.agents.patch_agent_details(
+    patched_agent = project_client.agents.update_details(
         agent_name=agent_name,
         agent_endpoint=endpoint_config,
     )
@@ -303,7 +304,34 @@ Content-Type: application/merge-patch+json
 #### [Python SDK](#tab/python)
 
 ```python
-# Agent card update via SDK is not yet supported. Use the REST API.
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import AgentCard, AgentCardSkill
+from azure.identity import DefaultAzureCredential
+PROJECT_ENDPOINT = (
+    "https://{account}.services.ai.azure.com/api/projects/{project}"
+)
+AGENT_NAME = "name-of-your-existing-agent"
+# Create the project client.
+project_client = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+# Add the agent card.
+patched_agent = project_client.agents.update_details(
+    agent_name=AGENT_NAME,
+  agent_card=AgentCard(
+        version="1.0.0",
+        description="A competitive intelligence analyst.",
+    skills=[AgentCardSkill(
+            id="competitor-analysis",
+            name="Competitor Analysis",
+            description="Analyzes competitor products and market positioning.",
+            tags=["research", "analysis", "market-intel"],
+            examples=["Compare our pricing with a competitor."],
+        )],
+    ),
+)
+print(f"Added an agent card to: {patched_agent.name}")
 ```
 
 ---
@@ -350,24 +378,24 @@ Content-Type: application/json
 | `id` | string | Unique identifier | No | No |
 | `name` | string (max 63 chars) | Name of the agent | No | No |
 | `versions` | object | Contains `latest` with the latest `AgentVersion` | Yes (via create_version) | Yes |
-| `agent_endpoint` | AgentEndpoint | Endpoint configuration (version selector, protocols, authorization). See the AgentEndpoint table below. | Yes (`PATCH /agents/{name}`) | Partial (version selector only) |
+| `agent_endpoint` | AgentEndpoint | Endpoint configuration (version selector, protocol configuration, authorization). See the AgentEndpoint table below. | Yes (`PATCH /agents/{name}`) | Partial (version selector only) |
 | `instance_identity` | object | The agent's unique Microsoft Entra identity (`principal_id`, `client_id`) | No (read-only) | No |
 | `blueprint` / `blueprint_reference` | object | Reference to the agent's Microsoft Entra agent blueprint (`principal_id`, `client_id`, or `type`, `blueprint_id`) | No (read-only) | No |
 | `agent_card` | AgentCard | Agent details for consumers and A2A | Yes (`PATCH /agents/{name}`) | No (REST API / SDK only) |
 | `status` | enum (`Enabled`, `Disabled`) | Whether the agent is serving traffic | Not yet supported | No |
 
 > [!NOTE]
-> The `version_selector`, `protocols`, and `authorization_schemes` are nested under `agent_endpoint`. To update any of them, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
+> The `version_selector`, `protocol_configuration`, and `authorization_schemes` properties are nested under `agent_endpoint`. To update any of these properties, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
 
 </details>
 
 <details>
-<summary>AgentEndpoint properties</summary>
+<summary>AgentEndpointConfig properties</summary>
 
 | Property | Type | Description |
 | --- | --- | --- |
 | `version_selector` | VersionSelector | How traffic is routed to agent versions |
-| `protocols` | array of string | Protocols enabled (for example, `responses`, `activity`, `a2a`) |
+| `protocol_configuration` | object | Protocols enabled, keyed by protocol name (for example, `responses`, `activity`, `a2a`). Each key maps to a protocol configuration object. |
 | `authorization_schemes` | array of objects | Authorization schemes (for example, `Entra`, `BotServiceRbac`) |
 
 </details>

@@ -4,7 +4,7 @@ description: "Migrate from the legacy Agent Application publishing model to the 
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 04/14/2026
+ms.date: 07/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -31,7 +31,7 @@ The new agent object model collapses **Agent Applications** and **Agent Deployme
 ### After (new model)
 
 1. **Resource model**: Only Agent objects exist (data plane and control plane). They absorb the responsibilities previously owned by Agent Application and Deployment.
-1. **Agent object properties**: `id`, `name`, `versions`, `agent_endpoint` (stable endpoint), `protocols`, `authorization_schemes`, `version_selector`, `blueprint`, `instance_identity`, and `agent_card` (surfaces agent details and capabilities to consumers and A2A).
+1. **Agent object properties**: `id`, `name`, `versions`, `agent_endpoint` (stable endpoint), `protocol_configuration`, `authorization_schemes`, `version_selector`, `blueprint`, `instance_identity`, and `agent_card` (surfaces agent details and capabilities to consumers and A2A).
 1. **Identity**: Newly created agents receive a unique Entra Agent Blueprint and Entra Agent Identity by default. Bring-your-own Entra Agent Blueprint is supported but not the default.
 1. **Publishing**: Two equivalent gestures. First, select an agent version to expose via the stable endpoint. Second, publish the agent's stable endpoint to M365/Teams.
 
@@ -47,7 +47,7 @@ During the transition period, you may encounter three types of agents:
 | Type | `agent.identity` | Description |
 |------|-------------------|-------------|
 | **New agent** | Non-null | Created after the object model update. Has a unique identity and blueprint. All new features are available. |
-| **Legacy agent** | Null | Created before the object model update. Uses the shared project identity and blueprint. Backfilled with the new agent properties (such as `protocols`, `agent_endpoint`, and `agent_card`), but can't be published to Teams/M365 via its stable endpoint unless it has a unique agent identity. |
+| **Legacy agent** | Null | Created before the object model update. Uses the shared project identity and blueprint. Backfilled with the new agent properties (such as `protocol_configuration`, `agent_endpoint`, and `agent_card`), but can't be published to Teams/M365 via its stable endpoint unless it has a unique agent identity. |
 | **Published agents (aka Agent Applications)** | N/A (separate resource) | Legacy resource from the old publish flow. Wraps a Deployment that points to an agent version. |
 
 The `agent.identity` value distinguishes new agents from legacy agents: **null means legacy, non-null means new**.
@@ -131,7 +131,7 @@ During the transition, you may see different publishing experiences depending on
 
 **Do I need to migrate immediately?**
 
-No. Existing Agent Applications continue to work. However, new features (traffic splitting, multiple protocols, disable/enable, A2A) are only available on the new agent model.
+No. Existing Agent Applications continue to work. However, features such as multiple protocols, disable/enable, and A2A are only available on the new agent model.
 
 **Will my Agent Application stop working?**
 

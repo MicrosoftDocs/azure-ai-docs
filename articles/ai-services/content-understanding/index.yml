@@ -44,9 +44,6 @@ conceptualContent:
           text: Quickstart
           url: quickstart/use-rest-api.md
         - itemType: concept
-          text: "Modes: standard and pro (preview)"
-          url: concepts/standard-pro-modes.md
-        - itemType: concept
           text: Prebuilt analyzers
           url: concepts/prebuilt-analyzers.md
         - itemType: how-to-guide
@@ -71,9 +68,6 @@ conceptualContent:
         - itemType: concept
           text: Video
           url: video/overview.md
-        - itemType: concept
-          text: Face
-          url: face/overview.md
     - title: Tutorials
       links:
         - itemType: how-to-guide
@@ -100,9 +94,6 @@ conceptualContent:
         - itemType: how-to-guide
           text: Create a Microsoft Foundry resource
           url: how-to/create-multi-service-resource.md
-        - itemType: how-to-guide
-          text: Build a face-data person directory (preview)
-          url: tutorial/build-person-directory.md
     - title: Resources
       links:
         - itemType: how-to-guide

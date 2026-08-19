@@ -1,5 +1,5 @@
 ---
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
 ms.date: 01/18/2026
 author: laujan

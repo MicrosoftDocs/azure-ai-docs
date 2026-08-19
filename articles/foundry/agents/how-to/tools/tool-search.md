@@ -1,26 +1,27 @@
 ---
-title: "Enable tool search in a toolbox (preview)"
-description: "Use tool search in Microsoft Foundry to help agents dynamically discover relevant tools from a large toolbox, reducing context overhead and improving tool selection accuracy."
-author: zhuoqunli
-ms.author: zhuoqunli
-ms.reviewer: shpeng
-ms.date: 05/10/2026
+title: "Enable tool search in a toolbox"
+description: "Learn how to enable tool search in Microsoft Foundry so agents dynamically discover relevant tools, reduce context overhead, and improve selection."
+author: mattwojo
+ms.author: mattwoj
+reviewer: lindazqli
+ms.reviewer: zhuoqunli
+ms.date: 08/05/2026
 manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-foundry-tool-search
 ---
 
-# Enable tool search in a toolbox (preview)
+# Enable tool search in a toolbox
 
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+When a toolbox contains many tools, passing all tool definitions to the model on every turn creates three compounding problems: token costs grow with every tool added to the context, the context window fills with definitions the current task doesn't need, and the model picks the wrong tools from an overcrowded list. Tool search solves this problem by replacing the full tool list with two focused meta-tools, so cost stays flat regardless of toolbox size.
 
-When a toolbox contains many tools, passing all tool definitions to the model on every turn creates three compounding problems: token costs grow with every tool added to the context, the context window fills with definitions the current task doesn't need, and the model picks the wrong tools from an overcrowded list. Tool search solves this by replacing the full tool list with two focused meta-tools—keeping cost flat regardless of toolbox size.
+When you enable tool search, the model gets two built-in meta-tools: `tool_search`, which it calls with a natural-language description of the capability it needs, and `call_tool`, which it uses to invoke any discovered tool by name. Foundry evaluates `tool_search` queries against the full set of tools in the toolbox and returns only the ones that match, so the active context stays focused and relevant.
 
-When tool search is enabled, the model receives two built-in meta-tools: `tool_search`, which it calls with a natural-language description of the capability it needs, and `call_tool`, which it uses to invoke any discovered tool by name. Foundry evaluates `tool_search` queries against the full set of tools in the toolbox and returns only the ones that match, keeping the active context focused and relevant.
+For request-scoped discovery of deferred tool definitions, see [Use tool search with the Azure OpenAI Responses API](../../../openai/how-to/tool-search.md).
 
 Use tool search when:
 
@@ -36,32 +37,38 @@ Use tool search when:
 
 ## How tool search works
 
-When you include `{"type": "toolbox_search_preview"}` in a toolbox, all tools in the toolbox are hidden from the initial `tools/list` response. Instead, Foundry injects two meta-tools:
+When you include `{"type": "toolbox_search"}` in a toolbox, the initial `tools/list` response hides all tools in the toolbox. Instead, Foundry adds two meta-tools:
 
-- `tool_search` — the model calls this with a natural-language description of the capability it needs. Foundry evaluates the query and returns the matching tool definitions.
-- `call_tool` — the model uses this to invoke any discovered tool by name.
+- `tool_search` — the model calls this tool with a natural-language description of the capability it needs. Foundry evaluates the query and returns the matching tool definitions.
+- `call_tool` — the model uses this tool to invoke any discovered tool by name.
 
-The model doesn't browse a full tool list—it describes intent, discovers the right tools, and calls them.
+The model doesn't browse a full tool list. It describes intent, discovers the right tools, and calls them.
+
+### Search mechanism
+
+Tool search uses **BM25** (Best Matching 25), a probabilistic ranking algorithm that scores tools based on how well their metadata matches the query. BM25 considers term frequency, inverse document frequency, and document length normalization to rank results. When the model calls `tool_search`, Foundry indexes each tool's name, description, and parameter information, then returns the top-scoring matches for the query.
+
+### Parameters
 
 The `tool_search` function accepts the following parameters:
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `query` | string | Yes | Natural-language description of the capability or task you need a tool for. |
-| `limit` | integer | No | Maximum number of tools to return. Defaults to a platform value when omitted. |
+| `limit` | integer | No | Maximum number of tools to return. Defaults to 5. Maximum is 10. |
 
 The model can call `tool_search` as many times as needed during a single turn. Each call returns only the tools that match the query, so the active context stays focused on what's relevant to the current step. Tools returned by `tool_search` remain callable for the rest of the turn without repeated searching.
 
 > [!NOTE]
-> The `toolbox_search_preview` entry is a configuration directive that activates tool search. It doesn't appear in `tools/list` itself and doesn't count toward the unnamed-tool-per-type limit.
+> The `toolbox_search` entry is a configuration directive that activates tool search. It doesn't appear in `tools/list` itself and doesn't count toward the unnamed-tool-per-type limit.
 
 ## Enable tool search
 
-Add `{"type": "toolbox_search_preview"}` to your toolbox version's tools list. All other tools in the toolbox are available through tool search — they aren't exposed in the initial tool list the model sees.
+Add `{"type": "toolbox_search"}` to your toolbox version's tools list. All other tools in the toolbox are available through tool search - the initial tool list the model sees doesn't expose them.
 
 :::zone pivot="vscode"
 
-Use Foundry Toolkit for Visual Studio Code to enable tool search when you create or edit a toolbox. The **Tool search** checkbox adds the `toolbox_search_preview` configuration entry to the toolbox version.
+Use Foundry Toolkit for Visual Studio Code to enable tool search when you create or edit a toolbox. The **Tool search** checkbox adds the `toolbox_search` configuration entry to the toolbox version.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -70,9 +77,7 @@ Use Foundry Toolkit for Visual Studio Code to enable tool search when you create
 1. Select **Tool search**.
 1. Select **Publish**.
 
-:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-tool-search.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Build a Custom Toolbox view with the Tool search checkbox selected." lightbox="../../media/tools/toolbox/toolbox-vscode-tool-search.png":::
-
-Publishing a new toolbox creates its first version. That version becomes the default version automatically. For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#step-1-create-a-toolbox-version).
+Publishing a new toolbox creates its first version. That version becomes the default version automatically. For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#create-a-toolbox-version).
 
 :::zone-end
 
@@ -82,27 +87,27 @@ Publishing a new toolbox creates its first version. That version becomes the def
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool, ToolboxSearchPreviewTool
+from azure.ai.projects.models import MCPToolboxTool, ToolSearchToolboxTool
 
-client = AIProjectClient(
+project = AIProjectClient(
     endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
-# ToolboxSearchPreviewTool() enables tool search — other tools in the toolbox are discovered on
+# ToolSearchToolboxTool() enables tool search — other tools in the toolbox are discovered on
 # demand through tool_search instead of being listed up front. Add as many MCP servers as you need;
 # tool search keeps the agent's initial tool surface small regardless of toolbox size.
-inner_mcp_tool = MCPTool(
+inner_mcp_tool = MCPToolboxTool(
     server_label="github",
     server_url="https://api.githubcopilot.com/mcp",
     require_approval="never",
     project_connection_id="github-mcp-conn",
 )
 
-toolbox_version = client.beta.toolboxes.create_version(
+toolbox_version = project.toolboxes.create_version(
     name="my-toolbox",
     description="Large toolbox with tool search enabled",
-    tools=[inner_mcp_tool, ToolboxSearchPreviewTool()],
+    tools=[inner_mcp_tool, ToolSearchToolboxTool()],
 )
 print(f"Created toolbox `{toolbox_version.name}` (version {toolbox_version.version})")
 ```
@@ -123,7 +128,7 @@ Content-Type: application/json
   "description": "Large toolbox with tool search enabled",
   "tools": [
     {
-      "type": "toolbox_search_preview"
+      "type": "toolbox_search"
     },
     {
       "type": "work_iq_preview",
@@ -163,18 +168,20 @@ DefaultAzureCredential credential = new();
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
 AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
 
-// ToolboxSearchPreviewTool enables tool search — other tools are discovered on demand via tool_search
-ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
-    serverLabel: "github",
-    serverUri: new Uri("https://api.githubcopilot.com/mcp"),
-    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)));
-ToolboxSearchPreviewTool searchTool = new()
+// ToolSearchToolboxTool enables tool search — other tools are discovered on demand via tool_search
+MCPToolboxTool mcpTool = new(serverLabel: "github")
+{
+  ServerUri = new Uri("https://api.githubcopilot.com/mcp"),
+  ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(
+    GlobalMcpToolCallApprovalPolicy.NeverRequireApproval),
+};
+ToolSearchToolboxTool searchTool = new()
 {
     Name = "ToolBoxSearch",
     Description = "Search for tools by capability"
 };
 
-ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+ToolboxVersion toolboxVersion = toolboxClient.CreateVersion(
     name: "my-toolbox",
     tools: [mcpTool, searchTool],
     description: "Large toolbox with tool search enabled");
@@ -192,10 +199,10 @@ import { AIProjectClient } from "@azure/ai-projects";
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"];
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 
-// { type: "toolbox_search_preview" } enables tool search — other tools in the toolbox are
+// { type: "toolbox_search" } enables tool search — other tools in the toolbox are
 // discovered on demand through tool_search instead of being listed up front. Add as many MCP
 // servers as you need; tool search keeps the agent's initial tool surface small regardless of size.
-const toolboxVersion = await project.beta.toolboxes.createVersion(
+const toolboxVersion = await project.toolboxes.createVersion(
   "my-toolbox",
   [
     {
@@ -205,7 +212,7 @@ const toolboxVersion = await project.beta.toolboxes.createVersion(
       require_approval: "never",
       project_connection_id: "github-mcp-conn",
     },
-    { type: "toolbox_search_preview" },
+    { type: "toolbox_search" },
   ],
   { description: "Large toolbox with tool search enabled" },
 );
@@ -216,7 +223,7 @@ console.log(`Created toolbox \`${toolboxVersion.name}\` (version ${toolboxVersio
 
 ## Verify tool search is active
 
-Use the version-specific endpoint to confirm that `tool_search` appears in `tools/list` and that no other toolbox tools are exposed in the initial listing.
+Use the version-specific endpoint to confirm that `tool_search`, `call_tool`, and any pinned tools appear in `tools/list`. Ordinary unpinned toolbox tools must remain hidden from the initial listing.
 
 :::zone pivot="vscode"
 
@@ -239,6 +246,7 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp import ClientSession
 
 url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
+expected_pinned_tools = {"calendar_events"}  # Match the tools configured with pin=True.
 
 token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
 headers = {
@@ -250,15 +258,19 @@ async def verify_toolbox():
         async with ClientSession(read, write) as session:
             await session.initialize()
 
-            # List available tools -- only tool_search should appear initially
+            # List the two meta-tools and any explicitly pinned tools.
             tools_result = await session.list_tools()
             print(f"Tools found: {len(tools_result.tools)}")
             for tool in tools_result.tools:
                 print(f"  - {tool.name}: {(tool.description or '')[:80]}")
 
-            # Confirm tool_search is present
-            names = [t.name for t in tools_result.tools]
-            assert "tool_search" in names, "tool_search not found -- check toolbox_search_preview config"
+            names = {tool.name for tool in tools_result.tools}
+            meta_tools = {"tool_search", "call_tool"}
+            assert meta_tools <= names, "Tool Search meta-tools are missing -- check toolbox_search config"
+            assert expected_pinned_tools <= names, "A configured pinned tool is missing"
+
+            unexpected_tools = names - meta_tools - expected_pinned_tools
+            assert not unexpected_tools, f"Unpinned tools are visible: {sorted(unexpected_tools)}"
 
 asyncio.run(verify_toolbox())
 ```
@@ -299,7 +311,7 @@ Content-Type: application/json
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
 
-In `result.tools`, `tool_search` should be present and all other toolbox tools should be absent from the initial listing.
+In `result.tools`, confirm that `tool_search`, `call_tool`, and every tool configured with `pin: true` are present. All ordinary unpinned toolbox tools should be absent from the initial listing.
 
 :::zone-end
 
@@ -317,7 +329,7 @@ Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotoco
 
 ## Fine-tune tool discovery
 
-Tool search works without additional configuration. For predictable usage patterns, you can tune how specific tools are surfaced and indexed.
+Tool search works without extra configuration. For predictable usage patterns, tune how specific tools are surfaced and indexed.
 
 :::zone pivot="vscode"
 
@@ -333,7 +345,7 @@ Use `pin` to make a specific tool always appear in `tools/list` alongside `tool_
 
 ```python
 tools=[
-    {"type": "toolbox_search_preview"},
+    {"type": "toolbox_search"},
     {
         "type": "mcp",
         "server_label": "analytics",
@@ -352,7 +364,7 @@ tools=[
 ```json
 {
   "tools": [
-    { "type": "toolbox_search_preview" },
+    { "type": "toolbox_search" },
     {
       "type": "mcp",
       "server_label": "analytics",
@@ -375,7 +387,7 @@ In the .NET SDK, attach `tool_configs` to the MCP tool entry when constructing t
 
 :::zone pivot="javascript"
 
-In JavaScript, include `tool_configs` on the MCP tool object passed to `project.beta.toolboxes.createVersion`. The configuration shape is identical to the JSON shown in the **REST API** tab.
+In JavaScript, include `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`. The configuration shape is identical to the JSON shown in the **REST API** tab.
 
 :::zone-end
 
@@ -425,7 +437,7 @@ Use the same `"*"` wildcard key inside `tool_configs` on the JavaScript MCP tool
 
 ### Add search keywords
 
-If a tool's MCP description doesn't match the vocabulary users naturally use, add keywords with `additional_search_text`. The extra text is used only for search ranking—it's never exposed to the model in the tool schema.
+If a tool's MCP description doesn't match the vocabulary users naturally use, add keywords by using `additional_search_text`. The extra text is used only for search ranking - it's never exposed to the model in the tool schema.
 
 :::zone pivot="python"
 
@@ -477,7 +489,7 @@ In the .NET SDK, set `additional_search_text` (and optionally `pin`) inside `too
 
 :::zone pivot="javascript"
 
-In JavaScript, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool object passed to `project.beta.toolboxes.createVersion`. The shape matches the JSON shown in the **REST API** tab.
+In JavaScript, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`. The shape matches the JSON shown in the **REST API** tab.
 
 :::zone-end
 
@@ -489,13 +501,13 @@ Auto-pinning composes with explicit `pin` and `additional_search_text` configura
 
 ## Configuration reference
 
-### `toolbox_search_preview`
+### `toolbox_search`
 
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
-| `type` | `"toolbox_search_preview"` | Yes | Activates tool search for the toolbox. |
+| `type` | `"toolbox_search"` | Yes | Activates tool search for the toolbox. |
 
-Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to enable tool search. All other configuration fields are optional.
+Include `{"type": "toolbox_search"}` in your toolbox's tools list to enable tool search. All other configuration fields are optional.
 
 ### `tool_configs` (per-tool)
 
@@ -508,19 +520,19 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 
 ## Considerations
 
-- **All toolbox tools are hidden from the initial listing.** When `toolbox_search_preview` is in a toolbox, no other toolbox tools appear in `tools/list`. The model discovers them only through `tool_search`. Tools added directly to an agent outside the toolbox are unaffected and remain visible.
+- **All toolbox tools are hidden from the initial listing.** When `toolbox_search` is in a toolbox, no other toolbox tools appear in `tools/list`. The model discovers them only through `tool_search`. Tools added directly to an agent outside the toolbox are unaffected and remain visible.
 - **Tool descriptions drive match quality.** Foundry uses tool names and descriptions to evaluate search queries. A tool without a description, or with a vague one, is unlikely to be returned even for relevant queries. Write descriptions that describe what the tool does and the kinds of tasks it handles.
-- **`tool_search` doesn't count toward tool limits.** It's injected by the platform and doesn't consume the unnamed-tool-per-type slot.
+- **`tool_search` doesn't count toward tool limits.** The platform injects it and it doesn't consume the unnamed-tool-per-type slot.
 - **Multiple searches per turn are supported.** The model can call `tool_search` more than once in a single turn if different steps need different capabilities.
 - **Returned tools persist for the turn.** Once a tool is returned by `tool_search`, the model can call it multiple times without re-searching.
 - **Pinned tools always appear in `tools/list`.** Tools with `"pin": True` in `tool_configs` appear alongside `tool_search` and `call_tool` on every turn, regardless of search queries.
 - **Auto-pinning surfaces frequently used tools automatically.** Foundry tracks per-user tool call frequency and promotes the most-called tools to `tools/list` after a short warmup period. The hot set is per-user and updates as usage patterns shift.
-- **OAuth consent may be required.** If any tool in the toolbox connects to an OAuth-based MCP server, the first call returns a `CONSENT_REQUIRED` error (code `-32007`) with a consent URL in the response. Open that URL in a browser, complete the OAuth flow, then retry. Subsequent calls succeed without re-prompting. See [Troubleshoot toolbox errors](toolbox.md#troubleshoot) for handling this error.
+- **OAuth consent might be required.** If any tool in the toolbox connects to an OAuth-based MCP server, the first call returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL in the response. Open that URL in a browser, complete the OAuth flow, then retry. Subsequent calls succeed without re-prompting. See [Troubleshoot toolbox errors](toolbox.md#troubleshoot) for handling this error.
 
 ## Best practices
 
 - **Add a description to every tool.** Tool search uses descriptions to match tools to queries. A missing or vague description causes poor discovery.
-- **Use tool search for large toolboxes.** This is the most effective configuration when you have 10 or more tools.
+- **Use tool search for large toolboxes.** This configuration is most effective when you have 10 or more tools.
 - **Use tool search together with toolbox versioning.** Test your configuration on a version-specific endpoint before promoting it to default.
 - **Mention tool search in the system prompt.** Guide the model to call `tool_search` before concluding that a capability is unavailable. For example: *"If you need a tool that isn't in your current list, call `tool_search` with a description of what you need before responding that you can't help."*
 - **Pin always-needed tools.** Use `"pin": True` in `tool_configs` for tools called on nearly every turn to skip the search round-trip.
@@ -530,7 +542,7 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 
 | Symptom | Likely cause | Fix |
 | ------- | ------------ | --- |
-| `tool_search` is missing from `tools/list` | `toolbox_search_preview` wasn't included in the toolbox version, or you're connected to a version that predates the change. | Add `{"type": "toolbox_search_preview"}` to the tools list and create a new version. Confirm you're using the updated version's endpoint. |
+| `tool_search` is missing from `tools/list` | `toolbox_search` wasn't included in the toolbox version, or you're connected to a version that predates the change. | Add `{"type": "toolbox_search"}` to the tools list and create a new version. Confirm you're using the updated version's endpoint. |
 | `tool_search` returns no results for a query | Tools in the toolbox have no description or descriptions don't relate to the query. | Add or improve descriptions on the tools in the toolbox. Descriptions should explain what the tool does and the kinds of tasks it handles. |
 | A toolbox tool appears in the initial `tools/list` | The tool was added directly to the agent instead of, or in addition to, the toolbox definition. | Remove the tool from the agent's direct tool list and rely on the toolbox. Tools added directly to an agent are always visible, regardless of tool search. |
 | The model never calls `tool_search` | The model doesn't know `tool_search` can retrieve additional tools. | Add an instruction in the system prompt telling the model to call `tool_search` when a needed capability isn't in its current tool list. |
@@ -538,7 +550,6 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 
 ## Related content
 
-- [Curate intent-based toolbox in Foundry (preview)](toolbox.md)
-- [Model Context Protocol (MCP)](model-context-protocol.md)
+- [JavaScript toolbox search sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/toolboxes/toolboxToolSearch.js)
+- [Curate intent-based toolbox in Foundry](toolbox.md)
 - [Tools overview](../../concepts/tool-catalog.md)
-- [Best practices for tools](../../concepts/tool-best-practice.md)

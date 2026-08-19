@@ -6,8 +6,9 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/20/2026
+ms.date: 08/12/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Model subset
@@ -33,15 +34,6 @@ Cache behavior depends on which underlying model the router selects for a given 
 For details on how prompt caching works and which models support it, see [Prompt caching](../how-to/prompt-caching.md).
 
 ## Limitations
-
-### Resource limitations
-
-| Region | Deployment types supported |
-|------|-----------|
-| East US 2 | Global Standard, Data Zone Standard |
-| Sweden Central | Global Standard, Data Zone Standard |
-
-Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md) for current region availability.
 
 To overcome the limits on context window and parameters, use the Model subset feature to select your models for routing that support your desired properties.
 
@@ -75,8 +67,8 @@ Model router doesn't process audio input.
 ## Troubleshooting
 
 | Issue | Resolution |
-|-------|------------|
-| Deployment fails | Verify your Foundry resource is in East US 2 or Sweden Central. |
+| ------- | ------------ |
+| Deployment fails | Verify your Foundry resource is in a [supported region](../concepts/model-router.md#supported-regions). |
 | Claude models not routing | Ensure Claude models are deployed separately before enabling in model router. |
 | Context exceeded error | Reduce prompt size or use model subset to select models with larger context windows. |
 | Unexpected model selection | Review your routing mode setting (Balanced, Cost, Quality) and model subset configuration. |

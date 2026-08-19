@@ -2,11 +2,10 @@
 title: Include file
 description: Include file
 author: lgayhardt
-ms.reviewer: skohlmeier
 ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 07/29/2026
 ms.custom: include, references_regions
 ---
 
@@ -57,6 +56,7 @@ These regions support the following safety evaluators: Hate and unfairness, Sexu
 | East US 2 | France Central | Australia East |
 | North Central US | Sweden Central |  |
 |  | Switzerland West |  |
+|  | Germany West Central |  |
 
 Supported regions for Groundedness Pro:
 
@@ -66,61 +66,3 @@ Supported regions for Groundedness Pro:
 Supported regions for Protected material:
 
 - East US 2
-
-### Supported regions for AI red teaming
-
-AI red teaming is supported in the following regions.
-
-- East US 2
-- North Central US
-
-### Azure OpenAI graders regional availability
-
-For the Azure OpenAI graders regional list, see [Regional availability](../../foundry-classic/openai/how-to/evaluations.md#regional-availability).
-
-## Rate limits
-
-The following rate limits apply to evaluation runs:
-
-| Limit | Value |
-|--|--|
-| Maximum size per row | 2 MB |
-| Maximum rows per batch evaluation | 100,000 |
-
-Evaluation run creations are rate-limited at the tenant, subscription, and project levels. If you exceed the limit:
-
-- The response includes a `retry-after` header with the wait time.
-- The response body contains rate limit details.
-
-Use exponential backoff when retrying failed requests.
-
-## Virtual network support for evaluation
-
-For network isolation, you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
-
-Virtual network support for evaluation requires network injection (subnet delegation), but if you **only need evaluation capabilities** and do not require full agent support (Cosmos DB, AI Search, or project capability host), consider using the simplified [evaluation-only setup template (15a)](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15a-private-network-evaluation-only-setup) instead. It deploys a minimal network-secured environment tailored for evaluation scenarios with fewer resources and reduced complexity.
-
-> [!NOTE]
-> If you connect Application Insights, evaluation data is sent to it.
-
-> [!IMPORTANT]
-> To prevent evaluation and red teaming run failures, assign the Foundry User role to the project's Managed Identity during initial project setup.
-
-[!INCLUDE [role-rename-note](./role-rename-note.md)]
-
-### Virtual network region support
-
-Bringing your own virtual network for evaluation is supported in the following regions:
-
-| Americas | Europe | Asia Pacific | Middle East & Africa |
-|--|--|--|--|
-| Brazil South | France Central | Australia East | South Africa North |
-| Canada Central | Germany West Central | Japan East | UAE North |
-| Canada East | Italy North | Korea Central |  |
-| East US | Norway East | South India |  |
-| East US 2 | Poland Central | Southeast Asia |  |
-| North Central US | Spain Central |  |  |
-| South Central US | Sweden Central |  |  |
-| West US | Switzerland North |  |  |
-| West US 2 | UK South |  |  |
-| West US 3 | West Europe |  |  |

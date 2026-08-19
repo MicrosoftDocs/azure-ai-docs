@@ -20,11 +20,6 @@ Improve the accuracy of your machine learning models with publicly available dat
 | [NYC Taxi & Limousine Commission - green taxi trip records](dataset-taxi-green.md) | The green taxi trip records include pick-up and drop-off dates/times, pick-up and drop-off locations, trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts. |
 | [NYC Taxi & Limousine Commission - For-Hire Vehicle (FHV) trip records](dataset-taxi-for-hire-vehicle.md) | The For-Hire Vehicle trip records include the dispatching base license number and the pick-up date, time, and taxi zone location ID. |
 
-## Health and genomics
-
-| Dataset | Description |
-|--|--|
-| [COVID-19 Data Lake](dataset-covid-19-data-lake.md) | COVID-19 Data Lake collection is a collection of COVID-19 related datasets from various sources, covering testing and patient outcome tracking data, social distancing policy, hospital capacity, mobility, etc. |
 
 
 ## Labor and economics

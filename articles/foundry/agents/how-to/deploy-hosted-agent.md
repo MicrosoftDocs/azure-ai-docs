@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 07/09/2026
+ms.date: 08/17/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -20,7 +20,7 @@ This article shows you how to deploy a containerized agent to Foundry Agent Serv
 If you're deploying for the first time or want a guided walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md). The **Azure Developer CLI (azd)** and **VS Code extension** handle building, pushing, versioning, and RBAC configuration automatically.
 
 > [!TIP]
-> Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code (preview)](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
+> Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
 
 ## Deployment lifecycle
 
@@ -156,7 +156,7 @@ Instead of hard-coding secrets (API keys, tokens, endpoints) into `azure.yaml` o
 
 #### Placeholder syntax
 
-A placeholder has the form `${{connections.<name>.<path>}}`, where `<name>` is the connection's resource name (visible in the portal under **Project details** > **Connected resources**) and `<path>` is one of:
+A placeholder has the form `${{connections.<name>.<path>}}`, where `<name>` is the connection's resource name (visible in the portal under **Manage** > **Project details** > **Connected resources**) and `<path>` is one of:
 
 | Path | Resolves to |
 |------|-------------|
@@ -289,10 +289,10 @@ Use the SDK when you want to manage agent deployments directly from Python code.
 * [Python 3.10 or later](https://www.python.org/downloads/)
 * A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
 * **Container Registry Repository Writer** or **AcrPush** role on the container registry (to push images)
-* Azure AI Projects SDK version 2.1.0 or later
+* Azure AI Projects SDK version 2.3.0 or later
 
     ```bash
-    pip install "azure-ai-projects>=2.1.0"
+    pip install "azure-ai-projects>=2.3.0"
     ```
 
 ### Build and push your container image
@@ -332,7 +332,12 @@ When you create a version, the platform automatically provisions the agent. Ther
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol, ContainerConfiguration
+from azure.ai.projects.models import (
+    AgentEndpointProtocol,
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+)
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -343,7 +348,6 @@ credential = DefaultAzureCredential()
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=credential,
-    allow_preview=True,
 )
 
 # Create a hosted agent version
@@ -351,7 +355,7 @@ agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         protocol_versions=[
-            ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
+            ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")
         ],
         cpu="1",
         memory="2Gi",
@@ -360,7 +364,7 @@ agent = project.agents.create_version(
         ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
-        }
+        },
     )
 )
 
@@ -371,9 +375,9 @@ To expose both protocols, pass both in `protocol_versions`:
 
 ```python
 protocol_versions=[
-    ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="1.0.0"),
 ],
 ```
 
@@ -386,6 +390,8 @@ Key parameters:
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
 | `protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
+
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
 
 ### Poll for version status
 
@@ -451,7 +457,6 @@ url = f"{PROJECT_ENDPOINT}/agents/my-agent/endpoint/protocols/invocations"
 response = requests.post(url, headers={
     "Authorization": f"Bearer {token}",
     "Content-Type": "application/json",
-    "Foundry-Features": "HostedAgents=V1Preview"
 }, params={"api-version": "v1"}, json={
     "message": "Process this task"
 })
@@ -506,6 +511,8 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
 
 Creating an agent also creates version `1` and triggers provisioning.
 
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
+
 To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
@@ -545,7 +552,6 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/invocations?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: HostedAgents=V1Preview" \
   -d '{
     "message": "Process this task"
   }'
@@ -581,7 +587,7 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
 
 ## Clean up resources
 
-To prevent charges, clean up resources when finished. Agent compute is deprovisioned after 15 minutes of inactivity, so there's no cost when an agent isn't serving requests.
+To prevent charges, clean up resources when finished. The platform deprovisions agent compute after the configured idle timeout, which is 15 minutes by default, so there's no cost when an agent isn't serving requests.
 
 :::zone pivot="azd"
 

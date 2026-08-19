@@ -3,7 +3,7 @@ title: Include file
 description: Include file
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/15/2026
+ms.date: 04/19/2026
 ms.author: samkemp
 author: samuel100
 ai-usage: ai-assisted

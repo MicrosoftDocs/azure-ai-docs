@@ -3,10 +3,39 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 02/20/2026
+ms.date: 07/21/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 ---
+
+### July 2026 release
+
+`2026-07-25` The Azure Realtime Speech-to-Speech model is now generally available, bringing enterprise-grade, low-latency, multilingual voice experiences to Azure AI. This release adds 34 authentic, locale-native voices across 11 major languages, with male and female options across key locales. Voice quality is improved - most Azure Realtime voices are on par with or better than competing offerings - and latency is about 100 ms lower than GPT Realtime 1.5 for more responsive conversations. Azure Realtime is ready for production use today.
+
+Highlights
+- 34 locale-native voices across 11 major languages, with male and female options across key locales.
+- Improved voice quality - on par with or better than competing realtime voice offerings.
+- About 100 ms lower latency than GPT Realtime 1.5 for more responsive conversations.
+- Recommended use cases to help pick the right voice.
+
+Voice Live API version `2026-07-15` is generally available and is now the default service version used by the SDKs.
+
+New features:
+- Azure realtime native voices — added 12 native voice options (Aarti, Andrew, Ava, Denise, Diya, Elsa, Florian, Francisca, Meera, Xiaoxiao, Ximena, and Yunxi) for use with the `azure-realtime` model.
+- Parallel tool calls — control whether the model can invoke tools in parallel.
+- Echo cancellation reference source — configure the echo cancellation reference path and stereo channel input on `AudioEchoCancellation`.
+- Streaming text input — incrementally stream text input into a conversation item with new input text delta and done events.
+- Hosted agent invocation passthrough — attach input data for a hosted agent invocation on a single response request and receive streaming invocation deltas.
+- Session expiration — sessions now expose a server-set expiration time.
+
+Breaking change:
+- The image content part URL field is renamed from `url` to `image_url` to match the wire format. Update image input construction to use the new field name.
+
+Updated SDK versions:
+- Python `azure-ai-voicelive` 1.3.0
+- C# `Azure.AI.VoiceLive` 1.2.0
+- Java `azure-ai-voicelive` 1.1.0
+- JavaScript `@azure/ai-voicelive` 1.1.0
 
 ### May 2026 release
 

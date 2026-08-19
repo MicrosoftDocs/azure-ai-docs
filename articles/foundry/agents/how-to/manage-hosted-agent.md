@@ -3,7 +3,7 @@ title: "Manage hosted agents"
 description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 04/09/2026
+ms.date: 08/12/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -15,9 +15,9 @@ zone_pivot_groups: hosted-agent-manage-method
 
 # Manage hosted agents
 
-This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
+This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, select the version served by the agent endpoint, monitor logs, and delete agents when they're no longer needed.
 
-The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
+The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the configured idle timeout. Set the timeout from 5 through 60 minutes when you create an agent version. The default is 15 minutes. This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ The platform manages the container lifecycle automatically. Compute is provision
 
 :::zone pivot="python"
 
-- Python SDK: `azure-ai-projects>=2.1.0` and `azure-identity`.
+- Python SDK: `azure-ai-projects>=2.3.0` and `azure-identity`.
 
 :::zone-end
 
@@ -88,12 +88,12 @@ az rest --method GET \
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-project = AIProjectClient(
+project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
 
-for agent in project.agents.list():
+for agent in project_client.agents.list():
     print(agent.name)
 ```
 
@@ -127,7 +127,7 @@ The response includes the agent's latest version, status, and definition.
 :::zone pivot="python"
 
 ```python
-agent = project.agents.get(agent_name="my-agent")
+agent = project_client.agents.get(agent_name="my-agent")
 print(f"Name: {agent.name}")
 print(f"Status: {agent.versions['latest']['status']}")
 ```
@@ -157,7 +157,7 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-agent_version = project.agents.get_version(
+agent_version = project_client.agents.get_version(
     agent_name="my-agent", agent_version="1"
 )
 print(f"Version: {agent_version.version}")
@@ -195,7 +195,7 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-for version in project.agents.list_versions(agent_name="my-agent"):
+for version in project_client.agents.list_versions(agent_name="my-agent"):
     print(f"Version: {version.version}, Status: {version['status']}")
 ```
 
@@ -220,10 +220,12 @@ az rest --method POST \
     --body '{
         "definition": {
             "kind": "hosted",
-            "image": "myregistry.azurecr.io/my-agent:v2",
+            "container_configuration": {
+                "image": "myregistry.azurecr.io/my-agent:v2"
+            },
             "cpu": "1",
             "memory": "2Gi",
-            "container_protocol_versions": [
+            "protocol_versions": [
                 {"protocol": "responses", "version": "1.0.0"}
             ]
         }
@@ -237,15 +239,17 @@ Replace `responses` with `invocations` if your agent uses the Invocations protoc
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord
+from azure.ai.projects.models import ContainerConfiguration, HostedAgentDefinition, ProtocolVersionRecord
 
-agent = project.agents.create_version(
+agent = project_client.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         cpu="1",
         memory="2Gi",
-        image="myregistry.azurecr.io/my-agent:v2",
-        container_protocol_versions=[
+        container_configuration=ContainerConfiguration(
+            image="myregistry.azurecr.io/my-agent:v2"
+        ),
+        protocol_versions=[
             ProtocolVersionRecord(protocol="responses", version="1.0.0"),
         ],
     ),
@@ -289,10 +293,12 @@ az rest --method POST \
         "draft": true,
         "definition": {
             "kind": "hosted",
-            "image": "myregistry.azurecr.io/my-agent:experimental",
+            "container_configuration": {
+                "image": "myregistry.azurecr.io/my-agent:experimental"
+            },
             "cpu": "1",
             "memory": "2Gi",
-            "container_protocol_versions": [
+            "protocol_versions": [
                 {"protocol": "responses", "version": "1.0.0"}
             ]
         }
@@ -305,7 +311,29 @@ The response `version` field contains the assigned `draft-{timestamp}` identifie
 
 :::zone pivot="python"
 
-Draft versions are currently available through the REST API only. Switch to the **REST** tab for an example, and call the same `${BASE_URL}/agents/${AGENT_NAME}/versions` endpoint with `"draft": true` in the request body.
+```python
+from azure.ai.projects.models import (
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+)
+
+draft = project_client.agents.create_version(
+    agent_name="my-agent",
+    definition=HostedAgentDefinition(
+        cpu="1",
+        memory="2Gi",
+        container_configuration=ContainerConfiguration(
+            image="myregistry.azurecr.io/my-agent:experimental"
+        ),
+        protocol_versions=[
+            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+        ],
+    ),
+    draft=True,
+)
+print(f"Created draft version: {draft.version}")
+```
 
 :::zone-end
 
@@ -334,10 +362,10 @@ Poll the version status after creation:
 ```python
 import time
 
-def wait_for_version_active(project, agent_name, agent_version, max_attempts=60):
+def wait_for_version_active(project_client, agent_name, agent_version, max_attempts=60):
     for attempt in range(max_attempts):
         time.sleep(10)
-        version = project.agents.get_version(
+        version = project_client.agents.get_version(
             agent_name=agent_name, agent_version=agent_version
         )
         status = version["status"]
@@ -369,7 +397,10 @@ az rest --method POST \
 
 :::zone pivot="python"
 
-Not supported as a standalone command. Use the REST API.
+```python
+project_client.agents.disable(agent_name="my-agent")
+print("Disabled agent: my-agent")
+```
 
 :::zone-end
 
@@ -393,7 +424,10 @@ az rest --method POST \
 
 :::zone pivot="python"
 
-Not supported as a standalone command. Use the REST API.
+```python
+project_client.agents.enable(agent_name="my-agent")
+print("Enabled agent: my-agent")
+```
 
 :::zone-end
 
@@ -422,7 +456,7 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.agents.delete_version(agent_name="my-agent", agent_version="1")
+project_client.agents.delete_version(agent_name="my-agent", agent_version="1")
 ```
 
 :::zone-end
@@ -451,7 +485,7 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.agents.delete(agent_name="my-agent")
+project_client.agents.delete(agent_name="my-agent")
 ```
 
 :::zone-end
@@ -477,7 +511,7 @@ SESSION_ID="<session-id>"
 az rest --method GET \
     --url "${BASE_URL}/agents/${AGENT_NAME}/versions/${AGENT_VERSION}/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" "Accept=text/event-stream"
+    --headers "Accept=text/event-stream"
 ```
 
 The logstream endpoint returns Server-Sent Events (SSE) with `event: log` frames. Each frame contains a JSON payload with `timestamp`, `stream` (`stdout`, `stderr`, or `status`), and `message` fields.
@@ -491,7 +525,34 @@ Timeouts:
 
 :::zone pivot="python"
 
-Viewing container logs isn't currently supported through the Python SDK. Use the REST API or Azure Developer CLI.
+Stream logs from a specific agent session:
+
+```python
+def iter_sse_frames(stream):
+    buffer = ""
+    for chunk in stream:
+        buffer += chunk.decode("utf-8", errors="replace")
+        while "\n\n" in buffer:
+            frame, buffer = buffer.split("\n\n", 1)
+            event_name = None
+            data_lines = []
+            for line in frame.splitlines():
+                if line.startswith("event: "):
+                    event_name = line[7:]
+                elif line.startswith("data: "):
+                    data_lines.append(line[6:])
+            if event_name or data_lines:
+                yield event_name, "\n".join(data_lines)
+
+
+raw_stream = project_client.agents.get_session_log_stream(
+    agent_name="my-agent",
+    agent_version="1",
+    session_id="<session-id>",
+)
+for event_name, data in iter_sse_frames(raw_stream):
+    print(f"SSE event: {event_name}\nSSE data: {data}\n")
+```
 
 :::zone-end
 
@@ -517,7 +578,10 @@ This command reads the agent name and version from the `azd` service entry in yo
 
 ## Configure agent endpoint routing
 
-Agent endpoints control how traffic is distributed across agent versions. Use version selectors to route a percentage of traffic to specific versions, enabling canary deployments or gradual rollouts.
+An agent endpoint routes 100% of its traffic to one agent version. Use the version selector to choose the version that the endpoint serves.
+
+> [!IMPORTANT]
+> Traffic splitting between agent versions isn't supported. Configure one `FixedRatio` rule with `traffic_percentage` set to `100`, even though `version_selection_rules` is an array.
 
 :::zone pivot="rest"
 
@@ -527,7 +591,7 @@ Endpoint routing is configured by patching the agent object. Use `PATCH /agents/
 az rest --method PATCH \
     --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
+    --headers "Content-Type=application/merge-patch+json" \
     --body '{
         "agent_endpoint": {
             "version_selector": {
@@ -535,32 +599,14 @@ az rest --method PATCH \
                     {"agent_version": "1", "traffic_percentage": 100, "type": "FixedRatio"}
                 ]
             },
-            "protocols": ["responses"]
+            "protocol_configuration": {
+                "responses": {}
+            }
         }
     }'
 ```
 
-Set `protocols` to `["invocations"]` or `["responses", "invocations"]` to match the protocols your agent exposes.
-
-To split traffic between two versions (for example, 90/10 for a canary deployment):
-
-```bash
-az rest --method PATCH \
-    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
-    --body '{
-        "agent_endpoint": {
-            "version_selector": {
-                "version_selection_rules": [
-                    {"agent_version": "1", "traffic_percentage": 90, "type": "FixedRatio"},
-                    {"agent_version": "2", "traffic_percentage": 10, "type": "FixedRatio"}
-                ]
-            },
-            "protocols": ["responses"]
-        }
-    }'
-```
+Set `protocol_configuration` to `{"invocations": {}}` or `{"responses": {}, "invocations": {}}` to match the protocols your agent exposes.
 
 :::zone-end
 
@@ -568,13 +614,14 @@ az rest --method PATCH \
 
 ```python
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
+    AgentEndpointConfig,
     FixedRatioVersionSelectionRule,
+    ProtocolConfiguration,
+    ResponsesProtocolConfiguration,
     VersionSelector,
 )
 
-endpoint_config = AgentEndpoint(
+endpoint_config = AgentEndpointConfig(
     version_selector=VersionSelector(
         version_selection_rules=[
             FixedRatioVersionSelectionRule(
@@ -582,10 +629,12 @@ endpoint_config = AgentEndpoint(
             ),
         ]
     ),
-    protocols=[AgentEndpointProtocol.RESPONSES],
+    protocol_configuration=ProtocolConfiguration(
+        responses=ResponsesProtocolConfiguration()
+    ),
 )
 
-project.beta.agents.patch_agent_details(
+project_client.agents.update_details(
     agent_name="my-agent",
     agent_endpoint=endpoint_config,
 )
@@ -595,7 +644,7 @@ project.beta.agents.patch_agent_details(
 
 :::zone pivot="azd"
 
-Endpoint routing is configured automatically during `azd deploy`. To customize traffic distribution, use the REST API or SDK.
+During `azd deploy`, the tool automatically configures endpoint routing. To select a specific version, use the REST API or SDK.
 
 :::zone-end
 
@@ -626,7 +675,7 @@ echo "Agent identity principal ID: ${AGENT_IDENTITY}"
 :::zone pivot="python"
 
 ```python
-agent = project.agents.get(agent_name="my-agent")
+agent = project_client.agents.get(agent_name="my-agent")
 agent_identity = agent.instance_identity["principal_id"]
 print(f"Agent identity principal ID: {agent_identity}")
 ```

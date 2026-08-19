@@ -5,9 +5,9 @@ description: Learn how to use custom text classification to categorize and triag
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 05/24/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 # Tutorial: Triage incoming emails with Power Automate

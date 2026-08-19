@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use this article to learn if you need to migrate your applications from Language Understanding (LUIS), QnA Maker, and Text Analytics.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 02/09/2026
 ms.author: lajanuar

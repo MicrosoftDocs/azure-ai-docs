@@ -4,7 +4,7 @@ metadata:
   description: Get answers to frequently asked questions about the Microsoft Translator Pro mobile application.
   author: laujan
   manager: mcleans
-  ms.service: azure-ai-translator
+  ms.service: azure-translator-foundry-tools
   ms.custom: references_regions
   ms.topic: faq
   ms.date: 04/16/2026

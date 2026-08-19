@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about evaluation metrics in Custom Named Entity Recognition (NER)
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 04/19/2026
 ms.author: lajanuar

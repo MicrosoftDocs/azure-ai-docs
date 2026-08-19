@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 04/03/2026
+ms.date: 08/12/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -41,19 +41,22 @@ The following table shows regional support for the [Responses API](../../openai/
 | Germany West Central | Yes | Yes | Yes |
 | Italy North | Yes | Yes | Yes |
 | Japan East | Yes | Yes | Yes |
-| Korea Central | Yes | Yes | No |
+| Japan West | Yes | Yes | No |
+| Korea Central | Yes | Yes | Yes |
 | North Central US | Yes | Yes | Yes |
 | Norway East | Yes | Yes | No |
 | Poland Central | Yes | Yes | No |
 | South Africa North | Yes | Yes | Yes |
 | South Central US | Yes | Yes | Yes |
-| Southeast Asia | Yes | Yes | No |
+| Southeast Asia | Yes | Yes | Yes |
 | South India | Yes | Yes | Yes |
 | Spain Central | Yes | Yes | Yes |
 | Sweden Central | Yes | Yes | Yes |
 | Switzerland North | Yes | Yes | No |
+| Switzerland West | Yes | Yes | No |
 | UAE North | Yes | Yes | Yes |
 | UK South | Yes | Yes | Yes |
+| West Central US | Yes | Yes | No |
 | West Europe | Yes | Yes | Yes |
 | West US | Yes | Yes | Yes |
 | West US 3 | Yes | Yes | Yes |
@@ -94,27 +97,33 @@ The following table shows which tools are available in each [supported region](#
 | Region             | Agent2Agent | Azure AI Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Function | Grounding with Bing Custom Search | Grounding with Bing Search | Image Generation | MCP | OpenAPI | SharePoint | Web Search |
 |---------------------|-----|-----------------|---------------------|-------------------|--------------|--------------------|-------------|----------|------------------------------------|-----------------------------|-------------------|-----|---------|------------|------------|
 | Australia East      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| Brazil South        | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Brazil South        | yes | yes             | yes                 | yes               | no           | yes                | no          | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Canada Central      | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Canada East         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Central US          | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | East US             | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | East US 2           | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | France Central      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Germany West Central | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| Italy North         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Italy North         | yes | yes             | yes                 | yes               | no           | yes                | no          | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Japan East          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Japan West          | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Korea Central       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | North Central US    | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Norway East         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Poland Central      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | South Africa North  | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| South Central US    | yes | yes             | yes                 | no                | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| South Central US    | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Southeast Asia      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | South India         | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| Spain Central       | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Spain Central       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Sweden Central      | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Switzerland North   | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Switzerland West    | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | UAE North           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | UK South            | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| West Central US     | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| West Europe         | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | West US             | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | West US 3           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 
@@ -152,14 +161,6 @@ The following table shows which tools each model supports. For the image generat
 | MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No | No |
 | Meta-Llama-3.1-405B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | Mistral-large-2407 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
-| claude-haiku-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-mythos-preview | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-1 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | Yes | Yes |
-| claude-opus-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-7 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
 | codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | computer-use-preview | No | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No | No |
 | gpt-35-turbo | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
@@ -225,7 +226,7 @@ The following table shows which tools each model supports. For the image generat
 
 ### A tool isn't available in your region
 
-- Not all tools are supported in every region. For example, file search isn't available in Italy North and Brazil South, and code interpreter isn't available in all regions.
+- Not all tools are supported in every region. For example, file search isn't available in Italy North and Brazil South.
 - Check the [tool support by region and model](#tool-support-by-region-and-model) table to confirm availability before you deploy.
 - If a tool isn't available, choose a supported region or use a different tool.
 
@@ -295,7 +296,7 @@ When you exceed a limit, the Agent Service returns an error. Handle these errors
 | Message content too large | 400 | `content_size_exceeded` | Use file search for large content |
 | Too many tools | 400 | `tool_limit_exceeded` | Remove unused tools |
 | Rate limit exceeded | 429 | `rate_limit_exceeded` | Implement exponential backoff |
-| Too many valid agent revisions | 400 | `UserError` | Delete older versions before creating new ones |
+| Too many valid agent versions | 400 | `UserError` | Delete older versions, then create a new version. This error is terminal—retrying the same create call without deleting versions keeps failing. |
 
 For example:
 
@@ -305,7 +306,7 @@ For example:
 - **Message content size.** Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap.** Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 - **Rate limit exceeded.** API calls to the model deployment are throttled. Implement exponential backoff with jitter.
-- **Valid agent revision cap.** Creating a version fails once an agent reaches 1,000 valid revisions. Delete versions you no longer need to free capacity immediately, then create new versions.
+- **Valid agent version cap.** Creating a version fails once an agent reaches 1,000 valid revisions. The service returns HTTP 400 with the message `Maximum number of agent versions (1000) exceeded. Please delete older versions before creating new ones.` This error is terminal, not a transient one, so don't retry the same call. Delete versions you no longer need to free capacity immediately, then create the new version.
 
 For file search scenarios, see [Vector stores for file search](vector-stores.md) for guidance on managing vector store growth.
 
@@ -317,6 +318,7 @@ Use the following practices to reduce limit-related failures:
 - **Avoid very large messages.** Put long content in uploaded files and query it by using file search.
 - **Plan for long conversations.** Treat threads as session state and rotate to new threads when conversations become very long.
 - **Register only required tools.** Remove unused tools from agent definitions.
+- **Manage agent versions.** Each agent allows up to 1,000 valid revisions. Delete or rotate versions you no longer need as part of your deploy pipeline so active agents stay well under the cap, and don't retry create calls that fail with the version-cap error until you free capacity.
 - **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../observability/how-to/how-to-monitor-agents-dashboard.md) to identify growth before you hit limits.
 
 ## Model quotas and rate limits

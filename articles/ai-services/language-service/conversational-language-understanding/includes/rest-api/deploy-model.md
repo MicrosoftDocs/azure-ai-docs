@@ -1,9 +1,9 @@
 ---
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 06/13/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 Create a **PUT** request using the following URL, headers, and JSON body to start deploying a conversational language understanding model.
