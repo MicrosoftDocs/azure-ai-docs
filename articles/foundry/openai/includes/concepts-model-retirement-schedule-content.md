@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/29/2026
+ms.date: 08/19/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -147,7 +147,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.1 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
-| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
+| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | DeepSeek-V4-Flash-0731 |
+| DeepSeek-V4-Flash-0731 | 2026-07-31 | Preview | 2026-12-03 | — |
 | DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
 
 
