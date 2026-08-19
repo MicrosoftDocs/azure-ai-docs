@@ -22,7 +22,7 @@ At a high level, you can break down working with functions into three steps:
 
 ## Prerequisites
 
-- An Azure OpenAI model deployed 
+- A Foundry Model deployment that supports function calling through the Chat Completions API.
 - For Microsoft Entra ID authentication:
     - A custom subdomain configured. For more information, see [Custom subdomain names](../../../ai-services/cognitive-services-custom-subdomains.md).
     - Packages: `pip install openai azure-identity`.
@@ -158,10 +158,10 @@ from openai import OpenAI
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-# Initialize the Azure OpenAI client
+# Initialize the client
 client = OpenAI(
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    api_key=os.getenv("AZURE_OPENAI_API_KEY")
+    api_key=os.getenv("AZURE_INFERENCE_CREDENTIAL")
 )
 
 # Define the deployment you want to use for your chat completions API calls
@@ -509,10 +509,10 @@ from openai import OpenAI
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-# Initialize the Azure OpenAI client
+# Initialize the client
 client = OpenAI(
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    api_key=os.getenv("AZURE_OPENAI_API_KEY")
+    api_key=os.getenv("AZURE_INFERENCE_CREDENTIAL")
 )
 
 # Provide the model deployment name you want to use for this example
@@ -767,7 +767,7 @@ Here are a few tips to help you use functions safely and securely:
 *	**Consider Real-World Impact**: Be aware of the real-world impact of function calls that you plan to execute, especially those that trigger actions such as executing code, updating databases, or sending notifications.
 *	**Implement User Confirmation Steps**: Particularly for functions that take actions, we recommend including a step where the user confirms the action before execution.
 
-To learn more about our recommendations on how to use Azure OpenAI models responsibly, see the [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
+To learn more about responsible AI practices for Foundry Models, see the [Overview of responsible AI practices](/azure/foundry/responsible-use-of-ai-overview).
 
 > [!IMPORTANT]
 > The `functions` and `function_call` parameters have been deprecated with the release of the [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json) version of the API. The replacement for `functions` is the [`tools`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter. The replacement for `function_call` is the [`tool_choice`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter.
