@@ -116,7 +116,7 @@ Because these nodes are now allocated as Spot VMs, you're charged the current Sp
 
 Low-priority VMs have a single quota separate from the dedicated quota value, which is by VM family. For more information about AmlCompute quotas, see [Manage and increase quotas](how-to-manage-quotas.md).
 
-Low-priority VMs don't work for compute instances, since they need to support interactive notebook experiences.
+Low-priority VMs don't work for compute instances because they need to support interactive notebook experiences.
 
 ## Schedule compute instances
 
