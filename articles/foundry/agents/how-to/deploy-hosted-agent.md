@@ -79,11 +79,36 @@ A single container can expose **multiple protocols simultaneously** by declaring
 -->
 ### Responses protocol library
 
-The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement the `IResponseHandler` interface. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
+The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement a response handler. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
 
-#### IResponseHandler
+#### Implement a handler
 
-`IResponseHandler` is the core abstraction you implement. The library calls `CreateAsync` for each incoming request and delivers the returned `IAsyncEnumerable<ResponseStreamEvent>` to clients through SSE:
+The handler is the core abstraction you implement. The library calls it for each incoming request and delivers the returned events to clients through SSE. In Python, you decorate an async function with `@app.response_handler`. In .NET, you implement `ResponseHandler` and override `CreateAsync`, which returns an `IAsyncEnumerable<ResponseStreamEvent>`:
+
+# [Python](#tab/python)
+
+```python
+from azure.ai.agentserver.responses import (
+    CreateResponse,
+    ResponseContext,
+    ResponsesAgentServerHost,
+    TextResponse,
+)
+
+app = ResponsesAgentServerHost()
+
+
+@app.response_handler
+async def handler(
+    request: CreateResponse,
+    context: ResponseContext,
+    _cancellation_signal,
+):
+    user_input = await context.get_input_text() or ""
+    return TextResponse(context, request, text=f"Echo: {user_input}")
+```
+
+# [C#](#tab/csharp)
 
 ```csharp
 public class EchoHandler : ResponseHandler
@@ -102,6 +127,8 @@ public class EchoHandler : ResponseHandler
     }
 }
 ```
+
+---
 
 #### ResponseEventStream
 
