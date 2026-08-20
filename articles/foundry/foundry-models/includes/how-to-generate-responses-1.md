@@ -16,13 +16,13 @@ This article explains how to generate text responses for Foundry Models, such as
 
 To use the Responses API with deployed models in your application, you need:
 
-- An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
+- An Azure subscription.
 
 - A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../how-to/create-projects.md).
 
 - Your Foundry project's endpoint URL, which is of the form `https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME`.
 
-- A deployment of a Foundry Model, such as the `DeepSeek-R1-0528` model used in this article. If you don't have a deployment already, see [Add and configure Foundry Models](../how-to/create-model-deployments.md) to a model deployment to your resource.
+- A deployment of a Foundry Model, such as the `DeepSeek-R1-0528` model used in this article. If you don't have a deployment already, see [Add and configure Foundry Models](../how-to/create-model-deployments.md) to add a model deployment to your resource.
 
 ### Use the AI model starter kit
 

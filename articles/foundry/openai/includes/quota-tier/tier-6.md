@@ -7,7 +7,8 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 08/13/2026
+ms.date: 08/20/2026
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -61,7 +62,7 @@ ai-usage: ai-assisted
 | gpt-5.4-mini                   | GlobalStandard    | 15,000      | 15,000,000  |
 | gpt-5.4-nano                   | DataZoneStandard  | 75,000      | 75,000,000  |
 | gpt-5.4-nano                   | GlobalStandard    | 225,000     | 225,000,000 |
-| gpt-5.5                        | DataZoneStandard  | 4,000       | 4,000,000   |
+| gpt-5.5                        | DataZoneStandard  | 5,000       | 5,000,000   |
 | gpt-5.5                        | GlobalStandard    | 15,000      | 15,000,000  |
 | gpt-5.6-luna                   | DataZoneStandard  | 5,000       | 5,000,000   |
 | gpt-5.6-luna                   | GlobalStandard    | 15,000      | 15,000,000  |

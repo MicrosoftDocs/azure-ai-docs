@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/19/2026
+ms.date: 08/20/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -32,7 +32,7 @@ The following table shows regional support for the [Responses API](../../openai/
 | --- | --- | --- | --- |
 | Australia East | Yes | Yes | Yes |
 | Brazil South | Yes | Yes | Yes |
-| Canada Central | Yes | Yes | No |
+| Canada Central | Yes | Yes | Yes |
 | Canada East | Yes | Yes | Yes |
 | Central US | Yes | Yes | Yes |
 | East US | Yes | Yes | Yes |
@@ -41,22 +41,22 @@ The following table shows regional support for the [Responses API](../../openai/
 | Germany West Central | Yes | Yes | Yes |
 | Italy North | Yes | Yes | Yes |
 | Japan East | Yes | Yes | Yes |
-| Japan West | Yes | Yes | No |
+| Japan West | Yes | Yes | Yes |
 | Korea Central | Yes | Yes | Yes |
 | North Central US | Yes | Yes | Yes |
-| Norway East | Yes | Yes | No |
-| Poland Central | Yes | Yes | No |
+| Norway East | Yes | Yes | Yes |
+| Poland Central | Yes | Yes | Yes |
 | South Africa North | Yes | Yes | Yes |
 | South Central US | Yes | Yes | Yes |
 | Southeast Asia | Yes | Yes | Yes |
 | South India | Yes | Yes | Yes |
 | Spain Central | Yes | Yes | Yes |
 | Sweden Central | Yes | Yes | Yes |
-| Switzerland North | Yes | Yes | No |
-| Switzerland West | Yes | Yes | No |
+| Switzerland North | Yes | Yes | Yes |
+| Switzerland West | Yes | Yes | Yes |
 | UAE North | Yes | Yes | Yes |
 | UK South | Yes | Yes | Yes |
-| West Central US | Yes | Yes | No |
+| West Central US | Yes | Yes | Yes |
 | West Europe | Yes | Yes | Yes |
 | West US | Yes | Yes | Yes |
 | West US 3 | Yes | Yes | Yes |

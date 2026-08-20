@@ -346,7 +346,7 @@ If you experience connectivity problems after setting up a private endpoint, try
 
 - **Connection times out on port 443**: Check that your network security group (NSG) rules allow outbound traffic to the private endpoint IP on port 443. Also verify that no firewall is blocking the connection.
 - **Can't reach Foundry from on-premises**: Verify that your VPN or ExpressRoute or VM connection is active and that routing tables include the VNET address space. Test connectivity to the private IP from on-premises.
-- **403 Forbidden errors**: This often indicates authentication issues rather than networking. Verify that your credentials have appropriate RBAC roles on the Foundry project.
+- **403 Forbidden errors**: Confirm that the Foundry endpoint resolves to the private endpoint IP address and that the client can reach it. If the network path is correct, verify that your credentials have the appropriate RBAC roles on the Foundry project.
 
 ### Agent-specific troubleshooting
 
