@@ -47,8 +47,10 @@ Characteristics of models sold by Azure:
 - High level of integration with Azure services and infrastructure. 
 - Subject to internal review based on Microsoft's Responsible AI standards.
 -  Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations.
--  Subject to internal analysis and review based on Microsoft’s Responsible AI standards: Models in the sold directly by Azure go through Microsoft’s internal responsible AI review processes and the high-level outcomes of these reviews are reflected in the documentation specific to each model in the Model Catalog available at https://ai.azure.com/explore/models. Customers should refer to the assessment details in the documentation to understand limitations of each model before integrating them into applications. Customers should note that these reviews do not guarantee mitigations of potential risks. Different models have different safety characteristics and customers should carefully review documentation and to conduct their own evaluations in the context of their applications to ensure risks are understood or mitigated before deployment. 
-- Enterprise-grade scalability, reliability, and security. 
+- Enterprise-grade scalability, reliability, and security.
+
+> [!IMPORTANT]
+> Subject to internal analysis and review based on Microsoft’s Responsible AI standards: Models in the sold directly by Azure go through Microsoft’s internal responsible AI review processes and the high-level outcomes of these reviews are reflected in the documentation specific to each model in the Model Catalog available at https://ai.azure.com/explore/models. Customers should refer to the assessment details in the documentation to understand limitations of each model before integrating them into applications. Customers should note that these reviews do not guarantee mitigations of potential risks. Different models have different safety characteristics and customers should carefully review documentation and to conduct their own evaluations in the context of their applications to ensure risks are understood or mitigated before deployment. 
 
 Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models. To learn how Foundry handles the data you provide to Foundry Models sold by Azure, see [Data, privacy, and security for Models sold by Azure in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
