@@ -609,10 +609,10 @@ Delete a single version:
 project.agents.delete_version(agent_name="my-agent", agent_version=agent.version)
 ```
 
-Or delete the entire agent and all its versions:
+Or delete the entire agent and all its versions. Use `force=True` to cascade-delete any active sessions, such as right after you invoke the agent; without it, the call fails with a conflict error while sessions are active:
 
 ```python
-project.agents.delete(agent_name="my-agent")
+project.agents.delete(agent_name="my-agent", force=True)
 ```
 
 :::zone-end
