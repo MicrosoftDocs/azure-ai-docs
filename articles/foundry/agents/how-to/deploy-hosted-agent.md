@@ -83,9 +83,7 @@ The Python and .NET libraries for the Responses protocol implement the Azure AI 
 
 #### Implement a handler
 
-The handler is the core abstraction you implement. The library calls it for each incoming request and delivers the returned events to clients through SSE. In Python, you decorate an async function with `@app.response_handler`. In .NET, you implement `ResponseHandler` and override `CreateAsync`, which returns an `IAsyncEnumerable<ResponseStreamEvent>`:
-
-# [Python](#tab/python)
+The handler is the core abstraction you implement. The library calls it for each incoming request and delivers the returned events to clients through SSE. In Python, you decorate an async function with `@app.response_handler`:
 
 ```python
 from azure.ai.agentserver.responses import (
@@ -108,31 +106,9 @@ async def handler(
     return TextResponse(context, request, text=f"Echo: {user_input}")
 ```
 
-# [C#](#tab/csharp)
-
-```csharp
-public class EchoHandler : ResponseHandler
-{
-    public override IAsyncEnumerable<ResponseStreamEvent> CreateAsync(
-        CreateResponse request,
-        ResponseContext context,
-        CancellationToken cancellationToken)
-    {
-        return new TextResponse(context, request,
-            createText: async ct =>
-            {
-                var input = await context.GetInputTextAsync(cancellationToken: ct);
-                return $"Echo: {input}";
-            });
-    }
-}
-```
-
----
-
 #### Automatic event and lifecycle management
 
-The library manages the event sequence—sequence numbers, output and content indexes, and item IDs—and the full response lifecycle automatically, so you don't track this state yourself. Each event your handler produces maps one-to-one to an SSE event. In .NET, `ResponseEventStream` performs this mapping; in Python, the host framework manages it for you.
+The library manages the event sequence—sequence numbers, output and content indexes, and item IDs—and the full response lifecycle automatically, so you don't track this state yourself. Each event your handler produces maps one-to-one to an SSE event, which the host framework manages for you.
 
 #### Streaming and background modes
 
@@ -145,9 +121,9 @@ The library orchestrates the complete response lifecycle: `created` -> `in_progr
 
 #### Thread safety
 
-Handler instances are scoped per request, so per-request state doesn't leak across requests. Both libraries handle concurrent requests safely.
+Handler instances are scoped per request, so per-request state doesn't leak across requests. The library handles concurrent requests safely.
 
-For runnable examples, see the [Python bring-your-own samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own) and the [.NET Responses protocol samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples). For detailed .NET handler guidance, see the [handler implementation guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md).
+For runnable examples, see the [Python bring-your-own samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own).
 
 ### Health endpoints
 
@@ -213,20 +189,10 @@ services:
 
 At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other environment variable:
 
-# [Python](#tab/python)
-
 ```python
 import os
 token = os.environ["GITHUB_TOKEN"]
 ```
-
-# [C#](#tab/csharp)
-
-```csharp
-var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
-```
-
----
 
 A GET on the agent version returns the literal `${{...}}` text--the resolved secret is never echoed back through the management API.
 
