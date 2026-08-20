@@ -52,7 +52,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 - (Optional) Git installed for cloning the sample repository
 
 > [!IMPORTANT]
-> SDK versions and sample repository structure may change after publication. Before you begin, check the [sample repository README](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype) for the latest setup instructions, required package versions, and environment configuration. If a version referenced in this tutorial isn't available on [PyPI](https://pypi.org/project/azure-ai-projects/) or [NuGet](https://www.nuget.org/packages/Azure.AI.Projects), use the latest published version instead.
+> SDK versions and sample repository structure might change after this article is published. Before you begin, check the [sample repository README](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype) for the latest setup instructions, required package versions, and environment configuration. If a version referenced in this tutorial isn't available on [PyPI](https://pypi.org/project/azure-ai-projects/) or [NuGet](https://www.nuget.org/packages/Azure.AI.Projects), use the latest published version instead.
 
 ## Step 1: Get the sample code
 
@@ -202,7 +202,7 @@ Start by running the agent so you see working functionality before diving into i
    ```
    ---
 
-   Verify the install succeeded. You should see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
+   Verify the install succeeded. You see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
@@ -585,7 +585,7 @@ The `data_source` configuration:
 
 ### Retrieve evaluation results
 
-Poll the evaluation run until it completes, then retrieve the detailed output items:
+Poll the evaluation run until it finishes, and then retrieve the detailed output items.
 
 # [Python](#tab/python)
 
@@ -599,7 +599,7 @@ Poll the evaluation run until it completes, then retrieve the detailed output it
 
 Each output item includes:
 
-- **Label**: Binary "pass" or "fail" result
+- **Label**: Binary pass or fail result
 - **Score**: Numeric score on the evaluator's scale
 - **Reason**: Explanation of why the score was assigned (for LLM-based evaluators)
 
@@ -712,5 +712,5 @@ When you no longer need them, delete the resources you created in this tutorial:
 
 - [Foundry Agent Service overview](../agents/overview.md)
 - [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md)
-- [MCP tool integration](../agents/how-to/tools/model-context-protocol.md)
-- [Multi-agent patterns](../agents/how-to/tools/agent-to-agent.md)
+- [MCP tool integration](../agents/how-to/tools/model-context-protocol.md).
+- [Multi-agent patterns](../agents/how-to/tools/agent-to-agent.md).
