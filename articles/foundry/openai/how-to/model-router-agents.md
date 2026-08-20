@@ -18,6 +18,9 @@ Model router selects the optimal large language model (LLM) for each request you
 
 This article explains how model router behaves with Foundry Agent Service agents, which tool types it supports, the routing patterns you can expect, and how to get started.
 
+> [!TIP]
+> Get hands-on with the [Foundry Agent Lab](https://github.com/microsoft-foundry/Foundry-Agent-Lab). Its progressive demos show model router across function tools, web search, code interpretation, RAG, MCP, and Toolbox, with session logs that explain each routing decision.
+
 For general model router concepts, see the [model router overview](../concepts/model-router.md). For deployment steps, see [Use model router](model-router.md).
 
 ## Prerequisites
@@ -203,10 +206,6 @@ After observing your agent's routing distribution:
 
 - **Switch routing mode** — Use Quality mode for critical agents (legal, medical) or Cost mode for high-volume agents (classification, triage). See [Change the routing mode](model-router.md#optional-change-the-routing-mode).
 - **Constrain the model pool** — Use model subset to limit which models the router can select. See [Route to a model subset](model-router.md#optional-route-to-a-model-subset).
-
-## Explore with hands-on demos
-
-The [Foundry Agent Lab](https://github.com/microsoft-foundry/Foundry-Agent-Lab) provides a progressive series of agent demos — all using model router — that demonstrate routing behavior across scenarios including function tools, web search, code interpretation, RAG, MCP, and Toolbox. Each demo includes session logs showing which models the router selected and why.
 
 ## Related content
 
