@@ -80,7 +80,7 @@ The per-phase sections later in this article explain why each phase exists, what
 | **Roll out** | Promote to production through staged exposure, monitor live behavior, and commit or roll back. | <ul><li>[Auto-upgrade with `versionUpgradeOption`](../../openai/concepts/model-retirements.md)</li><li>Provisioned in-place and side-by-side migration</li><li>[Continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)</li><li>Azure Monitor alerts</li></ul> |
 | **Retire** | Decommission the old deployment, free capacity, archive evals, and update downstream documentation. | <ul><li>[Models API](../../openai/concepts/retired-models.md) to confirm retirement</li><li>[Observability dashboard](../../concepts/observability.md) for deployment count</li></ul> |
 
-## Before you migrate: Prepare the test dataset
+## Before you migrate: Prepare a test dataset
 
 This preparation step assembles a set of representative inputs, expected outputs, and agreed-upon success criteria before any migration work begins. This set is a gating dependency for the middle of the process: you can't replay in the Adapt phase without inputs, and you can't score in the Validate phase without ground truth and criteria.
 
@@ -122,7 +122,7 @@ The purpose of the Assess phase is to pick the candidate target model and confir
 
 ### What to consider
 
-- **Positioning between candidates.** When several models are in flight, decide which one fits *your* workload, not just which scores highest on a public benchmark.
+- **Quality and positioning between candidates.** When several models are in flight, decide which one fits *your* workload on quality, not just which scores highest on a public benchmark.
 - **Cost on your own traffic.** Pricing structure shifts between model generations. Reasoning tokens, cached input, and structured-output overhead can swing unit economics by 2x or more, so project monthly cost on historical traffic rather than list price alone.
 - **Operational availability.** Confirm region, SKU, and quota, and that the target can run side by side with the source so you keep a rollback path.
 - **Compliance gating.** For regulated workloads, certification and regional availability can filter the candidate list before quality enters the conversation.
@@ -183,7 +183,7 @@ The purpose of the Validate phase is to decide whether the adapted workload is s
 
 Validate is one phase, but it has two touchpoints, so don't treat it as a single end-of-line event:
 
-- **Prepare early.** Freeze the dataset and success criteria in [Before you migrate](#before-you-migrate-prepare-the-test-dataset), before you Adapt. The moment those change, your source and target stop being comparable.
+- **Prepare early.** Freeze the dataset and success criteria in [Before you migrate](#before-you-migrate-prepare-a-test-dataset), before you Adapt. The moment those change, your source and target stop being comparable.
 - **Gate late, in two passes.** First run the current model on the frozen set to establish a **source baseline**, the number you have to beat. Then score the **target** on the same set and decide.
 
 
@@ -218,7 +218,7 @@ Most teams don't have an evaluation suite, and the ones that do often built it t
 
 ### What you bring
 
-The evaluators are ready to run, but curating a domain-relevant test set from *your own* production traffic is hands-on work for model (non-agent) workloads. This need is why [the preparation step](#before-you-migrate-prepare-the-test-dataset) pays for itself.
+The evaluators are ready to run, but curating a domain-relevant test set from *your own* production traffic is hands-on work for model (non-agent) workloads. This need is why [the preparation step](#before-you-migrate-prepare-a-test-dataset) pays for itself.
 
 
 ## Phase 5: Roll out

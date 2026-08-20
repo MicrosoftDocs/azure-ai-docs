@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
 
+The **Replacement** column identifies Microsoft's recommended replacement and, where supported, the target for automatic upgrades at retirement. You don't need to wait for a replacement to be listed before evaluating or manually migrating to another compatible model. Evaluate available models using your application and data, comparing quality, latency, and cost. For selection criteria and the full migration process, see [Model migration process](../../foundry-models/concepts/model-migration.md).
+
 ## Foundry Models sold by Azure
 
 This section lists the retirement lifecycle for Foundry Models sold by Azure.
