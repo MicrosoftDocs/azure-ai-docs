@@ -130,9 +130,9 @@ public class EchoHandler : ResponseHandler
 
 ---
 
-#### ResponseEventStream
+#### Automatic event and lifecycle management
 
-`ResponseEventStream` manages `sequenceNumber`, `outputIndex`, `contentIndex`, `itemId`, and the full `Response` lifecycle automatically. Each `yield return` maps one-to-one to an SSE event, so you don't need to track this state yourself.
+The library manages the event sequence—sequence numbers, output and content indexes, and item IDs—and the full response lifecycle automatically, so you don't track this state yourself. Each event your handler produces maps one-to-one to an SSE event. In .NET, `ResponseEventStream` performs this mapping; in Python, the host framework manages it for you.
 
 #### Streaming and background modes
 
@@ -145,9 +145,9 @@ The library orchestrates the complete response lifecycle: `created` -> `in_progr
 
 #### Thread safety
 
-All service instances registered through `AddResponsesServer()` are thread-safe. Handler instances are scoped per-request.
+Handler instances are scoped per request, so per-request state doesn't leak across requests. Both libraries handle concurrent requests safely.
 
-For detailed handler implementation guidance, see the [handler implementation guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md). For runnable examples, see the [Responses protocol samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples).
+For runnable examples, see the [Python bring-your-own samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own) and the [.NET Responses protocol samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples). For detailed .NET handler guidance, see the [handler implementation guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md).
 
 ### Health endpoints
 
@@ -211,12 +211,22 @@ services:
       GITHUB_TOKEN: ${{connections.agent-secrets.credentials.github_token}}
 ```
 
-At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other env var:
+At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other environment variable:
+
+# [Python](#tab/python)
 
 ```python
 import os
 token = os.environ["GITHUB_TOKEN"]
 ```
+
+# [C#](#tab/csharp)
+
+```csharp
+var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+```
+
+---
 
 A GET on the agent version returns the literal `${{...}}` text--the resolved secret is never echoed back through the management API.
 
