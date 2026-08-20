@@ -133,7 +133,7 @@ A catalog entry declares the artifact; it doesn't decide which evaluation uses i
 ```yaml
 datasets:
     - name: support-agent-dataset
-      source: ./datasets/support-agent-dataset.jsonl
+      file: ./datasets/support-agent-dataset.jsonl
 evals:
     - name: support-agent-eval
       dataset: support-agent-dataset   # point the eval at the generated dataset
@@ -173,7 +173,7 @@ A dataset-sourced evaluation names the dataset instead of a trace source, and re
 ```yaml
 datasets:
     - name: support-golden
-      source: ../tests/support-golden.jsonl
+      file: ../tests/support-golden.jsonl
 evals:
     - name: support-agent-eval
       description: Basic quality evaluation for support-agent
