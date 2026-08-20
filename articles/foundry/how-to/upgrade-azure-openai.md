@@ -4,7 +4,7 @@ description: "Upgrade your Azure OpenAI resource to Microsoft Foundry to access 
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 07/20/2026
+ms.date: 08/19/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 ---
 
 # Upgrade from Azure OpenAI to Microsoft Foundry
+
+If Microsoft scheduled your resource for automatic upgrade, see [Manage automatic upgrades from Azure OpenAI to Microsoft Foundry](upgrade-azure-openai-auto.md).
 
 [!INCLUDE [upgrade-azure-openai 1](../includes/how-to-upgrade-azure-openai-1.md)]
 
