@@ -184,8 +184,8 @@ items:
   - name: Deploy using code
     displayName: Deploy models using Azure CLI and Bicep
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Upgrade from GitHub Models
-    displayName: Upgrade from GitHub Models to Microsoft Foundry Models
+  - name: Migrate from GitHub Models
+    displayName: Migrate from GitHub Models to Microsoft Foundry Models, GitHub Models retirement
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Deploy with managed compute (preview)
     displayName: Deploy open-source AI models with managed compute in Foundry
