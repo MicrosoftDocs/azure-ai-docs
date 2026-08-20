@@ -229,41 +229,6 @@ If your organization restricts which models developers can deploy, model router 
 
 ## Evaluate model router for your workload
 
-Before you commit production traffic to model router, benchmark it against your current baseline model on three dimensions: quality, cost, and latency. Use the purpose-built evaluation toolkit as a starting point that you can adapt to your workload.
-
-### Evaluation toolkit
-
-Use the [Model Router Auto Evaluation toolkit](https://github.com/microsoft-foundry/Model-Router-Auto-Evaluation) to run this benchmark with your own prompts. The toolkit supports:
-
-- A no-keys demo with mock data so you can explore the dashboard before configuring endpoints.
-- Live evaluation against your model router and baseline deployments.
-- JSONL, CSV, or SQL dataset input.
-- A self-contained HTML report with quality, cost, and latency charts.
-- Checkpoint and resume for large-scale runs (500+ prompts).
-
-For methodology details - including the cost formula, judge configuration, and sample-size guidance - see the toolkit's [methodology documentation](https://github.com/microsoft-foundry/Model-Router-Auto-Evaluation/blob/main/docs/methodology.md).
-
-### Quality
-
-Use an LLM-as-a-judge approach where a separate, capable model scores responses from both model router and your baseline:
-
-- Run pairwise comparisons with response order swapped to eliminate position bias.
-- Score each response independently on accuracy, completeness, clarity, and helpfulness (1–5 scale).
-- Use at least 100 prompts from your actual workload for statistically reliable results. Fewer than 30 prompts gives only directional signal.
-
-### Cost
-
-Compare per-request cost using token counts and per-model pricing:
-
-- Account for the router markup on input tokens plus the underlying model's input and output pricing.
-- Aggregate savings as a percentage: `1 − (router_cost / baseline_cost)`.
-- Check cost savings per category if your dataset includes prompt categories (for example, code generation vs. summarization).
-
-### Latency
-
-Measure wall-clock response time for both endpoints:
-
-- Compare percentiles (p50, p90, p95) rather than averages — percentiles reflect real user experience better than mean values that can be skewed by outliers.
-- Call endpoints sequentially per prompt so neither is disadvantaged by concurrent load.
+Treat your initial deployment as a starting configuration. Before you send production traffic to model router, benchmark it against your current model for response quality, estimated cost, and latency. Use the results to decide whether to retain the configuration, change one routing lever, or keep a direct model deployment for part of the workload. For guidance, see [Evaluate model router for your workload](evaluate-model-router.md).
 
 [!INCLUDE [model-router 2](../includes/how-to-model-router-2.md)]

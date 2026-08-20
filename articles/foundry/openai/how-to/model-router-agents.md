@@ -207,9 +207,12 @@ After observing your agent's routing distribution:
 - **Switch routing mode** — Use Quality mode for critical agents (legal, medical) or Cost mode for high-volume agents (classification, triage). See [Change the routing mode](model-router.md#optional-change-the-routing-mode).
 - **Constrain the model pool** — Use model subset to limit which models the router can select. See [Route to a model subset](model-router.md#optional-route-to-a-model-subset).
 
+Evaluate changes with representative multi-turn traces, including tool calls, retrieval, and complex handoffs from your agent workload. Keep the baseline, instructions, tools, and trace set fixed while you change one routing setting. For guidance on defining acceptance criteria and interpreting tradeoffs, see [Evaluate model router for your workload](evaluate-model-router.md).
+
 ## Related content
 
 - [Model router overview](../concepts/model-router.md)
 - [How model router works](../concepts/model-router-how-it-works.md)
 - [Use model router](model-router.md)
+- [Evaluate model router for your workload](evaluate-model-router.md)
 - [Foundry Agent Service overview](/azure/ai-foundry/agents/overview)
