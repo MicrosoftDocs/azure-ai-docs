@@ -47,7 +47,7 @@ Characteristics of models sold by Azure:
 - High level of integration with Azure services and infrastructure. 
 - Subject to internal analysis and review based on Microsoft’s Responsible AI standards: Models sold directly through Azure undergo Microsoft's internal Responsible AI review processes and the high-level outcomes of these reviews are reflected in the documentation specific to each model in the Model Catalog available at https://ai.azure.com/explore/models.
   - Customers should refer to the assessment details in the documentation to understand limitations of each model before integrating them into applications.
-  - Customers should note that these reviews do not guarantee mitigations of potential risks. Different models have different safety characteristics and customers should carefully review documentation and to conduct their own evaluations in the context of their applications to ensure risks are understood or mitigated before deployment. 
+ - Customers should note that these reviews don't guarantee mitigations of potential risks. Different models have different safety characteristics and customers should carefully review documentation and conduct their own evaluations in the context of their applications to ensure risks are understood or mitigated before deployment. 
 -  Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations.
 - Enterprise-grade scalability, reliability, and security.
 
