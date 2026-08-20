@@ -7,8 +7,8 @@ ms.reviewer: haakar
 reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/13/2026
-ms.custom: include, classic-and-new
+ms.date: 08/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
