@@ -25,7 +25,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 - Complex Document Comparison: Perfect for analyzing contracts, case files, or legal documents to identify subtle differences.
 - Instruction Following and Workflow Management: Particularly effective for managing workflows requiring shorter contexts.
 
-Browse [reasoning models from OpenAI in the Foundry model catalog](https://ai.azure.com/catalog/models?capabilities=reasoning&publisher=openai).
+Browse [reasoning models from OpenAI in the Foundry model catalog](https://ai.azure.com/catalog/models?capabilities=reasoning&publisher=openai&cid=learnDocs).
 
 ## Prerequisites
 
