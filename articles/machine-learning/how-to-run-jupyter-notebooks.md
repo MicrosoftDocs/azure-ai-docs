@@ -61,7 +61,7 @@ When a compute instance is running, you can launch Jupyter or JupyterLab from th
 
 Use focus mode to expand your current view so you can focus on your active tabs. Focus mode hides the Notebooks file explorer.
 
-1. In the notebook toolbar, select **Focus mode** to turn on focus mode. Depending on your window width, the tool may be located under the **...** menu item in your toolbar.
+1. In the notebook toolbar, select **Focus mode** to turn on focus mode. Depending on your window width, the tool might be located under the **...** menu item in your toolbar.
 1. While in focus mode, return to the standard view by selecting **Standard view**.
 
     :::image type="content" source="media/how-to-run-jupyter-notebooks/focusmode.gif" alt-text="Toggle focus mode / standard view":::
@@ -179,7 +179,7 @@ To run a notebook or a Python script, you first connect to a running [compute in
     
 Once you're connected to a compute instance, use the toolbar to run all cells in the notebook, or Control + Enter to run a single selected cell. 
 
-When a cell finishes successfully, its execution count increments and any output appears below the cell; the kernel status returns to idle when the run completes.
+When a cell finishes successfully, its execution count increments and any output appears below the cell. The kernel status returns to idle when the run completes.
 
 Only you can see and use the compute instances you create. Your **User files** are stored separately from the machine and shared among all compute instances in the workspace.
 
