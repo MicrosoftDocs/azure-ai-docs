@@ -61,7 +61,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
-<sup>2</sup> This region is experiencing capacity constraints that prevent the creation of new search services and scaling operations. Please choose a different region.
+<sup>2</sup> This region is oh high demand, which prevents the creation of new search services. Please choose a different region.
 
 <sup>3</sup> This region doesn't have indexer support for [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
@@ -70,7 +70,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
 | France Central​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| Germany West Central​ <sup>1</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| Germany West Central​ <sup>1,2</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Italy North​​ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Norway East​​ | ✅ | ✅ |  | ✅ |  |  |
 | North Europe​ <sup>2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
@@ -85,7 +85,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
-<sup>2</sup> This region is experiencing capacity constraints that prevent the creation of new search services. Please choose a different region.
+<sup>2</sup> This region is oh high demand, which prevents the creation of new search services. Please choose a different region.
 
 <sup>3</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
@@ -95,11 +95,13 @@ You can create an Azure AI Search service in any of the following Azure public r
 |--|--|--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  | ✅ |  |  |  |  |
 | Qatar Central​ <sup>1</sup> |  | ✅ | ✅ |  | ✅ | ✅ |
-| UAE North​​ <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| UAE North​​ <sup>2, 3</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
-<sup>2</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+<sup>2</sup> This region is oh high demand, which prevents the creation of new search services. Please choose a different region.
+
+<sup>3</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 ### Africa
 
