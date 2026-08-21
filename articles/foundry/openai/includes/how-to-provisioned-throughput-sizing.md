@@ -164,8 +164,8 @@ This section lists other Foundry Models sold by Azure, not including the Azure O
 
 | Topic | **Llama-3.3-70B-Instruct** |
 |---|---|
-| Global & data zone provisioned minimum deployment | 100 |
-| Global & data zone provisioned scale increment | 100 |
+| Global and data zone provisioned minimum deployment | 100 |
+| Global and data zone provisioned scale increment | 100 |
 | Regional provisioned minimum deployment | NA |
 | Regional provisioned scale increment | NA |
 | Input TPM per PTU | 8,450 |
