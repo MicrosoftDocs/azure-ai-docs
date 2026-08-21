@@ -61,7 +61,7 @@ _Batch endpoints_ are designed for long-running batch inference. When you invoke
 
 __Standard deployment__:
 
-Use [standard deployments](how-to-deploy-models-serverless.md) to consume large foundational models for real-time inferencing off-the-shelf or for fine-tuning such models. Not all models are available for deployment to standard deployments; for the models you can deploy this way, see [Deploy models as standard deployments](how-to-deploy-models-serverless.md). We recommend using this deployment mode when:
+Use [standard deployments](how-to-deploy-models-serverless.md) to consume large foundational models for real-time inferencing off-the-shelf or for fine-tuning such models. Not all models are available for deployment to standard deployments. For the models you can deploy this way, see [Deploy models as standard deployments](how-to-deploy-models-serverless.md). Use this deployment mode when:
 
 > [!div class="checklist"]
 > * Your model is a foundational model or a fine-tuned version of a foundational model that is available for standard deployments.
