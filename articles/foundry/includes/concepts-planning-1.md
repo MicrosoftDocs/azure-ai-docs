@@ -186,9 +186,9 @@ Foundry separates access across:
 - **Data plane RBAC actions** for development workloads.
 
 > [!IMPORTANT]
-> Management roles such as Owner or Contributor are not sufficient for all
-development scenarios. For example, a user can manage resources but still need
-data plane roles to chat with an agent in Foundry.
+> Management roles such as Owner or Contributor aren't sufficient for all
+> development scenarios. For example, a user can manage resources but still need
+> data plane roles to chat with an agent in Foundry.
 
 For role mapping guidance and required role combinations, see
 [Role-based access control in Foundry](../concepts/rbac-foundry.md).
