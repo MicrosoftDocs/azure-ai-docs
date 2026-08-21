@@ -389,7 +389,7 @@ The following table shows the accepted settings for featurization.
 
 | Featurization Configuration | Description |
 |:------------- |:------------- |
-| `"mode": 'auto'` | Indicates that, as part of preprocessing, [data guardrails and featurization steps (SDK v1)](./v1/how-to-configure-auto-features.md?view=azureml-api-1&preserve-view=true#automatic-featurization) are done automatically. This value is the default setting. |
+| `"mode": 'auto'` | Indicates that, as part of preprocessing, data guardrails and featurization steps are done automatically. This value is the default setting. |
 | `"mode": 'off'` | Indicates featurization step shouldn't be done automatically. |
 | `"mode":`&nbsp;`'custom'` | Indicates you should use customized featurization step. |
 
@@ -527,9 +527,7 @@ AutoML offers options for you to monitor and evaluate your training results.
 
 - For definitions and examples of the performance charts and metrics provided for each run, see [evaluate AutoML experiment results](how-to-understand-automated-ml.md).
 
-- To get a featurization summary and understand what features were added to a particular model, see [featurization transparency (SDK v1)](./v1/how-to-configure-auto-features.md?view=azureml-api-1&preserve-view=true#featurization-transparency).
-
-From the Azure Machine Learning UI at the model's page, you can also view the hyper-parameters used when you train a particular model and also view and customize the internal model's training code used.
+From the Azure Machine Learning UI at the model's page, you can view a featurization summary and understand what features were added to a particular model. You can also view the hyper-parameters used when you train a particular model and view and customize the internal model's training code used.
 
 ## Register and deploy models
 
