@@ -236,7 +236,7 @@ Common role assignments for agent tools:
 > **Cosmos DB Built-in Data Reader** is an Azure Cosmos DB data-plane role, not an Azure RBAC role. Assign it with `az cosmosdb sql role assignment create` or Bicep instead of `az role assignment create`. For more information, see [Configure role-based access control for Azure Cosmos DB](/azure/cosmos-db/how-to-connect-role-based-access-control).
 
 > [!IMPORTANT]
-> When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity. Identity behavior differs in the newer agent object model — see [Migrate from agent applications to the new agent endpoint and publishing experience](../how-to/migrate-agent-applications.md).
+> When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity. Identity behavior differs in the newer agent object model - see [Migrate from agent applications to the new agent endpoint and publishing experience](../how-to/migrate-agent-applications.md).
 
 > [!TIP]
 > For comprehensive details about all permissions involved in Hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
