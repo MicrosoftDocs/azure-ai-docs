@@ -15,6 +15,7 @@ metadata:
   - references_regions
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
+  ai-usage: ai-assisted
 title: Foundry Agent Service frequently asked questions
 summary: |
   Find answers to common questions about Foundry Agent Service.

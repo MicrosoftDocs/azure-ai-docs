@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Create a prompt agent"
-description: "Create a prompt agent in Foundry Agent Service using the Microsoft Foundry SDK."
+description: "Learn how to create a prompt agent in Foundry Agent Service using the Microsoft Foundry SDK, then have a multi-turn conversation with the agent you create."
 author: aahill
 ms.author: aahi
 ms.date: 08/21/2026

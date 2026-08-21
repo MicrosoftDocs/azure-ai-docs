@@ -1,6 +1,6 @@
 ---
 title: "How to use Azure OpenAI Assistants file search (classic)"
-description: "Learn how to use Assistants file search. (classic)"
+description: "Learn how to use the Azure OpenAI Assistants file search tool (classic) to search files, create vector stores, and retrieve relevant content for responses."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
@@ -10,6 +10,7 @@ ms.date: 08/21/2026
 author: aahill
 ms.author: aahi
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 # Azure OpenAI Assistants file search tool (Preview) (classic)

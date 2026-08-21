@@ -1,6 +1,6 @@
 ---
 title: "Set up your environment for Foundry Agent Service"
-description: "Use this guide to set up your agent environment"
+description: "Learn how to set up your Foundry Agent Service environment, choose between basic and standard setup, and configure the required Azure resources and roles."
 manager: mcleans
 author: aahill
 ms.author: aahi
