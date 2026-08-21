@@ -78,12 +78,12 @@ Machine learning pipelines can use the previously mentioned training methods. Pi
 
 The Azure training lifecycle for a typical script-based command job consists of the following steps. Automated ML and pipeline jobs follow a similar flow, but the exact execution and image-caching behavior can vary by job type and environment:
 
-1. Zipping the files in your project folder and uploading them to the cloud.
+1. Zip the files in your project folder and upload them to the cloud.
     
     > [!TIP]
     > [!INCLUDE [amlinclude-info](includes/machine-learning-amlignore-gitignore.md)]
 
-1. Scaling up your compute cluster (or [serverless compute](./how-to-use-serverless-compute.md))
+1. Scale up your compute cluster or [serverless compute](./how-to-use-serverless-compute.md).
 1. Building or downloading the dockerfile to the compute node 
     1. The system calculates a hash of: 
         - The base image 
@@ -94,7 +94,7 @@ The Azure training lifecycle for a typical script-based command job consists of 
     1. If it isn't found, the system builds a new image (which will be cached and registered with the workspace ACR)
 1. Downloading your zipped project file to temporary storage on the compute node
 1. Unzipping the project file
-1. The compute node running the command specified by the job, such as `python <entry script> <arguments>` for a Python training script
+1. Run the compute node with the command specified by the job, such as `python <entry script> <arguments>` for a Python training script.
 1. Saving logs, model files, and other files written to `./outputs` to the storage account associated with the workspace
 1. Scaling down compute, including removing temporary storage 
 
