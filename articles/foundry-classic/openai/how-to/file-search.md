@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 08/21/2026
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -350,4 +350,3 @@ for file_batch in chunked(all_files, 100):
         vector_store_id=vector_store.id, file_ids=[file.id for file in file_batch]
     )
 ```
-

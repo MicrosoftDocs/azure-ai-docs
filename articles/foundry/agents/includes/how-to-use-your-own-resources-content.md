@@ -6,8 +6,9 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 08/21/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 By default, Foundry Agent Service manages storage for files, conversations, and vector stores. If your organization requires full data ownership, customer-managed keys (CMK), or network isolation, you can connect your own Azure resources instead. This article shows you how to configure the deployment templates to use existing Azure OpenAI, Azure Storage, Azure Cosmos DB, and Azure AI Search resources with Agent Service.
