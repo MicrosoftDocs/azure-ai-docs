@@ -3,7 +3,7 @@ title: Models from partners
 author: msakande
 ms.author: mopeakande
 manager: mcleans
-ms.date: 07/24/2026
+ms.date: 08/21/2026
 manager: mcleans
 ms.date: 07/24/2026
 ms.service: microsoft-foundry
