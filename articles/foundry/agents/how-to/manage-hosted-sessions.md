@@ -3,14 +3,14 @@ title: "Manage hosted agent sessions"
 description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 08/17/2026
+ms.date: 08/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
-zone_pivot_groups: hosted-agent-manage-method
+zone_pivot_groups: hosted-agent-deploy-clients
 ---
 
 # Manage hosted agent sessions
@@ -121,6 +121,32 @@ Configure the idle timeout when you create an agent version. The setting applies
 
 When a session reaches the idle timeout, the platform suspends its sandbox and saves its state. The platform provisions compute and restores the saved state when the session is referenced again. To change the timeout, create another agent version with the new value.
 
+:::zone pivot="azd"
+
+Add `sessionConfiguration` to the `azure.ai.agent` service in `azure.yaml`:
+
+```yaml
+services:
+  my-agent:
+    host: azure.ai.agent
+    kind: hosted
+    sessionConfiguration:
+      idleTimeoutSeconds: 300
+```
+
+Deploy the agent:
+
+```bash
+azd deploy
+```
+
+The `azure.ai.agents` extension validates the value and maps `sessionConfiguration.idleTimeoutSeconds` to the hosted agent version's `session_configuration.idle_timeout_seconds` property. The setting applies to both code and container deployment modes. If you omit `sessionConfiguration`, the extension omits the property from the request, and the service uses the 900-second default.
+
+> [!NOTE]
+> This configuration requires `azure.ai.agents` extension version **1.0.0-beta.11** or later, which added support for `sessionConfiguration.idleTimeoutSeconds`. On earlier versions, use the Python SDK or REST API to set the idle timeout. Install or update the extension with `azd ext install azure.ai.agents`.
+
+:::zone-end
+
 :::zone pivot="python"
 
 Pass a `SessionConfiguration` in the hosted agent definition:
@@ -197,32 +223,6 @@ az rest --method POST \
         }
     }'
 ```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-Add `sessionConfiguration` to the `azure.ai.agent` service in `azure.yaml`:
-
-```yaml
-services:
-  my-agent:
-    host: azure.ai.agent
-    kind: hosted
-    sessionConfiguration:
-      idleTimeoutSeconds: 300
-```
-
-Deploy the agent:
-
-```bash
-azd deploy
-```
-
-The `azure.ai.agents` extension validates the value and maps `sessionConfiguration.idleTimeoutSeconds` to the hosted agent version's `session_configuration.idle_timeout_seconds` property. The setting applies to both code and container deployment modes. If you omit `sessionConfiguration`, the extension omits the property from the request, and the service uses the 900-second default.
-
-> [!NOTE]
-> This configuration requires an `azure.ai.agents` extension version that supports `sessionConfiguration`. Until that version is available, use the Python SDK or REST API to set the idle timeout.
 
 :::zone-end
 
