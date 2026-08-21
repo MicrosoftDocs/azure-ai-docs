@@ -527,7 +527,7 @@ AutoML offers options for you to monitor and evaluate your training results.
 
 - For definitions and examples of the performance charts and metrics provided for each run, see [evaluate AutoML experiment results](how-to-understand-automated-ml.md).
 
-From the Azure Machine Learning UI at the model's page, you can view a featurization summary and understand what features were added to a particular model. You can also view the hyper-parameters used when you train a particular model and view and customize the internal model's training code used.
+From the Azure Machine Learning UI at the model's page, you can view a featurization summary and understand what features were added to a particular model. You can also view the hyperparameters used when you train a particular model and view and customize the internal model's training code used.
 
 ## Register and deploy models
 
