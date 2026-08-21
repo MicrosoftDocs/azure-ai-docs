@@ -26,7 +26,7 @@ For more information about pricing model and service tier differences, see [Choo
 
 ## How cost is determined in the Serverless model
 
-The Dedicated and Serverless pricing models account for work inside the search service differently. Dedicated services run queries, indexing, and result processing on provisioned capacity that you've already purchased. Serverless services measure the compute, memory, and disk I/O that these operations consume and convert that usage into Compute Units (CUs). As a result, **performance optimization directly affects Serverless cost**.
+The Dedicated and Serverless pricing models account for work inside the search service differently. Dedicated services run queries, indexing, and result processing on provisioned capacity that you already purchased. Serverless services measure the compute, memory, and disk I/O that these operations consume and convert that usage into Compute Units (CUs). As a result, **performance optimization directly affects Serverless cost**.
 
 Serverless costs are tied to workload execution:
 
