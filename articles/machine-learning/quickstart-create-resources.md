@@ -155,7 +155,7 @@ If you're not going to use it now, stop the compute instance:
 ### Delete all resources
 
 > [!WARNING]
-> Delete the resource group only if you created a new one for this tutorial. If you selected an existing resource group, deleting it also removes any other resources it contains. To keep those resources, instead delete only the workspace and compute instance you created for this tutorial.
+> Delete the resource group only if you created a new one for this tutorial. If you selected an existing resource group, deleting it also removes any other resources it contains. To keep those resources, delete only the workspace and compute instance you created for this tutorial.
 
 [!INCLUDE [aml-delete-resource-group](includes/aml-delete-resource-group.md)]
 
