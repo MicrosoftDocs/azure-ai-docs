@@ -6,7 +6,7 @@ ms.reviewer: meerakurup
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/17/2026
 ms.custom: include
 ---
 
@@ -14,7 +14,7 @@ ms.custom: include
 
 - If the portal experience doesn't show your Foundry resource as associable, confirm that Foundry is supported for NSP association in your region and review the supported resource types: [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts).
 - If you don't see logs after enabling diagnostics, confirm that you selected `allLogs` and that your destination is supported: [Diagnostic logs for Network Security Perimeter](/azure/private-link/network-security-perimeter-diagnostic-logs).
-- If Learning mode looks correct but Enforced mode blocks access, return to Learning mode and add the minimum inbound and outbound rules needed for your scenario: [Azure OpenAI NSP guidance](/azure/ai-foundry/openai/how-to/network-security-perimeter).
+- If Transition mode looks correct but Enforced mode blocks access, return to Transition mode and add the minimum inbound and outbound rules needed for your scenario: [Azure OpenAI NSP guidance](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 - If your managed identity can't reach co-located resources, verify that both resources are in the same NSP and that role assignments are correct.
 - If logs don't appear immediately after you enable diagnostics, allow up to 15 minutes for diagnostic data to propagate to your Log Analytics workspace.
 
@@ -23,7 +23,7 @@ ms.custom: include
 - NSP governs data-plane traffic. Control-plane (management) operations might still succeed unless separately restricted.
 - Use a managed identity (system or user-assigned) with appropriate role assignments for any data source access (for example Azure Blob Storage used for batch inputs/outputs).
 - Co-locate dependent services (Azure OpenAI, Azure Storage, Azure AI Search, and so on) in the same NSP when you need mutual access with minimal outbound allow rules.
-- Diagnostic log export to customer-owned destinations (Log Analytics, Storage, Event Hub) respects NSP rules only when using Microsoft Entra ID authentication. API key-authenticated requests bypass NSP log filtering. Switch to Entra ID auth for full perimeter coverage of logging traffic.
+- For diagnostic log export to customer-owned destinations (Log Analytics, Storage, Event Hub), use Microsoft Entra ID authentication for full perimeter coverage of logging traffic. **TO VERIFY:** The exact NSP filtering behavior for API key-authenticated log traffic needs confirmation with the feature team before it's stated here.
 
 For more information, see [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts).
 

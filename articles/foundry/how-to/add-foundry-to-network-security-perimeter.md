@@ -4,7 +4,7 @@ description: "Quickly learn how to associate a Microsoft Foundry resource with a
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: meerakurup
-ms.date: 05/12/2026
+ms.date: 08/17/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
@@ -33,10 +33,10 @@ The diagram shows a Foundry resource inside an NSP boundary. Inbound access rule
 
 ## Validate before enforcement
 
-1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
+1. Stay in Transition mode initially; review access logs for denies affecting required traffic.
 1. Add or refine inbound and outbound rules.
 1. Switch to Enforced mode.
 1. Open [!INCLUDE [foundry-link](../includes/foundry-link.md)] and perform a model deployment or chat test. Success indicates required traffic is permitted.
-1. If blocked, revert to Learning mode or add rules and retry.
+1. If blocked, revert to Transition mode or add rules and retry.
 
 [!INCLUDE [add-foundry-to-network-security-perimeter 2](../includes/how-to-add-foundry-to-network-security-perimeter-2.md)]
