@@ -57,13 +57,6 @@ Follow along below or get the code:
 
 Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
 
-Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
-
-```
-PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-AGENT_NAME="MyAgent"
-```
-
 # [Java](#tab/java)
 
 Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
