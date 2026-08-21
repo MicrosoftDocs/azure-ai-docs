@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 07/21/2026
 ms.custom: include, references_regions
+ai-usage: ai-assisted
 ---
 
 This article provides an overview of which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, how to configure virtual network support for network isolation, and using your own storage account to run evaluations.
@@ -54,10 +55,16 @@ These regions support the following safety evaluators: Hate and unfairness, Sexu
 
 | Americas | Europe | Asia Pacific |
 |--|--|--|
-| East US 2 | France Central | Australia East |
-| North Central US | Sweden Central |  |
+| Central US | France Central | Australia East |
+| East US | Germany West Central |  |
+| East US 2 | Italy North |  |
+| North Central US | Norway East |  |
+| South Central US | Poland Central |  |
+| West Central US | Spain Central |  |
+| West US | Sweden Central |  |
+| West US 3 | Switzerland North |  |
 |  | Switzerland West |  |
-|  | Germany West Central |  |
+|  | West Europe |  |
 
 Supported regions for Groundedness Pro:
 
