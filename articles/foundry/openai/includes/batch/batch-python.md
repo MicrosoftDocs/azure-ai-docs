@@ -3,7 +3,7 @@ title: Azure OpenAI Global Batch Python
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI model global batch Python
 manager: mcleans
-ms.date: 10/15/2024
+ms.date: 08/14/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -184,7 +184,7 @@ file_id = file.id
 
 ---
 
-By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 input batch files per resource when no expiration is set. By setting a value for expiration the number of input batch files per resource is increased to 10,000 files per resource. To remove batch input file limits use [Batch with Azure Blob Storage](../../../../foundry-classic/openai/how-to/batch-blob-storage.md).
+The `expires_after` object makes the input file expire 14 days after you create it. Set `seconds` to a value from `1209600` through `2592000` to select an expiration period from 14 through 30 days. Setting an expiration also increases the input file limit. For details, see [Batch limits](#batch-limits).
 
 **Output:**
 

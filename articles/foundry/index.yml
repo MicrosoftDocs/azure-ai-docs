@@ -193,8 +193,6 @@ additionalContent:
               url: ./how-to/develop/sdk-overview.md
             - text: Microsoft Foundry labs
               url: https://ai.azure.com/labs
-            - text: GitHub Models
-              url: https://github.com/marketplace/models
             - text: Visual Studio Code extension
               url: https://aka.ms/azureaifoundry/vscode
             - text: Foundry (classic) portal documentation

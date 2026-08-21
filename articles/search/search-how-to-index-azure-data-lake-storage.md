@@ -4,12 +4,10 @@ description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate i
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/08/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
-ms.custom:
-  - ignite-2023
-  - sfi-ropc-nochange
+ms.custom: [ignite-2023, sfi-ropc-nochange, doc-kit-assisted]
 ---
 
 # Index data from Azure Data Lake Storage Gen2
@@ -39,6 +37,8 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 + [Access tiers](/azure/storage/blobs/access-tiers-overview) for ADLS Gen2 include hot, cool, and archive. Only hot and cool can be accessed by search indexers.
 
 + Blobs containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
+
+  Treat source indexing and AI enrichment as separate processing stages. A skill or external service can have a lower input limit than the amount of content the indexer can extract. Check the [reference article for each skill](cognitive-search-predefined-skills.md) in your skillset.
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 

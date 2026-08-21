@@ -73,9 +73,9 @@ Different operations have different cost profiles:
 
 ### Monitor compute usage
 
-Monitoring compute consumption helps you identify expensive operations, optimize query patterns, and estimate costs. The Compute Unit (CU) cost of every request is returned in the `x-ms-request-charge` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in Azure Monitor. For more guidance on the types of monitoring data available and methods for analyzing that data, see [Monitor Azure AI Search](/azure/azure-monitor/fundamentals/overview).
+Monitoring compute consumption helps you identify expensive operations, optimize query patterns, and estimate costs. The Compute Unit (CU) cost of every request is returned in the `x-ms-azs-compute-units-consumed` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in Azure Monitor. For more guidance on the types of monitoring data available and methods for analyzing that data, see [Monitor Azure AI Search](/azure/azure-monitor/fundamentals/overview).
 
-- **Header**: `x-ms-request-charge: <value>`
+- **Header**: `x-ms-azs-compute-units-consumed: <value>`
 - **Value**: A floating-point number representing the CUs consumed.
 
 Example:
@@ -83,7 +83,7 @@ Example:
 ```http
 Status: 200 OK
 Content-Type: application/json
-x-ms-request-charge: 12.45
+x-ms-azs-compute-units-consumed: 12.45
 ```
 
 In this example, the request consumed 12.45 compute units. You can use this value to identify high-cost operations and compare the relative cost of different query patterns.
@@ -123,7 +123,7 @@ To estimate serverless costs:
 
 1. Index representative sample data.
 1. Run typical indexing and query workloads.
-1. Record the `x-ms-request-charge` value returned for each operation.
+1. Record the `x-ms-azs-compute-units-consumed` value returned for each operation.
 1. Use Azure Monitor metrics to measure aggregate usage over time.
 1. Extrapolate costs based on expected production traffic.
 
@@ -170,15 +170,27 @@ How you send data to the index affects both cost and throughput:
 
 - **Index only new or changed data**: Avoid full reindexing when possible. Sending only additions and updates reduces the number of documents processed, lowering compute cost and improving ingestion speed.
 
-- **Use change detection for incremental indexing**: Detect what changed before you reprocess content. Incremental indexing avoids repeated work on unchanged documents and keeps reprocessing costs down.
-
 - **Skip image extraction unless you need it**: Image extraction adds extra processing work and can become a separate cost driver. Turn it on only for documents or workflows that actually need image content.
-
-- **Target skills to relevant fields and documents**: Scope enrichment skills to the specific fields or documents they need. Avoid running skills across content that doesn't need enrichment, especially when the outputs aren't used downstream.
 
 - **Account for index size growth**: Where possible, create smaller indexes. As an index grows, indexing costs increase because more data must be stored and maintained, and operations require more compute. For very large datasets, consider partitioning data across multiple indexes to help manage performance and costs. Although costs rise with index size, the increase is sublinear. Larger indexes cost more per operation, but not proportionally more.
 
 For more guidance, see [Tips for better performance in Azure AI Search](./search-performance-tips.md).
+
+### Optimize indexer operations
+
+Serverless indexer compute usage depends on the work performed during each indexer run. For row-oriented sources, use the number of documents processed as an indicator of workload volume. For file-based sources such as Azure Blob Storage and Azure Data Lake Storage Gen2, monitor the amount of source data processed. Actual compute usage also depends on document payloads, index structure, enrichment, and other processing performed during the run.
+
+To reduce indexer compute usage:
+
+- **Use change detection and incremental indexing**: Process only new or changed data instead of repeatedly indexing the full data source.
+
+- **Right-size indexer schedules**: Choose a schedule that meets your data freshness requirements. Use Compute Unit telemetry to evaluate the effect of schedule frequency.
+
+- **Reduce unnecessary document content**: Remove content that doesn't need to be indexed, and exclude files or file types that aren't required.
+
+- **Scope enrichment skills carefully**: Run skills only on fields and documents that require enrichment, and avoid generating outputs that aren't used downstream. Billable skills can incur separate transaction charges.
+
+- **Monitor failed and repeated runs**: An indexer can consume compute for work completed before it fails. Review execution history and Compute Unit usage to identify recurring failures and retry patterns.
 
 ### Optimize your queries
 
@@ -227,6 +239,8 @@ Vector fields can significantly increase index size and indexing cost. Use the f
 Vector queries are compute-intensive because they require similarity calculations over high-dimensional data structures.
 
 - **Use hybrid search selectively**: Hybrid queries run both keyword and vector retrieval. Use only when necessary for relevance.
+
+- **Tune `maxTextRecallSize` for hybrid queries**: Set `hybridSearch.maxTextRecallSize` to control how many BM25-ranked text results are available to Reciprocal Rank Fusion (RRF). The default is 1,000, and the supported range is 1 through 10,000. Lowering the value can reduce text retrieval and result-fusion work, which can reduce resource utilization and latency. However, it can exclude relevant keyword results, including exact terms, IDs, and acronyms that vector search might miss. Test representative queries, and compare relevance, latency, and the `x-ms-azs-compute-units-consumed` response header before selecting a value. Control vector candidates separately by setting `k` on each vector query.
 
 - **Apply filters before vector queries**: Narrow the candidate set before vector search to reduce the amount of data processed. See [How filtering works in vector queries](./vector-search-filters.md#how-filtering-works-in-vector-queries).
 

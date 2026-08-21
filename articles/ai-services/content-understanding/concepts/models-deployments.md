@@ -5,7 +5,7 @@ description: Learn how Content Understanding maps analyzer models to Foundry dep
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 04/25/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
@@ -26,7 +26,7 @@ The service requires a `chat completion` model and an `embeddings` model and sup
 The service is periodically updated to add support for more models. The currently supported models are listed in [Service limits - Supported generative models](../service-limits.md#supported-generative-models). Please refer to [Model retirement schedule](../../../foundry/openai/concepts/model-retirement-schedule.md) to track Foundry model lifecycle stage and retirement date.
 
 > [!NOTE]
-> GPT-5.2 is now supported across all Content Understanding analyzers. Support for additional models will be added in future updates.
+> The GPT-5 series models, including the mini and nano variants where supported, are available for Content Understanding analyzers. Support for additional models is added in future updates. For the canonical, up-to-date list, see [Service limits - Supported generative models](../service-limits.md#supported-generative-models).
 
 ### Check supported models per analyzer
 
@@ -36,15 +36,13 @@ Different analyzers support different sets of models. To check which models a sp
 GET /contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01
 ```
 
-The response includes a `supportedModels` object that lists the valid completion and embedding models for that analyzer:
+The response includes a `supportedModels` object that lists the completion and embedding models supported by that analyzer. The following response uses `gpt-5.2` as an example:
 
-```jsonc
+```json
 {
   "analyzerId": "prebuilt-invoice",
-  // ...
   "supportedModels": {
     "completion": [
-      "gpt-4.1",
       "gpt-5.2"
     ],
     "embedding": [
@@ -89,7 +87,7 @@ When you create a custom analyzer, you can specify which chat completion model a
   },
   "config": {
 
-  }
+  },
   // Complete analyzer definition
 }
 ```
@@ -125,7 +123,7 @@ For the full onboarding flow, see [Quickstart: Try out Content Understanding Stu
 
 
 
-Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
+Studio can configure defaults for supported completion and embedding models. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled. For the current list, see [Supported generative models](../service-limits.md#supported-generative-models).
 
 :::image type="content" source="../media/concepts/configure-models-studio.png" alt-text="Screenshot of the Setup and Configure model deployment in the Content Understanding Studio." lightbox="../media/concepts/configure-models-studio.png" :::
 
@@ -135,15 +133,19 @@ From here, you can go on to try out Content Understanding features in the web po
 
 Use `PATCH /contentunderstanding/defaults` to set model deployment defaults at the resource level.
 
-```jsonc
-PATCH /contentunderstanding/defaults
+```http
+PATCH /contentunderstanding/defaults?api-version=2025-11-01
+```
+
+The request body maps model names and model aliases to deployment names:
+
+```json
 {
   "modelDeployments": {
     "gpt-5.2": "myGpt52Deployment",
     "text-embedding-3-large": "myTextEmbedding3LargeDeployment",
-    // Specify default model deployments using "model alias": "deployment name"
     "prebuilt-analyzer-completion": "myGpt52Deployment",
-    "prebuilt-analyzer-completion-mini": "myGpt41-miniDeployment",
+    "prebuilt-analyzer-completion-mini": "myGpt52Deployment",
     "prebuilt-analyzer-embedding": "myTextEmbedding3LargeDeployment"
   }
 }
@@ -151,17 +153,21 @@ PATCH /contentunderstanding/defaults
 
 After you set defaults, analyze requests can omit `modelDeployments`. Example analyze request that uses resource defaults:
 
-```jsonc
-POST /contentunderstanding/analyzers/myInvoice:analyze
+```http
+POST /contentunderstanding/analyzers/myInvoice:analyze?api-version=2025-11-01
+```
+
+```json
 {
   "inputs": [
     {
       "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf"
     }
   ]
-  // No modelDeployments needed - uses resource defaults
 }
 ```
+
+The request body omits `modelDeployments` because the request uses the resource defaults.
 
 ---
 
@@ -169,8 +175,11 @@ POST /contentunderstanding/analyzers/myInvoice:analyze
 
 Use this option when you want each request to explicitly point to model deployments by passing a `modelDeployments` object in the analyze request. This approach gives you maximum flexibility to use different deployments for different requests and doesn't require resource defaults.
 
-```jsonc
-POST /contentunderstanding/analyzers/myInvoice:analyze
+```http
+POST /contentunderstanding/analyzers/myInvoice:analyze?api-version=2025-11-01
+```
+
+```json
 {
   "inputs": [
     {
@@ -199,7 +208,7 @@ Analyze responses include a `usage` property. This property reports token usage 
     "documentPagesStandard": 1, 
     "audioHours": 0.234,
     "videoHours": 0.123,
-    "contextualizationToken": 1000,
+    "contextualizationTokens": 1000,
     "tokens": {
       "gpt-5.2-input": 1234, /*Completion model Input and output tokens consumed*/
       "gpt-5.2-output": 2345,

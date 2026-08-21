@@ -2,10 +2,11 @@
 title: Query-Time ACL and RBAC Enforcement
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.
 ms.reviewer: magottei
-ms.date: 06/08/2026
+ms.date: 08/08/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Query-time ACL and RBAC enforcement in Azure AI Search (preview)
@@ -59,6 +60,8 @@ This article explains how to set up queries that use permission metadata to filt
 
 - Initial ACL-based queries might experience higher latency compared to subsequent requests, due to caching and permission resolution overhead.
 
+- For indexed SharePoint content, a Microsoft Entra group nested within a SharePoint group isn't expanded. Microsoft Entra transitive group resolution doesn't support this mixed relationship. See [Supported group relationships](search-indexer-sharepoint-access-control-lists.md#supported-group-relationships).
+
 ## ACL entry limits per data source
 
 Access control list (ACL) entry limits define how many distinct permission records can be associated with a file, folder, or item within a connected data source. Each entry represents a single user or group identity and the access rights granted to that identity (for example, Read, Write, or Execute).
@@ -103,11 +106,13 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 Starting in the 2026-05-01-preview REST API, Azure AI Search can honor SharePoint site group memberships, such as Owners, Members, Visitors, and custom site groups, at query time. To enable this scenario, the index must include:
 
 - A `sharePointConnectorAppRegistration` property that references the federated identity credential of the Microsoft Entra application used to call SharePoint on behalf of the user.
-- A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_sharepoint_site_url` source field).
+- A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_spo_site_url` source field).
 
 At query time, Azure AI Search uses the registered application and the site URL on each candidate document to resolve the SharePoint group memberships of the calling user on that site. The resolved groups are matched against the `spg:`-prefixed values stored in the `groupIds` permission filter field. The `spg:` prefix distinguishes SharePoint site groups from Microsoft Entra group object IDs, which are stored without a prefix.
 
 For configuration details and limitations, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
+
+If SharePoint permission filtering returns missing or unexpected results, see [Troubleshoot SharePoint permission filtering](troubleshoot-sharepoint-query-permission-filtering.md).
 
 ### Example: Query with SharePoint site group enforcement
 
@@ -128,7 +133,7 @@ Content-Type: application/json
 
 ## Query example
 
-Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
+Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl). The query token is a Microsoft Entra access token for the querying user.
 
 ```http
 POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2026-05-01-preview

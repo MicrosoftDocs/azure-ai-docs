@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 07/20/2026
+ms.date: 08/20/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -32,7 +32,7 @@ The following table shows regional support for the [Responses API](../../openai/
 | --- | --- | --- | --- |
 | Australia East | Yes | Yes | Yes |
 | Brazil South | Yes | Yes | Yes |
-| Canada Central | Yes | Yes | No |
+| Canada Central | Yes | Yes | Yes |
 | Canada East | Yes | Yes | Yes |
 | Central US | Yes | Yes | Yes |
 | East US | Yes | Yes | Yes |
@@ -41,22 +41,22 @@ The following table shows regional support for the [Responses API](../../openai/
 | Germany West Central | Yes | Yes | Yes |
 | Italy North | Yes | Yes | Yes |
 | Japan East | Yes | Yes | Yes |
-| Japan West | Yes | Yes | No |
+| Japan West | Yes | Yes | Yes |
 | Korea Central | Yes | Yes | Yes |
 | North Central US | Yes | Yes | Yes |
-| Norway East | Yes | Yes | No |
-| Poland Central | Yes | Yes | No |
+| Norway East | Yes | Yes | Yes |
+| Poland Central | Yes | Yes | Yes |
 | South Africa North | Yes | Yes | Yes |
 | South Central US | Yes | Yes | Yes |
 | Southeast Asia | Yes | Yes | Yes |
 | South India | Yes | Yes | Yes |
 | Spain Central | Yes | Yes | Yes |
 | Sweden Central | Yes | Yes | Yes |
-| Switzerland North | Yes | Yes | No |
-| Switzerland West | Yes | Yes | No |
+| Switzerland North | Yes | Yes | Yes |
+| Switzerland West | Yes | Yes | Yes |
 | UAE North | Yes | Yes | Yes |
 | UK South | Yes | Yes | Yes |
-| West Central US | Yes | Yes | No |
+| West Central US | Yes | Yes | Yes |
 | West Europe | Yes | Yes | Yes |
 | West US | Yes | Yes | Yes |
 | West US 3 | Yes | Yes | Yes |
@@ -77,9 +77,9 @@ When you use a private network configuration, such as a network-secured standard
 
 For more information, see [Use a virtual network with Foundry Agent Service](../how-to/virtual-networks.md).
 
-### Supported models
+## Supported models
 
-Agent Service supports Azure OpenAI models and several Foundry models sold by Azure. Model availability can change over time and varies by region. To see the full list of models you can deploy for your project and region, use the Foundry portal model experience.
+Agent Service supports Azure OpenAI models and several Foundry models sold by Azure. Model availability can change over time and varies by region. To see the full list of models you can deploy for your project and region, use the [Foundry portal](https://ai.azure.com/catalog/models?capabilities=agentsv2&cid=learnDocs) model experience.
 
 ### Sovereign clouds
 
@@ -98,13 +98,16 @@ The following table shows which tools are available in each [supported region](#
 |---------------------|-----|-----------------|---------------------|-------------------|--------------|--------------------|-------------|----------|------------------------------------|-----------------------------|-------------------|-----|---------|------------|------------|
 | Australia East      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Brazil South        | yes | yes             | yes                 | yes               | no           | yes                | no          | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Canada Central      | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Canada East         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Central US          | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | East US             | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | East US 2           | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | France Central      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Germany West Central | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Italy North         | yes | yes             | yes                 | yes               | no           | yes                | no          | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Japan East          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Japan West          | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Korea Central       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | North Central US    | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Norway East         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
@@ -116,8 +119,11 @@ The following table shows which tools are available in each [supported region](#
 | Spain Central       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Sweden Central      | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | Switzerland North   | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| Switzerland West    | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | UAE North           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | UK South            | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| West Central US     | yes | yes             | no                  | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| West Europe         | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | West US             | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | West US 3           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 
@@ -155,14 +161,6 @@ The following table shows which tools each model supports. For the image generat
 | MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No | No |
 | Meta-Llama-3.1-405B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | Mistral-large-2407 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
-| claude-haiku-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-mythos-preview | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-1 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | Yes | Yes |
-| claude-opus-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-opus-4-7 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
-| claude-sonnet-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
 | codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
 | computer-use-preview | No | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No | No |
 | gpt-35-turbo | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |

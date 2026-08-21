@@ -8,12 +8,14 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/29/2026
+ms.date: 08/19/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
 
 This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
+
+The **Replacement** column identifies Microsoft's recommended replacement and, where supported, the target for automatic upgrades at retirement. You don't need to wait for a replacement to be listed before evaluating or manually migrating to another compatible model. Evaluate available models using your application and data, comparing quality, latency, and cost. For selection criteria and the full migration process, see [Model migration process](../../foundry-models/concepts/model-migration.md).
 
 ## Foundry Models sold by Azure
 
@@ -24,12 +26,12 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
-| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
-| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1 | 2025-04-14 | Legacy | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Legacy | 2027-04-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Legacy | 2027-04-14 | — |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2027-04-14 | gpt-5.1 |
-| gpt-4o | 2024-11-20 | Deprecated | 2027-04-14 | gpt-5.1 |
+| gpt-4o | 2024-11-20 | Legacy | 2027-04-14 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | Deprecated | 2027-04-14 | — |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2027-06-15 | — |
@@ -69,10 +71,8 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-audio-mini | 2025-12-15 | GA | 2027-06-15 | — |
 | gpt-chat-latest | 2026-05-05 | Preview | 2026-08-05 | — |
 | gpt-chat-latest | 2026-05-28 | Preview | 2026-08-28 | — |
-| gpt-chat-latest | 2026-06-24 | Preview | 2026-08-28 | — |
-| gpt-chat-latest | 2026-05-05 | Preview | 2026-08-05 | — |
-| gpt-chat-latest | 2026-05-28 | Preview | 2026-08-28 | — |
-| gpt-chat-latest | 2026-06-24 | Preview | 2026-08-28 | — |
+| gpt-chat-latest | 2026-06-24 | Preview | 2026-09-24 | — |
+| gpt-chat-latest | 2026-08-06 | Preview | 2026-12-02 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2027-06-16 | — |
@@ -84,6 +84,8 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2027-04-06 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2027-06-15 | — |
+| gpt-realtime-mini | 2025-10-06 | GA | 2026-09-21 | — |
+| gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
 | o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
 | o3 | 2025-04-16 | GA | 2026-10-21 | gpt-5.6-sol |
@@ -141,15 +143,14 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| DeepSeek-R1 | 1 | Legacy | 2026-08-13 | DeepSeek-V4-Pro |
+| DeepSeek-R1 | 1 | Retired | 2026-08-13 | DeepSeek-V4-Pro |
 | DeepSeek-R1-0528 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Pro |
 | DeepSeek-V3-0324 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.1 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
-| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
-| DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
-| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
+| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | DeepSeek-V4-Flash-0731 |
+| DeepSeek-V4-Flash-0731 | 2026-07-31 | Preview | 2026-12-03 | — |
 | DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
 
 
@@ -166,19 +167,16 @@ Unless explicitly stated, training retires no earlier than the base model retire
 |-------|---------|-----------|-----------------|-------------|
 | model-router | 2025-05-19 | Preview | 2026-08-30 | — |
 | model-router | 2025-08-07 | Preview | 2026-08-30 | — |
-| model-router | 2025-05-19 | Preview | 2026-08-30 | — |
-| model-router | 2025-08-07 | Preview | 2026-08-30 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
 | MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
-| MAI-Image-2  | 2026-02-20 | Preview | 2026-08-15 | MAI-Image-2.5 |
-| MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
-| MAI-Image-2  | 2026-02-20 | Preview | 2026-08-15 | MAI-Image-2.5 |
+| MAI-Image-2  | 2026-02-20 | Retired | 2026-08-15 | MAI-Image-2.5 |
+| MAI-Transcribe-1 | 2026-01-23 | Preview | 2026-09-15 | MAI-Transcribe-1.5 |
 
 ### Mistral AI
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| Mistral-Large-3 | 1 | GA | — | — |
+| Mistral-Large-3 | 1 | Preview | — | — |
 | mistral-document-ai-2505 | 1 | Retired | 2026-07-20 | mistral-document-ai-2512, mistral-ocr-4-0 |
 | mistral-document-ai-2512 | 1 | GA | — | mistral-ocr-4-0 |
 
@@ -188,7 +186,6 @@ Unless explicitly stated, training retires no earlier than the base model retire
 |-------|---------|-----------|-----------------|-------------|
 | Kimi-K2.5 | 1 | Preview | 2027-01-26 | — |
 | Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
-| Kimi-K2.7-Code | 2026-06-12 | Preview | 2026-10-03 | — |
 | Kimi-K2.7-Code | 2026-06-12 | Preview | 2026-10-03 | — |
 
 ### OpenAI-OSS
@@ -222,7 +219,7 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 |-------|---------|-----------|-----------------|-------------|
 | claude-haiku-4-5 | — | Preview | 2026-10-19 | — |
 | claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
-| claude-opus-4-1 | — | Preview | 2026-08-05 | claude-opus-4-8 |
+| claude-opus-4-1 | — | Retired | 2026-08-05 | claude-opus-5 |
 | claude-opus-4-5 | — | Preview | 2026-10-19 | — |
 | claude-opus-4-6 | — | Preview | 2027-02-02 | — |
 | claude-opus-4-7 | — | Preview | 2027-04-06 | — |
@@ -308,9 +305,9 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| Stable-Diffusion-3.5-Large | 1 | Deprecated | 2026-07-31 | — |
-| Stable-Image-Core | 1 | Deprecated | 2026-07-31 | — |
-| Stable-Image-Ultra | 1 | Deprecated | 2026-07-31 | — |
+| Stable-Diffusion-3.5-Large | 1 | Retired | 2026-07-31 | — |
+| Stable-Image-Core | 1 | Retired | 2026-07-31 | — |
+| Stable-Image-Ultra | 1 | Retired | 2026-07-31 | — |
 
 ## Related content
 

@@ -6,7 +6,7 @@ ms.author: aashcraft
 ms.reviewer: haakar
 reviewer: haakar
 manager: mcleans
-ms.date: 05/27/2026
+ms.date: 08/20/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: limits-and-quotas

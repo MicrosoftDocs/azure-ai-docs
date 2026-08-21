@@ -96,6 +96,8 @@ Use `model-router` as your default. Customize your model router deployment with 
 
 Switch to a named model only when you need deterministic control.
 
+When you evaluate automatic routing, use the named model that currently serves your workload as the baseline. Keep the request and application configuration consistent, then compare the quality, cost, and latency outcomes before you adopt model router broadly. See [Evaluate model router for your workload](evaluate-model-router.md).
+
 
 ## Built-in enterprise capabilities
 

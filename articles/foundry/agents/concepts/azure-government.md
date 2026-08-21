@@ -60,6 +60,8 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Azure AI Search | Yes |
 | Azure Functions | Yes |
 | Function calling | Yes |
+| MCP servers | Yes |
+| OpenAPI tool | Yes |
 | Web search | No |
 | Grounding with Bing | No |
 | Image Generation | No |
@@ -67,13 +69,11 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Computer Use | No |
 | Microsoft Fabric | No |
 | SharePoint | No |
-| MCP servers | No |
 | Agent-to-Agent (A2A) | No |
-| OpenAPI tool | No |
 
 ## Publishing
 
-Azure Government supports publishing agents. Each published agent gets a stable managed endpoint and a Microsoft Entra identity. You can register the agent with the Entra Agent Registry for discovery within your tenant. Publishing to Microsoft Teams and Microsoft 365 Copilot isn't supported. For more information, see [Publish an agent](../how-to/publish-copilot.md).
+Azure Government supports publishing agents. Each published agent gets a stable managed endpoint and a Microsoft Entra identity. You can register the agent with the Entra Agent Registry for discovery within your tenant. For more information, see [Publish an agent](../how-to/publish-copilot.md).
 
 ## SDK configuration for Azure Government
 

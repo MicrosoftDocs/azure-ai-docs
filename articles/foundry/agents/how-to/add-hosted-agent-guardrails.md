@@ -32,7 +32,7 @@ You reference the guardrail by its RAI policy resource ID on the agent definitio
     /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
     ```
 
-* For the Azure Developer CLI method: the `azd ai agent` extension, version 0.1.38-preview or later.
+* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.1 or later.
 * For the Python SDK method: the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) for Python, version 2.2.0 or later:
 
     ```bash
@@ -47,11 +47,13 @@ When you omit `rai_config`, the agent runs without a content safety guardrail. W
 
 Always use the full ARM resource ID for `rai_policy_name`, not the bare policy name.
 
+`rai_config` is the shape the Foundry API accepts, so the Python SDK and REST examples in this article set it directly. The Azure Developer CLI doesn't expose `rai_config` in `azure.yaml`; it uses a `policies` list instead and maps it to `rai_config` when it deploys.
+
 ## Add a guardrail with the Azure Developer CLI
 
-When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `azure.yaml`. Set `rai_config.rai_policy_name` to the full ARM resource ID of the RAI policy.
+When you use `azd`, declare the guardrail in the `policies` list on the `azure.ai.agent` service in `azure.yaml`. Add an entry with `type: rai_policy` and set `raiPolicyName` to the full ARM resource ID of the RAI policy. When you deploy, `azd` maps that entry to `rai_config.rai_policy_name` on the agent definition it sends to Foundry.
 
-1. In your `azure.yaml`, add `rai_config` to the agent service:
+1. In your `azure.yaml`, add `policies` to the agent service:
 
     ```yaml
     services:
@@ -61,9 +63,10 @@ When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `az
         kind: hosted
         name: my-hosted-agent
         description: A hosted agent with a content safety guardrail
-        rai_config:
-          # Full ARM resource ID of the RAI policy on the Foundry resource.
-          rai_policy_name: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
+        policies:
+          - type: rai_policy
+            # Full ARM resource ID of the RAI policy on the Foundry resource.
+            raiPolicyName: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
         protocols:
           - protocol: responses
             version: "2.0.0"
@@ -214,15 +217,15 @@ Content safety controls screen prompts and responses. *Network egress controls* 
 ### How egress rules are evaluated
 
 - The system evaluates rules in order, from top to bottom. The first matching rule wins.
-- If no rule matches, the policy's default action applies. Set the default action to **Deny** for an allowlist (recommended) or **Allow** for a denylist.
-- When you apply an egress policy, the agent runtime automatically allowlists foundational domains it needs to function. A **Deny** default action doesn't block this required platform connectivity, so you don't need to add rules for it.
+- If no rule matches, the policy's default action applies. Set the default action to **Deny** for an allow list (recommended) or **Allow** for a deny list.
+- When you apply an egress policy, the agent runtime automatically allow lists foundational domains it needs to function. A **Deny** default action doesn't block this required platform connectivity, so you don't need to add rules for it.
 - Each rule matches on the request host. Wildcards such as `*.contoso.com` are supported.
 - Rule actions are **Allow**, **Deny**, **Transform** (allow the request and modify its headers), and **Rewrite** (redirect the request to another destination).
 - Evaluation is fail-closed: if the policy can't be evaluated, the request is denied.
 
 ### Rule limits
 
-The **total serialized size of all egress policies on the account** (approximately **2 MB**) limits egress rules. It's not a count limit on any single policy. In practice, this limit allows roughly **15,000 rules in total** across all policies on the account, whether they're in one policy or split across several. Requests that push the account over the limit are rejected. Keep the total number of rules well under this threshold, and consolidate or prune unused rules where possible.
+You can add a maximum of **480 egress rules** per policy. This limit applies to all egress rule actions: **Allow**, **Deny**, **Transform**, and **Rewrite**. To request an increase to this limit, [create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 
 ### Choose an enforcement mode
 
@@ -268,7 +271,7 @@ curl -X PUT \
 ```
 
 - Set `egressPolicy.mode` to `Enforced` to block traffic, or `Audit` to log would-deny events without blocking.
-- Set `egressPolicy.defaultAction` to `Deny` for an allowlist or `Allow` for a denylist.
+- Set `egressPolicy.defaultAction` to `Deny` for an allow list or `Allow` for a deny list.
 - Set each rule's `action.actionType` to `Allow`, `Deny`, `Transform`, or `Rewrite`.
 
 To review the configured rules, send a GET request to the same URL and inspect `properties.egressPolicy`.
@@ -377,26 +380,57 @@ Keep these constraints in mind:
 
 ### View egress decisions
 
-The agent sends network egress decisions to the project's Application Insights resource. Each event includes details such as the destination host, matched rule, decision, and enforcement mode. Review these events to confirm that network egress behavior aligns with your configured policy.
+The agent sends network egress decisions to your project's Application Insights and trace monitoring tools. You can view these decisions in the Foundry portal playground and in Application Insights to confirm that network egress behavior aligns with your configured policy.
 
-To locate the project's Application Insights resource:
+#### In the Foundry portal playground
 
-1. Go to the Foundry portal.
-1. Select the **Operate** tab.
-1. Select **Admin**.
-1. Search for and select your project.
-1. Open the **Connected resources** tab.
-1. Find the **AppInsights** connected resource and copy its **Target URI**.
+To view egress decisions in the trace timeline:
 
-Each project should have a single Application Insights connection. If Application Insights isn't configured, select **Add connection** and add an Application Insights resource for the project.
+1. Sign in to [Microsoft Foundry](https://ai.azure.com) and open your project's playground.
+1. Run or select an agent invocation to open its trace.
+1. Select the **Trajectories** tab to see the full trace timeline.
+1. Expand the trace nodes until you see a span named **Network egress decision**. It appears next to the request that triggered it.
+1. Select the span to review the decision details.
 
-After you identify the Application Insights resource, open it in the Azure portal and go to **Logs**. Run the following query to view recent network egress decisions:
+:::image type="content" source="../media/add-hosted-agent-guardrails/network-egress-decision-trace.png" alt-text="Screenshot of the Trajectories tab in the Foundry portal playground, showing a Network egress decision span in the trace timeline." lightbox="../media/add-hosted-agent-guardrails/network-egress-decision-trace.png":::
+
+The span details show the information you need to understand why a request was allowed or denied:
+
+| Field | Description |
+|-------|-------------|
+| Decision | The outcome of the policy evaluation, for example `Allow` or `Deny`. |
+| Reason | A human-readable explanation, such as "Request matched allow rule" or "No egress policy rule allowed this destination." |
+| Matched rule | The name of the rule that determined the outcome, if one matched. |
+| Rule source | The origin of the matched rule, such as a connector or policy definition. |
+| Enforcement | Whether the policy was enforced or run in audit mode. |
+| Destination | The method and URL of the outbound request. |
+| Default action | The action applied when no rule matches, for example `Deny`. |
+
+Allowed requests appear with a success status, and denied requests appear with a failure status, so you can spot blocked calls without leaving the trace view.
+
+#### In Application Insights
+
+To review egress decisions in Application Insights logs:
+
+1. Locate your project's Application Insights resource:
+   1. Go to the Foundry portal.
+   1. Select the **Operate** tab.
+   1. Select **Admin**.
+   1. Search for and select your project.
+   1. Open the **Connected resources** tab.
+   1. Find the **AppInsights** connected resource and copy its **Target URI**.
+
+   Each project should have a single Application Insights connection. If Application Insights isn't configured, select **Add connection** and add an Application Insights resource for the project.
+
+2. Open the Application Insights resource in the Azure portal and go to **Logs**. Run the following query to view recent network egress decisions:
 
 ```kusto
 traces
 | where timestamp > ago(1h)
 | where message == "Network egress decision"
 ```
+
+Each event includes details such as the destination host, matched rule, decision, and enforcement mode.
 
 ### What a blocked request looks like
 

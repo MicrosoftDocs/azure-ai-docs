@@ -48,6 +48,9 @@ items:
     - name: Model versions (government)
       displayName: Model versions in Microsoft Foundry Models (government)
       href: ../../foundry-models/concepts/model-versions-gov.md
+    - name: Model upgrades and switches
+      displayName: Model migration process, upgrade or switch models in Microsoft Foundry
+      href: ../../foundry-models/concepts/model-migration.md
     - name: Automatic model updates for Azure OpenAI Models
       displayName: Working with models
       href: ../../openai/how-to/working-with-models.md
@@ -85,6 +88,9 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Evaluate model router
+      displayName: Evaluate model router for your workload
+      href: ../../openai/how-to/evaluate-model-router.md
     - name: Govern model router with Azure Policy
       href: ../../how-to/model-router-policy.md
     - name: Use model router with agents
@@ -181,8 +187,8 @@ items:
   - name: Deploy using code
     displayName: Deploy models using Azure CLI and Bicep
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Upgrade from GitHub Models
-    displayName: Upgrade from GitHub Models to Microsoft Foundry Models
+  - name: Migrate from GitHub Models
+    displayName: Migrate from GitHub Models to Microsoft Foundry Models, GitHub Models retirement
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Deploy with managed compute (preview)
     displayName: Deploy open-source AI models with managed compute in Foundry
@@ -200,6 +206,9 @@ items:
     - name: MAI-Image models
       displayName: MAI image models in Foundry
       href: ../../foundry-models/how-to/use-foundry-models-mai-image.md
+    - name: MAI-Thinking-1 model
+      displayName: MAI Thinking-1 model in Foundry
+      href: ../../foundry-models/how-to/use-foundry-models-mai-thinking.md
     - name: MAI-Voice models
       displayName: mai voice, neural voice
       href: /azure/ai-services/speech-service/mai-voices?context=/azure/foundry/context/context
@@ -250,12 +259,18 @@ items:
       items:
       - name: Use the Azure OpenAI Responses API
         href: ../../openai/how-to/responses.md
+      - name: Migrate from Chat Completions to Responses API
+        displayName: Migrate Python apps from Azure OpenAI Chat Completions to the Responses API
+        href: /azure/developer/ai/how-to/azure-openai-to-responses?context=/azure/foundry/context/context
       - name: Text generation
         displayName: How to generate text responses with Microsoft Foundry Models
         href: ../../foundry-models/how-to/generate-responses.md
       - name: Function calling
         displayName: How to use function calling with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/function-calling.md
+      - name: Multi-agent orchestration (preview)
+        displayName: Use multi-agent orchestration with the Azure OpenAI Responses API
+        href: ../../openai/how-to/responses-multi-agent.md
       - name: Structured outputs
         displayName: How to use structured outputs with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/structured-outputs.md
@@ -294,15 +309,9 @@ items:
       href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
-    - name: Embeddings (Azure OpenAI)
+    - name: Embeddings
       displayName: Learn how to generate embeddings
       href: ../../openai/how-to/embeddings.md
-    - name: Text embeddings (Foundry Models)
-      displayName: How to generate embeddings with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
-    - name: Image embeddings
-      displayName: How to generate image embeddings with Microsoft Foundry Models service
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
     - name: Embeddings tutorial
       displayName: "Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search"
       href: ../../openai/tutorials/embeddings.md

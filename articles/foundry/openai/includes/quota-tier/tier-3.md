@@ -7,7 +7,8 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/27/2026
+ms.date: 08/20/2026
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -61,15 +62,16 @@ ai-usage: ai-assisted
 | gpt-5.4-mini                   | GlobalStandard    | 4,000       | 4,000,000   |
 | gpt-5.4-nano                   | DataZoneStandard  | 16,000      | 16,000,000  |
 | gpt-5.4-nano                   | GlobalStandard    | 46,000      | 46,000,000  |
-| gpt-5.5                        | DataZoneStandard  | 0           | 0           |
-| gpt-5.5                        | GlobalStandard    | 0           | 0           |
+| gpt-5.5                        | DataZoneStandard  | 1,333       | 1,333,000   |
+| gpt-5.5                        | GlobalStandard    | 4,000       | 4,000,000   |
 | gpt-5.6-luna                   | DataZoneStandard  | 1,333       | 1,333,000   |
 | gpt-5.6-luna                   | GlobalStandard    | 4,000       | 4,000,000   |
 | gpt-5.6-sol                    | DataZoneStandard  | 1,333       | 1,333,000   |
 | gpt-5.6-sol                    | GlobalStandard    | 4,000       | 4,000,000   |
 | gpt-5.6-terra                  | DataZoneStandard  | 1,333       | 1,333,000   |
 | gpt-5.6-terra                  | GlobalStandard    | 4,000       | 4,000,000   |
-| gpt-chat-latest                | GlobalStandard    | 20,000      | 2,000,000   |
+| gpt-chat-latest<sup>1</sup>    | GlobalStandard    | 30,000      | 3,000,000   |
+| gpt-chat-latest<sup>2</sup>    | GlobalStandard    | 3,000       | 3,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 30          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 54          | -           |

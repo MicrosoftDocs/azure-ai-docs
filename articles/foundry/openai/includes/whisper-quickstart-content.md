@@ -9,7 +9,7 @@ ms.date: 07/29/2026
 ms.custom: include, classic-and-new
 ---
 
-In this quickstart, you transcribe speech to text by using the [Azure OpenAI transcription model](../../../ai-services/speech-service/whisper-overview.md). The transcription model can transcribe human speech in numerous languages and translate other languages into English.
+In this quickstart, you transcribe speech to text by using the [OpenAI transcription model](../../../ai-services/speech-service/transcribe-overview.md). The transcription model can transcribe human speech in numerous languages and translate other languages into English.
 
 For offline transcription, use `gpt-transcribe`. This model uses the Audio API transcription path and isn't a Realtime API model.
 

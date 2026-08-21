@@ -276,7 +276,7 @@ with open(audio_file_path, "rb") as audio_file:
     print(result.combined_phrases[0].text)
 ```
 
-For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md#implement-phrase-list-in-fast-transcription).
+For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md#implement-phrase-list-in-fast-and-llm-speech-transcription).
 
 Reference: [`PhraseListProperties`](/python/api/azure-ai-transcription/azure.ai.transcription.models.phraselistproperties), [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
 

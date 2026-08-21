@@ -4,7 +4,7 @@ description: "Learn about the model router feature in Azure OpenAI in Microsoft 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 05/31/2026
+ms.date: 08/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
@@ -13,12 +13,15 @@ ms.custom:
   - build-2025
   - dev-focus
   - doc-kit-assisted
+  - references_regions
 ai-usage: ai-assisted
 ---
 
 # Model router for Microsoft Foundry
 
 Model router is a trained language model that intelligently routes your prompts in real time to the most suitable large language model (LLM). You deploy model router like any other Foundry model. Thus, it delivers high performance while saving on costs, reducing latencies, and increasing responsiveness, while maintaining comparable quality, all packaged as a single model deployment.
+
+Model router works both as a drop-in model deployment and as an optimization layer. In a traditional hill-climbing workflow, you compare individual models and build routing logic as you search for a better balance of quality, cost, and latency. Model router shortens that model-navigation journey by managing per-request model selection behind one deployment. Evaluation remains important: compare model router with your current baseline to confirm that managed routing improves the outcomes that matter for your workload. For guidance, see [Evaluate model router for your workload](../how-to/evaluate-model-router.md).
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=32338ec4-89bf-4438-8cc3-2e3f01e88533]
 
@@ -30,6 +33,44 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 
 [!INCLUDE [model-router 1](../includes/concepts-model-router-1.md)]
 
+## Supported regions
+
+Model router supports Global Standard deployments in all of the following regions. A check mark (✅) indicates that the deployment type is available. A hyphen (-) indicates that it's not available.
+
+| Region | Global Standard | Data Zone Standard |
+| :--- | :---: | :---: |
+| Australia East | ✅ | ✅ |
+| Brazil South | ✅ | - |
+| Canada East | ✅ | - |
+| Central US | ✅ | ✅ |
+| East US | ✅ | ✅ |
+| East US 2 | ✅ | ✅ |
+| France Central | ✅ | ✅ |
+| Germany West Central | ✅ | ✅ |
+| Italy North | ✅ | ✅ |
+| Japan East | ✅ | ✅ |
+| Japan West | ✅ | ✅ |
+| Korea Central | ✅ | ✅ |
+| North Central US | ✅ | ✅ |
+| Poland Central | ✅ | ✅ |
+| South Africa North | ✅ | - |
+| South Central US | ✅ | ✅ |
+| South India | ✅ | ✅ |
+| Southeast Asia | ✅ | ✅ |
+| Spain Central | ✅ | ✅ |
+| Sweden Central | ✅ | ✅ |
+| Switzerland North | ✅ | ✅ |
+| Switzerland West | ✅ | - |
+| UK South | ✅ | - |
+| UK West | ✅ | - |
+| West Central US | ✅ | - |
+| West Europe | ✅ | ✅ |
+| West US | ✅ | ✅ |
+| West US 3 | ✅ | ✅ |
+
+> [!NOTE]
+> The models available to model router in each region are limited to the supported underlying models available in that region. This regional expansion lets you use model router to route requests across the available supported models in each listed region.
+
 ## Routing mode
 
 With the latest version, if you choose custom deployment, you can select the **routing mode** to optimize for quality or cost while maintaining a baseline level of performance. Setting a routing mode is optional, and if you don’t set one, your deployment defaults to the Balanced mode.
@@ -37,7 +78,7 @@ With the latest version, if you choose custom deployment, you can select the **r
 Available routing modes:
 
 | Mode | Description |
-|------|-----------|
+| ------ | ----------- |
 | Balanced (default) | Considers both cost and quality dynamically. Perfect for general-purpose scenarios |
 | Quality | Prioritizes for maximum accuracy. Best for complex reasoning or critical outputs |
 | Cost | Prioritizes for more cost savings. Ideal for high-volume, budget-sensitive workloads |

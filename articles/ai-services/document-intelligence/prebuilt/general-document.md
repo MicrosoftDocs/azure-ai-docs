@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 05/25/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---
@@ -29,17 +29,14 @@ ai-usage: ai-assisted
 
 :::moniker-end
 
-::: moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)**  | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous version:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
-::: moniker-end
-
-::: moniker range="doc-intel-3.0.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
-::: moniker-end
+::: moniker range=">=doc-intel-3.1.0"
+[!INCLUDE [applies to v3.1 and v3.0](../includes/applies-to-v31-v30.md)]
 
 The General document model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to extract key-value pairs, tables, and selection marks from documents. General document is available with the v3.1 and v3.0 APIs. For more information, _see_ our [migration guide](../v3-1-migration-guide.md).
 
-::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+::: moniker-end
+
+:::moniker range=">=doc-intel-2.1.0"
 
 ## General document features
 

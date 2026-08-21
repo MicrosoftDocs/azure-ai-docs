@@ -3,7 +3,7 @@ title: "Build a voice agent with hosted agents"
 description: "Build and deploy a real-time voice agent on Foundry Agent Service using the invocations_ws WebSocket protocol."
 author: aahill
 ms.author: aahi
-ms.date: 07/09/2026
+ms.date: 08/06/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -312,7 +312,7 @@ Traces and metrics appear in the linked Application Insights resource alongside 
 | Maximum WebSocket frame size | 1 MB | Enforced by the platform proxy (close code `1009`). |
 | Maximum connection duration | ~30 minutes | The platform sends close code `1001` on shutdown drain. Reconnect with the same `agent_session_id`. |
 | Sandbox resources | Up to 2 vCPU / 4 GiB | At least 1 vCPU / 2 GiB recommended for voice. |
-| Session idle timeout | 15 minutes | Compute is deprovisioned; session state is persisted. |
+| Session idle timeout | 5-60 minutes (15-minute default) | Compute is deprovisioned; session state is persisted. |
 
 The platform doesn't replay missed frames. Your container is responsible for any application-level resume protocol.
 

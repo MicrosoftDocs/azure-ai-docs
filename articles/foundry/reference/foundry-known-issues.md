@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: troubleshooting-known-issue
-ms.date: 05/06/2026
+ms.date: 08/19/2026
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: bgilmore

@@ -4,7 +4,7 @@ description: "Prototype an enterprise agent: build a single agent with SharePoin
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: tutorial
-ms.date: 03/31/2026
+ms.date: 07/31/2026
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: dantaylo
@@ -52,7 +52,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 - (Optional) Git installed for cloning the sample repository
 
 > [!IMPORTANT]
-> SDK versions and sample repository structure may change after publication. Before you begin, check the [sample repository README](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype) for the latest setup instructions, required package versions, and environment configuration. If a version referenced in this tutorial isn't available on [PyPI](https://pypi.org/project/azure-ai-projects/) or [NuGet](https://www.nuget.org/packages/Azure.AI.Projects), use the latest published version instead.
+> SDK versions and sample repository structure might change after this article is published. Before you begin, check the [sample repository README](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype) for the latest setup instructions, required package versions, and environment configuration. If a version referenced in this tutorial isn't available on [PyPI](https://pypi.org/project/azure-ai-projects/) or [NuGet](https://www.nuget.org/packages/Azure.AI.Projects), use the latest published version instead.
 
 ## Step 1: Get the sample code
 
@@ -178,7 +178,8 @@ Start by running the agent so you see working functionality before diving into i
 1. Verify that your `requirements.txt` uses these published package versions:
 
    ```text
-   azure-ai-projects>=2.0.0
+   azure-ai-projects>=2.3.0
+   azure-identity
    python-dotenv
    ```
 
@@ -201,7 +202,7 @@ Start by running the agent so you see working functionality before diving into i
    ```
    ---
 
-   Verify the install succeeded. You should see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
+   Verify the install succeeded. You see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
@@ -222,7 +223,7 @@ Create a `.env` file in the `ModernWorkplaceAssistant` directory.
 
 ```dotenv
 # Foundry configuration
-FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_PROJECT_ENDPOINT=https://<your-resource>.services.ai.azure.com/api/projects/<your-project>
 FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # The Microsoft Learn MCP Server (optional)
@@ -236,7 +237,7 @@ SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 
 ```dotenv
 # Foundry configuration
-FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_PROJECT_ENDPOINT=https://<your-resource>.services.ai.azure.com/api/projects/<your-project>
 FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # SharePoint integration (optional - requires connection name)
@@ -477,12 +478,12 @@ Contoso Corp supports flexible work arrangements, including remote work, to enha
 
 📊 SCENARIO 2/3: 📚 Technical Documentation Question (MCP Only)
 --------------------------------------------------
-❓ QUESTION: According to Microsoft Learn, what is the correct way to implement Azure AD Conditional Access policies? Please include reference links to the official documentation.
+❓ QUESTION: According to Microsoft Learn, what is the correct way to implement Microsoft Entra Conditional Access policies? Please include reference links to the official documentation.
 🎯 BUSINESS CONTEXT: IT administrator needs authoritative Microsoft technical guidance
 🎓 LEARNING POINT: MCP tool accesses Microsoft Learn for official documentation with links
 --------------------------------------------------
 🤖 AGENT RESPONSE:
-✅ SUCCESS: To implement Azure AD Conditional Access policies correctly, follow these key steps outlined in the Microsoft Learn documentation:
+✅ SUCCESS: To implement Microsoft Entra Conditional Access policies correctly, follow these key steps outlined in the Microsoft Learn documentation:
 
 ### 1. Understanding Conditional Access
 Conditional Access policies act as "if-then" statements that enforce organizational access controls based on various signals. Th...
@@ -504,10 +505,10 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 
 ✅ DEMONSTRATION COMPLETED!
 🎓 Key Learning Outcomes:
-   • Microsoft Foundry SDK usage for enterprise AI
-   • Conversation management via the Responses API
-   • Real business value through AI assistance
-   • Foundation for governance and monitoring (Tutorials 2-3)
+   * Microsoft Foundry SDK usage for enterprise AI
+   * Conversation management via the Responses API
+   * Real business value through AI assistance
+   * Foundation for governance and monitoring (Tutorials 2-3)
 
 🎯 Try interactive mode? (y/n): n
 
@@ -584,7 +585,7 @@ The `data_source` configuration:
 
 ### Retrieve evaluation results
 
-Poll the evaluation run until it completes, then retrieve the detailed output items:
+Poll the evaluation run until it finishes, and then retrieve the detailed output items.
 
 # [Python](#tab/python)
 
@@ -598,7 +599,7 @@ Poll the evaluation run until it completes, then retrieve the detailed output it
 
 Each output item includes:
 
-- **Label**: Binary "pass" or "fail" result
+- **Label**: Binary pass or fail result
 - **Score**: Numeric score on the evaluator's scale
 - **Reason**: Explanation of why the score was assigned (for LLM-based evaluators)
 
@@ -711,5 +712,5 @@ When you no longer need them, delete the resources you created in this tutorial:
 
 - [Foundry Agent Service overview](../agents/overview.md)
 - [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md)
-- [MCP tool integration](../agents/how-to/tools/model-context-protocol.md)
-- [Multi-agent patterns](../agents/how-to/tools/agent-to-agent.md)
+- [MCP tool integration](../agents/how-to/tools/model-context-protocol.md).
+- [Multi-agent patterns](../agents/how-to/tools/agent-to-agent.md).

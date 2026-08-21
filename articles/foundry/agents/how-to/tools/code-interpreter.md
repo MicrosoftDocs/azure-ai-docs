@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 08/05/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -30,7 +30,16 @@ When you enable Code Interpreter, your agent can write and run Python code itera
 > [!IMPORTANT]
 > Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, it creates two Code Interpreter sessions. Each session is active by default for one hour with an idle timeout of 30 minutes.
 
-### Usage support
+## Prerequisites
+
+- Basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md) for details.
+- Latest SDK package installed for your language. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- Azure AI model deployment configured in your project.
+
+> [!NOTE]
+> Code Interpreter isn't available in all regions. See [Check regional and model availability](#check-regional-and-model-availability).
+
+## Usage support
 
 The following table shows SDK and setup support.
 
@@ -38,19 +47,9 @@ The following table shows SDK and setup support.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-## Prerequisites
-
-- Basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md) for details.
-- Latest SDK package installed for your language. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
-- Azure AI model deployment configured in your project.
-- For file operations: CSV or other supported files to upload for analysis.
-
-> [!NOTE]
-> Code Interpreter isn't available in all regions. See [Check regional and model availability](#check-regional-and-model-availability).
-
 ## Create an agent with Code Interpreter
 
-The following samples demonstrate how to create an agent with Code Interpreter enabled, upload a file for analysis, and download the generated output.
+The following samples demonstrate how to create an agent with Code Interpreter enabled, upload a file for analysis, and download the generated output. Each file-upload sample generates a small CSV in the current working directory, uploads it, and then deletes the local temporary file.
 
 > [!TIP]
 > You can customize Code Interpreter behavior at runtime, such as specifying which files to include or adjusting tool parameters per request, by using [structured inputs](../structured-inputs.md).
@@ -60,7 +59,7 @@ The following samples demonstrate how to create an agent with Code Interpreter e
 
 The following Python sample shows how to add the code interpreter tool to a toolbox, attach the toolbox to an agent, upload a CSV file for analysis, and request a bar chart based on the data. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 This sample demonstrates a complete workflow: upload a file, create an agent with Code Interpreter enabled, request data visualization, and download the generated chart.
 
@@ -70,10 +69,14 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, CodeInterpreterTool, AutoCodeInterpreterToolParam
 
-# Load the CSV file to be processed
-asset_file_path = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "../assets/synthetic_500_quarterly_results.csv")
-)
+CSV_DATA = """name,sector,operating_profit
+SkyBridge Logistics,TRANSPORTATION,185.2
+Velocity Rail Freight,TRANSPORTATION,310.2
+AeroJet Airlines,TRANSPORTATION,510.6
+"""
+csv_path = os.path.abspath("synthetic-company-financial-results.csv")
+with open(csv_path, "w", encoding="utf-8", newline="") as csv_file:
+    csv_file.write(CSV_DATA)
 
 # Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 PROJECT_ENDPOINT = "your_project_endpoint"
@@ -85,8 +88,10 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
-# Upload the CSV file for the code interpreter to use
-file = openai.files.create(purpose="assistants", file=open(asset_file_path, "rb"))
+# Upload the generated CSV file for the code interpreter to use
+with open(csv_path, "rb") as csv_file:
+    file = openai.files.create(purpose="assistants", file=csv_file)
+os.remove(csv_path)
 
 # Create agent with code interpreter tool
 agent = project.agents.create_version(
@@ -154,9 +159,9 @@ File ready for download: transportation_operating_profit_bar_chart.png
 File downloaded successfully: transportation_operating_profit_bar_chart.png
 ```
 
-The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, generates a PNG bar chart showing operating profit by quarter, and downloads the chart to your local directory. The file annotations in the response provide the file ID and container information needed to retrieve the generated chart.
+The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, filters transportation-sector companies, generates a PNG bar chart showing operating profit by company, and downloads the chart to your local directory. The file annotations in the response provide the file ID and container information needed to retrieve the generated chart.
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample creates the code-interpreter toolbox, then uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using [`MCPStreamableHTTPTool`](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox). Set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
@@ -169,9 +174,14 @@ from agent_framework import Agent, MCPStreamableHTTPTool
 from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential, get_bearer_token_provider
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import CodeInterpreterTool, AutoCodeInterpreterToolParam
+from azure.ai.projects.models import CodeInterpreterToolboxTool, AutoCodeInterpreterToolParam
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+CSV_DATA = """name,sector,operating_profit
+SkyBridge Logistics,TRANSPORTATION,185.2
+Velocity Rail Freight,TRANSPORTATION,310.2
+AeroJet Airlines,TRANSPORTATION,510.6
+"""
 
 
 class _ToolboxAuth(httpx.Auth):
@@ -186,21 +196,22 @@ class _ToolboxAuth(httpx.Auth):
 async def main() -> None:
     credential = AzureCliCredential()
 
-    # Load the CSV file to be processed
-    asset_file_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../assets/synthetic_500_quarterly_results.csv")
-    )
+    csv_path = os.path.abspath("synthetic-company-financial-results.csv")
+    with open(csv_path, "w", encoding="utf-8", newline="") as csv_file:
+        csv_file.write(CSV_DATA)
 
     # 1. Add the code interpreter tool to a toolbox. Using a toolbox is the recommended way
     #    to give agents tools: you curate tools once and reuse the toolbox across agents.
     #    See /azure/foundry/agents/concepts/toolbox-overview
     project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
     openai = project.get_openai_client()
-    file = openai.files.create(purpose="assistants", file=open(asset_file_path, "rb"))
-    toolbox = project.toolboxes.create_toolbox_version(
+    with open(csv_path, "rb") as csv_file:
+        file = openai.files.create(purpose="assistants", file=csv_file)
+    os.remove(csv_path)
+    toolbox = project.toolboxes.create_version(
         name="code-interpreter-toolbox",
         description="Toolbox with the code interpreter tool",
-        tools=[CodeInterpreterTool(container=AutoCodeInterpreterToolParam(file_ids=[file.id]))],
+        tools=[CodeInterpreterToolboxTool(container=AutoCodeInterpreterToolParam(file_ids=[file.id]))],
     )
 
     # 2. The toolbox exposes an MCP-compatible endpoint.
@@ -252,7 +263,7 @@ For the full sample (including file inputs and extracting the generated code), s
 
 The following C# sample shows how to add the Code Interpreter tool to a toolbox, attach the toolbox to an agent, upload a CSV file for analysis, and download the generated chart. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 For asynchronous usage, see the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample32_CodeInterpreterFileGeneration.md) in the Azure SDK for .NET repository on GitHub.
 
@@ -263,6 +274,15 @@ using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using OpenAI.Files;
+
+const string CsvData = """
+name,sector,operating_profit
+SkyBridge Logistics,TRANSPORTATION,185.2
+Velocity Rail Freight,TRANSPORTATION,310.2
+AeroJet Airlines,TRANSPORTATION,510.6
+""";
+string csvPath = Path.GetFullPath("synthetic-company-financial-results.csv");
+File.WriteAllText(csvPath, CsvData);
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -275,8 +295,9 @@ AIProjectClient projectClient = new(
 // Upload a CSV file for Code Interpreter to analyze
 OpenAIFileClient fileClient = projectClient.ProjectOpenAIClient.GetOpenAIFileClient();
 OpenAIFile uploadedFile = fileClient.UploadFile(
-    filePath: "synthetic_500_quarterly_results.csv",
+  filePath: csvPath,
     purpose: FileUploadPurpose.Assistants);
+File.Delete(csvPath);
 Console.WriteLine($"Uploaded file: {uploadedFile.Id}");
 
 // Create an agent with Code Interpreter enabled
@@ -352,17 +373,19 @@ The sample code produces output similar to the following example:
 
 ```console
 Uploaded file: file-xxxxxxxxxxxxxxxxxxxx
-Here is the bar chart showing operating profit by quarter in the TRANSPORTATION sector...
+Here is the bar chart showing operating profit by company in the TRANSPORTATION sector...
 Chart downloaded: C:\Users\you\chart.png
 ```
 
 The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, and generates a PNG bar chart. The annotation parsing extracts the container ID and file ID from the response, which are used to download the chart to your local directory.
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
 This sample creates the code-interpreter toolbox, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke Code Interpreter through the toolbox MCP endpoint. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
+using System;
+using System.IO;
 using Azure.AI.AgentServer.Responses;
 using Azure.AI.AgentServer.Responses.Models;
 using Azure.AI.OpenAI;
@@ -374,6 +397,12 @@ using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 using OpenAI.Files;
 
+const string CsvData = """
+name,sector,operating_profit
+SkyBridge Logistics,TRANSPORTATION,185.2
+Velocity Rail Freight,TRANSPORTATION,310.2
+AeroJet Airlines,TRANSPORTATION,510.6
+""";
 const string AgentInstructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question.";
 const string AgentName = "CoderAgent";
 
@@ -389,9 +418,12 @@ DefaultAzureCredential credential = new();
 //    way to give agents tools. See /azure/foundry/agents/concepts/toolbox-overview
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: credential);
 OpenAIFileClient fileClient = projectClient.ProjectOpenAIClient.GetOpenAIFileClient();
+string csvPath = Path.GetFullPath("synthetic-company-financial-results.csv");
+File.WriteAllText(csvPath, CsvData);
 OpenAIFile uploadedFile = fileClient.UploadFile(
-    filePath: "synthetic_500_quarterly_results.csv",
+  filePath: csvPath,
     purpose: FileUploadPurpose.Assistants);
+File.Delete(csvPath);
 
 ProjectsAgentTool codeInterpreterTool = ProjectsAgentTool.AsProjectTool(
     ResponseTool.CreateCodeInterpreterTool(
@@ -446,39 +478,38 @@ For a maintained .NET Agent Framework integration, see [Use a toolbox with a hos
 :::zone pivot="typescript"
 ## Sample of using agent with code interpreter tool in TypeScript SDK
 
-The following TypeScript sample shows how to add the code interpreter tool to a toolbox, attach the toolbox to an agent, upload a CSV file for analysis, and request a bar chart based on the data. For a JavaScript version, see the [JavaScript sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/agentCodeInterpreter.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript sample shows how to add the code interpreter tool to a toolbox, attach the toolbox to an agent, upload a CSV file for analysis, and request a bar chart based on the data. For a JavaScript version, see the [JavaScript sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentCodeInterpreterWithFiles.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import * as fs from "fs";
 import * as path from "path";
-import { fileURLToPath } from "url";
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 const PROJECT_ENDPOINT = "your_project_endpoint";
-
-// Helper to resolve asset file path
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const CSV_DATA = `name,sector,operating_profit
+SkyBridge Logistics,TRANSPORTATION,185.2
+Velocity Rail Freight,TRANSPORTATION,310.2
+AeroJet Airlines,TRANSPORTATION,510.6
+`;
 
 export async function main(): Promise<void> {
   // Create clients to call Foundry API
   const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
   const openai = project.getOpenAIClient();
 
-  // Load and upload CSV file
-  const assetFilePath = path.resolve(
-    __dirname,
-    "../assets/synthetic_500_quarterly_results.csv",
-  );
-  const fileStream = fs.createReadStream(assetFilePath);
+  // Generate and upload the CSV file
+  const csvPath = "synthetic-company-financial-results.csv";
+  fs.writeFileSync(csvPath, CSV_DATA);
+  const fileStream = fs.createReadStream(csvPath);
 
   // Upload CSV file
   const uploadedFile = await openai.files.create({
     file: fileStream,
     purpose: "assistants",
   });
+  fs.unlinkSync(csvPath);
 
   console.log("Creating a toolbox with the code interpreter tool...");
 
@@ -542,7 +573,7 @@ export async function main(): Promise<void> {
         "Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
     },
     {
-      body: { agent: { name: agent.name, type: "agent_reference" } },
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
     },
   );
 
@@ -571,17 +602,11 @@ export async function main(): Promise<void> {
   // Download the generated file if available
   if (fileId && filename) {
     const safeFilename = path.basename(filename);
-    const fileContent = await openai.containers.files.content.retrieve({
-      file_id: fileId,
-      container_id: containerId,
-    });
-
-    // Read the readable stream into a buffer
-    const chunks: Buffer[] = [];
-    for await (const chunk of fileContent.body) {
-      chunks.push(Buffer.from(chunk));
-    }
-    const buffer = Buffer.concat(chunks);
+    const fileContent = await openai.containers.files.content.retrieve(
+      fileId,
+      { container_id: containerId },
+    );
+    const buffer = Buffer.from(await fileContent.arrayBuffer());
 
     fs.writeFileSync(safeFilename, buffer);
     console.log(`File ${safeFilename} downloaded successfully.`);
@@ -609,7 +634,7 @@ File transportation_operating_profit_bar_chart.png downloaded successfully.
 File ready for download: transportation_operating_profit_bar_chart.png
 ```
 
-The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, generates a PNG bar chart showing operating profit by quarter, and downloads the chart to your local directory. The file annotations in the response provide the file ID and container information needed to retrieve the generated chart.
+The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, filters transportation-sector companies, generates a PNG bar chart showing operating profit by company, and downloads the chart to your local directory. The file annotations in the response provide the file ID and container information needed to retrieve the generated chart.
 
 :::zone-end
 
@@ -735,7 +760,7 @@ To upload a file for Code Interpreter to use through a toolbox, upload the file 
 
     ```bash
     ARM_TOKEN=$(az account get-access-token --query accessToken -o tsv)
-    PROJECT_GUID=$(curl -s -H "Authorization: ******" \
+    PROJECT_GUID=$(curl -s -H "Authorization: Bearer $ARM_TOKEN" \
       "https://management.azure.com/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account}/projects/{project}?api-version=2025-06-01" \
       | jq -r '.properties.amlWorkspace.internalId')
     ```
@@ -743,12 +768,20 @@ To upload a file for Code Interpreter to use through a toolbox, upload the file 
 1. Upload the file at the account (resource) level with the `x-aml-project-id` header:
 
     ```bash
-    TOKEN=$(az account get-access-token --resource https://ai.azure.com/.default --query accessToken -o tsv)
+    cat > synthetic-company-financial-results.csv <<'CSV'
+    name,sector,operating_profit
+    SkyBridge Logistics,TRANSPORTATION,185.2
+    Velocity Rail Freight,TRANSPORTATION,310.2
+    AeroJet Airlines,TRANSPORTATION,510.6
+    CSV
+
+    TOKEN=$(az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv)
     curl -X POST "https://{account}.services.ai.azure.com/openai/v1/files" \
-      -H "Authorization: ******" \
+      -H "Authorization: Bearer $TOKEN" \
       -H "x-aml-project-id: $PROJECT_GUID" \
       -F "purpose=assistants" \
-      -F "file=@your-file.csv"
+      -F "file=@synthetic-company-financial-results.csv"
+    rm synthetic-company-financial-results.csv
     ```
 
 The returned file `id` is the value you supply as `<FILE_ID>` in the tool configuration. Files are mounted in the sandbox at `/mnt/data/{file-id}-{original-filename}`.
@@ -756,18 +789,7 @@ The returned file `id` is the value you supply as `<FILE_ID>` in the tool config
 > [!IMPORTANT]
 > When Code Interpreter is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
 
-### 1. Upload a CSV file
-
-```bash
-curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/files" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -F "purpose=assistants" \
-  -F "file=@quarterly_results.csv"
-```
-
-Save the `id` from the response (for example, `file-abc123`).
-
-### 2. Add Code Interpreter to a toolbox
+### Add Code Interpreter to a toolbox
 
 Add Code Interpreter by creating a toolbox, and then attach the toolbox to your agent as an MCP tool. For more information, see [What is a toolbox?](../../concepts/toolbox-overview.md)
 
@@ -776,6 +798,7 @@ Add Code Interpreter by creating a toolbox, and then attach the toolbox to your 
     ```bash
     curl --request POST \
       --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/code-interpreter-toolbox/versions?api-version=v1" \
+      -H "Authorization: Bearer $AGENT_TOKEN" \
       -H "Content-Type: application/json" \
       --data '{
         "description": "Toolbox with the code interpreter tool",
@@ -803,7 +826,7 @@ Add Code Interpreter by creating a toolbox, and then attach the toolbox to your 
       --audience https://ai.azure.com
     ```
 
-### 3. Create an agent with the code interpreter toolbox
+### Create an agent with the code interpreter toolbox
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
@@ -828,7 +851,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   }'
 ```
 
-### 4. Generate a chart
+### Generate a chart
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
@@ -836,13 +859,13 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
     "agent_reference": {"type": "agent_reference", "name": "chart-agent"},
-    "input": "Create a bar chart of operating profit by quarter from the uploaded CSV file. Use a blue color scheme and add data labels."
+    "input": "Create a bar chart of operating profit by company for the TRANSPORTATION sector from the uploaded CSV file. Use a blue color scheme and add data labels."
   }'
 ```
 
 The response includes `container_file_citation` annotations with the generated file details. Save the `container_id` and `file_id` values from the annotation.
 
-### 5. Download the generated chart
+### Download the generated chart
 
 ```bash
 curl -X GET "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/containers/<CONTAINER_ID>/files/<FILE_ID>/content" \
@@ -850,7 +873,7 @@ curl -X GET "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/containers/<CONTAINER_ID>/files
   --output chart.png
 ```
 
-### 6. Clean up
+### Clean up
 
 ```bash
 curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/chart-agent?api-version=v1" \

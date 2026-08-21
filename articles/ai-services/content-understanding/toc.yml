@@ -17,7 +17,7 @@ items:
         href: service-limits.md
       - name: Language and region support
         href: language-region-support.md
-      - name: Foundry and Content Understanding Studio comparison
+      - name: Studio and Foundry
         displayName: studio, foundry, differences, comparison, use cases, features
         href: foundry-vs-content-understanding-studio.md
       - name: Pricing model details and examples
@@ -36,15 +36,18 @@ items:
         href: glossary.md
   - name: Quickstarts
     items:
-    - name: Content Understanding Studio Quickstart
+    - name: Studio and Foundry quickstart
       displayName: Content Understanding Studio, quickstart, prerequisites, setup, create, analyze, extract
       href: quickstart/content-understanding-studio.md
-    - name: Try Content Understanding REST API and SDKs
+    - name: REST API and SDKs
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
-    - name: Create CU Task in Foundry (classic) (Preview)
-      displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
-      href: how-to/content-understanding-foundry-classic.md
+    - name: Synchronous REST API (preview)
+      displayName: quickstart, synchronous, sync, Read, Layout, REST, preview
+      href: quickstart/use-synchronous-rest-api.md
+    - name: Analyze a document with agentic mode (preview)
+      displayName: quickstart, agentic, reasoning, calculations, validation, REST
+      href: quickstart/agentic-mode.md
   - name: Concepts
     items:
     - name: What are analyzers?
@@ -62,9 +65,9 @@ items:
     - name: Foundry model deployments
       displayName: foundry, model, deployments
       href: concepts/models-deployments.md
-    - name: "Modes: standard and pro (Preview)"
-      displayName: standard, pro, modes, analyzers, optimization, fields
-      href: concepts/standard-pro-modes.md
+    - name: Agentic mode (preview)
+      displayName: agentic, reasoning, calculations, validation, complex documents
+      href: concepts/agentic-mode.md
   - name: Modalities
     items:
       - name: Document
@@ -97,9 +100,6 @@ items:
       - name: Image
         displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
         href: image/overview.md
-      - name: What is face detection? (preview)
-        displayName: recognition, detection, analysis, identification, verification
-        href: face/overview.md
   - name: Tutorials
     items:
       - name: Create a custom analyzer with Content Understanding Studio
@@ -121,18 +121,26 @@ items:
         href: tutorial/build-rag-solution.md
       - name: Build a robotic process automation solution
         href: tutorial/robotic-process-automation.md
-      - name: Create a Logic Apps workflow
-        displayName: logic apps, automation, workflow, invoice, connector
-        href: tutorial/logic-apps.md
       - name: Create a Microsoft Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
       - name: Bring your own cross-resource capacity
         displayName: byo, cross-resource, deployment, azure openai, connection, authentication
         href: how-to/bring-your-own-cross-resource-capacity.md
-      - name: Build a face-data person directory (preview)
-        displayName: person, directory, search, index, vector
-        href: tutorial/build-person-directory.md
+  - name: Integrations
+    items:
+      - name: Microsoft Agent Framework
+        displayName: agent, framework, context provider, file attachments, multimodal
+        href: integrations/agent-framework.md
+      - name: LangChain
+        displayName: langchain, document loader, RAG, retrieval, embeddings, ingestion
+        href: integrations/langchain.md
+      - name: Logic Apps
+        displayName: logic apps, automation, workflow, invoice, connector
+        href: integrations/logic-apps.md
+      - name: MarkItDown
+        displayName: markdown, markitdown, convert, RAG, layout, extraction, front matter
+        href: integrations/markitdown.md
   - name: Samples
     items:
       - name: Data extraction using Content Understanding
