@@ -2,7 +2,7 @@
 title: Marketplace models - region availability for Standard deployment (All Geographies)
 description: Marketplace models - Regional availability for standard deployment options
 manager: mcleans
-ms.date: 08/05/2026
+ms.date: 08/21/2026
 ms.topic: include
 ms.custom:
   - references_regions
