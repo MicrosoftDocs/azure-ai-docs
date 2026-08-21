@@ -26,14 +26,16 @@ For more information about pricing model and service tier differences, see [Choo
 
 ## How cost is determined in the Serverless model
 
-In the Serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
+The Dedicated and Serverless pricing models account for work inside the search service differently. Dedicated services run queries, indexing, and result processing on provisioned capacity that you've already purchased. Serverless services measure the compute, memory, and disk I/O that these operations consume and convert that usage into Compute Units (CUs). As a result, **performance optimization directly affects Serverless cost**.
+
+Serverless costs are tied to workload execution:
 
 - Queries and indexing consume compute, measured in Compute Units per hour (CU/h).
 - Active indexes consume compute based on their resource usage and how long they remain active.
 - An index stays active for 10 minutes after its last query or indexing request before it goes inactive.
 - Inactive indexes have no minimum or reserved compute charge. The compute usage for inactive indexes scales to zero. There's no minimum compute charge when an index is inactive.
 - Storage is billed separately based on index size on disk and continues whether or not an index is in use.
-- Agentic retrieval consumes compute for each query executed against knowledge sources backed by Azure AI Search indexes, plus a separate orchestration charge for generating those queries and merging the results into a single response.
+- Agentic retrieval consumes compute for search queries and orchestration performed inside the search service.
 
 Storage charges stop only when you delete the index.
 
@@ -51,7 +53,7 @@ To reduce active-index compute usage, identify which resource produces the highe
 The Serverless pricing model is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
 
 > [!IMPORTANT]
-> Your Compute Unit per hour (CU/h) charges don't include semantic ranker, agentic retrieval, image extraction and skill execution. These capabilities are billed separately.
+> Serverless CU charges cover work performed inside the search service, including queries, indexing, result processing, and agentic retrieval orchestration. Model calls and other work performed outside the search service continue to use their existing billing meters. Examples include semantic ranking, agentic query rewriting, image extraction, and skill execution.
 
 ## Understand Compute Units (CUs)
 
