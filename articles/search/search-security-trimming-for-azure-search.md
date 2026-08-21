@@ -73,7 +73,7 @@ In the search index, within the fields collection, you need one field that conta
 
 1. Indexes should also contain searchable and retrievable content. The "file_name" and "file_description" fields represent that in this example.
 
-    The following index schema satisfies the field requirements. Documents that you index on Azure AI Search should have values for all of these fields, including the "group_ids". A query returns the document with `file_name` "secured_file_b" when its security filter includes "group_id1" or "group_id2".
+    The following index schema satisfies the field requirements. Documents that you index on Azure AI Search should have values for all of these fields, including the `group_ids`. A query returns the document with `file_name` `secured_file_b` when its security filter includes `group_id1` or `group_id2`.
 
    ```https
    POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2026-04-01
