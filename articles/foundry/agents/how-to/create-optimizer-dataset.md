@@ -40,7 +40,7 @@ By default, it generates:
 - **Evaluators** that score responses - a built-in evaluator (such as `builtin.task_adherence`) plus a custom **rubric evaluator** tailored to your agent.
 - A runnable **`eval.yaml`** that wires them together.
 
-For the interactive wizard, non-interactive flags, and details about the generated artifacts, see [Initialize evaluation assets](../../observability/how-to/azure-developer-cli-evaluation.md#initialize-evaluation-assets).
+For the interactive wizard, non-interactive flags, and details about the generated artifacts, see [Generate a dataset and an evaluator](../../observability/how-to/azure-developer-cli-evaluation.md#generate-a-dataset-and-an-evaluator).
 
 After generation, `azd ai agent optimize` auto-detects `eval.yaml`:
 
@@ -57,7 +57,7 @@ Evaluators score each agent response. The optimizer supports two kinds:
 - **Built-in evaluators**, such as `builtin.task_adherence`, which scores each task-level criterion as pass or fail.
 - **Custom rubric evaluators**, which score responses across several quality dimensions tuned to your agent. `azd ai agent eval generate` creates one automatically as an editable `rubric_dimensions.json` file.
 
-For most agents, the generated rubric evaluator gives the most meaningful scores because it's tailored to your domain. Edit the generated `rubric_dimensions.json` to refine dimensions, then run `azd ai agent eval update` to register the changes as a new version. For details on generating, editing, and versioning evaluators, see [Initialize evaluation assets](../../observability/how-to/azure-developer-cli-evaluation.md#initialize-evaluation-assets).
+For most agents, the generated rubric evaluator gives the most meaningful scores because it's tailored to your domain. Edit the generated `rubric_dimensions.json` to refine dimensions, then run `azd ai agent eval update` to register the changes as a new version. For details on generating, editing, and versioning evaluators, see [Generate a dataset and an evaluator](../../observability/how-to/azure-developer-cli-evaluation.md#generate-a-dataset-and-an-evaluator).
 
 To wire evaluators into your run configuration, see [Configure the optimization run](optimize-agent-targets.md#configure-the-optimization-run).
 
