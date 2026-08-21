@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sgilley
-ms.date: 08/08/2025
+ms.date: 08/21/2026
 adobe-target: true
 ms.custom: mode-other
 #Customer intent: As a data scientist, I want to create a workspace so that I can start to use Azure Machine Learning.
@@ -17,7 +17,9 @@ ms.custom: mode-other
 
 # Tutorial: Create resources you need to get started
 
-In this tutorial, you create the resources you need to start working with Azure Machine Learning.
+In this tutorial, you create the resources you need to start working with Azure Machine Learning. You learn how to create a workspace, create a compute instance, explore the studio, find sample notebooks, and clean up the resources when you're done.
+
+You create the following resources:
 
 > [!div class="checklist"]
 >* A *workspace*. To use Azure Machine Learning, you need a workspace. The workspace is the central place to view and manage all the artifacts and resources you create.
@@ -36,6 +38,10 @@ This video shows you how to create a workspace and compute instance in Azure Mac
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- Permission to create resources in the subscription or resource group you use. You need the **Contributor** or **Owner** role on the target scope. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
+
+> [!NOTE]
+> The workspace and compute instance you create are billable Azure resources, and available regions and virtual machine sizes vary by subscription. To avoid charges, stop the compute instance when you're not using it and [clean up resources](#clean-up-resources) when you finish the tutorials.
 
 ## Create the workspace
 
@@ -65,6 +71,8 @@ If you don't yet have a workspace, create one now:
 
 1. Select **Create** to create the workspace.
 
+   Wait until the workspace finishes provisioning and opens in Azure Machine Learning studio before you continue.
+
 > [!NOTE]
 > This creates a workspace along with all required resources. If you'd like more customization, use the [Azure portal](https://ms.portal.azure.com/#create/Microsoft.MachineLearningServices) instead. See [Create a workspace](how-to-manage-workspace.md) for more information.
 
@@ -83,7 +91,11 @@ You use the *compute instance* to run Jupyter notebooks and Python scripts in th
 1. Select **Review + Create**.
 1. Select **Create**.
 
+    Wait until the compute instance status changes to **Running** before you continue. Provisioning can take a few minutes.
+
 ## Quick tour of the studio
+
+After your workspace and compute instance are ready, take a moment to get oriented in the studio before you continue to the later tutorials.
 
 The studio is your web portal for Azure Machine Learning. It combines no-code and code-first experiences for an inclusive data science platform.
 
@@ -91,7 +103,7 @@ Review the parts of the studio on the left-hand navigation bar:
 
 * The **Authoring** section of the studio contains multiple ways to get started creating machine learning models. You can:
 
-    * **Notebooks** lets you create Jupyter notebooks, copy sample notebooks, and run notebooks and Python scripts.
+    * The **Notebooks** page lets you create Jupyter notebooks, copy sample notebooks, and run notebooks and Python scripts.
     * **Automated ML** guides you through creating a machine learning model without writing code.
     * **Designer** provides a drag-and-drop way to build models using prebuilt components.
 
@@ -141,6 +153,9 @@ If you're not going to use it now, stop the compute instance:
 1. On the top toolbar, select **Stop**.
 
 ### Delete all resources
+
+> [!WARNING]
+> Delete the resource group only if you created a new one for this tutorial. If you selected an existing resource group, deleting it also removes any other resources it contains. To keep those resources, instead delete only the workspace and compute instance you created for this tutorial.
 
 [!INCLUDE [aml-delete-resource-group](includes/aml-delete-resource-group.md)]
 
