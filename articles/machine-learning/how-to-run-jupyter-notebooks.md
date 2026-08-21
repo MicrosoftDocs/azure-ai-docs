@@ -9,7 +9,7 @@ ms.reviewer: sgilley
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 08/13/2025
+ms.date: 08/21/2026
 ms.custom:
   - devx-track-python
   - FY25Q1-Linter
@@ -37,6 +37,7 @@ This article shows the experience for running the notebook directly in studio.
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md).
 * Your user identity must have access to your workspace's default storage account. Whether you can read, edit, or create notebooks depends on your [access level](how-to-assign-roles.md) to your workspace. For example, a Contributor can edit the notebook, while a Reader could only view it.
+* To run notebook cells, you need a compute instance. Creating and running a compute instance requires available VM quota in your workspace region and can incur charges while it runs.
 
 ## Access notebooks from your workspace
 
@@ -60,7 +61,7 @@ When a compute instance is running, you can launch Jupyter or JupyterLab from th
 
 Use focus mode to expand your current view so you can focus on your active tabs. Focus mode hides the Notebooks file explorer.
 
-1. In the terminal window toolbar, select **Focus mode** to turn on focus mode. Depending on your window width, the tool may be located under the **...** menu item in your toolbar.
+1. In the notebook toolbar, select **Focus mode** to turn on focus mode. Depending on your window width, the tool may be located under the **...** menu item in your toolbar.
 1. While in focus mode, return to the standard view by selecting **Standard view**.
 
     :::image type="content" source="media/how-to-run-jupyter-notebooks/focusmode.gif" alt-text="Toggle focus mode / standard view":::
@@ -178,6 +179,8 @@ To run a notebook or a Python script, you first connect to a running [compute in
     
 Once you're connected to a compute instance, use the toolbar to run all cells in the notebook, or Control + Enter to run a single selected cell. 
 
+When a cell finishes successfully, its execution count increments and any output appears below the cell; the kernel status returns to idle when the run completes.
+
 Only you can see and use the compute instances you create. Your **User files** are stored separately from the machine and shared among all compute instances in the workspace.
 
 ## Explore variables in the notebook
@@ -203,14 +206,14 @@ The notebook toolbar lets you change the environment on which your notebook runs
 These actions don't change the notebook state or the values of any variables in the notebook:
 
 |Action  |Result  |
-|---------|---------| --------|
+|---------|---------|
 |Stop the kernel     |  Stops any running cell. Running a cell automatically restarts the kernel. |
 |Navigate to another workspace section     |     Running cells are stopped. |
 
 These actions reset the notebook state and resets all variables in the notebook.
 
 |Action  |Result  |
-|---------|---------| --------|
+|---------|---------|
 | Change the kernel | Notebook uses new kernel |
 | Switch compute    |     Notebook automatically uses the new compute. |
 | Reset compute | Starts again when you try to run a cell |
