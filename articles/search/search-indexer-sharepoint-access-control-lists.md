@@ -147,7 +147,7 @@ Each identifier appears in a different location in the Azure portal and maps to 
 
 | Identifier | Portal location | Used where | Notes |
 |---|---|---|---|
-| Ingestion app application (client) ID | **App registrations** > `<your-app>` > **Overview** | `ApplicationId` in the data source connection string; `applicationId` in `sharePointConnectorAppRegistration` | This is the correct ID for most configuration fields. Also called "client ID." |
+| Ingestion app application (client) ID | **App registrations** > `<your-app>` > **Overview** | `ApplicationId` in the data source connection string; `applicationId` in `sharePointConnectorAppRegistration` | This ID is correct for most configuration fields. Also called "client ID." |
 | Application object ID | **App registrations** > `<your-app>` > **Overview** (below Application (client) ID) | Not used in Azure AI Search configuration | Don't confuse this with the Application (client) ID. It appears in the same blade, directly below the client ID. |
 | Service principal object ID | **Microsoft Entra ID** > **Enterprise applications** > `<your-app>` > **Manage** > **Properties** | Not used in Azure AI Search configuration | This is the service principal representation of the app. It's a different GUID from the app registration object ID. |
 | Managed identity principal ID | Managed identity resource > **Properties** or the search service **Identity** blade | Not used directly in Azure AI Search data source or index configuration | Used internally when you set up the federated identity credential on the app registration. The credential you create trusts this identity. |
