@@ -27,6 +27,8 @@ landingContent:
             url: overview.md
           - text: Language support
             url:  language-support.md
+          - text: Region support
+            url: region-support.md
           - text: Pricing
             url: https://azure.microsoft.com/pricing/details/cognitive-services/translator-text-api/
           - text: FAQ
