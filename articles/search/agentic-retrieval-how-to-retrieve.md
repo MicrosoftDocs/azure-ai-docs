@@ -346,11 +346,11 @@ Authorization: Bearer {{accessToken}}
 
 :::zone-end
 
-### Include images in retrieve responses (preview)
+### Supply images to answer synthesis (preview)
 
-For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition.
+For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources that you configure with an asset store, you can supply document-embedded images to the downstream answer-synthesis model alongside text. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition. The retrieve response doesn't include dedicated fields for the individual image paths or image bytes supplied to the model.
 
-Image serving runs only when `outputMode` is `answerSynthesis` and requires the 2026-05-01-preview REST API or an equivalent Azure SDK preview package. For setup steps, the precedence table, and how to inspect image serving statistics, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+Image serving runs only when `outputMode` is `answerSynthesis` and isn't supported for knowledge sources that configure `ingestionPermissionOptions`. For setup steps, the precedence table, and how to inspect image serving statistics, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ### Search index behavior
 
@@ -781,7 +781,7 @@ The output includes the following components.
 | `agenticReasoning` | This section reports on token consumption for agentic reasoning during retrieval, which depends on the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). |
 | `modelAnswerSynthesis` | For knowledge bases that use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), this section reports on the token count for formulating the answer, and the token count of the answer output. Includes a `modelName` field with the public model name (not the deployment name) of the model that ran the activity. |
 | `modelWebSummarization` | For knowledge bases that use web summarization, this section reports on token consumption for summarizing web results. Includes a `modelName` field with the public model name (not the deployment name) of the model that ran the activity. |
-| `imageServing` | For knowledge sources that have [image serving](agentic-retrieval-how-to-image-serving.md) enabled, this section reports `imagesRetrieved`, `imagesSentToModel`, `totalImageSizeBytes`, and whether indexing-time `verbalizationUsed` was on. To find the number of dropped images, subtract `imagesSentToModel` from `imagesRetrieved`. |
+| `imageServing` | For knowledge sources that have [image serving](agentic-retrieval-how-to-image-serving.md) enabled, this section reports the four fields `verbalizationUsed`, `imagesRetrieved`, `imagesSentToModel`, and `totalImageSizeBytes`. Inspect `verbalizationUsed` and `imagesSentToModel` independently. A response can report `verbalizationUsed` as `true` and one or more images sent to the downstream model. If `imagesRetrieved` is greater than `imagesSentToModel`, not every image retrieved from the asset store was sent to the model. |
 
 # [2026-04-01](#tab/2026-04-01)
 

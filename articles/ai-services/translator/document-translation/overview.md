@@ -216,18 +216,7 @@ For detailed information about Translator request limits, see [Document translat
 
 ## Document translation data residency
 
-Document translation data residency depends on the Azure region where your Translator resource was created:
-
-✔️ Feature: **Document translation**</br>
-✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
-
-|Resource created region| Request processing data center |
-|----------------------------------|-----------------------|
-|**Global**|Closest available data center.|
-|**Americas**|East US 2 &bull; West US 2|
-|**Asia Pacific**| Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland)**| France Central &bull; West Europe|
-|**Switzerland**|Switzerland North &bull; Switzerland West|
+The region where you create the Translator resource determines where document content is processed and temporarily stored. For processing locations, custom endpoint requirements, and managed identity considerations, see [Region support for Azure Translator](../region-support.md).
 
 ## Troubleshooting
 

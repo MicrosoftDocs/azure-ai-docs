@@ -238,7 +238,7 @@ An 'Expected IndexAction metadata' error means when the indexer attempted to rea
 
 ## `Warning: Skill input was invalid`
 
-An input to the skill was missing, it has the wrong type, or otherwise, invalid. You might see the following information:
+An input to the skill was missing, had the wrong type, or was otherwise invalid. You might see the following information:
 
 + `Could not execute skill`
 
@@ -405,7 +405,7 @@ Collections with [Lazy](/azure/cosmos-db/index-policy#indexing-mode) indexing po
 
 ## `Warning: The document contains very long words (longer than 64 characters). These words may result in truncated and/or unreliable model predictions.`
 
-This warning is passed from the Language service of Foundry Tools. In some cases, it's safe to ignore this warning, for example if the long string is just a long URL. Be aware that when a word is longer than 64 characters, it's 'truncated to 64 characters which can affect model predictions.
+This warning is passed from the Language service of Foundry Tools. In some cases, it's safe to ignore this warning, for example if the long string is just a long URL. Be aware that when a word is longer than 64 characters, it's truncated to 64 characters, which can affect model predictions.
 
 ## `Error: Cannot write more bytes to the buffer than the configured maximum buffer size`
 
@@ -437,7 +437,7 @@ This error occurs when the Azure AI Search indexer cannot authenticate using the
 | Possible Cause | Details/Example | Resolution |
 |---|---|---|
 | Expired or rotated key | A connection string contains an outdated key that no longer works. | Go to the resource that is being contacted (for example, Azure Storage or Azure SQL) and copy the latest access keys if using key-based authentication, then update the data source or connection string accordingly. |
-| Managed identity not enabled or access not granted | The AI Search service [managed identity](search-how-to-managed-identities.md) is enabled but lacks the required access roles. | - Enable system or user-assigned [managed identity](search-how-to-managed-identities.md) on the search Service.<br>- Assign appropriate role(s) to the identity (for example, `Storage Blob Data Reader` for blob containers). Each [data source](search-data-sources-gallery.md) has its own permission requirements. |
+| Managed identity not enabled or access not granted | The AI Search service [managed identity](search-how-to-managed-identities.md) is enabled but lacks the required access roles. | - Enable system or user-assigned [managed identity](search-how-to-managed-identities.md) on the search service.<br>- Assign appropriate roles to the identity at the resource scope required by the data source. For example, assign `Storage Blob Data Reader` at the storage-account scope for an Azure Blob data source. Each [data source](search-data-sources-gallery.md) has its own permission requirements. |
 | Network/firewall blocks identity access | The resource contacted is configured to restrict network access. | Configure [network settings](search-indexer-howto-access-ip-restricted.md) to allow Azure AI Search access. |
 | Key authorization has been disabled | Shared key access removed on the source, but the Search service data source configuration still uses key-based authentication. | Use [managed identity](search-how-to-managed-identities.md) authentication and ensure role-based permissions are in place. From an Azure Storage perspective, this means that [shared key authorization functionality is blocked](/azure/storage/common/shared-key-authorization-prevent), either from the storage account itself, or enforced through enterprise-level Azure Policies. |
 

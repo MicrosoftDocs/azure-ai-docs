@@ -57,6 +57,8 @@ The generated indexer conforms to the *SharePoint in Microsoft 365 indexer*, who
 
   + [Step 3: Create a Microsoft Entra application registration](search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration) (for application permissions, you also configure a [client secret](search-how-to-index-sharepoint-online.md#using-client-secret) or [secretless authentication](search-how-to-index-sharepoint-online.md#using-secretless-authentication-to-obtain-application-tokens))
 
++ If `contentExtractionMode` is `standard`, use a Microsoft Foundry resource in a [region supported by Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/language-region-support) and the `https://<resource-name>.services.ai.azure.com` endpoint. Deploy an embedding model, and deploy a multimodal chat model if you enable image verbalization.
+
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + If the knowledge source specifies an Azure OpenAI model for embeddings or image verbalization, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
@@ -245,7 +247,7 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 ```http
 ### Create an indexed SharePoint knowledge source
 PUT {{search-url}}/knowledgesources/my-indexed-sharepoint-ks?api-version=2026-05-01-preview
-api-key: {{api-key}}
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -254,7 +256,7 @@ Content-Type: application/json
     "description": "A sample indexed SharePoint knowledge source.",
     "encryptionKey": null,
     "indexedSharePointParameters": {
-        "connectionString": "{{sharepoint-connection-string}}",
+        "connectionString": "{{sharepoint-federated-connection-string}}",
         "containerName": "defaultSiteLibrary",
         "query": null,
         "ingestionParameters": {
@@ -264,8 +266,7 @@ Content-Type: application/json
                 "azureOpenAIParameters": {
                     "deploymentId": "text-embedding-3-large",
                     "modelName": "text-embedding-3-large",
-                    "resourceUri": "{{aoai-endpoint}}",
-                    "apiKey": "{{aoai-key}}"
+                    "resourceUri": "{{aoai-endpoint}}"
                 }
             },
             "chatCompletionModel": null,
@@ -298,7 +299,7 @@ For any knowledge base that specifies an indexed SharePoint knowledge source, be
 
 ## Query a knowledge base
 
-After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source. This knowledge source supports optional configurations for document-level permissions enforcement and document-embedded image surfacing.
+After you configure the knowledge base, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source. Choose the configuration that matches your scenario.
 
 ### Enforce document-level permissions
 
@@ -308,7 +309,7 @@ For missing, unexpected, or failed results from an indexed SharePoint permission
 
 ### Surface document-embedded images
 
-To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. Image serving isn't supported when `ingestionPermissionOptions` is configured. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ## Delete a knowledge source
 
@@ -317,14 +318,6 @@ To surface document-embedded images (such as diagrams or scans) in answer synthe
 ## Known errors
 
 The generated SharePoint data source and indexer use the same Microsoft Entra tenant validation and authentication behavior as directly configured SharePoint indexers. For tenant-related failures, review the [generated indexer's status and execution history](search-monitor-indexers.md), and then follow the [`Invalid AAD tenant` remediation](cognitive-search-common-errors-warnings.md#error-invalid-aad-tenant).
-
-When you create this knowledge source with `contentExtractionMode` set to `standard`, you might get the following error.
-
-```json
-Failed to create custom analyzer 'azs_tmp': BadRequest - {"error":{"code":"InvalidRequest","message":"Invalid request.","innererror":{"code":"DefaultsNotSet","message":"Defaults have not yet been set. Call 'PATCH /contentunderstanding/defaults' first."}}}
-```
-
-To resolve the error, define the default values as instructed in the [Content Understanding prerequisites](/azure/ai-services/content-understanding/tutorial/create-custom-analyzer?tabs=portal%2Cdocument&pivots=programming-language-rest#prerequisites). Afterwards, you can proceed with creating the knowledge source.
 
 ## Related content
 

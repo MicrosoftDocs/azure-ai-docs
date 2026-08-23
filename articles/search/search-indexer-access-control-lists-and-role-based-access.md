@@ -53,7 +53,7 @@ This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob kn
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
 
-  + [Knowledge store](knowledge-store-concept-intro.md)
+  + [Knowledge store](knowledge-store-concept-intro.md), including the asset store required for [image serving (preview)](agentic-retrieval-how-to-image-serving.md) in agentic retrieval. Therefore, image serving isn't supported for knowledge sources that ingest ACLs or RBAC scopes.
 
   + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
 
