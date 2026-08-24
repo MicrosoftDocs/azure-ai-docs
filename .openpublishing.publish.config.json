@@ -6,11 +6,14 @@
       "build_output_subfolder": "agent-framework-docs",
       "locale": "en-us",
       "monikers": [],
-      "open_to_public_contributors": false,
+      "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content"
       },
-      "build_entry_point": "docs"
+      "build_entry_point": "docs",
+      "xref_query_tags": [
+        "/dotnet"
+      ]
     },
     {
       "docset_name": "azure-ai",
