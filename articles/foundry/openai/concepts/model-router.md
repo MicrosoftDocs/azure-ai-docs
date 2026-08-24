@@ -21,6 +21,8 @@ ai-usage: ai-assisted
 
 Model router is a trained language model that intelligently routes your prompts in real time to the most suitable large language model (LLM). You deploy model router like any other Foundry model. Thus, it delivers high performance while saving on costs, reducing latencies, and increasing responsiveness, while maintaining comparable quality, all packaged as a single model deployment.
 
+Model router works both as a drop-in model deployment and as an optimization layer. In a traditional hill-climbing workflow, you compare individual models and build routing logic as you search for a better balance of quality, cost, and latency. Model router shortens that model-navigation journey by managing per-request model selection behind one deployment. Evaluation remains important: compare model router with your current baseline to confirm that managed routing improves the outcomes that matter for your workload. For guidance, see [Evaluate model router for your workload](../how-to/evaluate-model-router.md).
+
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=32338ec4-89bf-4438-8cc3-2e3f01e88533]
 
 To try model router quickly, follow [How to use model router](../how-to/model-router.md). After you deploy model router, send a request to the deployment. Model router selects an underlying model for each request based on your routing settings. For a deep dive into the routing pipeline, training, and decision logic, see [How model router works](model-router-how-it-works.md).

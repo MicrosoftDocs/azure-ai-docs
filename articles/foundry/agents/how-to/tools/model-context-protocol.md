@@ -356,29 +356,19 @@ Agent deleted
 
 ### Hosted agents
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework, creates a toolbox containing the GitHub MCP server, then attaches the toolbox endpoint to your hosted agent with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework, creates a toolbox containing the GitHub MCP server, then attaches the toolbox endpoint to your hosted agent with `FoundryToolbox`. Install the packages with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
 
-import httpx
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MCPToolboxTool
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.identity import AzureCliCredential
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 MCP_CONNECTION_NAME = "my-mcp-connection"
-
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
-        yield request
 
 
 async def main() -> None:
@@ -405,24 +395,17 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(
-        auth=_ToolboxAuth(token_provider),
+,
         timeout=120.0,
     )
 
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are a helpful assistant that uses your MCP tool "
         "to help with Microsoft documentation questions.",
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run("What is Microsoft Agent Framework?")
@@ -544,7 +527,7 @@ organized by service and includes guidelines for contributing new specifications
 
 ### Hosted agents
 
-This sample creates the MCP server toolbox with the Azure AI Projects SDK, then uses `ToolboxMcpClient` with `ResponsesServer` from the Microsoft Agent Framework to expose the toolbox tools to your hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample creates the MCP server toolbox with the Azure AI Projects SDK, then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to expose the toolbox tools to your hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using Azure.AI.AgentServer.Responses;
@@ -553,6 +536,8 @@ using Azure.AI.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 
@@ -578,21 +563,19 @@ ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
         tools: [ProjectsAgentTool.AsProjectTool(mcpTool)],
         description: "Toolbox with the GitHub MCP server");
 
-// 2. The toolbox exposes an MCP-compatible endpoint.
-string toolboxMcpEndpoint =
-    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+// Create the hosted agent and register the toolbox integration.
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    instructions: "You are a helpful assistant with access to the toolbox tools.",
+    name: "hosted-toolbox-agent");
 
-// 3. Attach the toolbox to the hosted agent.
-AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxVersion.Name);
 
-// Toolbox MCP client - discovers tools via tools/list, calls them via tools/call
-ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
-
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
 
 ### Expected output

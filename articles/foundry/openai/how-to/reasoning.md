@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 08/06/2026
+ms.date: 08/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -15,6 +15,7 @@ ms.custom:
 ---
 
 # Azure OpenAI reasoning models
+
 Azure OpenAI reasoning models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
 **Key capabilities of reasoning models:**
@@ -23,6 +24,8 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 - Advanced Problem Solving: Ideal for comprehensive brainstorming sessions and addressing multifaceted challenges.
 - Complex Document Comparison: Perfect for analyzing contracts, case files, or legal documents to identify subtle differences.
 - Instruction Following and Workflow Management: Particularly effective for managing workflows requiring shorter contexts.
+
+Browse [reasoning models from OpenAI in the Foundry model catalog](https://ai.azure.com/catalog/models?capabilities=reasoning&publisher=openai&cid=learnDocs).
 
 ## Prerequisites
 

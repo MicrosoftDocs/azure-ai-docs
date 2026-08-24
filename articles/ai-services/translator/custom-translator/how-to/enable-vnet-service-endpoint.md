@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.date: 06/02/2026
-ms.author: moelghaz
+ms.author: lajanuar
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
 
 # Enable Custom Translator through Azure Virtual Network
@@ -108,43 +109,13 @@ To use Custom Translator without relaxing network access restrictions on your pr
 
 ## Billing region codes
 
-Use a billing region code, listed in the following table, with the 'Create a workspace' API for each supported billing region:
+Use the billing region code for your resource when you call the **Create a workspace** API. For the supported regions and their codes, see [Region support for Azure Translator](../../region-support.md).
 
 ##### Create a workspace POST request
 
    ```bash
    curl -X POST "https://<resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces" --header "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key:<resource-key>" --data "{'Name': '<workspace-name>', 'Subscription': {'SubscriptionKey': '<resource-key>', 'BillingRegionCode': '<billing-region-code>' }}"
    ```
-
-##### Supported billing code regions and codes
-
-|Billing Region Name|Billing Region Code|
-|:----|:----|
-|East Asia|`AE`|
-|Southeast Asia|`ASE`|
-|Australia East|`AUE`|
-|Brazil South|`BRS`|
-|Canada Central|`CAC`|
-|France Central|`FC`|
-|Global|`GBL`|
-|Central India|`INC`|
-|Japan East|`JPE`|
-|Japan West|`JPW`|
-|Korea Central|`KC`|
-|North Europe|`NEU`|
-|South Africa North|`SAN`|
-|Sweden Central|`SWC`|
-|UAE North|`UAEN`|
-|UK South|`UKS`|
-|Central US|`USC`|
-|East US|`USE`|
-|East US 2|`USE2`|
-|North Central US|`USNC`|
-|South Central US|`USSC`|
-|West US|`USW`|
-|West US 2|`USW2`|
-|West Central US|`USWC`|
-|West Europe|`WEU`|
 
 Congratulations! You learned how to use Azure `VNet` service endpoints with Custom Translator.
 

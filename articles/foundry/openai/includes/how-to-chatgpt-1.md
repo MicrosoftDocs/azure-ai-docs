@@ -6,14 +6,14 @@ ms.reviewer: sgilley
 ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/22/2026
+ms.date: 08/24/2026
 ms.custom:
-	- include
-	- doc-kit-assisted
+  - include
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-In this article, you use Python or .NET to send chat completion requests, build a multi-turn conversation, and manage the conversation's token budget.
+In this article, you send chat completion requests, build a multi-turn conversation, and manage the conversation's token budget.
 
 Chat models are language models optimized for conversational interfaces. Unlike older text-in and text-out completion models, chat models accept a transcript of messages and return a model-generated message. This format supports multi-turn conversations and nonchat scenarios.
 

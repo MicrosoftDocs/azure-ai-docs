@@ -4,7 +4,7 @@ description: "Learn about Microsoft Foundry Models sold by Azure, their capabili
 author: msakande #alvinashcraft for azure-openai pivot
 ms.author: mopeakande #aashcraft for azure-openai pivot
 manager: mcleans
-ms.date: 04/17/2026
+ms.date: 08/20/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: product-comparison
@@ -15,6 +15,7 @@ ms.custom:
   - build-aifnd
   - build-2025
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: models-sold-directly-by-azure
 

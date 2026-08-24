@@ -1,17 +1,11 @@
 items:
 - name: Overview
-  items:
-  - name: What is Foundry Agent Service?
-    href: ../../agents/overview.md
-  - name: Choose how to build
-    href: ../../concepts/choose-build-approach.md
-  - name: Agent development lifecycle
-    href: ../../agents/concepts/development-lifecycle.md
-  - name: Quickstarts
-    href: ../../quickstarts/quickstarts.md
+  href: ../../agents/overview.md
 
 - name: Concepts
   items:
+  - name: Agent development lifecycle
+    href: ../../agents/concepts/development-lifecycle.md
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
   - name: Agent 365
@@ -47,6 +41,8 @@ items:
       href: ../../agents/concepts/tool-best-practice.md
     - name: Agent optimizer overview
       href: ../../agents/concepts/agent-optimizer-overview.md
+    - name: Understand optimizer costs and token usage
+      href: ../../agents/concepts/agent-optimizer-costs.md
     - name: Optimize a prompt agent
       href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
   - name: Structured inputs

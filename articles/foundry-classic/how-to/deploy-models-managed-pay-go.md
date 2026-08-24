@@ -6,7 +6,7 @@ ms.subservice: foundry-models
 ms.custom:
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/06/2026
+ms.date: 08/20/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -256,6 +256,7 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 
 | Model | Task |
 |--|--|
+| [TabPFN-3-Plus-Thinking](https://ai.azure.com/explore/models/TabPFN-3-Plus-Thinking/version/1/registry/azureml-priorlabs-p/?cid=learnDocs) | Forecasting |
 | [TabPFN-2.5](https://ai.azure.com/explore/models/TabPFN-2.5/version/2/registry/azureml-priorlabs-p/?cid=learnDocs) | Regression, Classification, Forecasting |
 
 ### RezolveAI
@@ -277,6 +278,7 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 
 | Model | Task |
 |--|--|
+| [voyage-code-4](https://ai.azure.com/explore/models/voyage-code-4/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [voyage-3.5-embedding-model](https://ai.azure.com/explore/models/voyage-3.5-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [voyage-4-lite-embedding](https://ai.azure.com/explore/models/voyage-4-lite-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [voyage-4-embedding](https://ai.azure.com/explore/models/voyage-4-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
@@ -285,6 +287,7 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 | [voyage-context-4](https://ai.azure.com/explore/models/voyage-context-4/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [rerank-2.5-lite](https://ai.azure.com/explore/models/rerank-2.5-lite/version/1/registry/azureml-voyage/?cid=learnDocs) | Text classification |
 | [rerank-2.5](https://ai.azure.com/explore/models/rerank-2.5/version/1/registry/azureml-voyage/?cid=learnDocs) | Text classification |
+
 
 ## Related content
 
