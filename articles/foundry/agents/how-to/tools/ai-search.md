@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -46,7 +46,7 @@ The following table shows SDK and setup support.
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
-  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0` dependency to your `pom.xml`
+  - **Java**: Add the latest `com.azure:azure-ai-agents` dependency to your `pom.xml`
 - An Azure subscription and Microsoft Foundry project with:
   - Project endpoint
   - Model deployment name
@@ -57,7 +57,7 @@ The following table shows SDK and setup support.
   - At least one retrievable text field that contains the content you want the agent to cite
   - A retrievable field that contains a source URL (and optionally a title) so citations can include a link
 - A connection between your Foundry project and your Azure AI Search service (see [Setup](#setup)).
-- For keyless authentication, assign the following Azure role-based access control (RBAC) roles to your project's managed identity:
+- For keyless authentication, use the system-assigned managed identity of the Foundry account that contains your project. Assign these Azure role-based access control (RBAC) roles to that identity on the search service:
   - **Search Index Data Contributor**
   - **Search Service Contributor**
 
@@ -351,8 +351,10 @@ foreach (ResponseItem item in response.OutputItems)
     }
 }
 
-// Use the helper method to output the result.
-Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+if (response.Status != ResponseStatus.Completed)
+{
+  throw new InvalidOperationException($"Response failed with status {response.Status}.");
+}
 Console.WriteLine($"{response.GetOutputText()}{result}");
 
 // Finally, delete all the resources you created in this sample.
@@ -590,6 +592,7 @@ The recommended way to add Azure AI Search is through a toolbox, then attach the
 ```bash
 curl --request POST \
   --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/ai-search-toolbox/versions?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
     "description": "Toolbox with the Azure AI Search tool",
@@ -755,7 +758,7 @@ export async function main(): Promise<void> {
     },
     {
       body: {
-        agent: { name: agent.name, type: "agent_reference" },
+        agent_reference: { name: agent.name, type: "agent_reference" },
         tool_choice: "required",
       },
     },
@@ -811,7 +814,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -896,10 +899,12 @@ Select the tab for your desired authentication method.
       :::image type="content" source="../../../agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../agents/media/tools/ai-search/azure-portal.png":::
 
 1. To assign the necessary roles:
+  1. On the Foundry account in the Azure portal, select **Identity**, and copy the **Object (principal) ID** for the system-assigned managed identity.
     1. From the left pane, select **Access control (IAM)**.
     1. Select **Add** > **Add role assignment**.
-    1. Assign the **Search Index Data Contributor** role to the managed identity of your project.
+  1. Assign the **Search Index Data Contributor** role to the managed identity whose object ID you copied.
     1. Repeat the role assignment for **Search Service Contributor**.
+  1. In **Access control (IAM)**, select **Check access**, search for the object ID, and verify that both roles appear.
 
 ---
 

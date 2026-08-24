@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -55,7 +55,7 @@ Before you begin, make sure you have:
 - **Foundry Project Manager** role on the Foundry project if you create the project connection.
 - **Contributor** role on the target resource group only while you create the Playwright workspace. This role is required for resource provisioning. Activate it just in time through Microsoft Entra Privileged Identity Management (PIM), and deactivate it after provisioning. Day-to-day agent developers and runtime users don't need this role.
 - A Foundry project with a configured endpoint.
-- An AI model deployed in your project (for example, `gpt-5.4`).
+- An AI model deployed in your project (for example, `gpt-5.4`). Confirm that both the model and project region support Browser Automation in [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 - A Playwright workspace resource.
 - A project connection set up for your Playwright workspace.
 
@@ -108,8 +108,9 @@ An example flow is:
 1. Confirm the **Playwright Service Access Token** authentication method is enabled.
 1. Select **Generate Token**, enter a name (for example, `foundry-connection`), and choose an expiry period.
 1. **Copy the token immediately**. You can't view it again after closing the page.
+1. Store the token only in the Foundry project connection. Don't put it in source code, prompts, or application logs. Rotate it before it expires, and revoke it immediately if it is exposed.
 1. On the workspace **Overview** page, copy the **Browser endpoint** (it starts with `wss://`).
-1. [Configure a custom role](https://aka.ms/pww/docs/manage-workspace-access) with only the Playwright permissions that the project identity requires. If a custom role isn't available, assign **Contributor** only at the Playwright workspace resource scope.
+1. [Configure a custom role](https://aka.ms/pww/docs/manage-workspace-access) with only the Playwright permissions that the Foundry project identity requires. If a custom role isn't available, assign **Contributor** only at the Playwright workspace resource scope. The service access token is stored in the project connection; the role assignment separately authorizes the project identity to access the workspace resource.
 
 ### Connect the Browser Automation tool in Foundry
 
@@ -813,7 +814,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 

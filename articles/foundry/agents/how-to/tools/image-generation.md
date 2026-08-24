@@ -8,7 +8,7 @@ ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
-ms.date: 08/05/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -29,7 +29,9 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 - An Azure account with an active subscription.
 - A Foundry project.
 - A basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md).
-- Permissions to create and manage agent versions in the project.
+- **Foundry User** role on the Foundry project to create and manage agent versions.
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - Approval to use `gpt-image-1`. [Apply for access to GPT Image models](https://aka.ms/oai/gptimage1access) before you deploy the model.
 - Two model deployments in the same Foundry project:
   - A compatible Azure OpenAI model deployment for the agent (for example, `gpt-5`).
@@ -58,7 +60,7 @@ Use the runtime and install command in your selected language section. The .NET 
 
 This sample creates an agent with the image generation tool, generates an image, and saves it to a file. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
-Use Python 3.9 or later for the prompt-agent sample. Install its dependencies:
+Use Python 3.10 or later for the prompt-agent sample. Install its dependencies:
 
 ```bash
 python -m pip install azure-ai-projects azure-identity
@@ -331,7 +333,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "x-ms-oai-image-generation-deployment: gpt-image-1" \
   -d '{
-    "agent": {
+    "agent_reference": {
       "type": "agent_reference",
       "name": "image-gen-agent"
     },
@@ -498,11 +500,13 @@ Image downloaded and saved to: /path/to/microsoft.png
 
 Use JDK 17 or later and Maven 3.8 or later. Add the dependencies to your `pom.xml`:
 
+The Java client doesn't currently expose the required `x-ms-oai-image-generation-deployment` header on response creation. Use Java to create the agent definition, and use the REST procedure in this article to invoke the agent and retrieve the generated image.
+
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
   <dependency>
     <groupId>com.azure</groupId>
@@ -516,15 +520,9 @@ Use JDK 17 or later and Maven 3.8 or later. Add the dependencies to your `pom.xm
 ```java
 import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.*;
 import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.openai.models.responses.Response;
-import com.openai.models.responses.ResponseCreateParams;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Base64;
 import java.util.Collections;
 
 public class ImageGenerationExample {
@@ -538,8 +536,6 @@ public class ImageGenerationExample {
             .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
-        ResponsesClient responsesClient = builder.buildResponsesClient();
-
         // Create image generation tool with model, quality, and size
         ImageGenTool imageGenTool = new ImageGenTool()
             .setModel(ImageGenToolModel.fromString(imageModel))
@@ -554,37 +550,6 @@ public class ImageGenerationExample {
         AgentVersionDetails agent = agentsClient.createAgentVersion("image-gen-agent", agentDefinition);
         System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
 
-        // Create a response
-        AgentReference agentReference = new AgentReference(agent.getName())
-            .setVersion(agent.getVersion());
-
-        Response response = responsesClient.createAzureResponse(
-            new AzureCreateResponseOptions().setAgentReference(agentReference),
-            ResponseCreateParams.builder()
-                .input("Generate an image of a sunset over a mountain range"));
-
-        System.out.println("Response status: " + response.status().map(Object::toString).orElse("unknown"));
-
-        Path imagePath = Path.of("generated-image.png");
-        boolean imageSaved = false;
-        for (var outputItem : response.output()) {
-          if (outputItem.isImageGenerationCall()) {
-            String result = outputItem.asImageGenerationCall().result()
-              .orElseThrow(() -> new IllegalStateException("Image result is missing."));
-            Files.write(imagePath, Base64.getDecoder().decode(result));
-            long imageSize = Files.size(imagePath);
-            if (imageSize == 0) {
-              throw new IllegalStateException("The generated image is empty.");
-            }
-            System.out.printf("Image saved to: %s (%d bytes)%n", imagePath.toAbsolutePath(), imageSize);
-            imageSaved = true;
-            break;
-          }
-        }
-        if (!imageSaved) {
-          throw new IllegalStateException("No image_generation_call output found.");
-        }
-
         // Clean up
         agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
     }
@@ -595,8 +560,6 @@ public class ImageGenerationExample {
 
 ```output
 Agent created: image-gen-agent (version 1)
-Response status: completed
-Image saved to: <path>/generated-image.png (<bytes> bytes)
 ```
 
 :::zone-end
