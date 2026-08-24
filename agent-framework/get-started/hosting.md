@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: edvan
 ms.date: 07/08/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 7: Host Your Agent
@@ -142,11 +143,11 @@ pip install agent-framework-azurefunctions agent-framework-foundry azure-identit
 
 Create an agent:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/azure_functions/01_single_agent/function_app.py" range="24-35" highlight="4-9":::
+:::code language="python" source="~/../agent-framework-durable-extension/python/samples/azure_functions/01_single_agent/function_app.py" range="24-35" highlight="4-9":::
 
 Register the agent with `AgentFunctionApp`:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/azure_functions/01_single_agent/function_app.py" range="38-39" highlight="2":::
+:::code language="python" source="~/../agent-framework-durable-extension/python/samples/azure_functions/01_single_agent/function_app.py" range="38-39" highlight="2":::
 
 Run locally with [Azure Functions Core Tools](/azure/azure-functions/functions-run-local):
 

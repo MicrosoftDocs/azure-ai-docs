@@ -264,6 +264,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "agent-framework-durable-extension",
+      "url": "https://github.com/microsoft/agent-framework-durable-extension",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "agent-framework-go",
       "url": "https://github.com/microsoft/agent-framework-go",
       "branch": "main",

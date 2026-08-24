@@ -6,6 +6,7 @@ ms.topic: reference
 ms.author: evmattso
 ms.date: 08/11/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Security Considerations for AG-UI
@@ -150,7 +151,7 @@ Forwarded properties contain arbitrary JSON that passes through the system. Trea
 
 AG-UI does not include a built-in authorization mechanism. Authenticate and authorize the exposed endpoint with your application framework.
 
-Treat a client-supplied `threadId` as an untrusted continuation identifier, not an authorization credential. When session persistence is enabled, authorize the caller before resuming the selected session. See [Conversation continuity](./getting-started.md#conversation-continuity) for AG-UI behavior and [Self-host Agent Framework applications](../../../../hosting/self-hosting/index.md#isolate-sessions-in-multi-user-hosts) for shared persistence and isolation configuration.
+Treat a client-supplied `threadId` as an untrusted continuation identifier, not an authorization credential. When session persistence is enabled, authorize the caller before resuming the selected session. See [Conversation continuity](./getting-started.md#conversation-continuity) for AG-UI behavior and [Self-host Agent Framework applications](../../../../hosting/self-hosting/index.md#secure-session-continuation) for shared persistence and isolation configuration.
 
 For ASP.NET Core authentication schemes and policies, see [ASP.NET Core authentication](/aspnet/core/security/authentication/) and [ASP.NET Core authorization](/aspnet/core/security/authorization/introduction).
 
