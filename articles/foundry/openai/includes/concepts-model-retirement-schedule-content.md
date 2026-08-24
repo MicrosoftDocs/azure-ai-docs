@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
 
+The **Replacement** column identifies Microsoft's recommended replacement and, where supported, the target for automatic upgrades at retirement. You don't need to wait for a replacement to be listed before evaluating or manually migrating to another compatible model. Evaluate available models using your application and data, comparing quality, latency, and cost. For selection criteria and the full migration process, see [Model migration process](../../foundry-models/concepts/model-migration.md).
+
 ## Foundry Models sold by Azure
 
 This section lists the retirement lifecycle for Foundry Models sold by Azure.
@@ -24,12 +26,12 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
-| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
-| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1 | 2025-04-14 | Legacy | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Legacy | 2027-04-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Legacy | 2027-04-14 | — |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2027-04-14 | gpt-5.1 |
-| gpt-4o | 2024-11-20 | Deprecated | 2027-04-14 | gpt-5.1 |
+| gpt-4o | 2024-11-20 | Legacy | 2027-04-14 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | Deprecated | 2027-04-14 | — |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2027-06-15 | — |

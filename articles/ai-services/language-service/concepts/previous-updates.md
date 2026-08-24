@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: release-notes
-ms.date: 06/10/2026
+ms.date: 08/13/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ROBOTS: NOINDEX
 ---
 # Previous updates for Azure Language in Foundry Tools

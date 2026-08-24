@@ -1,6 +1,10 @@
 {
   "Docsets": [
     {
+      "DocsetName": "agent-framework-docs",
+      "BuildSourceFolder": "agent-framework"
+    },
+    {
       "DocsetName": "azure-ai",
       "BuildSourceFolder": "."
     }

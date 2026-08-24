@@ -299,33 +299,23 @@ During streaming, you might also see deltas and tool-call details. Output varies
 
 ### Hosted agents
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `browser-automation-toolbox` and connect to its MCP endpoint with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx azure-ai-projects`, replace `PROJECT_ENDPOINT` and `BROWSER_CONNECTION_ID` with your project values, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `browser-automation-toolbox` and connect to its MCP endpoint with `FoundryToolbox`. Install the packages with `pip install agent-framework-foundry azure-ai-projects`, replace `PROJECT_ENDPOINT` and `BROWSER_CONNECTION_ID` with your project values, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 ```python
 import asyncio
 
-import httpx
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
   BrowserAutomationPreviewToolboxTool,
     BrowserAutomationToolParameters,
     BrowserAutomationToolConnectionParameters,
 )
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.identity import AzureCliCredential
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 BROWSER_CONNECTION_ID = "your-browser-automation-connection-id"
-
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
-        yield request
 
 
 async def main() -> None:
@@ -355,22 +345,16 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions=(
             "You help with browser automation tasks. Use the Browser Automation tool "
             "to navigate and read information from websites."
         ),
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run(
@@ -501,7 +485,7 @@ You see streaming progress messages, such as text deltas, and a completed respon
 
 ### Hosted agents
 
-This excerpt creates the Browser Automation toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with custom `ToolboxMcpClient`, `ToolboxHandler`, and `AgentConfig` helpers to discover and invoke the tool through the toolbox MCP endpoint. It isn't a standalone program. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `BROWSER_AUTOMATION_CONNECTION_ID` environment variables, and sign in with `az login`. Use the linked full sample for the helper implementations.
+This sample creates the Browser Automation toolbox with the Azure AI Projects SDK, and then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make the tool available to the hosted agent. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `BROWSER_AUTOMATION_CONNECTION_ID` environment variables, and sign in with `az login`.
 
 ```csharp
 using System.IO;
@@ -512,6 +496,8 @@ using Azure.AI.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 
@@ -537,22 +523,19 @@ ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
         tools: [browserTool],
         description: "Toolbox with the Browser Automation tool");
 
-// 2. The toolbox exposes an MCP-compatible endpoint.
-string toolboxMcpEndpoint =
-    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+// Create the hosted agent and register the toolbox integration.
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    instructions: "You are a helpful assistant with access to the toolbox tools.",
+    name: "hosted-toolbox-agent");
 
-// 3. Attach the toolbox to the hosted agent.
-var openAIClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxVersion.Name);
 
-// ToolboxMcpClient discovers tools from the toolbox MCP endpoint and calls them
-// through tools/call. ToolboxHandler maps model tool calls to that MCP client.
-var toolboxClient = new ToolboxMcpClient(toolboxMcpEndpoint, credential);
-
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
 
 ### Expected output

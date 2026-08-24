@@ -487,28 +487,19 @@ print(f"Created agent: {agent.name}, version: {agent.version}")
 
 **Hosted agent (Python SDK):**
 
-Use the same toolbox endpoint from a hosted agent by authenticating to the toolbox MCP endpoint and attaching it with `MCPStreamableHTTPTool`.
+Use the same toolbox endpoint from a hosted agent by authenticating to the toolbox MCP endpoint and attaching it with `FoundryToolbox`.
 
 ```python
 import asyncio
-import httpx
 
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
+from azure.identity import AzureCliCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MCPTool
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = "Bearer " + self._token_provider()
-        yield request
 
 async def main() -> None:
     credential = AzureCliCredential()
@@ -537,19 +528,13 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are an assistant that uses connector actions to complete tasks.",
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run("Use the connector actions to summarize the latest items that need my attention.")

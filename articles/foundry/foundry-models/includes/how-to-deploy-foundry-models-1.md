@@ -18,7 +18,7 @@ This article uses a Foundry Model from partners and community `Llama-4-Scout-17B
 
 To complete this article, you need:
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin. If you're using GitHub Models, you can [upgrade to Foundry Models](../how-to/quickstart-github-models.md) and create an Azure subscription in the process.
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 

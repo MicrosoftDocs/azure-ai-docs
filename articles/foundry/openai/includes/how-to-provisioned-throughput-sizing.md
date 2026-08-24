@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/19/2026
+ms.date: 08/21/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -162,15 +162,15 @@ The tables in this section list the throughput and deployment parameters for eac
 
 This section lists other Foundry Models sold by Azure, not including the Azure OpenAI in Foundry Models listed in the previous tables.
 
-| Topic | **Llama-3.3-70B-Instruct** | **DeepSeek-R1** | **DeepSeek-V3-0324** |
-|---|---|---|---|
-| Global & data zone provisioned minimum deployment | 100 | 100 | 100 |
-| Global & data zone provisioned scale increment | 100 | 100 | 100 |
-| Regional provisioned minimum deployment | NA | NA | NA |
-| Regional provisioned scale increment | NA | NA | NA |
-| Input TPM per PTU | 8,450 | 4,000 | 4,000 |
-| Output-to-input ratio | 4<sup>1</sup> | 4 | 4 |
-| Latency target value<sup>2</sup> | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS |
+| Topic | **Llama-3.3-70B-Instruct** |
+|---|---|
+| Global and data zone provisioned minimum deployment | 100 |
+| Global and data zone provisioned scale increment | 100 |
+| Regional provisioned minimum deployment | NA |
+| Regional provisioned scale increment | NA |
+| Input TPM per PTU | 8,450 |
+| Output-to-input ratio | 4<sup>1</sup> |
+| Latency target value<sup>2</sup> | 99% > 50 TPS |
 
 <sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. See [Models with a non-standard output-to-input ratio](#models-with-a-non-standard-output-to-input-ratio) and [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/).
 

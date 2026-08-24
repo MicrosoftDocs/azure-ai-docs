@@ -3,7 +3,7 @@ title: Create a Blob Knowledge Source for Agentic Retrieval
 description: Learn how to create a blob knowledge source in Azure AI Search that ingests content from Azure Blob Storage or ADLS Gen2 for agentic retrieval.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/08/2026
+ms.date: 08/18/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
@@ -54,9 +54,11 @@ The generated indexer conforms to the *blob indexer*, whose prerequisites, suppo
 
 + A blob container with [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
 
++ If `contentExtractionMode` is `standard`, use a Microsoft Foundry resource in a [region supported by Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/language-region-support) and the `https://<resource-name>.services.ai.azure.com` endpoint. Deploy an embedding model, and deploy a multimodal chat model if you enable image verbalization.
+
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
-+ If the knowledge source specifies an Azure OpenAI model for embeddings or image verbalization, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
++ A [managed identity](search-how-to-managed-identities.md) for the search service with **Storage Blob Data Reader** at the source storage-account scope and **Cognitive Services User** on the Microsoft Foundry resource. If you configure an asset store in a different storage account, also assign **Storage Blob Data Contributor** at that storage-account scope. If the source and asset containers share an account, **Storage Blob Data Contributor** provides both source read access and asset-store read/write access.
 
 ::: zone pivot="csharp"
 
@@ -162,7 +164,7 @@ Run the following code to create a blob knowledge source.
 // Create a blob knowledge source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
-using Azure.Search.Documents.Models;
+using Azure.Search.Documents.KnowledgeBases.Models;
 using Azure;
 
 var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
@@ -289,7 +291,8 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 # Create a blob knowledge source
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import AzureBlobKnowledgeSource, AzureBlobKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
+from azure.search.documents.indexes.models import AzureBlobKnowledgeSource, AzureBlobKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceContentExtractionMode
+from azure.search.documents.knowledgebases.models import KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceIngestionParameters
 
 index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
 
@@ -396,7 +399,7 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 ```http
 ### Create a blob knowledge source
 PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2026-05-01-preview
-api-key: {{api-key}}
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -405,7 +408,7 @@ Content-Type: application/json
   "description": "This knowledge source pulls from a blob storage container.",
   "encryptionKey": null,
   "azureBlobParameters": {
-    "connectionString": "<YOUR AZURE STORAGE CONNECTION STRING>",
+  "connectionString": "ResourceId=<storage-resource-id>",
     "containerName": "<YOUR BLOB CONTAINER NAME>",
     "folderPath": null,
     "isADLSGen2": false,
@@ -417,8 +420,7 @@ Content-Type: application/json
             "azureOpenAIParameters": {
                 "resourceUri": "{{aoai-endpoint}}",
                 "deploymentId": "{{aoai-gpt-deployment}}",
-                "modelName": "{{aoai-gpt-model}}",
-                "apiKey": "{{aoai-key}}"
+                "modelName": "{{aoai-gpt-model}}"
             }
         },
         "embeddingModel": {
@@ -426,8 +428,7 @@ Content-Type: application/json
             "azureOpenAIParameters": {
                 "resourceUri": "{{aoai-endpoint}}",
                 "deploymentId": "{{aoai-embedding-deployment}}",
-                "modelName": "{{aoai-embedding-model}}",
-                "apiKey": "{{aoai-key}}"
+                "modelName": "{{aoai-embedding-model}}"
             }
         },
         "contentExtractionMode": "minimal",
@@ -445,7 +446,7 @@ Content-Type: application/json
 ```http
 ### Create a blob knowledge source
 PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2026-04-01
-api-key: {{api-key}}
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -454,7 +455,7 @@ Content-Type: application/json
   "description": "This knowledge source pulls from a blob storage container.",
   "encryptionKey": null,
   "azureBlobParameters": {
-    "connectionString": "<YOUR AZURE STORAGE CONNECTION STRING>",
+  "connectionString": "ResourceId=<storage-resource-id>",
     "containerName": "<YOUR BLOB CONTAINER NAME>",
     "folderPath": null,
     "isADLSGen2": false,
@@ -466,8 +467,7 @@ Content-Type: application/json
             "azureOpenAIParameters": {
                 "resourceUri": "{{aoai-endpoint}}",
                 "deploymentId": "{{aoai-gpt-deployment}}",
-                "modelName": "{{aoai-gpt-model}}",
-                "apiKey": "{{aoai-key}}"
+                "modelName": "{{aoai-gpt-model}}"
             }
         },
         "embeddingModel": {
@@ -475,8 +475,7 @@ Content-Type: application/json
             "azureOpenAIParameters": {
                 "resourceUri": "{{aoai-endpoint}}",
                 "deploymentId": "{{aoai-embedding-deployment}}",
-                "modelName": "{{aoai-embedding-model}}",
-                "apiKey": "{{aoai-key}}"
+                "modelName": "{{aoai-embedding-model}}"
             }
         },
         "contentExtractionMode": "minimal",
@@ -509,7 +508,7 @@ If you're satisfied with the knowledge source, [add it to a knowledge base](agen
 
 ## Query a knowledge base
 
-After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source. This knowledge source supports optional configurations for document-level permissions enforcement and document-embedded image surfacing.
+After you configure the knowledge base, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source. Choose the configuration that matches your scenario.
 
 ### Enforce document-level permissions (preview)
 
@@ -517,21 +516,11 @@ To enforce document-level permissions, set `ingestionPermissionOptions` when you
 
 ### Surface document-embedded images (preview)
 
-To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. Image serving isn't supported when `ingestionPermissionOptions` is configured. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ## Delete a knowledge source
 
 [!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
-
-## Known errors
-
-When you create this knowledge source with `contentExtractionMode` set to `standard`, you might get the following error.
-
-```json
-Failed to create custom analyzer 'azs_tmp': BadRequest - {"error":{"code":"InvalidRequest","message":"Invalid request.","innererror":{"code":"DefaultsNotSet","message":"Defaults have not yet been set. Call 'PATCH /contentunderstanding/defaults' first."}}}
-```
-
-To resolve the error, define the default values as instructed in the [Content Understanding prerequisites](/azure/ai-services/content-understanding/tutorial/create-custom-analyzer?tabs=portal%2Cdocument&pivots=programming-language-rest#prerequisites). Afterwards, you can proceed with creating the knowledge source.
 
 ## Related content
 

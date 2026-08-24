@@ -3,7 +3,7 @@ title: Model region availability for Provisioned deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Provisioned deployment options
 manager: mcleans
-ms.date: 07/17/2026
+ms.date: 08/21/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -138,9 +138,6 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 | **Model** | **Version** | **brazilsouth** | **canadacentral** | **canadaeast** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westcentralus** | **westus** | **westus2** | **westus3** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
@@ -148,9 +145,6 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **ukwest** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
@@ -158,9 +152,6 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 | **Model** | **Version** | **australiaeast** | **japaneast** | **japanwest** | **koreacentral** | **southindia** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
@@ -168,9 +159,6 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 
 | **Model** | **Version** | **southafricanorth** | **uaenorth** |
 | :--- | :--- | :---: | :---: |
-| DeepSeek-R1 | 1 | ✅ | ✅ |
-| DeepSeek-R1-0528 | 1 | ✅ | ✅ |
-| DeepSeek-V3-0324 | 1 | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ |
 
