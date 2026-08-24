@@ -640,9 +640,9 @@ tools = await toolbox.get_tools()
 
 ### Microsoft Agent Framework
 
-**Hosted integration fragment requirements:** Install `agent-framework-foundry` and `httpx` in addition to the prerequisite Azure Identity package. The fragment depends on an `_ToolboxAuth` helper and surrounding client and host setup. Use the [maintained Agent Framework sample](https://aka.ms/foundry-toolbox-maf), which provides the complete package set and maintained toolbox authentication wrapper.
+Install `agent-framework-foundry` in addition to the prerequisite Azure Identity package. For the complete implementation, see the [maintained Agent Framework sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox).
 
-Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to the toolbox MCP endpoint.
+Use `FoundryToolbox` from the Agent Framework SDK to connect to the toolbox endpoint. The class handles toolbox authentication and forwards the hosted-agent call context.
 
 **`.env` file**:
 
@@ -655,29 +655,23 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 **`main.py`** (key pattern):
 
 ```python
-# Auth: wrap token provider in an httpx.Auth subclass
+from agent_framework.foundry import FoundryToolbox
+from azure.identity import DefaultAzureCredential
+
 credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-http_client = httpx.AsyncClient(
-    auth=_ToolboxAuth(token_provider),
-    timeout=120.0,
-)
 
 # Toolbox MCP endpoint (platform-injected at runtime via TOOLBOX_ENDPOINT)
 TOOLBOX_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1"
 
-# Connect MCPStreamableHTTPTool to the toolbox endpoint
-mcp_tool = MCPStreamableHTTPTool(
-    name="toolbox",
+toolbox = FoundryToolbox(
+    credential,
     url=TOOLBOX_ENDPOINT,
-    http_client=http_client,
-    load_prompts=False,
 )
 
 agent = chat_client.as_agent(
     name="my-toolbox-agent",
     instructions="You are a helpful assistant with access to Foundry toolbox tools.",
-    tools=[mcp_tool],
+    tools=[toolbox],
 )
 ResponsesAgentServerHost().run()
 ```
@@ -735,50 +729,48 @@ agent = Agent(
 
 ### Microsoft Agent Framework
 
-**Hosted integration fragment requirements:** This fragment uses types from the `Azure.AI.AgentServer.Responses`, `Azure.AI.OpenAI`, `Azure.Identity`, `Microsoft.Extensions.DependencyInjection`, and `OpenAI` packages. `ToolboxMcpClient`, `ToolboxHandler`, and `AgentConfig` are custom helpers that aren't defined here. For a maintained integration with the package references and complete host setup, use the public [Agent Framework hosted-toolbox sample](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox).
+Install `Microsoft.Agents.AI.Foundry.Hosting` and `Azure.Identity`. For a complete project, see the public [Agent Framework hosted-toolbox sample](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox).
 
-Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to discover and invoke toolbox tools through the MCP endpoint.
+Use `AddFoundryToolboxes` to register one or more toolboxes with the hosted agent. The integration resolves the managed MCP endpoint, authenticates requests, and includes toolbox health in the readiness probe.
 
 **Environment variables**:
 
 ```
-AZURE_OPENAI_ENDPOINT=https://<account>.services.ai.azure.com
+AZURE_AI_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
 AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
-TOOLBOX_MCP_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
+TOOLBOX_NAME=<toolbox-name>
 ```
 
 **`Program.cs`** (key pattern):
 
 ```csharp
-using Azure.AI.AgentServer.Responses;
-using Azure.AI.AgentServer.Responses.Models;
-using Azure.AI.OpenAI;
+using Azure.AI.Projects;
 using Azure.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using OpenAI.Chat;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 
-// Azure OpenAI endpoint and model deployment
-var openAiEndpoint = "https://<account>.services.ai.azure.com";
-var deployment = "gpt-4o";  // supports all toolbox tool types
+string projectEndpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable(
+    "AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
+string toolboxName = Environment.GetEnvironmentVariable("TOOLBOX_NAME")
+    ?? throw new InvalidOperationException("TOOLBOX_NAME is not set.");
 
-// Toolbox MCP endpoint (platform-injected at runtime via TOOLBOX_MCP_ENDPOINT)
-var toolboxEndpoint = "https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1";
-
-// Azure OpenAI client
 var credential = new DefaultAzureCredential();
-var openAIClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
-var chatClient = openAIClient.GetChatClient(deployment);
+AIAgent agent = new AIProjectClient(new Uri(projectEndpoint), credential)
+    .AsAIAgent(
+        model: deploymentName,
+        instructions: "You are a helpful assistant with access to toolbox tools.",
+        name: "hosted-toolbox-agent");
 
-// Toolbox MCP client — discovers tools via tools/list, calls them via tools/call
-var toolboxClient = new ToolboxMcpClient(toolboxEndpoint, credential);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxName);
 
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
-
-`ToolboxMcpClient` wraps direct JSON-RPC calls to the MCP endpoint. `ToolboxHandler` connects LLM tool calls back to the MCP client by using a standard tool-calling loop.
 
 :::zone-end
 
@@ -1193,7 +1185,7 @@ Content-Type: application/json
 }
 ```
 
-`default_version` can't be empty. Replace it with a new version. 
+`default_version` can't be empty. Replace it with a new version.
 :::zone-end
 
 :::zone pivot="javascript"
@@ -1832,7 +1824,7 @@ The `reminder_preview` tool enables a hosted agent to schedule *itself* to run a
 | `CONSENT_REQUIRED` (code `-32006`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
 | `401` on MCP calls | Expired token or wrong scope | Use scope `https://ai.azure.com/.default` and refresh the token. |
 | Tool names not matching | MCP tool names are prefixed with `server_label` | Use `{server_label}.{tool_name}` format (for example, `myserver.get_info`). |
-| `500` on `send_ping()` | Toolbox MCP server doesn't implement the MCP `ping` method. | Don't call `send_ping()`. If your framework calls it automatically (for example, Microsoft Agent Framework's `MCPStreamableHTTPTool._ensure_connected()`), disable the ping check or override the method with a no-op. |
+| `500` on `send_ping()` | Toolbox MCP server doesn't implement the MCP `ping` method. | Use the Microsoft Agent Framework `FoundryToolbox` class, which handles the toolbox connection. Don't call `send_ping()` directly. |
 | `500` on `prompts/list` | The Foundry MCP server doesn't implement `prompts/list`. | Pass `load_prompts=False` (or equivalent) to your MCP client constructor. |
 | `500` with non-streaming `tools/call` | Non-streaming mode (`stream=False`) isn't supported for toolbox MCP endpoints. | Always use `stream=True` when calling toolbox MCP tools. |
 | `500` on `tools/list` | Transient server error | Retry after a few seconds. |

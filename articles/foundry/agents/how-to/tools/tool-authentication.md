@@ -210,19 +210,17 @@ print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.versi
 The agent connects to the toolbox's single consumer endpoint, which always serves the default version. The agent authenticates to the platform with its own identity. For each tool, Foundry supplies credentials that represent the user who completed OAuth authorization. The agent carries no per-tool authentication code.
 
 ```python
-import httpx
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from agent_framework import MCPStreamableHTTPTool
+from azure.identity import DefaultAzureCredential
+from agent_framework import FoundryToolbox
 
 # Agent-to-toolbox identity: the agent's own credential, scoped to the platform
 credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+, timeout=120.0)
 
 # Consumer endpoint always resolves to the toolbox's default version
 CONSUMER_URL = f"{endpoint}/toolboxes/employee-toolbox/mcp?api-version=v1"
 
-toolbox = MCPStreamableHTTPTool(
+toolbox = FoundryToolbox(
     name="employee_toolbox",
     url=CONSUMER_URL,
     http_client=http_client,
