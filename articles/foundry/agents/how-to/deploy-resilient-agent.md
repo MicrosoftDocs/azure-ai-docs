@@ -4,7 +4,7 @@ description: "Deploy a long-running hosted agent that keeps working with no clie
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 08/05/2026
+ms.date: 08/20/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -14,9 +14,9 @@ ai-usage: ai-assisted
 
 # Deploy a crash-resilient long-running agent (preview)
 
-In this article, you deploy a [long-running hosted agent](../concepts/long-running-agent-resilience.md) that uses the Responses protocol and the resilient background response feature. You run a single response that works for roughly 25 minutes with no client connected, crash the container on purpose, and watch the platform bring it back and resume from the last checkpoint.
+In this article, you deploy a [long-running hosted agent](../concepts/long-running-agent-resilience.md) that uses the Responses protocol and the resilient background response feature. You run a stored background response, crash the agent process on purpose, and watch it resume from the last checkpoint after restart.
 
-The agent runs a fixed research plan of streamed phases. Each completed phase is one checkpointed output item, so a recovered run repeats at most one phase.
+The agent runs three simulated streamed stages: analyze, generate, and refine. Each completed stage is one checkpointed output item, so a recovered run repeats at most one stage.
 
 > [!NOTE]
 > Long-running agents are in preview. APIs and package versions are subject to change.
@@ -24,30 +24,26 @@ The agent runs a fixed research plan of streamed phases. Each completed phase is
 ## Prerequisites
 
 - An Azure subscription with Microsoft Foundry access.
-- A model deployment in your Foundry project (for example, `gpt-5.4-nano`).
-- [Python 3.12](https://www.python.org/downloads/).
+- [Python 3.13](https://www.python.org/downloads/).
 - The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) with the Foundry agents extension: `azd extension install azure.ai.agents`.
-- The [Azure CLI](/cli/azure/install-azure-cli) for local model calls.
 
 ## Get the sample
 
-Clone the samples and change into the resilient research agent (Responses, Python):
+In an empty directory, initialize the resilient streaming agent from its `azure.yaml` manifest:
 
 ```bash
-git clone https://github.com/microsoft-foundry/foundry-samples.git
-cd foundry-samples/samples/python/resilient-research-responses-python
+azd auth login
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/resilient-streaming/azure.yaml
 ```
 
-The sample opts in to resilience and steering when it creates the host:
+The command downloads the sample source, adopts its `azure.yaml`, creates an azd environment, and connects it to the Foundry project you select.
+
+The sample opts in to resilience when it creates the host:
 
 ```python
-# app.py
-app = ResponsesAgentServerHost(
-    options=ResponsesServerOptions(
-        resilient_background=True,       # re-invoke the handler after a crash
-        steerable_conversations=True,    # accept a follow-up turn mid-run
-    ),
-)
+# src/resilient-streaming/main.py
+options = ResponsesServerOptions(resilient_background=True)
+app = ResponsesAgentServerHost(options=options)
 ```
 
 > [!IMPORTANT]
@@ -57,54 +53,74 @@ app = ResponsesAgentServerHost(
 
 The resilient state store uses files when you run it locally, so your machine uses the same recovery code path.
 
+```bash
+azd ai agent run
+```
 
+`azd ai agent run` installs the Python dependencies, injects the active azd environment, and starts the agent on `http://localhost:8088`.
+
+## Test crash recovery locally
+
+Use Linux, WSL2, or a container for this exercise so the operating system releases the file lock when the process exits.
+
+In the terminal that runs the agent, set `SIMULATE_CRASH_AFTER_STAGE` so the sample crashes after it checkpoints the first stage, and then start it:
 
 ```bash
-az login
-export FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
-export AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-5.4-nano
-
-cd local
-./setup.sh     # create the venv and install dependencies
-./serve.sh     # run the agent on http://localhost:8088
+SIMULATE_CRASH_AFTER_STAGE=0 azd ai agent run --no-client
 ```
+
+Recovery needs a stored background response (`store: true` and `background: true`), so send the full request body from a file. In a second terminal, create the request file:
+
+```bash
+cat > request.json <<'EOF'
+{ "input": "renewable energy supply chains", "store": true, "background": true }
+EOF
+```
+
+Invoke the local agent with that body:
+
+```bash
+azd ai agent invoke --local -f request.json
+```
+
+The agent checkpoints the analyze stage and then exits. Restart it from the first terminal:
+
+```bash
+azd ai agent run --no-client
+```
+
+The framework reinvokes the handler with `context.is_recovery == True`. The handler restores `context.persisted_response`, skips the checkpointed analyze stage, and completes the generate and refine stages.
 
 ## Deploy to Foundry
 
-From the sample root, provision a project and deploy the container. When prompted for a location, choose a [region that supports hosted agents](../concepts/hosted-agents.md#region-availability).
+Provision the project and deploy the agent. When prompted for a location, choose a [region that supports hosted agents](../concepts/hosted-agents.md#region-availability).
 
 ```bash
-azd auth login
-azd up         # prompts for environment name, subscription, and location
+azd up
 ```
 
 `azd up` prints the Responses endpoint and a playground link.
 
-## Run the demo
+## Invoke the deployed agent
 
-Use the sample's client to drive the create → crash → recover flow. It pins one `agent_session_id` so `crash` and `stream` target the same sandbox as the running response.
+Create a stored background response on the deployed agent. Reuse the same `request.json` body:
 
 ```bash
-./demo-client.sh start "renewable energy supply chains"   # stream phases as output items
-./demo-client.sh crash                                     # crash → platform restart → recover in place
-./demo-client.sh stream                                    # reconnect: in_progress reset, then continue
+azd ai agent invoke -f request.json
 ```
 
-What each step demonstrates:
+Stream the agent logs:
 
-| Step | What happens | Concept |
-| --- | --- | --- |
-| `start` | Creates a background response (`stream:true, store:true, background:true`) and attaches to the SSE stream. | [Long-running, no-ingress survival](../concepts/long-running-agent-resilience.md#background-execution-and-resilience) |
-| `crash` | Kills the process. The platform restarts the container and reinvokes the handler with `context.is_recovery == True`. | [Crash recovery](../concepts/long-running-agent-resilience.md#resilient-work-model) |
-| `stream` | Reattaches with `GET /responses/{id}?stream=true&starting_after=N`. The first post-reconnect `response.in_progress` event is a snapshot reset. | [Streaming with reconnect](stream-with-reconnect.md) |
+```bash
+azd ai agent monitor --follow
+```
 
-To prove the no-ingress guarantee, run `start` and then send no further requests for 20+ minutes. The platform keeps the agent alive and the response keeps progressing. You can reconnect or poll at any time.
-
+The platform keeps a background response running with no client traffic. For the reconnect protocol and the `starting_after` cursor, see [Stream with reconnect](stream-with-reconnect.md).
 
 ## Clean up
 
 ```bash
-azd down       # removes everything azd created
+azd down
 ```
 
 ## Related content
