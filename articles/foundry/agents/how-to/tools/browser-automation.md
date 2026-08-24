@@ -484,7 +484,7 @@ You see streaming progress messages, such as text deltas, and a completed respon
 
 ### Hosted agents
 
-This sample creates the Browser Automation toolbox with the Azure AI Projects SDK, then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make the tool available to the hosted agent. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `BROWSER_AUTOMATION_CONNECTION_ID` environment variables, and sign in with `az login`.
+This sample creates the Browser Automation toolbox with the Azure AI Projects SDK, and then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make the tool available to the hosted agent. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `BROWSER_AUTOMATION_CONNECTION_ID` environment variables, and sign in with `az login`.
 
 ```csharp
 using System.IO;

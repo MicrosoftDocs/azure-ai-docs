@@ -163,7 +163,7 @@ The following output comes from the preceding code sample:
 
 ### Hosted agents
 
-This sample creates the file-search toolbox with the Azure AI Projects SDK, then uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using [`FoundryToolbox`](https://aka.ms/foundry-toolbox-maf). Set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample creates the file-search toolbox with the Azure AI Projects SDK, then uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint by using [`FoundryToolbox`](https://aka.ms/foundry-toolbox-maf). Set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in by using `az login`.
 
 ```python
 import asyncio

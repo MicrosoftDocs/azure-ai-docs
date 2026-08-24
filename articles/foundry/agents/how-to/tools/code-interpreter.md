@@ -365,7 +365,7 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 
 ### Hosted agents
 
-This sample creates the code-interpreter toolbox, then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make Code Interpreter available to the hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample creates the code interpreter toolbox, then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make Code Interpreter available to the hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using System;
