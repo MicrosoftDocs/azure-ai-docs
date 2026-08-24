@@ -806,7 +806,7 @@ The APIs don't directly support file input or output, or the use of file stores.
 
 ## Security
 
-Treat generated code and its dependencies as untrusted. Use an approved base image and package allowlist, run with the minimum required compute and permissions, and restrict outbound network access to required destinations. Don't mount sensitive data or production credentials into the session.
+Treat generated code and its dependencies as untrusted. Use an approved base image and package allow list, run with the minimum required compute and permissions, and restrict outbound network access to required destinations. Don't mount sensitive data or production credentials into the session.
 
 If you use SAS URLs to pass data in or out of the runtime:
 

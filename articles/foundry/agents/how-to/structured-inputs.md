@@ -36,7 +36,7 @@ In this article, you learn how to:
 - Your Foundry project endpoint URL and model deployment name.
 
 > [!IMPORTANT]
-> Don't pass secrets, access tokens, or other credentials as structured inputs. Structured input values are part of the request and might be captured by application logs or tracing. Store credentials in project connections or another managed secret store instead.
+> Don't pass secrets, access tokens, or other credentials as structured inputs. Application logs or tracing might capture structured input values as part of the request. Store credentials in project connections or another managed secret store instead.
 
 ## What are structured inputs?
 
@@ -1527,7 +1527,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   }'
 ```
 
-The `{{userFilter}}` template inside the `filter` expression is replaced with `boots` at runtime. The unquoted heredoc expands the connection and index environment variables before `curl` sends the JSON body.
+At runtime, the `filter` expression replaces the `{{userFilter}}` template with `boots`. The unquoted heredoc expands the connection and index environment variables before `curl` sends the JSON body.
 
 :::zone-end
 
