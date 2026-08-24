@@ -358,6 +358,8 @@ groups:
     title: Python
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript/TypeScript
 # Owner: diberry
 - id: programming-languages-rest-js
   title: Programming languages
@@ -1940,10 +1942,12 @@ groups:
   title: Programming languages
   prompt: Choose a language or API
   pivots:
-  - id: programming-language-csharp
-    title: C#
   - id: programming-language-python
     title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-javascript
+    title: JavaScript/TypeScript
   - id: programming-language-rest
     title: REST
 - id: azure-portal-and-cli

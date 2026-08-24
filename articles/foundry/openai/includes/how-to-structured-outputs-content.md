@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/06/2026
+ms.date: 08/24/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -21,6 +21,12 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [structured-outputs-dotnet](structured-outputs-dotnet.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [structured-outputs-javascript](structured-outputs-javascript.md)]
 
 ::: zone-end
 
