@@ -13,7 +13,7 @@ ms.custom: include
 > [!NOTE]
 > This example uses the OpenAI-compatible Chat Completions API through a Foundry Models endpoint. Function calling through the Responses API uses a different request and response format. For more information, see [Use the Azure OpenAI Responses API](../how-to/responses.md).
 
-If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function.
+If you include one or more functions in your request, the model decides whether to call any of the functions based on the context of the prompt. When the model decides to call a function, it responds with a JSON object that includes the arguments for the function.
 
 The model generates function calls and structured arguments based on the functions you specify. Your application executes the functions and returns the results to the model, so you remain in control of the actions taken.
 

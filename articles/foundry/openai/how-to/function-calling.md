@@ -21,7 +21,8 @@ ai-usage: ai-assisted
 
 ## Function calling support
 
-Function calling is supported by Foundry Models through the Chat Completions API or the Responses API. Support varies by model, API, deployment type, and model version.
+Foundry Models support function calling through the Chat Completions API or the Responses API. Support varies by model, API, deployment type, and model version.
+
 
 To find a model that supports function calling, review the following catalogs:
 
@@ -40,6 +41,7 @@ This article shows how to implement function calling with the Chat Completions A
 > The `tool_choice` parameter is now supported with `o3-mini` and `o1`. For more information, see the [reasoning models guide](./reasoning.md).
 
 > [!IMPORTANT]
-> Tool and function descriptions are currently limited to 1,024 characters. We'll update this article if this limit is changed.
+> Tool and function descriptions are currently limited to 1,024 characters. We'll update this article if this limit changes.
+
 
 [!INCLUDE [function-calling 2](../includes/how-to-function-calling-2.md)]
