@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -41,6 +41,7 @@ For more information about MCP and how agents connect to MCP tools, see [Connect
 
   Activate the provisioning roles just in time through Microsoft Entra Privileged Identity Management (PIM), and deactivate them after deployment. Day-to-day agent developers and runtime users don't need these provisioning roles.
 - A Microsoft Foundry SDK. See the [quickstart](../../../quickstarts/get-started-code.md) for installation.
+- A region supported by both Foundry Agent Service and Azure Container Apps Dynamic Sessions. See [Azure Container Apps Dynamic Sessions regions](/azure/container-apps/sessions#regions).
 
 ## Usage support
 
@@ -595,7 +596,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -824,6 +825,8 @@ The APIs don't directly support file input or output, or the use of file stores.
 
 ## Security
 
+Treat generated code and its dependencies as untrusted. Use an approved base image and package allowlist, run with the minimum required compute and permissions, and restrict outbound network access to required destinations. Don't mount sensitive data or production credentials into the session.
+
 If you use SAS URLs to pass data in or out of the runtime:
 
 - Use short-lived SAS tokens.
@@ -837,9 +840,5 @@ To stop billing for provisioned resources, delete the resources created by the s
 ## Related content
 
 - [Connect to Model Context Protocol servers (preview)](model-context-protocol.md)
-- [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Azure Container Apps Dynamic Sessions](/azure/container-apps/sessions)
-- [Session pools with custom containers](/azure/container-apps/session-pool#custom-container-pool)
-- [Azure Container Apps environment](/azure/container-apps/environment)
-- [Install the Azure CLI](/cli/azure/install-azure-cli)
 - [Code Interpreter tool for agents](code-interpreter.md)

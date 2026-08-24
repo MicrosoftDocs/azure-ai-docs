@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -33,7 +33,7 @@ Before you begin, make sure you have:
   [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - **Foundry Project Manager** role on the Foundry project if you create a project connection for API key or token authentication.
 - A Foundry project created with an endpoint configured.
-- An AI model deployed in your project.
+- An AI model deployed in your project. Confirm that both the model and project region support OpenAPI tools in [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
   - Python: `pip install azure-ai-projects jsonref`
@@ -88,6 +88,7 @@ After the anonymous call succeeds, configure the authentication required by your
 - Your OpenAPI spec must include `operationId` for each operation, and `operationId` can include only letters, `-`, and `_`.
 - Supported request body content types: `application/json`, `application/json-patch+json`.
 - For API key authentication, use one API key security scheme per OpenAPI tool. If you need multiple security schemes, create multiple OpenAPI tools.
+- Rotate API keys and bearer tokens regularly and immediately after suspected exposure. Update the project connection when credentials change; don't place credentials in the OpenAPI specification or source code.
 
 ## Add OpenAPI tools to a toolbox
 
@@ -590,7 +591,7 @@ The weather in Seattle, WA today is cloudy with temperatures around 52°F...
 
 ### Hosted agents
 
-This sample creates the OpenAPI toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke the tool through the toolbox MCP endpoint. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT` project endpoint and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This excerpt creates the OpenAPI toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with custom `ToolboxMcpClient`, `ToolboxHandler`, and `AgentConfig` helpers to discover and invoke the tool through the toolbox MCP endpoint. It isn't a standalone program. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT` project endpoint and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. Use the linked full sample for the helper implementations.
 
 ```csharp
 using System.IO;
@@ -654,10 +655,10 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 ### Expected output
 
-The agent calls the REST Countries API through the OpenAPI tool and lists the matching countries:
+The agent calls the weather API through the OpenAPI tool and returns the current conditions for the requested location:
 
 ```console
-Countries that use the Euro (EUR) as their currency include: Austria, Belgium, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain ...
+The current weather in Seattle is <temperature> with <conditions>.
 ```
 
 For the full sample including authenticated API patterns, see [Agent_Step17_OpenAPITools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentProviders/foundry/Agent_Step17_OpenAPITools).
@@ -1021,7 +1022,7 @@ curl --request POST \
   }'
 ```
 
-For a bearer-token API, keep the same `project_connection` request shape, but use a connection configured as described in [Set up a Bearer token connection](#set-up-a-bearer-token-connection). The connection value must include the `Bearer ` prefix.
+For a bearer-token API, keep the same `project_connection` request shape, but use a connection configured as described in [Set up a Bearer token connection](#set-up-a-bearer-token-connection). The connection value must start with `Bearer` followed by a space.
 
 ### Managed identity authentication
 
@@ -1570,7 +1571,7 @@ You need to:
       - **value**: `Bearer <token>` (replace `<token>` with your actual token)
 
    > [!IMPORTANT]
-   > The value must include the word `Bearer` followed by a space before the token. For example: `Bearer eyJhbGciOiJSUzI1NiIs...`. If you omit `Bearer `, the API receives a raw token without the required authorization scheme prefix, and the request fails.
+  > The value must include the word `Bearer` followed by a space before the token. For example: `Bearer eyJhbGciOiJSUzI1NiIs...`. If you omit the `Bearer` prefix and following space, the API receives a raw token without the required authorization scheme prefix, and the request fails.
 
 1. After you create the connection, use it with the `project_connection` auth type in your code, the same way you would for API key authentication. The connection ID uses the same format: `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
@@ -1627,7 +1628,7 @@ To set up authentication by using Managed Identity:
 
       :::image type="content" source="../../../agents/media/tools/role-assignment-portal.png" alt-text="Screenshot of the Azure portal showing the Add role assignment action." lightbox="../../../agents/media/tools/role-assignment-portal.png":::
         
-   1. Select the proper role assignment needed, usually it requires at least the *READER* role. Then select **Next**.
+  1. Select the least-privileged data-plane or application role that grants the operations in your OpenAPI specification. Azure Resource Manager **Reader** access alone doesn't grant data-plane access. Then select **Next**.
    1. Select **Managed identity** and then select **select members**.
    1. In the managed identity dropdown menu, search for **Foundry Account** and then select the Foundry account of your agent.
    1. Select **Finish**.
@@ -1639,7 +1640,7 @@ To set up authentication by using Managed Identity:
 | --- | --- | --- |
 | API key isn't included in requests. | OpenAPI spec missing `securitySchemes` or `security` sections. | Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section. Ensure the scheme `name` matches the key name in your project connection. |
 | Agent doesn't call the OpenAPI tool. | Tool choice not set or `operationId` not descriptive. | Use `tool_choice="required"` to force tool invocation. Ensure `operationId` values are descriptive so the model can choose the right operation. |
-| Authentication fails for managed identity. | Managed identity not enabled or missing role assignment. | Enable system-assigned managed identity on your Foundry resource. Assign the required role (Reader or higher) on the target service. |
+| Authentication fails for managed identity. | Managed identity not enabled or missing role assignment. | Enable system-assigned managed identity on your Foundry resource. Assign the target service's least-privileged data-plane or application role for the operations in your OpenAPI specification. |
 | Managed identity returns 401 even though the role is assigned. | Audience URI doesn't match what the target service expects. | Verify the audience URI matches the target service's resource identifier. For Azure services, check the service documentation. For Microsoft Entra-protected APIs, use the Application ID URI from your app registration. Decode the token at [https://jwt.ms](https://jwt.ms) and confirm the `aud` claim matches. See [Understand the audience URI](#understand-the-audience-uri). |
 | Managed identity token rejected by target API. | Target service doesn't accept Microsoft Entra ID tokens. | Confirm the target service supports Microsoft Entra ID authentication. If it doesn't, use API key or Bearer token authentication instead. |
 | Request fails with 400 Bad Request. | OpenAPI spec doesn't match actual API. | Validate your OpenAPI spec against the actual API. Check parameter names, types, and required fields. |
@@ -1647,7 +1648,7 @@ To set up authentication by using Managed Identity:
 | Tool returns unexpected response format. | Response schema not defined in OpenAPI spec. | Add response schemas to your OpenAPI spec for better model understanding. |
 | `operationId` validation error. | Invalid characters in `operationId`. | Use only letters, `-`, and `_` in `operationId` values. Remove numbers and special characters. |
 | Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
-| Bearer token not sent correctly. | Connection value missing `Bearer ` prefix. | Set the connection value to `Bearer <token>` (with the word `Bearer` and a space before the token). Verify the OpenAPI spec `securitySchemes` uses `"name": "Authorization"`. |
+| Bearer token not sent correctly. | Connection value is missing the `Bearer` prefix and following space. | Set the connection value to `Bearer <token>` (with the word `Bearer` and a space before the token). Verify the OpenAPI spec `securitySchemes` uses `"name": "Authorization"`. |
 
 ## Choose an authentication method
 
