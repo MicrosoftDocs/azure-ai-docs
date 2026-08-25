@@ -85,7 +85,7 @@ Before you begin, you need:
 > Optimization into Visual Studio Code. Reload Visual Studio Code if prompted,
 > and then sign in to Azure. For a tour of the extension, see [Work with the
 > Microsoft Foundry Toolkit for Visual Studio Code
-> extension](../../how-to/develop/get-started-projects-vs-code.md).
+> extension](../../how-to/develop/get-started-projects-visual-studio-code.md).
 
 :::zone-end
 

@@ -76,7 +76,7 @@ Foundry supports several surfaces. Many developers combine them, for example, pr
 | **Foundry portal** | Exploring models, prototyping prompts, and building prompt agents without writing code. | [Playgrounds and quick evaluation](./concepts/concept-playgrounds.md) |
 | **SDKs** | Building applications in Python, C#, JavaScript, or Java. | [Microsoft Foundry SDKs](./how-to/develop/sdk-overview.md) |
 | **Azure Developer CLI (azd)** | Scaffolding, running, testing, and deploying Hosted agent projects from the command line. | [Develop agents with the Azure Developer CLI](./agents/concepts/cli-agent-development.md) |
-| **Visual Studio Code** | Building and debugging agents in your editor with the Foundry extension. | [Work in VS Code](./how-to/develop/get-started-projects-vs-code.md) |
+| **Visual Studio Code** | Building and debugging agents in your editor with the Foundry extension. | [Work in VS Code](./how-to/develop/get-started-projects-visual-studio-code.md) |
 | **Coding agents and MCP** | Driving Foundry from coding agents (for example, GitHub Copilot or Claude Code) with the Foundry Skill and MCP server. | [Use the Microsoft Foundry Skill in coding agents](./how-to/develop/use-microsoft-foundry-skill.md) |
 
 ## Recommended path for new developers

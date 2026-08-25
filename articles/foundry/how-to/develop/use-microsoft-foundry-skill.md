@@ -75,13 +75,11 @@ The installed skill includes specialized sub-skills for those areas. You don't
 usually need to name the sub-skill directly. Ask for the outcome you want, and
 the coding agent uses the skill instructions to route the task.
 
-
-
 ## Installation
 
 ### [VS Code](#tab/vscode)
 
-The [Foundry Toolkit extension for VS Code](https://aka.ms/foundrytk) comes with the Foundry Skill. To install the extension, see [Work with the Microsoft Foundry for Visual Studio Code extension](get-started-projects-vs-code.md).
+The [Foundry Toolkit extension for VS Code](https://aka.ms/foundrytk) includes the Foundry Skill. To install the extension, see [Work with the Microsoft Foundry for Visual Studio Code extension](get-started-projects-visual-studio-code.md).
 
 After installation, reload Visual Studio Code if prompted. Open Copilot Chat,
 switch to agent mode, and confirm that Foundry skills are available. When
