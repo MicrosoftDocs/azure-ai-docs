@@ -40,22 +40,22 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2027-04-15 | — |
 | gpt-5 | 2025-08-07 | GA | 2027-02-09 | — |
-| gpt-5-chat | 2025-08-07 | Retired | 2026-06-29 | gpt-chat-latest |
-| gpt-5-chat | 2025-10-03 | Retired | 2026-05-13 | gpt-chat-latest |
+| gpt-5-chat | 2025-08-07 | Retired | 2026-06-29 | :::no-loc text="gpt-chat-latest"::: |
+| gpt-5-chat | 2025-10-03 | Retired | 2026-05-13 | :::no-loc text="gpt-chat-latest"::: |
 | gpt-5-codex | 2025-09-15 | GA | 2027-03-17 | — |
 | gpt-5-mini | 2025-08-07 | GA | 2027-02-09 | — |
 | gpt-5-nano | 2025-08-07 | GA | 2027-02-09 | — |
 | gpt-5-pro | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-5.1 | 2025-11-13 | GA | 2027-05-15 | — |
-| gpt-5.1-chat | 2025-11-13 | Retired | 2026-06-29 | gpt-chat-latest |
+| gpt-5.1-chat | 2025-11-13 | Retired | 2026-06-29 | :::no-loc text="gpt-chat-latest"::: |
 | gpt-5.1-codex | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.1-codex-max | 2025-12-04 | GA | 2027-05-18 | — |
 | gpt-5.1-codex-mini | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.2 | 2025-12-11 | GA | 2027-06-08 | — |
-| gpt-5.2-chat | 2025-12-11 | Retired | 2026-05-13 | gpt-chat-latest |
-| gpt-5.2-chat | 2026-02-10 | Retired | 2026-06-29 | gpt-chat-latest |
+| gpt-5.2-chat | 2025-12-11 | Retired | 2026-05-13 | :::no-loc text="gpt-chat-latest"::: |
+| gpt-5.2-chat | 2026-02-10 | Retired | 2026-06-29 | :::no-loc text="gpt-chat-latest"::: |
 | gpt-5.2-codex | 2026-01-14 | GA | 2027-07-13 | — |
-| gpt-5.3-chat | 2026-03-03 | Retired | 2026-06-29 | gpt-chat-latest |
+| gpt-5.3-chat | 2026-03-03 | Retired | 2026-06-29 | :::no-loc text="gpt-chat-latest"::: |
 | gpt-5.3-codex | 2026-02-24 | GA | 2027-08-24 | — |
 | gpt-5.4 | 2026-03-05 | GA | 2027-09-02 | — |
 | gpt-5.4-mini | 2026-03-17 | GA | 2027-09-21 | — |
@@ -69,10 +69,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-08-24 | — |
 | gpt-audio-mini | 2025-10-06 | GA | 2027-04-06 | — |
 | gpt-audio-mini | 2025-12-15 | GA | 2027-06-15 | — |
-| gpt-chat-latest | 2026-05-05 | Preview | 2026-08-05 | — |
-| gpt-chat-latest | 2026-05-28 | Preview | 2026-08-28 | — |
-| gpt-chat-latest | 2026-06-24 | Preview | 2026-09-24 | — |
-| gpt-chat-latest | 2026-08-06 | Preview | 2026-12-02 | — |
+| :::no-loc text="gpt-chat-latest"::: | 2026-05-05 | Preview | 2026-08-05 | — |
+| :::no-loc text="gpt-chat-latest"::: | 2026-05-28 | Preview | 2026-08-28 | — |
+| :::no-loc text="gpt-chat-latest"::: | 2026-06-24 | Preview | 2026-09-24 | — |
+| :::no-loc text="gpt-chat-latest"::: | 2026-08-06 | Preview | 2026-12-02 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2027-06-16 | — |
