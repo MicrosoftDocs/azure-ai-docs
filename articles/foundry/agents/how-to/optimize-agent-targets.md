@@ -3,7 +3,7 @@ title: "Optimize agent instructions, skills, tools, and models in Foundry Agent 
 description: "Run instruction tuning, skill discovery, tool optimization, or model selection using the agent optimizer to automatically improve your hosted agent's performance in Foundry Agent Service."
 author: aahill
 ms.author: aahi
-ms.date: 05/18/2026
+ms.date: 08/25/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -46,18 +46,104 @@ For the full `eval.yaml` schema, see [Configure the optimization run](#configure
 
 ### Target a specific agent
 
-By default, the CLI optimizes the agent detected from your current `azd` environment and your project's local `agent.yaml`. The optimizer resolves the agent name in this priority order:
+How the CLI resolves the agent depends on whether you run the command from an `azd` project:
 
-| Priority | Source | Example |
-| -------- | ------ | ------- |
-| 1 (highest) | `--agent` CLI flag | `azd ai agent optimize --agent my-support-agent` |
-| 2 (default) | Current `azd` environment and the `name` field in local `agent.yaml` | `name: my-support-agent` |
-| 3 | `agent.name` field in `eval.yaml` | `agent:\n  name: my-support-agent` |
+| Context | Agent resolution | Example |
+| ------- | ---------------- | ------- |
+| In an `azd` project | The CLI detects the hosted-agent service from `azure.yaml` and resolves its deployed agent name from the current `azd` environment. Use `--agent` to select an `azure.yaml` service when the project contains multiple agents. | `azd ai agent optimize --agent support-service` |
+| Outside an `azd` project | The `--agent` value or positional argument is the deployed Foundry agent name. | `azd ai agent optimize --agent my-support-agent` |
+| With `--config` | The `agent.name` field in `eval.yaml` supplies the deployed agent name. An explicit `--agent` value overrides it. | `agent:\n  name: my-support-agent` |
 
-Use the `--agent` flag when you have multiple agents in your project or want to override the default. The agent name must match a deployed hosted agent in your Foundry project.
+The deployed agent name must match a hosted agent in the target Foundry project.
 
 > [!NOTE]
 > Run `azd ai agent invoke "test"` to verify your agent responds before starting optimization.
+
+### Optimize an existing agent without AZD project files
+
+You can optimize an existing hosted agent without running `azd ai agent init` and without creating `azure.yaml` or a `.azure` environment directory. In this standalone flow, provide the Foundry project endpoint and deployed agent name explicitly.
+
+1. Make sure the deployed agent is [optimizer-ready](make-agent-optimizer-ready.md). In a local working directory, create the instruction file, dataset, evaluators, and `eval.yaml` described in [Configure the optimization run](#configure-the-optimization-run).
+
+   Run the command from this working directory. Without an `azd` project, relative paths in `eval.yaml` resolve from the current working directory.
+
+   For this standalone flow, omit `agent.config`. The CLI asks for the baseline instruction when you run the command:
+
+   ```yaml
+   # eval.yaml
+   agent:
+     name: my-support-agent
+     kind: hosted
+     model: gpt-4.1-mini
+   dataset:
+     local_uri: ./eval.jsonl
+   evaluators:
+     - builtin.task_adherence
+   options:
+     eval_model: gpt-4.1-mini
+     optimization_model: gpt-5.1
+     max_candidates: 2
+   ```
+
+1. Authenticate:
+
+   ```bash
+   az login
+   azd auth login
+   ```
+
+1. Copy the project endpoint from the Foundry project's **Overview** page. Use the project endpoint URL, not the Azure resource ID.
+
+1. Save the endpoint in your user-level `azd` config so subsequent commands can resolve the same project from any directory:
+
+   ```bash
+   azd ai project set "<project-endpoint>"
+   azd ai project show
+   ```
+
+   This writes the default endpoint to `~/.azd/config.json`. For the full resolution order and commands to inspect or clear the saved context, see [Set the Foundry project context for azd commands](cli-project-context.md).
+
+1. Run the optimization with the deployed agent name:
+
+   ```bash
+   azd ai agent optimize --agent "<deployed-agent-name>" --config eval.yaml
+   ```
+
+   When prompted for the agent instruction, provide it inline or select a file such as `.agent_configs/baseline/instructions.md`.
+
+   > [!NOTE]
+   > In the current preview, a standalone run doesn't expand `agent.config` from `eval.yaml`. Run the command interactively so you can provide the baseline instruction. Don't use `--no-prompt` for this flow. Loading file-based skill and tool baselines also requires an `azd` project.
+
+   For a one-off command that shouldn't change your user-level config, pass `--project-endpoint`:
+
+   ```bash
+   azd ai agent optimize \
+     --project-endpoint "<project-endpoint>" \
+     --agent "<deployed-agent-name>" \
+     --config eval.yaml
+   ```
+
+   You can also set the endpoint for the current shell:
+
+   ```bash
+   export FOUNDRY_PROJECT_ENDPOINT="<project-endpoint>"
+   azd ai agent optimize --agent "<deployed-agent-name>" --config eval.yaml
+   ```
+
+1. Save the operation ID from the command output. Because this flow has no `azd` environment, the CLI doesn't persist the last operation ID locally. Pass the operation ID to follow-up commands:
+
+   ```bash
+   azd ai agent optimize status <operation-id> --watch
+
+   azd ai agent optimize list
+
+   azd ai agent optimize cancel <operation-id>
+   ```
+
+   These commands use the endpoint saved by `azd ai project set`. If you used the one-off `--project-endpoint` form instead, pass the flag again to each follow-up command.
+
+> [!IMPORTANT]
+> `azd ai agent optimize apply` requires an `azd` project because it writes candidate files under `.agent_configs/` and updates the agent service in `azure.yaml`. If you don't want to create AZD project files, review and deploy the winning candidate from the Foundry portal.
 
 ## Configure the optimization run
 
@@ -100,7 +186,7 @@ options:
 | `agent.kind` | Yes | Agent kind. Use `hosted`. |
 | `agent.version` | No | Agent version to target. |
 | `agent.model` | Yes | Baseline model deployment name. |
-| `agent.config` | Yes | Path to the baseline `metadata.yaml`. |
+| `agent.config` | Conditional | Path to the baseline `metadata.yaml` in an `azd` project. For a standalone project with no AZD files, omit this field and provide the instruction interactively. |
 | `dataset` | Yes | The dataset to evaluate against, as a local JSONL file (`local_uri`) or a registered Foundry dataset (`name` and `version`). See [Create a custom dataset](create-optimizer-dataset.md#create-a-custom-dataset-advanced). |
 | `validation_dataset` | No | A held-out dataset used to validate results. |
 | `evaluators` | Yes | Evaluators applied to every task. See [Customize evaluators](create-optimizer-dataset.md#customize-evaluators-advanced). |
@@ -183,6 +269,8 @@ azd ai agent optimize cancel <operation-id>
 
 Capture the operation ID, portal URL, scores, and candidate IDs from the run output. You can also monitor the job in the [Foundry portal](https://ai.azure.com) using the URL shown when the run starts.
 
+If you started the job [without AZD project files](#optimize-an-existing-agent-without-azd-project-files), always pass the operation ID to `status` and `cancel`. The commands use the user-level endpoint saved by `azd ai project set`; otherwise, include `--project-endpoint`.
+
 ## Interpret results
 
 After optimization completes, review the results table. An asterisk (`*`) marks the best candidate. For the results table columns, scoring details, score-improvement thresholds, and the portal view, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
@@ -209,6 +297,8 @@ azd ai agent optimize deploy --candidate <candidate-id>
 
 > [!WARNING]
 > Direct deploy updates the agent service without changing your local files. Use the `apply` -> `deploy` workflow for production.
+>
+> In the current preview, direct deploy resolves the optimization job from an `azd` environment. For a standalone optimization that has no AZD environment, deploy the candidate from the Foundry portal.
 
 If all candidates score lower than the baseline, don't deploy any candidate. The baseline configuration remains active.
 
@@ -270,6 +360,11 @@ The optimizer ranks each candidate model by composite score and token cost, so y
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
 | `optimize` returns 400 | Subscription not on allow list | Contact your Microsoft representative to request access |
+| `could not resolve project endpoint` | No project endpoint is available from an `azd` environment or user-level config | Run `azd ai project set <project-endpoint>`, pass `--project-endpoint <project-endpoint>`, or set `FOUNDRY_PROJECT_ENDPOINT` |
+| `agent name is required` | The command is running outside an `azd` project and no deployed agent name was provided | Pass `--agent <deployed-agent-name>` or provide the agent name as a positional argument |
+| `operation ID is required` | A standalone run has no `azd` environment in which to persist the last operation ID | Copy the operation ID from the optimization output and pass it to `status` or `cancel` |
+| `instruction is required for optimization` in a standalone folder | A standalone run doesn't expand `agent.config` from `eval.yaml` in the current preview | Run without `--no-prompt`, then provide the baseline instruction inline or select the instruction file |
+| `optimize apply` can't resolve an agent service | `apply` requires an `azure.yaml` hosted-agent service in an `azd` project | Deploy the candidate from the Foundry portal, or initialize an `azd` project before using `apply` |
 | Protocol validation error | Invalid `azure.yaml` agent service | Ensure the `azure.ai.agent` service includes `kind: hosted` and a `protocols:` list |
 | Job stuck at "running" | Service issue | Cancel with `azd ai agent optimize cancel <id>` and retry |
 | No candidate IDs in output | Job still running | Wait for completion or use `--watch` |

@@ -3,7 +3,7 @@ title: "Quickstart: Optimize a hosted agent (preview)"
 description: "Deploy and optimize a hosted agent by using the Azure Developer CLI, Python SDK, VS Code, or the Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
-ms.date: 07/20/2026
+ms.date: 08/25/2026
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -142,6 +142,8 @@ The sample calls `load_config()` to load baseline or candidate configuration and
 > If you already have an existing agent project, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md) to add optimization support.
 >
 > If you already have a Foundry project, add `-p <project-resource-id>` to target existing resources.
+>
+> To optimize an already deployed agent without running `azd ai agent init` or creating `azure.yaml` and `.azure` files, skip this project-creation step and follow [Optimize an existing agent without AZD project files](../how-to/optimize-agent-targets.md#optimize-an-existing-agent-without-azd-project-files).
 
 ## Step 2: Provision and deploy
 
