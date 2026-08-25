@@ -1,6 +1,6 @@
 # GPT-Live-1 (Bidi API) — Draft Reference
 
-> **Source materials:** (External) GPT-Live API Alpha Developer Guide; Bidi API [gpt-live-1] Model Reference Doc (updated Jul 14, 2026)
+> **Source materials:** (External) GPT-Live API Alpha Developer Guide; Bidi API [gpt-live-1] Model Reference Doc (updated Jul 14, 2026); KT for Usage Questions re: gpt-live-1 [OMP-1606] (Aug 20, 2026)
 >
 > **Status:** Limited-access alpha — confidential. Internal testing only; no production traffic permitted.
 
@@ -22,6 +22,14 @@ When a request needs search, deeper reasoning, or more complex work, the model c
 | **Model size** | GPT-Live-1: d64 (garlic) |
 | **Deployment surface** | API only |
 | **GA date** | TBD |
+
+### Language and translation support
+
+`gpt-live-1` and `gpt-live-1-mini` support speech input and spoken output across all languages and locales. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
+
+The models also support speech translation across all source and target languages and locales. Quality varies by language pair, with no guarantee of parity with `gpt-realtime-translation`.
+
+> **Note:** GPT-Live handles noisy input audio directly, so there's no separate noise-reduction stage. Noise reduction isn't planned for general availability.
 
 ### Alpha terms
 
@@ -45,6 +53,7 @@ When a request needs search, deeper reasoning, or more complex work, the model c
 | | |
 |---|---|
 | **Base namespace** | `/v1/live` |
+| **Azure endpoint** | On Azure, connect to `/openai/v1/live` on the resource host—for example, `wss://<resource>.openai.azure.com/openai/v1/live` (WebSocket) and `https://<resource>.openai.azure.com/openai/v1/live` (WebRTC). The code samples in this draft use the OpenAI `api.openai.com/v1/live` host from the external guide. |
 | **Required header** | `OpenAI-Alpha: quicksilver=v2` |
 | **Authentication** | Project API key on trusted servers |
 | **Model slug** | `gpt-live-1-boulder-alpha` — preview of flagship full-duplex voice model |

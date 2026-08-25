@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 08/14/2026
+ms.date: 08/24/2026
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to understand what GPT-Live is and when to use it for real-time voice agents.
 ---
@@ -43,7 +43,11 @@ GPT-Live uses Voice Live's fully managed session and connection infrastructure. 
 | Delegation | Hands off requests that need search, tool use, or deeper reasoning to a configured backend model while the live session continues. |
 | Memory | Maintains context across a conversation for coherent, multi-turn exchanges. |
 | Multimodal input | Accepts voice, text, and image input. [TO VERIFY: video input support and timeline.] |
+| Speech translation | Translates speech across source and target languages and locales. Quality varies by language pair. |
 | Output | Voice only. |
+
+> [!NOTE]
+> Unlike some Voice Live configurations, GPT-Live doesn't apply a separate noise-reduction stage. The model is designed to handle noisy input directly.
 
 ## Supported models
 
@@ -52,11 +56,13 @@ GPT-Live uses Voice Live's fully managed session and connection infrastructure. 
 | `gpt-live-1` | The flagship full-duplex voice model. |
 | `gpt-live-1-mini` | A smaller, lower-latency variant intended for higher-volume deployments. |
 
-<!--
 ## Language support
 
-[TO VERIFY: confirm supported languages/locales and link to a language support page once evaluated, similar to [Voice Live language support](./voice-live-language-support.md).]
+`gpt-live-1` and `gpt-live-1-mini` support speech input and spoken output across all languages and locales. Quality varies by language and locale, and uniform quality or parity with `gpt-realtime-*` models isn't guaranteed.
 
+The models also support speech translation across all source and target languages and locales. Translation quality varies by language pair and isn't guaranteed to reach parity with `gpt-realtime-translation`.
+
+<!--
 ## Regions and availability
 
 [TO VERIFY: confirm supported regions.]
