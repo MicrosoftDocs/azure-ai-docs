@@ -321,7 +321,7 @@ If you deploy Foundry with virtual network injection, you might create a firewal
 | Hosted Agents to A365 | `AzureFrontDoor.Frontend` | Hosted agent to Agent365 (A365) observability/tracing endpoint ServiceTag, port TCP 443 |
 
 > [!NOTE]
-> If you can't add the `AMLMachineLearning` service tag, allowlist `*.dataproxy.{region}.api.azureml.ms` and `{region}.api.azureml.ms` instead. Benchmark evaluations also require `eastus.api.azureml.ms`.
+> As an alternative to the `AMLMachineLearning` service tag, add `*.dataproxy.{region}.api.azureml.ms` and `{region}.api.azureml.ms` to your firewall allowlist. For benchmark evaluations, also add `eastus.api.azureml.ms`.
 
 ### Private endpoint limitations
 
