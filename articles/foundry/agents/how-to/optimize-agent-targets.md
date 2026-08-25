@@ -63,7 +63,7 @@ The deployed agent name must match a hosted agent in the target Foundry project.
 
 You can optimize an existing hosted agent without running `azd ai agent init` and without creating `azure.yaml` or a `.azure` environment directory. In this standalone flow, provide the Foundry project endpoint and deployed agent name explicitly.
 
-1. Make sure the deployed agent is [optimizer-ready](make-agent-optimizer-ready.md). In a local working directory, create the instruction file, dataset, evaluators, and `eval.yaml` described in [Configure the optimization run](#configure-the-optimization-run).
+1. Ensure the deployed agent is [optimizer-ready](make-agent-optimizer-ready.md). In a local working directory, create the instruction file, dataset, evaluators, and `eval.yaml` described in [Configure the optimization run](#configure-the-optimization-run).
 
    Run the command from this working directory. Without an `azd` project, relative paths in `eval.yaml` resolve from the current working directory.
 
@@ -101,7 +101,7 @@ You can optimize an existing hosted agent without running `azd ai agent init` an
    azd ai project show
    ```
 
-   This writes the default endpoint to `~/.azd/config.json`. For the full resolution order and commands to inspect or clear the saved context, see [Set the Foundry project context for azd commands](cli-project-context.md).
+   This step writes the default endpoint to `~/.azd/config.json`. For the full resolution order and commands to inspect or clear the saved context, see [Set the Foundry project context for azd commands](cli-project-context.md).
 
 1. Run the optimization with the deployed agent name:
 
