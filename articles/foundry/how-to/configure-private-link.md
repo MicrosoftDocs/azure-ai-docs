@@ -320,6 +320,9 @@ If you deploy Foundry with virtual network injection, you might create a firewal
 | Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
 | Hosted Agents to A365 | `AzureFrontDoor.Frontend` | Hosted agent to Agent365 (A365) observability/tracing endpoint ServiceTag, port TCP 443 |
 
+> [!NOTE]
+> If you can't add the `AMLMachineLearning` service tag, allowlist `*.dataproxy.{region}.api.azureml.ms` and `{region}.api.azureml.ms` instead. Benchmark evaluations also require `eastus.api.azureml.ms`.
+
 ### Private endpoint limitations
 
 - **Region and subscription**: You must deploy the private endpoint in the same region and subscription as the virtual network.
