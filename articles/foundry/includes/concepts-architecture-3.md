@@ -41,7 +41,7 @@ To use your own keys instead, confirm these prerequisites before enabling custom
 
 By default, Foundry stores all API key-based connection secrets in a managed Azure Key Vault. If you prefer to manage secrets yourself, connect your key vault to the Foundry resource. One Azure Key Vault connection manages all project and resource level connection secrets. For more information, see [how to set up an Azure Key Vault connection to Foundry](../how-to/set-up-key-vault-connection.md).
 
-To learn more about data encryption, see [customer-managed keys for encryption with Foundry](../concepts/encryption-keys-portal.md).
+To learn more about data encryption, see [customer-managed keys for encryption with Foundry](../concepts/customer-managed-keys.md).
 
 ### Data residency and compliance
 
@@ -54,14 +54,14 @@ Before rollout, validate the following for your target environment:
 - Verify that required models and features are available in your deployment regions. For details, see [Feature availability across cloud regions](../reference/region-support.md).
 - Check that role assignments are scoped correctly at both the Foundry resource and project levels. For details, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 - Validate network isolation requirements and private access paths. For details, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
-- Confirm encryption and secret-management requirements, including customer-managed keys and Azure Key Vault integration. For details, see [Customer-managed keys for encryption with Foundry](../concepts/encryption-keys-portal.md) and [how to set up an Azure Key Vault connection to Foundry](../how-to/set-up-key-vault-connection.md).
+- Confirm encryption and secret-management requirements, including customer-managed keys and Azure Key Vault integration. For details, see [Customer-managed keys for encryption with Foundry](../concepts/customer-managed-keys.md) and [how to set up an Azure Key Vault connection to Foundry](../how-to/set-up-key-vault-connection.md).
 - Review quotas and limits for your target resources, including model deployment limits and rate limits. For details, see [Azure OpenAI quotas and limits](../openai/quotas-limits.md) and [Agent Service limits, quotas, and regions](../agents/concepts/limits-quotas-regions.md).
 
 ## Related content
 
 * [Foundry rollout across my organization](../concepts/planning.md)
 * [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)
-* [Customer-managed keys for encryption with Foundry](../concepts/encryption-keys-portal.md)
+* [Customer-managed keys for encryption with Foundry](../concepts/customer-managed-keys.md)
 * [How to configure a private link for Foundry](../how-to/configure-private-link.md)
 * [Bring-your-own resources with the Agent service](../agents/how-to/use-your-own-resources.md)
 * [Azure Monitor overview](/azure/azure-monitor/overview)

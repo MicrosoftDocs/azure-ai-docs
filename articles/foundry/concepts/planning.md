@@ -26,7 +26,7 @@ ai-usage: ai-assisted
 
   - Authentication and RBAC: [Role-based access control in Foundry](../concepts/rbac-foundry.md)
   - Networking: [Use a virtual network with Foundry](../how-to/configure-private-link.md)
-  - Customer-managed keys (CMK): [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md)
+  - Customer-managed keys (CMK): [Customer-managed keys in Foundry](../concepts/customer-managed-keys.md)
   - Example infrastructure: [templates repository with sample infrastructure templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)
   - [Recover or purge deleted Foundry resources](../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
 
