@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 08/18/2026
+ms.date: 08/25/2026
 ms.author: pafarley
 ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
@@ -83,8 +83,8 @@ The regions in the following tables support most of the core features of Azure S
 | `canadacentral` | ✅ | ✅ | ✅ | | | ✅ | ✅ | |
 | `canadaeast` | ✅ | | ✅ | | | | | |
 | `centralindia` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ |
-| `centralus` | ✅ | | ✅ | | | | ✅ | |
-| `eastasia` | ✅ | | ✅ | | | ✅ | ✅ | |
+| `centralus` | ✅ | | ✅ | | | | | |
+| `eastasia` | ✅ | | ✅ | | | ✅ | | |
 | `eastus` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ |
 | `eastus2` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | |
 | `francecentral` | ✅ | ✅ | ✅ | | | ✅ | ✅ | |
@@ -106,7 +106,7 @@ The regions in the following tables support most of the core features of Azure S
 | `uaenorth` | ✅ | | ✅ | | | | | |
 | `uksouth` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | |
 | `ukwest` | ✅ | | ✅ | | | | | |
-| `westcentralus` | ✅ | | ✅ | | | | ✅ | |
+| `westcentralus` | ✅ | | ✅ | | | | | |
 | `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | |
 | `westus` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ |
 | `westus2` | ✅ | ✅ | ✅ | | | ✅ | ✅ | |
