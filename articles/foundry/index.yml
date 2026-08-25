@@ -62,7 +62,7 @@ productDirectory:
           text: Get started with the Foundry MCP Server
         - url: ./how-to/develop/use-microsoft-foundry-skill.md
           text: Use the Foundry Skill in coding agents
-        - url: ./how-to/develop/get-started-projects-vs-code.md
+        - url: ./how-to/develop/get-started-projects-visual-studio-code.md
           text: Work in Visual Studio Code
     # Card
     - title: Foundry Models

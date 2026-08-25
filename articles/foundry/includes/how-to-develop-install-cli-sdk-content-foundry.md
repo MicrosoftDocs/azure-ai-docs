@@ -68,7 +68,7 @@ DevPack installs these tools:
 
 | Tool | What you can do |
 | --- | --- |
-| [Microsoft Foundry Toolkit for Visual Studio Code](../how-to/develop/get-started-projects-vs-code.md) | Build, test, evaluate, and deploy from Visual Studio Code. |
+| [Microsoft Foundry Toolkit for Visual Studio Code](../how-to/develop/get-started-projects-visual-studio-code.md) | Build, test, evaluate, and deploy from Visual Studio Code. |
 | [`azd` and `azd ai`](../agents/concepts/cli-agent-development.md) | Scaffold, deploy, evaluate, and automate from the terminal. |
 | [Foundry Canvas (preview)](../agents/concepts/foundry-canvas.md) | Design and deploy hosted agents with a guided Copilot canvas. |
 | [Microsoft Foundry Skill](../how-to/develop/use-microsoft-foundry-skill.md) | Give coding agents reusable guidance for Foundry workflows. |

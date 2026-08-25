@@ -6,13 +6,13 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 11/04/2025
+ms.date: 08/25/2026
 ms.custom: include
 ---
 
 1. Get the project's resource ID:
 
-     ```azurecli
+   ```azurecli
    PROJECT_ID=$(az cognitiveservices account project show \
        --name my-foundry-resource \
        --resource-group my-foundry-rg \
@@ -28,6 +28,7 @@ ms.custom: include
    az role assignment create \
        --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
        --assignee "user@contoso.com" \
+       --assignee-principal-type User \
        --scope $PROJECT_ID
    ```
 
