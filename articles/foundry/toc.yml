@@ -1,12 +1,6 @@
 items:
-- name: Overview
-  items:
-  - name: What is Microsoft Foundry?
-    href: what-is-foundry.md
-  - name: Choose how to build
-    href: concepts/choose-build-approach.md
-  - name: Service architecture
-    href: concepts/architecture.md
+- name: What is Microsoft Foundry?
+  href: what-is-foundry.md
 
 - name: Get started
   href: toc-files-foundry/get-started/toc.yml
