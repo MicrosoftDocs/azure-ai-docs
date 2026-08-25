@@ -12,7 +12,7 @@ ms.reviewer: jturuk
 ms.custom:
   - devplatv2
   - ignite-2023
-ms.date: 08/25/2025
+ms.date: 08/25/2026
 #Customer intent: As an MLOps administrator, I want to understand what a managed endpoint is and why I need it.
 ---
 
@@ -34,7 +34,7 @@ Batch endpoints receive pointers to data and run jobs asynchronously to process 
 
 A deployment is a set of resources and computes required to implement the functionality that the endpoint provides. An endpoint can host multiple deployments, each with its own configuration, decoupling the endpoint interface from the deployment implementation details. When a batch endpoint is invoked, it automatically routes the client to its default deployment. This default deployment can be configured and changed at any time.
 
-:::image type="content" source="./media/concept-endpoints/batch-endpoint.png" alt-text="Diagram showing the relationship between a batch endpoint and its deployments." lightbox="media/concept-endpoints/batch-endpoint.png":::
+:::image type="content" source="./media/concept-endpoints/batch-endpoint.png" alt-text="Diagram showing a batch endpoint routing requests to its default deployment while multiple deployments share the same endpoint." lightbox="media/concept-endpoints/batch-endpoint.png":::
 
 Two types of deployments are possible in Azure Machine Learning batch endpoints:
 
@@ -43,7 +43,7 @@ Two types of deployments are possible in Azure Machine Learning batch endpoints:
 
 ### Model deployment
 
-Model deployment enables the operationalization of model inferencing at scale, allowing you to process large amounts of data in a low latency and asynchronous way. Azure Machine Learning automatically instruments scalability by providing parallelization of the inferencing processes across multiple nodes in a compute cluster.
+Model deployment enables the operationalization of model inferencing at scale, allowing you to process large amounts of data in a long-running and asynchronous way. Azure Machine Learning automatically instruments scalability by providing parallelization of the inferencing processes across multiple nodes in a compute cluster.
 
 Use __Model deployment__ when:
 
@@ -67,7 +67,7 @@ To create a model deployment in a batch endpoint, you need to specify the follow
 
 ### Pipeline component deployment
 
-Pipeline component deployment enables the operationalization of entire processing graphs (or pipelines) to perform batch inference in a low latency and asynchronous way.
+Pipeline component deployment enables the operationalization of entire processing graphs (or pipelines) to perform batch inference in a long-running and asynchronous way.
 
 Use __Pipeline component deployment__ when:
 
@@ -93,9 +93,12 @@ Batch endpoints also allow you to [Create pipeline component deployments from an
 Invoking a batch endpoint triggers an asynchronous batch inference job. Azure Machine Learning automatically provisions compute resources when the job starts, and automatically deallocates them as the job completes. This way, you only pay for compute when you use it.
 
 > [!TIP]
-> When deploying models, you can [override compute resource settings](how-to-use-batch-endpoint.md#overwrite-deployment-configuration-per-each-job) (like instance count) and advanced settings (like mini batch size, error threshold, and so on) for each individual batch inference job. By taking advantage of these specific configurations, you might be able to speed up execution and reduce cost.
+> When deploying models, you can [override compute resource settings](how-to-use-batch-model-deployments.md#overwrite-deployment-configuration-for-each-job) (like instance count) and advanced settings (like mini batch size, error threshold, and so on) for each individual batch inference job. By taking advantage of these specific configurations, you might be able to speed up execution and reduce cost.
 
-Batch endpoints can also run on low-priority VMs. Batch endpoints can automatically recover from deallocated VMs and resume the work from where it was left when deploying models for inference. For more information on how to use low priority VMs to reduce the cost of batch inference workloads, see [Use low-priority VMs in batch endpoints](how-to-use-low-priority-batch.md).
+Batch endpoints can also run on low-priority VMs. Batch endpoints can automatically recover from deallocated nodes by rescheduling the affected mini-batches; work from already completed mini-batches is retained, but no job-level checkpointing is provided. For more information on how to use low-priority VMs to reduce the cost of batch inference workloads, see [Use low-priority VMs in batch endpoints](how-to-use-low-priority-batch.md).
+
+> [!NOTE]
+> Low-priority VMs were retired for Azure Machine Learning on March 31, 2026. Existing configurations that request low-priority VMs are now provisioned as Spot VMs. For current pricing and eviction behavior, see [Use low-priority VMs in batch endpoints](how-to-use-low-priority-batch.md).
 
 Finally, Azure Machine Learning doesn't charge you for batch endpoints or batch deployments themselves, so you can organize your endpoints and deployments as best suits your scenario. Endpoints and deployments can use independent or shared clusters, so you can achieve fine-grained control over which compute the jobs consume. Use __scale-to-zero__ in clusters to ensure no resources are consumed when they're idle. 
 
@@ -105,7 +108,7 @@ Batch endpoints can handle multiple deployments under the same endpoint, allowin
 
 You can add, remove, and update deployments without affecting the endpoint itself.
 
-:::image type="content" source="./media/concept-endpoints/batch-endpoint-mlops.gif" alt-text="Diagram describing how multiple deployments can be used under the same endpoint.":::
+:::image type="content" source="./media/concept-endpoints/batch-endpoint-mlops.gif" alt-text="Diagram showing how multiple batch deployments can be added, updated, or removed under one stable endpoint URL.":::
 
 ## Flexible data sources and storage
 
