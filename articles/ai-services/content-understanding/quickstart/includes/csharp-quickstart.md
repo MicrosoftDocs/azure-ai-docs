@@ -5,14 +5,14 @@ manager: mcleans
 description: Get started with the Content Understanding .NET SDK to extract structured data from documents, images, audio, and video files.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
-ms.date: 03/06/2026
+ms.date: 08/24/2026
 ms.author: lahlouchu
 ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
 
-[Client library](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding) | [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples) | [SDK source](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding)
+[Client library](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding) | [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples) | [SDK source](https://aka.ms/cu-sdk-net)
 
 This quickstart shows you how to use the Content Understanding .NET SDK to extract structured data using prebuilt analyzers from document, image, audio, and video files. To learn more about prebuilt analyzers and other features, see the documentation of [Prebuilt Analyzers](../../concepts/prebuilt-analyzers.md).
 
@@ -36,7 +36,7 @@ This quickstart shows you how to use the Content Understanding .NET SDK to extra
 1. Install the Content Understanding client library for .NET:
 
     ```console
-    dotnet add package Azure.AI.ContentUnderstanding
+    dotnet add package Azure.AI.ContentUnderstanding --prerelease
     ```
 
 1. Optionally, install the Azure Identity library for Microsoft Entra authentication:
