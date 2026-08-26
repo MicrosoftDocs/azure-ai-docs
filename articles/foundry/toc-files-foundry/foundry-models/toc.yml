@@ -308,8 +308,8 @@ items:
       displayName: Azure OpenAI reasoning models
       href: ../../openai/how-to/reasoning.md
     - name: Reasoning models (Foundry Models)
-      displayName: How to use reasoning models with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
+      displayName: How to use Foundry reasoning models
+      href: ../../foundry-models/how-to/use-chat-reasoning.md
   - name: Embeddings
     items:
     - name: Embeddings

@@ -21,6 +21,8 @@ ai-usage: ai-assisted
 > [!TIP]
 > An alternate Foundry project quickstart is available: [Quickstart: Get started with Microsoft Foundry (Foundry projects)](get-started-code.md).
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
+
 This quickstart sets up your local environment for hub-based projects, deploys a model, and builds a simple traced/evaluable chat script.
 
 ## Prerequisites

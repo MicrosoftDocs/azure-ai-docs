@@ -1,12 +1,12 @@
 ---
-title: "Vector stores for file search in Microsoft Foundry Agent Service"
+title: "Vector stores for file search in Foundry Agent Service"
 description: "Learn how vector stores enable file search for agents, including ingestion (chunking and embeddings), readiness, limits, and expiration policies."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 07/09/2026
+ms.date: 08/21/2026
 author: aahill
 ms.author: aahi
 ai-usage: ai-assisted
@@ -140,7 +140,7 @@ Key limits to keep in mind:
 - **A file disappeared from multiple agents or conversations**: You might have deleted the underlying file object, which removes the file from all vector store configurations across your organization.
 - **Uploads or ingestion fail**: Check file size and token limits in [Quotas and limits](../concepts/limits-quotas-regions.md).
 
-## Next steps
+## Related content
 
 - Learn more about the [file search tool](../how-to/tools/file-search.md)
 - Review [tool best practices](tool-best-practice.md) for guidance on reliability and security

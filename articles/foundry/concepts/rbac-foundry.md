@@ -28,6 +28,7 @@ For more information about authentication and authorization in Microsoft Foundry
 
 [!INCLUDE [rbac-foundry 1](../includes/concepts-rbac-foundry-1.md)]
 
+For more information about assigning a role to an individual agent, see [Agent-scope role assignments](#agent-scope-role-assignments).
 
 ### Permissions for each built-in role
 
@@ -60,6 +61,9 @@ To publish agents, you need the **Foundry Project Manager** role (minimum) on th
 
 To manage roles in Foundry, you must have permission to assign and remove roles in Azure. The Azure built-in **Owner** role includes that permission. You can assign roles through the Foundry portal (**Manage** pane), Azure portal IAM, or Azure CLI. You can remove roles by using Azure portal IAM or Azure CLI.
 
+> [!IMPORTANT]
+> The Azure portal currently supports assigning **Foundry Agent Consumer** only at the Foundry account scope. To follow least-privilege principles, use Azure CLI to assign the role at project scope or agent scope. Project scope grants access to every agent endpoint in the project. Agent scope grants access only to the specified agent endpoint.
+
 # [Foundry portal](#tab/foundry)
 In the Foundry portal, manage permissions by:
 
@@ -82,6 +86,18 @@ az role assignment create --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --assign
 
 [!INCLUDE [role-rename-note-code](../includes/role-rename-note-code.md)]
 
+To assign **Foundry Agent Consumer** at project scope, store the project resource ID in a variable and then create the role assignment:
+
+```azurecli
+PROJECT_SCOPE="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>"
+
+az role assignment create \
+    --assignee-object-id "<principalId>" \
+    --assignee-principal-type ServicePrincipal \
+    --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
+    --scope "$PROJECT_SCOPE"
+```
+
 ---
 
 ### Agent-scope role assignments
@@ -98,10 +114,13 @@ Assign roles at the scope of a specific agent rather than the entire project. Th
 For example, the following command assigns the Foundry Agent Consumer role (role definition ID `eed3b665-ab3a-47b6-8f48-c9382fb1dad6`) to a service principal at the scope of a specific agent.
 
 ```azurecli
+AGENT_SCOPE="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>"
+
 az role assignment create \
-    --assignee "<principalId>" \
+    --assignee-object-id "<principalId>" \
+    --assignee-principal-type ServicePrincipal \
     --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
-    --scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>"
+    --scope "$AGENT_SCOPE"
 ```
 
 Role-assignment mechanics for agent scopes follow the same Azure RBAC model as project-scope assignments. Any role that can be assigned at the project scope can also be assigned at the agent scope. However, at the agent scope, role assignments are currently evaluated only for agent endpoint access and don't grant broader control-plane or management permissions.

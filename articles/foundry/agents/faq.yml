@@ -8,13 +8,14 @@ metadata:
   ms.service: microsoft-foundry
   ms.subservice: foundry-agent-service
   ms.topic: faq
-  ms.date: 03/11/2026
+  ms.date: 08/21/2026
   ms.author: aahi
   author: aahill
   ms.custom:
   - references_regions
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
+  ai-usage: ai-assisted
 title: Foundry Agent Service frequently asked questions
 summary: |
   Find answers to common questions about Foundry Agent Service.

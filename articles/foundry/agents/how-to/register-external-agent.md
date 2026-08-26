@@ -225,7 +225,7 @@ otel_agent_id = agent.versions.latest.definition.otel_agent_id
 
 ### Create and run the evaluation
 
-Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. For the full walkthrough, including how to create an eval group, configure testing criteria, and interpret results, see [Trace evaluation (preview)](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
+Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. For the full walkthrough, including how to create an eval group, configure testing criteria, and interpret results, see [Trace evaluation (preview)](../../observability/how-to/cloud-evaluation-deployed-interactions.md#evaluate-traces-preview).
 
 ## Manage external agents
 
@@ -290,4 +290,4 @@ The following Foundry features aren't currently supported for external agents:
 - [Register and manage custom agents (Control Plane)](../../control-plane/register-custom-agent.md)
 - [Built-in evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md)
 - [Azure Monitor OpenTelemetry overview](/azure/azure-monitor/app/opentelemetry-enable)
-- [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md#prerequisites)
+- [Run cloud evaluations](../../observability/how-to/cloud-evaluation.md)

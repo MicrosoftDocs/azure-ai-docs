@@ -291,7 +291,7 @@ Spans also carry these key attributes:
 - `gen_ai.agent.name` — The agent or node name.
 - `gen_ai.agent.id` — Set from the `agent_id` constructor parameter.
 - `gen_ai.agent.description` — A description of the agent.
-- `gen_ai.provider.name` — The model provider (for example, `openai`, `azure.ai.inference`).
+- `gen_ai.provider.name` — The model provider (for example, `openai`).
 - `gen_ai.request.model` — The model name used for inference.
 - `gen_ai.conversation.id` — Thread or session identifier, when available.
 - `gen_ai.usage.input_tokens` / `gen_ai.usage.output_tokens` — Token counts from model responses.

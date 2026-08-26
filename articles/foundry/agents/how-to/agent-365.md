@@ -1,141 +1,300 @@
 ---
-title: "Publish an autopilot in Microsoft Agent 365"
-description: "Learn how to publish a Foundry Hosted agent as an autopilot in Microsoft Agent 365, submit it for approval, and validate it in Teams."
+title: "Quickstart: Build your first autopilot"
+description: "Build an autopilot blueprint from a Foundry hosted agent, publish it to Microsoft Agent 365, get it approved, and hire your first instance in Microsoft Teams."
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 06/05/2026
-ms.topic: how-to
+ms.date: 08/26/2026
+ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
+#CustomerIntent: As a developer, I want to publish my first autopilot so that I can see the whole flow from infrastructure to a hired instance in Teams.
 ---
 
-# Publish an autopilot in Microsoft Agent 365
+# Quickstart: Build your first autopilot
 
-Publish a Foundry Hosted agent as an autopilot in Microsoft Agent 365 so an admin can approve it and make it available in Microsoft 365 surfaces such as Microsoft Teams.
+In this quickstart, you take an autopilot from nothing to a working instance in Microsoft Teams. You provision the infrastructure, create an autopilot blueprint from a hosted agent, publish it, have an administrator approve it, and hire your own instance.
 
-For an overview of how Foundry integrates with A365, supported agent types, data collection, and data residency, see [Microsoft Agent 365 integration with Foundry](../concepts/agent-365-integration.md).
+An autopilot is an agent that acts as itself in Microsoft 365, under its own identity. You don't build an autopilot directly: you build a blueprint, and each autopilot is an instance created from it. For the model behind that, see [What is an autopilot in Microsoft Foundry?](../concepts/autopilot-overview.md)
 
 > [!IMPORTANT]
-> This flow uses Hosted agents. Review [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md) before you start.
+> Approving the blueprint requires a Microsoft 365 administrator. If that isn't you, identify your approver before you start.
 
 ## Prerequisites
 
-Microsoft Agent 365 is generally available.
+### Licensing and enrollment
 
-- **Licensing:**
-  - Microsoft 365 licensing that supports Microsoft Agent 365. Agent 365 works best with Microsoft E5, and at least one user in your organization must have a qualifying [Microsoft Agent 365 license](https://www.microsoft.com/microsoft-agent-365#plans-and-pricing) such as Microsoft 365 Copilot.
-  - A Microsoft 365 license assigned to the users who create, approve, or use the agent.
-- **Azure permissions:**
-  - An Azure subscription where you can create resources.
-  - **Owner** at the subscription or resource group scope. The `azd` workflow creates Azure resources and assigns required roles automatically; Owner provides the permissions needed for both.
-  - **Foundry User** or **Foundry Project Manager** at the Foundry project scope to create and deploy agents.
+Creating an autopilot with an agent user account requires the following:
 
-    [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- Enroll your tenant in the Frontier preview program.
+- Accept the Microsoft Agent 365 terms of service after you enroll. For details, see [Preview Microsoft Agent 365 features through the Frontier program](/microsoft-agent-365/frontier).
+- Confirm that your tenant has at least one Microsoft 365 Copilot license or one Microsoft Agent 365 license, including Microsoft E7.
+- Confirm that a Microsoft Agent 365 Frontier license is available. After enrollment, eligible tenants receive a 25-seat preview subscription. Each Foundry autopilot instance consumes one license, because each instance creates an agent user account.
 
-    For the full permission matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
-  - **Owner** or **Contributor** at the resource group scope to create and configure the Azure Bot Service resource. Foundry-scoped roles (**Foundry User**, **Foundry Project Manager**, and similar) don't include `Microsoft.BotService/*` permissions.
-- **Microsoft 365 admin permissions:**
-  - **AI Administrator** or **Global Administrator** in the Microsoft 365 admin center to approve pending agent requests.
-- **Tenant and service setup:**
-  - Use a region that supports Hosted agents. For the current supported regions, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#region-availability).
-  - If the `Microsoft.BotService` resource provider isn't already registered in your subscription, register it:
+Check the seat count before you begin. If your tenant has no free seats, the build completes and then fails when you create the instance.
 
-    ```azurecli
-    az provider register --namespace Microsoft.BotService
-    ```
+### Permissions
 
-- **Local tools:**
-  - [Azure CLI](/cli/azure/install-azure-cli)
-  - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
-  - [Docker](https://www.docker.com/)
-  - [.NET 9.0 SDK](https://dotnet.microsoft.com/download)
+| Step | Who | Role |
+| --- | --- | --- |
+| Provision infrastructure | You or an Azure administrator | **Owner**, or **Contributor** plus **Role Based Access Control Administrator**, at resource group scope |
+| Build the agent blueprint | You | **Foundry User** at project scope, and **AcrPush** or **Container Registry Repository Writer** at registry scope |
+| Publish the agent blueprint | You | **Foundry User** at project scope |
+| Approve the blueprint | Your tenant administrator | **Global Administrator** or **AI Administrator** |
+| Create an instance | You | Membership in the hiring scope your administrator selects |
 
-## What the sample creates
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
-The sample provisions the Azure infrastructure required by the current template and publishes a Hosted agent end-to-end. Specifically:
+Provisioning creates role assignments as well as resources, which is why Contributor alone isn't enough. For the full matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
-- Creates or updates the Azure resources required by the sample template, including a Foundry account and project, model deployment, hosted agent and agent version, Azure Container Registry, Azure Bot Service resource, and Application Insights with a Log Analytics workspace.
-- Creates an agent version and configures endpoint traffic to always route to that version.
-- Submits an autopilot request that creates an agent blueprint in the Microsoft 365 admin center for admin approval.
+You don't need a Microsoft Entra directory role. Foundry creates the agent identity blueprint when you create the agent.
 
-### Run the code sample
+### Tools
 
-Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/foundry-autopilot-agent#readme). Follow the sample README for the complete, authoritative command sequence. After the sample completes, return here to verify the deployment and complete the admin approval flow.
+- [Azure CLI](/cli/azure/install-azure-cli)
+- [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
+- [Docker](https://www.docker.com/), running
 
+Create all resources in a region that supports hosted agents. See [Region availability](../concepts/hosted-agents.md#region-availability).
 
-### Provision and deploy
+## Choose a code sample
 
-> [!NOTE]
-> Depending on your tenant settings, you might need to sign in with more Azure CLI scopes before provisioning (for example, for Foundry, Microsoft Graph, and Azure Resource Manager). If `azd auth login` returns an authorization error, see the sample README for the required sign-in commands and scopes.
+**Who does this:** you.
 
-The sample provisions Azure resources, builds and pushes a container, and deploys the agent. Here is the high-level command flow (see the README for the complete, authoritative sequence):
+This quickstart uses a code sample. Everything you deploy comes from the sample, so clone one before you start. Both samples do the same thing, so pick the language you prefer:
 
-```bash
-az login
-azd auth login
+- [Autopilot agent sample (C#)](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/foundry-autopilot-agent)
+- [Autopilot agent sample (Python)](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/foundry-autopilot-agent)
+
+Clone the sample, and then open its folder in a terminal. Run every command in this quickstart from that folder.
+
+The sample contains the agent code, the infrastructure templates, and the scripts that create and publish the agent.
+
+## Provision, build, and publish
+
+**Who does this:** you or an Azure administrator. This stage needs every permission in the [Permissions](#permissions) table except the two that belong to your administrator and to hiring.
+
+From the sample folder, sign in with both CLIs, and then provision.
+
+```azurecli
+az login --tenant <tenant-id>
+azd auth login --tenant-id <tenant-id>
 azd provision
+```
+
+One command runs three stages: it provisions the infrastructure, builds the agent blueprint, and publishes it. The next three sections explain what each stage does and how to confirm it worked.
+
+**Expected result**: `azd provision` completes with no failed resources, and a request is waiting in the Microsoft 365 admin center.
+
+Depending on your tenant settings, you might need extra Azure CLI sign-in scopes before you provision, such as scopes for Foundry, Microsoft Graph, and Azure Resource Manager. If `azd auth login` returns an authorization error, use the sign-in commands in the sample README.
+
+You can also run the stages separately, which is useful when different people hold the permissions or when you want to change the agent between stages. Use `azd provision --preview` to see what the template creates before you commit to it. To control each stage yourself, call the create and publish scripts in the sample's `scripts` folder directly instead of letting the post-provision hooks run them.
+
+### Provision the infrastructure
+
+**Permission needed:** **Owner**, or **Contributor** plus **Role Based Access Control Administrator**, at resource group scope.
+
+The sample creates a Foundry account and project, a model deployment, an Azure Container Registry, and Application Insights with a Log Analytics workspace. It also creates the role assignments those resources need, which is the part Contributor alone can't do.
+
+**Expected result**: every resource in the sample template exists and reports success.
+
+### Build the agent blueprint
+
+**Permission needed:** **Foundry User** at project scope, and **AcrPush** or **Container Registry Repository Writer** at registry scope.
+
+The sample compiles your agent code into a container image, pushes it to the registry, and creates a hosted agent along with its first agent version. Traffic routes to that version.
+
+The agent creates two Microsoft Entra objects: an **agent identity blueprint** and an **agent identity** for the agent itself. You don't create these objects, and you don't need a directory role to get them.
+
+Save the deployment values. You need them if you troubleshoot:
+
+```azurecli
 azd env get-values
 ```
 
-### Verify deployment before approval
+**Expected result**: the output includes your agent name, agent version, and blueprint ID.
 
-Verify the following before you open the Microsoft 365 admin center:
+To change what the agent does before you publish it, edit the agent instructions and tool manifest in the sample, and then run `azd provision` again. Each run creates a new agent version.
 
-1. Run `azd env get-values` and save the output. Note especially the bot app ID and messaging endpoint — you need these values in the Developer verification steps.
-1. Confirm the `azd` deployment completes successfully with no failed resources.
-1. Confirm the sample completed the publishing step and submitted the autopilot request.
+### Publish the agent blueprint
 
-When the sample completes successfully, you have a published agent application and an agent blueprint ready for approval in the Microsoft 365 admin center. After an admin approves the request, the agent appears in the Agent 365 registry.
+**Permission needed:** **Foundry User** at project scope.
 
-## Validate the deployment
+Publishing submits your agent as an autopilot blueprint and puts it in front of your administrator. The sample does this at the end of provisioning, using the publish script in its `scripts` folder.
 
-### Admin approval
+Publishing sets three things that matter later:
 
-A Microsoft 365 admin must approve the agent blueprint before it's available in Teams.
+- **Autopilot publishing**, which is what makes this a blueprint that hires instances rather than an agent published to the agent store.
+- **The hiring scope**, which decides who can create instances after approval.
+- **The display details**, including name, descriptions, and icon.
 
-1. Sign in to the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) and locate the pending agent blueprint request.
-  :::image type="content" source="../media/approve-agent.png" alt-text="Screenshot of an agent awaiting or showing approval in the Microsoft 365 admin center agent registry." lightbox="../media/approve-agent.png":::
-1. Approve the request. After approval, verify your agent appears in the Agent 365 agent registry.
-  :::image type="content" source="../media/agent-in-registry.png" alt-text="Screenshot of an approved agent in A365 registry." lightbox="../media/agent-in-registry.png":::
+**Expected result**: the publish call succeeds and a request is waiting in the Microsoft 365 admin center.
 
-### Developer verification
+> [!NOTE]
+> Each publish uses a version number. If you publish again without incrementing it, the call fails with a `version already exists` error. To roll out new agent behavior, create a new agent version instead of republishing.
 
-After an admin approves the request, complete these verification steps.
+#### The publish API
 
-1. In the [Teams Developer Portal](https://dev.teams.microsoft.com/apps), find your approved agent blueprint and confirm its configuration.
-    1. Select the agent blueprint from the list.
-    1. Verify the messaging endpoint and app ID match the values from `azd env get-values`.
-    1. Save any required fields and publish the update if prompted.
-1. In Microsoft Teams, verify that you can find the agent and create an instance:
-    1. Go to **Apps**.
-    1. Go to **Agents for your team**.
-    1. Find your agent and create an instance.
-    
-  :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance of an autopilot in Microsoft Teams." lightbox="../media/create-instance.png":::
+The sample calls the Microsoft 365 publish API for you. Read this section if you're automating the flow, or if you want to know what the sample sends.
+
+```http
+POST {{endpoint}}/agents/<agent-name>/microsoft365/publish?api-version=2025-11-15-preview
+Authorization: Bearer <access-token>
+Content-Type: application/json
+```
+
+`{{endpoint}}` is your project endpoint, in the form `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`. Get a token for the `https://ai.azure.com` audience:
+
+```azurecli
+az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv
+```
+
+Four fields distinguish an autopilot from an agent published to the Microsoft 365 Copilot and Teams agent stores. Set all four:
+
+| Field | Value for an autopilot | Why |
+| --- | --- | --- |
+| `publishAsAutopilot` | `true` | Publishes a blueprint that hires instances, rather than an agent in the agent store. |
+| `publishScope` | `Tenant` | Always `Tenant` for an autopilot. The blueprint goes to your administrator for approval, and after approval the people in the hiring scope can create instances. |
+| `useAgenticUserTemplate` | `true` | Tells Foundry to provision an agent user account for each instance, which is what lets the autopilot act as itself in Microsoft 365. |
+| `agenticUserTemplate` | An object, described below | Required whenever `useAgenticUserTemplate` is `true`. |
+
+The `agenticUserTemplate` object carries the identity settings for the agent user account:
+
+| Property | Description |
+| --- | --- |
+| `Id` | The template identifier. Use `digitalWorkerTemplate`. |
+| `File` | The template manifest file name, `agenticUserTemplateManifest.json`. |
+| `SchemaVersion` | The manifest schema version, for example `0.1.0-preview`. |
+| `AgentIdentityBlueprintId` | The blueprint client ID returned when the agent was created. The sample reads it from the agent creation response. |
+| `CommunicationProtocol` | `activityProtocol`, the protocol the autopilot uses to exchange messages with Microsoft 365. |
+
+The remaining fields are the display details users see, and they behave the same as for any published agent: `agentDisplayName`, `appVersion`, `shortDescription`, `fullDescription`, `developerName`, `developerWebsiteUrl`, `privacyUrl`, and `termsOfUseUrl`. Set `canRespondWithoutMention` to control whether the autopilot responds to all messages on its Teams surfaces or only when someone @mentions it.
+
+A complete request body for an autopilot:
+
+```json
+{
+  "agentDisplayName": "Contoso Workstream Manager",
+  "publishAsAutopilot": true,
+  "publishScope": "Tenant",
+  "appVersion": "1.0.0",
+  "canRespondWithoutMention": true,
+  "shortDescription": "Keeps release work on track.",
+  "fullDescription": "Tracks release readiness, updates work items, and sends weekly status.",
+  "developerName": "Contoso IT",
+  "developerWebsiteUrl": "https://contoso.com",
+  "privacyUrl": "https://contoso.com/privacy",
+  "termsOfUseUrl": "https://contoso.com/terms",
+  "useAgenticUserTemplate": true,
+  "agenticUserTemplate": {
+    "Id": "digitalWorkerTemplate",
+    "File": "agenticUserTemplateManifest.json",
+    "SchemaVersion": "0.1.0-preview",
+    "AgentIdentityBlueprintId": "<blueprint-client-id>",
+    "CommunicationProtocol": "activityProtocol"
+  }
+}
+```
+
+> [!WARNING]
+> Don't include secrets, API keys, or other sensitive information in any metadata field. These fields are visible to users.
+
+To publish an agent to the agent stores instead, set `publishAsAutopilot` to `false` and omit the agent user template. For that flow, see [Publish agents to Microsoft 365 and Teams by using the REST API](./publish-copilot-virtual-network.md).
+
+## Approve the blueprint
+
+**Who does this:** your tenant administrator, with **Global Administrator** or **AI Administrator**. Reader roles can see the request but can't approve it.
+
+Approving runs a four-part wizard: choose who gets the agent, apply a policy template, grant consent, and publish.
+
+1. Sign in to the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested), and then select **Agents** > **All agents**.
+1. On the **Requests** tab, find your autopilot. Its state is **Pending activate**.
+
+   :::image type="content" source="../media/autopilot/approve-find-request.png" alt-text="Screenshot of the Requests tab in the Microsoft 365 admin center, with an autopilot listed in the Pending activate state." lightbox="../media/autopilot/approve-find-request.png":::
+
+1. Select the autopilot to open the **Publish new agent** wizard.
+1. On **Publish to users**, confirm the host products and the publish audience. Under **Activate**, select who can create agent instances: **None**, **All users**, or **Specific users or groups**. This choice is the hiring scope.
+
+   :::image type="content" source="../media/autopilot/approve-publish-activate.png" alt-text="Screenshot of the Publish to users step, showing host products, publish audience, and options for who can create agent instances." lightbox="../media/autopilot/approve-publish-activate.png":::
+
+1. On **Apply template**, choose a policy template. Microsoft policies apply by default, and administrators add and edit custom policies. This step also shows how many autopilot licenses the tenant has available.
+
+   :::image type="content" source="../media/autopilot/approve-apply-template.png" alt-text="Screenshot of the Apply template step, showing the policy template list, available licenses, and default protections." lightbox="../media/autopilot/approve-apply-template.png":::
+
+1. On **Accept permissions**, review the permissions the autopilot requests and select **Grant admin consent**. Consent here governs the token, meaning what kinds of calls the autopilot is ever allowed to make. It grants no team's data to anyone.
+
+   :::image type="content" source="../media/autopilot/approve-grant-consent.png" alt-text="Screenshot of the Accept permissions step, showing agent tool permissions, observability permissions, and the Grant admin consent button." lightbox="../media/autopilot/approve-grant-consent.png":::
+
+1. On **Review and finish**, check the audience, the activation scope, and the policy template, and then select **Publish**.
+
+   :::image type="content" source="../media/autopilot/approve-review-finish.png" alt-text="Screenshot of the Review and finish step, summarizing the agent, publish audience, activation scope, and policy template before publishing." lightbox="../media/autopilot/approve-review-finish.png":::
+
+1. Verify the autopilot on the **Registry** tab. Its status is **Available**.
+
+   :::image type="content" source="../media/autopilot/approve-registry.png" alt-text="Screenshot of the Registry tab in the Microsoft 365 admin center, showing the autopilot with a status of Available." lightbox="../media/autopilot/approve-registry.png":::
+
+**Expected result**: the autopilot appears in the registry as **Available**, and the people in the hiring scope can create instances.
+
+## Create your instance
+
+**Who does this:** you, if your administrator included you in the hiring scope.
+
+After the autopilot is in the registry, you can hire it from either the Microsoft Teams app store or the Microsoft 365 Copilot agent store.
+
+1. Find the autopilot under **Agents for your team**.
+
+   In Microsoft Teams, go to **Apps** > **Agents for your team**.
+
+   :::image type="content" source="../media/autopilot/hire-teams-store.png" alt-text="Screenshot of the Agents for your team section of the Microsoft Teams app store, with an autopilot highlighted." lightbox="../media/autopilot/hire-teams-store.png":::
+
+   In Microsoft 365 Copilot, go to **Agents** > **Agents for your team**.
+
+   :::image type="content" source="../media/autopilot/hire-copilot-store.png" alt-text="Screenshot of the Agents for your team section of the Microsoft 365 Copilot agent store, with an autopilot highlighted." lightbox="../media/autopilot/hire-copilot-store.png":::
+
+1. Select the autopilot, and then select **Create instance**.
+1. Name the instance, set its alias and domain, and confirm who manages it. The name can be up to 32 characters.
+
+   :::image type="content" source="../media/autopilot/hire-create-agent.png" alt-text="Screenshot of the Create agent dialog, showing fields for the agent icon, name, alias, domain, description, and manager." lightbox="../media/autopilot/hire-create-agent.png":::
+
+1. Select **Create**.
+
+Creating the instance consumes one license and creates the instance's own agent identity and agent user account. You become its manager.
+
+**Expected result**: the autopilot starts a Teams chat with you and appears in your organization chart.
+
+:::image type="content" source="../media/autopilot/hire-teams-greeting.png" alt-text="Screenshot of a Microsoft Teams chat where a newly hired autopilot sends its first greeting message, labeled as an AI agent." lightbox="../media/autopilot/hire-teams-greeting.png":::
+
+> [!NOTE]
+> Instance creation is asynchronous. It can take a few minutes before the autopilot is searchable in Teams.
+
+## Clean up resources
+
+To remove the Azure resources you created, run:
+
+```azurecli
+azd down
+```
+
+Deleting Azure resources doesn't remove the instances people hired from your blueprint. Work with your administrator to retire the blueprint.
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| `azd provision` fails before resource creation starts | Missing permissions | Confirm you have **Owner** at the subscription or resource group scope (needed for `azd` to create resources and assign roles), and **Foundry User** or **Foundry Project Manager** at the Foundry project scope. |
-| Publishing to Teams or Microsoft 365 fails with a Bot Service authorization error | Foundry roles don't include Bot Service permissions | Confirm the identity running the publish step has **Owner** or **Contributor** at the resource group scope. Foundry-scoped roles (**Foundry User**, **Foundry Project Manager**) don't include `Microsoft.BotService/*` permissions. For details, see [Azure Bot Service setup](../concepts/hosted-agent-permissions.md#azure-bot-service-setup). |
-| `azd provision` fails with a region or hosted-agent availability message | Wrong region | Create all resources for this sample in a region that Hosted agents are supported in. |
-| `azd provision` or `azd auth login` prompts for more sign-in or consent steps | Additional scopes required | Run the exact sign-in commands from the sample README and grant any required Foundry, Microsoft Graph, or Azure Resource Manager scopes before rerunning the workflow. |
-| Container build or push fails | Docker isn't running | Start Docker, and then run `azd provision --verbose` again. |
-| You can't find the agent to approve | Approval step not completed or you don't have the required tenant permissions | Verify tenant admin permissions and confirm the deployment completed successfully. |
-| You can't find your blueprint in the Teams Developer Portal list | The list might not show every blueprint | Verify the approval completed successfully, rerun `azd env get-values` to recover the sample output, and follow the current sample guidance for locating the approved blueprint. |
-
-
-## Next steps
-
-After publishing, you can update your agent by deploying a new agent version and repeating the `azd` workflow. To monitor agent activity and set up observability, see [Grant Agent 365 observability permissions](./grant-agent-365-permissions.md).
+| Provisioning fails partway, after some resources exist | You have **Contributor**, not **Owner** | Provisioning creates role assignments, which Contributor can't do. Get **Owner** at the resource group, or **Contributor** plus **Role Based Access Control Administrator**, then run `azd provision` again. |
+| `azd provision` fails with a region or hosted-agent availability message | Unsupported region | Create all resources in a region that supports hosted agents. |
+| Container build or push fails | Docker isn't running, or you lack push rights | Start Docker. Confirm you have **AcrPush** or **Container Registry Repository Writer** on the registry. |
+| `azd auth login` prompts for more consent | Extra scopes required | Run the sign-in commands from the sample README and grant the required Foundry, Microsoft Graph, and Azure Resource Manager scopes. |
+| Publishing fails with `version already exists` | That version was already published | Increment the version number and publish again. |
+| You can't find the request to approve | You lack the role, or publishing didn't finish | Confirm the approver has **Global Administrator** or **AI Administrator**. Reader roles can't approve. |
+| **Create instance** is missing or disabled in the store | The tenant isn't enrolled in Frontier, the autopilot isn't activated, or you're not in the hiring scope | Confirm Frontier enrollment, that your administrator activated the autopilot, and that the activation scope includes you. |
+| Hiring fails with a licensing error | No free Frontier seats | Each hire consumes one seat from the 25-seat preview subscription. Free a seat or request more. |
+| The autopilot doesn't appear in Teams search | Creation is still propagating | Wait a few minutes and search again. |
 
 ## Related content
 
-- [Microsoft Agent 365 integration with Foundry](../concepts/agent-365-integration.md)
-- [Manage Hosted agent lifecycle](./manage-hosted-agent.md)
-- [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
-- [Configure Agent 365 data collection for Microsoft Foundry](./configure-agent-365-data-collection.md)
+- [What is an autopilot in Microsoft Foundry?](../concepts/autopilot-overview.md) explains the identity model and why autopilots use blueprints.
+- [Autopilot lifecycle in Microsoft Foundry](../concepts/autopilot-lifecycle.md) covers what happens after you publish, including updating and ending an autopilot.
+- [Microsoft Agent 365 integration with Foundry](../concepts/agent-365-integration.md) covers registry sync, data collection, and data residency.

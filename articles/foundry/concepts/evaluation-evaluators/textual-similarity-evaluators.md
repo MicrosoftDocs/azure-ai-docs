@@ -120,7 +120,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 > [!NOTE]
 > The `rouge_type` parameter accepts: `rouge1` (unigram overlap), `rouge2` (bigram overlap), `rouge3`, `rouge4`, `rouge5`, and `rougeL` (longest common subsequence). Use `rouge1` for general-purpose summarization evaluation.
@@ -149,4 +149,4 @@ LLM-based evaluators like `builtin.similarity` use a 1-5 Likert scale. Most algo
 
 - [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../observability/how-to/cloud-evaluation.md)

@@ -2622,8 +2622,13 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-chat-reasoning.md",
-      "redirect_url": "/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/use-chat-reasoning",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/foundry/foundry-models/how-to/quickstart-create-resources.md",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/create-model-deployments",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-embeddings.md",
@@ -4363,6 +4368,16 @@
     {
       "source_path_from_root": "/articles/ai-foundry/index.yml",
       "redirect_url": "/azure/foundry/",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/foundry/how-to/develop/cloud-evaluation.md",
+      "redirect_url": "/azure/foundry/observability/how-to/cloud-evaluation",
+      "redirect_document_id": true
+    },
+       {
+      "source_path_from_root": "/articles/foundry/how-to/develop/evaluate-admin-connected-models.md",
+      "redirect_url": "/azure/foundry/observability/how-to/evaluate-admin-connected-models",
       "redirect_document_id": true
     }
   ]
