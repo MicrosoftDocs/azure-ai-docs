@@ -1,12 +1,10 @@
 ---
 title: Other Foundry Models sold by Azure
 manager: mcleans
-manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 08/19/2026
-ms.date: 07/23/2026
+ms.date: 08/26/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -130,16 +128,19 @@ For model availability across all regions, grouped by deployment category, see [
 
 See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Moonshot+ai/?cid=learnDocs).
 
-## xAI models sold by Azure
+## SpaceXAI models sold by Azure
 
-xAI's Grok models in Foundry Models include a diverse set of reasoning and non-reasoning models designed for enterprise use cases such as data extraction, coding, text summarization, and agentic applications.
+SpaceXAI's Grok models in Foundry Models include a diverse set of reasoning and non-reasoning models designed for enterprise use cases such as data extraction, coding, text summarization, and agentic applications.
 
-[Registration is required for access to](https://aka.ms/xai/grok-4) `grok-code-fast-1` (Preview) and `grok-4`.
+To work with Grok models, see [Deploy and use Grok models in Foundry](../how-to/use-foundry-models-grok.md).
+
+[Registration is required for access to](https://aka.ms/xai/grok-4) `grok-code-fast-1` and `grok-4`.
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| `grok-4.6` <br> **Preview** | chat-completion | - **Input:** text, image <br /> - **Output:** text (128,000 tokens max) <br /> - **Context window:** 200,000 tokens<br> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text, JSON |
 | `grok-4.3` <br> **Preview** | chat-completion | - **Input:** text (200,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
 | `grok-4-20-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
 | `grok-4-20-non-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
