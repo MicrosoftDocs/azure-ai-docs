@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 11/06/2025
+ms.date: 08/25/2026
 ms.custom: include
 ---
 
@@ -20,6 +20,8 @@ Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.m
 PROJECT_ENDPOINT=<endpoint copied from welcome screen>
 AGENT_NAME="MyAgent"
 ```
+
+The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -37,6 +39,8 @@ ProjectEndpoint = <endpoint copied from welcome screen>
 AgentName = "MyAgent"
 ```
 
+The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
+
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
@@ -51,18 +55,14 @@ Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.m
 PROJECT_ENDPOINT=<endpoint copied from welcome screen>
 AGENT_NAME="MyAgent"
 ```
+
+The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
+
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/typescript/quickstart/)
 
 Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
-
-Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
-
-```
-PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-AGENT_NAME="MyAgent"
-```
 
 # [Java](#tab/java)
 
@@ -73,6 +73,8 @@ ProjectEndpoint = <endpoint copied from welcome screen>
 AgentName = "MyAgent"
 ```
 
+The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
+
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/java/quickstart/)
@@ -82,6 +84,8 @@ Sign in using the CLI `az login` command to authenticate before running your Jav
 # [REST API](#tab/rest)
 
 Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. 
+
+The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the `model` value in the request body.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]

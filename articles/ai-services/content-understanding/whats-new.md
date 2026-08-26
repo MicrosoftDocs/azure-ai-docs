@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 08/04/2026
+ms.date: 08/19/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: whats-new
@@ -22,6 +22,19 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## August 2026
+
+### 2026-06-01 preview SDK release
+
+The Content Understanding client libraries for Python, .NET, Java, and JavaScript/TypeScript are now available for the `2026-06-01-preview` API version. These SDKs support the latest preview features, including agentic mode, synchronous Read and Layout operations, and the newest analyzer improvements.
+
+| Language | SDK package |
+|----------|-------------|
+| Python | [Python SDK](https://aka.ms/cu-sdk-python) |
+| .NET | [.NET SDK](https://aka.ms/cu-sdk-net) |
+| Java | [Java SDK](https://aka.ms/cu-sdk-java) |
+| JavaScript/TypeScript | [JavaScript/TypeScript SDK](https://aka.ms/cu-sdk-js) |
 
 ## July 2026
 
@@ -102,7 +115,6 @@ Content Understanding Studio now supports GPT-5.2 beyond the original East US 2 
 - East US
 - Australia East
 - Japan East
-- North Europe
 - South Central US
 - Southeast Asia
 - Sweden Central

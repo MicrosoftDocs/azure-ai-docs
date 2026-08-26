@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/31/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: zhuoqunli
 ms.author: mattwoj
@@ -34,6 +34,9 @@ In this article, you learn how to:
 - The latest SDK package for your language. See the [quickstart](../../quickstarts/get-started-code.md) for installation steps.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and model deployment name.
+
+> [!IMPORTANT]
+> Don't pass secrets, access tokens, or other credentials as structured inputs. Application logs or tracing might capture structured input values as part of the request. Store credentials in project connections or another managed secret store instead.
 
 ## What are structured inputs?
 
@@ -272,7 +275,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -362,26 +365,28 @@ The Java SDK uses `StructuredInputDefinition` for the agent schema and `Map<Stri
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
+  --data-binary @- <<EOF
+{
     "name": "structured-input-agent",
     "definition": {
       "kind": "prompt",
       "model": "<MODEL_DEPLOYMENT>",
-      "instructions": "You are a helpful assistant. The user'\''s name is {{userName}} and their role is {{userRole}}. Greet them and confirm their details.",
+      "instructions": "You are a helpful assistant. The user's name is {{userName}} and their role is {{userRole}}. Greet them and confirm their details.",
       "structured_inputs": {
         "userName": {
           "type": "string",
-          "description": "The user'\''s name",
+          "description": "The user's name",
           "default_value": "Unknown"
         },
         "userRole": {
           "type": "string",
-          "description": "The user'\''s role",
+          "description": "The user's role",
           "default_value": "User"
         }
       }
     }
-  }'
+}
+EOF
 ```
 
 ### Create a response with structured input values
@@ -711,7 +716,8 @@ Response: The sum of x in numbers.csv is 6.
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
+  --data-binary @- <<EOF
+{
     "name": "code-interp-structured",
     "definition": {
       "kind": "prompt",
@@ -734,7 +740,8 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
         }
       }
     }
-  }'
+}
+EOF
 ```
 
 ### Create a response with the file ID
@@ -1117,6 +1124,8 @@ This example combines a static vector store (`vs_base_kb`) with a dynamic one (`
 
 By using structured inputs, you can dynamically configure the [Azure AI Search](tools/ai-search.md) tool's index `filter` at runtime. Define a handlebar template inside the OData filter expression, and then supply the actual filter value when creating a response. This pattern lets a single agent definition serve users whose queries must be scoped to different subsets of an index without creating a separate agent version per filter value.
 
+Validate values before inserting them into an OData filter. Allow only expected values, escape OData special characters, and don't accept complete filter expressions from untrusted users.
+
 :::zone pivot="python"
 
 ```python
@@ -1459,7 +1468,8 @@ Response: Based on the index, the available outdoor boots include ...
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
+  --data-binary @- <<EOF
+{
     "name": "aisearch-agent-structured-input",
     "definition": {
       "kind": "prompt",
@@ -1474,7 +1484,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
                 "project_connection_id": "$AZURE_AI_SEARCH_CONNECTION_ID",
                 "index_name": "$AI_SEARCH_INDEX_NAME",
                 "query_type": "simple",
-                "filter": "search.ismatchscoring('\''{{userFilter}}'\'')"
+                "filter": "search.ismatchscoring('{{userFilter}}')"
               }
             ]
           }
@@ -1488,7 +1498,8 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
         }
       }
     }
-  }'
+}
+EOF
 ```
 
 ### Create a response with the filter value
@@ -1516,13 +1527,13 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   }'
 ```
 
-The `{{userFilter}}` template inside the `filter` expression is replaced with `boots` at runtime. The `'\''` sequence in the create-agent body is the standard Bash escape for a literal single quote inside a single-quoted string. If your shell handles quoting differently, supply the JSON body from a file instead.
+At runtime, the `filter` expression replaces the `{{userFilter}}` template with `boots`. The unquoted heredoc expands the connection and index environment variables before `curl` sends the JSON body.
 
 :::zone-end
 
 ## Use structured inputs with MCP servers
 
-By using structured inputs, you can dynamically configure MCP server connections at runtime. You can set the server URL, authentication headers, and server label. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
+By using structured inputs, you can dynamically configure nonsecret MCP server properties such as the server URL, server label, and routing headers. Use a project connection or another managed authentication mechanism for credentials. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
 
 The following JSON shows the request body for the [Create Agent Version](https://ai.azure.com/api-reference/agent-versions/create-agent-version-agents-create-agent-version-from-code/) operation (`POST /agents?api-version=v1`). The agent definition includes MCP tool properties with handlebar template placeholders:
 
@@ -1539,10 +1550,7 @@ The following JSON shows the request body for the [Create Agent Version](https:/
         "server_label": "{{server_label}}",
         "server_url": "{{server_url}}",
         "require_approval": "never",
-        "headers": {
-          "Authorization": "{{auth_token}}",
-          "X-Project-ID": "{{project_id}}"
-        }
+        "headers": {"X-Project-ID": "{{project_id}}"}
       }
     ],
     "structured_inputs": {
@@ -1557,11 +1565,6 @@ The following JSON shows the request body for the [Create Agent Version](https:/
       },
       "server_url": {
         "description": "MCP server URL",
-        "required": true,
-        "schema": {"type": "string"}
-      },
-      "auth_token": {
-        "description": "Authentication token",
         "required": true,
         "schema": {"type": "string"}
       },
@@ -1588,7 +1591,6 @@ At runtime, supply the actual server configuration values in the request body fo
     "project_name": "CloudSync API",
     "server_label": "cloudsync-repo",
     "server_url": "https://gitmcp.io/myorg/cloudsync-api",
-    "auth_token": "Bearer ghp_xxxxxxxxxxxx",
     "project_id": "proj_12345"
   }
 }
@@ -1619,7 +1621,7 @@ tool = MCPTool(
     server_label="{{server_label}}",
     server_url="{{server_url}}",
     require_approval="never",
-    headers={"Authorization": "{{auth_token}}", "X-Project-ID": "{{project_id}}"},
+    headers={"X-Project-ID": "{{project_id}}"},
 )
 
 # Create agent with structured inputs for MCP configuration
@@ -1639,9 +1641,6 @@ agent = project.agents.create_version(
             "server_url": StructuredInputDefinition(
                 description="MCP server URL", required=True, schema={"type": "string"},
             ),
-            "auth_token": StructuredInputDefinition(
-                description="Authentication token", required=True, schema={"type": "string"},
-            ),
             "project_id": StructuredInputDefinition(
                 description="Project identifier", required=True, schema={"type": "string"},
             ),
@@ -1660,7 +1659,6 @@ response = openai.responses.create(
             "project_name": "CloudSync API",
             "server_label": "cloudsync-repo",
             "server_url": "https://gitmcp.io/myorg/cloudsync-api",
-            "auth_token": "Bearer ghp_xxxxxxxxxxxx",
             "project_id": "proj_12345",
         },
     },

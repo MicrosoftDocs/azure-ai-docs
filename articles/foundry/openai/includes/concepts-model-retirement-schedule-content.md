@@ -94,7 +94,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-pro | 2025-06-10 | GA | 2026-12-17 | — |
 | o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
-| sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
+| sora-2 | 2025-12-08 | Preview | 2026-10-15 | — |
 | text-embedding-3-large | 1 | GA | 2028-02-09 | — |
 | text-embedding-3-small | 1 | GA | 2028-02-09 | — |
 | text-embedding-ada-002 | 1 | GA | 2028-02-09 | — |

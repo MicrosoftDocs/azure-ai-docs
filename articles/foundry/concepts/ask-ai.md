@@ -3,7 +3,7 @@ title: "Ask AI for help"
 description: "Learn how to ask AI for help, getting your questions answered and tasks supported."
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
-ms.date: 04/06/2026
+ms.date: 08/21/2026
 ms.author: sgilley
 ms.reviewer: jeomhove
 author: sdgilley
@@ -31,9 +31,9 @@ To use Ask AI, you need:
 
 ## Capabilities
 
-**What this AI can do** - The Ask AI experience provides assistance by answering questions and performing tasks through specialized sub-agents:
+**What this AI can do**: The Ask AI experience provides assistance by answering questions and performing tasks through specialized sub-agents:
 
-- **Documentation**: This documentation includes details about Foundry such as quickstarts, how-tos, or reference documentation of the Microsoft Foundry SDK. The agent can help you navigate the documentation or find answers for you.
+- **Documentation**: Searches Foundry quickstarts, how-to guides, and Microsoft Foundry SDK reference documentation to answer your questions and help you navigate the docs.
 - **Model Catalog**: Provide information about specific models in the model catalog, including their capabilities and features.
 - **Troubleshooting**: Help diagnose and resolve common Foundry problems by searching the troubleshooting knowledge base and providing step-by-step solutions.
 - **Quota & Model Operations**: Deploy models, debug deployment problems, find deployment details, check quota and capacity in specific regions, and delete model deployments.
@@ -41,7 +41,7 @@ To use Ask AI, you need:
 - **Monitoring Dashboard Insights**: Interpret evaluation dashboard visualizations, identify patterns and anomalies in monitoring data, and suggest optimizations based on performance metrics.
 - **Evaluation Management**: Manage evaluation workflows for large language models and agents, including setup, execution, and monitoring of evaluation jobs.
 
-**What this AI can't do** - While the agent is a powerful tool, it has some limitations and constraints:
+**What this AI can't do**: While the agent is a powerful tool, it has some limitations and constraints:
 
 - **Limited Scope**: It's restricted to answering questions related to the Foundry documentation and model catalog. It can't provide support for unrelated Azure services or external systems.
 - **Call External APIs**: This AI experience can only call for a specific subset of Foundry APIs. It can't access the web or APIs external to Microsoft.
@@ -69,7 +69,7 @@ The Ask AI experience relies on the [Foundry Model Context Protocol (MCP) Server
 > [!IMPORTANT]
 > Ask AI is a preview feature and is available in the Foundry portal across all supported regions. Because it's in preview, it isn't covered by a service-level agreement (SLA) and isn't recommended for production workloads.
 >
-> By using this preview feature, you acknowledge and consent to any cross-region processing that may occur. As an example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, don't use Ask AI (preview) or restrict its use to scenarios that remain within your selected region.
+> By using this preview feature, you acknowledge and consent to any cross-region processing that might occur. As an example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, don't use Ask AI (preview) or restrict its use to scenarios that remain within your selected region.
 
 ## Responsible AI FAQ for Ask AI
 

@@ -93,6 +93,8 @@ If your indexed knowledge source uses a chunked index, such as with integrated v
 
 For blob, indexed OneLake, and indexed SharePoint knowledge sources, you can configure an `assetStore` in the knowledge source's `ingestionParameters` to persist images that are embedded in your source documents. When you also enable image serving on the knowledge base, the [retrieve action](agentic-retrieval-how-to-retrieve.md) injects those images into the answer synthesis prompt so the LLM can reason over diagrams, charts, and extracted image content. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
+Don't configure `assetStore` and `ingestionPermissionOptions` on the same knowledge source. Image serving isn't supported when `ingestionPermissionOptions` is configured.
+
 ## Using knowledge sources
 
 After you create a knowledge source, reference it in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge base determines which knowledge sources to query. The following sections describe options for controlling which sources are included and how the engine selects among them.

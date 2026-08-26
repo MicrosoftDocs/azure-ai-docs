@@ -2882,6 +2882,16 @@
       "source_path": "articles/open-datasets/dataset-oxford-covid-government-response-tracker.md",
       "redirect_url": "/azure/open-datasets/overview-what-are-open-datasets",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/how-to/develop/get-started-projects-vs-code.md",
+      "redirect_url": "/azure/foundry/how-to/develop/get-started-projects-visual-studio-code",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/concepts/choose-build-approach.md",
+      "redirect_url": "/azure/foundry/what-is-foundry",
+      "redirect_document_id": false
     }
   ]
 }

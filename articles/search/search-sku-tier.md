@@ -53,12 +53,6 @@ The Serverless Developer tier is in Public Preview and doesn't currently support
 - Shared Private Link resources: No planned support for the Serverless model
 - Service-level agreement (SLA): Not available during Public Preview
 
-Available regions for the Serverless pricing model during preview include:
-
-- West Central US
-- Switzerland North
-- Japan East
-
 To learn more, see [Service Limits in Azure AI Search](./search-limits-quotas-capacity.md).
 
 For additional large-scale Serverless deployment options, contact Microsoft using the [Azure AI Search Serverless Private Preview Sign-up Form](https://aka.ms/FoundryIQ-serverless-contact).

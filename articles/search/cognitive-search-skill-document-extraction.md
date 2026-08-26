@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023
   - doc-kit-assisted
 ms.topic: reference
-ms.date: 08/08/2026
+ms.date: 08/18/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 The **Document Extraction** skill extracts content from a file in the [enrichment pipeline](cognitive-search-concept-intro.md). By default, content extraction or retrieval is built into the enrichment pipeline. However, by using the Document Extraction skill, you can control how parameters are set, and how extracted content is named in the enrichment tree.
 
-For [vector](vector-search-overview.md) and [multimodal search](multimodal-search-overview.md), Document Extraction combined with the [Text Split skill](cognitive-search-skill-textsplit.md) is more affordable than other [data chunking approaches](vector-search-how-to-chunk-documents.md). The [Multimodal tutorial](tutorial-multimodal.md) demonstrates this scenario.
+For [vector](vector-search-overview.md) and [multimodal search](multimodal-search-overview.md), combine Document Extraction with the [Text Split skill](cognitive-search-skill-textsplit.md) to implement a configurable [data chunking approach](vector-search-how-to-chunk-documents.md). The [Multimodal tutorial](tutorial-multimodal.md) demonstrates this scenario.
 
 > [!NOTE]
 > This skill isn't bound to Foundry Tools and has no Foundry Tools key requirement.
@@ -40,16 +40,16 @@ The DocumentExtractionSkill can extract text from the following document formats
 
 Parameters are case sensitive.
 
-| Inputs | Allowed Values | Description |
+| Inputs | Allowed values | Description |
 |-----------------|----------------|-------------|
-| `parsingMode`   | `default` </br>`text` </br>`json`  | Set to `default` for document extraction from files that aren't pure text or json. For source files that contain mark up (such as PDF, HTML, RTF, and Microsoft Office files), use the default to extract just the text, minus any markup language or tags. If `parsingMode` isn't defined explicitly, it will be set to `default`. </p>Set to `text` if source files are TXT. This parsing mode improves performance on plain text files. If files include markup, this mode will preserve the tags in the final output. </p>Set to `json` to extract structured content from json files.  |
-| `dataToExtract` | `contentAndMetadata` </br>`allMetadata` | Set to `contentAndMetadata` to extract all metadata and textual content from each file. If `dataToExtract` isn't defined explicitly, it will be set to `contentAndMetadata`. </p>Set to `allMetadata` to extract only the [metadata properties for the content type](search-blob-metadata-properties.md) (for example, metadata unique to just .png files).  |
+| `parsingMode` | `default`<br>`text`<br>`json` | Set to `default` for document extraction from files that aren't pure text or JSON. For source files that contain markup, such as PDF, HTML, RTF, and Microsoft Office files, use the default to extract text without markup language or tags. If `parsingMode` isn't defined explicitly, the value is `default`.<br><br>Set to `text` if source files are TXT. This parsing mode improves performance on plain-text files. If files include markup, this mode preserves the tags in the final output.<br><br>Set to `json` to extract structured content from JSON files. |
+| `dataToExtract` | `contentAndMetadata`<br>`allMetadata` | Set to `contentAndMetadata` to extract all metadata and textual content from each file. If `dataToExtract` isn't defined explicitly, the value is `contentAndMetadata`.<br><br>Set to `allMetadata` to extract only the [metadata properties for the content type](search-blob-metadata-properties.md), such as metadata unique to PNG files. |
 | `configuration` | See below. | A dictionary of optional parameters that adjust how the document extraction is performed. See the below table for descriptions of supported configuration properties. |
 
-| Configuration Parameter	| Allowed Values | Description |
+| Configuration parameter | Allowed values | Description |
 |-------------------------|----------------|-------------|
-| `imageAction`           | `none` </br>`generateNormalizedImages` </br>`generateNormalizedImagePerPage` | Set to `none` to ignore embedded images or image files in the data set, or if the source data doesn't include image files. This is the default. </p>For [OCR and image analysis](cognitive-search-concept-image-scenarios.md), set to `generateNormalizedImages` to have the skill create an array of normalized images as part of [document cracking](search-indexer-overview.md#document-cracking). This action requires that `parsingMode` is set to `default` and `dataToExtract` is set to `contentAndMetadata`. A normalized image refers to extra processing resulting in uniform image output, sized and rotated to promote consistent rendering when you include images in visual search results (for example, same-size photographs in a graph control as seen in the [JFK demo](https://github.com/Microsoft/AzureSearch_JFK_Files)). This information is generated for each image when you use this option. </p>If you set to `generateNormalizedImagePerPage`, PDF files are treated differently in that instead of extracting embedded images, each page is rendered as an image and normalized accordingly.  Non-PDF file types are treated the same as if `generateNormalizedImages` was set.
-| `normalizedImageMaxWidth` | Any integer between 50-10000 | The maximum width (in pixels) for normalized images generated. The default is 2000. | 
+| `imageAction` | `none`<br>`generateNormalizedImages`<br>`generateNormalizedImagePerPage` | Set to `none` to ignore embedded images or image files in the data set, or if the source data doesn't include image files. This value is the default.<br><br>For [OCR and image analysis](cognitive-search-concept-image-scenarios.md), set to `generateNormalizedImages` to have the skill create an array of normalized images as part of [document cracking](search-indexer-overview.md#stage-1-document-cracking). This action requires `parsingMode` set to `default` and `dataToExtract` set to `contentAndMetadata`. A normalized image has uniform output that is sized and rotated to promote consistent rendering in visual search results. The skill generates this information for each image.<br><br>If you set `imageAction` to `generateNormalizedImagePerPage`, each PDF page is rendered as an image and normalized instead of extracting embedded images. Non-PDF file types are treated the same as if `generateNormalizedImages` was set. |
+| `normalizedImageMaxWidth` | Any integer between 50-10000 | The maximum width (in pixels) for normalized images generated. The default is 2000. |
 | `normalizedImageMaxHeight` | Any integer between 50-10000 | The maximum height (in pixels) for normalized images generated. The default is 2000. |
 
 > [!NOTE]
@@ -92,10 +92,10 @@ The file reference object can be generated one of three ways:
 
 ## Skill outputs
 
-| Output name	 | Description |
+| Output name | Description |
 |--------------|-------------|
 | `content` | The textual content of the document. |
-| `normalized_images`	| When the `imageAction` is set to a value other than `none`, the new *normalized_images* field contains an array of images. See [Extract text and information from images](cognitive-search-concept-image-scenarios.md) for more details on the output format. |
+| `normalized_images` | When `imageAction` is set to a value other than `none`, the new *normalized_images* field contains an array of images. For more information about the output format, see [Extract text and information from images](cognitive-search-concept-image-scenarios.md). |
 
 ## Sample definition
 

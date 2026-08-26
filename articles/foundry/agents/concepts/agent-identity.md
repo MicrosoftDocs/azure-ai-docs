@@ -5,7 +5,7 @@ description: "Learn how agent identities and agent identity blueprints work in M
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 04/13/2026
+ms.date: 08/21/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -154,6 +154,9 @@ This chain is designed to eliminate stored secrets in the blueprint configuratio
 
 Foundry automatically integrates with Microsoft Entra Agent ID by creating and managing identities throughout the agent development lifecycle. When you create your first agent in a Foundry project, the system provisions a default agent identity blueprint and a default agent identity for your project.
 
+> [!NOTE]
+> The agent publishing experience is changing. This section describes identity behavior for the Agent Application publishing model. To learn how agent identities and endpoints work in the newer agent object model, see [Migrate from agent applications to the new agent endpoint and publishing experience](../how-to/migrate-agent-applications.md).
+
 ### Shared project identity
 
 All unpublished or in-development agents within the same project share a common identity. This design simplifies permission management because unpublished agents typically require the same access patterns and permission configurations. The shared identity approach provides these benefits:
@@ -223,14 +226,17 @@ az role assignment list \
 
 Common role assignments for agent tools:
 
-| Tool scenario | Required role | Target scope |
-| --- | --- | --- |
-| MCP server that reads/writes blobs | Storage Blob Data Contributor | Storage account |
-| MCP server that triggers logic apps | Logic Apps Standard Operator (Preview) | Logic App resource |
-| A2A tool that queries Cosmos DB | Cosmos DB Built-in Data Reader | Cosmos DB account |
+| Tool scenario | Required role | Target scope | Assignment method |
+| --- | --- | --- | --- |
+| MCP server that reads/writes blobs | Storage Blob Data Contributor | Storage account | `az role assignment create` |
+| MCP server that triggers logic apps | Logic Apps Standard Operator | Logic App resource | `az role assignment create` |
+| A2A tool that queries Cosmos DB | Cosmos DB Built-in Data Reader | Cosmos DB account | `az cosmosdb sql role assignment create` |
+
+> [!NOTE]
+> **Cosmos DB Built-in Data Reader** is an Azure Cosmos DB data-plane role, not an Azure RBAC role. Assign it with `az cosmosdb sql role assignment create` or Bicep instead of `az role assignment create`. For more information, see [Configure role-based access control for Azure Cosmos DB](/azure/cosmos-db/how-to-connect-role-based-access-control).
 
 > [!IMPORTANT]
-> When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity.
+> When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity. Identity behavior differs in the newer agent object model - see [Migrate from agent applications to the new agent endpoint and publishing experience](../how-to/migrate-agent-applications.md).
 
 > [!TIP]
 > For comprehensive details about all permissions involved in Hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
@@ -279,7 +285,7 @@ These issues commonly cause tool authentication failures when using agent identi
 
 - **Roles assigned to the wrong identity**: Confirm you granted permissions to the current identity used by the agent (shared project identity for unpublished agents, distinct identity for published agents).
 - **Missing role assignments**: Ensure the agent identity has the required RBAC role on the target resource. For Foundry roles and scopes, see [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md).
-- **Incorrect audience**: Ensure the audience matches the downstream service you’re calling (for example, `https://storage.azure.com` for Azure Storage).
+- **Incorrect audience**: Ensure the audience matches the downstream service you're calling (for example, `https://storage.azure.com` for Azure Storage).
 
 For tool-specific troubleshooting, see the tool documentation:
 
@@ -306,6 +312,7 @@ For more information about Microsoft Entra Agent ID features, see [Microsoft Ent
 ## Related content
 
 * [Agent applications in Microsoft Foundry](../how-to/agent-applications.md)
+* [Migrate from agent applications to the new agent endpoint and publishing experience](../how-to/migrate-agent-applications.md)
 * [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md)
 * [MCP server authentication](../how-to/mcp-authentication.md)
 * [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md)

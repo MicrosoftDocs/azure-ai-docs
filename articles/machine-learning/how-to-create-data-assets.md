@@ -9,7 +9,7 @@ ms.custom: data4ml, devx-track-azurecli
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: soumyapatro
-ms.date: 08/29/2025
+ms.date: 08/21/2026
 ---
 
 # Create and manage data assets
@@ -423,7 +423,7 @@ $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 type: command
 command: cp ${{inputs.input_data}} ${{outputs.output_data}}
 compute: azureml:cpu-cluster
-environment: azureml://registries/azureml/environments/sklearn-1.1/versions/4
+environment: azureml://registries/azureml/environments/sklearn-1.5/labels/latest
 inputs:
   input_data:
     mode: ro_mount
@@ -518,7 +518,7 @@ job = command(
     command="cp ${{inputs.input_data}} ${{outputs.output_data}}",
     inputs=inputs,
     outputs=outputs,
-    environment="azureml://registries/azureml/environments/sklearn-1.1/versions/4",
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
     compute="cpu-cluster",
 )
 
@@ -999,7 +999,7 @@ ml_client = MLClient(
 
 # Define the Data asset object
 my_data = Data(
-    path=mltable_folder,
+    path="./myimages",
     type=AssetTypes.MLTABLE,
     description="My images. Version includes data through to 2023-Jan-08.",
     name="myimages",
@@ -1079,7 +1079,7 @@ ml_client = MLClient(
 
 # Define the Data asset object
 my_data = Data(
-    path=mltable_folder,
+    path="./myimages",
     type=AssetTypes.MLTABLE,
     description="My images. Version includes data through to 2023-Jan-15.",
     name="myimages",
@@ -1128,7 +1128,7 @@ job = command(
     command=cmd,
     inputs=input,
     compute="cpu-cluster",
-    environment="azureml://registries/azureml/environments/sklearn-1.1/versions/4"
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest"
 )
 
 ml_client.jobs.create_or_update(job)
