@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 05/25/2026
+ms.date: 08/25/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents.
@@ -74,7 +74,9 @@ The Voice Live API supports the following models. For supported regions, see the
 | Model | Description |
 | ------------------------------ | ----------- |
 | `gpt-realtime-1.5` | GPT real-time 1.5 + option to use Azure text to speech voices including custom voice for audio. |
+| `gpt-realtime-1.5-datazone` | GPT real-time 1.5 with Data Zone Standard processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
 | `gpt-realtime`      | GPT real-time + option to use Azure text to speech voices including custom voice for audio. |
+| `gpt-realtime-datazone` | GPT real-time with Data Zone Standard processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
 | `gpt-realtime-mini` | GPT mini real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
@@ -84,9 +86,7 @@ The Voice Live API supports the following models. For supported regions, see the
 | `gpt-5.4` | GPT-5.4 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5.3-chat` | GPT-5.3 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5.2` | GPT-5.2 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
-| `gpt-5.2-chat` | GPT-5.2 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5.1` | GPT-5.1 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
-| `gpt-5.1-chat` | GPT-5.1 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5` | GPT-5 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5-mini` | GPT-5 mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5-nano` | GPT-5 nano + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
@@ -121,7 +121,7 @@ Pricing for the Voice Live API is tiered (**Pro**, **Basic**, and **Lite**) base
 
 | Pricing category | Models |
 | ----- | ------ |
-| Voice Live pro | `gpt-realtime`, `gpt-4o`, `gpt-4.1`, `gpt-5`, `gpt-5-chat` |
+| Voice Live pro | `gpt-realtime`, `gpt-realtime-datazone`, `gpt-realtime-1.5`, `gpt-realtime-1.5-datazone`, `gpt-4o`, `gpt-4.1`, `gpt-5`, `gpt-5-chat` |
 | Voice Live basic | `gpt-realtime-mini`, `gpt-4o-mini`, `gpt-4.1-mini`, `gpt-5-mini` |
 | Voice Live lite | `gpt-5-nano`,`phi4-mm-realtime`, `phi4-mini` |
 
