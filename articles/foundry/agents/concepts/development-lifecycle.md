@@ -1,12 +1,12 @@
 ---
-title: "Agent development lifecycle"
+title: "Agent development lifecycle in Microsoft Foundry"
 description: "Learn the agent development lifecycle in Microsoft Foundry, from creating and versioning to tracing, evaluation, publishing, and monitoring."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 07/09/2026
+ms.date: 08/21/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -161,7 +161,7 @@ After you create an agent version that you're happy with, [publish it as an agen
 **Configure and extend agents:**
 
 - [Discover tools in Foundry Tools](./tool-catalog.md)
-- [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
+- [Best practices for using tools in Foundry Agent Service](./tool-best-practice.md)
 
 **Publish and monitor agents:**
 

@@ -1,6 +1,6 @@
 ---
 title: "Agent2Agent (A2A) authentication"
-description: "Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service."
+description: "Learn about the authentication methods available for the Agent2Agent tool in Foundry Agent Service, including key-based, Microsoft Entra ID, and OAuth passthrough."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
