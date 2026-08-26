@@ -14,6 +14,14 @@ items:
     href: ../../agents/how-to/install-cli-foundry-extensions.md
   - name: Set the project context
     href: ../../agents/how-to/cli-project-context.md
+- name: Foundry Toolkit for Visual Studio Code
+  items:
+  - name: Overview
+    href: ../../how-to/develop/get-started-projects-visual-studio-code.md
+  - name: Install Foundry Toolkit
+    href: ../../how-to/develop/install-foundry-toolkit-visual-studio-code.md
+  - name: Set up a Foundry project
+    href: ../../how-to/develop/set-up-foundry-project-visual-studio-code.md
 - name: Coding agents
   items:
   - name: Build with AI and coding agents
@@ -24,8 +32,6 @@ items:
     href: ../../agents/how-to/use-cli-with-coding-agents.md
   - name: Foundry Agent Canvas
     href: ../../agents/concepts/foundry-agent-canvas.md
-  - name: Work in VS Code
-    href: ../../how-to/develop/get-started-projects-vs-code.md
   - name: Use declarative agent workflows in the VS Code extension
     href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
   - name: Use hosted agent workflows in the VS Code extension

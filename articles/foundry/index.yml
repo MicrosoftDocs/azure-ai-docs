@@ -24,7 +24,7 @@ highlightedContent:
       url: ./what-is-foundry.md
     - title: Choose how to build
       itemType: concept
-      url: ./concepts/choose-build-approach.md
+      url: ./what-is-foundry.md#start-by-building-an-agent
     - title: 'Quickstart: Build with models and agents'
       itemType: quickstart
       url: ./quickstarts/get-started-code.md
@@ -46,7 +46,7 @@ productDirectory:
           text: Quickstart - Create Foundry resources 
         - url: ./quickstarts/get-started-code.md
           text: Quickstart - Chat with an agent 
-        - url: ./concepts/choose-build-approach.md
+        - url: ./what-is-foundry.md#start-by-building-an-agent
           text: Choose how to build
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
@@ -62,7 +62,7 @@ productDirectory:
           text: Get started with the Foundry MCP Server
         - url: ./how-to/develop/use-microsoft-foundry-skill.md
           text: Use the Foundry Skill in coding agents
-        - url: ./how-to/develop/get-started-projects-vs-code.md
+        - url: ./how-to/develop/get-started-projects-visual-studio-code.md
           text: Work in Visual Studio Code
     # Card
     - title: Foundry Models

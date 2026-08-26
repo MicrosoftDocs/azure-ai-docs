@@ -5,14 +5,14 @@ manager: mcleans
 description: Get started with the Content Understanding TypeScript SDK to extract structured data from documents, images, audio, and video files.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
-ms.date: 03/06/2026
+ms.date: 08/24/2026
 ms.author: lahlouchu
 ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
 
-[Client library](https://www.npmjs.com/package/@azure/ai-content-understanding) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript) | [SDK source](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding)
+[Client library](https://www.npmjs.com/package/@azure/ai-content-understanding) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript) | [SDK source](https://aka.ms/cu-sdk-js)
 
 This quickstart shows you how to use the Content Understanding TypeScript SDK to extract structured data using prebuilt analyzers from document, image, audio, and video files. To learn more about prebuilt analyzers and other features, see the documentation of [Prebuilt Analyzers](../../concepts/prebuilt-analyzers.md).
 
@@ -38,7 +38,7 @@ This quickstart shows you how to use the Content Understanding TypeScript SDK to
 1. Install TypeScript and the Content Understanding client library:
 
     ```console
-    npm install typescript ts-node @azure/ai-content-understanding
+    npm install typescript ts-node @azure/ai-content-understanding@next
     ```
 
 1. Optionally, install the Azure Identity library for Microsoft Entra authentication:

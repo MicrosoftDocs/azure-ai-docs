@@ -34,6 +34,8 @@ items:
 # Data Protection
 - name: Data protection & encryption
   items:
+  - name: Understand customer-managed key encryption
+    href: ../../concepts/customer-managed-keys.md
   - name: Configure customer-managed keys
     href: ../../concepts/encryption-keys-portal.md
   - name: Store secrets in your Azure Key Vault

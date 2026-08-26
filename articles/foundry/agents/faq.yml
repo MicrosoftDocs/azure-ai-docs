@@ -86,6 +86,8 @@ sections:
         answer: |
           * Basic setup supports Microsoft-managed keys only.  
           * Standard setup supports customer-managed keys (CMKs).
+
+          For coverage details across Foundry capabilities, see [Customer-managed key encryption in Microsoft Foundry](../concepts/customer-managed-keys.md).
       - question: |
           Does Microsoft use my data for training models? 
         answer: |
