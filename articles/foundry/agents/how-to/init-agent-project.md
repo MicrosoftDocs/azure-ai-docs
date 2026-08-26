@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 Use `azd ai agent init` to scaffold a hosted agent project with the files you need to build, test, and deploy an AI agent to Microsoft Foundry. In this article, you choose a starting point and initialize the project from a template, from your own code, or against an existing Foundry project.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you choose a starting template, scaffold the project, and interpret the generated `azd` configuration.
+
 ## Prerequisites
 
 * The [Azure Developer CLI Foundry extensions](install-cli-foundry-extensions.md) installed.

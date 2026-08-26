@@ -22,6 +22,8 @@ If you're deploying for the first time or want a guided walkthrough, see the [Qu
 > [!TIP]
 > Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you plan the container deployment flow, prepare `azd` commands, and connect the SDK or REST steps to your project.
+
 ## Deployment lifecycle
 
 Every Hosted agent deployment follows this sequence:

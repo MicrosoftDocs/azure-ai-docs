@@ -29,6 +29,8 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
 If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
 
+As you set up a project, the [Microsoft Foundry Skill](develop/use-microsoft-foundry-skill.md) can help prepare your environment and complete related agent, evaluation, and file workflows.
+
 ## Prerequisites
 
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
@@ -164,4 +166,3 @@ Use the Azure CLI or Foundry portal to manage role assignments. The Python SDK d
 - [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md)
 - [What is Foundry?](../what-is-foundry.md)
 - [Create resources using Bicep template](create-resource-template.md)
-

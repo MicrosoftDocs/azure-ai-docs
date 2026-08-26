@@ -19,6 +19,8 @@ ms.custom:
 
 Microsoft Foundry includes built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference lists all available evaluators, their purposes, and guidance on selecting the right one for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.
 
+As you choose evaluators, the [Microsoft Foundry Skill](../how-to/develop/use-microsoft-foundry-skill.md) can help connect this reference to evaluation setup, prompt optimization, and troubleshooting workflows.
+
 ## General purpose evaluators
 
 | Evaluator | Purpose |

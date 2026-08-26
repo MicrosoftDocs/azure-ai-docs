@@ -32,6 +32,8 @@ In this article, you learn how to:
 - Review and approve MCP tool calls.
 - Troubleshoot common MCP integration issues.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../../how-to/develop/use-microsoft-foundry-skill.md) can help configure MCP tool connections, authentication, approval behavior, and troubleshooting steps.
+
 ## Prerequisites
 
 Before you begin, make sure you have:

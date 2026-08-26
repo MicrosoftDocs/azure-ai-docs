@@ -26,6 +26,8 @@ The pipeline performs two tasks:
 > [!NOTE]
 > This quickstart focuses on GitHub Actions. The pipeline template includes comments for values that vary by project, such as the hosted agent code root folder, Foundry project endpoint, model deployment, and test prompt. Update those values to match your repository and environment layout.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help tailor the pipeline template, fill in project-specific values, and validate deployment after changes.
+
 ## Set up a GitHub pipeline for hosted agents
 
 You can use GitHub Actions with Azure Developer CLI (`azd`) to deploy and validate hosted agent changes. The workflow uses GitHub OpenID Connect (OIDC) to sign in to Azure, configures the `azd` environment, deploys the agent, shows the hosted agent status, and sends a smoke-test message.

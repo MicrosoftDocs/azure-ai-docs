@@ -22,6 +22,8 @@ Use tracing to debug your AI agents and monitor their behavior in production. Tr
 
 The recommended starting point is **server-side tracing**. Foundry enables it automatically after you connect an Application Insights resource to your project. No code changes are required, and traces are available within minutes of enabling it. Server-side tracing works for any agent hosted in Foundry. When you need visibility into your own application code - for example, to trace custom logic surrounding an agent call - you can add client-side instrumentation as a second step.
 
+The [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help choose server-side or client-side tracing and troubleshoot missing telemetry.
+
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md).
