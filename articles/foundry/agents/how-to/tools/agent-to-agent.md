@@ -95,7 +95,7 @@ For other endpoints, if the endpoint requires authentication to read its agent c
 
 ### Create the connection with the Azure Developer CLI
 
-Export your project endpoint and set it as the active project for the `azd ai`
+Export your project endpoint and set it as the active project for the `azd ai` commands.
 commands:
 
 ```bash
