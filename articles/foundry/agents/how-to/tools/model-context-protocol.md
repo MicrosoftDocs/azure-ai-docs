@@ -164,11 +164,23 @@ azd ai connection create my-mcp-conn \
 | `project-managed-identity` | `--audience <entra-audience>` (optional) |
 | `agentic-identity` | `--audience <entra-audience>` |
 
-Only MCP servers with a Foundry-managed OAuth app support
-`--connector-name`. In the [MCP server registry](https://github.com/Azure/MCP/tree/main/partners/servers),
-these servers define a `connectorName` value that starts with `foundry` and
-ends with `mcp`, such as `foundrygithubmcp`. For other OAuth-enabled MCP
-servers, provide your own app registration.
+Only the following MCP servers support a Foundry-managed OAuth app. Pass
+the corresponding value to `--connector-name`.
+
+| MCP server | Connector name |
+|------------|----------------|
+| Azure Databricks Genie | `foundrydatabricksmcp` |
+| GitHub | `foundrygithubmcp` |
+| Infobip WhatsApp MCP server | `foundryinfobipmcp` |
+| Infobip RCS MCP server | `foundryinfobiprcsmcp` |
+| Infobip SMS MCP server | `foundryinfobipsmsmcp` |
+| LSEG Data and Analytics | `foundrylsegmcp` |
+| Morningstar MCP Server | `foundrymorningstarmcp` |
+| Neon | `foundryneonmcp` |
+| Pipedream | `foundrypipedreammcp` |
+| Vercel | `foundryvercelmcp` |
+
+For other OAuth-enabled MCP servers, provide your own app registration.
 
 For identity-based auth (`user-entra-token`, `project-managed-identity`, `agentic-identity`), assign the corresponding principal the required RBAC role on the target resource before you call the toolbox.
 
