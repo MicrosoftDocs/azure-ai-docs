@@ -553,6 +553,32 @@ Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save
 > [!IMPORTANT]
 > Connection fields can't be edited after creation. If you enter incorrect values, delete the connection and create a new one.
 
+### Create the connection with the Azure Developer CLI
+
+Set the Foundry project endpoint and your app registration values. Keep the
+client secret in your shell or secret store, and don't put it in source
+control.
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+TENANT_ID="<tenant-id>"
+
+azd ai connection create workiq-conn \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind remote-a2a \
+  --target https://workiq.svc.cloud.microsoft/a2a/ \
+  --auth-type oauth2 \
+  --authorization-url "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/authorize" \
+  --token-url "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" \
+  --refresh-url "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" \
+  --client-id "$CLIENT_ID" \
+  --client-secret "$CLIENT_SECRET" \
+  --scopes "api://workiq.svc.cloud.microsoft/WorkIQAgent.Ask,offline_access"
+```
+
+After the connection is created, add its OAuth redirect URL to your app
+registration.
+
 ### Add the redirect URI to your app registration
 
 After Foundry creates the connection, it displays an OAuth redirect URL. Add this URL to your app registration:
@@ -671,4 +697,3 @@ Admin consent for `WorkIQAgent.Ask` is required before any user in your organiza
 - [Work IQ API overview (preview)](/microsoft-365/copilot/extensibility/work-iq-api-overview)
 - [Work IQ API quickstart (preview)](/microsoft-365/copilot/extensibility/work-iq-api-quickstart)
 - [Connect to an A2A agent endpoint from Foundry Agent Service](agent-to-agent.md)
-

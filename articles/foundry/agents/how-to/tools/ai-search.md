@@ -926,6 +926,26 @@ Use one of the following options.
 
 For more detailed steps, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
+#### [Azure Developer CLI](#tab/azd)
+
+Set your Foundry project endpoint, search endpoint, and search admin key. Then
+create the project connection:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+SEARCH_ENDPOINT="https://<search-service>.search.windows.net"
+
+azd ai connection create my-search-connection \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind cognitive-search \
+  --target "$SEARCH_ENDPOINT" \
+  --auth-type api-key \
+  --key "$SEARCH_ADMIN_KEY"
+```
+
+Set `SEARCH_ADMIN_KEY` in your shell or secret store. Don't put the key in
+source control.
+
 #### [Azure CLI](#tab/azurecli)
 
 Create a JSON connection file and use the `az cognitiveservices` CLI to create the connection on your Foundry project.

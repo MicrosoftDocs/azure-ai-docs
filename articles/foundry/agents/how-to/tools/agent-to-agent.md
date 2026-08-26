@@ -93,6 +93,79 @@ For other endpoints, if the endpoint requires authentication to read its agent c
 1. Enter a **Name** and an **A2A Agent Endpoint**.
 1. Under **Authentication**, select an authentication method. For key-based authentication, set the credential name (for example, `x-api-key`) and the corresponding secret value.
 
+### Create the connection with the Azure Developer CLI
+
+Export your project endpoint and set it as the active project for the `azd ai`
+commands:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set $PROJECT_ENDPOINT
+```
+
+Pick the auth variant you need:
+
+```bash
+# No auth
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type none
+
+# Custom-keys header
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type custom-keys \
+  --custom-key "Authorization=******"
+
+# OAuth — bring your own app registration
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type oauth2 \
+  --authorization-url https://auth.example.com/authorize \
+  --token-url https://auth.example.com/token \
+  --client-id <oauth-client-id> \
+  --client-secret <oauth-client-secret> \
+  --scopes "<scope1> <scope2>"
+
+# User Entra token (managed user identity passthrough)
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type user-entra-token \
+  --audience "<entra-audience>"
+
+# Project managed identity
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type project-managed-identity \
+  --audience "<entra-audience>"
+
+# Agentic identity
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
+| `--auth-type` | Additional flags |
+| --- | --- |
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `oauth2` | `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, `--scopes` |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `project-managed-identity` | `--audience <entra-audience>` (optional) |
+| `agentic-identity` | `--audience <entra-audience>` |
+
+For identity-based auth (`user-entra-token`, `project-managed-identity`,
+`agentic-identity`), assign the corresponding principal the required RBAC role
+on the target resource before you call the agent. For a Foundry agent target,
+use `--auth-type agentic-identity` and `--audience https://ai.azure.com`.
+
 ### Get the connection identifier for code
 
 Use your connection name in code. Your code uses this name to retrieve the full connection ID at runtime:

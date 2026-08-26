@@ -247,6 +247,30 @@ The web search tool executes server-side in the Foundry Responses API. You can c
 
 The following example shows how to restrict web search to specific domains using a Bing Custom Search instance. This approach gives you control over which websites your agent can search.
 
+#### Create the Bing Custom Search connection with the Azure Developer CLI
+
+The `azd ai connection create` command doesn't currently support the
+`GroundingWithBingCustomSearch` connection category. Define the connection in
+`azure.yaml` instead, and run `azd provision`:
+
+```yaml
+resources:
+  - kind: connection
+    name: bing-custom-search
+    category: GroundingWithBingCustomSearch
+    target: https://api.bing.microsoft.com/
+    credentials:
+      type: ApiKey
+      key: <bing-custom-search-key>
+```
+
+Don't commit the key to source control. Inject it from a secure store before
+you run:
+
+```bash
+azd provision
+```
+
 #### Create the toolbox and domain-restricted agent
 
 ```python
