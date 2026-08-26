@@ -160,7 +160,7 @@ azd ai connection create my-a2a-conn \
 | `project-managed-identity` | `--audience <entra-audience>` (optional) |
 | `agentic-identity` | `--audience <entra-audience>` |
 
-For identity-based auth (`user-entra-token`, `project-managed-identity`,
+For identity-based auth (`user-entra-token`, `project-managed-identity`, `agentic-identity`), assign the corresponding principal the required RBAC role on the target resource before you call the agent. For a Foundry agent target, use `--auth-type agentic-identity` and `--audience https://ai.azure.com`.
 `agentic-identity`), assign the corresponding principal the required RBAC role
 on the target resource before you call the agent. For a Foundry agent target,
 use `--auth-type agentic-identity` and `--audience https://ai.azure.com`.
