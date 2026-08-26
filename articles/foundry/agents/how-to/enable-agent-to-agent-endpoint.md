@@ -22,7 +22,7 @@ Foundry Agent Service supports A2A protocol **version 1.0** and **version 0.3**.
 ## Supported agent types
 
 Incoming A2A requires the responses protocol. Prompt agents support the
-responses protocol by default and can be exposed as A2A endpoints.
+responses protocol by default, and you can expose them as A2A endpoints.
 
 > [!TIP]
 > This article covers how to **expose** your agent as an A2A endpoint that other agents can call. If you want your agent to **call** a remote A2A endpoint, see [Connect to an A2A agent endpoint from Foundry Agent Service](tools/agent-to-agent.md).
@@ -180,8 +180,10 @@ Foundry serves both A2A protocol versions on the same base path (`…/endpoint/p
 - **Query string**—Append `?a2a-version=1.0` (or `?a2a-version=0.3`) to the request URL.
 
 If you provide a version in both the `A2A-Version` header and the
-`a2a-version` query string, the values must match. Foundry rejects the request
-when the values differ.
+`a2a-version` query string, the values must match. If the values differ,
+Foundry returns HTTP 400 with the `version-ambiguous` problem type or the
+JSON-RPC `VERSION_AMBIGUOUS` reason. Remove one version selector or make the
+values identical.
 
 > [!IMPORTANT]
 > If a request doesn't specify a version through the `A2A-Version` header or `a2a-version` query string, Foundry serves A2A v0.3 by default, in accordance with the A2A specification. To use v1.0, set the header, set the query string, or have your client fetch the v1.0 agent card so the SDK negotiates v1.0 automatically.
@@ -214,7 +216,8 @@ You author your agent card once (in the `agent_card` PATCH body shown earlier), 
 > [!IMPORTANT]
 > All A2A URLs require Microsoft Entra ID authentication. Anonymous access to
 > the agent card isn't supported. The calling identity must have the
-> **Foundry Agent Consumer** role or higher on the Foundry project or agent.
+> **Foundry Agent Consumer** role or another Foundry role that grants endpoint
+> access on the Foundry project or agent.
 
 To confirm your agent card is configured correctly, fetch the v1.0 card directly:
 
@@ -239,7 +242,11 @@ The response contains the agent card with the description and skills you configu
 
 ## Configure authentication for incoming requests
 
-Incoming A2A requests require Microsoft Entra ID authentication. Key-based authentication and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Foundry Agent Consumer** role (or higher) on the Foundry project that hosts your agent.
+Incoming A2A requests require Microsoft Entra ID authentication. Key-based
+authentication and unauthenticated access aren't supported. The calling agent
+must present a valid Microsoft Entra token. The identity behind that token must
+have the **Foundry Agent Consumer** role, or another Foundry role that grants
+endpoint access, on the target Foundry project or target agent.
 
 Two authentication patterns are supported:
 
@@ -270,12 +277,18 @@ Use the identity represented by the access token:
   user.
 - For service-to-service requests, grant access to the calling agent identity,
   service principal, or managed identity.
-- For a Foundry agent, use the shared project identity during development. Use
-  the agent's distinct identity after publishing. For more information, see
-  [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md).
+- For a new-model Foundry agent, use the identity specified by the agent's
+  `instance_identity`. The agent has this unique identity from creation, and
+  publishing doesn't change it.
+- For a legacy Agent Application caller, use the shared project identity
+  before publishing and the distinct Agent Application identity after
+  publishing.
 
 Use the identity's Microsoft Entra object (principal) ID for the role
 assignment, not its application (client) ID.
+
+For more information about the two identity models, see
+[Migrate from agent applications to the new agent endpoint and publishing experience](migrate-agent-applications.md).
 
 The project and agent scope formats are:
 
@@ -288,11 +301,18 @@ The project and agent scope formats are:
 Assign the role by using its role definition ID:
 
 ```azurecli
+PRINCIPAL_TYPE="ServicePrincipal"
+
 az role assignment create \
   --assignee-object-id "<calling-principal-object-id>" \
+  --assignee-principal-type "$PRINCIPAL_TYPE" \
   --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
   --scope "<target-project-or-agent-scope>"
 ```
+
+Set `PRINCIPAL_TYPE` to `User`, `Group`, or `ServicePrincipal` based on the
+calling identity. Agent identities and managed identities use
+`ServicePrincipal`.
 
 When the caller acquires a token directly, request the
 `https://ai.azure.com/.default` scope. For more information about role
