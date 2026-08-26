@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 08/21/2026
+ms.date: 08/26/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -299,6 +299,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -327,7 +328,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Phi-4-multimodal-instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Phi-4-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-
 # [Europe](#tab/az-europe)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **ukwest** | **westeurope** |
@@ -350,6 +350,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -400,6 +401,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -450,6 +452,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ |
