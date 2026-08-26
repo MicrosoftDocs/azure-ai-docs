@@ -1342,7 +1342,7 @@ curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-mcp?api-version=v1
 
 You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
 
-In addition to connecting arbitrary remote MCP servers by URL, some MCP servers can be added directly from the Foundry **Add Tools** catalog. For example, Azure DevOps MCP Server is available as a catalog entry. Azure DevOps hosts the remote MCP endpoint and exposes it over streamable HTTP, so you don't install or host the server when you add it from the Foundry catalog. Catalog entries simplify connection setup and align with the same approval and auditing mechanisms documented in this article.
+In addition to connecting arbitrary remote MCP servers by URL, you can add some MCP servers directly from the Foundry **Add Tools** catalog. For example, Azure DevOps MCP Server is available as a catalog entry. Azure DevOps hosts the remote MCP endpoint and exposes it over streamable HTTP, so you don't install or host the server when you add it from the Foundry catalog. Catalog entries simplify connection setup and align with the same approval and auditing mechanisms documented in this article.
 
 For more information on using MCP, see:
 
