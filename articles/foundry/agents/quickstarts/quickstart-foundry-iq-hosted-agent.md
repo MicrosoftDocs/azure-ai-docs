@@ -143,7 +143,7 @@ The deployed agent retrieves from the knowledge base with its own managed identi
 1. Assign the role on the search service:
 
     ```azurecli
-    searchId=$(az search service show -n <search-name> -g <resource-group> --query id -o tsv)
+    $searchId=(az search service show -n <search-name> -g <resource-group> --query id -o tsv)
     az role assignment create --assignee-object-id <agent-identity-object-id> \
       --assignee-principal-type ServicePrincipal \
       --role "Search Index Data Reader" --scope $searchId
