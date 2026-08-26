@@ -19,7 +19,7 @@ In this article, you learn how to:
 - Deploy Grok 4.6 (preview) in Microsoft Foundry.
 - Authenticate by using Microsoft Entra ID or an API key.
 - Generate output with the Chat Completions and Responses APIs.
-- Use configurable reasoning efforts (`low`, `medium`, `high`, or `xhigh`; default `high`).
+- Configure reasoning effort with the Chat Completions API (`low`, `medium`, `high`, or `xhigh`; default `high`).
 - Call tools with function calling.
 - Stream responses.
 - Troubleshoot common errors.
@@ -248,9 +248,6 @@ response = client.responses.create(
     model=os.environ["DEPLOYMENT_NAME"],
     instructions="You are a helpful assistant.",
     input="What are the top 3 benefits of an agentic coding workflow? Be concise.",
-    reasoning={
-        "effort": "high"  # Options: "low", "medium", "high", "xhigh" (default "high").
-    },
 )
 
 print(response.output_text)
@@ -276,9 +273,6 @@ const response = await client.responses.create({
   model: process.env.DEPLOYMENT_NAME,
   instructions: "You are a helpful assistant.",
   input: "What are the top 3 benefits of an agentic coding workflow? Be concise.",
-  reasoning: {
-    effort: "high", // Default is "high", but you can set it to "low", "medium", "high", or "xhigh" depending on the complexity of the reasoning required.
-  },
 });
 
 console.log(response.output_text);
@@ -293,8 +287,7 @@ curl "$AZURE_ENDPOINT/openai/v1/responses" \
   -d '{
     "model": "'"$DEPLOYMENT_NAME"'",
     "instructions": "You are a helpful assistant.",
-    "input": "What are the top 3 benefits of an agentic coding workflow? Be concise.",
-    "reasoning": { "effort": "high" }
+    "input": "What are the top 3 benefits of an agentic coding workflow? Be concise."
   }'
 ```
 
@@ -514,9 +507,8 @@ To authenticate, you need your resource endpoint and either a Microsoft Entra ID
 | `tools` | array | No | Function definitions the model can call. |
 | `stream` | boolean | No | When `true`, delivers the response as a server-sent events stream. Defaults to `false`. |
 | `reasoning_effort` | string | No | Chat Completions only. Controls how much reasoning the model performs. One of `low`, `medium`, `high`, or `xhigh`. Defaults to `high`. |
-| `reasoning` | object | No | Responses only. Reasoning configuration. Set `effort` to `low`, `medium`, `high`, or `xhigh`. Defaults to `high`. |
 | `max_completion_tokens` | integer | No | Chat Completions only. An upper bound on generated tokens, including reasoning tokens. |
-| `max_output_tokens` | integer | No | Responses only. An upper bound on generated tokens, including reasoning tokens. |
+| `max_output_tokens` | integer | No | Responses only. An upper bound on generated tokens. |
 
 For more information about the Responses API, see [Use the Azure OpenAI Responses API](../../openai/how-to/responses.md). For more information about Chat Completions API, see [Work with chat completion models](../../openai/how-to/chatgpt.md).
 
@@ -575,16 +567,16 @@ The following example shows a Chat Completions response that contains a tool cal
 
 #### Responses API
 
-A successful Responses API call returns a `response` object. Instead of a `choices` array, the model output is an ordered `output` array of typed items, such as `message`, `function_call`, and `reasoning` items.
+A successful Responses API call returns a `response` object. Instead of a `choices` array, the model output is an ordered `output` array of typed items, such as `message` and `function_call` items.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `output` | array | An ordered array of content items the model generated, such as `message`, `function_call`, or `reasoning` items. |
+| `output` | array | An ordered array of content items the model generated, such as `message` or `function_call` items. |
 | `output_text` | string | An SDK convenience property that aggregates the text from the output message items. |
 | `output[].content[].text` | string | The assistant text inside an output `message` item. |
 | `status` | string | The response status, such as `completed`, `incomplete`, or `failed`. |
 | `usage.input_tokens` | integer | The number of tokens in the input. |
-| `usage.output_tokens` | integer | The number of generated tokens, including reasoning tokens. |
+| `usage.output_tokens` | integer | The number of generated tokens. |
 | `usage.total_tokens` | integer | The total number of tokens used. |
 
 The following example shows a Responses API object for a text response.
@@ -654,7 +646,7 @@ Grok 4.6 (preview) has a context window of 200,000 tokens. Output is capped at 1
 Input and generated output both count against the context window:
 
 - **Input tokens**: The messages (Chat Completions) or input (Responses) in your request count toward the input token budget.
-- **Output tokens**: `max_completion_tokens` (Chat Completions) or `max_output_tokens` (Responses) bounds the generated response, up to the 128,000-token output cap, and includes reasoning tokens.
+- **Output tokens**: `max_completion_tokens` (Chat Completions) or `max_output_tokens` (Responses) bounds the generated response, up to the 128,000-token output cap. For the Chat Completions API, output tokens include reasoning tokens.
 - **Total**: Input and output tokens must fit within the 200,000-token context window. If a request exceeds the context window, it fails.
 
 ## Supported deployment types and regions
