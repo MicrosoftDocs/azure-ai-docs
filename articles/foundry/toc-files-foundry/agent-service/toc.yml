@@ -211,14 +211,21 @@ items:
     - name: Infrastructure (Bicep)
       href: ../../agents/concepts/cli-infrastructure.md
 
+- name: Autopilots
+  items:
+  - name: What is an autopilot?
+    href: ../../agents/concepts/autopilot-overview.md
+  - name: Autopilot lifecycle
+    href: ../../agents/concepts/autopilot-lifecycle.md
+  - name: Build your first autopilot
+    href: ../../agents/how-to/agent-365.md
+
 - name: Publish and share
   items:
   - name: Publish agents to Microsoft 365 Copilot and Microsoft Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Publish with a virtual network
     href: ../../agents/how-to/publish-copilot-virtual-network.md
-  - name: Publish as an autopilot
-    href: ../../agents/how-to/agent-365.md
 
 - name: Reference
   items:
