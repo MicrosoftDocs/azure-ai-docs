@@ -90,7 +90,7 @@ target = {
 }
 ```
 
-Use this target with the [model target evaluation flow described in Run evaluations in the cloud](cloud-evaluation.md#model-target-evaluation).
+Use this target with the [model target evaluation flow described in Run evaluations in the cloud](cloud-evaluation-targets.md#evaluate-a-model-target).
 
 ## Use other evaluation scenarios
 

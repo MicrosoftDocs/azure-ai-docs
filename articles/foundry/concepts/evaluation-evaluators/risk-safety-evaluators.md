@@ -139,7 +139,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -258,4 +258,4 @@ The label field returns a boolean true or false based on whether or not either o
 ## Related content
 
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../observability/how-to/cloud-evaluation.md)
