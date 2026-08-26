@@ -3,7 +3,7 @@ title: "Enable incoming A2A on a Foundry agent"
 description: "Expose your Foundry Agent Service agent as an A2A endpoint so other agents can discover and call it using the Agent2Agent protocol."
 author: aahill
 ms.author: aahi
-ms.date: 08/12/2026
+ms.date: 08/26/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -21,10 +21,8 @@ Foundry Agent Service supports A2A protocol **version 1.0** and **version 0.3**.
 
 ## Supported agent types
 
-Incoming A2A requires the responses protocol. The following agent types support it:
-
-- **Prompt agents**—support the responses protocol by default. All prompt agents can be exposed as A2A endpoints.
-- **Hosted agents**—support incoming A2A only if the Hosted agent is built to handle the responses protocol. If your Hosted agent doesn't implement the responses protocol, you can't enable incoming A2A for it.
+Incoming A2A requires the responses protocol. Prompt agents support the
+responses protocol by default and can be exposed as A2A endpoints.
 
 > [!TIP]
 > This article covers how to **expose** your agent as an A2A endpoint that other agents can call. If you want your agent to **call** a remote A2A endpoint, see [Connect to an A2A agent endpoint from Foundry Agent Service](tools/agent-to-agent.md).
@@ -32,7 +30,7 @@ Incoming A2A requires the responses protocol. The following agent types support 
 ## Prerequisites
 
 - An Azure subscription with an active Foundry project.
-- A deployed agent in Foundry Agent Service that uses the responses protocol (prompt agent or a Hosted agent built to support it).
+- A deployed prompt agent in Foundry Agent Service.
 - Required Azure role: **Foundry User** or higher on the Foundry project.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -181,6 +179,10 @@ Foundry serves both A2A protocol versions on the same base path (`…/endpoint/p
 - **HTTP header**—Set `A2A-Version: 1.0` (or `A2A-Version: 0.3`) on the request.
 - **Query string**—Append `?a2a-version=1.0` (or `?a2a-version=0.3`) to the request URL.
 
+If you provide a version in both the `A2A-Version` header and the
+`a2a-version` query string, the values must match. Foundry rejects the request
+when the values differ.
+
 > [!IMPORTANT]
 > If a request doesn't specify a version through the `A2A-Version` header or `a2a-version` query string, Foundry serves A2A v0.3 by default, in accordance with the A2A specification. To use v1.0, set the header, set the query string, or have your client fetch the v1.0 agent card so the SDK negotiates v1.0 automatically.
 
@@ -210,7 +212,9 @@ After you enable incoming A2A, your agent exposes the following URLs that callin
 You author your agent card once (in the `agent_card` PATCH body shown earlier), and Foundry projects the same content into both the v1.0 and v0.3 card shapes.
 
 > [!IMPORTANT]
-> All A2A URLs require Microsoft Entra ID authentication. Anonymous access to the agent card isn't supported. The calling agent must present a valid token with the **Foundry User** role on the Foundry project.
+> All A2A URLs require Microsoft Entra ID authentication. Anonymous access to
+> the agent card isn't supported. The calling identity must have the
+> **Foundry Agent Consumer** role or higher on the Foundry project or agent.
 
 To confirm your agent card is configured correctly, fetch the v1.0 card directly:
 
@@ -247,7 +251,53 @@ The calling agent passes through the end user's identity. Your agent receives a 
 
 The calling agent authenticates with its own identity—either the platform-assigned agent identity, a service principal, or a managed identity. Your agent sees the calling service's identity, not an individual user. This pattern is appropriate for backend agent-to-agent workflows where individual user context isn't required.
 
-To grant a calling identity access, assign the **Foundry Agent Consumer** role on the Foundry project that hosts your agent. This role provides least-privilege access for interacting with agent endpoints. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+### Grant access to the A2A endpoint
+
+Assign the **Foundry Agent Consumer** role to the identity that sends A2A
+requests. This role provides least-privilege access to agent endpoints without
+granting permission to create or modify agents.
+
+Choose the role-assignment scope based on the access the caller needs:
+
+- Assign the role at the target Foundry project scope to allow the identity to
+  call every agent endpoint in the project.
+- Assign the role at the target agent scope to allow the identity to call only
+  that agent endpoint.
+
+Use the identity represented by the access token:
+
+- For OBO requests, grant access to the end user or a group that contains the
+  user.
+- For service-to-service requests, grant access to the calling agent identity,
+  service principal, or managed identity.
+- For a Foundry agent, use the shared project identity during development. Use
+  the agent's distinct identity after publishing. For more information, see
+  [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md).
+
+Use the identity's Microsoft Entra object (principal) ID for the role
+assignment, not its application (client) ID.
+
+The project and agent scope formats are:
+
+```text
+/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>
+
+/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>/agents/<agent>
+```
+
+Assign the role by using its role definition ID:
+
+```azurecli
+az role assignment create \
+  --assignee-object-id "<calling-principal-object-id>" \
+  --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
+  --scope "<target-project-or-agent-scope>"
+```
+
+When the caller acquires a token directly, request the
+`https://ai.azure.com/.default` scope. For more information about role
+assignments, see
+[Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 
 ## Supported A2A transports
 
