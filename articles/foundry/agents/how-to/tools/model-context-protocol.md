@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/26/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -201,7 +201,7 @@ To learn about supported authentication options, including key-based, Microsoft 
 > Set `project_connection_id` to the ID of your project connection.
 
 > [!TIP]
-> When you add the Azure DevOps MCP Server (preview) through the **Add Tools** catalog, you authenticate to Azure DevOps during the organization connection step and store the authentication as a project connection. Use least-privilege access and review scopes when connecting the organization.
+> When you add the Azure DevOps MCP Server through the **Add Tools** catalog, you authenticate to Azure DevOps during the organization connection step and store the authentication as a project connection. Use least-privilege access and review scopes when connecting the organization.
 
 When you use a Foundry Toolbox MCP endpoint, the Toolbox centrally manages authentication. The Toolbox handles credential injection, token refresh, and policy enforcement at runtime for all tools in the bundle. Agents authenticate to the Toolbox endpoint itself by using Microsoft Entra credentials, such as `DefaultAzureCredential`, and individual tool credentials don't need to be passed by each agent. For Toolbox auth configuration, see [Toolbox prerequisites](toolbox.md#prerequisites).
 
@@ -1342,7 +1342,7 @@ curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-mcp?api-version=v1
 
 You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
 
-In addition to connecting arbitrary remote MCP servers by URL, some MCP servers can be added directly from the Foundry **Add Tools** catalog. For example, Azure DevOps MCP Server (preview) is available as a catalog entry. Catalog entries simplify connection setup and align with the same approval and auditing mechanisms documented in this article.
+In addition to connecting arbitrary remote MCP servers by URL, some MCP servers can be added directly from the Foundry **Add Tools** catalog. For example, Azure DevOps MCP Server is available as a catalog entry. Azure DevOps hosts the remote MCP endpoint and exposes it over streamable HTTP, so you don't install or host the server when you add it from the Foundry catalog. Catalog entries simplify connection setup and align with the same approval and auditing mechanisms documented in this article.
 
 For more information on using MCP, see:
 
@@ -1370,11 +1370,16 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 
 ### Connect to Azure DevOps MCP Server
 
-Azure DevOps MCP Server (preview) is available as a catalog entry in Foundry. To add it:
+Azure DevOps MCP Server is available as a catalog entry in Foundry.
+
+> [!IMPORTANT]
+> The remote Azure DevOps MCP Server authenticates with Microsoft Entra ID. Your Azure DevOps organization must be backed by a Microsoft Entra tenant. Standalone Microsoft account (MSA) organizations aren't supported.
+
+To add the server:
 
 1. In [Foundry portal](https://ai.azure.com), go to your project.
 1. Select **Add Tools** > **Catalog** and search for "Azure DevOps."
-1. Select **Azure DevOps MCP Server (preview)** and select **Create**.
+1. Select **Azure DevOps MCP Server** and select **Create**.
 1. Enter your Azure DevOps organization name and select **Connect**.
 1. Choose which Azure DevOps tools to expose to your agent. You can select a subset of tools to control exactly what the agent can access.
 
@@ -1609,7 +1614,7 @@ The following common issues might occur when you use MCP tools with Foundry Agen
 
 - "Unauthorized" or "Forbidden" from the MCP server:
 
-    Confirm the MCP server supports your authentication method, and verify the credentials stored in your project connection. For GitHub, use least-privilege tokens and rotate them regularly.
+  Confirm the MCP server supports your authentication method, and verify the credentials stored in your project connection. For GitHub, use least-privilege tokens and rotate them regularly. For Azure DevOps MCP Server, verify that the organization is backed by a Microsoft Entra tenant and that you can complete the organization connection flow in Foundry. Standalone Microsoft account organizations aren't supported.
 
 - The model never calls your MCP tool:
 
