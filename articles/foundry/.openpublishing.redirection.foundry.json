@@ -2622,8 +2622,13 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-chat-reasoning.md",
-      "redirect_url": "/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/use-chat-reasoning",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/foundry/foundry-models/how-to/quickstart-create-resources.md",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/create-model-deployments",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-embeddings.md",

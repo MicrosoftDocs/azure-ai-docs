@@ -74,7 +74,7 @@ items:
   - name: Work with chat models
     items:
     - name: Work with reasoning models
-      href: ../../foundry-models/how-to/use-chat-reasoning.md
+      href: ../../../foundry/foundry-models/how-to/use-chat-reasoning.md
     - name: Use structured outputs
       href: ../../foundry-models/how-to/use-structured-outputs.md
   - name: Work with embedding models

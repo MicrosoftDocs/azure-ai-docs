@@ -50,7 +50,7 @@ Use direct REST calls when you're building your own application or when you need
   ```
 
   > [!IMPORTANT]
-  > Don't use the Foundry Model Inference API (`https://<resource>.services.ai.azure.com/models` path) for new integrations. The Azure AI Inference beta SDK is deprecated and will be retired on May 30, 2026. Use the OpenAI v1-compatible route instead. For details, see the [migration guide](../how-to/model-inference-to-openai-migration.md).
+  > Don't use the Foundry Model Inference API (`https://<resource>.services.ai.azure.com/models` path) for new integrations. The Azure AI Inference beta SDK retired on August 26, 2026. Use the OpenAI v1-compatible route instead. For details, see the [migration guide](../how-to/model-inference-to-openai-migration.md).
 
 ### Route through an API gateway
 
