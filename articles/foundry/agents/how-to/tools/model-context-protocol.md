@@ -115,6 +115,13 @@ azd ai connection create my-mcp-conn \
   --auth-type custom-keys \
   --custom-key "Authorization=******"
 
+# OAuth — Foundry-managed app
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp \
+  --auth-type oauth2 \
+  --connector-name foundrygithubmcp
+
 # OAuth — bring your own app registration
 azd ai connection create my-mcp-conn \
   --kind remote-tool \
@@ -152,10 +159,16 @@ azd ai connection create my-mcp-conn \
 |---------------|------------------|
 | `none` | — |
 | `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
-| `oauth2` | `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, `--scopes` |
+| `oauth2` | `--connector-name` for a Foundry-managed OAuth app, or `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, and `--scopes` for your own app registration |
 | `user-entra-token` | `--audience <entra-audience>` |
 | `project-managed-identity` | `--audience <entra-audience>` (optional) |
 | `agentic-identity` | `--audience <entra-audience>` |
+
+Only MCP servers with a Foundry-managed OAuth app support
+`--connector-name`. In the [MCP server registry](https://github.com/Azure/MCP/tree/main/partners/servers),
+these servers define a `connectorName` value that starts with `foundry` and
+ends with `mcp`, such as `foundrygithubmcp`. For other OAuth-enabled MCP
+servers, provide your own app registration.
 
 For identity-based auth (`user-entra-token`, `project-managed-identity`, `agentic-identity`), assign the corresponding principal the required RBAC role on the target resource before you call the toolbox.
 
