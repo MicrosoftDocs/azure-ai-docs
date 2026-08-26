@@ -10,4 +10,4 @@ author: aahill
 ---
 
 > [!NOTE] 
-> The Assistants API has been retired. Use the generally available [Microsoft Foundry Agents service](../../../foundry/agents/overview.md). Follow the [migration guide](../../../foundry/agents/how-to/migrate.md#migrate-classic-agents-to-new-agents) to update your workloads. [Learn more](../../../foundry/agents/how-to/migrate.md).
+> The Assistants API is retired. Use the generally available [Microsoft Foundry Agents service](../../../foundry/agents/overview.md). To update your workloads, see the [migration guide](../../../foundry/agents/how-to/migrate.md#migrate-classic-agents-to-new-agents). [Learn more](../../../foundry/agents/how-to/migrate.md).
