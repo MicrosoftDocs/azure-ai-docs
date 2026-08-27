@@ -68,7 +68,7 @@ This setting can be found in the following place:
 
 ## Real-time diarization cache settings
 
-Connected and disconnected real-time speech to text containers use a customer-operated Redis-compatible cache to preserve diarization state across replacement sessions after the four-hour session boundary. For setup and validation, see [Configure diarization continuation for speech containers](speech-container-stt-diarization-cache.md).
+Connected and disconnected real-time speech-to-text containers use a customer-operated Redis-compatible cache to preserve diarization state across replacement sessions after the four-hour session boundary. For setup and validation, see [Configure diarization continuation for speech containers](speech-container-stt-diarization-cache.md).
 
 | Optional | Name | Data type | Description |
 | --- | --- | --- | --- |
