@@ -5,7 +5,7 @@ description: "Manage Microsoft Foundry costs by estimating expenses, monitoring 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: aashishb
-ms.date: 04/06/2026
+ms.date: 08/27/2026
 ms.topic: how-to
 ms.custom:
   - dev-focus
@@ -76,7 +76,7 @@ Access cost information from the [!INCLUDE [foundry-link](../includes/foundry-li
 
 1. Select **Operate** in the upper-right navigation.
 1. Select **Overview** in the left pane.
-1. At the top of the page, select the subscription, one or more projects, and a date range. 
+1. At the top of the page, select the subscription, one or more projects, and a date range.
 1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates. These estimates don't include prompt agent and non-Foundry agent costs.
 
 :::image type="content" source="media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="media/manage-costs/agent-costs.png":::
@@ -111,12 +111,13 @@ To view detailed agent costs:
 1. Select a model.
 1. Select the **Monitor** tab.
 1. Set the date range in the upper-right corner.
-You see total cost and an estimated cost chart for the selected range.
+
+The **Monitor** tab shows the total cost and an estimated cost chart for the selected range.
 
 > [!NOTE]
 > For Claude deployments, the Foundry **Monitor** tab shows token usage and request metrics. The estimated-cost chart is available for CCU-based Claude deployments, but not for existing Claude deployments that use per-model token billing. Actual billed cost for both deployment types remains available in Azure Cost Management. For details, see [Claude Consumption Units (CCU) billing in Microsoft Foundry](../foundry-models/concepts/claude-models-billing.md).
 
-**Reference:** [Monitor models](../foundry-models/how-to/monitor-models.md) 
+**Reference:** [Monitor models](../foundry-models/how-to/monitor-models.md)
 
 :::image type="content" source="media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="media/manage-costs/model-costs.png":::
 
