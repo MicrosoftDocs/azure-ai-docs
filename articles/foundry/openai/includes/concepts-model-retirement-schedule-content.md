@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 08/19/2026
+ms.date: 08/26/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -133,6 +133,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| Cohere-parse-v5 | 1 | Preview | 2026-12-15 | — |
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
