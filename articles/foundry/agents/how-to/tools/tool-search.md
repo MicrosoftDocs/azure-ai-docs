@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 reviewer: lindazqli
 ms.reviewer: zhuoqunli
-ms.date: 08/05/2026
+ms.date: 08/19/2026
 manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -552,4 +552,4 @@ Set `tool_configs` on an individual MCP tool entry to control how specific tools
 
 - [JavaScript toolbox search sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/toolboxes/toolboxToolSearch.js)
 - [Curate intent-based toolbox in Foundry](toolbox.md)
-- [Tools overview](../../concepts/tool-catalog.md)
+- [Toolbox overview](../../concepts/toolbox-overview.md)

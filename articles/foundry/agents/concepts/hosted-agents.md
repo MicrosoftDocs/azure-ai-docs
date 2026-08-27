@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 08/18/2026
+ms.date: 08/19/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -308,5 +308,5 @@ Hosted agents are currently available in the following regions:
 - [Agent runtime components](./runtime-components.md)
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
-- [Discover tools in Foundry Tools](./tool-catalog.md)
+- [What is Toolbox in Foundry?](./toolbox-overview.md)
 - [Azure Container Registry documentation](/azure/container-registry/)

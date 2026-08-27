@@ -46,7 +46,7 @@ Build your first agent in minutes, or open the portal to explore models and tool
 | --- | --- |
 | **Agents** | Build declarative [prompt agents](./agents/quickstarts/prompt-agent.md) in the portal or SDK, or deploy [hosted agents](./agents/quickstarts/quickstart-hosted-agent.md) that run your own code. Learn more in [Foundry Agent Service](./agents/overview.md). |
 | **Models** | Access more than 10,000 models from Microsoft, OpenAI, Anthropic, Meta, and others. Browse the [Foundry Models catalog](./concepts/foundry-models-overview.md). |
-| **Tools and knowledge** | Extend agents with built-in tools, memory (preview), and retrieval from the [tool catalog](./agents/concepts/tool-catalog.md). |
+| **Tools and knowledge** | Extend agents with built-in tools, memory, and retrieval using a [Foundry Toolbox](./agents/concepts/toolbox-overview.md). |
 
 ## Enterprise-ready platform
 
