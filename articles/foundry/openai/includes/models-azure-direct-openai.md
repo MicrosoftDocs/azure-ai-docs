@@ -392,7 +392,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## Video generation models
 
-Sora-2 is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. It is in preview.
+Sora-2 is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions. It's in preview.
 
 | Model ID | Max request (characters) |
 |  --- | :---: |
