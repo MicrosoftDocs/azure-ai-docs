@@ -54,6 +54,8 @@ The following table shows common evaluation surfaces and the field that accepts 
 
 Set `initialization_parameters.model` when you configure an AI-assisted evaluator. This example uses the admin-connected model as the judge for the coherence evaluator:
 
+# [Python](#tab/python)
+
 ```python
 from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
 
@@ -73,9 +75,35 @@ testing_criteria = [
 ]
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+const adminConnectedModel = "my-apim-connection/gpt-4o";
+
+const testingCriteria = [
+    {
+        type: "azure_ai_evaluator",
+        name: "coherence",
+        evaluator_name: "builtin.coherence",
+        initialization_parameters: { model: adminConnectedModel },
+        data_mapping: {
+            query: "{{item.query}}",
+            response: "{{item.response}}",
+        },
+    },
+];
+```
+
+---
+
+- Reference: [`TestingCriterionAzureAIEvaluator`](/python/api/azure-ai-projects/azure.ai.projects.models.testingcriterionazureaievaluator) (Python)
+- Reference: [OpenAI Evals API](https://platform.openai.com/docs/api-reference/evals) (`testing_criteria`, both languages)
+
 ## Use an admin-connected model as a target
 
 Set `target.model` to send each evaluation input to the admin-connected model:
+
+# [Python](#tab/python)
 
 ```python
 admin_connected_model = "my-apim-connection/gpt-4o"
@@ -89,6 +117,25 @@ target = {
     },
 }
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+const adminConnectedModel = "my-apim-connection/gpt-4o";
+
+const target = {
+    type: "azure_ai_model",
+    model: adminConnectedModel,
+    sampling_params: {
+        top_p: 1.0,
+        max_completion_tokens: 2048,
+    },
+};
+```
+
+---
+
+- Reference: [OpenAI Evals API](https://platform.openai.com/docs/api-reference/evals) (`data_source.target`, both languages)
 
 Use this target with the [model target evaluation flow described in Run evaluations in the cloud](cloud-evaluation-targets.md#evaluate-a-model-target).
 

@@ -51,6 +51,8 @@ What is machine learning?,Machine learning is a subset of AI.,Machine learning i
 Explain neural networks.,Neural networks are computing systems inspired by biological neural networks.,Neural networks are a set of algorithms modeled after the human brain.
 ```
 
+# [Python](#tab/python)
+
 ```python
 # Upload a local JSONL file. Skip this step if you already have a dataset registered.
 data_id = project_client.datasets.upload_file(
@@ -60,9 +62,32 @@ data_id = project_client.datasets.upload_file(
 ).id
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// Upload a local JSONL file. Skip this step if you already have a
+// dataset registered.
+const dataset = await projectClient.datasets.uploadFile(
+  datasetName,
+  datasetVersion,
+  "./evaluate_test_data.jsonl",
+);
+const dataId = dataset.id;
+```
+
+Reference: [datasets.uploadFile](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+# [cURL](#tab/curl)
+
+The cURL examples use an existing dataset ID or inline content. Use the Python or JavaScript/TypeScript tab to upload a local file, and then provide its dataset ID in the cURL request.
+
+---
+
 ### Provide data inline
 
 For quick experimentation with small test sets—or for scenarios that require inline data, such as agent response evaluation—provide data directly in the evaluation request by using `file_content`. For agent response evaluations, `file_content` is the only supported source type.
+
+# [Python](#tab/python)
 
 ```python
 source = SourceFileContent(
@@ -83,6 +108,35 @@ source = SourceFileContent(
     ],
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const source = {
+  type: "file_content",
+  content: [
+    {
+      item: {
+        query: "How can I safely de-escalate a tense situation?",
+        ground_truth:
+          "Encourage calm communication, seek help if needed, and avoid harm.",
+      },
+    },
+    {
+      item: {
+        query: "What is the largest city in France?",
+        ground_truth: "Paris",
+      },
+    },
+  ],
+};
+```
+
+# [cURL](#tab/curl)
+
+You don't need to send a separate request. Include the `file_content` object directly in the cURL request body shown in the corresponding **Create evaluation and run** section.
+
+---
 
 Pass `source` as the `"source"` field in your data source configuration when creating a run. The following scenario sections use `file_id` by default.
 
@@ -157,6 +211,55 @@ testing_criteria = [
         },
     ),
 ]
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const dataSourceConfig = {
+  type: "custom",
+  item_schema: {
+    type: "object",
+    properties: {
+      query: { type: "string" },
+      response: { type: "string" },
+      ground_truth: { type: "string" },
+    },
+    required: ["query", "response", "ground_truth"],
+  },
+};
+
+const testingCriteria = [
+  {
+    type: "azure_ai_evaluator",
+    name: "coherence",
+    evaluator_name: "builtin.coherence",
+    initialization_parameters: { model: modelDeploymentName },
+    data_mapping: {
+      query: "{{item.query}}",
+      response: "{{item.response}}",
+    },
+  },
+  {
+    type: "azure_ai_evaluator",
+    name: "violence",
+    evaluator_name: "builtin.violence",
+    initialization_parameters: { model: modelDeploymentName },
+    data_mapping: {
+      query: "{{item.query}}",
+      response: "{{item.response}}",
+    },
+  },
+  {
+    type: "azure_ai_evaluator",
+    name: "f1",
+    evaluator_name: "builtin.f1_score",
+    data_mapping: {
+      response: "{{item.response}}",
+      ground_truth: "{{item.ground_truth}}",
+    },
+  },
+];
 ```
 
 # [cURL](#tab/curl)
@@ -242,6 +345,29 @@ eval_run = openai_client.evals.runs.create(
         ),
     ),
 )
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// Create the evaluation
+const evalObject = await openaiClient.evals.create({
+  name: "dataset-evaluation",
+  data_source_config: dataSourceConfig,
+  testing_criteria: testingCriteria,
+});
+
+// Create a run using the uploaded dataset
+const evalRun = await openaiClient.evals.runs.create(evalObject.id, {
+  name: "dataset-run",
+  data_source: {
+    type: "jsonl",
+    source: {
+      type: "file_id",
+      id: dataId,
+    },
+  },
+});
 ```
 
 # [cURL](#tab/curl)

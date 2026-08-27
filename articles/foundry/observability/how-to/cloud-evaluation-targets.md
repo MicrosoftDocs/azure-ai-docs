@@ -40,6 +40,8 @@ Send queries to a deployed model at runtime. Evaluate the responses by using the
 
 The `input_messages` template controls how queries are sent to the model. Use `{{item.query}}` to reference fields from your input data. Specify the model to evaluate and optional sampling parameters:
 
+# [Python](#tab/python)
+
 ```python
 input_messages = {
     "type": "template",
@@ -65,9 +67,41 @@ target = {
 }
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const inputMessages = {
+  type: "template",
+  template: [
+    {
+      type: "message",
+      role: "user",
+      content: { type: "input_text", text: "{{item.query}}" },
+    },
+  ],
+};
+
+const target = {
+  type: "azure_ai_model",
+  model: "gpt-5-mini",
+  sampling_params: {
+    top_p: 1.0,
+    max_completion_tokens: 2048,
+  },
+};
+```
+
+# [cURL](#tab/curl)
+
+Define the message template and target directly in the JSON request body shown in the cURL tab under [Create evaluation and run](#create-evaluation-and-run).
+
+---
+
 ### Set up evaluators and data mappings
 
 When the model generates responses at runtime, use `{{sample.output_text}}` in `data_mapping` to reference the model's output. Use `{{item.field}}` to reference fields from your input data.
+
+# [Python](#tab/python)
 
 ```python
 data_source_config = DataSourceConfigCustom(
@@ -105,6 +139,48 @@ testing_criteria = [
 ]
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const dataSourceConfig = {
+  type: "custom",
+  item_schema: {
+    type: "object",
+    properties: { query: { type: "string" } },
+    required: ["query"],
+  },
+  include_sample_schema: true,
+};
+
+const testingCriteria = [
+  {
+    type: "azure_ai_evaluator",
+    name: "coherence",
+    evaluator_name: "builtin.coherence",
+    initialization_parameters: { model: modelDeploymentName },
+    data_mapping: {
+      query: "{{item.query}}",
+      response: "{{sample.output_text}}",
+    },
+  },
+  {
+    type: "azure_ai_evaluator",
+    name: "violence",
+    evaluator_name: "builtin.violence",
+    data_mapping: {
+      query: "{{item.query}}",
+      response: "{{sample.output_text}}",
+    },
+  },
+];
+```
+
+# [cURL](#tab/curl)
+
+Define the evaluator configuration directly in the JSON request body shown in the cURL tab under [Create evaluation and run](#create-evaluation-and-run).
+
+---
+
 ### Create evaluation and run
 
 # [Python](#tab/python)
@@ -131,6 +207,31 @@ eval_run = openai_client.evals.runs.create(
     name="model-target-evaluation",
     data_source=data_source,
 )
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const evalObject = await openaiClient.evals.create({
+  name: "Model Target Evaluation",
+  data_source_config: dataSourceConfig,
+  testing_criteria: testingCriteria,
+});
+
+const dataSource = {
+  type: "azure_ai_target_completions",
+  source: {
+    type: "file_id",
+    id: dataId,
+  },
+  input_messages: inputMessages,
+  target: target,
+};
+
+const evalRun = await openaiClient.evals.runs.create(evalObject.id, {
+  name: "model-target-evaluation",
+  data_source: dataSource,
+});
 ```
 
 # [cURL](#tab/curl)
@@ -194,6 +295,8 @@ Send queries to a Foundry agent at runtime and evaluate the responses by using t
 
 The `input_messages` template controls how queries are sent to the agent. Use `{{item.query}}` to reference fields from your input data. Specify the agent to evaluate by name:
 
+# [Python](#tab/python)
+
 ```python
 input_messages = {
     "type": "template",
@@ -224,6 +327,41 @@ target = {
 }
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const inputMessages = {
+  type: "template",
+  template: [
+    {
+      type: "message",
+      role: "developer",
+      content: {
+        type: "input_text",
+        text: "You are a helpful assistant. Answer clearly and safely.",
+      },
+    },
+    {
+      type: "message",
+      role: "user",
+      content: { type: "input_text", text: "{{item.query}}" },
+    },
+  ],
+};
+
+const target = {
+  type: "azure_ai_agent",
+  name: "my-agent",
+  version: "1", // Optional. Uses latest version if omitted.
+};
+```
+
+# [cURL](#tab/curl)
+
+Define the message template and target directly in the JSON request body shown in the cURL tab under [Create evaluation and run](#create-evaluation-and-run-1).
+
+---
+
 ### Set up evaluators and data mappings
 
 When the agent generates responses at runtime, use `{{sample.*}}` variables in `data_mapping` to reference the agent's output:
@@ -236,6 +374,8 @@ When the agent generates responses at runtime, use `{{sample.*}}` variables in `
 
 > [!TIP]
 > The `query` field can contain structured JSON, including system messages and conversation history. Some agent evaluators such as `task_adherence` use this context for more accurate scoring. For details on query formatting, see [agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
+
+# [Python](#tab/python)
 
 ```python
 data_source_config = DataSourceConfigCustom(
@@ -283,6 +423,58 @@ testing_criteria = [
 ]
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const dataSourceConfig = {
+  type: "custom",
+  item_schema: {
+    type: "object",
+    properties: { query: { type: "string" } },
+    required: ["query"],
+  },
+  include_sample_schema: true,
+};
+
+const testingCriteria = [
+  {
+    type: "azure_ai_evaluator",
+    name: "coherence",
+    evaluator_name: "builtin.coherence",
+    initialization_parameters: { model: modelDeploymentName },
+    data_mapping: {
+      query: "{{item.query}}",
+      response: "{{sample.output_text}}",
+    },
+  },
+  {
+    type: "azure_ai_evaluator",
+    name: "violence",
+    evaluator_name: "builtin.violence",
+    data_mapping: {
+      query: "{{item.query}}",
+      response: "{{sample.output_text}}",
+    },
+  },
+  {
+    type: "azure_ai_evaluator",
+    name: "task_adherence",
+    evaluator_name: "builtin.task_adherence",
+    initialization_parameters: { model: modelDeploymentName },
+    data_mapping: {
+      query: "{{item.query}}",
+      response: "{{sample.output_items}}",
+    },
+  },
+];
+```
+
+# [cURL](#tab/curl)
+
+Define the evaluator configuration directly in the JSON request body shown in the cURL tab under [Create evaluation and run](#create-evaluation-and-run-1).
+
+---
+
 ### Create evaluation and run
 
 # [Python](#tab/python)
@@ -309,6 +501,31 @@ agent_eval_run = openai_client.evals.runs.create(
     name="agent-target-evaluation",
     data_source=data_source,
 )
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const evalObject = await openaiClient.evals.create({
+  name: "Agent Target Evaluation",
+  data_source_config: dataSourceConfig,
+  testing_criteria: testingCriteria,
+});
+
+const dataSource = {
+  type: "azure_ai_target_completions",
+  source: {
+    type: "file_id",
+    id: dataId,
+  },
+  input_messages: inputMessages,
+  target: target,
+};
+
+const agentEvalRun = await openaiClient.evals.runs.create(evalObject.id, {
+  name: "agent-target-evaluation",
+  data_source: dataSource,
+});
 ```
 
 # [cURL](#tab/curl)
@@ -368,6 +585,8 @@ If a hosted agent supports both the responses and invocations protocols, the ser
 
 #### Define the message format and target
 
+# [Python](#tab/python)
+
 ```python
 input_messages = {"message": "{{item.query}}"}
 
@@ -377,6 +596,16 @@ target = {
     "version": "1",
 }
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate hosted-agent evaluation through the invocations protocol. Use the Python or cURL tab for this flow.
+
+# [cURL](#tab/curl)
+
+Define the freeform message and hosted-agent target directly in the JSON request body shown in the cURL tab under [Create evaluation and run](#create-evaluation-and-run-2).
+
+---
 
 #### Create evaluation and run
 
@@ -405,6 +634,10 @@ eval_run = openai_client.evals.runs.create(
     data_source=data_source,
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate hosted-agent evaluation through the invocations protocol. Use the Python or cURL tab for this flow.
 
 # [cURL](#tab/curl)
 

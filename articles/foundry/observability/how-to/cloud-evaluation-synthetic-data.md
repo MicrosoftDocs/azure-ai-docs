@@ -178,6 +178,10 @@ eval_run = openai_client.evals.runs.create(
 )
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate synthetic data evaluation. Use the Python or cURL tab for this flow.
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -354,6 +358,10 @@ with (
     ]
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation simulation. Use the Python or cURL tab for this flow.
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -474,6 +482,10 @@ eval_run = openai_client.evals.runs.create(
     extra_body={"evaluation_level": "conversation"},
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation simulation. Use the Python or cURL tab for this flow.
 
 # [cURL](#tab/curl)
 

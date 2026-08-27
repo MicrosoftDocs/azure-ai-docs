@@ -106,6 +106,47 @@ eval_run = openai_client.evals.runs.create(
 )
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const evalObject = await openaiClient.evals.create({
+    name: "Agent Response Evaluation",
+    data_source_config: { type: "azure_ai_source", scenario: "responses" },
+    testing_criteria: [
+        {
+            type: "azure_ai_evaluator",
+            name: "coherence",
+            evaluator_name: "builtin.coherence",
+            initialization_parameters: { model: modelDeploymentName },
+        },
+        {
+            type: "azure_ai_evaluator",
+            name: "violence",
+            evaluator_name: "builtin.violence",
+        },
+    ],
+});
+
+const responseEvalRun = await openaiClient.evals.runs.create(evalObject.id, {
+    name: "agent-response-evaluation",
+    data_source: {
+        type: "azure_ai_responses",
+        item_generation_params: {
+            type: "response_retrieval",
+            data_mapping: { response_id: "{{item.resp_id}}" },
+            source: {
+                type: "file_content",
+                content: [
+                    { item: { resp_id: "resp_abc123" } },
+                    { item: { resp_id: "resp_def456" } },
+                ],
+            },
+        },
+    },
+});
+console.log(`Evaluation run created: ${responseEvalRun.id}`);
+```
+
 # [cURL](#tab/curl) 
 
 ```bash
