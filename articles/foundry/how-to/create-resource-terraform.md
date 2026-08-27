@@ -2,10 +2,10 @@
 title: "Use Terraform to create Microsoft Foundry"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
-ms.date: 05/13/2026
+ms.date: 08/27/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
-ms.reviewer: deeikele 
+ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
 ms.custom: 
@@ -33,7 +33,6 @@ Terraform state files can include sensitive values. Use a secure backend and acc
 > [!TIP]
 > For production-ready Terraform configurations that cover common Foundry deployment scenarios, see the [infrastructure-setup-terraform](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform) folder in the Foundry samples repository. Clone the repository and customize the configurations instead of starting from scratch.
 
-
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
 ## Provider capabilities
@@ -57,8 +56,10 @@ Run the following commands to verify deployed resources:
 
 ```terraform
 terraform state list
-terraform output
+terraform validate
 ```
+
+The state list includes the resource group, Foundry resource, model deployment, project, and generated random string. Terraform reports `Success! The configuration is valid.`
 
 ## Export an existing resource to Terraform
 
