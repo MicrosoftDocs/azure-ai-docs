@@ -2036,11 +2036,6 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/ai-foundry/agents/concepts/tool-catalog.md",
-      "redirect_url": "/azure/foundry/agents/concepts/tool-catalog",
-      "redirect_document_id": true
-    },
-    {
       "source_path_from_root": "/articles/ai-foundry/agents/concepts/vector-stores.md",
       "redirect_url": "/azure/foundry/agents/concepts/vector-stores",
       "redirect_document_id": true
@@ -4371,11 +4366,21 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-foundry/agents/concepts/tool-catalog.md",
+      "redirect_url": "/azure/foundry/agents/concepts/toolbox-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/agents/concepts/tool-catalog.md",
+      "redirect_url": "/azure/foundry/agents/concepts/toolbox-overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/foundry/how-to/develop/cloud-evaluation.md",
       "redirect_url": "/azure/foundry/observability/how-to/cloud-evaluation",
       "redirect_document_id": true
     },
-       {
+    {
       "source_path_from_root": "/articles/foundry/how-to/develop/evaluate-admin-connected-models.md",
       "redirect_url": "/azure/foundry/observability/how-to/evaluate-admin-connected-models",
       "redirect_document_id": true

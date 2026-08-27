@@ -116,7 +116,7 @@ sections:
       - question: |
           Where can I learn about tools like Code Interpreter and File Search?
         answer: |
-          Start with [Tools overview](./concepts/tool-catalog.md), then see the tool-specific guidance:
+          Start with [Toolbox overview](./concepts/toolbox-overview.md), then see the tool-specific guidance:
       - question: |
           How do I bring my own storage, Azure Cosmos DB, or Azure AI Search for agent data?
         answer: |
@@ -203,5 +203,5 @@ additionalContent: |
   - [What is Foundry Agent Service?](overview.md)
   - [Set up your environment](environment-setup.md)
   - [Quickstart: Create a new agent](../quickstarts/get-started-code.md)
-  - [Tools overview](./concepts/tool-catalog.md)
+  - [Toolbox overview](./concepts/toolbox-overview.md)
   - [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md)

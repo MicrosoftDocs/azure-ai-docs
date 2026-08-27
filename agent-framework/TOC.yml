@@ -126,7 +126,7 @@ items:
   - name: Agent Skills
     href: agents/skills.md
   - name: CodeAct
-    href: agents/code_act.md
+    href: agents/code-act.md
   - name: Agent Security (FIDES)
     href: agents/security.md
   - name: Looping
@@ -422,7 +422,7 @@ items:
     - name: Overview
       href: support/upgrade/index.md
     - name: Python workflow checkpoints in 1.13.0
-      href: support/upgrade/python-1.13.0-workflow-checkpoint-upgrade-guide.md
+      href: support/upgrade/python-1-13-0-workflow-checkpoint-upgrade-guide.md
     - name: Workflow APIs and Request-Response System in Python
       href: support/upgrade/requests-and-responses-upgrade-guide-python.md
     - name: Python Options based on TypedDicts

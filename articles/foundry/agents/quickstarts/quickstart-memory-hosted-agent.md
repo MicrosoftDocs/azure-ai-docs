@@ -33,6 +33,8 @@ You complete two parts:
 The agent code, memory provider, and authentication come from the Foundry
 memory sample, so you focus on the workflow rather than the implementation.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help provision the memory store, wire it to your hosted agent, and test recall behavior.
+
 ## Prerequisites
 
 This quickstart builds on the hosted-agent toolchain. Complete the [Prerequisites](quickstart-hosted-agent.md#prerequisites) in the hosted agent quickstart first, which cover the Azure subscription, project roles, Python, the Azure Developer CLI (`azd`), and the `microsoft.foundry` extension.

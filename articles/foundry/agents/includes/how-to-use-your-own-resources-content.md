@@ -208,4 +208,4 @@ Both provisioned throughput and serverless modes are supported.
 
 ## See also
 
-* Learn about the different [tools](../concepts/tool-catalog.md) agents can use.
+* Learn how to connect agents to tools by using [Foundry Toolbox](../concepts/toolbox-overview.md).

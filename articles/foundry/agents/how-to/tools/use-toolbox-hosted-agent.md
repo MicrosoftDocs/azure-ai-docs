@@ -20,6 +20,8 @@ zone_pivot_groups: selection-foundry-toolbox
 
 A [hosted agent](../../concepts/hosted-agents.md) runs your code in Foundry Agent Service. In this article, you connect that code to a [toolbox](../../concepts/toolbox-overview.md) so the agent discovers and calls the toolbox tools through one Model Context Protocol (MCP) endpoint.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../../how-to/develop/use-microsoft-foundry-skill.md) can help connect the hosted agent to a toolbox endpoint and adapt the sample to your own tools.
+
 ## Prerequisites
 
 - A [toolbox](toolbox.md) with at least one tool and a default version.

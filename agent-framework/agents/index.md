@@ -41,7 +41,7 @@ Looking for the agent-type and SDK-selection guidance previously hosted on this 
 | Capability | Purpose |
 |---|---|
 | [Tools](tools/index.md) | Let agents call functions and provider-hosted capabilities. |
-| [CodeAct](code_act.md) | Let the model write programs that coordinate tools through a managed execution provider. |
+| [CodeAct](code-act.md) | Let the model write programs that coordinate tools through a managed execution provider. |
 | [Looping](looping.md) | Re-run an agent until a bounded completion condition is met. |
 | [Background agents](background-agents.md) | Delegate work to background agents and retrieve task results. |
 | [Planning and todos](planning-and-todos.md) | Track plans, operational todos, dependencies, and completion. |

@@ -94,7 +94,7 @@ In code, you refer to an agent by `<agent_name>:<version>`. Create each agent on
 
 Make your agent more powerful by giving it knowledge (specific files or indexes) or by allowing it to take actions (calling external APIs). Tools are available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
 
-To save an agent with a tool attached, you must successfully configure the tool. Reuse configured tools across agents. For information about available tools, see the [tools catalog](./tool-catalog.md).
+To save an agent with a tool attached, you must successfully configure the tool. Reuse configured tools across agents. For information about how to add tools for agents using a Toolbox and what's available, see [Toolbox Overview](./toolbox-overview.md).
 
 ### Debug and validate by using tracing (preview)
 
@@ -160,8 +160,8 @@ After you create an agent version that you're happy with, [publish it as an agen
 
 **Configure and extend agents:**
 
-- [Discover tools in Foundry Tools](./tool-catalog.md)
-- [Best practices for using tools in Foundry Agent Service](./tool-best-practice.md)
+- [What is Toolbox in Foundry?](./toolbox-overview.md)
+- [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
 
 **Publish and monitor agents:**
 

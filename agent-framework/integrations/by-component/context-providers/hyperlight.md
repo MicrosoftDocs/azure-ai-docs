@@ -31,7 +31,7 @@ Hyperlight is the currently documented backend for CodeAct in Agent Framework. I
 
 This integration uses the CodeAct pattern: the provider contributes a code-execution tool and manages the execution environment around each run.
 
-For the pattern-level overview, see [CodeAct](../../../agents/code_act.md).
+For the pattern-level overview, see [CodeAct](../../../agents/code-act.md).
 
 ## Why Hyperlight CodeAct
 
@@ -416,7 +416,7 @@ This package is still alpha, and a few constraints are worth planning around:
 
 ### Related content
 
-- [CodeAct](../../../agents/code_act.md)
+- [CodeAct](../../../agents/code-act.md)
 - [CodeAct paper](https://arxiv.org/abs/2402.01030)
 - [Context Providers](../../../concepts/agents/conversations/context-providers.md)
 - [Tool Approval](../../../agents/tools/tool-approval.md)
