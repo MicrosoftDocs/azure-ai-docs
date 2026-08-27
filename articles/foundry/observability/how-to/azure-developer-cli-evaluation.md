@@ -58,7 +58,7 @@ Every command accepts `-o json` for scripting and `--debug` for diagnostics. Eve
 
 ## Choose where the rows come from
 
-An evaluation grades rows. They come from one of two places, and this is the first decision:
+An evaluation grades rows. They come from one of two places, and this decision is the first decision:
 
 - `--source traces` evaluates what your agent already did, read from the traces it emitted. Nothing to author.
 - `--source dataset` evaluates a fixed set of examples, either yours or generated. Repeatable and comparable across agent versions.
@@ -307,6 +307,6 @@ To change what the evaluation measures, edit `evals/azure.eval.yaml` or the gene
 - [Evaluate your agents](evaluate-agent.md)
 - [Built-in evaluators](../../concepts/built-in-evaluators.md)
 - [Custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md)
-- [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview)
+- [Trace evaluation](cloud-evaluation-deployed-interactions.md#evaluate-traces-preview)
 - [Set up tracing for your agent](trace-agent-setup.md)
 - [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)

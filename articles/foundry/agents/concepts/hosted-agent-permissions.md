@@ -30,6 +30,8 @@ For end-to-end deployment and lifecycle tasks, see [Deploy a Hosted agent][deplo
 > [!IMPORTANT]
 > Always adhere to the principle of least privilege when assigning permissions. Only grant the permissions necessary for users and agents to perform their tasks, and regularly review and update permissions as needed.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help map required roles and permissions to deployment and management tasks in your own Foundry project.
+
 ## Roles in this article
 
 Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) control plane and the Foundry data plane. [Owner][role-owner] and [Contributor][role-contributor] roles have broad ARM control plane permissions but don't include data plane permissions. Data plane operations—such as creating agents or interacting with them—require specific Azure AI Foundry roles like [Foundry User][role-ai-user], [Foundry Project Manager][role-project-manager], or [Foundry Owner][role-ai-owner].

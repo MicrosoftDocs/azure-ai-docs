@@ -25,7 +25,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 - Interpret results and integrate them into your workflow.
 
 > [!TIP]
-> For general-purpose evaluation of generative AI models and applications, including custom evaluators, different data sources, and additional SDK options, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
+> For general-purpose evaluation of generative AI models and applications, including custom evaluators, different data sources, and additional SDK options, see [Run evaluations from the SDK](cloud-evaluation.md).
 
 ## Prerequisites
 
@@ -242,10 +242,11 @@ print(f"Evaluation run started: {eval_run.id}")
 ```
 
 > [!TIP]
-> This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](../../how-to/develop/cloud-evaluation.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
+> This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](cloud-evaluation-targets.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
+
 
 > [!TIP]
-> To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview) in the cloud evaluation guide.
+> To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](cloud-evaluation-deployed-interactions.md#evaluate-traces-preview) in the cloud evaluation guide.
 
 ## Interpret results
 
@@ -403,5 +404,5 @@ Use evaluation to iterate and improve your agent:
 - [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
 - [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
-- [Trace evaluation in the cloud](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview)
+- [Trace evaluation in the cloud](cloud-evaluation-deployed-interactions.md#evaluate-traces-preview)
 - [Set up tracing in Microsoft Foundry](trace-agent-setup.md)

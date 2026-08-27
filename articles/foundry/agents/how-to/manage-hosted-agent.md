@@ -19,6 +19,8 @@ This article shows you how to manage Hosted agents in Foundry Agent Service. Aft
 
 The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the configured idle timeout. Set the timeout from 5 through 60 minutes when you create an agent version. The default is 15 minutes. This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you manage versions, endpoints, logs, and lifecycle operations from your project context.
+
 ## Prerequisites
 
 - A [deployed Hosted agent](deploy-hosted-agent.md).

@@ -29,6 +29,8 @@ For tool optimization, see [best practices](../../concepts/tool-best-practice.md
 
 [!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../../how-to/develop/use-microsoft-foundry-skill.md) can help connect Azure AI Search, review authentication choices, and adapt the setup to your agent.
+
 ## Usage support
 
 The following table shows SDK and setup support.

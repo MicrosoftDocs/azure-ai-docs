@@ -133,7 +133,7 @@ Use this workflow regularly to monitor efficiency and return on investment.
 | Ask AI doesn't respond to prompts | The feature might be temporarily unavailable, or the prompt might be too vague. | Try a more specific prompt or use the **Operate** > **Overview** pane directly. |
 | Ask AI asks for approval before acting | Ask AI proposes actions for review before modifying Azure resources. | Review the proposed action and select **Approve** to proceed. To configure pre-approval settings, select the settings icon in the Ask AI prompt chat. |
 | No alternative models recommended | The current model might already be the most cost-efficient option, or the model catalog doesn't have comparable alternatives. | Browse the [Foundry model catalog](../concepts/foundry-models-overview.md) manually. |
-| Evaluation runs don't complete | The evaluation dataset might be misconfigured or too large. | Verify your evaluation dataset configuration. See [Run evaluations from the SDK](../how-to/develop/cloud-evaluation.md). |
+| Evaluation runs don't complete | The evaluation dataset might be misconfigured or too large. | Verify your evaluation dataset configuration. See [Run evaluations from the SDK](../observability/how-to/cloud-evaluation.md). |
 | Cost data appears stale or delayed | Azure billing data can take up to 24-48 hours to update. Application Insights telemetry might also have a short delay. | Wait for the billing cycle to complete and check again. For near real-time data, rely on Application Insights metrics in the **Operate** > **Overview** pane. |
 | Model switch causes quality regression | The new model might not perform as well on your specific workload. | Roll back to the previous model deployment and run more targeted evaluations before switching again. |
 
@@ -144,5 +144,5 @@ Use this workflow regularly to monitor efficiency and return on investment.
 - [Manage agents in Foundry Control Plane](how-to-manage-agents.md)
 - [Enforce token limits on models](how-to-enforce-limits-models.md)
 - [What is Foundry Control Plane?](overview.md)
-- [Run evaluations from the SDK](../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../observability/how-to/cloud-evaluation.md)
 - [Explore Microsoft Foundry Models](../concepts/foundry-models-overview.md)

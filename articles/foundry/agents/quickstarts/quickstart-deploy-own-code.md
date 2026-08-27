@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service. Your code can use any agent framework - such as Microsoft Agent Framework, LangGraph, the GitHub Copilot SDK, or the OpenAI Agents SDK - or plain Python that calls a model directly.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help adapt the quickstart to your own codebase and run the right `azd` deployment steps.
+
 ## Prerequisites
 
 Before you begin, you need:

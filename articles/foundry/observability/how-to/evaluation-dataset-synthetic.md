@@ -286,7 +286,7 @@ result = poller.result()
 
 The generated dataset uses the standard `query` and `ground_truth` schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md). For complete runnable end-to-end examples that generate synthetic data and evaluate the responses, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Evaluate models and agents in the cloud](cloud-evaluation-targets.md). For complete runnable end-to-end examples that generate synthetic data and evaluate the responses, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
 
 ## Manage data generation jobs
 
@@ -332,7 +332,7 @@ For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-
 
 - [Convert agent traces into evaluation datasets](traces-to-dataset.md)
 - [Evaluate your agent](evaluate-agent.md)
-- [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
+- [Run cloud evaluations](cloud-evaluation.md)
 - [Set up tracing for your agent](trace-agent-setup.md)
 - [Synthetic data + agent evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py)
 - [Synthetic data + model evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py)

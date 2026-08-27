@@ -41,6 +41,7 @@ The following diagram illustrates how these components interact in a typical age
 
 You provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
 
+If you use a coding agent like GitHub Copilot to design how agents, conversations, and responses work together, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help apply these components to your app's workflow.
 
 ## Prerequisites
 

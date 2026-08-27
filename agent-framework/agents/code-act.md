@@ -29,11 +29,11 @@ In Agent Framework, CodeAct is exposed through backend-specific packages rather 
 
 ## Why CodeAct
 
-Modern AI agents often are not bottlenecked by model quality, but by orchestration overhead. When an agent chains together many small tool calls, each step usually requires another model turn, which increases both latency and token usage.
+Modern AI agents often aren't bottlenecked by model quality, but by orchestration overhead. When an agent chains together many small tool calls, each step usually requires another model turn, which increases both latency and token usage.
 
 CodeAct collapses that model -> tool -> model loop. Instead of asking the model to pick one tool at a time, Agent Framework can expose a single `execute_code` tool and let the model express the full plan as a short program. The tools stay the same, the model stays the same, and the main change is that the plan runs once inside a sandbox instead of being scattered across several tool-call turns.
 
-For tool-heavy workloads, that can materially reduce end-to-end latency and token usage while keeping the plan compact and auditable in one code block. See the [Hyperlight CodeAct integration](../integrations/by-component/context-providers/hyperlight.md) for a side-by-side wiring comparison.
+For tool-heavy workloads, that change can materially reduce end-to-end latency and token usage while keeping the plan compact and auditable in one code block. See the [Hyperlight CodeAct integration](../integrations/by-component/context-providers/hyperlight.md) for a side-by-side wiring comparison.
 
 ## When CodeAct is a good fit
 
@@ -47,7 +47,7 @@ Use CodeAct when a task benefits from:
 
 Stay with direct tool calling when:
 
-- the task only needs one or two tool calls, so there is little orchestration overhead to remove
+- the task only needs one or two tool calls, so there's little orchestration overhead to remove
 - each call has side effects that should stay individually visible to the model and the user
 - you need per-call approval prompts instead of one approval decision around the whole `execute_code` run
 
@@ -64,12 +64,12 @@ Because the connector owns the runtime configuration, the exact setup details de
 
 ## Current limitations
 
-CodeAct is a strong fit for tool-heavy workflows, but there are a few current constraints to keep in mind:
+CodeAct is a good fit for tool-heavy workflows, but keep in mind the following constraints:
 
-- The documented Agent Framework connector today is [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md), available for both Python and .NET (in preview).
+- The documented Agent Framework connector is [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md), available for both Python and .NET (in preview).
 - Approvals currently apply to the `execute_code` call as a whole. If you need individual operations to be approved one by one, keep those operations as direct agent tools instead of relying on `call_tool(...)`.
 - Tools reached through `call_tool(...)` still execute in the host process. Use narrow, reviewed host tools for sensitive I/O instead of broadening sandbox access unnecessarily.
-- CodeAct works best when orchestration overhead dominates. For small tasks with only one or two tool calls, the added abstraction may not buy you much.
+- CodeAct works best when orchestration overhead dominates. For small tasks with only one or two tool calls, the added abstraction might not be worth it.
 - Tool names, parameter metadata, and return shapes matter more here because the model is writing code against that contract rather than choosing from one direct tool call at a time.
 
 ::: zone pivot="programming-language-csharp"
@@ -87,7 +87,7 @@ The package provides:
 - optional filesystem (`FileMounts`, `HostInputDirectory`) and outbound-network (`AllowedDomains`) configuration for the sandbox runtime
 
 > [!IMPORTANT]
-> The .NET package is in preview and depends on the `Hyperlight.HyperlightSandbox.Api` NuGet, which is not yet published on nuget.org. See [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md) for current install caveats and platform requirements.
+> The .NET package is in preview and depends on the `Hyperlight.HyperlightSandbox.Api` NuGet, which isn't published on nuget.org yet. See [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md) for current install caveats and platform requirements.
 
 See [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md) for installation, examples, and runtime-specific guidance.
 

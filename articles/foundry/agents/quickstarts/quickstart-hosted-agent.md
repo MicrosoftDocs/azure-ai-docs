@@ -18,6 +18,8 @@ zone_pivot_groups: hosted-agent-quickstart-method
 In this quickstart, you deploy and invoke a hosted agent in Foundry Agent
 Service. Choose the development tool or SDK that fits your workflow.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you pick a development path and complete the setup, deployment, and invocation steps.
+
 ## Prerequisites
 
 Before you begin, you need:

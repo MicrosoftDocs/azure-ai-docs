@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 When you run Microsoft Foundry Agent Service with a bring-your-own virtual network (VNet), you're responsible for sizing the delegated subnet, planning IP allocation, and understanding how agent traffic flows through the platform. This article explains the network architecture behind hosted and prompt agents, the IP-allocation model, and the signals that indicate capacity issues. It's intended for cloud and network architects who already chose bring-your-own VNet for Foundry Agent Service. To configure the network, see [Set up private networking for Foundry Agent Service](../how-to/virtual-networks.md).
 
+If you use a coding agent like GitHub Copilot to plan your VNet, subnet, and capacity model, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you reason through the architecture and apply Foundry networking guidance in your own environment.
+
 ## Network architecture overview
 
 The following diagram shows the two zones involved in any Foundry Agent Service request: the Microsoft-managed Foundry platform network on the left, and your customer VNet on the right.

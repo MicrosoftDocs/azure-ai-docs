@@ -4369,6 +4369,16 @@
       "source_path_from_root": "/articles/ai-foundry/index.yml",
       "redirect_url": "/azure/foundry/",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/foundry/how-to/develop/cloud-evaluation.md",
+      "redirect_url": "/azure/foundry/observability/how-to/cloud-evaluation",
+      "redirect_document_id": true
+    },
+       {
+      "source_path_from_root": "/articles/foundry/how-to/develop/evaluate-admin-connected-models.md",
+      "redirect_url": "/azure/foundry/observability/how-to/evaluate-admin-connected-models",
+      "redirect_document_id": true
     }
   ]
 }

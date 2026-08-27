@@ -26,6 +26,8 @@ In this quickstart, you build a [toolbox](../how-to/tools/toolbox.md) that combi
 
 You then consume the toolbox from a [hosted agent](../concepts/hosted-agents.md) written in Python. The toolbox exposes one MCP endpoint, so the agent connects to a single URL and discovers every tool at runtime. You can change the tools later without changing agent code.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help build the toolbox endpoint, connect it to a hosted agent, and adjust the sample tools.
+
 ## Prerequisites
 
 This quickstart builds on the hosted-agent toolchain. Complete the [Prerequisites](quickstart-hosted-agent.md#prerequisites) in the hosted agent quickstart first, which cover the Azure subscription, project roles, Python, the Azure Developer CLI (`azd`), and the `microsoft.foundry` extension.

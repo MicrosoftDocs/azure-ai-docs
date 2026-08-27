@@ -162,7 +162,7 @@ Whether you created the dataset from the portal or the SDK, you can preview it o
 
 After the dataset exists, evaluate your agent against it. The generated dataset uses the standard query-response schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md). For a complete runnable example that filters traces, generates an evaluation dataset, and scores it, see [sample_agent_trace_evaluation_smart_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py) on GitHub.
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Evaluate an agent target](cloud-evaluation-targets.md#evaluate-an-agent-target). For a complete runnable example that filters traces, generates an evaluation dataset, and scores it, see [sample_agent_trace_evaluation_smart_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py) on GitHub.
 
 ## Manage data generation jobs
 
@@ -201,7 +201,7 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 
 - [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
 - [Agent tracing in Microsoft Foundry](../concepts/trace-agent-concept.md)
-- [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
+- [Run cloud evaluations](cloud-evaluation.md)
 - [Multi-turn trace evaluation by ID sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_by_id.py)
 - [Multi-turn trace evaluation by agent filter sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_agent_filter.py)
 - [Trace-based evaluation with intelligent sampling sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py)

@@ -26,7 +26,7 @@ Use Ask AI — the built-in chat assistant in the Microsoft Foundry portal — t
 
 - A [Foundry project](../../how-to/create-projects.md) with one or more deployed models or [agents](../../agents/overview.md).
 - Access to **Ask AI** (the chat assistant) in the Foundry portal.
-- At least one [evaluation dataset](../../how-to/develop/cloud-evaluation.md) in CSV or JSONL format. The dataset should include columns for the input query and the expected (ground truth) response for your scenario. For dataset preparation guidance, see [Evaluate your generative AI app](../../how-to/evaluate-generative-ai-app.md).
+- At least one [evaluation dataset](cloud-evaluation-datasets.md#prepare-input-data) in CSV or JSONL format. The dataset should include columns for the input query and the expected (ground truth) response for your scenario. For dataset preparation guidance, see [Evaluate your generative AI app](../../how-to/evaluate-generative-ai-app.md).
 - **Contributor** role (or higher) on the Foundry resource to deploy models, and **Foundry User** role (or higher) on the Foundry project to build and run evaluations. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]

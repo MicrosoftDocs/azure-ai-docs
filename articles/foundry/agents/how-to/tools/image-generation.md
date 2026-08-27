@@ -24,6 +24,8 @@ zone_pivot_groups: selection-image-generation
 
 The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. The agent's Foundry model orchestrates the image generation request and returns base64-encoded output that you can save to a file.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../../how-to/develop/use-microsoft-foundry-skill.md) can help verify model and project requirements and add image-generation tool calls to your agent workflow.
+
 ## Prerequisites
 
 - An Azure account with an active subscription.
