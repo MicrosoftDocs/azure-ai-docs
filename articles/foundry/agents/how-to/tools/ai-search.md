@@ -928,13 +928,21 @@ For more detailed steps, see [Add a new connection to your project](../../../how
 
 #### [Azure Developer CLI](#tab/azd)
 
-Set your Foundry project endpoint, search endpoint, and search admin key. Then
-create the project connection:
+Set your Foundry project endpoint and search endpoint. Then create either a
+managed identity or key-based project connection:
 
 ```bash
 PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
 SEARCH_ENDPOINT="https://<search-service>.search.windows.net"
 
+# Managed identity
+azd ai connection create my-search-connection \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind cognitive-search \
+  --target "$SEARCH_ENDPOINT" \
+  --auth-type project-managed-identity
+
+# API key
 azd ai connection create my-search-connection \
   --project-endpoint "$PROJECT_ENDPOINT" \
   --kind cognitive-search \
@@ -943,8 +951,10 @@ azd ai connection create my-search-connection \
   --key "$SEARCH_ADMIN_KEY"
 ```
 
-Set `SEARCH_ADMIN_KEY` in your shell or secret store. Don't put the key in
-source control.
+For managed identity, assign the roles from the keyless authentication setup
+to the Foundry account's system-assigned managed identity. For API-key
+authentication, set `SEARCH_ADMIN_KEY` in your shell or secret store. Don't
+put the key in source control.
 
 #### [Azure CLI](#tab/azurecli)
 

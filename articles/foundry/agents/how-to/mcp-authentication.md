@@ -97,6 +97,14 @@ For security:
 
 Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
 
+Set the Foundry project as the active project before you create an
+identity-based MCP connection:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set "$PROJECT_ENDPOINT"
+```
+
 ### Use agent identity authentication
 
 Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
@@ -107,6 +115,14 @@ Before publishing, all agents in your Foundry project share the same agent ident
 
 Make sure the agent identity has the required role assignments on the underlying service that powers the MCP server.
 
+```bash
+azd ai connection create my-mcp-connection \
+  --kind remote-tool \
+  --target https://<mcp-server-endpoint> \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
 When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
 
 ### Use project managed identity authentication
@@ -116,6 +132,14 @@ Use project managed identity when you want all agents in a project to share the 
 Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
 
 Make sure the project managed identity has the required role assignments on the underlying service that powers the MCP server.
+
+```bash
+azd ai connection create my-mcp-connection \
+  --kind remote-tool \
+  --target https://<mcp-server-endpoint> \
+  --auth-type project-managed-identity \
+  --audience "<entra-audience>"
+```
 
 When the agent invokes the MCP server, Agent Service uses the project's managed identity to request an authorization token and passes it to the MCP server.
 

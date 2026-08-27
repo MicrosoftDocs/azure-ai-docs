@@ -93,6 +93,14 @@ When the agent invokes the A2A endpoint, Agent Service retrieves the credentials
 
 Use Microsoft Entra ID authentication when the A2A endpoint and its underlying service accept Microsoft Entra ID tokens. This method eliminates the need to manage secrets because Azure handles token acquisition and renewal automatically.
 
+Set the Foundry project as the active project before you create an
+identity-based A2A connection:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set "$PROJECT_ENDPOINT"
+```
+
 ### Agent identity
 
 Use your agent's managed identity to authenticate with A2A endpoints that support Microsoft Entra ID authentication. When you create an agent in Agent Service, the agent automatically receives a managed identity.
@@ -110,6 +118,14 @@ For more information about agent identity lifecycle, see [Agent identity concept
 1. Assign the required roles to the agent identity on that service. The specific roles depend on the service and the operations your agent needs to perform.
 1. Configure the A2A connection to use agent identity authentication.
 
+```bash
+azd ai connection create my-a2a-connection \
+  --kind remote-a2a \
+  --target https://<a2a-endpoint> \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
 When the agent invokes the A2A endpoint, Agent Service uses the agent identity to request an authorization token from Microsoft Entra ID and includes it in the request.
 
 ### Foundry project managed identity
@@ -121,6 +137,14 @@ Use your Foundry project's managed identity to authenticate with A2A endpoints. 
 1. Identify the underlying service that powers the A2A endpoint.
 1. Assign the required roles to the project's managed identity on that service.
 1. Configure the A2A connection to use project managed identity authentication.
+
+```bash
+azd ai connection create my-a2a-connection \
+  --kind remote-a2a \
+  --target https://<a2a-endpoint> \
+  --auth-type project-managed-identity \
+  --audience "<entra-audience>"
+```
 
 When the agent invokes the A2A endpoint, Agent Service uses the project's managed identity to request an authorization token from Microsoft Entra ID and includes it in the request.
 
