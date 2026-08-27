@@ -6,8 +6,10 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 08/26/2026
 ms.author: pafarley
+ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to use the batch processing kit to scale Speech container requests.
 ---
 
@@ -28,6 +30,21 @@ The batch kit container is available for free on [GitHub](https://github.com/mic
 | Endpoint availability detection | If an endpoint becomes unavailable, the batch client continues transcribing, using other container endpoints. When the client is available, it automatically begins using the endpoint.   |
 | Endpoint hot-swapping | Add, remove, or modify Speech container endpoints during runtime without interrupting the batch progress. Updates are immediate. |
 | Real-time logging | Real-time logging of attempted requests, timestamps, and failure reasons, with Speech SDK log files for each audio file. |
+
+## Process long audio safely
+
+Speech containers support audio with a maximum duration of 24 hours. Segment any audio longer than 24 hours before you submit it for transcription. File size isn't a reliable substitute for duration because the encoding, sample rate, bit depth, and channel count determine the number of bytes. For example, 1 GB isn't a universal segmentation threshold.
+
+Some audio pipelines use a 32-bit counter to calculate duration. At approximately 37.3 hours, the counter can overflow and produce a shorter, valid-looking duration. In this case, transcription can report success without warning that the result is truncated. The exact code location of this overflow isn't known.
+
+After transcription, compare the original audio duration with the final transcript offset or latest recognized timestamp. Treat a result that ends materially before the source audio as incomplete, even if the transcription reports success.
+
+If you convert source audio to RIFF/WAV, use these values to help identify where an overflow occurred:
+
+- A converted WAV data chunk length of `274,568,704` bytes indicates an overflow during conversion or file writing.
+- A data chunk length of `4,569,536,000` bytes, or a file larger than 4 GB with a correct header, indicates that the file was written correctly and the overflow occurred later in the processing pipeline. Contact Microsoft support to engage engineering for this case.
+
+RF64 and Wave64 (W64) aren't drop-in fixes for this issue. Every reader and duration-checking path in the pipeline must support the selected format. For example, the Python built-in `wave` module rejects RF64 files.
 
 ## Get the container image with `docker pull`
 

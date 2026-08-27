@@ -6,8 +6,10 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 08/26/2026
 ms.author: pafarley
+ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to configure Speech containers.
 ---
 
@@ -63,6 +65,15 @@ This setting can be found in the following place:
 ## Logging settings
 
 [!INCLUDE [Container shared configuration logging settings](../includes/cognitive-services-containers-configuration-shared-settings-logging.md)]
+
+## Real-time diarization cache settings
+
+Connected and disconnected real-time speech to text containers use a customer-operated Redis-compatible cache to preserve diarization state across replacement sessions after the four-hour session boundary. For setup and validation, see [Configure diarization continuation for speech containers](speech-container-stt-diarization-cache.md).
+
+| Optional | Name | Data type | Description |
+| --- | --- | --- | --- |
+| Optional | `InClusterRedisCacheEnabled` | Boolean | Set to `true` to enable a Redis-compatible cache for diarization state. |
+| Optional | `InClusterRedisCacheEndpoint` | String | Set to the reachable cache endpoint in `<host-or-ip>:<port>` format. |
 
 ## Mount settings
 

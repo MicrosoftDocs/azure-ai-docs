@@ -5,12 +5,13 @@ description: Install and run speech to text containers with Docker to perform sp
 author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
-ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
+ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python, doc-kit-assisted
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 08/26/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to install and run speech to text containers with Docker.
 ---
 
@@ -172,6 +173,11 @@ sudo chown -R nonroot:nonroot <YOUR_LOCAL_MACHINE_PATH_1> <YOUR_LOCAL_MACHINE_PA
 
 For more information about `docker run` with Speech containers, see [Install and run Speech containers with Docker](speech-container-howto.md#run-the-container).
 
+## Use real-time diarization
+
+The real-time speech to text container supports speaker diarization. Each diarization session ends after four hours. For connected and disconnected containers in scenarios that run longer than four hours, a customer-operated Redis-compatible cache preserves diarization state so your application can start a replacement session. Without a configured cache, the session ends with an error at the boundary. The cache doesn't extend an individual session.
+
+To set up and validate state-backed continuation, [configure diarization continuation for speech containers](speech-container-stt-diarization-cache.md).
 
 ## Use the container
 

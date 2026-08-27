@@ -493,6 +493,8 @@ items:
             href: speech-container-howto.md
           - name: Real-time speech to text containers
             href: speech-container-stt.md
+          - name: Configure diarization continuation for containers
+            href: speech-container-stt-diarization-cache.md
           - name: Fast transcription containers
             href: speech-container-ft.md
           - name: Custom speech to text containers
