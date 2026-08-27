@@ -754,7 +754,7 @@ In this example, you add a second deployment that uses a __model built with Kera
    
    :::code language="python" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deployment-keras/code/batch_driver.py" :::
    
-1. Create a deployment definition
+1. Create a deployment definition.
 
     # [Azure CLI](#tab/cli)
     
