@@ -730,7 +730,7 @@ In this example, you add a second deployment that uses a __model built with Kera
 
     1. For __Select environment source__, select __Use existing docker image with optional conda file__.
 
-    1. For __Container registry image path__, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest`.
+    1. For **Container registry image path**, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest`.
 
     1. Select **Next** to go to the "Customize" section.
 
