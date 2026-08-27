@@ -1,13 +1,13 @@
 ---
 title: Generate a synthetic evaluation dataset (preview)
-description: Use the Microsoft Foundry data generation service to bootstrap an evaluation dataset from an agent's instructions, a prompt, or a reference document.
+description: Generate Simple Q&A and simulation seed datasets in Microsoft Foundry from an agent, prompt, or reference file for single-turn and multi-turn evaluation.
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 07/30/2026
+ms.date: 08/26/2026
 ai-usage: ai-assisted
 ---
 
@@ -17,10 +17,12 @@ ai-usage: ai-assisted
 
 When your agent doesn't have production traffic yet, you can still build a meaningful evaluation dataset. The Microsoft Foundry data generation service synthesizes evaluation data from material you already have: an agent's instructions, an inline prompt, or a reference document you upload. Two task types are available:
 
-- **Simple Q&A** produces question-and-answer pairs for turn-level evaluation.
-- **Simulation seed** produces scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow for multi-turn evaluation.
+- **Simple QnA (single-turn)** produces question-and-answer pairs for turn-level evaluation.
+- **Simulation seed (multi-turn)** produces scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow for multi-turn evaluation.
 
-In both cases, the output is a versioned dataset you use as input to an evaluation.
+Simple Q&A datasets can be evaluated directly. Simulation seed datasets first
+drive a simulator that plays the user's role against the target agent.
+Conversation-level evaluators then score the generated conversations.
 
 Three input source types are available, and you can combine them in a single job for richer coverage:
 
@@ -52,7 +54,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 ## Prerequisites
 
-- Python SDK version `2.4.0` or later: `pip install "azure-ai-projects>=2.4.0" azure-identity`.
+- Python SDK version `2.5.0` or later: `pip install "azure-ai-projects>=2.5.0" azure-identity`.
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`.
 - Foundry User role or higher on the project.
 - An Azure OpenAI model deployment that supports the Responses API. Both the `simple_qna` and `simulation_seed` recipes use this model to synthesize output rows. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
@@ -62,7 +64,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 1. In the portal, open the **Data Generation** tab. Select **Create dataset**, and then select **Generate synthetic**.
 1. In **Generate synthetic data**, set **Dataset usage** to **Evaluation**.
-1. Set the **Task type**. Choose **Simple QnA (single-turn)** for question-and-answer pairs, or **Simulation seed (multi-turn)** for scenario descriptions that feed conversation simulation.
+1. Set **Task type**. Select **Simple QnA (single-turn)** for question-and-answer pairs, or **Simulation seed (multi-turn)** for scenario descriptions used in conversation simulation.
 1. Select a **Generator model**.
 1. Provide one or more source inputs: **Agent**, **Prompt**, or **Reference file**.
 1. Set **Maximum number of samples** and **Output file name**.
@@ -289,7 +291,7 @@ result = poller.result()
 
 ## Generate a simulation seed dataset (SDK)
 
-Simulation seed jobs produce a dataset of scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow. Each generated row includes a `category`, a `test_case_description` (the scenario the simulator plays as the user), and `desired_num_turns` (the recommended conversation length).
+Simulation seed jobs produce a dataset of scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow. Generated rows can contain `id`, `category`, `test_case_description`, and `desired_num_turns`. Only `test_case_description` is required.
 
 The job shape is identical to Simple Q&A. The only differences are the options class (`SimulationSeedDataGenerationJobOptions`) and the wire type value (`simulation_seed`). The following example uses an agent definition as the source. To use a prompt or reference file instead, swap the source class as shown in [Generate a dataset from a prompt (SDK)](#generate-a-dataset-from-a-prompt-sdk) or [Generate a dataset from reference files (SDK)](#generate-a-dataset-from-reference-files-sdk), and substitute `SimulationSeedDataGenerationJobOptions` for `SimpleQnADataGenerationJobOptions`.
 
@@ -303,7 +305,6 @@ from azure.ai.projects.models import (
     DataGenerationJobOutputOptions,
     DataGenerationJobScenario,
     DataGenerationModelOptions,
-    JobStatus,
     SimulationSeedDataGenerationJobOptions,
 )
 
@@ -328,19 +329,23 @@ job = DataGenerationJob(
     ),
 )
 
-job = project_client.beta.datasets.create_generation_job(job=job)
+poller = project_client.beta.datasets.begin_create_generation_job(job=job)
+result = poller.result()
 ```
 
-Poll and resolve the dataset by using the same pattern shown in [Generate a dataset from an agent definition (SDK)](#generate-a-dataset-from-an-agent-definition-sdk).
+Resolve the generated dataset from `result` by using the output-handling pattern shown in [Generate a dataset from an agent definition (SDK)](#generate-a-dataset-from-an-agent-definition-sdk).
 
 ### Generated dataset schema
 
-Each row in the seed dataset includes the following fields:
+The simulation seed schema supports the following fields. Only
+`test_case_description` is required; the other fields are optional.
 
-- `id`: Row identifier.
-- `category`: Scenario category label, such as `Basic support & empathy` or `Requests beyond capabilities`.
-- `test_case_description`: Free-form description of the scenario. The simulator uses this text to play the user's side of the conversation. Descriptions typically run several paragraphs and spell out the user's goal, expected agent behavior, and any multi-turn dynamics to test.
-- `desired_num_turns`: Recommended conversation length. The simulator uses this value as guidance when driving the interaction.
+| Field | Required | Description |
+|---|---|---|
+| **`test_case_description`** | Yes | Free-form description of the scenario that the simulator uses to play the user's role. |
+| **`id`** | No | Identifier for the scenario row. |
+| **`category`** | No | Category label for organizing related scenarios. |
+| **`desired_num_turns`** | No | Recommended conversation length. When provided, the simulator uses it as guidance during the interaction. |
 
 Example row (`test_case_description` shortened for readability):
 
@@ -360,7 +365,7 @@ Preview the generated rows on the **Data** tab before running conversation simul
 The evaluation path depends on the task type:
 
 - **Simple Q&A datasets** use the standard `query` and `ground_truth` schema and work directly with the evaluation APIs. For the full flow, see [Evaluate models and agents in the cloud](cloud-evaluation-targets.md). For complete runnable end-to-end examples, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
-- **Simulation seed datasets** feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow. The simulator uses each row's `test_case_description` and `desired_num_turns` to drive a multi-turn conversation with your agent, and conversation-level evaluators score the result.
+- **Simulation seed datasets** feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow. Pass the generated dataset ID as the simulation run's source. The simulator uses each row's `test_case_description` to play the user's role and, when provided, uses `desired_num_turns` as guidance. Conversation-level evaluators score the resulting conversation rather than the seed row.
 
 ## Manage data generation jobs
 
