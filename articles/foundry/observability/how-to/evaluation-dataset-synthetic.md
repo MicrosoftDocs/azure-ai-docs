@@ -20,7 +20,7 @@ When your agent doesn't have production traffic yet, you can still build a meani
 - **Simple QnA (single-turn)** produces question-and-answer pairs for turn-level evaluation.
 - **Simulation seed (multi-turn)** produces scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow for multi-turn evaluation.
 
-Simple Q&A datasets can be evaluated directly. Simulation seed datasets first
+You can evaluate simple Q&A datasets directly. Simulation seed datasets first
 drive a simulator that plays the user's role against the target agent.
 Conversation-level evaluators then score the generated conversations.
 
