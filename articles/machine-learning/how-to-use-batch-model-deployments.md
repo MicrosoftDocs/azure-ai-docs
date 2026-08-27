@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 08/04/2025
+ms.date: 08/21/2026
 ai-usage: ai-assisted
 ms.custom:
   - how-to
@@ -246,6 +246,9 @@ A model deployment is a set of resources required for hosting the model that doe
     > [!IMPORTANT]
     > The packages `azureml-core` and `azureml-dataset-runtime[fuse]` are required by batch deployments and should be included in the environment dependencies.
 
+    > [!NOTE]
+    > The `azureml-core` package is part of the Azure Machine Learning SDK v1, which was deprecated on March 31, 2025, with end of support on June 30, 2026. It's still required as a runtime dependency for batch deployment scoring scripts.
+
     Specify the environment as follows:
 
     # [Azure CLI](#tab/cli)
@@ -272,7 +275,7 @@ A model deployment is a set of resources required for hosting the model that doe
 
     1. For __Select environment source__, select __Use existing docker image with optional conda file__.
 
-    1. For __Container registry image path__, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04`.
+    1. For **Container registry image path**, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest`.
 
     1. Select **Next** to go to the "Customize" section.
 
@@ -314,14 +317,14 @@ A model deployment is a set of resources required for hosting the model that doe
     | `settings.retry_settings.max_retries` | The number of max tries for a failed `scoring_script` `run()`. |
     | `settings.retry_settings.timeout` | The timeout in seconds for a `scoring_script` `run()` for scoring a mini batch. |
     | `settings.error_threshold` | The number of input file scoring failures that should be ignored. If the error count for the entire input goes above this value, the batch scoring job is terminated. The example uses `-1`, which indicates that any number of failures is allowed without terminating the batch scoring job. |
-    | `settings.logging_level` | Log verbosity. Values in increasing verbosity are: WARNING, INFO, and DEBUG. |
+    | `settings.logging_level` | Log verbosity. Values in increasing verbosity are: `warning`, `info`, and `debug`. |
     | `settings.environment_variables` | Dictionary of environment variable name-value pairs to set for each batch scoring job.  |
 
     # [Python](#tab/python)
     
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/mnist-classifier/mnist-batch.ipynb?name=configure_deployment)]
 
-    The [BatchDeployment Class](/python/api/azure-ai-ml/azure.ai.ml.entities.batchdeployment) allows you to configure the following key properties of a batch deployment:
+    By using the [ModelBatchDeployment Class](/python/api/azure-ai-ml/azure.ai.ml.entities.modelbatchdeployment), you can configure the following key properties of a batch deployment:
 
     | Key | Description |
     | --- | ----------- |
@@ -655,7 +658,7 @@ You can configure the following settings on a per-job basis:
 | __Mini-batch size__ | When you need to balance throughput and memory usage | Use smaller batches (10–50 files) for large images and larger batches (100–500 files) for small text files. |
 | __Max retries__ | When data quality varies | Higher retries (5-10) for noisy data; lower retries (1-3) for clean data |
 | __Timeout__ | When processing time varies by data type | Longer timeout (300s) for complex models; shorter timeout (30s) for simple models |
-| __Error threshold__ | When you need different failure tolerance levels | Strict threshold (-1) for critical jobs; lenient threshold (10%) for experimental jobs |
+| __Error threshold__ | When you need different failure tolerance levels | `error_threshold` is an integer count of tolerated file failures. Use `0` for strict jobs that fail after any file failure, a positive integer such as `10` to tolerate up to that many failed files, or `-1` to allow any number of file failures. |
 
 ### How to override settings
 
@@ -727,7 +730,7 @@ In this example, you add a second deployment that uses a __model built with Kera
 
     1. For __Select environment source__, select __Use existing docker image with optional conda file__.
 
-    1. For __Container registry image path__, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04`.
+    1. For **Container registry image path**, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest`.
 
     1. Select **Next** to go to the "Customize" section.
 
@@ -751,7 +754,7 @@ In this example, you add a second deployment that uses a __model built with Kera
    
    :::code language="python" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deployment-keras/code/batch_driver.py" :::
    
-3. Create a deployment definition
+1. Create a deployment definition.
 
     # [Azure CLI](#tab/cli)
     
@@ -900,11 +903,11 @@ Although you can invoke a specific deployment inside an endpoint, you'll typical
 
 If you don't need the old batch deployment, delete it by running the following code. The `--yes` flag confirms the deletion.
 
-::: code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="delete_deployment" :::
+:::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="delete_deployment" :::
 
 Run the following code to delete the batch endpoint and its underlying deployments. Batch scoring jobs aren't deleted.
 
-::: code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="delete_endpoint" :::
+:::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="delete_endpoint" :::
 
 # [Python](#tab/python)
 
