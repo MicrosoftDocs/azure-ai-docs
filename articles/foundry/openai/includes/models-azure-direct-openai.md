@@ -387,16 +387,16 @@ For model availability across all regions, grouped by deployment category, see [
 | `gpt-image-1` | 4,000 |
 | `gpt-image-1-mini` | 4,000 |
 | `gpt-image-1.5` | 4,000 |
+| `gpt-image-2` | 4,000 |
+
 
 ## Video generation models
 
-Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. Sora is in preview.
-
-Video generation models include `sora` and `sora-2`.
+Sora-2 is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. It is in preview.
 
 | Model ID | Max request (characters) |
 |  --- | :---: |
-| `sora` | 4,000 |
+| `sora-2` | 4,000 |
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
