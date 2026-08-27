@@ -247,7 +247,7 @@ A model deployment is a set of resources required for hosting the model that doe
     > The packages `azureml-core` and `azureml-dataset-runtime[fuse]` are required by batch deployments and should be included in the environment dependencies.
 
     > [!NOTE]
-    > The `azureml-core` package is part of the Azure Machine Learning SDK v1, which was deprecated on March 31, 2025, with end of support on June 30, 2026. It remains required as a runtime dependency for batch deployment scoring scripts.
+    > The `azureml-core` package is part of the Azure Machine Learning SDK v1, which was deprecated on March 31, 2025, with end of support on June 30, 2026. It's still required as a runtime dependency for batch deployment scoring scripts.
 
     Specify the environment as follows:
 
@@ -275,7 +275,7 @@ A model deployment is a set of resources required for hosting the model that doe
 
     1. For __Select environment source__, select __Use existing docker image with optional conda file__.
 
-    1. For __Container registry image path__, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest`.
+    1. For **Container registry image path**, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest`.
 
     1. Select **Next** to go to the "Customize" section.
 
@@ -324,7 +324,7 @@ A model deployment is a set of resources required for hosting the model that doe
     
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/mnist-classifier/mnist-batch.ipynb?name=configure_deployment)]
 
-    The [ModelBatchDeployment Class](/python/api/azure-ai-ml/azure.ai.ml.entities.modelbatchdeployment) allows you to configure the following key properties of a batch deployment:
+    By using the [ModelBatchDeployment Class](/python/api/azure-ai-ml/azure.ai.ml.entities.modelbatchdeployment), you can configure the following key properties of a batch deployment:
 
     | Key | Description |
     | --- | ----------- |
