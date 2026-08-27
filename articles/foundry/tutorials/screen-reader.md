@@ -4,7 +4,7 @@ description: "Learn how to get oriented and navigate Microsoft Foundry with a sc
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
-ms.date: 05/20/2026
+ms.date: 08/27/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
@@ -19,7 +19,8 @@ ms.custom:
 ---
 
 # Use a screen reader with Microsoft Foundry
-This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's VoiceOver. In this article, you learn the basic structure of Microsoft Foundry and how to navigate efficiently.
+
+This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/accessibility/windows/narrator/complete-guide-to-narrator), JAWS, NVDA, or Apple's VoiceOver. In this article, you learn the basic structure of Microsoft Foundry and how to navigate efficiently.
 
 ## Prerequisites
 
@@ -27,17 +28,17 @@ This article is for people who use screen readers such as [Microsoft's Narrator]
 
 ## Get oriented in Foundry portal
 
-Most [!INCLUDE [foundry-link](../includes/foundry-link.md)] (new) pages have the following landmark structure: 
+Most pages in the new [!INCLUDE [foundry-link](../includes/foundry-link.md)] experience have the following landmark structure:
 
-- Banner has 
+- Banner has
     - Foundry application title
     - Project selector
     - Search
     - Ask AI toggle
-    - Main section navigation: Home, Discover, Build, Operate, Docs
+    - Main section navigation: Home, Discover, Build, Operate, Manage, Docs
     - Settings
     - Profile information
-- Left pane has navigation for the section selected in the main navigation. The Home page has no left pane navigation. 
+- Left pane has navigation for the section selected in the main navigation. The Home page has no left pane navigation.
 - Many pages also have tabs as a third level of navigation.
 
 For efficient navigation, you can use landmarks to move between these sections on the page.
@@ -47,23 +48,28 @@ For efficient navigation, you can use landmarks to move between these sections o
 You can switch between the classic and new Foundry portal experiences using the **New Foundry** toggle in the top banner.
 
 To switch back to the classic experience:
+
 1. In the top banner, press <kbd>Tab</kbd> until focus reaches the **New Foundry** toggle.
 1. Select the toggle to switch to the classic experience.
-1. The page reloads with the classic portal interface.
+
+The page reloads with the classic portal interface. Your screen reader announces the page title for the classic experience.
 
 > [!NOTE]
 > The toggle preserves your current context, such as the project you're working in, when switching between experiences.
 
 ## Projects
 
-You enter the portal with a selected project. The navigation sections **Home**, **Discover**, **Build**, and **Manage** display content for your selected project. The **Operate** section is different - it shows information for all your projects.
+You enter the portal with a selected project. The **Home**, **Discover**, **Build**, and **Manage** sections display content for your selected project. **Operate** shows information for all your projects, and **Docs** opens product documentation.
 
 To create or switch projects:
+
 1. In [!INCLUDE [foundry-link](../includes/foundry-link.md)], on the top banner, select **Foundry**.
 1. Press <kbd>Tab</kbd> until you hear a project name.
 1. Use the down-arrow to scroll through the list of recent projects.
 1. At the end of the list of recent projects, you find options to **View all projects**, **Create new project**, and **View legacy resources**.
 1. If you don't hear a project name, return focus to the top banner and select **Foundry** again to reopen the project list.
+
+After you select a project, your screen reader announces the selected project name in the top banner.
 
 ## Navigation
 
@@ -80,7 +86,9 @@ To move quickly to feature areas:
 1. Select a section such as **Build** to access model and tool workflows.
 1. If the left pane isn't available, move focus back to the top banner and reselect the project.
 
-## Using playgrounds
+After you select a section, your screen reader announces the page title and the navigation items available in that section.
+
+## Use playgrounds
 
 After you select a project:
 
@@ -102,6 +110,8 @@ To create an evaluation in the new Foundry experience:
 1. Select **Evaluation**.
 1. Select **Create** and complete the dialog fields.
 1. Return to the evaluations list and open a run to review details.
+
+Your screen reader announces the evaluation run page title and its main status information.
 
 To export results:
 
@@ -135,5 +145,5 @@ After you complete the steps in this article, verify the following outcomes:
 
 ## Related content
 
-* Learn how to build generative AI applications in the [Foundry](../what-is-foundry.md).
+- [What is Microsoft Foundry?](../what-is-foundry.md)
 
