@@ -39,6 +39,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| `Cohere-parse-v5` <br> **Preview** | image-to-text | - **Input:** images, tables, and forms <br /> - **Output:** Markdown <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** No <br /> - **Response formats:** Image |
 | `Cohere-rerank-v4.0-pro` | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON |
 | `Cohere-rerank-v4.0-fast` | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON |
 | `Cohere-command-a-plus-05-2026` <br> **Preview** | chat-completion <br> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (64,000 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text |
