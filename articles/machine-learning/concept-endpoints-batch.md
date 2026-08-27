@@ -43,7 +43,7 @@ Two types of deployments are possible in Azure Machine Learning batch endpoints:
 
 ### Model deployment
 
-Model deployment enables the operationalization of model inferencing at scale, allowing you to process large amounts of data in a long-running and asynchronous way. Azure Machine Learning automatically instruments scalability by providing parallelization of the inferencing processes across multiple nodes in a compute cluster.
+Model deployment enables you to operationalize model inferencing at scale, so you can process large amounts of data in a long-running and asynchronous way. Azure Machine Learning automatically handles scalability by parallelizing the inferencing processes across multiple nodes in a compute cluster.
 
 Use __Model deployment__ when:
 
@@ -67,7 +67,7 @@ To create a model deployment in a batch endpoint, you need to specify the follow
 
 ### Pipeline component deployment
 
-Pipeline component deployment enables the operationalization of entire processing graphs (or pipelines) to perform batch inference in a long-running and asynchronous way.
+Pipeline component deployment enables you to operationalize entire processing graphs (or pipelines) to perform batch inference in a long-running and asynchronous way.
 
 Use __Pipeline component deployment__ when:
 
@@ -93,12 +93,12 @@ Batch endpoints also allow you to [Create pipeline component deployments from an
 Invoking a batch endpoint triggers an asynchronous batch inference job. Azure Machine Learning automatically provisions compute resources when the job starts, and automatically deallocates them as the job completes. This way, you only pay for compute when you use it.
 
 > [!TIP]
-> When deploying models, you can [override compute resource settings](how-to-use-batch-model-deployments.md#overwrite-deployment-configuration-for-each-job) (like instance count) and advanced settings (like mini batch size, error threshold, and so on) for each individual batch inference job. By taking advantage of these specific configurations, you might be able to speed up execution and reduce cost.
+> When you deploy models, you can [override compute resource settings](how-to-use-batch-model-deployments.md#overwrite-deployment-configuration-for-each-job) (like instance count) and advanced settings (like mini batch size, error threshold, and so on) for each individual batch inference job. By using these specific configurations, you might be able to speed up execution and reduce cost.
 
-Batch endpoints can also run on low-priority VMs. Batch endpoints can automatically recover from deallocated nodes by rescheduling the affected mini-batches; work from already completed mini-batches is retained, but no job-level checkpointing is provided. For more information on how to use low-priority VMs to reduce the cost of batch inference workloads, see [Use low-priority VMs in batch endpoints](how-to-use-low-priority-batch.md).
+Batch endpoints can also run on low-priority VMs. Batch endpoints can automatically recover from deallocated nodes by rescheduling the affected mini-batches. The system retains work from already completed mini-batches, but it doesn't provide job-level checkpointing. For more information about using low-priority VMs to reduce the cost of batch inference workloads, see [Use low-priority VMs in batch endpoints](how-to-use-low-priority-batch.md).
 
 > [!NOTE]
-> Low-priority VMs were retired for Azure Machine Learning on March 31, 2026. Existing configurations that request low-priority VMs are now provisioned as Spot VMs. For current pricing and eviction behavior, see [Use low-priority VMs in batch endpoints](how-to-use-low-priority-batch.md).
+> Azure Machine Learning retired low-priority VMs on March 31, 2026. Existing configurations that request low-priority VMs now use Spot VMs. For current pricing and eviction behavior, see [Use low-priority VMs in batch endpoints](how-to-use-low-priority-batch.md).
 
 Finally, Azure Machine Learning doesn't charge you for batch endpoints or batch deployments themselves, so you can organize your endpoints and deployments as best suits your scenario. Endpoints and deployments can use independent or shared clusters, so you can achieve fine-grained control over which compute the jobs consume. Use __scale-to-zero__ in clusters to ensure no resources are consumed when they're idle. 
 
