@@ -173,6 +173,10 @@ with (
     ]
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation-level evaluation. Use the Python or cURL tab for this flow.
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -269,6 +273,10 @@ eval_run = openai_client.evals.runs.create(
     extra_body={"evaluation_level": "conversation"},
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation-level evaluation. Use the Python or cURL tab for this flow.
 
 # [cURL](#tab/curl)
 
@@ -396,6 +404,10 @@ with (
         extra_body={"evaluation_level": "conversation"},
     )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation lookup by trace ID. Use the Python or cURL tab for this flow.
 
 # [cURL](#tab/curl)
 
@@ -557,6 +569,10 @@ with (
         extra_body={"evaluation_level": "conversation"},
     )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation sampling by agent filter. Use the Python or cURL tab for this flow.
 
 # [cURL](#tab/curl)
 

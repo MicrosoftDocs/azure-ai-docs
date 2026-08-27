@@ -33,19 +33,19 @@ Some evaluation features have regional restrictions. Review the [supported regio
 
 ## Set up the SDK client
 
-Install the SDK.
-
-```bash
-pip install "azure-ai-projects>=2.2.0"
-```
-
-Set these shared environment variables:
+Install the SDK for your language. Set these shared environment variables:
 
 - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint, for example, `https://<account_name>.services.ai.azure.com/api/projects/<project_name>`.
 - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The model deployment used by AI-assisted evaluators.
 - `DATASET_NAME` and `DATASET_VERSION`: Optional values for reusable datasets.
 
 Authenticate with `DefaultAzureCredential`, create the project client, and get the OpenAI client used by the evaluation API.
+
+# [Python](#tab/python)
+
+```bash
+pip install "azure-ai-projects>=2.2.0"
+```
 
 ```python
 import os
@@ -73,6 +73,34 @@ project_client = AIProjectClient(
 )
 openai_client = project_client.get_openai_client()
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```bash
+npm install @azure/ai-projects @azure/identity dotenv
+```
+
+```javascript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "";
+const modelDeploymentName =
+  process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "";
+const datasetName = process.env["DATASET_NAME"] || "";
+const datasetVersion = process.env["DATASET_VERSION"] || "1";
+
+const projectClient = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+const openaiClient = projectClient.getOpenAIClient();
+```
+
+Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+---
 
 To use a model connected through admin connections as a target, judge model, or conversation simulator, see [Use admin-connected models in cloud evaluations](evaluate-admin-connected-models.md).
 

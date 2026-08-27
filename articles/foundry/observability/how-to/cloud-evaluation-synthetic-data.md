@@ -178,6 +178,10 @@ eval_run = openai_client.evals.runs.create(
 )
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate synthetic data evaluation. Use the Python or cURL tab for this flow.
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -268,7 +272,10 @@ This approach is useful for:
 
 ### Prepare scenario data
 
-Create a JSONL file where each line describes a scenario for the simulated user. The schema requires `id`, `test_case_description`, and `desired_num_turns`. Include details about the user's goal, context, and any constraints. For a complete example, see the [conversation evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations) in the SDK.
+> [!TIP]
+> Instead of authoring scenarios by hand, generate them by using the **Simulation seed (multi-turn)** task type. The generated dataset contains the required `test_case_description` field and can also contain `id`, `category`, and `desired_num_turns`. Use the generated dataset's ID as `scenarios_id` in the simulation run and skip the upload step. See [Generate a simulation seed dataset](evaluation-dataset-synthetic.md#generate-a-simulation-seed-dataset-sdk).
+
+Create a JSONL file where each line describes a scenario for the simulated user. Each row must contain `test_case_description`. The `id`, `category`, and `desired_num_turns` fields are optional. Include details about the user's goal, context, and constraints. For a complete example, see the [conversation evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations) in the SDK.
 
 ```json
 
@@ -353,6 +360,10 @@ with (
         ),
     ]
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation simulation. Use the Python or cURL tab for this flow.
 
 # [cURL](#tab/curl)
 
@@ -474,6 +485,10 @@ eval_run = openai_client.evals.runs.create(
     extra_body={"evaluation_level": "conversation"},
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate conversation simulation. Use the Python or cURL tab for this flow.
 
 # [cURL](#tab/curl)
 

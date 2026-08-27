@@ -31,6 +31,8 @@ After an evaluation run completes, retrieve the scored results and review them i
 
 Evaluation runs are asynchronous. Poll the run status until it completes, then retrieve the results:
 
+# [Python](#tab/python)
+
 ```python
 import time
 from pprint import pprint
@@ -53,6 +55,35 @@ output_items = list(
 pprint(output_items)
 print(f"Report URL: {run.report_url}")
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+let run = evalRun;
+while (!["completed", "failed"].includes(run.status)) {
+  run = await openaiClient.evals.runs.retrieve(run.id, {
+    eval_id: evalObject.id,
+  });
+  console.log(`Waiting for eval run to complete... ${run.status}`);
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+}
+
+// Retrieve results
+const outputItems = [];
+for await (const item of openaiClient.evals.runs.outputItems.list(run.id, {
+  eval_id: evalObject.id,
+})) {
+  outputItems.push(item);
+}
+console.log(JSON.stringify(outputItems, null, 2));
+console.log(`Report URL: ${run.report_url}`);
+```
+
+# [cURL](#tab/curl)
+
+Use the evaluation and run IDs that the cURL create requests return with the Evals REST endpoints. For runnable polling and output-item retrieval code, use the Python or JavaScript/TypeScript tab.
+
+---
 
 ## Interpret results
 
