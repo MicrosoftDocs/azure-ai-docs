@@ -3,7 +3,7 @@ title: "What is Microsoft Foundry?"
 description: "Microsoft Foundry is a trusted platform that empowers developers to build AI agents, models, and apps. Learn what you can build and how to choose your build approach."
 author: sdgilley
 ms.author: sgilley
-ms.reviewer: sgilley
+ms.reviewer: nbrady
 ms.date: 08/13/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
@@ -47,6 +47,8 @@ Build your first agent in minutes, or open the portal to explore models and tool
 | **Agents** | Build declarative [prompt agents](./agents/quickstarts/prompt-agent.md) in the portal or SDK, or deploy [hosted agents](./agents/quickstarts/quickstart-hosted-agent.md) that run your own code. Learn more in [Foundry Agent Service](./agents/overview.md). |
 | **Models** | Access more than 10,000 models from Microsoft, OpenAI, Anthropic, Meta, and others. Browse the [Foundry Models catalog](./concepts/foundry-models-overview.md). |
 | **Tools and knowledge** | Extend agents with built-in tools, memory, and retrieval using a [Foundry Toolbox](./agents/concepts/toolbox-overview.md). |
+
+Not sure where to start? See the [product and capability map](./concepts/capabilities.md) to match your goal to a starting point.
 
 ## Enterprise-ready platform
 
@@ -94,10 +96,14 @@ Follow these steps to go from zero to a working integration:
 ## Related content
 
 - [What is Foundry Agent Service?](./agents/overview.md)
+- [Microsoft Foundry product and capability map](./concepts/capabilities.md)
+- [Microsoft Foundry capability reference](./concepts/capability-reference.md)
 - [Foundry Models](./concepts/foundry-models-overview.md)
 - [Microsoft Foundry architecture](./concepts/architecture.md)
 - [Agent development lifecycle](./agents/concepts/development-lifecycle.md)
 - [What's new in Microsoft Foundry](./whats-new-foundry.md)
+- [Microsoft Foundry product and capability map](./concepts/capabilities.md)
+- [Microsoft Foundry capability reference](./concepts/capability-reference.md)
 - [Microsoft Foundry portal general availability overview](concepts/general-availability.md)
 - [Upgrade your Azure OpenAI resource to a Foundry resource](./how-to/upgrade-azure-openai.md)
 - [Find hub-based projects in the Foundry (classic) portal](../foundry-classic/what-is-foundry.md)
