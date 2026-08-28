@@ -2,10 +2,10 @@
 title: "Use Terraform to create Microsoft Foundry"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
-ms.date: 05/13/2026
+ms.date: 08/27/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
-ms.reviewer: deeikele 
+ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
 ms.custom: 
@@ -33,7 +33,6 @@ Terraform state files can include sensitive values. Use a secure backend and acc
 > [!TIP]
 > For production-ready Terraform configurations that cover common Foundry deployment scenarios, see the [infrastructure-setup-terraform](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform) folder in the Foundry samples repository. Clone the repository and customize the configurations instead of starting from scratch.
 
-
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
 ## Provider capabilities
@@ -46,7 +45,7 @@ The following table shows which actions each provider supports:
 |Create a Foundry resource|✅|✅|
 |Configure deployments|✅|✅|
 |Configure projects|✅|✅|
-|Configure a connection to knowledge and tools|✅|-|
+|Configure a connection to knowledge and tools|✅|✅|
 |Configure a capability host (for advanced tool configurations like [Agent standard setup](../agents/concepts/capability-hosts.md))|✅|-|
 
 [!INCLUDE [create-resource-terraform 1](../includes/how-to-create-resource-terraform-1.md)]
@@ -57,8 +56,10 @@ Run the following commands to verify deployed resources:
 
 ```terraform
 terraform state list
-terraform output
+terraform validate
 ```
+
+The state list includes the resource group, Foundry resource, model deployment, project, and generated random string. Terraform reports `Success! The configuration is valid.`
 
 ## Export an existing resource to Terraform
 
@@ -105,7 +106,7 @@ When you customize your configuration, consider adding the following security se
 | Control | When to add it | Learn more |
 | --- | --- | --- |
 | **Private endpoints (network isolation)** | Your organization bans public endpoints, or you need to keep traffic on your virtual network for compliance (HIPAA, PCI, FedRAMP). | [Configure network isolation with private endpoints](configure-private-link.md) |
-| **Customer-managed keys (CMK) for encryption** | You must control the encryption-key lifecycle, rotation cadence, or revocation, or your data classification requires bring-your-own-key. | [Set up customer-managed keys for encryption](../concepts/encryption-keys-portal.md) |
+| **Customer-managed keys (CMK) for encryption** | You must control the encryption-key lifecycle, rotation cadence, or revocation, or your data classification requires bring-your-own-key. | [Customer-managed key encryption in Microsoft Foundry](../concepts/customer-managed-keys.md) |
 | **Role-based access control (RBAC)** | You need least-privilege access for builders versus administrators, or you grant access to multiple teams that share a Foundry resource. | [Configure role-based access control for Foundry](../concepts/rbac-foundry.md) |
 | **Custom Azure Policy definitions** | Your platform team enforces a security baseline (allowed regions, required tags, allowed SKUs, mandatory CMK or private link) across every Foundry resource the organization creates. | [Create custom Azure Policy definitions](custom-policy-definition.md) |
 
