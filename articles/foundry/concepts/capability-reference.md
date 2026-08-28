@@ -138,7 +138,7 @@ Measure and improve quality, safety, and cost.
 | [Built-in evaluators](built-in-evaluators.md) | Use general purpose, similarity, RAG, agent, safety, and rubric evaluators. |
 | [Custom evaluators](evaluation-evaluators/custom-evaluators.md) | Define your own scoring logic. |
 | [Agent evaluation](../observability/how-to/evaluate-agent.md) | Evaluate agent trajectories, tool calls, and task completion. |
-| [Continuous evaluation](../how-to/develop/cloud-evaluation.md) | Evaluate production traffic on an ongoing basis. |
+| [Continuous evaluation](../observability/how-to/cloud-evaluation.md) | Evaluate production traffic on an ongoing basis. |
 | [Evaluation datasets](../observability/how-to/evaluation-dataset-synthetic.md) | Generate synthetic test data or build datasets from agent traces when you don't have labeled examples. |
 | [Human evaluation](../observability/how-to/human-evaluation.md) | Collect structured human judgments and annotate traces. |
 | [Prompt optimizer](../observability/how-to/prompt-optimizer.md) | Improve agent instructions automatically from evaluation results. |
