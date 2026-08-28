@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 This article describes the integration between prompt flow and [Semantic Kernel](/semantic-kernel/overview/), and demonstrates how to evaluate Semantic Kernel plugins and orchestration code by using prompt flow.
 
-Semantic Kernel is an open-source SDK that lets you combine AI services with programming languages like C# and Python. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and automatic function calling to orchestrate operations.
+Semantic Kernel is an open-source SDK that you can use to combine AI services with programming languages like C# and Python. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and automatic function calling to orchestrate operations.
 
 As you add plugins and function calls, test that they work as intended. You can use prompt flow to automate this process for an existing application.
 
