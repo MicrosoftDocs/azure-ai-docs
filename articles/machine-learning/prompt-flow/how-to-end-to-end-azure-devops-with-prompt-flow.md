@@ -176,7 +176,7 @@ To use [local execution](https://github.com/microsoft/genaiops-promptflow-templa
    git clone https://github.com/microsoft/genaiops-promptflow-template.git
    ```
 
-1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the repository use an Azure OpenAI connection named `aoai`. Set `api_version` to a version supported by your Azure OpenAI deployment and the Prompt Flow connection.
+1. Create an *.env* file at the top folder level. Add lines for each connection, and update the values for the placeholders. The examples in the repository use an Azure OpenAI connection named `aoai`. Set `api_version` to a version supported by your Azure OpenAI deployment and the Prompt Flow connection.
 
    ```bash
    aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "<supported API version>"}
