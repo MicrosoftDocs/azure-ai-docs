@@ -28,7 +28,7 @@ Semantic Kernel is an open-source SDK that you can use to combine AI services wi
 As you add plugins and function calls, test that they work as intended. You can use prompt flow to automate this process for an existing application.
 
 > [!IMPORTANT]
-> Semantic Kernel's Stepwise and Handlebars planners are deprecated and have been removed from current packages. The planner-based workflow shown in this article is for evaluating a legacy implementation. For current Semantic Kernel applications, use [automatic function calling](/semantic-kernel/concepts/planning#using-automatic-function-calling).
+> Semantic Kernel's Stepwise and Handlebars planners are deprecated and removed from current packages. The planner-based workflow shown in this article is for evaluating a legacy implementation. For current Semantic Kernel applications, use [automatic function calling](/semantic-kernel/concepts/planning#using-automatic-function-calling).
 
 The integration of Semantic Kernel with prompt flow allows you to:
 
