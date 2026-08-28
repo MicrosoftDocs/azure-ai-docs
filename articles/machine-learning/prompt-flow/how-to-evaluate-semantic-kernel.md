@@ -131,7 +131,7 @@ You can check the aggregated metric in the **Metrics** tab.
 
 ## Experiment for quality improvement
 
-If your plugins and orchestration code aren't performing as expected, take steps to improve them. The following high-level recommendations can help:
+If your plugins and orchestration code don't perform as expected, take steps to improve them. The following high-level recommendations can help:
 
 - Use a current model that supports function calling and is available in your Azure OpenAI deployment.
 - Improve your plugin descriptions so they're easier for the model to use.
