@@ -108,7 +108,7 @@ To see all models that support instant access:
 
 1. Open a project in **West US 3** in the new Foundry experience, 
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. In the model catalog, select **Instant** under **Development options** to view the available instant access models.
+1. In the model catalog, select **Instant** under **Deployment options** to view the available instant access models.
 
 You can also list instant access models programmatically:
 
