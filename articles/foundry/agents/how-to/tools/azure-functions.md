@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 
 Learn how to integrate [Azure Functions](/azure/azure-functions/functions-overview) with Microsoft Foundry agents by using a queue-based tool approach. This article shows you how to build custom serverless tools that an agent's Foundry model can call asynchronously through Azure Queue storage. By using this approach, your agents can access enterprise systems and complex business logic with scale-to-zero pricing.
 
-Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation.
+Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation.
 
 Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-functions/flex-consumption-plan) is ideal for hosting your custom tools because it provides:
 
@@ -41,17 +41,56 @@ The following table shows SDK and setup support.
 
 - The Azure AI Projects client library for Python (`azure-ai-projects>=2.0.0`). See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
 - [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
+- For REST, [Azure CLI](/cli/azure/install-azure-cli) and a Bash-compatible shell with `curl`.
 - [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup)
 
   > [!NOTE] 
-  > The basic agent setup isn't supported.
+    > The basic agent setup isn't supported because the Azure Functions tool requires the queue resources and managed network integration provided by the standard setup.
 
 - [Azurite](https://github.com/Azure/Azurite)
+- For Azure deployment, an Azure Storage account with separate input and output queues. Azurite is only for local development.
+- **Storage Queue Data Contributor** on the storage account for both the Foundry project's managed identity and the function app's managed identity. The agent needs to send requests and read results; the function app needs to process requests and write results.
+- **Storage Queue Data Contributor** on the storage account for your signed-in user when you run the function locally against Azure Queue Storage.
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+### Create the storage queues
+
+Set your storage account information, retrieve its queue endpoint, and create the input and output queues. These commands use your Microsoft Entra identity instead of an account key.
+
+```bash
+export RESOURCE_GROUP="<resource-group-name>"
+export STORAGE_ACCOUNT_NAME="<storage-account-name>"
+export STORAGE_QUEUE_ENDPOINT=$(az storage account show \
+    --resource-group "$RESOURCE_GROUP" \
+    --name "$STORAGE_ACCOUNT_NAME" \
+    --query primaryEndpoints.queue --output tsv)
+
+az storage queue create --name "get-weather-input-queue" \
+    --account-name "$STORAGE_ACCOUNT_NAME" --auth-mode login
+az storage queue create --name "get-weather-output-queue" \
+    --account-name "$STORAGE_ACCOUNT_NAME" --auth-mode login
+```
+
+For local execution against Azure Queue Storage, add the queue endpoint to the `Values` object in `local.settings.json`:
+
+```json
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "<language-worker>",
+        "STORAGE_CONNECTION__queueServiceUri": "https://<storage-account-name>.queue.core.windows.net"
+    }
+}
+```
+
+Replace `<language-worker>` with the worker value for your function implementation, such as `python`, `dotnet-isolated`, `java`, or `node`. Role assignments can take several minutes to propagate.
 
 ## Code samples
 
 The following code samples demonstrate how to define an Azure Function tool that gets weather information for a specified location by using queue-based integration.
+
+Each language tab shows the agent-side configuration before the function implementation for reference. Before you create a response, complete the **Write the Azure Function** section in the same tab, and start the function locally or deploy it to Azure. Confirm that the function is listening to `get-weather-input-queue` and can write to `get-weather-output-queue`.
 
 :::zone pivot="python"
 
@@ -133,6 +172,8 @@ print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.versi
 
 ### Create a response
 
+Before you run this code, start or deploy the Azure Function from [Write the Azure Function](#write-the-azure-function).
+
 ```python
 response = openai.responses.create(
     input="What is the weather in Seattle, WA?",
@@ -140,6 +181,12 @@ response = openai.responses.create(
 )
 
 print(f"Response: {response.output_text}")
+```
+
+The response resembles the following output:
+
+```output
+Response: The weather in Seattle, WA is 11 degrees and sunny.
 ```
 
 ### Clean up
@@ -270,11 +317,11 @@ AzureFunctionTool azureFnTool = new(
         inputBinding: new AzureFunctionBinding(
             new AzureFunctionStorageQueue(
                 queueServiceEndpoint: storageQueueUri,
-                queueName: "input")),
+                queueName: "get-weather-input-queue")),
         outputBinding: new AzureFunctionBinding(
             new AzureFunctionStorageQueue(
                 queueServiceEndpoint: storageQueueUri,
-                queueName: "output"))
+                queueName: "get-weather-output-queue"))
     )
 );
 
@@ -294,6 +341,8 @@ Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Na
 
 ### Create a response
 
+Before you run this code, start or deploy the Azure Function from [Write the Azure Function](#write-the-azure-function).
+
 ```csharp
 ProjectResponsesClient responseClient =
     projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
@@ -308,6 +357,12 @@ CreateResponseOptions responseOptions = new()
 
 ResponseResult response = await responseClient.CreateResponseAsync(responseOptions);
 Console.WriteLine(response.GetOutputText());
+```
+
+The response resembles the following output:
+
+```output
+The weather in Seattle, WA is 11 degrees and sunny.
 ```
 
 ### Clean up
@@ -394,7 +449,7 @@ Add the Azure AI Agents dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -441,9 +496,9 @@ AzureFunctionTool azureFnTool = new AzureFunctionTool(
     new AzureFunctionDefinition(
         function,
         new AzureFunctionBinding(
-            new AzureFunctionStorageQueue(storageQueueUri, "input")),
+            new AzureFunctionStorageQueue(storageQueueUri, "get-weather-input-queue")),
         new AzureFunctionBinding(
-            new AzureFunctionStorageQueue(storageQueueUri, "output"))
+            new AzureFunctionStorageQueue(storageQueueUri, "get-weather-output-queue"))
     )
 );
 
@@ -460,6 +515,8 @@ System.out.printf("Agent created (id: %s, name: %s, version: %s)%n",
 
 ### Create a response
 
+Before you run this code, start or deploy the Azure Function from [Write the Azure Function](#write-the-azure-function).
+
 ```java
 AgentReference agentReference = new AgentReference(agent.getName())
     .setVersion(agent.getVersion());
@@ -470,6 +527,12 @@ Response response = responsesClient.createAzureResponse(
         .input("What is the weather in Seattle, WA?"));
 
 System.out.println("Response: " + response.output());
+```
+
+The response resembles the following output:
+
+```output
+Response: The weather in Seattle, WA is 11 degrees and sunny.
 ```
 
 ### Clean up
@@ -616,6 +679,8 @@ console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${age
 
 ### Create a response
 
+Before you run this code, start or deploy the Azure Function from [Write the Azure Function](#write-the-azure-function).
+
 ```typescript
 const response = await openai.responses.create(
   {
@@ -623,11 +688,17 @@ const response = await openai.responses.create(
   },
   {
     body: {
-      agent: { name: agent.name, type: "agent_reference" },
+            agent_reference: { name: agent.name, type: "agent_reference" },
     },
   },
 );
 console.log(`Response: ${response.output_text}`);
+```
+
+The response resembles the following output:
+
+```output
+Response: The weather in Seattle, WA is 11 degrees and sunny.
 ```
 
 ### Clean up
@@ -702,16 +773,28 @@ app.storageQueue("getWeather", {
 
 :::zone pivot="rest"
 
+Set the REST variables. Replace the endpoint with your Foundry project endpoint, and sign in with `az login` before you request the token.
+
+```bash
+export FOUNDRY_PROJECT_ENDPOINT="https://<resource-name>.services.ai.azure.com/api/projects/<project-name>"
+export STORAGE_QUEUE_ENDPOINT="https://<storage-account-name>.queue.core.windows.net"
+export API_VERSION="v1"
+export AGENT_TOKEN=$(az account get-access-token \
+    --scope "https://ai.azure.com/.default" \
+    --query accessToken -o tsv)
+```
+
 ### Create an agent version
 
 Create an agent version by using the Azure Function tool definition.
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/azure-function-agent-get-weather/versions?api-version=$API_VERSION \
+    --url "$FOUNDRY_PROJECT_ENDPOINT/agents/azure-function-agent-get-weather/versions?api-version=$API_VERSION" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{
+    --data-binary @- <<EOF
+{
     "description": "Agent with Azure Function tool",
     "definition": {
       "kind": "prompt",
@@ -735,40 +818,49 @@ curl --request POST \
               "input_binding": {
                   "type": "storage_queue",
                   "storage_queue": {
-                      "queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
-                      "queue_name": "input"
+                      "queue_service_endpoint": "$STORAGE_QUEUE_ENDPOINT",
+                      "queue_name": "get-weather-input-queue"
                   }
               },
               "output_binding": {
                   "type": "storage_queue",
                   "storage_queue": {
-                      "queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
-                      "queue_name": "output"
+                      "queue_service_endpoint": "$STORAGE_QUEUE_ENDPOINT",
+                      "queue_name": "get-weather-output-queue"
                   }
               }
           }
         }
       ]
     }
-  }'
+}
+EOF
 ```
 
 ### Create a response
 
 Create a response that uses the agent version to get weather information.
 
+Before you send the request, start or deploy the Azure Function implementation from another language tab. Confirm that it uses the same input and output queue names as the agent definition.
+
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+    --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "input": "What is the weather in Seattle, WA?",
-    "agent": {
+        "agent_reference": {
       "name": "azure-function-agent-get-weather",
       "type": "agent_reference"
     }
   }'
+```
+
+The response contains output text similar to the following example:
+
+```output
+The weather in Seattle, WA is 11 degrees and sunny.
 ```
 
 ### Write the Azure Function

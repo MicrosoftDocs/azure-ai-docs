@@ -5,7 +5,7 @@ description: Learn what general availability means for Microsoft Foundry, includ
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne
-ms.date: 07/21/2026
+ms.date: 08/14/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
@@ -41,7 +41,7 @@ Before you standardize on GA features for production, make sure you:
 At GA, the new Microsoft Foundry portal provides:
 
 - **Production-ready core platform** with validated end-to-end core scenarios.
-- **Enterprise capabilities** including RBAC, audit logs, compliance controls, monitoring, alerting, and virtual network integration.
+- **Enterprise capabilities for supported scenarios** including RBAC, audit logs, compliance controls, and virtual network integration. Monitoring, alerting, and some networking experiences remain in preview.
 - **Governed lifecycle consistency** across the portal, APIs, SDKs, CLI, and developer tools.
 - **Defined GA scope** for Foundry projects, with out-of-scope capabilities continuing in Foundry (classic) portal.
 
@@ -54,7 +54,7 @@ For governance-sensitive production workloads, use Microsoft Entra ID with RBAC 
 
 At GA, the new Foundry portal supports Foundry projects for core end-to-end scenarios. Not all project and resource types are supported in the new portal:
 
-- **Foundry projects**: Fully supported at GA with end-to-end coverage for model deployment, agent development, and operations.
+- **Foundry projects**: Supported at GA for defined core scenarios across model deployment, agent development, and operations. Some capabilities remain in preview, as shown in the [feature readiness table](#feature-readiness-at-ga).
 - **Standalone Azure OpenAI resources**: Not supported in the new Foundry portal. Continue using Foundry (classic) portal, or upgrade to a Foundry project. For upgrade guidance, see [Upgrade Azure OpenAI to Microsoft Foundry](../how-to/upgrade-azure-openai.md).
 - **Hub-based projects (classic)**: Not supported in the new Foundry portal. For migration guidance, see [Migrate from hub-based to Foundry projects](../../foundry-classic/how-to/migrate-project.md).
 
@@ -72,7 +72,9 @@ Core GA coverage includes:
 
 ## Feature readiness at GA
 
-The following table summarizes feature readiness. Most core capabilities across Home, Discover, Build, and Operate are GA, while some capabilities remain in Preview.
+The following table summarizes feature readiness. Most core capabilities across Home, Discover, and Build are GA. Several Build and Operate capabilities remain in preview.
+
+Statuses describe the named portal experience. Check each linked feature article for component-level and regional availability.
 
 | Area | Feature | Status |
 | --- | --- | --- |
@@ -116,8 +118,9 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Operate | Overview | Preview |
 | Operate | Assets | Preview |
 | Operate | Compliance | Preview |
-| Operate | [Quota](../how-to/quota.md) | GA |
-| Operate | Admin | GA |
+| Manage | [Quota](../how-to/quota.md) | GA |
+| Manage | AI Gateway | Preview |
+| Manage | Project and resource details | GA |
 | Docs | All | GA |
 
 ## Unsupported at GA

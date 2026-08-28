@@ -29,6 +29,8 @@ items:
       - name: Custom models
         displayName: locale, handwritten, handwriting, text, detect, detection, printed
         href: language-support/custom.md
+  - name: Region support
+    href: https://go.microsoft.com/fwlink/?linkid=2087185      
   - name: Pricing
     displayName: cost, free, F0, tiers, standard, S0
     href: https://azure.microsoft.com/pricing/details/form-recognizer/
@@ -366,14 +368,10 @@ items:
 
 - name: Resources
   items:
-  - name: Enterprise readiness
-    items:
-    - name: Region support
-      href: https://go.microsoft.com/fwlink/?linkid=2087185
-    - name: Compliance and certification
-      href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
   - name: Known issues and troubleshooting
     href: reference/known-issues.md
+  - name: Compliance and certification
+    href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
   - name: Support and help options
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies

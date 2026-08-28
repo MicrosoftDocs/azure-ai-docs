@@ -166,15 +166,14 @@ The agent responds with information about the secondary agent's capabilities, de
 
 ### Hosted agents
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `a2a-toolbox` and connect to its MCP endpoint with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx azure-ai-projects`, replace `PROJECT_ENDPOINT` with your project endpoint, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `a2a-toolbox` and connect to its MCP endpoint with `FoundryToolbox`. Install the packages with `pip install agent-framework-foundry azure-ai-projects`, replace `PROJECT_ENDPOINT` with your project endpoint, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 ```python
 import asyncio
 
-import httpx
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
+from azure.identity import AzureCliCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import A2APreviewToolboxTool
 
@@ -195,15 +194,6 @@ toolbox = project.toolboxes.create_version(
 Next, attach the toolbox to the hosted agent as an MCP tool and run it:
 
 ```python
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
-        yield request
-
-
 async def main() -> None:
     # The toolbox exposes an MCP-compatible endpoint
     TOOLBOX_MCP_URL = (
@@ -212,19 +202,13 @@ async def main() -> None:
     )
 
     # Attach the toolbox to the hosted agent as an MCP tool
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are a helpful assistant.",
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run("What can the secondary agent do?")
@@ -319,7 +303,7 @@ The console displays the agent's response text from the A2A endpoint. After comp
 
 ### Hosted agents
 
-This sample creates the `a2a-toolbox` with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke the A2A tool through the toolbox MCP endpoint. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
+This sample creates the `a2a-toolbox` with the Azure AI Projects SDK, then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make the A2A tool available to the hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 ```csharp
 using Azure.AI.AgentServer.Responses;
@@ -329,6 +313,8 @@ using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using Microsoft.Extensions.AI;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 
@@ -359,25 +345,19 @@ ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
 Next, attach the toolbox to the hosted agent:
 
 ```csharp
-// The toolbox exposes an MCP-compatible endpoint
-string toolboxMcpEndpoint =
-    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+// Create the hosted agent and register the toolbox integration.
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    instructions: "You are a helpful assistant with access to the toolbox tools.",
+    name: "hosted-toolbox-agent");
 
-// Attach the toolbox to the hosted agent
-AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxVersion.Name);
 
-// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call
-ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
-
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(
-        name: AgentName,
-        instructions: AgentInstructions,
-        chatClient: chatClient,
-        toolboxClient: toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
 
 ### Expected output

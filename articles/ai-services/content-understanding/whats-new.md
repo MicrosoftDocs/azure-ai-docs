@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 08/04/2026
+ms.date: 08/19/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: whats-new
@@ -22,6 +22,19 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## August 2026
+
+### 2026-06-01 preview SDK release
+
+The Content Understanding client libraries for Python, .NET, Java, and JavaScript/TypeScript are now available for the `2026-06-01-preview` API version. These SDKs support the latest preview features, including agentic mode, synchronous Read and Layout operations, and the newest analyzer improvements.
+
+| Language | SDK package |
+|----------|-------------|
+| Python | [Python SDK](https://aka.ms/cu-sdk-python) |
+| .NET | [.NET SDK](https://aka.ms/cu-sdk-net) |
+| Java | [Java SDK](https://aka.ms/cu-sdk-java) |
+| JavaScript/TypeScript | [JavaScript/TypeScript SDK](https://aka.ms/cu-sdk-js) |
 
 ## July 2026
 
@@ -82,7 +95,7 @@ The Azure Content Understanding skill in Azure AI Search now supports AI-based d
 
 ### Expanded generative model support
 
-Content Understanding now supports the GPT-5.x model family, including GPT-5.5, GPT-5.4, and GPT-5.4-mini, as generative models. For the full list of supported models, see [Service quotas and limits](service-limits.md#supported-generative-models).
+Content Understanding now supports the GPT-5 series as generative models, including GPT-5, GPT-5.1, GPT-5.2, GPT-5.4, and GPT-5.5, along with the mini and nano variants where supported. For the full list of supported models, see [Service quotas and limits](service-limits.md#supported-generative-models).
 
 ## May 2026
 
@@ -102,7 +115,6 @@ Content Understanding Studio now supports GPT-5.2 beyond the original East US 2 
 - East US
 - Australia East
 - Japan East
-- North Europe
 - South Central US
 - Southeast Asia
 - Sweden Central
@@ -204,6 +216,7 @@ Bring Your Own Capacity (BYOC) now supports cross-regional model deployments. Cu
 
 ### Analyzer updates
 
+- **Document extraction modes**: The `extractionMode` property is available for document analyzers in the `2025-11-01` GA API version. Use layout-aware extraction for structured documents, including tables, sections, and reading order. Use faster text-only extraction to produce clean Markdown for RAG scenarios. Set this property in the analyzer schema in the Foundry portal or through the REST Analyze API. `extractionMode` controls document analysis and output, while the `estimateSourceAndConfidence` setting separately controls confidence scores and source grounding for downstream automation.
 - **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateSourceAndConfidence` configuration setting. This selective approach reduces response payload sizes and lowers processing costs and latency by computing confidence metrics only when required. Confidence scores are only supported for document files.
 - **Classification is now integrated** with the analyzer API, which supports classification using the `contentCategories` property. The number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse [file types](/azure/ai-services/content-understanding/service-limits#input-file-limits) within a single analyzer—no separate classifier required. See [Build a robotic process automation solution](tutorial/robotic-process-automation.md) for an example.
 - **Analyzer lifecycle APIs** extend to support copy, delete, and replace to give you complete control over analyzer versions. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.

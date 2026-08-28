@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 08/19/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -52,7 +52,7 @@ for ks in index_client.list_knowledge_sources():
 ```http
 ### List knowledge sources by name and type
 GET {{search-url}}/knowledgesources?api-version={{api-version}}&$select=name,kind
-api-key: {{api-key}}
+Authorization: Bearer {{token}}
 ```
 
 **Reference:** [Knowledge Sources - List](/rest/api/searchservice/knowledge-sources/list)
@@ -112,7 +112,7 @@ print(json.dumps(ks.as_dict(), indent = 2))
 ```http
 ### Get a knowledge source definition
 GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}
-api-key: {{api-key}}
+Authorization: Bearer {{token}}
 ```
 
 **Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)

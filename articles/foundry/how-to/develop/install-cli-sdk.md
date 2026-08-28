@@ -1,11 +1,11 @@
 ---
 title: "Prepare your development environment"
-description: "Set up your development environment with Foundry DevPack, language runtimes, Azure CLI, and Git."
-keywords: foundry sdk, foundry devpack, azure cli, development environment, visual studio code
+description: "Set up your development environment with Foundry DevPack, language runtimes, and Git."
+keywords: foundry sdk, foundry devpack, development environment, developer tools
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 08/06/2026
+ms.date: 08/18/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to

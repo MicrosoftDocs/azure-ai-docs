@@ -58,7 +58,9 @@ When you use private networking with your Foundry resource, the customer-provide
 
 To configure trusted services access, see [Configure Azure Key Vault firewalls and virtual networks](/azure/key-vault/general/network-security) or [Managed HSM network security](/azure/key-vault/managed-hsm/secure-your-managed-hsm).
 
-## Steps to configure a CMK
+## Configure a customer-managed key
+
+Configuring a CMK takes three steps. First, create or import a key in your key vault or Managed HSM. Next, grant the Foundry resource's managed identity permission to use that key. Finally, enable the CMK on the Foundry resource by using the portal, Bicep or ARM, or the Azure CLI. The following sections walk through each step.
 
 ### Create or import a key in the key store
 
@@ -152,12 +154,12 @@ You can also enable a CMK with a template, such as Bicep or ARM. In the account'
 
 When you use a user-assigned managed identity, also set `identityClientId` to the client ID of that identity. This value tells the resource which identity to use when it accesses the key.
 
-##### User-assigned managed identity
+**User-assigned managed identity**
 
 With a user-assigned identity, you can grant key store access before you create the Foundry resource, so a single deployment is sufficient.
 
 ```bicep
-resource account 'Microsoft.CognitiveServices/accounts@2026-05-01-preview' = {
+resource account 'Microsoft.CognitiveServices/accounts@2026-05-01' = {
   name: aiFoundryName
   location: location
   kind: 'AIServices'
@@ -186,7 +188,7 @@ resource account 'Microsoft.CognitiveServices/accounts@2026-05-01-preview' = {
 
 For a complete example, see [Customer-managed keys with a user-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
 
-##### System-assigned managed identity
+**System-assigned managed identity**
 
 When you use a system-assigned managed identity, the identity doesn't exist until the resource is created. Configure CMK by using two deployments:
 
@@ -243,6 +245,15 @@ The `updateEncryption.bicep` module grants key vault permissions and then applie
 
 For a complete example, see [Customer-managed keys with system-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/30-customer-managed-keys).
 
+After deployment, verify that CMK encryption is applied. Run the following command and confirm that `keySource` is `Microsoft.KeyVault` with your key vault URI and key name:
+
+```azurecli
+az cognitiveservices account show \
+  --name <resource-name> \
+  --resource-group <resource-group> \
+  --query properties.encryption
+```
+
 # [Azure CLI](#tab/cli)
 
 You can also use Azure CLI for the system-assigned identity sequence:
@@ -281,6 +292,12 @@ az cognitiveservices account update \
   --name <resource-name> \
   --resource-group <resource-group> \
   --encryption "{\"keySource\":\"Microsoft.KeyVault\",\"keyVaultProperties\":{\"keyVaultUri\":\"https://<key-vault-name>.vault.azure.net\",\"keyName\":\"<key-name>\",\"keyVersion\":\"<key-version>\"}}"
+
+# Verify that CMK encryption is enabled
+az cognitiveservices account show \
+  --name <resource-name> \
+  --resource-group <resource-group> \
+  --query properties.encryption
 ```
 
 ---
@@ -324,5 +341,4 @@ To maintain optimal security and compliance, implement the following practices:
 - [Azure Key Vault documentation](/azure/key-vault/)
 - [Azure Managed HSM documentation](/azure/key-vault/managed-hsm/)
 - [GitHub Bicep example: Customer-managed keys with a user-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
-- [Overview of Azure managed identities](/entra/identity/managed-identities-azure-resources/overview)
-- 
+- [Overview of Azure managed identities](/entra/identity/managed-identities-azure-resources/overview) 

@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/10/2026
+ms.date: 08/18/2026
 ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
@@ -115,7 +115,6 @@ Not every model is available in every supported region. Check the [models page](
 > [!NOTE]
 > Not currently supported:
 > - Image generation using multi-turn editing and streaming.
-> - Images can't be uploaded as a file and then referenced as input.
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
@@ -2344,7 +2343,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### File ID
 
-Upload an image with the Files API by using `purpose="vision"`, then reference the returned file ID in your request. This approach is useful when you want to reuse the same image across multiple requests without resending its bytes.
+Upload an image with the Files API by using `purpose="assistants"`, then reference the returned file ID in your request. This approach is useful when you want to reuse the same image across multiple requests without resending its bytes.
 
 # [Python](#tab/python)
 ```python
@@ -2360,7 +2359,7 @@ def create_file(file_path):
     with open(file_path, "rb") as file_content:
         result = client.files.create(
             file=file_content,
-            purpose="vision",
+            purpose="assistants",
         )
         return result.id
 
@@ -2391,6 +2390,7 @@ using Azure.Identity;
 using OpenAI;
 using OpenAI.Files;
 using OpenAI.Responses;
+using System.ClientModel;
 using System.ClientModel.Primitives;
 
 string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
@@ -2416,7 +2416,7 @@ byte[] imageBytes = await File.ReadAllBytesAsync("path_to_your_image.jpg");
 OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
     BinaryData.FromBytes(imageBytes),
     "path_to_your_image.jpg",
-    FileUploadPurpose.Vision);
+    FileUploadPurpose.Assistants);
 
 CreateResponseOptions options = new()
 {
@@ -2447,7 +2447,7 @@ const client = new OpenAI({
 
 const file = await client.files.create({
   file: fs.createReadStream("path_to_your_image.jpg"),
-  purpose: "vision",
+  purpose: "assistants",
 });
 
 const response = await client.responses.create({
@@ -2471,9 +2471,9 @@ console.log(response.output_text);
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.credential.AzureApiKeyCredential;
-import com.openai.models.FileCreateParams;
-import com.openai.models.FileObject;
-import com.openai.models.FilePurpose;
+import com.openai.models.files.FileCreateParams;
+import com.openai.models.files.FileObject;
+import com.openai.models.files.FilePurpose;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseInputImage;
@@ -2491,7 +2491,7 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
 FileObject uploaded = openAIClient.files().create(
     FileCreateParams.builder()
         .file(Paths.get("path_to_your_image.jpg"))
-        .purpose(FilePurpose.VISION)
+        .purpose(FilePurpose.ASSISTANTS)
         .build());
 
 ResponseInputImage image = ResponseInputImage.builder()
@@ -2518,9 +2518,9 @@ System.out.println(response.outputText());
 # [REST](#tab/rest)
 ```bash
 # Upload the image
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/files \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -F purpose="vision" \
+  -F purpose="assistants" \
   -F file="@path_to_your_image.jpg"
 
 # Use the returned file ID with Responses
@@ -2833,6 +2833,7 @@ using Azure.Identity;
 using OpenAI;
 using OpenAI.Files;
 using OpenAI.Responses;
+using System.ClientModel;
 using System.ClientModel.Primitives;
 
 string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
@@ -2858,7 +2859,7 @@ byte[] pdfBytes = await File.ReadAllBytesAsync("nucleus_sampling.pdf");
 OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
     BinaryData.FromBytes(pdfBytes),
     "nucleus_sampling.pdf",
-    FileUploadPurpose.UserData);
+    FileUploadPurpose.Assistants);
 
 CreateResponseOptions options = new()
 {
@@ -2915,9 +2916,9 @@ import com.azure.identity.AuthenticationUtil;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.credential.BearerTokenCredential;
-import com.openai.models.FileCreateParams;
-import com.openai.models.FileObject;
-import com.openai.models.FilePurpose;
+import com.openai.models.files.FileCreateParams;
+import com.openai.models.files.FileObject;
+import com.openai.models.files.FilePurpose;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseInputFile;
@@ -2935,7 +2936,7 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
 FileObject uploaded = openAIClient.files().create(
     FileCreateParams.builder()
         .file(Paths.get("document.pdf"))
-        .purpose(FilePurpose.USER_DATA)
+        .purpose(FilePurpose.ASSISTANTS)
         .build());
 
 ResponseInputFile file = ResponseInputFile.builder()
@@ -2961,7 +2962,7 @@ System.out.println(response.outputText());
 # [REST](#tab/rest)
 ```bash
 # Upload the PDF
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/files \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F purpose="assistants" \
   -F file="@your_file.pdf"

@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: reference
-ms.date: 07/21/2026
+ms.date: 07/30/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 A hosted agent is a container that fulfills a specific runtime contract with the Microsoft Foundry platform. This reference describes what the platform expects from your container and how the SDK adapter packages help you meet those requirements.
 
 The SDK adapter packages implement the entire contract for you. If you use `azure-ai-agentserver-responses` or `azure-ai-agentserver-invocations`, you implement only your handler logic.
+
+If you use a coding agent like GitHub Copilot to implement or review a hosted agent container, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help check the runtime contract, adapter usage, and deployment assumptions.
 
 ## Contract requirements
 
@@ -83,6 +85,16 @@ The adapter handles the following parts of the contract for you:
 * Platform environment variable consumption.
 
 You implement a handler function that receives parsed requests and returns responses.
+
+## Long-running and resilient execution (preview)
+
+The protocol adapters compose with the resilient task and streaming primitives in their AgentServer Core dependency. Use these primitives when work must survive a process interruption or clients must reconnect to replayed output.
+
+The Responses adapter can manage resilient execution for stored background responses. Your server opts in to resilient background processing, and your handler either safely reruns or resumes from a durable checkpoint. Foreground responses aren't re-invoked after the process stops.
+
+The Invocations adapter doesn't prescribe a status or polling contract. Register resilient tasks for durable execution, then define the response, polling, or stream endpoints that expose progress to your clients.
+
+For the execution model, checkpoint strategies, and client replay behavior, see [Resilience for long-running hosted agents](long-running-agent-resilience.md).
 
 ## Handler examples
 
@@ -162,7 +174,7 @@ Reference: [ResponsesAgentServerHost](https://github.com/microsoft-foundry/found
 
 ### [C#](#tab/csharp)
 
-From [`bring-your-own/responses/HelloWorld/Program.cs`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/bring-your-own/responses/HelloWorld/Program.cs):
+From [`bring-your-own/responses/HelloWorld/Program.cs`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/bring-your-own/responses/HelloWorld/src/hello-world-dotnet-responses/Program.cs):
 
 ```csharp
 using Azure.AI.AgentServer.Responses;

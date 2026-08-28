@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 08/13/2026
+ms.date: 08/19/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -13,9 +13,12 @@ ai-usage: ai-assisted
 ---
 
 # What are hosted agents?
+
 When you build agentic applications by using open-source frameworks, you typically manage many cross-cutting concerns: containerization, web server setup, security, memory persistence, scaling, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
 Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. Hosted agents call models from the Foundry model catalog to perform reasoning while your custom code handles orchestration. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
+
+If you're exploring hosted agents with an AI coding agent, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help connect these concepts to implementation, deployment, and operations tasks.
 
 ### When to use hosted agents
 
@@ -25,6 +28,7 @@ Choose Hosted agents over prompt-based agents when you need to:
 - **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
 - **Control compute resources** - specify CPU and memory for your agent's sandbox.
 - **Run stateful workloads** - persist files and state across turns via $HOME and the /files endpoint.
+- **Run long-lived work resiliently** - preserve in-progress agent work across process interruptions and replay streamed results to reconnecting clients.
 
 ### How it works
 
@@ -67,7 +71,7 @@ Hosted agent containers can expose one or more protocols. Each protocol is provi
 |----------|----------|-----|
 | Conversational chatbot or assistant | **Responses** | The platform manages conversation history, streaming events, and session lifecycle—use any OpenAI-compatible SDK as the client. |
 | Multi-turn Q&A with RAG or tools | **Responses** | Built-in conversation ID threading and tool result handling. |
-| Background / async processing | **Responses** | background: true with platform-managed polling and cancellation—no custom code needed. |
+| Background / async processing | **Responses** | `background: true` with platform-managed polling and cancellation. Opt in separately when the handler must recover after a process interruption. |
 | Agent published to Teams or Microsoft 365 | **Responses** + **Activity** | The Responses protocol powers the agent logic; the platform automatically bridges Responses to the Activity protocol for channel delivery. |
 | Webhook receiver (GitHub, Stripe, Jira, etc.) | **Invocations** | The external system sends its own payload format—you can't change it to match /responses. |
 | Non-conversational processing (classification, extraction, batch) | **Invocations** | The input is structured data, not a chat message. Arbitrary JSON in, arbitrary JSON out. |
@@ -91,7 +95,9 @@ The protocol you choose determines the payload your container receives, and how 
 | **Client SDK** | Any OpenAI-compatible SDK (Python, JS, C#) works out of the box | Custom client—you define the contract |
 | **Session history** | Platform-managed via conversation ID | You manage sessions (in-memory, Cosmos DB, etc.) |
 | **Streaming** | Platform-managed ResponseEventStream with lifecycle events | Raw SSE—you format and write events directly |
-| **Background / long-running** | Built-in (background: true + platform-managed polling) | Manual task tracking and custom polling endpoints |
+| **Background / long-running** | Built-in background mode and polling; optional resilient recovery for stored background responses | Resilient tasks in the AgentServer SDK; you define polling or streaming endpoints |
+
+Background mode and resilient execution solve different problems. Background mode lets work continue after the initiating request returns. Resilient execution preserves work after the hosting process stops. For the recovery model and application responsibilities, see [Resilience for long-running hosted agents](long-running-agent-resilience.md).
 
 #### Additional protocols
 
@@ -140,7 +146,7 @@ A session ID identifies a logical session with persisted state, including $HOME 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state. A session is permanently deleted after 30 days of inactivity.
+- **Session lifetime**: You can configure the idle timeout per agent version from 5 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -161,12 +167,12 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 | State | What happens |
 |-------|----------------------------------------------|
 | **Active** | Compute is running. Requests are routed to it. $HOME and /files content are available. |
-| **Idle** | No requests for 15 minutes. Compute is deprovisioned. Session state ($HOME, /files) is persisted. |
+| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists session state ($HOME, `/files`). |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
 
-Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts, releases it after 15 minutes without a request, and restores `$HOME` and `/files` when the session resumes, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
+Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts and releases it when the configured idle timeout elapses after the most recent request. When the session resumes, the platform restores `$HOME` and `/files`, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
 
-:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After 15 minutes without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
+:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After the configured idle timeout elapses without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
 
 ## Security and data handling
 
@@ -197,7 +203,7 @@ For configuration and analysis guidance, see [Enable tracing in your project](..
 
 ### Toolbox in Foundry
 
-Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. Your agent code connects to the endpoint by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
+Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. If you use Microsoft Agent Framework, connect through `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET instead of a generic MCP client. Other runtimes connect by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 
@@ -215,11 +221,13 @@ Hosted agent sandboxes support the following CPU and memory combinations:
 
 ### Session storage
 
-Each session has a persistent `$HOME`. Its contents are preserved when compute is deprovisioned after 15 minutes of inactivity, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
+Each session has a persistent `$HOME`. The platform preserves its contents when it deprovisions compute after the configured idle timeout. The platform restores the contents when the session resumes, so files written under `$HOME` survive idle periods. The platform writes files uploaded via the `/files` endpoint into `$HOME`, where they share the same storage. Each session has a total disk budget of up to **20 GiB at 1 vCPU or larger**, which scales down proportionally for smaller CPU tiers. The platform reserves about **20% of that budget for system use**, and it isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size.
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand and keeps its compute active while requests continue. Each request resets the idle timer. When the configured idle timeout elapses after the most recent request, the platform deprovisions the sandbox compute and persists the session state.
+
+The idle timeout can be 5 through 60 minutes and defaults to 15 minutes. The platform permanently deletes a session after 30 days of inactivity. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
@@ -300,5 +308,5 @@ Hosted agents are currently available in the following regions:
 - [Agent runtime components](./runtime-components.md)
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
-- [Discover tools in Foundry Tools](./tool-catalog.md)
+- [What is Toolbox in Foundry?](./toolbox-overview.md)
 - [Azure Container Registry documentation](/azure/container-registry/)

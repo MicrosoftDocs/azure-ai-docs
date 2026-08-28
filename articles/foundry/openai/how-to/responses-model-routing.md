@@ -19,6 +19,8 @@ The Responses API is the programmatic interface for every model in Microsoft Fou
 > [!NOTE]
 > You pass your deployment name to the `model` parameter. In most cases the deployment name matches the model name. For example, a `gpt-4.1-mini` deployment is called `"gpt-4.1-mini"`.
 
+The [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help apply the Responses API examples, choose routing behavior, and troubleshoot model deployment issues.
+
 ## Prerequisites
 
 - A Foundry project with a `model-router` deployment. See [Deploy model router](model-router.md#deploy-a-model-router-model).
@@ -95,6 +97,8 @@ Every call goes through `responses.create()`. The `model` value is the only deci
 Use `model-router` as your default. Customize your model router deployment with optional settings. See [Model router deployment options](model-router.md#optional-customize-deployment-settings).
 
 Switch to a named model only when you need deterministic control.
+
+When you evaluate automatic routing, use the named model that currently serves your workload as the baseline. Keep the request and application configuration consistent, then compare the quality, cost, and latency outcomes before you adopt model router broadly. See [Evaluate model router for your workload](evaluate-model-router.md).
 
 
 ## Built-in enterprise capabilities

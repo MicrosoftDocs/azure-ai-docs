@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/17/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -21,6 +21,8 @@ If you're deploying for the first time or want a guided walkthrough, see the [Qu
 
 > [!TIP]
 > Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you plan the container deployment flow, prepare `azd` commands, and connect the SDK or REST steps to your project.
 
 ## Deployment lifecycle
 
@@ -79,33 +81,36 @@ A single container can expose **multiple protocols simultaneously** by declaring
 -->
 ### Responses protocol library
 
-The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement the `IResponseHandler` interface. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
+The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement a response handler. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
 
-#### IResponseHandler
+#### Implement a handler
 
-`IResponseHandler` is the core abstraction you implement. The library calls `CreateAsync` for each incoming request and delivers the returned `IAsyncEnumerable<ResponseStreamEvent>` to clients through SSE:
+The handler is the core abstraction you implement. The library calls it for each incoming request and delivers the returned events to clients through SSE. In Python, you decorate an async function with `@app.response_handler`:
 
-```csharp
-public class EchoHandler : ResponseHandler
-{
-    public override IAsyncEnumerable<ResponseStreamEvent> CreateAsync(
-        CreateResponse request,
-        ResponseContext context,
-        CancellationToken cancellationToken)
-    {
-        return new TextResponse(context, request,
-            createText: async ct =>
-            {
-                var input = await context.GetInputTextAsync(cancellationToken: ct);
-                return $"Echo: {input}";
-            });
-    }
-}
+```python
+from azure.ai.agentserver.responses import (
+    CreateResponse,
+    ResponseContext,
+    ResponsesAgentServerHost,
+    TextResponse,
+)
+
+app = ResponsesAgentServerHost()
+
+
+@app.response_handler
+async def handler(
+    request: CreateResponse,
+    context: ResponseContext,
+    _cancellation_signal,
+):
+    user_input = await context.get_input_text() or ""
+    return TextResponse(context, request, text=f"Echo: {user_input}")
 ```
 
-#### ResponseEventStream
+#### Automatic event and lifecycle management
 
-`ResponseEventStream` manages `sequenceNumber`, `outputIndex`, `contentIndex`, `itemId`, and the full `Response` lifecycle automatically. Each `yield return` maps one-to-one to an SSE event, so you don't need to track this state yourself.
+The library manages the event sequence—sequence numbers, output and content indexes, and item IDs—and the full response lifecycle automatically, so you don't track this state yourself. Each event your handler produces maps one-to-one to an SSE event, which the host framework manages for you.
 
 #### Streaming and background modes
 
@@ -118,9 +123,9 @@ The library orchestrates the complete response lifecycle: `created` -> `in_progr
 
 #### Thread safety
 
-All service instances registered through `AddResponsesServer()` are thread-safe. Handler instances are scoped per-request.
+Handler instances are scoped per request, so per-request state doesn't leak across requests. The library handles concurrent requests safely.
 
-For detailed handler implementation guidance, see the [handler implementation guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md). For runnable examples, see the [Responses protocol samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples).
+For runnable examples, see the [Python bring-your-own samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own).
 
 ### Health endpoints
 
@@ -184,7 +189,7 @@ services:
       GITHUB_TOKEN: ${{connections.agent-secrets.credentials.github_token}}
 ```
 
-At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other env var:
+At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other environment variable:
 
 ```python
 import os
@@ -332,7 +337,12 @@ When you create a version, the platform automatically provisions the agent. Ther
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentEndpointProtocol, ContainerConfiguration
+from azure.ai.projects.models import (
+    AgentEndpointProtocol,
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+)
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -359,7 +369,7 @@ agent = project.agents.create_version(
         ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
-        }
+        },
     )
 )
 
@@ -385,6 +395,8 @@ Key parameters:
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
 | `protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
+
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
 
 ### Poll for version status
 
@@ -504,6 +516,8 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
 
 Creating an agent also creates version `1` and triggers provisioning.
 
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
+
 To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
@@ -578,7 +592,7 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
 
 ## Clean up resources
 
-To prevent charges, clean up resources when finished. Agent compute is deprovisioned after 15 minutes of inactivity, so there's no cost when an agent isn't serving requests.
+To prevent charges, clean up resources when finished. The platform deprovisions agent compute after the configured idle timeout, which is 15 minutes by default, so there's no cost when an agent isn't serving requests.
 
 :::zone pivot="azd"
 
@@ -600,10 +614,10 @@ Delete a single version:
 project.agents.delete_version(agent_name="my-agent", agent_version=agent.version)
 ```
 
-Or delete the entire agent and all its versions:
+Or delete the entire agent and all its versions. Use `force=True` to cascade-delete any active sessions, such as right after you invoke the agent; without it, the call fails with a conflict error while sessions are active:
 
 ```python
-project.agents.delete(agent_name="my-agent")
+project.agents.delete(agent_name="my-agent", force=True)
 ```
 
 :::zone-end

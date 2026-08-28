@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 05/12/2026
+ms.date: 08/19/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -100,6 +100,6 @@ If you encounter problems setting up or using your private tool catalog, use the
 
 ## Related content
 
-[Discover and manage tools in the Foundry tool catalog](../concepts/tool-catalog.md)
+[What is Toolbox in Foundry?](../concepts/toolbox-overview.md)
 
 [Connect to Model Context Protocol servers](tools/model-context-protocol.md)

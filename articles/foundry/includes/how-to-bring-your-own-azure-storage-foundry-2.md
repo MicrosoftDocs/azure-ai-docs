@@ -6,7 +6,7 @@ ms.reviewer: andyaviles
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/18/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -28,7 +28,7 @@ You create two capability hosts - one at the resource level and one at the proje
 Use the [Capability Hosts - Create Or Update](/rest/api/microsoftfoundry/accountmanagement/account-capability-hosts/create-or-update) REST API to create a capability host. Replace `<connection-arm-resource-id>` with the full ARM resource ID of your blob storage connection.
 
 ```http
-PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/capabilityHosts/agents-host?api-version=2026-03-01
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/capabilityHosts/agents-host?api-version=2026-07-01
 
 {
   "properties": {
@@ -43,13 +43,16 @@ PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/
 Replace `<connection-arm-resource-id>` with the full ARM resource ID of your blob storage connection.
 
 > [!NOTE]
+> Set `storageConnections` on the project-level capability host, which binds agents to your storage. The resource-level (account) capability host body is typically just `capabilityHostKind: "Agents"`.
+
+> [!NOTE]
 > For Azure CLI and PowerShell, use the REST API through `az rest` or `Invoke-AzRestMethod` until dedicated cmdlets are available.
 
 ### ARM template snippet
 ```json
 {
   "type": "Microsoft.CognitiveServices/accounts/capabilityHosts",
-  "apiVersion": "2026-03-01",
+  "apiVersion": "2026-07-01",
   "name": "[concat(parameters('foundryName'), '/agents-host')]",
   "properties": {
     "capabilityHostKind": "Agents",
@@ -106,7 +109,7 @@ Set the field during resource creation—via Bicep, ARM, Terraform, CLI, or Powe
 
 ### Bicep example
 ```bicep
-resource foundry 'Microsoft.CognitiveServices/accounts@2026-03-01' = {
+resource foundry 'Microsoft.CognitiveServices/accounts@2026-07-01' = {
   name: myFoundryName
   location: location
   kind: 'AIServices'

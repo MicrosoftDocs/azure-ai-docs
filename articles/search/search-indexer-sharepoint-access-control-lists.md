@@ -63,7 +63,7 @@ This article explains how to ingest an access control list (ACL) alongside other
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
 
-  + [Knowledge store](knowledge-store-concept-intro.md)
+  + [Knowledge store](knowledge-store-concept-intro.md), including the asset store required for [image serving (preview)](agentic-retrieval-how-to-image-serving.md) in agentic retrieval. Therefore, image serving isn't supported for knowledge sources that ingest SharePoint ACLs.
 
   + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
 
@@ -147,16 +147,16 @@ Each identifier appears in a different location in the Azure portal and maps to 
 
 | Identifier | Portal location | Used where | Notes |
 |---|---|---|---|
-| Application (client) ID | **App registrations** > `<your-app>` > **Overview** | `ApplicationId` in the data source connection string; `applicationId` in `sharePointConnectorAppRegistration` | This is the correct ID for most configuration fields. Also called "client ID." |
+| Ingestion app application (client) ID | **App registrations** > `<your-app>` > **Overview** | `ApplicationId` in the data source connection string; `applicationId` in `sharePointConnectorAppRegistration` | This ID is correct for most configuration fields. Also called "client ID." |
 | Application object ID | **App registrations** > `<your-app>` > **Overview** (below Application (client) ID) | Not used in Azure AI Search configuration | Don't confuse this with the Application (client) ID. It appears in the same blade, directly below the client ID. |
 | Service principal object ID | **Microsoft Entra ID** > **Enterprise applications** > `<your-app>` > **Manage** > **Properties** | Not used in Azure AI Search configuration | This is the service principal representation of the app. It's a different GUID from the app registration object ID. |
 | Managed identity principal ID | Managed identity resource > **Properties** or the search service **Identity** blade | Not used directly in Azure AI Search data source or index configuration | Used internally when you set up the federated identity credential on the app registration. The credential you create trusts this identity. |
-| Federated credential object ID | **App registrations** > `<your-app>` > **Manage** > **Certificates & secrets** > **Federated credentials** > `<credential-name>` | `federatedCredentialId` in `sharePointConnectorAppRegistration` | The GUID of the federated identity credential entry itself, not the managed identity's GUID. |
-| Federated credential application ID | System-assigned: **Microsoft Entra ID** > **Enterprise applications** > `<search-service>` > **Properties**; User-assigned: `<managed-identity-resource>` > **Properties** | `FederatedCredentialApplicationId` in the data source connection string | See [Federated credential application ID](#federated-credential-application-id) for the system-assigned identity lookup. |
+| Federated credential object ID | **App registrations** > `<your-app>` > **Manage** > **Certificates & secrets** > **Federated credentials** > `<credential-name>` | Not used in Azure AI Search configuration | Don't use the GUID of the federated identity credential entry for `federatedCredentialId`. |
+| Federated credential application ID | System-assigned: **Microsoft Entra ID** > **Enterprise applications** > `<search-service>` > **Properties**; User-assigned: `<managed-identity-resource>` > **Properties** | `FederatedCredentialApplicationId` in the data source connection string; `federatedCredentialId` in `sharePointConnectorAppRegistration` | See [Federated credential application ID](#federated-credential-application-id) for the managed identity lookup. |
 
 ### Federated credential application ID
 
-For `FederatedCredentialApplicationId` in the data source connection string, use the managed identity's own application (client) ID, not the ingestion app's ID.
+For `FederatedCredentialApplicationId` in the data source connection string and `federatedCredentialId` in the index definition, use the managed identity's own application (client) ID, not the ingestion app's ID.
 
 **System-assigned managed identity:**
 
@@ -165,13 +165,13 @@ For `FederatedCredentialApplicationId` in the data source connection string, use
 1. On the **System assigned** tab, note the **Object (principal) ID**.
 1. Go to **Microsoft Entra ID** > **Manage** > **Enterprise applications**.
 1. Search for your search service name or paste the **Object (principal) ID** into the search box.
-1. Select the result and open **Properties**. Copy the **Application ID** shown here, which is the value for `FederatedCredentialApplicationId`.
+1. Select the result and open **Properties**. Copy the **Application ID** shown here, which is the value for `FederatedCredentialApplicationId` in the data source and `federatedCredentialId` in the index.
 
 **User-assigned managed identity:**
 
 1. Go to the user-assigned managed identity resource.
 1. Select **Settings** > **Properties**.
-1. Copy the **Client ID**, which is the value for `FederatedCredentialApplicationId`.
+1. Copy the **Client ID**, which is the value for `FederatedCredentialApplicationId` in the data source and `federatedCredentialId` in the index.
 
 ## Configure your search service for ACL ingestion and query-time enforcement
 
@@ -325,7 +325,7 @@ The following components work together to enable SharePoint site group resolutio
 + REST API `2026-05-01-preview` or later.
 
 > [!NOTE]
-> `FederatedCredentialApplicationId` in the data source connection string differs from `applicationId` in `sharePointConnectorAppRegistration`, which is the ingestion app's client ID. To find the correct values, see [Find the correct Microsoft Entra identifiers](#find-the-correct-microsoft-entra-identifiers).
+> `FederatedCredentialApplicationId` in the data source connection string and `federatedCredentialId` in `sharePointConnectorAppRegistration` use the managed identity's application ID. The `applicationId` property in `sharePointConnectorAppRegistration` uses the ingestion app's client ID. To find the correct values, see [Find the correct Microsoft Entra identifiers](#find-the-correct-microsoft-entra-identifiers).
 
 ### 2. Configure the index
 
@@ -336,8 +336,8 @@ PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-
 {
   "name": "my-sharepoint-acl-index",
   "sharePointConnectorAppRegistration": {
-     "applicationId": "<entra-application-id>",
-     "federatedCredentialId": "<federated-identity-credential-object-id>",
+      "applicationId": "<ingestion-app-client-id>",
+      "federatedCredentialId": "<managed-identity-application-id>",
      "tenantId": "<sharepoint-tenant-id>"
   },
   "fields": [
@@ -348,8 +348,6 @@ PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-
   "permissionFilterOption": "enabled"
 }
 ```
-
-The `federatedCredentialId` value is the object ID of the federated identity credential previously configured on the [Microsoft Entra application registration](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity) used by the indexer.
 
 ### 3. Configure the indexer field mappings
 
@@ -429,8 +427,8 @@ After indexing your data and ACLs, you can [query the index](search-query-access
 | `SharePointSiteUrl` is empty or null after indexing even though ACLs are otherwise populating correctly | The indexer emits this metadata under `metadata_spo_site_url`, not `metadata_sharepoint_site_url`. Verify that your indexer field mapping uses `"sourceFieldName": "metadata_spo_site_url"`. If your skillset uses index projections for chunked documents, verify that the projection mapping source is `/document/metadata_spo_site_url`. |
 | The indexer returns 401 or 403 | Grant admin consent on both Microsoft Graph and SharePoint API permissions for your scenario. Use a federated credential (not a client secret) when the scenario requires it. See [Permissions by ACL scenario](#permissions-by-acl-scenario). |
 | Permissions are stale after changing a site, library, list, or folder ACL | Call [`/resync` with `options: ["permissions"]`](#resync-acls-across-the-full-data-source). See [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content) for context. |
-| `federatedCredentialId` is rejected when configuring `sharePointConnectorAppRegistration` | Use the ID (GUID) of the federated identity credential on the app registration, not the app object ID or the managed identity principal ID. |
-| The indexer returns `401 Unauthorized` and `FederatedCredentialApplicationId` is set | Verify you used the managed identity's Application ID (found in **Enterprise applications**), not the app registration's Application (client) ID or any Object ID. For a user-assigned managed identity, use the **Client ID** from the managed identity resource's **Properties** page. See [Find the correct Microsoft Entra identifiers](#find-the-correct-microsoft-entra-identifiers). |
+| `federatedCredentialId` is rejected when configuring `sharePointConnectorAppRegistration` | Use the managed identity's application ID, not the federated identity credential's object ID or the managed identity's principal ID. See [Federated credential application ID](#federated-credential-application-id). |
+| The indexer returns `401 Unauthorized` and `FederatedCredentialApplicationId` is set | Verify you used the managed identity's Application ID (found in **Enterprise applications**), not the ingestion app's Application (client) ID (`ApplicationId`) or any Object ID. For a user-assigned managed identity, use the **Client ID** from the managed identity resource's **Properties** page. See [Find the correct Microsoft Entra identifiers](#find-the-correct-microsoft-entra-identifiers). |
 
 For missing, unexpected, or failed query-time results after ACL metadata is indexed, see [Troubleshoot SharePoint permission filtering](troubleshoot-sharepoint-query-permission-filtering.md).
 

@@ -55,7 +55,7 @@ items:
     href: ../../foundry-models/how-to/deploy-foundry-models.md
   - name: Deploy Foundry Models using code
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Upgrade from GitHub Models to Microsoft Foundry Models
+  - name: Migrate from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Troubleshoot deployments and monitoring
     href: ../../how-to/troubleshoot-deploy-and-monitor.md
@@ -74,14 +74,14 @@ items:
   - name: Work with chat models
     items:
     - name: Work with reasoning models
-      href: ../../foundry-models/how-to/use-chat-reasoning.md
+      href: ../../../foundry/foundry-models/how-to/use-chat-reasoning.md
     - name: Use structured outputs
       href: ../../foundry-models/how-to/use-structured-outputs.md
   - name: Work with embedding models
     href: ../../openai/how-to/embeddings.md 
   - name: Work with image models
     href: ../../how-to/use-image-models.md
-  - name: Claude in Foundry Models
+  - name: Anthropic
     items:
     - name: Claude models overview
       displayName: Overview of Claude models in Foundry
@@ -89,11 +89,14 @@ items:
     - name: Deploy and use Claude models
       displayName: Deploy and use Claude models in Foundry
       href: ../../foundry-models/how-to/use-foundry-models-claude.md
-  - name: FLUX models in Foundry Models
+  - name: Black Forest Labs
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
-  - name: MAI image models in Foundry Models
+  - name: SpaceXAI
+    displayName: Grok models in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-grok.md
+  - name: MAI image models
     href: ../../foundry-models/how-to/use-foundry-models-mai-image.md
-  - name: MAI-Thinking-1 in Foundry Models
+  - name: MAI-Thinking-1
     href: ../../foundry-models/how-to/use-foundry-models-mai-thinking.md
   - name: Develop with LangChain and LangGraph
     href: ../../how-to/develop/langchain.md

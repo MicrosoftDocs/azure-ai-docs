@@ -8,12 +8,14 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 08/19/2026
+ms.date: 08/26/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
 
 This article lists the retirement schedule for Foundry Models, including the current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
+
+The **Replacement** column identifies Microsoft's recommended replacement and, where supported, the target for automatic upgrades at retirement. You don't need to wait for a replacement to be listed before evaluating or manually migrating to another compatible model. Evaluate available models using your application and data, comparing quality, latency, and cost. For selection criteria and the full migration process, see [Model migration process](../../foundry-models/concepts/model-migration.md).
 
 ## Foundry Models sold by Azure
 
@@ -24,12 +26,12 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
-| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
-| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1 | 2025-04-14 | Legacy | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Legacy | 2027-04-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Legacy | 2027-04-14 | — |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2027-04-14 | gpt-5.1 |
-| gpt-4o | 2024-11-20 | Deprecated | 2027-04-14 | gpt-5.1 |
+| gpt-4o | 2024-11-20 | Legacy | 2027-04-14 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | Deprecated | 2027-04-14 | — |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2027-06-15 | — |
@@ -92,7 +94,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-pro | 2025-06-10 | GA | 2026-12-17 | — |
 | o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
-| sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
+| sora-2 | 2025-12-08 | Preview | 2026-10-15 | — |
 | text-embedding-3-large | 1 | GA | 2028-02-09 | — |
 | text-embedding-3-small | 1 | GA | 2028-02-09 | — |
 | text-embedding-ada-002 | 1 | GA | 2028-02-09 | — |
@@ -131,6 +133,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| Cohere-parse-v5 | 1 | Preview | 2026-12-15 | — |
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
@@ -147,7 +150,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | DeepSeek-V3.1 | 1 | Retired | 2026-07-13 | DeepSeek-V4-Flash |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
-| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | — |
+| DeepSeek-V4-Flash | 2026-04-23 | GA | 2028-02-20 | DeepSeek-V4-Flash-0731 |
+| DeepSeek-V4-Flash-0731 | 2026-07-31 | Preview | 2026-12-03 | — |
 | DeepSeek-V4-Pro | 2026-04-23 | GA | 2028-02-20 | — |
 
 
@@ -215,16 +219,27 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 ### Anthropic
 
+Microsoft Foundry offers Claude models in [two versions](../../foundry-models/concepts/claude-models.md#how-claude-models-are-hosted-and-billed):
+
+- Version 1: Hosted on Anthropic infrastructure
+- Version 2: Hosted on Azure
+
 | Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| claude-haiku-4-5 | — | Preview | 2026-10-19 | — |
-| claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
-| claude-opus-4-1 | — | Retired | 2026-08-05 | claude-opus-5 |
-| claude-opus-4-5 | — | Preview | 2026-10-19 | — |
-| claude-opus-4-6 | — | Preview | 2027-02-02 | — |
-| claude-opus-4-7 | — | Preview | 2027-04-06 | — |
-| claude-sonnet-4-5 | — | Preview | 2026-10-19 | — |
-| claude-sonnet-4-6 | — | Preview | 2027-02-10 | — |
+| --- | --- | --- | --- | --- |
+| claude-sonnet-5 | 2 | GA | 2027-06-30 | — |
+| claude-sonnet-5 | 1 | GA | 2027-06-30 | — |
+| claude-sonnet-4-6 | 1 | GA | 2027-02-10 | — |
+| claude-sonnet-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-opus-5 | 2 | GA | 2027-07-08 | — |
+| claude-opus-5 | 1 | GA | 2027-07-08 | — |
+| claude-opus-4-8 | 2 | GA | 2027-09-01 | — |
+| claude-opus-4-8 | 1 | GA | 2027-09-01 | — |
+| claude-opus-4-7 | 1 | GA | 2027-04-06 | — |
+| claude-opus-4-6 | 1 | GA | 2027-02-02 | — |
+| claude-opus-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-haiku-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-haiku-4-5 | 2 | GA | 2026-10-19 | — |
+| claude-fable-5 | 1 | Preview | 2027-12-05 | — |
 
 ### Cohere
 

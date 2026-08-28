@@ -16,8 +16,6 @@ Microsoft Foundry Models provides access to a wide variety of models from many p
 
 This article explains how the Foundry services organize models and how to use the inference endpoint to access them.
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).

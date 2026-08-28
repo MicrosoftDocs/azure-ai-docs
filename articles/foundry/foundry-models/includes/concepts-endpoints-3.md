@@ -15,7 +15,6 @@ ms.custom: include
 
 - [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
 - [Azure OpenAI in Microsoft Foundry Models v1 API](../../openai/api-version-lifecycle.md)
-- [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md)
 - [Foundry Models and capabilities](../concepts/models-sold-directly-by-azure.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
 - [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)

@@ -123,7 +123,7 @@ Set `avatarConfig.talkingAvatarCharacter` to your custom photo avatar name and s
 ```
 
 > [!NOTE]
-> Custom photo avatar is in preview and access is limited. See [How to create a custom photo avatar](custom-photo-avatar-create.md) for eligibility details.
+> For details on eligibility and creating a custom photo avatar, see [How to create a custom photo avatar](custom-photo-avatar-create.md).
 
 ## Set avatar scene for photo avatar
 

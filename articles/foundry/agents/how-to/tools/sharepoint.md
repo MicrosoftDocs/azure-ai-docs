@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -48,7 +48,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
-  - **Java**: Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml`
+  - **Java**: Add the latest `com.azure:azure-ai-agents` dependency to your `pom.xml`
 - Configure the environment variables used by your sample:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
@@ -104,6 +104,8 @@ The SharePoint tool uses your project connection to determine which SharePoint s
 If you need to create a SharePoint connection for your project, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
 ## Create an agent with the SharePoint tool
+
+The SDK samples use `DefaultAzureCredential`. When you run them locally, this credential must resolve to the signed-in user's identity, such as the identity established by `az login`. Exclude managed identity and service-principal credentials from the local credential chain. In a production application, authenticate each request with the current user's delegated identity and use an on-behalf-of flow. Don't run SharePoint tool calls with the application's managed identity or service principal.
 
 :::zone pivot="python"
 
@@ -622,7 +624,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -695,6 +697,7 @@ public class SharePointGroundingExample {
 - You can add only one SharePoint tool per agent.
 - The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
 - For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+- The underlying Retrieval API returns at most 25 results and allows 200 requests per user per hour. The query string can contain at most 1,500 characters.
 
 ## How it works
 
@@ -719,8 +722,8 @@ Customers rely on data security in SharePoint to access, create, and share docum
 | `Resource not found` errors | Invalid site or library path | Verify the SharePoint site URL and library paths are correct and accessible to the user. |
 | Inconsistent search results | Semantic index sync delay | Wait for the semantic index to sync. Large content changes might take time to propagate. See [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot). |
 
-## Next steps
+## Related content
 
-- For reference, see articles about content retrieval used by the tool:
-  - [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-  - [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot)
+- [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview)
+- [Agent identity concepts in Microsoft Foundry](../../concepts/agent-identity.md)
+- [Tool best practices for agents](../../concepts/tool-best-practice.md)

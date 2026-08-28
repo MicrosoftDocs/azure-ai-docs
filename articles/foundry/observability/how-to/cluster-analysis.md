@@ -21,7 +21,7 @@ This article explains how to generate and interact with an evaluation cluster an
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md).
-- One or more [completed evaluation runs](../../how-to/develop/cloud-evaluation.md).
+- One or more [completed evaluation runs](cloud-evaluation.md).
 - A deployed model in your project to use for cluster analysis generation. To learn more, see [Create model deployments](../../foundry-models/how-to/create-model-deployments.md).
 
 ## Generate an evaluation cluster analysis
@@ -139,7 +139,7 @@ Use the insights from cluster analysis to:
 
 - **Refine prompts** — Update your agent's instructions to address recurring failure patterns identified in the clusters.
 - **Retrain or fine-tune** — Use identified failure categories as signal for fine-tuning data curation.
-- **Re-evaluate** — After making changes, run a new evaluation and generate a fresh cluster analysis to compare results. See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
+- **Re-evaluate** — After making changes, run a new evaluation and generate a fresh cluster analysis to compare results. See [Run evaluations from the SDK](cloud-evaluation.md).
 
 ## Troubleshooting
 
@@ -153,5 +153,5 @@ Use the insights from cluster analysis to:
 ## Related content
 
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
-- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](cloud-evaluation.md)
 - [Run evaluations from the Foundry portal](../../how-to/evaluate-generative-ai-app.md)

@@ -28,6 +28,8 @@ Use the SDK and REST procedures in this article when you need to deploy source-c
 
 If you need full control of the runtime image or you already have a working Dockerfile, use the container-based path: [Deploy a hosted agent](deploy-hosted-agent.md).
 
+If you use a coding agent like GitHub Copilot to package and deploy source code, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help prepare your project and follow the required `azd`, SDK, or REST steps.
+
 ## Prerequisites
 
 - A [Microsoft Foundry project](../../how-to/create-projects.md) in a supported region.

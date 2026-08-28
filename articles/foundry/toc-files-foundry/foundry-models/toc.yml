@@ -48,6 +48,9 @@ items:
     - name: Model versions (government)
       displayName: Model versions in Microsoft Foundry Models (government)
       href: ../../foundry-models/concepts/model-versions-gov.md
+    - name: Model upgrades and switches
+      displayName: Model migration process, upgrade or switch models in Microsoft Foundry
+      href: ../../foundry-models/concepts/model-migration.md
     - name: Automatic model updates for Azure OpenAI Models
       displayName: Working with models
       href: ../../openai/how-to/working-with-models.md
@@ -85,6 +88,9 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Evaluate model router
+      displayName: Evaluate model router for your workload
+      href: ../../openai/how-to/evaluate-model-router.md
     - name: Govern model router with Azure Policy
       href: ../../how-to/model-router-policy.md
     - name: Use model router with agents
@@ -181,8 +187,8 @@ items:
   - name: Deploy using code
     displayName: Deploy models using Azure CLI and Bicep
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Upgrade from GitHub Models
-    displayName: Upgrade from GitHub Models to Microsoft Foundry Models
+  - name: Migrate from GitHub Models
+    displayName: Migrate from GitHub Models to Microsoft Foundry Models, GitHub Models retirement
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Deploy with managed compute (preview)
     displayName: Deploy open-source AI models with managed compute in Foundry
@@ -195,7 +201,7 @@ items:
   items:
   - name: Azure OpenAI SDK language support
     href: ../../openai/supported-languages.md
-  - name: Microsoft AI (MAI) models
+  - name: Microsoft AI (MAI)
     items:
     - name: MAI-Image models
       displayName: MAI image models in Foundry
@@ -208,7 +214,7 @@ items:
       href: /azure/ai-services/speech-service/mai-voices?context=/azure/foundry/context/context
     - name: MAI-Transcribe models
       href: /azure/ai-services/speech-service/mai-transcribe?context=/azure/foundry/context/context
-  - name: Claude models
+  - name: Anthropic
     items:
     - name: Overview
       displayName: Overview of Claude models in Foundry
@@ -222,9 +228,12 @@ items:
     - name: Deploy Claude with Bicep or Terraform
       displayName: Deploy Claude with Bicep or Terraform
       href: /azure/developer/ai/how-to/deploy-claude-foundry?context=/azure/foundry/context/context
-  - name: FLUX models
+  - name: Black Forest Labs
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
+  - name: SpaceXAI
+    displayName: Grok models in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-grok.md
   - name: Healthcare AI models
     items:
     - name: Overview
@@ -299,8 +308,8 @@ items:
       displayName: Azure OpenAI reasoning models
       href: ../../openai/how-to/reasoning.md
     - name: Reasoning models (Foundry Models)
-      displayName: How to use reasoning models with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
+      displayName: How to use Foundry reasoning models
+      href: ../../foundry-models/how-to/use-chat-reasoning.md
   - name: Embeddings
     items:
     - name: Embeddings

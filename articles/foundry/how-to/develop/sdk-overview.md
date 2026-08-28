@@ -265,7 +265,7 @@ Reference: [AIProjectClient class](/dotnet/api/azure.ai.projects.aiprojectclient
 
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
 - [Use the Foundry Agent Service](../../agents/quickstarts/prompt-agent.md)
-- [Run batch evaluations](cloud-evaluation.md)
+- [Run batch evaluations](../../observability/how-to/cloud-evaluation.md)
 - [Enable app tracing](../../observability/how-to/trace-agent-setup.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more

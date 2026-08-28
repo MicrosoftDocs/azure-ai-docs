@@ -1,15 +1,16 @@
 ---
 title: "How to use Azure OpenAI Assistants file search (classic)"
-description: "Learn how to use Assistants file search. (classic)"
+description: "Learn how to use the Azure OpenAI Assistants file search tool (classic) to search files, create vector stores, and retrieve relevant content for responses."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 08/21/2026
 author: aahill
 ms.author: aahi
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 # Azure OpenAI Assistants file search tool (Preview) (classic)
@@ -350,4 +351,3 @@ for file_batch in chunked(all_files, 100):
         vector_store_id=vector_store.id, file_ids=[file.id for file in file_batch]
     )
 ```
-

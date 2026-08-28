@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 08/24/2026
 ms.reviewer: erichen
 ms.author: rotabor
 author: bobtabor-msft

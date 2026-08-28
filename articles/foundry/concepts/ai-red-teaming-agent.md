@@ -4,7 +4,7 @@ description: "This article provides conceptual overview of the AI Red Teaming Ag
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: concept-article
-ms.date: 04/22/2026
+ms.date: 08/19/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -117,7 +117,7 @@ The AI Red Teaming Agent currently supported red teaming Foundry agents with Azu
 | Connected Agent tool calls              | Not Supported |
 | Computer Use tool calls                  | Not Supported |
 
-For a comprehensive list of tools, see [Tools](../agents/concepts/tool-catalog.md).
+For a list of tools and how to connect them by using a Foundry Toolbox, see [Foundry Toolbox overview](../agents/concepts/toolbox-overview.md).
 
 [!INCLUDE [ai-red-teaming-agent 3](../includes/concepts-ai-red-teaming-agent-3.md)]
 

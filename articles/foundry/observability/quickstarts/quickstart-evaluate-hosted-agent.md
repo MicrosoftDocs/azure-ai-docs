@@ -222,7 +222,7 @@ print(f"Evaluation created: {evaluation.id}")
 Run the suite against your deployed agent. The service sends each test query to the agent, captures the response, and scores it with your selected evaluators.
 
 > [!NOTE]
-> Target-based evaluation invokes your hosted agent directly. It works with agents that use the responses or invocations protocol with synchronous, non-streaming execution. To evaluate agents that use the A2A or Activity protocol, or other execution patterns such as long-running or streaming, evaluate the traces your agent emits instead. See [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
+> Target-based evaluation invokes your hosted agent directly. It works with agents that use the responses or invocations protocol with synchronous, non-streaming execution. To evaluate agents that use the A2A or Activity protocol, or other execution patterns such as long-running or streaming, evaluate the traces your agent emits instead. See [Trace evaluation](../how-to/cloud-evaluation-deployed-interactions.md#evaluate-traces-preview).
 
 ### [Azure Developer CLI](#tab/azd)
 
@@ -418,7 +418,7 @@ Continue improving your evaluation workflow:
 ## Related content
 
 * [Evaluate your AI agents](../how-to/evaluate-agent.md)
-* [Run batch evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
+* [Run batch evaluations from the SDK](../how-to/cloud-evaluation.md)
 * [Generate a synthetic evaluation dataset](../how-to/evaluation-dataset-synthetic.md) to create test queries and evaluators automatically.
 * [Troubleshoot evaluation and observability issues](../how-to/troubleshooting.md)
 * [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)

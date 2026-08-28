@@ -56,6 +56,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "agent-framework/agents/code_act.md",
+      "redirect_url": "/agent-framework/agents/code-act",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/metrics-advisor/how-tos/credential-entity.md",
       "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/credential-entity",
       "redirect_document_id": false
@@ -1754,6 +1759,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "agent-framework/support/upgrade/python-1.13.0-workflow-checkpoint-upgrade-guide.md",
+      "redirect_url": "/agent-framework/support/upgrade/python-1-13-0-workflow-checkpoint-upgrade-guide",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/luis-reference-regions.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-regions",
       "redirect_document_id": false
@@ -2749,6 +2759,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-chat-reasoning.md",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/use-chat-reasoning",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
       "redirect_document_id": true
@@ -2881,6 +2896,16 @@
     {
       "source_path": "articles/open-datasets/dataset-oxford-covid-government-response-tracker.md",
       "redirect_url": "/azure/open-datasets/overview-what-are-open-datasets",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/how-to/develop/get-started-projects-vs-code.md",
+      "redirect_url": "/azure/foundry/how-to/develop/get-started-projects-visual-studio-code",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/concepts/choose-build-approach.md",
+      "redirect_url": "/azure/foundry/what-is-foundry",
       "redirect_document_id": false
     }
   ]

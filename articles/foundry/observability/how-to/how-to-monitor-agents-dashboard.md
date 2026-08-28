@@ -386,7 +386,7 @@ References: [EvaluationScheduleTask](/dotnet/api/azure.ai.projects.evaluation.ev
     - **Scheduled evaluation** runs on a fixed schedule.
     - **Continuous evaluation** samples live traffic as it occurs.
 1. Select a data source available for your evaluation type, such as **Live traffic** for agent traces or **Dataset** for a golden dataset.
-1. For **Live traffic**, optionally select **Random** or [**Intelligent sampling**](../../how-to/develop/cloud-evaluation.md#intelligent-sampling). Then set the maximum number of traces or runs available for the selected evaluation type.
+1. For **Live traffic**, optionally select **Random** or [**Intelligent sampling**](cloud-evaluation-deployed-interactions.md#intelligent-sampling). Then set the maximum number of traces or runs available for the selected evaluation type.
  
 :::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-create-wizard.png" alt-text="Screenshot of creating recurring evaluation configuration in Foundry with various options." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-create-wizard.png":::
 

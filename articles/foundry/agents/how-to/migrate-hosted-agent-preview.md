@@ -3,7 +3,7 @@ title: "Migrate hosted agents to the latest version"
 description: "Migrate your hosted agents from the initial public preview to the latest version, including API, SDK, CLI, protocol library, and identity model changes."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/06/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -20,11 +20,13 @@ This article shows you how to migrate hosted agents from the initial public prev
 
 This guide applies to you if you deployed a Hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help map your existing preview deployment to the latest hosting model and update commands or code.
+
 ## What changed
 
 The latest version updates the existing platform with a session-based sandbox model. Key changes:
 
-- **Automatic compute lifecycle** — No manual start, stop, or replica management. The platform provisions compute when a request arrives and deprovisions it after 15 minutes of inactivity. See [CLI command mapping](#cli-command-mapping).
+- **Automatic compute lifecycle** — No manual start, stop, or replica management. The platform provisions compute when a request arrives and deprovisions it after the configured idle timeout, which defaults to 15 minutes. See [CLI command mapping](#cli-command-mapping).
 - **Session-based isolation** — Each session gets its own sandbox with persistent `$HOME` and `/files` storage across turns and idle periods.
 - **Protocol libraries replace framework adapters** — The framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) are replaced by protocol-specific libraries (`azure-ai-agentserver-responses`, `azure-ai-agentserver-invocations`). See [Protocol library and framework migration](#protocol-library-and-framework-migration).
 - **Dedicated agent identity from deploy time** — Every agent gets its own Entra identity at creation, replacing the shared project managed identity model. See [Identity and RBAC changes](#identity-and-rbac-changes).
@@ -439,7 +441,7 @@ The following APIs from the initial preview aren't available in the latest versi
 | Removed API | Reason |
 |-------------|--------|
 | `az cognitiveservices agent start` | Compute lifecycle is automatic — no manual start needed |
-| `az cognitiveservices agent stop` | Compute deprovisions automatically after 15 minutes of inactivity |
+| `az cognitiveservices agent stop` | Compute deprovisions automatically after the configured idle timeout |
 | `az cognitiveservices agent update` | Replaced by `PATCH /agents/{name}` for endpoint routing; create a new version for runtime changes |
 | `az cognitiveservices agent delete-deployment` | Delete the version directly instead |
 | `az cognitiveservices agent list-versions` | Use `az rest --method GET` against the REST API |

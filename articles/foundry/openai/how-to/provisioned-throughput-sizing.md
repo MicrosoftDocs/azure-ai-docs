@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 07/29/2026
+ms.date: 08/21/2026
 manager: mcleans
 author: msakande
 ms.author: mopeakande

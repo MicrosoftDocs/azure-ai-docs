@@ -76,5 +76,5 @@ Select any annotated chart link in the response to scroll directly to the releva
 
 - [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
 - [Agent tracing overview](../concepts/trace-agent-concept.md)
-- [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations in the cloud](cloud-evaluation.md)
 - [Agents overview](../../agents/overview.md)
