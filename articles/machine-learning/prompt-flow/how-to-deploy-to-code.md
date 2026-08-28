@@ -9,12 +9,13 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.custom:
   - devx-track-azurecli
   - ignite-2023
   - sfi-ropc-nochange
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Deploy a flow to online endpoint for real-time inference with CLI
@@ -26,7 +27,7 @@ In this article, you learn how to deploy your flow to a [managed online endpoint
 Before you begin, make sure that you test your flow properly and feel confident that it's ready to be deployed to production. To learn more about testing your flow, see [test your flow](how-to-bulk-test-evaluate-flow.md). After testing your flow, you learn how to create managed online endpoint and deployment, and how to use the endpoint for real-time inferencing.
 
 - This article covers how to use the CLI experience.
-- The Python SDK isn't covered in this article. See the GitHub sample notebook instead. To use the Python SDK, you must have The Python SDK v2 for Azure Machine Learning. To learn more, see [Install the Python SDK v2 for Azure Machine Learning](/python/api/overview/azure/ai-ml-readme).
+- The Python SDK isn't covered in this article. See the GitHub sample notebook instead. To use the Python SDK, you must have the Python SDK v2 for Azure Machine Learning. To learn more, see [Install the Python SDK v2 for Azure Machine Learning](/python/api/overview/azure/ai-ml-readme).
 
 > [!IMPORTANT]
 > Items marked (preview) in this article are currently in public preview.
@@ -46,7 +47,7 @@ Before you begin, make sure that you test your flow properly and feel confident 
 
 For managed online endpoints, Azure Machine Learning reserves 20% of your compute resources for performing upgrades. Therefore, if you request a given number of instances in a deployment, you must have a quota for `ceil(1.2 * number of instances requested for deployment) * number of cores for the VM SKU` available to avoid getting an error. For example, if you request 10 instances of a Standard_DS3_v2 VM (that comes with four cores) in a deployment, you should have a quota for 48 cores (12 instances four cores) available. To view your usage and request quota increases, see [View your usage and quotas in the Azure portal](../how-to-manage-quotas.md#view-your-usage-and-quotas-in-the-azure-portal).
 
-## Get the flow ready for deploy
+## Get the flow ready for deployment
 
 Each flow has a folder that contains codes, prompts, definition, and other artifacts of the flow. If you develop your flow by using the UI, you can download the flow folder from the flow details page. If you develop your flow by using CLI or SDK, you already have the flow folder.
 
@@ -80,7 +81,7 @@ name: basic-chat-model
 path: ../../../../examples/flows/chat/basic-chat
 description: register basic chat flow folder as a custom model
 properties:
-  # In AuzreML studio UI, endpoint detail UI Test tab needs this property to know it's from prompt flow
+  # In Azure Machine Learning studio, the endpoint Test tab uses this property to identify a prompt flow
   azureml.promptflow.source_flow_id: basic-chat
   
   # Following are properties only for chat flow 
@@ -100,7 +101,6 @@ To define an endpoint, specify the following values:
 
 - **Endpoint name**: The name of the endpoint. It must be unique in the Azure region. For more information on the naming rules, see [endpoint limits](../how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints).
 - **Authentication mode**: The authentication method for the endpoint. Choose between key-based authentication and Azure Machine Learning token-based authentication. A key doesn't expire, but a token does expire. For more information on authenticating, see [Authenticate to an online endpoint](../how-to-authenticate-online-endpoint.md).
-Optionally, add a description and tags to your endpoint.
 - Optionally, add a description and tags to your endpoint.
 - If you want to deploy to a Kubernetes cluster (AKS or Arc enabled cluster) that you attach to your workspace, you can deploy the flow as a **Kubernetes online endpoint**.
 
@@ -137,11 +137,11 @@ auth_mode: key
 ---
 
 | Key | Description |
-|--|--|
+| -- | -- |
 | `$schema` | (Optional) The YAML schema. To see all available options in the YAML file, you can view the schema in the preceding code snippet in a browser. |
 | `name` | The name of the endpoint. |
 | `auth_mode` | Use `key` for key-based authentication. Use `aml_token` for Azure Machine Learning token-based authentication. To get the most recent token, use the `az ml online-endpoint get-credentials` command. |
-|`property: enforce_access_to_default_secret_stores` (preview)|- By default the endpoint uses system-asigned identity. This property only works for system-assigned identity. <br> - This property means if you have the connection secrets reader permission, the endpoint system-assigned identity is auto-assigned Azure Machine Learning Workspace Connection Secrets Reader role of the workspace, so that the endpoint can access connections correctly when performing inferencing. <br> - By default this property is `disabled``.|
+| `property: enforce_access_to_default_secret_stores` (preview) | - By default the endpoint uses system-assigned identity. This property only works for system-assigned identity. <br> - This property means if you have the connection secrets reader permission, the endpoint system-assigned identity is auto-assigned Azure Machine Learning Workspace Connection Secrets Reader role of the workspace, so that the endpoint can access connections correctly when performing inferencing. <br> - By default this property is `disabled`. |
 
 If you create a Kubernetes online endpoint, you need to specify the following attributes:
 
@@ -386,10 +386,12 @@ environment_variables:
 
 This section shows you how to use a Docker build context to specify the environment for your deployment, assuming you have knowledge of [Docker](https://www.docker.com/) and [Azure Machine Learning environments](../concept-environments.md).
 
-1. In your local environment, create a folder named `image_build_with_reqirements` that contains the following files:
+Prompt flow runtime images are frozen and no longer receive security or package updates. The `latest` tag in the following example doesn't indicate that the image receives updates. Use this example only to maintain an existing deployment while you plan its migration.
 
-    ```
-    |--image_build_with_reqirements
+1. In your local environment, create a folder named `image_build_with_requirements` that contains the following files:
+
+  ```text
+  |--image_build_with_requirements
     |  |--requirements.txt
     |  |--Dockerfile
     ```
@@ -397,7 +399,7 @@ This section shows you how to use a Docker build context to specify the environm
 
     - The `Dockerfile` with content similar to the following example: 
 
-        ```
+        ```dockerfile
         FROM mcr.microsoft.com/azureml/promptflow/promptflow-runtime:latest
         COPY ./requirements.txt .
         RUN pip install -r requirements.txt
@@ -408,7 +410,7 @@ This section shows you how to use a Docker build context to specify the environm
     ```yaml
     environment: 
       build:
-        path: image_build_with_reqirements
+        path: image_build_with_requirements
         dockerfile_path: Dockerfile
       # deploy prompt flow is BYOC, so we need to specify the inference config
       inference_config:
@@ -425,11 +427,11 @@ This section shows you how to use a Docker build context to specify the environm
 
 ### Use FastAPI serving engine (preview)
 
-By default, prompt flow serving uses the FLASK serving engine. Starting from prompt flow SDK version 1.10.0, FastAPI-based serving engine is supported. You can use the `fastapi` serving engine by specifying an environment variable `PROMPTFLOW_SERVING_ENGINE`.
+By default, prompt flow serving uses the Flask serving engine. Starting from prompt flow SDK version 1.10.0, FastAPI-based serving engine is supported. You can use the `fastapi` serving engine by specifying an environment variable `PROMPTFLOW_SERVING_ENGINE`.
 
 ```yaml
 environment_variables:
-  PROMPTFLOW_SERVING_ENGINE=fastapi
+  PROMPTFLOW_SERVING_ENGINE: fastapi
 ```
 
 ### Configure concurrency for deployment
