@@ -7,12 +7,17 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/26/2026
 ai-usage: ai-assisted
 ---
 # Convert agent traces into evaluation datasets (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+This article covers trace-based dataset generation. For all dataset preparation
+options and the standard field names, see
+[Evaluation datasets in Microsoft Foundry](evaluation-datasets.md) and
+[Evaluation dataset schema](evaluation-dataset-schema.md).
 
 Production traces are the most representative source of how your agent behaves with real users. This article shows you how to use data generation in Microsoft Foundry to turn the traces your agent already emits into a curated, versioned dataset you can evaluate against. Then run an evaluation on the result. When you select traces, Foundry uses intelligent sampling to autoselect a representative set, so you get a high-value dataset without manual cleanup.
 

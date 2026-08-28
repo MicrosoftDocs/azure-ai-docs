@@ -15,6 +15,11 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
+This article covers synthetic data generation. For all dataset preparation
+options and the standard field names, see
+[Evaluation datasets in Microsoft Foundry](evaluation-datasets.md) and
+[Evaluation dataset schema](evaluation-dataset-schema.md).
+
 When your agent doesn't have production traffic yet, you can still build a meaningful evaluation dataset. The Microsoft Foundry data generation service synthesizes evaluation data from material you already have: an agent's instructions, an inline prompt, or a reference document you upload. Two task types are available:
 
 - **Simple QnA (single-turn)** produces question-and-answer pairs for turn-level evaluation.
@@ -354,7 +359,7 @@ Example row (`test_case_description` shortened for readability):
   "id": "1",
   "category": "Basic support & empathy",
   "test_case_description": "A mildly frustrated customer says they've been charged different amounts across recent months and asks for an explanation and refund. The agent must acknowledge the confusion without blame, note it can't see the actual account, and offer concrete generic next steps (what to check, how to contact billing support). Multi-turn behavior to evaluate: whether the agent stays consistent about its limitations across turns, and whether it keeps offering practical options rather than vague sympathy...",
-  "desired_num_turns": "4"
+  "desired_num_turns": 4
 }
 ```
 
