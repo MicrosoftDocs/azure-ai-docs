@@ -8,7 +8,7 @@ ms.custom:
   - ai-learning-hub
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 07/31/2026
+ms.date: 08/28/2026
 ms.reviewer: skohlmeier
 ms.author: lagayhar  
 author: lgayhardt
