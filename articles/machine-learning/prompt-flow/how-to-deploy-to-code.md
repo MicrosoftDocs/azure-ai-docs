@@ -141,7 +141,7 @@ auth_mode: key
 | `$schema` | (Optional) The YAML schema. To see all available options in the YAML file, you can view the schema in the preceding code snippet in a browser. |
 | `name` | The name of the endpoint. |
 | `auth_mode` | Use `key` for key-based authentication. Use `aml_token` for Azure Machine Learning token-based authentication. To get the most recent token, use the `az ml online-endpoint get-credentials` command. |
-| `property: enforce_access_to_default_secret_stores` (preview) | - By default the endpoint uses system-assigned identity. This property only works for system-assigned identity. <br> - This property means if you have the connection secrets reader permission, the endpoint system-assigned identity is auto-assigned Azure Machine Learning Workspace Connection Secrets Reader role of the workspace, so that the endpoint can access connections correctly when performing inferencing. <br> - By default this property is `disabled`. |
+| `property: enforce_access_to_default_secret_stores` (preview) | - By default the endpoint uses system-assigned identity. This property only works for system-assigned identity. <br> - If you have the connection secrets reader permission, the endpoint system-assigned identity is auto-assigned Azure Machine Learning Workspace Connection Secrets Reader role of the workspace, so the endpoint can access connections correctly when performing inferencing. <br> - By default this property is `disabled`. |
 
 If you create a Kubernetes online endpoint, you need to specify the following attributes:
 
