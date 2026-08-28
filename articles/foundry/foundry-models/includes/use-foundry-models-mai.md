@@ -8,7 +8,7 @@ reviewer: RSavage2
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 08/19/2026
+ms.date: 09/08/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -28,18 +28,22 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI image models are available for **global standard deployment** in West Central US, East US, West US, West Europe, Sweden Central, South India, and UAE North.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) in a region supported for the MAI image model you want to deploy. For each model's supported deployment regions, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md).
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## MAI image models at a glance
 
 MAI image models in Microsoft Foundry include:
 
-| Model name | Model version | Type |
-| --- | --- | --- |
-| `MAI-Image-2.5-Pro` (Preview) | `2026-06-19` | Text-to-image generation<br> Image-to-image edits |
-| `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
-| `MAI-Image-2.5` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
+| Model name | Model version | Deployment type | API type |
+| --- | --- | --- | --- |
+| `MAI-Image-2.6-Flash` (Preview) | `2026-07-31` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.6` (Preview) | `2026-07-31` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.5-Pro` (Preview) | `2026-06-19` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.5` (Preview) | `2026-06-02` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+
+For each model's supported deployment regions, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md).
 
 To learn more about the individual models, see [MAI image model capabilities](#mai-image-model-capabilities).
 
@@ -348,13 +352,13 @@ To use Microsoft Entra ID authentication instead of an API key, modify this code
 
 ## MAI image model capabilities
 
-Foundry supports use of MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), and MAI-Image-2.5 (Preview). Each of these models is suitable for the following key use cases:
+The MAI-Image models in this article are suitable for the following key use cases:
 
 - **Text-to-image generation:** Generate high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
 - **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
 - **Product, branding and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
 
-MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), and MAI-Image-2.5 (Preview) further excel in these key use cases:
+The models further excel in these key use cases:
 
 - **Image-to-image editing:** Support precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
 - **High-fidelity portraits:** Generate expressive, natural-looking portraits with accurate facial structure, lighting, and texture.
@@ -362,6 +366,14 @@ MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), and MAI-Image-2.5 (P
 - **Visual reasoning:** Reason across objects, scene structure, lighting, scale, and spatial positioning to produce consistent outputs, even from ambiguous prompts.
 
 For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
+
+### MAI-Image-2.6-Flash (Preview)
+
+MAI-Image-2.6-Flash (Preview) is a diffusion-based generative model designed for both high-quality text-to-image synthesis and precise, controllable image-to-image editing. It progressively transforms random noise into a coherent image aligned with a given text prompt, leveraging a flow-matching loss to learn a continuous transformation between the noise distribution and the data distribution. MAI-Image-2.6 excels at precise, surgical edits with consistency - enabling users and developers to make targeted object edits, adapt layouts, update text, clean up artifacts like motion blur, and preserve visual consistency across iterations.
+
+### MAI-Image-2.6 (Preview)
+
+MAI-Image-2.6 (Preview) is a diffusion-based generative model designed for both high-quality text-to-image synthesis and precise, controllable image-to-image editing. It progressively transforms random noise into a coherent image aligned with a given text prompt, leveraging a flow-matching loss to learn a continuous transformation between the noise distribution and the data distribution. MAI-Image-2.6 excels at precise, surgical edits with consistency - enabling users and developers to make targeted object edits, adapt layouts, update text, clean up artifacts like motion blur, and preserve visual consistency across iterations.
 
 ### MAI-Image-2.5-Pro (Preview)
 
@@ -419,15 +431,15 @@ The following table lists the request parameters for the image APIs:
 
 MAI image models have the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
 
-| Deployment Type | Tier | MAI-Image-2.5-Pro <br> (RPM) | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) |
-| --- | --- | --- | --- | --- |
-| Global Standard | 0 <br> (Free) | 0 | 0 | 0 |
-| Global Standard | 1 | 2 | 2 | 2 |
-| Global Standard | 2 | 4 | 4 | 4 |
-| Global Standard | 3 | 6 | 6 | 6 |
-| Global Standard | 4 | 8 | 8 | 8 |
-| Global Standard | 5 | 10 | 10 | 10 |
-| Global Standard | 6 | 12 | 12 | 12 |
+| Deployment Type | Tier | MAI-Image-2.6-Flash <br> (RPM) | MAI-Image-2.6 <br> (RPM) | MAI-Image-2.5-Pro <br> (RPM) | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Global Standard | 0 <br> (Free) | 0 | 0 | 0 | 0 | 0 |
+| Global Standard | 1 | 2 | 2 | 2 | 2 | 2 |
+| Global Standard | 2 | 4 | 4 | 4 | 4 | 4 |
+| Global Standard | 3 | 6 | 6 | 6 | 6 | 6 |
+| Global Standard | 4 | 8 | 8 | 8 | 8 | 8 |
+| Global Standard | 5 | 10 | 10 | 10 | 10 | 10 |
+| Global Standard | 6 | 12 | 12 | 12 | 12 | 12 |
 
 To request a quota increase, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest). Requests are processed in the order they're received, and priority goes to customers who actively use their existing quota allocation.
 
