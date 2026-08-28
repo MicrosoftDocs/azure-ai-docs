@@ -27,20 +27,20 @@ ai-usage: ai-assisted
 
 1. Create a file named `versions.tf` and add the required provider sources.
 
-        ```terraform
-        terraform {
-            required_providers {
-                azapi = {
-                    source  = "Azure/azapi"
-                    version = "~> 2.5"
-                }
-                random = {
-                    source  = "hashicorp/random"
-                    version = "~> 3.6"
-                }
+    ```terraform
+    terraform {
+        required_providers {
+            azapi = {
+                source  = "Azure/azapi"
+                version = "~> 2.5"
+            }
+            random = {
+                source  = "hashicorp/random"
+                version = "~> 3.6"
             }
         }
-        ```
+    }
+    ```
 
 1. Create a file named `providers.tf` and add the following code.
 
