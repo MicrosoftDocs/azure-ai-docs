@@ -13,6 +13,7 @@ ms.author: lagayhar
 ms.reviewer: sooryar
 ms.date: 06/30/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Tune prompts by using variants
@@ -50,7 +51,7 @@ The classification will be based on the url, the webpage text content summary, o
 For a given URL : {{url}}, and text content: {{text_content}}.
 Classify above url to complete the category and indicate evidence.
 
-The output shoule be in this format: {"category": "App", "evidence": "Both"} 
+The output should be in this format: {"category": "App", "evidence": "Both"}
 OUTPUT:
 ```
 
@@ -72,7 +73,7 @@ To optimize this flow, you can try multiple approaches. The following two direct
 For the **classify_with_llm** node, based on `variant_0`:
 
 - Create `variant_1` where the temperature is changed from 1 to 0.
-- Create `variant_2` where temperature is 0 and you can use the following prompt including few-shots examples.
+- Create `variant_2` where temperature is 0 and you can use the following prompt that includes few-shot examples.
 
 
 ```

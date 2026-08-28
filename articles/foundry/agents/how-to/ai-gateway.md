@@ -415,6 +415,7 @@ Application Insights is best for request and dependency tracing.
 ## Supported configurations
 
 - Only prompt agents in the Agent SDK support this feature.
+- The Response API isn't supported at present.
 - Supported agent tools: Code Interpreter, Functions, File Search, OpenAPI, Foundry IQ, SharePoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
 - Supported networking configurations:
     - Public networking is supported for both API Management and self-hosted gateways.
