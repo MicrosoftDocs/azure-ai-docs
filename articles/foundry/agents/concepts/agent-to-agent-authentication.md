@@ -107,10 +107,10 @@ Use your agent's managed identity to authenticate with A2A endpoints that suppor
 
 **Identity lifecycle:**
 
-- **Before publishing**: All agents in the same project share a common identity. This simplifies development and testing.
-- **After publishing**: Each published agent receives a unique identity. This provides isolation and enables granular access control.
+- **Before publishing**: All agents in the same project share a common identity. This setup simplifies development and testing.
+- **After publishing**: Each published agent receives a unique identity. This setup provides isolation and enables granular access control.
 
-For more information about agent identity lifecycle, see [Agent identity concepts in Microsoft Foundry](agent-identity.md).
+For more information about the agent identity lifecycle, see [Agent identity concepts in Microsoft Foundry](agent-identity.md).
 
 **To configure agent identity authentication:**
 
@@ -146,6 +146,7 @@ azd ai connection create my-a2a-connection \
   --audience "<entra-audience>"
 ```
 
+
 When the agent invokes the A2A endpoint, Agent Service uses the project's managed identity to request an authorization token from Microsoft Entra ID and includes it in the request.
 
 ## OAuth identity passthrough
@@ -173,7 +174,7 @@ OAuth uses two types of tokens:
 | **Access token** | Authorizes API calls to the underlying service | Short-lived (typically 1 hour) to limit exposure if compromised |
 | **Refresh token** | Obtains new access tokens without requiring the user to sign in again | Longer-lived (hours to weeks, or until revoked) |
 
-OAuth scopes define what the agent can access and do on the user's behalf. The scopes are specified when you configure the connection and are presented to the user during the consent flow. For more information about OAuth, see the [Microsoft security documentation](https://www.microsoft.com/security/business/security-101/what-is-oauth). 
+OAuth scopes define what the agent can access and do on the user's behalf. You specify the scopes when you configure the connection, and the user sees them during the consent flow. For more information about OAuth, see the [Microsoft security documentation](https://www.microsoft.com/security/business/security-101/what-is-oauth). 
 
 ### Managed OAuth vs. custom OAuth
 
@@ -257,14 +258,14 @@ After you configure authentication, test the connection to confirm it works corr
 
 ### Validate OAuth identity passthrough
 
-1. Open your agent in the Foundry portal using a test user account that hasn't previously consented.
+1. Open your agent in the Foundry portal by using a test user account that you didn't previously consent.
 1. Start a conversation and trigger an action that invokes the A2A tool.
 1. Confirm that a consent link appears in the agent's response.
-1. Open the consent link and sign in with the test user's credentials.
+1. Open the consent link and sign in by using the test user's credentials.
 1. Authorize the requested permissions.
 1. Return to the agent and trigger the A2A tool again.
-1. Confirm the tool call completes successfully using the test user's credentials.
-1. (Optional) Test with another user account to confirm consent flows work for multiple users.
+1. Confirm the tool call completes successfully by using the test user's credentials.
+1. (Optional) Test by using another user account to confirm consent flows work for multiple users.
 
 ## Troubleshooting
 
@@ -280,7 +281,7 @@ Use the following table to diagnose and resolve common authentication issues:
 | Consent completes but tool calls fail | The user doesn't have permissions in the underlying service | Confirm the user has the required permissions in the underlying service. Also confirm the user has at least the **Foundry User** role on the Foundry project. |
 | No consent link appears for OAuth | OAuth identity passthrough isn't configured, or the agent didn't invoke the A2A tool | Verify the project connection is configured for OAuth identity passthrough. Trigger an action that invokes the A2A tool. |
 | Consent link appears but sign-in fails | Custom OAuth configuration is incorrect | For custom OAuth, verify the authorization URL, client ID, and redirect URL are correct. Confirm the redirect URL is added to your OAuth app registration. |
-| Refresh token expired | User hasn't interacted with the agent for an extended period | The user needs to go through the consent flow again. This is expected behavior for security. |
+| Refresh token expired | User didn't interact with the agent for an extended period | The user needs to go through the consent flow again. This behavior is expected for security. |
 
 ## Related content
 
