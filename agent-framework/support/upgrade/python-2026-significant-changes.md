@@ -4,8 +4,9 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 04/02/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 # Python 2026 Significant Changes Guide
 
@@ -15,6 +16,24 @@ This document lists all significant changes in Python releases since the start o
 - 🟡 **Enhancement** — New capability or improvement; existing code continues to work
 
 This document tracks significant Python changes across all 2026 releases, so please refer to it when upgrading between versions to ensure you don't miss any important changes. For detailed upgrade instructions on specific topics (e.g., options migration), refer to the linked upgrade guides or the linked PR's.
+
+---
+
+## python-1.14.0 (August 14, 2026)
+
+**Release Notes:** [python-1.14.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0)
+
+### 🔴 [Beta] Foundry Hosted Agent state moves to Foundry State Store
+
+**PR:** [#7533](https://github.com/microsoft/agent-framework/pull/7533)
+
+PR `#7533` removes `FoundrySessionStore(path)` from the beta `agent-framework-foundry-hosting` package. The host now uses `FoundryAgentSessionStore` and Foundry State Store-backed defaults for agent sessions, workflow checkpoints, and function approvals.
+
+- Remove imports and construction of `FoundrySessionStore`.
+- Let `ResponsesHostServer` create the default providers. For custom storage, pass `agent_session_store_provider`, `checkpoint_store_provider`, or `function_approval_store_provider`.
+- Existing file-backed state isn't migrated automatically.
+
+For the current provider model, see [Persist state and handle long-running conversations](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#persist-state-and-handle-long-running-conversations).
 
 ---
 
