@@ -6,6 +6,7 @@ ms.topic: upgrade-and-migration-article
 ms.author: edvan
 ms.date: 04/02/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 # Python 2026 Significant Changes Guide
 
@@ -15,6 +16,18 @@ This document lists all significant changes in Python releases since the start o
 - 🟡 **Enhancement** — New capability or improvement; existing code continues to work
 
 This document tracks significant Python changes across all 2026 releases, so please refer to it when upgrading between versions to ensure you don't miss any important changes. For detailed upgrade instructions on specific topics (e.g., options migration), refer to the linked upgrade guides or the linked PR's.
+
+---
+
+## python-1.14.0 (August 14, 2026)
+
+**Release Notes:** [python-1.14.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0)
+
+### 🟡 Encrypted reasoning is opt-in for Foundry chat
+
+**PR:** [#7536](https://github.com/microsoft/agent-framework/pull/7536)
+
+`FoundryChatClient` no longer requests `reasoning.encrypted_content` by default. The default avoids failures on unsupported models. For capable deployments, opt in with `default_options={"include": ["reasoning.encrypted_content"]}`.
 
 ---
 
@@ -2787,6 +2800,7 @@ No significant changes in this release.
 
 | Release | Release Notes | Type | Change | PR |
 |---------|---------------|------|--------|-----|
+| 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Encrypted reasoning is opt-in for Foundry chat | [#7536](https://github.com/microsoft/agent-framework/pull/7536) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🔴 Breaking | `github-copilot-sdk` upgraded to v1.0.0: `SubprocessConfig` removed (use `RuntimeConnection` + kwargs), import paths moved to `copilot.session_events`, `copilot_home` → `base_directory`, permission handlers use concrete decision types | [#6292](https://github.com/microsoft/agent-framework/pull/6292) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🟡 Enhancement | Progressive tool exposure via `FunctionInvocationContext` | [#6233](https://github.com/microsoft/agent-framework/pull/6233) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🟡 Enhancement | MCP-based skills discovery (`McpSkillsSource`) | [#6169](https://github.com/microsoft/agent-framework/pull/6169) |
