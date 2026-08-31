@@ -115,6 +115,39 @@ For the current provider model, see [Persist state and handle long-running conve
 
 ---
 
+### 🔴 Build functional workflow definitions before running them
+
+**PR:** [#7521](https://github.com/microsoft/agent-framework/pull/7521)
+
+PR `#7521` changes `@workflow` to return a stateless `FunctionalWorkflowDefinition`. Call `.build()` to create a stateful `FunctionalWorkflow`. Build the workflow before you call `.run()` or `.as_agent()`, and pass checkpoint storage to `.build()`.
+
+**Before:**
+
+```python
+@workflow(checkpoint_storage=storage)
+async def pipeline(data: str) -> str:
+    return await process(data)
+
+result = await pipeline.run("input")
+agent = pipeline.as_agent()
+```
+
+**After:**
+
+```python
+@workflow
+async def pipeline(data: str) -> str:
+    return await process(data)
+
+workflow_instance = pipeline.build(checkpoint_storage=storage)
+result = await workflow_instance.run("input")
+agent = workflow_instance.as_agent()
+```
+
+Build a separate workflow instance for each logical caller or session so that run and replay state remain isolated.
+
+---
+
 ### 🟡 Agent Hooks adds a fail-closed interception contract
 
 **PR:** [#7515](https://github.com/microsoft/agent-framework/pull/7515)
