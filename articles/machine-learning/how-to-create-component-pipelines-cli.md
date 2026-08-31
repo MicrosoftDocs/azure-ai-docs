@@ -93,7 +93,7 @@ You should receive a JSON dictionary with information about the pipeline job, in
 | `name` | The GUID-based name of the job. |
 | `experiment_name` | The name under which jobs are organized in studio. |
 | `services.Studio.endpoint` | A URL for monitoring and reviewing the pipeline job. |
-| `status` | The status of the job. It will probably be `Preparing` at this point. |
+| `status` | The status of the job. It's probably `Preparing` at this point. |
 
 Open the `services.Studio.endpoint` URL to see a visualization of the pipeline. To check the job later from the CLI, run `az ml job show --name <job-name> --query status --output tsv` with the `name` value from the response.
 
