@@ -4,9 +4,10 @@ description: Agent Framework Integrations
 author: westey-m
 ms.topic: article
 ms.author: westey
-ms.date: 07/28/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
 zone_pivot_groups: programming-languages
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -33,7 +34,7 @@ Microsoft Agent Framework has integrations with many different services, tools a
 | [Amazon Web Services](./by-provider/amazon-web-services.md) | Amazon Bedrock and Anthropic Claude on Bedrock |
 | [Google](./by-provider/google.md) | Google Gemini and Anthropic Claude on Vertex AI |
 | [Ollama](./by-provider/ollama.md) | Local model inference through native and OpenAI-compatible clients |
-| [Mistral](./by-provider/mistral.md) | Mistral text embeddings |
+| [Mistral](./by-provider/mistral.md) | Mistral chat and text embeddings |
 
 See [all provider ecosystems](./by-provider/index.md).
 
