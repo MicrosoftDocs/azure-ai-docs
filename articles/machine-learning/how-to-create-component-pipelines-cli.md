@@ -114,7 +114,7 @@ The following table describes the most commonly used fields of the pipeline YAML
 | --- | --- |
 | `type` | **Required**. The job type. It must be `pipeline` for pipeline jobs. |
 | `display_name` | The display name of the pipeline job in the studio UI. Editable in the studio UI. It doesn't have to be unique across all jobs in the workspace. |
-| `jobs` | **Required**. A dictionary of the set of individual jobs to run as steps within the pipeline. These jobs are considered child jobs of the parent pipeline job. In the current release, supported job types in pipeline are `command` and `sweep`. |
+| `jobs` | **Required**. A dictionary of the set of individual jobs to run as steps within the pipeline. These jobs are child jobs of the parent pipeline job. In the current release, supported job types in pipeline are `command` and `sweep`. |
 | `inputs` | A dictionary of inputs to the pipeline job. The key is a name for the input within the context of the job, and the value is the input value. You can reference these pipeline inputs by the inputs of an individual step job in the pipeline by using the `${{ parent.inputs.<input_name> }}` expression. |
 | `outputs` | A dictionary of output configurations of the pipeline job. The key is a name for the output in the context of the job, and the value is the output configuration. You can reference these pipeline outputs from an individual step job by using the `${{ parent.outputs.<output_name> }}` expression. |
 
