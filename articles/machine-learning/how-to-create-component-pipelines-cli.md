@@ -63,7 +63,7 @@ In the `cli/jobs/pipelines-with-components/basics` directory of the [`azureml-ex
 
 - **component_src**. These are the source code directories for specific components. They contain the source code that's run in the component. You can use your preferred language, including Python, R, and others. The code must be run by a shell command. The source code can take a few inputs from the shell command line to control how this step is run. For example, a training step might take training data, learning rate, and the number of epochs to control the training process. The argument of a shell command is used to pass inputs and outputs to the code.
 
-You'll now create a pipeline by using the `3b_pipeline_with_data` example. Each file is explained further in the following sections.
+Now create a pipeline by using the `3b_pipeline_with_data` example. The following sections explain each file.
 
 First, list your available compute resources by using the following command. The `az ml` commands require your resource group and workspace name. If you didn't configure CLI defaults, add `-g <resource-group> -w <workspace>` to each command, or run `az configure --defaults group=<resource-group> workspace=<workspace>` to set them once.
 
