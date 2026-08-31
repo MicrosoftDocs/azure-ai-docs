@@ -26,7 +26,7 @@ To complete this article, you need:
 
 ### Required Azure roles and permissions
 
-Microsoft Entra ID uses role-based access control (RBAC) to manage access to Azure resources. You need different roles, depending on whether you're an administrator setting up authentication, or you're a developer using it to make API calls .
+Microsoft Entra ID uses role-based access control (RBAC) to manage access to Azure resources. You need different roles, depending on whether you're an administrator setting up authentication, or you're a developer using it to make API calls.
 
 #### For setting up authentication
 
