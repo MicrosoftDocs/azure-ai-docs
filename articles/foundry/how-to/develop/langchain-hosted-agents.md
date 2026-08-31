@@ -41,7 +41,7 @@ its code or configuration.
 
 ## Install the package
 
-Install `langchain-azure-ai` 1.2.9 or later with the hosting extra:
+Install `langchain-azure-ai` version 1.2.9 or later with the hosting extra:
 
 ```bash
 pip install -U "langchain-azure-ai[hosting]>=1.2.9" azure-identity
