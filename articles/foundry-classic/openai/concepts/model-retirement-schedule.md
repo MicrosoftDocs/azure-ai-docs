@@ -15,6 +15,7 @@ reviewer: johnrsanders
 recommendations: false
 ROBOTS: NOINDEX, NOFOLLOW
 #customer intent: As a developer, I want to see the retirement schedule and find replacement models for retiring Foundry Models so that I can update my applications before support ends.
+no-loc: [gpt-chat-latest]
 ---
 
 # Model retirement schedule (classic)
