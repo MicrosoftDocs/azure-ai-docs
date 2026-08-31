@@ -470,7 +470,7 @@ For extension-based deployment, see [Quickstart: Deploy your first hosted agent]
 ## Host an existing agent
 
 If your application already works with LangSmith or the LangGraph CLI,
-Use the `langchain_azure_ai.agents.hosting.run` module to seamlessly host the
+use the `langchain_azure_ai.agents.hosting.run` module to seamlessly host the
 agent on Foundry without changing its code or configuration.
 
 From the project root, start a Responses host:
