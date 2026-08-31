@@ -188,7 +188,7 @@ The environment is the environment in which the component runs. It could be an A
 
 ## Register a component for reuse and sharing
 
-Although some components are specific to a particular pipeline, the real benefit of components comes from reuse and sharing. You can register a component in your Azure Machine Learning workspace to make it available for reuse. Registered components support automatic versioning so you can update the component but ensure that pipelines that require an older version will continue to work.
+Although some components are specific to a particular pipeline, the real benefit of components comes from reuse and sharing. Register a component in your Azure Machine Learning workspace to make it available for reuse. Registered components support automatic versioning so you can update the component but ensure that pipelines that require an older version continue to work.
 
 In the azureml-examples repository, go to the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory. 
 
