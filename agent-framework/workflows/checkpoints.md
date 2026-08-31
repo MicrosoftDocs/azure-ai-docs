@@ -581,7 +581,7 @@ registration when your code can't configure the storage instance, such as in a
 hosted environment that creates checkpoint storage for you. Register the type
 before loading a checkpoint that contains it.
 
-Both mechanisms extend the restricted unpickler's allowlist; neither makes
+Both mechanisms extend the restricted unpickler's allow list; neither makes
 untrusted pickle data safe. Register only trusted application classes because
 an allowed class can define custom pickle reconstruction behavior. Global
 registration increases the deserialization surface for every restricted
