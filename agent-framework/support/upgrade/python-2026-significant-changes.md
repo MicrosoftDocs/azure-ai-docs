@@ -29,8 +29,8 @@ This document tracks significant Python changes across all 2026 releases, so ple
 
 `configure_otel_providers()` now accepts service metadata, resource attributes,
 and OTLP exporter options directly. Explicit service metadata takes precedence
-over environment values, resource attributes merge over environment attributes,
-and signal-specific OTLP endpoint and header variables remain more specific
+over environment values. Resource attributes merge over environment attributes.
+Signal-specific OTLP endpoint and header variables remain more specific
 than base programmatic settings.
 
 ---
