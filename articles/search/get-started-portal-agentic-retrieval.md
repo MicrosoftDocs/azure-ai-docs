@@ -28,7 +28,7 @@ The portal guides you through the process of creating the following objects:
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
 
 > [!IMPORTANT]
-> Some agentic retrieval features are generally available in the 2026-04-01 REST API through programmatic access. The Azure portal continues to use 2026-05-01-preview for the full feature set. If you previously created agentic retrieval objects in the portal, those objects might be subject to breaking changes. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
+> Some agentic retrieval features are generally available in the 2026-04-01 REST API through programmatic access. The Azure portal continues to use 2026-08-01-preview for the full feature set. If you previously created agentic retrieval objects in the portal, those objects might be subject to breaking changes. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
 
 ## Prerequisites
 

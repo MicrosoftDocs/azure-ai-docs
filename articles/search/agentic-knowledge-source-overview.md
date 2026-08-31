@@ -3,7 +3,7 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 07/30/2026
+ms.date: 08/14/2026
 ai-usage: ai-assisted
 ---
 
@@ -14,11 +14,9 @@ ai-usage: ai-assisted
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
@@ -31,7 +29,7 @@ You can reference multiple knowledge sources in a single knowledge base. The age
 Azure AI Search supports the following knowledge sources for agentic retrieval workloads.
 
 | Kind | Description | Indexed or remote |
-|------|-------------|-------------------|
+| ------ | ------------- | ------------------- |
 | [Search index](agentic-knowledge-source-how-to-search-index.md) | Wraps an existing index. | Indexed |
 | [Azure blob](agentic-knowledge-source-how-to-blob.md) | Generates an indexer pipeline from a blob container. | Indexed |
 | [Azure SQL (preview)](agentic-knowledge-source-how-to-azure-sql.md) | Generates an indexer pipeline from an Azure SQL table or view. | Indexed |
@@ -55,7 +53,9 @@ An indexed knowledge source points to a search index that [meets the criteria fo
 
 + **Auto-generated indexer pipeline:** For all other indexed knowledge sources, Azure AI Search automatically creates a complete indexer pipeline from your external data source. This includes a [data source](search-data-sources-gallery.md), [skillset](cognitive-search-working-with-skillsets.md), [indexer](search-indexer-overview.md), and [index](search-what-is-an-index.md) that's populated and chunked.
 
-Queries run locally on your search service using keyword (full text), vector, or hybrid queries.
+Queries run locally on your search service using full-text (keyword), vector, or hybrid queries.
+
+Because an indexed knowledge source has a backing search index, references in the response can include service-generated [citation URLs (preview)](agentic-retrieval-how-to-retrieve.md#look-up-documents-with-citation-urls-preview) that resolve to their documents in the index. Remote knowledge sources have no backing index, so they don't return citation URLs.
 
 ### Remote knowledge sources
 
@@ -79,8 +79,6 @@ Knowledge sources are independent objects that you create and manage separately 
 
 ## Creating knowledge sources
 
-To create a knowledge source, you need [**Search Service Contributor** permissions](search-security-rbac.md) on your search service. If the knowledge source generates an indexer pipeline, you also need **Search Index Data Contributor** permissions to load an index. You can use an [admin API key](search-security-api-keys.md) as an alternative to role assignments.
-
 Creation support in the Azure portal, Microsoft Foundry portal, REST API, and Azure SDKs varies by knowledge source kind. For per-kind instructions, see the links in [Supported knowledge sources](#supported-knowledge-sources).
 
 ### Ingest sensitivity labels (preview)
@@ -94,6 +92,12 @@ If your indexed knowledge source uses a chunked index, such as with integrated v
 For blob, indexed OneLake, and indexed SharePoint knowledge sources, you can configure an `assetStore` in the knowledge source's `ingestionParameters` to persist images that are embedded in your source documents. When you also enable image serving on the knowledge base, the [retrieve action](agentic-retrieval-how-to-retrieve.md) injects those images into the answer synthesis prompt so the LLM can reason over diagrams, charts, and extracted image content. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 Don't configure `assetStore` and `ingestionPermissionOptions` on the same knowledge source. Image serving isn't supported when `ingestionPermissionOptions` is configured.
+
+### Restrict ingestion to a private network (preview)
+
+Starting with the `2026-08-01-preview` API version, [blob](agentic-knowledge-source-how-to-blob.md#restrict-ingestion-to-a-private-network-preview), [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#protect-azure-dependencies-during-ingestion), and [indexed Azure SQL](agentic-knowledge-source-how-to-azure-sql.md#restrict-ingestion-to-a-private-network) knowledge sources support private indexer execution. For blob and Azure SQL, approved shared private links can protect the source connection and Azure dependencies. SharePoint Online isn't a shared private link target, so private mode applies only to its protected Azure dependencies.
+
+Currently, private synchronization isn't supported for [indexed OneLake knowledge sources](agentic-knowledge-source-how-to-onelake.md#limitations).
 
 ## Using knowledge sources
 

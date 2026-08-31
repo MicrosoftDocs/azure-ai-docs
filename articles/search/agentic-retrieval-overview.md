@@ -17,17 +17,17 @@ ai-usage: ai-assisted
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In Azure AI Search, *agentic retrieval* is a multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It's intended for [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG) patterns and agent-to-agent workflows. 
+In Azure AI Search, *agentic retrieval* is a multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It's intended for [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG) patterns and agent-to-agent workflows.
 
-Here's what it does:
+Here's what agentic retrieval does:
 
 + Can use a large language model (LLM) to break down a complex query into smaller, focused subqueries for better coverage over proprietary and external content. Subqueries can include chat history for extra context.
 
@@ -41,7 +41,7 @@ This high-performance pipeline helps you generate high-quality grounding data or
 
 ## Why use agentic retrieval?
 
-There are two use cases for agentic retrieval. First, it powers [Foundry IQ](/azure/ai-foundry/agents/concepts/what-is-foundry-iq) in the Microsoft Foundry portal by providing the knowledge layer for agent solutions. Second, it's the basis for custom agentic solutions you build using the Azure AI Search APIs.
+Agentic retrieval supports both managed and custom experiences for agents and apps. In the Microsoft Foundry portal, it powers [Foundry IQ](/azure/ai-foundry/agents/concepts/what-is-foundry-iq) as a managed knowledge layer for agents. You can also build custom agentic retrieval solutions by using the Azure portal, Search Service REST API, or a supported Azure SDK.
 
 Use agentic retrieval when you want to provide agents and apps with the most relevant content for answering harder questions, drawing on chat context, your proprietary content, and external sources.
 
@@ -76,7 +76,7 @@ The agentic retrieval process works as follows:
 For all agentic retrieval scenarios, a knowledge base and at least one knowledge source are required. Other components are optional and depend on your configuration.
 
 | Component | Service | Role |
-|-----------|---------|------|
+| ----------- | --------- | ------ |
 | Knowledge base | Azure AI Search | Orchestrates the pipeline, managing knowledge sources and query parameters. |
 | Knowledge source | Azure AI Search | Defines the content used in the pipeline. Can be indexed (backed by a search index on your service) or remote (content retrieved at query time from an external platform). |
 | Search index | Azure AI Search | Stores searchable content (text and vectors) with a semantic configuration. Determines which query types run and which optimizations apply. Required for indexed knowledge sources only. |
@@ -102,7 +102,7 @@ Agentic retrieval incurs charges from two services:
 The following table compares billing between the classic single-query pipeline and the agentic retrieval multi-query pipeline. In the classic pipeline, the billable component is [semantic ranker](semantic-search-overview.md).
 
 | Aspect | Classic pipeline | Agentic retrieval |
-|--|--|--|
+| -- | -- | -- |
 | Unit | Query based | Token based |
 | Cost per unit | Uniform cost per query | Variable cost per token (depends on reasoning effort) |
 | Cost estimation | Estimate query count | Estimate token usage |
@@ -148,9 +148,9 @@ Putting it all together, you'd pay about $3.30 for agentic retrieval in Azure AI
 
 + Review the activity log in the response to find out what queries were issued to which sources and the parameters used. You can reissue those queries against your indexes and use a public tokenizer to estimate tokens and compare to API-reported usage. Precise reconstruction of a query or response isn't guaranteed however. Factors include the type of knowledge source, such as public web data or a remote SharePoint knowledge source that's predicated on a user identity, which can affect query reproduction.
 
-+ Reduce the number of knowledge sources (indexes); consolidating content can lower fan-out and token volume. 
++ Reduce the number of knowledge sources (indexes); consolidating content can lower fan-out and token volume.
 
-+ Lower the reasoning effort to reduce LLM usage during query planning and query expansion (iterative search). 
++ Lower the reasoning effort to reduce LLM usage during query planning and query expansion (iterative search).
 
 + Organize content so the most relevant information can be found with fewer sources and documents (for example, curated summaries or tables).
 
