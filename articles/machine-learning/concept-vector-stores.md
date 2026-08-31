@@ -21,7 +21,10 @@ ms.collection: ce-skilling-ai-copilot
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-This article describes vector stores in Azure Machine Learning that you can use to perform retrieval-augmented generation (RAG). A vector store contains embeddings, which are numerical representations of concepts (data) converted to number sequences. Embeddings enable large language models (LLMs) to understand relationships between concepts. You can create vector stores to connect your data with LLMs like GPT-4 and retrieve data efficiently.
+> [!IMPORTANT]
+> Azure AI Search vector search is generally available. The Azure Machine Learning vector index experience in prompt flow remains in public preview.
+
+This article describes vector stores in Azure Machine Learning that you can use to perform retrieval-augmented generation (RAG). A vector store contains embeddings, which are numerical representations of concepts (data) converted to number sequences. Embeddings enable large language models (LLMs) to understand relationships between concepts. In most RAG workflows, you chunk your data and convert it to embeddings before loading it into the vector store for retrieval. You can create vector stores to connect your data with LLMs like GPT-4 and retrieve data efficiently.
 
 Azure Machine Learning supports two vector stores that contain your supplemental data used in a RAG workflow:
 
@@ -56,9 +59,9 @@ Here are key points about using Azure AI Search for your vector store:
 
 - Provides hybrid information retrieval. Vector data can coexist with nonvector data, which means you can use any of the [features of Azure AI Search](/azure/search/search-features-list) for indexing and queries, including [hybrid search](/azure/search/vector-search-how-to-query) and [semantic reranking](/azure/search/semantic-search-overview).
 
-- [Vector support is in preview](/azure/search/vector-search-overview). Currently, vectors must be generated externally and then passed to Azure AI Search for indexing and query encoding. The prompt flow handles these transitions for you.
+- Azure AI Search vector search is generally available. In Azure Machine Learning, the vector index experience in prompt flow remains in public preview.
 
-To use Azure AI Search as a vector store for Azure Machine Learning, [you must have a search service](/azure/search/search-create-service-portal). After the service exists and you grant access to developers, you can choose **Azure AI Search** as a vector index in a prompt flow. The prompt flow creates the index on Azure AI Search, generates vectors from your source data, sends the vectors to the index, invokes similarity search on Azure AI Search, and returns the response.
+To use Azure AI Search as a vector store for Azure Machine Learning, [you must have a search service](/azure/search/search-create-service-portal). After the service exists and you grant access to developers, you can choose **Azure AI Search** as a vector index in a prompt flow. The prompt flow creates the index on Azure AI Search, generates or loads vectors from your source data, sends the vectors to the index, invokes similarity search on Azure AI Search, and returns the response.
 
 ## Related content
 
