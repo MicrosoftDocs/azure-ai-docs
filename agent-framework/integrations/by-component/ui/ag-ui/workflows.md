@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -17,6 +18,7 @@ ms.service: agent-framework
   | Basic workflow exposure       | ✅ |   ✅   | ✅ | .NET and Go stream standard agent output |
   | Workflow lifecycle events     | ❌ |   ✅   | ❌ | Python-specific |
   | Workflow interrupt and resume | ❌ |   ✅   | ❌ | Python-specific |
+  | Workflow checkpoint resume    | ❌ |   ✅   | ❌ | Python-specific |
 -->
 
 # Workflows with AG-UI
@@ -214,6 +216,70 @@ user's response:
 The server converts the resume payload into workflow responses and continues execution from where it paused. To
 cancel the interrupted run instead, set `status` to `"cancelled"` and omit `payload`.
 
+## Persist and resume workflow checkpoints
+
+Configure `checkpoint_storage` on `AgentFrameworkWorkflow` to save the underlying workflow state at the end of each
+superstep. You can instead pass the same argument to `add_agent_framework_fastapi_endpoint` when you register a
+workflow. The storage must be available to the AG-UI wrapper or endpoint to resume a checkpoint through AG-UI.
+
+The following example uses in-memory storage for a short-lived workflow:
+
+```python
+from agent_framework import InMemoryCheckpointStorage
+from agent_framework.ag_ui import (
+    AgentFrameworkWorkflow,
+    add_agent_framework_fastapi_endpoint,
+)
+from fastapi import FastAPI
+
+app = FastAPI()
+checkpoint_storage = InMemoryCheckpointStorage()
+workflow = build_my_workflow()
+
+ag_ui_workflow = AgentFrameworkWorkflow(
+    workflow=workflow,
+    checkpoint_storage=checkpoint_storage,
+)
+add_agent_framework_fastapi_endpoint(
+    app,
+    ag_ui_workflow,
+    "/workflow",
+)
+```
+
+`AgentFrameworkWorkflow.run()` receives the AG-UI request payload, so a client supplies the checkpoint ID through
+forwarded properties instead of a Python `checkpoint_id` argument. A checkpoint-only resume doesn't include a new
+user message:
+
+```json
+{
+  "threadId": "abc123",
+  "messages": [],
+  "forwardedProps": {
+    "checkpointId": "checkpoint-id-from-your-storage"
+  }
+}
+```
+
+The adapter restores the saved workflow state and continues execution. If the checkpoint contains a pending interrupt,
+include both the checkpoint ID and the canonical `resume` payload in the same request. The adapter restores the
+checkpoint before it delivers the interrupt response.
+
+`InMemoryCheckpointStorage` doesn't survive process restarts. For durable storage options and checkpoint selection,
+see [Checkpoints](../../../../workflows/checkpoints.md).
+
+### Workflow checkpoints and AG-UI thread snapshots
+
+Workflow checkpoints and AG-UI thread snapshots persist different data:
+
+| Persistence mechanism | Stores | Purpose |
+|---|---|---|
+| Agent Framework workflow checkpoint | Executor and runtime state, including pending requests | Resume workflow execution from saved runtime state |
+| AG-UI thread snapshot | Replayable protocol output, such as messages, shared state, and the latest interrupt | Rehydrate the client-visible thread |
+
+You can configure both mechanisms. A workflow checkpoint doesn't replace an AG-UI thread snapshot, and an AG-UI
+thread snapshot doesn't contain the executor state required to resume workflow execution.
+
 ## Complete Example: Multi-Agent Handoff Workflow
 
 This example shows a customer-support workflow with three agents that hand off work to each other, use tools requiring approval, and request human input when needed.
@@ -370,6 +436,7 @@ class MyWorkflow(Workflow):
 Key details:
 
 - Both `forwarded_props` and `forwardedProps` are accepted in the input payload; internally they are normalized to `forwarded_props`.
+- Within forwarded properties, `checkpoint_id` and `checkpointId` are reserved for workflow checkpoint resume.
 - If `workflow.run()` does not accept `function_invocation_kwargs` (or `**kwargs`), the props are silently dropped — existing workflows are unaffected.
 - Forwarded props are also stored in session metadata but are filtered from LLM-bound metadata, so they do not leak into chat client requests.
 

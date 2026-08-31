@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -82,6 +83,20 @@ GOOGLE_MODEL="gemini-2.5-flash"
 `GeminiChatClient` supports streaming, function tools, structured output, extended thinking, and provider-hosted tools.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/gemini/gemini_basic.py" range="37-75":::
+
+### Include thought summaries
+
+The [extended thinking sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/gemini/gemini_advanced.py) shows how to configure `ThinkingConfig`. To receive Gemini thought summaries, set `include_thoughts=True` in the thinking configuration:
+
+```python
+options: GeminiChatOptions = {
+    "thinking_config": ThinkingConfig(include_thoughts=True, thinking_budget=2048),
+}
+```
+
+When Gemini returns a thought summary, `GeminiChatClient` adds it to the response as `Content` with `type == "text_reasoning"`. Read the summary from `content.text`.
+
+For a run without streaming, filter the `contents` of each item in `result.messages`. For a streaming run, filter each `chunk.contents`. Text accessors such as `result.text` and `chunk.text` include only `text` content, so inspect the content collections when your app needs reasoning summaries.
 
 The package includes factories for Google Search grounding, Google Maps grounding, code execution, file search, and MCP.
 

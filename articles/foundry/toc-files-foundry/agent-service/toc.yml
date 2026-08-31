@@ -196,6 +196,8 @@ items:
       href: ../../agents/how-to/set-up-ci-cd-cli.md
     - name: Deploy with a private container registry (ACR)
       href: ../../agents/how-to/deploy-hosted-agent-private-azure-container-registry.md
+    - name: Bring your own registry
+      href: ../../agents/how-to/private-registry-connections.md
     - name: Update endpoint and card
       href: ../../agents/how-to/update-agent-endpoint-cli.md
     - name: Migrate to the latest version

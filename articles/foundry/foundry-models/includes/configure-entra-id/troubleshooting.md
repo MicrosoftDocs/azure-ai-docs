@@ -1,11 +1,12 @@
 ---
 manager: mcleans
-author: santiagxf
-ms.author: fasantia 
+author: msakande
+ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
-ms.date: 01/22/2026
+ms.date: 08/31/2026
 ms.topic: include
+ai-usage: ai-assisted
 ---
 
 Before you troubleshoot, verify that you have the right permissions assigned:
@@ -29,5 +30,5 @@ The following table contains multiple scenarios that can help you troubleshoot M
 | -------------------- | ------------- | -------- |
 | You're using an SDK | Known issues | Before you troubleshoot further, install the latest version of the software you're using to connect to the service. Authentication bugs might already be fixed in a newer version of the software you're using. |
 | `401 Principal does not have access to API/Operation` | The request indicates authentication in the correct way, but the user principal doesn't have the required permissions to use the inference endpoint. | Ensure you have: <br /> 1. Assigned the role **Cognitive Services User** to your principal to the Foundry resource. Notice that **Cognitive Services OpenAI User** grants only access to OpenAI models. **Owner** or **Contributor** don't provide access either.<br /> 1. Waited at least 5 minutes before making the first call. |
-| `401 HTTP/1.1 401 PermissionDenied` | The request indicates authentication in the correct way, but the user principal doesn't have the required permissions to use the inference endpoint. | Assigned the role **Cognitive Services User** to your principal in the Foundry resource. Roles like **Administrator** or **Contributor** don't grant inference access. Wait at least 5 minutes before making the first call. |
+| `401 HTTP/1.1 401 PermissionDenied` | The request indicates authentication in the correct way, but the user principal doesn't have the required permissions to use the inference endpoint. | Assigned the role **Cognitive Services User** to your principal in the Foundry resource. Roles like **Owner** or **Contributor** don't grant inference access. Wait at least 5 minutes before making the first call. |
 | You're using REST API calls and you get `401 Unauthorized. Access token is missing, invalid, audience is incorrect, or have expired.` | The request fails to authenticate with Microsoft Entra ID. | Ensure the `Authentication` header contains a valid token with a scope `https://ai.azure.com/.default`. |

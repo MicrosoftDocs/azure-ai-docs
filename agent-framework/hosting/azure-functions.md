@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 06/18/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Durable Extension
@@ -207,7 +208,7 @@ IHost host = Host.CreateDefaultBuilder(args)
 await host.StartAsync();
 ```
 
-See the [.NET Durable Agents console samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableAgents/ConsoleApps) and [.NET Durable Workflows console samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableWorkflows/ConsoleApps) for runnable self-hosted examples.
+See the [.NET Durable Agents console samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableAgents/ConsoleApps) and [.NET Durable Workflows console samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableWorkflows/ConsoleApps) for runnable self-hosted examples.
 
 :::zone-end
 
@@ -231,7 +232,7 @@ agent_worker.add_agent(agent)
 worker.start()
 ```
 
-See the [Python Durable Task samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/durabletask) for worker-client examples, including single-agent hosting, multi-agent routing, reliable streaming, orchestration chaining, concurrency, conditionals, and human-in-the-loop patterns.
+See the [Python Durable Task samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/python/samples) for worker-client examples, including single-agent hosting, multi-agent routing, reliable streaming, orchestration chaining, concurrency, conditionals, and human-in-the-loop patterns.
 
 :::zone-end
 
@@ -248,7 +249,7 @@ Use durable orchestrations when you want imperative coordination with code-based
 
 Register graph-based workflows with `ConfigureDurableWorkflows` for self-hosted apps or `ConfigureDurableWorkflows` on the Functions app builder for Azure Functions hosting.
 
-See the [.NET Durable Workflows Azure Functions samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableWorkflows/AzureFunctions) and [.NET Durable Workflows console samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableWorkflows/ConsoleApps).
+See the [.NET Durable Workflows Azure Functions samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableWorkflows/AzureFunctions) and [.NET Durable Workflows console samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableWorkflows/ConsoleApps).
 
 :::zone-end
 
@@ -256,7 +257,7 @@ See the [.NET Durable Workflows Azure Functions samples](https://github.com/micr
 
 Durable workflow samples are available for Azure Functions hosting, including shared state, no shared state, parallel workflow execution, and human-in-the-loop workflows.
 
-See the [Python Azure Functions samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/azure_functions) for durable agent, orchestration, MCP server, and workflow examples.
+See the [Python Azure Functions samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/python/samples/azure_functions) for durable agent, orchestration, MCP server, and workflow examples.
 
 :::zone-end
 
@@ -264,10 +265,10 @@ See the [Python Azure Functions samples](https://github.com/microsoft/agent-fram
 
 | Language | Hosting model | Samples |
 | --- | --- | --- |
-| C# | Azure Functions | [.NET Durable Agents - Azure Functions](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableAgents/AzureFunctions), [.NET Durable Workflows - Azure Functions](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableWorkflows/AzureFunctions) |
-| C# | Bring-your-own-compute / self-hosted | [.NET Durable Agents - Console Apps](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableAgents/ConsoleApps), [.NET Durable Workflows - Console Apps](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableWorkflows/ConsoleApps) |
-| Python | Azure Functions | [Python Azure Functions samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/azure_functions) |
-| Python | Bring-your-own-compute / self-hosted | [Python Durable Task samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/durabletask) |
+| C# | Azure Functions | [.NET Durable Agents - Azure Functions](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableAgents/AzureFunctions), [.NET Durable Workflows - Azure Functions](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableWorkflows/AzureFunctions) |
+| C# | Bring-your-own-compute / self-hosted | [.NET Durable Agents - Console Apps](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableAgents/ConsoleApps), [.NET Durable Workflows - Console Apps](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableWorkflows/ConsoleApps) |
+| Python | Azure Functions | [Python Azure Functions samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/python/samples/azure_functions) |
+| Python | Bring-your-own-compute / self-hosted | [Python Durable Task samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/python/samples) |
 | Go | Not currently supported | See the [Agent Framework Go repository](https://github.com/microsoft/agent-framework-go) for the latest status. |
 
 ## Stateful agent threads with conversation history
@@ -308,7 +309,7 @@ Agent state is maintained in durable storage, enabling distributed execution acr
 
 The Durable Extension supports reliable streaming for applications that need real-time token delivery with durable delivery guarantees. Streaming can be used with the core extension in both hosting models, but distributed hosts need a reliable stream broker, such as Redis, so token streams can be delivered consistently across process restarts, reconnects, or worker changes.
 
-Use reliable streaming when the user experience depends on incremental responses, but the workload still needs durable execution semantics. For runnable examples, see the [Python Durable Task samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/durabletask), which include reliable streaming patterns.
+Use reliable streaming when the user experience depends on incremental responses, but the workload still needs durable execution semantics. For runnable examples, see the [Python Durable Task samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/python/samples), which include reliable streaming patterns.
 
 ## Deterministic multi-agent orchestrations
 
