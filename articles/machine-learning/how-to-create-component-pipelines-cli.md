@@ -91,7 +91,7 @@ You should receive a JSON dictionary with information about the pipeline job, in
 | Key | Description |
 | --- | --- |
 | `name` | The GUID-based name of the job. |
-| `experiment_name` | The name under which jobs will be organized in studio. |
+| `experiment_name` | The name under which jobs are organized in studio. |
 | `services.Studio.endpoint` | A URL for monitoring and reviewing the pipeline job. |
 | `status` | The status of the job. It will probably be `Preparing` at this point. |
 
