@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -59,6 +60,29 @@ Agentic mode uses an Azure AI Search Knowledge Base for query planning and multi
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/azure_ai_search/search_context_agentic.py" range="64-146":::
 
 Some agentic output and reasoning options require the preview `azure-search-documents` package.
+
+### Forward caller identity for permission-aware retrieval
+
+Set `query_source_credential=caller_credential` when a knowledge source uses
+[document-level permissions](/azure/search/search-query-access-control-rbac-enforcement)
+and retrieval results must be security trimmed for each caller. Pass the signed-in caller's
+sync or async Azure token credential separately from the application credential that connects
+to Azure AI Search.
+
+For each agentic retrieval, the provider requests a token for
+`https://search.azure.com/.default`. It forwards the caller's Microsoft Entra identity in the
+`x-ms-query-source-authorization` header so Azure AI Search can enforce the indexed permissions.
+
+This option requires a preview `azure-search-documents` build, version `12.1.0b1` or later within
+the supported 12.x range:
+
+```bash
+pip install --pre "azure-search-documents>=12.1.0b1,<13"
+```
+
+Agent Framework fails closed if the installed SDK doesn't support query-source authorization. It
+raises a `ValueError` before sending a retrieval request. Token acquisition failures also stop
+retrieval; the provider doesn't retry without the caller's identity.
 
 :::zone-end
 
