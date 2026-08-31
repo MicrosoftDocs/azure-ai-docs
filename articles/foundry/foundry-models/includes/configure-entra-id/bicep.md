@@ -1,12 +1,13 @@
 ---
 manager: mcleans
-author: santiagxf
-ms.author: fasantia 
+author: msakande
+ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
-ms.date: 01/22/2026
+ms.date: 08/31/2026
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
+ai-usage: ai-assisted
 ---
 
 * Install the [Azure CLI](/cli/azure/)
@@ -100,14 +101,14 @@ In your console, follow these steps:
     az role assignment list --scope $RESOURCE_ID --assignee $SECURITY_PRINCIPAL_ID --query "[?roleDefinitionName=='Cognitive Services User'].roleDefinitionName" --output tsv
     
     # Test authentication by getting an access token
-    az account get-access-token --resource https://cognitiveservices.azure.com --query "accessToken" --output tsv
+    az account get-access-token --resource https://ai.azure.com --query "accessToken" --output tsv
     ```
 
     If successful, you see **Cognitive Services User** from the role assignment check and an access token from the authentication test. You can now use this endpoint and Microsoft Entra ID authentication in your code.
 
 ## Use Microsoft Entra ID in your code
 
-After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. The following example shows how to use a chat completions model.
+After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. The following example shows how to use the Responses API.
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
