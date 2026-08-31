@@ -19,6 +19,46 @@ This document tracks significant Python changes across all 2026 releases, so ple
 
 ---
 
+## Unreleased
+
+### 🔴 Middleware inputs require a sequence, and Agent Hooks installs separately
+
+**PR:** [#7918](https://github.com/microsoft/agent-framework/pull/7918)
+
+Agent constructors, per-run middleware inputs, and `create_harness_agent()` no longer accept a single middleware value. Pass middleware as a sequence. An Agent Hooks bundle remains supported as one element in that sequence.
+
+The `agent-framework-core[agent-hooks]` extra is removed. Install `agent-hooks-sdk` directly.
+
+**Before:**
+```python
+agent = Agent(client=client, middleware=hooks)
+```
+
+**After:**
+```bash
+pip install agent-hooks-sdk
+```
+
+```python
+agent = Agent(client=client, middleware=[hooks])
+```
+
+---
+
+## python-1.15.0 (August 21, 2026)
+
+**Release Notes:** [python-1.15.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0)
+
+### 🟡 Function middleware can abort with `MiddlewareFailure`
+
+**PR:** [#7562](https://github.com/microsoft/agent-framework/pull/7562)
+
+Function middleware can raise `MiddlewareFailure` when execution must stop instead of becoming a recoverable tool error. The function-invocation loop propagates this exception to the caller and cancels in-flight sibling tool calls. Don't catch this exception in middleware because doing so allows the run to continue.
+
+Agent and chat middleware already propagate ordinary exceptions. Use `MiddlewareFailure` when function middleware specifically needs fatal, fail-closed behavior.
+
+---
+
 ## python-1.14.0 (August 14, 2026)
 
 **Release Notes:** [python-1.14.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0)
@@ -34,6 +74,16 @@ PR `#7533` removes `FoundrySessionStore(path)` from the beta `agent-framework-fo
 - Existing file-backed state isn't migrated automatically.
 
 For the current provider model, see [Persist state and handle long-running conversations](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#persist-state-and-handle-long-running-conversations).
+
+---
+
+### 🟡 Agent Hooks adds a fail-closed interception contract
+
+**PR:** [#7515](https://github.com/microsoft/agent-framework/pull/7515)
+
+Agent Framework adds experimental support for the AGENT-HOOKS-0.1 contract through `create_agent_hooks_middleware()` and `create_agent_hooks_middleware_from_emitter()`. The middleware bundle covers agent, model, and function interception points with fail-closed verdict enforcement, transform write-back, buffered streaming, and verdict-gated persistence.
+
+For the current package and middleware contract, install `agent-hooks-sdk` directly and pass the returned bundle in a sequence, such as `middleware=[hooks]`. For details, see [Agent hooks](../../agents/agent-hooks.md).
 
 ---
 
@@ -2806,6 +2856,9 @@ No significant changes in this release.
 
 | Release | Release Notes | Type | Change | PR |
 |---------|---------------|------|--------|-----|
+| Unreleased | — | 🔴 Breaking | Middleware inputs require a sequence; install `agent-hooks-sdk` directly instead of using the removed core extra | [#7918](https://github.com/microsoft/agent-framework/pull/7918) |
+| 1.15.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0) | 🟡 Enhancement | `MiddlewareFailure` adds fatal, fail-closed behavior for function middleware | [#7562](https://github.com/microsoft/agent-framework/pull/7562) |
+| 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Agent Hooks adds experimental AGENT-HOOKS-0.1 interception middleware | [#7515](https://github.com/microsoft/agent-framework/pull/7515) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🔴 Breaking | `github-copilot-sdk` upgraded to v1.0.0: `SubprocessConfig` removed (use `RuntimeConnection` + kwargs), import paths moved to `copilot.session_events`, `copilot_home` → `base_directory`, permission handlers use concrete decision types | [#6292](https://github.com/microsoft/agent-framework/pull/6292) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🟡 Enhancement | Progressive tool exposure via `FunctionInvocationContext` | [#6233](https://github.com/microsoft/agent-framework/pull/6233) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🟡 Enhancement | MCP-based skills discovery (`McpSkillsSource`) | [#6169](https://github.com/microsoft/agent-framework/pull/6169) |

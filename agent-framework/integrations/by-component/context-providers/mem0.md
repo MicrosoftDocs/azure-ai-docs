@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -22,7 +23,7 @@ ms.service: agent-framework
 
 # Mem0
 
-Mem0 extracts durable memories from agent conversations and retrieves relevant memories in later runs. Use a stable user, agent, or application scope when memories should be available across sessions.
+Mem0 extracts durable memories from agent conversations and retrieves relevant memories in later runs. Configure storage and retrieval scopes when memories should be available across sessions.
 
 This integration uses the memory pattern: it extracts and recalls selected durable information rather than replaying the complete conversation transcript.
 
@@ -44,9 +45,18 @@ This integration uses the memory pattern: it extracts and recalls selected durab
 pip install agent-framework-mem0 --pre
 ```
 
-Set `MEM0_API_KEY` or pass an API key directly. Reusing the same `user_id` makes memories available across sessions.
+Set `MEM0_API_KEY` or pass an API key directly. Configure storage and retrieval separately:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/mem0/mem0_basic.py" range="31-80":::
+- `user_id`, `agent_id`, and `application_id` are storage scopes. Mem0 stamps them on each stored memory.
+- `search_user_id`, `search_agent_id`, and `search_application_id` are retrieval scopes. Mem0 uses them to select which memories it searches.
+
+The application scopes require the Mem0 Platform client (`AsyncMemoryClient`). The OSS `AsyncMemory` client supports only user and agent scopes.
+
+Retrieval scope doesn't inherit from storage scope. If you don't set any `search_*` scope, the provider stores memories but doesn't recall them.
+
+For per-user memory, set `user_id` and `search_user_id` to the same stable identifier:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/mem0/mem0_basic.py" range="31-49" highlight="17":::
 
 Mem0 processes memories asynchronously. In production, use retry or service-aware consistency handling instead of relying on a fixed delay.
 
