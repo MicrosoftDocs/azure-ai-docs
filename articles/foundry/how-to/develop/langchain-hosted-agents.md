@@ -4,7 +4,7 @@ description: Learn how to use langchain_azure_ai.agents.hosting to host LangGrap
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 05/27/2026
+ms.date: 08/31/2026
 ms.author: aochengwang
 author: a1exwang
 ms.reviewer: sgilley
@@ -28,6 +28,9 @@ the Responses or Invocations protocol, test it through HTTP, and deploy it to
 Foundry with the Azure Developer CLI or the Foundry Toolkit Visual Studio Code
 extension.
 
+You also learn how to migrate an existing LangGraph project without changing
+its code or configuration.
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -38,10 +41,10 @@ extension.
 
 ## Install the package
 
-Install `langchain-azure-ai` 1.2.4 or later with the hosting extra:
+Install `langchain-azure-ai` 1.2.9 or later with the hosting extra:
 
 ```bash
-pip install -U "langchain-azure-ai[hosting]>=1.2.4" azure-identity
+pip install -U "langchain-azure-ai[hosting]>=1.2.9" azure-identity
 ```
 
 The `hosting` extra installs the Foundry protocol libraries used by the host
@@ -129,6 +132,15 @@ endpoint, and passes the compiled graph to `ResponsesHostServer`. The host
 starts an HTTP server and exposes the graph through `POST /responses`. By
 default, the server binds to port `8088`, or to the value of the `PORT`
 environment variable when one is set.
+
+> [!NOTE]
+> Deep Agents are hosted in the same way as other LangGraph agents. Pass the
+> agent directly to `ResponsesHostServer`.
+>
+> ```python
+> agent = create_deep_agent(...)
+> ResponsesHostServer(agent).run(port=port)
+> ```
 
 Run the app locally:
 
@@ -229,6 +241,45 @@ whose `approval_request_id` matches the interrupt ID. Use
 with `resume`, `update`, or `goto` fields. Use `mcp_approval_response` for a
 simple approve or reject flow.
 
+## Host an existing agent
+
+If your application already works with LangSmith or the LangGraph CLI,
+Use the `langchain_azure_ai.agents.hosting.run` module to seamlessly host the
+agent on Foundry without changing its code or configuration.
+
+From the project root, start a Responses host:
+
+```bash
+python -m langchain_azure_ai.agents.hosting.run --protocol responses
+```
+
+To expose the same graph through the Invocations protocol, set `--protocol` to
+`invocations`. If `langgraph.json` defines multiple graphs, pass the graph name
+as the first argument. Use `--config <path>` if the configuration file
+isn't at the default `langgraph.json` path. For example:
+
+```bash
+python -m langchain_azure_ai.agents.hosting.run agent --protocol invocations
+```
+
+Use the same module command as the container entry point when you deploy the
+existing application to Foundry.
+
+For example, configure the command in `azure.yaml`.
+The key setting is the entry point.
+
+```yaml
+services:
+  my-agent:
+    host: azure.ai.agent
+    kind: hosted
+    codeConfiguration:
+      runtime: python_3_13
+      entryPoint: '-m langchain_azure_ai.agents.hosting.run --protocol responses'
+      ...
+    ...
+```
+
 ## Invocations protocol
 
 Use `InvocationsHostServer` when your callers can't use the Responses API
@@ -267,6 +318,15 @@ if __name__ == "__main__":
 /invocations`. The `MemorySaver` checkpointer gives local multi-turn continuity
 for a given session ID. For production, use a durable checkpointer so state
 survives container restarts.
+
+> [!NOTE]
+> Deep Agents are hosted in the same way as other LangGraph agents. Pass the
+> agent directly to `InvocationsHostServer`.
+>
+> ```python
+> agent = create_deep_agent(...)
+> InvocationsHostServer(agent).run(port=port)
+> ```
 
 ### Test the Invocations endpoint
 
