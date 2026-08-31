@@ -101,6 +101,20 @@ Agent and chat middleware already propagate ordinary exceptions. Use `Middleware
 
 ---
 
+### 🔴 [Beta] Foundry Hosted Agent state moves to Foundry State Store
+
+**PR:** [#7533](https://github.com/microsoft/agent-framework/pull/7533)
+
+PR `#7533` removes `FoundrySessionStore(path)` from the beta `agent-framework-foundry-hosting` package. The host now uses `FoundryAgentSessionStore` and Foundry State Store-backed defaults for agent sessions, workflow checkpoints, and function approvals.
+
+- Remove imports and construction of `FoundrySessionStore`.
+- Let `ResponsesHostServer` create the default providers. For custom storage, pass `agent_session_store_provider`, `checkpoint_store_provider`, or `function_approval_store_provider`.
+- Existing file-backed state isn't migrated automatically.
+
+For the current provider model, see [Persist state and handle long-running conversations](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#persist-state-and-handle-long-running-conversations).
+
+---
+
 ### 🟡 Agent Hooks adds a fail-closed interception contract
 
 **PR:** [#7515](https://github.com/microsoft/agent-framework/pull/7515)
