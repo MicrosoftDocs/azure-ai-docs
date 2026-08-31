@@ -241,45 +241,6 @@ whose `approval_request_id` matches the interrupt ID. Use
 with `resume`, `update`, or `goto` fields. Use `mcp_approval_response` for a
 simple approve or reject flow.
 
-## Host an existing agent
-
-If your application already works with LangSmith or the LangGraph CLI,
-Use the `langchain_azure_ai.agents.hosting.run` module to seamlessly host the
-agent on Foundry without changing its code or configuration.
-
-From the project root, start a Responses host:
-
-```bash
-python -m langchain_azure_ai.agents.hosting.run --protocol responses
-```
-
-To expose the same graph through the Invocations protocol, set `--protocol` to
-`invocations`. If `langgraph.json` defines multiple graphs, pass the graph name
-as the first argument. Use `--config <path>` if the configuration file
-isn't at the default `langgraph.json` path. For example:
-
-```bash
-python -m langchain_azure_ai.agents.hosting.run agent --protocol invocations
-```
-
-Use the same module command as the container entry point when you deploy the
-existing application to Foundry.
-
-For example, configure the command in `azure.yaml`.
-The key setting is the entry point.
-
-```yaml
-services:
-  my-agent:
-    host: azure.ai.agent
-    kind: hosted
-    codeConfiguration:
-      runtime: python_3_13
-      entryPoint: '-m langchain_azure_ai.agents.hosting.run --protocol responses'
-      ...
-    ...
-```
-
 ## Invocations protocol
 
 Use `InvocationsHostServer` when your callers can't use the Responses API
@@ -505,6 +466,45 @@ For complete deployment concepts, permissions, and management details, see
 ### Deploy with Foundry Toolkit Visual Studio Code extension
 
 For extension-based deployment, see [Quickstart: Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md?pivots=vscode).
+
+## Host an existing agent
+
+If your application already works with LangSmith or the LangGraph CLI,
+Use the `langchain_azure_ai.agents.hosting.run` module to seamlessly host the
+agent on Foundry without changing its code or configuration.
+
+From the project root, start a Responses host:
+
+```bash
+python -m langchain_azure_ai.agents.hosting.run --protocol responses
+```
+
+To expose the same graph through the Invocations protocol, set `--protocol` to
+`invocations`. If `langgraph.json` defines multiple graphs, pass the graph name
+as the first argument. Use `--config <path>` if the configuration file
+isn't at the default `langgraph.json` path. For example:
+
+```bash
+python -m langchain_azure_ai.agents.hosting.run agent --protocol invocations
+```
+
+Use the same module command as the container entry point when you deploy the
+existing application to Foundry.
+
+For example, configure the command in `azure.yaml`.
+The key setting is the entry point.
+
+```yaml
+services:
+  my-agent:
+    host: azure.ai.agent
+    kind: hosted
+    codeConfiguration:
+      runtime: python_3_13
+      entryPoint: '-m langchain_azure_ai.agents.hosting.run --protocol responses'
+      ...
+    ...
+```
 
 ## Troubleshooting
 
