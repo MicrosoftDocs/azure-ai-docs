@@ -22,7 +22,7 @@ To complete this article, you need:
 
 - The endpoint's URL.
 
-- An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Owner** or **User Access Administrator** role. See the next section on [Required Azure roles and permissions](#required-azure-roles-and-permissions) for more details.
+- An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Owner** or **User Access Administrator** role. For more information, see the next section on [Required Azure roles and permissions](#required-azure-roles-and-permissions).
 
 ### Required Azure roles and permissions
 
