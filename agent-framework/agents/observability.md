@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Observability
@@ -233,6 +234,33 @@ from agent_framework.observability import configure_otel_providers
 configure_otel_providers()
 ```
 
+You can also override the common service, resource, and OTLP exporter settings
+in code:
+
+```python
+from agent_framework.observability import configure_otel_providers
+
+configure_otel_providers(
+    service_name="customer-support-agent",
+    resource_attributes={
+        "deployment.environment.name": "production",
+        "service.namespace": "customer-support",
+    },
+    otlp_endpoint="https://otel.example.com",
+    otlp_protocol="http/protobuf",
+)
+```
+
+The `otlp_protocol` parameter accepts `grpc`, `http/protobuf`, or `http`. You can
+also set `service_version`, `otlp_headers`, `otlp_timeout` in seconds, and
+`otlp_compression` to `gzip`, `deflate`, or `none`. Explicit service name and
+version values take precedence over their environment variables, while
+`resource_attributes` merge over `OTEL_RESOURCE_ATTRIBUTES`. Programmatic OTLP
+settings override their base environment variables. Signal-specific endpoint
+and header variables remain more specific, and `otlp_headers` replaces base
+headers before signal-specific headers are merged. For HTTP, the base endpoint
+automatically receives the `/v1/traces`, `/v1/metrics`, or `/v1/logs` path.
+
 #### 2. Custom Exporters
 
 For more control over the exporters, create them yourself and pass them to `configure_otel_providers()`:
@@ -333,8 +361,16 @@ The following environment variables control Agent Framework observability:
 
 - `ENABLE_INSTRUMENTATION` - Default is `true`; set to `false` to disable OpenTelemetry instrumentation.
 - `ENABLE_SENSITIVE_DATA` - Default is `false`, set to `true` to enable logging of sensitive data (prompts, responses, function call arguments, and results). Be careful with this setting as it might expose sensitive data.
+- `ENABLE_MESSAGE_EVENTS` - Default is `true`; values of `true`, `1`, `yes`, or `on` enable the v1.36 message and choice log events, case-insensitively. Any other set value disables them. These events are emitted only when instrumentation and sensitive data are also enabled.
 - `ENABLE_CONSOLE_EXPORTERS` - Default is `false`, set to `true` to enable console output for telemetry.
 - `VS_CODE_EXTENSION_PORT` - Port for AI Toolkit or Microsoft Foundry VS Code extension integration.
+- `OTEL_SEMCONV_STABILITY_OPT_IN` - When unset, Agent Framework uses the latest experimental GenAI conventions. If set, include the case-sensitive `gen_ai_latest_experimental` token in the comma-separated value to use the latest conventions. A set value that omits this token, including an empty value, selects the v1.36 conventions.
+
+Latest-mode span attributes emit `gen_ai.provider.name`; v1.36 span attributes
+and message events emit `gen_ai.system`. Message-event selection is independent
+of semantic-convention selection. Selecting v1.36 suppresses the latest message
+span attributes but doesn't disable the v1.36 message events. With sensitive
+data enabled, the default latest mode emits both representations.
 
 Agent Framework also adds its package and version to the User-Agent of supported client requests. Approved Microsoft Foundry and Azure OpenAI request paths can include a process-wide feature-usage token that encodes framework feature categories, not prompt or response content. Set these variables before starting the process:
 
@@ -501,7 +537,7 @@ When you run an agent with observability enabled, you'll see trace data similar 
     },
     "attributes": {
         "gen_ai.operation.name": "invoke_agent",
-        "gen_ai.system": "openai",
+        "gen_ai.provider.name": "openai",
         "gen_ai.agent.id": "Joker",
         "gen_ai.agent.name": "Joker",
         "gen_ai.request.instructions": "You are good at telling jokes.",
@@ -517,7 +553,7 @@ This trace shows:
 - **Trace and span identifiers**: For correlating related operations
 - **Timing information**: When the operation started and ended
 - **Agent metadata**: Agent ID, name, and instructions
-- **Model information**: The AI system used (OpenAI) and response ID
+- **Model information**: The AI provider used (OpenAI) and response ID
 - **Token usage**: Input and output token counts for cost tracking
 
 ## Samples

@@ -4,8 +4,9 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 04/02/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 # Python 2026 Significant Changes Guide
 
@@ -15,6 +16,40 @@ This document lists all significant changes in Python releases since the start o
 - 🟡 **Enhancement** — New capability or improvement; existing code continues to work
 
 This document tracks significant Python changes across all 2026 releases, so please refer to it when upgrading between versions to ensure you don't miss any important changes. For detailed upgrade instructions on specific topics (e.g., options migration), refer to the linked upgrade guides or the linked PR's.
+
+---
+
+## python-1.16.0 (August 27, 2026)
+
+**Release Notes:** [python-1.16.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.16.0)
+
+### 🟡 Programmatic OpenTelemetry provider configuration
+
+**PR:** [#7703](https://github.com/microsoft/agent-framework/pull/7703)
+
+`configure_otel_providers()` now accepts service metadata, resource attributes,
+and OTLP exporter options directly. Explicit service metadata takes precedence
+over environment values, resource attributes merge over environment attributes,
+and signal-specific OTLP endpoint and header variables remain more specific
+than base programmatic settings.
+
+---
+
+## python-1.15.0 (August 21, 2026)
+
+**Release Notes:** [python-1.15.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0)
+
+### 🔴 OpenTelemetry GenAI semantic conventions consolidated
+
+**PR:** [#7673](https://github.com/microsoft/agent-framework/pull/7673)
+
+Agent Framework now uses the latest experimental GenAI span attributes by
+default, including `gen_ai.provider.name` instead of `gen_ai.system`. Set
+`OTEL_SEMCONV_STABILITY_OPT_IN` to a value that omits the case-sensitive
+`gen_ai_latest_experimental` token to select v1.36 span attributes. The v1.36
+message and choice events are selected independently, remain enabled by default
+when sensitive data is captured, and continue to use `gen_ai.system`. Set
+`ENABLE_MESSAGE_EVENTS=false` to suppress them.
 
 ---
 
