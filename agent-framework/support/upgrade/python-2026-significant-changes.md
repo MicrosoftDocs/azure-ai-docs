@@ -1,10 +1,11 @@
 ---
 title: Python 2026 Significant Changes Guide
 description: Guide to significant changes in Python releases for Microsoft Agent Framework in 2026, including breaking changes and important enhancements.
+ai-usage: ai-assisted
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 04/02/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
 ---
 # Python 2026 Significant Changes Guide
@@ -15,6 +16,43 @@ This document lists all significant changes in Python releases since the start o
 - 🟡 **Enhancement** — New capability or improvement; existing code continues to work
 
 This document tracks significant Python changes across all 2026 releases, so please refer to it when upgrading between versions to ensure you don't miss any important changes. For detailed upgrade instructions on specific topics (e.g., options migration), refer to the linked upgrade guides or the linked PR's.
+
+---
+
+## python-1.14.0 (August 13, 2026)
+
+**Release Notes:** [python-1.14.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0)
+
+### 🔴 Build functional workflow definitions before running them
+
+**PR:** [#7521](https://github.com/microsoft/agent-framework/pull/7521)
+
+PR `#7521` changes `@workflow` to return a stateless `FunctionalWorkflowDefinition`. Call `.build()` to create a stateful `FunctionalWorkflow`. Build the workflow before you call `.run()` or `.as_agent()`, and pass checkpoint storage to `.build()`.
+
+**Before:**
+
+```python
+@workflow(checkpoint_storage=storage)
+async def pipeline(data: str) -> str:
+    return await process(data)
+
+result = await pipeline.run("input")
+agent = pipeline.as_agent()
+```
+
+**After:**
+
+```python
+@workflow
+async def pipeline(data: str) -> str:
+    return await process(data)
+
+workflow_instance = pipeline.build(checkpoint_storage=storage)
+result = await workflow_instance.run("input")
+agent = workflow_instance.as_agent()
+```
+
+Build a separate workflow instance for each logical caller or session so that run and replay state remain isolated.
 
 ---
 
