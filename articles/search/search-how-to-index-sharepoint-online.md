@@ -25,11 +25,11 @@ When setting up permissions, consider the following information:
 > [Fill out this form](https://aka.ms/azure-cognitive-search/indexer-preview) to register for the preview. All requests are approved automatically. After you fill out the form, use a [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) to index your content. 
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -137,7 +137,7 @@ After selecting **Save**, you receive an object ID assigned to your search servi
 
 ### Step 2: Decide which permissions the indexer requires
 
-For the decision matrix that covers ACL and non-ACL scenarios, see [Choose your permissions setup](#choose-your-permissions-setup). If you choose delegated permissions, user-delegated tokens expire every 75 minutes and require manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) when they expire. Delegated permissions are recommended only for small testing operations.
+For the decision matrix that covers ACL and non-ACL scenarios, see [Choose your permissions setup](#choose-your-permissions-setup). If you choose delegated permissions, user-delegated tokens expire every 75 minutes and require manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) when they expire. Delegated permissions are recommended only for small testing operations.
 
 <a name='step-3-create-an-azure-ad-application'></a>
 
@@ -293,12 +293,12 @@ For SharePoint indexing, the data source must have the following required proper
 + **credentials** provide the SharePoint endpoint and the authentication method allowed for the application to request the Microsoft Entra tokens. An example SharePoint endpoint is `https://[your-tenant-name].sharepoint.com/teams/MySharePointSite`. You can get the endpoint by navigating to the home page of your SharePoint site and copying the URL from the browser. Review the [connection string format](#connection-string-format) for the supported syntax.
 + **container** specifies which document library to index. Properties [control which documents are indexed](#controlling-which-documents-are-indexed).
 
-To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true).
 
 Here's a data source definition sample for credentials with application secret or system-assigned managed identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -319,7 +319,7 @@ Federated credential configurations require `FederatedCredentialApplicationId` i
 > `ApplicationId` and `FederatedCredentialApplicationId` are different values. `ApplicationId` is your registered Entra ingestion app that holds the SharePoint permissions. `FederatedCredentialApplicationId` is the application (client) ID of the managed identity itself, which is the entity whose token proves the managed identity's identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -379,7 +379,7 @@ The following examples show data sources created with `FederatedCredentialApplic
 **System-assigned managed identity with federated credential:**
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -441,10 +441,10 @@ If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sha
 
 The index specifies the fields in a document, attributes, and other constructs that shape the search experience.
 
-To create an index, call [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true):
+To create an index, call [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true):
 
 ```http
-POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/indexes?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -477,10 +477,10 @@ An indexer connects a data source with a target search index and provides a sche
 
 To create the indexer:
 
-1. Send a [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) request:
+1. Send a [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) request:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [admin key]
     
@@ -516,17 +516,17 @@ To create the indexer:
 
     When you use application permissions, you can query the index while the initial indexer run is in progress, but only items that are already indexed return results. Wait until the run completes for full coverage. The remaining instructions in this step apply only to delegated permissions.
 
-1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code. 
+1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code.
 
     ```http
-    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-05-01-preview
+    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [admin key]
     ```
 
-    If you don't call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) within 10 minutes, the code expires and you must recreate the [data source](#create-data-source).
+    If you don't call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) within 10 minutes, the code expires and you must recreate the [data source](#create-data-source).
 
-1. Copy the device sign-in code from the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) response. The device sign-in code can be found in the "errorMessage".
+1. Copy the device sign-in code from the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) response. The device sign-in code can be found in the "errorMessage".
 
     ```http
     {
@@ -549,7 +549,7 @@ To create the indexer:
 
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-approve-api-permissions.png" alt-text="Screenshot showing how to approve API permissions.":::
 
-1. The [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) initial request completes if all the permissions provided earlier are correct and within the 10-minute timeframe.
+1. The [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) initial request completes if all the permissions provided earlier are correct and within the 10-minute timeframe.
 
 When setting up permissions, consider the following information:
 > If the Microsoft Entra application requires admin approval and wasn't approved before signing in, you might see the following screen. [Admin approval](/azure/active-directory/manage-apps/grant-admin-consent) is required to continue.
@@ -558,16 +558,16 @@ When setting up permissions, consider the following information:
 
 ### Step 7: Check the indexer status
 
-After creating the indexer, call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true):
+After creating the indexer, call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true):
 
 ```http
-GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-05-01-preview
+GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 ```
 
 ```http
-GET https://[service-name].search.windows.net/indexes/[index-name]/docs?search=*&$count=true&api-version=2026-05-01-preview
+GET https://[service-name].search.windows.net/indexes/[index-name]/docs?search=*&$count=true&api-version=2026-08-01-preview
 api-key: [admin-api-key]
 ```
 
@@ -579,18 +579,18 @@ If you change the data source while the device code is expired, sign in again to
 
 To update a data source, follow these steps assuming an expired device code:
 
-1. Call [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) to manually start [indexer execution](search-howto-run-reset-indexers.md).
+1. Call [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true) to manually start [indexer execution](search-howto-run-reset-indexers.md).
 
     ```http
-    POST https://[service name].search.windows.net/indexers/sharepoint-indexer/run?api-version=2026-05-01-preview  
+    POST https://[service name].search.windows.net/indexers/sharepoint-indexer/run?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [admin key]
     ```
 
-1. Check the [indexer status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true). 
+1. Check the [indexer status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&tabs=HTTP&preserve-view=true).
 
     ```http
-    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-05-01-preview
+    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [admin key]
     ```
@@ -685,7 +685,7 @@ Set inclusion and exclusion criteria in the "parameters" section of the indexer 
 To include specific file extensions, set `"indexedFileNameExtensions"` to a comma-separated list of file extensions with a leading dot. To exclude specific file extensions, set `"excludedFileNameExtensions"` to the extensions that you want to skip. If the same extension appears in both lists, the indexer excludes it from indexing.
 
 ```http
-PUT /indexers/[indexer name]?api-version=2026-05-01-preview
+PUT /indexers/[indexer name]?api-version=2026-08-01-preview
 {
     "parameters" : { 
         "configuration" : { 
@@ -711,7 +711,7 @@ The `name` property is required and must be one of the following values:
 | Value | Description |
 |-|-|
 | defaultSiteLibrary | Index all content from the site's default document library. |
-| allSiteLibraries | Index all content from all document libraries in a site. Document libraries from a subsite are out of scope unless you set `includeSubsites=true` in the query (preview, 2026-05-01-preview). You can also choose `useQuery` and specify `includeLibrariesInSite` to scope to specific sites or subsites. |
+| allSiteLibraries | Index all content from all document libraries in a site. Document libraries from a subsite are out of scope unless you set `includeSubsites=true` in the query (preview). You can also choose `useQuery` and specify `includeLibrariesInSite` to scope to specific sites or subsites. |
 | allSiteLists | Index all [SharePoint list](#index-sharepoint-lists) items from a site. Preview, starting in the 2026-05-01-preview REST API. |
 | allSitePages | Index all [modern ASPX site pages](#index-aspx-site-pages) from a site. Preview, starting in the 2026-05-01-preview REST API. |
 | allSiteContent | Index libraries, lists, and pages from a site in a single indexer. Preview, starting in the 2026-05-01-preview REST API. |
@@ -746,7 +746,7 @@ For an `Invalid AAD tenant` message, a missing Microsoft Entra tenant ID, or a t
 By default, the SharePoint in Microsoft 365 indexer stops as soon as it encounters a document with an unsupported content type, such as an image. Use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might need to index documents without knowing all the possible content types in advance. To continue indexing when the indexer encounters an unsupported content type, set the `failOnUnsupportedContentType` configuration parameter to false:
 
 ```http
-PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2026-05-01-preview
+PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 

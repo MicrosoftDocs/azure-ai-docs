@@ -16,11 +16,11 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -76,10 +76,10 @@ Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and
 For ACL-secured content, use group access over individual user access for ease of management. The pattern includes the following components:
 
 - Start with documents or files that have ACL assignments.
-- [Enable permission filters](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#searchindexpermissionfilteroption) in the index.
-- [Add a permission filter](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#permissionfilter) to a string field in an index.
+- [Enable permission filters](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true#searchindexpermissionfilteroption) in the index.
+- [Add a permission filter](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true#permissionfilter) to a string field in an index.
 - Load the index with source documents having associated ACLs.
-- Query the index, adding [`x-ms-query-source-authorization`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true#request-headers) in the request header.
+- Query the index, adding [`x-ms-query-source-authorization`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true#request-headers) in the request header.
 
 Your client app receives read permissions to the index through **Search Index Data Reader** or **Search Index Data Contributor** role. Access at query time is determined by user or group permission metadata in the indexed content. Queries that include a permission filter pass a user or group token as `x-ms-query-source-authorization` in the request header. When you use permission filters at query time, Azure AI Search checks for two things:
 
@@ -97,7 +97,7 @@ How you retrieve ACL permissions varies depending on whether you're pushing a do
 
 Start with a preview API that provides the feature:
 
-- [2026-05-01-preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+- [2026-08-01-preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 - [Azure SDK for Python prerelease package](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). Check the changelog for the latest preview version that supports ACL and RBAC scope ingestion.
 - [Azure SDK for .NET prerelease package](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md). Check the changelog for the latest preview version that supports ACL and RBAC scope ingestion.
 - [Azure SDK for Java prerelease package](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). Check the changelog for the latest preview version that supports ACL and RBAC scope ingestion.
@@ -106,18 +106,18 @@ For the [push model approach](search-index-access-control-lists-and-rbac-push-ap
 
 1. Confirm that your index schema is created with a preview or prerelease SDK and that the schema has permission filters.
 1. Consider using the Microsoft Graph SDK to get group or user identities.
-1. Use the [Index Documents](/rest/api/searchservice/documents/?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexdocumentsresult) or equivalent Azure SDK API to push documents and their associated permission metadata into the search index. 
+1. Use the [Index Documents](/rest/api/searchservice/documents/?view=rest-searchservice-2026-08-01-preview&preserve-view=true#indexdocumentsresult) or equivalent Azure SDK API to push documents and their associated permission metadata into the search index.
 
 For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-lists-and-role-based-access.md) or [Blob (ADLS Gen2) knowledge source](agentic-knowledge-source-how-to-blob.md):
 
 1. Verify that files in the directory are secured using the [ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model).
-1. Use [Indexers - Create](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API), [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API), or an equivalent Azure SDK API to create the indexer, index, and data source.
+1. Use [Indexers - Create](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true) (REST API), [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true) (REST API), or an equivalent Azure SDK API to create the indexer, index, and data source.
 
 If your skillset chunks documents, such as with the Text Split skill for integrated vectorization, the permission metadata fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 ## Pattern for SharePoint in Microsoft 365 basic ACL permissions ingestion (preview)
 
-For indexed SharePoint content, Azure AI Search can store source permissions as metadata and use them to filter query results. You can access this capability in preview through the SharePoint in Microsoft 365 indexer and the `2026-05-01-preview` REST API or an equivalent preview SDK package.
+For indexed SharePoint content, Azure AI Search can store source permissions as metadata and use them to filter query results. You can access this capability in preview through the SharePoint in Microsoft 365 indexer and the latest REST API or an equivalent preview SDK package.
 
 For permission requirements, supported group relationships, permission synchronization, and limitations, see [Use a SharePoint indexer to ingest permission metadata](search-indexer-sharepoint-access-control-lists.md).
 
@@ -131,7 +131,7 @@ At query time, Azure AI Search checks each document's sensitivity label, the use
 
 This pattern includes the following components:
 
-- Configure your [index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), [data source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), and [indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (for scheduling purposes) by using the 2026-05-01-preview REST API or a corresponding SDK that supports Purview label ingestion.
+- Configure your [index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true), [data source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true), and [indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true) (for scheduling purposes) by using the latest preview REST API or a preview SDK that supports Purview label ingestion.
 - Enable a [system-assigned managed identity](search-how-to-managed-identities.md) on your search service. User-assigned managed identities aren't supported for Purview label extraction - the service's own identity must hold the elevated Purview permissions. Then have your tenant global administrator or privileged role administrator [grant the required access](search-indexer-sensitivity-labels.md#3-grant-access-to-extract-sensitivity-labels) to allow the search service to authenticate with Microsoft Purview and extract label metadata.
 - Apply sensitivity labels to documents before indexing so the system can recognize and preserve them during ingestion.
 - At query time, attach a valid Microsoft Entra token via the header `x-ms-query-source-authorization` to each query request. Azure AI Search evaluates the token and the associated label metadata to enforce label-based access control.

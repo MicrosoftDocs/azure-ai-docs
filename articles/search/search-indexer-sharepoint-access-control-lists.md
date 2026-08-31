@@ -14,11 +14,11 @@ ms.custom: doc-kit-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -41,7 +41,7 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 + Configure Microsoft Entra application permissions and a credential appropriate for your scenario. See [Permissions by ACL scenario](#permissions-by-acl-scenario). ACL ingestion requires application permissions. Delegated permissions aren't supported. For the application vs delegated decision, see [Choose your permissions setup](search-how-to-index-sharepoint-online.md#choose-your-permissions-setup).
 
-+ REST API version 2026-05-01-preview or an equivalent preview SDK package.
++ REST API version 2026-08-01-preview or an equivalent preview SDK package.
 
 ## Limitations
 
@@ -227,10 +227,10 @@ Set `retrievable` attribute to `true` only during development to verify values. 
 
 When chunking is enabled, the parent document isn't written to the index when `projectionMode` is `skipIndexingParentDocuments`. Carry the ACL metadata onto each chunk through `indexProjections.selectors[].mappings`.
 
-If your indexer uses a [skillset](cognitive-search-working-with-skillsets.md) with data chunking, such as the [Text Split skill](cognitive-search-skill-textsplit.md) when enabling [integrated vectorization](vector-search-integrated-vectorization.md), make sure to map ACL properties to each chunk using [index projections](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true). The `//` lines in the following example are illustrative annotations and aren't valid JSON. Remove them before submitting the request.
+If your indexer uses a [skillset](cognitive-search-working-with-skillsets.md) with data chunking, such as the [Text Split skill](cognitive-search-skill-textsplit.md) when enabling [integrated vectorization](vector-search-integrated-vectorization.md), make sure to map ACL properties to each chunk using [index projections](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true). The `//` lines in the following example are illustrative annotations and aren't valid JSON. Remove them before submitting the request.
 
 ```http
-PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-05-01-preview
+PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-08-01-preview
 {
   "name": "my-skillset",
   "skills": [
@@ -289,7 +289,7 @@ Besides your required [indexer configuration](search-how-to-index-sharepoint-onl
 ACL metadata is ingested when the indexer runs. After you create or update the indexer (see [Step 6: Create an indexer](search-how-to-index-sharepoint-online.md#step-6-create-an-indexer)), trigger a run so the indexer ingests ACLs alongside content.
 
 ```http
-POST https://[service name].search.windows.net/indexers/[indexer-name]/run?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/indexers/[indexer-name]/run?api-version=2026-08-01-preview
 api-key: [admin key]
 ```
 
@@ -332,7 +332,7 @@ The following components work together to enable SharePoint site group resolutio
 Add the `sharePointConnectorAppRegistration` configuration and the `SharePointSiteUrl` field alongside the `UserIds` and `GroupIds` permission-filter fields, so the full index shape is in one place. Keep `permissionFilterOption: "enabled"`.
 
 ```http
-PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-preview
+PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-08-01-preview
 {
   "name": "my-sharepoint-acl-index",
   "sharePointConnectorAppRegistration": {
@@ -391,10 +391,10 @@ Some scenarios still require an explicit refresh:
 
 ### Reset specific documents
 
-You can [reset specific documents](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to fully ingest again content and ACLs.
+You can [reset specific documents](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to fully ingest again content and ACLs.
 
 ```http
-POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-05-01-preview
+POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-08-01-preview
 {
   "documentKeys": ["doc123", "doc456"]
 }
@@ -402,10 +402,10 @@ POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-versi
 
 ### Resync ACLs across the full data source
 
-You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-05-01-preview&preserve-view=true) after initial ingestion. To fully succeed, this operation requires an [indexer run](search-howto-run-reset-indexers.md) after completion. 
+You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-08-01-preview&preserve-view=true) after initial ingestion. To fully succeed, this operation requires an [indexer run](search-howto-run-reset-indexers.md) after completion.
 
 ```http
-POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-05-01-preview
+POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-08-01-preview
 {
   "options": ["permissions"]
 }

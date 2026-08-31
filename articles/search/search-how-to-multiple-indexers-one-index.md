@@ -25,11 +25,11 @@ In this tutorial, you:
 > + Review content ownership, troubleshooting, and cleanup practices
 
 > [!IMPORTANT]
-> Semantic chunking in the Azure Content Understanding skill is part of the 2026-05-01-preview REST API. The multi-indexer pattern, index projections, and the Content Understanding skill without semantic chunking are generally available. However, for consistency, this tutorial uses the 2026-05-01-preview across all requests.
+> Semantic chunking in the Azure Content Understanding skill is part of the 2026-08-01-preview REST API. The multi-indexer pattern, index projections, and the Content Understanding skill without semantic chunking are generally available. However, for consistency, this tutorial uses the 2026-08-01-preview across all requests.
 >
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications. Ensure that appropriate permissions, boundaries, and approvals are in place.
 >
@@ -172,7 +172,7 @@ To create the union-schema index:
 1. Send the create request:
 
    ```http
-   POST <search-endpoint>/indexes?api-version=2026-05-01-preview
+   POST <search-endpoint>/indexes?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -299,18 +299,18 @@ To create the union-schema index:
    }
    ```
 
-   **Reference:** [Create Index (REST API)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Create Index (REST API)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response returns HTTP `201 Created` with the full index definition.
 
 1. Verify that the index was created:
 
    ```http
-   GET <search-endpoint>/indexes/multi-source-index?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexes/multi-source-index?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Get Index (REST API)](/rest/api/searchservice/indexes/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Get Index (REST API)](/rest/api/searchservice/indexes/get?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response contains `"name": "multi-source-index"` and 12 fields. Confirm the `fields` array length equals 12 and the `vectorSearch` section includes the `content-azure-openai-vectorizer`.
 
@@ -325,7 +325,7 @@ To create the three folder-scoped data sources:
 1. Create the DOCX data source:
 
    ```http
-   POST <search-endpoint>/datasources?api-version=2026-05-01-preview
+   POST <search-endpoint>/datasources?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -342,14 +342,14 @@ To create the three folder-scoped data sources:
    }
    ```
 
-   **Reference:** [Create Data Source (REST API)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Create Data Source (REST API)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response returns HTTP `201 Created`.
 
 1. Create the JSON data source:
 
    ```http
-   POST <search-endpoint>/datasources?api-version=2026-05-01-preview
+   POST <search-endpoint>/datasources?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -366,14 +366,14 @@ To create the three folder-scoped data sources:
    }
    ```
 
-   **Reference:** [Create Data Source (REST API)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Create Data Source (REST API)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response returns HTTP `201 Created`.
 
 1. Create the CSV data source:
 
    ```http
-   POST <search-endpoint>/datasources?api-version=2026-05-01-preview
+   POST <search-endpoint>/datasources?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -390,18 +390,18 @@ To create the three folder-scoped data sources:
    }
    ```
 
-   **Reference:** [Create Data Source (REST API)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Create Data Source (REST API)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response returns HTTP `201 Created`.
 
 Verify that all three data sources exist:
 
 ```http
-GET <search-endpoint>/datasources?api-version=2026-05-01-preview
+GET <search-endpoint>/datasources?api-version=2026-08-01-preview
 Authorization: Bearer <search-access-token>
 ```
 
-**Reference:** [List Data Sources (REST API)](/rest/api/searchservice/data-sources/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [List Data Sources (REST API)](/rest/api/searchservice/data-sources/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 The response `value` array contains `docx-blob-datasource`, `json-blob-datasource`, and `csv-blob-datasource`. If any are missing, review the corresponding creation step for errors.
 
@@ -414,7 +414,7 @@ To configure the DOCX pipeline:
 1. Create the skillset:
 
    ```http
-   POST <search-endpoint>/skillsets?api-version=2026-05-01-preview
+   POST <search-endpoint>/skillsets?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -549,18 +549,18 @@ To configure the DOCX pipeline:
 1. Verify the skillset was created:
 
    ```http
-   GET <search-endpoint>/skillsets/docx-semantic-skillset?api-version=2026-05-01-preview
+   GET <search-endpoint>/skillsets/docx-semantic-skillset?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Get Skillset (REST API)](/rest/api/searchservice/skillsets/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Get Skillset (REST API)](/rest/api/searchservice/skillsets/get?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response contains `"name": "docx-semantic-skillset"` and three skills in the `skills` array.
 
 1. Create the DOCX indexer:
 
    ```http
-   POST <search-endpoint>/indexers?api-version=2026-05-01-preview
+   POST <search-endpoint>/indexers?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -583,7 +583,7 @@ To configure the DOCX pipeline:
    }
    ```
 
-   **Reference:** [Create Indexer (REST API)](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Create Indexer (REST API)](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response returns HTTP `201 Created`. The indexer starts its first run automatically.
 
@@ -592,11 +592,11 @@ To configure the DOCX pipeline:
 1. Check the status of the indexer:
 
    ```http
-   GET <search-endpoint>/indexers/docx-indexer/status?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexers/docx-indexer/status?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Wait for `lastResult.status` to show `success` and confirm that `lastResult.itemsFailed` is `0`. If the status shows `inProgress`, wait 30 seconds and check again. You verify the projected DOCX output by querying the index later in this tutorial.
 
@@ -609,7 +609,7 @@ To configure the JSON pipeline:
 1. Create the JSON indexer:
 
    ```http
-   POST <search-endpoint>/indexers?api-version=2026-05-01-preview
+   POST <search-endpoint>/indexers?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -661,18 +661,18 @@ To configure the JSON pipeline:
    }
    ```
 
-   **Reference:** [Create Indexer (REST API)](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), [Index JSON blobs and files](search-how-to-index-azure-blob-json.md), and [Define field mappings](search-indexer-field-mappings.md)
+   **Reference:** [Create Indexer (REST API)](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true), [Index JSON blobs and files](search-how-to-index-azure-blob-json.md), and [Define field mappings](search-indexer-field-mappings.md)
 
    The response returns HTTP `201 Created`. The indexer starts its first run automatically.
 
 1. Verify that the indexer processed both records:
 
    ```http
-   GET <search-endpoint>/indexers/json-indexer/status?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexers/json-indexer/status?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Wait for `lastResult.status` to show `success` and confirm that `lastResult.itemsFailed` is `0`. If the status shows `inProgress`, wait 15 seconds and check again. You verify both JSON records by querying the index later in this tutorial.
 
@@ -685,7 +685,7 @@ To configure the CSV pipeline:
 1. Create the CSV skillset:
 
    ```http
-   POST <search-endpoint>/skillsets?api-version=2026-05-01-preview
+   POST <search-endpoint>/skillsets?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -718,25 +718,25 @@ To configure the CSV pipeline:
    }
    ```
 
-   **Reference:** [Create Skillset (REST API)](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Create Skillset (REST API)](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response returns HTTP `201 Created`.
 
 1. Verify the skillset was created:
 
    ```http
-   GET <search-endpoint>/skillsets/csv-embedding-skillset?api-version=2026-05-01-preview
+   GET <search-endpoint>/skillsets/csv-embedding-skillset?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Get Skillset (REST API)](/rest/api/searchservice/skillsets/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Get Skillset (REST API)](/rest/api/searchservice/skillsets/get?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    The response contains `"name": "csv-embedding-skillset"` and one skill in the `skills` array.
 
 1. Create the CSV indexer:
 
    ```http
-   POST <search-endpoint>/indexers?api-version=2026-05-01-preview
+   POST <search-endpoint>/indexers?api-version=2026-08-01-preview
    Content-Type: application/json
    Authorization: Bearer <search-access-token>
 
@@ -796,18 +796,18 @@ To configure the CSV pipeline:
    }
    ```
 
-   **Reference:** [Create Indexer (REST API)](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true), [Index CSV blobs and files](search-how-to-index-azure-blob-csv.md), and [Output field mappings](cognitive-search-output-field-mapping.md)
+   **Reference:** [Create Indexer (REST API)](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true), [Index CSV blobs and files](search-how-to-index-azure-blob-csv.md), and [Output field mappings](cognitive-search-output-field-mapping.md)
 
    The response returns HTTP `201 Created`. The indexer starts its first run automatically.
 
 1. Verify that the indexer processed both rows:
 
    ```http
-   GET <search-endpoint>/indexers/csv-indexer/status?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexers/csv-indexer/status?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Wait for `lastResult.status` to show `success` and confirm that `lastResult.itemsFailed` is `0`. If the status shows `inProgress`, wait 15 seconds and check again. You verify both CSV rows by querying the index later in this tutorial.
 
@@ -818,27 +818,27 @@ Each indexer starts its first run automatically when you create it. To start ano
 1. Run the three indexers:
 
    ```http
-   POST <search-endpoint>/indexers/docx-indexer/run?api-version=2026-05-01-preview
+   POST <search-endpoint>/indexers/docx-indexer/run?api-version=2026-08-01-preview
    Content-Type: application/json
    Content-Length: 0
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   POST <search-endpoint>/indexers/json-indexer/run?api-version=2026-05-01-preview
+   POST <search-endpoint>/indexers/json-indexer/run?api-version=2026-08-01-preview
    Content-Type: application/json
    Content-Length: 0
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   POST <search-endpoint>/indexers/csv-indexer/run?api-version=2026-05-01-preview
+   POST <search-endpoint>/indexers/csv-indexer/run?api-version=2026-08-01-preview
    Content-Type: application/json
    Content-Length: 0
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Run Indexer (REST API)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Run Indexer (REST API)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
     Each run request returns HTTP `202 Accepted` with an empty body. Some REST clients require the `Content-Length: 0` header for a request without a body.
 
@@ -848,21 +848,21 @@ Each indexer starts its first run automatically when you create it. To start ano
 1. Check the status of each indexer:
 
    ```http
-   GET <search-endpoint>/indexers/docx-indexer/status?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexers/docx-indexer/status?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   GET <search-endpoint>/indexers/json-indexer/status?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexers/json-indexer/status?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   GET <search-endpoint>/indexers/csv-indexer/status?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexers/csv-indexer/status?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    For each indexer, confirm that `lastResult.status` is `success` and `lastResult.itemsFailed` is `0`. The service reports processing details in `lastResult`; verify the indexed document counts in the next section because projected chunks and parsed records don't necessarily correspond one-to-one with source blobs.
 
@@ -875,7 +875,7 @@ Use the following requests to verify the combined result.
 Return all documents written by the three indexers:
 
 ```http
-POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-05-01-preview
+POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-08-01-preview
 Content-Type: application/json
 Authorization: Bearer <search-access-token>
 
@@ -886,7 +886,7 @@ Authorization: Bearer <search-access-token>
 }
 ```
 
-**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 The result contains two JSON products, two CSV tickets, and one or more DOCX chunks. If the sample DOCX produces one chunk, `@odata.count` is `5`. Confirm all three `sourceType` values appear: `docx`, `json`, and `csv`.
 
@@ -895,7 +895,7 @@ The result contains two JSON products, two CSV tickets, and one or more DOCX chu
 Return the two JSON products:
 
 ```http
-POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-05-01-preview
+POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-08-01-preview
 Content-Type: application/json
 Authorization: Bearer <search-access-token>
 
@@ -907,7 +907,7 @@ Authorization: Bearer <search-access-token>
 }
 ```
 
-**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 Confirm `@odata.count` is `2`. Both results have `category` and `price` values. The `status` and `priority` fields aren't in the select list because they belong to the CSV schema.
 
@@ -916,7 +916,7 @@ Confirm `@odata.count` is `2`. Both results have `category` and `price` values. 
 Full-text search considers all documents with matching searchable text, including JSON records with null vectors.
 
 ```http
-POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-05-01-preview
+POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-08-01-preview
 Content-Type: application/json
 Authorization: Bearer <search-access-token>
 
@@ -928,7 +928,7 @@ Authorization: Bearer <search-access-token>
 }
 ```
 
-**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 Results include documents from any source type that contains "search" or "product" in their `content` or `title` fields. With the sample data, expect matches from the DOCX chunk (contains "search") and the CSV ticket (contains "product").
 
@@ -937,7 +937,7 @@ Results include documents from any source type that contains "search" or "produc
 Send text to the index vectorizer instead of pasting 1,536 vector values. The results contain vector-bearing DOCX and CSV documents, not JSON documents whose `contentVector` is null.
 
 ```http
-POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-05-01-preview
+POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-08-01-preview
 Content-Type: application/json
 Authorization: Bearer <search-access-token>
 
@@ -954,7 +954,7 @@ Authorization: Bearer <search-access-token>
 }
 ```
 
-**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 Confirm that no results have `"sourceType": "json"`. JSON documents are excluded because their `contentVector` is null.
 
@@ -963,7 +963,7 @@ Confirm that no results have `"sourceType": "json"`. JSON documents are excluded
 Limit vector results to CSV tickets:
 
 ```http
-POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-05-01-preview
+POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-08-01-preview
 Content-Type: application/json
 Authorization: Bearer <search-access-token>
 
@@ -982,7 +982,7 @@ Authorization: Bearer <search-access-token>
 }
 ```
 
-**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 Confirm that all results have `"sourceType": "csv"` and include the `status` and `priority` fields.
 
@@ -991,7 +991,7 @@ Confirm that all results have `"sourceType": "csv"` and include the `status` and
 Combine keyword and vector retrieval in one request:
 
 ```http
-POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-05-01-preview
+POST <search-endpoint>/indexes/multi-source-index/docs/search?api-version=2026-08-01-preview
 Content-Type: application/json
 Authorization: Bearer <search-access-token>
 
@@ -1010,7 +1010,7 @@ Authorization: Bearer <search-access-token>
 }
 ```
 
-**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Search Documents (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 Hybrid queries combine keyword matches (which can include JSON documents) with vector matches (which exclude null-vector documents). The merged result set can contain documents from all three source types when both keyword and vector terms match across pipelines.
 
@@ -1044,9 +1044,9 @@ The following table lists common issues and resolutions when running the three p
 | JSON documents appear in vector query results | The JSON indexer populated `contentVector` unexpectedly. | Confirm `json-indexer` has no `outputFieldMappings` that target `contentVector`. JSON records should leave `contentVector` null. |
 | CSV indexer fails with parsing errors | The CSV file has unescaped commas, mismatched quotes, or encoding issues. | Open the CSV file and verify that fields with commas are enclosed in double quotes. Save the file with UTF-8 encoding. |
 | Content Understanding skill fails with `403 Forbidden` | The search service's managed identity lacks access, or the resource doesn't support Content Understanding in the selected region. | Confirm the managed identity has the **Cognitive Services User** role on the Foundry resource, and confirm the resource is in a [supported region](/azure/ai-services/content-understanding/language-region-support). |
-| `"The index 'multi-source-index' was not found"` error during queries | The index wasn't created, or you sent the query to the wrong search service. | Verify `<search-endpoint>` points to the correct service. Run `GET <search-endpoint>/indexes?api-version=2026-05-01-preview` to list indexes. |
+| `"The index 'multi-source-index' was not found"` error during queries | The index wasn't created, or you sent the query to the wrong search service. | Verify `<search-endpoint>` points to the correct service. Run `GET <search-endpoint>/indexes?api-version=2026-08-01-preview` to list indexes. |
 | Run indexer request returns HTTP `411 Length Required` | The POST request has no body, and the REST client didn't send a `Content-Length` header. | Add `Content-Length: 0` to the request headers. Some REST clients require this header explicitly for POST requests with empty bodies. |
-| Re-run shows `itemsProcessed` equal to `0` | The source blobs haven't changed since the last run. | This is expected behavior. Indexers use change detection and skip unchanged blobs. To force reprocessing, reset the indexer first by sending `POST <search-endpoint>/indexers/<indexer-name>/reset?api-version=2026-05-01-preview` with `Content-Length: 0` and the bearer token header. |
+| Re-run shows `itemsProcessed` equal to `0` | The source blobs haven't changed since the last run. | This is expected behavior. Indexers use change detection and skip unchanged blobs. To force reprocessing, reset the indexer first by sending `POST <search-endpoint>/indexers/<indexer-name>/reset?api-version=2026-08-01-preview` with `Content-Length: 0` and the bearer token header. |
 
 ## Clean up resources
 
@@ -1055,80 +1055,80 @@ When you no longer need the Azure AI Search objects you created in this tutorial
 1. Delete the indexers:
 
    ```http
-   DELETE <search-endpoint>/indexers/docx-indexer?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/indexers/docx-indexer?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   DELETE <search-endpoint>/indexers/json-indexer?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/indexers/json-indexer?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   DELETE <search-endpoint>/indexers/csv-indexer?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/indexers/csv-indexer?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Delete Indexer (REST API)](/rest/api/searchservice/indexers/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Delete Indexer (REST API)](/rest/api/searchservice/indexers/delete?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Each delete operation returns HTTP `204 No Content` on success. If you receive `404 Not Found`, the indexer was already deleted.
 
 1. Delete the skillsets:
 
    ```http
-   DELETE <search-endpoint>/skillsets/docx-semantic-skillset?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/skillsets/docx-semantic-skillset?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   DELETE <search-endpoint>/skillsets/csv-embedding-skillset?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/skillsets/csv-embedding-skillset?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Delete Skillset (REST API)](/rest/api/searchservice/skillsets/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Delete Skillset (REST API)](/rest/api/searchservice/skillsets/delete?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Each delete operation returns HTTP `204 No Content` on success.
 
 1. Delete the data sources:
 
    ```http
-   DELETE <search-endpoint>/datasources/docx-blob-datasource?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/datasources/docx-blob-datasource?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   DELETE <search-endpoint>/datasources/json-blob-datasource?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/datasources/json-blob-datasource?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
    ```http
-   DELETE <search-endpoint>/datasources/csv-blob-datasource?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/datasources/csv-blob-datasource?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Delete Data Source (REST API)](/rest/api/searchservice/data-sources/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Delete Data Source (REST API)](/rest/api/searchservice/data-sources/delete?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Each delete operation returns HTTP `204 No Content` on success.
 
 1. Delete the index:
 
    ```http
-   DELETE <search-endpoint>/indexes/multi-source-index?api-version=2026-05-01-preview
+   DELETE <search-endpoint>/indexes/multi-source-index?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [Delete Index (REST API)](/rest/api/searchservice/indexes/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Delete Index (REST API)](/rest/api/searchservice/indexes/delete?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Returns HTTP `204 No Content` on success.
 
 1. Verify the indexers are removed:
 
    ```http
-   GET <search-endpoint>/indexers?api-version=2026-05-01-preview
+   GET <search-endpoint>/indexers?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
-   **Reference:** [List Indexers (REST API)](/rest/api/searchservice/indexers/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [List Indexers (REST API)](/rest/api/searchservice/indexers/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
    Confirm that `docx-indexer`, `json-indexer`, and `csv-indexer` no longer appear in the response.
 

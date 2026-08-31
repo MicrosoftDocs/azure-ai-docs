@@ -26,7 +26,7 @@ Each indexed knowledge source depends on an underlying index. Depending on how y
 The following table organizes the index elements that affect agentic retrieval by requirement level.
 
 | Index element | Requirement | Notes |
-|---|---|---|
+| --- | --- | --- |
 | [`searchable` and `retrievable` string fields](search-what-is-an-index.md#field-attributes) | Required | Used for query execution and result retrieval. |
 | [Semantic configuration](#add-a-semantic-configuration) | Required | Use `defaultSemanticConfiguration` or override the semantic configuration in the knowledge source. |
 | Citation fields | Recommended | User-defined fields that attribute responses to source content, such as document name, page number, or chunk ID. |
@@ -37,12 +37,12 @@ The following table organizes the index elements that affect agentic retrieval b
 
 ## Example index definition
 
-Here's an example index that works for agentic retrieval. It meets the criteria for required elements and includes vector fields as a best practice.
+The following example shows an index that works for agentic retrieval. It meets the criteria for required elements and includes vector fields as a best practice.
 
 ```json
 {
   "name": "earth_at_night",
-  "description": "Contains images an descriptions of our planet in darkness as captured from space by Earth-observing satellites and astronauts on the International Space Station over the past 25 years.",
+  "description": "Contains images and descriptions of our planet in darkness as captured from space by Earth-observing satellites and astronauts on the International Space Station over the past 25 years.",
   "fields": [
     {
       "name": "id", "type": "Edm.String",
@@ -123,7 +123,6 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
         "azureOpenAIParameters": {
           "resourceUri": "https://YOUR-AOAI-RESOURCE.openai.azure.com",
           "deploymentId": "text-embedding-3-large",
-          "apiKey": "<redacted>",
           "modelName": "text-embedding-3-large"
         }
       }
@@ -157,7 +156,7 @@ By default, all `searchable` fields are included in query execution, and all `re
 
 ## Add a description
 
-An index `description` field is a user-defined string that you can use to provide guidance to LLMs and Model Context Protocol (MCP) servers when deciding to use a specific index for a query. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. 
+An index `description` field is a user-defined string that you can use to provide guidance to LLMs and Model Context Protocol (MCP) servers when deciding to use a specific index for a query. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description.
 
 An index description is a schema update, and you can add it without having to rebuild the entire index.
 
@@ -176,7 +175,7 @@ There are two ways to specify a semantic configuration by name. If the index has
 
 Within the configuration, `prioritizedContentFields` is required. Title and keywords are optional. For chunked content, you might not have either. However, if you add [entity recognition](cognitive-search-skill-entity-recognition-v3.md) or [key phrase extraction](cognitive-search-skill-keyphrases.md), you might have some keywords associated with each chunk that can be useful in search scenarios, perhaps in a scoring profile.
 
-Here's an example of a semantic configuration that works for agentic retrieval:
+The following example shows a semantic configuration that works for agentic retrieval.
 
 ```json
 "semantic":{
@@ -186,27 +185,25 @@ Here's an example of a semantic configuration that works for agentic retrieval:
          "name":"semantic_config",
          "flightingOptIn":false,
          "prioritizedFields":{
-            "prioritizedFields":{
-               "titleField":{
-                  "fieldName":""
+            "titleField":{
+               "fieldName":""
+            },
+            "prioritizedContentFields":[
+               {
+                  "fieldName":"page_chunk"
+               }
+            ],
+            "prioritizedKeywordsFields":[
+               {
+                  "fieldName":"Category"
                },
-               "prioritizedContentFields":[
-                  {
-                     "fieldName":"page_chunk"
-                  }
-               ],
-               "prioritizedKeywordsFields":[
-                  {
-                     "fieldName":"Category"
-                  },
-                  {
-                     "fieldName":"Tags"
-                  },
-                  {
-                     "fieldName":"Location"
-                  }
-               ]
-            }
+               {
+                  "fieldName":"Tags"
+               },
+               {
+                  "fieldName":"Location"
+               }
+            ]
          }
       }
    ]
@@ -239,7 +236,7 @@ Vector profiles are configurations of vectorizers, algorithms, and compression t
 
 Querying vectors and calling a vectorizer adds latency to the overall request, but if you want similarity search, it might be worth the trade-off.
 
-Here's an example of a vectorizer that works for agentic retrieval, as it appears in a vectorSearch configuration. There's nothing in the vectorizer definition that needs to be changed to work with agentic retrieval.
+The following example shows a vectorizer that works for agentic retrieval as it appears in a vectorSearch configuration. There's nothing in the vectorizer definition that needs to be changed to work with agentic retrieval.
 
 ```json
 "vectorSearch": {
@@ -269,7 +266,6 @@ Here's an example of a vectorizer that works for agentic retrieval, as it appear
       "azureOpenAIParameters": {
         "resourceUri": "https://YOUR-AOAI-RESOURCE.openai.azure.com",
         "deploymentId": "text-embedding-3-large",
-        "apiKey": "<redacted>",
         "modelName": "text-embedding-3-large"
       }
     }
@@ -280,13 +276,13 @@ Here's an example of a vectorizer that works for agentic retrieval, as it appear
 
 ## Add a scoring profile
 
-[Scoring profiles](index-add-scoring-profiles.md) are criteria for relevance boosting. They're applied to non-vector fields (text and numbers) and are evaluated during query execution, although the precise behavior depends on the API version used to create the index. 
+[Scoring profiles](index-add-scoring-profiles.md) are criteria for relevance boosting. They're applied to non-vector fields (text and numbers) and are evaluated during query execution, although the precise behavior depends on the API version used to create the index.
 
 A scoring profile is more likely to add value to your solution if your index is based on structured data. Structured data is indexed into multiple discrete fields, which means your scoring profile can have criteria that target the content or characteristics of a specific field.
 
 If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking. The actual order of semantically ranked results is determined by the [rankingOrder property](/rest/api/searchservice/indexes/create-or-update#rankingorder) in the index, which is either set to `boostedRerankerScore` (a scoring profile was applied) or `rerankerScore` (no scoring profile).
 
-You can use any scoring profile that makes sense for your index. Here's an example of one that boosts the search score of a match if the match is found in a specific field. Fields are weighted by boosting multipliers. For example, if a match is found in the "Category" field, the boosted score is multiplied by 5.
+You can use any scoring profile that makes sense for your index. The following example shows a scoring profile that boosts the search score of a match if the match is found in a specific field. Fields are weighted by boosting multipliers. For example, if a match is found in the "Category" field, the boosted score is multiplied by 5.
 
 ```json
 "scoringProfiles": [
@@ -295,7 +291,7 @@ You can use any scoring profile that makes sense for your index. Here's an examp
       "text": {
         "weights": {
           "Location": 2,
-          "Category": 5 
+          "Category": 5
         }
       }
     }
@@ -322,7 +318,7 @@ Analyzers are defined within a search index and assigned to fields. The [fields 
 
 [Synonym maps](search-synonyms.md) expand queries by adding synonyms for named terms. For example, you might have scientific or medical terms for common terms.
 
-Synonym maps are defined as a top-level resource on a search index and assigned to fields. The [fields collection example](#example-index-definition) doesn't include a synonym map, but if you had variant spellings of country names in a synonym map, here's what an example might look like if it was assigned to a hypothetical "locations" field.
+Synonym maps are defined as a top-level resource on a search index and assigned to fields. The [fields collection example](#example-index-definition) doesn't include a synonym map, but the following example shows how a synonym map with variant spellings of country names might be assigned to a hypothetical "locations" field.
 
 ```json
 {

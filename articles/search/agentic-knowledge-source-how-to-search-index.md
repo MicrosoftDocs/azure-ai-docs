@@ -3,7 +3,7 @@ title: Create a Search Index Knowledge Source
 description: Learn how to create a search index knowledge source, which specifies an index used by a knowledge base for agentic retrieval workloads.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 08/14/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -15,9 +15,9 @@ zone_pivot_groups: search-csharp-python-rest
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -28,7 +28,7 @@ A *search index knowledge source* connects an existing Azure AI Search index, in
 ### Usage support
 
 | [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources) |
-|--|--|--|--|--|--|--|
+| -- | -- | -- | -- | -- | -- | -- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -37,15 +37,17 @@ A *search index knowledge source* connects an existing Azure AI Search index, in
 
 + A search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge base.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
 + Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For `2026-08-01-preview` features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
-  + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
+  + For `2026-04-01` features, the latest stable package: `dotnet add package Azure.Search.Documents`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
 
 ::: zone-end
 
@@ -53,19 +55,23 @@ A *search index knowledge source* connects an existing Azure AI Search index, in
 
 + Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
+  + For `2026-08-01-preview` features, the latest preview package: `pip install --pre azure-search-documents`
 
-  + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
+  + For `2026-04-01` features, the latest stable package: `pip install azure-search-documents`
+
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ Required REST API version:
++ Required Search Service REST API version:
 
-  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+  + For preview features: [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
-  + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
+  + For generally available features: [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
 
@@ -98,17 +104,20 @@ The following JSON is an example response for a search index knowledge source. N
 
 Run the following code to create a search index knowledge source.
 
+> [!NOTE]
+> Starting with the `2026-05-01-preview` API version, `semanticConfigurationName` is optional on search index knowledge sources. Earlier API versions still require `semanticConfigurationName`. If your knowledge source needs to support both older and newer API versions, keep specifying `semanticConfigurationName`.
+
 ::: zone pivot="csharp"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```csharp
 // Create a search index knowledge source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
-using Azure;
+using Azure.Identity;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var indexKnowledgeSource = new SearchIndexKnowledgeSource(
     name: knowledgeSourceName,
@@ -131,9 +140,9 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated 
 // Create a search index knowledge source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
-using Azure;
+using Azure.Identity;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var indexKnowledgeSource = new SearchIndexKnowledgeSource(
     name: knowledgeSourceName,
@@ -157,15 +166,15 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated 
 
 ::: zone pivot="python"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```python
 # Create a search index knowledge source
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference
 
-index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint = "<search-endpoint>", credential = DefaultAzureCredential())
 
 knowledge_source = SearchIndexKnowledgeSource(
     name = "my-search-index-ks",
@@ -173,7 +182,6 @@ knowledge_source = SearchIndexKnowledgeSource(
     encryption_key = None,
     search_index_parameters = SearchIndexKnowledgeSourceParameters(
         search_index_name = "search_index_name",
-        semantic_configuration_name = "semantic_configuration_name",
         source_data_fields = [
             SearchIndexFieldReference(name="description"),
             SearchIndexFieldReference(name="category"),
@@ -194,11 +202,11 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ```python
 # Create a search index knowledge source
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference
 
-index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint = "<search-endpoint>", credential = DefaultAzureCredential())
 
 knowledge_source = SearchIndexKnowledgeSource(
     name = "my-search-index-ks",
@@ -229,12 +237,12 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```http
 ### Create a search index knowledge source
-PUT {{search-url}}/knowledgesources/my-search-index-ks?api-version=2026-05-01-preview
-api-key: {{api-key}}
+PUT {{search-endpoint}}/knowledgesources/my-search-index-ks?api-version=2026-08-01-preview
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -243,8 +251,7 @@ Content-Type: application/json
     "description": "This knowledge source pulls from an existing index designed for agentic retrieval.",
     "encryptionKey": null,
     "searchIndexParameters": {
-        "searchIndexName": "<YOUR INDEX NAME>",
-        "semanticConfigurationName": "my-semantic-config",
+        "searchIndexName": "<index-name>",
         "sourceDataFields": [
           { "name": "description" },
           { "name": "category" }
@@ -253,14 +260,14 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
 ```http
 ### Create a search index knowledge source
-PUT {{search-url}}/knowledgesources/my-search-index-ks?api-version=2026-04-01
-api-key: {{api-key}}
+PUT {{search-endpoint}}/knowledgesources/my-search-index-ks?api-version=2026-04-01
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -269,7 +276,7 @@ Content-Type: application/json
     "description": "This knowledge source pulls from an existing index designed for agentic retrieval.",
     "encryptionKey": null,
     "searchIndexParameters": {
-        "searchIndexName": "<YOUR INDEX NAME>",
+        "searchIndexName": "<index-name>",
         "semanticConfigurationName": "my-semantic-config",
         "sourceDataFields": [
           { "name": "description" },
@@ -288,14 +295,11 @@ Content-Type: application/json
 ### Persist a base filter on a knowledge source (preview)
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-In the `2026-05-01-preview` API, a search index knowledge source can persist a default filter through the `baseFilter` property. Use `baseFilter` when the same filter expression should apply to every retrieve request that uses the knowledge source, so callers don't have to repeat the filter on every call.
+Starting with the `2026-05-01-preview` API version, a search index knowledge source can persist a default filter through the `baseFilter` property. Use `baseFilter` when the same filter expression should apply to every retrieve request that uses the knowledge source, so callers don't have to repeat the filter on every call.
 
-> [!NOTE]
-> Starting with `2026-05-01-preview`, `semanticConfigurationName` is optional on search index knowledge sources. The examples in this section omit it. Earlier API versions still require `semanticConfigurationName`. If your knowledge source needs to support both the older and newer API versions, keep specifying it.
-
-The following example stores a base filter on a search index knowledge source:
+The following example stores a base filter on a search index knowledge source.
 
 ::: zone pivot="csharp"
 
@@ -336,9 +340,9 @@ index_client.create_or_update_knowledge_source(knowledge_source)
 ::: zone pivot="rest"
 
 ```http
-PUT {{search-url}}/knowledgesources/public-docs-ks?api-version=2026-05-01-preview
+PUT {{search-endpoint}}/knowledgesources/public-docs-ks?api-version=2026-08-01-preview
 Content-Type: application/json
-api-key: {{search-api-key}}
+Authorization: Bearer {{search-access-token}}
 
 {
   "name": "public-docs-ks",
@@ -350,7 +354,7 @@ api-key: {{search-api-key}}
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -408,6 +412,186 @@ baseFilter AND filterAddOn
 ```
 
 Because the filters are combined with `AND`, `filterAddOn` can only narrow the persisted base filter. It can't replace or broaden it.
+
+### Configure query hints (preview)
+
+Starting with the `2026-08-01-preview` API version, query hints guide the query-planning model to generate filters and ranking boosts from a user's request. Store default hints in `searchIndexParameters.queryHints`, which can hold both filters and boosts.
+
+The following example stores one filter hint and one `fieldValue` boost on a knowledge source for `product-docs-index`, which has a filterable `productFamily` field and a searchable `language` field.
+
+::: zone pivot="csharp"
+
+```csharp
+using System;
+using Azure.Identity;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+
+var endpoint = new Uri("<search-endpoint>");
+var indexClient = new SearchIndexClient(
+    endpoint,
+    new DefaultAzureCredential());
+
+var queryHints = new SearchIndexKnowledgeSourceQueryHints();
+queryHints.Filters.Add(
+    new SearchIndexKnowledgeSourceFilterHint(
+        "productFamily",
+        ["Model-X100", "Model-X200"])
+    {
+        FilterInstructions =
+            "Filter only when the user names a model."
+    });
+
+var languageBoost =
+    new SearchIndexKnowledgeSourceFieldValueBoost(
+        "language",
+        2.0);
+languageBoost.FieldValues.Add("en-US");
+languageBoost.FieldValues.Add("ja-JP");
+languageBoost.BoostInstructions =
+    "Prefer the language requested by the user.";
+queryHints.Boosts.Add(languageBoost);
+
+var knowledgeSource = new SearchIndexKnowledgeSource(
+    "product-docs-ks",
+    new SearchIndexKnowledgeSourceParameters(
+        "product-docs-index")
+    {
+        QueryHints = queryHints
+    });
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(
+    knowledgeSource);
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParameters](/dotnet/api/azure.search.documents.indexes.models.searchindexknowledgesourceparameters?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    SearchIndexKnowledgeSource,
+    SearchIndexKnowledgeSourceFieldValueBoost,
+    SearchIndexKnowledgeSourceFilterHint,
+    SearchIndexKnowledgeSourceParameters,
+    SearchIndexKnowledgeSourceQueryHints,
+)
+
+endpoint = "<search-endpoint>"
+index_client = SearchIndexClient(
+    endpoint=endpoint,
+    credential=DefaultAzureCredential(),
+)
+
+query_hints = SearchIndexKnowledgeSourceQueryHints(
+    filters=[
+        SearchIndexKnowledgeSourceFilterHint(
+            field="productFamily",
+            field_values=["Model-X100", "Model-X200"],
+            filter_instructions=(
+                "Filter only when the user names a model."
+            ),
+        )
+    ],
+    boosts=[
+        SearchIndexKnowledgeSourceFieldValueBoost(
+            field="language",
+            field_values=["en-US", "ja-JP"],
+            boost=2.0,
+            boost_instructions=(
+                "Prefer the language requested by the user."
+            ),
+        )
+    ],
+)
+
+knowledge_source = SearchIndexKnowledgeSource(
+    name="product-docs-ks",
+    search_index_parameters=SearchIndexKnowledgeSourceParameters(
+        search_index_name="product-docs-index",
+        query_hints=query_hints,
+    ),
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParameters](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexknowledgesourceparameters)
+
+::: zone-end
+
+::: zone pivot="rest"
+
+```http
+PUT {{search-endpoint}}/knowledgesources('product-docs-ks')?api-version=2026-08-01-preview
+Content-Type: application/json
+Authorization: Bearer {{search-access-token}}
+
+{
+  "name": "product-docs-ks",
+  "kind": "searchIndex",
+  "searchIndexParameters": {
+    "searchIndexName": "product-docs-index",
+    "queryHints": {
+      "filters": [{
+        "field": "productFamily",
+        "fieldValues": ["Model-X100", "Model-X200"],
+        "filterInstructions": "Filter only when the user names a model."
+      }],
+      "boosts": [{
+        "kind": "fieldValue",
+        "field": "language",
+        "fieldValues": ["en-US", "ja-JP"],
+        "boost": 2.0,
+        "boostInstructions": "Prefer the language requested by the user."
+      }]
+    }
+  }
+}
+```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
+
+::: zone-end
+
+Configure each hint according to the following requirements:
+
+| Hint | Field requirements | `fieldValues` behavior | Collection limits |
+| --- | --- | --- | --- |
+| Filter | `field` must identify a filterable index field. | Required. List the exhaustive set of allowed values. If the request doesn't map to a listed value, the planner is instructed not to filter on that field. | Up to five hints with unique fields. Each value can contain up to 128 characters, and all values in one hint can contain up to 2,048 characters combined. |
+| `fieldValue` boost | `field` must identify a searchable field that uses a language, standard, or default analyzer. | Optional examples. If you omit them, use `boostInstructions` to explain which value to select from the request. | Up to five hints with unique fields. Each hint can contain up to 20 values, with 128 characters per value and 1,024 characters combined. |
+| `multiWordExpression` boost | Omit `field`. The index must contain at least one searchable field that uses a language, standard, or default analyzer. | Optional examples of domain-specific phrases. | One hint. It can contain up to 20 values, with 128 characters per value and 1,024 characters combined. |
+
+For either boost kind, `boost` is required and must be a finite number greater than `1.0`. Higher values give matching documents more influence in ranking without excluding other documents. Limit each optional `filterInstructions` or `boostInstructions` value to 1,024 characters.
+
+Use a `multiWordExpression` boost for domain-specific phrases whose meaning isn't captured by the individual words. Provide example phrases in `fieldValues`, or omit them and let `boostInstructions` and the user's request guide phrase selection:
+
+```json
+{
+  "boosts": [{
+    "kind": "multiWordExpression",
+    "fieldValues": ["deferred tax", "wash sale"],
+    "boost": 3.0,
+    "boostInstructions": "Boost domain terms used as complete phrases."
+  }]
+}
+```
+
+When you design query hints, keep the following behaviors in mind:
+
++ Hints are best effort, so the model might not generate a filter or boost for every request. For required constraints, such as authorization boundaries, use [document-level access control](search-document-level-access-overview.md) or a [deterministic filter](#persist-a-base-filter-on-a-knowledge-source-preview) instead.
+
++ Hints need model-driven query planning, so they aren't applied when the retrieval reasoning effort is `minimal`. At other effort levels, a GPT-4o or GPT-4.1 family model returns HTTP 400 when the stored `queryHints` object contains a filter. The service checks stored filters before applying `queryHintOverrides`, so an empty or boosts-only override doesn't bypass this validation. Stored `fieldValue` and `multiWordExpression` boosts alone don't trigger the validation.
+
++ Generated filters combine with `baseFilter` and `filterAddOn` by using `AND`. A generated boost rewrites the query in full Lucene syntax while preserving the original terms.
+
++ Query hints use indexed values as grounding. They don't configure analyzers or enable language detection. The `language` values in these examples are ordinary index metadata.
+
+To replace stored hints for a single retrieve request and verify the generated filter or boost, see [Override stored query hints at query time (preview)](agentic-retrieval-how-to-retrieve.md#override-stored-query-hints-at-query-time-preview).
 
 ## Assign to a knowledge base
 
