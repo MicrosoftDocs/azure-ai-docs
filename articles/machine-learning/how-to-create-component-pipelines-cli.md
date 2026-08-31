@@ -1,5 +1,5 @@
 ---
-title: Create and Run Component-Based ML Pipelines (CLI)
+title: Create and run component-based ML pipelines (CLI)
 titleSuffix: Azure Machine Learning
 description: Create and run machine learning pipelines by using the Azure Machine Learning CLI.
 services: machine-learning
@@ -8,7 +8,7 @@ ms.subservice: core
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: zhanxia
-ms.date: 06/29/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.custom:
@@ -22,9 +22,9 @@ ms.devlang: azurecli
 #customer intent: As a machine learning engineer, I want to create a component-based machine learning pipeline so that I can take advantage of the flexibility and reuse provided by components.
 ---
 
-# Create and run machine learning pipelines using components with the Azure Machine Learning CLI
+# Create and run component-based ML pipelines with the Azure Machine Learning CLI
 
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+[!INCLUDE [CLI v2](includes/machine-learning-cli-v2.md)]
 
 In this article, you learn how to create and run [machine learning pipelines](concept-ml-pipelines.md) by using Azure CLI and [components](concept-component.md). You can create pipelines without using components, but components provide flexibility and enable reuse. Azure Machine Learning pipelines can be defined in YAML and run from the CLI, authored in Python, or composed in the Azure Machine Learning studio Designer via a drag-and-drop UI. This article focuses on the CLI.
 
@@ -63,9 +63,9 @@ In the `cli/jobs/pipelines-with-components/basics` directory of the [`azureml-ex
 
 - **component_src**. These are the source code directories for specific components. They contain the source code that's run in the component. You can use your preferred language, including Python, R, and others. The code must be run by a shell command. The source code can take a few inputs from the shell command line to control how this step is run. For example, a training step might take training data, learning rate, and the number of epochs to control the training process. The argument of a shell command is used to pass inputs and outputs to the code.
 
- You'll now create a pipeline by using the `3b_pipeline_with_data` example. Each file is explained further in the following sections.
+You'll now create a pipeline by using the `3b_pipeline_with_data` example. Each file is explained further in the following sections.
 
- First, list your available compute resources by using the following command. The `az ml` commands require your resource group and workspace name. If you didn't configure CLI defaults, add `-g <resource-group> -w <workspace>` to each command, or run `az configure --defaults group=<resource-group> workspace=<workspace>` to set them once.
+First, list your available compute resources by using the following command. The `az ml` commands require your resource group and workspace name. If you didn't configure CLI defaults, add `-g <resource-group> -w <workspace>` to each command, or run `az configure --defaults group=<resource-group> workspace=<workspace>` to set them once.
 
 ```azurecli
 az ml compute list
@@ -80,7 +80,7 @@ If you don't have it, create a cluster called `cpu-cluster` by running this comm
 az ml compute create -n cpu-cluster --type AmlCompute --min-instances 0 --max-instances 10
 ```
 
-Now create a pipeline job that's defined in the pipeline.yml file by running the following command. The compute target is referenced in the pipeline.yml file as `azureml:cpu-cluster`. If your compute target uses a different name, remember to update it in the pipeline.yml file.
+Now create a pipeline job that's defined in the `pipeline.yml` file by running the following command. The compute target is referenced in the `pipeline.yml` file as `azureml:cpu-cluster`. If your compute target uses a different name, remember to update it in the `pipeline.yml` file.
 
 ```azurecli
 az ml job create --file pipeline.yml
@@ -88,14 +88,14 @@ az ml job create --file pipeline.yml
 
 You should receive a JSON dictionary with information about the pipeline job, including:
 
-| Key  | Description           |
-|----------------|----------------------------------------|
-| `name`                     | The GUID-based name of the job.                   |
-| `experiment_name`          | The name under which jobs will be organized in studio.         |
-| `services.Studio.endpoint` | A URL for monitoring and reviewing the pipeline job.         |
-| `status`             | The status of the job. It will probably be `Preparing` at this point. |
+| Key | Description |
+| --- | --- |
+| `name` | The GUID-based name of the job. |
+| `experiment_name` | The name under which jobs will be organized in studio. |
+| `services.Studio.endpoint` | A URL for monitoring and reviewing the pipeline job. |
+| `status` | The status of the job. It will probably be `Preparing` at this point. |
 
-Go to the `services.Studio.endpoint` URL to see a visualization of the pipeline:
+Open the `services.Studio.endpoint` URL to see a visualization of the pipeline. To check the job later from the CLI, run `az ml job show --name <job-name> --query status --output tsv` with the `name` value from the response.
 
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/pipeline-graph-dependencies.png" alt-text="Screenshot of a visualization of the pipeline.":::
 
@@ -110,13 +110,13 @@ You'll now look at the pipeline definition in the *3b_pipeline_with_data/pipelin
 
 The following table describes the most commonly used fields of the pipeline YAML schema. To learn more, see the [full pipeline YAML schema](reference-yaml-job-pipeline.md).  
 
-|Key|Description|
-|------|------|
-|`type`|**Required**. The job type. It must be `pipeline` for pipeline jobs.|
-|`display_name`|The display name of the pipeline job in the studio UI. Editable in the studio UI. It doesn't have to be unique across all jobs in the workspace.|
-|`jobs`|**Required**. A dictionary of the set of individual jobs to run as steps within the pipeline. These jobs are considered child jobs of the parent pipeline job. In the current release, supported job types in pipeline are `command` and `sweep`.|
-|`inputs`|A dictionary of inputs to the pipeline job. The key is a name for the input within the context of the job, and the value is the input value. You can reference these pipeline inputs by the inputs of an individual step job in the pipeline by using the `${{ parent.inputs.<input_name> }}` expression.|
-|`outputs`|A dictionary of output configurations of the pipeline job. The key is a name for the output in the context of the job, and the value is the output configuration. You can reference these pipeline outputs by the outputs of an individual step job in the pipeline by using the `${{ parents.outputs.<output_name> }}` expression. |
+| Key | Description |
+| --- | --- |
+| `type` | **Required**. The job type. It must be `pipeline` for pipeline jobs. |
+| `display_name` | The display name of the pipeline job in the studio UI. Editable in the studio UI. It doesn't have to be unique across all jobs in the workspace. |
+| `jobs` | **Required**. A dictionary of the set of individual jobs to run as steps within the pipeline. These jobs are considered child jobs of the parent pipeline job. In the current release, supported job types in pipeline are `command` and `sweep`. |
+| `inputs` | A dictionary of inputs to the pipeline job. The key is a name for the input within the context of the job, and the value is the input value. You can reference these pipeline inputs by the inputs of an individual step job in the pipeline by using the `${{ parent.inputs.<input_name> }}` expression. |
+| `outputs` | A dictionary of output configurations of the pipeline job. The key is a name for the output in the context of the job, and the value is the output configuration. You can reference these pipeline outputs from an individual step job by using the `${{ parent.outputs.<output_name> }}` expression. |
 
 The *3b_pipeline_with_data* example contains a three-step pipeline.
 
@@ -188,7 +188,7 @@ The environment is the environment in which the component runs. It could be an A
 
 ## Register a component for reuse and sharing
 
-Although some components are specific to a particular pipeline, the real benefit of components comes from reuse and sharing. You can register a component in your Machine Learning workspace to make it available for reuse. Registered components support automatic versioning so you can update the component but ensure that pipelines that require an older version will continue to work.  
+Although some components are specific to a particular pipeline, the real benefit of components comes from reuse and sharing. You can register a component in your Azure Machine Learning workspace to make it available for reuse. Registered components support automatic versioning so you can update the component but ensure that pipelines that require an older version will continue to work.
 
 In the azureml-examples repository, go to the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory. 
 
