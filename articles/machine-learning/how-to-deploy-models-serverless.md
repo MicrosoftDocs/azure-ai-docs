@@ -98,7 +98,7 @@ This article uses a Bria-2.3-Fast model deployment for illustration. However, yo
 
 1. For models offered through Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
 
-    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through Azure Marketplace. For such models, you're required to subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](foundry-models-overview.md#billing).
+    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through Azure Marketplace. For such models, you must subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](foundry-models-overview.md#billing).
 
 1. Go to your workspace. To use the standard deployment offering, your workspace must belong to one of the [regions that are supported for serverless deployment](concept-endpoint-serverless-availability.md) for the particular model you want to deploy.
 
@@ -440,7 +440,7 @@ In this section, you create an endpoint with the name **Bria-2.3-Fast**.
 
 ## Use the standard deployment
 
-Models deployed in Azure Machine Learning and Microsoft Foundry in standard deployments support the [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way.
+Models deployed in Azure Machine Learning and Microsoft Foundry in standard deployments support the [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference) that exposes a common set of capabilities for foundational models and that developers can use to consume predictions from a diverse set of models in a uniform and consistent way.
 
 Read more about the [capabilities of this API](/rest/api/microsoft-foundry/modelinference#capabilities) and how [you can use it when building applications](/rest/api/microsoft-foundry/modelinference#getting-started).
 
@@ -529,7 +529,7 @@ Non-Microsoft models deployed as standard deployments are offered through Azure 
 
 Each time a workspace subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
-For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](/azure/foundry-classic/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information about how to track costs, see [Monitor costs for models offered through Azure Marketplace](/azure/foundry-classic/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 :::image type="content" source="media/how-to-deploy-models-serverless/costs-model-as-service-cost-details.png" alt-text="A screenshot showing different resources corresponding to different model offers and their associated meters." lightbox="media/how-to-deploy-models-serverless/costs-model-as-service-cost-details.png":::
 
