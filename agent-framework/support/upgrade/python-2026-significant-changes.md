@@ -93,6 +93,14 @@ Agent and chat middleware already propagate ordinary exceptions. Use `Middleware
 
 **Release Notes:** [python-1.14.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0)
 
+### 🟡 Encrypted reasoning is opt-in for Foundry chat
+
+**PR:** [#7536](https://github.com/microsoft/agent-framework/pull/7536)
+
+`FoundryChatClient` no longer requests `reasoning.encrypted_content` by default. The default avoids failures on unsupported models. For capable deployments, opt in with `default_options={"include": ["reasoning.encrypted_content"]}`.
+
+---
+
 ### 🔴 [Beta] Foundry Hosted Agent state moves to Foundry State Store
 
 **PR:** [#7533](https://github.com/microsoft/agent-framework/pull/7533)
@@ -2888,6 +2896,7 @@ No significant changes in this release.
 |---------|---------------|------|--------|-----|
 | Unreleased | — | 🔴 Breaking | Middleware inputs require a sequence; install `agent-hooks-sdk` directly instead of using the removed core extra | [#7918](https://github.com/microsoft/agent-framework/pull/7918) |
 | 1.15.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0) | 🟡 Enhancement | `MiddlewareFailure` adds fatal, fail-closed behavior for function middleware | [#7562](https://github.com/microsoft/agent-framework/pull/7562) |
+| 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Encrypted reasoning is opt-in for Foundry chat | [#7536](https://github.com/microsoft/agent-framework/pull/7536) |
 | 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Agent Hooks adds experimental AGENT-HOOKS-0.1 interception middleware | [#7515](https://github.com/microsoft/agent-framework/pull/7515) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🔴 Breaking | `github-copilot-sdk` upgraded to v1.0.0: `SubprocessConfig` removed (use `RuntimeConnection` + kwargs), import paths moved to `copilot.session_events`, `copilot_home` → `base_directory`, permission handlers use concrete decision types | [#6292](https://github.com/microsoft/agent-framework/pull/6292) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🟡 Enhancement | Progressive tool exposure via `FunctionInvocationContext` | [#6233](https://github.com/microsoft/agent-framework/pull/6233) |
