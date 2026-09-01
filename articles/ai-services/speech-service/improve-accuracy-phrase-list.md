@@ -39,7 +39,7 @@ Phrase lists are simple and lightweight:
 You can use phrase lists with the [Speech Studio](speech-studio-overview.md), [Speech SDK](quickstarts/setup-platform.md), or [Speech Command Line Interface (CLI)](spx-overview.md). They're supported with [Real-time transcription](./how-to-recognize-speech.md) and [Fast transcription API](./fast-transcription-create.md). The [Batch transcription API](batch-transcription.md) doesn't support phrase lists.
 
 You can use phrase lists with both base (standard) endpoints and [custom speech](custom-speech-overview.md) endpoints. You apply the phrase list at runtime and it doesn't require model training. Some situations call for training a custom model that includes phrases to improve accuracy. For example, use custom speech in the following cases:
-- If you need to use a large list of phrases. A phrase list shouldn't have more than 10,000 phrases. Note that a longer phrase list will impact quality.
+- If you need to use a large list of phrases, a phrase list shouldn't have more than 2,000 phrases. Note that a longer phrase list will impact quality and latency.
 
 ## Phrase list weight
 
