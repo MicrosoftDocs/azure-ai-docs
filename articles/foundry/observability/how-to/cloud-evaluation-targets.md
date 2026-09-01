@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to invoke models and agents during evaluation so that I can score generated responses against test inputs.
 ---
 
-# Evaluate models and agents in the cloud
+# Evaluate model and agent targets with Microsoft Foundry SDK
 
 Send test queries to deployed models, prompt agents, or hosted agents and evaluate the responses generated at run time.
 
@@ -408,16 +408,6 @@ testing_criteria = [
         data_mapping={
             "query": "{{item.query}}",
             "response": "{{sample.output_text}}",
-        },
-    ),
-    TestingCriterionAzureAIEvaluator(
-        type="azure_ai_evaluator",
-        name="task_adherence",
-        evaluator_name="builtin.task_adherence",
-        initialization_parameters={"model": model_deployment_name},
-        data_mapping={
-            "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
         },
     ),
 ]
