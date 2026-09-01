@@ -4,7 +4,7 @@ description: Learn how to import data from multiple data sources into a single A
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ms.custom:
   - devx-track-csharp
@@ -173,7 +173,7 @@ When the data and configuration settings are in place, the sample program in `Az
 
 This simple C#/.NET console app performs the following tasks:
 
-* Creates a new index based on the data structure of the C# Hotel class, which also references the Address and Room classes.
+* Creates a new index based on the data structure of the C# `Hotel` class, which also references the `Address` and `Room` classes.
 * Creates a new data source and an indexer that maps Azure Cosmos DB data to index fields. These are both objects in Azure AI Search.
 * Runs the indexer to load hotel data from Azure Cosmos DB.
 * Creates a second data source and an indexer that maps JSON blob data to index fields.
@@ -350,11 +350,11 @@ await indexerClient.CreateOrUpdateIndexerAsync(blobIndexer);
 try
 {
     // Run the indexer.
-    await searchService.Indexers.RunAsync(blobIndexer.Name);
+    await indexerClient.RunIndexerAsync(blobIndexer.Name);
 }
-catch (CloudException e) when (e.Response.StatusCode == (HttpStatusCode)429)
+catch (RequestFailedException ex) when (ex.Status == 429)
 {
-    Console.WriteLine("Failed to run indexer: {0}", e.Response.Content);
+    Console.WriteLine("Failed to run indexer: {0}", ex.Message);
 }
 ```
 

@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -22,7 +22,7 @@ In Azure AI Search, the two patterns for supporting multiple languages include:
 
 + Create language-specific indexes where all of the human readable content is in the same language, and all searchable string fields are attributed to use the same [language analyzer](index-add-language-analyzers.md).
 
-+ Create a blended index with language-specific versions of each field (for example, description_en, description_fr, description_ko), and then constrain full text search to just those fields at query time. This approach is useful for scenarios where language variants are only needed on a few fields, like a description.
++ Create a blended index with language-specific versions of each field (for example, description_en, description_fr, description_ko), and then constrain full-text search to just those fields at query time. This approach is useful for scenarios where language variants are only needed on a few fields, like a description.
 
 This article focuses on steps and best practices for configuring and querying language-specific fields in a blended index:
 
@@ -98,7 +98,7 @@ Parameters on the query are used to limit search to specific fields and then tri
 
 | Parameters | Purpose |
 |-----------|--------------|
-| `searchFields` | Limits full text search to the list of named fields. |
+| `searchFields` | Limits full-text search to the list of named fields. |
 | `select` | Trims the response to include only the fields you specify. By default, all retrievable fields are returned. The `select` parameter lets you choose which ones to return. |
 
 Given a goal of constraining search to fields containing French strings, you would use `searchFields` to target the query at fields containing strings in that language.
@@ -107,7 +107,7 @@ Specifying the analyzer on a query request isn't necessary. A language analyzer 
 
 By default, a search returns all fields that are marked as retrievable. As such, you might want to exclude fields that don't conform to the language-specific search experience you want to provide. Specifically, if you limited search to a field with French strings, you probably want to exclude fields with English strings from your results. Using the `select` query parameter gives you control over which fields are returned to the calling application.
 
-#### Example in REST
+### Example in REST
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01
@@ -115,11 +115,11 @@ POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search
     "search": "animaux acceptés",
     "searchFields": "Tags, Description_fr",
     "select": "HotelName, Description_fr, Address/City, Address/StateProvince, Tags",
-    "count": "true"
+    "count": true
 }
 ```
 
-#### Example in C#
+### Example in C#
 
 ```csharp
 private static void RunQueries(SearchClient srchclient)
@@ -169,14 +169,14 @@ POST /indexes/hotels/docs/search?api-version=2026-04-01
   "searchFields": "Tags, Description_fr",
   "select": "HotelName, Tags, Description_fr",
   "scoringProfile": "frenchFirst",
-  "count": "true"
+  "count": true
 }
 ```
 
 ## Next steps
 
 + [Add a language analyzer](index-add-language-analyzers.md)
-+ [How full text search works in Azure AI Search](search-lucene-query-architecture.md)
++ [How full-text search works in Azure AI Search](search-lucene-query-architecture.md)
 + [Search Documents REST API](/rest/api/searchservice/documents/search-post)
 + [AI enrichment overview](cognitive-search-concept-intro.md)
 + [Skillsets overview](cognitive-search-working-with-skillsets.md)
