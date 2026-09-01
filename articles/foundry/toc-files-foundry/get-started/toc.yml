@@ -23,7 +23,5 @@ items:
 
 - name: Explore and migrate
   items:
-  - name: Ask AI
-    href: ../../concepts/ask-ai.md
   - name: Migrate from Foundry (classic) portal
     href: ../../how-to/navigate-from-classic.md
