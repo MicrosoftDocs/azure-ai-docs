@@ -8,7 +8,7 @@ reviewer: RSavage2
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 09/08/2026
+ms.date: 09/04/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -371,12 +371,12 @@ The following table highlights what distinguishes each model and the scenarios i
 | Model | Key capabilities | Best for |
 | --- | --- | --- |
 | `MAI-Image-2.6-Flash` (Preview) | Same generation and editing capabilities as `MAI-Image-2.6`, offered as a faster, lower-cost variant. | The same scenarios as `MAI-Image-2.6` when you need lower cost and faster generation. |
-| `MAI-Image-2.6` (Preview) | Core family capabilities, with stronger text rendering, improved portraits and 3D imagery, and more polished commercial and photorealistic output. | Projects that need the latest quality gains in text rendering, portraits, and commercial or photorealistic imagery. |
-| `MAI-Image-2.5-Pro` (Preview) | Highest-quality model in the 2.5 series, at a higher cost than the other 2.5 models. Adds object consistency across complex scenes, character consistency across views and moments, material and physical-property accuracy, and spatial and geometric reasoning to the core family capabilities. | Visually dense compositions that require consistent object identity, materials, and spatial relationships. |
+| `MAI-Image-2.6` (Preview) | Core capabilities](#core-capabilities), with stronger text rendering, improved portraits and 3D imagery, and more polished commercial and photorealistic output. | Projects that need the latest quality gains in text rendering, portraits, and commercial or photorealistic imagery. |
+| `MAI-Image-2.5-Pro` (Preview) | Highest-quality model in the Image-2.5 series, at a higher cost than the other Image-2.5 models. Adds object consistency across complex scenes, character consistency across views and moments, material and physical-property accuracy, and spatial and geometric reasoning to the core family capabilities. | Visually dense compositions that require consistent object identity, materials, and spatial relationships. |
 | `MAI-Image-2.5-Flash` (Preview) | Same generation and editing capabilities as `MAI-Image-2.5`, offered as a faster, lower-cost variant. | Concept visualization, creative content generation, image editing workflows, and production design when you need lower cost and faster generation. |
-| `MAI-Image-2.5` (Preview) | Core family capabilities. | Concept visualization, creative content generation, image editing workflows, and production design. |
+| `MAI-Image-2.5` (Preview) | [Core capabilities](#core-capabilities). | Concept visualization, creative content generation, image editing workflows, and production design. |
 
-For more details, see the individual [model cards in the Foundry model catalog](https://ai.azure.com/catalog/models/?publisher=microsoft) and the capabilities comparison in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details, see the individual [model cards in the Foundry model catalog](https://ai.azure.com/catalog/models/?publisher=microsoft) and the capabilities comparison table in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ## API endpoints
 
