@@ -168,6 +168,8 @@ The classic portal uses a single customizable left pane for all navigation, with
 | **Manage** | Selected project and its resource | Quota, AI Gateway, resource details, project details |
 | **Docs** | N/A | Documentation links |
 
+Within **Build**, items are grouped under **Create** (Agents, Models, Services, Tools, Knowledge, Memory, Guardrails, Data) and **Optimize** (Evaluations, Fine-tune) section headers in the left pane.
+
 The following table maps frequently used classic portal locations to their current equivalents.
 
 | Task | Classic portal location | Current portal location |
