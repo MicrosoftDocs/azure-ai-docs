@@ -99,6 +99,24 @@ The OpenAI client authenticates with the caller's Microsoft Entra credential, so
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```typescript
+const openAIClient = project.getOpenAIClient({
+    azureConfig: { allowPreview: true, agentName: "my-agent" },
+});
+
+const response = await openAIClient.responses.create({
+    input: "Summarize the latest support tickets",
+});
+const sessionId = (response as any).agent_session_id;
+console.log(`Session: ${sessionId}`);
+```
+
+The OpenAI client authenticates with the caller's Microsoft Entra credential, so the session is scoped to that identity.
+
+:::zone-end
+
 ## Isolate sessions for your own users
 
 If your application authenticates its own end users - for example, through Google, GitHub, or a custom identity provider - a trusted service can tell Foundry which end user a request belongs to, so the platform isolates sessions per end user instead of per calling service.
@@ -138,6 +156,24 @@ response = openai_client.responses.create(
     input="Summarize my open tickets",
     extra_headers={"x-ms-user-identity": "<stable-end-user-id>"},
 )
+```
+
+Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. The session is scoped to that end user rather than to the calling service.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const openAIClient = project.getOpenAIClient({
+    azureConfig: { allowPreview: true, agentName: "my-agent" },
+});
+
+const response = await openAIClient.responses.create(
+    { input: "Summarize my open tickets" },
+    { headers: { "x-ms-user-identity": "<stable-end-user-id>" } },
+);
+console.log(response.output_text);
 ```
 
 Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. The session is scoped to that end user rather than to the calling service.

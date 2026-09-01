@@ -8,7 +8,7 @@ ms.date: 05/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 ---
 
@@ -26,16 +26,28 @@ The [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.m
 - A Foundry project with a `model-router` deployment. See [Deploy model router](model-router.md#deploy-a-model-router-model).
 - At least one named model deployment for deterministic calls (for example, `gpt-4.1-mini`). See [Deploy a model](/azure/ai-foundry/openai/how-to/create-resource).
 - Familiarity with the [Responses API](responses.md).
-- Python 3.9+
-- The Foundry SDK:
+- Python 3.9+ or Node.js 22+.
+- The Foundry SDK for your language:
 
-  ```bash
-  pip install "azure-ai-projects>=2.0.0"
-  ```
+# [Python](#tab/python)
+
+```bash
+pip install "azure-ai-projects>=2.0.0"
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+---
 
 ## Call models through the Responses API
 
 The following sample calls several models through the same `responses.create()` interface, starting with `model-router` for automatic selection, then named models for deterministic control.
+
+# [Python](#tab/python)
 
 ```python
 import os
@@ -68,6 +80,50 @@ with project.get_openai_client() as client:
             f"{response.output_text[:60]}"
         )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Create the Foundry project client
+const project = new AIProjectClient(
+  process.env["PROJECT_ENDPOINT"]!,
+  new DefaultAzureCredential(),
+);
+
+const deployments = [
+  "model-router",
+  "gpt-5.2",
+  "grok-4-fast-reasoning",
+  "gpt-5-mini",
+  "Deepseek-V3.2",
+];
+const prompt = "Explain retrieval-augmented generation in one sentence.";
+
+// Get an OpenAI-compatible client that works with all Foundry models
+const client = project.getOpenAIClient();
+
+for (const name of deployments) {
+  const start = Date.now();
+  const response = await client.responses.create({
+    model: name,
+    input: prompt,
+  });
+  const elapsedSeconds = (Date.now() - start) / 1000;
+
+  console.log(
+    `${name} -> responded: ${response.model} ` +
+      `(${elapsedSeconds.toFixed(2)}s): ${response.output_text.slice(0, 60)}`,
+  );
+}
+```
+
+---
+
+- Reference: [`AIProjectClient.get_openai_client`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient) (Python) / [`AIProjectClient.getOpenAIClient`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
+- Reference: [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses) (`responses.create`, both languages)
 
 The following table shows a sample output. Actual latency and response text vary per request.
 

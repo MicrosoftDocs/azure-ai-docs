@@ -1,6 +1,6 @@
 ---
 title: "Deploy a hosted agent"
-description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
+description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK, JavaScript/TypeScript SDK, or REST API."
 author: aahill
 ms.author: aahi
 ms.date: 08/17/2026
@@ -8,7 +8,7 @@ ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: references_regions, doc-kit-assisted
+ms.custom: references_regions, doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-deploy-clients
 ---
@@ -473,6 +473,153 @@ For more complete examples, see the [Hosted agent samples](https://github.com/mi
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+## Deploy using the JavaScript/TypeScript SDK
+
+Use the SDK when you want to manage agent deployments directly from Node.js code. The SDK caller runs in Node.js, but the container image itself still runs your Python or .NET agent code built with the Responses or Invocations protocol libraries—there's no Node.js Hosted agent runtime.
+
+### Additional prerequisites
+
+* [Node.js 22 or later](https://nodejs.org/)
+* A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
+* **Container Registry Repository Writer** or **AcrPush** role on the container registry (to push images)
+* The `@azure/ai-projects` and `@azure/identity` packages
+
+    ```bash
+    npm install @azure/ai-projects @azure/identity
+    ```
+
+Before you begin, build and push your container image to Azure Container Registry (see the **Python** tab for example Docker commands), and grant the project managed identity the **Container Registry Repository Reader** role on the registry.
+
+### Create a hosted agent version
+
+When you create a version, the platform automatically provisions the agent. There's no separate start step. The platform builds a container snapshot and makes the agent ready to serve requests.
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "your_project_endpoint";
+const agentName = "my-agent";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+// Create a hosted agent version
+const agent = await project.agents.createVersion(agentName, {
+  kind: "hosted",
+  cpu: "1",
+  memory: "2Gi",
+  container_configuration: {
+    image: "your-registry.azurecr.io/your-image:tag",
+  },
+  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  environment_variables: { MODEL_DEPLOYMENT_NAME: "gpt-5-mini" },
+});
+
+console.log(`Agent created: ${agent.name}, version: ${agent.version}`);
+```
+
+To expose both protocols, pass both in `protocol_versions`:
+
+```typescript
+protocol_versions: [
+  { protocol: "responses", version: "1.0.0" },
+  { protocol: "invocations", version: "1.0.0" },
+  { protocol: "invocations_ws", version: "1.0.0" },
+],
+```
+
+### Poll for version status
+
+After creating a version, poll until the status is `active` before invoking the agent. Provisioning typically takes less than one minute depending on image size.
+
+```typescript
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Poll until the agent version is active
+for (;;) {
+  const versionInfo = await project.agents.getVersion(
+    agentName,
+    agent.version,
+  );
+  console.log(`Status: ${versionInfo.status}`);
+  if (versionInfo.status === "active") {
+    break;
+  }
+  if (versionInfo.status === "failed") {
+    console.log(`Provisioning failed: ${versionInfo.error}`);
+    break;
+  }
+  await sleep(5_000);
+}
+```
+
+### Route the agent endpoint and invoke it
+
+Route the agent endpoint to the version you created, then bind an OpenAI client to the endpoint.
+
+For the **Responses** protocol:
+
+```typescript
+await project.agents.patchAgentObject(agentName, {
+  agentEndpoint: {
+    version_selector: {
+      version_selection_rules: [
+        {
+          type: "FixedRatio",
+          agent_version: agent.version,
+          traffic_percentage: 100,
+        },
+      ],
+    },
+    protocol_configuration: { responses: {} },
+  },
+});
+
+// Create an OpenAI client bound to the agent endpoint
+const openAIClient = project.getOpenAIClient({
+  azureConfig: { allowPreview: true, agentName },
+});
+
+const response = await openAIClient.responses.create({
+  input: "Hello! What can you do?",
+});
+console.log(response.output_text);
+```
+
+For the **Invocations** protocol, call the invocations endpoint directly:
+
+```typescript
+const credential = new DefaultAzureCredential();
+const token = await credential.getToken("https://ai.azure.com/.default");
+if (!token) {
+  throw new Error("Failed to acquire an access token.");
+}
+const url = `${projectEndpoint}/agents/my-agent/endpoint/protocols/invocations`;
+
+const response = await fetch(`${url}?api-version=v1`, {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer " + token.token,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ message: "Process this task" }),
+});
+console.log(await response.json());
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ## Deploy using the REST API
@@ -619,6 +766,26 @@ Or delete the entire agent and all its versions. Use `force=True` to cascade-del
 ```python
 project.agents.delete(agent_name="my-agent", force=True)
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+### SDK cleanup
+
+Delete a single version:
+
+```typescript
+await project.agents.deleteVersion("my-agent", agent.version);
+```
+
+Or delete the entire agent and all its versions:
+
+```typescript
+await project.agents.delete("my-agent", { force: true });
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
