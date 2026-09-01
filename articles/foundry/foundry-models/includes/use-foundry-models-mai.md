@@ -354,6 +354,8 @@ To use Microsoft Entra ID authentication instead of an API key, modify this code
 
 MAI image models are diffusion-based generative models designed for both high-quality text-to-image generation and precise, controllable image-to-image editing. Each model uses a diffusion-based approach to progressively refine images from a natural language prompt, enabling strong alignment between the input text and the generated output.
 
+### Core capabilities
+
 All MAI image models in this article share these core capabilities:
 
 - **Text-to-image generation:** Generates high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
@@ -369,12 +371,12 @@ The following table highlights what distinguishes each model and the scenarios i
 | Model | Key capabilities | Best for |
 | --- | --- | --- |
 | `MAI-Image-2.6-Flash` (Preview) | Same generation and editing capabilities as `MAI-Image-2.6`, offered as a faster, lower-cost variant. | The same scenarios as `MAI-Image-2.6` when you need lower cost and faster generation. |
-| `MAI-Image-2.6` (Preview) | Core family capabilities, with stronger text rendering, better portraits and 3D imagery, and more polished commercial and photorealistic output. | Projects that need the latest quality gains in text rendering, portraits, and commercial or photorealistic imagery. |
-| `MAI-Image-2.5-Pro` (Preview) | Core family capabilities, plus object consistency across complex scenes, character consistency across views and moments, material and physical-property accuracy, and spatial and geometric reasoning. | Visually dense compositions that require consistent object identity, materials, and spatial relationships. |
-| `MAI-Image-2.5-Flash` (Preview) | Core family capabilities. | Concept visualization, creative content generation, image editing workflows, and production design. |
+| `MAI-Image-2.6` (Preview) | Core family capabilities, with stronger text rendering, improved portraits and 3D imagery, and more polished commercial and photorealistic output. | Projects that need the latest quality gains in text rendering, portraits, and commercial or photorealistic imagery. |
+| `MAI-Image-2.5-Pro` (Preview) | Highest-quality model in the 2.5 series, at a higher cost than the other 2.5 models. Adds object consistency across complex scenes, character consistency across views and moments, material and physical-property accuracy, and spatial and geometric reasoning to the core family capabilities. | Visually dense compositions that require consistent object identity, materials, and spatial relationships. |
+| `MAI-Image-2.5-Flash` (Preview) | Same generation and editing capabilities as `MAI-Image-2.5`, offered as a faster, lower-cost variant. | Concept visualization, creative content generation, image editing workflows, and production design when you need lower cost and faster generation. |
 | `MAI-Image-2.5` (Preview) | Core family capabilities. | Concept visualization, creative content generation, image editing workflows, and production design. |
 
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details, see the individual [model cards in the Foundry model catalog](https://ai.azure.com/catalog/models/?publisher=microsoft) and the capabilities comparison in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ## API endpoints
 
