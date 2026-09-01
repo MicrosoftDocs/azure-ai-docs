@@ -4,8 +4,9 @@ description: Browse Agent Framework integrations grouped by the framework compon
 author: eavanvalkenburg
 ms.topic: overview
 ms.author: edvan
-ms.date: 07/29/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Integrations by component
@@ -18,6 +19,7 @@ Component pages group integrations by the Agent Framework surface they extend. U
 | [Agent services](agent-services/index.md) | Connect to service-managed or protocol-backed remote agent runtimes. |
 | [Tools](tools/index.md) | Add provider-managed or optional execution tools. |
 | [Context providers](context-providers/index.md) | Add storage, memory, RAG, pre-processing, CodeAct, or other invocation context. |
+| [Vector stores](vector-stores/index.md) | Store and search vectorized data through common .NET or Python abstractions. |
 | [Middleware](middleware/purview.md) | Integrate external middleware and policy services. |
 | [Evaluation](evaluation/microsoft-foundry.md) | Evaluate agents and workflows with an external service. |
 | UI: [AG-UI](ui/ag-ui/index.md), [ChatKit](ui/chatkit.md), and [DevUI](ui/devui/index.md) | Connect UI protocols and developer interfaces. |

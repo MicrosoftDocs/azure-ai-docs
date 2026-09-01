@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: reference
 ms.author: westey
-ms.date: 07/28/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -57,7 +58,8 @@ AIAgent agent = azureOpenAIClient
 The `TextSearchProvider` requires a function that provides the search results given a query. This can be implemented using any search technology, e.g. Azure AI Search, or a web search engine.
 
 > [!TIP]
-> See the [Vector Stores integration](../integrations/index.md#vector-stores) documentation for more information on how to use a vector store for search results.
+> See [Vector store integrations](../integrations/by-component/vector-stores/index.md)
+> for more information on how to use a vector store for search results.
 
 Here is an example of a mock search function that returns pre-defined results based on the query.
 `SourceName` and `SourceLink` are optional, but if provided will be used by the agent to cite the source of the information when answering the user's question.
@@ -120,7 +122,8 @@ Agent Framework supports using Semantic Kernel's VectorStore collections to prov
 ### Creating a Search Tool from VectorStore
 
 The `create_search_function` method from a Semantic Kernel VectorStore collection returns a `KernelFunction` that can be converted to an Agent Framework tool using `.as_agent_framework_tool()`.
-Use [the vector store connectors documentation](/semantic-kernel/concepts/vector-store-connectors) to learn how to set up different vector store collections.
+Use the [vector store implementations documentation](/semantic-kernel/concepts/vector-store-connectors)
+to learn how to set up different vector store collections.
 
 ```python
 from semantic_kernel.connectors.ai.open_ai import OpenAITextEmbedding
@@ -308,9 +311,10 @@ agent = Agent(
 
 This approach allows the agent to choose the most appropriate search strategy based on the user's query.
 
-### Supported VectorStore Connectors
+### Supported vector store implementations
 
-This pattern works with any Semantic Kernel VectorStore connector, including:
+This pattern works with any Semantic Kernel VectorStore implementation,
+including:
 
 - Azure AI Search (`AzureAISearchCollection`)
 - Qdrant (`QdrantCollection`)
@@ -320,7 +324,10 @@ This pattern works with any Semantic Kernel VectorStore connector, including:
 - In-Memory (`InMemoryVectorStoreCollection`)
 - And more
 
-Each connector provides the same `create_search_function` method that can be bridged to Agent Framework tools, allowing you to choose the vector database that best fits your needs. See [the full list here](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors).
+Each implementation provides the same `create_search_function` method that can
+be bridged to Agent Framework tools. Choose the vector database that best fits
+your needs. See the
+[full list of implementations](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors).
 
 ::: zone-end
 
