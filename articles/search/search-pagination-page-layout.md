@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-This article explains search results composition and how to shape full text search results to fit your scenarios. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
+This article explains search results composition and how to shape full-text search results to fit your scenarios. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
 
 + Number of matches found in the index (`count`)
 + Number of matches returned in the response (50 by default, configurable through `top`) or per page (`skip` and `top`)
@@ -87,7 +87,7 @@ The default page size is 50, while the maximum page size is 1,000. If you specif
 "@odata.nextLink": "https://contoso-search-eastus.search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01"
 ```
 
-The top matches are determined by search score, assuming the query is full text search or semantic. Otherwise, the top matches are an arbitrary order for exact match queries (where uniform `@search.score=1.0` indicates arbitrary ranking).
+The top matches are determined by search score, assuming the query is full-text search or semantic. Otherwise, the top matches are an arbitrary order for exact match queries (where uniform `@search.score=1.0` indicates arbitrary ranking).
 
 Set `top` to override the default of 50. In newer preview APIs, if you're using a hybrid query, you can [specify maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to return up to 10,000 documents.
 
@@ -177,7 +177,7 @@ In this workaround, sort and filter are applied to a document ID field or anothe
           "search": "divine secrets",
           "top": 50,
           "orderby": "id asc",
-          "filter": "id ge 50"
+          "filter": "id gt 50"
         }
     ```
 
@@ -188,7 +188,7 @@ In this workaround, sort and filter are applied to a document ID field or anothe
 
 ## Ordering results
 
-In a full text search query, results can be ranked by:
+In a full-text search query, results can be ranked by:
 
 + a search score
 + a semantic reranker score
@@ -198,7 +198,7 @@ You can also boost any matches found in specific fields by adding a scoring prof
 
 ### Order by search score
 
-For full text search queries, results are automatically [ranked by a search score](index-similarity-and-scoring.md) using a BM25 algorithm, calculated based on term frequency, document length, and average document length.
+For full-text search queries, results are automatically [ranked by a search score](index-similarity-and-scoring.md) using the BM25 algorithm, which considers term frequency, document length, and average document length to determine relevance.
 
 The `@search.score` range is either unbounded, or 0 up to (but not including) 1.00 on older services. 
 
@@ -247,7 +247,7 @@ Hit highlighting instructions are provided on the [query request](/rest/api/sear
 
 To return highlighted terms, include the highlight parameter in the query request. The parameter is set to a comma-delimited list of fields. 
 
-By default, the format mark up is `<em>`, but you can override the tag using `highlightPreTag` and `highlightPostTag` parameters. Your client code handles the response (for example, applying a bold font or a yellow background).
+By default, the markup format is `<em>`, but you can override the tag by using the `highlightPreTag` and `highlightPostTag` parameters. Your client code handles the response (for example, by applying a bold font or a yellow background).
 
 ```http
 POST /indexes/good-books/docs/search?api-version=2026-04-01

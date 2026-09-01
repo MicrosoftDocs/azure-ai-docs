@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: article
 ms.author: westey
-ms.date: 04/03/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Chat History Memory Provider
@@ -27,13 +28,18 @@ Stored messages are scoped using configurable identifiers (application, agent, u
 
 ## Prerequisites
 
-- A vector store implementation from 📦 [Microsoft.Extensions.VectorData.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.VectorData.Abstractions) (for example, 📦 [`InMemoryVectorStore`](https://www.nuget.org/packages/Microsoft.SemanticKernel.Connectors.InMemory), 📦 [Azure AI Search](https://www.nuget.org/packages/Microsoft.SemanticKernel.Connectors.AzureAISearch), or [other supported stores](../../../integrations/index.md#vector-store-abstraction-implementations))
+- A vector store implementation from 📦 [Microsoft.Extensions.VectorData.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.VectorData.Abstractions), such as:
+  - 📦 [`InMemoryVectorStore`](https://www.nuget.org/packages/Microsoft.SemanticKernel.Connectors.InMemory)
+  - 📦 [Azure AI Search](https://www.nuget.org/packages/Microsoft.SemanticKernel.Connectors.AzureAISearch)
+  - [another supported store](../../../integrations/by-component/vector-stores/index.md#available-vector-store-implementations)
 - An embedding model configured on your vector store
 - Azure OpenAI or OpenAI deployment for the chat model
 - .NET 8.0 or later
 
 > [!TIP]
-> See the [Vector Stores integration](../../../integrations/index.md#vector-stores) documentation for more information on the VectorData abstraction and available implementations.
+> See [Vector store integrations](../../../integrations/by-component/vector-stores/index.md)
+> for more information about the VectorData abstraction and available
+> implementations.
 
 ## Usage
 

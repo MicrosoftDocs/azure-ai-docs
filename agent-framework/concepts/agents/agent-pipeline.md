@@ -391,7 +391,7 @@ Even so, Python `GitHubCopilotAgent` still supports agent middleware and now run
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Multimodal](../../agents/multimodal.md)
+> [Understand runtime model routing](runtime-model-routing.md)
 
 ### Related content
 

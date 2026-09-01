@@ -318,14 +318,14 @@ Analyzers are defined within a search index and assigned to fields. The [fields 
 
 [Synonym maps](search-synonyms.md) expand queries by adding synonyms for named terms. For example, you might have scientific or medical terms for common terms.
 
-Synonym maps are defined as a top-level resource on a search index and assigned to fields. The [fields collection example](#example-index-definition) doesn't include a synonym map, but the following example shows how a synonym map with variant spellings of country names might be assigned to a hypothetical "locations" field.
+Synonym maps are defined as a top-level resource on a search index and assigned to fields. The [fields collection example](#example-index-definition) doesn't include a synonym map, but the following example shows how a synonym map with variant spellings of country/region names might be assigned to a hypothetical "locations" field.
 
 ```json
 {
     "name":"locations",
     "type":"Edm.String",
     "searchable":true,
-    "synonymMaps":[ "country-synonyms" ]
+    "synonymMaps":[ "country-region-synonyms" ]
 }
 ```
 

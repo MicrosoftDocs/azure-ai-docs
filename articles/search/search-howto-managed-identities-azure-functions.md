@@ -4,7 +4,7 @@ description: Learn how to set up an indexer connection to an Azure Function usin
 ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ms.custom:
@@ -105,7 +105,7 @@ Depending on whether you choose to connect using a system-assigned identity or u
 
 ### Use a system-assigned identity
 
-Here's an example to call into a function named `test` for the sample Azure Function app, where the system assigned identity of the search service is allowed to authenticate via "Easy Auth".
+Here's an example to call a function named `test` for the sample Azure Function app, where the system-assigned identity of the search service is allowed to authenticate via "Easy Auth".
 
 ```json
 "uri": "https://contoso-function-app.azurewebsites.net/api/test?",
@@ -114,7 +114,7 @@ Here's an example to call into a function named `test` for the sample Azure Func
 
 ### Use a user-assigned identity
 
-Here's an example to call into the same function, where the specific user assigned identity is allowed to authenticate via "Easy Auth". You're expected to specify the resource ID of the exact user assigned identity to use in the `identity` property of the configuration.
+Here's an example to call into the same function, where the specific user-assigned identity is allowed to authenticate via "Easy Auth". You need to specify the resource ID of the exact user-assigned identity to use in the `identity` property of the configuration.
 
 ```json
 "uri": "https://contoso-function-app.azurewebsites.net/api/test?",
@@ -126,7 +126,7 @@ Here's an example to call into the same function, where the specific user assign
 ```
 
 >[!NOTE]
-> This user assigned identity should actually be assigned to the Azure AI Search service for it to be specified in the Custom Web skill/vectorizer definition.
+> Before you specify a user-assigned identity in a Custom Web API skill or vectorizer definition, assign the identity to the Azure AI Search service.
 
 ## Run the indexer/vectorizer to verify permissions
 

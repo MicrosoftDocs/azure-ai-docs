@@ -88,7 +88,6 @@ Statuses describe the named portal experience. Check each linked feature article
 | Discover | Search | GA |
 | Discover | [Foundry Playgrounds](concept-playgrounds.md) — Model, Agents, and Images playgrounds | GA |
 | Discover | Foundry Playgrounds — Video playground | Preview |
-| Discover | Ask AI | Preview |
 | Build | [Agents](../agents/overview.md) (core) | GA |
 | Build | Agents — Voice Live | Preview |
 | Build | Agents — traces in agent builder | Preview |

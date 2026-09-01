@@ -1,10 +1,10 @@
 ---
 title: Indexing with Azure Cosmos DB for MongoDB
-description: Set up a search indexer to index data stored in Azure Cosmos DB for full text search in Azure AI Search. This article explains how index data in Azure Cosmos DB for MongoDB.
+description: Set up a search indexer to index data stored in Azure Cosmos DB for full-text search in Azure AI Search. This article explains how index data in Azure Cosmos DB for MongoDB.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ms.custom:
@@ -74,8 +74,7 @@ For this call, specify a preview REST API version to create a data source that c
         "connectionString": "AccountEndpoint=https://[cosmos-account-name].documents.azure.com;AccountKey=[cosmos-account-key];Database=[cosmos-database-name];ApiKind=MongoDb;"
       },
       "container": {
-        "name": "[cosmos-db-collection]",
-        "query": null
+        "name": "[cosmos-db-collection]"
       },
       "dataChangeDetectionPolicy": {
         "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
@@ -261,10 +260,10 @@ For Azure Cosmos DB indexers, the only supported policy is the [`HighWaterMarkCh
 
 The following example shows a [data source definition](#define-the-data-source) with a change detection policy:
 
-```http
+```json
 "dataChangeDetectionPolicy": {
     "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-"  highWaterMarkColumnName": "_ts"
+    "highWaterMarkColumnName": "_ts"
 },
 ```
 
@@ -274,8 +273,8 @@ The following example shows a [data source definition](#define-the-data-source) 
 
 When rows are deleted from the collection, you normally want to delete those rows from the search index as well. The purpose of a data deletion detection policy is to efficiently identify deleted data items. Currently, the only supported policy is the `Soft Delete` policy (deletion is marked with a flag of some sort), which is specified in the data source definition as follows:
 
-```http
-"dataDeletionDetectionPolicy"": {
+```json
+"dataDeletionDetectionPolicy": {
     "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
     "softDeleteColumnName" : "the property that specifies whether a document was deleted",
     "softDeleteMarkerValue" : "the value that identifies a document as deleted"
@@ -292,10 +291,10 @@ Content-Type: application/json
 api-key: [Search service admin key]
 
 {
-    "name": ["my-cosmosdb-mongodb-ds]",
+    "name": "my-cosmosdb-mongodb-ds",
     "type": "cosmosdb",
     "credentials": {
-        "connectionString": "AccountEndpoint=https://[cosmos-account-name].documents.azure.com;AccountKey=[cosmos-account-key];Database=[cosmos-database-name];ApiKind=MongoDB"
+        "connectionString": "AccountEndpoint=https://[cosmos-account-name].documents.azure.com;AccountKey=[cosmos-account-key];Database=[cosmos-database-name];ApiKind=MongoDb"
     },
     "container": { "name": "[my-cosmos-collection]" },
     "dataChangeDetectionPolicy": {
