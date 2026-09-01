@@ -169,34 +169,36 @@ with project_client:
     print(f"Agent endpoint configured for agent: {patched_agent.name}")
 ```
 
-#### [JavaScript](#tab/javascript)
+#### [JavaScript/TypeScript SDK](#tab/javascript)
 
-```javascript
-const { AIProjectClient } = require("@azure/ai-projects");
-const { DefaultAzureCredential } = require("@azure/identity");
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
 
-const PROJECT_ENDPOINT =
+const projectEndpoint =
   "https://{account}.services.ai.azure.com/api/projects/{project}";
-const AGENT_NAME = "name-of-your-existing-agent";
+const agentName = "name-of-your-existing-agent";
 
-// Create the project client.
 const project = new AIProjectClient(
-  PROJECT_ENDPOINT,
+  projectEndpoint,
   new DefaultAzureCredential(),
 );
 
-// Pin the endpoint to version 2.
-const patchedAgent = await project.agents.patchAgentObject(AGENT_NAME, {
-  agentEndpoint: {
-    version_selector: {
-      version_selection_rules: [
-        { type: "FixedRatio", agent_version: "2", traffic_percentage: 100 },
-      ],
-    },
+const endpointConfig = {
+  version_selector: {
+    version_selection_rules: [
+      { type: "FixedRatio", agent_version: "2", traffic_percentage: 100 },
+    ],
   },
+};
+
+const patchedAgent = await project.agents.patchAgentObject(agentName, {
+  agentEndpoint: endpointConfig,
 });
 console.log(`Agent endpoint configured for agent: ${patchedAgent.name}`);
 ```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ---
 
@@ -281,36 +283,40 @@ with project_client:
     print(f"Protocols and authorization updated for agent: {patched_agent.name}")
 ```
 
-#### [JavaScript](#tab/javascript)
+#### [JavaScript/TypeScript SDK](#tab/javascript)
 
-```javascript
-const { AIProjectClient } = require("@azure/ai-projects");
-const { DefaultAzureCredential } = require("@azure/identity");
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
 
-const PROJECT_ENDPOINT =
+const projectEndpoint =
   "https://{account}.services.ai.azure.com/api/projects/{project}";
-const AGENT_NAME = "name-of-your-existing-agent";
+const agentName = "name-of-your-existing-agent";
 
-// Create the project client.
 const project = new AIProjectClient(
-  PROJECT_ENDPOINT,
+  projectEndpoint,
   new DefaultAzureCredential(),
 );
 
-// Enable protocols and authorization schemes.
-const patchedAgent = await project.agents.patchAgentObject(AGENT_NAME, {
-  agentEndpoint: {
-    protocol_configuration: {
-      responses: {},
-      activity: {},
-      invocations: {},
-      a2a: {},
-    },
-    authorization_schemes: [{ type: "Entra" }, { type: "BotServiceRbac" }],
+const endpointConfig = {
+  protocol_configuration: {
+    responses: {},
+    activity: {},
+    invocations: {},
+    a2a: {},
   },
+  authorization_schemes: [{ type: "Entra" }, { type: "BotServiceRbac" }],
+};
+
+const patchedAgent = await project.agents.patchAgentObject(agentName, {
+  agentEndpoint: endpointConfig,
 });
-console.log(`Protocols and authorization updated for: ${patchedAgent.name}`);
+console.log(
+  `Protocols and authorization updated for agent: ${patchedAgent.name}`,
+);
 ```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ---
 
@@ -430,38 +436,43 @@ patched_agent = project_client.agents.update_details(
 print(f"Added an agent card to: {patched_agent.name}")
 ```
 
-#### [JavaScript](#tab/javascript)
+#### [JavaScript/TypeScript SDK](#tab/javascript)
 
-```javascript
-const { AIProjectClient } = require("@azure/ai-projects");
-const { DefaultAzureCredential } = require("@azure/identity");
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
 
-const PROJECT_ENDPOINT =
+const projectEndpoint =
   "https://{account}.services.ai.azure.com/api/projects/{project}";
-const AGENT_NAME = "name-of-your-existing-agent";
+const agentName = "name-of-your-existing-agent";
 
-// Create the project client.
 const project = new AIProjectClient(
-  PROJECT_ENDPOINT,
+  projectEndpoint,
   new DefaultAzureCredential(),
 );
 
-// Add the agent card.
-const patchedAgent = await project.agents.patchAgentObject(AGENT_NAME, {
-  agentCard: {
-    version: "1.0.0",
-    description: "A competitive intelligence analyst.",
-    skills: [{
+const agentCard = {
+  version: "1.0.0",
+  description: "A competitive intelligence analyst.",
+  skills: [
+    {
       id: "competitor-analysis",
       name: "Competitor Analysis",
-      description: "Analyzes competitor products and market positioning.",
+      description:
+        "Analyzes competitor products and market positioning.",
       tags: ["research", "analysis", "market-intel"],
       examples: ["Compare our pricing with a competitor."],
-    }],
-  },
+    },
+  ],
+};
+
+const patchedAgent = await project.agents.patchAgentObject(agentName, {
+  agentCard,
 });
 console.log(`Added an agent card to: ${patchedAgent.name}`);
 ```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ---
 

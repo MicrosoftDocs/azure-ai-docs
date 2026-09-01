@@ -85,6 +85,8 @@ This flow seeds generation from a deployed agent's instructions. The service fet
 
 First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`. You can find all data generation operations under `project_client.beta.datasets`.
 
+# [Python](#tab/python)
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -95,6 +97,36 @@ project_client = AIProjectClient(
     credential=credential,
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const projectEndpoint =
+  "https://<your-resource>.services.ai.azure.com/api/projects/<your-project>";
+const projectClient = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+```
+
+You can find all data generation operations under
+`projectClient.beta.datasets`. The JavaScript/TypeScript SDK samples
+don't yet demonstrate how to generate a dataset from an agent
+definition or a reference file. For those source types, use the Python
+SDK or the Foundry portal. For a prompt-based source, which the
+JavaScript/TypeScript SDK supports, see [Generate a dataset from a
+prompt (SDK)](#generate-a-dataset-from-a-prompt-sdk).
+
+Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+---
 
 Then submit a `SimpleQnA` job whose source is an agent reference. If you already have a deployed agent, skip the `create_version` call and pass its existing `name` and `version` to `AgentDataGenerationJobSource`.
 
@@ -177,6 +209,8 @@ The job produces a versioned dataset with single-turn `query` and `ground_truth`
 
 If you don't have a deployed agent yet, or if you want to generate data from a self-contained snippet of source material, pass the text as a `PromptDataGenerationJobSource`. This approach is useful for policy documents, FAQ content, or short specs.
 
+# [Python](#tab/python)
+
 ```python
 import time
 from azure.ai.projects.models import (
@@ -224,7 +258,53 @@ while not poller.done():
 result = poller.result()
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const modelName = "gpt-4.1-mini";
+const jobName = "contoso-refund-eval-set";
+
+const generationPoller = projectClient.beta.datasets.createGenerationJob({
+  inputs: {
+    name: jobName,
+    scenario: "evaluation",
+    sources: [
+      {
+        type: "prompt",
+        description: "Contoso refund policy",
+        prompt:
+          "Contoso offers a full refund within 30 days of purchase for " +
+          "any product returned in its original condition. After 30 " +
+          "days, store credit may be issued at the discretion of " +
+          "customer support. Digital goods are non-refundable once " +
+          "downloaded.",
+      },
+    ],
+    options: {
+      type: "simple_qna",
+      max_samples: 15,
+      model_options: { model: modelName },
+    },
+    output_options: { name: jobName },
+  },
+});
+
+// Creating a data generation job is a long-running operation. Once
+// `submitted()` resolves, the job is queued and its id is available on
+// the poller state.
+await generationPoller.submitted();
+console.log(`Created data generation job (id: ${generationPoller.operationState?.jobId})`);
+
+const result = await generationPoller.pollUntilDone();
+console.log(`Job status: ${result.status}`);
+```
+
+Reference: [datasets.createGenerationJob](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+---
+
 Resolve the dataset by using the same pattern shown in the previous section.
+
 
 ## Generate a dataset from reference files (SDK)
 
@@ -376,6 +456,8 @@ The evaluation path depends on the task type:
 
 Use `project_client.beta.datasets` job-management APIs to list, inspect, cancel, and delete synthetic generation jobs.
 
+# [Python](#tab/python)
+
 ```python
 from azure.ai.projects.models import DataGenerationJobScenario
 
@@ -397,6 +479,31 @@ project_client.beta.datasets.cancel_generation_job(job_id="job_...")
 # Delete a job record (produced datasets are not deleted).
 project_client.beta.datasets.delete_generation_job(job_id="job_...")
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// List recent evaluation jobs.
+for await (const job of projectClient.beta.datasets.listGenerationJobs({
+  limit: 20,
+})) {
+  console.log(`${job.id}  ${job.status}  ${job.inputs?.name}`);
+}
+
+// Inspect a specific job's status.
+const job = await projectClient.beta.datasets.getGenerationJob("job_...");
+console.log(`${job.id}  ${job.status}`);
+
+// Cancel a running job.
+await projectClient.beta.datasets.cancelGenerationJob("job_...");
+
+// Delete a job record (produced datasets are not deleted).
+await projectClient.beta.datasets.deleteGenerationJob("job_...");
+```
+
+Reference: [datasets.listGenerationJobs](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+---
 
 For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-data-generation-jobs).
 

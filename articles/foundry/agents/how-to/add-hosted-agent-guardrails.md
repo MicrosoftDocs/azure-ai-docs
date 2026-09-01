@@ -8,7 +8,7 @@ ms.date: 06/29/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: references_regions
+ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to attach content safety and network egress guardrails to my hosted agent so that the platform screens prompts and responses and governs the agent's outbound connections.
 ---
@@ -133,6 +133,49 @@ print(f"Agent created: {agent.name}, version: {agent.version}")
 ```
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [ContainerConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.containerconfiguration), and [RaiConfig](/python/api/azure-ai-projects/azure.ai.projects.models.raiconfig).
+
+## Add a guardrail with the JavaScript/TypeScript SDK
+
+When you create an agent version with the SDK, add an `rai_config` object with a `rai_policy_name` field to the hosted agent definition.
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Format: "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>"
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "your_project_endpoint";
+
+// Full ARM resource ID of the RAI policy.
+const raiPolicyId =
+  "/subscriptions/<subscription-id>/resourceGroups/<resource-group>" +
+  "/providers/Microsoft.CognitiveServices/accounts/<account>" +
+  "/raiPolicies/<policy-name>";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const agent = await project.agents.createVersion("my-agent", {
+  kind: "hosted",
+  cpu: "1",
+  memory: "2Gi",
+  container_configuration: {
+    image: "your-registry.azurecr.io/your-image:tag",
+  },
+  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  rai_config: { rai_policy_name: raiPolicyId },
+});
+
+console.log(`Agent created: ${agent.name}, version: ${agent.version}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ## Add a guardrail with the REST API
 

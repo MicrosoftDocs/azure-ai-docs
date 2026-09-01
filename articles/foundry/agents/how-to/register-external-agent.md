@@ -7,7 +7,7 @@ ms.date: 05/20/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As an AI developer running agents outside Foundry, I want to register them in Foundry so that I can use Foundry's trace view and evaluation experiences without migrating my runtime.
 ---
@@ -188,6 +188,63 @@ Resolved otel_agent_id: travel-planner-agent-v1
 
 The `create_version()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
 
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+Set the `FOUNDRY_PROJECT_ENDPOINT` environment variable to your project endpoint. Find this value on the project's **Overview** page in the Foundry portal.
+
+Install the required packages:
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const agentName = "travel-planner-agent";
+// Set explicitly when the running agent emits a gen_ai.agent.id value
+// that differs from the Foundry agent name.
+const otelAgentId = "travel-planner-agent-v1";
+
+// Register the externally hosted agent. External agents are a preview
+// feature, so the `ExternalAgents=V1Preview` opt-in is required.
+const agent = await project.agents.createVersion(
+  agentName,
+  {
+    kind: "external",
+    otel_agent_id: otelAgentId,
+  },
+  {
+    foundryFeatures: "ExternalAgents=V1Preview",
+    description: "Travel planning agent hosted externally.",
+  },
+);
+
+console.log(`Registered external agent: ${agent.name}`);
+console.log(`Resolved otel_agent_id: ${otelAgentId}`);
+```
+
+```output
+Registered external agent: travel-planner-agent
+Resolved otel_agent_id: travel-planner-agent-v1
+```
+
+> [!NOTE]
+> The `otel_agent_id` field is optional and defaults to the agent `name`. Set it explicitly only when the running agent already emits a stable `gen_ai.agent.id` value that differs from the Foundry agent name.
+
+The `createVersion()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
 ---
 
 ## Verify traces in the Foundry portal
@@ -217,11 +274,33 @@ After traces flow into Application Insights, you can run evaluations directly ov
 
 To get the agent's ID for traces, use the following:
 
+### [Foundry portal](#tab/portal)
+
+Open the external agent in the Foundry portal to view its traces. To retrieve the resolved `otel_agent_id` in code, use one of the SDK tabs.
+
+### [Python SDK](#tab/python)
+
 ```python
 # Retrieve the registered agent and its resolved otel_agent_id.
 agent = project.agents.get(agent_name="travel-planner-agent")
 otel_agent_id = agent.versions.latest.definition.otel_agent_id
 ```
+
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+// Retrieve the registered agent and its resolved otel_agent_id.
+const agent = await project.agents.get("travel-planner-agent");
+const definition = agent.versions.latest.definition;
+if (definition.kind !== "external") {
+  throw new Error(
+    `Expected an external agent definition, got "${definition.kind}".`,
+  );
+}
+const otelAgentId = definition.otel_agent_id;
+```
+
+---
 
 ### Create and run the evaluation
 
@@ -233,19 +312,54 @@ Use the same SDK methods to list, retrieve, and delete external agents.
 
 ### List external agents
 
+### [Foundry portal](#tab/portal)
+
+In the Foundry portal, select **Build** > **Agents** to view registered external agents.
+
+### [Python SDK](#tab/python)
+
 ```python
 agents = project.agents.list(kind="external")
 for a in agents:
     print(a.name)
 ```
 
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+const agents = project.agents.list({ kind: "external" });
+for await (const agent of agents) {
+  console.log(agent.name);
+}
+```
+
+---
+
 ### Delete an external agent
+
+### [Foundry portal](#tab/portal)
+
+Use one of the SDK tabs to delete an external agent registration. Deleting the registration doesn't affect the externally hosted agent.
+
+### [Python SDK](#tab/python)
 
 ```python
 # Delete the registration. This does not affect the running agent.
 # force=True removes all internal revisions of the agent atomically.
 project.agents.delete(agent_name="travel-planner-agent", force=True)
 ```
+
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+// Delete the registration. This does not affect the running agent.
+// force: true removes all internal revisions of the agent atomically.
+await project.agents.delete("travel-planner-agent", { force: true });
+```
+
+---
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 Deleting the registration removes the agent from the Foundry portal and stops traces from appearing in the Foundry agent trace view. The spans remain in Application Insights, and the running agent is not affected.
 
@@ -265,12 +379,12 @@ For more troubleshooting guidance, see [Troubleshoot evaluation and observabilit
 
 ### Troubleshoot registration errors
 
-If `create_version()` fails, check the following items:
+If `create_version()` (Python) or `createVersion()` (JavaScript/TypeScript) fails, check the following items:
 
 > [!div class="checklist"]
-> * You constructed `AIProjectClient` with `allow_preview=True`. Without this flag, external agent requests are rejected.
+> * You constructed `AIProjectClient` with `allow_preview=True` (Python), or you passed `foundryFeatures: "ExternalAgents=V1Preview"` on the `createVersion` call (JavaScript/TypeScript). Without this opt-in, external agent requests are rejected.
 > * Your identity has the **Foundry User** role (or higher) on the project.
-> * The `agent_name` value uses only alphanumeric characters, hyphens, and underscores.
+> * The agent name value uses only alphanumeric characters, hyphens, and underscores.
 > * No existing agent with the same name and a different kind already exists. Use `project.agents.get()` to check.
 
 ## Current limitations
