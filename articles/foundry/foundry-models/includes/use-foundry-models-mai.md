@@ -352,45 +352,27 @@ To use Microsoft Entra ID authentication instead of an API key, modify this code
 
 ## MAI image model capabilities
 
-The MAI-Image models in this article are suitable for the following key use cases:
+MAI image models are diffusion-based generative models designed for both high-quality text-to-image generation and precise, controllable image-to-image editing. Each model uses a diffusion-based approach to progressively refine images from a natural language prompt, enabling strong alignment between the input text and the generated output.
 
-- **Text-to-image generation:** Generate high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
-- **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
-- **Product, branding and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
+All MAI image models in this article share these core capabilities:
 
-The models further excel in these key use cases:
-
-- **Image-to-image editing:** Support precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
-- **High-fidelity portraits:** Generate expressive, natural-looking portraits with accurate facial structure, lighting, and texture.
+- **Text-to-image generation:** Generates high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
+- **Image-to-image editing:** Supports precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
+- **Photorealistic image synthesis:** Generates realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
+- **High-fidelity portraits:** Generates expressive, natural-looking portraits with accurate facial structure, lighting, and texture.
+- **Product, branding, and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
 - **Accurate text rendering:** Improved rendering of text within generated images, including labels, posters, packaging, and signage.
-- **Visual reasoning:** Reason across objects, scene structure, lighting, scale, and spatial positioning to produce consistent outputs, even from ambiguous prompts.
+- **Visual reasoning:** Reasons across objects, scene structure, lighting, scale, and spatial positioning to produce consistent outputs, even from ambiguous prompts.
 
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
+The following table highlights what distinguishes each model and the scenarios it best fits.
 
-### MAI-Image-2.6-Flash (Preview)
-
-MAI-Image-2.6-Flash (Preview) is a diffusion-based generative model designed for both high-quality text-to-image synthesis and precise, controllable image-to-image editing. It progressively transforms random noise into a coherent image aligned with a given text prompt, leveraging a flow-matching loss to learn a continuous transformation between the noise distribution and the data distribution. MAI-Image-2.6 excels at precise, surgical edits with consistency - enabling users and developers to make targeted object edits, adapt layouts, update text, clean up artifacts like motion blur, and preserve visual consistency across iterations.
-
-### MAI-Image-2.6 (Preview)
-
-MAI-Image-2.6 (Preview) is a diffusion-based generative model designed for both high-quality text-to-image synthesis and precise, controllable image-to-image editing. It progressively transforms random noise into a coherent image aligned with a given text prompt, leveraging a flow-matching loss to learn a continuous transformation between the noise distribution and the data distribution. MAI-Image-2.6 excels at precise, surgical edits with consistency - enabling users and developers to make targeted object edits, adapt layouts, update text, clean up artifacts like motion blur, and preserve visual consistency across iterations.
-
-### MAI-Image-2.5-Pro (Preview)
-
-MAI-Image-2.5-Pro (Preview) is a text-to-image generation and image-to-image editing model designed to create high-quality, visually rich images from natural language prompts and to perform precise, controllable edits on existing images. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model excels at maintaining consistency and realism across complex compositions:
-
-- **Object consistency across complex scenes:** Objects retain the same identity, materials, proportions, markings, and orientation throughout a visually dense composition.
-- **Character consistency across views and moments:** A person or character remains recognizably the same across poses, camera angles, expressions, clothing, and lighting conditions.
-- **Material and physical-property accuracy:** Materials look and behave differently based on their real-world properties, including reflection, translucency, weight, texture, and deformation.
-- **Spatial and geometric reasoning:** Objects are positioned coherently in three-dimensional space, with credible scale, perspective, occlusion, and structural relationships.
-
-### MAI-Image-2.5-Flash (Preview) 
-
-MAI-Image-2.5-Flash (Preview) is a text-to-image generation and image-to-image editing model designed to create high-quality, visually rich images from natural language prompts and to perform precise, controllable edits on existing images. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model is optimized to produce diverse and coherent images across a wide range of creative and design scenarios, making it well suited for tasks such as concept visualization, creative content generation, image editing workflows, and production design.
-
-### MAI-Image-2.5 (Preview) 
-
-MAI-Image-2.5 (Preview) is a text-to-image generation and image-to-image editing model designed to create high-quality, visually rich images from natural language prompts and to perform precise, controllable edits on existing images. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model excels at precise, surgical edits with consistency — enabling users and developers to make targeted object edits, adapt layouts, update text, clean up artifacts like motion blur, and preserve visual consistency across iterations.
+| Model | Key capabilities | Best for |
+| --- | --- | --- |
+| `MAI-Image-2.6-Flash` (Preview) | Same generation and editing capabilities as `MAI-Image-2.6`, offered as a faster, lower-cost variant. | The same scenarios as `MAI-Image-2.6` when you need lower cost and faster generation. |
+| `MAI-Image-2.6` (Preview) | Core family capabilities, with stronger text rendering, better portraits and 3D imagery, and more polished commercial and photorealistic output. | Projects that need the latest quality gains in text rendering, portraits, and commercial or photorealistic imagery. |
+| `MAI-Image-2.5-Pro` (Preview) | Core family capabilities, plus object consistency across complex scenes, character consistency across views and moments, material and physical-property accuracy, and spatial and geometric reasoning. | Visually dense compositions that require consistent object identity, materials, and spatial relationships. |
+| `MAI-Image-2.5-Flash` (Preview) | Core family capabilities. | Concept visualization, creative content generation, image editing workflows, and production design. |
+| `MAI-Image-2.5` (Preview) | Core family capabilities. | Concept visualization, creative content generation, image editing workflows, and production design. |
 
 For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
