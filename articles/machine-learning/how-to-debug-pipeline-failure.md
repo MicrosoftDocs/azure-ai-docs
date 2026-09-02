@@ -9,8 +9,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 06/30/2026
+ms.date: 08/31/2026
 ms.custom: designer
+ai-usage: ai-assisted
 ---
 
 # Use Azure Machine Learning studio to debug pipeline failures
@@ -20,13 +21,18 @@ After you submit a pipeline job, you can select a link to the job in your worksp
 > [!IMPORTANT]
 > Items marked (preview) in this article are currently in public preview. The preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
+## Prerequisites
+
+- Access to an Azure Machine Learning workspace that contains a pipeline job.
+- A failed pipeline job or node to investigate. To compare jobs, you also need a related completed pipeline job or node.
+
 ## Use outline to quickly find a node
 
 On the pipeline job detail page, the **Outline** pane at left shows the overall structure of your pipeline job. Hover on any row and select the **Locate in canvas** icon to highlight that node on the canvas and open an information pane for the node on the right.
 
 :::image type="content" source="./media/how-to-debug-pipeline-failure/outline-detail.png" alt-text="Screenshot showing outline and locate in the canvas." lightbox= "./media/how-to-debug-pipeline-failure/outline.png":::
 
-In the **Outline** pane, you can select the **Filter** icon to quickly filter the view to **Completed nodes only**, **Component only**, or **Data only**. You can also filter the list by entering node names or component names in the Search box, or by selecting **Add filter** and choosing from a list of filters.
+In the **Outline** pane, you can select the **Filter** icon to quickly filter the view to **Completed nodes only**, **Component only**, or **Data only**. You can also filter the list by entering node names or component names in the **Search** box, or by selecting **Add filter** and choosing from a list of filters.
 
 :::image type="content" source="./media/how-to-debug-pipeline-failure/quick-filter-detail.png" alt-text="Screenshot showing quick filter and search in the Outline pane." lightbox= "./media/how-to-debug-pipeline-failure/quick-filter.png":::
 
@@ -112,7 +118,7 @@ The following screenshot shows an example of using the detail comparison where t
 
 If you updated only node properties, you can debug the node by comparing it with the same node in other jobs.
 
-1. Right select a failed node and select **View jobs** to get a list of jobs.
+1. Open the shortcut menu for a failed node, and then select **View jobs** to get a list of jobs.
 
    :::image type="content" source="./media/how-to-debug-pipeline-failure/view-jobs-detail.png" alt-text="Screenshot that shows a failed node with view jobs highlighted." lightbox= "./media/how-to-debug-pipeline-failure/view-jobs.png":::
 

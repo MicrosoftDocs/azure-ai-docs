@@ -3,11 +3,11 @@ title: include file
 description: include file
 author: msakande
 ms.author: mopeakande
-ms.reviewer: fasantia
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 08/31/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 This article explains how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Keyless authentication enhances security by eliminating the need for API keys, simplifies the user experience with role-based access control (RBAC), and reduces operational complexity while providing robust compliance support.
@@ -22,11 +22,11 @@ To complete this article, you need:
 
 - The endpoint's URL.
 
-- An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Administrator** role-based access control. See the next section on [Required Azure roles and permissions](#required-azure-roles-and-permissions) for more details.
+- An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Owner** or **User Access Administrator** role. For more information, see the next section on [Required Azure roles and permissions](#required-azure-roles-and-permissions).
 
 ### Required Azure roles and permissions
 
-Microsoft Entra ID uses role-based access control (RBAC) to manage access to Azure resources. You need different roles, depending on whether you're setting up authentication (administrator) or using it to make API calls (developer).
+Microsoft Entra ID uses role-based access control (RBAC) to manage access to Azure resources. You need different roles, depending on whether you're an administrator setting up authentication, or you're a developer using it to make API calls.
 
 #### For setting up authentication
 

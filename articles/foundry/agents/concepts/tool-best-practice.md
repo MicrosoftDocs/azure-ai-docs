@@ -95,7 +95,13 @@ Review traces to confirm whether your agent called a tool and to inspect tool in
 
 Start with clear tool instructions. If you need deterministic tool calling, use `tool_choice`. For details, see [Control tool calling with `tool_choice`](#control-tool-calling-with-tool_choice).
 
-## Tool-specific guidance
+## Related content
+
+### Tool management
+
+- [What is Toolbox in Foundry?](toolbox-overview.md)
+- [Create and manage a toolbox in Foundry](../how-to/tools/toolbox.md)
+- [Tools governance with AI Gateway (preview)](../how-to/tools/governance.md)
 
 ### Retrieval and search tools
 
@@ -119,9 +125,3 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 - [Computer Use (preview)](../how-to/tools/computer-use.md)
 - [Image generation (preview)](../how-to/tools/image-generation.md)
 - [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md)
-
-## Related content
-
-- [What is Toolbox in Foundry?](toolbox-overview.md)
-- [Create and manage a toolbox in Foundry](../how-to/tools/toolbox.md)
-- [Tools governance with AI Gateway (preview)](../how-to/tools/governance.md)

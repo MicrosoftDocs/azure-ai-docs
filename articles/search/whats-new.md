@@ -1,13 +1,15 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 08/05/2026
+ms.date: 08/25/2026
 ms.service: azure-ai-search
 ms.topic: whats-new
 ms.custom:
   - references_regions
   - ignite-2024
   - build-2025
+  - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -17,16 +19,30 @@ ai-usage: ai-assisted
 
 Learn about the latest updates to Azure AI Search functionality, documentation, and samples.
 
-## June 2026
+## August 2026
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
->
-> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+
+| Item | Description |
+|--|--|
+| [Search Service 2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | New preview REST API version providing programmatic access to the data plane operations described in this table. |
+| [Private network support for indexed knowledge sources (preview)](agentic-knowledge-source-overview.md#restrict-ingestion-to-a-private-network-preview) | Blob, indexed SharePoint, and indexed Azure SQL knowledge sources now support private network ingestion through the generated indexer. |
+| [File knowledge source updates (preview)](agentic-knowledge-source-how-to-file.md) | File knowledge sources add the following capabilities:<p><ul><li>Support for Serverless search services.</li><li>Higher limits of 200 files (up from 100) and 100 MB per file on Serverless and Dedicated tiers above Free and Basic.</li><li>A multipart upload operation that accepts custom metadata.</li><li>An update operation that replaces file content.</li><li>A list operation that supports filtering by path or file name.</li><li>CORS configuration for the upload, list, update, and delete operations.</li></ul> |
+| [Work IQ knowledge source custom Microsoft Entra app (preview)](agentic-knowledge-source-how-to-work-iq.md) | Work IQ knowledge sources now use a customer-owned Microsoft Entra app and federated credential for on-behalf-of (OBO) access. This authentication model replaces preview feature registration and separate access requests. |
+| [Knowledge base expanded model support (preview)](agentic-retrieval-how-to-create-knowledge-base.md#supported-models) | Knowledge bases now support `gpt-5.5` and the `gpt-5.6` model family (`gpt-5.6-sol`, `gpt-5.6-terra`, and `gpt-5.6-luna`) for query planning and answer generation. |
+| [Automatic retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) | Set `retrievalReasoningEffort.kind` to `auto` to start with a lightweight retrieval pass and escalate to LLM-based query planning, up to `medium` effort, only when the first pass doesn't provide enough grounding. Store `auto` as the knowledge base default. Retrieve requests can override the stored default. `auto` requires a model configured on the knowledge base. |
+| [Request-time knowledge source exclusion (preview)](agentic-retrieval-how-to-retrieve.md#exclude-a-knowledge-source-from-a-request) | Set `neverQuerySource` to `true` to exclude an attached knowledge source from one retrieve request without changing knowledge base membership or knowledge source settings. |
+| [Query hints (preview)](agentic-knowledge-source-how-to-search-index.md#configure-query-hints-preview) | Guide the query planning model to generate filters and ranking boosts from a user's request. Store default hints on a search index knowledge source. Retrieve requests can override the stored hints. |
+| [Knowledge base retrieve defaults (preview)](agentic-retrieval-how-to-create-knowledge-base.md#configure-default-retrieve-limits-preview) | Store default runtime, output-document, and output-token budgets on a knowledge base. Retrieve requests can override each stored default independently. |
+| [Per-source reranking controls (preview)](agentic-retrieval-how-to-retrieve.md#disable-reranking-for-a-knowledge-source-preview) | Set `resultsProcessing` to `none` for a knowledge source to bypass reranking and preserve its underlying result order. Retrieve requests can override the stored default. |
+| [Stream retrieve results (preview)](agentic-retrieval-how-to-retrieve.md#stream-retrieve-results-preview) | Receive retrieve results as server-sent events instead of a single JSON response. Events report query planning, source activity, and the synthesized answer or extracted response as each becomes available, and a heartbeat comment keeps idle connections open. Whole-message answers are supported, but token-by-token answer deltas aren't. |
+| [Citation URLs for indexed knowledge sources (preview)](agentic-retrieval-how-to-retrieve.md#look-up-documents-with-citation-urls-preview) | Retrieve responses from indexed knowledge sources can include a service-generated `citationUrl` for an authenticated lookup of the backing document, preserving the selected fields and their order. Follow the URL with the same query-time authorization token used for permission-filtered retrieval. |
+| [Cursor pagination for list operations (preview)](search-how-to-page-list-results.md) | The 2026-08-01-preview adds cursor pagination for List Data Sources, List Indexers, List Indexes, and List Skillsets. Set `pageSize` and, when narrowing results by name, use `search` with `searchType=prefix`. Follow the complete, opaque `@odata.nextLink` to retrieve each subsequent page. |
+
+## June 2026
 
 | Item | Description |
 |--|--|
@@ -41,7 +57,7 @@ Learn about the latest updates to Azure AI Search functionality, documentation, 
 | [Retrieve defaults for search index knowledge sources (preview)](agentic-knowledge-source-how-to-search-index.md) | Search index knowledge sources now support persisted retrieve defaults, including a `baseFilter` applied to all retrievals and a runtime `filterAddOn` that composes with the base filter using AND logic. A precedence model governs service defaults, knowledge source defaults, and per-request overrides. |
 | [Image serving for indexed knowledge sources (preview)](agentic-knowledge-source-overview.md) | Retrieved documents from indexed knowledge sources can include image content alongside text in agentic retrieval responses. |
 | [Freshness-aware retrieval for indexed knowledge sources (preview)](agentic-retrieval-how-to-configure-freshness.md) | Configure a freshness policy on indexed knowledge sources to bias retrieval toward recently updated documents. Adjust freshness weighting to balance recency with relevance in agentic workflows. |
-| [Knowledge base GPT-5 and CORS support (preview)](agentic-retrieval-how-to-create-knowledge-base.md) | Knowledge bases now support GPT-5 family models, including `gpt-5.4-mini`, for query planning and response generation. Configure CORS via the new `corsOptions` property to enable direct browser-to-service retrieve calls. |
+| [Knowledge base GPT-5 and CORS support (preview)](agentic-retrieval-how-to-create-knowledge-base.md) | Knowledge bases now support GPT-5 family models, including `gpt-5.4-mini`, for query planning and answer generation. Configure CORS via the new `corsOptions` property to enable direct browser-to-service retrieve calls. |
 | [Optional semantic configuration for agentic retrieval (preview)](semantic-how-to-configure.md) | Starting in the 2026-05-01-preview, a semantic configuration is optional in agentic retrieval flows. Classic semantic search still requires an explicit semantic configuration. |
 | [Retrieve action updates (preview)](agentic-retrieval-how-to-retrieve.md) | New parameters for the retrieve action:<p><ul><li>`knowledgeSourceParams.maxOutputDocuments` and `maxOutputDocuments` cap intermediate and final grounding documents returned.</li><li>`failOnError` marks each knowledge source as required or optional.</li><li>`modelName` appears in activity logs when `includeActivity` is `true`.</li></ul> |
 | [Knowledge base and knowledge source service statistics (preview)](vector-search-index-size.md) | [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics?view=rest-searchservice-2026-05-01-preview&preserve-view=true) now returns `knowledgeBasesCount` and `knowledgeSourcesCount` as additive preview counters. |

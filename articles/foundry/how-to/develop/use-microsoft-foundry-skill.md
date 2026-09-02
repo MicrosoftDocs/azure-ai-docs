@@ -77,6 +77,16 @@ the coding agent uses the skill instructions to route the task.
 
 ## Installation
 
+### Install just the Foundry skill
+
+If your host already has MCP server configuration and you only need the skill content, install the `microsoft-foundry` skill directly:
+
+```bash
+npx skills add https://github.com/microsoft/azure-skills --skill microsoft-foundry
+```
+
+The skill-only path downloads the Foundry workflow guidance. Use the Azure Skills Plugin when you want the skill, Azure MCP Server configuration, and Foundry MCP Server configuration installed together.
+
 ### [VS Code](#tab/vscode)
 
 The [Foundry Toolkit extension for VS Code](https://aka.ms/foundrytk) includes the Foundry Skill. To install the extension, see [Work with the Microsoft Foundry for Visual Studio Code extension](get-started-projects-visual-studio-code.md).
@@ -142,19 +152,6 @@ Run the plugin commands inside Claude Code.
    installation.
 
 ---
-
-### Install just the Foundry Skill
-
-If your host already has MCP server configuration and you only need the skill
-content, install the `microsoft-foundry` skill directly:
-
-```bash
-npx skills add https://github.com/microsoft/azure-skills --skill microsoft-foundry
-```
-
-The skill-only path downloads the Foundry workflow guidance. Use the Azure
-Skills Plugin when you want the skill, Azure MCP Server configuration, and
-Foundry MCP Server configuration installed together.
 
 ## Verify the setup
 

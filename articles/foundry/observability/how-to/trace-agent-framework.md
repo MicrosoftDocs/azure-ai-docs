@@ -31,6 +31,8 @@ Microsoft Foundry provides tracing integrations for popular agent frameworks tha
 - Verify that traces appear in the Foundry portal
 - Troubleshoot common tracing issues
 
+The [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help configure framework instrumentation and verify traces in Foundry.
+
 ## Prerequisites
 
 - A Foundry project. For more information, see [Create a Foundry project](../../how-to/create-projects.md).

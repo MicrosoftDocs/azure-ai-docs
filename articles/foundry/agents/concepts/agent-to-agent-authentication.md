@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/26/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -127,7 +127,16 @@ When the agent invokes the A2A endpoint, Agent Service uses the project's manage
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry Agent Consumer** role on the project. Prefer this role for least-privilege access. The **Foundry User** role also works but is intended for developers building agents and includes permissions beyond what consumers need.
+> To use OAuth identity passthrough, users interacting with your agent need the
+> [**Foundry Agent Consumer** role](../../concepts/rbac-foundry.md#agent-scope-role-assignments)
+> on the Foundry project or agent hosting the calling agent. Prefer this
+> role for least-privilege access. The **Foundry User** role also works but is
+> intended for developers building agents and includes permissions beyond
+> what consumers need.
+>
+> If the remote A2A endpoint is another Foundry agent, users also need access
+> to the remote target project or agent. See
+> [Grant access to the A2A endpoint](../how-to/enable-agent-to-agent-endpoint.md#grant-access-to-the-a2a-endpoint).
 
 OAuth identity passthrough enables your agent to act on behalf of individual users. Use this method when actions should be scoped to each user's permissions, such as accessing their personal files, repositories, or other protected resources.
 
@@ -253,7 +262,7 @@ Use the following table to diagnose and resolve common authentication issues:
 | Agent card fetch fails with 401 Unauthorized and `Failed to fetch agent card` | The endpoint requires authentication on the agent card path, but the A2A tool doesn't enable `send_credentials_for_agent_card` | Set `send_credentials_for_agent_card` to `true` in the A2A tool definition. See [Credentials for the agent card request](#credentials-for-the-agent-card-request). |
 | Microsoft Entra ID authentication fails with 403 Forbidden | The identity doesn't have the required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service. Role assignment changes can take up to 10 minutes to propagate. |
 | Microsoft Entra ID authentication fails with 401 Unauthorized | The underlying service doesn't accept Microsoft Entra ID tokens, or the audience is incorrect | Confirm the underlying service supports Microsoft Entra ID authentication. Check that the A2A endpoint is configured to accept tokens for the correct audience. |
-| Consent completes but tool calls fail | The user doesn't have permissions in the underlying service | Confirm the user has the required permissions in the underlying service. Also confirm the user has at least the **Foundry User** role on the Foundry project. |
+| Consent completes but tool calls fail | The user doesn't have the required access to the calling agent or remote service | Confirm the user has the **Foundry Agent Consumer** role on the Foundry project or agent that hosts the calling agent. Also confirm the user has the required permissions in the remote service. If the remote endpoint is another Foundry agent, confirm the user has access to the [remote target project or agent](../how-to/enable-agent-to-agent-endpoint.md#grant-access-to-the-a2a-endpoint). |
 | No consent link appears for OAuth | OAuth identity passthrough isn't configured, or the agent didn't invoke the A2A tool | Verify the project connection is configured for OAuth identity passthrough. Trigger an action that invokes the A2A tool. |
 | Consent link appears but sign-in fails | Custom OAuth configuration is incorrect | For custom OAuth, verify the authorization URL, client ID, and redirect URL are correct. Confirm the redirect URL is added to your OAuth app registration. |
 | Refresh token expired | User hasn't interacted with the agent for an extended period | The user needs to go through the consent flow again. This is expected behavior for security. |

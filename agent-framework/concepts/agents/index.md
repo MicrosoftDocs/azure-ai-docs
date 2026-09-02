@@ -29,6 +29,7 @@ An Agent Framework agent combines an agent abstraction, a model or remote-agent 
 
 - [Running agents](running-agents.md) explains regular and streaming runs, run options, responses, messages, and content.
 - [Agent pipeline](agent-pipeline.md) explains how middleware, context providers, model invocation, and tools participate in a run.
+- [Runtime model routing](runtime-model-routing.md) explains when a conversation can switch models or inference providers without losing context.
 
 ## Agent types
 

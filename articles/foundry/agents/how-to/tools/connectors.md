@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 08/19/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -666,6 +666,6 @@ azd ai connection delete <connection-name> --force
 
 - [Connect agents to Model Context Protocol servers](model-context-protocol.md)
 - [MCP server authentication](../mcp-authentication.md)
-- [Agent tools overview](../../concepts/tool-catalog.md)
+- [Foundry Toolbox overview](../../concepts/toolbox-overview.md)
 - [Create and use a Foundry Toolbox](toolbox.md)
 

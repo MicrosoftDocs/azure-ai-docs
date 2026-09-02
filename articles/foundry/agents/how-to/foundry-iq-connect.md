@@ -18,9 +18,9 @@ ai-usage: ai-assisted
 [!INCLUDE [Preview API usage](../../../search/includes/previews/agentic-retrieval-preview-api-usage.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -50,7 +50,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 - An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with an [LLM deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`. Hub-based projects aren't supported.
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
-- The latest preview Python SDK (version 2.0.0 or later) or the 2026-05-01-preview REST API version.
+- The latest preview Python SDK (version 2.0.0 or later) or the 2026-08-01-preview REST API version.
 
   ```bash
   pip install "azure-ai-projects>=2.0.0" requests
@@ -116,7 +116,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 credential = DefaultAzureCredential()
 project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{account_name}/projects/{project_name}
 project_connection_name = "{project_connection_name}"
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
 
 # Get bearer token for authentication
 bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
@@ -167,7 +167,7 @@ Content-Type: application/json
   "properties": {
     "authType": "ProjectManagedIdentity",
     "category": "RemoteTool",
-    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
+    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
     "isSharedToAll": true,
     "audience": "https://search.azure.com/",
     "metadata": {
@@ -218,7 +218,7 @@ from azure.identity import DefaultAzureCredential
 
 # Provide agent configuration details
 credential = DefaultAzureCredential()
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview"
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview"
 project_endpoint = "{project_endpoint}" # e.g. https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
 project_connection_name = "{project_connection_name}"
 agent_name = "{agent_name}"
@@ -279,7 +279,7 @@ Content-Type: application/json
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
@@ -378,7 +378,7 @@ Content-Type: application/json
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
@@ -582,7 +582,7 @@ This section helps you troubleshoot common issues when connecting Foundry Agent 
 
 - Confirm `search_service_endpoint` is the Azure AI Search service URL, such as `https://<name>.search.windows.net`.
 - Confirm `knowledge_base_name` matches the knowledge base you created in Azure AI Search.
-- Confirm you use the `2026-05-01-preview` API version for the knowledge base MCP endpoint.
+- Confirm you use the `2026-08-01-preview` API version for the knowledge base MCP endpoint.
 
 ### The agent doesn't ground answers
 

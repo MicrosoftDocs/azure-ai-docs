@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 # Set up private outbound connectivity
 
 > [!IMPORTANT]
-> This tutorial series uses the 2026-05-01-preview REST API for agentic retrieval. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> This tutorial series uses the 2026-08-01-preview REST API for agentic retrieval. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 This article is part two of a three-part tutorial series. In this part of the tutorial, you create outbound shared private links from Azure AI Search to Azure Blob Storage and Microsoft Foundry, approve the corresponding private endpoint connections, and grant the Azure AI Search managed identity the roles it needs to read blob content and call model endpoints. End-to-end validation of the full retrieval path occurs in part three.
 

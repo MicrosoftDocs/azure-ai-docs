@@ -4,7 +4,7 @@ description: "This article describes how to create a Microsoft Foundry project s
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 04/08/2026
+ms.date: 08/27/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
@@ -23,21 +23,21 @@ ai-usage: ai-assisted
 
 # Create a project for Microsoft Foundry
 
-Use this article to create a Foundry project and confirm that your environment is ready before you start building agents, evaluations, and files.
-
-This article describes how to create a Foundry project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work—such as agents, evaluations, and files—as you build stateful apps and explore new ideas.
+Use this article to create a project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) and confirm that your environment is ready. Projects organize agents, evaluations, and files as you build stateful apps and explore new ideas.
 
 If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
+
+As you set up a project, the [Microsoft Foundry Skill](develop/use-microsoft-foundry-skill.md) can help prepare your environment and complete related agent, evaluation, and file workflows.
 
 ## Prerequisites
 
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-* If you're creating the project for yourself: 
-    * [!INCLUDE [rbac-create](../includes/rbac-create.md)]
-* If you're creating the project for a team: 
-    * [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
-    * A list of user email addresses or Microsoft Entra security group IDs for team members who need access.
+* If you're creating the project for yourself:
+  * [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+* If you're creating the project for a team:
+  * [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+  * A list of user email addresses or Microsoft Entra security group IDs for team members who need access.
 
 Use the following tabs to select the method you want to use to create a Foundry project:
 
@@ -62,7 +62,7 @@ Use one of the following methods.
 
 # [Foundry portal](#tab/foundry)
 
-These steps provide a way to create a new Azure resource with basic default settings. 
+These steps provide a way to create a new Azure resource with basic default settings.
 
 To create a Foundry project, follow these steps:
 
@@ -135,6 +135,9 @@ Use the Azure CLI or Foundry portal to manage role assignments. The Python SDK d
 
 ## Delete projects
 
+> [!IMPORTANT]
+> Use with caution. You can't recover a project after it's deleted.
+
 # [Foundry portal](#tab/foundry)
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
@@ -152,9 +155,6 @@ Use the Azure CLI or Foundry portal to manage role assignments. The Python SDK d
 
 ---
 
-> [!IMPORTANT]
-> Use with caution. You can't recover a project after it's deleted.
-
 > [!div class="nextstepaction"]
 > [Create your first connection](connections-add.md)
 
@@ -164,4 +164,3 @@ Use the Azure CLI or Foundry portal to manage role assignments. The Python SDK d
 - [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md)
 - [What is Foundry?](../what-is-foundry.md)
 - [Create resources using Bicep template](create-resource-template.md)
-

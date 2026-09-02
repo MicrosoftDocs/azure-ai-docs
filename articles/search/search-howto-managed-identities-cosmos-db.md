@@ -158,7 +158,7 @@ Follow the same steps as before to assign the appropriate roles on the control p
 Here's an example to connect to MongoDB collections using system-assigned identity via the REST API
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -173,7 +173,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2026-05-0
 Here's an example to connect to Gremlin graphs using user-assigned identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",

@@ -53,4 +53,4 @@ Monty doesn't provide an outbound URL allow list. Provide network access through
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Review the CodeAct pattern](../../../agents/code_act.md)
+> [Review the CodeAct pattern](../../../agents/code-act.md)

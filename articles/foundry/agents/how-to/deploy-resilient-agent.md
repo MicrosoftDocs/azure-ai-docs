@@ -26,6 +26,7 @@ The agent runs three simulated streamed stages: analyze, generate, and refine. E
 - An Azure subscription with Microsoft Foundry access.
 - [Python 3.13](https://www.python.org/downloads/).
 - The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) with the Foundry agents extension: `azd extension install azure.ai.agents`.
+- The [Azure CLI (`az`)](/cli/azure/install-azure-cli) and [`curl`](https://curl.se/) to call the deployed agent.
 
 ## Get the sample
 
@@ -51,36 +52,24 @@ app = ResponsesAgentServerHost(options=options)
 
 ## Run it locally
 
-The resilient state store uses files when you run it locally, so your machine uses the same recovery code path.
-
-```bash
-azd ai agent run
-```
-
-`azd ai agent run` installs the Python dependencies, injects the active azd environment, and starts the agent on `http://localhost:8088`.
+The resilient state store uses files when you run it locally, so your machine uses the same recovery code path. This walkthrough drives the agent with `curl`, so every run uses `azd ai agent run --no-client`, which installs the Python dependencies, injects the active azd environment, and starts the agent on `http://localhost:8088` without launching Agent Inspector.
 
 ## Test crash recovery locally
 
 Use Linux, WSL2, or a container for this exercise so the operating system releases the file lock when the process exits.
 
-In the terminal that runs the agent, set `SIMULATE_CRASH_AFTER_STAGE` so the sample crashes after it checkpoints the first stage, and then start it:
+Set `SIMULATE_CRASH_AFTER_STAGE` so the sample crashes after it checkpoints the first stage, and then start the agent:
 
 ```bash
 SIMULATE_CRASH_AFTER_STAGE=0 azd ai agent run --no-client
 ```
 
-Recovery needs a stored background response (`store: true` and `background: true`), so send the full request body from a file. In a second terminal, create the request file:
+Recovery needs a stored background response (`store: true` and `background: true`). In a second terminal, send the request inline with `curl`:
 
 ```bash
-cat > request.json <<'EOF'
-{ "input": "renewable energy supply chains", "store": true, "background": true }
-EOF
-```
-
-Invoke the local agent with that body:
-
-```bash
-azd ai agent invoke --local -f request.json
+curl -sS -X POST http://localhost:8088/responses \
+  -H "Content-Type: application/json" \
+  -d '{"input": "renewable energy supply chains", "store": true, "background": true}'
 ```
 
 The agent checkpoints the analyze stage and then exits. Restart it from the first terminal:
@@ -103,19 +92,31 @@ azd up
 
 ## Invoke the deployed agent
 
-Create a stored background response on the deployed agent. Reuse the same `request.json` body:
+`azd up` prints the Responses endpoint. Save it, remove its query string, and get an access token:
 
 ```bash
-azd ai agent invoke -f request.json
+ENDPOINT="<responses-endpoint-from-azd-up>"
+RESPONSES_ENDPOINT="${ENDPOINT%%\?*}"
+TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
 ```
 
-Stream the agent logs:
+Create a stored background response, and note the returned `id`:
 
 ```bash
-azd ai agent monitor --follow
+curl -sS -X POST "$RESPONSES_ENDPOINT?api-version=2025-11-15-preview" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"input": "renewable energy supply chains", "store": true, "background": true}'
 ```
 
-The platform keeps a background response running with no client traffic. For the reconnect protocol and the `starting_after` cursor, see [Stream with reconnect](stream-with-reconnect.md).
+The platform keeps the background response running with no client traffic. Poll or stream it with the `id` from the previous response:
+
+```bash
+curl -sS "$RESPONSES_ENDPOINT/<response-id>?api-version=2025-11-15-preview" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+For the reconnect protocol and the `starting_after` cursor, see [Stream with reconnect](stream-with-reconnect.md).
 
 ## Clean up
 

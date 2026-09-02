@@ -13,11 +13,11 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -32,6 +32,12 @@ When you enable image serving, Azure AI Search:
 + At query time, fetches those images during the [retrieve action](agentic-retrieval-how-to-retrieve.md), base64-encodes them, and injects them as multimodal content into the LLM prompt that produces the synthesized answer.
 
 This article shows you how to enable image serving on a knowledge base, override it per request, inspect image serving statistics, and plan for the storage account lifecycle requirements.
+
+### Usage support
+
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-08-01-preview&preserve-view=true) |
+| -- | -- | -- | -- | -- | -- | -- |
+| ❌ | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -51,15 +57,15 @@ This article shows you how to enable image serving on a knowledge base, override
 
 + A Microsoft Foundry resource in a [region supported by Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/language-region-support), with Azure OpenAI embedding and multimodal chat model deployments. Use the resource endpoint in the `https://<resource-name>.services.ai.azure.com` format.
 
-+ Permissions to create or update the knowledge base and managed knowledge source. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to the user or automation identity that performs these management operations (recommended). Alternatively, use an [API key](search-security-api-keys.md).
++ Permission to create or update the knowledge base and managed knowledge source. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to the user or automation identity that performs these management operations (recommended). Alternatively, use an [admin API key](search-security-api-keys.md).
 
-+ Permissions to call the retrieve action. Assign the **Search Index Data Reader** role to the identity that sends retrieve requests (recommended) or use an API key.
++ Permission to call the retrieve action. Assign the **Search Index Data Reader** role to the identity that sends retrieve requests (recommended) or use a [query API key](search-security-api-keys.md).
 
 + For outbound calls to the LLM during answer synthesis, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource that hosts the LLM.
 
 + For asset store access, configure the search service managed identity as described in [Configure asset store and application access](#configure-asset-store-and-application-access).
 
-+ The [2026-05-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
++ The [2026-08-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
 
 ## Limitations and considerations
 
@@ -134,9 +140,9 @@ For source-specific instructions, see:
 A minimal blob knowledge source with image serving enabled looks like this:
 
 ```http
-PUT https://{service-name}.search.windows.net/knowledgesources/my-blob-ks?api-version=2026-05-01-preview
+PUT https://{service-name}.search.windows.net/knowledgesources/my-blob-ks?api-version=2026-08-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{search-access-token}}
 
 {
   "name": "my-blob-ks",
@@ -210,9 +216,9 @@ The knowledge base definition also specifies the LLM used for **answer synthesis
 If your knowledge base references multiple knowledge sources, set `enableImageServing` only on supported file-based indexed kinds that have `assetStore` configured. Unsupported kinds (such as search index, remote SharePoint, or web) still contribute text grounding but don't supply document-embedded images to downstream answer synthesis.
 
 ```http
-PUT https://{service-name}.search.windows.net/knowledgebases/my-kb?api-version=2026-05-01-preview
+PUT https://{service-name}.search.windows.net/knowledgebases/my-kb?api-version=2026-08-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{search-access-token}}
 
 {
   "name": "my-kb",
@@ -245,9 +251,9 @@ Send a `GET` request to the knowledge base endpoint and verify that the knowledg
 Call the [retrieve action](agentic-retrieval-how-to-retrieve.md) against the knowledge base. To override the knowledge base default on a per-request basis, set `enableImageServing` in the matching entry under `knowledgeSourceParams`.
 
 ```http
-POST https://{service-name}.search.windows.net/knowledgebases/my-kb/retrieve?api-version=2026-05-01-preview
+POST https://{service-name}.search.windows.net/knowledgebases/my-kb/retrieve?api-version=2026-08-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{search-access-token}}
 
 {
   "retrievalReasoningEffort": { "kind": "medium" },
@@ -276,7 +282,7 @@ Authorization: Bearer {{token}}
 
 ### What happens at retrieval time
 
-For image references associated with matching content, the search service downloads the corresponding images from the asset store, base64-encodes them, and passes them as multimodal content to the downstream answer-synthesis model. Inspect aggregate image-serving statistics in `activity.imageServing`. For the exact response shape, see the reference documentation for [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API).
+For image references associated with matching content, the search service downloads the corresponding images from the asset store, base64-encodes them, and passes them as multimodal content to the downstream answer-synthesis model. Inspect aggregate image-serving statistics in `activity.imageServing`. For the exact response shape, see the reference documentation for [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-08-01-preview&preserve-view=true) (REST API).
 
 ### Verify retrieve behavior
 
@@ -297,7 +303,7 @@ When both the knowledge base definition and the retrieve request specify `enable
 The following table summarizes the nine combinations.
 
 | Knowledge base definition (`enableImageServing`) | Retrieve request (`enableImageServing`) | Image serving enabled? |
-|---|---|---|
+| --- | --- | --- |
 | `true` | `true` | Yes |
 | `true` | `false` | No |
 | `true` | Not set | Yes |
@@ -375,7 +381,7 @@ Delete the knowledge base before you delete its knowledge source. Deleting these
 Use the `imageServing` activity block from [Inspect image serving statistics](#inspect-image-serving-statistics) as your first diagnostic. The following table lists checks for common symptoms without assuming a single cause.
 
 | Symptom | Checks |
-|---|---|
+| --- | --- |
 | `imagesRetrieved` is `0` for image-rich documents | Check indexer status and warnings, populated `image_path` values in matching indexed chunks, and image blobs in the asset container. Confirm that the source documents contain extractable images and that the search service identity has **Storage Blob Data Contributor** at the storage-account scope. |
 | Retrieve response has no `imageServing` block | Confirm that the request sets `includeActivity` to `true`. Check the effective `enableImageServing` value after applying request, knowledge base, and default precedence. Confirm that `outputMode` is `answerSynthesis`, and inspect source activity errors and warnings. |
 | `verbalizationUsed` differs from what you expect | Check `disableImageVerbalization`, `chatCompletionModel`, and the most recent indexer status. Inspect `verbalizationUsed` independently from `imagesSentToModel`. A response can report verbalization and images sent together. |

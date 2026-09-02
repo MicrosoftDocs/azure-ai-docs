@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 08/18/2026
+ms.date: 08/19/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -13,9 +13,12 @@ ai-usage: ai-assisted
 ---
 
 # What are hosted agents?
+
 When you build agentic applications by using open-source frameworks, you typically manage many cross-cutting concerns: containerization, web server setup, security, memory persistence, scaling, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
 Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. Hosted agents call models from the Foundry model catalog to perform reasoning while your custom code handles orchestration. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
+
+If you're exploring hosted agents with an AI coding agent, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help connect these concepts to implementation, deployment, and operations tasks.
 
 ### When to use hosted agents
 
@@ -305,5 +308,5 @@ Hosted agents are currently available in the following regions:
 - [Agent runtime components](./runtime-components.md)
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
-- [Discover tools in Foundry Tools](./tool-catalog.md)
+- [What is Toolbox in Foundry?](./toolbox-overview.md)
 - [Azure Container Registry documentation](/azure/container-registry/)

@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 08/19/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -191,4 +191,4 @@ For a broader list of Foundry Agent Service tool support when you're working wit
 
 - [Connect to Model Context Protocol servers (preview)](model-context-protocol.md)
 - [Set up authentication for Model Context Protocol (MCP) tools (preview)](../mcp-authentication.md)
-- [Discover and manage tools in the Foundry tool catalog (preview)](../../concepts/tool-catalog.md)
+- [What is Toolbox in Foundry?](../../concepts/toolbox-overview.md)

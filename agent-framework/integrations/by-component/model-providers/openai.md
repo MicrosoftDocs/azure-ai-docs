@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 07/30/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # OpenAI
@@ -283,6 +284,88 @@ asyncio.run(main())
 ```
 
 **Supported tools:** Function tools, web search, local MCP tools.
+
+### Adapt OpenAI-compatible endpoints
+
+Some OpenAI-compatible endpoints add fields that aren't part of the Chat
+Completions wire format. Use `response_parser` to post-process content from each
+response choice or streaming delta. Use `message_preparer` to post-process the
+request dictionaries created for each framework `Message`. Both hooks run after
+the default conversion and are optional.
+
+For example, some vLLM endpoints return reasoning in a top-level `reasoning`
+field and require that field on later turns. This example surfaces the value as
+reasoning content and echoes it back without subclassing the client:
+
+```python
+from typing import Any
+
+from agent_framework import Content, Message
+from agent_framework.openai import OpenAIChatCompletionClient
+
+_REASONING_FIELD = "_source_reasoning_field"
+
+
+def parse_vllm_reasoning(
+    response_message: Any,
+    contents: list[Content],
+) -> list[Content]:
+    reasoning = getattr(response_message, "reasoning", None)
+    if not isinstance(reasoning, str) or not reasoning:
+        return contents
+
+    return [
+        *contents,
+        Content.from_text_reasoning(
+            text=reasoning,
+            additional_properties={_REASONING_FIELD: "reasoning"},
+        ),
+    ]
+
+
+def prepare_vllm_reasoning(
+    message: Message,
+    request_messages: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    surfaced = [
+        (content.additional_properties[_REASONING_FIELD], content.text)
+        for content in message.contents
+        if content.type == "text_reasoning"
+        and _REASONING_FIELD in content.additional_properties
+        and content.text
+    ]
+    if not surfaced:
+        return request_messages
+
+    prepared = list(request_messages)
+    fields: dict[str, str] = {}
+    for field_name, text in surfaced:
+        for index, item in enumerate(prepared):
+            if (
+                item.get("role") == "assistant"
+                and "tool_calls" not in item
+                and item.get("content") == text
+            ):
+                prepared.pop(index)
+                break
+        fields[field_name] = fields.get(field_name, "") + text
+
+    if prepared:
+        prepared[-1].update(fields)
+    return prepared
+
+
+client = OpenAIChatCompletionClient(
+    model="<model-name>",
+    base_url="https://<provider-endpoint>/v1",
+    response_parser=parse_vllm_reasoning,
+    message_preparer=prepare_vllm_reasoning,
+)
+```
+
+The parser receives an OpenAI SDK `ChatCompletionMessage` for non-streaming
+responses or `ChoiceDelta` for streaming responses. The preparer runs once for
+each framework `Message`, including system and developer messages.
 
 ### Web Search with Chat Completion
 

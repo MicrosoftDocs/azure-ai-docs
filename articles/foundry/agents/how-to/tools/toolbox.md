@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 08/17/2026
+ms.date: 08/26/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -46,7 +46,7 @@ This article shows you how to create a toolbox, add and configure tools, verify 
   dotnet add package Azure.Identity
   ```
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
-- **Azure Developer CLI**: [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`, 1.25 or later) and the unified Foundry CLI extension bundle:
+- **Azure Developer CLI**: [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd` 1.27.1 or later) and the unified Foundry CLI extension bundle:
 
   ```bash
   # Install the unified bundle (provides azd ai agent, connection, inspector,

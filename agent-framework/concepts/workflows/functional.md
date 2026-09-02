@@ -1,10 +1,11 @@
 ---
 title: Microsoft Agent Framework - Functional Workflow API
 description: Write workflows as plain Python async functions using the @workflow and @step decorators.
+ai-usage: ai-assisted
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 04/24/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
 zone_pivot_groups: programming-languages
 ---
@@ -22,7 +23,7 @@ For a side-by-side comparison with the graph API, see [Workflow APIs](./index.md
 
 ## `@workflow` decorator
 
-Apply `@workflow` to an `async` function to convert it into a `FunctionalWorkflow` object:
+Apply `@workflow` to an `async` function to create a stateless `FunctionalWorkflowDefinition`:
 
 ```python
 from agent_framework import workflow
@@ -36,11 +37,9 @@ async def text_pipeline(text: str) -> str:
 The `@workflow` decorator supports a parameterized form with optional arguments:
 
 ```python
-from agent_framework import InMemoryCheckpointStorage, workflow
+from agent_framework import workflow
 
-storage = InMemoryCheckpointStorage()
-
-@workflow(name="my_pipeline", description="Uppercase then reverse", checkpoint_storage=storage)
+@workflow(name="my_pipeline", description="Uppercase then reverse")
 async def text_pipeline(text: str) -> str:
     ...
 ```
@@ -51,11 +50,27 @@ async def text_pipeline(text: str) -> str:
 |-----------|------|-------------|
 | `name` | `str | None` | Display name for the workflow. Defaults to the function's `__name__`. |
 | `description` | `str | None` | Optional human-readable description. |
-| `checkpoint_storage` | `CheckpointStorage | None` | Default storage for persisting step results between runs. Can be overridden per call in `run()`. |
+
+### Build a workflow
+
+Call `.build()` on the definition to create a stateful `FunctionalWorkflow`. Each built workflow represents one logical caller or session. Build separate instances for independent callers to isolate their run and replay state.
+
+Pass checkpoint storage to `.build()` when the workflow needs to persist step results and state:
+
+```python
+from agent_framework import InMemoryCheckpointStorage
+
+storage = InMemoryCheckpointStorage()
+workflow_instance = text_pipeline.build(checkpoint_storage=storage)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `checkpoint_storage` | `CheckpointStorage | None` | Default storage for persisting step results and state between runs. |
 
 ### Workflow function signature
 
-The workflow function's **first parameter** receives the input passed to `.run()`. Add a `ctx: RunContext` parameter only when you need HITL, key/value state, or custom events — it is optional otherwise:
+The workflow function's **first parameter** receives the input passed to `.run()` on the built workflow. Add a `ctx: RunContext` parameter only when you need HITL, key/value state, or custom events — it is optional otherwise:
 
 ```python
 # No ctx needed — just a plain pipeline
@@ -75,14 +90,13 @@ async def hitl_pipeline(data: str, ctx: RunContext) -> str:
 
 ## Running a workflow
 
-Call `.run()` on the `FunctionalWorkflow` object returned by `@workflow`:
+Call `.run()` on the `FunctionalWorkflow` object returned by `.build()`:
 
 ```python
-# Calling the decorated function directly returns the raw return value
-raw = await text_pipeline("hello world")   # str — the raw return value
+workflow_instance = text_pipeline.build()
 
 # .run() wraps the result in a WorkflowRunResult with events and state
-result = await text_pipeline.run("hello world")
+result = await workflow_instance.run("hello world")
 print(result.text)                        # first output as a string
 print(result.get_outputs())               # list of terminal outputs
 print(result.get_intermediate_outputs())  # list of intermediate outputs
@@ -96,8 +110,8 @@ print(result.get_final_state())           # WorkflowRunState.IDLE
 | `message` | `Any | None` | Input passed to the workflow function as its first argument. |
 | `stream` | `bool` | If `True`, returns a `ResponseStream` that yields `WorkflowEvent` objects. Defaults to `False`. |
 | `responses` | `dict[str, Any] | None` | HITL responses keyed by `request_id`. Used to resume a suspended workflow. |
-| `checkpoint_id` | `str | None` | Checkpoint to restore from. Requires `checkpoint_storage` to be set. |
-| `checkpoint_storage` | `CheckpointStorage | None` | Overrides the default storage set on the decorator for this run. |
+| `checkpoint_id` | `str | None` | Checkpoint to restore from. Requires `checkpoint_storage` to be set during build or for this run. |
+| `checkpoint_storage` | `CheckpointStorage | None` | Overrides the build-time checkpoint storage for this run. |
 | `include_status_events` | `bool` | Include status-change events in the non-streaming result. |
 
 Provide one input mode per call: `message`, `responses`, or `checkpoint_id`. The exception is checkpoint resume with external input, where `checkpoint_id` and `responses` can be passed together.
@@ -126,8 +140,10 @@ async def data_pipeline(url: str) -> str:
     raw = await fetch_data(url)
     return await transform_data(raw)
 
+workflow_instance = data_pipeline.build()
+
 # stream=True returns a ResponseStream you iterate with async for
-stream = data_pipeline.run("https://example.com/api/data", stream=True)
+stream = workflow_instance.run("https://example.com/api/data", stream=True)
 async for event in stream:
     if event.type == "output":
         print(f"Output: {event.data}")
@@ -161,7 +177,7 @@ async def pipeline(url: str) -> str:
 
 - **Caches results** — the result is stored by `(step_name, call_index)`. On HITL resume or checkpoint restore, a completed step returns its saved result instantly instead of re-executing.
 - **Emits events** — `executor_invoked` / `executor_completed` / `executor_failed` are emitted for observability. On a cache hit, `executor_bypassed` is emitted instead.
-- **Saves checkpoints** — if the workflow has `checkpoint_storage`, a checkpoint is saved after each step completes.
+- **Saves checkpoints** — if the built workflow has `checkpoint_storage`, a checkpoint is saved after each step completes.
 - **Injects `RunContext`** — if the step function declares a `ctx: RunContext` parameter, the active context is automatically injected.
 
 Outside a running workflow, `@step` is transparent — the function behaves identically to its undecorated version, making it fully testable in isolation.
@@ -173,8 +189,6 @@ Use `@step` on functions that are **expensive to re-run**: agent calls, external
 ```python
 from agent_framework import InMemoryCheckpointStorage, step, workflow
 
-storage = InMemoryCheckpointStorage()
-
 @step  # cached — won't re-run on resume
 async def call_llm(prompt: str) -> str:
     return (await agent.run(prompt)).text
@@ -183,11 +197,14 @@ async def call_llm(prompt: str) -> str:
 async def validate(text: str) -> bool:
     return len(text) > 0
 
-@workflow(checkpoint_storage=storage)
+@workflow
 async def pipeline(topic: str) -> str:
     draft = await call_llm(f"Write about: {topic}")
     ok = await validate(draft)
     return draft if ok else ""
+
+storage = InMemoryCheckpointStorage()
+workflow_instance = pipeline.build(checkpoint_storage=storage)
 ```
 
 `@step` also accepts a `name` parameter:
@@ -234,22 +251,26 @@ async def review_pipeline(topic: str, ctx: RunContext) -> str:
 | `response_type` | `type` | Expected Python type of the response. |
 | `request_id` | `str | None` | Stable identifier for this request. If omitted, a deterministic `auto::<index>` id is generated from call order. |
 
-**Replay semantics:** On first execution, `request_info()` raises an internal signal (never visible to your code) that suspends the workflow. The caller receives a `WorkflowRunResult` with `get_final_state() == WorkflowRunState.IDLE_WITH_PENDING_REQUESTS`. Resume by calling `.run(responses={request_id: value})` — the workflow re-executes from the top, and `request_info()` returns the provided value immediately.
+**Replay semantics:** On first execution, `request_info()` raises an internal signal that suspends the workflow. The signal is never visible to your code. The caller receives a `WorkflowRunResult` with `get_final_state() == WorkflowRunState.IDLE_WITH_PENDING_REQUESTS`.
+
+To resume, call `.run(responses={request_id: value})` on the same built workflow. The workflow re-executes from the top, and `request_info()` returns the provided value immediately.
 
 `@step`-decorated functions that ran before the suspension return their cached results on resume instead of re-executing.
 
 **Handling the response:**
 
 ```python
+workflow_instance = review_pipeline.build()
+
 # Phase 1 — run until the workflow pauses
-result1 = await review_pipeline.run("AI Safety")
+result1 = await workflow_instance.run("AI Safety")
 assert result1.get_final_state() == WorkflowRunState.IDLE_WITH_PENDING_REQUESTS
 
 requests = result1.get_request_info_events()
 print(requests[0].request_id)  # "review_request"
 
 # Phase 2 — resume with the human's answer
-result2 = await review_pipeline.run(
+result2 = await workflow_instance.run(
     responses={"review_request": "Add more details about alignment research"}
 )
 print(result2.text)
@@ -341,7 +362,7 @@ See [`python/samples/03-workflows/functional/agent_integration.py`](https://gith
 
 ## `.as_agent()` — Using a workflow as an agent
 
-Wrap a `FunctionalWorkflow` as an agent-compatible object with `.as_agent()`:
+Build a `FunctionalWorkflow`, and then wrap it as an agent-compatible object with `.as_agent()`:
 
 ```python
 from agent_framework import workflow
@@ -350,8 +371,8 @@ from agent_framework import workflow
 async def poem_workflow(topic: str) -> str:
     ...
 
-# Wrap as an agent
-agent = poem_workflow.as_agent(name="PoemAgent")
+# Build the workflow and wrap it as an agent
+agent = poem_workflow.build().as_agent(name="PoemAgent")
 
 # Use with the standard agent interface
 response = await agent.run("Write a poem about the ocean")
@@ -365,8 +386,8 @@ print(response.text)
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `name` | `str | None` | Display name for the agent. Defaults to the workflow name. |
-
-See [`python/samples/03-workflows/functional/agent_integration.py`](https://github.com/microsoft/agent-framework/tree/main/python/samples/03-workflows/functional/agent_integration.py) for an example.
+| `description` | `str | None` | Optional description override. Defaults to the workflow description. |
+| `context_providers` | `Sequence[Any] | None` | Optional context providers to associate with the agent. |
 
 ## Samples
 

@@ -28,38 +28,38 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 The following table shows regional support for the [Responses API](../../openai/how-to/responses.md), Agents, and private class A IP address ranges.
 
-| Region | Responses API | Agents | Class A\* |
-| --- | --- | --- | --- |
-| Australia East | Yes | Yes | Yes |
-| Brazil South | Yes | Yes | Yes |
-| Canada Central | Yes | Yes | Yes |
-| Canada East | Yes | Yes | Yes |
-| Central US | Yes | Yes | Yes |
-| East US | Yes | Yes | Yes |
-| East US 2 | Yes | Yes | Yes |
-| France Central | Yes | Yes | Yes |
-| Germany West Central | Yes | Yes | Yes |
-| Italy North | Yes | Yes | Yes |
-| Japan East | Yes | Yes | Yes |
-| Japan West | Yes | Yes | Yes |
-| Korea Central | Yes | Yes | Yes |
-| North Central US | Yes | Yes | Yes |
-| Norway East | Yes | Yes | Yes |
-| Poland Central | Yes | Yes | Yes |
-| South Africa North | Yes | Yes | Yes |
-| South Central US | Yes | Yes | Yes |
-| Southeast Asia | Yes | Yes | Yes |
-| South India | Yes | Yes | Yes |
-| Spain Central | Yes | Yes | Yes |
-| Sweden Central | Yes | Yes | Yes |
-| Switzerland North | Yes | Yes | Yes |
-| Switzerland West | Yes | Yes | Yes |
-| UAE North | Yes | Yes | Yes |
-| UK South | Yes | Yes | Yes |
-| West Central US | Yes | Yes | Yes |
-| West Europe | Yes | Yes | Yes |
-| West US | Yes | Yes | Yes |
-| West US 3 | Yes | Yes | Yes |
+| Region | Responses API | Agents | Private VNet | Class A\* |
+| --- | --- | --- | --- | --- |
+| Australia East | Yes | Yes | Yes | Yes |
+| Brazil South | Yes | Yes | Yes | Yes |
+| Canada Central | Yes | Yes | Yes | Yes |
+| Canada East | Yes | Yes | Yes | Yes |
+| Central US | Yes | Yes | Yes | Yes |
+| East US | Yes | Yes | Yes | Yes |
+| East US 2 | Yes | Yes | Yes | Yes |
+| France Central | Yes | Yes | Yes | Yes |
+| Germany West Central | Yes | Yes | Yes | Yes |
+| Italy North | Yes | Yes | Yes | Yes |
+| Japan East | Yes | Yes | Yes | Yes |
+| Japan West | Yes | Yes | Yes | Yes |
+| Korea Central | Yes | Yes | Yes | Yes |
+| North Central US | Yes | Yes | Yes | Yes |
+| Norway East | Yes | Yes | Yes | Yes |
+| Poland Central | Yes | Yes | Yes | Yes |
+| South Africa North | Yes | Yes | Yes | Yes |
+| South Central US | Yes | Yes | Yes | Yes |
+| Southeast Asia | Yes | Yes | Yes | Yes |
+| South India | Yes | Yes | Yes | Yes |
+| Spain Central | Yes | Yes | Yes | Yes |
+| Sweden Central | Yes | Yes | Yes | Yes |
+| Switzerland North | Yes | Yes | Yes | Yes |
+| Switzerland West | Yes | Yes | Yes | Yes |
+| UAE North | Yes | Yes | Yes | Yes |
+| UK South | Yes | Yes | Yes | Yes |
+| West Central US | Yes | Yes | Yes | Yes |
+| West Europe | Yes | Yes | Yes | Yes |
+| West US | Yes | Yes | Yes | Yes |
+| West US 3 | Yes | Yes | Yes | Yes |
 
 \* Class A refers to support for private Class A IP address ranges (10.x.x.x). For related networking requirements, see [Regional support for private networking](#regional-support-for-private-networking).
 

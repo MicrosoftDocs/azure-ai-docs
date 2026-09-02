@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: overview
-ms.date: 08/13/2026
+ms.date: 08/19/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
@@ -175,7 +175,8 @@ Agent Service is designed for enterprise workloads where you need strong control
 
 - [Set up your environment](environment-setup.md)
 - [Agent development lifecycle](concepts/development-lifecycle.md)
+- [Deploy your first Hosted agent](quickstarts/quickstart-hosted-agent.md)
+- [Foundry Toolbox overview](concepts/toolbox-overview.md)
 - [Deploy your first hosted agent](quickstarts/quickstart-hosted-agent.md)
-- [Tool catalog](concepts/tool-catalog.md)
 - [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)
 - For help or to connect with the community, join the [Microsoft AI Discord](https://aka.ms/ai-discord).

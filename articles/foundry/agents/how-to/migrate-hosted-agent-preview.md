@@ -20,6 +20,8 @@ This article shows you how to migrate hosted agents from the initial public prev
 
 This guide applies to you if you deployed a Hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help map your existing preview deployment to the latest hosting model and update commands or code.
+
 ## What changed
 
 The latest version updates the existing platform with a session-based sandbox model. Key changes:

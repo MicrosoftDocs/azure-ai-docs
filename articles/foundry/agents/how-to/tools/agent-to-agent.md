@@ -709,6 +709,69 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 
 This sample demonstrates how to create an AI agent with A2A capabilities by using the `a2a_preview` tool type and the Azure AI Projects client. The agent communicates with other agents and provides responses based on inter-agent interactions by using the A2A protocol.
 
+### Attach the A2A tool directly to an agent
+
+Attach the `a2a_preview` tool directly to a prompt agent when you don't need to share the tool across a toolbox.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const A2A_CONNECTION_NAME = "my-a2a-connection";
+
+export async function main(): Promise<void> {
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Create the A2A tool from the project connection
+  const a2aConnection = await project.connections.get(A2A_CONNECTION_NAME);
+
+  // Create the agent with the A2A tool attached directly
+  const agent = await project.agents.createVersion("MyA2AAgent", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful assistant.",
+    tools: [
+      {
+        type: "a2a_preview",
+        project_connection_id: a2aConnection.id,
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Send a request to the agent
+  const response = await openai.responses.create(
+    {
+      input: "What can the secondary agent do?",
+    },
+    {
+      body: {
+        agent_reference: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
+      },
+    },
+  );
+  console.log(response.output_text);
+
+  // Clean up the created agent version
+  await project.agents.deleteVersion(agent.name, agent.version);
+}
+
+main().catch(console.error);
+```
+
+### Expected output
+
+The console displays the agent's response text from the A2A endpoint. After completion, the agent version is deleted to clean up resources.
+
+### Attach the A2A tool through a toolbox
+
+Use a toolbox when you want to reuse the same A2A tool across multiple agents. This approach adds the tool to a toolbox, then attaches the toolbox to a prompt agent as an MCP tool.
+
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";

@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 08/03/2026
+ms.date: 08/19/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -98,7 +98,7 @@ If you encounter problems setting up or using your private skill catalog, use th
 
 ## Related content
 
-[Discover and manage tools in the Foundry tool catalog](../concepts/tool-catalog.md)
+[What is Toolbox in Foundry?](../concepts/toolbox-overview.md)
 
 [Create a private tool catalog (preview)](private-tool-catalog.md)
 

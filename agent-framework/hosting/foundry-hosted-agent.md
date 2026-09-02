@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 07/17/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -139,6 +140,21 @@ server.run()
 ```
 
 The `ResponsesHostServer` wraps your agent and exposes it through the Foundry Responses protocol. Setting `store` to `False` in `default_options` avoids duplicating conversation history, since the hosting infrastructure manages history automatically.
+
+### Persist state and handle long-running conversations
+
+`ResponsesHostServer` configures Foundry-backed stores by default. For non-workflow agents, `AgentSessionStoreProvider` supplies a `FoundryAgentSessionStore`. For workflow agents, `CheckpointStoreProvider` supplies a `FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a `FoundryFunctionApprovalStore` for pending approvals. These stores use Foundry State Store when hosted and local Agent Server state when you run locally.
+
+To customize storage, pass a `StoreProvider` to `agent_session_store_provider` or `function_approval_store_provider`. Pass a `ContextScopedStoreProvider` to `checkpoint_store_provider`. For example, implement `SessionStore` and `StoreProvider[SessionStore]` to use your own non-workflow agent session store.
+
+Import `ResponsesServerOptions` from `azure.ai.agentserver.responses`, and pass it to `ResponsesHostServer` through the `options` parameter. The available long-running conversation options depend on the agent type:
+
+| Capability | Agent type | Requirements and behavior |
+|------------|------------|---------------------------|
+| Resilient background responses | Workflow only | Set `ResponsesServerOptions(resilient_background=True)`. Send the Responses request with `store=true` and `background=true`. After a restart, the host resumes the latest durable workflow checkpoint or replays the original input if no checkpoint exists. Don't configure checkpoint storage on the workflow because the host manages it. Make external side effects idempotent because work after the last durable checkpoint might repeat. |
+| Steerable conversations | Non-workflow only | Set `ResponsesServerOptions(steerable_conversations=True)` and send Responses requests with `store=true`. Keep turns on one linear chain by reusing the same `conversation` value. Alternatively, send the immediately preceding `previous_response_id` and preserve the resolved `agent_session_id`. The host rejects stale predecessors that would create a fork. |
+
+`ResponsesHostServer` raises `RuntimeError` if you enable resilient background responses for a non-workflow agent or steerable conversations for a workflow agent. For complete implementations, see the [custom storage](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage), [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow), and [steerable long-running agent](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/steerable_long_running_agent) samples.
 
 :::zone-end
 

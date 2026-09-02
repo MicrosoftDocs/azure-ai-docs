@@ -3,7 +3,7 @@ title: Create a SharePoint (Indexed) Knowledge Source
 description: Learn how to create an indexed SharePoint knowledge source, which ingests content from SharePoint sites into a searchable index on Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/08/2026
+ms.date: 08/14/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
@@ -16,11 +16,11 @@ zone_pivot_groups: search-csharp-python-rest
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -39,8 +39,8 @@ The generated indexer conforms to the *SharePoint in Microsoft 365 indexer*, who
 
 ### Usage support
 
-| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-05-01-preview&preserve-view=true) |
-|--|--|--|--|--|--|--|
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-08-01-preview&preserve-view=true) |
+| -- | -- | -- | -- | -- | -- | -- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -59,13 +59,23 @@ The generated indexer conforms to the *SharePoint in Microsoft 365 indexer*, who
 
 + If `contentExtractionMode` is `standard`, use a Microsoft Foundry resource in a [region supported by Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/language-region-support) and the `https://<resource-name>.services.ai.azure.com` endpoint. Deploy an embedding model, and deploy a multimodal chat model if you enable image verbalization.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 + If the knowledge source specifies an Azure OpenAI model for embeddings or image verbalization, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
+
++ If you set `networkAccessMode` to `private`, complete the following requirements:
+
+  + Use an [S2, S3, L1, or L2 search service](search-sku-tier.md#tier-descriptions).
+
+  + Keep the SharePoint connection string, Microsoft Entra application, and SharePoint permissions described in the previous prerequisites. SharePoint Online isn't a supported shared private link target, so private mode doesn't make this source connection private.
+
+  + For each protected model endpoint, enable a managed identity on the search service, grant it the **Cognitive Services User** role on the resource, and create and approve a shared private link. Use the `openai_account` group ID for Azure OpenAI endpoints and `foundry_account` for Foundry resource endpoints.
 
 ::: zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
 
 ::: zone-end
 
@@ -73,11 +83,15 @@ The generated indexer conforms to the *SharePoint in Microsoft 365 indexer*, who
 
 + The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ The [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) version of the Search Service REST API.
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
 
@@ -107,7 +121,6 @@ The following JSON is an example response for an indexed SharePoint knowledge so
         "azureOpenAIParameters": {
           "resourceUri": "<redacted>",
           "deploymentId": "text-embedding-3-large",
-          "apiKey": "<redacted>",
           "modelName": "text-embedding-3-large",
           "authIdentity": null
         }
@@ -139,9 +152,9 @@ Run the following code to create an indexed SharePoint knowledge source.
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
 using Azure.Search.Documents.KnowledgeBases.Models;
-using Azure;
+using Azure.Identity;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var chatCompletionParams = new AzureOpenAIVectorizerParameters
 {
@@ -159,6 +172,7 @@ var embeddingParams = new AzureOpenAIVectorizerParameters
 
 var ingestionParams = new KnowledgeSourceIngestionParameters
 {
+    NetworkAccessMode = KnowledgeSourceNetworkAccessMode.Public,
     DisableImageVerbalization = false,
     ChatCompletionModel = new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: chatCompletionParams),
     EmbeddingModel = new KnowledgeSourceAzureOpenAIVectorizer
@@ -193,12 +207,12 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ```python
 # Create an indexed SharePoint knowledge source
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import IndexedSharePointKnowledgeSource, IndexedSharePointKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceContentExtractionMode
-from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters, KnowledgeSourceAzureOpenAIVectorizer
+from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters, KnowledgeSourceNetworkAccessMode, KnowledgeSourceAzureOpenAIVectorizer
 
-index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint = "<search-endpoint>", credential = DefaultAzureCredential())
 
 knowledge_source = IndexedSharePointKnowledgeSource(
     name = "my-indexed-sharepoint-ks",
@@ -209,22 +223,21 @@ knowledge_source = IndexedSharePointKnowledgeSource(
         container_name = "defaultSiteLibrary",
         query = None,
         ingestion_parameters = KnowledgeSourceIngestionParameters(
+            network_access_mode = KnowledgeSourceNetworkAccessMode.PUBLIC,
             identity = None,
             disable_image_verbalization = False,
             chat_completion_model = KnowledgeBaseAzureOpenAIModel(
                 azure_open_ai_parameters = AzureOpenAIVectorizerParameters(
-                    resource_url = "aoai_endpoint",
-                    deployment_name = "aoai_gpt_deployment",
-                    model_name = "aoai_gpt_model",
-                    api_key = "aoai_api_key"
+                    resource_url = "<aoai-endpoint>",
+                    deployment_name = "<aoai-gpt-deployment>",
+                    model_name = "<aoai-gpt-model>",
                 )
             ),
             embedding_model = KnowledgeSourceAzureOpenAIVectorizer(
                 azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
-                    resource_url = "aoai_endpoint",
-                    deployment_name = "aoai_embedding_deployment",
-                    model_name = "aoai_embedding_model",
-                    api_key = "aoai_api_key"
+                    resource_url = "<aoai-endpoint>",
+                    deployment_name = "<aoai-embedding-deployment>",
+                    model_name = "<aoai-embedding-model>",
                 )
             ),
             content_extraction_mode = KnowledgeSourceContentExtractionMode.MINIMAL,
@@ -246,8 +259,8 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ```http
 ### Create an indexed SharePoint knowledge source
-PUT {{search-url}}/knowledgesources/my-indexed-sharepoint-ks?api-version=2026-05-01-preview
-Authorization: Bearer {{token}}
+PUT {{search-endpoint}}/knowledgesources/my-indexed-sharepoint-ks?api-version=2026-08-01-preview
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -260,6 +273,7 @@ Content-Type: application/json
         "containerName": "defaultSiteLibrary",
         "query": null,
         "ingestionParameters": {
+            "networkAccessMode": "public",
             "identity": null,
             "embeddingModel": {
                 "kind": "azureOpenAI",
@@ -279,9 +293,22 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 ::: zone-end
+
+### Protect Azure dependencies during ingestion
+
+Starting with the `2026-08-01-preview` API version, `networkAccessMode` controls the network environment in which the generated indexer for an indexed SharePoint knowledge source runs. This setting affects ingestion only and doesn't change knowledge base retrieve requests or responses.
+
+`networkAccessMode` defaults to `public`, which preserves existing public network behavior. When `networkAccessMode` is `private`, the generated indexer runs in the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment). It uses approved [shared private links](search-indexer-howto-access-private.md) to access supported Azure dependencies, such as Azure OpenAI models and Microsoft Foundry resources.
+
+> [!IMPORTANT]
+> For indexed SharePoint knowledge sources, private mode applies only to supported Azure dependencies. SharePoint Online isn't a supported shared private link target, so the SharePoint source connection remains public.
+
+To configure and verify private access to supported Azure dependencies:
+
+[!INCLUDE [Configure private network ingestion](includes/how-tos/knowledge-source-private-network.md)]
 
 ## Check ingestion status
 

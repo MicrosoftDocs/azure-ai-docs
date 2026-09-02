@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: article
 ms.author: westey
-ms.date: 07/29/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -16,6 +17,7 @@ ms.service: agent-framework
   |---------------------------------|:--:|:------:|:--:|:----------------------|
   | Manual composition              | ✅ |   ✅   | ❌ | Go status guidance   |
   | Task lifecycle                  | ✅ |   ✅   | ✅ | Shared               |
+  | Host-side session release       | ❌ |   ✅   | ❌ | Python only          |
   | Manual loop integration         | ✅ |   ✅   | ❌ | Go status guidance   |
   | Harness Agent setup           | ✅ |   ✅   | ❌ | Go status guidance   |
   | Security considerations         | ✅ |   ✅   | ✅ | Shared               |
@@ -64,7 +66,8 @@ AgentSession session = await parentAgent.CreateSessionAsync();
 from agent_framework import Agent, BackgroundAgentsProvider
 
 background_provider = BackgroundAgentsProvider(
-    [web_search_agent, code_analysis_agent]
+    [web_search_agent, code_analysis_agent],
+    wait_timeout_seconds=30,
 )
 
 parent_agent = Agent(
@@ -76,6 +79,11 @@ session = parent_agent.create_session()
 ```
 
 Pass `instructions=` to `BackgroundAgentsProvider` to replace its instructions. Include `{background_agents}` where the formatted child-agent list should appear.
+
+`wait_timeout_seconds` sets how long each call to
+`background_agents_wait_for_first_completion` waits. It must be a positive
+integer and defaults to 300 seconds. If the timeout expires, the tool returns
+normally and leaves the tasks running, so the parent can call it again.
 
 ::: zone-end
 
@@ -113,6 +121,47 @@ There is no cancellation tool in the provider. Let running tasks reach a termina
 Reuse the same parent session across turns. Each task receives a dedicated child session. Continuing a terminal task reuses that child session; clearing it removes the task metadata and releases the child-session handle.
 
 Task results are returned to the parent as text. The provider doesn't proxy a child's structured tool-approval request back through the parent, so configure child agents to complete delegated work without interactive approval or handle their approvals inside the child-agent host.
+
+## Release a parent session from the host
+
+::: zone pivot="programming-language-csharp"
+
+> [!NOTE]
+> Host-side background-agent session release isn't currently available in .NET.
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+When the host evicts or discards a parent session, release the provider's
+in-process task and child-session handles in a `finally` block:
+
+```python
+session = parent_agent.create_session()
+try:
+    await parent_agent.run("Coordinate the research.", session=session)
+finally:
+    await background_provider.release_session(session)
+```
+
+`release_session(session, *, cancel_running=True, timeout=30.0)` is a host-side
+lifecycle API, not a model-facing tool. By default, it cancels running child
+tasks and waits up to 30 seconds for cancellation before releasing all runtime
+state for the parent session. Set `cancel_running=False` to reject release while
+tasks are running, or set `timeout=None` to wait indefinitely.
+
+In contrast, `background_agents_clear_completed_task` lets the model remove one
+terminal task and its child session during a conversation. It rejects running
+tasks and doesn't replace host-side parent-session teardown.
+
+::: zone-end
+
+::: zone pivot="programming-language-go"
+
+> [!NOTE]
+> Host-side background-agent session release isn't currently available in Go.
+
+::: zone-end
 
 ## Add automatic waiting manually
 
@@ -210,6 +259,7 @@ parent_agent = create_harness_agent(
     client=client,
     name="research-coordinator",
     background_agents=[web_search_agent, code_analysis_agent],
+    background_agents_wait_timeout_seconds=30,
     loop_should_continue=background_tasks_running(),
     loop_next_message=background_tasks_running_message,
     loop_max_iterations=10,
@@ -217,7 +267,10 @@ parent_agent = create_harness_agent(
 session = parent_agent.create_session()
 ```
 
-Use `background_agents_instructions` to replace the provider instructions. The Python harness enables tool auto-approval middleware by default, so pass `session` on every run.
+Use `background_agents_instructions` to replace the provider instructions.
+`background_agents_wait_timeout_seconds` configures the same bounded wait as
+`wait_timeout_seconds` on `BackgroundAgentsProvider`. The Python harness enables
+tool auto-approval middleware by default, so pass `session` on every run.
 
 ::: zone-end
 

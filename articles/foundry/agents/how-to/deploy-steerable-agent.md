@@ -26,6 +26,7 @@ The sample is a Responses protocol agent that turns on resilience and steering w
 - An Azure subscription with Microsoft Foundry access.
 - [Python 3.13](https://www.python.org/downloads/).
 - The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) with the Foundry agents extension.
+- The [Azure CLI (`az`)](/cli/azure/install-azure-cli) and [`curl`](https://curl.se/) to call the deployed agent.
 
 ## Get the sample
 
@@ -62,38 +63,37 @@ azd up
 
 ## Steer the deployed agent
 
-Steering needs stored background responses (`store: true` and `background: true`), so send each turn's body from a file. Create the first turn's request file:
+`azd up` prints the Responses endpoint. Save it, remove its query string, and get an access token:
 
 ```bash
-cat > turn1.json <<'EOF'
-{ "input": "Explain quantum computing in detail, including its history, principles, algorithms, hardware, error correction, and applications.", "store": true, "background": true }
-EOF
+ENDPOINT="<responses-endpoint-from-azd-up>"
+RESPONSES_ENDPOINT="${ENDPOINT%%\?*}"
+TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
 ```
 
-Start the response in a new session. The command returns while the response is still running and saves the hosted session and conversation for the next invocation:
+Steering needs stored background responses (`store: true` and `background: true`). Start the first turn and note the `conversation` ID in the response:
 
 ```bash
-azd ai agent invoke --new-session -f turn1.json
+curl -sS -X POST "$RESPONSES_ENDPOINT?api-version=2025-11-15-preview" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"input": "Explain quantum computing in detail, including its history, principles, algorithms, hardware, error correction, and applications.", "store": true, "background": true}'
 ```
 
-Create the second turn's request file:
+While the first turn is still running, immediately send a new instruction on the *same conversation* so it steers the in-flight turn:
 
 ```bash
-cat > turn2.json <<'EOF'
-{ "input": "Instead, explain relativity and focus on practical examples.", "store": true, "background": true }
-EOF
+curl -sS -X POST "$RESPONSES_ENDPOINT?api-version=2025-11-15-preview" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"input": "Instead, explain relativity and focus on practical examples.", "conversation": "<conversation-id-from-turn-1>", "store": true, "background": true}'
 ```
 
-Immediately send the new instruction. `azd` reuses the saved session and conversation, so the new turn steers the response that's already in progress:
+The first turn observes the queued input and winds down at its next safe point. The queued turn then runs to completion. Stream either response with its `id` to watch the handoff:
 
 ```bash
-azd ai agent invoke -f turn2.json
-```
-
-The first turn observes the queued input and winds down at its next safe point. The queued turn then runs to completion. Stream the session logs to watch the handoff:
-
-```bash
-azd ai agent monitor --follow
+curl -sS "$RESPONSES_ENDPOINT/<response-id>?api-version=2025-11-15-preview" \
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 ## Clean up

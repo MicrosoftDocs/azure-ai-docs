@@ -29,6 +29,8 @@ For tool optimization, see [best practices](../../concepts/tool-best-practice.md
 
 [!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../../how-to/develop/use-microsoft-foundry-skill.md) can help connect Azure AI Search, review authentication choices, and adapt the setup to your agent.
+
 ## Usage support
 
 The following table shows SDK and setup support.
@@ -1081,7 +1083,7 @@ For more information about deploying connections with Bicep, see [Add a new conn
 
 ### Confirm the connection ID
 
-If you use the REST or TypeScript sample, you need the project connection ID.
+If you use the REST sample, you need the project connection ID. The Python, C#, and TypeScript SDKs can resolve the ID for you from the connection name.
 
 **Python**
 
@@ -1112,6 +1114,22 @@ var searchConnectionName = "my-search-connection";
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 AIProjectConnection connection = projectClient.Connections.GetConnection(connectionName: searchConnectionName);
 Console.WriteLine(connection.Id);
+```
+
+**TypeScript**
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const SEARCH_CONNECTION_NAME = "my-search-connection";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+
+const connection = await project.connections.get(SEARCH_CONNECTION_NAME);
+console.log(connection.id);
 ```
 
 ## Troubleshooting

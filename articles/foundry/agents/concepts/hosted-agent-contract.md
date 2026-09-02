@@ -18,6 +18,8 @@ A hosted agent is a container that fulfills a specific runtime contract with the
 
 The SDK adapter packages implement the entire contract for you. If you use `azure-ai-agentserver-responses` or `azure-ai-agentserver-invocations`, you implement only your handler logic.
 
+If you use a coding agent like GitHub Copilot to implement or review a hosted agent container, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help check the runtime contract, adapter usage, and deployment assumptions.
+
 ## Contract requirements
 
 Your container must:

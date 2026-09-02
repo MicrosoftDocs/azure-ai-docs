@@ -4,7 +4,7 @@ description: Learn how to create an indexed OneLake knowledge source that define
 ms.service: azure-ai-search
 ms.custom: [ignite-2025, doc-kit-assisted]
 ms.topic: how-to
-ms.date: 08/08/2026
+ms.date: 08/14/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -16,11 +16,11 @@ zone_pivot_groups: search-csharp-python-rest
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -40,7 +40,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 ### Usage support
 
 | [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources) |
-|--|--|--|--|--|--|--|
+| -- | -- | -- | -- | -- | -- | -- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -53,7 +53,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 + If `contentExtractionMode` is `standard`, use a Microsoft Foundry resource in a [region supported by Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/language-region-support) and the `https://<resource-name>.services.ai.azure.com` endpoint. Deploy an embedding model, and deploy a multimodal chat model if you enable image verbalization.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 + If the knowledge source specifies an Azure OpenAI model for embeddings or image verbalization, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
@@ -61,9 +61,11 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 + Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For `2026-08-01-preview` features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
-  + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
+  + For `2026-04-01` features, the latest stable package: `dotnet add package Azure.Search.Documents`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
 
 ::: zone-end
 
@@ -71,21 +73,29 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 + Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
+  + For `2026-08-01-preview` features, the latest preview package: `pip install --pre azure-search-documents`
 
-  + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
+  + For `2026-04-01` features, the latest stable package: `pip install azure-search-documents`
+
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ Required REST API version:
++ Required Search Service REST API version:
 
-  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+  + For preview features: [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
-  + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
+  + For generally available features: [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
+
+## Limitations
+
+Private synchronization isn't supported for indexed OneLake knowledge sources. Keep `networkAccessMode` set to `public`.
 
 ## Check for existing knowledge sources
 
@@ -113,23 +123,20 @@ The following JSON is an example response for an indexed OneLake knowledge sourc
         "azureOpenAIParameters": {
           "resourceUri": "<REDACTED>",
           "deploymentId": "text-embedding-3-large",
-          "apiKey": "<REDACTED>",
           "modelName": "text-embedding-3-large"
         }
       },
       "chatCompletionModel": {
         "kind": "azureOpenAI",
         "azureOpenAIParameters": {
-          "resourceUri": "<your-foundry-resource-endpoint>",
+          "resourceUri": "<aoai-endpoint>",
           "deploymentId": "gpt-5-mini",
-          "apiKey": "<REDACTED>",
           "modelName": "gpt-5-mini"
         }
       },
       "ingestionSchedule": null,
       "aiServices": {
-        "uri": "<your-foundry-resource-endpoint>",
-        "apiKey": "<REDACTED>"
+        "uri": "<aoai-endpoint>",
       }
     },
     "createdResources": {
@@ -148,16 +155,17 @@ Run the following code to create an indexed OneLake knowledge source.
 
 ::: zone pivot="csharp"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```csharp
 // Create an indexed OneLake knowledge source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
+using Azure.Search.Documents.KnowledgeBases.Models;
 using Azure.Search.Documents.Models;
-using Azure;
+using Azure.Identity;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var chatCompletionParams = new AzureOpenAIVectorizerParameters
 {
@@ -175,6 +183,7 @@ var embeddingParams = new AzureOpenAIVectorizerParameters
 
 var ingestionParams = new KnowledgeSourceIngestionParameters
 {
+    NetworkAccessMode = KnowledgeSourceNetworkAccessMode.Public,
     DisableImageVerbalization = false,
     ChatCompletionModel = new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: chatCompletionParams),
     EmbeddingModel = new KnowledgeSourceAzureOpenAIVectorizer
@@ -215,9 +224,9 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
 using Azure.Search.Documents.KnowledgeBases.Models;
-using Azure;
+using Azure.Identity;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var chatCompletionParams = new AzureOpenAIVectorizerParameters
 {
@@ -269,15 +278,16 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ::: zone pivot="python"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```python
 # Create an indexed OneLake knowledge source
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import IndexedOneLakeKnowledgeSource, IndexedOneLakeKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
+from azure.search.documents.knowledgebases.models import KnowledgeSourceNetworkAccessMode
 
-index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint = "<search-endpoint>", credential = DefaultAzureCredential())
 
 knowledge_source = IndexedOneLakeKnowledgeSource(
     name = "my-onelake-ks",
@@ -288,22 +298,21 @@ knowledge_source = IndexedOneLakeKnowledgeSource(
         lakehouse_id = "lakehouse_id",
         target_path = None,
         ingestion_parameters = KnowledgeSourceIngestionParameters(
+            network_access_mode = KnowledgeSourceNetworkAccessMode.PUBLIC,
             identity = None,
             disable_image_verbalization = False,
             chat_completion_model = KnowledgeBaseAzureOpenAIModel(
                 azure_open_ai_parameters = AzureOpenAIVectorizerParameters(
-                    resource_url = "aoai_endpoint",
-                    deployment_name = "aoai_gpt_deployment",
-                    model_name = "aoai_gpt_model",
-                    api_key = "aoai_api_key"
+                    resource_url = "<aoai-endpoint>",
+                    deployment_name = "<aoai-gpt-deployment>",
+                    model_name = "<aoai-gpt-model>",
                 )
             ),
             embedding_model = KnowledgeSourceAzureOpenAIVectorizer(
                 azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
-                    resource_url = "aoai_endpoint",
-                    deployment_name = "aoai_embedding_deployment",
-                    model_name = "aoai_embedding_model",
-                    api_key = "aoai_api_key"
+                    resource_url = "<aoai-endpoint>",
+                    deployment_name = "<aoai-embedding-deployment>",
+                    model_name = "<aoai-embedding-model>",
                 )
             ),
             content_extraction_mode = KnowledgeSourceContentExtractionMode.MINIMAL,
@@ -323,12 +332,12 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ```python
 # Create an indexed OneLake knowledge source
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import IndexedOneLakeKnowledgeSource, IndexedOneLakeKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceContentExtractionMode
 from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters, KnowledgeSourceAzureOpenAIVectorizer
 
-index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint = "<search-endpoint>", credential = DefaultAzureCredential())
 
 knowledge_source = IndexedOneLakeKnowledgeSource(
     name = "my-onelake-ks",
@@ -343,18 +352,16 @@ knowledge_source = IndexedOneLakeKnowledgeSource(
             disable_image_verbalization = False,
             chat_completion_model = KnowledgeBaseAzureOpenAIModel(
                 azure_open_ai_parameters = AzureOpenAIVectorizerParameters(
-                    resource_url = "aoai_endpoint",
-                    deployment_name = "aoai_gpt_deployment",
-                    model_name = "aoai_gpt_model",
-                    api_key = "aoai_api_key"
+                    resource_url = "<aoai-endpoint>",
+                    deployment_name = "<aoai-gpt-deployment>",
+                    model_name = "<aoai-gpt-model>",
                 )
             ),
             embedding_model = KnowledgeSourceAzureOpenAIVectorizer(
                 azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
-                    resource_url = "aoai_endpoint",
-                    deployment_name = "aoai_embedding_deployment",
-                    model_name = "aoai_embedding_model",
-                    api_key = "aoai_api_key"
+                    resource_url = "<aoai-endpoint>",
+                    deployment_name = "<aoai-embedding-deployment>",
+                    model_name = "<aoai-embedding-model>",
                 )
             ),
             content_extraction_mode = KnowledgeSourceContentExtractionMode.MINIMAL,
@@ -375,12 +382,12 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```http
 ### Create an indexed OneLake knowledge source
-PUT {{search-url}}/knowledgesources/my-onelake-ks?api-version=2026-05-01-preview
-Authorization: Bearer {{token}}
+PUT {{search-endpoint}}/knowledgesources/my-onelake-ks?api-version=2026-08-01-preview
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -388,10 +395,11 @@ Content-Type: application/json
     "kind": "indexedOneLake",
     "description": "This knowledge source pulls content from a lakehouse.",
     "indexedOneLakeParameters": {
-      "fabricWorkspaceId": "<YOUR FABRIC WORKSPACE GUID>",
-      "lakehouseId": "<YOUR LAKEHOUSE GUID>",
+      "fabricWorkspaceId": "<fabric-workspace-id>",
+      "lakehouseId": "<lakehouse-id>",
       "targetPath": null,
       "ingestionParameters": {
+        "networkAccessMode": "public",
         "identity": null,
         "disableImageVerbalization": null,
         "chatCompletionModel": {
@@ -418,14 +426,14 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
 ```http
 ### Create an indexed OneLake knowledge source
-PUT {{search-url}}/knowledgesources/my-onelake-ks?api-version=2026-04-01
-Authorization: Bearer {{token}}
+PUT {{search-endpoint}}/knowledgesources/my-onelake-ks?api-version=2026-04-01
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -433,8 +441,8 @@ Content-Type: application/json
     "kind": "indexedOneLake",
     "description": "This knowledge source pulls content from a lakehouse.",
     "indexedOneLakeParameters": {
-      "fabricWorkspaceId": "<YOUR FABRIC WORKSPACE GUID>",
-      "lakehouseId": "<YOUR LAKEHOUSE GUID>",
+      "fabricWorkspaceId": "<fabric-workspace-id>",
+      "lakehouseId": "<lakehouse-id>",
       "targetPath": null,
       "ingestionParameters": {
         "identity": null,
@@ -469,7 +477,7 @@ Content-Type: application/json
 ::: zone-end
 
 > [!NOTE]
-> Document-level permissions enforcement using `ingestionPermissionOptions` requires the 2026-05-01-preview API version. 2026-04-01 doesn't support this feature.
+> To enforce document-level permissions with `ingestionPermissionOptions`, use the 2026-08-01-preview API version. The 2026-04-01 API version doesn't support this feature.
 
 ## Check ingestion status
 

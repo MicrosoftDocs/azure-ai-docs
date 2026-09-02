@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 08/19/2026
+ms.date: 08/26/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -133,6 +133,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| Cohere-parse-v5 | 1 | Preview | 2026-12-15 | — |
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
@@ -168,7 +169,10 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | model-router | 2025-05-19 | Preview | 2026-08-30 | — |
 | model-router | 2025-08-07 | Preview | 2026-08-30 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
-| MAI-Image-2e | 2026-04-09 | Preview | 2026-08-15 | MAI-Image-2.5-Flash |
+| MAI-Image-2.5-Pro | 2026-06-19 | Preview | 2026-10-01 | — |
+| MAI-Image-2.5-Flash | 2026-06-02 | Preview | 2026-10-01 | — |
+| MAI-Image-2.5 | 2026-06-02 | Preview | 2026-10-01 | — |
+| MAI-Image-2e | 2026-04-09 | Retired | 2026-08-15 | MAI-Image-2.5-Flash |
 | MAI-Image-2  | 2026-02-20 | Retired | 2026-08-15 | MAI-Image-2.5 |
 | MAI-Transcribe-1 | 2026-01-23 | Preview | 2026-09-15 | MAI-Transcribe-1.5 |
 
@@ -215,16 +219,31 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 ### Anthropic
 
+Microsoft Foundry offers Claude models in [two versions](../../foundry-models/concepts/claude-models.md#how-claude-models-are-hosted-and-billed):
+
+- Version 1: Hosted on Anthropic infrastructure
+- Version 2: Hosted on Azure
+
 | Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| claude-haiku-4-5 | — | Preview | 2026-10-19 | — |
-| claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
+| --- | --- | --- | --- | --- |
+| claude-sonnet-5 | 2 | GA | 2027-06-30 | — |
+| claude-sonnet-5 | 1 | GA | 2027-06-30 | — |
+| claude-sonnet-4-6 | 1 | GA | 2027-02-10 | — |
+| claude-sonnet-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-opus-5 | 2 | GA | 2027-07-08 | — |
+| claude-opus-5 | 1 | GA | 2027-07-08 | — |
+| claude-opus-4-8 | 2 | GA | 2027-09-01 | — |
+| claude-opus-4-8 | 1 | GA | 2027-09-01 | — |
+| claude-opus-4-7 | 1 | GA | 2027-04-06 | — |
+| claude-opus-4-6 | 1 | GA | 2027-02-02 | — |
+| claude-opus-4-5 | 1 | GA | 2026-10-19 | — |
 | claude-opus-4-1 | — | Retired | 2026-08-05 | claude-opus-5 |
-| claude-opus-4-5 | — | Preview | 2026-10-19 | — |
-| claude-opus-4-6 | — | Preview | 2027-02-02 | — |
-| claude-opus-4-7 | — | Preview | 2027-04-06 | — |
-| claude-sonnet-4-5 | — | Preview | 2026-10-19 | — |
-| claude-sonnet-4-6 | — | Preview | 2027-02-10 | — |
+| claude-haiku-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-haiku-4-5 | 2 | GA | 2026-10-19 | — |
+| claude-fable-5-1 | 1 | Preview | — | — |
+| claude-fable-5 | 1 | Preview | 2027-12-05 | — |
+| claude-mythos-5-1 | 1 | Preview | — | — |
+| claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
 
 ### Cohere
 

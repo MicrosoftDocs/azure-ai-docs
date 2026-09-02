@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/21/2026
+ms.date: 09/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Self-host OpenAI Responses endpoints
@@ -44,6 +45,26 @@ This sample converts the request to Agent Framework run values, applies an appli
 `AgentState` resolves the target and loads or creates a session. Save the session after the run, or after a streaming run finishes, because the run updates it.
 
 For the complete application, including the agent definition and request-option allowlist, see the [local Responses sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/af-hosting/local_responses).
+
+## Understand response usage conversion
+
+For agent and workflow responses, the hosting package preserves an SDK-valid native OpenAI `ResponseUsage` object unchanged when one is available. It doesn't merge native Responses usage with Agent Framework `UsageDetails`.
+
+When native usage isn't available, the package can reconstruct Responses usage from these semantically matching Agent Framework fields:
+
+| Usage value | Agent Framework field |
+| --- | --- |
+| Input tokens | `input_token_count` |
+| Output tokens | `output_token_count` |
+| Cache-read input tokens | `cache_read_input_token_count` |
+| Cache-write input tokens | `cache_creation_input_token_count` |
+| Reasoning output tokens | `reasoning_output_token_count` |
+
+Explicit zero values are preserved. If `total_tokens` is absent while both input and output counts are present, the package derives it as input plus output.
+
+If the available Agent Framework usage is incomplete or semantically inconsistent with the Responses schema, the package omits usage. It doesn't guess, copy one counter into another, or fail an otherwise successful response. A malformed scalar count remains an error.
+
+This reconstruction is intentionally lossy because Agent Framework usage is provider-neutral and OpenAI Responses usage has a richer, provider-specific shape. Provider-specific counters reported by a hosted agent, such as Anthropic-specific usage, therefore might not appear in the response received by the calling application. This conversion doesn't provide interoperability between different versions of the OpenAI SDK running in the same process.
 
 ## Host a workflow endpoint
 

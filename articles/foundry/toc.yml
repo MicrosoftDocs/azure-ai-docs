@@ -1,7 +1,13 @@
 items:
+
 - name: What is Microsoft Foundry?
   href: what-is-foundry.md
-
+- name: Product and capability map
+  displayName: capabilities, feature list, what's included in Foundry, where to start
+  href: concepts/capabilities.md
+- name: Capability reference
+  displayName: capability catalog, feature list, all Foundry features
+  href: concepts/capability-reference.md
 - name: Get started
   href: toc-files-foundry/get-started/toc.yml
 
