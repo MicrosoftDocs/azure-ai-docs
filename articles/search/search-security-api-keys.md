@@ -331,8 +331,8 @@ To replace key-based access with role-based access, use the following role assig
 
 + To replace a query key, assign **Search Index Data Reader**.
 
-> [!NOTE]
-> Search Service Contributor is a management plane role that can retrieve API keys. Only grant this role to trusted users.
+> [!IMPORTANT]
+> Search Service Contributor is a control plane role that can retrieve admin keys, which provide full read-write access to the data plane. Only grant this role to trusted users.
 
 ## Secure keys
 
