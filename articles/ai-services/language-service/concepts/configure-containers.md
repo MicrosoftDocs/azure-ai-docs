@@ -50,7 +50,7 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 |Yes| `Billing` | String | Billing endpoint URI. |
 
 
-## Eula setting
+## EULA setting
 
 [!INCLUDE [Container shared configuration eula settings](../../includes/cognitive-services-containers-configuration-shared-settings-eula.md)]
 

@@ -23,7 +23,7 @@ For more information about prerequisites, validating that a container is running
 
 ## Container images
 
-The Speech to text container image for all supported versions and locales is available in the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/speech-to-text/tags) catalog. It resides within the `azure-cognitive-services/speechservices/` repository and is named `speech-to-text`.
+You can find the Speech to text container image for all supported versions and locales in the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/speech-to-text/tags) catalog. It resides within the `azure-cognitive-services/speechservices/` repository and is named `speech-to-text`.
 
 :::image type="content" source="./media/containers/mcr-tags-speech-to-text.png" alt-text="Screenshot of Microsoft Container Registry showing Speech to text container tags and image details." lightbox="./media/containers/mcr-tags-speech-to-text.png":::
 
