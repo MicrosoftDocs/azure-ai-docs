@@ -60,7 +60,7 @@ For errors you might encounter when you deploy or call Claude models, see [Deplo
 | `claude-haiku-4-5` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input </li></ul> | <ul><li>Coding</li><li>Agents</li></ul> |
 
 
-<sup>1</sup> **Claude Fable 5** and **Claude Fable 5.1** apply additional input/output classifiers that might refuse requests whose content triggers dual-use safeguard policies. When a refusal occurs, the request returns a successful (200) response with a refusal indicator `stop_reason: "refusal"` instead of model-generated content. You're not billed for input tokens that are refused.
+<sup>1</sup> **Claude Fable 5** and **Claude Fable 5.1** apply extra input/output classifiers that might refuse requests if the content triggers dual-use safeguard policies. When a refusal happens, the request returns a successful (200) response with a refusal indicator `stop_reason: "refusal"` instead of model-generated content. You aren't billed for input tokens that are refused.
 
 <sup>2</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
