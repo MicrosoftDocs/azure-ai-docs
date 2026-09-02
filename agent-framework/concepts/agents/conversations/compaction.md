@@ -550,6 +550,57 @@ AIAgent agent = agentChatClient
 > [!NOTE]
 > When registered through `ChatClientAgentOptions`, the `CompactionProvider` is **not** engaged during the tool-calling loop. Agent-level context providers run before chat history is stored, so any synthetic summary messages produced by `CompactionProvider` can become part of the persisted history when using `ChatHistoryProvider`. To compact only the in-flight request context while preserving the original stored history, register the provider on the `ChatClientBuilder` via `UseAIContextProviders(...)` instead.
 
+
+### Choosing between `CompactionProvider` and `IChatReducer`
+
+`CompactionProvider` and `IChatReducer` both reduce the messages sent to a model, but they run at different points in the conversation lifecycle and affect conversation history differently.
+
+When `CompactionProvider` is registered on `ChatClientBuilder` with `UseAIContextProviders(...)`, it compacts the in-flight messages sent to the model while leaving the conversation history stored by the `ChatHistoryProvider` unchanged.
+
+By contrast, an `IChatReducer` configured on `InMemoryChatHistoryProvider` reduces the history managed by the history provider itself. Use this approach when you also want to bound the conversation history that is retained in memory.
+
+`InMemoryChatHistoryProvider` can run the reducer at either of these events:
+
+- `BeforeMessagesRetrieval` (the default) reduces stored history before it is supplied to the agent.
+- `AfterMessageAdded` reduces stored history after each request/response pair is added.
+
+The event controls when reduction occurs; the `IChatReducer` implementation controls how messages are reduced.
+
+By contrast, a `CompactionStrategy` supplies its own `CompactionTrigger` and operates on message groups that preserve tool-call/result pairs.
+
+#### Adapting between the abstractions
+
+The adapters let you use an existing implementation at either integration point. Choose the adapter based on where you want the reduction to run.
+
+To use a `CompactionStrategy` for persistent in-memory history reduction, adapt it to `IChatReducer`:
+
+```csharp
+CompactionStrategy strategy =
+    new SlidingWindowCompactionStrategy(CompactionTriggers.TurnsExceed(20));
+
+InMemoryChatHistoryProviderOptions historyOptions = new()
+{
+    ChatReducer = strategy.AsChatReducer(),
+    ReducerTriggerEvent =
+        InMemoryChatHistoryProviderOptions.ChatReducerTriggerEvent.BeforeMessagesRetrieval
+};
+
+InMemoryChatHistoryProvider historyProvider = new(historyOptions);
+
+```
+To use an existing `IChatReducer` in a compaction pipeline or for in-run request compaction, adapt it to `CompactionStrategy`:
+
+```csharp
+IChatReducer existingReducer = /* your MEAI reducer */;
+
+CompactionStrategy strategy = new ChatReducerCompactionStrategy(
+    existingReducer,
+    CompactionTriggers.TokensExceed(4000));
+
+CompactionProvider provider = new(strategy);
+```
+Avoid converting a strategy to an `IChatReducer` with `AsChatReducer()` and then immediately wrapping that reducer in `ChatReducerCompactionStrategy`. This round trip does not add any capability; use the original strategy directly at the appropriate integration point.
+
 ### Ad-hoc compaction
 
 `CompactionProvider.CompactAsync` applies a strategy to an arbitrary message list without an active agent session:
