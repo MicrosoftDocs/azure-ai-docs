@@ -44,7 +44,7 @@ Instruction following is stricter than in earlier realtime models. If your syste
 
 ## Known limitations
 
-Currently, the `truncation` property in the `session.update` payload is not supported for GPT Realtime 2.x models. For managing token usage and costs in an ongoing conversation, consider using the `conversation.item.truncate` or `conversation.item.delete` events.
+Currently, GPT Realtime 2.x models don't support the `truncation` property in the `session.update` payload. To manage token usage and costs in an ongoing conversation, consider using the `conversation.item.truncate` or `conversation.item.delete` events.
 
 ## Get started
 
