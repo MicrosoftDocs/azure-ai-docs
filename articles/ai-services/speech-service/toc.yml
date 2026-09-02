@@ -394,7 +394,7 @@ items:
       displayName: FAQ,frequently asked questions
     - name: Reference
       items:
-      - name: Voice Live REST API reference
+      - name: Voice Live API reference
         items:
         - name: '2026-04-10'
           href: voice-live-api-reference-2026-04-10.md
