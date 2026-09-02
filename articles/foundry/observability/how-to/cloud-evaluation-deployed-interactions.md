@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to evaluate deployed interactions so that I can assess real application behavior without replaying requests.
 ---
 
-# Evaluate deployed agent and model interactions
+# Evaluate individual interactions from deployed models and agents with Microsoft Foundry SDK
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -468,17 +468,6 @@ testing_criteria = [
         },
         initialization_parameters={"model": model_deployment_name},
     ),
-    # Safety evaluators — work even with partial trace data
-    TestingCriterionAzureAIEvaluator(
-        type="azure_ai_evaluator",
-        name="violence",
-        evaluator_name="builtin.violence",
-        data_mapping={
-            "query": "{{item.query}}",
-            "response": "{{item.response}}",
-        },
-        initialization_parameters={"threshold": 4},
-    ),
 ]
 ```
 
@@ -486,5 +475,3 @@ testing_criteria = [
 
 - To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md).
 - For a complete runnable example, see [sample_evaluations_builtin_with_traces.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_traces.py) on GitHub. 
-
-

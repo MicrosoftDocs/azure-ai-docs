@@ -23,7 +23,7 @@ options and the standard field names, see
 When your agent doesn't have production traffic yet, you can still build a meaningful evaluation dataset. The Microsoft Foundry data generation service synthesizes evaluation data from material you already have: an agent's instructions, an inline prompt, or a reference document you upload. Two task types are available:
 
 - **Simple QnA (single-turn)** produces question-and-answer pairs for turn-level evaluation.
-- **Simulation seed (multi-turn)** produces scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow for multi-turn evaluation.
+- **Simulation seed (multi-turn)** produces scenario descriptions that feed the [Simulate conversations](cloud-evaluation-simulate-conversations.md) flow for multi-turn evaluation.
 
 You can evaluate simple Q&A datasets directly. Simulation seed datasets first
 drive a simulator that plays the user's role against the target agent.
@@ -376,7 +376,7 @@ result = poller.result()
 
 ## Generate a simulation seed dataset (SDK)
 
-Simulation seed jobs produce a dataset of scenario descriptions that feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow. Generated rows can contain `id`, `category`, `test_case_description`, and `desired_num_turns`. Only `test_case_description` is required.
+Simulation seed jobs produce a dataset of scenario descriptions that feed the [Simulate conversations](cloud-evaluation-simulate-conversations.md) flow. Generated rows can contain `id`, `category`, `test_case_description`, and `desired_num_turns`. Only `test_case_description` is required.
 
 The job shape is identical to Simple Q&A. The only differences are the options class (`SimulationSeedDataGenerationJobOptions`) and the wire type value (`simulation_seed`). The following example uses an agent definition as the source. To use a prompt or reference file instead, swap the source class as shown in [Generate a dataset from a prompt (SDK)](#generate-a-dataset-from-a-prompt-sdk) or [Generate a dataset from reference files (SDK)](#generate-a-dataset-from-reference-files-sdk), and substitute `SimulationSeedDataGenerationJobOptions` for `SimpleQnADataGenerationJobOptions`.
 
@@ -450,7 +450,7 @@ Preview the generated rows on the **Data** tab before running conversation simul
 The evaluation path depends on the task type:
 
 - **Simple Q&A datasets** use the standard `query` and `ground_truth` schema and work directly with the evaluation APIs. For the full flow, see [Evaluate models and agents in the cloud](cloud-evaluation-targets.md). For complete runnable end-to-end examples, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
-- **Simulation seed datasets** feed the [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview) flow. Pass the generated dataset ID as the simulation run's source. The simulator uses each row's `test_case_description` to play the user's role and, when provided, uses `desired_num_turns` as guidance. Conversation-level evaluators score the resulting conversation rather than the seed row.
+- **Simulation seed datasets** feed the [Simulate conversations](cloud-evaluation-simulate-conversations.md) flow. Pass the generated dataset ID as the simulation run's source. The simulator uses each row's `test_case_description` to play the user's role and, when provided, uses `desired_num_turns` as guidance. Conversation-level evaluators score the resulting conversation rather than the seed row.
 
 ## Manage data generation jobs
 
@@ -525,7 +525,7 @@ For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-
 - [Convert agent traces into evaluation datasets](traces-to-dataset.md)
 - [Evaluate your agent](evaluate-agent.md)
 - [Run cloud evaluations](cloud-evaluation.md)
-- [Simulate conversations](cloud-evaluation-synthetic-data.md#simulate-conversations-preview)
+- [Simulate conversations](cloud-evaluation-simulate-conversations.md)
 - [Evaluate conversations in the cloud](cloud-evaluation-conversations.md)
 - [Set up tracing for your agent](trace-agent-setup.md)
 - [Synthetic data + agent evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py)
