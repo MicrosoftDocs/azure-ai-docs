@@ -175,7 +175,7 @@ For more information about `docker run` with Speech containers, see [Install and
 
 ## Use real-time diarization
 
-The real-time speech to text container supports speaker diarization. Each diarization session ends after four hours. For connected and disconnected containers in scenarios that run longer than four hours, a customer-operated Redis-compatible cache preserves diarization state so your application can start a replacement session. Without a configured cache, the session ends with an error at the boundary. The cache doesn't extend an individual session.
+The real-time speech-to-text container supports speaker diarization. Each diarization session ends after four hours. For connected and disconnected containers in scenarios that run longer than four hours, a customer-operated Redis-compatible cache preserves diarization state so your application can start a replacement session. Without a configured cache, the session ends with an error at the boundary. The cache doesn't extend an individual session.
 
 To set up and validate state-backed continuation, [configure diarization continuation for speech containers](speech-container-stt-diarization-cache.md).
 
