@@ -48,9 +48,9 @@ When you configure a guardrail control for a harm category, you set a severity t
 | Threshold setting | Behavior |
 |-------------------|----------|
 | **Off** | Detection is disabled for this category. No content is flagged or blocked. |
-| **Low** | Flags content at low severity and higher. Least restrictive setting. |
+| **Low** | Flags content at low severity and higher. Most restrictive setting. |
 | **Medium** | Flags content at medium severity and higher. |
-| **High** | Flags only the most severe content. Most restrictive setting. |
+| **High** | Flags only the most severe content. Least restrictive setting. |
 
 Content at the "safe" level is always annotated but never blocked, regardless of threshold setting. To configure these thresholds, see [How to configure guardrails and controls](../../guardrails/how-to-create-guardrails.md).
 
