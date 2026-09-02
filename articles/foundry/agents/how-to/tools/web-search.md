@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/19/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -921,20 +921,13 @@ The following TypeScript example demonstrates how to create an agent with the we
 
 ### Create a toolbox-backed agent
 
+This sample demonstrates how to run Prompt Agent operations by using the Web Search Tool. It shows how to create an agent with web search capabilities, send a query to search the web, and then clean up resources.
+
+The Web Search tool uses Grounding with Bing, which has **additional costs and terms**: [terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and [privacy statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). **Customer data flows outside the Azure compliance boundary.**
+
 ```typescript
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-
-/**
- * This sample demonstrates how to run Prompt Agent operations using the Web Search Tool.
- *
- * @summary This sample demonstrates how to create an agent with web search capabilities,
- * send a query to search the web, and clean up resources.
- *
- * @warning Web Search tool uses Grounding with Bing, which has additional costs and terms: [terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and [privacy statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). Customer data will flow outside the Azure compliance boundary. Learn more [here](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/web-search?pivots=rest-api)
- *
- * @azsdk-weight 100
- */
 
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
@@ -1041,6 +1034,164 @@ The following example shows the expected output when running the TypeScript code
 ```console
 Agent created (id: 12345, name: agent-web-search, version: 1)
 Response: The agent returns a grounded response that includes citations.
+Agent deleted
+```
+
+### Domain-restricted search with Bing Custom Search
+
+The following example shows how to restrict web search to specific domains by attaching the web search tool directly to the agent with a Bing Custom Search configuration.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const BING_CUSTOM_SEARCH_CONNECTION_ID = "your_bing_custom_search_connection_id";
+const BING_CUSTOM_SEARCH_INSTANCE_NAME = "your_bing_custom_search_instance_name";
+
+export async function main(): Promise<void> {
+  // Create AI Project client
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Create an agent with the web search tool configured for Bing Custom Search
+  const agent = await project.agents.createVersion("agent-web-search-custom", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful assistant that can search the web and bing",
+    tools: [
+      {
+        type: "web_search",
+        custom_search_configuration: {
+          project_connection_id: BING_CUSTOM_SEARCH_CONNECTION_ID,
+          instance_name: BING_CUSTOM_SEARCH_INSTANCE_NAME,
+        },
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Send a query and stream the response
+  const stream = openai.responses.stream(
+    {
+      input: "What are the latest updates from Microsoft Learn?",
+      tool_choice: "required",
+    },
+    {
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+
+  // Process streaming events as they arrive
+  for await (const event of stream) {
+    if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.output_item.done") {
+      if (event.item.type === "message" && event.item.content) {
+        const lastContent = event.item.content[event.item.content.length - 1];
+        if (lastContent.type === "output_text" && lastContent.annotations) {
+          for (const annotation of lastContent.annotations) {
+            if (annotation.type === "url_citation") {
+              console.log(`\nURL Citation: ${annotation.url}`);
+            }
+          }
+        }
+      }
+    } else if (event.type === "response.completed") {
+      console.log("\n\nResponse completed!");
+    }
+  }
+
+  // Clean up resources
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected output
+
+```console
+Agent created (id: abc123, name: agent-web-search-custom, version: 1)
+
+URL Citation: https://your-allowed-domain.com/article
+
+Response completed!
+Agent deleted
+```
+
+### Deep research with web search
+
+The following example shows how to use the `o3-deep-research` model with the direct web search preview tool. Don't route web search through a toolbox for deep research because the model requires the direct Responses web search tool.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+
+export async function main(): Promise<void> {
+  // Create AI Project client
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Create a prompt agent with the direct web search preview tool
+  const agent = await project.agents.createVersion("agent-deep-research", {
+    kind: "prompt",
+    model: "o3-deep-research",
+    instructions: "You are a helpful assistant that can search the web",
+    tools: [{ type: "web_search_preview" }],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Create a conversation for the agent interaction
+  const conversation = await openai.conversations.create();
+  console.log(`Created conversation (id: ${conversation.id})`);
+
+  // Send a query to search the web
+  const stream = openai.responses.stream(
+    {
+      conversation: conversation.id,
+      input: "What are the latest advancements in quantum computing?",
+    },
+    {
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+
+  // Process streaming events as they arrive
+  for await (const event of stream) {
+    if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.completed") {
+      console.log("\n\nResponse completed!");
+      console.log(`Full response: ${event.response.output_text}`);
+    }
+  }
+
+  // Clean up resources
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected output
+
+```console
+Agent created (id: abc123, name: agent-deep-research, version: 1)
+Created conversation (id: conv_456)
+
+Response completed!
+Full response: Recent advancements in quantum computing include ...
 Agent deleted
 ```
 :::zone-end

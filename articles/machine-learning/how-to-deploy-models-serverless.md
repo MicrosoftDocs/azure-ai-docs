@@ -5,7 +5,7 @@ description: Learn to deploy models as standard deployments, using Azure Machine
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 08/27/2026
 ms.reviewer: jturuk
 reviewer: santiagxf
 ms.author: scottpolly
@@ -15,13 +15,13 @@ ms.custom: build-2024, serverless, devx-track-azurecli, dev-focus
 ai-usage: ai-assisted
 ---
 
-# Deploy models as standard deployment
+# Deploy models as standard deployments
 
 In this article, you learn how to deploy a model from the model catalog as a standard deployment.
 
 [Certain models in the model catalog](concept-endpoint-serverless-availability.md) can be deployed as a standard deployment with Standard billing. This deployment type provides a way to consume models as an API without hosting them on your subscription, while maintaining the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
-This article uses a Meta Llama model deployment for illustration. However, you can use the same steps to deploy any of the [models in the model catalog that are available for standard deployment](concept-endpoint-serverless-availability.md).
+This article uses a Bria-2.3-Fast model deployment for illustration. However, you can use the same steps to deploy any of the [models in the model catalog that are available for standard deployment](concept-endpoint-serverless-availability.md).
 
 ## Prerequisites
 
@@ -98,7 +98,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 1. For models offered through Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
 
-    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through Azure Marketplace. For such models, you're required to subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](concept-model-catalog.md#pay-for-model-usage-in-standard-deployment).
+    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through Azure Marketplace. For such models, you must subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](foundry-models-overview.md#billing).
 
 1. Go to your workspace. To use the standard deployment offering, your workspace must belong to one of the [regions that are supported for serverless deployment](concept-endpoint-serverless-availability.md) for the particular model you want to deploy.
 
@@ -139,8 +139,6 @@ Standard deployments can deploy both Microsoft and non-Microsoft offered models.
     
     1. In the deployment wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use. You can also select the **Pricing and terms** tab to learn about pricing for the selected model.
 
-    1. On the deployment wizard, select the link to Azure Marketplace Terms to learn more about the terms of use. You can also select the Marketplace offer details tab to learn about pricing for the selected model.
-
     1. Select **Subscribe and Deploy**.
 
 
@@ -163,7 +161,7 @@ Standard deployments can deploy both Microsoft and non-Microsoft offered models.
 
     ```python
     model_id="azureml://registries/azureml-bria/models/Bria-2.3-Fast"
-    subscription_name="Bria-2.3-Fast""
+    subscription_name="Bria-2.3-Fast"
 
     marketplace_subscription = MarketplaceSubscription(
         model_id=model_id,
@@ -275,7 +273,7 @@ In this section, you create an endpoint with the name **Bria-2.3-Fast**.
 
         :::image type="content" source="media/how-to-deploy-models-serverless/deployment-name.png" alt-text="A screenshot showing how to specify the name of the deployment you want to create." lightbox="media/how-to-deploy-models-serverless/deployment-name.png":::
        > [!TIP]
-       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content safety for models deployed via standard deployments](concept-model-catalog.md#content-safety-for-models-deployed-via-standard-deployment).
+       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content safety for models deployed via standard deployments](foundry-models-overview.md#content-safety-for-models-deployed-through-standard-deployments).
 
     1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 
@@ -391,7 +389,7 @@ In this section, you create an endpoint with the name **Bria-2.3-Fast**.
     # [Python SDK](#tab/python)
 
     ```python
-    endpoints = ml_client.online_endpoints.list()
+    endpoints = client.serverless_endpoints.list()
     for endpoint in endpoints:
         print(endpoint.name)
     ```
@@ -442,13 +440,13 @@ In this section, you create an endpoint with the name **Bria-2.3-Fast**.
 
 ## Use the standard deployment
 
-Models deployed in Azure Machine Learning and Microsoft Foundry in standard deployments support the [Azure AI Model Inference API](reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Microsoft Foundry in standard deployments support the [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference) that exposes a common set of capabilities for foundational models and that developers can use to consume predictions from a diverse set of models in a uniform and consistent way.
 
-Read more about the [capabilities of this API](reference-model-inference-api.md#capabilities) and how [you can use it when building applications](reference-model-inference-api.md#getting-started). 
+Read more about the [capabilities of this API](/rest/api/microsoft-foundry/modelinference#capabilities) and how [you can use it when building applications](/rest/api/microsoft-foundry/modelinference#getting-started).
 
 ## Delete endpoints and subscriptions
 
-You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint to become *Unhealthy* and unusable.
+You can delete model subscriptions and endpoints. Deleting a model subscription causes any associated endpoint to become *Unhealthy* and unusable.
 
 # [Studio](#tab/azure-studio)
 
@@ -521,17 +519,17 @@ az resource delete --name <resource-name>
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per workspace. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-#### Cost for Microsoft models
+### Cost for Microsoft models
 
 You can find the pricing information on the __Pricing and terms__ tab of the deployment wizard when deploying Microsoft models (such as Phi-3 models) as standard deployments.
 
-#### Cost for non-Microsoft models
+### Cost for non-Microsoft models
 
 Non-Microsoft models deployed as standard deployments are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
 
 Each time a workspace subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
-For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](/azure/ai-studio/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information about how to track costs, see [Monitor costs for models offered through Azure Marketplace](/azure/foundry-classic/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 :::image type="content" source="media/how-to-deploy-models-serverless/costs-model-as-service-cost-details.png" alt-text="A screenshot showing different resources corresponding to different model offers and their associated meters." lightbox="media/how-to-deploy-models-serverless/costs-model-as-service-cost-details.png":::
 
@@ -559,5 +557,5 @@ For more information on permissions, see [Manage access to an Azure Machine Lear
 
 ## Related content
 
-- [Model Catalog and Collections](concept-model-catalog.md)
+- [Microsoft Foundry Models in Azure Machine Learning](foundry-models-overview.md)
 - [Consume deployed standard deployments from a different workspace](how-to-connect-models-serverless.md)

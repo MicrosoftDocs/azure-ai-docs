@@ -1,11 +1,12 @@
 ---
 title: Getting Started with AG-UI
 description: Step-by-step tutorial to build your first AG-UI server and client with Agent Framework
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
 ---
 
@@ -17,6 +18,7 @@ ms.service: agent-framework
   | Server setup            | ✅ |   ✅   | ✅ | Language-specific hosting APIs |
   | Client setup            | ✅ |   ✅   | ✅ |       |
   | Conversation continuity | ✅ |   ✅   | ❌ | Not documented for Go |
+  | A2UI interactive surfaces | — |   ✅   | — | Python-specific setup in this article |
 -->
 
 # Getting Started with AG-UI
@@ -494,6 +496,56 @@ The AG-UI protocol uses:
   these comments automatically.
 
 ## Common Patterns
+
+### Add A2UI interactive surfaces
+
+A2UI lets an agent generate interactive surfaces that a compatible AG-UI
+client renders as the response streams. Install the optional A2UI dependency:
+
+```bash
+pip install "agent-framework-ag-ui[a2ui]" --pre
+```
+
+For `uv`, run
+`uv pip install "agent-framework-ag-ui[a2ui]" --prerelease=allow`.
+
+To enable A2UI by default for an endpoint, pass an `a2ui_config` with the
+backend opt-in:
+
+```python
+from agent_framework.ag_ui import add_agent_framework_fastapi_endpoint
+
+add_agent_framework_fastapi_endpoint(
+    app=app,
+    agent=agent,
+    path="/a2ui",
+    a2ui_config={"inject_a2ui_tool": True},
+)
+```
+
+The frontend needs the AG-UI A2UI middleware, or equivalent behavior, to:
+
+- Provide its component catalog and generation guidance in the AG-UI request
+  context.
+- Render the streamed `render_a2ui` tool arguments as surface updates.
+- Set `forwardedProps.injectA2UITool` when A2UI is enabled for a request. An
+  explicit `false` value overrides the backend opt-in for that request.
+
+Use `OpenAIChatCompletionClient` for the agent that serves the A2UI endpoint.
+It streams tool-call argument deltas so the client can paint the surface
+progressively. The Responses API client doesn't support this progressive
+rendering flow.
+
+The adapter validates completed component trees against the supplied catalog.
+If validation fails, it adds the validation errors to the generation prompt
+and retries according to the `recovery` configuration. If recovery is
+exhausted, the client receives a failure envelope instead of an exception.
+
+For complete implementations, see the
+[Python A2UI agents](https://github.com/microsoft/agent-framework/blob/main/python/packages/ag-ui/agent_framework_ag_ui_examples/agents/a2ui_agents.py)
+and
+[A2UI endpoint setup](https://github.com/microsoft/agent-framework/blob/main/python/packages/ag-ui/agent_framework_ag_ui_examples/server/main.py)
+in the Agent Framework repository.
 
 ### Custom Server Configuration
 

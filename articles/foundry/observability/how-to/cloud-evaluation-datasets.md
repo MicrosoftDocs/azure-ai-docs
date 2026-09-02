@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to evaluate existing datasets in the cloud so that I can measure application quality across reusable test cases.
 ---
 
-# Evaluate datasets in the cloud
+# Evaluate existing datasets with Microsoft Foundry SDK
 
 Evaluate precomputed responses in JSONL or CSV data by defining a schema, mapping fields to evaluators, and starting a cloud evaluation run.
 
@@ -85,7 +85,7 @@ The cURL examples use an existing dataset ID or inline content. Use the Python o
 
 ### Provide data inline
 
-For quick experimentation with small test sets—or for scenarios that require inline data, such as agent response evaluation—provide data directly in the evaluation request by using `file_content`. For agent response evaluations, `file_content` is the only supported source type.
+For quick experimentation with small precomputed datasets, provide data directly in the evaluation request by using `file_content`.
 
 # [Python](#tab/python)
 
@@ -96,12 +96,14 @@ source = SourceFileContent(
         SourceFileContentContent(
             item={
                 "query": "How can I safely de-escalate a tense situation?",
+                "response": "Encourage calm communication, seek help if needed, and avoid harm.",
                 "ground_truth": "Encourage calm communication, seek help if needed, and avoid harm.",
             }
         ),
         SourceFileContentContent(
             item={
                 "query": "What is the largest city in France?",
+                "response": "Paris",
                 "ground_truth": "Paris",
             }
         ),
@@ -118,6 +120,8 @@ const source = {
     {
       item: {
         query: "How can I safely de-escalate a tense situation?",
+        response:
+          "Encourage calm communication, seek help if needed, and avoid harm.",
         ground_truth:
           "Encourage calm communication, seek help if needed, and avoid harm.",
       },
@@ -125,6 +129,7 @@ const source = {
     {
       item: {
         query: "What is the largest city in France?",
+        response: "Paris",
         ground_truth: "Paris",
       },
     },
@@ -138,20 +143,16 @@ You don't need to send a separate request. Include the `file_content` object dir
 
 ---
 
-Pass `source` as the `"source"` field in your data source configuration when creating a run. The following scenario sections use `file_id` by default.
+Pass `source` as the `"source"` field in your data source configuration when creating a run. The following dataset sections use `file_id` by default.
 
-### Source type support by scenario
+### Source type support by dataset format
 
-Not all scenarios support both source types. The following matrix shows which source type each scenario supports.
+Both dataset formats support file and inline sources.
 
-| Scenario | `file_id` | `file_content` |
+| Dataset format | `file_id` | `file_content` |
 |----------|-----------|----------------|
 | Dataset (`jsonl`) | Yes | Yes |
 | CSV (`csv`) | Yes | Yes |
-| Model or agent target | Yes | Yes |
-| Agent response (`azure_ai_responses`) | No | Yes |
-| Trace (`azure_ai_traces`) | N/A | N/A |
-| Synthetic data (preview) | N/A | N/A |
 
 ## Evaluate a JSONL dataset
 
@@ -199,15 +200,6 @@ testing_criteria = [
         data_mapping={
             "query": "{{item.query}}",
             "response": "{{item.response}}",
-        },
-    ),
-    TestingCriterionAzureAIEvaluator(
-        type="azure_ai_evaluator",
-        name="f1",
-        evaluator_name="builtin.f1_score",
-        data_mapping={
-            "response": "{{item.response}}",
-            "ground_truth": "{{item.ground_truth}}",
         },
     ),
 ]
@@ -513,11 +505,6 @@ testing_criteria = [
             "response": "{{item.response}}",
         },
         initialization_parameters={"model": model_deployment_name},
-    ),
-    TestingCriterionAzureAIEvaluator(
-        type="azure_ai_evaluator",
-        name="f1",
-        evaluator_name="builtin.f1_score",
     ),
 ]
 

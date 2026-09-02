@@ -1,10 +1,10 @@
 ---
 title: Azure Data Lake Storage Gen2 Indexer
-description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate indexing of content and metadata for full text search in Azure AI Search.
+description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate indexing of content and metadata for full-text search in Azure AI Search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/08/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ms.custom: [ignite-2023, sfi-ropc-nochange, doc-kit-assisted]
@@ -146,7 +146,7 @@ Indexers can connect to a blob container using the following connections.
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;" }`|
 |This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-how-to-managed-identities.md).|
 
-| Storage account shared access signature** (SAS) connection string |
+| Storage account shared access signature (SAS) connection string |
 |-------------------------------------------------------------------|
 | `{ "connectionString" : "BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl;" }` |
 | The SAS should have the list and read permissions on containers and objects (blobs in this case). |
@@ -160,7 +160,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store blob content and metadata:
 
-    ```http
+    ```json
     {
         "name" : "my-search-index",
         "fields": [
@@ -195,7 +195,7 @@ Once the index and data source have been created, you're ready to create the ind
 
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
-    ```http
+    ```json
     {
       "name" : "my-adlsgen2-indexer",
       "dataSourceName" : "my-adlsgen2-datasource",

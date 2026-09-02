@@ -72,7 +72,7 @@ Adding a customer-managed key to an object must happen when the object is newly 
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Starting in the 2026-03-01-preview release, you can configure a customer-managed key at the service level on the Azure AI Search service itself. This feature lets you configure the key once and apply it to all newly created objects by default. That protection keeps sensitive data in your search service secure with a key you control, without requiring you to specify key information each time you create an object. In the data plane 2026-05-01-preview API, the `isServiceLevelKey` property on `encryptionKey` helps you determine whether an object inherits the service-level key or uses an explicit object-level key.
+Starting in the 2026-03-01-preview release, you can configure a customer-managed key at the service level on the Azure AI Search service itself. This feature lets you configure the key once and apply it to all newly created objects by default. That protection keeps sensitive data in your search service secure with a key you control, without requiring you to specify key information each time you create an object. In data plane API version `2026-05-01-preview` and later, the `isServiceLevelKey` property on `encryptionKey` helps you determine whether an object inherits the service-level key or uses an explicit object-level key.
 
 Enabling CMK at the service level means:
 
@@ -539,12 +539,12 @@ Currently, the Azure portal doesn't support service-level encryption. Use the RE
 
 ### [**REST APIs**](#tab/rest)
 
-In data plane API version `2026-05-01-preview`, use an object `GET` call to inspect `encryptionKey.isServiceLevelKey`.
+In data plane API version `2026-05-01-preview` and later, use an object `GET` call to inspect `encryptionKey.isServiceLevelKey`.
 
 The code snippet below is an example. You will need to update it with the values specific to your use-case.
 
 ```http
-GET https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
+GET https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-08-01-preview
 api-key: {{admin-api-key}}
 ```
 
@@ -574,7 +574,7 @@ When `isServiceLevelKey` is `true`, the object inherits the service-level key an
 To decouple lifecycle for a specific object, set an explicit **object-level key** and set `isServiceLevelKey` to `false` in a `PUT` request that updates the object.
 
 ```http
-PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
+PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-08-01-preview
 api-key: {{admin-api-key}}
 Content-Type: application/json
 ```
@@ -604,14 +604,14 @@ With this override, object-level key lifecycle is decoupled from the service-lev
 
 When you enable service-level CMK, create requests can omit `encryptionKey` and the object inherits the service-level key by default. To switch an existing object from an explicit object-level key to service-level CMK inheritance, set `isServiceLevelKey` to `true` in an update request.
 
-In data plane API version `2026-05-01-preview`, request validation applies to the `encryptionKey` object. If you provide `encryptionKey`, `keyVaultUri` and `keyVaultKeyName` are required string fields, regardless of whether `isServiceLevelKey` is present or what value it has. This validation checks field presence, not key existence. Placeholder string values satisfy this schema validation, and missing required fields result in HTTP 400.
+In data plane API version `2026-05-01-preview` and later, request validation applies to the `encryptionKey` object. If you provide `encryptionKey`, `keyVaultUri` and `keyVaultKeyName` are required string fields, regardless of whether `isServiceLevelKey` is present or what value it has. This validation checks field presence, not key existence. Placeholder string values satisfy this schema validation, and missing required fields result in HTTP 400.
 
 When `isServiceLevelKey` is `true`, the service applies the configured service-level key to the object. If you provide `keyVaultUri`, `keyVaultKeyName`, or `keyVaultKeyVersion` in the same request, the service ignores those values for key selection in that operation.
 
 For clarity and maintainability, provide the current service-level key values in the request and verify the effective key with a GET operation on the object.
 
 ```http
-PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
+PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-08-01-preview
 api-key: {{admin-api-key}}
 Content-Type: application/json
 ```

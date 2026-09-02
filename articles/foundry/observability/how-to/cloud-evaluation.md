@@ -1,5 +1,5 @@
 ---
-title: "Run cloud evaluations with the Microsoft Foundry SDK"
+title: "Introduction to cloud evaluation with Microsoft Foundry SDK"
 description: "Set up the Microsoft Foundry SDK and choose a cloud evaluation workflow for datasets, targets, interactions, conversations, or synthetic data."
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
@@ -7,7 +7,7 @@ ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 08/31/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to set up cloud evaluations and choose the right workflow so that I can assess my generative AI application at scale.
 ---
 
-# Run cloud evaluations with the Microsoft Foundry SDK
+# Introduction to cloud evaluation with Microsoft Foundry SDK
 
 Use cloud evaluations to test generative AI applications at scale without managing local compute. This article sets up the shared SDK client and helps you choose a workflow for predeployment or production evaluation.
 
@@ -122,14 +122,16 @@ Review the [built-in evaluators](../../concepts/built-in-evaluators.md) and [cus
 
 ## Choose your starting point
 
-| Starting point | Workflow |
-|---|---|
-| You have JSONL or CSV test data with query and response. | [Evaluate datasets in the cloud](cloud-evaluation-datasets.md) |
-| You have queries and want a model or agent to generate responses. | [Evaluate models and agents in the cloud](cloud-evaluation-targets.md) |
-| You have deployed model or agent with Application Insights traces. | [Evaluate deployed agent and model interactions](cloud-evaluation-deployed-interactions.md) |
-| You have complete conversations data or production conversation traces. | [Evaluate conversations in the cloud](cloud-evaluation-conversations.md) |
-| You need synthetic queries or simulated conversations. | [Generate synthetic data](cloud-evaluation-synthetic-data.md) |
-| You need to poll, interpret, cancel, or troubleshoot a run. | [Get cloud evaluation results](cloud-evaluation-results.md) |
+| Evaluation unit | Starting point | Workflow |
+|---|---|---|
+| Individual turn | You have JSONL or CSV test data with a query and response. | [Evaluate query-response datasets](cloud-evaluation-datasets.md) |
+| Individual turn | You have queries and want a model or agent to generate responses. | [Evaluate model and agent responses](cloud-evaluation-targets.md) |
+| Individual turn | You have stored responses or traces from individual interactions with a deployed model or agent. | [Evaluate deployed model and agent interactions](cloud-evaluation-deployed-interactions.md) |
+| Individual turn | You need to generate synthetic queries. | [Generate synthetic queries](cloud-evaluation-synthetic-data.md#generate-synthetic-queries) |
+| Complete conversation | You have a dataset of complete conversations. | [Evaluate conversation datasets](cloud-evaluation-conversations.md) |
+| Complete conversation | You have traces that capture complete conversations with a deployed model or agent. | [Evaluate deployed model and agent conversations](cloud-evaluation-deployed-conversations.md) |
+| Complete conversation | You need to generate and evaluate simulated agent conversations. | [Simulate agent conversations](cloud-evaluation-simulate-conversations.md) |
+| Any evaluation unit | You need to poll, interpret, cancel, or troubleshoot a run. | [Get evaluation results](cloud-evaluation-results.md) |
 
 For adversarial safety testing, use [AI red teaming](../../how-to/develop/run-ai-red-teaming-cloud.md). To create a standalone dataset, see [Generate a synthetic evaluation dataset](../../observability/how-to/evaluation-dataset-synthetic.md).
 

@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 07/30/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -561,6 +562,31 @@ storage = CosmosCheckpointStorage(
     ],
 )
 ```
+
+To register a type for every restricted checkpoint decoder in the current
+Python process, pass the class to `register_checkpoint_type()`:
+
+```python
+from agent_framework import register_checkpoint_type
+from my_app.models import SafeState
+
+register_checkpoint_type(SafeState)
+```
+
+Global registration also applies to storage instances created before the call.
+In contrast, `allowed_checkpoint_types` applies only to the
+`FileCheckpointStorage` or `CosmosCheckpointStorage` instance that receives it.
+Prefer the per-store parameter when your code creates the storage. Use global
+registration when your code can't configure the storage instance, such as in a
+hosted environment that creates checkpoint storage for you. Register the type
+before loading a checkpoint that contains it.
+
+Both mechanisms extend the restricted unpickler's allow list; neither makes
+untrusted pickle data safe. Register only trusted application classes because
+an allowed class can define custom pickle reconstruction behavior. Global
+registration increases the deserialization surface for every restricted
+checkpoint load in the process, so keep the global registry to the minimum
+required set.
 
 If your threat model does not permit pickle-based serialization at all, use `InMemoryCheckpointStorage` or implement a custom `CheckpointStorage` with an alternative serialization strategy.
 

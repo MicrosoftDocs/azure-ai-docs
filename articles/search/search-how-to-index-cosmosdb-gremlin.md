@@ -1,10 +1,10 @@
 ---
 title: Azure Cosmos DB Gremlin Indexer
-description: Set up an Azure Cosmos DB indexer to automate indexing of Apache Gremlin content for full text search in Azure AI Search. This article explains how index data using the Azure Cosmos DB for Apache Gremlin protocol.
+description: Set up an Azure Cosmos DB indexer to automate indexing of Apache Gremlin content for full-text search in Azure AI Search. This article explains how index data using the Azure Cosmos DB for Apache Gremlin protocol.
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ms.custom:
@@ -49,10 +49,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 For this call, specify a preview REST API version to create a data source that connects via Azure Cosmos DB for Apache Gremlin. You can use `2021-04-01-preview` or later. We recommend the [latest preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions).
 
-1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition: 
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to set its definition:
 
    ```http
-    POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -72,7 +72,6 @@ For this call, specify a preview REST API version to create a data source that c
       "dataDeletionDetectionPolicy": null,
       "encryptionKey": null,
       "identity": null
-    }
     }
    ```
 
@@ -96,7 +95,7 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 
 | Full access connection string |
 |-----------------------------------------------|
-|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=MongoDb" }` |
+|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=Gremlin" }` |
 | You can get the connection string from the Azure Cosmos DB account page in Azure portal by selecting **Keys** in the left pane. Make sure to select a full connection string and not just a key.  |
 
 | Managed identity connection string |
@@ -111,7 +110,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that store data:
 
    ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexes?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -131,7 +130,6 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
             "searchAnalyzer": null,
             "synonymMaps": [],
             "fields": []
-        },{
         }, {
             "name": "label",
             "type": "Edm.String",
@@ -170,10 +168,10 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -205,7 +203,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-05-01-preview
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-08-01-preview
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -258,10 +256,10 @@ For Azure Cosmos DB indexers, the only supported policy is the [`HighWaterMarkCh
 
 The following example shows a [data source definition](#define-the-data-source) with a change detection policy:
 
-```http
+```json
 "dataChangeDetectionPolicy": {
     "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-"  highWaterMarkColumnName": "_ts"
+    "highWaterMarkColumnName": "_ts"
 },
 ```
 
@@ -271,8 +269,8 @@ The following example shows a [data source definition](#define-the-data-source) 
 
 When graph data is deleted, you might want to delete its corresponding document from the search index as well. The purpose of a data deletion detection policy is to efficiently identify deleted data items and delete the full document from the index. The data deletion detection policy isn't meant to delete partial document information. Currently, the only supported policy is the `Soft Delete` policy (deletion is marked with a flag of some sort), which is specified in the data source definition as follows:
 
-```http
-"dataDeletionDetectionPolicy"": {
+```json
+"dataDeletionDetectionPolicy": {
     "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
     "softDeleteColumnName" : "the property that specifies whether a document was deleted",
     "softDeleteMarkerValue" : "the value that identifies a document as deleted"
@@ -282,7 +280,7 @@ When graph data is deleted, you might want to delete its corresponding document 
 The following example creates a data source with a soft-deletion policy:
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [Search service admin key]
 
@@ -314,13 +312,13 @@ Even if you enable deletion detection policy, deleting complex (`Edm.ComplexType
 
 The Azure Cosmos DB for Apache Gremlin indexer automatically maps a couple pieces of graph data:
 
-1. The indexer maps `_rid` to an `rid` field in the index if it exists, and Base64 encodes it.
+1. The indexer maps `_rid` to a `rid` field in the index if it exists, and Base64 encodes it.
 
 1. The indexer maps `_id` to an `id` field in the index if it exists.
 
 1. When querying your Azure Cosmos DB database by using the Azure Cosmos DB for Apache Gremlin, you might notice that the JSON output for each property has an `id` and a `value`. The indexer automatically maps the property's `value` into a field in your search index that has the same name as the property if it exists. In the following example, 450 is mapped to a `pages` field in the search index.
 
-```http
+```json
     {
         "id": "Cookbook",
         "label": "book",

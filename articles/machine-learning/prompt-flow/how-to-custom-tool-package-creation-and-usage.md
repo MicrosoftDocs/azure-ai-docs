@@ -12,8 +12,9 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Custom tool package creation and usage
@@ -25,22 +26,29 @@ When developing flows, you can use the built-in tools provided by prompt flow, o
 After successful installation, your custom tool appears in the tool list:
 :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/test-customer-tool-on-ui.png" alt-text="Screenshot of custom tools in the UI tool list." lightbox="./media/how-to-custom-tool-package-creation-and-usage/test-customer-tool-on-ui.png":::
 
+## Prerequisites
+
+- An existing Prompt flow project in Azure Machine Learning.
+- Python 3.9 or 3.10 with the `promptflow` package installed to create and test the package.
+- A compute session to test the package in Azure Machine Learning studio.
+
 ## Create your own tool package
 
 Your tool package should be a Python package. To develop your custom tool, follow the steps **Create your own tool package** and **build and share the tool package** in [Create and Use Tool Package](https://microsoft.github.io/promptflow/how-to-guides/develop-a-tool/create-and-use-tool-package.html). You can find more advanced development guidance in [How to develop a tool](https://microsoft.github.io/promptflow/how-to-guides/develop-a-tool/index.html).
 
 ## Prepare compute session
 
-To add the custom tool to your tool list, you need to prepare the compute session. This example uses [my-tools-package](https://pypi.org/project/my-tools-package/).
+To add the custom tool to your tool list, you need to prepare a compute session. This example uses [my-tools-package](https://pypi.org/project/my-tools-package/).
 
-When you use compute session, you can install the publicly released package by adding the custom tool package name into the `requirements.txt` file in the flow folder. Then, to start installation, select the **Save and install** button. After completion, you see the custom tools displayed in the tool list. To learn more, see [How to manage compute session](./how-to-manage-compute-session.md).
+When you use a compute session, you can install the publicly released package by adding the custom tool package name to the `requirements.txt` file in the flow folder. To start installation, select **Save and install**. After installation finishes, the custom tools appear in the tool list. To learn more, see [Manage compute sessions](./how-to-manage-compute-session.md).
 :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/install-package-on-compute-session.png" alt-text="Screenshot of how to install packages on compute session." lightbox="./media/how-to-custom-tool-package-creation-and-usage/install-package-on-compute-session.png":::
 
 Another method works for not only publicly released packages, but also local or private feed packages. First, build an image following the two steps in [how to customize base image for compute session](./how-to-customize-session-base-image.md), and then [change the base image for compute session](./how-to-manage-compute-session.md#change-the-base-image-for-compute-session).
 
-## Test from prompt flow UI
+## Test in the Prompt flow UI
+
 1. Create a standard flow.
-1. Start compute session.
+1. Start the compute session.
     :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/start-compute-session.png" alt-text="Screenshot of flow in Azure Machine Learning studio starting compute session." lightbox ="./media/how-to-custom-tool-package-creation-and-usage/start-compute-session.png":::
 
 1. Add your tools.
@@ -50,16 +58,16 @@ Another method works for not only publicly released packages, but also local or 
 
 ## FAQ
 ### How do I install the custom tool package in the VS Code extension?
-1. Install prompt flow for VS Code extension.
+1. Install the [Prompt flow for VS Code extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow).
     :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/prompt-flow-vs-code-extension.png" alt-text="Screenshot of prompt flow VS Code extension." lightbox ="./media/how-to-custom-tool-package-creation-and-usage/prompt-flow-vs-code-extension.png":::
 1. Go to terminal and install the tool package in conda environment of the extension. Assume your conda env name is `prompt-flow`.
 
-   ```sh
+    ```powershell
    (local_test) PS D:\projects\promptflow\tool-package-quickstart> conda activate prompt-flow
    (prompt-flow) PS D:\projects\promptflow\tool-package-quickstart> pip install my-tools-package==0.0.1
    ```
 
-1. Go to the extension and open one flow folder. Select `flow.dag.yaml` and preview the flow. Next, select `+` button and you can see your tools. You need to **reload the windows** to clean previous cache if you don't see your tool in the list.
+1. In the extension, open a flow folder. Select `flow.dag.yaml`, and then preview the flow. Select the **+** button to see your tools. If your tool doesn't appear, reload the VS Code window to clear the previous cache.
 
     :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/auto-list-tool-in-extension.png" alt-text="Screenshot of the VS Code showing the tools." lightbox ="./media/how-to-custom-tool-package-creation-and-usage/auto-list-tool-in-extension.png":::
 

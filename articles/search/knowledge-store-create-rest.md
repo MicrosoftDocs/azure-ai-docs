@@ -3,7 +3,7 @@ title: Create a Knowledge Store Using REST
 description: Use the REST APIs to create an Azure AI Search knowledge store for persisting AI enrichments from a skillset.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
@@ -70,7 +70,7 @@ In this example, REST calls require the search service endpoint and use an API k
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
-A valid API key establishes trust, on a per request basis, between the application sending the request and the search service handling it.
+A valid API key establishes trust, on a per-request basis, between the application sending the request and the search service handling it.
 
 ## Create an index
 
@@ -313,7 +313,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
 + The [Shaper skill](cognitive-search-skill-shaper.md) is important to knowledge store definition. It specifies how the data flows into the tables of the knowledge store. The inputs are the parts of the enriched document that you want to store. The output is a consolidation of the nodes into a single structure. 
 
-+ Projections specify the tables, objects, and blobs of your knowledge store. Each projection item specifies the `"name"` of column or field to create in Azure Storage. The `"source"` specifies which part of the shaper output is assigned to that field or column.
++ Projections specify the tables, objects, and blobs in your knowledge store. A table projection specifies `tableName`, `generatedKeyName`, and either `source` or `sourceContext` with `inputs`. The `source` and `sourceContext` properties identify the enriched content to store.
 
 ## Create an indexer
 
@@ -367,7 +367,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
 ## Check status
 
-After you send each request, the search service should respond with a 201 success message.
+Check the indexer status to confirm that the skillset completed successfully.
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)
@@ -376,7 +376,9 @@ GET {{baseUrl}}/indexers/hotel-reviews-kstore-idxr/status?api-version=2026-04-01
   api-key: {{apiKey}}
 ```
 
-After several minutes, you can query the index to inspect the content. Even if you're not using the index, this step is a convenient way to confirm that the skillset produced the expected output.
+The request returns `200 OK`. Wait until `lastResult.status` is `success` before you query the index.
+
+Query the index to inspect the content. Even if you're not using the index, this step is a convenient way to confirm that the skillset produced the expected output.
 
 ```http
 ### Query the index (indexer status must be "success" before querying the index)
@@ -390,6 +392,8 @@ POST {{baseUrl}}/indexes/hotel-reviews-kstore-idx/docs/search?api-version=2026-0
     "count": true
   }
 ```
+
+The request returns `200 OK` and includes the selected enriched fields.
 
 ## Check tables in Azure portal
 

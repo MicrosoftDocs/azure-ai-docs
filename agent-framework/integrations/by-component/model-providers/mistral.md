@@ -1,18 +1,18 @@
 ---
 title: Mistral
-description: Generate Mistral AI embeddings with Agent Framework Python.
+description: Use Mistral AI chat and embedding models with Agent Framework Python.
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Mistral
 
-`MistralEmbeddingClient` generates text embeddings with Mistral AI models. Use it for vector indexing, semantic search, clustering, or other applications that need an Agent Framework embedding client.
-
-This provider currently supplies embeddings only; it doesn't provide an Agent Framework chat client.
+The Mistral integration provides `MistralChatClient` for chat agents and
+`MistralEmbeddingClient` for text embeddings in Agent Framework Python.
 
 ## Install the package
 
@@ -24,10 +24,60 @@ pip install agent-framework-mistral --pre
 
 ```bash
 MISTRAL_API_KEY="<api-key>"
+MISTRAL_CHAT_MODEL="mistral-small-latest"
 MISTRAL_EMBEDDING_MODEL="mistral-embed"
 # Optional compatible endpoint:
 MISTRAL_SERVER_URL="<server-url>"
 ```
+
+You can also pass `api_key`, `model`, and `server_url` directly to either
+client.
+
+## Create a chat agent
+
+Create an `Agent` with `MistralChatClient`. The client reads the API key and
+chat model from the environment variables shown in the previous section.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.mistral import MistralChatClient
+
+
+async def main() -> None:
+    client = MistralChatClient()
+    try:
+        agent = Agent(
+            client=client,
+            instructions="You are a helpful assistant.",
+        )
+        response = await agent.run("How many days are in a week?")
+        print(response.text)
+    finally:
+        await client.close()
+
+
+asyncio.run(main())
+```
+
+The selected Mistral model determines which model-level capabilities are
+available.
+
+## Chat capabilities
+
+`MistralChatClient` supports the following Agent Framework features:
+
+| Capability | Usage |
+|---|---|
+| Streaming | Call `agent.run(..., stream=True)` to iterate over response updates. |
+| Function tools | Add Agent Framework function tools to `Agent(tools=...)`. |
+| Structured output | Pass a Pydantic model, JSON schema mapping, or JSON object mode through `response_format`. |
+| Multimodal input | Send image data or URLs and PDF document URLs in user messages. |
+| Reasoning | Set `reasoning_effort` for supported models and read returned thinking as `text_reasoning` content. |
+
+For a runnable function-tool and streaming example, see the
+[Mistral agent sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/mistral/mistral_agent_basic.py).
 
 ## Generate embeddings
 
@@ -42,7 +92,9 @@ Use `MistralEmbeddingOptions` to request a supported output dimension. You can a
 
 ## Tools
 
-Tools aren't applicable because this package currently provides an embedding client, not an Agent Framework chat client.
+`MistralChatClient` supports locally invoked function tools and the Agent
+Framework function-invocation loop. The selected model must support function
+calling.
 
 ## Next steps
 

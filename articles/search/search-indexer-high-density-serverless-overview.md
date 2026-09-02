@@ -28,7 +28,7 @@ The execution model in this article applies to:
 + [Serverless search services](serverless-cost-optimization.md) that run indexers by using the `2026-05-01-preview` REST API or later.
 + S3 HD search services that run indexers by using the `2025-11-01-preview` REST API or later.
 
-Supported indexer definitions, data sources, skillsets, and indexer-backed knowledge sources work without modification on both options. File knowledge sources aren't supported on Serverless.
+Supported indexer definitions, data sources, skillsets, and indexer-backed knowledge sources work without modification on both options.
 
 ## Execution model
 
@@ -91,7 +91,7 @@ This section explains how to track runtime usage and remaining budget using the 
 Use [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics) (REST API) to retrieve cumulative indexer runtime across all indexers in the service for the current 24-hour window:
 
 ```http
-GET {endpoint}/servicestats?api-version=2026-05-01-preview
+GET {endpoint}/servicestats?api-version=2026-08-01-preview
 ```
 
 The response includes an `indexersRuntime` section. The following JSON shows a service whose 24-hour daily quota isn't used:
@@ -116,7 +116,7 @@ The response includes an `indexersRuntime` section. The following JSON shows a s
 Use [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API) to retrieve cumulative runtime for an individual indexer:
 
 ```http
-GET {endpoint}/indexers('{indexerName}')/search.status?api-version=2026-05-01-preview
+GET {endpoint}/indexers('{indexerName}')/search.status?api-version=2026-08-01-preview
 ```
 
 The response includes a `runtime` section. The following JSON shows an indexer on a service whose 24-hour daily quota isn't used:

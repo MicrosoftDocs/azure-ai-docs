@@ -5,7 +5,7 @@ ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 08/26/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -19,7 +19,7 @@ In this article, you learn how to:
 - Deploy Grok 4.6 (preview) in Microsoft Foundry.
 - Authenticate by using Microsoft Entra ID or an API key.
 - Generate output with the Chat Completions and Responses APIs.
-- Configure reasoning effort with the Chat Completions API (`low`, `medium`, `high`, or `xhigh`; default `high`).
+- Use configurable reasoning effort levels.
 - Call tools with function calling.
 - Stream responses.
 - Troubleshoot common errors.
@@ -248,6 +248,9 @@ response = client.responses.create(
     model=os.environ["DEPLOYMENT_NAME"],
     instructions="You are a helpful assistant.",
     input="What are the top 3 benefits of an agentic coding workflow? Be concise.",
+    reasoning={
+        "effort": "high"  # Options: "low", "medium", "high" (default "high").
+    },
 )
 
 print(response.output_text)
@@ -273,6 +276,9 @@ const response = await client.responses.create({
   model: process.env.DEPLOYMENT_NAME,
   instructions: "You are a helpful assistant.",
   input: "What are the top 3 benefits of an agentic coding workflow? Be concise.",
+  reasoning: {
+    effort: "high", // Default is "high", but you can set it to "low", "medium", or "high" depending on the complexity of the reasoning required.
+  },
 });
 
 console.log(response.output_text);
@@ -287,7 +293,8 @@ curl "$AZURE_ENDPOINT/openai/v1/responses" \
   -d '{
     "model": "'"$DEPLOYMENT_NAME"'",
     "instructions": "You are a helpful assistant.",
-    "input": "What are the top 3 benefits of an agentic coding workflow? Be concise."
+    "input": "What are the top 3 benefits of an agentic coding workflow? Be concise.",
+    "reasoning": { "effort": "high" }
   }'
 ```
 
@@ -507,7 +514,7 @@ To authenticate, you need your resource endpoint and either a Microsoft Entra ID
 | `tools` | array | No | Function definitions the model can call. |
 | `stream` | boolean | No | When `true`, delivers the response as a server-sent events stream. Defaults to `false`. |
 | `reasoning_effort` | string | No | Chat Completions only. Controls how much reasoning the model performs. One of `low`, `medium`, `high`, or `xhigh`. Defaults to `high`. |
-| `reasoning` | object | No | Responses only. Reasoning configuration. The reasoning effort defaults to `high` and currently can't be changed. |
+| `reasoning` | object | No | Responses only. Reasoning configuration. Set `effort` to `low`, `medium`, or `high`. Defaults to `high`. |
 | `max_completion_tokens` | integer | No | Chat Completions only. An upper bound on generated tokens, including reasoning tokens. |
 | `max_output_tokens` | integer | No | Responses only. An upper bound on generated tokens, including reasoning tokens. |
 

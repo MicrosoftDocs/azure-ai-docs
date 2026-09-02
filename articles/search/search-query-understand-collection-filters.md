@@ -6,7 +6,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -29,7 +29,7 @@ At least that's how it works conceptually. In reality, Azure AI Search implement
 There are three underlying reasons why filter features aren't fully supported for all types of collections:
 
 1. Only certain operators are supported for certain data types. For example, it doesn't make sense to compare the Boolean values `true` and `false` by using comparison operators such as `lt` and `gt`.
-1. Azure AI Search doesn't support *correlated search* on fields of type `Collection(Edm.ComplexType)`.
+1. Azure AI Search supports correlated filters on fields of type `Collection(Edm.ComplexType)`, but fielded full-text search over those fields is uncorrelated.
 1. Azure AI Search uses inverted indexes to execute filters over all types of data, including collections.
 
 The first reason is just a consequence of how the OData language and EDM type system are defined. The last two are explained in more detail in the rest of this article.

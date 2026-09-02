@@ -50,21 +50,29 @@ items:
      href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
    - name: Evaluate agents
      href: ../../observability/how-to/evaluate-agent.md
-   - name: Run evaluations from the SDK
+   - name: Run evaluations with the SDK
      items:
      - name: Introduction to cloud evaluation
        href: ../../observability/how-to/cloud-evaluation.md
-     - name: Evaluate datasets in the cloud
-       href: ../../observability/how-to/cloud-evaluation-datasets.md
-     - name: Evaluate models and agents in the cloud
-       href: ../../observability/how-to/cloud-evaluation-targets.md
-     - name: Evaluate deployed agent and model interactions
-       href: ../../observability/how-to/cloud-evaluation-deployed-interactions.md
-     - name: Evaluate conversations in the cloud
-       href: ../../observability/how-to/cloud-evaluation-conversations.md
-     - name: Generate synthetic data
-       href: ../../observability/how-to/cloud-evaluation-synthetic-data.md
-     - name: Get cloud evaluation results
+     - name: Evaluate individual turns
+       items:
+       - name: Evaluate query-response datasets
+         href: ../../observability/how-to/cloud-evaluation-datasets.md
+       - name: Evaluate model and agent responses
+         href: ../../observability/how-to/cloud-evaluation-targets.md
+       - name: Evaluate deployed model and agent interactions
+         href: ../../observability/how-to/cloud-evaluation-deployed-interactions.md
+       - name: Generate synthetic queries
+         href: ../../observability/how-to/cloud-evaluation-synthetic-data.md
+     - name: Evaluate complete conversations
+       items:
+       - name: Evaluate conversation datasets
+         href: ../../observability/how-to/cloud-evaluation-conversations.md
+       - name: Evaluate deployed model and agent conversations
+         href: ../../observability/how-to/cloud-evaluation-deployed-conversations.md
+       - name: Simulate agent conversations
+         href: ../../observability/how-to/cloud-evaluation-simulate-conversations.md
+     - name: Get evaluation results
        href: ../../observability/how-to/cloud-evaluation-results.md
      - name: Use admin-connected models
        href: ../../observability/how-to/evaluate-admin-connected-models.md

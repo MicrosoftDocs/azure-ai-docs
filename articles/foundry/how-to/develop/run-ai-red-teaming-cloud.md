@@ -6,6 +6,7 @@ ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - references_regions
+  - dev-focus
 ms.topic: how-to
 ms.date: 04/22/2026
 ms.reviewer: minthigpen
@@ -36,6 +37,8 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 
 First, install Microsoft Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
+# [Python](#tab/python)
+
 ```bash
 pip install "azure-ai-projects>=2.0.0"
 ```
@@ -48,6 +51,41 @@ import os
 endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]  # Example: https://<account_name>.services.ai.azure.com/api/projects/<project_name>
 agent_name = os.environ["AZURE_AI_AGENT_NAME"]  # Required. The name of the agent to red team.
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```bash
+npm install @azure/ai-projects @azure/identity dotenv
+```
+
+Then, set your environment variables for your Microsoft Foundry resources and
+create the project client:
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+// Example: https://<account_name>.services.ai.azure.com/api/projects/<project_name>
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "";
+// Required. The name of the agent to red team.
+const agentName = process.env["AZURE_AI_AGENT_NAME"] || "";
+const modelDeploymentName = process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+const openAIClient = project.getOpenAIClient();
+```
+
+Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+# [cURL](#tab/curl)
+
+Install [cURL](https://curl.se/) and the [Azure CLI](/cli/azure/install-azure-cli). In the cURL examples, replace the project endpoint placeholders and `<token>` with an access token for `https://ai.azure.com`.
+
+---
 
 ## Supported targets
 
@@ -137,6 +175,43 @@ with DefaultAzureCredential() as credential:
         print(f"Created red team: {red_team.id}")
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// Get the agent safety testing criteria used for red teaming
+function getAgentSafetyEvaluationCriteria() {
+  return [
+    {
+      type: "azure_ai_evaluator",
+      name: "Prohibited Actions",
+      evaluator_name: "builtin.prohibited_actions",
+      evaluator_version: "1",
+    },
+    {
+      type: "azure_ai_evaluator",
+      name: "Task Adherence",
+      evaluator_name: "builtin.task_adherence",
+      evaluator_version: "1",
+      initialization_parameters: { deployment_name: modelDeploymentName },
+    },
+    {
+      type: "azure_ai_evaluator",
+      name: "Sensitive Data Leakage",
+      evaluator_name: "builtin.sensitive_data_leakage",
+      evaluator_version: "1",
+    },
+  ];
+}
+
+// Create a red team with built-in safety evaluators
+const redTeam = await openAIClient.evals.create({
+  name: "Red Team Agentic Safety Evaluation",
+  data_source_config: { type: "azure_ai_source", scenario: "red_team" },
+  testing_criteria: getAgentSafetyEvaluationCriteria(),
+});
+console.log(`Created red team: ${redTeam.id}`);
+```
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -200,6 +275,15 @@ print("[Group] Response:")
 print(red_team_fetched)
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+console.log(`[Group] Retrieving group by id=${redTeam.id} ...`);
+const redTeamFetched = await openAIClient.evals.retrieve(redTeam.id);
+console.log("[Group] Response:");
+console.log(JSON.stringify(redTeamFetched, null, 2));
+```
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -244,6 +328,41 @@ taxonomy = project_client.beta.evaluation_taxonomies.create(
 taxonomy_file_id = taxonomy.id
 print(f"Created taxonomy: {taxonomy_file_id}")
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// Fetch the latest version of the agent to red team
+const agentVersion = await project.agents.get(agentName);
+
+// Define the agent target for taxonomy generation
+const target = {
+  type: "azure_ai_agent",
+  name: agentName,
+  version: agentVersion.versions.latest.version,
+};
+
+// Create taxonomy for the prohibited actions risk category
+// `name` and `version` are required by the EvaluationTaxonomy type at
+// compile time, even though the service infers them from the request URL.
+const taxonomy = await project.beta.evaluationTaxonomies.create(
+  agentName,
+  {
+    name: agentName,
+    version: "1",
+    description: "Taxonomy for red teaming run",
+    taxonomyInput: {
+      type: "agent",
+      riskCategories: ["ProhibitedActions"],
+      target: target,
+    },
+  },
+);
+const taxonomyFileId = taxonomy.id;
+console.log(`Created taxonomy: ${taxonomyFileId}`);
+```
+
+Reference: [evaluationTaxonomies.create](/javascript/api/@azure/ai-projects/aiprojectclient)
 
 # [cURL](#tab/curl)
 
@@ -308,6 +427,26 @@ eval_run = client.evals.runs.create(
     },
 )
 print(f"Created run: {eval_run.id}, status: {eval_run.status}")
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// Create a red team run with attack strategies
+const evalRun = await openAIClient.evals.runs.create(redTeam.id, {
+  name: "Red Team Agent Safety Eval Run",
+  data_source: {
+    type: "azure_ai_red_team",
+    item_generation_params: {
+      type: "red_team_taxonomy",
+      attack_strategies: ["Flip", "Base64", "IndirectJailbreak"],
+      num_turns: 5,
+      source: { type: "file_id", id: taxonomyFileId },
+    },
+    target: target,
+  },
+});
+console.log(`Created run: ${evalRun.id}, status: ${evalRun.status}`);
 ```
 
 # [cURL](#tab/curl)
@@ -380,6 +519,20 @@ while True:
     time.sleep(5)
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// Poll for run completion
+let run = evalRun;
+while (!["completed", "failed", "canceled"].includes(run.status)) {
+  run = await openAIClient.evals.runs.retrieve(run.id, {
+    eval_id: redTeam.id,
+  });
+  console.log(`Status: ${run.status}`);
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+}
+```
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -406,6 +559,32 @@ output_path = os.path.join(data_folder, f"redteam_eval_output_items_{agent_name}
 with open(output_path, "w") as f:
     f.write(json.dumps(_to_json_primitive(items), indent=2))
 print(f"[Run] Done. Status={run.status}. Output items saved to {output_path}")
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+import path from "path";
+import fs from "node:fs/promises";
+
+console.log("[Run] Fetching output items...");
+const items = [];
+for await (const item of openAIClient.evals.runs.outputItems.list(run.id, {
+  eval_id: redTeam.id,
+})) {
+  items.push(item);
+}
+
+const dataFolder = "./data_folder";
+await fs.mkdir(dataFolder, { recursive: true });
+const outputPath = path.join(
+  dataFolder,
+  `redteam_eval_output_items_${agentName}.json`,
+);
+await fs.writeFile(outputPath, JSON.stringify(items, null, 2));
+console.log(
+  `[Run] Done. Status=${run.status}. Output items saved to ${outputPath}`,
+);
 ```
 
 # [cURL](#tab/curl)

@@ -35,7 +35,6 @@ Where you author, test, and ship Foundry work.
 | [Coding agent integration](../agents/how-to/use-cli-with-coding-agents.md) | Build Foundry projects with AI coding agents such as GitHub Copilot, including Model Context Protocol access through the Foundry MCP Server. |
 | [Templates and samples](../how-to/develop/ai-template-get-started.md) | Start from prebuilt application templates and GitHub samples. |
 | [LangChain and LangGraph integration](../how-to/develop/langchain.md) | Use Foundry models, tools, memory, and tracing from LangChain and LangGraph apps. |
-| [Ask AI](ask-ai.md) (preview) | In-product assistant that answers Foundry questions and helps you act on portal insights. |
 
 ## Models
 

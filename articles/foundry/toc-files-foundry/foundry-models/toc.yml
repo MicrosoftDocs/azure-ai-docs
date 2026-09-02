@@ -54,9 +54,6 @@ items:
     - name: Automatic model updates for Azure OpenAI Models
       displayName: Working with models
       href: ../../openai/how-to/working-with-models.md
-    - name: Upgrade or switch models with Ask AI
-      displayName: Upgrade or switch models with Ask AI (preview)
-      href: ../../observability/how-to/optimization-model-upgrade.md
     - name: Lifecycle and support policy
       displayName: Foundry Models lifecycle and support policy
       href: ../../openai/concepts/model-retirements.md

@@ -49,7 +49,6 @@ The Serverless Developer tier is in Public Preview and doesn't currently support
 - Index aliases: Not supported
 - Debug sessions: Not supported
 - Private networking for indexers: Not supported
-- File Knowledge Source (Preview): Not supported
 - Shared Private Link resources: No planned support for the Serverless model
 - Service-level agreement (SLA): Not available during Public Preview
 
@@ -97,7 +96,7 @@ There is also a free, limited search service tier:
 
 - **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling isn't supported. Some premium features are unavailable, and the service might be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
 
-You see billing rates in the [Azure portal](https://portal.azure.com/auth/login/) when you create a new Azure AI Search service in the **Select Pricing Tier** page. 
+You see billing rates in the [Azure portal](https://portal.azure.com/auth/login/) when you create a new Azure AI Search service in the **Select Pricing Tier** page.
 
 :::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Screenshot of the Azure portal Select a pricing tier chart listing the service tiers and their associated SKU." border="true":::
 

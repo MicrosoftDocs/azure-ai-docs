@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -41,7 +42,7 @@ For remote or managed runtimes that own an agent definition, permissions, or ser
 | [Google Gemini](./google-gemini.md) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | [ONNX](./onnx.md) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | [Dapr](./dapr.md) | Varies | Varies | Varies | Varies | Varies | Varies |
-| [Mistral](./mistral.md) | N/A | N/A | N/A | N/A | N/A | N/A |
+| [Mistral](./mistral.md) | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
 
 > [!IMPORTANT]
 > If you use Microsoft Agent Framework to build applications that operate with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You are responsible for any usage and associated costs.
@@ -115,7 +116,7 @@ Agent Framework Python exposes provider-specific chat clients behind the common 
 - **[Ollama](./ollama.md)** — Local open-source model inference.
 - **[Amazon Bedrock](./amazon-bedrock.md)** — AWS-managed foundation model inference.
 - **[Google Gemini](./google-gemini.md)** — Gemini Developer API or Vertex AI inference.
-- **[Mistral](./mistral.md)** — Mistral AI embedding generation.
+- **[Mistral](./mistral.md)** — Mistral AI chat and embedding generation.
 
 :::zone-end
 

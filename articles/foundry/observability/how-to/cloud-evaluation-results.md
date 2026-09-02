@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to retrieve and interpret cloud evaluation results so that I can diagnose failures and compare application quality.
 ---
 
-# Get cloud evaluation results
+# Get evaluation results with Microsoft Foundry SDK
 
 Poll asynchronous evaluation runs, retrieve item and aggregate output, cancel runs, and resolve common evaluation errors.
 

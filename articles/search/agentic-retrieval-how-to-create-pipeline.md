@@ -16,9 +16,9 @@ ai-usage: ai-assisted
 [!INCLUDE [Preview API usage](./includes/previews/agentic-retrieval-preview-api-usage.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -58,7 +58,7 @@ In this tutorial, you:
 
     GPT-4 family models are deprecated. For retirement dates and current status in Microsoft Foundry, see [Model retirement schedule - Microsoft Foundry](/azure/foundry/openai/concepts/model-retirement-schedule).
 
-+ Permissions to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
++ Permission to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
 
 + [Python 3.8](https://www.python.org/downloads/) or later.
 
@@ -92,7 +92,7 @@ To configure access for this solution:
 1. On your search service, [enable role-based access](search-security-enable-roles.md) and [assign the following roles](search-security-rbac.md).
 
     | Role | Assignee | Purpose |
-    |------|----------|---------|
+    | ------ | ---------- | --------- |
     | Search Service Contributor | Your user account | Create objects |
     | Search Index Data Contributor | Your user account | Load data |
     | Search Index Data Reader | Your user account and project managed identity | Read indexed content |
@@ -100,7 +100,7 @@ To configure access for this solution:
 1. On your project's parent resource, assign the following roles.
 
     | Role | Assignee | Purpose |
-    |------|----------|---------|
+    | ------ | ---------- | --------- |
     | Foundry User | Your user account | Access model deployments and create agents |
     | Foundry Project Manager | Your user account | Create project connection and use MCP tool in agents |
     | Cognitive Services User | Search service managed identity | Access knowledge base |
@@ -351,7 +351,7 @@ index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
 index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
 print(f"Knowledge base '{base_name}' created or updated successfully")
 
-mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-05-01-preview"
+mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-08-01-preview"
 ```
 
 ### Set up a project client
@@ -530,7 +530,7 @@ response = openai_client.responses.create(
 print(f"Response: {response.output_text}")
 ```
 
-The response should be similar to the following:
+The response should be similar to the following example.
 
 ```
 Response: Here are evidence-based explanations to your questions:

@@ -9,6 +9,7 @@ ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.custom:
   - doc-kit-assisted
+  - dev-focus
 ai-usage: ai-assisted
 ---
 
@@ -124,6 +125,8 @@ To set up each deployment with a specific model subset, see [Route to a model su
 
 The following example creates three agents, each pointing to a different model router deployment:
 
+# [Python](#tab/python)
+
 ```python
 import os
 from azure.ai.projects import AIProjectClient
@@ -156,7 +159,47 @@ triage_agent = project.agents.create_agent(
 )
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const project = new AIProjectClient(
+  process.env["PROJECT_ENDPOINT"]!,
+  new DefaultAzureCredential(),
+);
+
+// Research agent — Quality-mode router with gpt-5.6-sol, gpt-5, o4-mini
+const researchAgent = await project.agents.createVersion("research-agent", {
+  kind: "prompt",
+  model: "router-frontier",
+  instructions:
+    "You are a research assistant that synthesizes complex information.",
+});
+
+// General assistant — Balanced-mode router with gpt-5-mini, gpt-4.1
+const assistantAgent = await project.agents.createVersion("assistant-agent", {
+  kind: "prompt",
+  model: "router-balanced",
+  instructions: "You are a helpful assistant.",
+});
+
+// Triage agent — Cost-mode router with gpt-5-nano, gpt-4.1-nano
+const triageAgent = await project.agents.createVersion("triage-agent", {
+  kind: "prompt",
+  model: "router-efficient",
+  instructions:
+    "You classify incoming requests and route them to the right team.",
+});
+```
+
+---
+
 Each agent makes independent routing decisions within its assigned model pool. The research agent never uses a nano-tier model, and the triage agent never incurs frontier-model costs.
+
+- Reference: [`AIProjectClient.agents.create_agent`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient) (Python)
+- Reference: [`AIProjectClient.agents.createVersion`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
 
 ## Get started
 
@@ -167,6 +210,8 @@ Set model router as the model for your agent. No additional routing configuratio
 In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), select your model router deployment from the **model** dropdown when creating or editing an agent in the agent playground.
 
 For programmatic agent creation, specify your model router deployment name:
+
+# [Python](#tab/python)
 
 ```python
 import os
@@ -184,6 +229,29 @@ agent = project.agents.create_agent(
     instructions="You are a helpful assistant.",
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const project = new AIProjectClient(
+  process.env["PROJECT_ENDPOINT"]!,
+  new DefaultAzureCredential(),
+);
+
+const agent = await project.agents.createVersion("my-agent", {
+  kind: "prompt",
+  model: process.env["MODEL_DEPLOYMENT"]!, // "model-router"
+  instructions: "You are a helpful assistant.",
+});
+```
+
+---
+
+- Reference: [`AIProjectClient.agents.create_agent`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient) (Python)
+- Reference: [`AIProjectClient.agents.createVersion`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
 
 ### Observe routing decisions
 
