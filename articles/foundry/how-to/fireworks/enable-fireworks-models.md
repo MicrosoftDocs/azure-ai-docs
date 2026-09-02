@@ -172,7 +172,7 @@ The following Fireworks models are available in the Foundry model catalog. In th
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
 
 > [!IMPORTANT]
-> The Pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, `FW-GLM-5`, `FW-GLM-5.1`, and `FW-MiniMax-M2.5`. Provisioned throughput (PTU) remains available for all six models.
+> The pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, `FW-GLM-5`, `FW-GLM-5.1`, and `FW-MiniMax-M2.5`. Provisioned throughput (PTU) remains available for all six models.
 >
 > Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
 
