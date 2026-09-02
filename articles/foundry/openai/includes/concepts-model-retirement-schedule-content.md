@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 08/26/2026
+ms.date: 09/02/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -240,7 +240,7 @@ Microsoft Foundry offers Claude models in [two versions](../../foundry-models/co
 | claude-opus-4-1 | — | Retired | 2026-08-05 | claude-opus-5 |
 | claude-haiku-4-5 | 1 | GA | 2026-10-19 | — |
 | claude-haiku-4-5 | 2 | GA | 2026-10-19 | — |
-| claude-fable-5-1 | 1 | Preview | — | — |
+| claude-fable-5-1 | 1 | Preview | 2027-12-05 | — |
 | claude-fable-5 | 1 | Preview | 2027-12-05 | — |
 | claude-mythos-5-1 | 1 | Preview | — | — |
 | claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |

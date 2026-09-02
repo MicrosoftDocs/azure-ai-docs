@@ -4,7 +4,7 @@ description: "Learn about the model router feature in Azure OpenAI in Microsoft 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 08/12/2026
+ms.date: 09/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
@@ -41,6 +41,7 @@ Model router supports Global Standard deployments in all of the following region
 | :--- | :---: | :---: |
 | Australia East | ✅ | ✅ |
 | Brazil South | ✅ | - |
+| Canada Central | ✅ | - |
 | Canada East | ✅ | - |
 | Central US | ✅ | ✅ |
 | East US | ✅ | ✅ |
@@ -52,6 +53,8 @@ Model router supports Global Standard deployments in all of the following region
 | Japan West | ✅ | ✅ |
 | Korea Central | ✅ | ✅ |
 | North Central US | ✅ | ✅ |
+| North Europe | ✅ | ✅ |
+| Norway East | ✅ | ✅ |
 | Poland Central | ✅ | ✅ |
 | South Africa North | ✅ | - |
 | South Central US | ✅ | ✅ |
@@ -61,6 +64,7 @@ Model router supports Global Standard deployments in all of the following region
 | Sweden Central | ✅ | ✅ |
 | Switzerland North | ✅ | ✅ |
 | Switzerland West | ✅ | - |
+| UAE North | ✅ | - |
 | UK South | ✅ | - |
 | UK West | ✅ | - |
 | West Central US | ✅ | - |

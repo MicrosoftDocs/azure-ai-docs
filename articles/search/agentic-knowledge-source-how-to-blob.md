@@ -3,7 +3,7 @@ title: Create a Blob Knowledge Source for Agentic Retrieval
 description: Learn how to create a blob knowledge source in Azure AI Search that ingests content from Azure Blob Storage or ADLS Gen2 for agentic retrieval.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/18/2026
+ms.date: 09/02/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
@@ -516,6 +516,10 @@ Starting with the `2026-08-01-preview` API version, `networkAccessMode` controls
 To configure and verify private network access:
 
 [!INCLUDE [Configure private network ingestion](includes/how-tos/knowledge-source-private-network.md)]
+
+### Use automatic per-language analyzers (preview)
+
+[!INCLUDE [Configure automatic per-language analyzers](includes/how-tos/knowledge-source-language-analyzers.md)]
 
 ## Check ingestion status
 
