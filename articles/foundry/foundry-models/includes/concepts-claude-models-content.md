@@ -263,22 +263,22 @@ The following table lists rate limits. To increase your quota beyond the default
 
 #### Enterprise and MCA-E
 
-| Model             | Deployment type         | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | RPM       | ITPM      | OTPM      |
-|:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|----------:|----------:|
-| claude-fable-5-1  | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-8   | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000 | 800,000   |
-| claude-sonnet-4-5 | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000 | 800,000   |
-| claude-haiku-4-5  | Global Standard         | Yes                        | Yes                                           | 4,000     | 4,000,000 | 800,000   |
+| Model             | Deployment type         | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | RPM       | ITPM       | OTPM      |
+|:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|-----------:|----------:|
+| claude-fable-5-1  | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000  | 800,000   |
+| claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000  | 800,000   |
+| claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-8   | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-4-5 | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-haiku-4-5  | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
 
 # [Free Trial](#tab/free)
 
