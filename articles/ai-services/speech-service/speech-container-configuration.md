@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/02/2026
 ms.author: pafarley
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
@@ -17,11 +17,14 @@ ai-usage: ai-assisted
 
 Speech containers enable customers to build one speech application architecture that is optimized to take advantage of both robust cloud capabilities and edge locality. 
 
-The Speech container runtime environment is configured using the `docker run` command arguments. This container has some required and optional settings. The container-specific settings are the billing settings.
+Configure the Speech container runtime environment with `docker run` command arguments. The following sections describe billing, logging, volume mounts, and the cache settings required for real-time diarization.
 
 ## Configuration settings
 
 [!INCLUDE [Container shared configuration settings table](../includes/cognitive-services-containers-configuration-shared-settings-table.md)]
+
+> [!NOTE]
+> Speech-to-text containers that enable real-time diarization also require the settings described in [Real-time diarization cache settings](#real-time-diarization-cache-settings).
 
 > [!IMPORTANT]
 > The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container won't start. For more information about using these configuration settings to instantiate a container, see [Billing](speech-container-overview.md#billing-information).
@@ -68,12 +71,21 @@ This setting can be found in the following place:
 
 ## Real-time diarization cache settings
 
-Connected and disconnected real-time speech-to-text containers use a customer-operated Redis-compatible cache to preserve diarization state across replacement sessions after the four-hour session boundary. For setup and validation, see [Configure diarization continuation for speech containers](speech-container-stt-diarization-cache.md).
+For generally available real-time diarization, use speech-to-text container version 5.1.0 or later. Connected and disconnected containers require a customer-operated Redis-compatible cache whenever you enable diarization, including for audio shorter than four hours. Configure both settings for proper diarization functionality. For setup and validation, see [Configure a cache for speech container diarization](speech-container-stt-diarization-cache.md).
 
-| Optional | Name | Data type | Description |
+By default, the cache retains four hours of diarization data. For audio beyond four hours, the oldest cached data begins to be discarded, which might reduce speaker association or labeling quality. This retention behavior doesn't end the diarization session or prevent longer audio from running.
+
+| Requirement | Name | Data type | Description |
 | --- | --- | --- | --- |
-| Optional | `InClusterRedisCacheEnabled` | Boolean | Set to `true` to enable a Redis-compatible cache for diarization state. |
-| Optional | `InClusterRedisCacheEndpoint` | String | Set to the reachable cache endpoint in `<host-or-ip>:<port>` format. |
+| Required for diarization | `InClusterRedisCacheEnabled` | Boolean | Set to `true` to enable the required Redis-compatible cache. |
+| Required for diarization | `InClusterRedisCacheEndpoint` | String | Set to the reachable cache endpoint in `<host-or-ip>:<port>` format. |
+
+Add both settings to the speech-to-text container startup command:
+
+```bash
+InClusterRedisCacheEnabled=true \
+InClusterRedisCacheEndpoint=<host-or-ip>:<port>
+```
 
 ## Mount settings
 
@@ -85,7 +97,7 @@ The exact syntax of the host mount location varies depending on the host operati
 
 | Optional | Name | Data type | Description |
 | -------- | ---- | --------- | ----------- |
-| Not allowed | `Input` | String | Standard Speech containers don't use this. Custom speech containers use [volume mounts](#volume-mount-settings).                                                                                    |
+| Not allowed | `Input` | String | Standard Speech containers don't use this. Custom speech containers use [volume mounts](#volume-mount-settings). |
 | Optional | `Output` | String | The target of the output mount. The default value is `/output`. This is the location of the logs. This includes container logs. <br><br>Example:<br>`--mount type=bind,src=c:\output,target=/output` |
 
 ## Volume mount settings
@@ -97,7 +109,7 @@ The custom speech containers use [volume mounts](https://docs.docker.com/storage
 
 Custom models are downloaded the first time that a new model is ingested as part of the custom speech container `docker run` command. Sequential runs of the same `ModelId` for a custom speech container uses the previously downloaded model. If the volume mount isn't provided, custom models can't be persisted.
 
-The volume mount setting consists of three color `:` separated fields:
+The volume mount setting consists of three colon-separated fields:
 
 1. The first field is the name of the volume on the host machine, for example _C:\input_.
 2. The second field is the directory in the container, for example _/usr/local/models_.
