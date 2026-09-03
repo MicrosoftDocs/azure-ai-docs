@@ -60,7 +60,7 @@ items:
          href: ../../observability/how-to/cloud-evaluation-datasets.md
        - name: Evaluate model and agent responses
          href: ../../observability/how-to/cloud-evaluation-targets.md
-       - name: Evaluate deployed model and agent interactions
+       - name: Evaluate model and agent traces
          href: ../../observability/how-to/cloud-evaluation-deployed-interactions.md
        - name: Generate synthetic queries
          href: ../../observability/how-to/cloud-evaluation-synthetic-data.md
@@ -68,7 +68,7 @@ items:
        items:
        - name: Evaluate conversation datasets
          href: ../../observability/how-to/cloud-evaluation-conversations.md
-       - name: Evaluate deployed model and agent conversations
+       - name: Evaluate model and agent traces
          href: ../../observability/how-to/cloud-evaluation-deployed-conversations.md
        - name: Simulate agent conversations
          href: ../../observability/how-to/cloud-evaluation-simulate-conversations.md
@@ -76,22 +76,26 @@ items:
        href: ../../observability/how-to/cloud-evaluation-results.md
      - name: Use admin-connected models
        href: ../../observability/how-to/evaluate-admin-connected-models.md
-   - name: Continuous evaluation
-     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation
    - name: Run evaluations from the portal
      href: ../../how-to/evaluate-generative-ai-app.md
-   - name: View evaluation results in the portal
-     href: ../../how-to/evaluate-results.md
-     displayName: accuracy,metrics
-   - name: Analyze evaluation results
-     href: ../../observability/how-to/cluster-analysis.md
    - name: Run agent evaluations with the Azure Developer CLI
      displayName: azd cli
      href: ../../observability/how-to/azure-developer-cli-evaluation.md
-   - name: Run benchmark evaluations
-     href: ../../observability/how-to/benchmark-evaluations.md
-   - name: Set up human evaluation
-     href: ../../observability/how-to/human-evaluation.md
+   - name: Specialized evaluation workflows
+     items:
+     - name: Continuous evaluation
+       href: ../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation
+     - name: Run benchmark evaluations
+       href: ../../observability/how-to/benchmark-evaluations.md
+     - name: Set up human evaluation
+       href: ../../observability/how-to/human-evaluation.md
+   - name: Review and analyze results
+     items:
+     - name: View evaluation results in the portal
+       href: ../../how-to/evaluate-results.md
+       displayName: accuracy,metrics
+     - name: Analyze evaluation results
+       href: ../../observability/how-to/cluster-analysis.md
 
 # Optimization
 - name: Optimization

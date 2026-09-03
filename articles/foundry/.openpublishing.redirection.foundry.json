@@ -3862,8 +3862,13 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/quickstarts/hub-get-started-code.md",
-      "redirect_url": "/azure/foundry-classic/quickstarts/hub-get-started-code",
+      "redirect_url": "/azure/foundry-classic/quickstarts/get-started-code",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/foundry-classic/quickstarts/hub-get-started-code.md",
+      "redirect_url": "/azure/foundry-classic/quickstarts/get-started-code",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/reference/foundry-known-issues.md",
