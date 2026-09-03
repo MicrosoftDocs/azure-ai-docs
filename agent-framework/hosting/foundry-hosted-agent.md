@@ -132,18 +132,25 @@ client = FoundryChatClient(
 agent = Agent(
     client=client,
     instructions="You are a helpful AI assistant.",
-    default_options={"store": False},
 )
 
 server = ResponsesHostServer(agent)
 server.run()
 ```
 
-The `ResponsesHostServer` wraps your agent and exposes it through the Foundry Responses protocol. Setting `store` to `False` in `default_options` avoids duplicating conversation history, since the hosting infrastructure manages history automatically.
+The `ResponsesHostServer` wraps your agent and exposes it through the Foundry Responses protocol. For a non-workflow agent, the default `history_source="agent_server"` uses the configured Agent Server response provider as the model's history source. The host prevents the downstream model service from retaining a second copy when the client stores history by default.
+
+Don't combine the default history source with a `HistoryProvider` that has `load_messages=True`. Also don't set the `conversation_id`, `previous_response_id`, or `conversation` downstream service continuation options. The host rejects these configurations to prevent duplicate history.
+
+Use `ResponsesHostServer(agent, history_source="agent")` when the agent's history provider or downstream model service must manage conversation history. This mode passes only the current request input from Agent Server and preserves the agent's history and service storage behavior. Custom `SupportsAgentRun` implementations must use this mode. The `store` parameter remains separate: it selects the response provider that persists Responses API inputs and outputs in both modes.
+
+The host owns the supplied agent and might add hosting-specific context providers. Don't reuse the agent with another host or invoke it directly after host construction.
 
 ### Persist state and handle long-running conversations
 
 `ResponsesHostServer` configures Foundry-backed stores by default. For non-workflow agents, `AgentSessionStoreProvider` supplies a `FoundryAgentSessionStore`. For workflow agents, `CheckpointStoreProvider` supplies a `FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a `FoundryFunctionApprovalStore` for pending approvals. These stores use Foundry State Store when hosted and local Agent Server state when you run locally.
+
+With `history_source="agent"`, the configured session store persists provider state carried by `AgentSession`, including messages from `InMemoryHistoryProvider`.
 
 To customize storage, pass a `StoreProvider` to `agent_session_store_provider` or `function_approval_store_provider`. Pass a `ContextScopedStoreProvider` to `checkpoint_store_provider`. For example, implement `SessionStore` and `StoreProvider[SessionStore]` to use your own non-workflow agent session store.
 
