@@ -97,9 +97,9 @@ The following Copilot Retrieval API limitations also apply to remote SharePoint 
 
 When you query a knowledge base, Azure AI Search can run a limited number of remote SharePoint queries at a time. The limit depends on the pricing model:
 
-+ [**Dedicated:**](search-sku-tier.md#dedicated-pricing-model) Each service replica runs one query at a time across all remote SharePoint knowledge sources selected for the retrieve request. Additional queries wait for an available replica, which increases latency. To increase query throughput, [add replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
++ **[Dedicated](search-sku-tier.md#dedicated-pricing-model):** Each service replica runs one query at a time across all remote SharePoint knowledge sources selected for the retrieve request. Additional queries wait for an available replica, which increases latency. To increase query throughput, [add replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
-+ [**Serverless (preview):**](search-sku-tier.md#serverless-pricing-model-preview) Azure AI Search runs one query at a time across all remote SharePoint knowledge sources selected for the retrieve request. Additional queries wait. Serverless manages capacity automatically, so you can't increase query throughput.
++ **[Serverless (preview)](search-sku-tier.md#serverless-pricing-model-preview):** Azure AI Search runs one query at a time across all remote SharePoint knowledge sources selected for the retrieve request. Additional queries wait. Serverless manages capacity automatically, so you can't increase query throughput.
 
 ## Check for existing knowledge sources
 
