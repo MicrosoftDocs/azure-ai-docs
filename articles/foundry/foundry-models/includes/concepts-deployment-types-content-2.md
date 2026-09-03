@@ -16,7 +16,7 @@ ms.custom: include, classic-and-new
 > **Data residency for all deployment types**: Data stored at rest remains in the designated Azure geography. However, inferencing data is processed as follows:
 > - **Global** types: May be processed in any Azure region
 > - **Data Zone** types: The service processes data only within the Microsoft-specified data zone (US, EU, or Asia Pacific (APAC)).
-> - **Standard and Regional Provisioned** types: Prompts and responses are processed within the customer-specified Azure geography and may be processed between regions within that geography for operational purposes.
+> - **Standard and Regional Provisioned** types: Prompts and responses are processed within the customer-specified Azure geography and might be processed between regions within that geography for operational purposes.
 >
 > [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
