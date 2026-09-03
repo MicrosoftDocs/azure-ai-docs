@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 08/26/2026
+ms.date: 09/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -303,6 +303,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Kimi-K3 | 2026-07-29 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -313,7 +314,8 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
-| MAI-Image-2e | 2026-04-09 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
+| MAI-Image-2.6 | 2026-07-31 | - | - | - | - | - | - | - | - | ✅ | - | - | - |
+| MAI-Image-2.6-Flash | 2026-07-31 | - | - | - | - | - | - | - | - | ✅ | - | - | - |
 | MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -354,6 +356,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Kimi-K3 | 2026-07-29 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -364,7 +367,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
-| MAI-Image-2e | 2026-04-09 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -405,6 +407,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Kimi-K3 | 2026-07-29 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -415,7 +418,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | ✅ |
-| MAI-Image-2e | 2026-04-09 | - | - | - | - | ✅ |
 | MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -456,6 +458,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ |
+| Kimi-K3 | 2026-07-29 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ |
@@ -466,7 +469,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2.5 | 2026-06-02 | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | ✅ |
-| MAI-Image-2e | 2026-04-09 | - | ✅ |
 | MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ |

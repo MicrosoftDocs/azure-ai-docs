@@ -3,7 +3,7 @@ title: Model region availability for Provisioned deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Provisioned deployment options
 manager: mcleans
-ms.date: 08/28/2026
+ms.date: 09/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
