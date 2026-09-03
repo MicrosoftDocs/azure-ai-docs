@@ -922,7 +922,7 @@ need to send text and don't need the full activity object shape.
 | `message` | Yes | Message text to send. Use `{Variable.Path}` placeholders to include workflow state values. |
 
 > [!NOTE]
-> `SendMessage` is supported by the C# declarative workflow implementation. Use `SendActivity` for Python workflows.
+> The C# declarative workflow implementation supports `SendMessage`. Use `SendActivity` for Python workflows.
 
 ### Agent Invocation Actions
 
