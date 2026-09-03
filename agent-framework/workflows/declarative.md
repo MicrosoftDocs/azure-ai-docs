@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 06/26/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -52,6 +53,7 @@ ms.service: agent-framework
   | ContinueLoop                        | ✅ |   ✅   |                                                  |
   | GotoAction                          | ✅ |   ✅   |                                                  |
   | SendActivity                        | ✅ |   ✅   |                                                  |
+  | SendMessage                         | ✅ |   ❌   | C#-only shorthand for sending a message          |
   | InvokeAzureAgent                    | ✅ |   ✅   |                                                  |
   | InvokeFunctionTool                  | ✅ |   ✅   |                                                  |
   | InvokeMcpTool                       | ✅ |   ✅   |                                                  |
@@ -902,6 +904,26 @@ With an expression:
 | `activity` | Yes | The activity to send |
 | `activity.text` | Yes | Message text (literal or expression) |
 
+#### SendMessage
+
+Sends a templated text message to the user. Use `SendMessage` when you only
+need to send text and don't need the full activity object shape.
+
+```yaml
+- kind: SendMessage
+  id: show_repo_summary
+  message: "Fetched repo: visibility={Local.RepoInfo.visibility}, description={Local.RepoInfo.description}"
+```
+
+**Properties:**
+
+| Property | Required | Description |
+|----------|----------|-------------|
+| `message` | Yes | Message text to send. Use `{Variable.Path}` placeholders to include workflow state values. |
+
+> [!NOTE]
+> `SendMessage` is supported by the C# declarative workflow implementation. Use `SendActivity` for Python workflows.
+
 ### Agent Invocation Actions
 
 #### InvokeAzureAgent
@@ -1346,6 +1368,7 @@ Retrieves multiple messages from a conversation.
 | `ContinueLoop` | Control Flow | ✅ | ✅ | Skip to next iteration |
 | `GotoAction` | Control Flow | ✅ | ✅ | Jump to action by ID |
 | `SendActivity` | Output | ✅ | ✅ | Send message to user |
+| `SendMessage` | Output | ✅ | ❌ | Send a templated text message |
 | `InvokeAzureAgent` | Agent | ✅ | ✅ | Call Azure AI agent |
 | `InvokeFunctionTool` | Tool | ✅ | ✅ | Invoke function directly |
 | `InvokeMcpTool` | Tool | ✅ | ✅ | Invoke MCP server tool |
