@@ -19,7 +19,7 @@ Foundry Tools provides Microsoft Entra authentication support for all resources.
 
 ## How to disable local authentication
 
-You can disable local authentication using the Azure policy **Foundry Tools resources should have key access disabled (disable local authentication)**. Set it at the subscription level or resource group level to enforce the policy for a group of services.
+You can disable local authentication using the Azure policy **Azure AI Services resources should have key access disabled (disable local authentication)**. Set it at the subscription level or resource group level to enforce the policy for a group of services.
 
 If you're creating an account using Bicep / ARM template, you can set the property `disableLocalAuth` to `true` to disable local authentication. For more information, see 
 [Microsoft.CognitiveServices accounts - Bicep, ARM template, & Terraform](/azure/templates/microsoft.cognitiveservices/accounts)
