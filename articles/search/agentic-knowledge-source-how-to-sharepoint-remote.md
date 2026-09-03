@@ -71,11 +71,11 @@ Unlike indexed knowledge sources, remote SharePoint knowledge sources query live
 
 ## Limitations and considerations
 
-Remote SharePoint knowledge sources are subject to limitations from the Copilot Retrieval API and Azure AI Search.
+Remote SharePoint knowledge sources are subject to limitations from the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) and Azure AI Search.
 
 ### Copilot Retrieval API
 
-The following [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) limitations and considerations also apply to remote SharePoint knowledge sources:
+The following Copilot Retrieval API limitations also apply to remote SharePoint knowledge sources:
 
 + There's no support for Copilot connectors or OneDrive content. Content is retrieved from SharePoint sites only.
 
