@@ -48,6 +48,9 @@ To submit a batch synthesis request, construct the HTTP PUT request path and bod
 - If the `inputKind` property is set to "PlainText", then you must also set the `voice` property in the `synthesisConfig`. In the following example, the `inputKind` is set to "SSML", so the `synthesisConfig` isn't set.
 - Optionally you can set the `description`, `timeToLiveInHours`, and other properties. For more information, see [batch synthesis properties](batch-synthesis-properties.md).
 
+> [!IMPORTANT]
+> If you specify a destination storage account, it must allow access from all networks. Network-restricted storage accounts aren't supported.
+
 > [!NOTE]
 > The maximum JSON payload size that's accepted is 2 megabytes.
 
