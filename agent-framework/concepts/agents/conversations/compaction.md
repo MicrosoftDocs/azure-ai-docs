@@ -551,11 +551,11 @@ AIAgent agent = agentChatClient
 > When registered through `ChatClientAgentOptions`, the `CompactionProvider` is **not** engaged during the tool-calling loop. Agent-level context providers run before chat history is stored, so any synthetic summary messages produced by `CompactionProvider` can become part of the persisted history when using `ChatHistoryProvider`. To compact only the in-flight request context while preserving the original stored history, register the provider on the `ChatClientBuilder` via `UseAIContextProviders(...)` instead.
 
 
-### Choosing between `CompactionProvider` and `IChatReducer`
+### Choose between `CompactionProvider` and `IChatReducer`
 
-`CompactionProvider` and `IChatReducer` both reduce the messages sent to a model, but they run at different points in the conversation lifecycle and affect conversation history differently.
+`CompactionProvider` and `IChatReducer` both reduce the messages sent to a model. They run at different points in the conversation lifecycle and affect history differently.
 
-When `CompactionProvider` is registered on `ChatClientBuilder` with `UseAIContextProviders(...)`, it compacts the in-flight messages sent to the model while leaving the conversation history stored by the `ChatHistoryProvider` unchanged.
+When you register `CompactionProvider` on `ChatClientBuilder` with `UseAIContextProviders(...)`, it compacts only the in-flight messages sent to the model. The conversation history stored by `ChatHistoryProvider` remains unchanged.
 
 By contrast, an `IChatReducer` configured on `InMemoryChatHistoryProvider` reduces the history managed by the history provider itself. Use this approach when you also want to bound the conversation history that is retained in memory.
 
