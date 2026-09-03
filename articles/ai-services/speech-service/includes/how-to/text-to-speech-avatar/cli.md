@@ -32,7 +32,7 @@ To submit a batch synthesis request, construct the HTTP POST request body follow
 - Optionally, you can set the `videoFormat`, `backgroundColor`, and other properties. For more information, see [batch synthesis properties](/azure/ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar-properties).
 
 > [!IMPORTANT]
-> If you specify a destination storage account, it must allow access from all networks. Network-restricted storage accounts aren't supported.
+> If you specify a destination storage account, it must allow access from all networks. The service doesn't support network-restricted storage accounts.
 
 > [!NOTE]
 > The maximum JSON payload size accepted is 500 kilobytes.

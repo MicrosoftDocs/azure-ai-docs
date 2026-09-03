@@ -49,7 +49,7 @@ To submit a batch synthesis request, construct the HTTP PUT request path and bod
 - Optionally you can set the `description`, `timeToLiveInHours`, and other properties. For more information, see [batch synthesis properties](batch-synthesis-properties.md).
 
 > [!IMPORTANT]
-> If you specify a destination storage account, it must allow access from all networks. Network-restricted storage accounts aren't supported.
+> If you specify a destination storage account, it must allow access from all networks. The service doesn't support network-restricted storage accounts.
 
 > [!NOTE]
 > The maximum JSON payload size that's accepted is 2 megabytes.
