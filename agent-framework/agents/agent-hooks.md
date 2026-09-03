@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: article
 ms.author: evmattso
-ms.date: 08/31/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -141,6 +141,8 @@ Agent Framework emits the applicable interception points automatically:
 | `post_tool_call` | After a tool succeeds or fails | Tool result |
 | `output` | Before the final response reaches the caller | Final response content |
 | `agent_shutdown` | When the Agent Hooks session completes, fails, or is canceled | Not transformable |
+
+`agent_startup.tools_registered` is the run-start tool snapshot. Each `pre_model_call` payload includes the effective tools for that model call in its optional `tools` field. This includes tools added during the run by context providers, connected MCP servers, or progressive disclosure. The field is omitted when the call has no tools or the tool set can't be projected.
 
 A run that calls a tool typically emits:
 
