@@ -18,7 +18,7 @@ ms.custom: include, classic-and-new
 
 ## Data processing locations
 
-Standard and provisioned deployments both offer three data-processing options: global, data zone, and single region (Azure geography). Global standard is a common starting point for most workloads.
+Standard and provisioned deployments both offer three data-processing options: global, data zone, and Azure geography. Global Standard is a common starting point for most workloads.
 
 ### Global deployments
 
@@ -81,7 +81,7 @@ Common use cases:
 
 - SKU name in code: `DataZoneStandard`
 
-Data Zone Standard deployments dynamically route traffic to datacenters within the Microsoft-defined data zone (US, EU, or APAC). This deployment type provides higher default quotas than single-region deployment types while keeping data within the specified zone.
+Data Zone Standard deployments dynamically route traffic to datacenters within the Microsoft-defined data zone (US, EU, or APAC). This deployment type provides higher default quotas than geography-based deployment types while keeping data within the specified zone.
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, consider provisioned deployment types.
 
