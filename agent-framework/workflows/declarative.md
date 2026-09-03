@@ -1158,9 +1158,9 @@ Workflow workflow = DeclarativeWorkflowBuilder.Build<string>("workflow.yaml", op
 
 Asks the user a question and stores the response.
 
-The C# and Python SDKs use different field names for the question prompt today.
-This example uses the smallest shared behavior: ask for text and store the
-answer in workflow state.
+The C# and Python SDKs use different field names for the question prompt.
+This example uses the smallest shared behavior: it asks for text and stores the
+answer in the workflow state.
 
 ```yaml
 - kind: Question
@@ -2238,8 +2238,8 @@ workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 
 Asks the user a question and stores the response.
 
-The C# and Python SDKs use different field names for the question prompt today.
-This example uses the smallest shared behavior: ask for text and store the
+The C# and Python SDKs use different field names for the question prompt.
+This section uses the smallest shared behavior: ask for text and store the
 answer in workflow state.
 
 ```yaml
