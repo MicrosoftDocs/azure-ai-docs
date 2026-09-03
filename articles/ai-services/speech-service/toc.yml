@@ -101,6 +101,8 @@ items:
         href: configure-language-identification-diarization.md
       - name: Real-time diarization quickstart
         href: get-started-stt-diarization.md
+    - name: MAI-Transcribe API
+      href: mai-transcribe.md
     - name: Fast transcription API
       href: fast-transcription-create.md
     - name: Batch transcription API
@@ -323,8 +325,6 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
-    - name: Use MAI-Transcribe
-      href: mai-transcribe.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
