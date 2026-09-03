@@ -303,7 +303,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Kimi-K3 | 2026-07-29 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -356,7 +355,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Kimi-K3 | 2026-07-29 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -409,7 +407,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Kimi-K3 | 2026-07-29 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -462,7 +459,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Kimi-K2.5 | 1 | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ |
-| Kimi-K3 | 2026-07-29 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 1 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 2 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 3 | ✅ | ✅ |
