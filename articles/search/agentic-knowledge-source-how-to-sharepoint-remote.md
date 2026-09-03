@@ -3,7 +3,7 @@ title: Create a SharePoint (Remote) Knowledge Source
 description: Learn how to create a remote SharePoint knowledge source, which tells an agentic retrieval engine in Azure AI Search to query SharePoint sites directly.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 09/03/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -76,6 +76,8 @@ The following limitations and considerations in the [Copilot Retrieval API](/mic
 + There's no support for Copilot connectors or OneDrive content. Content is retrieved from SharePoint sites only.
 
 + Limit of 200 requests per user per hour.
+
++ Within a knowledge base retrieval request, Azure AI Search runs one remote SharePoint query at a time for each service replica. If the request uses multiple remote SharePoint knowledge sources, additional queries wait for an available replica, which increases latency. For a Dedicated service, [add replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas) to increase parallelism.
 
 + Query character limit of 1,500 characters.
 
