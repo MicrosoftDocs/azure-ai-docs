@@ -18,8 +18,8 @@ ms.custom: include, classic-and-new
 | [Data Zone Standard](#data-zone-standard) | `DataZoneStandard` | Within data zone | Pay-per-token | EU/US/APAC data zone compliance |
 | [Data Zone Provisioned](#data-zone-provisioned) | `DataZoneProvisionedManaged` | Within data zone | Reserved PTU | Data zone + predictable throughput |
 | [Data Zone Batch](#data-zone-batch) | `DataZoneBatch` | Within data zone | 50% discount | Large async jobs with data zone |
-| [Standard](#standard) | `Standard` | Single region | Pay-per-token | Regional compliance, low volume |
-| [Regional Provisioned](#regional-provisioned) | `ProvisionedManaged` | Single region | Reserved PTU | Regional compliance + throughput |
+| [Standard](#standard) | `Standard` | Within Azure geography | Pay-per-token | Geography compliance, low volume |
+| [Regional Provisioned](#regional-provisioned) | `ProvisionedManaged` | Within Azure geography | Reserved PTU | Geography compliance + throughput |
 | [Developer](#developer-for-fine-tuned-models) | `DeveloperTier` | Any Azure region | Pay-per-token | Fine-tuned model evaluation only (24-hour lifetime, no SLA or data-residency guarantee) |
 
 > [!NOTE]
@@ -40,7 +40,7 @@ Use the following table for a quick recommendation, then refine it with the crit
 | Reserved, predictable throughput | Global Provisioned |
 | Keep processing within a data zone | Data Zone Standard or Data Zone Provisioned |
 | Data residency plus reserved throughput | Data Zone Provisioned |
-| Pin processing to a single region | Standard or Regional Provisioned (where supported) |
+| Keep processing within an Azure geography | Standard or Regional Provisioned (where supported) |
 | Large asynchronous jobs at lower cost | Global Batch or Data Zone Batch (where supported) |
 | Evaluate a fine-tuned model (temporary, no SLA) | Developer |
 
@@ -48,7 +48,7 @@ Use the following table for a quick recommendation, then refine it with the crit
 
 - **No restrictions**: Use Global Standard or Global Provisioned
 - **EU, US, or APAC data zone**: Use Data Zone Standard or Data Zone Provisioned in a region within that data zone
-- **Single region only**: Use Standard or Regional Provisioned
+- **Azure geography**: Use Standard or Regional Provisioned
 
 For the exact regions in each data zone, see [Data Zone deployments](#data-zone-deployments).
 
