@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 07/30/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -166,6 +166,12 @@ agent = Agent(
 ```
 
 `FoundryChatClient` is the Foundry-first Python path for direct inference and supports tools, structured outputs, and streaming.
+
+### Reuse the client concurrently
+
+One `FoundryChatClient` instance can serve concurrent asynchronous calls on the same event loop, including overlapping streaming and non-streaming calls.
+
+Create a separate `Agent` and `AgentSession` for each concurrent run, and pass separate messages and options. User-supplied middleware, tools, and callbacks must also support concurrency. Don't share the client across OS threads or event loops, or mutate its configuration while calls are active.
 
 ### Opt in to encrypted reasoning
 
