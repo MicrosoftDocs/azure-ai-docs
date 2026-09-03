@@ -568,7 +568,7 @@ The event controls when reduction occurs; the `IChatReducer` implementation cont
 
 By contrast, a `CompactionStrategy` supplies its own `CompactionTrigger` and operates on message groups that preserve tool-call/result pairs.
 
-#### Adapting between the abstractions
+#### Adapt between the abstractions
 
 The adapters let you use an existing implementation at either integration point. Choose the adapter based on where you want the reduction to run.
 
