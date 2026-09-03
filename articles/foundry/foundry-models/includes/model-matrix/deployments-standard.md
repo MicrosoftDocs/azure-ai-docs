@@ -417,8 +417,8 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | ✅ |
-| MAI-Image-2.6 | 2026-07-31 | 2026-06-19 | - | - | - | - | ✅ |
-| MAI-Image-2.6-Flash | 2026-07-31 | 2026-06-19 | - | - | - | - | ✅ |
+| MAI-Image-2.6 | 2026-07-31 | - | - | - | - | ✅ |
+| MAI-Image-2.6-Flash | 2026-07-31 | - | - | - | - | ✅ |
 | MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -469,8 +469,8 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | MAI-Image-2.5 | 2026-06-02 | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | ✅ |
-| MAI-Image-2.6 | 2026-07-31 | 2026-06-19 | - | ✅ |
-| MAI-Image-2.6-Flash | 2026-07-31 | 2026-06-19 | - | ✅ |
+| MAI-Image-2.6 | 2026-07-31 | - | ✅ |
+| MAI-Image-2.6-Flash | 2026-07-31 | - | ✅ |
 | MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ |
