@@ -800,7 +800,7 @@ Iterates over a collection.
   actions:
     - kind: SendActivity
       activity:
-        text: =Concat("Processing item ", index, ": ", item)
+        text: '=Concat("Processing item ", index, ": ", item)'
 ```
 
 **Properties:**
@@ -843,7 +843,7 @@ Skips to the next iteration of the loop.
         - kind: ContinueLoop
     - kind: SendActivity
       activity:
-        text: =Concat("Positive number: ", item)
+        text: '=Concat("Positive number: ", item)'
 ```
 
 #### GotoAction
@@ -1509,7 +1509,7 @@ trigger:
       agent:
         name: MenuAgent
       input:
-        messages: =UserMessage("Describe today's specials: " & Local.Specials)
+        messages: '=UserMessage("Describe today''s specials: " & Local.Specials)'
 ```
 
 #### MCP Tool Integration
@@ -1903,7 +1903,7 @@ Iterates over a collection.
   actions:
     - kind: SendActivity
       activity:
-        text: =Concat("Processing item ", index, ": ", item)
+        text: '=Concat("Processing item ", index, ": ", item)'
 ```
 
 **Properties:**
@@ -1946,7 +1946,7 @@ Skips to the next iteration of the loop.
         - kind: ContinueLoop
     - kind: SendActivity
       activity:
-        text: =Concat("Positive number: ", item)
+        text: '=Concat("Positive number: ", item)'
 ```
 
 #### GotoAction
@@ -2485,7 +2485,7 @@ actions:
 
   - kind: SendActivity
     activity:
-      text: =Concat("You are categorized as: ", Local.category)
+      text: '=Concat("You are categorized as: ", Local.category)'
 
   - kind: SetVariable
     variable: Workflow.Outputs.category
@@ -2727,7 +2727,7 @@ trigger:
     - kind: SendActivity
       id: start_message
       activity:
-        text: =Concat("Starting session for: ", Workflow.Inputs.problem)
+        text: '=Concat("Starting session for: ", Workflow.Inputs.problem)'
 
     # Student attempts solution (loop entry point)
     - kind: SendActivity
@@ -2866,14 +2866,14 @@ actions:
 
       - kind: SendActivity
         activity:
-          text: =Concat("Checked item: ", currentItem.name)
+          text: '=Concat("Checked item: ", currentItem.name)'
 
   - kind: If
     condition: =Local.found
     then:
       - kind: SendActivity
         activity:
-          text: =Concat("Found: ", Local.result.name)
+          text: '=Concat("Found: ", Local.result.name)'
     else:
       - kind: SendActivity
         activity:
@@ -3189,7 +3189,7 @@ actions:
 - kind: SendActivity
   id: debug_log
   activity:
-    text: =Concat("[DEBUG] Current state: counter=", Local.counter, ", status=", Local.status)
+    text: '=Concat("[DEBUG] Current state: counter=", Local.counter, ", status=", Local.status)'
 ```
 
 ::: zone-end
