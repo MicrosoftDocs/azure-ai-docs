@@ -157,7 +157,7 @@ The following example shows how to generate an image from a text prompt using an
         print("Unexpected response format:", result)
     ```
 
-    **Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
+    **Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 #### Use Microsoft Entra ID authentication
 
@@ -212,7 +212,7 @@ curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/genera
 | base64 --decode > output.png
 ```
 
-**Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
+**Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 #### Use Microsoft Entra ID authentication
 
@@ -314,8 +314,7 @@ The following example shows how to perform an image-to-image edit by using an MA
         print("Unexpected response format:", result)
     ```
 
-    **Expected output:** A JSON response containing the edited image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
-
+    **Expected output:** A JSON response containing the edited image data in base64 format. The image is decoded and saved as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 To use Microsoft Entra ID instead of an API key, modify this code as described in the earlier section: [Use Microsoft Entra ID authentication](#use-microsoft-entra-id-authentication).
 
@@ -343,7 +342,7 @@ curl -X POST "https://.services.ai.azure.com/mai/v1/images/edits" \
 | base64 --decode > output.png
 ```
 
-**Expected output:** A JSON response containing the edited image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
+**Expected output:** A JSON response containing the edited image data in base64 format. The image is decoded and saved as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 To use Microsoft Entra ID authentication instead of an API key, modify this code as described in the earlier section: [Use Microsoft Entra ID authentication](#use-microsoft-entra-id-authentication-1)
 
@@ -410,8 +409,29 @@ The following table lists the request parameters for the image APIs:
 | `web_grounding` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). |
 | `auto_aspect_ratio` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). |
 
+#### Response format
+
+Both the MAI image generations and image edits APIs return a JSON object that contains the generated PNG image as base64-encoded data. Decode the `b64_json` value to save the image as a PNG file.
+
 > [!NOTE]
 > The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | array | Collection of generated image results. |
+| `data[].b64_json` | string | Base64-encoded PNG image data. Decode this value to create an image file. |
+
+The following example shows a successful response:
+
+```json
+{
+    "data": [
+        {
+            "b64_json": "<base64-encoded PNG image data>"
+        }
+    ]
+}
+```
 
 ## API quotas and limits
 
