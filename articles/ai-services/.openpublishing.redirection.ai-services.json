@@ -1872,7 +1872,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/gov-provisioned.md",
-      "redirect_url": "/azure/ai-foundry/openai/concepts/gov-provisioned",
+      "redirect_url": "/azure/foundry/openai/concepts/provisioned-throughput-gov",
       "redirect_document_id": false
     },
     {
