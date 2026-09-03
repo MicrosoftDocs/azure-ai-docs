@@ -407,6 +407,8 @@ The following table lists the request parameters for the image APIs:
 | `image` | Image edits | string | The path to the image you want to edit. The **image is passed as multipart form data**. Must be in JPEG or PNG format. |
 | `width` | Image generations | integer | Width of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 | `height` | Image generations | integer | Height of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `web_grounding` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). |
+| `auto_aspect_ratio` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). |
 
 > [!NOTE]
 > The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
