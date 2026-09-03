@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 08/31/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -156,6 +156,10 @@ Import `ResponsesServerOptions` from `azure.ai.agentserver.responses`, and pass 
 
 `ResponsesHostServer` raises `RuntimeError` if you enable resilient background responses for a non-workflow agent or steerable conversations for a workflow agent. For complete implementations, see the [custom storage](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage), [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow), and [steerable long-running agent](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/steerable_long_running_agent) samples.
 
+### Handle OAuth consent requests
+
+When a Foundry-hosted MCP tool requires user consent, `ResponsesHostServer` returns an incomplete response with an `oauth_consent_request` output item. Present its `consent_link` to the user, then continue with the incomplete response's ID as `previous_response_id` after the user completes consent. The host preserves the agent session for this retry and exposes only absolute HTTPS consent links.
+
 :::zone-end
 
 ## Invocations protocol
@@ -280,6 +284,8 @@ if __name__ == "__main__":
 
 > [!WARNING]
 > The in-memory session store in the custom handler example is lost on restart. Use durable storage (for example, Cosmos DB) in production.
+
+For a complete Invocations deployment, see the [Foundry-hosted Telegram sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/invocations/telegram). It places API Management in front of the hosted agent webhook and uses managed identities, Key Vault, and Cosmos DB for durable conversation history.
 
 :::zone-end
 
