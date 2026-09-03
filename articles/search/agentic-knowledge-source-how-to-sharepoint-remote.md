@@ -78,7 +78,7 @@ The following limitations and considerations in the [Copilot Retrieval API](/mic
 + Limit of 200 requests per user per hour.
 
 + For the [Dedicated pricing model](search-sku-tier.md#dedicated-pricing-model), Azure AI Search runs one remote SharePoint query at a time for each service replica within a knowledge base retrieval request. Additional queries wait for an available replica, which increases latency. To increase parallelism, [add replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
-+
+
 + For the [Serverless pricing model (preview)](search-sku-tier.md#serverless-pricing-model-preview), Azure AI Search runs one remote SharePoint query at a time within a knowledge base retrieval request. Additional queries wait. Serverless manages capacity automatically, and you can't increase this parallelism.
 
 + Query character limit of 1,500 characters.
