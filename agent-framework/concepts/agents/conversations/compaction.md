@@ -591,7 +591,7 @@ InMemoryChatHistoryProvider historyProvider = new(historyOptions);
 To use an existing `IChatReducer` in a compaction pipeline or for in-run request compaction, adapt it to `CompactionStrategy`:
 
 ```csharp
-IChatReducer existingReducer = /* your MEAI reducer */;
+IChatReducer existingReducer = /* your Microsoft.Extensions.AI reducer */;
 
 CompactionStrategy strategy = new ChatReducerCompactionStrategy(
     existingReducer,
