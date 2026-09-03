@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/01/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -75,7 +75,7 @@ This reconstruction is intentionally lossy because Agent Framework usage is prov
 The sample's file-backed storage is for local development. Use durable storage when replicas can restart or scale out.
 
 > [!IMPORTANT]
-> Treat `previous_response_id` and `conversation_id` as untrusted input. Authenticate and authorize the caller before using either ID to load or save a session or checkpoint.
+> Treat `previous_response_id` and `conversation` as untrusted input. Authenticate and authorize the caller before using either value to load or save a session or checkpoint. The legacy `conversation_id` request field is deprecated; use the OpenAI Responses `conversation` field instead.
 
 For the broader wire format, see [OpenAI-compatible endpoints](openai-endpoints.md).
 

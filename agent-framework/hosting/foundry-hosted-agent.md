@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 08/31/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -132,18 +132,25 @@ client = FoundryChatClient(
 agent = Agent(
     client=client,
     instructions="You are a helpful AI assistant.",
-    default_options={"store": False},
 )
 
 server = ResponsesHostServer(agent)
 server.run()
 ```
 
-The `ResponsesHostServer` wraps your agent and exposes it through the Foundry Responses protocol. Setting `store` to `False` in `default_options` avoids duplicating conversation history, since the hosting infrastructure manages history automatically.
+The `ResponsesHostServer` wraps your agent and exposes it through the Foundry Responses protocol. For a non-workflow agent, the default `history_source="agent_server"` uses the configured Agent Server response provider as the model's history source. The host prevents the downstream model service from retaining a second copy when the client stores history by default.
+
+Don't combine the default history source with a `HistoryProvider` that has `load_messages=True`. Also don't set the `conversation_id`, `previous_response_id`, or `conversation` downstream service continuation options. The host rejects these configurations to prevent duplicate history.
+
+Use `ResponsesHostServer(agent, history_source="agent")` when the agent's history provider or downstream model service must manage conversation history. This mode passes only the current request input from Agent Server and preserves the agent's history and service storage behavior. Custom `SupportsAgentRun` implementations must use this mode. The `store` parameter remains separate: it selects the response provider that persists Responses API inputs and outputs in both modes.
+
+The host owns the supplied agent and might add hosting-specific context providers. Don't reuse the agent with another host or invoke it directly after host construction.
 
 ### Persist state and handle long-running conversations
 
 `ResponsesHostServer` configures Foundry-backed stores by default. For non-workflow agents, `AgentSessionStoreProvider` supplies a `FoundryAgentSessionStore`. For workflow agents, `CheckpointStoreProvider` supplies a `FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a `FoundryFunctionApprovalStore` for pending approvals. These stores use Foundry State Store when hosted and local Agent Server state when you run locally.
+
+With `history_source="agent"`, the configured session store persists provider state carried by `AgentSession`, including messages from `InMemoryHistoryProvider`.
 
 To customize storage, pass a `StoreProvider` to `agent_session_store_provider` or `function_approval_store_provider`. Pass a `ContextScopedStoreProvider` to `checkpoint_store_provider`. For example, implement `SessionStore` and `StoreProvider[SessionStore]` to use your own non-workflow agent session store.
 
@@ -155,6 +162,10 @@ Import `ResponsesServerOptions` from `azure.ai.agentserver.responses`, and pass 
 | Steerable conversations | Non-workflow only | Set `ResponsesServerOptions(steerable_conversations=True)` and send Responses requests with `store=true`. Keep turns on one linear chain by reusing the same `conversation` value. Alternatively, send the immediately preceding `previous_response_id` and preserve the resolved `agent_session_id`. The host rejects stale predecessors that would create a fork. |
 
 `ResponsesHostServer` raises `RuntimeError` if you enable resilient background responses for a non-workflow agent or steerable conversations for a workflow agent. For complete implementations, see the [custom storage](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage), [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow), and [steerable long-running agent](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/steerable_long_running_agent) samples.
+
+### Handle OAuth consent requests
+
+When a Foundry-hosted MCP tool requires user consent, `ResponsesHostServer` returns an incomplete response with an `oauth_consent_request` output item. Present its `consent_link` to the user, then continue with the incomplete response's ID as `previous_response_id` after the user completes consent. The host preserves the agent session for this retry and exposes only absolute HTTPS consent links.
 
 :::zone-end
 
@@ -280,6 +291,8 @@ if __name__ == "__main__":
 
 > [!WARNING]
 > The in-memory session store in the custom handler example is lost on restart. Use durable storage (for example, Cosmos DB) in production.
+
+For a complete Invocations deployment, see the [Foundry-hosted Telegram sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/invocations/telegram). It places API Management in front of the hosted agent webhook and uses managed identities, Key Vault, and Cosmos DB for durable conversation history.
 
 :::zone-end
 
