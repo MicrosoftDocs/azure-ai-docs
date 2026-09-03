@@ -2240,7 +2240,7 @@ Asks the user a question and stores the response.
 
 The C# and Python SDKs use different field names for the question prompt.
 This section uses the smallest shared behavior: ask for text and store the
-answer in workflow state.
+answer in the workflow state.
 
 ```yaml
 - kind: Question
