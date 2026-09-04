@@ -146,7 +146,7 @@ az role assignment create \
   - Your Agent Service delegated subnet must use one of these address spaces:
     - RFC 1918: `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`.
     - RFC 6598 (CGNAT): addresses within `100.64.0.0/10`, excluding `100.100.0.0/17`, `100.100.192.0/19`, and `100.100.224.0/19`.
-  - Private Class A address space (`10.0.0.0/8`) is supported in every region where Agent Service is available. For the current list, see [Supported regions](../concepts/limits-quotas-regions.md#supported-regions).
+  - Every region where Agent Service is available supports private Class A address space (`10.0.0.0/8`). For the current list, see [Supported regions](../concepts/limits-quotas-regions.md#supported-regions).
   - You can't use public IP ranges, such as `44.x.x.x`, for the Agent Service delegated subnet.
   - Ensure that none of the address spaces in your VNet or any peered VNet overlap with existing networks in your Azure environment or these reserved ranges: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, and `100.100.224.0/19`.
 - **Agent subnet exclusivity**: The agent subnet can't be shared by multiple Foundry resources. Each Foundry resource must use a dedicated agent subnet.
