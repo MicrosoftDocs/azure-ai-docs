@@ -214,12 +214,12 @@ The regions in the following tables support most of the core features of Azure S
 
 | Region | Transcribe | Translate | Transcribe with mai-transcribe model |
 | ----- | ----- | ----- | ----- |
-| `centralindia` | ✅ | ✅ | |
+| `centralindia` | ✅ | ✅ | ✅ |
 | `eastus` | ✅ | ✅ | ✅ |
 | `northeurope` | ✅ | ✅ | ✅ |
 | `southeastasia` | ✅ | ✅ | ✅ |
 | `westus` | ✅ | ✅ | ✅ |
-| `westus2` | ✅ | ✅ | |
+| `westus2` | ✅ | ✅ | ✅ |
 
 # [Voice Live](#tab/voice-live)
 
