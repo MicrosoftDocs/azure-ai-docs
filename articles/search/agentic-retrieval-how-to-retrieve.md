@@ -1395,9 +1395,9 @@ The following table shows how `maxOutputDocuments` and `maxOutputSize` interact 
 
 ### Override default reasoning effort and set request limits
 
-This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so the retrieval reasoning effort must be `low` or `medium`. It also sets `maxRuntimeInSeconds` to cap total request latency and `maxOutputSize` to bound the response payload.
+This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so the retrieval reasoning effort must be `low` or `medium`. It also sets `maxRuntimeInSeconds` to limit retrieval runtime and `maxOutputSize` to limit response payload size.
 
-The accepted range for `maxRuntimeInSeconds` is 10 to 600 seconds. If you omit the property, the service uses 90 seconds. The 600-second (10-minute) maximum is the service-side limit for the Azure AI Search retrieval request. It isn't an end-to-end timeout for a prompt agent in Foundry Agent Service, the Foundry portal, your client, or the network.
+`maxRuntimeInSeconds` accepts values from 10 through 600 seconds and defaults to 90 seconds. The 600-second (10-minute) maximum applies only to the Azure AI Search retrieve request. It isn't an end-to-end timeout for a prompt agent in Foundry Agent Service, the Foundry portal, your client, or the network.
 
 :::zone pivot="csharp"
 
