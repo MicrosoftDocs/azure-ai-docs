@@ -117,6 +117,13 @@ azd ai connection create my-mcp-conn \
   --auth-type custom-keys \
   --custom-key "Authorization=******"
 
+# OAuth — Foundry-managed app
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp \
+  --auth-type oauth2 \
+  --connector-name foundrygithubmcp
+
 # OAuth — bring your own app registration
 azd ai connection create my-mcp-conn \
   --kind remote-tool \
@@ -154,10 +161,28 @@ azd ai connection create my-mcp-conn \
 |---------------|------------------|
 | `none` | — |
 | `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
-| `oauth2` | `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, `--scopes` |
+| `oauth2` | `--connector-name` for a Foundry-managed OAuth app, or `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, and `--scopes` for your own app registration |
 | `user-entra-token` | `--audience <entra-audience>` |
 | `project-managed-identity` | `--audience <entra-audience>` (optional) |
 | `agentic-identity` | `--audience <entra-audience>` |
+
+Only the following MCP servers support a Foundry-managed OAuth app. Pass
+the corresponding value to `--connector-name`.
+
+| MCP server | Connector name |
+|------------|----------------|
+| Azure Databricks Genie | `foundrydatabricksmcp` |
+| GitHub | `foundrygithubmcp` |
+| Infobip WhatsApp MCP server | `foundryinfobipmcp` |
+| Infobip RCS MCP server | `foundryinfobiprcsmcp` |
+| Infobip SMS MCP server | `foundryinfobipsmsmcp` |
+| LSEG Data and Analytics | `foundrylsegmcp` |
+| Morningstar MCP Server | `foundrymorningstarmcp` |
+| Neon | `foundryneonmcp` |
+| Pipedream | `foundrypipedreammcp` |
+| Vercel | `foundryvercelmcp` |
+
+For other OAuth-enabled MCP servers, provide your own app registration.
 
 For identity-based auth (`user-entra-token`, `project-managed-identity`, `agentic-identity`), assign the corresponding principal the required RBAC role on the target resource before you call the toolbox.
 
