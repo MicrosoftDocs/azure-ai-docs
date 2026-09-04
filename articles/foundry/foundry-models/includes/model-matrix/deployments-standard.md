@@ -58,6 +58,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | ✅ | - | ✅ | - | - | - | - |
@@ -131,6 +132,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
@@ -205,6 +207,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-08-06 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
@@ -258,6 +261,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ |
 | gpt-chat-latest | 2026-08-06 | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | ✅ |
@@ -517,6 +521,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | ✅ | - | - | - | ✅ |
 | model-router | 2025-05-19 | - | - | ✅ | - | - | - | ✅ |
 | model-router | 2025-08-07 | - | - | ✅ | - | - | - | ✅ |

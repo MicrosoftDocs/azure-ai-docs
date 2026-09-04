@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini (classic)"
-description: "Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models (classic)"
+title: "Azure OpenAI reasoning models - GPT-6 Astra and GPT-5 (classic)"
+description: "Learn how to use Azure OpenAI reasoning models, including GPT-6 Astra, GPT-5 models, and o-series models in the classic portal."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -41,7 +41,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 ## Usage
 
-These models [don't currently support the same set of parameters](#api--feature-support) as other models that use the chat completions API. 
+These models [don't currently support the same set of parameters](#api-and-feature-support) as other models that use the chat completions API. 
 
 ### Chat completions API
 
@@ -919,6 +919,7 @@ print(response.model_dump_json(indent=2))
 
 | Model | Region | Limited access |
 |---|---|---|
+| `gpt-6-astra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-terra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
@@ -948,25 +949,46 @@ print(response.model_dump_json(indent=2))
 | `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).  | Access is no longer restricted for this model.   |
 |`o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).  | Access is no longer restricted for this model.  |
 
-## API & feature support
+## API and feature support
 
-# [GPT-5 Reasoning Models](#tab/gpt-5)
+# [GPT-6 reasoning models](#tab/gpt-6)
+
+| **Feature** | **gpt-6-astra**, **2026-09-03** |
+| --- | --- |
+| **[Structured outputs](./structured-outputs.md)** | ✅ |
+| **Context window** | 1,050,000 tokens |
+| **Maximum input tokens** | 922,000 tokens |
+| **Maximum output tokens** | 128,000 tokens |
+| **Input modalities** | Text and images |
+| **Output modalities** | Text |
+| Chat Completions API | ✅<sup>9</sup> |
+| Responses API | ✅ |
+| Streaming | ✅ |
+| Functions/tools | ✅<sup>9</sup> |
+| **[Reasoning effort](#reasoning-effort)** | ✅ |
+| Verbosity | ✅ |
+| `logprobs` | ✅ |
+| `temperature` | - |
+| `top_p` | - |
+
+# [GPT-5 reasoning models](#tab/gpt-5)
 
 | **Feature**  | **gpt-5.6-sol**, **2026-06-25** | **gpt-5.6-terra**, **2026-06-25** | **gpt-5.6-luna**, **2026-06-25** | **gpt-5.5**, **2026-04-24** |**gpt-5.4-nano**, **2026-03-17** | **gpt-5.4-mini**, **2026-03-17** | **gpt-5.4-pro**  | **gpt-5.4**, **2026-03-05** | **gpt-5.3-codex**, **2026-02-24** | **gpt-5.2-codex**, **2026-01-14**  | **gpt-5.2**, **2025-12-11** | **gpt-5.1-codex-max**, **2025-12-04** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:----:|:----:|:----:|:----:|:----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+|:-------------------|:----:|:----:|:----:|:----:|:----:|:----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)** | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000 <br><br>Input:<br>922,000<br>Output:<br>128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
 | **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
 | **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Chat Completions API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
-| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
-| Functions/Tools | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | - | ✅ |✅| ✅| ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
+| Chat Completions API | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅ | ✅ | ✅ | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
+| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
+| Functions/Tools | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅<sup>9</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅| ✅ | ✅ | - | ✅ |✅| ✅| ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `max_completion_tokens` <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
-| System Messages <sup>3</sup> | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Streaming | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ |
+| [Reasoning summary](#reasoning-summary) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Persisted reasoning](../../../foundry/openai/how-to/reasoning.md#preserve-reasoning-across-calls)<sup>8</sup> | ✅ | ✅ | ✅ | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| Streaming | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
@@ -974,17 +996,21 @@ print(response.model_dump_json(indent=2))
 <sup>4</sup> `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1` keep in mind that you may need to update your code to explicitly pass a reasoning_effort level if you want reasoning_effort to occur.<br><br>
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.<br><br>
 <sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to.<br><br>
-<sup>7</sup> `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. If you wish to use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.
+<sup>7</sup> `gpt-6-astra`, `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.<br><br>
+<sup>8</sup> The `gpt-5.6` and later models support `all_turns` for the `reasoning.context` parameter and use it by default. Earlier reasoning models support only `auto` and `current_turn`.<br><br>
+<sup>9</sup> The `gpt-5.6` and later models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For details and workarounds, see [Tool calling with reasoning models](../../../foundry/openai/how-to/reasoning.md#tool-calling-with-reasoning-models).
 
-### NEW GPT-5 reasoning features
+### GPT-5 and GPT-6 reasoning features
 
 | Feature | Description |
 |----|----|
-|`reasoning_effort` | `xhigh` is only supported with `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` is not supported with `gpt-5.1` or greater <sup>*</sup> <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
-|`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
+| `reasoning_effort` | `max` works only with GPT-6 or GPT-5.6 models and the Responses API. <br> `xhigh` works only with GPT-6, GPT-5.6, GPT-5.5, GPT-5.4, and `gpt-5.1-codex-max` models. <br> `minimal` works only with the original GPT-5 reasoning models. `minimal` doesn't work with `gpt-5.1` or greater. <sup>*</sup> <br> With GPT-5.6 and later models on the Chat Completions API, `none` is the only value you can combine with function tools. See [Tool calling with reasoning models](../../../foundry/openai/how-to/reasoning.md#tool-calling-with-reasoning-models). <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` |
+| `verbosity` | A new parameter that gives you more granular control over how concise the model's output is.<br><br>**Options:** `low`, `medium`, `high`. |
+| [`reasoning.context`](../../../foundry/openai/how-to/reasoning.md#preserve-reasoning-across-calls) | Controls which available reasoning items the model renders into its next context. `all_turns` works only with GPT-6 and GPT-5.6 models, which use this option by default.<br><br>**Options:** `auto`, `current_turn`, `all_turns`. |
+| [`reasoning.mode`](../../../foundry/openai/how-to/reasoning.md#reasoning-mode) | Selects standard or pro execution for GPT-6 and GPT-5.6 models with the Responses API. Pro mode does more model work on a request before returning a single answer, which increases latency and token usage. Azure OpenAI uses `standard` as the default.<br><br>**Options:** `standard`, `pro`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
-| **custom tool type** | Enables raw text (non-json) outputs |
+| **custom tool type** | Enables raw text (non-JSON) outputs. |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
 
 <sup>*</sup> `gpt-5-codex` also does not support `reasoning_effort` `minimal`.
@@ -1019,9 +1045,10 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 > - To avoid timeouts [background mode](./responses.md#background-tasks) is recommended for `o3-pro`.
 > - `o3-pro` does not currently support image generation.
 
-### Not Supported
+### Unsupported parameters
 
-The following are currently unsupported with reasoning models:
+The `gpt-6-astra` model supports the `logprobs` parameter, but it doesn't support `temperature` or `top_p`. Other reasoning models don't support the following parameters:
+
 
 - `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
 
