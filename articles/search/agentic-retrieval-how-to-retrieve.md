@@ -3,7 +3,7 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/18/2026
+ms.date: 09/04/2026
 ms.custom:
   - dev-focus
   - doc-kit-assisted
@@ -2453,7 +2453,9 @@ The reference count shows whether the stored or request-level `maxOutputDocument
 
 ### Override default reasoning effort and set request limits
 
-The following example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so the retrieval reasoning effort must be `low` or `medium`. It also sets `maxRuntimeInSeconds` to cap total request latency and `maxOutputSizeInTokens` to bound the response payload.
+The following example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so the retrieval reasoning effort must be `low` or `medium`. It also sets `maxRuntimeInSeconds` to limit retrieval runtime and `maxOutputSizeInTokens` to limit response payload size.
+
+`maxRuntimeInSeconds` accepts values from 10 through 600 seconds and defaults to 90 seconds. The 600-second (10-minute) maximum applies only to the Azure AI Search retrieve request.
 
 :::zone pivot="csharp"
 
