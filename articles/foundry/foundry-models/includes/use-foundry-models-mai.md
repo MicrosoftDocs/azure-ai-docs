@@ -8,7 +8,7 @@ reviewer: RSavage2
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 08/19/2026
+ms.date: 09/04/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -28,18 +28,22 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI image models are available for **global standard deployment** in West Central US, East US, West US, West Europe, Sweden Central, South India, and UAE North.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) in a region supported for the MAI image model you want to deploy. For each model's supported deployment regions, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md).
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## MAI image models at a glance
 
 MAI image models in Microsoft Foundry include:
 
-| Model name | Model version | Type |
-| --- | --- | --- |
-| `MAI-Image-2.5-Pro` (Preview) | `2026-06-19` | Text-to-image generation<br> Image-to-image edits |
-| `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
-| `MAI-Image-2.5` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
+| Model name | Model version | Deployment type | API type |
+| --- | --- | --- | --- |
+| `MAI-Image-2.6-Flash` (Preview) | `2026-07-31` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.6` (Preview) | `2026-07-31` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.5-Pro` (Preview) | `2026-06-19` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.5` (Preview) | `2026-06-02` | Global Standard | Text-to-image generation<br> Image-to-image edits |
+
+For each model's supported deployment regions, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md).
 
 To learn more about the individual models, see [MAI image model capabilities](#mai-image-model-capabilities).
 
@@ -153,7 +157,7 @@ The following example shows how to generate an image from a text prompt using an
         print("Unexpected response format:", result)
     ```
 
-    **Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
+    **Expected output:** A JSON response containing the generated image data in base64 format. The response includes the image data, which you decode and save as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 #### Use Microsoft Entra ID authentication
 
@@ -208,7 +212,7 @@ curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/genera
 | base64 --decode > output.png
 ```
 
-**Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
+**Expected output:** A JSON response containing the generated image data in base64 format. The response includes the image data, which you decode and save as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 #### Use Microsoft Entra ID authentication
 
@@ -310,8 +314,7 @@ The following example shows how to perform an image-to-image edit by using an MA
         print("Unexpected response format:", result)
     ```
 
-    **Expected output:** A JSON response containing the edited image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
-
+    **Expected output:** A JSON response containing the edited image data in base64 format. The response includes the image data, which you decode and save as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 To use Microsoft Entra ID instead of an API key, modify this code as described in the earlier section: [Use Microsoft Entra ID authentication](#use-microsoft-entra-id-authentication).
 
@@ -339,7 +342,7 @@ curl -X POST "https://.services.ai.azure.com/mai/v1/images/edits" \
 | base64 --decode > output.png
 ```
 
-**Expected output:** A JSON response containing the edited image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
+**Expected output:** A JSON response containing the edited image data in base64 format. The response includes the image data, which you decode and save as `output.png` in the current directory. For more information, see [Response format](#response-format).
 
 To use Microsoft Entra ID authentication instead of an API key, modify this code as described in the earlier section: [Use Microsoft Entra ID authentication](#use-microsoft-entra-id-authentication-1)
 
@@ -348,39 +351,31 @@ To use Microsoft Entra ID authentication instead of an API key, modify this code
 
 ## MAI image model capabilities
 
-Foundry supports use of MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), and MAI-Image-2.5 (Preview). Each of these models is suitable for the following key use cases:
+MAI image models are diffusion-based generative models designed for both high-quality text-to-image generation and precise, controllable image-to-image editing. Each model uses a diffusion-based approach to progressively refine images from a natural language prompt, enabling strong alignment between the input text and the generated output.
 
-- **Text-to-image generation:** Generate high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
-- **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
-- **Product, branding and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
+### Core capabilities
 
-MAI-Image-2.5-Pro (Preview), MAI-Image-2.5-Flash (Preview), and MAI-Image-2.5 (Preview) further excel in these key use cases:
+All MAI image models in this article share these core capabilities:
 
-- **Image-to-image editing:** Support precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
-- **High-fidelity portraits:** Generate expressive, natural-looking portraits with accurate facial structure, lighting, and texture.
+- **Text-to-image generation:** Generates high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
+- **Image-to-image editing:** Supports precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
+- **Photorealistic image synthesis:** Generates realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
+- **High-fidelity portraits:** Generates expressive, natural-looking portraits with accurate facial structure, lighting, and texture.
+- **Product, branding, and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
 - **Accurate text rendering:** Improved rendering of text within generated images, including labels, posters, packaging, and signage.
-- **Visual reasoning:** Reason across objects, scene structure, lighting, scale, and spatial positioning to produce consistent outputs, even from ambiguous prompts.
+- **Visual reasoning:** Reasons across objects, scene structure, lighting, scale, and spatial positioning to produce consistent outputs, even from ambiguous prompts.
 
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
+The following table highlights what distinguishes each model and the scenarios it best fits.
 
-### MAI-Image-2.5-Pro (Preview)
+| Model | Key capabilities | Best for |
+| --- | --- | --- |
+| `MAI-Image-2.6-Flash` (Preview) | Same generation and editing capabilities as `MAI-Image-2.6`, offered as a faster, lower-cost variant. | The same scenarios as `MAI-Image-2.6` when you need lower cost and faster generation. |
+| `MAI-Image-2.6` (Preview) | [Core capabilities](#core-capabilities), with stronger text rendering, improved portraits and 3D imagery, and more polished commercial and photorealistic output. | Projects that need the latest quality gains in text rendering, portraits, and commercial or photorealistic imagery. |
+| `MAI-Image-2.5-Pro` (Preview) | Highest-quality model in the Image-2.5 series, at a higher cost than the other Image-2.5 models. Adds object consistency across complex scenes, character consistency across views and moments, material and physical-property accuracy, and spatial and geometric reasoning to the core family capabilities. | Visually dense compositions that require consistent object identity, materials, and spatial relationships. |
+| `MAI-Image-2.5-Flash` (Preview) | Same generation and editing capabilities as `MAI-Image-2.5`, offered as a faster, lower-cost variant. | Concept visualization, creative content generation, image editing workflows, and production design when you need lower cost and faster generation. |
+| `MAI-Image-2.5` (Preview) | [Core capabilities](#core-capabilities). | Concept visualization, creative content generation, image editing workflows, and production design. |
 
-MAI-Image-2.5-Pro (Preview) is a text-to-image generation and image-to-image editing model designed to create high-quality, visually rich images from natural language prompts and to perform precise, controllable edits on existing images. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model excels at maintaining consistency and realism across complex compositions:
-
-- **Object consistency across complex scenes:** Objects retain the same identity, materials, proportions, markings, and orientation throughout a visually dense composition.
-- **Character consistency across views and moments:** A person or character remains recognizably the same across poses, camera angles, expressions, clothing, and lighting conditions.
-- **Material and physical-property accuracy:** Materials look and behave differently based on their real-world properties, including reflection, translucency, weight, texture, and deformation.
-- **Spatial and geometric reasoning:** Objects are positioned coherently in three-dimensional space, with credible scale, perspective, occlusion, and structural relationships.
-
-### MAI-Image-2.5-Flash (Preview) 
-
-MAI-Image-2.5-Flash (Preview) is a text-to-image generation and image-to-image editing model designed to create high-quality, visually rich images from natural language prompts and to perform precise, controllable edits on existing images. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model is optimized to produce diverse and coherent images across a wide range of creative and design scenarios, making it well suited for tasks such as concept visualization, creative content generation, image editing workflows, and production design.
-
-### MAI-Image-2.5 (Preview) 
-
-MAI-Image-2.5 (Preview) is a text-to-image generation and image-to-image editing model designed to create high-quality, visually rich images from natural language prompts and to perform precise, controllable edits on existing images. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model excels at precise, surgical edits with consistency — enabling users and developers to make targeted object edits, adapt layouts, update text, clean up artifacts like motion blur, and preserve visual consistency across iterations.
-
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details, see the individual [model cards in the Foundry model catalog](https://ai.azure.com/catalog/models/?publisher=microsoft) and the capabilities comparison table in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ## API endpoints
 
@@ -411,23 +406,46 @@ The following table lists the request parameters for the image APIs:
 | `image` | Image edits | string | The path to the image you want to edit. The **image is passed as multipart form data**. Must be in JPEG or PNG format. |
 | `width` | Image generations | integer | Width of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 | `height` | Image generations | integer | Height of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `auto_aspect_ratio` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables model-directed aspect ratio selection. When enabled, the model evaluates the prompt and any provided image inputs to select the output aspect ratio it determines is best suited to the requested content, composition, and framing. When disabled, the configured or default aspect ratio is used instead. |
+| `web_grounding` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables web-grounded image generation. When enabled, the model can retrieve current, relevant information from Bing Search and use the results as additional context when interpreting the prompt and generating the image. This can improve accuracy for requests involving real-world entities, places, events, or other information that might change over time. When disabled, no web search is performed. |
+
+#### Response format
+
+Both the MAI image generations and image edits APIs return a JSON object that contains the generated PNG image as base64-encoded data. Decode the `b64_json` value to save the image as a PNG file.
 
 > [!NOTE]
 > The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | array | Collection of generated image results. |
+| `data[].b64_json` | string | Base64-encoded PNG image data. Decode this value to create an image file. |
+
+The following example shows a successful response:
+
+```json
+{
+    "data": [
+        {
+            "b64_json": "<base64-encoded PNG image data>"
+        }
+    ]
+}
+```
 
 ## API quotas and limits
 
 MAI image models have the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
 
-| Deployment Type | Tier | MAI-Image-2.5-Pro <br> (RPM) | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) |
-| --- | --- | --- | --- | --- |
-| Global Standard | 0 <br> (Free) | 0 | 0 | 0 |
-| Global Standard | 1 | 2 | 2 | 2 |
-| Global Standard | 2 | 4 | 4 | 4 |
-| Global Standard | 3 | 6 | 6 | 6 |
-| Global Standard | 4 | 8 | 8 | 8 |
-| Global Standard | 5 | 10 | 10 | 10 |
-| Global Standard | 6 | 12 | 12 | 12 |
+| Deployment Type | Tier | MAI-Image-2.6-Flash <br> (RPM) | MAI-Image-2.6 <br> (RPM) | MAI-Image-2.5-Pro <br> (RPM) | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Global Standard | 0 <br> (Free) | 0 | 0 | 0 | 0 | 0 |
+| Global Standard | 1 | 2 | 2 | 2 | 2 | 2 |
+| Global Standard | 2 | 4 | 4 | 4 | 4 | 4 |
+| Global Standard | 3 | 6 | 6 | 6 | 6 | 6 |
+| Global Standard | 4 | 8 | 8 | 8 | 8 | 8 |
+| Global Standard | 5 | 10 | 10 | 10 | 10 | 10 |
+| Global Standard | 6 | 12 | 12 | 12 | 12 | 12 |
 
 To request a quota increase, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest). Requests are processed in the order they're received, and priority goes to customers who actively use their existing quota allocation.
 
