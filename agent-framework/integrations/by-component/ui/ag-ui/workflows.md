@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/31/2026
+ms.date: 09/04/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -264,6 +264,13 @@ user message:
 The adapter restores the saved workflow state and continues execution. If the checkpoint contains a pending interrupt,
 include both the checkpoint ID and the canonical `resume` payload in the same request. The adapter restores the
 checkpoint before it delivers the interrupt response.
+
+The adapter binds each new checkpoint to the request's Snapshot Scope and client-supplied `threadId`. It rejects a
+resume request when either value doesn't match. Checkpoints written before ownership metadata was introduced remain
+resumable for compatibility.
+
+This check doesn't replace endpoint authorization or protected checkpoint storage. For more information, see
+[Security considerations](security-considerations.md#authentication-and-authorization).
 
 `InMemoryCheckpointStorage` doesn't survive process restarts. For durable storage options and checkpoint selection,
 see [Checkpoints](../../../../workflows/checkpoints.md).
