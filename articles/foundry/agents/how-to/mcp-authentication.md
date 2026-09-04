@@ -458,7 +458,7 @@ After you configure authentication, verify the connection works correctly:
 
 If you developed a custom MCP server or want to use an open-source MCP server that runs locally, you need to host it in the cloud before connecting it to Agent Service.
 
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint.
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](https://github.com/Azure-Samples/mcp-container-ts#getting-started-with-remote-mcp-servers-using-azure-container-apps-nodejstypescript) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint.
 
 The remote endpoint can be either a public endpoint or a private endpoint within your VNet. For private MCP servers, deploy your Container App with internal-only ingress on a dedicated MCP subnet delegated to `Microsoft.App/environments`. To get started, use the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-private-network-agent-tools) template. For details about tool support in network-isolated environments, see [Agent tools with network isolation](../../how-to/configure-private-link.md#agent-tools-with-network-isolation).
 
