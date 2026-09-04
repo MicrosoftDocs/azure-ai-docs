@@ -173,11 +173,11 @@ workflow = MagenticBuilder(
 ```
 
 > [!TIP]
-> A standard manager is implemented based on the Magentic-One design, with fixed prompts taken from the original paper. You can customize the manager's behavior by passing prompts to `MagenticBuilder`.
+> A standard manager is based on the Magentic-One design, with fixed prompts taken from the original paper. Customize the manager's behavior by passing prompts to `MagenticBuilder`.
 >
 > When you customize the initial fact sheet or plan prompts, also customize the corresponding update prompts so replanning preserves your format. A custom `progress_ledger_prompt` must preserve the built-in JSON response schema.
 >
-> See the [custom manager prompts sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/03-workflows/orchestrations/magentic_custom_prompts.py) for the prompt parameters and their available placeholders. To further customize the manager, subclass `MagenticManagerBase`.
+> For the prompt parameters and their available placeholders, see the [custom manager prompts sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/03-workflows/orchestrations/magentic_custom_prompts.py). To further customize the manager, subclass `MagenticManagerBase`.
 
 ::: zone-end
 
