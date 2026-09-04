@@ -5,8 +5,9 @@ author: challenp
 ms.author: challenp
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/24/2026
+ms.date: 09/02/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 This article provides a quick reference and a detailed description of the quotas and limits for Azure OpenAI in Azure Government.
@@ -27,7 +28,7 @@ In Azure Government, the service doesn't support quota tiers or automatic adjust
 
 ### Can I request more quota?
 
-Yes, use the [Azure Gov Quota Request Form](https://aka.ms/AOAIGovQuota) to request more quota. If the request is approved, the current tier stays the same, but you get more quota.  
+Yes. Use the [Azure Government quota request form](https://aka.ms/AOAIGovQuota) to request both standard quota and fungible provisioned throughput unit (PTU) quota. If a standard quota request is approved, the current tier stays the same, but you get more quota.
 
 ### Azure Government quota reference
 
@@ -63,3 +64,4 @@ To view quota capacity by region for a specific model or version, query the [cap
 
 - Explore how to [manage quota](../../../foundry-classic/openai/how-to/quota.md) for your Azure OpenAI deployments.
 - Learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
+- Learn about [provisioned throughput in Azure Government](../concepts/provisioned-throughput-gov.md).

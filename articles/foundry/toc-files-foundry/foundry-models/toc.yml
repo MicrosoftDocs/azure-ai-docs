@@ -160,6 +160,9 @@ items:
     - name: Overview
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
+    - name: Overview (government)
+      displayName: Provisioned throughput for Foundry Models in Azure Government
+      href: ../../openai/concepts/provisioned-throughput-gov.md
     - name: Quickstart
       displayName: Create a provisioned throughput deployment
       href: ../../openai/provisioned-quickstart.md
