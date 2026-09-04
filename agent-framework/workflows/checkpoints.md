@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 08/31/2026
+ms.date: 09/04/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -527,7 +527,9 @@ Ensure that the storage location used for checkpoints is secured appropriately. 
 
 ### Pickle serialization
 
-Both `FileCheckpointStorage` and `CosmosCheckpointStorage` use Python's [`pickle`](https://docs.python.org/3/library/pickle.html) module to serialize non-JSON-native state such as dataclasses, datetimes, and custom objects. To mitigate the risks of arbitrary code execution during deserialization, both providers use a **restricted unpickler** by default. Only a built-in set of safe Python types (primitives, `datetime`, `uuid`, `Decimal`, common collections, etc.) and supported Agent Framework or OpenAI SDK types are permitted during deserialization. Module-prefix allowlisting is type-only: helper functions and other non-type globals are rejected. Any unsupported type causes deserialization to fail with a `WorkflowCheckpointException`.
+Both `FileCheckpointStorage` and `CosmosCheckpointStorage` use Python's [`pickle`](https://docs.python.org/3/library/pickle.html) module to serialize non-JSON-native state such as dataclasses, datetimes, and custom objects. To mitigate the risks of arbitrary code execution during deserialization, both providers use a **restricted unpickler** by default. Only a built-in set of safe Python types (primitives, `datetime`, `uuid`, `Decimal`, common collections, etc.) and supported Agent Framework or OpenAI SDK types are permitted during deserialization. Module-prefix allowlisting is type-only: helper functions and other non-type globals are rejected.
+
+Agent Framework omits transient `raw_representation` values from framework-native objects before pickling and restores those fields as `None`. Any other unsupported type causes deserialization to fail with a `WorkflowCheckpointException`.
 
 To allow additional application-specific types, pass them via the `allowed_checkpoint_types` parameter using `"module:qualname"` format:
 
