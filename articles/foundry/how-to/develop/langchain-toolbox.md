@@ -92,8 +92,8 @@ toolbox = AzureAIProjectToolbox(
 )
 ```
 
-When the endpoint is set in the environment, you can omit
-`project_endpoint`. `toolbox_name` is always required:
+When you set the endpoint in the environment, you can omit
+`project_endpoint`. You always need to provide `toolbox_name`:
 
 ```python
 toolbox = AzureAIProjectToolbox(toolbox_name="my-toolbox")
