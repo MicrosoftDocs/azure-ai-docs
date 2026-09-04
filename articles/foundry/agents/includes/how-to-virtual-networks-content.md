@@ -142,11 +142,13 @@ az role assignment create \
 
 ## Limitations 
 
-- **VNET and subnet IP address limitation**:
-  - Your agent service delegated subnet must have IP ranges within valid RFC1918 private IPv4 ranges: `10.0.0.0/8`, `172.16-31.0.0/12`, or `192.168.0.0/16` also known as Private Class A, Class B, and Class C IP ranges.
-  - Private Class A IP address ranges (`10.0.0.0/8`) are supported in every region where Agent Service is available. For the current list, see [Supported regions](../concepts/limits-quotas-regions.md#supported-regions).
-  - Public IP ranges like `44.x.x.x` and CGNAT address ranges `100.64.0.0`–`100.127.255.255` aren't supported for agent service delegated subnet. 
-  - Ensure that the address spaces of your VNET don't overlap with any existing networks in your Azure environment or reserved IP ranges like the following: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, `100.100.224.0/19`, `100.64.0.0/11`. This requirement includes all address spaces you have in your VNET, and if you have more than one, and peered VNETs. 
+- **VNET and subnet IP address limitations**:
+  - Your Agent Service delegated subnet must use one of these address spaces:
+    - RFC 1918: `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`.
+    - RFC 6598 (CGNAT): addresses within `100.64.0.0/10`, excluding `100.100.0.0/17`, `100.100.192.0/19`, and `100.100.224.0/19`.
+  - Private Class A address space (`10.0.0.0/8`) is supported in every region where Agent Service is available. For the current list, see [Supported regions](../concepts/limits-quotas-regions.md#supported-regions).
+  - Public IP ranges, such as `44.x.x.x`, aren't supported for the Agent Service delegated subnet.
+  - Ensure that none of the address spaces in your VNET or any peered VNET overlap with existing networks in your Azure environment or these reserved ranges: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, and `100.100.224.0/19`.
 - **Agent subnet exclusivity**: The agent subnet can't be shared by multiple Foundry resources. Each Foundry resource must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environments`. For more on subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
 - **Agent subnet egress firewall allow list**: If you integrate an Azure Firewall with your private network secured standard agent, add to the allow list the Fully Qualified Domain Names (FQDNs) listed under **Managed Identity** in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag **AzureActiveDirectory**. If you apply Network Security Groups (NSGs) to the delegated agent subnet or related subnets, configure matching outbound allow rules for required dependencies, including the AzureActiveDirectory service tag for Microsoft Entra ID authentication. If either firewall or NSG rules block required dependencies, agent provisioning and runtime operations can fail.
