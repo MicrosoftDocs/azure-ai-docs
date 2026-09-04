@@ -3,7 +3,7 @@ title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 09/04/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -1396,6 +1396,8 @@ The following table shows how `maxOutputDocuments` and `maxOutputSize` interact 
 ### Override default reasoning effort and set request limits
 
 This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so the retrieval reasoning effort must be `low` or `medium`. It also sets `maxRuntimeInSeconds` to cap total request latency and `maxOutputSize` to bound the response payload.
+
+The accepted range for `maxRuntimeInSeconds` is 10 to 600 seconds. If you omit the property, the service uses 90 seconds. The 600-second (10-minute) maximum is the service-side limit for the Azure AI Search retrieval request. It isn't an end-to-end timeout for a prompt agent in Foundry Agent Service, the Foundry portal, your client, or the network.
 
 :::zone pivot="csharp"
 
