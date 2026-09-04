@@ -8,7 +8,7 @@ ms.topic: overview
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: saoh
-ms.date: 09/09/2025
+ms.date: 09/04/2026
 ms.custom:
   - build-2023
   - build-2023-dataai
@@ -23,7 +23,7 @@ Azure Machine Learning is a cloud service that accelerates and manages the machi
 
 You can create a model in Machine Learning or use a model built from an open-source platform, such as PyTorch, TensorFlow, or scikit-learn. MLOps tools help you monitor, retrain, and redeploy models.
 
-> [!Tip]
+> [!TIP]
 > **Free trial!** If you don't have an Azure subscription, create a free account before you begin. [Try the free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You get credits to spend on Azure services. After you use up the credits, you can keep the account and use [free Azure services](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Your credit card isn't charged unless you explicitly change your settings and ask to be charged.
 
 ## Who is Azure Machine Learning for?
@@ -75,7 +75,7 @@ As you refine the model and collaborate with others throughout the rest of the M
 
 Azure Machine Learning includes tools to help you build Generative AI applications powered by Large Language Models (LLMs). The solution includes a model catalog, prompt flow, and a suite of tools to streamline the development cycle of AI applications.
 
-Both Azure Machine Learning studio and Microsoft Foundry allow you to work with LLMs. Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
+Both Azure Machine Learning studio and Microsoft Foundry allow you to work with LLMs. To learn more about the generative AI development experience in Microsoft Foundry, see [What is Microsoft Foundry?](/azure/foundry/).
 
 ### Model catalog
 
@@ -84,6 +84,8 @@ The model catalog in Azure Machine Learning studio is the hub to discover and us
 ### Prompt flow
 
 Azure Machine Learning prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
+
+[!INCLUDE [prompt-flow-retirement](includes/prompt-flow-retirement.md)]
 
 ## Enterprise readiness and security
 
@@ -105,9 +107,9 @@ Other integrations with Azure services support an ML project from end to end. Th
 * Azure Arc, where you can run Azure services in a Kubernetes environment
 * Storage and database options, such as Azure SQL Database and Azure Blob Storage
 * Azure App Service, to deploy and manage ML-powered apps
-* [Microsoft Purview, to discover and catalog data assets across your organization](/azure/purview/register-scan-azure-machine-learning)
+* [Microsoft Purview, to discover and catalog data assets across your organization](/purview/register-scan-azure-machine-learning)
 
-> [!Important]
+> [!IMPORTANT]
 > Azure Machine Learning doesn't store or process your data outside of the region where you deploy.
 
 ## Machine learning project workflow
@@ -118,7 +120,7 @@ Typically, models are developed as part of a project with an objective and goals
 
 The project lifecycle can vary by project, but it often looks like this diagram.
 
-![Diagram that shows the machine learning project lifecycle](./media/overview-what-is-azure-machine-learning/overview-ml-development-lifecycle.png)
+![Diagram showing the machine learning project lifecycle from experimentation through deployment.](./media/overview-what-is-azure-machine-learning/overview-ml-development-lifecycle.png)
 
 A workspace organizes a project and allows for collaboration for many users all working toward a common objective. Users in a workspace can easily share the results of their runs from experimentation in the studio user interface. Or they can use versioned assets for jobs like environments and storage references.
 
@@ -147,7 +149,7 @@ Other languages and frameworks are also supported:
 * R
 * .NET
 
-For more information, see [Open-source integration with Azure Machine Learning](concept-open-source.md).
+For more information, see [Open-source integration with Azure Machine Learning](https://azure.microsoft.com/solutions/open-source/machine-learning/).
 
 ### Automated featurization and algorithm selection
 
@@ -179,9 +181,11 @@ For more information, see [Distributed training with Azure Machine Learning](con
 
 Scaling an ML project might require scaling embarrassingly parallel model training. This pattern is common for scenarios like forecasting demand, where a model might be trained for many stores.
 
+For more information, see [Run training jobs](how-to-train-model.md).
+
 ## Deploy models
 
-To bring a model into production, you deploy the model. The Azure Machine Learning managed endpoints abstract the required infrastructure for both batch or real-time (online) model scoring (inferencing).
+To bring a model into production, you deploy the model. The Azure Machine Learning managed endpoints abstract the required infrastructure for both batch and real-time (online) model scoring (inferencing).
 
 ### Real-time and batch scoring (inferencing)
 
@@ -192,7 +196,7 @@ To bring a model into production, you deploy the model. The Azure Machine Learni
 For more information, see:
 
  * [Deploy a model with a real-time managed endpoint](how-to-deploy-online-endpoints.md)
- * [Use batch endpoints for scoring](batch-inference/how-to-use-batch-endpoint.md)
+ * [Use batch endpoints for scoring](how-to-use-batch-model-deployments.md)
 
 ## MLOps: DevOps for machine learning
 
@@ -200,7 +204,7 @@ DevOps for ML models, often called MLOps, is a process for developing models for
 
 ### ML model lifecycle
 
-![Diagram that shows the machine learning model lifecycle * MLOps.](./media/overview-what-is-azure-machine-learning/model-lifecycle.png)
+![Diagram showing the machine learning model lifecycle for MLOps.](./media/overview-what-is-azure-machine-learning/model-lifecycle.png)
 
 Learn more about [MLOps in Azure Machine Learning](concept-model-management-and-deployment.md).
 
@@ -228,5 +232,5 @@ If you use Apache Airflow, the [airflow-provider-azure-machinelearning](https://
 Start using Azure Machine Learning:
 
 * [Set up an Azure Machine Learning workspace](quickstart-create-resources.md)
-* [Tutorial: Build a first machine learning project](tutorial-1st-experiment-hello-world.md)
+* [Quickstart: Get started with Azure Machine Learning](tutorial-azure-ml-in-a-day.md)
 * [Run training jobs](how-to-train-model.md)
