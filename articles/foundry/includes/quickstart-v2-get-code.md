@@ -6,20 +6,23 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/25/2026
+ms.date: 09/03/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Set environment variables and get the code
 
 # [Python](#tab/python)
 
-Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
+1. Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) and model name as environment variables. The `quickstart-responses.py` sample reads these values:
 
-```
-PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-AGENT_NAME="MyAgent"
-```
+    ```
+    AZURE_AI_PROJECT_ENDPOINT=https://<resource-name>.services.ai.azure.com/api/projects/<project-name>
+    MODEL_DEPLOYMENT=gpt-5-mini
+    ```
+
+1. The `quickstart-create-agent.py` and `quickstart-chat-with-agent.py` samples don't read environment variables. In each file, replace the `PROJECT_ENDPOINT` and `AGENT_NAME` values with your endpoint and an agent name such as `MyAgent`.
 
 The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
 
@@ -27,17 +30,16 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/quickstart)
 
-
-Sign in using the CLI `az login` command to authenticate before running your Python scripts.
-
 # [C#](#tab/csharp)
 
-Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
+1. Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) and model name as environment variables. The `quickstart-responses.cs` sample reads these values:
 
-```
-ProjectEndpoint = <endpoint copied from welcome screen>
-AgentName = "MyAgent"
-```
+    ```
+    AZURE_AI_PROJECT_ENDPOINT=https://<resource-name>.services.ai.azure.com/api/projects/<project-name>
+    MODEL_DEPLOYMENT=gpt-5-mini
+    ```
+
+1. The `quickstart-create-agent.cs` and `quickstart-chat-with-agent.cs` samples don't read environment variables. In each file, replace the `ProjectEndpoint` and `AgentName` values with your endpoint and an agent name such as `MyAgent`.
 
 The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
 
@@ -45,15 +47,13 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
 
-Sign in using the CLI `az login` command to authenticate before running your C# scripts.
-
 # [TypeScript](#tab/typescript)
 
-Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
+The TypeScript samples don't read environment variables. In each file, replace these values with [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) and an agent name such as `MyAgent`:
 
-```
-PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-AGENT_NAME="MyAgent"
+```typescript
+const PROJECT_ENDPOINT = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
+const AGENT_NAME = "MyAgent";
 ```
 
 The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
@@ -62,15 +62,13 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/typescript/quickstart/)
 
-Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
-
 # [Java](#tab/java)
 
-Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
+The Java samples don't read environment variables. In each file, replace these values with [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) and an agent name such as `MyAgent`:
 
-```
-ProjectEndpoint = <endpoint copied from welcome screen>
-AgentName = "MyAgent"
+```java
+String ProjectEndpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
+String AgentName = "MyAgent";
 ```
 
 The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the model name in the sample code.
@@ -79,26 +77,21 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/java/quickstart/)
 
-Sign in using the CLI `az login` command to authenticate before running your Java scripts.
-
 # [REST API](#tab/rest)
 
-Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. 
+1. In each request URL, replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with the values from [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details), which has the form `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`.
+
+1. The chat-with-agent request reads the agent name from an environment variable:
+
+    ```
+    AGENT_NAME=MyAgent
+    ```
 
 The samples use the `gpt-5-mini` deployment you created in [Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md). If you deployed a model under a different name, update the `model` value in the request body.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/REST/quickstart).
-
-1. Sign in using the CLI `az login` command to authenticate before running the next command.
-1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
-
-    ```azurecli
-    az account get-access-token --scope https://ai.azure.com/.default
-    ```
-    
-1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
 
 # [Foundry portal](#tab/portal)
 
