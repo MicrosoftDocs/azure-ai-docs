@@ -6,7 +6,7 @@ manager: mcleanbyron
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 09/04/2026
 author: mattwojo
 ms.author: mattwoj
 reviewer: lindazqli
@@ -63,7 +63,7 @@ Use this map to separate the agent-use flow from dependencies that an administra
 | Goal | Depends on | Continue at |
 | --- | --- | --- |
 | Add Work IQ to an agent and send a query | An existing Work IQ connection, the signed-in user's Microsoft 365 permissions, and the billing or connector licensing listed in the prerequisites. | [Add the Work IQ tool to your agent](#add-the-work-iq-tool-to-your-agent) |
-| Create the first Work IQ connection for the organization | The Work IQ service principal, a single-tenant Entra app, delegated `WorkIQAgent.Ask` permission, and tenant-wide admin consent. | [Set up your Entra app](#set-up-your-entra-app-one-time-per-organization) |
+| Create the first Work IQ connection for the organization | The Work IQ service principal, a single-tenant Entra app, delegated `WorkIQAgent.Ask` permission, and tenant-wide admin consent. | [Set up your Entra app](#set-up-your-microsoft-entra-app-one-time-per-organization) |
 | Use a connector-backed Microsoft 365 tool | A connection for that connector and any connector-specific license required for the signed-in user. | [Add the Work IQ tool to your agent](#add-the-work-iq-tool-to-your-agent) |
 
 Complete the agent-use flow first when your organization already has a connection. Use the one-time tenant setup only when an administrator needs to create the first connection.
