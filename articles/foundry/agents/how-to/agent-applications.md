@@ -96,7 +96,7 @@ For applications, this endpoint is exposed at:
 
 `https://{accountName}.services.ai.azure.com/api/projects/{projectName}/applications/{applicationName}/protocols/openai`
 
-The OpenAI-compatible API exposed through applications has been modified to ensure users' conversations remain private. This restriction is temporary and is removed once end-user isolation is supported. As a result, the API is more limited than the OpenAI API served by the project endpoint. Specifically:
+The OpenAI-compatible API that applications expose is modified to keep your conversations private. This restriction is temporary and is removed when end-user isolation is supported. As a result, the API is more limited than the OpenAI API served by the project endpoint. Specifically:
 
 - Only the stateless Responses API (`POST /responses`) is supported.
 - Other APIs including `/conversations`, `/files`, `/vector_stores`, and `/containers` are inaccessible.
