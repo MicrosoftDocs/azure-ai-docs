@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 06/26/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -52,6 +53,7 @@ ms.service: agent-framework
   | ContinueLoop                        | ✅ |   ✅   |                                                  |
   | GotoAction                          | ✅ |   ✅   |                                                  |
   | SendActivity                        | ✅ |   ✅   |                                                  |
+  | SendMessage                         | ✅ |   ❌   | C#-only shorthand for sending a message          |
   | InvokeAzureAgent                    | ✅ |   ✅   |                                                  |
   | InvokeFunctionTool                  | ✅ |   ✅   |                                                  |
   | InvokeMcpTool                       | ✅ |   ✅   |                                                  |
@@ -800,7 +802,7 @@ Iterates over a collection.
   actions:
     - kind: SendActivity
       activity:
-        text: =Concat("Processing item ", index, ": ", item)
+        text: '=Concat("Processing item ", index, ": ", item)'
 ```
 
 **Properties:**
@@ -843,7 +845,7 @@ Skips to the next iteration of the loop.
         - kind: ContinueLoop
     - kind: SendActivity
       activity:
-        text: =Concat("Positive number: ", item)
+        text: '=Concat("Positive number: ", item)'
 ```
 
 #### GotoAction
@@ -901,6 +903,26 @@ With an expression:
 |----------|----------|-------------|
 | `activity` | Yes | The activity to send |
 | `activity.text` | Yes | Message text (literal or expression) |
+
+#### SendMessage
+
+Sends a templated text message to the user. Use `SendMessage` when you only
+need to send text and don't need the full activity object shape.
+
+```yaml
+- kind: SendMessage
+  id: show_repo_summary
+  message: "Fetched repo: visibility={Local.RepoInfo.visibility}, description={Local.RepoInfo.description}"
+```
+
+**Properties:**
+
+| Property | Required | Description |
+|----------|----------|-------------|
+| `message` | Yes | Message text to send. Use `{Variable.Path}` placeholders to include workflow state values. |
+
+> [!NOTE]
+> The C# declarative workflow implementation supports `SendMessage`. Use `SendActivity` for Python workflows.
 
 ### Agent Invocation Actions
 
@@ -1157,23 +1179,38 @@ Workflow workflow = DeclarativeWorkflowBuilder.Build<string>("workflow.yaml", op
 
 Asks the user a question and stores the response.
 
+The C# and Python SDKs use different field names for the question prompt.
+This example uses the smallest shared behavior: it asks for text and stores the
+answer in the workflow state.
+
 ```yaml
 - kind: Question
   id: ask_name
   displayName: Ask for user name
-  question:
-    text: "What is your name?"
-  variable: Local.userName
-  default: "Guest"
+  property: Local.userName
+  prompt:
+    kind: Message
+    text:
+      - "What is your name?"
+  entity:
+    kind: StringPrebuiltEntity
 ```
 
 **Properties:**
 
 | Property | Required | Description |
 |----------|----------|-------------|
-| `question.text` | Yes | The question to ask |
-| `variable` | Yes | Path to store the response |
-| `default` | No | Default value if no response |
+| `prompt` | Yes | Activity template to send as the question. Use `kind: Message` with a `text` list for message prompts. |
+| `property` | Yes | Path to store the extracted response. |
+| `entity` | Yes | Entity type used to parse and validate the response. Use `StringPrebuiltEntity` for free-text answers. |
+| `alwaysPrompt` | No | Forces the question to be asked even when the target property already has a value. |
+| `skipQuestionMode` | No | Controls whether to skip the prompt when the target property already has a value. Supported values are `AlwaysSkipIfVariableHasValue`, `SkipOnFirstExecutionIfVariableHasValue`, and `AlwaysAsk`. |
+| `repeatCount` | No | Maximum number of invalid or unrecognized responses before storing `defaultValue`. |
+| `defaultValue` | No | Value to store when `repeatCount` is reached without a valid response. |
+| `defaultValueResponse` | No | Message activity template to send when the default value is used. |
+| `invalidPrompt` | No | Message activity template to send when response text doesn't match the configured entity. |
+| `unrecognizedPrompt` | No | Message activity template to send when the response doesn't contain messages. |
+| `autoSend` | No | Adds a valid answer to the workflow conversation and updates `System.LastMessage`. Defaults to `true`. |
 
 #### RequestExternalInput
 
@@ -1346,6 +1383,7 @@ Retrieves multiple messages from a conversation.
 | `ContinueLoop` | Control Flow | ✅ | ✅ | Skip to next iteration |
 | `GotoAction` | Control Flow | ✅ | ✅ | Jump to action by ID |
 | `SendActivity` | Output | ✅ | ✅ | Send message to user |
+| `SendMessage` | Output | ✅ | ❌ | Send a templated text message |
 | `InvokeAzureAgent` | Agent | ✅ | ✅ | Call Azure AI agent |
 | `InvokeFunctionTool` | Tool | ✅ | ✅ | Invoke function directly |
 | `InvokeMcpTool` | Tool | ✅ | ✅ | Invoke MCP server tool |
@@ -1509,7 +1547,7 @@ trigger:
       agent:
         name: MenuAgent
       input:
-        messages: =UserMessage("Describe today's specials: " & Local.Specials)
+        messages: '=UserMessage("Describe today''s specials: " & Local.Specials)'
 ```
 
 #### MCP Tool Integration
@@ -1903,7 +1941,7 @@ Iterates over a collection.
   actions:
     - kind: SendActivity
       activity:
-        text: =Concat("Processing item ", index, ": ", item)
+        text: '=Concat("Processing item ", index, ": ", item)'
 ```
 
 **Properties:**
@@ -1946,7 +1984,7 @@ Skips to the next iteration of the loop.
         - kind: ContinueLoop
     - kind: SendActivity
       activity:
-        text: =Concat("Positive number: ", item)
+        text: '=Concat("Positive number: ", item)'
 ```
 
 #### GotoAction
@@ -2222,23 +2260,42 @@ workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 
 Asks the user a question and stores the response.
 
+The C# and Python SDKs use different field names for the question prompt.
+This section uses the smallest shared behavior: ask for text and store the
+answer in the workflow state.
+
 ```yaml
 - kind: Question
   id: ask_name
   displayName: Ask for user name
   question:
     text: "What is your name?"
-  variable: Local.userName
-  default: "Guest"
+  property: Local.userName
 ```
 
 **Properties:**
 
 | Property | Required | Description |
 |----------|----------|-------------|
-| `question.text` | Yes | The question to ask |
-| `variable` | Yes | Path to store the response |
-| `default` | No | Default value if no response |
+| `question` | Yes | The question to ask. Use `question.text` for the nested form or a string value for the compact form. |
+| `variable` | Yes | Path to store the response. Use `property` as the alternate top-level field name when you want to align with the C# destination field name. |
+| `default` | No | Default value included in the request metadata for the caller to apply. |
+| `choices` | No | List of choices added to request metadata. Each choice can be a string or an object with `value` and optional `label` fields. |
+| `allowFreeText` | No | Indicates whether the caller can accept text outside the configured `choices`. Defaults to `true`. |
+
+Python also accepts alternate field names for compatibility. Use top-level `text` instead of `question` and `defaultValue` instead of `default`.
+
+```yaml
+- kind: Question
+  id: ask_color
+  text: "Choose a color:"
+  property: Local.color
+  choices:
+    - value: red
+      label: Red
+    - blue
+  allowFreeText: false
+```
 
 #### RequestExternalInput
 
@@ -2485,7 +2542,7 @@ actions:
 
   - kind: SendActivity
     activity:
-      text: =Concat("You are categorized as: ", Local.category)
+      text: '=Concat("You are categorized as: ", Local.category)'
 
   - kind: SetVariable
     variable: Workflow.Outputs.category
@@ -2727,7 +2784,7 @@ trigger:
     - kind: SendActivity
       id: start_message
       activity:
-        text: =Concat("Starting session for: ", Workflow.Inputs.problem)
+        text: '=Concat("Starting session for: ", Workflow.Inputs.problem)'
 
     # Student attempts solution (loop entry point)
     - kind: SendActivity
@@ -2866,14 +2923,14 @@ actions:
 
       - kind: SendActivity
         activity:
-          text: =Concat("Checked item: ", currentItem.name)
+          text: '=Concat("Checked item: ", currentItem.name)'
 
   - kind: If
     condition: =Local.found
     then:
       - kind: SendActivity
         activity:
-          text: =Concat("Found: ", Local.result.name)
+          text: '=Concat("Found: ", Local.result.name)'
     else:
       - kind: SendActivity
         activity:
@@ -3189,7 +3246,7 @@ actions:
 - kind: SendActivity
   id: debug_log
   activity:
-    text: =Concat("[DEBUG] Current state: counter=", Local.counter, ", status=", Local.status)
+    text: '=Concat("[DEBUG] Current state: counter=", Local.counter, ", status=", Local.status)'
 ```
 
 ::: zone-end
