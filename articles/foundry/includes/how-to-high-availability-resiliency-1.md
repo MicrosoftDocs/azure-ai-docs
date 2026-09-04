@@ -7,7 +7,8 @@ ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 07/13/2026
-ms.custom: include
+ms.custom: include, dev-focus
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -250,7 +251,9 @@ Store agent JSON definitions and knowledge source references in source control. 
 1. Include tool bindings, knowledge file references, and connection configurations alongside each agent definition.
 1. Automate this process in a CI/CD pipeline on a regular schedule (for example, daily or after each deployment).
 
-The following Python snippet uses the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) to list all agents and save each definition as a JSON file:
+The following example uses the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) to list all agents and save each definition as a JSON file:
+
+# [Python](#tab/python)
 
 ```python
 import json
@@ -269,7 +272,28 @@ with AIProjectClient(
         print(f"Saved agent: {agent.name} ({agent.id})")
 ```
 
-**Reference:** [AIProjectClient.agents.list_agents()](/python/api/overview/azure/ai-projects-readme)
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import { writeFile } from "node:fs/promises";
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const project = new AIProjectClient(
+  process.env["FOUNDRY_PROJECT_ENDPOINT"]!,
+  new DefaultAzureCredential(),
+);
+
+for await (const agent of project.agents.list()) {
+  await writeFile(`${agent.id}.json`, JSON.stringify(agent, null, 2));
+  console.log(`Saved agent: ${agent.name} (${agent.id})`);
+}
+```
+
+---
+
+- Reference: [`AIProjectClient.agents.list_agents`](/python/api/overview/azure/ai-projects-readme) (Python)
+- Reference: [`AIProjectClient.agents.list`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
 
 > [!TIP]
 > You can also export agent configurations by using the [REST API](https://ai.azure.com/api-reference/). The REST API provides full access to agent resources for automation in any language or CI/CD pipeline.

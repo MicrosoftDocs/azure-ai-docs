@@ -1,11 +1,11 @@
-﻿---
+---
 title: Start Batch Translation
 titleSuffix: Foundry Tools
 description: Submit an asynchronous batch document translation job to the Document Translation service using the REST API.
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 07/14/2026
 ai-usage: ai-assisted

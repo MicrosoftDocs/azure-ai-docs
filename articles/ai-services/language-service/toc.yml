@@ -28,6 +28,15 @@ items:
   - name: Migrate to Microsoft Foundry
     href: migration-studio-to-foundry.md
     displayName: migrate, foundry, studio, permissions, roles, access, requisites, requirements
+
+- name: Security and compliance
+  items:
+  - name: Secure deployment
+    href: secure-deployment.md
+    displayName: security, data protection, encryption, secure deployment
+  - name: Data privacy and security
+    href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+    displayName: data privacy, logging, data retention    
 - name: Core capabilities
   items:
 
@@ -112,9 +121,6 @@ items:
       - name: Integration and responsible use
         href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
         displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
 
   - name: Language detection
     items:
@@ -133,9 +139,6 @@ items:
       - name: Integration and responsible use
         href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
         displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
     - name: How-to guides
       items:
       - name: Call the API
@@ -227,9 +230,6 @@ items:
         - name: Integration and responsible use
           href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
           displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-        - name: Data, privacy, and security
-          href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-          displayName: Data privacy, logging, data retention
       - name: How-to guides
         items:
         - name: Call NER
@@ -279,9 +279,6 @@ items:
       - name: Integration and responsible use
         href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
         displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
     - name: How-to guides
       items:
       - name: How to call the API
@@ -575,10 +572,6 @@ items:
       - name: Integration and responsible use
         href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
         displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-    
 
   - name: Key phrase extraction
     items:
@@ -618,9 +611,6 @@ items:
       - name: Integration and responsible use
         href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
         displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
 
   - name: Orchestration workflow
     items:
@@ -706,9 +696,6 @@ items:
         - name: Integration and responsible use
           href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
           displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-        - name: Data, privacy, and security
-          href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-          displayName: Data privacy, logging, data retention
 
   - name: Summarization
     items:
@@ -746,10 +733,7 @@ items:
         displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
       - name: Characteristics and limitations
         href: ../../ai-foundry/responsible-ai/language-service/characteristics-and-limitations-summarization.md
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-
+      
 - name: Azure Language concepts
   items:
   - name: Developer guide
@@ -906,6 +890,9 @@ items:
         href: /training/paths/build-custom-text-analytics
     - name: Enterprise readiness
       items:
+      - name: Secure your data and deployment
+        href: secure-deployment.md
+        displayName: security, secure deployment, best practices, network isolation, encryption, compliance
       - name: Virtual networks
         href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/language-service/context/context
       - name: Microsoft Foundry security

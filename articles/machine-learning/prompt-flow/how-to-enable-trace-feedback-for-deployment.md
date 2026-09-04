@@ -9,7 +9,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.custom:
   - sfi-image-nochange
   - sfi-ropc-nochange
@@ -32,7 +32,7 @@ In this article, you learn how to enable trace, collect aggregated metrics, and 
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](../how-to-configure-cli.md).
 - An Azure Machine Learning workspace. If you don't have one, use the steps in the [Quickstart: Create workspace resources article](../quickstart-create-resources.md) to create one.
-- An Application Insights. Usually a machine learning workspace has a default linked Application Insights. If you want to use a new one, you can [create an Application Insights resource](/azure/azure-monitor/app/create-workspace-resource).
+- An Application Insights resource. Usually a machine learning workspace has a default linked Application Insights resource. If you want to use a new one, you can [create an Application Insights resource](/azure/azure-monitor/app/create-workspace-resource).
 - Python 3.9 or later, if you plan to use the Python code samples in this article.
 - Learn [how to build and test a flow in the prompt flow](get-started-prompt-flow.md).
 - Have a basic understanding of managed online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way that frees you from the overhead of setting up and managing the underlying deployment infrastructure. For more information on managed online endpoints, see [Online endpoints and deployments for real-time inference](../concept-endpoints-online.md#online-endpoints).
@@ -108,14 +108,13 @@ Select **Metrics** tab in the left navigation. Select **promptflow standard metr
 
 Prompt flow serving provides a new `/feedback` API to help you collect feedback. The feedback payload can be any JSON format data. PF serving just helps you save the feedback data to a trace span. The data is saved to the trace exporter target you configure. It also supports OpenTelemetry standard trace context propagation, so it respects the trace context set in the request header and uses that context as the request parent span context. You can leverage the distributed tracing functionality to correlate the feedback trace to its chat request trace. 
 
-The following sample code shows how to score a flow deployed managed endpoint enabled tracing and send the feedback to the same trace span of scoring request. The flow has inputs `question` and `chat_history`, and output `answer`. After scoring the endpoint, you collect feedback and send it to Application Insights specified when deploying the flow. You need to fill in the `api_key` value or modify the code according to your use case.
+The following sample code shows how to score a flow deployed managed endpoint enabled tracing and send the feedback to the same trace span of scoring request. The flow has inputs `question` and `chat_history`, and output `answer`. After scoring the endpoint, you collect feedback and send it to Application Insights specified when deploying the flow. Before you run the sample, set the `AZUREML_ENDPOINT_CREDENTIAL` environment variable to a primary or secondary key, Azure Machine Learning token, or Microsoft Entra ID token for the endpoint.
 
 ```python
 import urllib.request
 import json
 import os
 from opentelemetry import trace, context
-from opentelemetry.baggage.propagation import W3CBaggagePropagator
 from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
 from opentelemetry.sdk.trace import TracerProvider
 
@@ -137,22 +136,23 @@ body = str.encode(json.dumps(data))
 
 url = 'https://basic-chat-endpoint.eastus.inference.ml.azure.com/score'
 feedback_url = 'https://basic-chat-endpoint.eastus.inference.ml.azure.com/feedback'
-# Replace this with the primary/secondary key, AMLToken, or Microsoft Entra ID token for the endpoint
-api_key = ''
-if not api_key:
-    raise Exception("A key should be provided to invoke the endpoint")
+endpoint_credential = os.environ.get("AZUREML_ENDPOINT_CREDENTIAL")
+if not endpoint_credential:
+    raise RuntimeError("Set AZUREML_ENDPOINT_CREDENTIAL before invoking the endpoint")
 
 # The azureml-model-deployment header will force the request to go to a specific deployment.
 # Remove this header to have the request observe the endpoint traffic rules
-headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key), 'azureml-model-deployment': 'basic-chat-deployment' }
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + endpoint_credential,
+    "azureml-model-deployment": "basic-chat-deployment",
+}
 
 try:
-    with tracer.start_as_current_span('genai-request') as span:
+    with tracer.start_as_current_span('genai-request'):
 
         ctx = context.get_current()
         TraceContextTextMapPropagator().inject(headers, ctx)
-        print(headers)
-        print(ctx)
         req = urllib.request.Request(url, body, headers)
         response = urllib.request.urlopen(req)
 
@@ -171,7 +171,7 @@ try:
 except urllib.error.HTTPError as error:
     print("The request failed with status code: " + str(error.code))
 
-    # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+    # Print the headers - they include the request ID and the timestamp, which are useful for debugging the failure
     print(error.info())
     print(error.read().decode("utf8", 'ignore'))
 

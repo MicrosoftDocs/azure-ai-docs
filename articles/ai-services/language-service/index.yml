@@ -7,7 +7,7 @@ brand: azure
 metadata:
   title: Azure Language documentation | Microsoft Docs
   description: Create natural language processing (NLP) solutions with pre-trained and customizable models for semantic understanding, entity extraction, and text analysis.
-  ms.service: azure-ai-language
+  ms.service: azure-language-foundry-tools
   ms.topic: hub-page
   author: laujan
   ms.author: lajanuar

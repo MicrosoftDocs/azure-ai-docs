@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: This article explains which languages are supported by the Sentiment Analysis and Opinion Mining features of Azure Language service.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 04/18/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---

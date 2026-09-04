@@ -8,8 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: upgrade-and-migration-article
-ms.date: 06/02/2026
-ai-usage: ai-assisted
+ms.date: 08/31/2026
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -23,7 +22,7 @@ Here are the most recent versions of the REST APIs:
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
 | Data plane | [`2026-04-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Stable |
-| Data plane | [`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | Preview |
+| Data plane | [`2026-08-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2026-03-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) | Preview |
 
@@ -103,6 +102,18 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 ## Data plane upgrades
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
+
+### Upgrade to 2026-08-01-preview
+
+[`2026-08-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) adds new agentic retrieval controls, knowledge source enhancements, and cursor pagination for list operations.
+
+Before you upgrade, check whether any of the following `2026-08-01-preview` breaking changes apply to your code:
+
++ Agentic retrieval breaking changes include nested `model` objects in activity logs, `resultsProcessing` replacing `inclusionMode` for server tools in MCP knowledge source, and customer-owned Microsoft Entra app authentication for Work IQ knowledge sources. For step-by-step migration guidance, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md#2026-08-01-preview).
+
++ List operations for data sources, indexers, indexes, skillsets, and knowledge sources replace `$top`, `$skip`, and `$count` with cursor pagination using `pageSize`, `search`, and `@odata.nextLink`. For more information about the new paging mechanism, see [Page through Azure AI Search list results (preview)](search-how-to-page-list-results.md).
+
+For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2026-05-01-preview
 
@@ -360,7 +371,7 @@ Use the instructions in this section to migrate vector fields, configuration, an
 
     ```http
     {
-        "search": (this parameter is ignored in vector search),
+        "search": "*", //Required by the API but ignored for ranking in vector-only queries
         "vectors": [
           {
             "value": [
@@ -382,7 +393,7 @@ Use the instructions in this section to migrate vector fields, configuration, an
 
     ```http
     {
-      "search": "(this parameter is ignored in vector search)",
+      "search": "*", //Required by the API but ignored for ranking in vector-only queries
       "vectorQueries": [
         {
           "kind": "vector",

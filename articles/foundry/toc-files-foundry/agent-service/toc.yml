@@ -1,17 +1,11 @@
 items:
 - name: Overview
-  items:
-  - name: What is Foundry Agent Service?
-    href: ../../agents/overview.md
-  - name: Choose how to build
-    href: ../../concepts/choose-build-approach.md
-  - name: Agent development lifecycle
-    href: ../../agents/concepts/development-lifecycle.md
-  - name: Quickstarts
-    href: ../../quickstarts/quickstarts.md
+  href: ../../agents/overview.md
 
 - name: Concepts
   items:
+  - name: Agent development lifecycle
+    href: ../../agents/concepts/development-lifecycle.md
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
   - name: Agent 365
@@ -39,28 +33,20 @@ items:
       href: ../../agents/how-to/connected-models.md
     - name: Use structured inputs
       href: ../../agents/how-to/structured-inputs.md
-    - name: Add tools and knowledge
-      href: ../../agents/concepts/tool-catalog.md
     - name: Agent applications
       href: ../../agents/how-to/agent-applications.md
     - name: Configure an agent
       href: ../../agents/how-to/configure-agent.md
     - name: Best practices
       href: ../../agents/concepts/tool-best-practice.md
-    - name: Create a private tool catalog (preview)
-      href: ../../agents/how-to/private-tool-catalog.md
-  - name: Toolbox
-    href: ../../agents/how-to/tools/toolbox.md
+    - name: Agent optimizer overview
+      href: ../../agents/concepts/agent-optimizer-overview.md
+    - name: Understand optimizer costs and token usage
+      href: ../../agents/concepts/agent-optimizer-costs.md
+    - name: Optimize a prompt agent
+      href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
-  - name: Azure AI Search
-    href: ../../agents/how-to/tools/ai-search.md
-  - name: Code interpreter
-    href: ../../agents/how-to/tools/code-interpreter.md
-  - name: File search
-    href: ../../agents/how-to/tools/file-search.md
-  - name: Function calling
-    href: ../../agents/how-to/tools/function-calling.md
   - name: Deploy and share
     items:
     - name: Enable incoming A2A (preview)
@@ -86,6 +72,10 @@ items:
       href: ../../agents/concepts/runtime-components.md
     - name: Runtime contract
       href: ../../agents/concepts/hosted-agent-contract.md
+    - name: Long-running agent resilience (preview)
+      href: ../../agents/concepts/long-running-agent-resilience.md
+    - name: Long-running agent API reference (preview)
+      href: ../../agents/concepts/long-running-agent-reference.md
   - name: Quickstarts
     items:
     - name: Deploy your first agent
@@ -100,7 +90,7 @@ items:
       href: ../../agents/quickstarts/quickstart-memory-hosted-agent.md
     - name: Evaluate an agent
       href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
-    - name: Optimize an agent
+    - name: Optimize a hosted agent
       href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
     - name: Trace an agent
       href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
@@ -114,6 +104,8 @@ items:
       href: ../../agents/how-to/init-agent-project.md
     - name: Author azure.yaml
       href: ../../agents/how-to/author-azure-yaml.md
+    - name: Use a toolbox with a hosted agent
+      href: ../../agents/how-to/tools/use-toolbox-hosted-agent.md
     - name: Configure environment variables
       href: ../../agents/how-to/configure-hosted-agent-env-variables.md
     - name: Set the model
@@ -124,6 +116,8 @@ items:
       href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
       href: ../../how-to/develop/langchain-hosted-agents.md
+    - name: Use a toolbox
+      href: ../../agents/how-to/tools/use-toolbox-hosted-agent.md
     - name: Deploy from source code
       href: ../../agents/how-to/deploy-hosted-agent-code.md
   - name: Run, test, and debug
@@ -144,14 +138,16 @@ items:
       href: ../../agents/how-to/agent-doctor.md
     - name: View logs
       href: ../../agents/how-to/monitor-hosted-agent-logs.md
+    - name: Export telemetry with OpenTelemetry
+      href: ../../agents/how-to/configure-hosted-agent-telemetry.md
+    - name: Monitor agents in the dashboard
+      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
     - name: Isolate sessions per user
       href: ../../agents/how-to/isolate-sessions-per-user.md
     - name: Multiplex users in one session
       href: ../../agents/how-to/multiplex-session-users.md
     - name: Pass isolation keys (protocol 1.0.0)
       href: ../../agents/how-to/pass-isolation-keys.md
-    - name: Agent optimizer overview
-      href: ../../agents/concepts/agent-optimizer-overview.md
     - name: Make your agent optimizer-ready
       href: ../../agents/how-to/make-agent-optimizer-ready.md
     - name: Create an evaluation dataset
@@ -160,15 +156,29 @@ items:
       href: ../../agents/how-to/optimize-agent-targets.md
     - name: Optimize agent prompts
       href: ../../observability/how-to/prompt-optimizer.md
-    - name: Monitor agents in the dashboard
-      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+  - name: Build long-running agents (preview)
+    items:
+    - name: Deploy a crash-resilient long-running agent (preview)
+      href: ../../agents/how-to/deploy-resilient-agent.md
+    - name: Deploy a steerable agent (preview)
+      href: ../../agents/how-to/deploy-steerable-agent.md
+    - name: Recover work after a crash
+      href: ../../agents/how-to/recover-long-running-work.md
+    - name: Steer an in-flight turn
+      href: ../../agents/how-to/steer-hosted-agent.md
+    - name: Add human-in-the-loop approval
+      href: ../../agents/how-to/add-human-in-the-loop.md
+    - name: Stream with reconnect
+      href: ../../agents/how-to/stream-with-reconnect.md
+    - name: Manage durable state
+      href: ../../agents/how-to/manage-task-state.md
   - name: Deploy and operate
     items:
     - name: Deploy
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a voice agent (preview)
       href: ../../agents/how-to/build-voice-agent.md
-    - name: Add a content safety guardrail
+    - name: Add hosted agent guardrails
       href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
@@ -186,6 +196,8 @@ items:
       href: ../../agents/how-to/set-up-ci-cd-cli.md
     - name: Deploy with a private container registry (ACR)
       href: ../../agents/how-to/deploy-hosted-agent-private-azure-container-registry.md
+    - name: Bring your own registry
+      href: ../../agents/how-to/private-registry-connections.md
     - name: Update endpoint and card
       href: ../../agents/how-to/update-agent-endpoint-cli.md
     - name: Migrate to the latest version
@@ -201,14 +213,21 @@ items:
     - name: Infrastructure (Bicep)
       href: ../../agents/concepts/cli-infrastructure.md
 
+- name: Autopilots
+  items:
+  - name: What is an autopilot?
+    href: ../../agents/concepts/autopilot-overview.md
+  - name: Autopilot lifecycle
+    href: ../../agents/concepts/autopilot-lifecycle.md
+  - name: Build your first autopilot
+    href: ../../agents/how-to/agent-365.md
+
 - name: Publish and share
   items:
   - name: Publish agents to Microsoft 365 Copilot and Microsoft Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Publish with a virtual network
     href: ../../agents/how-to/publish-copilot-virtual-network.md
-  - name: Publish as an autopilot
-    href: ../../agents/how-to/agent-365.md
 
 - name: Reference
   items:

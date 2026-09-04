@@ -7,7 +7,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 08/06/2026
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -311,18 +311,18 @@ If you use `maxTextRecallSize`, you might also want to set `countAndFacetMode`. 
 
 With the default `countAllResults` mode, counts and facets can include text-side documents that aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Increasing `maxTextRecallSize` increases the number of BM25-ranked documents available for ranking, but doesn't increase the vector contribution beyond `k`. Use `countRetrievableResults` if you want count and facet calculations scoped to the documents retrieved for hybrid ranking.
 
-We recommend the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) for setting these options.
+We recommend the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true) for setting these options.
 
 > [!TIP]
 > Another approach for hybrid query tuning is [vector weighting](vector-search-how-to-query.md#vector-weighting), used to increase the importance of vector queries in the request.
 
-1. Use [Search - POST (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or [Search - GET (preview)](/rest/api/searchservice/documents/search-get?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to specify preview parameters.
+1. Use [Search - POST (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or [Search - GET (preview)](/rest/api/searchservice/documents/search-get?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to specify preview parameters.
 
 1. Add a `hybridSearch` query parameter object to set the maximum number of documents recalled through the BM25-ranked results of a hybrid query. It has two properties:
 
-   + `maxTextRecallSize` specifies the number of BM25-ranked results to provide to the Reciprocal Rank Fusion (RRF) ranker used in hybrid queries. The default is 1,000. The maximum is 10,000.
+    + `maxTextRecallSize` specifies the number of BM25-ranked results to provide to the Reciprocal Rank Fusion (RRF) ranker used in hybrid queries. The default is 1,000. The maximum is 10,000.
 
-   + `countAndFacetMode` reports the count and facet scope for a hybrid query. The default, `countAllResults`, uses the full hybrid result set, including all documents that match the text query, even if some of those text matches aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Use `countRetrievableResults` to scope count and facets to the documents retrieved for ranking, including `maxTextRecallSize` BM25-ranked documents and the `k` vector matches.
+    + `countAndFacetMode` reports the count and facet scope for a hybrid query. The default, `countAllResults`, uses the full hybrid result set, including all documents that match the text query, even if some of those text matches aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Use `countRetrievableResults` to scope count and facets to the documents retrieved for ranking, including `maxTextRecallSize` BM25-ranked documents and the `k` vector matches.
 
 1. Set `maxTextRecallSize`:
 
@@ -335,7 +335,7 @@ The following REST examples show two use-cases for setting `maxTextRecallSize`.
 The first example reduces `maxTextRecallSize` to 100, limiting the text side of the hybrid query to just 100 documents. It also sets `countAndFacetMode` to include only retrievable documents in count and facet calculations.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2026-05-01-preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2026-08-01-preview
 
     { 
       "vectorQueries": [ 
@@ -357,7 +357,7 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
 The second example raises `maxTextRecallSize` to 5,000. It also uses top, skip, and next to pull results from large result sets. In this case, the request pulls in BM25-ranked results starting at position 1,500 through 2,000 as the text query contribution to the RRF composite result set.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2026-05-01-preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2026-08-01-preview
 
     { 
       "vectorQueries": [ 
@@ -427,7 +427,7 @@ api-key: {{admin-api-key}}
 
 ### Example: Hybrid search with filters targeting vector subqueries (preview)
 
-Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
+Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
 
 This feature provides fine-grained control by ensuring that filters only influence the vector search results, leaving keyword-based search results unaffected. 
 
@@ -435,14 +435,14 @@ The targeted filter fully overrides the global filter, including any filters use
 
 To apply targeted vector filters:
 
-+ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
++ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
 
 + Modify a query request, adding a new `vectorQueries.filterOverride` parameter set to an [OData filter expression](search-query-odata-filter.md).
 
 Here's an example of hybrid query that adds a filter override. The global filter "Rating gt 3" is replaced at run time by the `filterOverride`.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-05-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-08-01-preview
 
 {
     "vectorQueries": [
@@ -516,7 +516,7 @@ api-key: {{admin-api-key}}
 
 ### Example: Semantic hybrid search with filter
 
-Here's the last query in the collection. It's the same semantic hybrid query as the previous example, but with a filter.
+This example adds a `ParkingIncluded` filter to a semantic hybrid query.
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-04-01
@@ -551,7 +551,7 @@ api-key: {{admin-api-key}}
 
 **Key points:**
 
-+ The filter mode can affect the number of results available to the semantic reranker. As a best practice, it's smart to give the semantic ranker the maximum number of documents (50). If prefilters or postfilters are too selective, you might be underserving the semantic ranker by giving it fewer than 50 documents to work with.
++ The filter mode can affect the number of results available to the semantic ranker. As a best practice, give the semantic ranker the maximum number of documents (50). If prefilters or postfilters are too selective, you might underserve the semantic ranker by giving it fewer than 50 documents to work with.
 
 + `preFilter` is applied before query execution. If prefilter reduces the search area to 100 documents, the vector query executes over the `DescriptionVector` field for those 100 documents, returning the k=50 best matches. Those 50 matching documents then pass to RRF for merged results, and then to semantic ranker.
 
@@ -595,7 +595,7 @@ Both `k` and `top` are optional. Unspecified, the default number of results in a
 
 If you're using semantic ranker in 2024-05-01-preview or later, it's a best practice to set `k` and `maxTextRecallSize` to sum to at least 50 total.  You can then restrict the results returned to the user with the `top` parameter. 
 
-If you're using semantic ranker in previous APIs do the following:
+If you're using semantic ranker in an API version earlier than 2024-05-01-preview, follow these steps:
 
 + For keyword-only search (no vectors) set `top` to 50
 + For hybrid search set `k` to 50, to ensure that the semantic ranker gets at least 50 results. 

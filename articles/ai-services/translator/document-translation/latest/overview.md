@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Translator document translation 2026-03-01 for batch and single-file translation while preserving document structure and formatting.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 07/08/2026
+ms.date: 08/07/2026
 ms.author: lajanuar
 ms.custom: references_regions, pilot-ai-workflow-jan-2026
 recommendations: false
@@ -104,7 +104,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|The [client-library (`SDKs`)](../quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+|**Client libraries (SDKs)**|Use the [Document translation client libraries](../document-sdk-overview.md) for [.NET/C#](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), [JavaScript/TypeScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
 
 ### [**Synchronous**](#tab/sync)
 
@@ -115,7 +115,7 @@ Use synchronous document translation to translate a single file and return the t
 |**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** isn't selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../../foundry/what-is-foundry.md).|
 |**REST API**|Integrate synchronous document translation into your applications by using the [REST API](rest-api/guide-overview.md#synchronous-operations).|
-|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (`SDKs`)](../quickstarts/client-library-sdks.md).|
+|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [Document translation client libraries](../document-sdk-overview.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../../containers/translate-document-parameters.md).|
 
 ---
@@ -137,18 +137,7 @@ Document translation enforces limits on request size, document count, file size,
 
 ## Document translation data residency
 
-Data residency determines where your document content is processed and temporarily stored during translation. For document translation, the Azure region where you created your Translator resource determines the processing location. The following table maps resource regions to their corresponding request processing data centers:
-
-✔️ Feature: **Document translation**
-✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
-
-|Resource created region| Request processing data center |
-|----------------------------------|-----------------------|
-|**Global**|Closest available data center.|
-|**Americas**|East US 2 &bull; West US 2|
-|**Asia Pacific**| Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland)**| France Central &bull; West Europe|
-|**Switzerland**|Switzerland North &bull; Switzerland West|
+The region where you create the Translator resource determines where document content is processed and temporarily stored. For processing locations, custom endpoint requirements, and managed identity considerations, see [Region support for Azure Translator](../../region-support.md).
 
 ## Service limits and troubleshooting
 

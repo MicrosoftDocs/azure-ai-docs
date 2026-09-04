@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn how to use Azure Language in Foundry Tools in power automate, without writing code.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 05/26/2026
+ms.date: 08/05/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: cogserv-non-critical-language
 ---
 #  Use Azure Language in Power Automate

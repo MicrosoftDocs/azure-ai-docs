@@ -11,6 +11,8 @@ groups:
     title: REST API
   - id: programming-language-python
     title: Python SDK
+  - id: programming-language-csharp
+    title: .NET SDK
   - id: programming-language-javascript
     title: JavaScript SDK
   - id: azd
@@ -356,6 +358,8 @@ groups:
     title: Python
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript/TypeScript
 # Owner: diberry
 - id: programming-languages-rest-js
   title: Programming languages
@@ -522,6 +526,27 @@ groups:
     title: Swift
   - id: programming-language-typescript
     title: TypeScript
+- id: programming-languages-speech-multichannel
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-swift
+    title: Swift
 - id: programming-languages-speech-translation
 # Owner: eur
   title: Programming languages
@@ -591,6 +616,21 @@ groups:
     title: C++
   - id: programming-language-java
     title: Java
+- id: programming-languages-speech-services-embedded
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-go
+    title: Go
 - id: programming-languages-get-started-transcription
 # Owner: eur
   title: Programming languages
@@ -1194,6 +1234,19 @@ groups:
     title: Portal
   - id: programming-language-python
     title: Python
+  - id: rest-api
+    title: REST
+# Owner: ssalgadodev
+- id: foundry-fine-tuning
+  title: Programming languages
+  prompt: Choose your preferred fine-tuning method
+  pivots:
+  - id: programming-language-studio
+    title: Portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-javascript
+    title: JavaScript
   - id: rest-api
     title: REST
 # Owner: mbullwin
@@ -1902,10 +1955,12 @@ groups:
   title: Programming languages
   prompt: Choose a language or API
   pivots:
-  - id: programming-language-csharp
-    title: C#
   - id: programming-language-python
     title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-javascript
+    title: JavaScript/TypeScript
   - id: programming-language-rest
     title: REST
 - id: azure-portal-and-cli
@@ -2040,19 +2095,36 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
   - id: vscode
     title: VS Code
   - id: foundry-skills
     title: Foundry Skills
+  - id: canvas
+    title: Foundry Agent Canvas
+# Owner: johmil
+- id: mcp-authentication-language
+  title: Programming language
+  prompt: Choose a programming language
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
 # Owner: johmil
 - id: hosted-agent-optimize-quickstart-method
-  title: Deployment method
-  prompt: Choose a deployment method
+  title: Optimization method
+  prompt: Choose an optimization method
   pivots:
   - id: azd
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: vscode
+    title: VS Code
+  - id: foundry-skills
+    title: Foundry Skills
 # Owner: johmil
 - id: hosted-agent-memory-quickstart-method
   title: Deployment method
@@ -2071,6 +2143,8 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: javascript
+    title: JavaScript/TypeScript SDK
   - id: rest
     title: REST API
 # Owner: johmil
@@ -2091,6 +2165,8 @@ groups:
     title: REST API
   - id: python
     title: Python SDK
+  - id: javascript
+    title: JavaScript/TypeScript SDK
   - id: azd
     title: Azure Developer CLI
 # Owner: pafarley
@@ -2269,7 +2345,7 @@ groups:
   - id: vscode
     title: VS Code
   - id: azd
-    title: azd
+    title: Azure Developer CLI
 # Owner: aahi
 - id: selection-toolbox-quickstart
   title: Selections
@@ -2297,7 +2373,7 @@ groups:
   - id: vscode
     title: VS Code
   - id: azd
-    title: azd
+    title: Azure Developer CLI
 # Owner: aahi
 - id: foundry-portal-and-cli
   title: Usage methods

@@ -1,23 +1,25 @@
 ---
 title: "Manage hosted agents"
-description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
+description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, JavaScript/TypeScript SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 04/09/2026
+ms.date: 08/12/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 zone_pivot_groups: hosted-agent-manage-method
 ---
 
 # Manage hosted agents
 
-This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
+This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, select the version served by the agent endpoint, monitor logs, and delete agents when they're no longer needed.
 
-The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
+The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the configured idle timeout. Set the timeout from 5 through 60 minutes when you create an agent version. The default is 15 minutes. This automatic compute scaling is separate from the agent's endpoint state. You don't start or stop the compute manually, but you can [disable an agent's endpoint](#disable-or-enable-an-agent) to take it offline and enable it again later.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you manage versions, endpoints, logs, and lifecycle operations from your project context.
 
 ## Prerequisites
 
@@ -31,7 +33,13 @@ The platform manages the container lifecycle automatically. Compute is provision
 
 :::zone pivot="python"
 
-- Python SDK: `azure-ai-projects>=2.1.0` and `azure-identity`.
+- Python SDK: `azure-ai-projects>=2.3.0` and `azure-identity`.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+- JavaScript/TypeScript SDK: `@azure/ai-projects` and `@azure/identity` (`npm install @azure/ai-projects @azure/identity`).
 
 :::zone-end
 
@@ -88,14 +96,34 @@ az rest --method GET \
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-project = AIProjectClient(
+project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
 
-for agent in project.agents.list():
+for agent in project_client.agents.list():
     print(agent.name)
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const project = new AIProjectClient(
+  PROJECT_ENDPOINT,
+  new DefaultAzureCredential(),
+);
+
+for await (const agent of project.agents.list()) {
+  console.log(agent.name);
+}
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -127,9 +155,19 @@ The response includes the agent's latest version, status, and definition.
 :::zone pivot="python"
 
 ```python
-agent = project.agents.get(agent_name="my-agent")
+agent = project_client.agents.get(agent_name="my-agent")
 print(f"Name: {agent.name}")
 print(f"Status: {agent.versions['latest']['status']}")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const agent = await project.agents.get("my-agent");
+console.log(`Name: ${agent.name}`);
+console.log(`Status: ${agent.versions.latest.status}`);
 ```
 
 :::zone-end
@@ -157,11 +195,21 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-agent_version = project.agents.get_version(
+agent_version = project_client.agents.get_version(
     agent_name="my-agent", agent_version="1"
 )
 print(f"Version: {agent_version.version}")
 print(f"Status: {agent_version['status']}")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const agentVersion = await project.agents.getVersion("my-agent", "1");
+console.log(`Version: ${agentVersion.version}`);
+console.log(`Status: ${agentVersion.status}`);
 ```
 
 :::zone-end
@@ -195,8 +243,18 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-for version in project.agents.list_versions(agent_name="my-agent"):
+for version in project_client.agents.list_versions(agent_name="my-agent"):
     print(f"Version: {version.version}, Status: {version['status']}")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+for await (const version of project.agents.listVersions("my-agent")) {
+  console.log(`Version: ${version.version}, Status: ${version.status}`);
+}
 ```
 
 :::zone-end
@@ -241,7 +299,7 @@ Replace `responses` with `invocations` if your agent uses the Invocations protoc
 ```python
 from azure.ai.projects.models import ContainerConfiguration, HostedAgentDefinition, ProtocolVersionRecord
 
-agent = project.agents.create_version(
+agent = project_client.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         cpu="1",
@@ -258,6 +316,27 @@ print(f"Created version: {agent.version}")
 ```
 
 Replace `responses` with `invocations` if your agent uses the Invocations protocol, or pass both to expose both protocols.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const agent = await project.agents.createVersion("my-agent", {
+  kind: "hosted",
+  cpu: "1",
+  memory: "2Gi",
+  container_configuration: {
+    image: "myregistry.azurecr.io/my-agent:v2",
+  },
+  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+});
+console.log(`Created version: ${agent.version}`);
+```
+
+Replace `responses` with `invocations` if your agent uses the Invocations protocol, or pass both to expose both protocols.
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -311,7 +390,35 @@ The response `version` field contains the assigned `draft-{timestamp}` identifie
 
 :::zone pivot="python"
 
-Draft versions are currently available through the REST API only. Switch to the **REST** tab for an example, and call the same `${BASE_URL}/agents/${AGENT_NAME}/versions` endpoint with `"draft": true` in the request body.
+```python
+from azure.ai.projects.models import (
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+)
+
+draft = project_client.agents.create_version(
+    agent_name="my-agent",
+    definition=HostedAgentDefinition(
+        cpu="1",
+        memory="2Gi",
+        container_configuration=ContainerConfiguration(
+            image="myregistry.azurecr.io/my-agent:experimental"
+        ),
+        protocol_versions=[
+            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+        ],
+    ),
+    draft=True,
+)
+print(f"Created draft version: {draft.version}")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Draft versions are currently available through the REST API and Python SDK only. Switch to the **REST API** tab for an example.
 
 :::zone-end
 
@@ -340,10 +447,10 @@ Poll the version status after creation:
 ```python
 import time
 
-def wait_for_version_active(project, agent_name, agent_version, max_attempts=60):
+def wait_for_version_active(project_client, agent_name, agent_version, max_attempts=60):
     for attempt in range(max_attempts):
         time.sleep(10)
-        version = project.agents.get_version(
+        version = project_client.agents.get_version(
             agent_name=agent_name, agent_version=agent_version
         )
         status = version["status"]
@@ -354,6 +461,43 @@ def wait_for_version_active(project, agent_name, agent_version, max_attempts=60)
             raise RuntimeError(f"Version provisioning failed: {dict(version)}")
     raise RuntimeError("Timed out waiting for version to become active")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Poll the version status after creation:
+
+```typescript
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function waitForVersionActive(
+  project: AIProjectClient,
+  agentName: string,
+  agentVersion: string,
+  maxAttempts = 60,
+) {
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    await sleep(10_000);
+    const version = await project.agents.getVersion(
+      agentName,
+      agentVersion,
+    );
+    console.log(`Version status: ${version.status} (attempt ${attempt + 1})`);
+    if (version.status === "active") {
+      return;
+    }
+    if (version.status === "failed") {
+      throw new Error(`Version provisioning failed: ${JSON.stringify(version)}`);
+    }
+  }
+  throw new Error("Timed out waiting for version to become active");
+}
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -375,7 +519,16 @@ az rest --method POST \
 
 :::zone pivot="python"
 
-Not supported as a standalone command. Use the REST API.
+```python
+project_client.agents.disable(agent_name="my-agent")
+print("Disabled agent: my-agent")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Not yet available through the JavaScript/TypeScript SDK. Use the REST API.
 
 :::zone-end
 
@@ -399,7 +552,16 @@ az rest --method POST \
 
 :::zone pivot="python"
 
-Not supported as a standalone command. Use the REST API.
+```python
+project_client.agents.enable(agent_name="my-agent")
+print("Enabled agent: my-agent")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Not yet available through the JavaScript/TypeScript SDK. Use the REST API.
 
 :::zone-end
 
@@ -428,7 +590,15 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.agents.delete_version(agent_name="my-agent", agent_version="1")
+project_client.agents.delete_version(agent_name="my-agent", agent_version="1")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+await project.agents.deleteVersion("my-agent", "1");
 ```
 
 :::zone-end
@@ -457,8 +627,18 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.agents.delete(agent_name="my-agent")
+project_client.agents.delete(agent_name="my-agent")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+await project.agents.delete("my-agent");
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -483,7 +663,7 @@ SESSION_ID="<session-id>"
 az rest --method GET \
     --url "${BASE_URL}/agents/${AGENT_NAME}/versions/${AGENT_VERSION}/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" "Accept=text/event-stream"
+    --headers "Accept=text/event-stream"
 ```
 
 The logstream endpoint returns Server-Sent Events (SSE) with `event: log` frames. Each frame contains a JSON payload with `timestamp`, `stream` (`stdout`, `stderr`, or `status`), and `message` fields.
@@ -497,7 +677,82 @@ Timeouts:
 
 :::zone pivot="python"
 
-Viewing container logs isn't currently supported through the Python SDK. Use the REST API or Azure Developer CLI.
+Stream logs from a specific agent session:
+
+```python
+def iter_sse_frames(stream):
+    buffer = ""
+    for chunk in stream:
+        buffer += chunk.decode("utf-8", errors="replace")
+        while "\n\n" in buffer:
+            frame, buffer = buffer.split("\n\n", 1)
+            event_name = None
+            data_lines = []
+            for line in frame.splitlines():
+                if line.startswith("event: "):
+                    event_name = line[7:]
+                elif line.startswith("data: "):
+                    data_lines.append(line[6:])
+            if event_name or data_lines:
+                yield event_name, "\n".join(data_lines)
+
+
+raw_stream = project_client.agents.get_session_log_stream(
+    agent_name="my-agent",
+    agent_version="1",
+    session_id="<session-id>",
+)
+for event_name, data in iter_sse_frames(raw_stream):
+    print(f"SSE event: {event_name}\nSSE data: {data}\n")
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Stream logs from a specific agent session:
+
+```typescript
+async function* iterSseFrames(stream: NodeJS.ReadableStream) {
+  let buffer = "";
+  for await (const chunk of stream) {
+    buffer += chunk.toString("utf-8");
+    while (buffer.includes("\n\n")) {
+      const idx = buffer.indexOf("\n\n");
+      const frame = buffer.slice(0, idx);
+      buffer = buffer.slice(idx + 2);
+
+      let eventName;
+      const dataLines: string[] = [];
+      for (const line of frame.split("\n")) {
+        if (line.startsWith("event: ")) {
+          eventName = line.slice(7);
+        } else if (line.startsWith("data: ")) {
+          dataLines.push(line.slice(6));
+        }
+      }
+      if (dataLines.length > 0 || eventName) {
+        yield { event: eventName, data: dataLines.join("\n") };
+      }
+    }
+  }
+}
+
+const logStream = await project.agents.getSessionLogStream(
+  "my-agent",
+  "1",
+  "<session-id>",
+);
+
+if (logStream.readableStreamBody) {
+  for await (const frame of iterSseFrames(logStream.readableStreamBody)) {
+    console.log(`SSE event: ${frame.event}`);
+    console.log(`SSE data: ${frame.data}\n`);
+  }
+}
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -523,7 +778,10 @@ This command reads the agent name and version from the `azd` service entry in yo
 
 ## Configure agent endpoint routing
 
-Agent endpoints control how traffic is distributed across agent versions. Use version selectors to route a percentage of traffic to specific versions, enabling canary deployments or gradual rollouts.
+An agent endpoint routes 100% of its traffic to one agent version. Use the version selector to choose the version that the endpoint serves.
+
+> [!IMPORTANT]
+> Traffic splitting between agent versions isn't supported. Configure one `FixedRatio` rule with `traffic_percentage` set to `100`, even though `version_selection_rules` is an array.
 
 :::zone pivot="rest"
 
@@ -533,7 +791,7 @@ Endpoint routing is configured by patching the agent object. Use `PATCH /agents/
 az rest --method PATCH \
     --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
+    --headers "Content-Type=application/merge-patch+json" \
     --body '{
         "agent_endpoint": {
             "version_selector": {
@@ -549,28 +807,6 @@ az rest --method PATCH \
 ```
 
 Set `protocol_configuration` to `{"invocations": {}}` or `{"responses": {}, "invocations": {}}` to match the protocols your agent exposes.
-
-To split traffic between two versions (for example, 90/10 for a canary deployment):
-
-```bash
-az rest --method PATCH \
-    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
-    --body '{
-        "agent_endpoint": {
-            "version_selector": {
-                "version_selection_rules": [
-                    {"agent_version": "1", "traffic_percentage": 90, "type": "FixedRatio"},
-                    {"agent_version": "2", "traffic_percentage": 10, "type": "FixedRatio"}
-                ]
-            },
-            "protocol_configuration": {
-                "responses": {}
-            }
-        }
-    }'
-```
 
 :::zone-end
 
@@ -598,7 +834,7 @@ endpoint_config = AgentEndpointConfig(
     ),
 )
 
-project.agents.update_details(
+project_client.agents.update_details(
     agent_name="my-agent",
     agent_endpoint=endpoint_config,
 )
@@ -606,9 +842,30 @@ project.agents.update_details(
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```typescript
+const endpointConfig = {
+  version_selector: {
+    version_selection_rules: [
+      { type: "FixedRatio", agent_version: "1", traffic_percentage: 100 },
+    ],
+  },
+  protocol_configuration: { responses: {} },
+};
+
+await project.agents.updateAgent("my-agent", {
+  agentEndpoint: endpointConfig,
+});
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="azd"
 
-Endpoint routing is configured automatically during `azd deploy`. To customize traffic distribution, use the REST API or SDK.
+During `azd deploy`, the tool automatically configures endpoint routing. To select a specific version, use the REST API or SDK.
 
 :::zone-end
 
@@ -639,10 +896,25 @@ echo "Agent identity principal ID: ${AGENT_IDENTITY}"
 :::zone pivot="python"
 
 ```python
-agent = project.agents.get(agent_name="my-agent")
+agent = project_client.agents.get(agent_name="my-agent")
 agent_identity = agent.instance_identity["principal_id"]
 print(f"Agent identity principal ID: {agent_identity}")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const agent = await project.agents.get("my-agent");
+if (!agent.instance_identity) {
+  throw new Error("Agent does not have an instance identity yet.");
+}
+const agentIdentity = agent.instance_identity.principal_id;
+console.log(`Agent identity principal ID: ${agentIdentity}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -688,6 +960,12 @@ Role assignments are an Azure Resource Manager operation. Use the Azure CLI comm
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+Role assignments are an Azure Resource Manager operation. Use the Azure CLI commands shown in the REST tab with the agent identity value from the previous step, or use the [Azure SDK for JavaScript management libraries](/javascript/api/overview/azure/) to create role assignments programmatically.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 Use the Azure CLI directly to create role assignments. Retrieve the agent identity principal ID by using the REST API or Python SDK, then run `az role assignment create` as shown in the REST tab.
@@ -719,6 +997,12 @@ az role assignment list \
 :::zone-end
 
 :::zone pivot="python"
+
+Use the Azure CLI commands shown in the REST tab to verify role assignments.
+
+:::zone-end
+
+:::zone pivot="javascript"
 
 Use the Azure CLI commands shown in the REST tab to verify role assignments.
 

@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about how to deploy your custom language projects to multiple regions.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 05/24/2026
+ms.date: 08/10/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-clu, ignite-2024
 ---
 # Deploy custom language projects to multiple regions

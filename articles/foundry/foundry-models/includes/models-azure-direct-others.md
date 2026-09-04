@@ -4,7 +4,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 07/08/2026
+ms.date: 08/26/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -39,6 +39,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| `Cohere-parse-v5` <br> **Preview** | image-to-text | - **Input:** images, tables, and forms <br /> - **Output:** Markdown <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** No <br /> - **Response formats:** Markdown |
 | `Cohere-rerank-v4.0-pro` | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON |
 | `Cohere-rerank-v4.0-fast` | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON |
 | `Cohere-command-a-plus-05-2026` <br> **Preview** | chat-completion <br> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (64,000 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text |
@@ -54,6 +55,7 @@ For model availability across all regions, grouped by deployment category, see [
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
 | `DeepSeek-V4-Pro` | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+| `DeepSeek-V4-Flash-0731` <br> **Preview** | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | `DeepSeek-V4-Flash` | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | `DeepSeek-V3.2-Speciale` | chat-completion <br /> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | `DeepSeek-V3.2` | chat-completion <br /> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
@@ -79,12 +81,17 @@ Several Meta models are also available [from partners and community](../concepts
 
 Microsoft models include various model groups such as Model Router, MAI models, Phi models, healthcare AI models, and more. Several Microsoft models are also available [from partners and community](../concepts/models-from-partners.md#microsoft).
 
-To work with MAI image models in Foundry, see [Deploy and use MAI image models in Microsoft Foundry](../how-to/use-foundry-models-mai.md).
+To work with MAI models, see these how-to articles:
+
+- MAI models available in Foundry: [MAI-Image models](../how-to/use-foundry-models-mai-image.md) and [MAI-Thinking models](../how-to/use-foundry-models-mai-thinking.md).
+- MAI models available through Azure Speech in Foundry Tools: [MAI-Voice](/azure/ai-services/speech-service/mai-voices) and [MAI-Transcribe](/azure/ai-services/speech-service/mai-transcribe).
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| `MAI-Thinking-1` <br> **Preview** | chat-completion <br /> (with reasoning content). See [API endpoints](../how-to/use-foundry-models-mai-thinking.md#api-endpoints) for details. | - **Input:** text. <br /> - **Output:** text (up to 64,000 tokens). <br /> - **Context length:** 256,000 tokens <br /> - **Tool calling:** Yes. <br /> - **Response formats:** Text. <br /> - **Key features:** OpenAI Chat Completions compatibility; Encrypted Chain-of-Thought |
+| `MAI-Image-2.5-Pro` <br> **Preview** | Image-to-Image and Text-to-Image. See [API endpoints](../how-to/use-foundry-models-mai.md#api-endpoints) for details. | - **Input:** text, image (JPEG or PNG format for image editing workflows) <br /> - **Output:** One image <br /> - **Context length**: 32,000 tokens <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG) <br /> - **Languages:** `en` <br /> - **Key features:** High-quality text-to-image generation; Image editing that supports precise, surgical edits without disrupting the rest of the image; Capability to generate more photo-realistic imagery with consistent visual structure than previous models. Well suited for tasks such as concept visualization, creative content generation, image editing workflows, and production design.  <br /> - **Parameters:** `width`, `height`, `prompt` <br /> Minimum 768×768 pixels; maximum total pixel count 1,048,576 (equivalent to 1024×1024). Either dimension can exceed 1024 as long as the total pixel count stays within the limit (for example, 768×1365 is a valid size). |
 | `MAI-Image-2.5-Flash` <br> **Preview** | Image-to-Image and Text-to-Image. See [API endpoints](../how-to/use-foundry-models-mai.md#api-endpoints) for details. | - **Input:** text, image (JPEG or PNG format for image editing workflows) <br /> - **Output:** One image <br /> - **Context length**: 32,000 tokens <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG) <br /> - **Languages:** `en` <br /> - **Key features:** High-quality text-to-image generation; Image editing that supports precise, surgical edits without disrupting the rest of the image; Capability to generate realistic imagery with consistent visual structure. Well suited for tasks such as concept visualization, creative content generation, image editing workflows, and production design.  <br /> - **Parameters:** `width`, `height`, `prompt` <br /> Minimum 768×768 pixels; maximum total pixel count 1,048,576 (equivalent to 1024×1024). Either dimension can exceed 1024 as long as the total pixel count stays within the limit (for example, 768×1365 is a valid size). |
 | `MAI-Image-2.5` <br> **Preview** | Image-to-Image and Text-to-Image. See [API endpoints](../how-to/use-foundry-models-mai.md#api-endpoints) for details. | - **Input:** text, image (JPEG or PNG format for image editing workflows) <br /> - **Output:** One image <br /> - **Context length**: 32,000 tokens <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG) <br /> - **Languages:** `en` <br /> - **Key features:** High-quality text-to-image generation; Image editing that supports precise, surgical edits without disrupting the rest of the image; Capability to generate realistic imagery with consistent visual structure. Well suited for tasks such as concept visualization, creative content generation, image editing workflows, and production design. <br /> - **Parameters:** `width`, `height`, `prompt` <br /> Minimum 768×768 pixels; maximum total pixel count 1,048,576 (equivalent to 1024×1024). Either dimension can exceed 1024 as long as the total pixel count stays within the limit (for example, 768×1365 is a valid size). |
 | `model-router`<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en` |
@@ -104,7 +111,7 @@ For model availability across all regions, grouped by deployment category, see [
 | `mistral-document-ai-2512` | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |
 | `mistral-medium-3-5` <br> **Preview** | chat-completion | - **Input:** text (128,000 tokens), image <br /> - **Output:** text (128,000 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON  |
 | `mistral-ocr-4-0` <br> **Preview** | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |
-| `Mistral-Large-3` | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
+| `Mistral-Large-3` <br> **Preview** | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
 
 Several Mistral models are also available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
 
@@ -122,16 +129,19 @@ For model availability across all regions, grouped by deployment category, see [
 
 See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Moonshot+ai/?cid=learnDocs).
 
-## xAI models sold by Azure
+## SpaceXAI models sold by Azure
 
-xAI's Grok models in Foundry Models include a diverse set of reasoning and non-reasoning models designed for enterprise use cases such as data extraction, coding, text summarization, and agentic applications.
+SpaceXAI's Grok models in Foundry Models include a diverse set of reasoning and non-reasoning models designed for enterprise use cases such as data extraction, coding, text summarization, and agentic applications.
 
-[Registration is required for access to](https://aka.ms/xai/grok-4) `grok-code-fast-1` (Preview) and `grok-4`.
+To work with Grok models, see [Deploy and use Grok models in Foundry](../how-to/use-foundry-models-grok.md).
+
+[Registration is required for access to](https://aka.ms/xai/grok-4) `grok-code-fast-1` and `grok-4`.
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| `grok-4.6` <br> **Preview** | chat-completion | - **Input:** text, image <br /> - **Output:** text (128,000 tokens max) <br /> - **Context window:** 200,000 tokens<br> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text, JSON |
 | `grok-4.3` <br> **Preview** | chat-completion | - **Input:** text (200,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
 | `grok-4-20-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
 | `grok-4-20-non-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
@@ -144,8 +154,7 @@ For model availability across all regions, grouped by deployment category, see [
 ## Related content
 
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
-- [Model deprecation and retirement for Foundry Models](../../concepts/model-lifecycle-retirement.md)
+- [Microsoft Foundry Models lifecycle and support policy](../../openai/concepts/model-retirements.md)
 - [Deployment overview for Foundry Models](../../../foundry-classic/concepts/deployments-overview.md)
 - [Add and configure models to Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
-

@@ -10,8 +10,6 @@ items:
       href: quickstarts/get-started-code.md  
     - name: Microsoft Foundry SDKs
       href: how-to/develop/sdk-overview.md
-    - name: Ask AI
-      href: concepts/ask-ai.md
 - name: Models
   href: toc-files/models/toc.yml
 - name: Foundry Tools

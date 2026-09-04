@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 06/30/2026
+ms.date: 08/14/2026
 ms.reviewer: meerakurup
 ms.author: scottpolly 
 author: s-polly 
@@ -85,7 +85,7 @@ When creating a new Foundry resource, follow these steps:
     > [!NOTE]
     > In the portal UI, the target to which you create the private endpoint should be labeled as an "account". Select your Foundry resource when prompted.
 
-1. Continue through the forms to create the project.When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
+1. Continue through the forms to create the project. When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
 
 ### Add a private endpoint to an existing resource
 
@@ -204,7 +204,7 @@ This section guides you through creating a new Foundry resource with outbound ne
 
 ### Deep dive into network injection for Agent Service and evaluations
 
-If you're building agents, either prompt agents or hosted (preview) agents , or running evaluations and you want end-to-end network isolation, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article provides details on required DNS zones, reference architecture, and known limitations. The same networking injection for outbound traffic applies for both types of agents you create, prompt and hosted agents. 
+If you're building agents, either prompt agents or hosted (preview) agents, or running evaluations and you want end-to-end network isolation, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article provides details on required DNS zones, reference architecture, and known limitations. The same networking injection for outbound traffic applies for both types of agents you create, prompt and hosted agents. 
 
 :::image type="content" source="../media/how-to/network/agent-eval-network-diagram.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-network-diagram.png":::
 
@@ -231,13 +231,15 @@ When creating a new Foundry resource, follow these steps:
 
 Certain Agent tools are supported when Foundry is network isolated, while others are not. The following table shows support status for agent tools in network-isolated environments and how traffic flows. This covers tool support behind a VNET for the new Responses API Agents created through SDK/CLI or in the new Foundry portal only, not agents created in the classic Foundry portal experience. 
 
+This tool support applies to network-isolated deployments created with either the Standard setup template [`15-private-network-standard-agent-setup`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup) or the Basic setup template [`11-private-network-basic-vnet`](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/11-private-network-basic-vnet).
+
 Code samples for how to run these Agent tools within a network secured set-up can be found in the sample template [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-private-network-agent-tools). 
 
 | Tool | Support Status | Traffic Flow |
 |------|---------------|--------------|
 | MCP Tool (Private MCP) | ✅ Supported | Through your VNet subnet |
 | Azure AI Search | ✅ Supported | Through private endpoint |
-| Code Interpreter | ⚠️ Partial | Microsoft backbone network. Works without files. File upload/download isn't supported; as a workaround, use the SDK to create a container with the required files and pass the `container_id` to Code Interpreter. This workaround isn't available in the Foundry portal UI. |
+| Code Interpreter | ✅ Supported | Microsoft backbone network |
 | Function Calling | ✅ Supported | Microsoft backbone network |
 | Bing Grounding | ✅ Supported | Public endpoint |
 | Websearch | ✅ Supported | Public endpoint |
@@ -249,7 +251,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | Fabric IQ | ⚠️ Partial | Via MCP. Support depends on the Fabric item type: data agents support tenant-level and workspace-level private link, ontologies support tenant-level private link, and Power BI semantic models support public access only. See [Virtual network support](../agents/how-to/tools/fabric-iq.md#virtual-network-support). |
 | Fabric Data Agent | ❌ Not supported | Fabric resource must have public network access enabled (Workspace-level private link Fabric unsupported) |
 | Logic Apps | ❌ Not supported | Under development |
-| File Search | ❌ Not supported | Under development |
+| File Search | ✅ Supported | Through private endpoint |
 | Browser Automation | ❌ Not supported | Under development |
 | Computer Use | ❌ Not supported | Under development |
 | Image Generation | ❌ Not supported | Under development |
@@ -294,10 +296,8 @@ The following features in Foundry do not yet support network isolation.
 
 | Feature | Network Isolation Status | Notes |
 |---------|--------------------------|-------|
-| Synthetic Data Gen for Evaluations | Not supported | Bring your own data to run evaluations. |
-| Traces | Not supported | Traces don't have virtual network support with a private Application Insights yet. |
 | Workflow Agents | Partially supported | Inbound access is supported in the UI, SDK, and CLI. Outbound with virtual network injection isn't currently supported for Workflow Agents. |
-| AI Gateway (APIM) | Partially supported via Foundry UI | You can create a new AI Gateway with your private Foundry resource in the new Foundry portal but this gateway is automatically public. To complete any data plane actions with a private Foundry, your AI Gateway must also have network isolation configured which is set-up through the Azure Portal. For more information, see [Networking for AI Gateway](/azure/api-management/virtual-network-concepts). |
+| AI Gateway (APIM) | Partially supported via Foundry UI | You can create a new AI Gateway with your private Foundry resource in the new Foundry portal but this gateway is automatically public. To complete any data plane actions with a private Foundry, your AI Gateway must also have network isolation configured which is set-up through the Azure portal. For more information, see [Networking for AI Gateway](/azure/api-management/virtual-network-concepts). |
 | Certain Agent Tools | Partially supported | See [Agent tools with network isolation](#agent-tools-with-network-isolation) for detailed tool-by-tool support status. |
 
 For more Agent Service network isolation limitations, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks).
@@ -311,13 +311,17 @@ For more Agent Service network isolation limitations, see [How to use a virtual 
 
 ### Firewall allowlisting
 
-If you deploy Foundry with virtual network injection, you might create a firewall to control egress traffic. The following list shows trusted fully qualified domain names (FQDNs) or service tags to allowlist on your firewall depending on the scenario or feature in Foundry. 
+If you deploy Foundry with virtual network injection, you might create a firewall to control egress traffic. The following list shows trusted fully qualified domain names (FQDNs) or service tags to allowlist on your firewall depending on the scenario or feature in Foundry.
 
 | Scenario | FQDNs, service tags | Description |
 |---------|--------------------------|-------|
 | Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com` or AAD service tag | Required for the Azure Container App delegation for Agent service. |
 | Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com`, AzureMachineLearning service tag | Used for sending results to the linked Application Insights resource and Evaluators Catalog. |
 | Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
+| Hosted Agents to A365 | `AzureFrontDoor.Frontend` | Hosted agent to Agent365 (A365) observability/tracing endpoint ServiceTag, port TCP 443 |
+
+> [!NOTE]
+> As an alternative to the `AMLMachineLearning` service tag for evaluations, add `*.dataproxy.{region}.api.azureml.ms` and `{region}.api.azureml.ms` to your firewall allow list. Use the region where the evaluation runs. For example, if an evaluation runs in East US, add `eastus.api.azureml.ms`.
 
 ### Private endpoint limitations
 
@@ -345,7 +349,7 @@ If you experience connectivity problems after setting up a private endpoint, try
 
 - **Connection times out on port 443**: Check that your network security group (NSG) rules allow outbound traffic to the private endpoint IP on port 443. Also verify that no firewall is blocking the connection.
 - **Can't reach Foundry from on-premises**: Verify that your VPN or ExpressRoute or VM connection is active and that routing tables include the VNET address space. Test connectivity to the private IP from on-premises.
-- **403 Forbidden errors**: This often indicates authentication issues rather than networking. Verify that your credentials have appropriate RBAC roles on the Foundry project.
+- **403 Forbidden errors**: Confirm that the Foundry endpoint resolves to the private endpoint IP address and that the client can reach it. If the network path is correct, verify that your credentials have the appropriate RBAC roles on the Foundry project.
 
 ### Agent-specific troubleshooting
 

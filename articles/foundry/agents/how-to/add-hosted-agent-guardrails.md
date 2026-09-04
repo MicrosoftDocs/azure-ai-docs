@@ -1,23 +1,26 @@
 ---
-title: "Add a content safety guardrail to a hosted agent"
-description: "Attach a Responsible AI guardrail policy to a hosted agent in Microsoft Foundry by using the Azure Developer CLI, the Python SDK, or the REST API."
+title: "Add guardrails to a hosted agent"
+description: "Attach Responsible AI content safety and network egress guardrail policies to a hosted agent in Microsoft Foundry by using the Azure Developer CLI, the Python SDK, or the REST API."
 author: amitbhave
 ms.author: amitbhave
 ms.manager: pranavp
-ms.date: 06/10/2026
+ms.date: 06/29/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: references_regions
+ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to attach a content safety guardrail to my hosted agent so that the platform screens prompts and responses against my organization's safety policy.
+# customer intent: As a developer, I want to attach content safety and network egress guardrails to my hosted agent so that the platform screens prompts and responses and governs the agent's outbound connections.
 ---
 
-# Add a content safety guardrail to a hosted agent
+# Add guardrails to a hosted agent
 
-This article shows you how to attach a content safety guardrail to a hosted agent in Microsoft Foundry. A guardrail screens the prompts your agent receives and the responses it returns against a Responsible AI (RAI) policy, so harmful content is filtered according to your organization's safety configuration.
+This article shows you how to attach guardrails to a hosted agent in Microsoft Foundry. Define guardrails in a Responsible AI (RAI) policy that you reference from the agent definition. The platform applies these guardrails at runtime. This article covers two kinds of guardrails:
 
-You reference the guardrail by the RAI policy resource ID on the agent definition. The platform then applies that policy to the agent at runtime. You can set a guardrail when you deploy with the Azure Developer CLI (`azd`), the Python SDK, or the REST API. To learn what guardrails are, the risks they detect, and how to create one, see [Guardrails and controls overview](../../guardrails/guardrails-overview.md).
+- **Content safety controls** screen the prompts your agent receives and the responses it returns, so harmful content is filtered according to your organization's safety configuration.
+- **Network egress controls (preview)** govern the outbound connections your agent makes, so it reaches only the destinations you allow.
+
+You reference the guardrail by its RAI policy resource ID on the agent definition. You can attach it when you deploy by using the Azure Developer CLI (`azd`), the Python SDK, or the REST API. The same attach steps apply to both kinds of guardrails. To learn what guardrails are, the risks they detect, and how to create one, see [Guardrails and controls overview](../../guardrails/guardrails-overview.md).
 
 ## Prerequisites
 
@@ -29,7 +32,7 @@ You reference the guardrail by the RAI policy resource ID on the agent definitio
     /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
     ```
 
-* For the Azure Developer CLI method: the `azd ai agent` extension, version 0.1.38-preview or later.
+* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.1 or later.
 * For the Python SDK method: the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) for Python, version 2.2.0 or later:
 
     ```bash
@@ -44,11 +47,13 @@ When you omit `rai_config`, the agent runs without a content safety guardrail. W
 
 Always use the full ARM resource ID for `rai_policy_name`, not the bare policy name.
 
+`rai_config` is the shape the Foundry API accepts, so the Python SDK and REST examples in this article set it directly. The Azure Developer CLI doesn't expose `rai_config` in `azure.yaml`; it uses a `policies` list instead and maps it to `rai_config` when it deploys.
+
 ## Add a guardrail with the Azure Developer CLI
 
-When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `azure.yaml`. Set `rai_config.rai_policy_name` to the full ARM resource ID of the RAI policy.
+When you use `azd`, declare the guardrail in the `policies` list on the `azure.ai.agent` service in `azure.yaml`. Add an entry with `type: rai_policy` and set `raiPolicyName` to the full ARM resource ID of the RAI policy. When you deploy, `azd` maps that entry to `rai_config.rai_policy_name` on the agent definition it sends to Foundry.
 
-1. In your `azure.yaml`, add `rai_config` to the agent service:
+1. In your `azure.yaml`, add `policies` to the agent service:
 
     ```yaml
     services:
@@ -58,9 +63,10 @@ When you use `azd`, declare the guardrail on the `azure.ai.agent` service in `az
         kind: hosted
         name: my-hosted-agent
         description: A hosted agent with a content safety guardrail
-        rai_config:
-          # Full ARM resource ID of the RAI policy on the Foundry resource.
-          rai_policy_name: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
+        policies:
+          - type: rai_policy
+            # Full ARM resource ID of the RAI policy on the Foundry resource.
+            raiPolicyName: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
         protocols:
           - protocol: responses
             version: "2.0.0"
@@ -128,6 +134,49 @@ print(f"Agent created: {agent.name}, version: {agent.version}")
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [ContainerConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.containerconfiguration), and [RaiConfig](/python/api/azure-ai-projects/azure.ai.projects.models.raiconfig).
 
+## Add a guardrail with the JavaScript/TypeScript SDK
+
+When you create an agent version with the SDK, add an `rai_config` object with a `rai_policy_name` field to the hosted agent definition.
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Format: "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>"
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "your_project_endpoint";
+
+// Full ARM resource ID of the RAI policy.
+const raiPolicyId =
+  "/subscriptions/<subscription-id>/resourceGroups/<resource-group>" +
+  "/providers/Microsoft.CognitiveServices/accounts/<account>" +
+  "/raiPolicies/<policy-name>";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const agent = await project.agents.createVersion("my-agent", {
+  kind: "hosted",
+  cpu: "1",
+  memory: "2Gi",
+  container_configuration: {
+    image: "your-registry.azurecr.io/your-image:tag",
+  },
+  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  rai_config: { rai_policy_name: raiPolicyId },
+});
+
+console.log(`Agent created: ${agent.name}, version: ${agent.version}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
 ## Add a guardrail with the REST API
 
 When you create the agent over REST, include a `rai_config` object in the `definition`.
@@ -176,7 +225,7 @@ The response includes the policy you set:
 }
 ```
 
-## Test the guardrail at runtime
+## Test content safety filtering
 
 To confirm that the guardrail filters content, send a prompt that violates your safety policy to the agent's Responses endpoint. The platform screens the prompt at the input stage and rejects it before the agent runs.
 
@@ -201,8 +250,256 @@ A blocked prompt returns `HTTP 400` with a `content_filter` error:
 
 A prompt that passes the policy returns `HTTP 200` with the agent's response. If a harmful prompt isn't blocked, confirm that the policy referenced by `rai_policy_name` is configured to filter the relevant content category and severity.
 
+## Network egress controls (preview)
+
+> [!IMPORTANT]
+> Network egress controls are in preview. They apply to hosted agents only and don't affect prompt-based agents or model deployments. Configure them by using the `2026-05-15-preview` API version of the RAI policy. Preview features are provided without a service-level agreement and are not intended to be used in production or in a live operating environment. This feature consists of tooling only. Customers are responsible for understanding the data handling practices of any endpoints receiving data.
+
+Content safety controls screen prompts and responses. *Network egress controls* govern the **outbound** connections your hosted agent makes. You define ordered rules that allow, deny, transform, or rewrite outbound requests by destination host, and the platform enforces them inside the agent's sandbox before traffic leaves the runtime. Egress rules are stored in the same RAI policy you attach in the previous sections, so the `azd`, Python SDK, and REST API attach steps apply them automatically.
+
+### How egress rules are evaluated
+
+- The system evaluates rules in order, from top to bottom. The first matching rule wins.
+- If no rule matches, the policy's default action applies. Set the default action to **Deny** for an allow list (recommended) or **Allow** for a deny list.
+- When you apply an egress policy, the agent runtime automatically allow lists foundational domains it needs to function. A **Deny** default action doesn't block this required platform connectivity, so you don't need to add rules for it.
+- Each rule matches on the request host. Wildcards such as `*.contoso.com` are supported.
+- Rule actions are **Allow**, **Deny**, **Transform** (allow the request and modify its headers), and **Rewrite** (redirect the request to another destination).
+- Evaluation is fail-closed: if the policy can't be evaluated, the request is denied.
+
+### Rule limits
+
+You can add a maximum of **480 egress rules** per policy. This limit applies to all egress rule actions: **Allow**, **Deny**, **Transform**, and **Rewrite**. To request an increase to this limit, [create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
+
+### Choose an enforcement mode
+
+| Mode | Behavior | When to use |
+| --- | --- | --- |
+| **Audit** | Outbound traffic flows normally. Requests that *would* be denied are logged but not blocked. | Observe what your agent calls before you enforce. |
+| **Enforce** | Matching rules are applied, and denied requests are blocked. | Production enforcement after you validate rules in Audit mode. |
+
+Deploy in **Audit** mode first, review the egress decisions, refine your rules, and then switch to **Enforce**.
+
+> [!NOTE]
+> Audit mode changes only how **Deny** actions behave: a request that would be denied is logged instead of blocked. **Transform** and **Rewrite** actions are applied in both Audit and Enforce modes, so header transforms and redirects still take effect while you audit.
+
+### Add egress rules by using the REST API
+
+An RAI policy stores egress rules in the `egressPolicy` property. Create or update the policy by using the Azure Resource Manager **RAI Policies - Create Or Update** operation with the `2026-05-15-preview` API version:
+
+```bash
+TOKEN=$(az account get-access-token --resource "https://management.azure.com" --query accessToken -o tsv)
+
+curl -X PUT \
+  "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>?api-version=2026-05-15-preview" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "mode": "Blocking",
+      "basePolicyName": "Microsoft.DefaultV2",
+      "egressPolicy": {
+        "mode": "Enforced",
+        "defaultAction": "Deny",
+        "rules": [
+          {
+            "name": "allow-contoso",
+            "ruleType": "Fqdn",
+            "match": { "host": "*.contoso.com" },
+            "action": { "actionType": "Allow" }
+          }
+        ]
+      }
+    }
+  }'
+```
+
+- Set `egressPolicy.mode` to `Enforced` to block traffic, or `Audit` to log would-deny events without blocking.
+- Set `egressPolicy.defaultAction` to `Deny` for an allow list or `Allow` for a deny list.
+- Set each rule's `action.actionType` to `Allow`, `Deny`, `Transform`, or `Rewrite`.
+
+To review the configured rules, send a GET request to the same URL and inspect `properties.egressPolicy`.
+
+For a complete request body that combines a default action with several rule types, see the [`PutRaiPolicyWithEgress.json`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/CognitiveServices.Management/examples/2026-05-15-preview/PutRaiPolicyWithEgress.json) example in the Azure REST API specs.
+
+### Transform request headers
+
+When a rule's `action.actionType` is `Transform` (or `Rewrite`), you can modify the headers of the outbound request by using an `action.headers` array. Each entry describes one header operation:
+
+```json
+{
+  "name": "allow-and-tag-contoso",
+  "ruleType": "Fqdn",
+  "match": { "host": "*.contoso.com" },
+  "action": {
+    "actionType": "Transform",
+    "headers": [
+      { "operation": "Set",    "name": "X-Trace-Source", "value": "hosted-agent" },
+      { "operation": "Insert", "name": "X-Request-Id",   "value": "default-id" },
+      { "operation": "Remove", "name": "User-Agent" }
+    ]
+  }
+}
+```
+
+Each header object supports the following fields:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `operation` | Yes | The header operation: `Set`, `Insert`, or `Remove`. Operation names are case-insensitive. If you omit it, `Set` is used. |
+| `name` | Yes | The name of the header to modify. |
+| `value` | For `Set` and `Insert` | The static header value. Not used for `Remove`. |
+
+You must include `headers` when `actionType` is `Transform`. You can omit `headers` when `actionType` is `Rewrite`. Header transforms apply only to requests that match the rule.
+
+> [!NOTE]
+> During preview, header transforms support **static `value`** only. Dynamic value references (`valueRef`) that inject a **managed identity** token or a **secret** are **coming soon** and aren't enforced yet. A rule that uses `valueRef` is accepted but the header isn't injected at runtime.
+
+#### Header operations
+
+The three operations differ only in how they treat a header that's already present on the outbound request:
+
+| Operation | Header already present | Header not present |
+| --- | --- | --- |
+| `Set` | Overwrites the existing value. | Adds the header. |
+| `Insert` | Leaves the existing value unchanged. | Adds the header. |
+| `Remove` | Removes the header. | No effect. |
+
+Use `Set` to force a header to a specific value regardless of what the agent sent. Use `Insert` to supply a default only when the agent didn't already set the header. Use `Remove` to strip a header before the request leaves the runtime.
+
+### Add egress rules in the portal
+
+You can also author egress rules in the Foundry portal as a **Network** control on a guardrail:
+
+1. In the Foundry portal, create or edit a guardrail, and then expand the **Network** control.
+
+   :::image type="content" source="../media/add-hosted-agent-guardrails/network-egress-control.png" alt-text="Screenshot of the Network control in a guardrail showing the Egress rules row and the Outbound requests default action." lightbox="../media/add-hosted-agent-guardrails/network-egress-control.png":::
+
+1. Select **Egress rules**, and set the **Outbound requests** default action to **Deny** or **Allow**.
+1. Select **Add rules**, choose a **Mode** (**Audit** or **Enforce**), enter a **Host match** and an **Action**, and then select **Add**. Reorder rules as needed; the first match wins. For a **Transform** action, use a **Static value** for the header. (**Managed identity** and **Secret reference** value sources appear in the dialog but aren't enforced yet - see [Preview limitations](#preview-limitations-and-whats-coming-next).)
+
+   :::image type="content" source="../media/add-hosted-agent-guardrails/egress-rule-list.png" alt-text="Screenshot of the Create egress rules dialog with Audit and Enforce modes, a host match field, and an action list." lightbox="../media/add-hosted-agent-guardrails/egress-rule-list.png":::
+
+1. Select **Create**, and then assign the guardrail to your hosted agent.
+
+For details about creating and assigning guardrails in the portal, see [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md).
+
+### Certificate handling
+
+To inspect HTTPS traffic, the hosted-agent runtime injects the egress proxy's certificate authority (CA) into the sandbox trust bundle. The proxy CA is infrastructure-specific: it can differ across hosted-agent clusters and regions, and it rotates over time (currently about every 30 days). Treat the CA bundle as runtime configuration. Don't pin, copy, or persist it.
+
+Configure TLS clients to read the runtime-provided CA bundle from the standard environment variables that are already present in the sandbox:
+
+| Environment variable | Use |
+| --- | --- |
+| `SSL_CERT_FILE` | Generic PEM CA bundle path for OpenSSL-style TLS clients. |
+| `REQUESTS_CA_BUNDLE` | Python `requests` and compatible HTTP clients. |
+| `GRPC_DEFAULT_SSL_ROOTS_FILE_PATH` | gRPC clients that support the default roots file override. |
+| `NODE_EXTRA_CA_CERTS` | Node.js additional CA file, read when the process starts. |
+
+For example, with Python `requests`:
+
+```python
+import os
+import requests
+
+response = requests.get(
+    "https://example.com",
+    verify=os.environ["REQUESTS_CA_BUNDLE"],
+)
+```
+
+Keep these constraints in mind:
+
+- Don't pin the CA subject, public key, thumbprint, or file contents. Any of these values can change on rotation or differ by cluster.
+- Don't persist the injected CA to a container image, persistent volume, snapshot, or source control. The CA is runtime infrastructure, not application configuration.
+- Rotation can happen while a sandbox is running. Long-running processes might need to reload their TLS configuration or restart.
+- If you must build a single custom bundle (for example, to combine enterprise roots with the runtime roots), build it at process startup from the current runtime bundle and treat it as temporary:
+
+  ```bash
+  cat "$SSL_CERT_FILE" /app/custom-roots.pem > /tmp/runtime-ca-bundle.pem
+  export SSL_CERT_FILE=/tmp/runtime-ca-bundle.pem
+  export REQUESTS_CA_BUNDLE=/tmp/runtime-ca-bundle.pem
+  ```
+
+### View egress decisions
+
+The agent sends network egress decisions to your project's Application Insights and trace monitoring tools. You can view these decisions in the Foundry portal playground and in Application Insights to confirm that network egress behavior aligns with your configured policy.
+
+#### In the Foundry portal playground
+
+To view egress decisions in the trace timeline:
+
+1. Sign in to [Microsoft Foundry](https://ai.azure.com) and open your project's playground.
+1. Run or select an agent invocation to open its trace.
+1. Select the **Trajectories** tab to see the full trace timeline.
+1. Expand the trace nodes until you see a span named **Network egress decision**. It appears next to the request that triggered it.
+1. Select the span to review the decision details.
+
+:::image type="content" source="../media/add-hosted-agent-guardrails/network-egress-decision-trace.png" alt-text="Screenshot of the Trajectories tab in the Foundry portal playground, showing a Network egress decision span in the trace timeline." lightbox="../media/add-hosted-agent-guardrails/network-egress-decision-trace.png":::
+
+The span details show the information you need to understand why a request was allowed or denied:
+
+| Field | Description |
+|-------|-------------|
+| Decision | The outcome of the policy evaluation, for example `Allow` or `Deny`. |
+| Reason | A human-readable explanation, such as "Request matched allow rule" or "No egress policy rule allowed this destination." |
+| Matched rule | The name of the rule that determined the outcome, if one matched. |
+| Rule source | The origin of the matched rule, such as a connector or policy definition. |
+| Enforcement | Whether the policy was enforced or run in audit mode. |
+| Destination | The method and URL of the outbound request. |
+| Default action | The action applied when no rule matches, for example `Deny`. |
+
+Allowed requests appear with a success status, and denied requests appear with a failure status, so you can spot blocked calls without leaving the trace view.
+
+#### In Application Insights
+
+To review egress decisions in Application Insights logs:
+
+1. Locate your project's Application Insights resource:
+   1. Go to the Foundry portal.
+   1. Select the **Operate** tab.
+   1. Select **Admin**.
+   1. Search for and select your project.
+   1. Open the **Connected resources** tab.
+   1. Find the **AppInsights** connected resource and copy its **Target URI**.
+
+   Each project should have a single Application Insights connection. If Application Insights isn't configured, select **Add connection** and add an Application Insights resource for the project.
+
+2. Open the Application Insights resource in the Azure portal and go to **Logs**. Run the following query to view recent network egress decisions:
+
+```kusto
+traces
+| where timestamp > ago(1h)
+| where message == "Network egress decision"
+```
+
+Each event includes details such as the destination host, matched rule, decision, and enforcement mode.
+
+### What a blocked request looks like
+
+When a rule denies an outbound call, the egress proxy returns an `HTTP 403` response to the agent's network client. The agent handles the error with its own logic. For example, if the blocked call was a tool call, the agent typically reports that the tool call failed and tries a different approach. Policy internals aren't exposed to end users.
+
+### Preview limitations and what's coming next
+
+Network egress controls are an additive feature. During preview:
+
+- Egress controls apply to hosted agents only.
+- Enforcement happens inside the Foundry-managed agent sandbox. Egress controls complement your own network controls, such as Azure Firewall, rather than replace them. They don't delegate enforcement to a customer-managed firewall, and they aren't centrally enforced through Azure Policy.
+- In the portal, rules match on host.
+
+The following capabilities aren't available yet and are planned for future updates:
+
+- **Dynamic header values** — injecting a header value from a **managed identity** or a **secret** (`valueRef`). During preview, use a static `value`.
+- Rule types such as Azure service tags and IP address ranges.
+- MCP tool policies, PII and data-loss-prevention inspection, and custom webhook hooks.
+
 ## Related content
 
 - [Guardrails and controls overview](../../guardrails/guardrails-overview.md) — what guardrails are, the risks they detect, and where they intervene.
 - [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md) — create the RAI policy you reference here.
+- [Networking options for Foundry Agent Service](../concepts/networking-options.md) — how egress controls fit with virtual network and private networking options.
 - [Deploy a hosted agent](deploy-hosted-agent.md) — the full deployment workflow for hosted agents.
+
+
+
+

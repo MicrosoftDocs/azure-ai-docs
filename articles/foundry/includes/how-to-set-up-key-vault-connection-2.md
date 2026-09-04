@@ -6,8 +6,9 @@ ms.reviewer: andyaviles
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/14/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Use a Bicep template
@@ -39,9 +40,9 @@ az deployment group create \
 
 After deployment completes:
 
-1. Navigate to your Foundry resource in the Azure portal.
-1. Select **Management center** in the lower left pane.
-1. Select **Connected resources** and confirm the Azure Key Vault connection appears in the list.
+1. In the Foundry portal, select **Manage** in the upper-right navigation.
+1. Select **Resource details** in the left pane.
+1. Select the **Connected resources** tab and confirm the Azure Key Vault connection appears in the list.
 1. Select the connection to view its properties and verify the Key Vault resource ID.
 
 To verify that the RBAC role assignment is in effect, run the following command:
@@ -59,16 +60,11 @@ az role assignment list \
 - [Microsoft.Authorization/roleAssignments](/azure/templates/microsoft.authorization/roleassignments)
 - [Key Vault Secrets Officer role](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer)
 
-<!-- ::: zone-end -->
-
 ## Key Vault connection management
 
 ### Creation
 
-Make sure no other connections exist at the Foundry resource or project level.
-The service blocks Key Vault connection creation if other connections exist.
-If the UI doesn't show a Key Vault connection category when you choose a connection,
-this problem might be the reason. Delete other connections, and then try again.
+You can have only one Azure Key Vault connection per Foundry resource. Before you add a Key Vault connection, remove any other connections at the Foundry resource or project level. If the Key Vault connection category doesn't appear when you choose a connection, an existing connection might be the reason. Delete the other connections, and then try again.
 
 When you create a Key Vault connection, the service doesn't use the managed Key Vault in Azure.
 
@@ -137,7 +133,7 @@ If the Key Vault connection doesn't appear in **Connected resources**:
 
 1. Verify the deployment completed successfully.
 1. Refresh the portal page.
-1. Check that no other connections exist at the resource or project level. The service blocks Key Vault connection creation when other connections exist.
+1. Check that no other connections exist at the resource or project level. A Foundry resource supports only one Key Vault connection, and other existing connections can prevent you from adding one.
 
 ### Deployment errors
 
@@ -147,9 +143,8 @@ If deployment fails:
 - Verify the Key Vault name is correct and the vault exists in your subscription.
 - Check that the Foundry resource name matches exactly.
 
-## Next steps
+## Related content
 
-- Create other connections (storage, endpoints, AI services) that use this Key Vault for secret storage
 - [Add connections to your project](../how-to/connections-add.md)
 - [Azure Key Vault best practices](/azure/key-vault/general/best-practices)
 - [Azure Key Vault documentation](/azure/key-vault/)

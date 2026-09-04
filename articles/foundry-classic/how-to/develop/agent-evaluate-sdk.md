@@ -126,8 +126,6 @@ If you use a [Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry),
 > [!NOTE]
 > If you're using a [Foundry Hub-based project](../hub-create-projects.md?tabs=ai-foundry) (which only supports lower versions of `azure-ai-projects<1.0.0b10` and `azure-ai-agents<1.0.0b10`), migrate to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure). For more information, see [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-microsoft-foundry-projects).
 
-Create an agent with the toolset as follows:
-
 ```python
 import os
 from azure.ai.projects import AIProjectClient
@@ -751,4 +749,3 @@ Try a sample for each of these evaluators:
 - [View evaluation results in a Foundry project](../../how-to/evaluate-results.md)
 - [Get started building a chat app using the Microsoft Foundry SDK](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
-

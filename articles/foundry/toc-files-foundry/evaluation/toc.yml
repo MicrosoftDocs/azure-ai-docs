@@ -27,6 +27,22 @@ items:
    - name: Custom evaluators
      href: ../../concepts/evaluation-evaluators/custom-evaluators.md
 
+# Evaluation datasets
+- name: Evaluation datasets
+  items:
+   - name: Overview
+     href: ../../observability/how-to/evaluation-datasets.md
+     displayName: dataset,jsonl,csv,schema,data_mapping
+   - name: Dataset schema
+     href: ../../observability/how-to/evaluation-dataset-schema.md
+     displayName: schema,query,response,messages,ground_truth,simulation,tool_definitions
+   - name: Generate a synthetic evaluation dataset
+     href: ../../observability/how-to/evaluation-dataset-synthetic.md
+     displayName: code,accuracy,metrics,synthetic
+   - name: Convert agent traces into evaluation datasets
+     href: ../../observability/how-to/traces-to-dataset.md
+     displayName: traces,application insights
+
 # Run evaluations
 - name: Run evaluations
   items:
@@ -34,37 +50,66 @@ items:
      href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
    - name: Evaluate agents
      href: ../../observability/how-to/evaluate-agent.md
-   - name: Run evaluations from the SDK
-     href: ../../how-to/develop/cloud-evaluation.md
-   - name: Generate a synthetic evaluation dataset
-     href: ../../observability/how-to/evaluation-dataset-synthetic.md
-     displayName: code,accuracy,metrics
-   - name: Continuous evaluation
-     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation
+   - name: Run evaluations with the SDK
+     items:
+     - name: Introduction to cloud evaluation
+       href: ../../observability/how-to/cloud-evaluation.md
+     - name: Evaluate individual turns
+       items:
+       - name: Evaluate query-response datasets
+         href: ../../observability/how-to/cloud-evaluation-datasets.md
+       - name: Evaluate model and agent responses
+         href: ../../observability/how-to/cloud-evaluation-targets.md
+       - name: Evaluate model and agent traces
+         href: ../../observability/how-to/cloud-evaluation-deployed-interactions.md
+       - name: Generate synthetic queries
+         href: ../../observability/how-to/cloud-evaluation-synthetic-data.md
+     - name: Evaluate complete conversations
+       items:
+       - name: Evaluate conversation datasets
+         href: ../../observability/how-to/cloud-evaluation-conversations.md
+       - name: Evaluate model and agent traces
+         href: ../../observability/how-to/cloud-evaluation-deployed-conversations.md
+       - name: Simulate agent conversations
+         href: ../../observability/how-to/cloud-evaluation-simulate-conversations.md
+     - name: Get evaluation results
+       href: ../../observability/how-to/cloud-evaluation-results.md
+     - name: Use admin-connected models
+       href: ../../observability/how-to/evaluate-admin-connected-models.md
    - name: Run evaluations from the portal
      href: ../../how-to/evaluate-generative-ai-app.md
-   - name: View evaluation results in the portal
-     href: ../../how-to/evaluate-results.md
-     displayName: accuracy,metrics
-   - name: Analyze evaluation results
-     href: ../../observability/how-to/cluster-analysis.md
    - name: Run agent evaluations with the Azure Developer CLI
      displayName: azd cli
      href: ../../observability/how-to/azure-developer-cli-evaluation.md
-   - name: Run benchmark evaluations
-     href: ../../observability/how-to/benchmark-evaluations.md
-   - name: Set up human evaluation
-     href: ../../observability/how-to/human-evaluation.md
+   - name: Specialized evaluation workflows
+     items:
+     - name: Continuous evaluation
+       href: ../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation
+     - name: Run benchmark evaluations
+       href: ../../observability/how-to/benchmark-evaluations.md
+     - name: Set up human evaluation
+       href: ../../observability/how-to/human-evaluation.md
+   - name: Review and analyze results
+     items:
+     - name: View evaluation results in the portal
+       href: ../../how-to/evaluate-results.md
+       displayName: accuracy,metrics
+     - name: Analyze evaluation results
+       href: ../../observability/how-to/cluster-analysis.md
 
 # Optimization
 - name: Optimization
   items:
    - name: Optimize agent prompts
      href: ../../observability/how-to/prompt-optimizer.md
-   - name: Optimize hosted agents (preview)
+   - name: Optimize agents overview (preview)
+     href: ../../agents/concepts/agent-optimizer-overview.md
+   - name: Understand optimizer costs and token usage
+     href: ../../agents/concepts/agent-optimizer-costs.md
+   - name: Optimize a prompt agent
+     href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
+   - name: Optimize a hosted agent
      items:
-     - name: Overview
-       href: ../../agents/concepts/agent-optimizer-overview.md
      - name: Quickstart
        href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
      - name: Make your agent optimization-ready

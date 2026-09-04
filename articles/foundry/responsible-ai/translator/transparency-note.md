@@ -5,7 +5,7 @@ description: "Azure Translator in Foundry Tools Responsible AI Basics, use cases
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: concept-article
 ms.date: 04/01/2026
 ---

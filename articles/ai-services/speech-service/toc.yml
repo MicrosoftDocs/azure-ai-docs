@@ -89,14 +89,20 @@ items:
       items:
       - name: How to recognize speech
         href: how-to-recognize-speech.md
+      - name: Transcribe multichannel audio
+        href: how-to-recognize-speech-multichannel.md
       - name: How to use post-processing
         href: how-to-post-processing.md
       - name: Get speech recognition results
         href: get-speech-recognition-results.md
       - name: Language identification
         href: language-identification.md
+      - name: Configure language ID and diarization
+        href: configure-language-identification-diarization.md
       - name: Real-time diarization quickstart
         href: get-started-stt-diarization.md
+    - name: MAI-Transcribe API
+      href: mai-transcribe.md
     - name: Fast transcription API
       href: fast-transcription-create.md
     - name: Batch transcription API
@@ -148,8 +154,8 @@ items:
       href: improve-accuracy-phrase-list.md
     - name: Display text formatting
       href: display-text-format.md
-    - name: Whisper model from OpenAI
-      href: whisper-overview.md
+    - name: Transcription models from OpenAI
+      href: transcribe-overview.md
     - name: Speech to text FAQ
       displayName: FAQ,STT,frequently asked questions
       href: faq-stt.yml
@@ -319,8 +325,6 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
-    - name: Use MAI-Transcribe
-      href: mai-transcribe.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
@@ -390,7 +394,7 @@ items:
       displayName: FAQ,frequently asked questions
     - name: Reference
       items:
-      - name: Voice Live REST API reference
+      - name: Voice Live API reference
         items:
         - name: '2026-04-10'
           href: voice-live-api-reference-2026-04-10.md
@@ -487,8 +491,10 @@ items:
           - name: Install and run speech containers
             displayName: 'containers,install container,run container'
             href: speech-container-howto.md
-          - name: Speech to text containers
+          - name: Real-time speech to text containers
             href: speech-container-stt.md
+          - name: Fast transcription containers
+            href: speech-container-ft.md
           - name: Custom speech to text containers
             href: speech-container-cstt.md
           - name: Text to speech containers
@@ -646,49 +652,49 @@ items:
     - name: Speech to text
       items:
       - name: Transparency note
-        href: ../../ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/speech-to-text/transparency-note.md?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
     - name: Text to speech
       items:
       - name: Transparency note
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/text-to-speech/transparency-note.md?context=/azure/ai-services/speech-service/context/context
       - name: Code of conduct
         href: /legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context
       - name: Limited access
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/text-to-speech/limited-access.md?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure for voice and avatar talent
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent.md?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design guidelines
         items:
         - name: Custom voice
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines.md?context=/azure/ai-services/speech-service/context/context
+          href: ../../foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines.md?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines-avatar.md?context=/azure/ai-services/speech-service/context/context
+          href: ../../foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines-avatar.md?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design patterns
         items:
         - name: Custom voice
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns.md?context=/azure/ai-services/speech-service/context/context
+          href: ../../foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns.md?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md?context=/azure/ai-services/speech-service/context/context
+          href: ../../foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
     - name: Voice Live
       items:
       - name: Transparency note
-        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/transparency-note.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/voice-live/transparency-note.md?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
+        href: ../../foundry/responsible-ai/speech-service/voice-live/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
     - name: Pronunciation Assessment
       items:
       - name: Transparency Note
         items:
         - name: Use cases for Pronunciation Assessment
-          href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment.md?context=/azure/ai-services/speech-service/context/context
+          href: ../../foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment.md?context=/azure/ai-services/speech-service/context/context
         - name: Characteristics and limitations
-          href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md?context=/azure/ai-services/speech-service/context/context
+          href: ../../foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md?context=/azure/ai-services/speech-service/context/context
     - name: Embedded speech
-      href: ../../ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md?context=/azure/ai-services/speech-service/context/context
+      href: ../../foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md?context=/azure/ai-services/speech-service/context/context
 - name: Resources
   items:
     - name: Known issues

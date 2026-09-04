@@ -8,7 +8,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/27/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 
@@ -16,8 +16,6 @@ ai-usage: ai-assisted
 ---
 
 # Multiplex multiple users in one hosted agent session
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 By default, each caller gets their own hosted agent session, as described in [Isolate hosted agent sessions per user](isolate-sessions-per-user.md). Applications that serve many users - a Teams bot, an ISV gateway, or a customer-support platform - don't need one session per user. Instead, a middle-tier service maps many users onto a bounded pool of shared sessions and identifies each user on every call.
 
@@ -38,7 +36,7 @@ A complete, runnable [session multiplexing sample](https://github.com/microsoft-
 
 Start with the core behavior: two users - call them Alice and Bob, the acted-for users in the sample - can share one `agent_session_id`, and the platform still keeps each user's conversation private. Your middle tier identifies the acted-for user on every call with the `x-ms-user-identity` header (delegation). To continue a user's own conversation, it passes that user's previous response as `previous_response_id`.
 
-The minimal [`invoke_previous_response_isolation.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/scripts/invoke_previous_response_isolation.py) caller in the sample sends exactly that, using the SDK's agent-bound Responses client:
+The minimal [`invoke_previous_response_isolation.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/src/hello-world-session-multiplexing-python-responses/scripts/invoke_previous_response_isolation.py) caller in the sample sends exactly that, using the SDK's agent-bound Responses client:
 
 ```python
 # Agent-bound Responses client from the Foundry SDK.
@@ -76,7 +74,7 @@ Decide how to map users to sessions. Common strategies include:
 - **Round-robin.** Distribute requests evenly across the pool. This strategy is simple, but a user's turns can land on different sessions.
 - **Group-based.** Route by tenant, team, or region so related users share sessions. This strategy is useful when users in a group share context.
 
-The [`invoke_session_pool.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/scripts/invoke_session_pool.py) caller in the sample implements caller-owned assignment with two strategies, `sticky-fill` and `round-robin`. A returning user always keeps their session; a new user is placed by the selected strategy. The sticky-fill path fills the least-loaded session and opens a new one only when every session is at capacity:
+The [`invoke_session_pool.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/src/hello-world-session-multiplexing-python-responses/scripts/invoke_session_pool.py) caller in the sample implements caller-owned assignment with two strategies, `sticky-fill` and `round-robin`. A returning user always keeps their session; a new user is placed by the selected strategy. The sticky-fill path fills the least-loaded session and opens a new one only when every session is at capacity:
 
 ```python
 def get_session_for_user(self, user_id: str) -> str:
@@ -104,7 +102,7 @@ Feed the returned session ID into the same delegated call shown earlier: it beco
 
 ## Handle the request in your container
 
-On protocol 2.0.0, the platform resolves the acted-for user and exposes it to your handler through `get_request_context()`. Validate that context (fail closed when it's missing, such as on local runs), then let the platform return the per-user history with `context.get_history()`. The [`main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/main.py) handler in the sample keeps no conversation state of its own:
+On protocol 2.0.0, the platform resolves the acted-for user and exposes it to your handler through `get_request_context()`. Validate that context (fail closed when it's missing, such as on local runs), then let the platform return the per-user history with `context.get_history()`. The [`main.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/src/hello-world-session-multiplexing-python-responses/main.py) handler in the sample keeps no conversation state of its own:
 
 ```python
 from azure.ai.agentserver.core import get_request_context
@@ -180,7 +178,7 @@ For a worked example of per-session storage to build on, see the [note-taking ag
 
 ## Verify isolation
 
-Confirm the guarantee with the sample's A-A-B test, [`invoke_previous_response_isolation.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/scripts/invoke_previous_response_isolation.py). Run it against your deployed agent with two distinct users (the sample defaults to Alice and Bob):
+Confirm the guarantee with the sample's A-A-B test, [`invoke_previous_response_isolation.py`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/session-multiplexing/src/hello-world-session-multiplexing-python-responses/scripts/invoke_previous_response_isolation.py). Run it against your deployed agent with two distinct users (the sample defaults to Alice and Bob):
 
 1. As Alice, create a response in a shared session and capture its `id`.
 1. As Alice, create a second response in the same session with `previous_response_id` set to the first response's `id`, and capture its `id`.

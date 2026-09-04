@@ -5,16 +5,17 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 08/31/2026
+ai-usage: ai-assisted
 ---
 
-# Hybrid search using vectors and full text in Azure AI Search
+# Hybrid search using vectors and full-text search in Azure AI Search
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Hybrid search is a single query request configured for both full-text and vector queries. It runs against a search index that contains searchable, plain-text content and generated embeddings. For query purposes, hybrid search:
 
-+ Is a single query request that includes both `search` and `vectors` query parameters.
++ Is a single query request that includes both `search` and `vectorQueries` query parameters.
 + Runs full-text search and vector search in parallel.
 + Merges results from each query by using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md).
 
@@ -56,7 +57,7 @@ content-type: application/JSON
     "vectorQueries": [
         {
             "kind": "vector",
-            "vector": [ <array of embeddings> ]
+            "vector": [ <array of embeddings> ],
             "k": 50,
             "fields": "DescriptionVector",
             "exhaustive": true,
@@ -64,7 +65,7 @@ content-type: application/JSON
         },
         {
             "kind": "vector",
-            "vector": [ <array of embeddings> ]
+            "vector": [ <array of embeddings> ],
             "k": 50,
             "fields": "Description_frVector",
             "exhaustive": false,
@@ -84,7 +85,7 @@ content-type: application/JSON
 + `search` specifies a single full-text search query.
 + `vectorQueries` specifies vector queries, which can be multiple, targeting multiple vector fields. If the embedding space includes multilingual content, vector queries can find the match with no language analyzers or translation required. If you're using semantic ranker, set `k` to 50 to maximize its inputs.
 + `select` specifies which fields to return in results, which should be human-readable text fields if you're showing them to users or sending them to a large language model (LLM).
-+ `filters` can specify geospatial search or other inclusion and exclusion criteria, such as whether parking is included. The geospatial query in this example finds hotels within a 300-kilometer radius of Washington D.C. You can apply the filter at the beginning or end of query processing. If you're using semantic ranker, you probably want post-filtering as the last step, but you should test to confirm which behavior is best for your queries.
++ `filter` can specify geospatial search or other inclusion and exclusion criteria, such as whether parking is included. The geospatial query in this example finds hotels within a 300-kilometer radius of Washington, D.C. You can apply the filter at the beginning or end of query processing. If you're using semantic ranker, you probably want post-filtering as the last step, but you should test to confirm which behavior is best for your queries.
 + `facets` can be used to compute facet buckets over results that are returned from hybrid queries.
 + `queryType=semantic` invokes [semantic ranker](semantic-search-overview.md), applying machine reading comprehension to surface more relevant search results. Semantic ranking is optional. If you aren't using this feature, remove the last three lines of the hybrid query.
 

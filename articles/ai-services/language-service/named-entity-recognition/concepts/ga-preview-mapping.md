@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about the differences between NER API versions.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 04/04/2026
+ms.date: 07/29/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-ner, ignite-2024
 ---
 # Entity types and tags

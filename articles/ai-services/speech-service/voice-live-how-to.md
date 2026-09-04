@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 05/25/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -102,7 +102,7 @@ You can use input audio properties to configure the input audio stream.
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
 | `input_audio_sampling_rate` | integer  | Optional | The sampling rate of the input audio.<br/><br/>The supported values are `16000` and `24000`. The default value is `24000`. |
-| `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice without requiring any client-side echo cancellation.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation.<br/><br/>The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.  |
+| `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation. The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.<br/><br/>By default, the service uses its own internal audio as the echo reference, so client-side echo cancellation isn't required. To enable Live-Reference AEC and use the audio your client actually plays back as the reference, set `reference_source` to `client` and `channels` to `2`. For more information, see [Live-Reference AEC (acoustic echo cancellation)](#live-reference-aec-acoustic-echo-cancellation). |
 | `input_audio_noise_reduction`   | object   | Optional | Enhances the input audio quality by suppressing or removing environmental background noise.<br/><br/>Set the `type` property of `input_audio_noise_reduction` to enable noise suppression.<br/><br/>The supported value for `type` is `azure_deep_noise_suppression`, which optimizes for speakers closest to the microphone.<br/><br/>You can set this property to `near_field` or `far_field` if you're using the [Azure OpenAI Realtime API](../../ai-foundry/openai/realtime-audio-reference.md#realtimeaudioinputaudionoisereductionsettings). |
 
 Here's an example of input audio properties in a session object:
@@ -119,11 +119,51 @@ Here's an example of input audio properties in a session object:
 
 Noise suppression enhances the input audio quality by suppressing or removing environmental background noise. Noise suppression helps the model understand the end-user with higher accuracy and improves accuracy of signals like interruption detection and end-of-turn detection.
 
-Server echo cancellation enhances the input audio quality by removing the echo from the model's own voice. In this way, client-side echo cancellation isn't required. Server echo cancellation is useful when the model's voice is played back to the end-user through a speaker. This helps avoiding the microphone picking up the model's own voice.
+Server echo cancellation enhances the input audio quality by removing the echo from the model's own voice. In this way, client-side echo cancellation isn't required. Server echo cancellation is useful when the model's voice is played back to the end-user through a speaker. This process helps avoid the microphone picking up the model's own voice.
 
 > [!NOTE]
-> The service assumes the client plays response audio as soon as it receives them. If playback is delayed for more than two seconds, echo cancellation quality is impacted.
+> This timing assumption applies to the default server reference (`reference_source` set to `server`). The service assumes the client plays response audio as soon as it receives it. If playback is delayed for more than two seconds, echo cancellation quality is impacted. To avoid this limitation, use [Live-Reference AEC](#live-reference-aec-acoustic-echo-cancellation), where your client supplies the playback reference directly.
 
+#### Live-Reference AEC (acoustic echo cancellation)
+
+By default, server echo cancellation uses the service's own internal audio as the echo reference signal. With Live-Reference AEC, your client supplies the audio it actually plays back as the reference instead. Echo cancellation remains in the service. It uses the client-provided reference to reflect the real playback path, including device output, volume, and any client-side resampling or mixing.
+
+Use Live-Reference AEC when the audio the end-user hears differs from the raw model output. For example, use it when your client processes or mixes audio before playback, or when device output introduces echo that the internal reference doesn't capture. This scenario is common in client-side playback paths, such as a web or mobile app.
+
+To enable Live-Reference AEC:
+
+1. Set `input_audio_format` to `pcm16`.
+1. In `input_audio_echo_cancellation`, set `reference_source` to `client` and `channels` to `2`.
+1. Send interleaved stereo PCM16 audio. Channel 0 contains microphone audio, and channel 1 contains playback reference audio. For each sample pair, send the microphone sample first, followed by the corresponding playback reference sample.
+
+Only the following `reference_source` and `channels` combinations are supported:
+
+| `reference_source` | `channels` | Behavior |
+|---|---|---|
+| `server` | `1` | Default. The service uses its internal audio as the echo reference. |
+| `client` | `2` | Live-Reference AEC. The service uses the playback reference audio sent by your client. |
+
+You can't change `reference_source`, `channels`, `input_audio_format`, or `input_audio_sampling_rate` during a session.
+
+Live-Reference AEC is available starting with API version `2026-07-15`.
+
+Here's an example that enables Live-Reference AEC:
+
+```json
+{
+    "type": "session.update",
+    "session": {
+        "input_audio_format": "pcm16",
+        "input_audio_echo_cancellation": {
+            "type": "server_echo_cancellation",
+            "reference_source": "client",
+            "channels": 2
+        }
+    }
+}
+```
+
+For a working browser example that captures two-channel audio (microphone plus playback reference) and streams it to the service, see the [Live-Reference AEC sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/live-reference-aec).
 
 ## Conversational enhancements
 
@@ -257,7 +297,7 @@ The `voice` object has the following properties:
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
+| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaMultilingualNeural`. |
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
@@ -265,12 +305,28 @@ See [How to customize Voice Live input and output](./voice-live-how-to-customize
 
 ### Azure standard voices
 
+#### MAI-Voice-2-Flash (Preview)
+MAI-Voice-2-Flash is an ultra-fast, low-latency, high-fidelity expressive TTS model that's optimized for real-time responsiveness in Voice Live.
+Here's an example for a MAI-Voice-2-Flash voice:
+
+```JSON
+{
+ "voice": {
+   "name": "en-US-Harper:MAI-Voice-2-Flash",
+   "type": "azure-standard"
+ }
+}
+```
+
+For the full list of Mai-voice-2-flash voices, see [MAI voices](./mai-voices.md).
+
+#### Azure Neural Voice
 Here's a partial message example for a standard (`azure-standard`) voice:
 
 ```json
 {
   "voice": {
-    "name": "en-US-AvaNeural",
+    "name": "en-US-AvaMultilingualNeural",
     "type": "azure-standard"
   }
 }
@@ -278,9 +334,9 @@ Here's a partial message example for a standard (`azure-standard`) voice:
 
 For the full list of standard voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
-### Azure high definition voices
+### Azure high definition (HD) voices
 
-Here's an example `session.update` message for a standard high definition voice:
+Here's an example `session.update` message for a standard high definition (HD) voice:
 
 ```json
 {
@@ -292,7 +348,7 @@ Here's an example `session.update` message for a standard high definition voice:
 }
 ```
 
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
+For the full list of high definition (HD) voices, see [high definition (HD) voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
 
 > [!NOTE]
 > High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2
@@ -446,19 +502,42 @@ Specify the voice as a structured object with `type` set to `azure-realtime-nati
 
 The following `azure-realtime-native` voice names are supported:
 
-| Voice name | Description |
-|---|---|
-| `aarti` | Azure Speech native voice |
-| `andrew` | Azure Speech native voice |
-| `ava` | Azure Speech native voice (default) |
-| `denise` | Azure Speech native voice |
-| `elsa` | Azure Speech native voice |
-| `florian` | Azure Speech native voice |
-| `francisca` | Azure Speech native voice |
-| `meera` | Azure Speech native voice |
-| `ximena` | Azure Speech native voice |
-| `xiaoxiao` | Azure Speech native voice |
-| `yunxi` | Azure Speech native voice |
+| Voice name | Description | Locale | Voice Detail |
+|---|---|---|---|
+| `aarti` | Azure Speech native voice | en-IN | Warm, rich Indian-accented English female voice with a dark, inviting tone. Best for premium support, guided learning, and trusted brand experiences. |
+| `alvaro` | Azure Speech native voice | es-ES | Confident, animated Spanish male voice with strong presence. Best for sales, promotions, and assertive service communication. |
+| `andrew` | Azure Speech native voice | en-US | Textured, relaxed, trustworthy US male voice designed for low-pressure chat. |
+| `antonio` | Azure Speech native voice | pt-BR | Bright, upbeat Brazilian Portuguese male voice with strong enthusiasm. Best for campaigns, product intros, and energetic customer engagement. |
+| `ava` | Azure Speech native voice (default) | en-US | Bright, confident, high-energy US voice. Best for product demos, customer support, and polished branded experiences. |
+| `clara` | Azure Speech native voice | en-CA | Clear, versatile Canadian voice with broad usability. Best for general-purpose assistants, education, and customer support. |
+| `dalia` | Azure Speech native voice | es-MX | Bright, upbeat Mexican Spanish female voice with warm energy. Best for retail, customer engagement, and lively assistant experiences. |
+| `denise` | Azure Speech native voice | fr-FR | Bright, engaging French female voice that keeps attention high. Best for lively customer engagement and onboarding. |
+| `diego` | Azure Speech native voice | it-IT | Animated, upbeat Italian male voice full of energy. Best for lively conversations, promotions, and entertainment-focused experiences. |
+| `diya` | Azure Speech native voice | hi-IN | Crisp, clear bilingual Hindi and Indian-accented English female voice. Best for troubleshooting, issue resolution, and multilingual support. |
+| `elsa` | Azure Speech native voice | it-IT | Confident, crisp Italian female voice with clear delivery. Best for service guidance, explainers, and professional support. |
+| `emma` | Azure Speech native voice | en-US | Warm, conversational, mid-pitch US female voice with a dynamic conversational style. Best for routine service help, onboarding, and fast-moving support flows. |
+| `florian` | Azure Speech native voice | de-DE | Warm, cheerful German male voice with strong clarity and versatility. Best for explainers, education, and approachable support. |
+| `francisca` | Azure Speech native voice | pt-BR | Cheerful, crisp Brazilian Portuguese female voice with positive clarity. Best for support, onboarding, and service messaging. |
+| `hyunsu` | Azure Speech native voice | ko-KR | Rich, resonant Korean male voice with steady professionalism. Best for formal guidance, explainers, and trusted information delivery. |
+| `jorge` | Azure Speech native voice | es-MX | Deep, confident Mexican Spanish male voice with authority and assurance. Best for announcements, logistics, and trust-focused support. |
+| `keita` | Azure Speech native voice | ja-JP | Casual, engaging Japanese male voice with a relaxed but lively feel. Best for chat-based assistants and informal service interactions. |
+| `liam` | Azure Speech native voice | en-CA | Young Canadian male voice with an enthusiastic, articulate delivery. Best for tech content, tutorials, and educational products. |
+| `meera` | Azure Speech native voice | hi-IN | Calm, warm bilingual Hindi and Indian-accented English female voice with a soothing presence. Best for wellness, care, hospitality, and reflective guidance. |
+| `nanami` | Azure Speech native voice | ja-JP | Bright, cheerful Japanese female voice with an uplifting tone. Best for welcome messages, retail, and friendly lifestyle experiences. |
+| `natasha` | Azure Speech native voice | en-AU | Clear, versatile Australian female voice that adapts easily across use cases. Best for general assistants, support, and instructional content. |
+| `niwat` | Azure Speech native voice | th-TH | Confident Thai male voice with smooth, measured professionalism. Best for corporate presentations, podcasts, and formal service messaging. |
+| `premwadee` | Azure Speech native voice | th-TH | Young Thai female voice with a formal, professional tone. Best for announcements, training, and structured communication. |
+| `rayn` | Azure Speech native voice | en-GB | Straightforward British male voice with an efficient, neutral style. Best for transactional support, enterprise tools, and service updates. |
+| `remy` | Azure Speech native voice | fr-FR | Cheerful French male voice with an uplifting, conversational tone. Best for chat, retail, and light branded storytelling. |
+| `seraphina` | Azure Speech native voice | de-DE | Casually charming German female voice with a relaxed, engaging style. Best for audiobooks, casual chat, and lifestyle content. |
+| `sonia` | Azure Speech native voice | en-GB | Gentle, soft British female voice with a calm, soothing presence. Best for premium support, wellness, and thoughtful onboarding. |
+| `sunhi` | Azure Speech native voice | ko-KR | Calm, soothing Korean female voice with dark warmth and measured pacing. Best for wellness, hospitality, and reassuring guidance. |
+| `sylvie` | Azure Speech native voice | fr-CA | Calm, soothing Canadian French female voice with steady professionalism. Best for announcements, support, and trusted public-facing communication. |
+| `thierry` | Azure Speech native voice | fr-CA | Calm Canadian French male voice with a dark, warm timbre. Best for premium narration, wellness, and thoughtful brand experiences. |
+| `william` | Azure Speech native voice | en-AU | Calm Australian male voice with warm depth and reassuring confidence. Best for onboarding, support, and premium narration. |
+| `xiaoxiao` | Azure Speech native voice | zh-CN | Sweet, soft, welcoming Mandarin female voice with rich emotional range. Best for hospitality, premium care, and warm customer-facing experiences. |
+| `ximena` | Azure Speech native voice | es-ES | Crisp, cheerful Spanish female voice with clear positivity. Best for hospitality, support, and guided shopping. |
+| `yunxi` | Azure Speech native voice | zh-CN | Lively Mandarin male voice with vivid, expressive emotion. Best for storytelling, engaging assistants, and interactive education. |
 
 If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
 
@@ -532,6 +611,10 @@ Refer to this sample code [use avatar in Voice live API](https://github.com/micr
 ### Use a photo avatar
 
 A [photo avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) generates a talking-head video from a single image. Voice Live supports both standard photo avatars (provided by Microsoft) and custom photo avatars (created from your own image). To use a photo avatar, set `type` to `photo-avatar` and `model` to the base model that drives it (currently `vasa-1`). For a standard photo avatar, set `character` to the photo avatar character name (for the list, see [Talking heads](./text-to-speech-avatar/standard-avatars.md#talking-heads)). For a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`.
+
+A standard photo avatar generates a talking-head video from a single photo, and the expected source photo resolution is 512x512.
+
+Before you can use a custom photo avatar, you need to create it. Creating a custom photo avatar requires a photo of the subject along with about one minute of consent audio, which is used to better match the voice to the avatar. This requirement is separate from the Voice Live session configuration shown here. For more information, see [Create a custom photo avatar](./text-to-speech-avatar/custom-photo-avatar-create.md).
 
 Use the optional `scene` object to adjust the avatar's zoom, position, rotation, and movement amplitude. For the meaning and ranges of each scene field, see [Set avatar scene for photo avatar](./text-to-speech-avatar/real-time-synthesis-avatar.md#set-avatar-scene-for-photo-avatar).
 

@@ -48,12 +48,12 @@ items:
     - name: Model versions (government)
       displayName: Model versions in Microsoft Foundry Models (government)
       href: ../../foundry-models/concepts/model-versions-gov.md
+    - name: Model upgrades and switches
+      displayName: Model migration process, upgrade or switch models in Microsoft Foundry
+      href: ../../foundry-models/concepts/model-migration.md
     - name: Automatic model updates for Azure OpenAI Models
       displayName: Working with models
       href: ../../openai/how-to/working-with-models.md
-    - name: Upgrade or switch models with Ask AI
-      displayName: Upgrade or switch models with Ask AI (preview)
-      href: ../../observability/how-to/optimization-model-upgrade.md
     - name: Lifecycle and support policy
       displayName: Foundry Models lifecycle and support policy
       href: ../../openai/concepts/model-retirements.md
@@ -85,6 +85,12 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Monitor model router
+      displayName: Monitor model router in Microsoft Foundry
+      href: ../../openai/how-to/monitor-model-router.md
+    - name: Evaluate model router
+      displayName: Evaluate model router for your workload
+      href: ../../openai/how-to/evaluate-model-router.md
     - name: Govern model router with Azure Policy
       href: ../../how-to/model-router-policy.md
     - name: Use model router with agents
@@ -154,6 +160,9 @@ items:
     - name: Overview
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
+    - name: Overview (government)
+      displayName: Provisioned throughput for Foundry Models in Azure Government
+      href: ../../openai/concepts/provisioned-throughput-gov.md
     - name: Quickstart
       displayName: Create a provisioned throughput deployment
       href: ../../openai/provisioned-quickstart.md
@@ -181,8 +190,8 @@ items:
   - name: Deploy using code
     displayName: Deploy models using Azure CLI and Bicep
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Upgrade from GitHub Models
-    displayName: Upgrade from GitHub Models to Microsoft Foundry Models
+  - name: Migrate from GitHub Models
+    displayName: Migrate from GitHub Models to Microsoft Foundry Models, GitHub Models retirement
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Deploy with managed compute (preview)
     displayName: Deploy open-source AI models with managed compute in Foundry
@@ -193,19 +202,22 @@ items:
 
 - name: Model support
   items:
-  - name: Azure OpenAI supported programming languages
+  - name: Azure OpenAI SDK language support
     href: ../../openai/supported-languages.md
-  - name: Microsoft AI (MAI) models
+  - name: Microsoft AI (MAI)
     items:
     - name: MAI-Image models
       displayName: MAI image models in Foundry
       href: ../../foundry-models/how-to/use-foundry-models-mai-image.md
+    - name: MAI-Thinking-1 model
+      displayName: MAI Thinking-1 model in Foundry
+      href: ../../foundry-models/how-to/use-foundry-models-mai-thinking.md
     - name: MAI-Voice models
       displayName: mai voice, neural voice
       href: /azure/ai-services/speech-service/mai-voices?context=/azure/foundry/context/context
     - name: MAI-Transcribe models
       href: /azure/ai-services/speech-service/mai-transcribe?context=/azure/foundry/context/context
-  - name: Claude models
+  - name: Anthropic
     items:
     - name: Overview
       displayName: Overview of Claude models in Foundry
@@ -219,9 +231,12 @@ items:
     - name: Deploy Claude with Bicep or Terraform
       displayName: Deploy Claude with Bicep or Terraform
       href: /azure/developer/ai/how-to/deploy-claude-foundry?context=/azure/foundry/context/context
-  - name: FLUX models
+  - name: Black Forest Labs
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
+  - name: SpaceXAI
+    displayName: Grok models in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-grok.md
   - name: Healthcare AI models
     items:
     - name: Overview
@@ -250,12 +265,18 @@ items:
       items:
       - name: Use the Azure OpenAI Responses API
         href: ../../openai/how-to/responses.md
+      - name: Migrate from Chat Completions to Responses API
+        displayName: Migrate Python apps from Azure OpenAI Chat Completions to the Responses API
+        href: /azure/developer/ai/how-to/azure-openai-to-responses?context=/azure/foundry/context/context
       - name: Text generation
         displayName: How to generate text responses with Microsoft Foundry Models
         href: ../../foundry-models/how-to/generate-responses.md
       - name: Function calling
         displayName: How to use function calling with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/function-calling.md
+      - name: Multi-agent orchestration (preview)
+        displayName: Use multi-agent orchestration with the Azure OpenAI Responses API
+        href: ../../openai/how-to/responses-multi-agent.md
       - name: Structured outputs
         displayName: How to use structured outputs with Azure OpenAI in Microsoft Foundry Models
         href: ../../openai/how-to/structured-outputs.md
@@ -265,6 +286,9 @@ items:
       - name: Deep research
         displayName: Deep research with the Responses API
         href: ../../openai/how-to/deep-research.md
+      - name: Tool search
+        displayName: Use tool search with the Azure OpenAI Responses API
+        href: ../../openai/how-to/tool-search.md
       - name: Web search
         displayName: Web search with the Responses API
         href: ../../openai/how-to/web-search.md
@@ -287,19 +311,13 @@ items:
       displayName: Azure OpenAI reasoning models
       href: ../../openai/how-to/reasoning.md
     - name: Reasoning models (Foundry Models)
-      displayName: How to use reasoning models with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
+      displayName: How to use Foundry reasoning models
+      href: ../../foundry-models/how-to/use-chat-reasoning.md
   - name: Embeddings
     items:
-    - name: Embeddings (Azure OpenAI)
+    - name: Embeddings
       displayName: Learn how to generate embeddings
       href: ../../openai/how-to/embeddings.md
-    - name: Text embeddings (Foundry Models)
-      displayName: How to generate embeddings with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
-    - name: Image embeddings
-      displayName: How to generate image embeddings with Microsoft Foundry Models service
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
     - name: Embeddings tutorial
       displayName: "Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search"
       href: ../../openai/tutorials/embeddings.md
@@ -349,8 +367,8 @@ items:
     - name: Speech to text
       displayName: "Quickstart: Recognize and convert speech to text"
       href: ../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/foundry/context/context
-    - name: Speech to text with Whisper
-      displayName: "Quickstart: Speech to text with the Azure OpenAI Whisper model"
+    - name: Speech to text with transcription models
+      displayName: "Quickstart: Speech to text with Azure OpenAI transcription models"
       href: ../../openai/whisper-quickstart.md
     - name: Text to speech
       displayName: "Quickstart: Convert text to speech"
@@ -388,8 +406,8 @@ items:
     - name: GPT Realtime Translate
       displayName: GPT Realtime Translate real-time translation model
       href: ../../openai/concepts/gpt-realtime-translate.md
-    - name: GPT Realtime Whisper
-      displayName: GPT Realtime Whisper streaming transcription model
+    - name: GPT Realtime Transcribe
+      displayName: GPT Realtime Transcribe streaming transcription model
       href: ../../openai/concepts/gpt-realtime-whisper.md
 
 - name: Fine-tuning
@@ -439,7 +457,7 @@ items:
   items:
   - name: Prompt engineering techniques
     href: ../../openai/concepts/prompt-engineering.md
-  - name: Get started with DeepSeek-R1 reasoning model
+  - name: Get started with a DeepSeek reasoning model
     href: ../../foundry-models/tutorials/get-started-deepseek-r1.md
   - name: System message design
     href: ../../openai/concepts/advanced-prompt-engineering.md

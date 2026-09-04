@@ -23,8 +23,7 @@ This skill uses the machine learning models provided by [Azure Vision in Foundry
 
 Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
-This skill is implemented using the [AI Image Analysis API](/azure/ai-services/computer-vision/overview-image-analysis) version 3.2. If your solution requires calling a newer version of that service API (such as version 4.0), consider implementing through [Web API custom skill](cognitive-search-custom-skill-web-api.md) or use the [ImageAnalysisV4 power skill](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Vision/ImageAnalysisV4/README.md).
-
+This skill is implemented using the [AI Image Analysis API](/azure/ai-services/computer-vision/overview-image-analysis) version 3.2. If your solution requires calling a newer version of that service API, such as version 4.0, consider implementing through the [Custom Web API skill](cognitive-search-custom-skill-web-api.md).
 > [!NOTE]
 > This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >

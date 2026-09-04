@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn how to Extract Excel text without having to write code, using Named Entity Recognition and Power Automate.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 04/30/2026
+ms.date: 08/14/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---
 # Extract information in Excel using Named Entity Recognition(NER) and Power Automate 

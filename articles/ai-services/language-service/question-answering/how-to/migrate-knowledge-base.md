@@ -1,11 +1,11 @@
 ---
 title: Move projects - custom question answering
 description: Moving a custom question answering project uses export and import operations.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 05/20/2026
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 <!-- markdownlint-disable MD025 -->

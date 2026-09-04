@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry docs: What's new for June 2026"
-description: "Discover documentation and product updates in Microsoft Foundry for June 2026."
+title: "Microsoft Foundry docs: What's new for August 2026"
+description: "Discover documentation and product updates in Microsoft Foundry for August 2026."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -11,50 +11,87 @@ ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
   - doc-kit-assisted
-ms.date: 07/08/2026
+ms.date: 09/01/2026
 ---
 
 # What's new in Microsoft Foundry?
-Welcome! This article highlights key updates for Microsoft Foundry in June 2026.
-<br>
+
+Welcome! This article highlights key updates for Microsoft Foundry in August 2026.
 
 ## New articles
 
 - Foundry Agent Service
-  - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](/azure/foundry/agents/how-to/publish-copilot)
-  - [Publish agents in a virtual network to Microsoft 365 Copilot and Teams](/azure/foundry/agents/how-to/publish-copilot-virtual-network)
-  - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
-  - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](/azure/foundry/agents/how-to/publish-copilot)
-  - [Publish agents in a virtual network to Microsoft 365 Copilot and Teams](/azure/foundry/agents/how-to/publish-copilot-virtual-network)
-  - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
-- Foundry Models and platform
-  - [Deploy and use Claude models in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-claude)
-- Foundry Local
-  - [What's new in Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/whats-new#june-2026)
-- Speech
-  - [Voice Live `2026-06-01-preview` API Reference](/azure/ai-services/speech-service/voice-live-api-reference-2026-06-01-preview)
-- Models
-  - [Deploy and use Claude models in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-claude)
-- Toolboxes, routines, and tool orchestration
-  - [Curate intent-based toolbox in Foundry (preview)](/azure/foundry/agents/how-to/tools/toolbox)
-  - [Routines in Microsoft Foundry (preview)](/azure/foundry/agents/concepts/routines)
-  - [Automate agents with routines (preview)](/azure/foundry/agents/how-to/use-routines)
-  - [Enable tool search in a toolbox (preview)](/azure/foundry/agents/how-to/tools/tool-search)
-  - [Connect agents to Microsoft 365 with Work IQ (preview)](/azure/foundry/agents/how-to/tools/work-iq)
-  - [Connect agents to Microsoft Fabric with Fabric IQ (preview)](/azure/foundry/agents/how-to/tools/fabric-iq)
-- Memory and optimization
-  - [Memory in Microsoft Foundry Agent Service (preview)](/azure/foundry/agents/concepts/what-is-memory)
-  - [Create and use memory in Foundry Agent Service (preview)](/azure/foundry/agents/how-to/memory-usage)
-  - [What is the agent optimizer? (preview)](/azure/foundry/agents/concepts/agent-optimizer-overview)
-  - [Quickstart: Optimize a hosted agent (preview)](/azure/foundry/agents/quickstarts/quickstart-optimize-hosted-agent)
+  - [Agent optimizer cost and token usage overview](/azure/foundry/agents/concepts/agent-optimizer-costs)
+  - [Autopilot lifecycle in Microsoft Foundry](/azure/foundry/agents/concepts/autopilot-lifecycle)
+  - [What is an autopilot in Microsoft Foundry?](/azure/foundry/agents/concepts/autopilot-overview)
+  - [Long-running agent API reference (preview)](/azure/foundry/agents/concepts/long-running-agent-reference)
+  - [Resilience for long-running Microsoft Foundry hosted agents (preview)](/azure/foundry/agents/concepts/long-running-agent-resilience)
+  - [Add a human-in-the-loop approval step (preview)](/azure/foundry/agents/how-to/add-human-in-the-loop)
+  - [Deploy a crash-resilient long-running agent (preview)](/azure/foundry/agents/how-to/deploy-resilient-agent)
+  - [Deploy a steerable agent (preview)](/azure/foundry/agents/how-to/deploy-steerable-agent)
+  - [Manage state for long-running agents (preview)](/azure/foundry/agents/how-to/manage-task-state)
+  - [Bring your own registry for hosted agents](/azure/foundry/agents/how-to/private-registry-connections)
+  - [Create a private skill catalog in Foundry Agent Service](/azure/foundry/agents/how-to/private-skill-catalog)
+  - [Recover long-running work after a crash (preview)](/azure/foundry/agents/how-to/recover-long-running-work)
+  - [Steer an in-flight agent turn (preview)](/azure/foundry/agents/how-to/steer-hosted-agent)
+  - [Stream long-running agent output with reconnect (preview)](/azure/foundry/agents/how-to/stream-with-reconnect)
+  - [Network isolation for a toolbox in Microsoft Foundry](/azure/foundry/agents/how-to/tools/toolbox-network-isolation)
+  - [Quickstart: Optimize a prompt agent (preview)](/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent)
+- Foundry Models and APIs
+  - [Model migration: Upgrade or switch models in Microsoft Foundry](/azure/foundry/foundry-models/concepts/model-migration)
+  - [Microsoft Foundry reasoning models](/azure/foundry/foundry-models/how-to/use-chat-reasoning)
+  - [Deploy and use Grok models in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-grok)
+  - [Deploy and use MAI-Thinking-1 in Microsoft Foundry](/azure/foundry/foundry-models/how-to/use-foundry-models-mai-thinking)
+  - [Evaluate model router for your workload](/azure/foundry/openai/how-to/evaluate-model-router)
+  - [Use multi-agent orchestration with the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses-multi-agent)
 - Observability and evaluation
-  - [Set up tracing in Microsoft Foundry](/azure/foundry/observability/how-to/trace-agent-setup)
-  - [Review agent interactions with Trace Replay (preview)](/azure/foundry/observability/how-to/trace-agent-replay)
-  - [Convert agent traces into evaluation datasets (preview)](/azure/foundry/observability/how-to/traces-to-dataset)
+  - [Evaluate conversations with the Microsoft Foundry SDK](/azure/foundry/observability/how-to/cloud-evaluation-conversations)
+  - [Evaluate datasets with the Microsoft Foundry SDK](/azure/foundry/observability/how-to/cloud-evaluation-datasets)
+  - [Evaluate deployed interactions with the Microsoft Foundry SDK](/azure/foundry/observability/how-to/cloud-evaluation-deployed-interactions)
+  - [Get cloud evaluation results with the Microsoft Foundry SDK](/azure/foundry/observability/how-to/cloud-evaluation-results)
+  - [Generate synthetic data with the Microsoft Foundry SDK](/azure/foundry/observability/how-to/cloud-evaluation-synthetic-data)
+  - [Evaluate models and agents with the Microsoft Foundry SDK](/azure/foundry/observability/how-to/cloud-evaluation-targets)
+  - [Run cloud evaluations with the Microsoft Foundry SDK](/azure/foundry/observability/how-to/cloud-evaluation)
+  - [Use admin-connected models in cloud evaluations](/azure/foundry/observability/how-to/evaluate-admin-connected-models)
+  - [Evaluation dataset schema in Microsoft Foundry](/azure/foundry/observability/how-to/evaluation-dataset-schema)
+  - [Evaluation datasets in Microsoft Foundry](/azure/foundry/observability/how-to/evaluation-datasets)
+  - [Configure Microsoft Entra authentication for Foundry Agent trace ingestion (preview)](/azure/foundry/observability/how-to/trace-ingestion-entra-authentication)
+- Foundry platform
+  - [Microsoft Foundry product and capability map](/azure/foundry/concepts/capabilities)
+  - [Microsoft Foundry capability reference](/azure/foundry/concepts/capability-reference)
+  - [Customer-managed key encryption in Microsoft Foundry](/azure/foundry/concepts/customer-managed-keys)
+  - [Microsoft Foundry Skill example prompts and scenarios](/azure/foundry/how-to/develop/foundry-skills-scenarios-example-prompts)
+  - [Microsoft Foundry Toolkit for Visual Studio Code overview](/azure/foundry/how-to/develop/get-started-projects-visual-studio-code)
+  - [Install Microsoft Foundry Toolkit for Visual Studio Code](/azure/foundry/how-to/develop/install-foundry-toolkit-visual-studio-code)
+  - [Set up a Microsoft Foundry project in Visual Studio Code](/azure/foundry/how-to/develop/set-up-foundry-project-visual-studio-code)
+- Responsible AI
+  - [Content provenance](/azure/foundry/responsible-ai/content-safety/provenance-disclosure)
 
 ## Updated articles
 
 - Foundry Agent Service
-  - [Memory in Microsoft Foundry Agent Service (preview)](/azure/foundry/agents/concepts/what-is-memory)
+  - [azure.yaml reference for hosted agents](/azure/foundry/agents/concepts/azure-yaml-reference)
+  - [Build with runtime components in Foundry Agent Service](/azure/foundry/agents/concepts/runtime-components)
+  - [Quickstart: Build your first autopilot](/azure/foundry/agents/how-to/agent-365)
+  - [Run a hosted agent locally](/azure/foundry/agents/how-to/run-hosted-agent-locally)
+  - [Automate agents with routines (preview)](/azure/foundry/agents/how-to/use-routines)
+  - [Quickstart: Deploy your first hosted agent](/azure/foundry/agents/quickstarts/quickstart-hosted-agent)
+  - [Create and manage a toolbox in Microsoft Foundry](/azure/foundry/agents/how-to/tools/toolbox)
+  - [Connect agents to Microsoft Fabric with Fabric IQ (preview)](/azure/foundry/agents/how-to/tools/fabric-iq)
+  - [Use Code Interpreter with Microsoft Foundry agents](/azure/foundry/agents/how-to/tools/code-interpreter)
+  - [Connect OpenAPI tools to Microsoft Foundry agents](/azure/foundry/agents/how-to/tools/openapi)
+  - [Use web search tool in Foundry Agent Service](/azure/foundry/agents/how-to/tools/web-search)
+- Foundry Models and APIs
+  - [Get started with Microsoft Foundry SDKs and endpoints](/azure/foundry/how-to/develop/sdk-overview)
+  - [Manage automatic upgrades from Azure OpenAI to Microsoft Foundry](/azure/foundry/how-to/upgrade-azure-openai-auto)
+  - [Azure OpenAI reasoning models](/azure/foundry/openai/how-to/reasoning)
+- Observability and evaluation
+  - [Run agent evaluations with the azd CLI (preview)](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
+  - [Generate a synthetic evaluation dataset (preview)](/azure/foundry/observability/how-to/evaluation-dataset-synthetic)
+  - [Monitor agents with the Agent Monitoring Dashboard](/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard)
+- Foundry MCP Server
+  - [Explore available tools and example prompts for Foundry MCP Server (preview)](/azure/foundry/mcp/available-tools)
+- Foundry platform
+  - [Quickstart: Set up Microsoft Foundry resources](/azure/foundry/tutorials/quickstart-create-foundry-resources)
 
-For more product information about Microsoft Foundry, see the [Microsoft Foundry Blog | June 2026](https://devblogs.microsoft.com/foundry/whats-new-in-microsoft-foundry-june-2026/).
+For more product information about Microsoft Foundry, see the [Microsoft Foundry Blog](https://devblogs.microsoft.com/foundry/).

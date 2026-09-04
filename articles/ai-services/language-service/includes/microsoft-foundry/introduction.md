@@ -3,7 +3,7 @@
  description: Microsoft foundry introductory paragraph
  #services: cognitive-services
  author: laujan
- ms.service: azure-ai-language
+ ms.service: azure-language-foundry-tools
  ms.topic: include
  ms.date: 04/21/2026
  ms.author: lajanuar

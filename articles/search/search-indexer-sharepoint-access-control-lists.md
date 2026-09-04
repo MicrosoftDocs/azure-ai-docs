@@ -4,8 +4,9 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/08/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights (preview)
@@ -13,11 +14,11 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -40,7 +41,69 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 + Configure Microsoft Entra application permissions and a credential appropriate for your scenario. See [Permissions by ACL scenario](#permissions-by-acl-scenario). ACL ingestion requires application permissions. Delegated permissions aren't supported. For the application vs delegated decision, see [Choose your permissions setup](search-how-to-index-sharepoint-online.md#choose-your-permissions-setup).
 
-+ REST API version 2026-05-01-preview or an equivalent preview SDK package.
++ REST API version 2026-08-01-preview or an equivalent preview SDK package.
+
+## Limitations
+
++ Incremental ACL updates require the 2026-05-01-preview REST API or later. In earlier preview API versions, the system captures ACLs only on the first ingestion of each item. Later permission changes require explicit reindexing. For migration steps, see [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content).
+
++ Parent-scope permission changes aren't picked up automatically on subsequent indexer runs. For the refresh options, see [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content).
+
++ The Azure portal doesn't support this feature.
+
++ The following features aren't supported in this preview:
+
+  + [SharePoint Information Management policies](/sharepoint/intro-to-info-mgmt-policies) applicable to user access. The system doesn't evaluate, ingest, or honor these policies at query time.
+
+  + [Shareable links](/sharepoint/shareable-links-anyone-specific-people-organization) scoped to "Anyone" or "People in your organization." Only links scoped to "Specific people" are supported.
+
+  + [SharePoint groups](/sharepoint/modern-experience-sharing-permissions) (such as Owners, Members, and Visitors groups) are supported starting in the 2026-05-01-preview REST API. See [Configure SharePoint groups support](#configure-sharepoint-groups-support). In earlier preview API versions, only SharePoint groups that resolve to Microsoft Entra groups are supported.
+
++ The following indexer features don't support permission inheritance in indexed documents originating from SharePoint. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
+
+  + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
+
+  + [Knowledge store](knowledge-store-concept-intro.md), including the asset store required for [image serving (preview)](agentic-retrieval-how-to-image-serving.md) in agentic retrieval. Therefore, image serving isn't supported for knowledge sources that ingest SharePoint ACLs.
+
+  + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
+
+  + [Debug sessions](cognitive-search-debug-session.md)
+
+
+## Support for the SharePoint permission model
+
+This preview supports basic ACLs for documents, list items, and modern ASPX site pages.
+
+| SharePoint Feature | Description | Supported | Notes |
+|--------------------|-------------|-----------|-------|
+| Site, library, list, and page inheritance | Site → library/list → folder → file/item/page. | ✔️ | Evaluated at ingestion; effective ACLs computed per item. |
+| Folder, file, list item, and page unique ACLs | Item-level access. | ✔️ | Included when present at first ingestion and on subsequent runs that detect ACL changes for items with unique permissions. |
+| SharePoint list items | Permissions on list items (`allSiteLists` and `allSiteContent` containers). | ✔️ | Preview, starting in the 2026-05-01-preview REST API. |
+| ASPX site pages | Permissions on modern site pages (`allSitePages` and `allSiteContent` containers). | ✔️ | Preview, starting in the 2026-05-01-preview REST API. |
+| Microsoft Entra (Microsoft 365 and security) groups | Group-based access. | ✔️ | Group IDs included when resolvable to a Microsoft Entra identifier (ID). |
+| SharePoint site groups | Owners/Members/Visitors and custom site groups. | ✔️ | Preview, starting in the 2026-05-01-preview REST API. Requires the [SharePoint groups configuration](#configure-sharepoint-groups-support). Group IDs are emitted with the `spg:` prefix. |
+| Shareable "Anyone links" or "People in your organization links" | Org-wide or public access. | ❌ | Not supported in preview. |
+| External/guest users | Access for guests. | ❌ | Not supported. |
+| Information Management policies | Policies to define specific permissions requirements. | ❌ | Not supported in preview. |
+| Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md). |
+
+### Supported group relationships
+
+Microsoft Entra group transitivity applies within Microsoft Entra. It doesn't expand Microsoft Entra groups that are members of SharePoint groups.
+
+| Permission relationship | Supported | Guidance |
+|---|---|---|
+| User or Microsoft Entra group assigned directly to the SharePoint item | Yes | The indexer stores the user or Microsoft Entra group object ID in the item's permission metadata. |
+| User reaches an assigned Microsoft Entra group through transitive Microsoft Entra group nesting | Yes | Query-time Microsoft Graph resolution expands the user's transitive Microsoft Entra group memberships. |
+| User assigned directly to a SharePoint site group that has access to the item | Yes | Configure [SharePoint groups support](#configure-sharepoint-groups-support). |
+| Microsoft Entra group nested within a SharePoint group | No | SharePoint group resolution doesn't expand the nested Microsoft Entra group. Results that depend on this relationship are filtered out. Add users directly to the SharePoint group or grant permission through a supported Microsoft Entra group assignment. |
+| Other mixed SharePoint and Microsoft Entra nesting directions | Not specified | Don't infer support from Microsoft Entra transitivity. This preview limitation is scoped to Microsoft Entra groups nested within SharePoint groups. |
+
+## How hierarchical permissions are evaluated
+
+SharePoint permissions inherit the hierarchy of Site → Library → Folder → File, unless inheritance is broken.
+
+During ingestion, the indexer gathers user and group identifiers (ID) at each level and computes the effective ACL for each file.
 
 ## Permissions by ACL scenario
 
@@ -78,57 +141,37 @@ Complete these steps on your registered Microsoft Entra application:
    - For any scenario that includes SharePoint permissions, add a federated credential under **Certificates & secrets** > **Federated credentials**. See [Configuring the registered application with a managed identity](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity).
 1. Grant the application access to the target SharePoint sites (especially important when you use `Sites.Selected` for scoped access) so it can read the content and permissions you want to index.
 
-## Limitations
+## Find the correct Microsoft Entra identifiers
 
-+ Incremental ACL updates require the 2026-05-01-preview REST API or later. In earlier preview API versions, ACLs are captured only on the first ingestion of each item, and later permission changes require explicit reindexing. For migration steps, see [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content).
-  
-+ Parent-scope permission changes aren't picked up automatically on subsequent indexer runs. For the refresh options, see [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content).
+Each identifier appears in a different location in the Azure portal and maps to a specific configuration field. Use this section as a reference when configuring SharePoint ACL ingestion with a federated credential. These identifiers are referenced in [Configure SharePoint groups support](#configure-sharepoint-groups-support) and in the data source connection string.
 
-+ The Azure portal doesn't support this feature.
+| Identifier | Portal location | Used where | Notes |
+|---|---|---|---|
+| Ingestion app application (client) ID | **App registrations** > `<your-app>` > **Overview** | `ApplicationId` in the data source connection string; `applicationId` in `sharePointConnectorAppRegistration` | This ID is correct for most configuration fields. Also called "client ID." |
+| Application object ID | **App registrations** > `<your-app>` > **Overview** (below Application (client) ID) | Not used in Azure AI Search configuration | Don't confuse this with the Application (client) ID. It appears in the same blade, directly below the client ID. |
+| Service principal object ID | **Microsoft Entra ID** > **Enterprise applications** > `<your-app>` > **Manage** > **Properties** | Not used in Azure AI Search configuration | This is the service principal representation of the app. It's a different GUID from the app registration object ID. |
+| Managed identity principal ID | Managed identity resource > **Properties** or the search service **Identity** blade | Not used directly in Azure AI Search data source or index configuration | Used internally when you set up the federated identity credential on the app registration. The credential you create trusts this identity. |
+| Federated credential object ID | **App registrations** > `<your-app>` > **Manage** > **Certificates & secrets** > **Federated credentials** > `<credential-name>` | Not used in Azure AI Search configuration | Don't use the GUID of the federated identity credential entry for `federatedCredentialId`. |
+| Federated credential application ID | System-assigned: **Microsoft Entra ID** > **Enterprise applications** > `<search-service>` > **Properties**; User-assigned: `<managed-identity-resource>` > **Properties** | `FederatedCredentialApplicationId` in the data source connection string; `federatedCredentialId` in `sharePointConnectorAppRegistration` | See [Federated credential application ID](#federated-credential-application-id) for the managed identity lookup. |
 
-+ The following aren't supported in this preview:
+### Federated credential application ID
 
-  + [SharePoint Information Management policies](/sharepoint/intro-to-info-mgmt-policies) applicable to user access. These policies aren't evaluated, ingested, or honored at query time.
+For `FederatedCredentialApplicationId` in the data source connection string and `federatedCredentialId` in the index definition, use the managed identity's own application (client) ID, not the ingestion app's ID.
 
-  + [Shareable links](/sharepoint/shareable-links-anyone-specific-people-organization) scoped to "Anyone" or "People in your organization." Only links scoped to "Specific people" are supported.
+**System-assigned managed identity:**
 
-  + [SharePoint groups](/sharepoint/modern-experience-sharing-permissions) (such as Owners, Members, and Visitors groups) are supported starting in the 2026-05-01-preview REST API. See [Configure SharePoint groups support](#configure-sharepoint-groups-support). In earlier preview API versions, only SharePoint groups that resolve to Microsoft Entra groups are supported.
- 
-+ The following indexer features don't support permission inheritance in indexed documents originating from SharePoint. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
+1. Go to your Azure AI Search service.
+1. Select **Security + networking** > **Identity**.
+1. On the **System assigned** tab, note the **Object (principal) ID**.
+1. Go to **Microsoft Entra ID** > **Manage** > **Enterprise applications**.
+1. Search for your search service name or paste the **Object (principal) ID** into the search box.
+1. Select the result and open **Properties**. Copy the **Application ID** shown here, which is the value for `FederatedCredentialApplicationId` in the data source and `federatedCredentialId` in the index.
 
-  + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
+**User-assigned managed identity:**
 
-  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
-
-  + [Knowledge store](knowledge-store-concept-intro.md)
-
-  + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
-
-  + [Debug sessions](cognitive-search-debug-session.md)
-
-
-## Support for the SharePoint permission model
-
-This preview supports basic ACLs for documents, list items, and modern ASPX site pages.
-
-| SharePoint Feature | Description | Supported | Notes |
-|--------------------|-------------|-----------|-------|
-| Site, library, list, and page inheritance | Site → library/list → folder → file/item/page. | ✔️ | Evaluated at ingestion; effective ACLs computed per item. |
-| Folder, file, list item, and page unique ACLs | Item-level access. | ✔️ | Included when present at first ingestion and on subsequent runs that detect ACL changes for items with unique permissions. |
-| SharePoint list items | Permissions on list items (`allSiteLists` and `allSiteContent` containers). | ✔️ | Preview, starting in the 2026-05-01-preview REST API. |
-| ASPX site pages | Permissions on modern site pages (`allSitePages` and `allSiteContent` containers). | ✔️ | Preview, starting in the 2026-05-01-preview REST API. |
-| Microsoft Entra (Microsoft 365 and security) groups | Group-based access. | ✔️ | Group IDs included when resolvable to a Microsoft Entra identifier (ID). |
-| SharePoint site groups | Owners/Members/Visitors and custom site groups. | ✔️ | Preview, starting in the 2026-05-01-preview REST API. Requires the [SharePoint groups configuration](#configure-sharepoint-groups-support). Group IDs are emitted with the `spg:` prefix. |
-| Shareable "Anyone links" or "People in your organization links" | Org-wide or public access. | ❌ | Not supported in preview. |
-| External/guest users | Access for guests. | ❌ | Not supported. | 
-| Information Management policies | Policies to define specific permissions requirements. | ❌ | Not supported in preview. | 
-| Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md). | 
-
-## How hierarchical permissions are evaluated
-
-SharePoint permissions inherit the hierarchy of Site → Library → Folder → File, unless inheritance is broken.
-
-During ingestion, the indexer gathers user and group identifiers (ID) at each level and computes the effective ACL for each file.
+1. Go to the user-assigned managed identity resource.
+1. Select **Settings** > **Properties**.
+1. Copy the **Client ID**, which is the value for `FederatedCredentialApplicationId` in the data source and `federatedCredentialId` in the index.
 
 ## Configure your search service for ACL ingestion and query-time enforcement
 
@@ -140,8 +183,8 @@ Where you map the ACL metadata fields depends on whether the indexer writes one 
 
 | Scenario | Populate ACL fields via | Why |
 |---|---|---|
-| No skillset or skillset without chunking; one search document per source item | **Indexer field mappings** only (`metadata_user_ids` → `UserIds`, `metadata_group_ids` → `GroupIds`, and for SharePoint groups `metadata_sharepoint_site_url` → `SharePointSiteUrl`). | The indexer writes a single document to the target index, and field mappings carry source metadata to index fields. |
-| Skillset with chunking (for example, Text Split skill for integrated vectorization), single index with parent fields repeated on each chunk (`projectionMode: skipIndexingParentDocuments`) | **Index projections** in the skillset (`mappings` from `/document/metadata_user_ids`, `/document/metadata_group_ids`, and for SharePoint groups `/document/metadata_sharepoint_site_url`). | The parent document isn't indexed; only chunks are. ACL values must be projected onto every chunk so query-time filters apply on the chunk returned in results. Indexer field mappings for these fields are bypassed in this mode. |
+| No skillset or skillset without chunking; one search document per source item | **Indexer field mappings** only (`metadata_user_ids` → `UserIds`, `metadata_group_ids` → `GroupIds`, and for SharePoint groups `metadata_spo_site_url` → `SharePointSiteUrl`). | The indexer writes a single document to the target index, and field mappings carry source metadata to index fields. |
+| Skillset with chunking (for example, Text Split skill for integrated vectorization), single index with parent fields repeated on each chunk (`projectionMode: skipIndexingParentDocuments`) | **Index projections** in the skillset (`mappings` from `/document/metadata_user_ids`, `/document/metadata_group_ids`, and for SharePoint groups `/document/metadata_spo_site_url`). | The parent document isn't indexed; only chunks are. ACL values must be projected onto every chunk so query-time filters apply on the chunk returned in results. Indexer field mappings for these fields are bypassed in this mode. |
 | Skillset with chunking, two-index pattern (parent index + child chunk index) | **Both**: indexer field mappings populate ACL fields on the parent index, index projections populate ACL fields on the child chunk index. | Both indexes are queryable, and each needs the metadata it filters on. |
 
 In all chunked scenarios, every chunk must carry the ACL fields. Permission filters apply per document, so a chunk missing ACL fields can't be returned to the right caller.
@@ -184,10 +227,10 @@ Set `retrievable` attribute to `true` only during development to verify values. 
 
 When chunking is enabled, the parent document isn't written to the index when `projectionMode` is `skipIndexingParentDocuments`. Carry the ACL metadata onto each chunk through `indexProjections.selectors[].mappings`.
 
-If your indexer uses a [skillset](cognitive-search-working-with-skillsets.md) with data chunking, such as the [Text Split skill](cognitive-search-skill-textsplit.md) when enabling [integrated vectorization](vector-search-integrated-vectorization.md), make sure to map ACL properties to each chunk using [index projections](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true). The `//` lines in the following example are illustrative annotations and aren't valid JSON. Remove them before submitting the request.
+If your indexer uses a [skillset](cognitive-search-working-with-skillsets.md) with data chunking, such as the [Text Split skill](cognitive-search-skill-textsplit.md) when enabling [integrated vectorization](vector-search-integrated-vectorization.md), make sure to map ACL properties to each chunk using [index projections](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true). The `//` lines in the following example are illustrative annotations and aren't valid JSON. Remove them before submitting the request.
 
 ```http
-PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-05-01-preview
+PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-08-01-preview
 {
   "name": "my-skillset",
   "skills": [
@@ -212,7 +255,7 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-0
           { "name": "parentId",          "source": "/document/id" },              // parent doc id
           { "name": "UserIds",  "source": "/document/metadata_user_ids" },
           { "name": "GroupIds",  "source": "/document/metadata_group_ids" },
-          { "name": "SharePointSiteUrl", "source": "/document/metadata_sharepoint_site_url" } // include when the index has sharePointConnectorAppRegistration (SharePoint groups support)
+          { "name": "SharePointSiteUrl", "source": "/document/metadata_spo_site_url" } // include when the index has sharePointConnectorAppRegistration (SharePoint groups support)
         ]
       }
     ],
@@ -246,7 +289,7 @@ Besides your required [indexer configuration](search-how-to-index-sharepoint-onl
 ACL metadata is ingested when the indexer runs. After you create or update the indexer (see [Step 6: Create an indexer](search-how-to-index-sharepoint-online.md#step-6-create-an-indexer)), trigger a run so the indexer ingests ACLs alongside content.
 
 ```http
-POST https://[service name].search.windows.net/indexers/[indexer-name]/run?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/indexers/[indexer-name]/run?api-version=2026-08-01-preview
 api-key: [admin key]
 ```
 
@@ -271,7 +314,7 @@ The following components work together to enable SharePoint site group resolutio
 | Component | Where | Purpose |
 |---|---|---|
 | `sharePointConnectorAppRegistration` (with `applicationId`, `tenantId`, `federatedCredentialId`) | Index definition | Provides the authentication configuration required for the search service to call the SharePoint REST API as the calling user and resolve site group membership at query time. |
-| `SharePointSiteUrl` field (with `sharepointSiteUrl: true`) | Index schema + indexer field mapping from `metadata_sharepoint_site_url` | Identifies which SharePoint site a document belongs to, so SP group resolution is scoped correctly. |
+| `SharePointSiteUrl` field (with `sharepointSiteUrl: true`) | Index schema + indexer field mapping from `metadata_spo_site_url` | Identifies which SharePoint site a document belongs to, so SP group resolution is scoped correctly. |
 | `spg:`-prefixed values in `GroupIds` | Document permission metadata | Distinguish SharePoint site group IDs from Microsoft Entra group object IDs. |
 
 
@@ -281,17 +324,20 @@ The following components work together to enable SharePoint site group resolutio
 + Microsoft Entra app registration with a federated identity credential. See [Configuring the registered application with a managed identity](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity).
 + REST API `2026-05-01-preview` or later.
 
+> [!NOTE]
+> `FederatedCredentialApplicationId` in the data source connection string and `federatedCredentialId` in `sharePointConnectorAppRegistration` use the managed identity's application ID. The `applicationId` property in `sharePointConnectorAppRegistration` uses the ingestion app's client ID. To find the correct values, see [Find the correct Microsoft Entra identifiers](#find-the-correct-microsoft-entra-identifiers).
+
 ### 2. Configure the index
 
 Add the `sharePointConnectorAppRegistration` configuration and the `SharePointSiteUrl` field alongside the `UserIds` and `GroupIds` permission-filter fields, so the full index shape is in one place. Keep `permissionFilterOption: "enabled"`.
 
 ```http
-PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-preview
+PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-08-01-preview
 {
   "name": "my-sharepoint-acl-index",
   "sharePointConnectorAppRegistration": {
-     "applicationId": "<entra-application-id>",
-     "federatedCredentialId": "<federated-identity-credential-object-id>",
+      "applicationId": "<ingestion-app-client-id>",
+      "federatedCredentialId": "<managed-identity-application-id>",
      "tenantId": "<sharepoint-tenant-id>"
   },
   "fields": [
@@ -303,8 +349,6 @@ PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-
 }
 ```
 
-The `federatedCredentialId` value is the object ID of the federated identity credential previously configured on the [Microsoft Entra application registration](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity) used by the indexer.
-
 ### 3. Configure the indexer field mappings
 
 Map the SharePoint metadata fields to the index fields in a single combined mapping block. The first two mappings are the same ones used for standard ACL ingestion; the third mapping activates SharePoint groups resolution.
@@ -314,7 +358,7 @@ Map the SharePoint metadata fields to the index fields in a single combined mapp
   "fieldMappings": [
     { "sourceFieldName": "metadata_user_ids",             "targetFieldName": "UserIds" },
     { "sourceFieldName": "metadata_group_ids",            "targetFieldName": "GroupIds" },
-    { "sourceFieldName": "metadata_sharepoint_site_url",  "targetFieldName": "SharePointSiteUrl" }
+    { "sourceFieldName": "metadata_spo_site_url",  "targetFieldName": "SharePointSiteUrl" }
   ]
 }
 ```
@@ -347,10 +391,10 @@ Some scenarios still require an explicit refresh:
 
 ### Reset specific documents
 
-You can [reset specific documents](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to fully ingest again content and ACLs.
+You can [reset specific documents](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to fully ingest again content and ACLs.
 
 ```http
-POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-05-01-preview
+POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-08-01-preview
 {
   "documentKeys": ["doc123", "doc456"]
 }
@@ -358,10 +402,10 @@ POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-versi
 
 ### Resync ACLs across the full data source
 
-You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-05-01-preview&preserve-view=true) after initial ingestion. To fully succeed, this operation requires an [indexer run](search-howto-run-reset-indexers.md) after completion. 
+You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-08-01-preview&preserve-view=true) after initial ingestion. To fully succeed, this operation requires an [indexer run](search-howto-run-reset-indexers.md) after completion.
 
 ```http
-POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-05-01-preview
+POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-08-01-preview
 {
   "options": ["permissions"]
 }
@@ -379,10 +423,14 @@ After indexing your data and ACLs, you can [query the index](search-query-access
 | Symptom | Cause and resolution |
 |---|---|
 | `UserIds` or `GroupIds` are empty in indexed documents | If your skillset uses `projectionMode: skipIndexingParentDocuments`, indexer field mappings for ACL fields are bypassed. Set ACL fields via [`indexProjections.mappings`](#3-configure-index-projections-in-your-skillset-if-applicable) on every chunk instead. |
-| SharePoint site group IDs are missing, or `GroupIds` values don't have the `spg:` prefix | Confirm the index has the [`sharePointConnectorAppRegistration`](#2-configure-the-index) configuration, the `SharePointSiteUrl` field exists with `sharepointSiteUrl: true`, and the `metadata_sharepoint_site_url` mapping is present in either indexer field mappings or index projections. |
+| SharePoint site group IDs are missing, or `GroupIds` values don't have the `spg:` prefix | Confirm the index has the [`sharePointConnectorAppRegistration`](#2-configure-the-index) configuration, the `SharePointSiteUrl` field exists with `sharepointSiteUrl: true`, and the `metadata_spo_site_url` mapping is present in either indexer field mappings or index projections. |
+| `SharePointSiteUrl` is empty or null after indexing even though ACLs are otherwise populating correctly | The indexer emits this metadata under `metadata_spo_site_url`, not `metadata_sharepoint_site_url`. Verify that your indexer field mapping uses `"sourceFieldName": "metadata_spo_site_url"`. If your skillset uses index projections for chunked documents, verify that the projection mapping source is `/document/metadata_spo_site_url`. |
 | The indexer returns 401 or 403 | Grant admin consent on both Microsoft Graph and SharePoint API permissions for your scenario. Use a federated credential (not a client secret) when the scenario requires it. See [Permissions by ACL scenario](#permissions-by-acl-scenario). |
 | Permissions are stale after changing a site, library, list, or folder ACL | Call [`/resync` with `options: ["permissions"]`](#resync-acls-across-the-full-data-source). See [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content) for context. |
-| `federatedCredentialId` is rejected when configuring `sharePointConnectorAppRegistration` | Use the ID (GUID) of the federated identity credential on the app registration, not the app object ID or the managed identity principal ID. |
+| `federatedCredentialId` is rejected when configuring `sharePointConnectorAppRegistration` | Use the managed identity's application ID, not the federated identity credential's object ID or the managed identity's principal ID. See [Federated credential application ID](#federated-credential-application-id). |
+| The indexer returns `401 Unauthorized` and `FederatedCredentialApplicationId` is set | Verify you used the managed identity's Application ID (found in **Enterprise applications**), not the ingestion app's Application (client) ID (`ApplicationId`) or any Object ID. For a user-assigned managed identity, use the **Client ID** from the managed identity resource's **Properties** page. See [Find the correct Microsoft Entra identifiers](#find-the-correct-microsoft-entra-identifiers). |
+
+For missing, unexpected, or failed query-time results after ACL metadata is indexed, see [Troubleshoot SharePoint permission filtering](troubleshoot-sharepoint-query-permission-filtering.md).
 
 ## Related content
 

@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn how to send Language service API requests asynchronously.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 05/05/2026
+ms.date: 08/17/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 # How to use Language features asynchronously
 

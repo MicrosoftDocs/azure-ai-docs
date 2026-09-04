@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: This article explains which natural languages are supported by Azure Language Detection API.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 05/12/2026
+ms.date: 08/16/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-language-detection, ignite-2024
 ---
 # Language support for Language Detection

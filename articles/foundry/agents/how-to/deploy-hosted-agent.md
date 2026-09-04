@@ -1,14 +1,14 @@
 ---
 title: "Deploy a hosted agent"
-description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
+description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK, JavaScript/TypeScript SDK, or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 07/09/2026
+ms.date: 08/17/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: references_regions, doc-kit-assisted
+ms.custom: references_regions, doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-deploy-clients
 ---
@@ -21,6 +21,8 @@ If you're deploying for the first time or want a guided walkthrough, see the [Qu
 
 > [!TIP]
 > Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code](deploy-hosted-agent-code.md) - upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you plan the container deployment flow, prepare `azd` commands, and connect the SDK or REST steps to your project.
 
 ## Deployment lifecycle
 
@@ -79,33 +81,36 @@ A single container can expose **multiple protocols simultaneously** by declaring
 -->
 ### Responses protocol library
 
-The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement the `IResponseHandler` interface. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
+The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement a response handler. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
 
-#### IResponseHandler
+#### Implement a handler
 
-`IResponseHandler` is the core abstraction you implement. The library calls `CreateAsync` for each incoming request and delivers the returned `IAsyncEnumerable<ResponseStreamEvent>` to clients through SSE:
+The handler is the core abstraction you implement. The library calls it for each incoming request and delivers the returned events to clients through SSE. In Python, you decorate an async function with `@app.response_handler`:
 
-```csharp
-public class EchoHandler : ResponseHandler
-{
-    public override IAsyncEnumerable<ResponseStreamEvent> CreateAsync(
-        CreateResponse request,
-        ResponseContext context,
-        CancellationToken cancellationToken)
-    {
-        return new TextResponse(context, request,
-            createText: async ct =>
-            {
-                var input = await context.GetInputTextAsync(cancellationToken: ct);
-                return $"Echo: {input}";
-            });
-    }
-}
+```python
+from azure.ai.agentserver.responses import (
+    CreateResponse,
+    ResponseContext,
+    ResponsesAgentServerHost,
+    TextResponse,
+)
+
+app = ResponsesAgentServerHost()
+
+
+@app.response_handler
+async def handler(
+    request: CreateResponse,
+    context: ResponseContext,
+    _cancellation_signal,
+):
+    user_input = await context.get_input_text() or ""
+    return TextResponse(context, request, text=f"Echo: {user_input}")
 ```
 
-#### ResponseEventStream
+#### Automatic event and lifecycle management
 
-`ResponseEventStream` manages `sequenceNumber`, `outputIndex`, `contentIndex`, `itemId`, and the full `Response` lifecycle automatically. Each `yield return` maps one-to-one to an SSE event, so you don't need to track this state yourself.
+The library manages the event sequence—sequence numbers, output and content indexes, and item IDs—and the full response lifecycle automatically, so you don't track this state yourself. Each event your handler produces maps one-to-one to an SSE event, which the host framework manages for you.
 
 #### Streaming and background modes
 
@@ -118,9 +123,9 @@ The library orchestrates the complete response lifecycle: `created` -> `in_progr
 
 #### Thread safety
 
-All service instances registered through `AddResponsesServer()` are thread-safe. Handler instances are scoped per-request.
+Handler instances are scoped per request, so per-request state doesn't leak across requests. The library handles concurrent requests safely.
 
-For detailed handler implementation guidance, see the [handler implementation guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md). For runnable examples, see the [Responses protocol samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples).
+For runnable examples, see the [Python bring-your-own samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own).
 
 ### Health endpoints
 
@@ -156,7 +161,7 @@ Instead of hard-coding secrets (API keys, tokens, endpoints) into `azure.yaml` o
 
 #### Placeholder syntax
 
-A placeholder has the form `${{connections.<name>.<path>}}`, where `<name>` is the connection's resource name (visible in the portal under **Project details** > **Connected resources**) and `<path>` is one of:
+A placeholder has the form `${{connections.<name>.<path>}}`, where `<name>` is the connection's resource name (visible in the portal under **Manage** > **Project details** > **Connected resources**) and `<path>` is one of:
 
 | Path | Resolves to |
 |------|-------------|
@@ -184,7 +189,7 @@ services:
       GITHUB_TOKEN: ${{connections.agent-secrets.credentials.github_token}}
 ```
 
-At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other env var:
+At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other environment variable:
 
 ```python
 import os
@@ -289,10 +294,10 @@ Use the SDK when you want to manage agent deployments directly from Python code.
 * [Python 3.10 or later](https://www.python.org/downloads/)
 * A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
 * **Container Registry Repository Writer** or **AcrPush** role on the container registry (to push images)
-* Azure AI Projects SDK version 2.1.0 or later
+* Azure AI Projects SDK version 2.3.0 or later
 
     ```bash
-    pip install "azure-ai-projects>=2.1.0"
+    pip install "azure-ai-projects>=2.3.0"
     ```
 
 ### Build and push your container image
@@ -332,7 +337,12 @@ When you create a version, the platform automatically provisions the agent. Ther
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentEndpointProtocol, ContainerConfiguration
+from azure.ai.projects.models import (
+    AgentEndpointProtocol,
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+)
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -343,7 +353,6 @@ credential = DefaultAzureCredential()
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=credential,
-    allow_preview=True,
 )
 
 # Create a hosted agent version
@@ -360,7 +369,7 @@ agent = project.agents.create_version(
         ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
-        }
+        },
     )
 )
 
@@ -386,6 +395,8 @@ Key parameters:
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
 | `protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
+
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
 
 ### Poll for version status
 
@@ -451,7 +462,6 @@ url = f"{PROJECT_ENDPOINT}/agents/my-agent/endpoint/protocols/invocations"
 response = requests.post(url, headers={
     "Authorization": f"Bearer {token}",
     "Content-Type": "application/json",
-    "Foundry-Features": "HostedAgents=V1Preview"
 }, params={"api-version": "v1"}, json={
     "message": "Process this task"
 })
@@ -460,6 +470,153 @@ print(response.json())
 ```
 
 For more complete examples, see the [Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+## Deploy using the JavaScript/TypeScript SDK
+
+Use the SDK when you want to manage agent deployments directly from Node.js code. The SDK caller runs in Node.js, but the container image itself still runs your Python or .NET agent code built with the Responses or Invocations protocol libraries—there's no Node.js Hosted agent runtime.
+
+### Additional prerequisites
+
+* [Node.js 22 or later](https://nodejs.org/)
+* A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
+* **Container Registry Repository Writer** or **AcrPush** role on the container registry (to push images)
+* The `@azure/ai-projects` and `@azure/identity` packages
+
+    ```bash
+    npm install @azure/ai-projects @azure/identity
+    ```
+
+Before you begin, build and push your container image to Azure Container Registry (see the **Python** tab for example Docker commands), and grant the project managed identity the **Container Registry Repository Reader** role on the registry.
+
+### Create a hosted agent version
+
+When you create a version, the platform automatically provisions the agent. There's no separate start step. The platform builds a container snapshot and makes the agent ready to serve requests.
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "your_project_endpoint";
+const agentName = "my-agent";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+// Create a hosted agent version
+const agent = await project.agents.createVersion(agentName, {
+  kind: "hosted",
+  cpu: "1",
+  memory: "2Gi",
+  container_configuration: {
+    image: "your-registry.azurecr.io/your-image:tag",
+  },
+  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  environment_variables: { MODEL_DEPLOYMENT_NAME: "gpt-5-mini" },
+});
+
+console.log(`Agent created: ${agent.name}, version: ${agent.version}`);
+```
+
+To expose both protocols, pass both in `protocol_versions`:
+
+```typescript
+protocol_versions: [
+  { protocol: "responses", version: "1.0.0" },
+  { protocol: "invocations", version: "1.0.0" },
+  { protocol: "invocations_ws", version: "1.0.0" },
+],
+```
+
+### Poll for version status
+
+After creating a version, poll until the status is `active` before invoking the agent. Provisioning typically takes less than one minute depending on image size.
+
+```typescript
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Poll until the agent version is active
+for (;;) {
+  const versionInfo = await project.agents.getVersion(
+    agentName,
+    agent.version,
+  );
+  console.log(`Status: ${versionInfo.status}`);
+  if (versionInfo.status === "active") {
+    break;
+  }
+  if (versionInfo.status === "failed") {
+    console.log(`Provisioning failed: ${versionInfo.error}`);
+    break;
+  }
+  await sleep(5_000);
+}
+```
+
+### Route the agent endpoint and invoke it
+
+Route the agent endpoint to the version you created, then bind an OpenAI client to the endpoint.
+
+For the **Responses** protocol:
+
+```typescript
+await project.agents.patchAgentObject(agentName, {
+  agentEndpoint: {
+    version_selector: {
+      version_selection_rules: [
+        {
+          type: "FixedRatio",
+          agent_version: agent.version,
+          traffic_percentage: 100,
+        },
+      ],
+    },
+    protocol_configuration: { responses: {} },
+  },
+});
+
+// Create an OpenAI client bound to the agent endpoint
+const openAIClient = project.getOpenAIClient({
+  azureConfig: { allowPreview: true, agentName },
+});
+
+const response = await openAIClient.responses.create({
+  input: "Hello! What can you do?",
+});
+console.log(response.output_text);
+```
+
+For the **Invocations** protocol, call the invocations endpoint directly:
+
+```typescript
+const credential = new DefaultAzureCredential();
+const token = await credential.getToken("https://ai.azure.com/.default");
+if (!token) {
+  throw new Error("Failed to acquire an access token.");
+}
+const url = `${projectEndpoint}/agents/my-agent/endpoint/protocols/invocations`;
+
+const response = await fetch(`${url}?api-version=v1`, {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer " + token.token,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ message: "Process this task" }),
+});
+console.log(await response.json());
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -506,6 +663,8 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
 
 Creating an agent also creates version `1` and triggers provisioning.
 
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
+
 To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
@@ -545,7 +704,6 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/invocations?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: HostedAgents=V1Preview" \
   -d '{
     "message": "Process this task"
   }'
@@ -581,7 +739,7 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
 
 ## Clean up resources
 
-To prevent charges, clean up resources when finished. Agent compute is deprovisioned after 15 minutes of inactivity, so there's no cost when an agent isn't serving requests.
+To prevent charges, clean up resources when finished. The platform deprovisions agent compute after the configured idle timeout, which is 15 minutes by default, so there's no cost when an agent isn't serving requests.
 
 :::zone pivot="azd"
 
@@ -603,11 +761,31 @@ Delete a single version:
 project.agents.delete_version(agent_name="my-agent", agent_version=agent.version)
 ```
 
-Or delete the entire agent and all its versions:
+Or delete the entire agent and all its versions. Use `force=True` to cascade-delete any active sessions, such as right after you invoke the agent; without it, the call fails with a conflict error while sessions are active:
 
 ```python
-project.agents.delete(agent_name="my-agent")
+project.agents.delete(agent_name="my-agent", force=True)
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+### SDK cleanup
+
+Delete a single version:
+
+```typescript
+await project.agents.deleteVersion("my-agent", agent.version);
+```
+
+Or delete the entire agent and all its versions:
+
+```typescript
+await project.agents.delete("my-agent", { force: true });
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 

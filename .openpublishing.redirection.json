@@ -1,6 +1,677 @@
 {
   "redirections": [
     {
+      "source_path": "articles/ai-services/personalizer/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-active-inactive-events.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-active-inactive-events",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-active-learning.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-active-learning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-apprentice-mode.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-apprentice-mode",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-auto-optimization.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-auto-optimization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-multi-slot-personalization.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-multi-slot-personalization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-rewards.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-rewards",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-exploration.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-exploration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-features.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-features",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-offline-evaluation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-offline-evaluation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-reinforcement-learning.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-reinforcement-learning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-scalability-performance.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-scalability-performance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/encrypt-data-at-rest.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/encrypt-data-at-rest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/frequently-asked-questions.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/frequently-asked-questions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-personalizer-works.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-personalizer-works",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-create-resource.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-create-resource",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-feature-evaluation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-feature-evaluation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-inference-explainability.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-inference-explainability",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-learning-behavior.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-learning-behavior",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-manage-model.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-manage-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-multi-slot.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-multi-slot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-offline-evaluation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-offline-evaluation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-settings.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-settings",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-thick-client.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-thick-client",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/index.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/quickstart-personalizer-sdk.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/quickstart-personalizer-sdk",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-characteristics-and-limitations.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-characteristics-and-limitations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-data-and-privacy.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-data-and-privacy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-guidance-integration.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-guidance-integration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-use-cases.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-use-cases",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/terminology.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/terminology",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/tutorial-use-azure-notebook-generate-loop-data.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/tutorial-use-azure-notebook-generate-loop-data",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/tutorial-use-personalizer-chat-bot.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/tutorial-use-personalizer-chat-bot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/tutorial-use-personalizer-web-app.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/tutorial-use-personalizer-web-app",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/what-is-personalizer.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/what-is-personalizer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/whats-new.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/where-can-you-use-personalizer.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/where-can-you-use-personalizer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/cost-management.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/cost-management",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/data-feeds-from-different-sources.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/data-feeds-from-different-sources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/encryption.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/encryption",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/faq.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/glossary.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/glossary",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/index.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/overview.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/whats-new.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/alerts.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/alerts",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/anomaly-feedback.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/anomaly-feedback",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/configure-metrics.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/configure-metrics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "agent-framework/agents/code_act.md",
+      "redirect_url": "/agent-framework/agents/code-act",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/credential-entity.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/credential-entity",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/diagnose-an-incident.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/diagnose-an-incident",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/further-analysis.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/further-analysis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/manage-data-feeds.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/manage-data-feeds",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/metrics-graph.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/metrics-graph",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/how-tos/onboard-your-data.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/how-tos/onboard-your-data",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/quickstarts/rest-api-and-client-library.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/quickstarts/rest-api-and-client-library",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/quickstarts/web-portal.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/quickstarts/web-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/tutorials/enable-anomaly-notification.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/tutorials/enable-anomaly-notification",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/metrics-advisor/tutorials/write-a-valid-query.md",
+      "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/tutorials/write-a-valid-query",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/concept-compute-instance.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-compute-instance",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-compute-target.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-compute-target",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-customer-managed-keys.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-customer-managed-keys",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-data-encryption.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-data-encryption",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-hub-workspace.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-hub-workspace",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-ml-pipelines.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-ml-pipelines",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-secure-network-traffic-flow.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-secure-network-traffic-flow",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-soft-delete.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-soft-delete",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/concept-workspace.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/concept-workspace",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-access-azureml-behind-firewall.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-access-azureml-behind-firewall",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-assign-roles.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-assign-roles",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-change-storage-access-key.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-change-storage-access-key",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-create-image-labeling-projects.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-create-image-labeling-projects",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-create-text-labeling-projects.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-create-text-labeling-projects",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-custom-dns.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-custom-dns",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-enable-studio-virtual-network.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-enable-studio-virtual-network",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-export-delete-data.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-export-delete-data",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-launch-vs-code-remote.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-launch-vs-code-remote",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-manage-labeling-projects.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-manage-labeling-projects",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-manage-resources-vscode.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-manage-resources-vscode",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-migrate-from-v1.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-migrate-from-v1",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-network-security-overview.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-network-security-overview",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-prevent-data-loss-exfiltration.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-prevent-data-loss-exfiltration",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-securely-attach-databricks.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-securely-attach-databricks",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-setup-customer-managed-keys.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-setup-customer-managed-keys",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-setup-vs-code.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-setup-vs-code",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-troubleshoot-environments.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-troubleshoot-environments",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-troubleshoot-protobuf-descriptor-error.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-troubleshoot-protobuf-descriptor-error",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-use-event-grid.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-use-event-grid",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-workspace-diagnostic-api.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/how-to-workspace-diagnostic-api",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-assets-data.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-assets-data",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-assets-model.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-assets-model",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-command-job.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-command-job",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-deploy-endpoints.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-deploy-endpoints",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-deploy-pipelines.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-deploy-pipelines",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-execution-automl.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-execution-automl",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-execution-hyperdrive.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-execution-hyperdrive",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-execution-parallel-run-step.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-execution-parallel-run-step",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-execution-pipeline.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-execution-pipeline",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-local-runs.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-local-runs",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-managed-online-endpoints.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-managed-online-endpoints",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-resource-compute.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-resource-compute",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-resource-datastore.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-resource-datastore",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/migrate-to-v2-resource-workspace.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/migrate-to-v2-resource-workspace",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/resource-curated-environments.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/resource-curated-environments",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/tutorial-create-secure-workspace-vnet.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-create-secure-workspace-vnet",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
+      "source_path": "articles/machine-learning/tutorial-create-secure-workspace.md",
+      "redirect_url": "/previous-versions/azure/machine-learning/tutorial-create-secure-workspace",
+      "redirect_document_id": false,
+      "monikers": [
+        "azureml-api-1"
+      ]
+    },
+    {
       "source_path": "articles/machine-learning/v1/algorithm-cheat-sheet.md",
       "redirect_url": "/previous-versions/azure/machine-learning/algorithm-cheat-sheet",
       "redirect_document_id": false,
@@ -15,6 +686,11 @@
       "monikers": [
         "azureml-api-1"
       ]
+    },
+    {
+      "source_path": "articles/foundry/responsible-ai/content-understanding/provenance-disclosure.md",
+      "redirect_url": "/azure/foundry/responsible-ai/content-safety/provenance-disclosure",
+      "redirect_document_id": false,
     },
     {
       "source_path": "articles/machine-learning/v1/concept-automated-ml.md",
@@ -1268,6 +1944,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "agent-framework/support/upgrade/python-1.13.0-workflow-checkpoint-upgrade-guide.md",
+      "redirect_url": "/agent-framework/support/upgrade/python-1-13-0-workflow-checkpoint-upgrade-guide",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/luis-reference-regions.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-regions",
       "redirect_document_id": false
@@ -2263,6 +2944,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-chat-reasoning.md",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/use-chat-reasoning",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
       "redirect_document_id": true
@@ -2300,6 +2986,16 @@
     {
       "source_path": "articles/foundry-classic/openai/concepts/legacy-models.md",
       "redirect_url": "/azure/foundry-classic/openai/concepts/retired-models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-embeddings.md",
+      "redirect_url": "/azure/foundry/openai/how-to/embeddings",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-image-embeddings.md",
+      "redirect_url": "/azure/foundry/openai/how-to/embeddings",
       "redirect_document_id": false
     }, 
     {
@@ -2385,6 +3081,16 @@
     {
       "source_path": "articles/open-datasets/dataset-oxford-covid-government-response-tracker.md",
       "redirect_url": "/azure/open-datasets/overview-what-are-open-datasets",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/how-to/develop/get-started-projects-vs-code.md",
+      "redirect_url": "/azure/foundry/how-to/develop/get-started-projects-visual-studio-code",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/concepts/choose-build-approach.md",
+      "redirect_url": "/azure/foundry/what-is-foundry",
       "redirect_document_id": false
     }
   ]

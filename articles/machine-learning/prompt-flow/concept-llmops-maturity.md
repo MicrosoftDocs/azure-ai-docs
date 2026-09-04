@@ -9,7 +9,7 @@ ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 08/28/2025
+ms.date: 08/28/2026
 ms.update-cycle: 365-days
 ---
 
@@ -19,35 +19,35 @@ ms.update-cycle: 365-days
 
 Generative Artificial Intelligence Operations, or **GenAIOps** (sometimes called LLMOps), describes the operational practices and strategies for managing large language models (LLMs) in production. This article provides guidance on how to advance your capabilities in GenAIOps, based on your organization's current maturity level.
 
-:::image type="content" source="../media/concept-llmops-maturity/llmopsml.png" alt-text="Diagram shows maturity level of GenAIOps." lightbox="../media/concept-llmops-maturity/llmopsml.png":::
+:::image type="content" source="../media/concept-llmops-maturity/llmopsml.png" alt-text="Diagram showing four GenAIOps maturity levels: initial, defined, managed, and optimized." lightbox="../media/concept-llmops-maturity/llmopsml.png":::
 
 Use the descriptions below to find your *GenAIOps Maturity Model* ranking level. These levels provide a general understanding and practical application level of your organization. The guidelines provide you with helpful links to expand your GenAIOps knowledge base.  
 
 > [!TIP]
 > Use the [GenAIOps Maturity Model Assessment](/assessments/e14e1e9f-d339-4d7e-b2bb-24f056cf08b6/) to determine your organization's current GenAIOps maturity level. The questionnaire helps you understand your organization's current capabilities and identify areas for improvement. 
 
-## <a name="level1"></a>Level 1 - initial
+## <a name="level1"></a> Level 1 - initial
 
 > [!TIP]
 > Score from [GenAIOps Maturity Model Assessment](/assessments/e14e1e9f-d339-4d7e-b2bb-24f056cf08b6/): initial (0-9).
 
 **Description:** Your organization is at the initial foundational stage of GenAIOps maturity. You're exploring the capabilities of LLMs but haven't yet developed structured practices or systematic approaches.
 
-Begin by familiarizing yourself with different LLM APIs and their capabilities. Next, start experimenting with structured prompt design and basic prompt engineering. Review ***Microsoft Learn*** articles as a starting point. Taking what you've learned, discover how to introduce basic metrics for LLM application performance evaluation.
+Begin by familiarizing yourself with different LLM APIs and their capabilities. Next, start experimenting with structured prompt design and basic prompt engineering. Review Microsoft Learn articles as a starting point. Taking what you learn, discover how to introduce basic metrics for LLM application performance evaluation.
 
 ### Suggested references for level 1 advancement
 
-- [Foundry model catalog](/azure/ai-studio/how-to/model-catalog)
+- [Foundry model catalog](/azure/foundry/concepts/foundry-models-overview)
 - [Explore the Microsoft Foundry portal Model Catalog](https://www.youtube.com/watch?v=GS5ZIiNqcEY)
-- [Introduction to Prompt Engineering](/azure/ai-services/openai/concepts/prompt-engineering)
-- [Prompt Engineering Techniques](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions)
-- [System Message Framework](/azure/ai-services/openai/concepts/system-message)
-- [Prompt Flow in Foundry portal](/azure/ai-studio/how-to/prompt-flow)
-- [Evaluate GenAI Applications with Foundry](/azure/ai-studio/concepts/evaluation-approach-gen-ai)
-- [GenAI Evaluation and Monitoring Metrics with Foundry](/azure/ai-studio/concepts/evaluation-metrics-built-in)
+- [Introduction to Prompt Engineering](/azure/foundry/openai/concepts/prompt-engineering)
+- [Prompt Engineering Techniques](/azure/foundry/openai/concepts/advanced-prompt-engineering)
+- [System Message Framework](/azure/foundry/openai/concepts/system-message)
+- [Prompt Flow in Foundry portal](/azure/foundry-classic/concepts/prompt-flow)
+- [Evaluate GenAI Applications with Foundry](/azure/foundry/concepts/observability)
+- [GenAI Evaluation and Monitoring Metrics with Foundry](/azure/foundry/concepts/built-in-evaluators)
 
 To better understand GenAIOps, consider available Microsoft Learning courses and workshops:
-- [Microsoft Azure AI Fundamentals: GenAI](/training/paths/introduction-generative-ai/)
+- [Get started with AI applications and agents on Azure](/training/paths/get-started-ai-apps-agents/)
 - [GenAI for Beginners Course](https://techcommunity.microsoft.com/blog/educatordeveloperblog/generative-ai-for-beginners---a-12-lesson-course/3968583)
 
 ## <a name="level2"></a> Level 2 - defined
@@ -62,12 +62,12 @@ To improve your capabilities and skills, learn how to develop more complex promp
 ### Suggested references for level 2 advancement
 
 - Take our [step-by-step workshop to elevate your GenAIOps practices](https://github.com/microsoft/llmops-workshop?tab=readme-ov-file) 
-- [Prompt Flow in Foundry portal](/azure/ai-studio/how-to/prompt-flow)
-- [How to Build with Prompt Flow](/azure/ai-studio/how-to/flow-develop)
-- [Deploy a Flow as a Managed Online endpoint for Real-Time Inference](/azure/ai-studio/how-to/flow-deploy?tabs=azure-studio)
+- [Prompt Flow in Foundry portal](/azure/foundry-classic/concepts/prompt-flow)
+- [How to Build with Prompt Flow](/azure/foundry-classic/how-to/flow-develop)
+- [Deploy a Flow as a Managed Online endpoint for Real-Time Inference](/azure/foundry-classic/how-to/flow-deploy)
 - [Integrate Prompt Flow with GenAIOps](/azure/machine-learning/prompt-flow/how-to-integrate-with-llm-app-devops?tabs=cli)
-- [GenAI Evaluation with Foundry]( /azure/ai-studio/concepts/evaluation-approach-gen-ai)
-- [GenAI Evaluation and Monitoring Metrics](/azure/ai-studio/concepts/evaluation-metrics-built-in)
+- [GenAI Evaluation with Foundry](/azure/foundry/concepts/observability)
+- [GenAI Evaluation and Monitoring Metrics](/azure/foundry/concepts/built-in-evaluators)
 - [Azure Content Safety](/azure/ai-services/content-safety/overview)
 - [Responsible AI Tools and Practices](https://azure.microsoft.com/blog/infuse-responsible-ai-tools-and-practices-in-your-llmops/#:~:text=Azure%20AI%20offers%20robust%20tools,or%20build%20your%20own%20metrics)
 
@@ -82,8 +82,8 @@ To expand your knowledge base, focus on continuous improvement and innovation in
 
 ### Suggested references for level 3 advancement
 
-- [Fine-tuning with Azure ML Learning](/training/modules/finetune-foundation-model-with-azure-machine-learning/)
-- [Model Customization with Fine-tuning](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython&pivots=programming-language-studio)
+- [Develop generative AI apps on Microsoft Foundry](/training/paths/develop-generative-ai-apps/)
+- [Model Customization with Fine-tuning](/azure/foundry/openai/how-to/fine-tuning?pivots=programming-language-studio)
 - [GenAI Model Monitoring](/azure/machine-learning/prompt-flow/how-to-monitor-generative-ai-applications)
 - [Elevate LLM Apps to Production with GenAIOps](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/elevate-your-llm-applications-to-production-via-llmops/3979114)
 
@@ -99,4 +99,4 @@ As LLMs evolve, maintain your cutting-edge position by staying updated with the 
 ### Suggested references for advanced techniques
 
 - [model catalog](https://ai.azure.com/explore/models)
-- [Evaluation of GenAI applications](/azure/ai-studio/concepts/evaluation-approach-gen-ai)
+- [Evaluation of GenAI applications](/azure/foundry/concepts/observability)

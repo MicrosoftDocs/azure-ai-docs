@@ -1,11 +1,11 @@
 ---
 title: Plan your app - custom question answering
 description: Learn how to plan your custom question answering app, including how it interacts with other Azure services, project concepts, and the Azure resources, pricing tiers, and keys it uses.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 author: laujan
 ms.author: lajanuar
 ms.topic: get-started
-ms.date: 06/04/2026
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 

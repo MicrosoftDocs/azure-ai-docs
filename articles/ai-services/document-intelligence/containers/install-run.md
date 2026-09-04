@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 05/18/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ms.custom: sfi-ropc-nochange
 ---
@@ -18,7 +18,7 @@ ms.custom: sfi-ropc-nochange
 
 :::moniker range=">=doc-intel-2.1.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
+**This content applies to:** 🟩 **v3.0 (GA)** 🟩 **v3.1 (GA)** 🟩 **v4.0 (GA)**
 
 Azure Document Intelligence in Foundry Tools is a Foundry Tools that lets you build automated data processing software using machine-learning technology. Document Intelligence enables you to identify and extract text, key/value pairs, selection marks, table data, and more from your documents. The results are delivered as structured data that ../includes the relationships in the original file. Containers process only the data provided to them and solely utilize the resources they're permitted to access. Containers can't process data from other regions.
 

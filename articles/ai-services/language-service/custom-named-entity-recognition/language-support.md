@@ -4,11 +4,12 @@ titleSuffix: Foundry Tools
 description: Learn about the languages and regions supported by custom named entity recognition.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 05/04/2026
+ms.date: 08/03/2026
 ms.custom: language-service-custom-ner
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 # Language support for custom named entity recognition
 

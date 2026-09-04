@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/20/2026
+ms.date: 09/01/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -106,7 +106,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 #### Use API key authentication
 
 > [!IMPORTANT]
-> Claude **Mythos 5** and **Mythos Preview** support Microsoft Entra ID authentication only.
+> Claude **Mythos 5-1**, **Mythos 5**, and **Mythos Preview** support Microsoft Entra ID authentication only.
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -238,7 +238,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 #### Use API key authentication
 
 > [!IMPORTANT]
-> Claude **Mythos 5** and **Mythos Preview** support Microsoft Entra ID authentication only.
+> Claude **Mythos 5-1**, **Mythos 5**, and **Mythos Preview** support Microsoft Entra ID authentication only.
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -424,8 +424,10 @@ The following table lists common errors when you work with Claude models in Foun
 | 403 Forbidden | Insufficient permissions on the resource or subscription. | Verify you have **Contributor** or **Owner** role on the resource group. For Entra ID, ensure the **Cognitive Services User** role is assigned. |
 | 404 Not Found | Incorrect endpoint URL or deployment name. | Confirm your base URL follows the pattern `https://<resource-name>.services.ai.azure.com/anthropic` and the deployment name matches your configuration. |
 | 429 Too Many Requests | Rate limit exceeded for your subscription tier. | Implement exponential backoff with retry logic. Consider reducing request frequency or requesting a [quota increase](https://aka.ms/oai/stuquotarequest). |
+| Data retention required (400 `invalid_request_error`) | The model is an Anthropic-designated [Covered Model](https://support.claude.com/en/articles/15425695-covered-models) that requires data retention, but your subscription has zero data retention (ZDR) enabled. The upstream Anthropic message says your "organization or workspace must have data retention enabled," but in Foundry this setting applies to your **subscription**. | Anthropic independently manages data retention for Claude on Azure, so Microsoft can't change this setting for you. To use the model, either work directly with Anthropic to disable ZDR for your subscription, or create a new subscription (as data retention is enabled by default on new subscriptions) and deploy the model there. For background, see [Data retention practices for Covered Models](https://support.claude.com/en/articles/15425996-data-retention-practices-for-covered-models). |
 | Subscription eligibility error | Your Azure subscription type or billing region isn't supported, or your subscription tier has a default quota of 0 for the model. | Confirm your subscription has an active pay-as-you-go billing method and a supported billing country/region. See [Subscription type and region support](#subscription-type-and-region-support). For tier-specific default limits, see [Quotas, rate limits, and regions](../concepts/claude-models.md). |
 | Region not available | Deployment attempted in an unsupported region. | Deploy to the supported Azure regions for the specific Claude models you're using. For the exact Azure regions where the models are available, see [Region availability by deployment type](../concepts/models-from-partners.md#region-availability-by-deployment-type). |
+| Requests to Claude Sonnet 4.5 fail when including the `context-1m-2025-08-07` beta header and requesting greater than 200K tokens | The 1M context beta on Claude Sonnet 4.5 was retired on April 30, 2026. Starting May 1, 2026, requests greater than 200K tokens with the `context-1m-2025-08-07` beta header are rejected. | Remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** or **Claude Opus 5** for higher-intelligence workloads. Requests with 200K tokens or fewer to Claude Sonnet 4.5 remain unaffected, even with the header present. |
 
 ## Related content
 

@@ -3,7 +3,7 @@ title: "Deep dive into Foundry Agent Service networking"
 description: "Understand the network architecture, subnet sizing, IP allocation, and traffic flow for hosted and prompt agents in Microsoft Foundry Agent Service with bring-your-own VNet."
 author: aahill
 ms.author: aahi
-ms.date: 05/13/2026
+ms.date: 07/29/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 # Deep dive into Foundry Agent Service networking
 
 When you run Microsoft Foundry Agent Service with a bring-your-own virtual network (VNet), you're responsible for sizing the delegated subnet, planning IP allocation, and understanding how agent traffic flows through the platform. This article explains the network architecture behind hosted and prompt agents, the IP-allocation model, and the signals that indicate capacity issues. It's intended for cloud and network architects who already chose bring-your-own VNet for Foundry Agent Service. To configure the network, see [Set up private networking for Foundry Agent Service](../how-to/virtual-networks.md).
+
+If you use a coding agent like GitHub Copilot to plan your VNet, subnet, and capacity model, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you reason through the architecture and apply Foundry networking guidance in your own environment.
 
 ## Network architecture overview
 
@@ -101,14 +103,16 @@ Project capacity is dynamic because more traffic per project consumes more IPs.
 
 ### Subnet size and concurrent sessions
 
-The platform supports a maximum of **50 concurrent agent sessions per subscription per region**. Your subnet size determines whether you can reach that maximum.
+The number of concurrent agent sessions available per subscription varies by region. By default, concurrent sessions and usable subnet IPs map **1:1**, subject to the limit for your region.
 
 | Subnet | Total IPs | Usable IPs | Approximate concurrent sessions |
 |--------|-----------|------------|---------------------------------|
 | /27    | 32        | ~27        | ~17                             |
 | /26    | 64        | ~59        | ~50 (maximum supported)         |
 
-To support the full 50 concurrent sessions, use a **/26 subnet** or larger.
+With the default 1:1 mapping, use a **/26 subnet** or larger to support 50 concurrent sessions.
+
+To support more concurrent sessions with the same subnet, create an Azure support request. In the request, specify the subscription, region, and expected number of concurrent sessions. Based on your requirements and regional capacity, support can increase the mapping to **10 concurrent sessions per usable IP (1:10)**.
 
 ### Project capacity
 
@@ -184,7 +188,7 @@ Consider deploying a new Foundry instance with a fresh subnet when you observe:
 
 | Topic | Recommendation |
 |-------|----------------|
-| Subnet size | /24 for production. /27 is the minimum but risky. /26 is needed for 50 concurrent sessions. |
+| Subnet size | Use /24 for production. /27 is the minimum but risky. With the default 1:1 mapping, you need /26 for 50 concurrent sessions. Request more sessions (up to a 1:10 mapping, or one IP address for 10 sessions) through Azure support. |
 | Utilization target | Stay below 80% subnet utilization to absorb upgrade and scaling spikes. |
 | Supported IP ranges | RFC 1918 only: `10.x`, `172.16` through `172.31.x`, and `192.168.x`. No public or CGNAT ranges. |
 | Project capacity | ~250 projects at low traffic, as few as ~25 at full scale. Driven by IP availability. |

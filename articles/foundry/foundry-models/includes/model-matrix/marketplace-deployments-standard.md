@@ -2,7 +2,7 @@
 title: Marketplace models - region availability for Standard deployment (All Geographies)
 description: Marketplace models - Regional availability for standard deployment options
 manager: mcleans
-ms.date: 07/09/2026
+ms.date: 09/02/2026
 ms.topic: include
 ms.custom:
   - references_regions
@@ -18,17 +18,19 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | **Model** | **Version** | **brazilsouth** | **canadacentral** | **canadaeast** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westcentralus** | **westus** | **westus2** | **westus3** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | claude-fable-5 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
+| claude-fable-5-1 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
 | claude-haiku-4-5 | 2 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
-| claude-haiku-4-5 | 20251001 | - | - | - | - | - | ✅ | - | - | ✅ | - | - | - |
-| claude-opus-4-1 | 20250805 | - | - | - | - | - | ✅ | - | - | ✅ | - | - | - |
-| claude-opus-4-5 | 20251101 | - | - | - | - | - | ✅ | - | - | ✅ | - | - | - |
-| claude-opus-4-6 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
-| claude-opus-4-7 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
-| claude-opus-4-8 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
+| claude-haiku-4-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-opus-4-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-opus-4-6 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-opus-4-7 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-opus-4-8 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-opus-4-8 | 2 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
-| claude-sonnet-4-5 | 20250929 | - | - | - | - | - | ✅ | - | - | ✅ | - | - | - |
-| claude-sonnet-4-6 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
-| claude-sonnet-5 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
+| claude-opus-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-opus-5 | 2 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-sonnet-4-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-sonnet-4-6 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-sonnet-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-sonnet-5 | 2 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | Codestral-2501 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-4-Scout-17B-16E-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -42,15 +44,17 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **ukwest** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | claude-fable-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-fable-5-1 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-haiku-4-5 | 2 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
-| claude-haiku-4-5 | 20251001 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
-| claude-opus-4-1 | 20250805 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
-| claude-opus-4-5 | 20251101 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-haiku-4-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-opus-4-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-6 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-7 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-8 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-8 | 2 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
-| claude-sonnet-4-5 | 20250929 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-opus-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-opus-5 | 2 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-sonnet-4-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-sonnet-4-6 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-sonnet-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-sonnet-5 | 2 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
@@ -94,6 +98,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | **Model** | **Version** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westcentralus** | **westus** | **westus3** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | claude-opus-4-8 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| claude-opus-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | claude-sonnet-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Europe](#tab/az-europe)

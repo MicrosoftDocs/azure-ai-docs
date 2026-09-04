@@ -4,11 +4,12 @@ titleSuffix: Foundry Tools
 description: This article shows you how to detect and redact Personally Identifiable Information (PII) from speech, chat, and spoken-word transcriptions and call transcripts.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/17/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
+ai-usage: ai-assisted
 ---
 # Detect and redact Personally Identifiable Information in conversations
 
@@ -25,7 +26,7 @@ By default, this feature uses the latest available AI model on your input. You c
 
 ### Language support
 
-For more information, *see* the [PII Language Support page](../language-support.md). Currently the conversational PII GA model only supports the English language. The preview model and API support the [same list languages](../../concepts/language-support.md) as the other Languages.
+For the languages supported by the GA and preview versions, see [Conversation PII language support](../language-support.md?tabs=conversation-pii#conversation-pii-language-support).
 
 ### Region support
 

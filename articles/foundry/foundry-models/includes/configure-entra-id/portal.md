@@ -1,12 +1,13 @@
 ---
 manager: mcleans
-author: santiagxf
-ms.author: fasantia 
+author: msakande
+ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
-ms.date: 01/22/2026
+ms.date: 08/31/2026
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
+ai-usage: ai-assisted
 ---
 
 ## Configure Microsoft Entra ID for inference
@@ -51,11 +52,9 @@ This section lists the steps to configure Microsoft Entra ID for inference from 
    
    1. Verify that **Cognitive Services User** appears in their assigned roles.
 
-Key-based access is still possible for users who already have keys available to them. To revoke the keys, in Azure portal, on the left navigation, select **Resource Management** > **Keys and Endpoints** > **Regenerate Key1** and **Regenerate Key2**.
-
 ## Use Microsoft Entra ID in your code
 
-After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. This example shows how to use a chat completions model:
+After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. This example shows how to use the Responses API:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 

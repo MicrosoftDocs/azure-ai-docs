@@ -4,12 +4,6 @@ items:
   displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
 - name: What are Foundry Tools?
   href: ../../../ai-services/what-are-ai-services.md
-- name:  Content Understanding
-  items:
-  - name: What is Azure Content Understanding?
-    href: ../../../ai-services/content-understanding/overview.md?context=/azure/foundry-classic/context/context
-  - name: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal
-    href: ../../../ai-services/content-understanding/how-to/content-understanding-foundry-classic.md?context=/azure/foundry-classic/context/context
 - name:  Document Intelligence
   items:
   - name: What is Document Intelligence in Foundry Tools?

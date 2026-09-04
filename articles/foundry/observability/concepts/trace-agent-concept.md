@@ -1,11 +1,11 @@
 ---
-title: "Agent tracing in Microsoft Foundry (preview)"
+title: "Agent tracing overview"
 description: "Learn how agent tracing in Microsoft Foundry captures inputs, outputs, and tool usage with OpenTelemetry. Debug agent runs, identify latency issues, and improve reliability."
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: ychen
-ms.date: 03/27/2026
+ms.reviewer: dchirasani
+ms.date: 08/28/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -19,12 +19,12 @@ ms.topic: concept-article
 
 Microsoft Foundry provides an observability platform for monitoring and tracing AI agents. It captures key details during an agent run, such as inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, understanding complex agents presents challenges for several reasons:
 
-- There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
+- There can be a high number of steps involved in generating a response, making it hard to keep track of all of them.
 - The sequence of steps might vary based on user input.
-- The inputs/outputs at each stage might be long and deserve more detailed inspection.
+- The inputs and outputs at each stage might be long and deserve more detailed inspection.
 - Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
 
-Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
+Traces address these challenges by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ To use tracing end-to-end, you need:
 - A Log Analytics reader role to view traces, insights, and visualizations in Foundry.
 
 > [!NOTE]
-> Tracing stores telemetry data in Azure Monitor Application Insights, which may incur costs based on data volume and retention settings. For pricing details, see [Application Insights pricing](/azure/azure-monitor/cost-usage#application-insights-billing).
+> Tracing stores telemetry data in Azure Monitor Application Insights, which might incur costs based on data volume and retention settings. For pricing details, see [Application Insights pricing](/azure/azure-monitor/cost-usage#application-insights-billing).
 
 ## OpenTelemetry in Foundry
 
@@ -43,14 +43,14 @@ OpenTelemetry (OTel) provides standardized protocols for collecting and routing 
 
 ## Trace key concepts
 
-Here's a brief overview of key concepts before getting started:
+The following key concepts apply throughout this article:
 
 | Key concepts             | Description            |
 |---------------------|-----------------------------------------------------------------|
 | Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes (function calls, values, system events). See [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/). |
-| Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, allowing you to see the full call stack and sequence of operations.                                                                                         |
-| Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data making it more informative and useful for analysis.                                                                                                 |
-| Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
+| Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, so you can see the full call stack and sequence of operations.                                                                                         |
+| Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data, making it more informative and useful for analysis.                                                                                                 |
+| Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see the [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai).                  |
 | Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. In Foundry, traces are stored in Azure Monitor Application Insights. To learn how to enable and view traces, see [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md). |
 
 ## How tracing works in Foundry
@@ -61,14 +61,17 @@ At a high level, tracing captures:
 
 - User inputs and agent outputs.
 - Tool usage, including tool calls and results.
-- Token consumption
+- Token consumption.
 - Time signals such as duration and latency.
 
-Once tracing is enabled for your project, you can inspect traces in the Foundry portal and in Azure Monitor Application Insights. For the step-by-step setup and viewing options, see [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md).
+When you enable tracing for your project, you can inspect traces in the Foundry portal and in Azure Monitor Application Insights. For the step-by-step setup and viewing options, see [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md).
 
-## Extending OpenTelemetry with multi-agent observability
+## Extend OpenTelemetry with multi-agent observability
 
-Microsoft, in collaboration with Cisco Outshift, has introduced new semantic conventions for multi-agent systems, built on [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/) and [W3C Trace Context](https://www.w3.org/TR/trace-context/). These conventions standardize telemetry for multi-agent workflows, enabling consistent logging of metrics for quality, performance, safety, and cost, including tool invocations and collaboration.
+Microsoft, in collaboration with Cisco Outshift, contributes semantic conventions for multi-agent systems. These conventions build on [OpenTelemetry GenAI agent and framework spans](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md) and [W3C Trace Context](https://www.w3.org/TR/trace-context/). They standardize telemetry for multi-agent workflows, including agent invocations, workflow orchestration, planning, model calls, and tool execution.
+
+> [!IMPORTANT]
+> The OpenTelemetry GenAI semantic conventions have Development status and might change in future releases.
 
 These enhancements are integrated into:
 
@@ -78,22 +81,21 @@ These enhancements are integrated into:
 - LangGraph
 - OpenAI Agents SDK
 
-To learn more, see [tracing integrations](../how-to/trace-agent-framework.md).
+For more information, see [tracing integrations](../how-to/trace-agent-framework.md).
 
-The following table describes the semantic conventions for multi-agent observability. Spans capture discrete operations, child spans show nested operations within a parent span, attributes provide metadata, and events mark significant occurrences during execution.
+The following table describes common OpenTelemetry GenAI conventions for multi-agent observability. Spans capture operations, child spans show nested work, and attributes provide metadata. The parent spans shown are common examples; actual nesting depends on the instrumented agent or framework.
 
-| Type         | Context/Parent Span   | Name/Attribute/Event           | Purpose |
-|--------------|----------------------|-------------------------------|---------------|
-| Span         | —                    | execute_task                  | Captures task planning and event propagation, providing insights into how tasks are decomposed and distributed. |
-| Child Span   | invoke_agent         | agent_to_agent_interaction    | Traces communication between agents. |
-| Child Span   | invoke_agent         | agent.state.management        | Effective context, short or long term memory management. |
-| Child Span   | invoke_agent         | agent_planning                | Logs the agent's internal planning steps. |
-| Child Span   | invoke_agent         | agent orchestration           | Captures agent-to-agent orchestration. |
-| Attribute    | invoke_agent         | tool_definitions              | Describes the tool's purpose or configuration. |
-| Attribute    | invoke_agent         | llm_spans                     | Records model call spans. |
-| Attribute    | execute_tool         | tool.call.arguments           | Logs the arguments passed during tool invocation. |
-| Attribute    | execute_tool         | tool.call.results             | Records the results returned by the tool. |
-| Event        | —                    | Evaluation (name, error.type, label) | Enables structured evaluation of agent performance and decision-making. |
+| Type | Context/Parent Span | Name/Attribute/Event | Purpose |
+| --- | --- | --- | --- |
+| Span | — | `invoke_agent` | Invokes an agent through a remote service or within the same process. |
+| Child span | `invoke_agent` | `invoke_agent` | Traces an invocation of another agent through a parent-child span relationship. |
+| Child span | `invoke_agent` | `plan` | Records an agent planning or task decomposition phase. |
+| Span | — | `invoke_workflow` | Invokes a coordinated workflow that contains agents or other generative AI operations. |
+| Child span | `invoke_agent` or `invoke_workflow` | `execute_tool` | Records a tool execution. |
+| Child span | `invoke_agent` or `invoke_workflow` | `create_memory`, `search_memory`, `update_memory`, `upsert_memory`, or `delete_memory` | Records a memory operation. |
+| Attribute | `invoke_agent` | `gen_ai.tool.definitions` | Records definitions of tools available to an agent or model. |
+| Attribute | `execute_tool` | `gen_ai.tool.call.arguments` | Records the arguments passed to a tool call. |
+| Attribute | `execute_tool` | `gen_ai.tool.call.result` | Records the result returned by a successful tool call. |
 
 ## Best practices
 
@@ -103,11 +105,13 @@ The following table describes the semantic conventions for multi-agent observabi
 
 ## Security and privacy
 
-Tracing can capture sensitive information (for example, user inputs, model outputs, and tool arguments and results). Use these practices to reduce risk:
+Tracing can capture sensitive information, such as user inputs, model outputs, and tool arguments and results. Use these practices to reduce risk:
 
 - Don't store secrets, credentials, or tokens in prompts, tool arguments, or span attributes.
 - Redact or minimize personal data and other sensitive content before it appears in telemetry.
 - Treat trace data as production telemetry and apply the same access controls and retention policies you use for logs and metrics.
+
+To learn steps to route sensitive content to the dedicated table and restrict access to it, see [Restrict access to sensitive content](../how-to/traces-sensitive-content.md).
 
 ## Troubleshooting
 

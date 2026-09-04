@@ -45,8 +45,8 @@ landingContent:
           url: how-to-use-codec-compressed-audio-input-streams.md
     - linkListType: concept
       links:
-        - text: Whisper model from OpenAI
-          url: whisper-overview.md
+        - text: Transcription models from OpenAI
+          url: transcribe-overview.md
         - text: Improve accuracy with custom speech
           url: ./custom-speech-overview.md
         - text: Display text formatting

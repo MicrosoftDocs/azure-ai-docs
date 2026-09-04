@@ -5,11 +5,12 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
-ms.custom: include, classic-and-new
+ms.date: 08/24/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
-Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This approach contrasts with the older [JSON mode](../how-to/json-mode.md) feature, which guaranteed valid JSON but couldn't ensure strict adherence to the supplied schema. Use structured outputs for function calling, extracting structured data, and building complex multi-step workflows.
+Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. Both the Chat Completions API and Responses API support structured outputs. For Chat Completions, define the schema in `response_format`. For Responses, define the schema in `text.format`. This approach contrasts with the older [JSON mode](../how-to/json-mode.md) feature, which guaranteed valid JSON but couldn't ensure strict adherence to the supplied schema. Use structured outputs for function calling, extracting structured data, and building complex multi-step workflows.
 
 ::: zone pivot="programming-language-python"
 
@@ -23,6 +24,12 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [structured-outputs-javascript](structured-outputs-javascript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-rest"
 
 [!INCLUDE [structured-outputs-rest](structured-outputs-rest.md)]
@@ -31,7 +38,7 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## JSON Schema support and limitations
 
-Azure OpenAI structured outputs support the same subset of the [JSON Schema](https://json-schema.org/docs) as OpenAI.
+Azure OpenAI structured outputs support a subset of [JSON Schema](https://json-schema.org/docs). The following Azure-specific limits and unsupported keywords apply to both the Chat Completions API and Responses API.
 
 ### Supported types
 

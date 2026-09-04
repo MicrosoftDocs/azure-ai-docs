@@ -2,7 +2,7 @@
 title: "Integrate Microsoft Foundry with your applications"
 description: "Learn how to choose a Microsoft Foundry integration pattern, retrieve endpoints, and send your first REST API request with authentication."
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 08/27/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.reviewer: deeikele
@@ -26,6 +26,7 @@ In this article, you learn how to choose an integration pattern and send your fi
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- [Azure CLI](/cli/azure/install-azure-cli). Run `az login`, and then run `az account show` to verify your active subscription.
 - A [Foundry project](create-projects.md). Note your resource endpoint (for example, `https://{resource}.services.ai.azure.com`).
 - A [deployed model](../foundry-models/how-to/deploy-foundry-models.md) for inference calls.
 - Authentication credentials: either a [Microsoft Entra ID token](../concepts/rbac-foundry.md) or an API key from the Foundry portal.

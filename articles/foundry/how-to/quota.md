@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 07/28/2026
 ms.reviewer: haakar
 reviewer: haakar
 ms.author: mopeakande
@@ -44,7 +44,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
  
 1. Projects help organize your work. The project you're working on appears in the upper-left corner. If you want to create a new project, select the project name, then **Create new project**.
 
-1. Select **Operate** from the upper-right navigation.
+1. Select **Manage** from the upper-right navigation.
 
 1. Select **Quota** from the left pane to land on the **Quota** pane. The quota view has two tabs:
 

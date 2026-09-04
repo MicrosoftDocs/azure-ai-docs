@@ -7,7 +7,7 @@ ms.author: scottpolly
 ms.reviewer: bozhlin
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 01/28/2026
+ms.date: 08/08/2026
 ms.topic: how-to
 ms.custom: cliv2, sdkv2, devx-track-azurecli, dev-focus
 ai-usage: ai-assisted
@@ -31,7 +31,7 @@ In this article, you learn about:
 
 * An AKS cluster running in Azure. If you didn't previously use cluster extensions, you need to [register the KubernetesConfiguration service provider](/azure/aks/dapr#register-the-kubernetesconfiguration-resource-provider).
 * Or an Azure Arc-enabled Kubernetes cluster that's up and running. Follow instructions in [connect existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
-  * If the cluster is an Azure RedHat OpenShift (ARO) Service cluster or OpenShift Container Platform (OCP) cluster, you must satisfy other prerequisite steps as documented in the [Reference for configuring Kubernetes cluster](./reference-kubernetes.md#prerequisites-for-aro-or-ocp-clusters) article.
+  * If the cluster is an Azure Red Hat OpenShift (ARO) Service cluster or OpenShift Container Platform (OCP) cluster, you must satisfy other prerequisite steps as documented in the [Reference for configuring Kubernetes cluster](./reference-kubernetes.md#prerequisites-for-aro-or-ocp-clusters) article.
 * For production purposes, the Kubernetes cluster must have a minimum of **4 vCPU cores and 14-GB memory**. For more information on resource detail and cluster size recommendations, see [Recommended resource planning](./reference-kubernetes.md).
 * A cluster running behind an **outbound proxy server** or **firewall** needs extra [network configurations](./how-to-access-azureml-behind-firewall.md#scenario-use-kubernetes-compute).
 * Install or upgrade Azure CLI to version 2.51.0 or higher.
@@ -47,6 +47,7 @@ In this article, you learn about:
 - Azure Machine Learning doesn't support attaching an AKS cluster cross subscription. If you have an AKS cluster in a different subscription, you must first [connect it to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster) and specify in the same subscription as your Azure Machine Learning workspace.
 - Azure Machine Learning doesn't guarantee support for all preview stage features in AKS. For example, [Microsoft Entra pod-managed identity](/azure/aks/use-azure-ad-pod-identity) (deprecated) isn't supported. Use [Microsoft Entra Workload ID](/azure/aks/workload-identity-overview) instead.
 - If you followed the steps in the [Azure Machine Learning AKS v1 document](v1/how-to-create-attach-kubernetes.md) to create or attach your AKS as an inference cluster, use the following link to [clean up the legacy azureml-fe related resources](v1/how-to-create-attach-kubernetes.md#delete-azureml-fe-related-resources) before you continue the next step.
+- The Azure Machine Learning extension isn't currently supported on ARM64 architectures. Use node pools with the x86_64 (`amd64`) architecture for the extension. An AKS node pool can't mix `amd64` and ARM64 VM SKUs, so choose node pool VM SKUs with the supported architecture, and don't combine architectures in the same node pool. If your cluster has mixed node pools, use `nodeSelector` to target the extension and your workloads to nodes with the supported architecture.
 
 
 ## Review Azure Machine Learning extension configuration settings
@@ -82,7 +83,7 @@ As you can see from the configuration settings table, the combinations of differ
 
 If you plan to deploy Azure Machine Learning extension for real-time inference workload and want to specify `enableInference=True`, pay attention to following configuration settings related to real-time inference workload:
 
-  * `azureml-fe` router service is required for real-time inference support and you need to specify `inferenceRouterServiceType` config setting for `azureml-fe`. `azureml-fe` can be deployed with one of following `inferenceRouterServiceType`:
+  * `azureml-fe` router service is required for real-time inference support and you need to specify `inferenceRouterServiceType` config setting for `azureml-fe`. The router is deployed as the `azureml-fe-v2` Kubernetes deployment, which you see listed in the [extension components](#review-azure-machine-learning-extension-component). `azureml-fe` can be deployed with one of following `inferenceRouterServiceType`:
       * Type `loadBalancer`. Exposes `azureml-fe` externally using a cloud provider's load balancer. To specify this value, ensure that your cluster supports load balancer provisioning. Note most on-premises Kubernetes clusters might not support external load balancer.
       * Type `nodePort`. Exposes `azureml-fe` on each Node's IP at a static port. You can contact `azureml-fe`, from outside of cluster, by requesting `<NodeIP>:<NodePort>`. Using `nodePort` also allows you to set up your own load balancing solution and TLS/SSL termination for `azureml-fe`. For more information on how to set up your own ingress, see [Integrate other ingress controller with Azure Machine Learning extension over HTTP or HTTPS](./reference-kubernetes.md#integrate-other-ingress-controller-with-azure-machine-learning-extension-over-http-or-https).
       * Type `clusterIP`. Exposes `azureml-fe` on a cluster-internal IP, and it makes `azureml-fe` only reachable from within the cluster. For `azureml-fe` to serve inference requests coming outside of cluster, it requires you to set up your own load balancing solution and TLS/SSL termination for `azureml-fe`. For more information on how to set up your own ingress, see [Integrate other ingress controller with Azure Machine Learning extension over HTTP or HTTPS](./reference-kubernetes.md#integrate-other-ingress-controller-with-azure-machine-learning-extension-over-http-or-https).

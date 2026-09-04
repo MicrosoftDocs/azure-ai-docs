@@ -4,12 +4,9 @@ description: "Use this article to deploy an enterprise chat web app in the Micro
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.custom:
-  - ignite-2023
-  - build-2024
-  - ignite-2024
   - hub-only
 ms.topic: tutorial
-ms.date: 08/25/2025
+ms.date: 09/02/2026
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
@@ -138,7 +135,7 @@ When you're satisfied with the experience in the Foundry portal, deploy the mode
 
 ### Find your resource group in the Azure portal
 
-In this tutorial, deploy your web app to the same resource group as your [Foundry hub](../how-to/create-secure-ai-hub.md). You'll set up authentication for the web app in the Azure portal.
+In this tutorial, deploy your web app to the same resource group as your [Foundry hub](../how-to/create-secure-ai-hub.md). You set up authentication for the web app in the Azure portal.
 
 Follow these steps to go to your resource group in the Azure portal:
 
@@ -148,8 +145,8 @@ Follow these steps to go to your resource group in the Azure portal:
 
     :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Foundry portal." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
 
-1. You're now in the Azure portal, viewing the contents of the resource group where you deployed the hub. Note the resource group name and location. You'll use this information in the next section.
-1. Keep this page open in a browser tab. You'll return to it later.
+1. You're now in the Azure portal, viewing the contents of the resource group where you deployed the hub. Note the resource group name and location. You use this information in the next section.
+1. Keep this page open in a browser tab to return to it later.
 
 ### Deploy the web app
 
@@ -178,7 +175,7 @@ To deploy the web app:
 
 1. Wait for the app to deploy. This process might take a few minutes.
 
-1. When it's ready, the **Launch** button is enabled on the toolbar. Don't launch the app yet, and don't close the chat playground page—you'll return to it later.
+1. When it's ready, the **Launch** button enables on the toolbar. Don't launch the app yet, and don't close the chat playground page - you return to it later.
 
 ### Configure web app authentication
 
@@ -239,7 +236,7 @@ Use the playground to add more data or test the model with different scenarios. 
 
 ## Clean up resources
 
-To avoid unnecessary Azure costs, delete the resources you created in this quickstart if you don't need them. Manage resources in the [Azure portal](https://portal.azure.com?azure-portal=true).
+To avoid unnecessary Azure costs, delete the resources you created in this tutorial if you don't need them. Manage resources in the [Azure portal](https://portal.azure.com?azure-portal=true).
 
 ## Related content
 

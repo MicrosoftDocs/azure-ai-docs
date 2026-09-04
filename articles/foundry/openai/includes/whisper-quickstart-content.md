@@ -5,11 +5,19 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 07/29/2026
 ms.custom: include, classic-and-new
 ---
 
-In this quickstart, you transcribe speech to text using the [Azure OpenAI Whisper model](../../../ai-services/speech-service/whisper-overview.md). The Whisper model can transcribe human speech in numerous languages and translate other languages into English.
+In this quickstart, you transcribe speech to text by using the [OpenAI transcription model](../../../ai-services/speech-service/transcribe-overview.md). The transcription model can transcribe human speech in numerous languages and translate other languages into English.
+
+For offline transcription, use `gpt-transcribe`. This model uses the Audio API transcription path and isn't a Realtime API model.
+
+This quickstart uses a file upload request and response flow (one request per audio file), not a live streaming session.
+
+For offline transcription, use `gpt-transcribe`. This model uses the Audio API transcription path and isn't a Realtime API model.
+
+This quickstart uses a file upload request and response flow (one request per audio file), not a live streaming session.
 
 > [!TIP]
 > This quickstart takes approximately 10-15 minutes to complete.
@@ -54,7 +62,7 @@ In this quickstart, you transcribe speech to text using the [Azure OpenAI Whispe
 > For information about other audio models that you can use with Azure OpenAI, see [Audio models](../../foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio).
 
 > [!TIP]
-> The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure Speech in Foundry Tools [batch transcription](../../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
+> The file size limit for the transcription model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure Speech in Foundry Tools [batch transcription](../../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
 
 ## Troubleshooting
 
@@ -67,7 +75,7 @@ If you receive 401 Unauthorized errors, verify:
 
 ### File format errors
 
-The Whisper model supports mp3, mp4, mpeg, mpga, m4a, wav, and webm formats. Other formats return an error.
+The transcription model supports mp3, mp4, mpeg, mpga, m4a, wav, and webm formats. Other formats return an error.
 
 ### File size limit
 

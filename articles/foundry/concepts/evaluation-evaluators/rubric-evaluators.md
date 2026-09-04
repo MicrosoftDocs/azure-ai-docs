@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 06/02/2026
+ms.date: 07/21/2026
 ms.service: microsoft-foundry
 ms.topic: reference
 
@@ -48,21 +48,21 @@ Each generated rubric contains the following fields:
 
 #### Choose an LLM judge model
 
-Not all models perform equally as rubric judges. The following table ranks models by judge quality.
+Not all models perform equally as rubric judges. The following table lists the supported chat models for rubric generation and scoring.
 
-| Rank | Model | Recommendation |
-|------|-------|----------------|
-| 1 | `gpt-5.5` | Recommended |
-| 2 | `gpt-5.4` | Recommended |
-| 3 | `gpt-5.4-nano` | Recommended |
-| 4 | `gpt-5.4-mini` | Recommended |
-| 5 | `gpt-5.2` | Recommended |
-| 8 | `gpt-4.1` | Acceptable |
-| 9 | `gpt-4o` | Acceptable |
-| 10 | `gpt-4o-mini` | Not recommended |
-
-> [!IMPORTANT]
-> Avoid using `gpt-4o-mini` as a rubric judge. This model produces noticeably less reliable scores compared to newer models. For the best balance of performance and cost, use `gpt-5.4-mini`.
+| Model | Recommendation |
+|-------|----------------|
+| `gpt-5.5` | Recommended |
+| `gpt-5.4` | Recommended |
+| `gpt-5.4-mini` | Recommended — best balance of performance and cost |
+| `gpt-5.4-nano` | Recommended |
+| `gpt-5.2` | Recommended |
+| `gpt-5.1` | Recommended |
+| `gpt-5` | Recommended |
+| `gpt-5-mini` | Recommended |
+| `gpt-5-nano` | Recommended |
+| `gpt-4.1` | Acceptable |
+| `gpt-4o` | Acceptable |
 
 ### Manually create a rubric
 
@@ -132,7 +132,9 @@ Rubric evaluators work well for domain-specific or organization-specific quality
 
 The LLM judge reads the rubric, examines the mapped input data, assigns a score, and provides a reason for its scoring decision. This approach combines the flexibility of custom criteria with the consistency of LLM-based evaluation.
 
-For details on running evaluations and configuring data sources, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
+For details on running evaluations and configuring data sources, see [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md).
+
+For a runnable example, see [sample_rubric_evaluator_generation_basic.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_rubric_evaluator_generation_basic.py). For additional rubric samples (all-sources generation, iterative editing, full lifecycle, and manual authoring), see the [evaluations samples README](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md).
 
 ## Example output
 
@@ -271,8 +273,9 @@ For setup steps, see [Monitor agents in the dashboard](../../observability/how-t
 
 ## Related content
 
-- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md)
 - [Monitor agents in the dashboard](../../observability/how-to/how-to-monitor-agents-dashboard.md)
 - [Set up tracing](../../observability/how-to/trace-agent-setup.md)
 - [Custom evaluators](custom-evaluators.md)
 - [General purpose evaluators](general-purpose-evaluators.md)
+- [Rubric evaluator SDK samples (Python)](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)

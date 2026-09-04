@@ -1,11 +1,11 @@
 ---
 title: Improve the quality of responses with synonyms
 description: In this tutorial, learn how to improve response with synonyms and alternate words
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 06/18/2026
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 # Improve quality of response with synonyms

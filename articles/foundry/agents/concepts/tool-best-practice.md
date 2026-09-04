@@ -5,7 +5,7 @@ ms.manager: mcleans
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
-ms.date: 03/09/2026
+ms.date: 08/21/2026
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -28,11 +28,12 @@ When you build agents in Microsoft Foundry Agent Service, tools extend what your
 - Access to a Foundry project in the Foundry portal with the **Azure AI Developer** role or equivalent permissions.
 - A model deployed in the same project.
 - Any required connections configured for the tools you plan to use (for example, Azure AI Search, SharePoint, or Bing grounding).
+- A model and project region that both support the tool. See [Tool support by region and model](limits-quotas-regions.md#tool-support-by-region-and-model).
 
 ## Configure and validate tool usage
 
-- Configure tools and connections in the Foundry tool catalog. See [Discover and manage tools in the Foundry tool catalog (preview)](tool-catalog.md).
-- Review run traces to confirm when your agent calls tools and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../../foundry-classic/how-to/develop/trace-application.md).
+- Organize tools and connections in a toolbox. See [Create and manage a toolbox in Foundry](../how-to/tools/toolbox.md).
+- Review traces to confirm when your agent calls tools and to inspect tool inputs and outputs. For setup guidance, see [Set up tracing for Foundry agents](../../observability/how-to/trace-agent-setup.md).
 
 ## Improve tool-calling reliability
 
@@ -44,7 +45,7 @@ Use `tool_choice` for the most deterministic control over tool calling.
 - `required`: The model must call one or more tools.
 - `none`: The model doesn't call tools.
 
-For details, see `tool_choice` in [Foundry project REST (preview)](../../reference/foundry-project-rest-preview.md).
+For details, see `tool_choice` in the [Foundry project REST reference](https://ai.azure.com/api-reference/responses).
 
 ### Write effective tool instructions
 
@@ -57,10 +58,11 @@ For details, see `tool_choice` in [Foundry project REST (preview)](../../referen
 Tools send and receive data outside the model. Reduce security and privacy risks with these practices:
 
 - Treat tool outputs as untrusted input and validate critical values before acting on them.
+- Validate structured outputs against an expected schema, allow only known fields and operations, and require user approval before consequential actions.
 - Send only the information required to complete the task.
 - Don't include keys, tokens, or other credentials in prompts.
 - Avoid logging secrets in traces or application logs.
-- If you connect to non-Microsoft services (for example, third-party MCP servers), review the considerations in [Discover and manage tools in the Foundry tool catalog (preview)](tool-catalog.md).
+- If you connect to non-Microsoft services (for example, third-party MCP servers), review the data handling considerations in [Create and manage a toolbox in Foundry](../how-to/tools/toolbox.md).
 - If you need centralized routing and policy enforcement for MCP tools, see [Tools governance with AI Gateway (preview)](../how-to/tools/governance.md).
 
 ## Troubleshooting
@@ -71,7 +73,7 @@ Use these checks to resolve common issues:
     - Confirm the tool is attached to the agent.
     - Confirm the model supports the tool.
     - If you need deterministic behavior, set `tool_choice` to `required`.
-    - Review run traces to confirm whether the model produced a tool call.
+    - Review traces to confirm whether the model produced a tool call.
 - **Tool calls return empty or irrelevant results**:
     - Improve tool descriptions and agent instructions.
     - For retrieval tools, ensure your data is ingested and searchable.
@@ -87,7 +89,7 @@ Use these checks to resolve common issues:
 
 **How do I validate whether a tool was called?**
 
-Review run traces to confirm whether your agent called a tool and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../../foundry-classic/how-to/develop/trace-application.md).
+Review traces to confirm whether your agent called a tool and to inspect tool inputs and outputs. For setup guidance, see [Set up tracing for Foundry agents](../../observability/how-to/trace-agent-setup.md).
 
 **How do I make tool usage more reliable?**
 
@@ -97,7 +99,8 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 
 ### Tool management
 
-- [Discover and manage tools in the Foundry tool catalog (preview)](tool-catalog.md)
+- [What is Toolbox in Foundry?](toolbox-overview.md)
+- [Create and manage a toolbox in Foundry](../how-to/tools/toolbox.md)
 - [Tools governance with AI Gateway (preview)](../how-to/tools/governance.md)
 
 ### Retrieval and search tools
@@ -111,7 +114,7 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 ### Data and integration tools
 
 - [Fabric data agent (preview)](../how-to/tools/fabric.md)
-- [Model Context Protocol (MCP) (preview)](../how-to/tools/model-context-protocol.md)
+- [Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md)
 - [OpenAPI tool](../how-to/tools/openapi.md)
 - [Function calling](../how-to/tools/function-calling.md)
 
@@ -121,4 +124,4 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 - [Browser automation (preview)](../how-to/tools/browser-automation.md)
 - [Computer Use (preview)](../how-to/tools/computer-use.md)
 - [Image generation (preview)](../how-to/tools/image-generation.md)
-- [Agent2Agent (A2A) tool (preview)](../how-to/tools/agent-to-agent.md)
+- [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md)

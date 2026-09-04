@@ -1,11 +1,12 @@
 ---
 title: Azure Cosmos DB Gremlin Indexer
-description: Set up an Azure Cosmos DB indexer to automate indexing of Apache Gremlin content for full text search in Azure AI Search. This article explains how index data using the Azure Cosmos DB for Apache Gremlin protocol.
+description: Set up an Azure Cosmos DB indexer to automate indexing of Apache Gremlin content for full-text search in Azure AI Search. This article explains how index data using the Azure Cosmos DB for Apache Gremlin protocol.
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
@@ -36,7 +37,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + An [Azure Cosmos DB account, database, container, and items](/azure/cosmos-db/sql/create-cosmosdb-resources-portal). Use the same region for both Azure AI Search and Azure Cosmos DB for lower latency and to avoid bandwidth charges.
 
-+ An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This is the default configuration. Lazy indexing isn't recommended and may result in missing data.
++ An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This setting is the default configuration. Lazy indexing isn't recommended and might result in missing data.
 
 + Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Cosmos DB Account Reader Role** permissions.
 
@@ -46,12 +47,12 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 The data source definition specifies the data to index, credentials, and policies for identifying changes in the data. A data source is defined as an independent resource so that it can be used by multiple indexers.
 
-For this call, specify a [preview REST API version](search-api-preview.md) to create a data source that connects via an Azure Cosmos DB for Apache Gremlin. You can use 2021-04-01-preview or later. We recommend the latest preview API.
+For this call, specify a preview REST API version to create a data source that connects via Azure Cosmos DB for Apache Gremlin. You can use `2021-04-01-preview` or later. We recommend the [latest preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions).
 
-1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition: 
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to set its definition:
 
    ```http
-    POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -72,7 +73,6 @@ For this call, specify a [preview REST API version](search-api-preview.md) to cr
       "encryptionKey": null,
       "identity": null
     }
-    }
    ```
 
 1. Set "type" to `"cosmosdb"` (required).
@@ -81,9 +81,9 @@ For this call, specify a [preview REST API version](search-api-preview.md) to cr
 
 1. Set "container" to the collection. The "name" property is required and it specifies the ID of the graph. 
 
-   The "query" property is optional. By default the Azure AI Search indexer for Azure Cosmos DB for Apache Gremlin makes every vertex in your graph a document in the index. Edges will be ignored. The query default is `g.V()`. Alternatively, you could set the query to only index the edges. To index the edges, set the query to `g.E()`.
+   The "query" property is optional. By default, the Azure AI Search indexer for Azure Cosmos DB for Apache Gremlin makes every vertex in your graph a document in the index. Edges are ignored. The query default is `g.V()`. Alternatively, you can set the query to only index the edges. To index the edges, set the query to `g.E()`.
 
-1. [Set "dataChangeDetectionPolicy"](#DataChangeDetectionPolicy) if data is volatile and you want the indexer to pick up just the new and updated items on subsequent runs. Incremental progress will be enabled by default using `_ts` as the high water mark column.
+1. [Set "dataChangeDetectionPolicy"](#DataChangeDetectionPolicy) if your data is volatile and you want the indexer to pick up just the new and updated items on subsequent runs. Incremental progress is enabled by default using `_ts` as the high water mark column.
 
 1. [Set "dataDeletionDetectionPolicy"](#DataDeletionDetectionPolicy) if you want to remove search documents from a search index when the source item is deleted.
 
@@ -91,11 +91,11 @@ For this call, specify a [preview REST API version](search-api-preview.md) to cr
 
 Indexers can connect to a collection using the following connections. For connections that target [Azure Cosmos DB for Apache Gremlin](/azure/cosmos-db/graph/graph-introduction), be sure to include "ApiKind" in the connection string.
 
-Avoid port numbers in the endpoint URL. If you include the port number, the connection will fail.  
+Avoid port numbers in the endpoint URL. If you include the port number, the connection fails.  
 
 | Full access connection string |
 |-----------------------------------------------|
-|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=MongoDb" }` |
+|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=Gremlin" }` |
 | You can get the connection string from the Azure Cosmos DB account page in Azure portal by selecting **Keys** in the left pane. Make sure to select a full connection string and not just a key.  |
 
 | Managed identity connection string |
@@ -107,10 +107,10 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 
 In a [search index](search-what-is-an-index.md), add fields to accept the source JSON documents or the output of your custom query projection. Ensure that the search index schema is compatible with your graph. For content in Azure Cosmos DB, your search index schema should correspond to the [Azure Cosmos DB items](/azure/cosmos-db/resource-model#azure-cosmos-db-items) in your data source.
 
-1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that store data:
 
    ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexes?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -130,7 +130,6 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
             "searchAnalyzer": null,
             "synonymMaps": [],
             "fields": []
-        },{
         }, {
             "name": "label",
             "type": "Edm.String",
@@ -169,10 +168,10 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -204,7 +203,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-05-01-preview
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-08-01-preview
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -257,10 +256,10 @@ For Azure Cosmos DB indexers, the only supported policy is the [`HighWaterMarkCh
 
 The following example shows a [data source definition](#define-the-data-source) with a change detection policy:
 
-```http
+```json
 "dataChangeDetectionPolicy": {
     "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-"  highWaterMarkColumnName": "_ts"
+    "highWaterMarkColumnName": "_ts"
 },
 ```
 
@@ -270,8 +269,8 @@ The following example shows a [data source definition](#define-the-data-source) 
 
 When graph data is deleted, you might want to delete its corresponding document from the search index as well. The purpose of a data deletion detection policy is to efficiently identify deleted data items and delete the full document from the index. The data deletion detection policy isn't meant to delete partial document information. Currently, the only supported policy is the `Soft Delete` policy (deletion is marked with a flag of some sort), which is specified in the data source definition as follows:
 
-```http
-"dataDeletionDetectionPolicy"": {
+```json
+"dataDeletionDetectionPolicy": {
     "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
     "softDeleteColumnName" : "the property that specifies whether a document was deleted",
     "softDeleteMarkerValue" : "the value that identifies a document as deleted"
@@ -281,7 +280,7 @@ When graph data is deleted, you might want to delete its corresponding document 
 The following example creates a data source with a soft-deletion policy:
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [Search service admin key]
 
@@ -311,15 +310,15 @@ Even if you enable deletion detection policy, deleting complex (`Edm.ComplexType
 
 ## Mapping graph data to fields in a search index
 
-The Azure Cosmos DB for Apache Gremlin indexer will automatically map a couple pieces of graph data:
+The Azure Cosmos DB for Apache Gremlin indexer automatically maps a couple pieces of graph data:
 
-1. The indexer will map `_rid` to an `rid` field in the index if it exists, and Base64 encode it.
+1. The indexer maps `_rid` to a `rid` field in the index if it exists, and Base64 encodes it.
 
-1. The indexer will map `_id` to an `id` field in the index if it exists.
+1. The indexer maps `_id` to an `id` field in the index if it exists.
 
-1. When querying your Azure Cosmos DB database using the Azure Cosmos DB for Apache Gremlin you may notice that the JSON output for each property has an `id` and a `value`. The indexer will automatically map the properties `value` into a field in your search index that has the same name as the property if it exists. In the following example, 450 would be mapped to a `pages` field in the search index.
+1. When querying your Azure Cosmos DB database by using the Azure Cosmos DB for Apache Gremlin, you might notice that the JSON output for each property has an `id` and a `value`. The indexer automatically maps the property's `value` into a field in your search index that has the same name as the property if it exists. In the following example, 450 is mapped to a `pages` field in the search index.
 
-```http
+```json
     {
         "id": "Cookbook",
         "label": "book",
@@ -335,7 +334,7 @@ The Azure Cosmos DB for Apache Gremlin indexer will automatically map a couple p
     }
 ```
 
-You may find that you need to use [Output Field Mappings](cognitive-search-output-field-mapping.md) in order to map your query output to the fields in your index. You'll likely want to use Output Field Mappings instead of [Field Mappings](search-indexer-field-mappings.md) since the custom query will likely have complex data.
+You might find that you need to use [Output Field Mappings](cognitive-search-output-field-mapping.md) to map your query output to the fields in your index. You'll likely want to use Output Field Mappings instead of [Field Mappings](search-indexer-field-mappings.md) since the custom query likely has complex data.
 
 For example, let's say that your query produces this output:
 

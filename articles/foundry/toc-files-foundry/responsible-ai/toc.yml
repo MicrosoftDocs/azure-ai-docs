@@ -3,7 +3,9 @@ items:
 - name: Overview
   href: ../../responsible-use-of-ai-overview.md
 - name: Limited access
-  href: ../../../ai-services/cognitive-services-limited-access.md
+  href: ../../../ai-services/cognitive-services-limited-access.md?context=/azure/foundry/context/context
+- name: Content Provenance for Microsoft Foundry Models
+  href: ../../responsible-ai/content-safety/provenance-disclosure.md
 
 # Azure OpenAI Responsible AI
 - name: Azure OpenAI
@@ -21,7 +23,7 @@ items:
   - name: Customer Copyright Commitment
     href: ../../responsible-ai/openai/customer-copyright-commitment.md
   - name: Abuse monitoring
-    href: ../../openai/concepts/abuse-monitoring.md
+    href: ../../openai/concepts/abuse-monitoring.md?context=/azure/foundry/context/context
 # Agents Responsible AI
 - name: Agents
   items:

@@ -6,7 +6,7 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/05/2026
+ms.date: 08/20/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -144,12 +144,12 @@ az role assignment create \
 
 - **VNET and subnet IP address limitation**:
   - Your agent service delegated subnet must have IP ranges within valid RFC1918 private IPv4 ranges: `10.0.0.0/8`, `172.16-31.0.0/12`, or `192.168.0.0/16` also known as Private Class A, Class B, and Class C IP ranges.
-  - Private Class A IP address ranges (`10.0.0.0/8`) are only supported in specific regions. For the list of regions that support Class A ranges, see [Supported regions](../concepts/limits-quotas-regions.md#supported-regions). Use Class B (`172.16.x.x`) or C (`192.168.x.x`) ranges to deploy Agent service in other regions. 
+  - Private Class A IP address ranges (`10.0.0.0/8`) are supported in every region where Agent Service is available. For the current list, see [Supported regions](../concepts/limits-quotas-regions.md#supported-regions).
   - Public IP ranges like `44.x.x.x` and CGNAT address ranges `100.64.0.0`–`100.127.255.255` aren't supported for agent service delegated subnet. 
   - Ensure that the address spaces of your VNET don't overlap with any existing networks in your Azure environment or reserved IP ranges like the following: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, `100.100.224.0/19`, `100.64.0.0/11`. This requirement includes all address spaces you have in your VNET, and if you have more than one, and peered VNETs. 
 - **Agent subnet exclusivity**: The agent subnet can't be shared by multiple Foundry resources. Each Foundry resource must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environments`. For more on subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
-- **Agent subnet egress firewall allowlisting**: If you're integrating an Azure Firewall with your private network secured standard agent, allow list the Fully Qualified Domain Names (FQDNs) listed under **Managed Identity** in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag **AzureActiveDirectory**.
+- **Agent subnet egress firewall allow list**: If you integrate an Azure Firewall with your private network secured standard agent, add to the allow list the Fully Qualified Domain Names (FQDNs) listed under **Managed Identity** in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag **AzureActiveDirectory**. If you apply Network Security Groups (NSGs) to the delegated agent subnet or related subnets, configure matching outbound allow rules for required dependencies, including the AzureActiveDirectory service tag for Microsoft Entra ID authentication. If either firewall or NSG rules block required dependencies, agent provisioning and runtime operations can fail.
     - Verify that no TLS inspection happens in the Firewall that could add a self-signed certificate. During failures, inspect whether there's any traffic landing on the Firewall and what traffic is being blocked.
     - For source-code agent deployments, also allow the deployment endpoints listed in [Firewall requirements for private virtual networks](../how-to/deploy-hosted-agent-code.md#firewall-requirements-for-private-virtual-networks).
 - **The Foundry resource must be deployed in the same region as the virtual network (VNet)**. Other Azure resources, such as Azure Cosmos DB, Azure AI Search, and Azure Storage, can be deployed in different regions. Consider the cost implications of cross-region deployments.

@@ -17,7 +17,7 @@ This article provides a quick reference and detailed description of the quotas a
 > [!IMPORTANT]
 > Subscription-level quota management in Microsoft Foundry started after **May 7, 2026**.
 
-Starting with Realtime Translate and Realtime Whisper, and soon all models, Foundry tracks quota for deployments at the subscription level rather than per resource or per region. This approach brings consistency and predictability to how quota is managed across deployments, since all resources and regions in a subscription share the same quota pool.
+Starting with Realtime Translate and Realtime Transcribe, and soon all models, Foundry tracks quota for deployments at the subscription level rather than per resource or per region. This approach brings consistency and predictability to how quota is managed across deployments, since all resources and regions in a subscription share the same quota pool.
 
 This change consolidates quota into shared pools:
 
@@ -76,10 +76,9 @@ The following table lists limits for Foundry Models for the following rates:
 | Models                                                                 | Tokens per minute                                   | Requests per minute                                   | Concurrent requests   |
 | ---------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- | -------------------- |
 | Azure OpenAI models                                                    | Varies per model and SKU. See [limits for Azure OpenAI](../../openai/quotas-limits.md). | Varies per model and SKU. See [limits for Azure OpenAI](../../openai/quotas-limits.md). | Varies. See [Azure OpenAI limits](../../openai/quotas-limits.md). |
-| - DeepSeek-R1<br />- DeepSeek-V3-0324                                      | 5,000,000                                           | 5,000                                                 | 300                  |
-| - Llama 3.3 70B Instruct<br />- Llama-4-Maverick-17B-128E-Instruct-FP8<br />- Grok 3<br />- Grok 3 mini | 400,000                                             | 1,000                                                 | 300                  |
+| - Llama 3.3 70B Instruct<br />- Llama-4-Maverick-17B-128E-Instruct-FP8 | 400,000                                             | 1,000                                                 | 300                  |
 | - Flux.2-Pro                                  | not applicable                                      | - Low (Default): 15 <br> - Medium: 30 <br> - High (Enterprise): 100              | not applicable       |
-|- Flux-Pro 1.1 <br />- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
+|- FLUX-1.1-pro <br />- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
 | Rest of models                                                         | 400,000                                             | 1,000                                                 | 300                  |
 
 To increase your quota, use [Microsoft Foundry Service: Request for Quota Increase](https://aka.ms/oai/stuquotarequest) to submit your request. Due to high demand, requests to increase quota are evaluated individually. For more information on quota increase requests, see [request increases to the default limits](#request-increases-to-the-default-limits). 

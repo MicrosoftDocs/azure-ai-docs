@@ -1,7 +1,7 @@
 ---
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 05/13/2026
+ms.date: 08/17/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -14,6 +14,52 @@ ai-usage: ai-assisted
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.51.1: 2026-July release
+
+#### New features
+
+* The Speech SDK core is now available in source form for C++ developers. If you need to build Speech SDK binaries from source, see the [Speech SDK source repository](https://github.com/microsoft-foundry/SpeechSDK). Note that the source version doesn't include every feature available in compiled Speech SDK packages.
+
+#### Bug fixes
+  * Fixed an Embedded Speech initialization failure when using read-only model storage.
+
+### Speech SDK 1.51: 2026-July release
+
+#### New features
+  * Added support for multichannel processing of stereo input audio in speech recognition.
+  * Removed ConversationTranslator (multi-device conversation) support due to the service retirement.
+  * **Android:** Updated OpenSSL to 3.0.21.
+  * **C#, C++:** Added support for configuring a custom AEC (echo cancellation) model path on AudioProcessingOptions via the new PropertyId.AudioProcessing_EchoCancellationModelPath property.
+  * **Go, Python:** Added support for [embedded speech](https://aka.ms/embedded-speech).
+  * **iOS, macOS:** Added Swift Package Manager support.
+
+#### Bug fixes
+  * Fixed crashes during WebSocket connection teardown ([issue 2976](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2976)).
+  * Fixed TranslationRecognizer dropping overlapping target language codes ([issue 3024](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/3024)).
+  * Fixed TTS token credential errors when using the REST backend.
+  * **C#, Java:** Fixed an exception/hang when KeywordRecognizer is stopped ([issue 3055](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/3055)).
+  * **C#, Java, Python:** Fixed an EventLogger crash during process teardown.
+  * **iOS, macOS:** Fixed a crash on TTS SSML/text input with embedded NUL or invalid UTF-8.
+  * **Linux:** Fixed internal symbols exported from pal_azure_c_shared library ([issue 3001](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/3001)).
+
+#### Samples:
+  * Removed ConversationTranslator samples.
+  * Removed MeetingTranscriber samples due to the feature being reserved for Microsoft first-party applications.
+  * **Python:** Added samples for embedded speech.
+
+### Speech SDK for JavaScript (1.51)
+
+#### New features
+  * Added setters for speech context fields that were missing from the JavaScript SDK.
+  * Added support for multichannel processing of stereo input audio in speech recognition.
+  * Removed ConversationTranslator (multi-device conversation) support due to the service retirement.
+
+#### Bug fixes
+  * Fixed TTS REST requests when using a custom domain.
+
+#### Samples:
+  * Fixed a browser sample not displaying translation results ([issue 2786](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2786)).
 
 ### Speech SDK 1.50: 2026-May release
 
@@ -592,17 +638,11 @@ This table shows the previous and new object names for real-time diarization and
 
     * [New C# conversation transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/conversation-transcription/README.md)
 
-    * [New C# meeting transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/meeting-transcription/README.md)
-
 * **JavaScript**
 
     * [New JavaScript conversation transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/browser/conversation-transcription/README.md)
 
-    * [New JavaScript meeting transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/browser/meeting-transcription/README.md)
-
     * [New Node.js conversation transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/node/conversation-transcription/README.md)
-
-    * [New Node.js meeting transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/node/meeting-transcription/README.md)
 
 ### Speech SDK 1.30.0: July 2023 release
 

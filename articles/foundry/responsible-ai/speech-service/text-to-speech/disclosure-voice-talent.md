@@ -86,7 +86,9 @@ We recognize that there's no perfect way to prevent media from being modified or
 
 ## Requirements and tips for meaningful consent from voice and avatar talent 
 
-If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii), deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements.
+
+[!INCLUDE [Biometric data privacy note](../../includes/biometric-data-privacy-note.md)]
+
 
 #### [Custom neural voice](#tab/cnv)
 
@@ -190,7 +192,7 @@ Azure AI text to speech must not be used:
 
 Appropriate use cases could include, but are not limited to: 
 - Virtual agents based on fictional personas. For example, on-demand web searching, IoT control, or customer support provided by a company's branded character.
-- Entertainment media for use in fictional content. For example, movies, video games, tv, recorded music, or audio books.
+- Entertainment media for use in fictional content. For example, movies, video games, TV, recorded music, or audio books.
 - Accredited educational institutions or educational media. For example, interactive lesson plans or guided museum tours.
 - Assistive technology and real-time translation. For example, ALS-afflicted individuals preserving their voices.
 - Public service announcements using fictional personas. For example, airport or train terminal announcements.

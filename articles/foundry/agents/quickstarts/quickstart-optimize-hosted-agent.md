@@ -1,9 +1,9 @@
 ---
 title: "Quickstart: Optimize a hosted agent (preview)"
-description: "Deploy the optimization sample agent, run the agent optimizer to automatically improve its instructions, and deploy the winning candidate."
+description: "Deploy and optimize a hosted agent by using the Azure Developer CLI, Python SDK, VS Code, or the Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
-ms.date: 06/22/2026
+ms.date: 08/25/2026
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -51,11 +51,70 @@ Before you begin, you need:
 * The Python packages used in this path:
 
   ```bash
-  pip install "azure-ai-projects>=2.3.0" azure-identity python-dotenv
+  pip install "azure-ai-projects>=2.4.0" azure-ai-agentserver-optimization azure-identity python-dotenv
   ```
 
 * An existing Foundry project that already contains the hosted agent,
   registered dataset, and evaluator you want to use for optimization.
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+* [Visual Studio Code](https://code.visualstudio.com/).
+* [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk)
+  version 1.6.4 or later, signed in to Azure. Foundry Toolkit installs and
+  updates the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md)
+  used by this workflow.
+* [GitHub Copilot in Visual Studio Code](https://code.visualstudio.com/docs/copilot/setup)
+  with access to agent mode. Foundry Toolkit sends the Agent Optimizer request
+  to GitHub Copilot after you select the agent workspace.
+* [Azure CLI](/cli/azure/install-azure-cli) and
+  [Azure Developer CLI (AZD)](/azure/developer/azure-developer-cli/install-azd)
+  installed and authenticated:
+
+  ```bash
+  az login
+  azd auth login
+  ```
+
+> [!TIP]
+> If you don't have Foundry Toolkit, [install it from the Visual Studio Code
+> Marketplace](https://aka.ms/foundrytk). Foundry Toolkit brings your Foundry
+> resources, model catalog, hosted-agent deployment and playgrounds, and Agent
+> Optimization into Visual Studio Code. Reload Visual Studio Code if prompted,
+> and then sign in to Azure. For a tour of the extension, see [Work with the
+> Microsoft Foundry Toolkit for Visual Studio Code
+> extension](../../how-to/develop/get-started-projects-visual-studio-code.md).
+
+:::zone-end
+
+:::zone pivot="foundry-skills"
+
+* A coding agent host with the
+  [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md)
+  installed.
+* [Azure CLI](/cli/azure/install-azure-cli) and
+  [Azure Developer CLI (AZD)](/azure/developer/azure-developer-cli/install-azd)
+  installed and authenticated:
+
+  ```bash
+  az login
+  azd auth login
+  ```
+
+* The `microsoft.foundry` extension for AZD. Install it before you start the
+  workflow:
+
+  ```bash
+  azd ext install microsoft.foundry
+  ```
+
+  If it's already installed, upgrade it:
+
+  ```bash
+  azd ext upgrade microsoft.foundry
+  ```
 
 :::zone-end
 
@@ -75,12 +134,16 @@ mkdir my-agent && cd my-agent
 azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/azure.yaml .
 ```
 
-The interactive flow prompts for your Azure subscription, region, and model deployment settings. It adopts `azure.yaml` for hosted-agent configuration and generates `.agent_configs/baseline/`, the evaluation dataset, and infrastructure files.
+This template imports the [Optimization Customer Support sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support), an optimization-ready Python hosted agent that uses the bring-your-own approach and the Responses protocol. It represents a consumer electronics support agent that handles order inquiries, returns, warranty claims, troubleshooting, complaints, recommendations, and escalation. The deliberately minimal baseline instruction makes the improvements from instruction optimization and skill discovery easy to compare.
+
+The sample calls `load_config()` to load baseline or candidate configuration and includes `.agent_configs/baseline/`, `eval.yaml`, full and quick evaluation datasets, container configuration, and the Foundry deployment manifest. The interactive flow imports these files and prompts for your Azure subscription, region, and model deployment settings.
 
 > [!TIP]
 > If you already have an existing agent project, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md) to add optimization support.
 >
 > If you already have a Foundry project, add `-p <project-resource-id>` to target existing resources.
+>
+> To optimize an already deployed agent without running `azd ai agent init` or creating `azure.yaml` and `.azure` files, skip this project-creation step and follow [Optimize an existing agent without AZD project files](../how-to/optimize-agent-targets.md#optimize-an-existing-agent-without-azd-project-files).
 
 ## Step 2: Provision and deploy
 
@@ -224,9 +287,9 @@ Create a file named `optimize_hosted_agent.py` in the same folder as `.env`:
 import os
 import time
 
+from azure.ai.agentserver.optimization import load_config
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-  JobStatus,
   OptimizationAgentIdentifier,
   OptimizationEvaluatorRef,
   OptimizationJob,
@@ -244,51 +307,50 @@ agent_name = os.environ["FOUNDRY_AGENT_NAME"]
 dataset_name = os.environ["DATASET_NAME"]
 evaluator_name = os.environ["EVALUATOR_NAME"]
 dataset_version = os.environ.get("DATASET_VERSION", "1")
-poll_interval = int(os.environ.get("POLL_INTERVAL_SECONDS", "10"))
 eval_model = os.environ.get("EVAL_MODEL", "gpt-4o")
 optimization_model = os.environ.get("OPTIMIZATION_MODEL", "gpt-5")
+poll_interval_seconds = int(os.environ.get("POLL_INTERVAL_SECONDS", "10"))
 
-terminal_statuses = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
+optimization_config = load_config() # Reads agent optimization config from .agent_configs/baseline/metadata.yaml
 
 with (
   DefaultAzureCredential() as credential,
   AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
-  job = project_client.beta.agents.create_optimization_job(
-    job=OptimizationJob(
-      inputs=OptimizationJobInputs(
-        agent=OptimizationAgentIdentifier(agent_name=agent_name),
-        train_dataset=OptimizationReferenceDatasetInput(
-          name=dataset_name,
-          version=dataset_version,
-        ),
-        evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
-        options=OptimizationOptions(
-          max_candidates=2,
-          eval_model=eval_model,
-          optimization_model=optimization_model,
-        ),
-      )
+  job = OptimizationJob(
+    inputs=OptimizationJobInputs(
+      agent=OptimizationAgentIdentifier(agent_name=agent_name),
+      train_dataset=OptimizationReferenceDatasetInput(
+        name=dataset_name,
+        version=dataset_version,
+      ),
+      evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
+      options=OptimizationOptions(
+        max_candidates=2,
+        eval_model=eval_model,
+        optimization_model=optimization_model,
+        optimization_config={
+          "system_prompt": optimization_config.instructions,
+          **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
+          **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
+        }
+      ),
     )
   )
+  poller = project_client.beta.agents.begin_create_optimization_job(job=job)
 
-  print(f"Created optimization job: {job.id}")
-  print(f"Initial status: {job.status}")
+  print(f"Optimization job started, waiting for completion...")
+  while not poller.done():
+    print(f"\tstatus=`{poller.status()}`")
+    time.sleep(poll_interval_seconds)
 
-  while job.status not in terminal_statuses:
-    time.sleep(poll_interval)
-    job = project_client.beta.agents.get_optimization_job(job_id=job.id)
-    print(f"Status: {job.status}")
+  result = poller.result()
 
-  if job.status == JobStatus.FAILED:
-    message = job.error.message if job.error else "<no error message>"
-    raise RuntimeError(f"Optimization job failed: {message}")
+  if result:
+    print(f"Baseline candidate: {result.baseline}")
+    print(f"Best candidate: {result.best}")
 
-  if job.result:
-    print(f"Baseline candidate: {job.result.baseline}")
-    print(f"Best candidate: {job.result.best}")
-
-    for candidate in job.result.candidates or []:
+    for candidate in result.candidates or []:
       print(
         f"{candidate.name}: candidate_id={candidate.candidate_id}, "
         f"avg_score={candidate.avg_score:.4f}, "
@@ -327,9 +389,155 @@ Foundry before promoting it.
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+## Run the optimization in VS Code
+
+Foundry Toolkit includes a native Agent Optimization experience for deployed
+hosted agents. From the agent playground, you can start an optimization run,
+compare candidates with the baseline, inspect configuration changes, and deploy
+the best candidate.
+
+### Step 1: Select a deployed hosted agent
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, select **Agents**.
+1. If you have a deployed hosted agent, select it to open the hosted agent
+  playground.
+1. If you don't have a deployed hosted agent, complete the VS Code path in
+  [Quickstart: Deploy your first hosted agent](quickstart-hosted-agent.md?pivots=vscode).
+  After deployment finishes, return to **Agents** and select the new hosted
+  agent.
+
+### Step 2: Start an optimization run
+
+1. Select the **Optimize** tab, which is marked **Preview**.
+
+:::image type="content" source="../media/quickstart/optimize-hosted-agent-vscode-optimize-tab.png" alt-text="Screenshot of a hosted agent in Foundry Toolkit with the Optimize preview tab selected and the New Optimization button available." lightbox="../media/quickstart/optimize-hosted-agent-vscode-optimize-tab.png":::
+
+1. Select **New Optimization**.
+1. In **Select Workspace**, choose the workspace that contains the selected
+   hosted agent's code:
+
+   * Select **Current workspace** if the current workspace contains the agent
+     code and its `azure.yaml` file.
+   * Select **Browse...** to open the workspace that contains the agent code.
+
+   Foundry Toolkit uses the workspace files to prepare the optimization and to
+   apply a candidate to the matching `azure.ai.agent` service.
+
+:::image type="content" source="../media/quickstart/optimize-hosted-agent-vscode-select-workspace.png" alt-text="Screenshot of the Select Workspace prompt in Foundry Toolkit showing Current workspace and Browse options for locating the hosted agent code." lightbox="../media/quickstart/optimize-hosted-agent-vscode-select-workspace.png":::
+
+1. Foundry Toolkit opens GitHub Copilot Chat and sends an Agent Optimizer
+   request populated with the selected agent's kind, name, and Foundry project
+   endpoint.
+1. Answer the four optimization questions in Copilot Chat:
+
+   | Input | What to provide |
+   | ----- | --------------- |
+   | Evaluation metrics | Enter the metrics or evaluators to use. If you don't have them, choose whether to run `azd ai agent eval generate` or use the optimizer's built-in defaults. |
+   | Dataset | Select the optimization dataset. If you don't have one, choose whether to run `azd ai agent eval generate` or use the optimizer's built-in defaults. |
+   | Maximum candidates | Enter the maximum number of candidates to generate, such as `2`. |
+   | Optimization model | Select an existing deployment from the [supported optimization models](../concepts/agent-optimizer-overview.md#models). |
+
+GitHub Copilot waits for these inputs before it starts optimization. The
+generated request directs Copilot to use the Microsoft Foundry Skill's Agent
+Optimizer workflow and Azure Developer CLI commands exclusively. It doesn't use
+Foundry MCP tools. Copilot:
+
+* Inspects the agent code in the selected workspace.
+* Initializes an AZD environment from existing `azure.yaml` and `.env` values
+  if the project doesn't already have one.
+* Wires the agent for optimization and deploys the updated hosted agent.
+* Creates `eval.yaml` in the agent service folder.
+* Starts the optimization after you review and approve the proposed file
+  changes and commands.
+
+After Copilot submits the job, return to the **Optimize** tab. The run appears
+under **Optimization runs**. The table shows its run ID, status, candidate count,
+baseline score, best score, and creation time.
+
+### Step 3: Compare and deploy the best candidate
+
+1. When the run succeeds, select it under **Optimization runs**.
+1. Compare the **Baseline** and **Best** scores. Review **Score details** for
+  each candidate, and select **View changes** to inspect its configuration
+  changes.
+1. If the best candidate improves on the baseline, select **Deploy best
+  candidate** to update the current agent. To deploy it as a new agent or
+  change deployment settings, select **Custom deploy** instead.
+
+> [!NOTE]
+> If every candidate scores lower than the baseline, don't deploy a candidate.
+> Keep the current agent and revise the dataset or optimization settings before
+> you run the optimizer again.
+
+:::image type="content" source="../media/quickstart/optimize-hosted-agent-vscode-results.png" alt-text="Screenshot of a completed optimization run in Foundry Toolkit comparing the baseline and generated candidates, with scores, configuration changes, and deployment options." lightbox="../media/quickstart/optimize-hosted-agent-vscode-results.png":::
+
+
+:::zone-end
+
+:::zone pivot="foundry-skills"
+
+## Run the optimization with the Microsoft Foundry Skill
+
+Use this path in any coding agent host that supports the Microsoft Foundry
+Skill, such as GitHub Copilot in Visual Studio Code, Copilot CLI, or Claude
+Code. The skill resolves the agent context from `azure.yaml`, loads its Agent
+Optimizer workflow, and keeps candidate application and deployment behind
+review gates.
+
+### Step 1: Open the agent workspace
+
+Open an empty folder in your coding agent host. Confirm that the
+`microsoft-foundry` skill is available. If the skill isn't available, follow
+[Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md).
+
+### Step 2: Ask the skill to run Agent Optimizer
+
+Submit this prompt to your coding agent:
+
+```text
+Use the Microsoft Foundry Skill to run the Agent Optimizer workflow for a
+Python hosted agent. If this workspace doesn't contain an agent, initialize the
+customer support optimization sample from this template:
+https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/azure.yaml
+Resolve the AZD environment and hosted-agent service, verify that the agent is
+optimizer-ready, and deploy and invoke the baseline. Generate and show me the
+evaluation dataset, evaluators, and eval.yaml before running optimization.
+Verify that the project has a supported optimization model deployment, then run
+Agent Optimizer with two candidates. Stop after reporting the operation ID,
+portal URL, candidate IDs, and scores. Don't apply or deploy a candidate yet.
+```
+
+The coding agent might ask you to select a subscription, region, Foundry
+project, agent service, evaluation model, or optimization model when it can't
+resolve those values from the workspace. Review generated files and
+cost-bearing resources before you approve any changes or commands.
+
+### Step 3: Apply and deploy an approved candidate
+
+After you review the optimization results, submit this follow-up prompt:
+
+```text
+Recommend the best optimization candidate and explain the score improvement.
+Summarize the candidate changes before applying anything. After I approve the
+candidate, apply it locally, show the source diff, and stop again before
+deployment. After I approve deployment, run azd deploy, invoke the agent with
+"What is your return policy?", and rerun the evaluation to confirm the
+improvement.
+```
+
+The skill uses `azd ai agent optimize apply --candidate <candidate-id>` so you
+can review the optimized configuration locally. It deploys only after your
+approval, then invokes and evaluates the updated hosted agent.
+
+:::zone-end
+
 ## Clean up resources
 
-If you used the preceding Azure Developer CLI workflow, delete the provisioned resources when you finish experimenting:
+If your workflow created resources through the AZD project, delete the
+provisioned resources when you finish experimenting:
 
 ```bash
 azd down --force --purge
@@ -347,6 +555,11 @@ azd down --force --purge
 | Python script fails with `KeyError: 'DATASET_NAME'` or another missing variable | The script didn't load your `.env` file, or the variable is missing | Run the script from the same folder as `.env`, or export the required values in your shell before running `python optimize_hosted_agent.py`. |
 | Python script fails with `ResourceNotFound: The project does not exist` | `FOUNDRY_PROJECT_ENDPOINT` doesn't point to an existing Foundry project | Copy the project endpoint from the Foundry project's **Overview** page and update `FOUNDRY_PROJECT_ENDPOINT` in `.env`. |
 | Python script fails with `Optimization model deployment '<name>' not found` | `OPTIMIZATION_MODEL` is not the name of a deployed model in your Foundry project | Use the exact deployment name from **Build** > **Deployments**, such as an existing `gpt-5` family or DeepSeek deployment in your project. |
+| The **Optimize** section doesn't appear for a hosted agent | Foundry Toolkit is older than version 1.6.4, or the selected agent isn't a deployed hosted agent | Update [Foundry Toolkit](https://aka.ms/foundrytk), reload Visual Studio Code, and reopen the deployed agent from the **Agents** tab. |
+| GitHub Copilot Chat doesn't open after you select the workspace | GitHub Copilot isn't installed, isn't available for your account, or agent mode is disabled | Set up [GitHub Copilot in Visual Studio Code](https://code.visualstudio.com/docs/copilot/setup), enable agent mode, and then select **New Optimization** again. |
+| Foundry Toolkit can't apply the best candidate to the current workspace | The workspace doesn't contain an `azure.yaml` service whose name matches the deployed hosted agent | Open the workspace that contains the selected agent's code and matching `azure.ai.agent` service, then try again. |
+| Coding agent can't find the hosted agent | The wrong folder is open, or `azure.yaml` doesn't define an `azure.ai.agent` service | Open the AZD project folder that contains `azure.yaml`, then ask the coding agent to resolve the hosted-agent service again. |
+| Coding agent stops before applying or deploying a candidate | The Agent Optimizer skill requires review before source changes and deployment | Review the candidate scores and local diff, then explicitly approve the apply or deployment step. |
 | Optimization score is 0 or very low | Evaluation has many errored rows | Open the **Eval** link in the results. Fix response generation or evaluator errors, then rerun. |
 | `azd provision` fails with quota error | Subscription lacks capacity | Try a different region or request a quota increase. |
 
@@ -355,7 +568,8 @@ azd down --force --purge
 In this quickstart, you:
 
 * Deployed the optimization sample agent by using the customer-support template.
-* Ran the agent optimizer to automatically improve agent instructions.
+* Ran the agent optimizer by using the Azure Developer CLI, Python SDK, Visual
+  Studio Code, or the Microsoft Foundry Skill.
 * Deployed the winning candidate and verified the improvement.
 
 ## Next steps

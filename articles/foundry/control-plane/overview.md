@@ -88,7 +88,7 @@ Foundry Control Plane supports the following tasks.
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-The capabilities described previously are organized into panes that you access by selecting **Operate** on the upper-right toolbar of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription. These features are currently available through the Foundry portal only.
+You access the capabilities described previously through panes by selecting **Operate** on the upper-right toolbar of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription. Project-scoped settings, such as **Quota** and **AI Gateway**, are on the **Manage** toolbar button instead. You can currently access these features through the Foundry portal only.
 
 Each pane within **Operate** is designed around a specific job. These panes help various roles, from builders to administrators, manage AI systems at scale.
 
@@ -138,9 +138,9 @@ Policy management in Foundry enables administrators and developers alike to embe
 
 ### Quota
 
-Use the **Quota** pane to view, adjust, and request quotas.
+Use the **Quota** pane, on the **Manage** toolbar button, to view, adjust, and request quotas.
 
-:::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota pane that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
+:::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota pane in the Manage section that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
 The **Quota** pane shows your model deployments and how much quota each deployment consumes. It gives insights into usage patterns and helps you manage resources effectively.
 
@@ -148,21 +148,20 @@ By default, the quota view displays only models with active deployments. Turn on
 
 For more information, see [Manage and increase quotas for resources](../how-to/quota.md).
 
-### Admin
+### Project and resource management
 
-Use the **Admin** pane to view, organize, and administer all projects, users, and connected resources across your Foundry environment.
+Use the **Manage** toolbar button to view and administer the project you're working in and its parent Foundry resource.
 
-:::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin pane that shows a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
+**Manage** is scoped to your current selection, which is a key difference from **Operate**. To act on a different project, switch projects first by using the project name dropdown in the upper left.
 
-This pane extends your operational view beyond a single project. Most work in Foundry happens within a project context. The **Admin** pane provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
+From **Manage**, administrators and power users can:
 
-From **Admin**, administrators and power users can:
-
-- Gain visibility into all projects across their subscription or tenant, including active, inactive, and archived workspaces.
-- View detailed project information such as owners, region, connected services, and compliance posture.
-- Add or remove users directly from a project, to define granular access levels aligned with organizational roles.
-- Attach or manage connected resources, such as storage accounts, compute clusters, and Foundry Tools, so that projects remain properly provisioned.
-- Assign access at parent scope (subscription or resource group) to apply consistent governance and permissions inheritance across multiple projects.
+- Review project configuration on the **Project details** pane, including the resource ID, endpoint, subscription, and location.
+- Review parent resource configuration on the **Resource details** pane, and open the resource in the Azure portal.
+- Add or remove users on the **Users** tab, to define granular access levels aligned with organizational roles.
+- Attach or manage connected resources, such as storage accounts and Foundry Tools, on the **Connected resources** tab, so that projects remain properly provisioned.
+- Add projects to the parent resource, and review every project the resource contains, on the **Projects** tab of **Resource details**.
+- Configure quota and AI Gateway for the resource.
 
 ## Get started with Foundry Control Plane
 

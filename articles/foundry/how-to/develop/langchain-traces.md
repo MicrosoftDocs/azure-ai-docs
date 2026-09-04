@@ -4,7 +4,7 @@ description: Learn how to trace LangChain and LangGraph applications in Foundry 
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 07/20/2026
 ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
@@ -150,9 +150,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-	endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+	project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
 	credential=DefaultAzureCredential(),
-	model=os.environ["AZURE_OPENAI_DEPLOYMENT"],
+	model="gpt-4.1",
 )
 
 prompt = ChatPromptTemplate.from_template(
@@ -279,7 +279,7 @@ The tracer emits spans that follow the [OpenTelemetry GenAI semantic conventions
 Each span type uses a specific `gen_ai.operation.name` value:
 
 | Span type | `gen_ai.operation.name` | Description |
-|---|---|---|
+| --- | --- | --- |
 | Agent/chain invocation | `invoke_agent` | Each LangGraph node or chain step. Span name is `invoke_agent {gen_ai.agent.name}`. |
 | Chat model call | `chat` | LLM inference requests. Span name is `chat {gen_ai.request.model}`. |
 | Text completion | `text_completion` | Non-chat LLM calls. |
@@ -291,7 +291,7 @@ Spans also carry these key attributes:
 - `gen_ai.agent.name` — The agent or node name.
 - `gen_ai.agent.id` — Set from the `agent_id` constructor parameter.
 - `gen_ai.agent.description` — A description of the agent.
-- `gen_ai.provider.name` — The model provider (for example, `openai`, `azure.ai.inference`).
+- `gen_ai.provider.name` — The model provider (for example, `openai`).
 - `gen_ai.request.model` — The model name used for inference.
 - `gen_ai.conversation.id` — Thread or session identifier, when available.
 - `gen_ai.usage.input_tokens` / `gen_ai.usage.output_tokens` — Token counts from model responses.
@@ -324,15 +324,15 @@ as a span attribute.
 
 ```python
 config = {
+    "configurable": {"thread_id": "session-abc-123"},
     "callbacks": [tracer],
     "metadata": {
         "agent_name": "support-bot",
         "agent_id": "support-bot-v2",
         "agent_description": "Handles customer support requests",
-        "thread_id": "session-abc-123",
     },
 }
-result = graph.invoke({"messages": [message]}, config)
+result = workflow.invoke({"messages": [message]}, config)
 ```
 
 When using LangGraph, you can also set metadata per node in the graph definition:

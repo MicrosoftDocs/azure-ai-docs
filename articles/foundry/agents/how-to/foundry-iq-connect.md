@@ -8,7 +8,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/07/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -18,9 +18,9 @@ ai-usage: ai-assisted
 [!INCLUDE [Preview API usage](../../../search/includes/previews/agentic-retrieval-preview-api-usage.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -48,9 +48,9 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 ## Prerequisites
 
 - An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
-- A [Microsoft Foundry project](../../how-to/create-projects.md) with an [LLM deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) with an [LLM deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`. Hub-based projects aren't supported.
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
-- The latest preview Python SDK (version 2.0.0 or later) or the 2026-05-01-preview REST API version.
+- The latest preview Python SDK (version 2.0.0 or later) or the 2026-08-01-preview REST API version.
 
   ```bash
   pip install "azure-ai-projects>=2.0.0" requests
@@ -58,7 +58,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 
 ### Authentication and permissions
 
-We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend role-based access control for production deployments. To assign the roles in this section, you need the **Owner** or **User Access Administrator** role on both resources, or another role that grants `Microsoft.Authorization/roleAssignments/write`. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 #### [Microsoft Foundry](#tab/foundry)
 
@@ -68,13 +68,13 @@ We recommend role-based access control for production deployments. If roles aren
 
 - On the parent resource of your project, you need the **Foundry Project Manager** role to create a project connection for MCP authentication and either **Foundry User** or **Foundry Project Manager** to use the MCP tool in agents.
 
+- (Conditional) On the parent resource of your project, assign the **Cognitive Services User** role to your search service's system-assigned managed identity. This step is required only if your knowledge base specifies an LLM. Depending on its configuration, the knowledge base uses this identity to call the LLM for query planning, answer synthesis, or both. For more information, see [Connect to Azure AI Search using a managed identity](/azure/search/search-how-to-managed-identities).
+
 - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
 
 #### [Azure AI Search](#tab/search)
 
-- On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes.
-
-- If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
+- On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes. If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
 
 - For indexed content with access control lists (ACLs), include [permission metadata fields](/azure/search/search-document-level-access-overview) in your search index and pass user tokens via the `x-ms-query-source-authorization` header at query time to filter results based on the user's identity. For more information, see [Query-time ACL and RBAC enforcement](/azure/search/search-query-access-control-rbac-enforcement).
 
@@ -89,7 +89,7 @@ Use the following values in the code samples.
 | Value | Where to get it | Example |
 |---|---|---|
 | Project endpoint (`project_endpoint`) | Find it in your project details in the Microsoft Foundry portal. | `https://your-resource.services.ai.azure.com/api/projects/your-project` |
-| Project resource ID (`project_resource_id`) | Copy the project ARM resource ID from Azure portal or use Azure CLI to query the resource ID. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.MachineLearningServices/workspaces/.../projects/...` |
+| Project resource ID (`project_resource_id`) | Copy the project ARM resource ID from Azure portal or use Azure CLI to query the resource ID. Your Microsoft Foundry project must have the `Microsoft.CognitiveServices/accounts` namespace. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.CognitiveServices/accounts/.../projects/...` |
 | Azure AI Search endpoint (`search_service_endpoint`) | Find it on your Azure AI Search service **Overview** page (the service URL) in the Azure portal. | `https://your-search-service.search.windows.net` |
 | Knowledge base name (`knowledge_base_name`) | Use the knowledge base name you created in Azure AI Search. | `hr-policy-kb` |
 | Project connection name (`project_connection_name`) | Choose a name for the project connection you create. | `my-kb-mcp-connection` |
@@ -114,9 +114,9 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 # Provide connection details
 credential = DefaultAzureCredential()
-project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
+project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{account_name}/projects/{project_name}
 project_connection_name = "{project_connection_name}"
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
 
 # Get bearer token for authentication
 bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
@@ -167,7 +167,7 @@ Content-Type: application/json
   "properties": {
     "authType": "ProjectManagedIdentity",
     "category": "RemoteTool",
-    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
+    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
     "isSharedToAll": true,
     "audience": "https://search.azure.com/",
     "metadata": {
@@ -218,7 +218,7 @@ from azure.identity import DefaultAzureCredential
 
 # Provide agent configuration details
 credential = DefaultAzureCredential()
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview"
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview"
 project_endpoint = "{project_endpoint}" # e.g. https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
 project_connection_name = "{project_connection_name}"
 agent_name = "{agent_name}"
@@ -279,7 +279,7 @@ Content-Type: application/json
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
@@ -295,18 +295,20 @@ Content-Type: application/json
 
 ---
 
-### Connect to a remote SharePoint knowledge source
+### (Optional) Enforce permissions with per-request headers
 
-[!INCLUDE [foundry-iq-limitation](../../includes/foundry-iq-limitation.md)]
+If any of your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user sees only the documents they're authorized to access. To enable this filtering, forward the signed-in user's identity token in the `x-ms-query-source-authorization` header of the MCP tool connection. Without the token, permission-enabled sources return results unfiltered. For more information, see [Enforce permissions at query time (preview)](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time-preview).
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time (preview)](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time).
+[!INCLUDE [vary-mcp-headers-per-request](../../includes/vary-mcp-headers-per-request.md)]
 
 #### [Python](#tab/python)
 
-```python
-from azure.identity import get_bearer_token_provider
+Update the agent from the previous step so the MCP tool reads its authorization header from a structured input:
 
-# Create MCP tool with SharePoint authorization header
+```python
+from azure.ai.projects.models import StructuredInputDefinition
+
+# Reference the token as a placeholder in the header
 mcp_kb_tool = MCPTool(
     server_label = "knowledge-base",
     server_url = mcp_endpoint,
@@ -314,26 +316,69 @@ mcp_kb_tool = MCPTool(
     allowed_tools = ["knowledge_base_retrieve"],
     project_connection_id = project_connection_name,
     headers = {
-        "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+        "x-ms-query-source-authorization": "{{search_auth_token}}"
     }
+)
+
+# Declare the structured input so the caller can supply the token per request
+agent = project_client.agents.create_version(
+    agent_name = agent_name,
+    definition = PromptAgentDefinition(
+        model = agent_model,
+        instructions = instructions,
+        tools = [mcp_kb_tool],
+        structured_inputs = {
+            "search_auth_token": StructuredInputDefinition(
+                description = "Per-user Azure AI Search bearer token",
+                required = True,
+                schema = {"type": "string"},
+            )
+        }
+    )
+)
+
+print(f"Agent '{agent_name}' created or updated successfully.")
+```
+
+When you invoke the agent, supply an Azure AI Search token in `structured_inputs`. This example resolves a token from the current `credential`. For a multi-user app, pass the token of each signed-in user instead. For example, use a token obtained through an on-behalf-of flow so the retrieval engine can filter results for that user.
+
+```python
+# Resolve an Azure AI Search token from the current credential (use a per-user token in production)
+from azure.identity import get_bearer_token_provider
+
+search_token = get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+
+openai_client = project_client.get_openai_client()
+conversation = openai_client.conversations.create()
+
+response = openai_client.responses.create(
+    conversation = conversation.id,
+    input = "{user_query}",
+    extra_body = {
+        "agent_reference": {"name": agent.name, "type": "agent_reference"},
+        "structured_inputs": {"search_auth_token": search_token},
+    },
 )
 ```
 
 #### [REST](#tab/rest)
 
-Get an access token for Azure AI Search:
+Update the agent creation request so the MCP tool reads its authorization header from a structured input:
 
-```azurecli
-az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
-```
+```http
+POST {project_endpoint}/agents?api-version=v1
+Authorization: Bearer {foundry_access_token}
+Content-Type: application/json
 
-Provide the header and token in the MCP tool configuration:
-
-```HTTP
+{
+  "name": "{agent_name}",
+  "definition": {
+    "model": "{deployed_llm}",
+    "instructions": "\nYou are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.\nEvery answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`\nIf you cannot find the answer in the provided knowledge base you must respond with \"I don't know\".\n",
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-08-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
@@ -341,10 +386,46 @@ Provide the header and token in the MCP tool configuration:
         "project_connection_id": "{project_connection_name}",
         "type": "mcp",
         "headers": {
-            "x-ms-query-source-authorization": "{search-bearer-token}"
+          "x-ms-query-source-authorization": "{{search_auth_token}}"
         }
       }
-    ]
+    ],
+    "structured_inputs": {
+      "search_auth_token": {
+        "description": "Per-user Azure AI Search bearer token",
+        "required": true,
+        "schema": { "type": "string" }
+      }
+    },
+    "kind": "prompt"
+  }
+}
+```
+
+Get the signed-in user's access token for Azure AI Search:
+
+```azurecli
+az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
+```
+
+Supply the token in `structured_inputs` when you send the `POST` request to invoke the agent:
+
+```HTTP
+POST {project_endpoint}/openai/v1/responses
+Authorization: Bearer {foundry_access_token}
+Content-Type: application/json
+
+{
+  "conversation": "{conversation_id}",
+  "input": "{user_query}",
+  "agent_reference": {
+    "type": "agent_reference",
+    "name": "{agent_name}"
+  },
+  "structured_inputs": {
+    "search_auth_token": "{search_bearer_token}"
+  }
+}
 ```
 
 ---
@@ -501,7 +582,7 @@ This section helps you troubleshoot common issues when connecting Foundry Agent 
 
 - Confirm `search_service_endpoint` is the Azure AI Search service URL, such as `https://<name>.search.windows.net`.
 - Confirm `knowledge_base_name` matches the knowledge base you created in Azure AI Search.
-- Confirm you use the `2026-05-01-preview` API version for the knowledge base MCP endpoint.
+- Confirm you use the `2026-08-01-preview` API version for the knowledge base MCP endpoint.
 
 ### The agent doesn't ground answers
 

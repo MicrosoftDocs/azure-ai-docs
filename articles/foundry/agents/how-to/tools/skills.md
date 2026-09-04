@@ -1,16 +1,16 @@
 ---
 title: "Use skills with Microsoft Foundry agents (preview)"
-description: "Manage versioned skills in Microsoft Foundry using the Skills REST API. Author SKILL.md files, store them centrally with version control, and attach them to toolboxes or hosted agents."
+description: "Learn how to author and version skills in Microsoft Foundry, then attach them to toolboxes or download them for hosted and local agents."
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 06/24/2026
+ms.date: 08/05/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: dev-focus, doc-kit-assisted
+ms.custom: dev-focus, doc-kit-assisted, sfi-image-flagged
 zone_pivot_groups: selection-foundry-skills
 ai-usage: ai-assisted
 ---
@@ -24,25 +24,13 @@ Skills solve this problem by decoupling behavioral guidelines from agent code. A
 
 In this article, you learn how to:
 
-- Create versioned skills and manage them through the Skills API.
-- List, get, and delete skills and skill versions.
-- Download skill content for use in a Hosted agent.
-- Attach skills to a toolbox.
+- Author a `SKILL.md` file and upload it as a versioned skill.
+- Attach a skill to a toolbox for MCP clients.
+- Download and use skill content in a hosted agent.
+- Manage skills and their immutable versions after deployment.
 
-## Feature support
-
-| Feature | REST API | Python | .NET | JavaScript | VS Code | Toolbox | Hosted agent |
-| ------- | -------- | ------ | ---- | ---------- | ------- | ------- | ------------ |
-| Create skill version (JSON inline content) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
-| Create skill version (ZIP file upload) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
-| List, get, and delete skills and versions | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
-| Download skill content | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
-| Update skill default version | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
-| Attach skills to a toolbox | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
-
-## Limitations
-
-Skills don't support private networking. The Skills API isn't accessible over a private endpoint, so you can't create, manage, or download skills from a Foundry resource that has public network access disabled.
+> [!CAUTION]
+> Customers are responsible for understanding the behaviors of any skills deployed and the data handling practices of any external endpoints receiving data.
 
 ## Prerequisites
 
@@ -53,6 +41,18 @@ Skills don't support private networking. The Skills API isn't accessible over a 
 
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/).
 - Install the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) from the Visual Studio Code Marketplace.
+
+## Create and use a skill
+
+First, author and upload the skill. Then choose whether to deliver it through a toolbox or bundle it with a hosted agent.
+
+| Phase | Task |
+|---|---|
+| Author | [Create the `SKILL.md` file](#author-a-skill) and validate its name, description, and instructions. |
+| Upload | [Create a skill version](#create-a-skill-version) from inline content, a `SKILL.md` file, or a ZIP archive. |
+| Attach | [Attach the skill to a toolbox](#attach-skills-to-a-toolbox-preview) so compatible MCP clients can discover it. |
+| Use | [Download and use the skill in a hosted agent](#use-skills-in-a-hosted-agent) when you want to bundle it with the agent project. |
+| Manage | [List, retrieve, version, or delete skills](#manage-skills-with-the-rest-api) after the first workflow succeeds. |
 
 ## Author a skill
 
@@ -127,11 +127,11 @@ Foundry-Features: Skills=V1Preview
 from azure.ai.projects.models import ToolboxSkillReference
 
 # Reuse the AIProjectClient (project) from the previous step.
-toolbox_version = project.beta.toolboxes.create_version(
+toolbox_version = project.toolboxes.create_version(
     name="my-toolbox",
     description="Toolbox with a skill reference",
     tools=[],
-    skills=[ToolboxSkillReference(name="greeting")],  # add version="v1" to pin
+    skills=[ToolboxSkillReference(name="greeting")],  # add version="1" to pin
 )
 print(f"Created toolbox version: {toolbox_version.version}")
 ```
@@ -143,9 +143,9 @@ print(f"Created toolbox version: {toolbox_version.version}")
 ```csharp
 #pragma warning disable AAIP001
 // Reuse the AgentToolboxes client (toolboxClient) from the previous step.
-ToolboxSkillReference skillRef = new("greeting");  // add { Version = "v1" } to pin
+ToolboxSkillReference skillRef = new("greeting");  // add { Version = "1" } to pin
 
-ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+ToolboxVersion toolboxVersion = toolboxClient.CreateVersion(
     name: "my-toolbox",
     tools: [],
     skills: [skillRef],
@@ -160,12 +160,12 @@ Console.WriteLine($"Created toolbox version: {toolboxVersion.Version}");
 
 ```javascript
 // Reuse the AIProjectClient (project) from the previous step.
-const toolboxVersion = await project.beta.toolboxes.createVersion(
+const toolboxVersion = await project.toolboxes.createVersion(
   "my-toolbox",
   [],
   {
     description: "Toolbox with a skill reference",
-    skills: [{ type: "skill_reference", name: "greeting" }],  // add version: "v1" to pin
+    skills: [{ type: "skill_reference", name: "greeting" }],  // add version: "1" to pin
   },
 );
 console.log(`Created toolbox version: ${toolboxVersion.version}`);
@@ -198,10 +198,6 @@ In the Microsoft Foundry Toolkit for Visual Studio Code extension, attach skills
 
 - **During toolbox creation**: On the **Build a Custom Toolbox** tab, select **+ Add** > **Add skills**. In the **Select skills** dialog, select one or more configured skills, and then select **Add**.
 
-  :::image type="content" source="../../media/tools/skills/skills-vs-code-toolbox-add-skills.png" alt-text="Screenshot of the Build a Custom Toolbox view in the Foundry Toolkit with the Add menu open and Add skills highlighted." lightbox="../../media/tools/skills/skills-vs-code-toolbox-add-skills.png":::
-
-  :::image type="content" source="../../media/tools/skills/skills-vs-code-toolbox-select-skills.png" alt-text="Screenshot of the Select skills dialog in the Foundry Toolkit showing a configured skill that's ready to add to a toolbox." lightbox="../../media/tools/skills/skills-vs-code-toolbox-select-skills.png":::
-
 - **From an existing skill**: In the **Tools** view, open the **Skills** tab and select **Use in a toolbox** in the skill's row.
 
 Only skills already configured in your Foundry project appear in the **Select skills** dialog. To create a skill first, see [Create a skill version](#create-a-skill-version).
@@ -220,6 +216,21 @@ After you attach skills to a toolbox, an agent can discover and load them from t
 
 The agent fetches the full skill body and resources from the toolbox only when it needs them, which reduces token usage. The sample consumes skills from an existing toolbox; it doesn't create or provision them.
 
+## Feature support
+
+| Feature | REST API | Python | .NET | JavaScript | VS Code | Toolbox | Hosted agent |
+| ------- | -------- | ------ | ---- | ---------- | ------- | ------- | ------------ |
+| Create skill version (JSON inline content) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Create skill version (ZIP file upload) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| List, get, and delete skills and versions | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Download skill content | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Update skill default version | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Attach skills to a toolbox | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
+
+## Limitations
+
+Skills don't support private networking. The Skills API isn't accessible over a private endpoint, so you can't create, manage, or download skills from a Foundry resource that has public network access disabled.
+
 ## Manage skills with the REST API
 
 The Skills API is versioned: creating a skill version auto-creates the skill if it doesn't exist yet. Each update creates a new immutable `SkillVersion`. The parent `Skill` object tracks `default_version` (the active version) and `latest_version`.
@@ -236,7 +247,7 @@ The Skills API is versioned: creating a skill version auto-creates the skill if 
 | `SkillVersion` | `id`, `skill_id`, `name`, `version`, `description`, `created_at` | An immutable snapshot of the skill content. |
 
 > [!TIP]
-> For an end-to-end Python CRUD walkthrough — create two versions, switch `default_version`, fetch, list, delete — see the [`sample_skills_crud.py`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/hosted_agents/sample_skills_crud.py) sample in the `azure-ai-projects` SDK.
+> For an end-to-end Python CRUD walkthrough — create two versions, switch `default_version`, fetch, list, delete — see the [`sample_skills_crud.py`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/skills/sample_skills_crud.py) sample in the `azure-ai-projects` SDK.
 
 ### Create a skill version
 
@@ -426,16 +437,12 @@ The catalog displays ready-to-use skills grouped by category:
 | **Design & creative** | `canvas-design`, `algorithmic-art`, `brand-guidelines`, `theme-factory` |
 | **Writing & comms** | `doc-coauthoring`, `internal-comms`, `slack-gif-creator` |
 
-:::image type="content" source="../../media/tools/skills/skills-vs-code-catalog.png" alt-text="Screenshot of the Tool Catalog in the Foundry Toolkit showing the Skills section with prebuilt skill cards and Add buttons." lightbox="../../media/tools/skills/skills-vs-code-catalog.png":::
-
 **Author a new skill**
 
 1. In the **Tools** view, open the **Skills** tab.
 1. Select **Add skill** > **Create skill**.
 1. In the authoring panel, edit the `SKILL.md` template. Set the `name` and `description` in the YAML front matter, and define the instructions in the body.
 1. Select **Create**.
-
-:::image type="content" source="../../media/tools/skills/skills-vs-code-create.png" alt-text="Screenshot of the Create skill authoring panel in the Foundry Toolkit showing an editable SKILL.md template with name, description, and body." lightbox="../../media/tools/skills/skills-vs-code-create.png":::
 
 :::zone-end
 
@@ -446,7 +453,7 @@ Example response (`SkillVersion` object):
   "id": "skillver_abc123",
   "skill_id": "skill_abc123",
   "name": "greeting",
-  "version": "v1",
+  "version": "1",
   "description": "Generate a personalized greeting for the user.",
   "created_at": 1741305600
 }
@@ -481,6 +488,7 @@ Content-Type: text/markdown
 from pathlib import Path
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import CreateSkillVersionFromFilesBody
 
 # Create Foundry project client
 endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
@@ -492,9 +500,12 @@ with (
     ) as project,
 ):
     # Create skill version from ZIP / SKILL.md file
-    imported = project.beta.skills.create(
-        name="greeting",
-        file=Path("greeting.zip").read_bytes(),
+    skill_zip_path = Path("greeting.zip")
+    imported = project.beta.skills.create_from_files(
+      "greeting",
+      content=CreateSkillVersionFromFilesBody(
+        files=[(skill_zip_path.name, skill_zip_path.read_bytes())]
+      ),
     )
     print(
         f"Created skill: {imported.name} version: {imported.version}"
@@ -544,7 +555,7 @@ Compress-Archive -Path skill-src\* -DestinationPath greeting.zip -Force
 azd ai skill create greeting --file ./greeting.zip --no-prompt
 ```
 
-`azd ai skill update` rejects `.zip`. To replace an existing skill with a new package, use `create --force` — this deletes the existing skill and **all of its versions** first, then uploads v1 from the new zip:
+`azd ai skill update` rejects `.zip`. To replace an existing skill with a new package, use `create --force` - this command deletes the existing skill and **all of its versions** first, then uploads version `"1"` from the new ZIP file:
 
 ```pwsh
 azd ai skill create greeting --file ./greeting-v2.zip --force --no-prompt
@@ -558,8 +569,6 @@ azd ai skill create greeting --file ./greeting-v2.zip --force --no-prompt
 1. Select **Add skill** > **Upload a skill**.
 1. Select **Browse**, and then choose a skill file (`.md`) or a `.zip` folder that contains a `SKILL.md` file.
 1. Select **Create**.
-
-:::image type="content" source="../../media/tools/skills/skills-vs-code-upload.png" alt-text="Screenshot of the Upload a skill dialog in the Foundry Toolkit with a file picker for a SKILL.md file or a zip folder." lightbox="../../media/tools/skills/skills-vs-code-upload.png":::
 
 To replace an existing skill with a new version, select the **...** (more actions) menu in the skill's row, and then select **Replace**. Upload the updated file. For more information, see [Delete a skill](#delete-a-skill).
 
@@ -575,7 +584,7 @@ Example response (`SkillVersion` object):
   "id": "skillver_def456",
   "skill_id": "skill_def456",
   "name": "greeting",
-  "version": "v1",
+  "version": "1",
   "description": "Generate a personalized greeting for the user.",
   "created_at": 1741305600
 }
@@ -656,8 +665,6 @@ azd ai skill list -o table
 
 In the **Tools** view, open the **Skills** tab to list every skill in your project. Each row shows the skill name, description, and default version, along with actions to use the skill in a toolbox, view it, or manage it.
 
-:::image type="content" source="../../media/tools/skills/skills-vs-code-list.png" alt-text="Screenshot of the Skills tab in the Foundry Toolkit Tools view listing a skill with its name, description, default version, and actions." lightbox="../../media/tools/skills/skills-vs-code-list.png":::
-
 :::zone-end
 
 Example response:
@@ -670,8 +677,8 @@ Example response:
       "name": "greeting",
       "description": "Generate a personalized greeting for the user.",
       "created_at": 1741305600,
-      "default_version": "v1",
-      "latest_version": "v1"
+      "default_version": "1",
+      "latest_version": "1"
     }
   ],
   "has_more": false,
@@ -768,7 +775,7 @@ Accept: application/zip
 Foundry-Features: Skills=V1Preview
 
 # Download a specific version's content
-GET {endpoint}/skills/{name}/versions/{version}/content?api-version=v1
+GET {endpoint}/skills/{name}/versions/1/content?api-version=v1
 Authorization: Bearer {token}
 Accept: application/zip
 Foundry-Features: Skills=V1Preview
@@ -1002,7 +1009,7 @@ Example response:
       "id": "skillver_abc123",
       "skill_id": "skill_abc123",
       "name": "greeting",
-      "version": "v1",
+      "version": "1",
       "description": "Generate a personalized greeting for the user.",
       "created_at": 1741305600
     }
@@ -1016,7 +1023,7 @@ Example response:
 :::zone pivot="rest-api"
 
 ```http
-GET {endpoint}/skills/{name}/versions/{version}?api-version=v1
+GET {endpoint}/skills/{name}/versions/1?api-version=v1
 Authorization: Bearer {token}
 Accept: application/json
 Foundry-Features: Skills=V1Preview
@@ -1027,7 +1034,7 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-v = project.beta.skills.get_version(name="greeting", version="v1")
+v = project.beta.skills.get_version(name="greeting", version="1")
 print(f"{v.name} version: {v.version}, description: {v.description}")
 ```
 
@@ -1037,7 +1044,7 @@ print(f"{v.name} version: {v.version}, description: {v.description}")
 
 ```csharp
 #pragma warning disable AAIP001
-AgentsSkillVersion v = skillsClient.GetSkillVersion("greeting", "v1");
+AgentsSkillVersion v = skillsClient.GetSkillVersion("greeting", "1");
 Console.WriteLine($"{v.Name} version: {v.Version}, description: {v.Description}");
 ```
 
@@ -1046,7 +1053,7 @@ Console.WriteLine($"{v.Name} version: {v.Version}, description: {v.Description}"
 :::zone pivot="javascript"
 
 ```javascript
-const v = await project.beta.skills.getVersion("greeting", "v1");
+const v = await project.beta.skills.getVersion("greeting", "1");
 console.log(`${v.name} version: ${v.version}`);
 ```
 
@@ -1065,7 +1072,7 @@ To inspect a specific skill version, use the REST API, Python, .NET, or JavaScri
 :::zone pivot="rest-api"
 
 ```http
-DELETE {endpoint}/skills/{name}/versions/{version}?api-version=v1
+DELETE {endpoint}/skills/{name}/versions/1?api-version=v1
 Authorization: Bearer {token}
 Accept: application/json
 Foundry-Features: Skills=V1Preview
@@ -1076,7 +1083,7 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-result = project.beta.skills.delete_version("greeting", "v1")
+result = project.beta.skills.delete_version("greeting", "1")
 print(f"Deleted version: {result.version} ({result.deleted})")
 ```
 
@@ -1086,7 +1093,7 @@ print(f"Deleted version: {result.version} ({result.deleted})")
 
 ```csharp
 #pragma warning disable AAIP001
-skillsClient.DeleteSkillVersion("greeting", "v1");
+skillsClient.DeleteSkillVersion("greeting", "1");
 Console.WriteLine("Skill version deleted.");
 ```
 
@@ -1095,7 +1102,7 @@ Console.WriteLine("Skill version deleted.");
 :::zone pivot="javascript"
 
 ```javascript
-const result = await project.beta.skills.deleteVersion("greeting", "v1");
+const result = await project.beta.skills.deleteVersion("greeting", "1");
 console.log(`Deleted version: ${result.version} (${result.deleted})`);
 ```
 
@@ -1114,7 +1121,7 @@ Returns HTTP 200 on success:
   "id": "skillver_abc123",
   "name": "greeting",
   "deleted": true,
-  "version": "v1"
+  "version": "1"
 }
 ```
 
@@ -1132,7 +1139,7 @@ Accept: application/json
 Foundry-Features: Skills=V1Preview
 
 {
-  "default_version": "v2"
+  "default_version": "2"
 }
 ```
 
@@ -1141,7 +1148,7 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-result = project.beta.skills.update("greeting", default_version="v2")
+result = project.beta.skills.update("greeting", default_version="2")
 print(f"New default version: {result.default_version}")
 ```
 
@@ -1151,7 +1158,7 @@ print(f"New default version: {result.default_version}")
 
 ```csharp
 #pragma warning disable AAIP001
-AgentsSkill updated = skillsClient.UpdateSkillDefaultVersion("greeting", "v2");
+AgentsSkill updated = skillsClient.UpdateSkillDefaultVersion("greeting", "2");
 Console.WriteLine($"New default version: {updated.DefaultVersion}");
 ```
 
@@ -1160,7 +1167,7 @@ Console.WriteLine($"New default version: {updated.DefaultVersion}");
 :::zone pivot="javascript"
 
 ```javascript
-const result = await project.beta.skills.update("greeting", "v2");
+const result = await project.beta.skills.update("greeting", "2");
 console.log(`New default version: ${result.default_version}`);
 ```
 
@@ -1169,7 +1176,7 @@ console.log(`New default version: ${result.default_version}`);
 :::zone pivot="azd"
 
 ```pwsh
-azd ai skill update greeting --set-default-version v2 --no-prompt
+azd ai skill update greeting --set-default-version 2 --no-prompt
 ```
 
 `--set-default-version` is a metadata-only repoint — no upload, no new version. Use it to roll back (or forward) without touching skill content.
@@ -1191,9 +1198,9 @@ For the alternative mode — where skills and tools share a single discoverable 
 The following walkthrough uses a [GitHub Copilot SDK sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot) that reads `SKILL.md` files from a local `skills/` directory. Use the [Download skill content](#download-skill-content) operation to pull skills from Foundry into this directory.
 
 > [!NOTE]
-> This sample requires a GitHub fine-grained personal access token (PAT) with **Copilot requests: Read-only** permission. Create one at [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new). Classic tokens (`ghp_`) aren't supported. Use a fine-grained PAT (`github_pat_`).
+> This sample requires a GitHub fine-grained personal access token (PAT) with **Copilot requests: Read-only** permission. Create one at [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new). Classic tokens (`ghp_`) aren't supported. Store the PAT in an approved secret store, never commit or log it, set the shortest practical expiration, and revoke it when you finish testing.
 
-### Step 1: Initialize the agent project
+### Initialize the agent project
 
 Scaffold the project from the sample's `azure.yaml`:
 
@@ -1204,7 +1211,7 @@ azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/m
 Set the required GitHub token:
 
 ```bash
-azd env set GITHUB_TOKEN="github_pat_..."
+azd env set GITHUB_TOKEN="<github-fine-grained-pat>"
 ```
 
 The scaffolded project includes a root `azure.yaml`, agent code, configuration files, and a sample `joke` skill:
@@ -1222,7 +1229,7 @@ The scaffolded project includes a root `azure.yaml`, agent code, configuration f
 
 In `main.py`, the `skill_directories` parameter tells the Copilot SDK where to find skill files. Any `SKILL.md` in a subdirectory of `skills/` is loaded as extra instructions when a session starts.
 
-### Step 2: Populate skills from Foundry
+### Populate skills from Foundry
 
 Use the [Download skill content](#download-skill-content) operation to pull the greeting skill from Foundry. Extract the `SKILL.md` from the downloaded ZIP and save it to `skills/greeting/SKILL.md`:
 
@@ -1247,7 +1254,7 @@ The project now includes both skills:
                 `-- SKILL.md
 ```
 
-### Step 3: Run and test locally
+### Run and test locally
 
 Start the agent:
 
@@ -1264,7 +1271,7 @@ azd ai agent invoke --local '{"input": "Hi, my name is Alex!"}'
 > [!TIP]
 > On PowerShell, escape the inner quotes: `azd ai agent invoke --local '{\"input\": \"Hi, my name is Alex!\"}'`
 
-### Step 4: Deploy and test remotely
+### Deploy and test remotely
 
 Create Azure resources and deploy the agent:
 
@@ -1278,6 +1285,18 @@ Test the deployed agent on Foundry:
 ```bash
 azd ai agent invoke '{"input": "Hi, my name is Alex!"}'
 ```
+
+## Troubleshooting
+
+| Issue | Resolution |
+| --- | --- |
+| Skill creation reports an invalid payload. | Confirm that `SKILL.md` contains unquoted `name` and `description` values. Use lowercase letters, numbers, and hyphens for `name`. Make the file name match the skill name supplied to the CLI. |
+| The upload has an unsupported archive or file shape. | Upload a ZIP file that contains a `SKILL.md` file, or upload supported individual files. For the CLI, compress a folder before upload. Use `create --force` instead of `update` to replace a skill from a ZIP file. |
+| A create or update operation conflicts with an existing version. | Treat versions as immutable. Create a new version, use numeric version strings such as `"1"` and `"2"`, and set `default_version` to an existing version. |
+| A version can't be deleted because it's the default or is in use. | Set another version as `default_version`, then remove or update toolbox and agent references to the version before you retry deletion. |
+| Skills API operations can't reach the project. | Confirm that public network access is enabled. The Skills API isn't accessible through a private endpoint. |
+| A toolbox client doesn't discover an attached skill. | Confirm that the skill and toolbox are in the same Foundry project, publish the toolbox version after imperative `azd` changes, and use a client that supports MCP Resources. |
+| A hosted agent doesn't load a downloaded skill. | Extract the package so each skill is in its own subdirectory, such as `skills/greeting/SKILL.md`, and restart the agent so it reads the skill at startup. |
 
 ## Related content
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 08/19/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -174,7 +174,7 @@ To delete a knowledge source:
       "outputMode": null,
       "knowledgeSources": [
         {
-          "name": "my-blob-ks",
+          "name": "my-blob-ks"
         }
       ],
       "models": [],
@@ -222,7 +222,7 @@ To delete a knowledge source:
     ```http
     ### Get knowledge bases
     GET {{search-url}}/knowledgebases?api-version={{api-version}}&$select=name
-    api-key: {{api-key}}
+    Authorization: Bearer {{token}}
     ```
 
    **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list)
@@ -248,7 +248,7 @@ To delete a knowledge source:
     ```http
     ### Get a knowledge base definition
     GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
-    api-key: {{api-key}}
+    Authorization: Bearer {{token}}
     ```
 
    **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get)
@@ -264,7 +264,7 @@ To delete a knowledge source:
       "outputMode": null,
       "knowledgeSources": [
         {
-          "name": "my-blob-ks",
+          "name": "my-blob-ks"
         }
       ],
       "models": [],
@@ -280,7 +280,7 @@ To delete a knowledge source:
     ```http
     ### Delete a knowledge base
     DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
-    api-key: {{api-key}}
+    Authorization: Bearer {{token}}
     ```
 
    **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete)
@@ -290,7 +290,7 @@ To delete a knowledge source:
     ```http
     ### Delete a knowledge source
     DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}
-    api-key: {{api-key}}
+    Authorization: Bearer {{token}}
     ```
 
    **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete)

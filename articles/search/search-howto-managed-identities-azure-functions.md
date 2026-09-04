@@ -4,8 +4,9 @@ description: Learn how to set up an indexer connection to an Azure Function usin
 ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 08/31/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ms.custom:
   - subject-rbac-steps
 ---
@@ -36,7 +37,7 @@ The app registration should be configured with an application ID URI, which can 
 
 ### Set supported account types for authentication
 
-Navigate to the **Authentication** section of the app registration and configure the **supported account types** so that only accounts in the same organization directory as the app registration can utilize it for authentication.
+Go to the **Authentication** section of the app registration and configure the **supported account types** so that only accounts in the same organization directory as the app registration can use it for authentication.
 
 [ ![Screenshot of an app registration with supported account types configured.](./media/search-howto-managed-identities-azure-functions/authentication-supported-account.png) ](./media/search-howto-managed-identities-azure-functions/authentication-supported-account.png#lightbox)
 
@@ -104,7 +105,7 @@ Depending on whether you choose to connect using a system-assigned identity or u
 
 ### Use a system-assigned identity
 
-Here's an example to call into a function named `test` for the sample Azure Function app, where the system assigned identity of the search service is allowed to authenticate via "Easy Auth".
+Here's an example to call a function named `test` for the sample Azure Function app, where the system-assigned identity of the search service is allowed to authenticate via "Easy Auth".
 
 ```json
 "uri": "https://contoso-function-app.azurewebsites.net/api/test?",
@@ -113,7 +114,7 @@ Here's an example to call into a function named `test` for the sample Azure Func
 
 ### Use a user-assigned identity
 
-Here's an example to call into the same function, where the specific user assigned identity is allowed to authenticate via "Easy Auth". You're expected to specify the resource ID of the exact user assigned identity to use in the `identity` property of the configuration.
+Here's an example to call into the same function, where the specific user-assigned identity is allowed to authenticate via "Easy Auth". You need to specify the resource ID of the exact user-assigned identity to use in the `identity` property of the configuration.
 
 ```json
 "uri": "https://contoso-function-app.azurewebsites.net/api/test?",
@@ -125,11 +126,11 @@ Here's an example to call into the same function, where the specific user assign
 ```
 
 >[!NOTE]
-> This user assigned identity should actually be assigned to the Azure AI Search service for it to be specified in the Custom Web skill/vectorizer definition.
+> Before you specify a user-assigned identity in a Custom Web API skill or vectorizer definition, assign the identity to the Azure AI Search service.
 
 ## Run the indexer/vectorizer to verify permissions
 
-For Custom Web API skills, permissions are validated during indexer run-time. For vectorizer, they're validated when a vector query is issued utilizing the Custom Web API vectorizer. To rule out any specific issues with authentication, you can test by disabling the authentication provider on the Azure Function app and ensuring that calls from indexer/vectorizer succeed.
+For Custom Web API skills, permissions are validated during indexer run-time. For vectorizer, they're validated when a vector query is issued using the Custom Web API vectorizer. To rule out any specific issues with authentication, you can test by disabling the authentication provider on the Azure Function app and ensuring that calls from indexer/vectorizer succeed.
 
 * If authentication issues persist, ensure that the right identity information - namely Application ID, Object (principal) ID for the Azure AI Search service's identity is specified in the Azure Function app's authentication provider.
 

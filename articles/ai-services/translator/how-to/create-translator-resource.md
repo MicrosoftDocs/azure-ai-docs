@@ -6,8 +6,9 @@ author: laujan
 ms.author: lajanuar
 manager: mcleans
 ms.date: 06/29/2026
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
+ai-usage: ai-assisted
 
 ---
 
@@ -61,7 +62,7 @@ After you decide which resource type you want use to access the Translator, you 
 
 1. **Resource Group**. You can create a new resource group or add your resource to a preexisting resource group that shares the same lifecycle, permissions, and policies.
 
-1. **Resource Region**. Choose **Global** unless your business or application requires a specific region. If you're planning on using the Document translation feature with [managed identity authorization](../document-translation/how-to-guides/create-use-managed-identities.md), choose a geographic region such as **East US**.
+1. **Resource Region**. Choose **Global** unless your business or application requires a specific region. Before you select a region, review [Region support for Azure Translator](../region-support.md). If you plan to use Document Translation with [managed identity authorization](../document-translation/how-to-guides/create-use-managed-identities.md), choose a geographic region such as **East US**.
 
 1. **Name**. Enter a name for your resource. The name you choose must be unique within Azure.
 

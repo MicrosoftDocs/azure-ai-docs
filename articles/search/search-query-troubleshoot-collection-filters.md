@@ -6,8 +6,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/29/2025
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 # Troubleshooting OData collection filters in Azure AI Search
 
@@ -15,7 +16,7 @@ ms.update-cycle: 365-days
 
 To [filter](query-odata-filter-orderby-syntax.md) on collection fields in Azure AI Search, you can use the [`any` and `all` operators](search-query-odata-collection-operators.md) together with **lambda expressions**. A lambda expression is a subfilter that is applied to each element of a collection.
 
-Not every feature of filter expressions is available inside a lambda expression. Which features are available differs depending on the data type of the collection field that you want to filter. This can result in an error if you try to use a feature in a lambda expression that isn't supported in that context. If you're encountering such errors while trying to write a complex filter over collection fields, this article will help you troubleshoot the problem.
+Not every feature of filter expressions is available inside a lambda expression. Which features are available depends on the data type of the collection field that you want to filter. This limitation can result in an error if you try to use a feature in a lambda expression that isn't supported in that context. If you encounter such errors while trying to write a complex filter over collection fields, this article helps you troubleshoot the problem.
 
 ## Common collection filter errors
 
@@ -28,7 +29,7 @@ The following table lists errors that you might encounter when trying to execute
 | Invalid lambda expression. Found an unsupported form of complex Boolean expression. For 'any', use expressions that are 'ORs of ANDs', also known as Disjunctive Normal Form. For example: `(a and b) or (c and d)` where a, b, c, and d are comparison or equality subexpressions. For 'all', use expressions that are 'ANDs of ORs', also known as Conjunctive Normal Form. For example: `(a or b) and (c or d)` where a, b, c, and d are comparison or inequality subexpressions. Examples of comparison expressions: 'x gt 5', 'x le 2'. Example of an equality expression: 'x eq 5'. Example of an inequality expression: 'x ne 5'. | Filtering on fields of type `Collection(Edm.DateTimeOffset)`, `Collection(Edm.Double)`, `Collection(Edm.Int32)`, or `Collection(Edm.Int64)` | [Rules for filtering comparable collections](#bkmk_comparables) |
 | Invalid lambda expression. Found an unsupported use of geo.distance() or geo.intersects() in a lambda expression that iterates over a field of type Collection(Edm.GeographyPoint). For 'any', make sure you compare geo.distance() using the 'lt' or 'le' operators and make sure that any usage of geo.intersects() isn't negated. For 'all', make sure you compare geo.distance() using the 'gt' or 'ge' operators and make sure that any usage of geo.intersects() is negated. | Filtering on a field of type `Collection(Edm.GeographyPoint)` | [Rules for filtering GeographyPoint collections](#bkmk_geopoints) |
 | Invalid lambda expression. Complex Boolean expressions aren't supported in lambda expressions that iterate over fields of type Collection(Edm.GeographyPoint). For 'any', join subexpressions with 'or'; 'and' isn't supported. For 'all', join subexpressions with 'and'; 'or' isn't supported. | Filtering on fields of type `Collection(Edm.String)` or `Collection(Edm.GeographyPoint)` | [Rules for filtering string collections](#bkmk_strings) <br/><br/> [Rules for filtering GeographyPoint collections](#bkmk_geopoints) |
-| Invalid lambda expression. Found a comparison operator (one of 'lt', 'le', 'gt', or 'ge'). Only equality operators are allowed in lambda expressions that iterate over fields of type Collection(Edm.String). For 'any', se expressions of the form 'x eq y'. For 'all', use expressions of the form 'x ne y' or 'not (x eq y)'. | Filtering on a field of type `Collection(Edm.String)` | [Rules for filtering string collections](#bkmk_strings) |
+| Invalid lambda expression. Found a comparison operator (one of 'lt', 'le', 'gt', or 'ge'). Only equality operators are allowed in lambda expressions that iterate over fields of type Collection(Edm.String). For 'any', use expressions of the form 'x eq y'. For 'all', use expressions of the form 'x ne y' or 'not (x eq y)'. | Filtering on a field of type `Collection(Edm.String)` | [Rules for filtering string collections](#bkmk_strings) |
 
 <a name="bkmk_examples"></a>
 
@@ -174,7 +175,7 @@ However, there are limitations on how such comparison expressions can be combine
     - `ratings/all(r: r gt 2 and r le 5)`
     - `ratings/all(r: r le 5 or r gt 7)`
   - Comparison expressions combined with `or` (disjunctions) can be further combined using `and`. This form is known in Boolean logic as "[Conjunctive Normal Form](https://en.wikipedia.org/wiki/Conjunctive_normal_form)" (CNF). For example:
-    - `ratings/all(r: (r le 2 or gt 5) and (r lt 7 or r ge 10))`
+    - `ratings/all(r: (r le 2 or r gt 5) and (r lt 7 or r ge 10))`
 
 <a name="bkmk_complex"></a>
 

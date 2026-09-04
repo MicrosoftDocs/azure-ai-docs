@@ -3,7 +3,7 @@ title: "Quickstart: Translator Text JavaScript SDK"
 description: 'Text translation processing using the JavaScript programming language'
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: include
 ms.date: 06/02/2026
 ms.author: lajanuar

@@ -3,8 +3,9 @@ title: Query Types
 description: Learn about query types in Azure AI Search, including full-text, vector, hybrid, filter, autocomplete, and geospatial queries for building search experiences.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/29/2025
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Querying in Azure AI Search
@@ -19,10 +20,10 @@ Azure AI Search supports query constructs for a broad range of scenarios, from f
 
 | Query form | Searchable content | Description |
 |------------|--------------------|-------------|
-| [Full text search](search-lucene-query-architecture.md) | Inverted indexes of tokenized terms. | Full text queries iterate over inverted indexes that are structured for fast scans, where a match can be found in potentially any field, within any number of search documents. Text is analyzed and tokenized for full text search.|
+| [Full-text search](search-lucene-query-architecture.md) | Inverted indexes of tokenized terms. | Full-text queries iterate over inverted indexes that are structured for fast scans, where a match can be found in potentially any field, within any number of search documents. Text is analyzed and tokenized for full-text search.|
 | [Vector search](vector-search-overview.md) | Vector indexes of generated embeddings. | Vector queries iterate over vector fields in a search index. |
-| [Hybrid search](hybrid-search-overview.md) | All of the above, in a single search index. | Combines text search and vector search in a single query request. Text search works on plain text content in "searchable" and "filterable" fields. Vector search works on content in vector fields. |
-| [Agentic retrieval (preview)](agentic-retrieval-overview.md) | All of the above, in a single search index. | This is an alternative retrieval path on Azure AI Search that leverages large language models for query planning. The response is designed for agent consumption, where the agent rather than search app client code coordinates the response delivered to the user. |
+| [Hybrid search](hybrid-search-overview.md) | All of the above in a single search index. | Combines text search and vector search in a single query request. Text search works on plain-text content in searchable fields. Filters apply to filterable fields. Vector search works on vector fields. |
+| [Agentic retrieval (preview)](agentic-retrieval-overview.md) | All of the above in a single search index. | This is an alternative retrieval path on Azure AI Search that leverages large language models for query planning. The response is designed for agent consumption, where the agent rather than search app client code coordinates the response delivered to the user. |
 | Others | Plain text and human-readable content.| Raw content, extracted verbatim from source documents, supporting filters and pattern matching queries like geo-spatial search, fuzzy search, and fielded search. |
 
 The remainder of this article brings focus to the last category: classic queries that work on plain text and human-readable content, extracted intact from original source, used for filters and other specialized query forms. If you're creating a traditional search application that isn't using AI, this section explains the query methods that you can implement in your client code.
@@ -39,7 +40,7 @@ You might also need filters to invoke a specialized query form, as described in 
 
 | Filter scenario | Description |
 |-----------------|-------------|
-| Range filters | In Azure AI Search, range queries are built using the filter parameter. For more information and examples, see [Range filter example](search-query-simple-examples.md#example-5-range-filters). |
+| Range filters | In Azure AI Search, range queries are built using the `filter` parameter. For more information and examples, see [Range filter example](search-query-simple-examples.md#example-5-range-filters). |
 | Faceted navigation | In [faceted navigation](search-faceted-navigation.md) tree, users can select facets. When backed by filters, search results narrow on each click. Each facet is backed by a filter that excludes documents that no longer match the criteria provided by the facet. |
 
 > [!NOTE]
@@ -49,9 +50,9 @@ You might also need filters to invoke a specialized query form, as described in 
 
 Geospatial search matches on a location's latitude and longitude coordinates for "find near me" or map-based search experience. In Azure AI Search, you can implement geospatial search by following these steps:
 
-+ Define a filterable field of one of these types: [Edm.GeographyPoint, Collection(Edm.GeographyPoint, Edm.GeographyPolygon)](/rest/api/searchservice/supported-data-types).
-+ Verify the incoming documents include the appropriate coordinates.
-+ After indexing is complete, build a query that uses a filter and a [geo-spatial function](search-query-odata-geo-spatial-functions.md). 
+1. Define a filterable field of type [Edm.GeographyPoint or Collection(Edm.GeographyPoint)](/rest/api/searchservice/supported-data-types).
+1. Verify the incoming documents include the appropriate coordinates.
+1. After indexing is complete, build a query that uses a filter and a [geo-spatial function](search-query-odata-geo-spatial-functions.md).
 
 Geospatial search uses kilometers for distance. Coordinates are specified in this format: `(longitude, latitude`).
 
@@ -82,16 +83,16 @@ An advanced query form depends on the Full Lucene parser and operators that trig
 | Query type | Usage | Examples and more information |
 |------------|--------|------------------------------|
 | [Fielded search](query-lucene-syntax.md#bkmk_fields) | **`search`**  parameter, **`queryType=full`**  | Build a composite query expression targeting a single field. <br/>[Fielded search example](search-query-lucene-examples.md#example-1-fielded-search) |
-| [fuzzy search](query-lucene-syntax.md#bkmk_fuzzy) | **`search`** parameter, **`queryType=full`** | Matches on terms having a similar construction or spelling. <br/>[Fuzzy search example](search-query-lucene-examples.md#example-2-fuzzy-search) |
-| [proximity search](query-lucene-syntax.md#bkmk_proximity) | **`search`** parameter, **`queryType=full`** | Finds terms that are near each other in a document. <br/>[Proximity search example](search-query-lucene-examples.md#example-3-proximity-search) |
-| [term boosting](query-lucene-syntax.md#bkmk_termboost) | **`search`** parameter, **`queryType=full`** | Ranks a document higher if it contains the boosted term, relative to others that don't. <br/>[Term boosting example](search-query-lucene-examples.md#example-4-term-boosting) |
-| [regular expression search](query-lucene-syntax.md#bkmk_regex) | **`search`** parameter, **`queryType=full`** | Matches based on the contents of a regular expression. <br/>[Regular expression example](search-query-lucene-examples.md#example-5-regex) |
-|  [wildcard or prefix search](query-lucene-syntax.md#bkmk_wildcard) | **`search`** parameter with ***`~`** or **`?`**, **`queryType=full`**| Matches based on a prefix and tilde (`~`) or single character (`?`). <br/>[Wildcard search example](search-query-lucene-examples.md#example-6-wildcard-search) |
+| [Fuzzy search](query-lucene-syntax.md#bkmk_fuzzy) | **`search`** parameter, **`queryType=full`** | Match terms with similar construction or spelling. <br/>[Fuzzy search example](search-query-lucene-examples.md#example-2-fuzzy-search) |
+| [Proximity search](query-lucene-syntax.md#bkmk_proximity) | **`search`** parameter, **`queryType=full`** | Find terms that are near each other in a document. <br/>[Proximity search example](search-query-lucene-examples.md#example-3-proximity-search) |
+| [Term boosting](query-lucene-syntax.md#bkmk_termboost) | **`search`** parameter, **`queryType=full`** | Rank a document higher if it contains the boosted term, relative to others that don't. <br/>[Term boosting example](search-query-lucene-examples.md#example-4-term-boosting) |
+| [Regular expression search](query-lucene-syntax.md#bkmk_regex) | **`search`** parameter, **`queryType=full`** | Match based on the contents of a regular expression. <br/>[Regular expression example](search-query-lucene-examples.md#example-5-regex) |
+| [Wildcard or prefix search](query-lucene-syntax.md#bkmk_wildcard) | **`search`** parameter with **`*`** or **`?`**, **`queryType=full`** | Match based on a prefix, multiple characters (`*`), or one character (`?`). <br/>[Wildcard search example](search-query-lucene-examples.md#example-6-wildcard-search) |
 
 ## Next steps
 
-For a closer look at query implementation, review the examples for each syntax. If you're new to full text search, a closer look at what the query engine does might be an equally good choice.
+For a closer look at query implementation, review the examples for each syntax. If you're new to full-text search, you might also want to learn more about what the query engine does.
 
 + [Simple query examples](search-query-simple-examples.md)
 + [Lucene syntax query examples for building advanced queries](search-query-lucene-examples.md)
-+ [How full text search works in Azure AI Search](search-lucene-query-architecture.md)
++ [How full-text search works in Azure AI Search](search-lucene-query-architecture.md)

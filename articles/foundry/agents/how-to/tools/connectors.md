@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 05/27/2026
+ms.date: 08/19/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -20,13 +20,15 @@ zone_pivot_groups: foundry-connector-config
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-> [!NOTE]
-> For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
-
 The Foundry Tools Catalog provides over 1,000 connectors — pre-built integrations to SaaS, data, and line-of-business systems. When you add a connector to your agent, Foundry creates a **managed MCP server**: an MCP server that Foundry provisions and manages in your Foundry account's Connector Namespace. Your agent calls the managed MCP server's tools to perform actions during a conversation — for example, creating a GitHub issue, querying a database, or sending a message.
 
-> [!NOTE]
-> Only validated connectors surface the new managed-MCP-server experience in the Foundry portal **Add tool** catalog. Unvalidated connectors remain available through the previous connector experience. If you configure connectors through the code-first path (REST API, SDK, or `azd`), there's no gating — you can use any connector in the catalog. Reach out to the Foundry team if you run into issues with a specific connector.
+For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
+
+[!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
+
+## Support for validated connectors
+
+Only validated connectors surface the new managed-MCP-server experience in the Foundry portal **Add tool** catalog. Unvalidated connectors remain available thr ough the previous connector experience. If you configure connectors through the code-first path (REST API, SDK, or `azd`), there's no gating. You can use any connector in the catalog. Reach out to the Foundry team if you run into issues with a specific connector.
 
 > [!IMPORTANT]
 > Non-Microsoft tools including third-party MCP servers available in the Foundry Tools Catalog ("Third-Party Tools") are Non-Microsoft Products under your agreement governing use of Azure. When you connect to a Third-Party Tool, you do so at your own risk. You're responsible for any terms and charges for Third-Party Tools. Microsoft has no responsibility to you or others in relation to your use of Third-Party Tools. Carefully review and track the Third-Party Tools you add to your MCP client.
@@ -131,12 +133,14 @@ Managed MCP servers powered by connector namespaces are available in the followi
 
 Foundry creates a managed MCP server and adds it to your agent. You can view and edit it at any time from **Tools** in your project.
 
+To reuse the connector across agents and govern it centrally, add it to a [Foundry Toolbox](toolbox.md) instead of attaching it to a single agent. Create a toolbox that includes the connector's managed MCP server, then attach the toolbox to your agents. You can add, remove, or reconfigure connectors in the toolbox without changing agent code.
+
 :::zone-end
 
 :::zone pivot="programming-language-rest"
 
 > [!TIP]
-> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same REST flows shown below so the agent can generate connector wiring code for you.
+> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same REST flows shown in this article so the agent can generate connector wiring code for you.
 
 ### Step 1: Acquire tokens
 
@@ -419,6 +423,8 @@ SERVER_URL=$(curl -sS "$CONNECTION_URL" \
 echo "serverURL: $SERVER_URL"
 ```
 
+Add the connector's managed MCP server to a [Foundry Toolbox](toolbox.md) and attach the toolbox to your agent. A toolbox is the recommended way to connect agents with tools.
+
 **Prompt agent (Python SDK):**
 
 ```python
@@ -427,37 +433,17 @@ from azure.ai.projects.models import MCPTool, PromptAgentDefinition
 from azure.identity import DefaultAzureCredential
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+TOOLBOX_CONNECTION_NAME = "connector-toolbox-conn"
 
 client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential()
 )
 
-tool = MCPTool(
-    server_label=CONNECTION_NAME,
-    server_url=SERVER_URL,
-    project_connection_id=CONNECTION_NAME
-)
-
-agent = client.agents.create_version(
-    agent_name="my-connector-agent",
-    definition=PromptAgentDefinition(
-        model="gpt-4o",
-        instructions="You are a helpful assistant.",
-        tools=[tool],
-    ),
-)
-print(f"Created agent: {agent.name}, version: {agent.version}")
-```
-
-For other languages and runtime options, see [Connect agents to MCP servers](model-context-protocol.md).
-
-**Toolbox (Python SDK):**
-
-```python
-toolbox_version = client.beta.toolboxes.create_toolbox_version(
-    toolbox_name="my-toolbox",
-    description="Toolbox with connector MCP server",
+# 1. Add the connector's managed MCP server to a toolbox.
+toolbox = client.toolboxes.create_toolbox_version(
+    name="connector-toolbox",
+    description="Toolbox with the connector MCP server",
     tools=[
         MCPTool(
             server_label=CONNECTION_NAME,
@@ -467,10 +453,99 @@ toolbox_version = client.beta.toolboxes.create_toolbox_version(
         )
     ],
 )
-print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
+
+# 2. The toolbox exposes an MCP-compatible endpoint.
+TOOLBOX_MCP_URL = (
+    f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+    f"/versions/{toolbox.version}/mcp?api-version=v1"
+)
+
+# 3. Create a remote-tool project connection that points at the toolbox endpoint.
+#    Run once (Azure CLI), validating the token audience against https://ai.azure.com:
+#    azd ai connection create remote-tool connector-toolbox-conn \
+#      --endpoint "<TOOLBOX_MCP_URL>" \
+#      --auth-type user-entra-token --audience https://ai.azure.com
+
+# 4. Attach the toolbox to the agent as an MCP tool.
+toolbox_tool = MCPTool(
+    server_label="toolbox",
+    server_url=TOOLBOX_MCP_URL,
+    project_connection_id=TOOLBOX_CONNECTION_NAME,
+    require_approval="never",
+)
+
+agent = client.agents.create_version(
+    agent_name="my-connector-agent",
+    definition=PromptAgentDefinition(
+        model="gpt-4o",
+        instructions="You are a helpful assistant.",
+        tools=[toolbox_tool],
+    ),
+)
+print(f"Created agent: {agent.name}, version: {agent.version}")
 ```
 
-For full toolbox configuration and deployment, see [Create and use a Foundry Toolbox](toolbox.md).
+**Hosted agent (Python SDK):**
+
+Use the same toolbox endpoint from a hosted agent by authenticating to the toolbox MCP endpoint and attaching it with `FoundryToolbox`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
+from azure.identity import AzureCliCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import MCPTool
+
+PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
+
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # 1. Add the connector's managed MCP server to a toolbox. Using a toolbox is the
+    #    recommended way to give agents tools: curate tools once and reuse the
+    #    toolbox across agents. See /azure/foundry/agents/concepts/toolbox-overview
+    project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
+    toolbox = project.toolboxes.create_toolbox_version(
+        name="connector-toolbox",
+        description="Toolbox with the connector MCP server",
+        tools=[
+            MCPTool(
+                server_label=CONNECTION_NAME,
+                server_url=SERVER_URL,
+                project_connection_id=CONNECTION_NAME,
+                require_approval="never",
+            )
+        ],
+    )
+
+    # 2. The toolbox exposes an MCP-compatible endpoint.
+    TOOLBOX_MCP_URL = (
+        f"{PROJECT_ENDPOINT}/toolboxes/{toolbox.name}"
+        f"/versions/{toolbox.version}/mcp?api-version=v1"
+    )
+
+    # 3. Attach the toolbox to the hosted agent as an MCP tool.
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
+
+agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are an assistant that uses connector actions to complete tasks.",
+        tools=[toolbox_tool],
+    )
+
+    result = await agent.run("Use the connector actions to summarize the latest items that need my attention.")
+    print(result.text)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+For other languages and runtime options, see [Connect agents to MCP servers](model-context-protocol.md). For full toolbox configuration and deployment, see [Create and use a Foundry Toolbox](toolbox.md).
 
 :::zone-end
 
@@ -479,7 +554,7 @@ For full toolbox configuration and deployment, see [Create and use a Foundry Too
 The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) provides commands to create and manage connector connections through the `microsoft.foundry` extension. The `azd` path supports **OAuth2** connectors, which are the connectors supported in Foundry today.
 
 > [!TIP]
-> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same `azd` flows shown below so the agent can generate connector wiring commands for you.
+> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same Azure Developer CLI flows shown in this article so the agent can generate connector wiring commands for you.
 
 ### Step 1: Install prerequisites
 
@@ -570,7 +645,7 @@ azd ai toolbox create my-toolbox `
   --from-file .\my-toolbox.yaml
 ```
 
-For end-to-end agent scaffolding and deployment with `azd`, see [Create and use a Foundry Toolbox](toolbox.md).
+For end-to-end agent scaffolding and deployment with the Azure Developer CLI, see [Create and use a Foundry Toolbox](toolbox.md).
 
 ### Manage the connection
 
@@ -591,6 +666,6 @@ azd ai connection delete <connection-name> --force
 
 - [Connect agents to Model Context Protocol servers](model-context-protocol.md)
 - [MCP server authentication](../mcp-authentication.md)
-- [Agent tools overview](../../concepts/tool-catalog.md)
+- [Foundry Toolbox overview](../../concepts/toolbox-overview.md)
 - [Create and use a Foundry Toolbox](toolbox.md)
 
