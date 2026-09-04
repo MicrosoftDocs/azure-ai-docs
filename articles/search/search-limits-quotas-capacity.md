@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: limits-and-quotas
-ms.date: 09/03/2026
+ms.date: 09/04/2026
 ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ms.custom:
@@ -336,6 +336,16 @@ A knowledge base can contain up to the tier-specific maximum shown above, regard
 The `2025-08-01-preview` uses the legacy knowledge agent contract and doesn't support `retrievalReasoningEffort`.
 
 <sup>2</sup> The `minimal` reasoning effort uses all knowledge sources in the knowledge base because it bypasses LLM-based query planning.
+
+### Retrieve request runtime
+
+The `maxRuntimeInSeconds` limit is the same across supported tiers.
+
+| Minimum | Default | Maximum |
+|--|--|--|
+| 10 seconds | 90 seconds | 600 seconds (10 minutes) |
+
+The maximum applies only to the Azure AI Search retrieve request. For configuration examples, see [Override default reasoning effort and set request limits](agentic-retrieval-how-to-retrieve.md#override-default-reasoning-effort-and-set-request-limits).
 
 ## Data limits (AI enrichment)
 

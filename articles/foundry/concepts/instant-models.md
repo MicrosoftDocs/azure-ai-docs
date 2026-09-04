@@ -9,7 +9,7 @@ ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
 ms.custom:
-  - update-code4
+  - update-code5
 # customer intent: As a developer, I want to understand how instant access works so that I can call models without creating deployments first.
 ---
 
