@@ -3,7 +3,7 @@ title: Use Foundry Toolbox with LangChain
 description: "Learn how to load and use tools and skills from a Foundry Toolbox in LangChain agents with the langchain-azure-ai package."
 ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 06/16/2026
+ms.date: 09/04/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasantia
@@ -30,7 +30,7 @@ prepare skills for deep agents.
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - A deployed chat model (for example, `gpt-4.1`) in your project.
-- A toolbox configured in your Foundry project. Note its name.
+- A [toolbox configured in your Foundry project](../../agents/how-to/tools/toolbox.md). Note its name.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
 
@@ -45,25 +45,22 @@ skills for deep agents, also install `deepagents`.
 
 ### Configure your environment
 
-The toolbox needs a project endpoint and a toolbox name. Provide them as
-constructor arguments or through environment variables.
+The toolbox needs a project endpoint and a toolbox name. Set the endpoint as an
+environment variable, and pass the toolbox name to the constructor.
 
-Set your environment variables:
+Set your project endpoint:
 
 ```python
 import os
 
-# Project endpoint (recommended)
 os.environ["FOUNDRY_PROJECT_ENDPOINT"] = (
     "https://<resource>.services.ai.azure.com/api/projects/<project>"
 )
-
-# Name of the toolbox configured in your Foundry project
-os.environ["FOUNDRY_AGENT_TOOLBOX_NAME"] = "<your-toolbox-name>"
 ```
 
-The integration also accepts the `FOUNDRY_PROJECT_ENDPOINT` environment
-variable as a fallback for the project endpoint.
+The integration reads either `FOUNDRY_PROJECT_ENDPOINT` or
+`AZURE_AI_PROJECT_ENDPOINT` for the project endpoint. No environment variable
+supplies the toolbox name, so always pass `toolbox_name` to the constructor.
 
 Import the common classes and initialize the model used throughout this
 article:
@@ -72,10 +69,12 @@ article:
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
 from langchain.messages import HumanMessage
-from azure.identity import DefaultAzureCredential
 
 model = init_chat_model("azure_ai:gpt-4.1")
 ```
+
+The toolbox authenticates with `DefaultAzureCredential`, which picks up your
+`az login` session. You don't need to construct a credential yourself.
 
 ## Connect to a toolbox
 
@@ -93,12 +92,16 @@ toolbox = AzureAIProjectToolbox(
 )
 ```
 
-When you set the environment variables, you can omit the constructor
-arguments:
+When the endpoint is set in the environment, you can omit
+`project_endpoint`. `toolbox_name` is always required:
 
 ```python
-toolbox = AzureAIProjectToolbox()
+toolbox = AzureAIProjectToolbox(toolbox_name="my-toolbox")
 ```
+
+> [!NOTE]
+> `AzureAIProjectToolbox` is in preview and raises an `ExperimentalWarning`
+> when you create one. Its API is subject to change.
 
 **Reference:** [AzureAIProjectToolbox](https://pypi.org/project/langchain-azure-ai/)
 
@@ -188,7 +191,7 @@ you grant consent, the toolbox loads its tools normally.
 
 ## Load skills from a toolbox
 
-A toolbox can expose skills. A toolbox exposes skills as MCP resources with URIs of the form
+A toolbox exposes skills as MCP resources with URIs of the form
 `skill://{name}`. Use `get_resources()` to load them as LangChain `Blob`
 objects. Each `Blob` carries the resource name in its `source` property and
 its raw URI under `metadata["uri"]`.
@@ -203,7 +206,7 @@ for blob in skill_blobs:
 
 ```output
 Skill: jokes-teller/SKILL.md
-{'content': '---\nname: jokes-teller\ndescription: An skill to tell jokes\n---\n\nUse...'}
+{'content': '---\nname: jokes-teller\ndescription: A skill to tell jokes\n---\n\nUse...'}
 ```
 
 **What this snippet does:** Loads every `skill://` resource from the toolbox
