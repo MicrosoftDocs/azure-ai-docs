@@ -142,7 +142,7 @@ az role assignment create \
 
 ## Limitations 
 
-- **VNET and subnet IP address limitations**:
+- **VNet and subnet IP address limitations**:
   - Your Agent Service delegated subnet must use one of these address spaces:
     - RFC 1918: `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`.
     - RFC 6598 (CGNAT): addresses within `100.64.0.0/10`, excluding `100.100.0.0/17`, `100.100.192.0/19`, and `100.100.224.0/19`.
