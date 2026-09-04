@@ -96,7 +96,7 @@ For applications, this endpoint is exposed at:
 
 `https://{accountName}.services.ai.azure.com/api/projects/{projectName}/applications/{applicationName}/protocols/openai`
 
-The OpenAI-compatible API exposed through applications has been modified to ensure users' conversations remain private. This restriction is temporary and will be removed once we support end-user isolation. As a result, the API is more limited than the OpenAI API served by the project endpoint. Specifically:
+The OpenAI-compatible API exposed through applications has been modified to ensure users' conversations remain private. This restriction is temporary and is removed once end-user isolation is supported. As a result, the API is more limited than the OpenAI API served by the project endpoint. Specifically:
 
 - Only the stateless Responses API (`POST /responses`) is supported.
 - Other APIs including `/conversations`, `/files`, `/vector_stores`, and `/containers` are inaccessible.
@@ -153,13 +153,20 @@ To publish an agent version, you must create an application and deployment that 
       - `project_name`: The Foundry project name.
       - `application_name` and `deployment_name`: Choose names for the Agent Application and deployment you want to create.
 
-3. Choose an `api-version`.
+3. Choose an `api-version`. To list the versions your subscription supports, run:
 
-#### 1. Create agent application. 
+  ```azurecli
+  az provider show --namespace Microsoft.CognitiveServices --query "resourceTypes[?resourceType=='accounts/projects/applications'].apiVersions[]" -o tsv
+  ```
+
+#### 1. Create agent application
 
 For a full property reference and an infrastructure-as-code (Bicep) example for Agent Applications, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications](/azure/templates/microsoft.cognitiveservices/accounts/projects/applications?pivots=deployment-language-bicep).
 
-**Required field**: Set the `agentName` field to the name of the agent you want to publish. 
+**Required fields**:
+
+- `agentName`: The name of the agent you want to publish.
+- `displayName`: A friendly name for the application. Omitting it fails with an opaque `400 SystemError`.
 
 The following example shows only the minimum required fields. By default `authorizationPolicy` is set to **Default (Azure RBAC)** and `trafficRoutingPolicy` routes all traffic to the first deployment.
 
@@ -170,6 +177,7 @@ Content-Type: application/json
 
 {
   "properties":{
+    "displayName": "Publishing Agent",
     "agents": [{"agentName": "Publishing Agent"}]
   }
 }
@@ -378,14 +386,14 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 BASE_URL = "https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai"
 
 # Create OpenAI client authenticated with Azure credentials
-openai = OpenAI(
+client = OpenAI(
     api_key=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default"),
     base_url=BASE_URL,
     default_query={"api-version": "2025-11-15-preview"}
 )
 
 # Send a request to the published agent
-response = openai.responses.create( 
+response = client.responses.create( 
   input="Write a haiku", 
 ) 
 print(f"Response output: {response.output_text}")
