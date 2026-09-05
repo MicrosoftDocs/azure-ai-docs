@@ -572,7 +572,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 
 Use the [Responses API](./responses.md) when you combine reasoning with function or custom tools.
 
-For GPT-6 Astra, tool calling requires the Responses API. The model doesn't support the `none` reasoning effort level, so the Chat Completions workaround below doesn't apply. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
+For GPT-6 Astra, tool calling requires the Responses API. The model doesn't support the `none` reasoning effort level, so the Chat Completions workaround described in the next section doesn't apply. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
 
 The `gpt-5.6` models support the Chat Completions API and tools, but can't combine reasoning with tools on Chat Completions. A Chat Completions request that includes `tools` fails with the following error:
 
