@@ -73,7 +73,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
 | --- | :--- | :--- | :--- | :---: |
-| `gpt-6-astra` (2026-09-03) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Streaming. <br> - Structured outputs. <br> - Text and image input with text output. <br> - Functions, tools, and parallel tool calling. <br> - Reasoning effort and verbosity. <br> - Log probabilities. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | April 2026 |
+| `gpt-6-astra` (2026-09-03) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Streaming. <br> - Structured outputs. <br> - Text and image input with text output. <br> - Functions, tools, and parallel tool calling (Responses API only). <br> - Reasoning effort and verbosity. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | April 2026 |
 
 <!-- Do not change this note's wording without approval. -->
 > [!NOTE]
@@ -83,8 +83,10 @@ Keep the following in mind when you deploy and call the `gpt-6-astra` model:
 
 - Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-6-astra` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
 - Standard pay-as-you-go deployments of the GPT-6 model family and later models use separate rates for short-context and long-context requests. Each GPT-6 model handles both types of requests. For GPT-6 models, prompts with more than 272,000 input tokens use long-context pricing for the full request, not only for tokens beyond the threshold. Later models might use different thresholds. For current rates, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
-- The model supports the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For more information, see [Tool calling with reasoning models](../how-to/reasoning.md#tool-calling-with-reasoning-models).
-- The model supports `logprobs`, but it doesn't support `temperature` or `top_p`.
+- Tool calling requires the Responses API. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
+- The model doesn't support the `none` reasoning effort level.
+- The model doesn't support custom `temperature` or `top_p` values or log probabilities (`logprobs`).
+- Azure OpenAI doesn't currently support mid-conversation reasoning effort changes (`configuration_update`) or mid-turn steering (`response.steer`) for GPT-6 Astra.
 
 ## GPT-5.6
 
