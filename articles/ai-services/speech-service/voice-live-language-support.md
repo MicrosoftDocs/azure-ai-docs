@@ -27,7 +27,7 @@ Depending on the model you use, the Voice Live API processes speech input by usi
 
 ### Azure speech to text supported languages
 
-Azure speech to text is used for all configurations where a non-multimodal model is used and for speech input transcriptions with `phi4-mm-realtime`.
+Voice Live uses Azure speech to text by default with non-multimodal models and for speech input transcriptions with `phi4-mm-realtime`.
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
 
 There are three options for Voice Live language processing:
