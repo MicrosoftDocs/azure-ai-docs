@@ -7,7 +7,7 @@ author: solarrezaei
 ms.author: solarrezaei
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 06/05/2026
+ms.date: 09/06/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to evaluate the quality of my Voice Live voice agent so I can measure conversational quality and identify areas for improvement.
@@ -104,7 +104,7 @@ Voice Live session parameters control how the harness processes audio and how th
 | Configuration | Model | VAD type | EOU detection | Best for |
 |--------------|-------|----------|---------------|----------|
 | **VAD + Realtime** (recommended) | `gpt-realtime` | `azure_semantic_vad_multilingual` | Enabled | Lowest latency. Recommended for most evaluations. |
-| **VAD + Cascaded** | `gpt-5` | `azure_semantic_vad_multilingual` | Enabled | Broader model selection (GPT-5, GPT-4.1, Phi). |
+| **VAD + Cascaded** | `gpt-5` | `azure_semantic_vad_multilingual` | Enabled | Broader model selection (GPT-5 and Phi). |
 | **PTT + Realtime** (experimental) | `gpt-realtime` | `server_vad` | Disabled | Testing client-controlled speech boundaries. |
 | **PTT + Cascaded** (experimental) | `gpt-5` | `server_vad` | Disabled | Testing client-controlled speech with cascaded models. |
 
@@ -131,7 +131,7 @@ Voice Live session parameters control how the harness processes audio and how th
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `model` | string | `gpt-realtime` | The Voice Live model to use. Options include `gpt-realtime`, `gpt-5`, `gpt-4.1`, `gpt-5-mini`, and `phi4-mini`. |
+| `model` | string | `gpt-realtime` | The Voice Live model to use. Options include `gpt-realtime`, `gpt-5.6-terra`, `gpt-5`, `gpt-5-mini`, and `phi4-mm-realtime`. |
 | `voice` | string | `en-US-Ava:DragonHDLatestNeural` | The Azure text to speech voice. HD voices use the `:DragonHDLatestNeural` suffix. |
 | `vad_type` | string | `azure_semantic_vad_multilingual` | The turn detection type. Options include `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
 | `use_eou_detection` | bool | `true` | When set to `true`, enables semantic end-of-utterance detection. |
@@ -309,4 +309,3 @@ For the complete list of known issues and workarounds, see the [evaluation harne
 - [Run evaluations from the Microsoft Foundry portal](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
 - [View evaluation results](/azure/ai-foundry/how-to/evaluate-results)
 - [Voice Live evaluation harness on GitHub](https://github.com/microsoft-foundry/voicelive-evaluation)
-
