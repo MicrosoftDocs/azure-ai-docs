@@ -570,7 +570,11 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 
 ## Tool calling with reasoning models
 
-Use the [Responses API](./responses.md) when you combine reasoning with function or custom tools. The `gpt-5.6` and later models support the Chat Completions API and they support tools, but the Chat Completions API doesn't support the two together. A Chat Completions request that includes `tools` fails with the following error:
+Use the [Responses API](./responses.md) when you combine reasoning with function or custom tools.
+
+For GPT-6 Astra, tool calling requires the Responses API. The model doesn't support the `none` reasoning effort level, so the Chat Completions workaround described in the next section doesn't apply. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
+
+The `gpt-5.6` models support the Chat Completions API and tools, but can't combine reasoning with tools on Chat Completions. A Chat Completions request that includes `tools` fails with the following error:
 
 ```output
 Function tools with reasoning_effort are not supported for gpt-5.6-sol in /v1/chat/completions. To use function tools, use /v1/responses or set reasoning_effort to 'none'.
@@ -578,9 +582,9 @@ Function tools with reasoning_effort are not supported for gpt-5.6-sol in /v1/ch
 
 The request fails even when you don't send `reasoning_effort`, because these models default to `medium`. Sending `tools` is enough to trigger the error. An application that calls tools through Chat Completions can start failing after you upgrade its deployment from an earlier reasoning model.
 
-You have two ways to resolve it:
+For `gpt-5.6` models, you have two ways to resolve it:
 
-- **Recommended**: Send tool-calling requests to the Responses API. This path supports the full range of `reasoning_effort` values, returns reasoning items you can carry across turns, and is the surface where new reasoning features ship first. For a migration walkthrough, see [Upgrade your Azure OpenAI app from Chat Completions to the Responses API](/azure/developer/ai/how-to/azure-openai-to-responses).
+- **Recommended**: Send tool-calling requests to the Responses API. This path supports the model's full range of `reasoning_effort` values and returns reasoning items you can carry across turns. For a migration walkthrough, see [Upgrade your Azure OpenAI app from Chat Completions to the Responses API](/azure/developer/ai/how-to/azure-openai-to-responses).
 - If you must stay on Chat Completions, set `reasoning_effort` to `none` on every request that sends `tools`. The model then calls tools without reasoning, which loses the planning quality that reasoning provides.
 
 The following request shows the Chat Completions workaround:
@@ -1366,15 +1370,17 @@ Input and output limits share the available context budget and aren't additive. 
 | **Maximum output tokens** | 128,000 tokens |
 | **Input modalities** | Text and images |
 | **Output modalities** | Text |
-| Chat Completions API | ✅<sup>9</sup> |
+| Chat Completions API | ✅ (without tools) |
 | Responses API | ✅ |
 | Streaming | ✅ |
-| Functions/tools | ✅<sup>9</sup> |
-| **[Reasoning effort](#reasoning-effort)** | ✅ |
+| Functions/tools | ✅ (Responses API only) |
+| **[Reasoning effort](#reasoning-effort)** | ✅ (`none` isn't supported) |
 | Verbosity | ✅ |
-| `logprobs` | ✅ |
+| `logprobs` | - |
 | `temperature` | - |
 | `top_p` | - |
+
+Azure OpenAI doesn't currently support mid-conversation reasoning effort changes (`configuration_update`) or mid-turn steering (`response.steer`) for GPT-6 Astra.
 
 # [GPT-5 reasoning models](#tab/gpt-5)
 
@@ -1401,15 +1407,15 @@ Input and output limits share the available context budget and aren't additive. 
 <sup>4</sup> `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1` keep in mind that you may need to update your code to explicitly pass a reasoning_effort level if you want reasoning_effort to occur.<br><br>
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.<br><br>
 <sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to.<br><br>
-<sup>7</sup> `gpt-6-astra`, `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.<br><br>
+<sup>7</sup> `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.<br><br>
 <sup>8</sup> The `gpt-5.6` and later models support `all_turns` for the `reasoning.context` parameter and use it by default. Earlier reasoning models support only `auto` and `current_turn`.<br><br>
-<sup>9</sup> The `gpt-5.6` and later models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For details and workarounds, see [Tool calling with reasoning models](#tool-calling-with-reasoning-models).
+<sup>9</sup> The `gpt-5.6` models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For details and workarounds, see [Tool calling with reasoning models](#tool-calling-with-reasoning-models).
 
 ### GPT-5 and GPT-6 reasoning features
 
 | Feature | Description |
 | ---- | ---- |
-| `reasoning_effort` | `max` works only with GPT-6 or GPT-5.6 models and the Responses API. <br> `xhigh` works only with GPT-6, GPT-5.6, GPT-5.5, GPT-5.4, and `gpt-5.1-codex-max` models. <br> `minimal` works only with the original GPT-5 reasoning models. `minimal` doesn't work with `gpt-5.1` or greater. <sup>*</sup> <br> With GPT-5.6 and later models on the Chat Completions API, `none` is the only value you can combine with function tools. See [Tool calling with reasoning models](#tool-calling-with-reasoning-models). <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` |
+| `reasoning_effort` | `max` works only with GPT-6 or GPT-5.6 models and the Responses API. <br> `xhigh` works only with GPT-6, GPT-5.6, GPT-5.5, GPT-5.4, and `gpt-5.1-codex-max` models. <br> `minimal` works only with the original GPT-5 reasoning models. `minimal` doesn't work with `gpt-5.1` or greater. <sup>*</sup> <br> GPT-6 Astra doesn't support `none` and requires the Responses API for tool calling. With GPT-5.6 models on the Chat Completions API, `none` is the only value you can combine with function tools. See [Tool calling with reasoning models](#tool-calling-with-reasoning-models). <br><br> **Options (model-dependent)**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` |
 | `verbosity` | A new parameter that gives you more granular control over how concise the model's output is.<br><br>**Options:** `low`, `medium`, `high`. |
 | [`reasoning.context`](#preserve-reasoning-across-calls) | Controls which available reasoning items the model renders into its next context. `all_turns` works only with GPT-6 and GPT-5.6 models, which use this option by default.<br><br>**Options:** `auto`, `current_turn`, `all_turns`. |
 | [`reasoning.mode`](#reasoning-mode) | Selects standard or pro execution for GPT-6 and GPT-5.6 models with the Responses API. Pro mode does more model work on a request before returning a single answer, which increases latency and token usage. Azure OpenAI uses `standard` as the default.<br><br>**Options:** `standard`, `pro`. |
@@ -1451,7 +1457,7 @@ Input and output limits share the available context budget and aren't additive. 
 
 ### Unsupported parameters
 
-The `gpt-6-astra` model supports the `logprobs` parameter, but it doesn't support the `temperature` or `top_p` parameters.
+GPT-6 Astra doesn't support custom `temperature` or `top_p` values or log probabilities (`logprobs`).
 
 Other reasoning models don't support the following parameters:
 
