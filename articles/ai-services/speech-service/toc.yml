@@ -396,6 +396,8 @@ items:
       items:
       - name: Voice Live API reference
         items:
+        - name: '2026-07-15'
+          href: voice-live-api-reference-2026-07-15.md
         - name: '2026-04-10'
           href: voice-live-api-reference-2026-04-10.md
         - name: '2025-10-01'
