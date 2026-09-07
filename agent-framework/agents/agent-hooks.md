@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: article
 ms.author: evmattso
-ms.date: 08/07/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -69,22 +70,22 @@ The contract is cooperative rather than a process isolation boundary. Intercepto
 
 ## Install Agent Hooks
 
-Install the optional `agent-hooks` extra for the core package:
+Install the Agent Hooks SDK as a direct dependency:
 
 ```bash
-pip install "agent-framework-core[agent-hooks]"
+pip install agent-hooks-sdk
 ```
 
 If you use `uv`:
 
 ```bash
-uv add "agent-framework-core[agent-hooks]"
+uv add agent-hooks-sdk
 ```
 
 The `agent-hooks-sdk` dependency is lazy-imported. Importing `agent_framework` doesn't load the SDK unless you create an Agent Hooks middleware bundle.
 
 > [!NOTE]
-> The `agent-hooks` extra is intentionally not included in `agent-framework-core[all]`. Install it explicitly when you want to enable this experimental control surface.
+> `agent-framework-core` doesn't include an `agent-hooks` extra. Install `agent-hooks-sdk` separately before you create an Agent Hooks middleware bundle.
 
 ## Add an interceptor
 
@@ -141,6 +142,8 @@ Agent Framework emits the applicable interception points automatically:
 | `output` | Before the final response reaches the caller | Final response content |
 | `agent_shutdown` | When the Agent Hooks session completes, fails, or is canceled | Not transformable |
 
+`agent_startup.tools_registered` is the run-start tool snapshot. Each `pre_model_call` payload includes the effective tools for that model call in its optional `tools` field. This includes tools added during the run by context providers, connected MCP servers, or progressive disclosure. The field is omitted when the call has no tools or the tool set can't be projected.
+
 A run that calls a tool typically emits:
 
 `agent_startup` → `input` → `pre_model_call` → `post_model_call` → `pre_tool_call` → `post_tool_call` → `pre_model_call` → `post_model_call` → `output` → `agent_shutdown`
@@ -158,6 +161,14 @@ The contract has three decisions: `allow`, `deny`, and `transform`. The Python S
 | Transform | `Verdict(decision=Decision.TRANSFORM, transform=Transform(...))` | Rewrite a value under `$target`, then continue with the rewritten value. |
 
 Run-level and model-level denies raise `InterceptionBlocked` and prevent the guarded result from reaching the caller or the next stage. At a tool seam, a policy deny prevents the tool action or discards its result and returns a control error containing the policy reason, without the denied target payload, to the model. This allows the agent loop to continue. A host or enforcement failure halts the run.
+
+### Abort a run from function middleware
+
+Import `MiddlewareFailure` from `agent_framework`. Function middleware normally converts an ordinary exception into a tool-error result, then lets the agent loop continue. If function middleware can't safely continue, raise `MiddlewareFailure` from the underlying exception. The runtime aborts the run and propagates the failure to the caller instead of converting it into a tool result.
+
+Don't catch `MiddlewareFailure` in middleware. Catching it allows the loop to continue and changes fail-closed behavior to fail-open behavior. Agent Hooks uses this signal internally when its function-middleware enforcement layer fails. Pass custom fail-closed middleware in a sequence, for example, `middleware=[policy_middleware]`.
+
+For concurrent tool calls, the runtime cancels in-flight sibling calls before it propagates the failure. Cancellation is cooperative, so a synchronous tool that's already running in a worker thread might finish its side effects, but its result is discarded.
 
 ### Apply a transform
 

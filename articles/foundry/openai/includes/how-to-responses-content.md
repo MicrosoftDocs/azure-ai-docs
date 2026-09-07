@@ -68,6 +68,7 @@ Before running the examples in this article, confirm that your resource region s
 
 The Responses API supports the following models:
 
+- `gpt-6-astra` (Version: `2026-09-03`)
 - `gpt-5.6-sol` (Version: `2026-07-09`)
 - `gpt-5.6-terra` (Version: `2026-07-09`)
 - `gpt-5.6-luna` (Version: `2026-07-09`)
@@ -4092,7 +4093,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ---
 
-The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context, and it includes built-in tools for generating and editing images.
+The Responses API enables image generation as part of conversations and multistep workflows. It supports image inputs and outputs within context, and it includes built-in tools for generating and editing images.
 
 Compared to the standalone Image API, the Responses API offers two advantages:
 
@@ -4296,6 +4297,29 @@ For examples of how to use reasoning models with the responses API see the [reas
 Computer use with Playwright has moved to the [dedicated computer use model guide](../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration).
 
 ## Troubleshooting
+
+<!-- Do not change the following wording without approval. -->
+### Why was my API session ended as a precaution?
+
+When using Astra models, to ensure agents interpret and follow your instructions correctly, we have a system that stops sessions in Responses API if it detects the agent may not have been interpreting your instructions correctly in cases such as transferring sensitive data, accessing sensitive data, or making destructive changes. If your session was ended, this does not necessarily mean the agent made a mistake, only that it is worth reviewing the agent's actions to ensure it interpreted and followed your instructions correctly.
+
+### Which API requests are monitored by this system?
+
+The same system described above asynchronously monitors requests to Astra in the Responses API. The Chat Completions API is not scanned by this specific monitoring system. We recommend using the Responses API for the greatest degree of performance and safety for agentic use cases.
+
+#### How to detect that a conversation has been ended in the API by this system?
+
+When the safety system detects that an agent might have interpreted instructions incorrectly in a significant way, the API returns a safety annotation code misalignment-enforcement. In this case, the given session is unable to be resumed.
+
+#### What should my application do if such a case is detected?
+
+You may want to consider setting up some system to enable somebody to review the actions that the agent took in such conversations, for example by providing a UI to the end-user to review. Once a conversation is stopped for this reason in the API, it is unable to be resumed.
+
+<!-- End of wording that must not be changed without approval. -->
+
+### Resolve common API errors
+
+Use the following guidance to resolve common API errors:
 
 - **401/403**: If you use Microsoft Entra ID, verify your token is scoped for `https://ai.azure.com/.default`. If you use an API key, confirm you're using the correct key for the resource.
 - **404**: Confirm `model` matches your deployment name.

@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/12/2026
+ms.date: 09/01/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -23,7 +23,9 @@ Model router now includes built-in automatic failover. When using the default de
 
 For custom deployment configurations:
 - Your selected routing mode (Balanced, Cost, or Quality) continues to apply during failover.
-- Your configured model subset also works as your fallback set to prevent your prompts getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
+- Your configured model subset also works as your fallback set to prevent your prompts from getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
+
+To inspect ordered model attempts and determine whether fallback occurred for an individual Chat Completions request, see [Monitor model router](../how-to/monitor-model-router.md).
 
 ## Prompt caching
 

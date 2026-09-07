@@ -4,8 +4,9 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 04/02/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 # Python 2026 Significant Changes Guide
 
@@ -15,6 +16,145 @@ This document lists all significant changes in Python releases since the start o
 - 🟡 **Enhancement** — New capability or improvement; existing code continues to work
 
 This document tracks significant Python changes across all 2026 releases, so please refer to it when upgrading between versions to ensure you don't miss any important changes. For detailed upgrade instructions on specific topics (e.g., options migration), refer to the linked upgrade guides or the linked PR's.
+
+---
+
+## Unreleased
+
+### 🔴 Middleware inputs require a sequence, and Agent Hooks installs separately
+
+**PR:** [#7918](https://github.com/microsoft/agent-framework/pull/7918)
+
+Agent constructors, per-run middleware inputs, and `create_harness_agent()` no longer accept a single middleware value. Pass middleware as a sequence. An Agent Hooks bundle remains supported as one element in that sequence.
+
+The `agent-framework-core[agent-hooks]` extra is removed. Install `agent-hooks-sdk` directly.
+
+**Before:**
+```python
+agent = Agent(client=client, middleware=hooks)
+```
+
+**After:**
+```bash
+pip install agent-hooks-sdk
+```
+
+```python
+agent = Agent(client=client, middleware=[hooks])
+```
+
+---
+
+## python-1.16.0 (August 27, 2026)
+
+**Release Notes:** [python-1.16.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.16.0)
+
+### 🟡 Programmatic OpenTelemetry provider configuration
+
+**PR:** [#7703](https://github.com/microsoft/agent-framework/pull/7703)
+
+`configure_otel_providers()` now accepts service metadata, resource attributes,
+and OTLP exporter options directly. Explicit service metadata takes precedence
+over environment values. Resource attributes merge over environment attributes.
+Signal-specific OTLP endpoint and header variables remain more specific
+than base programmatic settings.
+
+---
+
+## python-1.15.0 (August 21, 2026)
+
+**Release Notes:** [python-1.15.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0)
+
+### 🔴 OpenTelemetry GenAI semantic conventions consolidated
+
+**PR:** [#7673](https://github.com/microsoft/agent-framework/pull/7673)
+
+Agent Framework now uses the latest experimental GenAI span attributes by
+default, including `gen_ai.provider.name` instead of `gen_ai.system`. Set
+`OTEL_SEMCONV_STABILITY_OPT_IN` to a value that omits the case-sensitive
+`gen_ai_latest_experimental` token to select v1.36 span attributes. The v1.36
+message and choice events are selected independently, remain enabled by default
+when sensitive data is captured, and continue to use `gen_ai.system`. Set
+`ENABLE_MESSAGE_EVENTS=false` to suppress them.
+
+---
+
+### 🟡 Function middleware can abort with `MiddlewareFailure`
+
+**PR:** [#7562](https://github.com/microsoft/agent-framework/pull/7562)
+
+Function middleware can raise `MiddlewareFailure` when execution must stop instead of becoming a recoverable tool error. The function-invocation loop propagates this exception to the caller and cancels in-flight sibling tool calls. Don't catch this exception in middleware because doing so allows the run to continue.
+
+Agent and chat middleware already propagate ordinary exceptions. Use `MiddlewareFailure` when function middleware specifically needs fatal, fail-closed behavior.
+
+---
+
+## python-1.14.0 (August 14, 2026)
+
+**Release Notes:** [python-1.14.0](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0)
+
+### 🟡 Encrypted reasoning is opt-in for Foundry chat
+
+**PR:** [#7536](https://github.com/microsoft/agent-framework/pull/7536)
+
+`FoundryChatClient` no longer requests `reasoning.encrypted_content` by default. The default avoids failures on unsupported models. For capable deployments, opt in with `default_options={"include": ["reasoning.encrypted_content"]}`.
+
+---
+
+### 🔴 [Beta] Foundry Hosted Agent state moves to Foundry State Store
+
+**PR:** [#7533](https://github.com/microsoft/agent-framework/pull/7533)
+
+PR `#7533` removes `FoundrySessionStore(path)` from the beta `agent-framework-foundry-hosting` package. The host now uses `FoundryAgentSessionStore` and Foundry State Store-backed defaults for agent sessions, workflow checkpoints, and function approvals.
+
+- Remove imports and construction of `FoundrySessionStore`.
+- Let `ResponsesHostServer` create the default providers. For custom storage, pass `agent_session_store_provider`, `checkpoint_store_provider`, or `function_approval_store_provider`.
+- Existing file-backed state isn't migrated automatically.
+
+For the current provider model, see [Persist state and handle long-running conversations](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#persist-state-and-handle-long-running-conversations).
+
+---
+
+### 🔴 Build functional workflow definitions before running them
+
+**PR:** [#7521](https://github.com/microsoft/agent-framework/pull/7521)
+
+PR `#7521` changes `@workflow` to return a stateless `FunctionalWorkflowDefinition`. Call `.build()` to create a stateful `FunctionalWorkflow`. Build the workflow before you call `.run()` or `.as_agent()`, and pass checkpoint storage to `.build()`.
+
+**Before:**
+
+```python
+@workflow(checkpoint_storage=storage)
+async def pipeline(data: str) -> str:
+    return await process(data)
+
+result = await pipeline.run("input")
+agent = pipeline.as_agent()
+```
+
+**After:**
+
+```python
+@workflow
+async def pipeline(data: str) -> str:
+    return await process(data)
+
+workflow_instance = pipeline.build(checkpoint_storage=storage)
+result = await workflow_instance.run("input")
+agent = workflow_instance.as_agent()
+```
+
+Build a separate workflow instance for each logical caller or session so that run and replay state remain isolated.
+
+---
+
+### 🟡 Agent Hooks adds a fail-closed interception contract
+
+**PR:** [#7515](https://github.com/microsoft/agent-framework/pull/7515)
+
+Agent Framework adds experimental support for the AGENT-HOOKS-0.1 contract through `create_agent_hooks_middleware()` and `create_agent_hooks_middleware_from_emitter()`. The middleware bundle covers agent, model, and function interception points with fail-closed verdict enforcement, transform write-back, buffered streaming, and verdict-gated persistence.
+
+For the current package and middleware contract, install `agent-hooks-sdk` directly and pass the returned bundle in a sequence, such as `middleware=[hooks]`. For details, see [Agent hooks](../../agents/agent-hooks.md).
 
 ---
 
@@ -2787,6 +2927,10 @@ No significant changes in this release.
 
 | Release | Release Notes | Type | Change | PR |
 |---------|---------------|------|--------|-----|
+| Unreleased | — | 🔴 Breaking | Middleware inputs require a sequence; install `agent-hooks-sdk` directly instead of using the removed core extra | [#7918](https://github.com/microsoft/agent-framework/pull/7918) |
+| 1.15.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0) | 🟡 Enhancement | `MiddlewareFailure` adds fatal, fail-closed behavior for function middleware | [#7562](https://github.com/microsoft/agent-framework/pull/7562) |
+| 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Encrypted reasoning is opt-in for Foundry chat | [#7536](https://github.com/microsoft/agent-framework/pull/7536) |
+| 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Agent Hooks adds experimental AGENT-HOOKS-0.1 interception middleware | [#7515](https://github.com/microsoft/agent-framework/pull/7515) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🔴 Breaking | `github-copilot-sdk` upgraded to v1.0.0: `SubprocessConfig` removed (use `RuntimeConnection` + kwargs), import paths moved to `copilot.session_events`, `copilot_home` → `base_directory`, permission handlers use concrete decision types | [#6292](https://github.com/microsoft/agent-framework/pull/6292) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🟡 Enhancement | Progressive tool exposure via `FunctionInvocationContext` | [#6233](https://github.com/microsoft/agent-framework/pull/6233) |
 | 1.8.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.8.0) | 🟡 Enhancement | MCP-based skills discovery (`McpSkillsSource`) | [#6169](https://github.com/microsoft/agent-framework/pull/6169) |

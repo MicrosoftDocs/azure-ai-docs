@@ -3,7 +3,7 @@ title: Bring Your Own Model (BYOM) with Voice Live API
 description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure Speech in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 11/09/2025
+ms.date: 09/06/2026
 ms.topic: how-to
 ms.service: azure-speech-foundry-tools
 ms.custom: ai-speech, voice-live, byom
@@ -90,7 +90,7 @@ The Voice Live API supports three BYOM integration modes:
 | Mode                                | Description                                                                                           | Example Models                          |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                        | `gpt-realtime`, `gpt-realtime-mini`     |
-| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`     |
+| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `grok-4`                     |
 | `byom-foundry-anthropic-messages`   | Anthropic Claude models deployed in Azure Foundry, using the Messages API (preview)                   | `claude-sonnet-4.6`, `claude-haiku-4.5` |
 
 > [!NOTE]

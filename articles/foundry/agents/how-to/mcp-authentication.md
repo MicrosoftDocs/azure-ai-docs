@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/11/2026
+ms.date: 09/04/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -97,6 +97,14 @@ For security:
 
 Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
 
+Set the Foundry project as the active project before you create an
+identity-based MCP connection:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set "$PROJECT_ENDPOINT"
+```
+
 ### Use agent identity authentication
 
 Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
@@ -107,6 +115,14 @@ Before publishing, all agents in your Foundry project share the same agent ident
 
 Make sure the agent identity has the required role assignments on the underlying service that powers the MCP server.
 
+```bash
+azd ai connection create my-mcp-connection \
+  --kind remote-tool \
+  --target https://<mcp-server-endpoint> \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
 When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
 
 ### Use project managed identity authentication
@@ -116,6 +132,14 @@ Use project managed identity when you want all agents in a project to share the 
 Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
 
 Make sure the project managed identity has the required role assignments on the underlying service that powers the MCP server.
+
+```bash
+azd ai connection create my-mcp-connection \
+  --kind remote-tool \
+  --target https://<mcp-server-endpoint> \
+  --auth-type project-managed-identity \
+  --audience "<entra-audience>"
+```
 
 When the agent invokes the MCP server, Agent Service uses the project's managed identity to request an authorization token and passes it to the MCP server.
 
@@ -434,7 +458,7 @@ After you configure authentication, verify the connection works correctly:
 
 If you developed a custom MCP server or want to use an open-source MCP server that runs locally, you need to host it in the cloud before connecting it to Agent Service.
 
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint.
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, deploy the server as a remote endpoint by hosting it on Azure Container Apps or Azure Functions. For guidance, see [Choose an Azure service for your MCP server](/azure/container-apps/mcp-choosing-azure-service).
 
 The remote endpoint can be either a public endpoint or a private endpoint within your VNet. For private MCP servers, deploy your Container App with internal-only ingress on a dedicated MCP subnet delegated to `Microsoft.App/environments`. To get started, use the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-private-network-agent-tools) template. For details about tool support in network-isolated environments, see [Agent tools with network isolation](../../how-to/configure-private-link.md#agent-tools-with-network-isolation).
 

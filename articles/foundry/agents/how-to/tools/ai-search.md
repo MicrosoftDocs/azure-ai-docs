@@ -928,6 +928,36 @@ Use one of the following options.
 
 For more detailed steps, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
+#### [Azure Developer CLI](#tab/azd)
+
+Set your Foundry project endpoint and search endpoint. Then create either a
+managed identity or key-based project connection:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+SEARCH_ENDPOINT="https://<search-service>.search.windows.net"
+
+# Managed identity
+azd ai connection create my-search-connection \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind cognitive-search \
+  --target "$SEARCH_ENDPOINT" \
+  --auth-type project-managed-identity
+
+# API key
+azd ai connection create my-search-connection \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind cognitive-search \
+  --target "$SEARCH_ENDPOINT" \
+  --auth-type api-key \
+  --key "$SEARCH_ADMIN_KEY"
+```
+
+For managed identity, assign the roles from the keyless authentication setup
+to the Foundry account's system-assigned managed identity. For API-key
+authentication, set `SEARCH_ADMIN_KEY` in your shell or secret store. Don't
+put the key in source control.
+
 #### [Azure CLI](#tab/azurecli)
 
 Create a JSON connection file and use the `az cognitiveservices` CLI to create the connection on your Foundry project.
@@ -1083,7 +1113,7 @@ For more information about deploying connections with Bicep, see [Add a new conn
 
 ### Confirm the connection ID
 
-If you use the REST or TypeScript sample, you need the project connection ID.
+If you use the REST sample, you need the project connection ID. The Python, C#, and TypeScript SDKs can resolve the ID for you from the connection name.
 
 **Python**
 
@@ -1114,6 +1144,22 @@ var searchConnectionName = "my-search-connection";
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 AIProjectConnection connection = projectClient.Connections.GetConnection(connectionName: searchConnectionName);
 Console.WriteLine(connection.Id);
+```
+
+**TypeScript**
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const SEARCH_CONNECTION_NAME = "my-search-connection";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+
+const connection = await project.connections.get(SEARCH_CONNECTION_NAME);
+console.log(connection.id);
 ```
 
 ## Troubleshooting

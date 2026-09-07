@@ -4,7 +4,7 @@ description: Learn how to create an indexed Azure SQL knowledge source in Azure 
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/14/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -14,9 +14,9 @@ zone_pivot_groups: search-csharp-python-rest
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -24,7 +24,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 An *indexed Azure SQL knowledge source* (preview) ingests rows from Azure SQL Database or Azure SQL Managed Instance into an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-Unlike file-based knowledge sources, such as Azure Blob Storage and OneLake, each SQL row is treated as one logical document. The index schema is customer driven through explicit column mappings rather than a fixed document schema.
+Unlike file-based knowledge sources, such as Azure Blob Storage and OneLake, each SQL row is treated as one logical document. You drive the index schema through explicit column mappings rather than using a fixed document schema.
 
 When you create an indexed Azure SQL knowledge source, you specify a SQL data source, optional column mappings, and optional models to automatically generate the following Azure AI Search objects:
 
@@ -37,8 +37,8 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 ### Usage support
 
-| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources) |
-|--|--|--|--|--|--|--|
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-08-01-preview&preserve-view=true) |
+| -- | -- | -- | -- | -- | -- | -- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -47,19 +47,31 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 + Completion of the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites), including:
 
-    + An [Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) or [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview) with a table or view to ingest.
-        
-    + A single-valued primary key on the source table or view.
-        
-    + For views, a column suitable for high-water-mark change detection. We strongly recommend a `rowversion` column.
+  + An [Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) or [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview) with a table or view to ingest.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
+  + A single-valued primary key on the source table or view.
+
+  + For views, a column suitable for high-water-mark change detection. We strongly recommend a `rowversion` column.
+
++ Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** and **Search Index Data Contributor** roles assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 + If you specify `embeddingColumns`, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource that hosts the embedding model.
+
++ If you set `networkAccessMode` to `private`, complete the following requirements:
+
+  + Use an [S2, S3, L1, or L2 search service](search-sku-tier.md#tier-descriptions).
+
+  + Create and approve a shared private link to the SQL server with the `sqlServer` group ID. For SQL Managed Instance, use the `managedInstance` group ID.
+
+  + Use either SQL authentication or managed identity authentication. For managed identity, grant the identity the required Azure and database roles, and use a connection string with `Database=<database-name>` and the resource ID of the [SQL server](search-howto-managed-identities-sql.md) or [SQL Managed Instance](search-how-to-index-sql-managed-instance-with-managed-identity.md). Set `ingestionParameters.identity` only for a user-assigned identity. If you omit it, the indexer uses the search service's system-assigned identity.
+
+  + Create and approve a shared private link for each protected model endpoint. Use the `openai_account` group ID for Azure OpenAI endpoints and `foundry_account` for Foundry resource endpoints.
 
 ::: zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
 
 ::: zone-end
 
@@ -67,11 +79,15 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 + The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ The [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) version of the Search Service REST API.
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
 
@@ -82,7 +98,7 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 + The primary key is auto-discovered and can't be overridden.
 + `contentExtractionMode` supports only `"minimal"`.
 + Image extraction and image verbalization aren't supported.
-+ Real-time synchronization isn't supported. The generated indexer is schedule based.
++ Real-time synchronization isn't supported. The generated indexer is schedule-based.
 + Real-time SQL retrieval isn't supported. The knowledge source is indexed, not remote.
 
 ## Prepare the generated indexer
@@ -105,7 +121,7 @@ The generated indexer supports two authentication options:
 
 + **Managed identity authentication:** Use a system-assigned or user-assigned managed identity that has Azure RBAC and database-level roles on the SQL resource.
 
-For connection string formats, role requirements, and set up steps, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites) and [Connect through a managed identity](search-how-to-managed-identities.md).
+For connection string formats, role requirements, and setup steps, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites) and [Connect through a managed identity](search-how-to-managed-identities.md).
 
 ## Check for existing knowledge sources
 
@@ -120,7 +136,7 @@ The following JSON is an example response for an indexed Azure SQL knowledge sou
   "description": "Sample indexed Azure SQL knowledge source.",
   "encryptionKey": null,
   "indexedSqlParameters": {
-    "connectionString": "<SQL database connection string>",
+    "connectionString": "<sql-connection-string>",
     "tableOrView": "dbo.tbl_hotels",
     "contentColumns": [
       { "name": "hotelName", "sourceField": "HotelName", "searchFieldType": "Edm.String" },
@@ -134,7 +150,7 @@ The following JSON is an example response for an indexed Azure SQL knowledge sou
       "embeddingModel": {
         "kind": "azureOpenAI",
         "azureOpenAIParameters": {
-          "resourceUri": "<Foundry resource endpoint URI>",
+          "resourceUri": "<aoai-endpoint>",
           "deploymentId": "text-embedding-3-large",
           "modelName": "text-embedding-3-large"
         }
@@ -157,23 +173,23 @@ Run the following code to create an indexed Azure SQL knowledge source.
 ::: zone pivot="csharp"
 
 ```csharp
-using Azure;
+using Azure.Identity;
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var embeddingParams = new AzureOpenAIVectorizerParameters
 {
     ResourceUri = new Uri(aoaiEndpoint),
     DeploymentName = aoaiEmbeddingDeployment,
-    ModelName = aoaiEmbeddingModel,
-    ApiKey = aoaiKey
+    ModelName = aoaiEmbeddingModel
 };
 
 var ingestionParams = new KnowledgeSourceIngestionParameters
 {
+    NetworkAccessMode = KnowledgeSourceNetworkAccessMode.Public,
     ContentExtractionMode = "minimal",
     EmbeddingModel = new KnowledgeSourceAzureOpenAIVectorizer
     {
@@ -215,7 +231,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 ::: zone pivot="python"
 
 ```python
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import (
     AzureOpenAIVectorizerParameters,
@@ -227,18 +243,19 @@ from azure.search.documents.indexes.models import (
 from azure.search.documents.knowledgebases.models import (
     KnowledgeSourceAzureOpenAIVectorizer,
     KnowledgeSourceIngestionParameters,
+    KnowledgeSourceNetworkAccessMode,
 )
 
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint="<search-endpoint>", credential=DefaultAzureCredential())
 
 embedding_params = AzureOpenAIVectorizerParameters(
-    resource_url="aoai_endpoint",
-    deployment_name="aoai_embedding_deployment",
-    model_name="aoai_embedding_model",
-    api_key="aoai_key",
+    resource_url="<aoai-endpoint>",
+    deployment_name="<aoai-embedding-deployment>",
+    model_name="<aoai-embedding-model>",
 )
 
 ingestion_params = KnowledgeSourceIngestionParameters(
+    network_access_mode=KnowledgeSourceNetworkAccessMode.PUBLIC,
     content_extraction_mode="minimal",
     embedding_model=KnowledgeSourceAzureOpenAIVectorizer(
         azure_open_ai_parameters=embedding_params
@@ -285,8 +302,8 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ```http
 ### Create an indexed Azure SQL knowledge source
-PUT {{search-url}}/knowledgesources/indexedsqlks?api-version=2026-05-01-preview
-api-key: {{api-key}}
+PUT {{search-endpoint}}/knowledgesources/indexedsqlks?api-version=2026-08-01-preview
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -304,14 +321,14 @@ Content-Type: application/json
       { "name": "descriptionVector", "sourceField": "Description" }
     ],
     "ingestionParameters": {
+      "networkAccessMode": "public",
       "contentExtractionMode": "minimal",
       "embeddingModel": {
         "kind": "azureOpenAI",
         "azureOpenAIParameters": {
           "resourceUri": "{{aoai-endpoint}}",
           "deploymentId": "{{aoai-embedding-deployment}}",
-          "modelName": "{{aoai-embedding-model}}",
-          "apiKey": "{{aoai-key}}"
+          "modelName": "{{aoai-embedding-model}}"
         }
       }
     }
@@ -319,7 +336,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -333,7 +350,7 @@ Use `contentColumns` to map SQL text columns into searchable fields in the gener
 
 Use `embeddingColumns` to map SQL text columns into generated vector fields. Specify an embedding model in `ingestionParameters` when you use embedding columns.
 
-For indexed Azure SQL knowledge sources, `contentExtractionMode` must be `"minimal"` because SQL ingestion is row based and doesn't extract content from binary documents. Image extraction and image verbalization aren't supported, so `chatCompletionModel`, `assetStore`, `aiServices`, and image-related settings have no effect.
+For indexed Azure SQL knowledge sources, `contentExtractionMode` must be `"minimal"` because SQL ingestion is row-based and doesn't extract content from binary documents. Image extraction and image verbalization aren't supported, so `chatCompletionModel`, `assetStore`, `aiServices`, and image-related settings have no effect.
 
 ### Defaulting and validation rules
 
@@ -346,6 +363,16 @@ The following defaults apply when you create an indexed Azure SQL knowledge sour
 + `embeddingColumns` is independent of `contentColumns`. To make vectors correspond to retrievable text, include the same SQL column in both arrays.
 
 + The primary key of the source table or view is auto-discovered. Explicit overrides aren't supported, and the source must have a single-valued primary key.
+
+### Restrict ingestion to a private network
+
+Starting with the `2026-08-01-preview` API version, `networkAccessMode` controls the network environment in which the generated indexer for an indexed Azure SQL knowledge source runs. This setting affects ingestion only and doesn't change knowledge base retrieve requests or responses.
+
+`networkAccessMode` defaults to `public`, which preserves existing public network behavior. When `networkAccessMode` is `private`, the generated indexer runs in the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment). It uses approved [shared private links](search-indexer-howto-access-private.md) to access the Azure SQL Database or SQL Managed Instance source connection and supported Azure dependencies, such as Azure OpenAI models and Microsoft Foundry resources.
+
+To configure and verify private network access:
+
+[!INCLUDE [Configure private network ingestion](includes/how-tos/knowledge-source-private-network.md)]
 
 ## Check ingestion status
 

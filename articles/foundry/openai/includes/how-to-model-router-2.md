@@ -6,11 +6,14 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 09/01/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Monitor model router metrics
+
+To inspect the serving model, routing attempts, status, and reported latency for an individual Chat Completions request, see [Monitor model router](../how-to/monitor-model-router.md).
 
 ### Monitor performance
 
@@ -50,7 +53,7 @@ The following open-source repositories demonstrate model router in different sce
 |---|---|---|
 | [Model Router Capabilities Interactive Demo](https://github.com/leestott/router-demo-app/) (Python) | Compare Balanced, Cost, and Quality routing modes with custom prompts. View live benchmark data for cost savings, latency, and routing distribution. | Add your own prompt sets, integrate with your CI pipeline, or connect to your deployment for A/B testing. |
 | [Routed Models Distribution Analysis](https://github.com/guygregory/ModelRouter-Distribution) (Python) | Run batches of prompts across routing profiles and model subsets. See which models the router selects and in what proportions. | Plug in representative prompt logs to evaluate tradeoffs before adopting a routing policy at scale. |
-| [Multi-team sceanrios with Quality & Cost benchmarking](https://github.com/microsoft/aitour26-LTG153-automate-model-selection-with-microsoft-foundry-model-router) (Python, workshop) | Deploy model router, run benchmarks against fixed-model deployments, and analyze cost and latency optimization in a multi-team enterprise scenario. | Swap in your own models, prompts, and routing profiles to benchmark against your workload patterns. |
+| [Multi-team scenarios with Quality & Cost benchmarking](https://github.com/microsoft/aitour26-LTG153-automate-model-selection-with-microsoft-foundry-model-router) (Python, workshop) | Deploy model router, run benchmarks against fixed-model deployments, and analyze cost and latency optimization in a multi-team enterprise scenario. | Swap in your own models, prompts, and routing profiles to benchmark against your workload patterns. |
 | [On-Call Copilot Multi-Agent Demo](https://github.com/leestott/On-Call-Copilot-Multi-Agent) (Python) | See how model router dynamically selects the right model per agent step — a fast, low-cost model for classification and a reasoning model for root-cause analysis. | Adapt the multi-agent architecture, agent roles, and escalation paths for your own operations or support scenarios. |
 
 > [!IMPORTANT]

@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 05/27/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Running Agents
@@ -359,6 +360,8 @@ All content is represented by the unified `Content` class with factory methods f
 | `"function_approval_request"` | `Content.from_function_approval_request()` | A request for user approval before executing a function call. |
 | `"function_approval_response"` | `Content.from_function_approval_response()` | The user's response to a function approval request. |
 | `"oauth_consent_request"` | `Content.from_oauth_consent_request()` | A request for the user to complete OAuth consent via a provided link. |
+
+Provider refusals remain visible as `Content(type="text")`. When a provider exposes refusal semantics, Python preserves the experimental, serializable marker `additional_properties["model_output_kind"] == "refusal"`. Structured output extraction doesn't parse text carrying this marker.
 
 Here's how to work with different content types:
 

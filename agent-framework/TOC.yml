@@ -35,6 +35,8 @@ items:
         href: concepts/agents/running-agents.md
       - name: Agent Pipeline
         href: concepts/agents/agent-pipeline.md
+      - name: Runtime model routing
+        href: concepts/agents/runtime-model-routing.md
     - name: Custom Agents
       href: concepts/agents/custom-agents.md
     - name: Conversations & Memory
@@ -289,6 +291,8 @@ items:
         href: integrations/by-component/context-providers/redis.md
       - name: Valkey
         href: integrations/by-component/context-providers/valkey.md
+    - name: Vector Stores
+      href: integrations/by-component/vector-stores/index.md
     - name: Middleware
       items:
       - name: Microsoft Purview

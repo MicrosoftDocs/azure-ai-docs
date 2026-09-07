@@ -4,8 +4,9 @@ description: Browse Agent Framework integrations grouped by external provider ec
 author: eavanvalkenburg
 ms.topic: overview
 ms.author: edvan
-ms.date: 07/29/2026
+ms.date: 08/31/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Integrations by provider
@@ -21,7 +22,7 @@ Provider pages collect related Agent Framework guidance across model inference, 
 | [Amazon Web Services](amazon-web-services.md) | Amazon Bedrock inference and Anthropic Claude on Bedrock |
 | [Google](google.md) | Google Gemini and Anthropic Claude on Vertex AI |
 | [Ollama](ollama.md) | Local model inference through native and OpenAI-compatible clients |
-| [Mistral](mistral.md) | Mistral text embeddings |
+| [Mistral](mistral.md) | Mistral chat and text embeddings |
 
 Additional provider pages can be added as integration coverage grows.
 

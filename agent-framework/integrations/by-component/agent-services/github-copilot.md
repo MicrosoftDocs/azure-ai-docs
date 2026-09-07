@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: dmytrostruk
 ms.topic: tutorial
 ms.author: dmytrostruk
-ms.date: 07/30/2026
+ms.date: 09/07/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -335,8 +336,15 @@ The runnable sample uses these environment variables:
 | `BYOK_API_KEY` | Static API key for the provider endpoint. |
 | `BYOK_MODEL_ID` | Model identifier to request. Defaults to `gpt-4o`. |
 
+The sample uses a static API key. For rotating credentials, set the experimental
+`bearer_token_provider` field on `ProviderConfig` to a synchronous or
+asynchronous callback that returns a token. The Copilot SDK invokes the callback
+for each provider request, and the callback is responsible for token
+acquisition, caching, and refresh. A bearer token provider takes precedence over
+`api_key` or `bearer_token` when they're also set.
+
 > [!WARNING]
-> BYOK uses static credentials and doesn't provide automatic token refresh. Keep API keys out of source control and load them from environment variables or a secret store. Usage and billing are tracked by your provider rather than GitHub.
+> Keep static API keys and tokens out of source control. Load them from environment variables or a secret store. Your provider, not GitHub, tracks usage and billing.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/github_copilot/github_copilot_with_byok.py" range="22-57":::
 

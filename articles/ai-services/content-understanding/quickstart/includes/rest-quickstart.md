@@ -142,6 +142,8 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api
 
 The 200 (`OK`) JSON response includes a `status` field. If the operation isn't complete, `status` is `Running` or `NotStarted`. Poll the URL every 1–2 seconds until `status` is `Succeeded`.
 
+To include optional model-call and latency information in a GA response, add the `x-ms-diagnostics: true` header to every polling request. For version differences and response handling, see [Retrieve analysis diagnostics](../../how-to/retrieve-diagnostics.md).
+
 # [Document](#tab/document)
 ```jsonc
 {

@@ -7,7 +7,7 @@ ms.date: 08/26/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 ---
 
@@ -168,6 +168,51 @@ patched_agent = project.agents.update_details(
 )
 print(f"Enabled incoming A2A for agent: {patched_agent.name}")
 ```
+
+#### [JavaScript/TypeScript SDK](#tab/javascript)
+
+Install the required package:
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const project = new AIProjectClient(
+  "your_project_endpoint",
+  new DefaultAzureCredential(),
+);
+
+// Add the agent card and enable the A2A protocol.
+const patchedAgent = await project.agents.patchAgentObject(
+  "your_agent_name",
+  {
+    agentEndpoint: {
+      protocol_configuration: {
+        responses: {},
+        a2a: {},
+      },
+    },
+    agentCard: {
+      version: "1.0",
+      description: "A helpful assistant that answers questions.",
+      skills: [
+        {
+          id: "general-qa",
+          name: "General Q&A",
+          description: "Answers general questions.",
+        },
+      ],
+    },
+  },
+);
+console.log(`Enabled incoming A2A for agent: ${patchedAgent.name}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ---
 

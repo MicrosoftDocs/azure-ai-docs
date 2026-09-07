@@ -323,7 +323,85 @@ Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure
 
 :::zone pivot="javascript"
 
-Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default` and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+Install the MCP client SDK if you haven't already:
+
+```bash
+npm install @modelcontextprotocol/sdk @azure/identity
+```
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { Client } from "@modelcontextprotocol/sdk/client";
+import {
+  StreamableHTTPClientTransport,
+} from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+
+const url =
+  "https://<account>.services.ai.azure.com/api/projects/<proj>" +
+  "/toolboxes/<name>/versions/<version>/mcp?api-version=v1";
+// Match the tools configured with pin: true.
+const expectedPinnedTools = new Set(["calendar_events"]);
+
+async function verifyToolbox() {
+  const credential = new DefaultAzureCredential();
+  const tokenResponse = await credential.getToken(
+    "https://ai.azure.com/.default",
+  );
+  if (!tokenResponse) {
+    throw new Error("Failed to acquire an access token.");
+  }
+
+  // Build the bearer header from the acquired token. Using tokenResponse.token
+  // here reveals no secret in source -- it's a variable reference resolved at
+  // runtime, not a hardcoded value.
+  const authorizationHeader = "Bearer " + tokenResponse.token;
+  const transport = new StreamableHTTPClientTransport(new URL(url), {
+    requestInit: {
+      headers: { Authorization: authorizationHeader },
+    },
+  });
+
+  const client = new Client({ name: "tool-search-verifier", version: "1.0.0" });
+  await client.connect(transport);
+
+  try {
+    // List the two meta-tools and any explicitly pinned tools.
+    const toolsResult = await client.listTools();
+    console.log(`Tools found: ${toolsResult.tools.length}`);
+    for (const tool of toolsResult.tools) {
+      console.log(`  - ${tool.name}: ${(tool.description ?? "").slice(0, 80)}`);
+    }
+
+    const names = new Set(toolsResult.tools.map((tool) => tool.name));
+    const metaTools = ["tool_search", "call_tool"];
+    for (const metaTool of metaTools) {
+      if (!names.has(metaTool)) {
+        throw new Error(
+          `Tool Search meta-tool "${metaTool}" is missing -- check toolbox_search config`,
+        );
+      }
+    }
+    for (const pinnedTool of expectedPinnedTools) {
+      if (!names.has(pinnedTool)) {
+        throw new Error(`A configured pinned tool is missing: ${pinnedTool}`);
+      }
+    }
+
+    const unexpectedTools = [...names].filter(
+      (name) => !metaTools.includes(name) && !expectedPinnedTools.has(name),
+    );
+    if (unexpectedTools.length > 0) {
+      throw new Error(`Unpinned tools are visible: ${unexpectedTools.join(", ")}`);
+    }
+  } finally {
+    await client.close();
+  }
+}
+
+verifyToolbox().catch((err) => {
+  console.error("The verifier encountered an error:", err);
+});
+```
 
 :::zone-end
 
@@ -387,7 +465,21 @@ In the .NET SDK, attach `tool_configs` to the MCP tool entry when constructing t
 
 :::zone pivot="javascript"
 
-In JavaScript, include `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`. The configuration shape is identical to the JSON shown in the **REST API** tab.
+In JavaScript, include `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`:
+
+```javascript
+const tools = [
+  { type: "toolbox_search" },
+  {
+    type: "mcp",
+    server_label: "analytics",
+    server_url: "https://db-mcp.internal/sse",
+    tool_configs: {
+      execute_query: { pin: true }, // always visible — no search needed
+    },
+  },
+];
+```
 
 :::zone-end
 
@@ -431,7 +523,18 @@ Use the same `"*"` wildcard key inside `tool_configs` on the .NET MCP tool entry
 
 :::zone pivot="javascript"
 
-Use the same `"*"` wildcard key inside `tool_configs` on the JavaScript MCP tool object to pin every tool from an MCP server. See the **REST API** tab for the JSON shape.
+Use the same `"*"` wildcard key inside `tool_configs` on the JavaScript MCP tool object to pin every tool from an MCP server:
+
+```javascript
+{
+  type: "mcp",
+  server_label: "analytics",
+  server_url: "https://db-mcp.internal/sse",
+  tool_configs: {
+    "*": { pin: true }, // every tool in this server is always visible
+  },
+}
+```
 
 :::zone-end
 
@@ -489,7 +592,24 @@ In the .NET SDK, set `additional_search_text` (and optionally `pin`) inside `too
 
 :::zone pivot="javascript"
 
-In JavaScript, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`. The shape matches the JSON shown in the **REST API** tab.
+In JavaScript, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool object passed to `project.toolboxes.createVersion`:
+
+```javascript
+{
+  type: "mcp",
+  server_label: "analytics",
+  server_url: "https://db-mcp.internal/sse",
+  tool_configs: {
+    execute_query: {
+      pin: true,
+      additional_search_text: "SQL database analytics reporting dashboard queries",
+    },
+    list_tables: {
+      additional_search_text: "schema columns metadata table structure discover",
+    },
+  },
+}
+```
 
 :::zone-end
 

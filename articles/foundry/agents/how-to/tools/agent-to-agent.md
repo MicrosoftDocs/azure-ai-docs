@@ -93,6 +93,75 @@ For other endpoints, if the endpoint requires authentication to read its agent c
 1. Enter a **Name** and an **A2A Agent Endpoint**.
 1. Under **Authentication**, select an authentication method. For key-based authentication, set the credential name (for example, `x-api-key`) and the corresponding secret value.
 
+### Create the connection with the Azure Developer CLI
+
+Export your project endpoint and set it as the active project for the `azd ai` commands.
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set $PROJECT_ENDPOINT
+```
+
+Pick the auth variant you need:
+
+```bash
+# No auth
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type none
+
+# Custom-keys header
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type custom-keys \
+  --custom-key "Authorization=******"
+
+# OAuth — bring your own app registration
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type oauth2 \
+  --authorization-url https://auth.example.com/authorize \
+  --token-url https://auth.example.com/token \
+  --client-id <oauth-client-id> \
+  --client-secret <oauth-client-secret> \
+  --scopes "<scope1> <scope2>"
+
+# User Entra token (managed user identity passthrough)
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type user-entra-token \
+  --audience "<entra-audience>"
+
+# Project managed identity
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type project-managed-identity \
+  --audience "<entra-audience>"
+
+# Agentic identity
+azd ai connection create my-a2a-conn \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
+| `--auth-type` | Additional flags |
+| --- | --- |
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `oauth2` | `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, `--scopes` |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `project-managed-identity` | `--audience <entra-audience>` (optional) |
+| `agentic-identity` | `--audience <entra-audience>` |
+
+For identity-based auth (`user-entra-token`, `project-managed-identity`, `agentic-identity`), assign the corresponding principal the required RBAC role on the target resource before you call the agent. For a Foundry agent target, use `--auth-type agentic-identity` and `--audience https://ai.azure.com`.
+
 ### Get the connection identifier for code
 
 Use your connection name in code. Your code uses this name to retrieve the full connection ID at runtime:
@@ -708,6 +777,69 @@ azd ai toolbox create my-toolbox --from-file my-toolbox.yaml
 :::zone pivot="typescript"
 
 This sample demonstrates how to create an AI agent with A2A capabilities by using the `a2a_preview` tool type and the Azure AI Projects client. The agent communicates with other agents and provides responses based on inter-agent interactions by using the A2A protocol.
+
+### Attach the A2A tool directly to an agent
+
+Attach the `a2a_preview` tool directly to a prompt agent when you don't need to share the tool across a toolbox.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const A2A_CONNECTION_NAME = "my-a2a-connection";
+
+export async function main(): Promise<void> {
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Create the A2A tool from the project connection
+  const a2aConnection = await project.connections.get(A2A_CONNECTION_NAME);
+
+  // Create the agent with the A2A tool attached directly
+  const agent = await project.agents.createVersion("MyA2AAgent", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful assistant.",
+    tools: [
+      {
+        type: "a2a_preview",
+        project_connection_id: a2aConnection.id,
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Send a request to the agent
+  const response = await openai.responses.create(
+    {
+      input: "What can the secondary agent do?",
+    },
+    {
+      body: {
+        agent_reference: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
+      },
+    },
+  );
+  console.log(response.output_text);
+
+  // Clean up the created agent version
+  await project.agents.deleteVersion(agent.name, agent.version);
+}
+
+main().catch(console.error);
+```
+
+### Expected output
+
+The console displays the agent's response text from the A2A endpoint. After completion, the agent version is deleted to clean up resources.
+
+### Attach the A2A tool through a toolbox
+
+Use a toolbox when you want to reuse the same A2A tool across multiple agents. This approach adds the tool to a toolbox, then attaches the toolbox to a prompt agent as an MCP tool.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";

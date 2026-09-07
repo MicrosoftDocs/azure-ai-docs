@@ -1,10 +1,10 @@
 ---
 title: Azure Cosmos DB NoSQL Indexer
-description: Set up a search indexer to index data stored in Azure Cosmos DB for vector and full text search in Azure AI Search. This article explains how index data using the NoSQL API protocol.
+description: Set up a search indexer to index data stored in Azure Cosmos DB for vector and full-text search in Azure AI Search. This article explains how index data using the NoSQL API protocol.
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ms.custom:
@@ -48,7 +48,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
 
 1. Sign in to the Azure portal and [create an account, database, and container](/azure/cosmos-db/nosql/quickstart-portal) on Cosmos DB. 
 
-1. In Cosmos DB, select **Data Explorer**  for the new container, provide the following values.
+1. In Cosmos DB, select **Data Explorer** and, for the new container, provide the following values.
 
     | Property | Value |
     |----------|-------|
@@ -70,7 +70,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
 
 Now that you have a container, you can use the Azure portal, REST client, or an Azure SDK to index your data.
 
-The Description field provides the most verbose content. You should target this field for full text search and optional vector queries.
+The Description field provides the most verbose content. You should target this field for full-text search and optional vector queries.
 
 ## Use the Azure portal
 
@@ -124,7 +124,7 @@ The data source definition specifies the data to index, credentials, and policie
         },
         "dataChangeDetectionPolicy": {
           "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-        "  highWaterMarkColumnName": "_ts"
+          "highWaterMarkColumnName": "_ts"
         },
         "dataDeletionDetectionPolicy": null,
         "encryptionKey": null,
@@ -173,7 +173,7 @@ In the "query" property under "container", you can specify a SQL query to flatte
 
 Example document:
 
-```http
+```json
     {
         "userId": 10001,
         "contact": {
@@ -316,7 +316,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, check the indexer execution history in the Azure portal, or send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) REST APIrequest
+To monitor the indexer status and execution history, check the indexer execution history in the Azure portal, or send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) REST API request.
 
 ### [**Portal**](#tab/portal-check-indexer)
 
@@ -383,10 +383,10 @@ For Azure Cosmos DB indexers, the only supported policy is the [`HighWaterMarkCh
 
 The following example shows a [data source definition](#define-the-data-source) with a change detection policy:
 
-```http
+```json
 "dataChangeDetectionPolicy": {
     "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-"  highWaterMarkColumnName": "_ts"
+    "highWaterMarkColumnName": "_ts"
 },
 ```
 
@@ -417,8 +417,8 @@ To specify this hint, [create or update your indexer definition](#configure-and-
 
 When rows are deleted from the collection, you normally want to delete those rows from the search index as well. The purpose of a data deletion detection policy is to efficiently identify deleted data items. Currently, the only supported policy is the `Soft Delete` policy (deletion is marked with a flag of some sort), which is specified in the data source definition as follows:
 
-```http
-"dataDeletionDetectionPolicy"": {
+```json
+"dataDeletionDetectionPolicy": {
     "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
     "softDeleteColumnName" : "the property that specifies whether a document was deleted",
     "softDeleteMarkerValue" : "the value that identifies a document as deleted"

@@ -1236,6 +1236,19 @@ groups:
     title: Python
   - id: rest-api
     title: REST
+# Owner: ssalgadodev
+- id: foundry-fine-tuning
+  title: Programming languages
+  prompt: Choose your preferred fine-tuning method
+  pivots:
+  - id: programming-language-studio
+    title: Portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: rest-api
+    title: REST
 # Owner: mbullwin
 - id: URL-test-interface
   title: URL Test tool
@@ -2130,6 +2143,8 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: javascript
+    title: JavaScript/TypeScript SDK
   - id: rest
     title: REST API
 # Owner: johmil
@@ -2150,6 +2165,8 @@ groups:
     title: REST API
   - id: python
     title: Python SDK
+  - id: javascript
+    title: JavaScript/TypeScript SDK
   - id: azd
     title: Azure Developer CLI
 # Owner: pafarley

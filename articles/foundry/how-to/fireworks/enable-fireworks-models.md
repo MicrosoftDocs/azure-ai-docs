@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 08/05/2026
+ms.date: 09/02/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -131,36 +131,48 @@ The following Fireworks models are available in the Foundry model catalog. In th
 | **DeepSeek** | DeepSeek V3.1 | `FW-DeepSeek-V3.1` | Chat completions | PTU | MoE language model with 163K context and function calling for chat and tool-use workloads. |
 | **DeepSeek** | DeepSeek V3.2 | `FW-DeepSeek-V3.2` | Chat completions | PTU | MoE model focused on efficient reasoning and agent performance. |
 | **DeepSeek** | DeepSeek V4 Flash | `FW-DeepSeek-V4-Flash` | Chat completions | PTU | Streamlined MoE model optimized for fast, cost-efficient reasoning and coding at 1M-token context scale. |
+| **DeepSeek** | DeepSeek V4 Flash 0731 | `FW-DeepSeek-V4-Flash-0731` | Chat completions | Pay-per-token and PTU | Updated DeepSeek V4 Flash model with enhanced agentic capabilities, speculative decoding, and 1M context. |
 | **DeepSeek** | DeepSeek V4 Pro | `FW-DeepSeek-V4-Pro` | Chat completions | Pay-per-token and PTU | Flagship 1.6T-parameter MoE model for frontier reasoning, coding, and long-context agentic workloads. |
 | **Google** | Gemma 4 26B A4B IT | `FW-Gemma-4-26B-A4B-IT` | Chat completions | PTU | Multimodal MoE instruction-tuned model with image input, function calling, and 256K context. |
 | **Google** | Gemma 4 31B IT | `FW-Gemma-4-31B-IT` | Chat completions | PTU | Multimodal dense instruction-tuned model with image input, function calling, and 256K context. |
-| **MiniMax** | MiniMax-M2.5 | `FW-MiniMax-M2.5` | Chat completions | Pay-per-token and PTU | MoE model for coding, agentic tool use, search, and office-work workflows. |
+| **Meta** | Llama 3.1 8B Instruct | `FW-Llama-v3.1-8B-Instruct` | Chat completions | PTU | Multilingual instruction-tuned model optimized for dialogue workloads. |
+| **MiniMax** | MiniMax-M2.5 | `FW-MiniMax-M2.5` | Chat completions | PTU | MoE model for coding, agentic tool use, search, and office-work workflows. |
+| **MiniMax** | MiniMax-M3 | `FW-MiniMax-M3` | Chat completions | Pay-per-token and PTU | Multimodal MoE model with 512K context for coding and long-horizon agentic tasks. |
 | **Mistral AI** | Ministral 3 3B Instruct 2512 | `FW-Ministral-3-3B-Instruct-2512` | Chat completions | PTU | Compact 3B dense instruction-tuned model with vision input and 256K context. |
 | **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | 1T-parameter MoE instruction model with 262K context, improved coding, and tool use. |
 | **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | MoE reasoning model for step-by-step tool-using agents with 262K context. |
 | **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | PTU | Multimodal MoE agentic model with reasoning controls, tool use, and 262K context. |
 | **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Pay-per-token and PTU | Open-source multimodal agentic model for long-horizon coding and task orchestration. |
 | **Moonshot AI** | Kimi K2.7 Code | `FW-Kimi-K2.7-Code` | Chat completions | Pay-per-token and PTU | Coding-focused multimodal agentic model for long-horizon software engineering workflows. |
+| **Moonshot AI** | Kimi K3 | `FW-Kimi-K3` | Chat completions | Pay-per-token | Multimodal 2.8T-parameter MoE model with native visual understanding and 1M context. |
 | **NVIDIA** | NVIDIA Nemotron 3 Super 120B A12B BF16 | `FW-Nemotron-3-Super-120B-A12B-BF16` | Chat completions | PTU | Hybrid LatentMoE model with 120B total parameters for agentic workflows, long-context reasoning, and tool use. |
+| **NVIDIA** | NVIDIA Nemotron 3 Ultra NVFP4 | `FW-Nemotron-3-Ultra-NVFP4` | Chat completions | Pay-per-token and PTU | Nemotron reasoning model with 262K context for agentic and long-context workloads. |
+| **NVIDIA** | NVIDIA Nemotron Lightning 3.5 30B A3B | `FW-Nemotron-Lightning-3.5-30B-A3B` | Chat completions | Pay-per-token and PTU | Hybrid Mamba-Transformer MoE model with configurable reasoning and 262K context. |
 | **OpenAI** | OpenAI gpt-oss-120b | `FW-GPT-OSS-120B` | Chat completions | PTU | Open-weight MoE model for reasoning, agentic tasks, and developer use cases. |
+| **OpenAI** | OpenAI gpt-oss-20b | `FW-GPT-OSS-20B` | Chat completions | PTU | Open-weight model for reasoning and developer workloads with 131K context. |
+| **PaddlePaddle** | PaddleOCR VL 1.6 | `FW-PaddleOCR-VL-1.6` | Chat completions | PTU | Compact vision-language model for document parsing, including OCR, tables, formulas, and charts. |
 | **Qwen** | Qwen3 14B | `FW-Qwen3-14B` | Chat completions | PTU | Dense Qwen model with function calling and 40.9K context. |
+| **Qwen** | Qwen3 32B | `FW-Qwen3-32B` | Chat completions | PTU | Dense 32B Qwen model for reasoning, coding, and dialogue tasks. |
+| **Qwen** | Qwen3.5 4B | `FW-Qwen3.5-4B` | Chat completions | PTU | Compact Qwen model with 262K context. |
 | **Qwen** | Qwen3.5 9B | `FW-Qwen3.5-9B` | Chat completions | PTU | Compact dense Qwen model with 262K context. |
+| **Qwen** | Qwen3.5 27B | `FW-Qwen3.5-27B` | Chat completions | PTU | Dense 27B Qwen model with 262K context. |
 | **Qwen** | Qwen3.5 35B A3B | `FW-Qwen3.5-35B-A3B` | Chat completions | PTU | 35B-parameter MoE Qwen model with 262K context. |
 | **Qwen** | Qwen3.5 122B A10B | `FW-Qwen3.5-122B-A10B` | Chat completions | PTU | 122B-parameter MoE Qwen model with image input and 262K context. |
 | **Qwen** | Qwen3.5 397B A17B | `FW-Qwen3.5-397B-A17B` | Chat completions | PTU | 396B-parameter MoE Qwen model with image input and 262K context. |
 | **Qwen** | Qwen3.6 27B | `FW-Qwen3.6-27B` | Chat completions | PTU | 27B-parameter dense Qwen model with image input, function calling, and 262K context. |
 | **Qwen** | Qwen3.6 35B A3B | `FW-Qwen3.6-35B-A3B` | Chat completions | PTU | 35B-parameter MoE Qwen model with 262K context. |
+| **Thinking Machines Lab** | Inkling | `FW-Inkling` | Chat completions | Pay-per-token and PTU | Multimodal 975B-parameter MoE model with text, image, and audio input and 1M context. |
 | **Z.ai** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | 352B-parameter MoE model for coding, reasoning, and agentic workflows. |
 | **Z.ai** | GLM-5 | `FW-GLM-5` | Chat completions | PTU | MoE model for complex systems engineering and long-horizon agentic tasks. |
-| **Z.ai** | GLM-5.1 | `FW-GLM-5.1` | Chat completions | Pay-per-token and PTU | MoE model for agentic engineering, coding, and long-horizon tasks. |
+| **Z.ai** | GLM-5.1 | `FW-GLM-5.1` | Chat completions | PTU | MoE model for agentic engineering, coding, and long-horizon tasks. |
 | **Z.ai** | GLM-5.2 | `FW-GLM-5.2` | Chat completions | Pay-per-token and PTU | MoE model with 1M-token context and multi-effort coding capabilities for long-horizon tasks. |
+| **Z.ai** | GLM-5.2 Fast | `FW-GLM-5.2-Fast` | Chat completions | Pay-per-token and PTU | High-throughput GLM-5.2 variant optimized for latency-sensitive coding and agentic workloads. |
+| **Z.ai** | GLM-5.3 | `FW-GLM-5.3` | Chat completions | Pay-per-token | GLM-5.2 successor with improved complex coding and long-horizon task performance. |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
 
 > [!IMPORTANT]
-> The following deprecations affect only the Pay-per-token offering. The models aren't retiring. The Pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, and `FW-GLM-5`.
->
-> Deprecation of the Pay-per-token offering for `FW-GLM-5.1` and `FW-MiniMax-M2.5` is scheduled for August 7, 2026. Provisioned throughput (PTU) remains available for all six models.
+> The pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, `FW-GLM-5`, `FW-GLM-5.1`, and `FW-MiniMax-M2.5`. Provisioned throughput (PTU) remains available for all six models.
 >
 > Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
 

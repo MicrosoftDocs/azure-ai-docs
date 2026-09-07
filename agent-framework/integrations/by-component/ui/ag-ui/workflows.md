@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 09/07/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -17,6 +18,7 @@ ms.service: agent-framework
   | Basic workflow exposure       | ✅ |   ✅   | ✅ | .NET and Go stream standard agent output |
   | Workflow lifecycle events     | ❌ |   ✅   | ❌ | Python-specific |
   | Workflow interrupt and resume | ❌ |   ✅   | ❌ | Python-specific |
+  | Workflow checkpoint resume    | ❌ |   ✅   | ❌ | Python-specific |
 -->
 
 # Workflows with AG-UI
@@ -148,15 +150,17 @@ Workflow runs emit a richer set of AG-UI events compared to single-agent runs:
 | `STEP_STARTED` | An executor or superstep begins | `step_name` identifies the agent or step (for example, `"triage_agent"`) |
 | `TEXT_MESSAGE_*` | Agent produces text | Standard streaming text events |
 | `TOOL_CALL_*` | Agent invokes a tool | Standard tool call events |
+| `REASONING_*` | Workflow emits text from an executor configured in `intermediate_output_from` | Streams intermediate text as a reasoning block. The deprecated `"data"` event alias follows the same path. |
 | `STEP_FINISHED` | An executor or superstep completes | Closes the step for UI progress tracking |
 | `CUSTOM` (`status`) | Workflow state changes | Contains `{"state": "<value>"}` in the event value |
 | `CUSTOM` (`request_info`) | Workflow requests human input | Contains the request payload for the client to render a prompt |
-| `CUSTOM` (`workflow_output`) | Workflow produces output | Emitted for both `"output"` (terminal) and `"intermediate"` workflow events. Terminal outputs carry the final answer; intermediate outputs surface as `text_reasoning` content when the workflow runs behind `as_agent()`. |
+| `CUSTOM` (`workflow_output`) | Workflow output can't be converted to message content | Contains the serialized output for custom client rendering. |
 | `RUN_FINISHED` | Run completes | Includes `outcome.type == "interrupt"` and `outcome.interrupts` when the workflow is waiting for input |
 
 Clients can use `STEP_STARTED` / `STEP_FINISHED` events to render progress indicators showing which agent is currently active.
+The integration closes open reasoning and text blocks before a terminal event or human-input request, so clients receive a complete event sequence.
 
-## Interrupt and Resume
+## Interrupt and resume
 
 Workflows can pause execution to collect human input or tool approvals. The AG-UI integration handles this through the interrupt/resume protocol.
 
@@ -213,6 +217,77 @@ user's response:
 
 The server converts the resume payload into workflow responses and continues execution from where it paused. To
 cancel the interrupted run instead, set `status` to `"cancelled"` and omit `payload`.
+
+## Persist and resume workflow checkpoints
+
+Configure `checkpoint_storage` on `AgentFrameworkWorkflow` to save the underlying workflow state at the end of each
+superstep. You can instead pass the same argument to `add_agent_framework_fastapi_endpoint` when you register a
+workflow. The storage must be available to the AG-UI wrapper or endpoint to resume a checkpoint through AG-UI.
+
+The following example uses in-memory storage for a short-lived workflow:
+
+```python
+from agent_framework import InMemoryCheckpointStorage
+from agent_framework.ag_ui import (
+    AgentFrameworkWorkflow,
+    add_agent_framework_fastapi_endpoint,
+)
+from fastapi import FastAPI
+
+app = FastAPI()
+checkpoint_storage = InMemoryCheckpointStorage()
+workflow = build_my_workflow()
+
+ag_ui_workflow = AgentFrameworkWorkflow(
+    workflow=workflow,
+    checkpoint_storage=checkpoint_storage,
+)
+add_agent_framework_fastapi_endpoint(
+    app,
+    ag_ui_workflow,
+    "/workflow",
+)
+```
+
+`AgentFrameworkWorkflow.run()` receives the AG-UI request payload, so a client supplies the checkpoint ID through
+forwarded properties instead of a Python `checkpoint_id` argument. A checkpoint-only resume doesn't include a new
+user message:
+
+```json
+{
+  "threadId": "abc123",
+  "messages": [],
+  "forwardedProps": {
+    "checkpointId": "checkpoint-id-from-your-storage"
+  }
+}
+```
+
+The adapter restores the saved workflow state and continues execution. If the checkpoint contains a pending interrupt,
+include both the checkpoint ID and the canonical `resume` payload in the same request. The adapter restores the
+checkpoint before it delivers the interrupt response.
+
+The adapter binds each new checkpoint to the request's Snapshot Scope and client-supplied `threadId`. It rejects a
+resume request when either value doesn't match. Checkpoints written before ownership metadata was introduced remain
+resumable for compatibility.
+
+This check doesn't replace endpoint authorization or protected checkpoint storage. For more information, see
+[Security considerations](security-considerations.md#authentication-and-authorization).
+
+`InMemoryCheckpointStorage` doesn't survive process restarts. For durable storage options and checkpoint selection,
+see [Checkpoints](../../../../workflows/checkpoints.md).
+
+### Workflow checkpoints and AG-UI thread snapshots
+
+Workflow checkpoints and AG-UI thread snapshots persist different data:
+
+| Persistence mechanism | Stores | Purpose |
+|---|---|---|
+| Agent Framework workflow checkpoint | Executor and runtime state, including pending requests | Resume workflow execution from saved runtime state |
+| AG-UI thread snapshot | Replayable protocol output, such as messages, shared state, and the latest interrupt | Rehydrate the client-visible thread |
+
+You can configure both mechanisms. A workflow checkpoint doesn't replace an AG-UI thread snapshot, and an AG-UI
+thread snapshot doesn't contain the executor state required to resume workflow execution.
 
 ## Complete Example: Multi-Agent Handoff Workflow
 
@@ -370,6 +445,7 @@ class MyWorkflow(Workflow):
 Key details:
 
 - Both `forwarded_props` and `forwardedProps` are accepted in the input payload; internally they are normalized to `forwarded_props`.
+- Within forwarded properties, `checkpoint_id` and `checkpointId` are reserved for workflow checkpoint resume.
 - If `workflow.run()` does not accept `function_invocation_kwargs` (or `**kwargs`), the props are silently dropped — existing workflows are unaffected.
 - Forwarded props are also stored in session metadata but are filtered from LLM-bound metadata, so they do not leak into chat client requests.
 

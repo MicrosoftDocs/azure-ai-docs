@@ -1,6 +1,191 @@
 {
   "redirections": [
     {
+      "source_path": "articles/ai-services/personalizer/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-active-inactive-events.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-active-inactive-events",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-active-learning.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-active-learning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-apprentice-mode.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-apprentice-mode",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-auto-optimization.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-auto-optimization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-multi-slot-personalization.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-multi-slot-personalization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concept-rewards.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concept-rewards",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-exploration.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-exploration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-features.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-features",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-offline-evaluation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-offline-evaluation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-reinforcement-learning.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-reinforcement-learning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/concepts-scalability-performance.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/concepts-scalability-performance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/encrypt-data-at-rest.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/encrypt-data-at-rest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/frequently-asked-questions.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/frequently-asked-questions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-personalizer-works.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-personalizer-works",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-create-resource.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-create-resource",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-feature-evaluation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-feature-evaluation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-inference-explainability.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-inference-explainability",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-learning-behavior.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-learning-behavior",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-manage-model.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-manage-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-multi-slot.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-multi-slot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-offline-evaluation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-offline-evaluation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-settings.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-settings",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/how-to-thick-client.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/how-to-thick-client",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/index.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/quickstart-personalizer-sdk.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/quickstart-personalizer-sdk",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-characteristics-and-limitations.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-characteristics-and-limitations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-data-and-privacy.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-data-and-privacy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-guidance-integration.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-guidance-integration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/responsible-use-cases.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/responsible-use-cases",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/terminology.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/terminology",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/tutorial-use-azure-notebook-generate-loop-data.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/tutorial-use-azure-notebook-generate-loop-data",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/tutorial-use-personalizer-chat-bot.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/tutorial-use-personalizer-chat-bot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/tutorial-use-personalizer-web-app.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/tutorial-use-personalizer-web-app",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/what-is-personalizer.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/what-is-personalizer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/whats-new.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/personalizer/where-can-you-use-personalizer.md",
+      "redirect_url": "/previous-versions/azure/ai-services/personalizer/where-can-you-use-personalizer",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/metrics-advisor/cost-management.md",
       "redirect_url": "/previous-versions/azure/ai-services/metrics-advisor/cost-management",
       "redirect_document_id": false

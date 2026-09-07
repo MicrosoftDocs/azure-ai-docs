@@ -70,6 +70,8 @@ ai-usage: ai-assisted
 | gpt-5.6-sol                    | GlobalStandard    | 15,000      | 15,000,000  |
 | gpt-5.6-terra                  | DataZoneStandard  | 5,000       | 5,000,000   |
 | gpt-5.6-terra                  | GlobalStandard    | 15,000      | 15,000,000  |
+| gpt-6-astra                    | DataZoneStandard  | 5,000       | 5,000,000   |
+| gpt-6-astra                    | GlobalStandard    | 15,000      | 15,000,000  |
 | gpt-chat-latest<sup>1</sup>    | GlobalStandard    | 80,000      | 8,000,000   |
 | gpt-chat-latest<sup>2</sup>    | GlobalStandard    | 8,000       | 8,000,000   |
 | gpt-audio                      | GlobalStandard    | 45000 / 10s | 45,000,000  |

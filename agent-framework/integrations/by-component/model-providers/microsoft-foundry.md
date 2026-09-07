@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 07/30/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Microsoft Foundry model provider
@@ -165,6 +166,33 @@ agent = Agent(
 ```
 
 `FoundryChatClient` is the Foundry-first Python path for direct inference and supports tools, structured outputs, and streaming.
+
+### Reuse the client concurrently
+
+One `FoundryChatClient` instance can serve concurrent asynchronous calls on the same event loop, including overlapping streaming and non-streaming calls.
+
+Create a separate `Agent` and `AgentSession` for each concurrent run, and pass separate messages and options. User-supplied middleware, tools, and callbacks must also support concurrency. Don't share the client across OS threads or event loops, or mutate its configuration while calls are active.
+
+### Opt in to encrypted reasoning
+
+`FoundryChatClient` doesn't request `reasoning.encrypted_content` by default. This default prevents request failures on models that don't support encrypted reasoning.
+
+For a capable deployment, opt in through the agent's default options:
+
+```python
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+agent = Agent(
+    client=FoundryChatClient(
+        project_endpoint="https://your-project.services.ai.azure.com",
+        model="<reasoning-model-deployment>",
+        credential=AzureCliCredential(),
+    ),
+    default_options={"include": ["reasoning.encrypted_content"]},
+)
+```
 
 ## Tools
 

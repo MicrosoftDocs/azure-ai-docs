@@ -1,6 +1,6 @@
 ---
 title: "Manage hosted agent sessions"
-description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
+description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, JavaScript/TypeScript SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
 ms.date: 08/21/2026
@@ -69,6 +69,12 @@ For Invocations, the platform reads the query parameter only. Fields named `agen
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+- JavaScript/TypeScript SDK: `@azure/ai-projects` and `@azure/identity` (`npm install @azure/ai-projects @azure/identity`).
+
+:::zone-end
+
 :::zone pivot="azd"
 
 - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later.
@@ -115,6 +121,25 @@ project = AIProjectClient(
 )
 ```
 
+:::zone-end
+
+:::zone pivot="javascript"
+
+## Set up the client
+
+All JavaScript/TypeScript examples in this article use the following client configuration:
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const project = new AIProjectClient(
+  "<your-project-endpoint>",
+  new DefaultAzureCredential(),
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 :::zone-end
 
 ## Manage session idleness
@@ -311,6 +336,52 @@ follow_up = openai_client.responses.create(
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+When you call `getOpenAIClient` with an `agentName`, the returned OpenAI client is routed at the agent's endpoint. The first call creates the session; the response carries the new `agent_session_id` field.
+
+```typescript
+const openAIClient = project.getOpenAIClient({
+  azureConfig: { allowPreview: true, agentName: "my-agent" },
+});
+
+const response = await openAIClient.responses.create({
+  input: "Find me hotels in Seattle under $200 per night",
+});
+const sessionId = (response as any).agent_session_id;
+console.log(`Session: ${sessionId}`);
+console.log(`Response: ${response.output_text}`);
+
+// Reuse the session and thread the conversation on a later turn.
+const followUp = await openAIClient.responses.create(
+  {
+    input: "Recommend one of those hotels",
+    previous_response_id: response.id,
+  },
+  { body: { agent_session_id: sessionId } },
+);
+console.log(followUp.output_text);
+```
+
+If you thread turns with a `conversation` ID instead of `previous_response_id`, the platform automatically routes every call for that conversation to the same `agent_session_id`—you can omit `agent_session_id`:
+
+```typescript
+const conversation = await openAIClient.conversations.create();
+
+const first = await openAIClient.responses.create({
+  input: "Find me hotels in Seattle under $200 per night",
+  conversation: conversation.id,
+});
+const followUp2 = await openAIClient.responses.create({
+  input: "Recommend one of those hotels",
+  conversation: conversation.id,
+});
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="azd"
 
 ```bash
@@ -385,6 +456,53 @@ requests.post(
     headers=headers,
     data=json.dumps({"input": "Continue our previous discussion"}),
 )
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+The JavaScript/TypeScript SDK doesn't ship a typed Invocations client either. Call the endpoint with `fetch` (or any HTTP library) and authenticate with a bearer token from `@azure/identity`:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+
+const credential = new DefaultAzureCredential();
+const token = await credential.getToken("https://ai.azure.com/.default");
+if (!token) {
+  throw new Error("Failed to acquire an access token.");
+}
+const headers = {
+  Authorization: "Bearer " + token.token,
+  "Content-Type": "application/json",
+};
+
+const base =
+  "<your-project-endpoint>/agents/my-agent/endpoint/protocols/invocations?api-version=v1";
+
+// First call — platform creates a new session.
+const firstResponse = await fetch(base, {
+  method: "POST",
+  headers,
+  body: JSON.stringify({ input: "Hello" }),
+});
+let sessionId: string | undefined;
+const text = await firstResponse.text();
+for (const line of text.split("\n")) {
+  if (line.startsWith("data:")) {
+    const event = JSON.parse(line.slice(5).trim());
+    if (event.type === "done") {
+      sessionId = event.session_id;
+    }
+  }
+}
+
+// Reuse the session on a later call.
+await fetch(`${base}&agent_session_id=${sessionId}`, {
+  method: "POST",
+  headers,
+  body: JSON.stringify({ input: "Continue our previous discussion" }),
+});
 ```
 
 :::zone-end
@@ -477,6 +595,31 @@ print(f"Created session {session.agent_session_id} for agent version 2")
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```typescript
+const session = await project.agents.createSession("my-agent");
+console.log(
+  `Session created (ID: ${session.agent_session_id}, status: ${session.status})`,
+);
+```
+
+To pin the session to a specific agent version, pass a version indicator:
+
+```typescript
+const pinnedSession = await project.agents.createSession("my-agent", {
+  type: "version_ref",
+  agent_version: "2",
+});
+console.log(
+  `Created session ${pinnedSession.agent_session_id} for agent version 2`,
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="azd"
 
 Sessions are created automatically when you invoke an agent through `azd`. Manual session creation isn't currently available as a standalone command.
@@ -503,6 +646,18 @@ sessions = project.agents.list_sessions(agent_name="my-agent")
 for item in sessions:
     print(f"Session: {item.agent_session_id} (status: {item.status})")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+for await (const item of project.agents.listSessions("my-agent")) {
+  console.log(`Session: ${item.agent_session_id} (status: ${item.status})`);
+}
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -535,6 +690,20 @@ session = project.agents.get_session(
 )
 print(f"Session ID: {session.agent_session_id}, Status: {session.status}")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const session = await project.agents.getSession(
+  "my-agent",
+  "<session-id>",
+);
+console.log(`Session ID: ${session.agent_session_id}, Status: ${session.status}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -577,42 +746,9 @@ project.agents.stop_session(
 
 :::zone-end
 
-:::zone pivot="azd"
+:::zone pivot="javascript"
 
-Session management isn't currently available as a standalone command. Use the REST API or SDK.
-
-:::zone-end
-
-## Stopping a session
-
-Stopping a session terminates its running compute while preserving the persistent filesystem volume. Unlike deleting a session, the session is retained and you can resume it later.
-
-Stopping a session that's already stopped succeeds without error.
-
-When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the stop to the calling identity.
-
-:::zone pivot="rest"
-
-```bash
-SESSION_ID="<session-id>"
-ISOLATION_KEY="user-123"
-
-az rest --method POST \
-    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}:stop?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}" \
-    --headers "x-ms-user-isolation-key=${ISOLATION_KEY}"
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-project.agents.stop_session(
-    agent_name="my-agent",
-    session_id="<session-id>",
-)
-```
+Not yet available through the JavaScript/TypeScript SDK. Use the REST API.
 
 :::zone-end
 
@@ -648,6 +784,16 @@ project.agents.delete_session(
     session_id="<session-id>",
 )
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+await project.agents.deleteSession("my-agent", "<session-id>");
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -694,6 +840,24 @@ print(f"Uploaded {result.path} ({result.bytes_written} bytes)")
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```typescript
+import { readFileSync } from "node:fs";
+
+const result = await project.agents.uploadSessionFile(
+  "my-agent",
+  "<session-id>",
+  "data.csv",
+  readFileSync("./data.csv"),
+);
+console.log(`Uploaded ${result.path} (${result.bytes_written} bytes)`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="azd"
 
 ```bash
@@ -727,6 +891,25 @@ files = project.agents.list_session_files(
 for entry in files:
     print(f"{entry.name} (size: {entry.size}, directory: {entry.is_directory})")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const files = project.agents.listSessionFiles(
+  "my-agent",
+  "<session-id>",
+  { path: "." },
+);
+for await (const entry of files) {
+  console.log(
+    `${entry.name} (size: ${entry.size}, directory: ${entry.is_directory})`,
+  );
+}
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -769,6 +952,28 @@ with open("./output.csv", "wb") as f:
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```typescript
+import { writeFileSync } from "node:fs";
+import { buffer } from "node:stream/consumers";
+
+const downloadResult = await project.agents.downloadSessionFile(
+  "my-agent",
+  "<session-id>",
+  "data.csv",
+);
+if (!downloadResult.readableStreamBody) {
+  throw new Error("No stream body in the download response.");
+}
+const contentBytes = await buffer(downloadResult.readableStreamBody);
+writeFileSync("./output.csv", contentBytes);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="azd"
 
 ```bash
@@ -800,6 +1005,20 @@ project.agents.delete_session_file(
     path="data.csv",
 )
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+await project.agents.deleteSessionFile(
+  "my-agent",
+  "<session-id>",
+  "data.csv",
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 

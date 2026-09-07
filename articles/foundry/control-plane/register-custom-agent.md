@@ -276,4 +276,3 @@ If you don't see traces, check the following items:
 
 - [What is Microsoft Foundry Control Plane?](overview.md)
 - [Monitor agent health and performance across your fleet](monitoring-across-fleet.md)
-- [Optimize model cost and performance](how-to-optimize-cost-performance.md)
