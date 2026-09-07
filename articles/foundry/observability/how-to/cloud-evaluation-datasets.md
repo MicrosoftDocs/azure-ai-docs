@@ -62,6 +62,19 @@ data_id = project_client.datasets.upload_file(
 ).id
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+// Upload a local JSONL file. Skip this step if you already have a dataset registered.
+FileDataset dataset = await projectClient.Datasets.UploadFileAsync(
+    name: datasetName,
+    version: datasetVersion,
+    filePath: "./evaluate_test_data.jsonl");
+string dataId = dataset.Id;
+```
+
+Reference: [`AIProjectDatasetsOperations.UploadFileAsync`](/dotnet/api/azure.ai.projects.aiprojectdatasetsoperations.uploadfileasync)
+
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```javascript
@@ -109,6 +122,34 @@ source = SourceFileContent(
         ),
     ],
 )
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+object source = new
+{
+    type = "file_content",
+    content = new[]
+    {
+      new
+      {
+        item = new
+        {
+          query = "How can I safely de-escalate a tense situation?",
+          ground_truth = "Encourage calm communication, seek help if needed, and avoid harm."
+        }
+      },
+      new
+      {
+        item = new
+        {
+          query = "What is the largest city in France?",
+          ground_truth = "Paris"
+        }
+      }
+    }
+};
 ```
 
 # [JavaScript/TypeScript](#tab/javascript)
@@ -163,7 +204,7 @@ Evaluate precomputed responses in a JSONL file by using the `jsonl` data source 
 
 ### Define the data schema and evaluators
 
-Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use the `data_mapping` parameter to connect fields from your input data to evaluator parameters by using `{{item.field}}` syntax. Always include `data_mapping` with the required input fields for each evaluator. Your field names must match those in your JSONL file. For example, if your data has `"question"` instead of `"query"`, use `"{{item.question}}"` in the mapping. For the required parameters per evaluator, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
+Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use `data_mapping` to connect evaluator inputs to fields in your dataset by using `{{item.field}}` syntax. Include the inputs required by each evaluator, even when your dataset uses standard field names such as `query`, `response`, and `ground_truth`. For the required inputs per evaluator, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
 
 # [Python](#tab/python)
 
@@ -196,13 +237,70 @@ testing_criteria = [
         type="azure_ai_evaluator",
         name="violence",
         evaluator_name="builtin.violence",
-        initialization_parameters={"model": model_deployment_name},
         data_mapping={
             "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
     ),
 ]
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+object dataSourceConfig = new
+{
+  type = "custom",
+  item_schema = new
+  {
+    type = "object",
+    properties = new
+    {
+      query = new { type = "string" },
+      response = new { type = "string" },
+      ground_truth = new { type = "string" }
+    },
+    required = new[] { "query", "response", "ground_truth" }
+  }
+};
+
+object[] testingCriteria =
+[
+  new
+  {
+    type = "azure_ai_evaluator",
+    name = "coherence",
+    evaluator_name = "builtin.coherence",
+    initialization_parameters = new { model = modelDeploymentName },
+    data_mapping = new
+    {
+      query = "{{item.query}}",
+      response = "{{item.response}}"
+    }
+  },
+  new
+  {
+    type = "azure_ai_evaluator",
+    name = "violence",
+    evaluator_name = "builtin.violence",
+    data_mapping = new
+    {
+      query = "{{item.query}}",
+      response = "{{item.response}}"
+    }
+  },
+  new
+  {
+    type = "azure_ai_evaluator",
+    name = "f1",
+    evaluator_name = "builtin.f1_score",
+    data_mapping = new
+    {
+      response = "{{item.response}}",
+      ground_truth = "{{item.ground_truth}}"
+    }
+  }
+];
 ```
 
 # [JavaScript/TypeScript](#tab/javascript)
@@ -236,7 +334,6 @@ const testingCriteria = [
     type: "azure_ai_evaluator",
     name: "violence",
     evaluator_name: "builtin.violence",
-    initialization_parameters: { model: modelDeploymentName },
     data_mapping: {
       query: "{{item.query}}",
       response: "{{item.response}}",
@@ -290,7 +387,6 @@ curl --request POST \
         "type": "azure_ai_evaluator",
         "name": "violence",
         "evaluator_name": "builtin.violence",
-        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {
           "query": "{{item.query}}",
           "response": "{{item.response}}"
@@ -338,6 +434,39 @@ eval_run = openai_client.evals.runs.create(
     ),
 )
 ```
+
+# [C#](#tab/csharp)
+
+```csharp
+BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+{
+  name = "dataset-evaluation",
+  data_source_config = dataSourceConfig,
+  testing_criteria = testingCriteria
+});
+using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+  evaluationContent);
+string evaluationId = GetString(evaluation, "id");
+
+object dataSource = new
+{
+  type = "jsonl",
+  source = new { type = "file_id", id = dataId }
+};
+BinaryData runData = BinaryData.FromObjectAsJson(new
+{
+  name = "dataset-run",
+  data_source = dataSource
+});
+using BinaryContent runContent = BinaryContent.Create(runData);
+ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+  evaluationId: evaluationId,
+  content: runContent);
+Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
 
 # [JavaScript/TypeScript](#tab/javascript)
 
@@ -399,7 +528,6 @@ EVAL_ID=$(curl --silent --request POST \
         "type": "azure_ai_evaluator",
         "name": "violence",
         "evaluator_name": "builtin.violence",
-        "initialization_parameters": { "model": "gpt-5-mini" },
         "data_mapping": {
           "query": "{{item.query}}",
           "response": "{{item.response}}"
@@ -460,6 +588,8 @@ Explain neural networks.,Neural networks are computing systems inspired by biolo
 
 Upload the CSV file as a dataset. Then, create an evaluation by using the `csv` data source type. The schema definition and evaluator configuration are the same as for JSONL evaluations. The only difference is the `"type": "csv"` in the data source.
 
+# [Python](#tab/python)
+
 ```python
 # Upload the CSV file
 data_id = project_client.datasets.upload_file(
@@ -484,17 +614,17 @@ data_source_config = DataSourceConfigCustom(
     include_sample_schema=True,
 )
 
-# Define evaluators with data mappings to CSV columns
+# Define evaluators that use the standard CSV columns
 testing_criteria = [
     TestingCriterionAzureAIEvaluator(
         type="azure_ai_evaluator",
         name="coherence",
         evaluator_name="builtin.coherence",
+        initialization_parameters={"model": model_deployment_name},
         data_mapping={
             "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
-        initialization_parameters={"model": model_deployment_name},
     ),
     TestingCriterionAzureAIEvaluator(
         type="azure_ai_evaluator",
@@ -504,7 +634,6 @@ testing_criteria = [
             "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
-        initialization_parameters={"model": model_deployment_name},
     ),
 ]
 
@@ -529,7 +658,111 @@ eval_run = openai_client.evals.runs.create(
 )
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+object csvDataSourceConfig = new
+{
+    type = "custom",
+    item_schema = new
+    {
+        type = "object",
+        properties = new
+        {
+            query = new { type = "string" },
+            response = new { type = "string" },
+            context = new { type = "string" },
+            ground_truth = new { type = "string" }
+        },
+        required = Array.Empty<string>()
+    },
+    include_sample_schema = true
+};
+object[] csvTestingCriteria =
+[
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "coherence",
+        evaluator_name = "builtin.coherence",
+        initialization_parameters = new { model = modelDeploymentName },
+        data_mapping = new
+        {
+          query = "{{item.query}}",
+          response = "{{item.response}}"
+        }
+    },
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "violence",
+        evaluator_name = "builtin.violence",
+        data_mapping = new
+        {
+          query = "{{item.query}}",
+          response = "{{item.response}}"
+        }
+    },
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "f1",
+        evaluator_name = "builtin.f1_score",
+        data_mapping = new
+        {
+          response = "{{item.response}}",
+          ground_truth = "{{item.ground_truth}}"
+        }
+    }
+];
+
+FileDataset csvDataset = await projectClient.Datasets.UploadFileAsync(
+    name: "eval-csv-data",
+    version: "1",
+    filePath: "./evaluation_data.csv");
+
+BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+{
+    name = "CSV evaluation with built-in evaluators",
+    data_source_config = csvDataSourceConfig,
+    testing_criteria = csvTestingCriteria
+});
+using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+    evaluationContent);
+string evaluationId = GetString(evaluation, "id");
+
+BinaryData runData = BinaryData.FromObjectAsJson(new
+{
+    name = "csv-evaluation-run",
+    data_source = new
+    {
+      type = "csv",
+      source = new { type = "file_id", id = csvDataset.Id }
+    }
+});
+using BinaryContent runContent = BinaryContent.Create(runData);
+ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+    evaluationId: evaluationId,
+    content: runContent);
+Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`AIProjectDatasetsOperations.UploadFileAsync`](/dotnet/api/azure.ai.projects.aiprojectdatasetsoperations.uploadfileasync)
+and [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs).
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate CSV evaluation. Use the Python or C# tab for this flow.
+
+# [cURL](#tab/curl)
+
+Use the Python or C# tab to upload the CSV file. You can then use the Evals REST endpoints with the `csv` data source type and the uploaded dataset ID.
+
+---
+
 ## Next steps
 
 - To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md).
 - For a complete runnable example, see [sample_evaluations_builtin_with_csv.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_csv.py) on GitHub.
+- For a complete .NET dataset example, see [Sample2_EvaluationsWithDatasetId.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Evaluations/Sample2_EvaluationsWithDatasetId.md) on GitHub.

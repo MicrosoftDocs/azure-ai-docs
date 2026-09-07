@@ -44,6 +44,8 @@ A **response ID** is a unique identifier returned each time a Foundry agent gene
 
 Each call to the Responses API returns a response object with a unique `id` field. Collect these IDs from your application's interactions, or generate them directly:
 
+# [Python](#tab/response-id-python)
+
 ```python
 # Generate response IDs by calling a model through the Responses API
 response = openai_client.responses.create(
@@ -52,6 +54,18 @@ response = openai_client.responses.create(
 )
 print(response.id)  # Example: resp_abc123
 ```
+
+# [C#](#tab/response-id-csharp)
+
+```csharp
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
+  .GetProjectResponsesClientForModel(modelDeploymentName);
+ResponseResult response = await responseClient.CreateResponseAsync(
+  "What is machine learning?");
+Console.WriteLine(response.Id); // Example: resp_abc123
+```
+
+---
 
 You can also collect response IDs from agent interactions in your application's trace logs or monitoring pipeline. Each response ID uniquely identifies a stored response that the evaluation service can retrieve.
 
@@ -105,6 +119,72 @@ eval_run = openai_client.evals.runs.create(
     data_source=data_source,
 )
 ```
+
+# [C#](#tab/csharp)
+
+```csharp
+object[] testingCriteria =
+[
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "coherence",
+        evaluator_name = "builtin.coherence",
+        initialization_parameters = new { model = modelDeploymentName }
+    },
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "violence",
+        evaluator_name = "builtin.violence"
+    }
+];
+BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+{
+    name = "Agent Response Evaluation",
+    data_source_config = new
+    {
+        type = "azure_ai_source",
+        scenario = "responses"
+    },
+    testing_criteria = testingCriteria
+});
+using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+    evaluationContent);
+string evaluationId = GetString(evaluation, "id");
+
+object dataSource = new
+{
+    type = "azure_ai_responses",
+    item_generation_params = new
+    {
+        type = "response_retrieval",
+        data_mapping = new { response_id = "{{item.resp_id}}" },
+        source = new
+        {
+            type = "file_content",
+            content = new[]
+            {
+                new { item = new { resp_id = "resp_abc123" } },
+                new { item = new { resp_id = "resp_def456" } }
+            }
+        }
+    }
+};
+BinaryData runData = BinaryData.FromObjectAsJson(new
+{
+    name = "agent-response-evaluation",
+    data_source = dataSource
+});
+using BinaryContent runContent = BinaryContent.Create(runData);
+ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+    evaluationId: evaluationId,
+    content: runContent);
+Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
 
 # [JavaScript/TypeScript](#tab/javascript)
 
@@ -176,6 +256,8 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md).
+
+For a complete .NET response evaluation example, see [Sample7_EvaluationsAgent.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Evaluations/Sample7_EvaluationsAgent.md) on GitHub.
 
 ## Evaluate traces (preview)
 
@@ -470,6 +552,76 @@ testing_criteria = [
     ),
 ]
 ```
+
+### Run a trace evaluation with .NET
+
+Enter the Application Insights trace IDs that you want to evaluate. The
+service retrieves the corresponding spans from the connected Application
+Insights resource.
+
+```csharp
+string[] traceIds = ["trace-id-1", "trace-id-2"];
+object[] testingCriteria =
+[
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "intent_resolution",
+        evaluator_name = "builtin.intent_resolution",
+        initialization_parameters = new { model = modelDeploymentName },
+        data_mapping = new
+        {
+            query = "{{item.query}}",
+            response = "{{item.response}}",
+            tool_definitions = "{{item.tool_definitions}}"
+        }
+    },
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "violence",
+        evaluator_name = "builtin.violence",
+        data_mapping = new
+        {
+            query = "{{item.query}}",
+            response = "{{item.response}}"
+        },
+        initialization_parameters = new { threshold = 4 }
+    }
+];
+BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+{
+    name = "Agent Trace Evaluation",
+    data_source_config = new
+    {
+        type = "azure_ai_source",
+        scenario = "traces"
+    },
+    testing_criteria = testingCriteria
+});
+using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+    evaluationContent);
+string evaluationId = GetString(evaluation, "id");
+
+BinaryData runData = BinaryData.FromObjectAsJson(new
+{
+    name = "agent-trace-evaluation",
+    data_source = new
+    {
+        type = "azure_ai_traces",
+        trace_ids = traceIds,
+        lookback_hours = 1
+    }
+});
+using BinaryContent runContent = BinaryContent.Create(runData);
+ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+    evaluationId: evaluationId,
+    content: runContent);
+Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
 
 ## Next steps
 

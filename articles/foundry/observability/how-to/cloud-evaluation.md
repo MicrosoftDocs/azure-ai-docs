@@ -74,6 +74,60 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 ```
 
+Reference: [`AIProjectClient`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient), [`DefaultAzureCredential`](/python/api/azure-identity/azure.identity.defaultazurecredential)
+
+# [C#](#tab/csharp)
+
+```dotnetcli
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.Identity
+```
+
+```csharp
+using System.ClientModel;
+using System.Collections.Generic;
+using System.Text.Json;
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.Identity;
+using OpenAI.Evals;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+static string GetString(ClientResult result, string propertyName)
+{
+  using JsonDocument document = JsonDocument.Parse(
+    result.GetRawResponse().Content.ToMemory());
+  return document.RootElement.GetProperty(propertyName).GetString()
+    ?? throw new InvalidOperationException(
+      $"The response doesn't contain {propertyName}.");
+}
+
+var projectEndpoint = Environment.GetEnvironmentVariable(
+  "AZURE_AI_PROJECT_ENDPOINT")
+  ?? throw new InvalidOperationException(
+    "AZURE_AI_PROJECT_ENDPOINT isn't set.");
+var modelDeploymentName = Environment.GetEnvironmentVariable(
+  "AZURE_AI_MODEL_DEPLOYMENT_NAME")
+  ?? throw new InvalidOperationException(
+    "AZURE_AI_MODEL_DEPLOYMENT_NAME isn't set.");
+var datasetName = Environment.GetEnvironmentVariable("DATASET_NAME")
+  ?? "evaluation-data";
+var datasetVersion = Environment.GetEnvironmentVariable("DATASET_VERSION")
+  ?? "1";
+
+AIProjectClient projectClient = new(
+  endpoint: new Uri(projectEndpoint),
+  tokenProvider: new DefaultAzureCredential());
+EvaluationClient evaluationClient = projectClient.ProjectOpenAIClient
+  .GetEvaluationClient();
+```
+
+Reference: [`AIProjectClient`](/dotnet/api/azure.ai.projects.aiprojectclient),
+[`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential),
+and [`EvaluationClient`](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
+
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```bash
@@ -109,8 +163,8 @@ To use a model connected through admin connections as a target, judge model, or 
 A cloud evaluation has three steps:
 
 1. Define the data shape and the evaluators that score it.
-1. Create the evaluation with `openai_client.evals.create()`.
-1. Start a run with `openai_client.evals.runs.create()`, poll until it completes, and retrieve the scored results.
+1. Create the evaluation with the evaluation client.
+1. Start a run, poll until it completes, and retrieve the scored results.
 
 Cloud evaluation results are stored in your Foundry project. You can retrieve them through the SDK, review them in the portal, or route them to Application Insights when it's connected.
 
@@ -141,4 +195,5 @@ For adversarial safety testing, use [AI red teaming](../../how-to/develop/run-ai
 - [View evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Set up continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)
 - [Complete Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
+- [.NET evaluation samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples/Evaluations)
 - [REST API reference](https://ai.azure.com/api-reference)

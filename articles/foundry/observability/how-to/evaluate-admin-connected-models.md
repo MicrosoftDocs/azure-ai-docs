@@ -75,6 +75,28 @@ testing_criteria = [
 ]
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+string adminConnectedModel = "my-apim-connection/gpt-4o";
+
+object[] testingCriteria =
+[
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "coherence",
+        evaluator_name = "builtin.coherence",
+        initialization_parameters = new { model = adminConnectedModel },
+        data_mapping = new
+        {
+            query = "{{item.query}}",
+            response = "{{item.response}}"
+        }
+    }
+];
+```
+
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```typescript
@@ -97,7 +119,7 @@ const testingCriteria = [
 ---
 
 - Reference: [`TestingCriterionAzureAIEvaluator`](/python/api/azure-ai-projects/azure.ai.projects.models.testingcriterionazureaievaluator) (Python)
-- Reference: [OpenAI Evals API](https://platform.openai.com/docs/api-reference/evals) (`testing_criteria`, both languages)
+- Reference: [OpenAI Evals API](https://platform.openai.com/docs/api-reference/evals) (`testing_criteria`, all languages)
 
 ## Use an admin-connected model as a target
 
@@ -118,6 +140,23 @@ target = {
 }
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+string adminConnectedModel = "my-apim-connection/gpt-4o";
+
+object target = new
+{
+    type = "azure_ai_model",
+    model = adminConnectedModel,
+    sampling_params = new
+    {
+        top_p = 1.0f,
+        max_completion_tokens = 2048
+    }
+};
+```
+
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```typescript
@@ -135,7 +174,7 @@ const target = {
 
 ---
 
-- Reference: [OpenAI Evals API](https://platform.openai.com/docs/api-reference/evals) (`data_source.target`, both languages)
+- Reference: [OpenAI Evals API](https://platform.openai.com/docs/api-reference/evals) (`data_source.target`, all languages)
 
 Use this target with the [model target evaluation flow described in Run evaluations in the cloud](cloud-evaluation-targets.md#evaluate-a-model-target).
 

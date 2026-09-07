@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/04/2026
+ms.date: 09/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -150,15 +150,17 @@ Workflow runs emit a richer set of AG-UI events compared to single-agent runs:
 | `STEP_STARTED` | An executor or superstep begins | `step_name` identifies the agent or step (for example, `"triage_agent"`) |
 | `TEXT_MESSAGE_*` | Agent produces text | Standard streaming text events |
 | `TOOL_CALL_*` | Agent invokes a tool | Standard tool call events |
+| `REASONING_*` | Workflow emits text from an executor configured in `intermediate_output_from` | Streams intermediate text as a reasoning block. The deprecated `"data"` event alias follows the same path. |
 | `STEP_FINISHED` | An executor or superstep completes | Closes the step for UI progress tracking |
 | `CUSTOM` (`status`) | Workflow state changes | Contains `{"state": "<value>"}` in the event value |
 | `CUSTOM` (`request_info`) | Workflow requests human input | Contains the request payload for the client to render a prompt |
-| `CUSTOM` (`workflow_output`) | Workflow produces output | Emitted for both `"output"` (terminal) and `"intermediate"` workflow events. Terminal outputs carry the final answer; intermediate outputs surface as `text_reasoning` content when the workflow runs behind `as_agent()`. |
+| `CUSTOM` (`workflow_output`) | Workflow output can't be converted to message content | Contains the serialized output for custom client rendering. |
 | `RUN_FINISHED` | Run completes | Includes `outcome.type == "interrupt"` and `outcome.interrupts` when the workflow is waiting for input |
 
 Clients can use `STEP_STARTED` / `STEP_FINISHED` events to render progress indicators showing which agent is currently active.
+The integration closes open reasoning and text blocks before a terminal event or human-input request, so clients receive a complete event sequence.
 
-## Interrupt and Resume
+## Interrupt and resume
 
 Workflows can pause execution to collect human input or tool approvals. The AG-UI integration handles this through the interrupt/resume protocol.
 

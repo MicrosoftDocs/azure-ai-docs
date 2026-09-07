@@ -112,6 +112,51 @@ with (
         extra_body={"evaluation_level": "conversation"},
     )
 ```
+# [C#](#tab/csharp)
+
+  Use the `dataSourceConfig` and `testingCriteria` values from [Define the data
+  schema and evaluators](cloud-evaluation-conversations.md#define-the-data-schema-and-evaluators).
+
+```csharp
+    string[] conversationIds = ["conversation_1234", "conversation_5678"];
+    BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+    {
+      name = "Multi-turn Trace Evaluation (by ID)",
+      data_source_config = new
+      {
+        type = "azure_ai_source",
+        scenario = "traces"
+      },
+      testing_criteria = testingCriteria
+    });
+    using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+    ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+      evaluationContent);
+    string evaluationId = GetString(evaluation, "id");
+
+    BinaryData runData = BinaryData.FromObjectAsJson(new
+    {
+      name = "multiturn-trace-by-id-run",
+      evaluation_level = "conversation",
+      data_source = new
+      {
+        type = "azure_ai_trace_data_source_preview",
+        trace_source = new
+        {
+          type = "conversation_id_source",
+          conversation_ids = conversationIds,
+          lookback_hours = 24
+        }
+      }
+    });
+    using BinaryContent runContent = BinaryContent.Create(runData);
+    ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+      evaluationId: evaluationId,
+      content: runContent);
+    Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
 
 # [JavaScript/TypeScript](#tab/javascript)
 
@@ -263,6 +308,67 @@ with (
         extra_body={"evaluation_level": "conversation"},
     )
 ```
+# [C#](#tab/csharp)
+
+Use the `testingCriteria` value from [Define the data schema and
+evaluators](cloud-evaluation-conversations.md#define-the-data-schema-and-evaluators). Set
+`FOUNDRY_AGENT_NAME`. To evaluate a specific agent version, also set
+`FOUNDRY_AGENT_VERSION`; otherwise, the latest version is used.
+
+```csharp
+var agentName = Environment.GetEnvironmentVariable("FOUNDRY_AGENT_NAME")
+  ?? throw new InvalidOperationException("FOUNDRY_AGENT_NAME isn't set.");
+var agentVersion = Environment.GetEnvironmentVariable(
+  "FOUNDRY_AGENT_VERSION");
+long now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+var traceSource = new Dictionary<string, object>
+{
+  ["type"] = "agent_filter",
+  ["agent_name"] = agentName,
+  ["start_time"] = now - (24 * 3600),
+  ["end_time"] = now + 600,
+  ["max_traces"] = 5,
+  ["filter_strategy"] = "random_sampling"
+};
+if (!string.IsNullOrWhiteSpace(agentVersion))
+{
+  traceSource["agent_version"] = agentVersion;
+}
+
+BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+{
+  name = "Multi-turn Trace Evaluation (Agent Filter)",
+  data_source_config = new
+  {
+    type = "azure_ai_source",
+    scenario = "traces"
+  },
+  testing_criteria = testingCriteria
+});
+using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+  evaluationContent);
+string evaluationId = GetString(evaluation, "id");
+
+BinaryData runData = BinaryData.FromObjectAsJson(new
+{
+  name = "multiturn-agent-filter-run",
+  evaluation_level = "conversation",
+  data_source = new
+  {
+    type = "azure_ai_trace_data_source_preview",
+    trace_source = traceSource
+  }
+});
+using BinaryContent runContent = BinaryContent.Create(runData);
+ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+  evaluationId: evaluationId,
+  content: runContent);
+Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
+
 
 # [JavaScript/TypeScript](#tab/javascript)
 

@@ -46,7 +46,7 @@ Use the `azure_ai_synthetic_data_gen_preview` data source type to generate synth
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `samples_count` | Yes | Maximum number of synthetic test queries to generate. |
+| `samples_count` | Yes | Number of synthetic test queries to generate. Specify a value from 15 through 1,000, inclusive. |
 | `model_deployment_name` | Yes | Model deployment to use for generating synthetic queries. Only models with Responses API capability are supported. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability). The [model router](../../openai/concepts/model-router.md) isn't supported here; it can only be used as the evaluation target. |
 | `prompt` | No | Instructions describing the type of queries to generate. Optional when the agent target has instructions configured. |
 | `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If you don't provide a name, the service generates one automatically. |
@@ -54,7 +54,9 @@ Use the `azure_ai_synthetic_data_gen_preview` data source type to generate synth
 
 ### Set up evaluators and data mappings
 
-The synthetic data generator produces queries in the `{{item.query}}` field. The target generates responses available in `{{sample.output_text}}`. Map these fields to your evaluators:
+For target evaluations, map every required evaluator input explicitly. In this
+synthetic-data example, generated queries are available as `{{item.query}}`,
+and target responses are available as `{{sample.output_text}}`.
 
 ```python
 from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
@@ -103,7 +105,7 @@ data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
     "item_generation_params": {
         "type": "synthetic_data_gen_preview",
-        "samples_count": 5,
+        "samples_count": 15,
         "prompt": "Generate customer service questions about returning defective products",
         "model_deployment_name": model_deployment_name,
         "output_dataset_name": "my-synthetic-dataset",
@@ -128,7 +130,7 @@ data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
     "item_generation_params": {
         "type": "synthetic_data_gen_preview",
-        "samples_count": 5,
+        "samples_count": 15,
         "prompt": "Generate customer service questions about returning defective products",
         "model_deployment_name": model_deployment_name,
     },
@@ -160,7 +162,7 @@ data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
     "item_generation_params": {
         "type": "synthetic_data_gen_preview",
-        "samples_count": 5,
+        "samples_count": 15,
         "prompt": "Generate questions about returning defective products",
         "model_deployment_name": model_deployment_name,
     },
@@ -178,6 +180,84 @@ eval_run = openai_client.evals.runs.create(
 )
 ```
 
+# [C#](#tab/csharp)
+
+The .NET client uses its protocol methods for this preview data source.
+
+```csharp
+object[] testingCriteria =
+[
+  new
+  {
+    type = "azure_ai_evaluator",
+    name = "coherence",
+    evaluator_name = "builtin.coherence",
+    initialization_parameters = new { model = modelDeploymentName },
+    data_mapping = new
+    {
+      query = "{{item.query}}",
+      response = "{{sample.output_text}}"
+    }
+  },
+  new
+  {
+    type = "azure_ai_evaluator",
+    name = "violence",
+    evaluator_name = "builtin.violence",
+    data_mapping = new
+    {
+      query = "{{item.query}}",
+      response = "{{sample.output_text}}"
+    }
+  }
+];
+BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+{
+  name = "Synthetic Data Evaluation",
+  data_source_config = new
+  {
+    type = "azure_ai_source",
+    scenario = "synthetic_data_gen_preview"
+  },
+  testing_criteria = testingCriteria
+});
+using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+  evaluationContent);
+string evaluationId = GetString(evaluation, "id");
+
+BinaryData runData = BinaryData.FromObjectAsJson(new
+{
+  name = "synthetic-data-evaluation",
+  data_source = new
+  {
+    type = "azure_ai_synthetic_data_gen_preview",
+    item_generation_params = new
+    {
+      type = "synthetic_data_gen_preview",
+      samples_count = 15,
+      prompt = "Generate customer service questions about returning defective products",
+      model_deployment_name = modelDeploymentName,
+      output_dataset_name = "my-synthetic-dataset"
+    },
+    target = new
+    {
+      type = "azure_ai_model",
+      model = modelDeploymentName
+    }
+  }
+});
+using BinaryContent runContent = BinaryContent.Create(runData);
+ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+  evaluationId: evaluationId,
+  content: runContent);
+Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+To evaluate an agent instead, set `target.type` to `azure_ai_agent` and
+provide its `name` and `version`.
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
 # [JavaScript/TypeScript](#tab/javascript)
 
 The current JavaScript/TypeScript SDK samples don't demonstrate synthetic data evaluation. Use the Python or cURL tab for this flow.
@@ -232,7 +312,7 @@ curl --request POST \
       "type": "azure_ai_synthetic_data_gen_preview",
       "item_generation_params": {
         "type": "synthetic_data_gen_preview",
-        "samples_count": 5,
+        "samples_count": 15,
         "prompt": "Generate customer service questions about returning defective products",
         "model_deployment_name": "gpt-5-mini",
         "output_dataset_name": "my-synthetic-dataset"
@@ -247,6 +327,7 @@ curl --request POST \
 
 ---
 
-To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
+## Next steps
 
-For complete runnable examples, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
+- To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
+- For complete runnable examples, see [sample_synthetic_data_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_agent_evaluation.py) and [sample_synthetic_data_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_synthetic_data_model_evaluation.py) on GitHub.
