@@ -41,12 +41,16 @@ while True:
     run = openai_client.evals.runs.retrieve(
         run_id=eval_run.id, eval_id=eval_object.id
     )
-    if run.status in ("completed", "failed"):
+    if run.status in ("completed", "failed", "canceled"):
         break
     time.sleep(5)
     print("Waiting for eval run to complete...")
 
+if run.status != "completed":
+    raise RuntimeError(f"Evaluation run ended in {run.status}: {run.error}")
+
 # Retrieve results
+# Iterating the list operation retrieves all pages.
 output_items = list(
     openai_client.evals.runs.output_items.list(
         run_id=run.id, eval_id=eval_object.id
@@ -56,16 +60,83 @@ pprint(output_items)
 print(f"Report URL: {run.report_url}")
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+string evaluationId = "<evaluation-id>";
+string runId = "<evaluation-run-id>";
+ClientResult evaluationRun = await evaluationClient.GetEvaluationRunAsync(
+  evaluationId: evaluationId,
+  evaluationRunId: runId,
+  options: new());
+string runStatus = GetString(evaluationRun, "status");
+
+while (runStatus != "completed"
+  && runStatus != "failed"
+  && runStatus != "canceled")
+{
+  await Task.Delay(TimeSpan.FromSeconds(5));
+  evaluationRun = await evaluationClient.GetEvaluationRunAsync(
+    evaluationId: evaluationId,
+    evaluationRunId: runId,
+    options: new());
+  runStatus = GetString(evaluationRun, "status");
+  Console.WriteLine($"Current status: {runStatus}");
+}
+
+if (runStatus != "completed")
+{
+  throw new InvalidOperationException(
+    evaluationRun.GetRawResponse().Content.ToString());
+}
+
+// The .NET protocol method returns one page at a time.
+string? after = null;
+bool hasMore;
+do
+{
+  ClientResult outputItems = await evaluationClient
+    .GetEvaluationRunOutputItemsAsync(
+    evaluationId: evaluationId,
+    evaluationRunId: runId,
+    limit: null,
+    order: "asc",
+    after: after,
+    outputItemStatus: null,
+    options: new());
+  using JsonDocument page = JsonDocument.Parse(
+    outputItems.GetRawResponse().Content.ToMemory());
+  foreach (JsonElement item in page.RootElement
+    .GetProperty("data").EnumerateArray())
+  {
+    Console.WriteLine(item);
+  }
+  hasMore = page.RootElement.GetProperty("has_more").GetBoolean();
+  after = hasMore
+    ? page.RootElement.GetProperty("last_id").GetString()
+    : null;
+}
+while (hasMore);
+
+Console.WriteLine(evaluationRun.GetRawResponse().Content);
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
+
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```javascript
 let run = evalRun;
-while (!["completed", "failed"].includes(run.status)) {
+while (!["completed", "failed", "canceled"].includes(run.status)) {
   run = await openaiClient.evals.runs.retrieve(run.id, {
     eval_id: evalObject.id,
   });
   console.log(`Waiting for eval run to complete... ${run.status}`);
   await new Promise((resolve) => setTimeout(resolve, 5000));
+}
+
+if (run.status !== "completed") {
+  throw new Error(`Evaluation run ended in ${run.status}`);
 }
 
 // Retrieve results
@@ -145,12 +216,35 @@ For aggregate results over multiple data examples (a dataset), the average rate 
 
 Cancel a run that you no longer need:
 
+# [Python](#tab/python)
+
 ```python
 openai_client.evals.runs.cancel(
     run_id=eval_run.id,
     eval_id=eval_object.id,
 )
 ```
+
+# [C#](#tab/csharp)
+
+```csharp
+await evaluationClient.CancelEvaluationRunAsync(
+  evaluationId: evaluationId,
+  evaluationRunId: runId,
+  options: new());
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate run cancellation. Use the Python or C# tab for this flow.
+
+# [cURL](#tab/curl)
+
+Use the Python or C# tab to cancel a run.
+
+---
 
 ## Troubleshoot cloud evaluation
 
@@ -210,6 +304,7 @@ If an agent evaluator returns an error for unsupported tools:
 
 - [Use admin-connected models in cloud evaluations](evaluate-admin-connected-models.md)
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
+- [Complete .NET evaluation samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples/Evaluations)
 - [Trace-based evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_traces.py)
 - [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md)
 - [Set up continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)

@@ -121,7 +121,48 @@ with (
         ),
     ]
 ```
+# [C#](#tab/csharp)
 
+```csharp
+  object dataSourceConfig = new
+  {
+    type = "custom",
+    item_schema = new
+    {
+      type = "object",
+      properties = new { messages = new { type = "array" } },
+      required = new[] { "messages" }
+    },
+    include_sample_schema = false
+  };
+  object[] testingCriteria =
+  [
+    new
+    {
+      type = "azure_ai_evaluator",
+      name = "customer_satisfaction",
+      evaluator_name = "builtin.customer_satisfaction",
+      initialization_parameters = new { model = modelDeploymentName },
+      data_mapping = new { messages = "{{item.messages}}" }
+    },
+    new
+    {
+      type = "azure_ai_evaluator",
+      name = "task_completion",
+      evaluator_name = "builtin.task_completion",
+      initialization_parameters = new { model = modelDeploymentName },
+      data_mapping = new { messages = "{{item.messages}}" }
+    },
+    new
+    {
+      type = "azure_ai_evaluator",
+      name = "conversation_coherence",
+      evaluator_name = "builtin.coherence",
+      initialization_parameters = new { model = modelDeploymentName },
+      data_mapping = new { messages = "{{item.messages}}" }
+    }
+  ];
+```
 # [JavaScript/TypeScript](#tab/javascript)
 
 The current JavaScript/TypeScript SDK samples don't demonstrate conversation simulation. Use the Python or cURL tab for this flow.
@@ -246,7 +287,71 @@ eval_run = openai_client.evals.runs.create(
     extra_body={"evaluation_level": "conversation"},
 )
 ```
+# [C#](#tab/csharp)
 
+Set `FOUNDRY_AGENT_NAME` and `FOUNDRY_AGENT_VERSION`, and download
+[sample_data_simulation_scenarios.jsonl](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_simulation_scenarios.jsonl?raw=1).
+
+```csharp
+  var agentName = Environment.GetEnvironmentVariable("FOUNDRY_AGENT_NAME")
+    ?? throw new InvalidOperationException("FOUNDRY_AGENT_NAME isn't set.");
+  var agentVersion = Environment.GetEnvironmentVariable(
+    "FOUNDRY_AGENT_VERSION")
+    ?? throw new InvalidOperationException("FOUNDRY_AGENT_VERSION isn't set.");
+  FileDataset scenarios = await projectClient.Datasets.UploadFileAsync(
+    name: "simulation-scenarios",
+    version: "1",
+    filePath: "./sample_data_simulation_scenarios.jsonl");
+
+  BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+  {
+    name = "Multi-turn Conversation Simulation",
+    data_source_config = dataSourceConfig,
+    testing_criteria = testingCriteria
+  });
+  using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+  ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+    evaluationContent);
+  string evaluationId = GetString(evaluation, "id");
+
+  BinaryData runData = BinaryData.FromObjectAsJson(new
+  {
+    name = "conversation-simulation-run",
+    evaluation_level = "conversation",
+    data_source = new
+    {
+      type = "azure_ai_target_completions",
+      source = new { type = "file_id", id = scenarios.Id },
+      target = new
+      {
+        type = "azure_ai_agent",
+        name = agentName,
+        version = agentVersion
+      },
+      item_generation_params = new
+      {
+        type = "conversation_gen_preview",
+        model = modelDeploymentName,
+        num_conversations = 2,
+        max_turns = 5,
+        sampling_params = new
+        {
+          temperature = 0.7f,
+          top_p = 1.0f,
+          max_completion_tokens = 800
+        }
+      }
+    }
+  });
+  using BinaryContent runContent = BinaryContent.Create(runData);
+  ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+    evaluationId: evaluationId,
+    content: runContent);
+  Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`AIProjectDatasetsOperations.UploadFileAsync`](/dotnet/api/azure.ai.projects.aiprojectdatasetsoperations.uploadfileasync)
+and [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs).
 # [JavaScript/TypeScript](#tab/javascript)
 
 The current JavaScript/TypeScript SDK samples don't demonstrate conversation simulation. Use the Python or cURL tab for this flow.
