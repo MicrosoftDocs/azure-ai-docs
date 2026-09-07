@@ -344,7 +344,7 @@ acquisition, caching, and refresh. A bearer token provider takes precedence over
 `api_key` or `bearer_token` when they're also set.
 
 > [!WARNING]
-> Keep static API keys and tokens out of source control. Load them from environment variables or a secret store. Usage and billing are tracked by your provider rather than GitHub.
+> Keep static API keys and tokens out of source control. Load them from environment variables or a secret store. Your provider, not GitHub, tracks usage and billing.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/github_copilot/github_copilot_with_byok.py" range="22-57":::
 

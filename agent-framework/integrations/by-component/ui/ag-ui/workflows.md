@@ -158,10 +158,9 @@ Workflow runs emit a richer set of AG-UI events compared to single-agent runs:
 | `RUN_FINISHED` | Run completes | Includes `outcome.type == "interrupt"` and `outcome.interrupts` when the workflow is waiting for input |
 
 Clients can use `STEP_STARTED` / `STEP_FINISHED` events to render progress indicators showing which agent is currently active.
-The integration closes open reasoning and text blocks before a terminal event or
-human-input request, so clients receive a complete event sequence.
+The integration closes open reasoning and text blocks before a terminal event or human-input request, so clients receive a complete event sequence.
 
-## Interrupt and Resume
+## Interrupt and resume
 
 Workflows can pause execution to collect human input or tool approvals. The AG-UI integration handles this through the interrupt/resume protocol.
 
