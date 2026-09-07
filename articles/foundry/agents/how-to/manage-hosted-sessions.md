@@ -158,7 +158,7 @@ services:
     host: azure.ai.agent
     kind: hosted
     sessionConfiguration:
-      idleTimeoutSeconds: 300
+      idleTimeoutSeconds: 120
 ```
 
 Deploy the agent:
@@ -170,7 +170,7 @@ azd deploy
 The `azure.ai.agents` extension validates the value and maps `sessionConfiguration.idleTimeoutSeconds` to the hosted agent version's `session_configuration.idle_timeout_seconds` property. The setting applies to both code and container deployment modes. If you omit `sessionConfiguration`, the extension omits the property from the request, and the service uses the 900-second default.
 
 > [!NOTE]
-> This configuration requires `azure.ai.agents` extension version **1.0.0-beta.11** or later, which added support for `sessionConfiguration.idleTimeoutSeconds`. On earlier versions, use the Python SDK or REST API to set the idle timeout. Install or update the extension with `azd ext install azure.ai.agents`.
+> The 120-second minimum requires `azure.ai.agents` extension version **1.0.0-beta.14** or later. Install or update the extension with `azd ext install azure.ai.agents`.
 
 :::zone-end
 
@@ -205,12 +205,12 @@ agent = project.agents.create_version(
             "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
         },
         session_configuration=SessionConfiguration(
-            idle_timeout_seconds=300
+            idle_timeout_seconds=120
         ),
     ),
 )
 
-print(f"Created version {agent.version} with a 5-minute idle timeout.")
+print(f"Created version {agent.version} with a 2-minute idle timeout.")
 ```
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition)
@@ -245,7 +245,7 @@ az rest --method POST \
                 "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
             },
             "session_configuration": {
-                "idle_timeout_seconds": 300
+                "idle_timeout_seconds": 120
             }
         }
     }'
