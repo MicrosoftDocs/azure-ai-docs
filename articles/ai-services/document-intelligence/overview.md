@@ -52,9 +52,6 @@ Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](..
 > * Together, they make it easier to prepare data for intelligent agents and applications that can read, analyze, and respond to real-world content with precision and speed.
 > * To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../content-understanding/choosing-right-ai-tool.md).
 
-## Data privacy and security
-
- As with all Foundry Tools, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
 
 ## Version support and retirement
 
@@ -581,6 +578,10 @@ To learn more about each model and browse the API references, use the links in t
 |[Business card model](concept-business-card.md?view=doc-intel-2.1.0&preserve-view=true) | Automated data processing and extraction of key information from business cards| &#9679; [Document Intelligence labeling tool](quickstarts/try-sample-label-tool.md#analyze-using-a-prebuilt-model)</br>&#9679; [REST API](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)</br>&#9679; [Client-library SDK](quickstarts/get-started-sdks-rest-api.md)</br>&#9679; [Document Intelligence Docker container](containers/install-run.md?tabs=business-card#run-the-container-with-the-docker-compose-up-command)|
 
 :::moniker-end
+
+## Data privacy and security
+
+ As with all Foundry Tools, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
 
 ## Related content
 
