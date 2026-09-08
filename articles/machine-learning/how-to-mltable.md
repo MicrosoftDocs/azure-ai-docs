@@ -1,7 +1,7 @@
 ---
 title: Working with tables in Azure Machine Learning
 titleSuffix: Azure Machine Learning
-description: Learn how to work with tables (meltable) in Azure Machine Learning.
+description: Learn how to work with tables (mltable) in Azure Machine Learning.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: soumyapatro
-ms.date: 09/18/2025
+ms.date: 09/08/2026
 ms.custom: data4ml
 # Customer intent: As an experienced Python developer, I need to make my Azure storage data available to my remote compute, to train my machine learning models.
 ---
@@ -117,7 +117,7 @@ With this data, you need to load into a Pandas data frame:
 
 - Only the parquet files for years 2015-19
 - A random sample of the data
-- Only rows with a rip distance greater than 0
+- Only rows with a trip distance greater than 0
 - Relevant columns for Machine Learning
 - New columns - year and month - using the path information (`puYear=X/puMonth=Y`)
 
@@ -130,7 +130,7 @@ Azure Machine Learning Tables provide a light-weight mechanism to serialize (sav
 
 ### Clone the quickstart notebook or create a new notebook/script
 
-If you use an Azure Machine Learning compute instance, [Create a new notebook](quickstart-run-notebooks.md#create-a-new-notebook). If you use an IDE, you should create a new Python script.
+If you use an Azure Machine Learning compute instance, [Create a notebook](tutorial-cloud-workstation.md#create-a-notebook). If you use an IDE, you should create a new Python script.
 
 Additionally, the quickstart notebook is available in the [Azure Machine Learning examples GitHub repo](https://github.com/Azure/azureml-examples/blob/main/sdk/python/using-mltable/quickstart/mltable-quickstart.ipynb). Use this code to clone and access the Notebook:
 
@@ -176,7 +176,7 @@ paths = [
 # create a table from the parquet paths
 tbl = mltable.from_parquet_files(paths)
 
-# table a random sample
+# take a random sample
 tbl = tbl.take_random_sample(probability=0.001, seed=735)
 
 # filter trips with a distance > 0
@@ -250,7 +250,7 @@ print(f"Columns:\n{df.dtypes}")
 
 #### Create a data asset to aid sharing and reproducibility
 
-You might have your MLTable file currently saved on disk, which makes it hard to share with team members. When you create a data asset in Azure Machine Learning, your MLTable is uploaded to cloud storage and "bookmarked."Your team members can then access the MLTable with a friendly name. Also, the data asset is versioned.
+You might have your MLTable file currently saved on disk, which makes it hard to share with team members. When you create a data asset in Azure Machine Learning, your MLTable is uploaded to cloud storage and "bookmarked." Your team members can then access the MLTable with a friendly name. Also, the data asset is versioned.
 
 # [CLI](#tab/cli)
 
@@ -362,7 +362,6 @@ Your job needs a conda file that includes the Python package dependencies:
 # ./conda_dependencies.yml
 dependencies:
   - python=3.10
-  - pip=21.2.4
   - pip:
       - mltable
       - azureml-dataprep[pandas]
@@ -389,7 +388,7 @@ inputs:
 compute: cpu-cluster
 
 environment:
-  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
   conda_file: conda_dependencies.yml
 ```
 
@@ -420,7 +419,7 @@ job = command(
     inputs={"green": Input(type="mltable", path=data_asset.id)},
     compute="cpu-cluster",
     environment=Environment(
-        image="mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04",
+        image="mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest",
         conda_file="./job-env/conda_dependencies.yml",
     ),
     code="./src",
@@ -431,7 +430,7 @@ ml_client.jobs.create_or_update(job)
 
 ---
 
-## Authoring MLTable Files
+## Authoring MLTable files
 
 To directly create the MLTable file, we suggest that you use the `mltable` Python SDK to author your MLTable files - as shown in the [Azure Machine Learning Tables Quickstart](#azure-machine-learning-tables-quickstart) - instead of a text editor. In this section, we outline the capabilities in the `mltable` Python SDK.
 
@@ -439,7 +438,7 @@ To directly create the MLTable file, we suggest that you use the `mltable` Pytho
 
 You can create an MLTable with a range of different file types:
 
-| File Type | `MLTable` Python SDK  |
+| File type | `MLTable` Python SDK  |
 |---------|---------|
 |Delimited Text<br>(for example, CSV files)     |   `from_delimited_files(paths=[path])`     |
 |Parquet     |    `from_parquet_files(paths=[path])`     |
@@ -505,6 +504,7 @@ To get the latest version of Delta Lake data, you can pass current timestamp int
 
 ```python
 import mltable
+import time
 
 # define the relative path containing the delta table (where the _delta_log file is stored)
 delta_table_path = "./working-directory/delta-sample-data"
@@ -536,7 +536,7 @@ Azure Machine Learning Tables support reading from:
 
 Find full, up-to-date details of the supported data loading transformations in the [MLTable reference documentation](/python/api/mltable/mltable.mltable.mltable).
 
-## Additional Examples
+## Additional examples
 
 Examples in the [Azure Machine Learning examples GitHub repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/using-mltable) became the basis for the code snippets in this article. Use this command to clone the repository to your development environment:
 
@@ -552,7 +552,7 @@ This clone repo folder hosts the examples relevant to Azure Machine Learning Tab
 ```bash
 cd azureml-examples/sdk/python/using-mltable
 ```
-The examples below describe how to work with [delimited text files](#use-delimited-files) and [parquet files.](#use-parquet-files), and how to [Create a data asset](#create-a-data-asset-to-aid-sharing-and-reproducibility).
+The examples below describe how to work with [delimited text files](#use-delimited-files) and [parquet files](#use-parquet-files), and how to [create a data asset](#create-a-data-asset-to-aid-sharing-and-reproducibility).
 
 
 ### Use delimited files
@@ -620,7 +620,7 @@ import mltable
 tbl = mltable.load("./titanic/")
 ```
 
-To share this MLTable with team members, you can create a data asset in Azure Machine Learning. See [Create a data asset to aid sharing and reproducibility (1)](#create-a-data-asset-to-aid-sharing-and-reproducibility-1) for details.
+To share this MLTable with team members, you can create a data asset in Azure Machine Learning. See [Create a pet image data asset](#create-a-pet-image-data-asset) for details.
 
 ### Use parquet files
 
@@ -682,7 +682,7 @@ for i in range(1, columns*rows +1):
         plt.title(df.label[i])
 ```
 
-### Create a data asset to aid sharing and reproducibility
+### Create a pet image data asset
 
 You might have your `mltable` file currently saved on disk, which makes it hard to share with team members. When you create a data asset in Azure Machine Learning, the `mltable` is uploaded to cloud storage and "bookmarked." Your team members can then access the `mltable` with a friendly name. Also, the data asset is versioned.
 
