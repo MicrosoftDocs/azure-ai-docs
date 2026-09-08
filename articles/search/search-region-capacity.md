@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to high demand. It also provides evaluation criteria for selecting an alternative region.
 
-## Alternatives
+## Consider alternative regions and off-peak deployment
 
 When a preferred Azure region is unavailable due to high demand, you have two options:
 
