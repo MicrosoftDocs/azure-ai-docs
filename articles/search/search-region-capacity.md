@@ -27,7 +27,7 @@ When a preferred Azure region is unavailable due to high demand, you have two op
 Azure AI Search is available across many Azure regions with consistent APIs, SDKs, SLAs, and compliance certifications. For most workloads, the operational difference between regions within the same geography is negligible. See the following section, *Criteria for selecting an alternative region*, for a full evaluation framework.
 
 **Retrying the service during off-peak hours is also a viable consideration.**
-High demand are sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, might succeed when peak-hour attempts fail. This option isn't guaranteed and isn't a substitute for evaluating an alternative region. If retries don't succeed within a reasonable window, proceed with an alternative region.
+High demand is sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, might succeed when peak-hour attempts fail. This option isn't guaranteed and isn't a substitute for evaluating an alternative region. If retries don't succeed within a reasonable window, proceed with an alternative region.
 
 Retry during off-peak hours when:
 
