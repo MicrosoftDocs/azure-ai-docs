@@ -53,7 +53,7 @@ Use MAI‑Transcribe‑2 to generate transcripts from audio input. Configure the
 | **Noise robustness** | *Inherent* | — | — | Maintains transcription quality on audio recorded outside controlled environments, including background noise, overlapping speech, and variable microphone quality. |
 
 > [!NOTE]
-> Speaker diarization in enhanced mode currently supports shorter recordings than transcription does. In preview, requests with `diarization.enabled` set to `true` have failed for recordings of about 15 minutes and longer, returning HTTP 408 with a `Timeout` error, HTTP 500, or HTTP 503 with a `diarization_unavailable` error — while the same recordings transcribed successfully with diarization disabled, including a 73-minute file in a single request. These errors don't indicate a network or upload problem. For long recordings, transcribe with diarization disabled and use the returned word-level timestamps with a separate speaker diarization step.
+> Speaker diarization in enhanced mode currently supports shorter recordings than transcription does. In preview, requests with `diarization.enabled` set to `true` fail for recordings of about 15 minutes and longer, returning HTTP 408 with a `Timeout` error, HTTP 500, or HTTP 503 with a `diarization_unavailable` error, while the same recordings transcribed successfully with diarization disabled. For long recordings, transcribe with diarization disabled and use the returned word-level timestamps with a separate speaker diarization step.
 
 ::: zone pivot="ai-foundry"
 
