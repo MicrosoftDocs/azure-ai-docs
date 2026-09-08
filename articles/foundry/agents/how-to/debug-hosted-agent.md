@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 09/01/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -48,6 +48,245 @@ azd ai agent monitor --follow
 ```
 
 For a structured health report, run `azd ai agent doctor`. For more information, see [Diagnose a project with agent doctor](agent-doctor.md).
+
+## Diagnose invocation latency
+
+Use the latency debug headers to determine whether a slow hosted agent request
+spent time in the platform, provisioning infrastructure, waiting for the
+container, or processing the request in your agent. These headers are
+diagnostic signals, not SLA or billing metrics.
+
+Enable the diagnostic on each request by setting
+`x-ms-debug-latency-enabled: true`. If the request doesn't include this header,
+the response won't include the `x-ms-debug-latency-*` headers.
+
+1. Add the latency header to a hosted agent Responses or Invocations protocol
+   request. This example uses the Responses protocol:
+
+   ```bash
+   ENDPOINT="https://{account}.services.ai.azure.com/api/projects/{project}"
+   API_VERSION="v1"
+   TOKEN=$(az account get-access-token \
+     --resource https://ai.azure.com \
+     --query accessToken -o tsv)
+   AGENT="my-code-agent"
+
+   curl --http2 -i -X POST \
+     "$ENDPOINT/agents/$AGENT/endpoint/protocols/openai/responses?api-version=$API_VERSION" \
+     -H "Authorization: Bearer $TOKEN" \
+     -H "Content-Type: application/json" \
+     -H "x-ms-debug-latency-enabled: true" \
+     -d '{"model":"gpt-5.4-mini","input":"Hello, agent!","stream":false}'
+   ```
+
+1. Inspect the response headers. All latency values are integer milliseconds:
+
+   | Header | Meaning |
+   | --- | --- |
+   | `x-ms-debug-latency-session-start-type` | Type of session start the request triggered: a cold start (`cold`), warm start (`warm`), or resume from idle (`resume`). |
+   | `x-ms-debug-latency-platform-preprocessing-ms` | Platform time for admission, authentication, session lookup, and orchestration. It doesn't include micro-VM provisioning or container readiness delays. Available for cold, warm, and resumed session starts. |
+   | `x-ms-debug-latency-infra-setup-ms` | Time to provision the micro-VM. Omitted for warm requests. |
+   | `x-ms-debug-latency-container-readiness-ms` | Time from the micro-VM creation until the container reports ready. Omitted for warm requests. |
+   | `x-ms-debug-latency-container-response-ms` | Time from proxy forwarding until response headers are committed. Includes request transfer, connection setup, agent handling, retries, and output-policy buffering. |
+   | `x-ms-debug-latency-response-begin-ms` | Total time from service acceptance until response headers are committed. This value isn't time to the first response body byte or first server-sent event. |
+
+   The four timing components add up to
+   `x-ms-debug-latency-response-begin-ms`. On a cold or resumed request, if the
+   platform can't capture every provisioning boundary, it omits the
+   infrastructure and readiness headers and includes that time in platform
+   preprocessing.
+
+1. Use the session start type and largest timing component to identify the
+   likely source of delay:
+
+   | Result | Interpretation | What to do |
+   | --- | --- | --- |
+   | `x-ms-debug-latency-session-start-type` is `cold` or `resume`, and `x-ms-debug-latency-infra-setup-ms` is high | The platform spent time provisioning the micro-VM. | Compare several cold or resumed requests. If the delay persists, record the response ID, timestamp, and latency headers for a support request. |
+   | `x-ms-debug-latency-session-start-type` is `cold` or `resume`, and `x-ms-debug-latency-container-readiness-ms` is high | The container took a long time to start and report ready. | Measure initialization steps in your startup logs, reduce work before the readiness endpoint becomes available, and precompile application code where possible. |
+   | `x-ms-debug-latency-platform-preprocessing-ms` is high for any session start type | The delay occurred in the platform before micro-VM provisioning or container readiness. | Create a support request. Include the response ID, timestamp, session start type, and latency headers. |
+   | `x-ms-debug-latency-container-response-ms`, `x-ms-debug-latency-first-byte-ms`, or the trailer's `first_byte_ms` is high | The delay occurred after proxy forwarding began. | Instrument the request handler and inspect agent logs, model calls, tool calls, retries, and output buffering. |
+
+### Reduce container readiness time
+
+The container readiness value includes the time required to start your process,
+load the application, and return HTTP 200 from `/readiness`. Add timestamps to
+startup logs to identify slow imports, dependency loading, network calls, and
+other initialization work.
+
+Apply these optimizations to the slow steps you identify:
+
+- Install dependencies and compile code when you build the image. Don't run
+  package installation, restore, or compilation at container startup.
+- Use a multistage build and exclude build tools, package caches, tests, and
+  other development files from the runtime image.
+- Avoid model calls, migrations, tool discovery, and asset downloads before
+  readiness. Parallelize independent initialization that must finish first.
+- Keep `/readiness` focused on whether the agent can accept requests. If you
+  defer initialization, measure the first request to ensure you didn't move
+  the startup delay into request handling.
+
+# [Python](#tab/python)
+
+Install dependencies in a virtual environment that you copy into the runtime
+image. Compile dependencies on a best-effort basis so an unparsable file in a
+third-party package doesn't fail the build. Compile the application strictly
+so syntax errors fail the build.
+
+```dockerfile
+FROM python:3.13-slim AS build
+
+WORKDIR /app
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+RUN PYTHONDONTWRITEBYTECODE= python -m compileall -q /opt/venv \
+      || true; \
+    PYTHONDONTWRITEBYTECODE= python -m compileall -q /app
+
+FROM python:3.13-slim AS final
+
+ENV PATH="/opt/venv/bin:$PATH"
+WORKDIR /app
+
+COPY --from=build /opt/venv /opt/venv
+COPY --from=build /app /app
+
+# Precompile the standard library in the runtime image.
+RUN PYTHONDONTWRITEBYTECODE= python -m compileall -q \
+    "$(python -c "import sysconfig; print(sysconfig.get_path('stdlib'))")" \
+    || true
+
+CMD ["python", "main.py"]
+```
+
+Clearing `PYTHONDONTWRITEBYTECODE` for this build step permits Python to write
+the bytecode into the image. The environment variable blocks bytecode writes,
+not reads, so the running container can still use the compiled files.
+
+Reference: [`compileall` - Byte-compile Python libraries](https://docs.python.org/3/library/compileall.html)
+
+# [.NET](#tab/dotnet)
+
+Publish with ReadyToRun to compile assemblies for the target runtime and reduce
+the work the just-in-time compiler performs during startup. This example
+uses matching glibc-based SDK and runtime images, so the correct .NET runtime
+identifier is `linux-x64`.
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+
+WORKDIR /src
+COPY . .
+
+RUN dotnet publish -c Release \
+    -r linux-x64 \
+    --self-contained false \
+    -p:PublishReadyToRun=true \
+    -o /app
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+
+WORKDIR /app
+COPY --from=build /app .
+
+ENTRYPOINT ["dotnet", "MyAgent.dll"]
+```
+
+Replace `MyAgent.dll` with your published assembly name. Keep restore, build,
+and publish in the same command so the ReadyToRun property applies during
+restore. ReadyToRun improves startup performance at the cost of a larger image
+and longer build.
+
+> [!IMPORTANT]
+> The runtime identifier must match the runtime image. If you use Alpine
+> Linux, use `sdk:10.0-alpine` and `aspnet:10.0-alpine` for the two stages and
+> use `linux-musl-x64`. Don't use `linux-x64` with an Alpine image or
+> `linux-musl-x64` with a glibc-based image. A mismatch can cause restore,
+> publish, or runtime failures.
+
+Reference: [ReadyToRun deployment](/dotnet/core/deploying/ready-to-run)
+
+---
+
+Build either image for the x86-64 architecture required by hosted agents:
+
+```bash
+docker build --platform linux/amd64 -t my-agent:latest .
+```
+
+Here, `linux/amd64` is a Docker platform, not a .NET runtime identifier.
+
+Reference: [Hosted agent container requirements](deploy-hosted-agent.md#container-requirements)
+
+### Investigate agent and model latency
+
+If container readiness is fast but container response or first-byte time is
+high, focus your investigation on the request path after forwarding begins.
+Run `azd ai agent monitor --follow` while reproducing the request, and add
+tracing around model calls, tool calls, external services, retries, and
+response serialization. For more information, see
+[Monitor hosted agent logs](monitor-hosted-agent-logs.md).
+
+For an agent that calls a large language model, measure model latency
+separately before changing the deployment. Compare time to first token, time
+between tokens, generated token count, prompt size, deployment utilization,
+and throttling. Then evaluate model choice, output-token limits, streaming, and
+workload separation. See
+[Improve Azure OpenAI performance](../../openai/how-to/latency.md#improve-performance).
+
+If measurements show sustained capacity pressure for a predictable workload,
+evaluate a provisioned deployment and size it for the observed input tokens,
+output tokens, and request rate. See
+[Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
+
+### Inspect completion timings
+
+On HTTP/2 or later, the service can return the best-effort
+`x-ms-debug-latency-final` response trailer. It repeats the response-header
+values and can add these fields:
+
+| Field | Meaning |
+| --- | --- |
+| `first_byte_ms` | Time from service acceptance until the first response body byte or server-sent event. |
+| `total_last_byte_ms` | Time from service acceptance until response forwarding completes. |
+
+The trailer uses a versioned, semicolon-delimited format:
+
+```http
+x-ms-debug-latency-final: v=1;start=cold;platform_pre_ms=...;
+  infra_ms=...;ready_ms=...;container_response_ms=...;
+  response_begin_ms=...;first_byte_ms=...;total_last_byte_ms=...
+```
+
+HTTP/1.1 responses don't include this trailer. A trailer can also be absent
+after cancellation, client disconnection, a midstream error, or when a gateway
+or SDK doesn't preserve trailers. Treat the response headers as the guaranteed
+diagnostic contract.
+
+### Retrieve stored latency results
+
+The service stores captured timings with the response or invocation. A later
+GET request for the same response or invocation ID returns the original request's
+timings as response headers. The GET request doesn't require the latency header and
+doesn't measure the GET request itself.
+
+The GET request can also return these completion values as ordinary headers:
+
+| Header | Meaning |
+| --- | --- |
+| `x-ms-debug-latency-first-byte-ms` | Time to the first response body byte. |
+| `x-ms-debug-latency-total-last-byte-ms` | Time until response forwarding completed. |
+
+Storage is eventually consistent, so a GET request immediately after the original
+request might not include the headers yet. For an asynchronous response or
+invocation, only the platform-overhead values are available: session start
+type, platform preprocessing, infrastructure setup, and container readiness.
+Latency headers aren't emitted for failed proxy responses or WebSocket
+(`invocations_ws`) requests.
 
 ## Fix authentication errors
 

@@ -44,11 +44,11 @@ For errors you might encounter when you deploy or call Claude models, see [Deplo
 
 | Model | Availability | Context window / Max output | Key capabilities | Best for |
 |---|---|---|---|---|
-| `claude-mythos-5-1`<sup>1</sup> | <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only </li><li> See [What's new in Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1)</li></ul> | <ul><li>Biology and life sciences</li><li>Cybersecurity (defensive use cases prioritized): vulnerability discovery, attack-surface auditing, red teaming, threat intelligence</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
-| `claude-mythos-5`<sup>1</sup> | <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only </li><li> See [Migrating to Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/migration-guide)</li></ul> | <ul><li>Biology and life sciences</li><li>Cybersecurity (defensive use cases prioritized): vulnerability discovery, attack-surface auditing, red teaming, threat intelligence</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
-| `claude-fable-5-1` | <ul><li>Hosted on Anthropic infrastructure: Preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Long-running work</li><li>Scientific research with self verification</li><li>Knowledge work; handling challenging knowledge work with less hands-on oversight</li><li>Refusal `stop_reason` on dual-use safeguard policies<sup>2</sup> </li><li> See [What's new in Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1) | <ul><li>Long-running agents</li><li>Coding and agents, with deeper reasoning for enterprise workflows</li><li>General science and research</li><li>Financial analysis</li><li>Vision</li></ul> |
-| `claude-fable-5` | <ul><li>Hosted on Anthropic infrastructure: Preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases and multi-day project context</li><li>Longer independent work than any prior Claude model</li><li>Self verification</li><li>Sub-agent orchestration</li><li>Refusal `stop_reason` on dual-use safeguard policies<sup>2</sup> </li><li>See [Migrating to Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/migration-guide) | <ul><li>Cybersecurity</li><li>Autonomous coding</li><li>Long-running agents</li><li>Coding and agents, with deeper reasoning for enterprise workflows</li></ul> |
-| `claude-mythos-preview`<sup>1</sup> |  <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only </li><li> See [Migrating to Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/migration-guide)</li></ul> | <ul><li>Cybersecurity (defensive use cases prioritized)</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
+| `claude-fable-5-1` | <ul><li>Hosted on Anthropic infrastructure: Preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Long-running work</li><li>Scientific research with self verification</li><li>Knowledge work; handling challenging knowledge work with less hands-on oversight</li><li>Refusal `stop_reason` on dual-use safeguard policies<sup>1</sup> </li><li> See [What's new in Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1) | <ul><li>Long-running agents</li><li>Coding and agents, with deeper reasoning for enterprise workflows</li><li>General science and research</li><li>Financial analysis</li><li>Vision</li></ul> |
+| `claude-fable-5` | <ul><li>Hosted on Anthropic infrastructure: Preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases and multi-day project context</li><li>Longer independent work than any prior Claude model</li><li>Self verification</li><li>Sub-agent orchestration</li><li>Refusal `stop_reason` on dual-use safeguard policies<sup>1</sup> </li><li>See [Migrating to Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/migration-guide) | <ul><li>Cybersecurity</li><li>Autonomous coding</li><li>Long-running agents</li><li>Coding and agents, with deeper reasoning for enterprise workflows</li></ul> |
+| `claude-mythos-5-1`<sup>2</sup> | <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only </li><li> See [What's new in Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1)</li></ul> | <ul><li>Biology and life sciences</li><li>Cybersecurity (defensive use cases prioritized): vulnerability discovery, attack-surface auditing, red teaming, threat intelligence</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
+| `claude-mythos-5`<sup>2</sup> | <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only </li><li> See [Migrating to Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/migration-guide)</li></ul> | <ul><li>Biology and life sciences</li><li>Cybersecurity (defensive use cases prioritized): vulnerability discovery, attack-surface auditing, red teaming, threat intelligence</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
+| `claude-mythos-preview`<sup>2</sup> |  <ul><li>Hosted on Anthropic infrastructure: Gated research preview</li></ul> | 1M / 128K | <ul><li>Adaptive thinking</li><li>Image and text input</li><li>Microsoft Entra ID authentication only </li><li> See [Migrating to Claude Fable 5.1 and Claude Mythos 5.1](https://platform.claude.com/docs/en/models/fable-5-1/migration-guide)</li></ul> | <ul><li>Cybersecurity (defensive use cases prioritized)</li><li>Autonomous coding</li><li>Long-running agents</li></ul> |
 | `claude-opus-5` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 1M / 128K |  <ul><li>Adaptive thinking with `xhigh` and `max` effort levels</li><li>Reasoning over entire codebases and multi-day project context</li><li>Per-turn effort controls<sup>3</sup> </li><li>Mid-conversation<sup>3</sup> `role:"system"` </li><li>Token budgets<sup>3</sup> (`task_budget`) </li><li> See [What's new in Claude Opus 5](https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-8) </li></ul> | <ul><li>Near-Fable intelligence for long-horizon coding and complex agentic orchestration.</li><li>Long-running agents</li><li>Enterprise workflows</li><li>Financial analysis</li><li>Computer use</li></ul>  |
 | `claude-opus-4-8` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 1M / 128K | <ul><li>Adaptive thinking with `xhigh` effort level</li><li>Reasoning over entire codebases and multi-day project context</li><li>High-resolution image input (up to 2576px / 3.75MP) </li><li> See [Migrating to Claude Opus 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-5)</li></ul> | <ul><li>Coding</li><li>Long-running agents</li><li>Financial analysis</li><li>Cybersecurity</li><li>Computer use</li></ul> |
 | `claude-opus-4-7` | <ul><li>Hosted on Anthropic infrastructure: GA</li></ul>  | 1M / 128K | <ul><li>Adaptive thinking</li><li>Reasoning over entire codebases<li>High-resolution image input (up to 2576px / 3.75MP) </li><li> See [Migrating to Claude Opus 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-5)</li></ul> | <ul><li>Coding</li><li>Enterprise workflows</li><li>Long-running agents</li><li>Multimodal reasoning</li><li>Financial analysis</li><li>Cybersecurity</li></ul> |
@@ -60,9 +60,9 @@ For errors you might encounter when you deploy or call Claude models, see [Deplo
 | `claude-haiku-4-5` | <ul><li>Hosted on Azure: GA </li><li>Hosted on Anthropic infrastructure: GA </li></ul> | 200K / 64K | <ul><li>Extended thinking</li><li>Image and text input </li></ul> | <ul><li>Coding</li><li>Agents</li></ul> |
 
 
-<sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
+<sup>1</sup> **Claude Fable 5** and **Claude Fable 5.1** apply extra input/output classifiers that might refuse requests if the content triggers dual-use safeguard policies. When a refusal happens, the request returns a successful (200) response with a refusal indicator `stop_reason: "refusal"` instead of model-generated content. You aren't billed for input tokens that are refused.
 
-<sup>2</sup> **Claude Fable 5** applies additional input/output classifiers that might refuse requests whose content triggers dual-use safeguard policies. When a refusal occurs, the request returns a successful (200) response with a refusal indicator `stop_reason: "refusal"` instead of model-generated content. You're not billed for input tokens that are refused.
+<sup>2</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
 <sup>3</sup> Per-turn effort controls, Mid-conversation, and Token budgets are currently in Beta state.
 
@@ -122,10 +122,10 @@ The **Thinking** feature allows specific values for the `thinking` parameter typ
 
 | Model                   | `adaptive` | `enabled` | `disabled`       |
 |-------------------------|:----------:|:---------:|:----------------:|
-| `claude-mythos-5-1`     | Yes        | No        | No               |
-| `claude-mythos-5`       | Yes        | No        | No               |
 | `claude-fable-5-1`      | Yes        | No        | No               |
 | `claude-fable-5`        | Yes        | No        | No               |
+| `claude-mythos-5-1`     | Yes        | No        | No               |
+| `claude-mythos-5`       | Yes        | No        | No               |
 | `claude-mythos-preview` | Yes        | Yes       | No               |
 | `claude-opus-5`         | Yes        | No        | Yes<sup>1</sup>  |
 | `claude-opus-4-8`       | Yes        | No        | Yes              |
@@ -140,10 +140,10 @@ The **Effort** feature allows specific `effort` levels for each model, as descri
 
 | Model               | `low` | `medium` | `high` | `xhigh` | `max` |
 |---------------------|:-----:|:--------:|:------:|:-------:|:-----:|
-| `claude-mythos-5-1` | Yes   | Yes      | Yes    | Yes     | No    |
-| `claude-mythos-5`   | Yes   | Yes      | Yes    | Yes     | No    |
 | `claude-fable-5-1`  | Yes   | Yes      | Yes    | Yes     | No    |
 | `claude-fable-5`    | Yes   | Yes      | Yes    | Yes     | No    |
+| `claude-mythos-5-1` | Yes   | Yes      | Yes    | Yes     | No    |
+| `claude-mythos-5`   | Yes   | Yes      | Yes    | Yes     | No    |
 | `claude-opus-5`     | Yes   | Yes      | Yes    | Yes     | Yes   |
 | `claude-opus-4-8`   | Yes   | Yes      | Yes    | Yes     | Yes   |
 | `claude-opus-4-7`   | Yes   | Yes      | Yes    | Yes     | Yes   |
@@ -263,22 +263,22 @@ The following table lists rate limits. To increase your quota beyond the default
 
 #### Enterprise and MCA-E
 
-| Model             | Deployment type         | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | RPM       | ITPM      | OTPM      |
-|:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|----------:|----------:|
-| claude-fable-5-1  | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-8   | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 2,000     | 2,000,000 | 400,000   |
-| claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000 | 800,000   |
-| claude-sonnet-4-5 | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000 | 800,000   |
-| claude-haiku-4-5  | Global Standard         | Yes                        | Yes                                           | 4,000     | 4,000,000 | 800,000   |
+| Model             | Deployment type         | Version 2: Hosted on Azure | Version 1: Hosted on Anthropic infrastructure | RPM       | ITPM       | OTPM      |
+|:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|-----------:|----------:|
+| claude-fable-5-1  | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000  | 800,000   |
+| claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000  | 800,000   |
+| claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-8   | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-4-5 | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-haiku-4-5  | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
 
 # [Free Trial](#tab/free)
 

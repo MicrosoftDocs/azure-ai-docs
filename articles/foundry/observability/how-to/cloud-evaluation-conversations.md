@@ -104,7 +104,7 @@ You can also include tool definitions and tool calls if your agent uses tools:
 
 ## Define the data schema and evaluators
 
-Specify the schema for your conversation data, "messages", and select evaluators designed for conversation-level evaluation. Conversation-level evaluators assess the entire interaction rather than individual turns.
+Specify the schema for your conversation data, map the `messages` field to each evaluator, and select evaluators designed for conversation-level evaluation. Conversation-level evaluators assess the entire interaction rather than individual turns.
 
 # [Python](#tab/python)
 
@@ -158,6 +158,60 @@ with (
     ]
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+  object dataSourceConfig = new
+  {
+    type = "custom",
+    item_schema = new
+    {
+      type = "object",
+      properties = new
+      {
+        messages = new { type = "array" },
+        tool_definitions = new { type = "array" }
+      },
+      required = new[] { "messages" }
+    },
+    include_sample_schema = false
+  };
+  object[] testingCriteria =
+  [
+    new
+    {
+      type = "azure_ai_evaluator",
+      name = "customer_satisfaction",
+      evaluator_name = "builtin.customer_satisfaction",
+      initialization_parameters = new { model = modelDeploymentName },
+      data_mapping = new { messages = "{{item.messages}}" }
+    },
+    new
+    {
+      type = "azure_ai_evaluator",
+      name = "task_completion",
+      evaluator_name = "builtin.task_completion",
+      initialization_parameters = new { model = modelDeploymentName },
+      data_mapping = new { messages = "{{item.messages}}" }
+    },
+    new
+    {
+      type = "azure_ai_evaluator",
+      name = "conversation_coherence",
+      evaluator_name = "builtin.coherence",
+      initialization_parameters = new { model = modelDeploymentName },
+      data_mapping = new { messages = "{{item.messages}}" }
+    },
+    new
+    {
+      type = "azure_ai_evaluator",
+      name = "groundedness",
+      evaluator_name = "builtin.groundedness",
+      initialization_parameters = new { model = modelDeploymentName },
+      data_mapping = new { messages = "{{item.messages}}" }
+    }
+  ];
+```
 # [JavaScript/TypeScript](#tab/javascript)
 
 The current JavaScript/TypeScript SDK samples don't demonstrate conversation-level evaluation. Use the Python or cURL tab for this flow.
@@ -208,7 +262,7 @@ curl --request POST \
 
 # [Python](#tab/python)
 
-Prep: download [sample_data_multiturn_conversations.jsonl](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_multiturn_conversations.jsonl)
+Download [sample_data_multiturn_conversations.jsonl](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_multiturn_conversations.jsonl?raw=1) before you run the sample.
 
 ```python
 from openai.types.evals.create_eval_jsonl_run_data_source_param import (
@@ -245,6 +299,46 @@ eval_run = openai_client.evals.runs.create(
 )
 ```
 
+# [C#](#tab/csharp)
+
+Download [sample_data_multiturn_conversations.jsonl](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_multiturn_conversations.jsonl?raw=1), and then run this code:
+
+```csharp
+  FileDataset conversations = await projectClient.Datasets.UploadFileAsync(
+    name: "multiturn-conversation-data",
+    version: "1",
+    filePath: "./sample_data_multiturn_conversations.jsonl");
+
+  BinaryData evaluationData = BinaryData.FromObjectAsJson(new
+  {
+    name = "Multi-turn Conversation Evaluation",
+    data_source_config = dataSourceConfig,
+    testing_criteria = testingCriteria
+  });
+  using BinaryContent evaluationContent = BinaryContent.Create(evaluationData);
+  ClientResult evaluation = await evaluationClient.CreateEvaluationAsync(
+    evaluationContent);
+  string evaluationId = GetString(evaluation, "id");
+
+  BinaryData runData = BinaryData.FromObjectAsJson(new
+  {
+    name = "multiturn-conversation-run",
+    evaluation_level = "conversation",
+    data_source = new
+    {
+      type = "jsonl",
+      source = new { type = "file_id", id = conversations.Id }
+    }
+  });
+  using BinaryContent runContent = BinaryContent.Create(runData);
+  ClientResult evaluationRun = await evaluationClient.CreateEvaluationRunAsync(
+    evaluationId: evaluationId,
+    content: runContent);
+  Console.WriteLine($"Evaluation run created: {GetString(evaluationRun, "id")}");
+```
+
+Reference: [`AIProjectDatasetsOperations.UploadFileAsync`](/dotnet/api/azure.ai.projects.aiprojectdatasetsoperations.uploadfileasync)
+and [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs).
 # [JavaScript/TypeScript](#tab/javascript)
 
 The current JavaScript/TypeScript SDK samples don't demonstrate conversation-level evaluation. Use the Python or cURL tab for this flow.

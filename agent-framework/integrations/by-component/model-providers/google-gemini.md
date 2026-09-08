@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 08/31/2026
+ms.date: 09/04/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -18,6 +18,7 @@ ai-usage: ai-assisted
   | Gemini client setup  | ✅ |   ✅   | ✅ |                             |
   | Function tools       | ✅ |   ✅   | ✅ |                             |
   | Streaming            | ✅ |   ✅   | ✅ |                             |
+  | Request failures     | ❌ |   ✅   | ❌ | Python SDK exception mapping |
   | Gemini hosted tools  | ❌ |   ✅   | ❌ | Python factories documented |
 -->
 
@@ -83,6 +84,12 @@ GOOGLE_MODEL="gemini-2.5-flash"
 `GeminiChatClient` supports streaming, function tools, structured output, extended thinking, and provider-hosted tools.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/gemini/gemini_basic.py" range="37-75":::
+
+### Handle request failures
+
+For streaming and non-streaming runs, Gemini SDK request failures are exposed through Agent Framework exceptions. HTTP 401 and 403 failures raise `ChatClientInvalidAuthException`, other HTTP 4xx failures raise `ChatClientInvalidRequestException`, and all other provider failures raise `ChatClientException`.
+
+Catch `ChatClientException` when the same error handling should apply across chat providers.
 
 ### Include thought summaries
 

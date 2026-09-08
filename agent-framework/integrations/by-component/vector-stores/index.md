@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: overview
 ms.author: westey
-ms.date: 08/31/2026
+ms.date: 09/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -129,17 +129,47 @@ see [Vector databases for .NET AI apps](/dotnet/ai/vector-stores/overview).
 
 ## Python vector store support
 
-Agent Framework uses the vector store abstractions and implementations from
-Semantic Kernel for Python. Semantic Kernel collections provide common
-operations for creating collections, upserting and retrieving records, and
-running vector, keyword, or hybrid searches when the selected implementation
-supports them.
+Agent Framework provides experimental, native Python contracts for vector store
+models, collection operations, store factories, vector and keyword-hybrid
+search, and agent search tools. The contracts are part of
+`agent-framework-core` and don't require Pydantic, NumPy, pandas, or Semantic
+Kernel.
 
 > [!WARNING]
-> Semantic Kernel Vector Store functionality for Python is a release candidate.
-> Limited breaking changes might occur before general availability.
+> The native Python vector store APIs are experimental. Limited breaking changes
+> might occur before they become stable.
 
-### Available vector store implementations
+### Core abstractions
+
+| Abstraction | Purpose |
+|---|---|
+| `VectorStoreField` and `VectorStoreCollectionDefinition` | Describe key, data, and vector fields, including storage names, indexes, dimensions, and distance functions. |
+| `@vectorstoremodel` and `register_vectorstoremodel()` | Register dataclasses, Pydantic models, msgspec structs, plain classes, or externally owned model types. |
+| `BaseVectorCollection` and `SupportsVectorUpsert` | Define batch upsert, get, delete, collection lifecycle, record conversion, and optional embedding generation. |
+| `BaseVectorStore` | Defines a store that lists collections and creates typed collection clients. |
+| `BaseVectorSearch` and `SupportsVectorSearch` | Define vector and keyword-hybrid search, paging, filters, score thresholds, and search results. |
+| `create_vector_search_tool()` | Exposes any `SupportsVectorSearch` implementation as an Agent Framework function tool. |
+
+The following sample defines vector store records by annotating their key, data,
+and vector fields:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/vector_stores/vector_store_models.py" range="126-143":::
+
+Use `VectorStoreCollectionDefinition` directly for dictionaries. For model types
+owned by another package, use `register_vectorstoremodel()` with an explicit
+definition and optional encoder and decoder. Array-like vector values serialize
+through `tolist()` without adding a NumPy dependency.
+
+This initial release provides contracts and model conversion, but doesn't
+include a native Python vector store implementation. A database connector can
+implement the base classes or capability protocols so application code can use
+the common batch CRUD, search, and tool APIs.
+
+### Semantic Kernel vector store implementations
+
+Applications can continue to use Semantic Kernel's Python vector stores
+directly. These implementations use the separate Semantic Kernel vector store
+contracts rather than the native Agent Framework contracts.
 
 | Implementation | Availability | Uses an officially supported database SDK | Maintainer or vendor |
 |---|:---:|:---:|---|
@@ -166,7 +196,7 @@ supports them.
 > implementation's quality, licensing, support policy, and version compatibility
 > before you use it.
 
-### Get started
+### Use a Semantic Kernel implementation
 
 1. Install `semantic-kernel` and the dependencies required by your chosen
    implementation.
@@ -178,11 +208,6 @@ supports them.
 
 For implementation setup and complete examples, see
 [Semantic Kernel Vector Stores](/semantic-kernel/concepts/vector-store-connectors/).
-
-<!--
-TODO: Add a "Use a Semantic Kernel vector store with Agent Framework" section
-after the Agent Framework bridge guidance and sample are verified.
--->
 
 :::zone-end
 

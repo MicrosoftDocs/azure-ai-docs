@@ -184,19 +184,6 @@ Include your modified analyzer definition in the request body. For detailed inst
 > [!IMPORTANT]
 > Prebuilt analyzer definitions can change across API versions. To ensure consistent behavior, make a copy of the prebuilt analyzer instead of relying on the prebuilt version directly in production scenarios.
 
-### Lock analyzer behavior
-
-The definition of prebuilt analyzers might change in the next API version of Content Understanding. To create a stable copy of a prebuilt analyzer that doesn't change with API updates, use the Copy operations by calling it as follows:
-
-```http
-POST /analyzers/myIdDocument:copy
-{
-  "source": "prebuilt-idDocument"
-}
-```
-
-This operation creates a new analyzer with a fixed definition copied from the prebuilt analyzer at the time of the copy operation.
-
 ## Domain-specific analyzers (in detail)
 
 The following sections list all available domain-specific analyzers for specialized document processing. These prebuilt models enable you to add intelligent domain-specific document processing to your apps and flows without having to train and build your own models.

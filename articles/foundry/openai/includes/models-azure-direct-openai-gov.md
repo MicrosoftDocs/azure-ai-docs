@@ -2,7 +2,7 @@
 title: Azure OpenAI in Microsoft Foundry Models in Azure Government
 author: challenp
 ms.author: challenp
-ms.date: 09/01/2026
+ms.date: 09/02/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: classic-and-new
@@ -155,7 +155,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 [!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models-gov.md)]
 
-For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
+For more information about provisioned deployments, see [Provisioned throughput in Azure Government](../concepts/provisioned-throughput-gov.md).
 
 ---
 

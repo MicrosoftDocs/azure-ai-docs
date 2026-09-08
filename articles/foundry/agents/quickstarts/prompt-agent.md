@@ -7,7 +7,7 @@ ms.date: 08/21/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart
-ms.custom: update-code5
+ms.custom: update-code6
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to create a prompt agent in Foundry Agent Service so that I can build AI-powered automation.
 ---

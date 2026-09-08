@@ -124,25 +124,59 @@ The tables in this section list the throughput and deployment parameters for eac
 ### Latest Azure OpenAI models
 
 > [!NOTE]
-> Latency targets in the following table exclude *long context*, that is, requests exceeding the threshold:
 >
-> - **128k prompt tokens** for `gpt-5.4`, `gpt-4.1`, `gpt-4.1-mini`, and `gpt-4.1-nano`
-> - **272k prompt tokens** for `gpt-5.6-luna`, `gpt-5.6-sol`, and `gpt-5.6-terra`
->
-> The system routes such requests to [spillover deployments](../how-to/spillover-traffic-management.md), if available. Otherwise, the requests return an error.
+> Long-context requests that exceed 128K prompt tokens aren't supported for `gpt-5.4`, `gpt-4.1`, `gpt-4.1-mini`, and `gpt-4.1-nano`. The system routes these requests to [spillover deployments](../how-to/spillover-traffic-management.md), if available. Otherwise, the requests return an error.
 
-
-| Topic | **gpt-5.6-luna**,<br>**2026-07-09** | **gpt-5.6-terra**,<br>**2026-07-09** | **gpt-5.6-sol**,<br>**2026-07-09** | **gpt-5.5**,<br>**2026-04-24** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
-| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
-| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Input TPM per PTU | 30,000 | 3,000 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Output-to-input ratio | 6 | 6 | 6 | 6 | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
-| Latency target value<sup>1</sup> | 99% > 100 TPS | 99% > 70 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
+| Topic | **gpt-6-astra**,<br>**2026-09-03** | **gpt-5.6-luna**,<br>**2026-07-09** | **gpt-5.6-terra**,<br>**2026-07-09** | **gpt-5.6-sol**,<br>**2026-07-09** | **gpt-5.5**,<br>**2026-04-24** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
+| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Input TPM per PTU | 600 | 30,000 | 3,000 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
+| Output-to-input ratio | See [GPT-6 Astra sizing guidance](#normalized-token-pricing-for-gpt-6-astra) below | 6 | 6 | 6 | 6 | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
+| Latency target value<sup>1</sup> | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
+
+#### Normalized token pricing for GPT-6 Astra
+
+With GPT-6 Astra, PTUs support prompt cache breakpoints, enabling higher cache hit rates and a more deterministic caching experience. Cache reads and writes significantly increase cache hit rates, especially for agentic workloads. As cache reuse grows, GPT-6 Astra uses normalized tokens to align PTU throughput accounting with Global Standard pay-as-you-go pricing.
+
+> [!NOTE]
+>
+> One short-context input token equals one normalized token. Every other token type is weighted by its Global Standard list price relative to short-context input.
+
+The following table shows Global Standard prices and normalized token costs for GPT-6 Astra. The final two columns intentionally match. For example, one short-context output token costs five times as much as an input token and therefore consumes five normalized tokens.
+
+| Token type | Global Standard price per 1M tokens | Price relative to short-context input | Normalized token cost |
+|---|---:|---:|---:|
+| Short-context input | $10.00 | 1.0× | 1.0 |
+| Short-context cached input | $1.00 | 0.1× | 0.1 |
+| Short-context cache write | $12.50 | 1.25× | 1.25 |
+| Short-context output | $50.00 | 5.0× | 5.0 |
+| Long-context input | $20.00 | 2.0× | 2.0 |
+| Long-context cached input | $2.00 | 0.2× | 0.2 |
+| Long-context cache write | $25.00 | 2.5× | 2.5 |
+| Long-context output | $75.00 | 7.5× | 7.5<sup>1</sup> |
+
+<sup>1</sup>For GPT-6 Astra, the normalized token cost for long-context output is currently 10. We're working to reduce it to 7.5. Check this article for updates.
+
+`Normalized token cost = token-type price ÷ $10.00`
+
+One GPT-6 Astra PTU provides a baseline of 600 short-context input tokens per minute. Because each short-context input token equals one normalized token, this value is equivalent to 600 normalized tokens per minute.
+
+Assuming list prices, no discounts, 100% sustained utilization, and a 30-day month:
+
+| Metric | PTU | Global standard pay-as-you-go |
+|---|---:|
+| Monthly normalized-token volume | `600 × 60 × 24 × 30` = **25.92M** | **25.92M** |
+| Monthly cost for that volume | **$260.00** | `25.92M × $10/M` ~= **$260.00** |
+| Effective cost per 1M normalized tokens | `$260.00 ÷ 25.92` ~= **$10.00** | `$259.20 ÷ 25.92` ~= **$10.00** |
+
+At list price and full utilization, PTU and Global Standard are approximately equivalent on a normalized-token basis. Because both offerings use the same token weights, this comparison is independent of token mix. This comparison covers normalized-token capacity only.
+
+For the latest prices, see the [pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 ### Previous Azure OpenAI models
 

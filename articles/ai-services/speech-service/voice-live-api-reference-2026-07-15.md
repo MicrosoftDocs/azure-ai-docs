@@ -1,36 +1,34 @@
 ---
-title: Voice Live API Reference 2026-06-01-preview
+title: Voice Live API reference 2026-07-15
 titleSuffix: Foundry Tools
-description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-06-01-preview.
+description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-07-15.
 manager: mcleans
 ms.service: foundry-tools
 ms.topic: reference
-ms.date: 08/26/2026
+ms.date: 09/06/2026
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted
 ---
 
-# Voice Live `2026-06-01-preview` API Reference
+# Voice Live `2026-07-15` API reference
 
 The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections.
 
 The API uses JSON-formatted events sent over WebSocket connections to manage conversations, audio streams, avatar interactions, and real-time responses. Events are categorized into client events (sent from client to server) and server events (sent from server to client).
 
+## Prerequisites
+
+Complete the resource and authentication setup in [How to use the Voice Live API](./voice-live-how-to.md#authentication).
+
+## What's new in 2026-07-15
+
+Compared with [2026-06-01-preview](./voice-live-api-reference-2026-06-01-preview.md), this version adds `expires_at` to [RealtimeResponseSession](#realtimeresponsesession). This server-set Unix timestamp indicates when the session expires. You can't change it with `session.update`.
+
+Azure realtime native voices, client-supplied echo reference, streaming text input, parallel tool calls, and hosted agent invocation remain available.
+
 > [!NOTE]
-> `2026-06-01-preview` is a preview API version. Features and properties marked preview are subject to change before the next stable release.
-
-## What's new in 2026-06-01-preview
-
-This API version adds the following capabilities on top of [2026-04-10](./voice-live-api-reference-2026-04-10.md):
-
-- **`azure-realtime-native` voice type**: A new structured voice object used exclusively with the `azure-realtime` model. The voice is specified as `{"type": "azure-realtime-native", "name": "<voice>"}` where `<voice>` is one of `aarti`, `andrew`, `ava` (default), `denise`, `elsa`, `florian`, `francisca`, `meera`, `ximena`, `xiaoxiao`, or `yunxi`.
-- **Client-side echo cancellation reference** (preview): The `input_audio_echo_cancellation` object now supports a `reference_source` property (`"server"` | `"client"`) and a `channels` property (`1` | `2`). Setting `reference_source` to `"client"` and `channels` to `2` lets you send interleaved stereo PCM16 audio with mic on channel 0 and speaker-playback reference on channel 1 so the server EC model uses your actual played-back audio instead of the internal TTS loopback. Requires the `client_ec_reference` preview feature flag. See [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings).
-- **Streaming text input client events**: New `input_text.delta` and `input_text.done` client events let you stream text input into a conversation item incrementally, similar to how audio is streamed with `input_audio_buffer.append`.
-- **Smart end-of-turn detection**: New audio-based EOU detection variant with `"model": "smart_end_of_turn_detection"`. It operates directly on the input audio stream and exposes the `threshold_level` (`low`, `medium`, `high`, `default`) and `timeout_ms` properties.
-- **Parallel tool calls**: New optional `parallel_tool_calls` boolean on the session object (default `true`). Set to `false` to require the model to issue tool calls sequentially.
-- **Hosted agent invocation events**: New server events for surfacing hosted agent invocation lifecycle and tool activity.
-- **WebRTC feature events**: Additional events that support the [Voice Live WebRTC](./voice-live-webrtc.md) transport.
+> Smart turn detection and WebRTC remain in preview.
 
 ## Endpoint and authentication
 
@@ -38,58 +36,61 @@ This API version adds the following capabilities on top of [2026-04-10](./voice-
 
 The WebSocket endpoint for the Voice Live API is:
 
-`wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-06-01-preview`
+`wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-07-15`
 
 For older resources that use the legacy domain, use:
 
-`wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2026-06-01-preview`
+`wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2026-07-15`
 
-The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using the Microsoft Foundry Agent Service, the `agent-name` and `agent-project-name` query parameters. For more information about agent connection parameters, see [Integrate Voice Live API with a Microsoft Foundry agent](./how-to-voice-agent-integration.md).
+The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using Foundry Agent Service, the `agent-name` and `agent-project-name` query parameters. For more information about agent connection parameters, see [Integrate Voice Live API with a Microsoft Foundry agent](./how-to-voice-agent-integration.md).
 
 For example, an endpoint for a Microsoft Foundry resource that uses a model would be:
 
-`wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-06-01-preview&model=gpt-realtime`
+`wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-07-15&model=gpt-realtime`
 
 > [!NOTE]
-> The Voice Live API is optimized for Microsoft Foundry resources. Microsoft Foundry resources are recommended for full feature availability. Azure AI Speech resources don't support Microsoft Foundry Agent Service integration or bring-your-own-model (BYOM).
+> The Voice Live API is optimized for Microsoft Foundry resources. Microsoft Foundry resources are recommended for full feature availability. Azure Speech in Foundry Tools resources don't support Agent Service integration or bring-your-own-model (BYOM).
 
 ### Authentication
 
 The Voice Live API supports two authentication methods:
 
 - **Microsoft Entra ID** (recommended): Use token-based authentication for a Microsoft Foundry resource. Pass the retrieved access token in one of two ways:
-  - As a `Bearer` token in the `Authorization` header on the prehandshake connection. This option isn't available in a browser environment.
-  - As an `Authorization` query string parameter on the request URI, with the value `Bearer <token>`. URL-encode the value as needed. Query string parameters are encrypted by the `wss://` transport.
+    - As a `Bearer` token in the `Authorization` header on the prehandshake connection. This option isn't available in a browser environment.
+    - As an `Authorization` query string parameter on the request URI, with the value `Bearer <token>`. URL-encode the value as needed. Query string parameters are encrypted by the `wss://` transport.
 - **API key**: Provide an `api-key` in one of two ways:
-  - As an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
-  - As an `api-key` query string parameter on the request URI. Query string parameters are encrypted by the `wss://` transport.
+    - As an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
+    - As an `api-key` query string parameter on the request URI. Query string parameters are encrypted by the `wss://` transport.
 
 For the recommended keyless authentication with Microsoft Entra ID:
 
-1. Assign the `Cognitive Services User` and `Azure AI User` roles to your user account or managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+1. Assign the `Cognitive Services User` and `Foundry User` roles to your user account or managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+   [!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
+
 1. Acquire an access token using the Azure CLI or an Azure SDK. The token must be issued for the `https://ai.azure.com/.default` scope (or the legacy `https://cognitiveservices.azure.com/.default` scope).
-1. Send the token on the WebSocket upgrade request, either in the `Authorization` header in the format `Bearer <token>`, or as an `Authorization` query string parameter with the same `Bearer <token>` value.
+2. Send the token on the WebSocket upgrade request, either in the `Authorization` header in the format `Bearer <token>`, or as an `Authorization` query string parameter with the same `Bearer <token>` value.
 
 ## Client Events
 
 The Voice Live API supports the following client events that can be sent from the client to the server:
 
 | Event | Description |
-|-------|-------------|
+| --- | --- |
 | [session.update](#sessionupdate) | Update the session configuration including voice, output modalities, turn detection, and other settings |
 | [session.avatar.connect](#sessionavatarconnect) | Establish avatar connection by providing client SDP for WebRTC negotiation |
-| [input_audio_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
-| [input_audio_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
-| [input_audio_buffer.clear](#input_audio_bufferclear) | Clear the input audio buffer |
-| [input_text.delta](#input_textdelta) | Append a chunk of text to a streamed user-text input |
-| [input_text.done](#input_textdone) | Signal that streamed user-text input is complete |
+| [input\_audio\_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
+| [input\_audio\_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
+| [input\_audio\_buffer.clear](#input_audio_bufferclear) | Clear the input audio buffer |
+| [input\_text.delta](#input_textdelta) | Append a chunk of text to a streamed user-text input |
+| [input\_text.done](#input_textdone) | Signal that streamed user-text input is complete |
 | [conversation.item.create](#conversationitemcreate) | Add a new item to the conversation context |
 | [conversation.item.retrieve](#conversationitemretrieve) | Retrieve a specific item from the conversation |
 | [conversation.item.truncate](#conversationitemtruncate) | Truncate an assistant audio message |
 | [conversation.item.delete](#conversationitemdelete) | Remove an item from the conversation |
 | [response.create](#responsecreate) | Instruct the server to create a response via model inference |
 | [response.cancel](#responsecancel) | Cancel an in-progress response |
-| [output_audio_buffer.clear](#output_audio_bufferclear) | Stop the avatar from speaking by clearing the server-side output audio buffer (avatar mode only) |
+| [output\_audio\_buffer.clear](#output_audio_bufferclear) | Stop the avatar from speaking by clearing the server-side output audio buffer (avatar mode only) |
 
 ### session.update
 
@@ -125,7 +126,7 @@ Update the session's configuration. This event can be sent at any time to modify
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"session.update"` |
 | session | [RealtimeRequestSession](#realtimerequestsession) | Session configuration object with fields to update |
 
@@ -176,11 +177,11 @@ Establish an avatar connection by providing the client's SDP (Session Descriptio
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"session.avatar.connect"` |
-| client_sdp | string | The client's SDP offer for WebRTC connection establishment, encoded with base64 |
+| client\_sdp | string | The client's SDP offer for WebRTC connection establishment, encoded with base64 |
 
-### input_audio_buffer.append
+### input\_audio\_buffer.append
 
 Append audio bytes to the input audio buffer.
 
@@ -196,11 +197,11 @@ Append audio bytes to the input audio buffer.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"input_audio_buffer.append"` |
 | audio | string | Base64-encoded audio data |
 
-### input_audio_buffer.commit
+### input\_audio\_buffer.commit
 
 Commit the input audio buffer for processing.
 
@@ -215,10 +216,10 @@ Commit the input audio buffer for processing.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"input_audio_buffer.commit"` |
 
-### input_audio_buffer.clear
+### input\_audio\_buffer.clear
 
 Clear the input audio buffer.
 
@@ -233,18 +234,19 @@ Clear the input audio buffer.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"input_audio_buffer.clear"` |
 
-### input_text.delta
+### input\_text.delta
 
-Append a chunk of text to the current streamed user-text input. Use this event to stream text into a conversation item incrementally, similar to how audio is streamed with [`input_audio_buffer.append`](#input_audio_bufferappend). The streamed text is finalized by sending an [`input_text.done`](#input_textdone) event.
+Append a chunk of text to the conversation item specified by `id`. Use this event to stream text incrementally, similar to how audio is streamed with [`input_audio_buffer.append`](#input_audio_bufferappend). Finalize the streamed text with an [`input_text.done`](#input_textdone) event for the same item.
 
 #### Event Structure
 
 ```json
 {
   "type": "input_text.delta",
+  "id": "<item_id>",
   "delta": "Hello, "
 }
 ```
@@ -252,27 +254,32 @@ Append a chunk of text to the current streamed user-text input. Use this event t
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"input_text.delta"` |
-| delta | string | The incremental text content to append to the current streamed input. |
+| id | string | Required. The ID of the item to append text to. |
+| delta | string | Required. The incremental text content to append. |
+| content\_index | integer | Optional. The index of the content part within the item. Defaults to `0`. |
 
-### input_text.done
+### input\_text.done
 
-Signal that the streamed user-text input is complete. The accumulated text becomes a user message item in the conversation.
+Signal that the streamed text input for the item specified by `id` is complete.
 
 #### Event Structure
 
 ```json
 {
-  "type": "input_text.done"
+  "type": "input_text.done",
+  "id": "<item_id>"
 }
 ```
 
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"input_text.done"` |
+| id | string | Required. The ID of the item whose text content has finished streaming. |
+| content\_index | integer | Optional. The index of the content part within the item. Defaults to `0`. |
 
 ### conversation.item.create
 
@@ -301,9 +308,9 @@ Add a new item to the conversation context. This can include messages, function 
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"conversation.item.create"` |
-| previous_item_id | string | Optional. ID of the item after which to insert this item. If not provided, appends to end |
+| previous\_item\_id | string | Optional. ID of the item after which to insert this item. If not provided, appends to end |
 | item | [RealtimeConversationRequestItem](#realtimeconversationrequestitem) | The item to add to the conversation |
 
 #### Example with Audio Content
@@ -366,9 +373,9 @@ Retrieve a specific item from the conversation history. This is useful for inspe
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"conversation.item.retrieve"` |
-| item_id | string | The ID of the item to retrieve |
+| item\_id | string | The ID of the item to retrieve |
 
 ### conversation.item.truncate
 
@@ -388,11 +395,11 @@ Truncate an assistant message's audio content. This is useful for stopping playb
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"conversation.item.truncate"` |
-| item_id | string | The ID of the assistant message item to truncate |
-| content_index | integer | The index of the content part to truncate |
-| audio_end_ms | integer | The duration up to which to truncate the audio, in milliseconds |
+| item\_id | string | The ID of the assistant message item to truncate |
+| content\_index | integer | The index of the content part to truncate |
+| audio\_end\_ms | integer | The duration up to which to truncate the audio, in milliseconds |
 
 ### conversation.item.delete
 
@@ -410,9 +417,9 @@ Remove an item from the conversation history.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"conversation.item.delete"` |
-| item_id | string | The ID of the item to delete |
+| item\_id | string | The ID of the item to delete |
 
 ### response.create
 
@@ -440,7 +447,7 @@ Instruct the server to create a response via model inference. This event can spe
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.create"` |
 | response | [RealtimeResponseOptions](#realtimeresponseoptions) | Optional response configuration that overrides session defaults |
 
@@ -528,10 +535,10 @@ Cancel an in-progress response. This immediately stops response generation and r
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.cancel"` |
 
-### output_audio_buffer.clear
+### output\_audio\_buffer.clear
 
 Clear the server-side output audio buffer. In the current preview, this event is only supported in avatar mode and is used to stop the avatar from speaking by clearing any audio (and corresponding avatar video) that the server has queued for playback. The server responds with an [`output_audio_buffer.cleared`](#output_audio_buffercleared) event.
 
@@ -546,10 +553,10 @@ Clear the server-side output audio buffer. In the current preview, this event is
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"output_audio_buffer.clear"` |
 
-### input_audio_buffer.append
+### input\_audio\_buffer.append
 
 The client `input_audio_buffer.append` event is used to append audio bytes to the input audio buffer. The audio buffer is temporary storage you can write to and later commit.
 
@@ -569,11 +576,11 @@ Unlike most other client events, the server doesn't send a confirmation response
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `input_audio_buffer.append`. |
 | audio | string | Base64-encoded audio bytes. This value must be in the format specified by the `input_audio_format` field in the session configuration. When `channels` is `2` in the echo cancellation settings, the audio must be interleaved stereo PCM16 (`[mic₀, ref₀, mic₁, ref₁, …]`) and each chunk must have a byte length divisible by 4. |
 
-### input_audio_buffer.clear
+### input\_audio\_buffer.clear
 
 The client `input_audio_buffer.clear` event is used to clear the audio bytes in the buffer.
 
@@ -590,10 +597,10 @@ The server responds with an `input_audio_buffer.cleared` event.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `input_audio_buffer.clear`. |
 
-### input_audio_buffer.commit
+### input\_audio\_buffer.commit
 
 The client `input_audio_buffer.commit` event is used to commit the user input audio buffer, which creates a new user message item in the conversation. Audio is transcribed if `input_audio_transcription` is configured for the session.
 
@@ -614,7 +621,7 @@ The server responds with an `input_audio_buffer.committed` event.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `input_audio_buffer.commit`. |
 
 ## Server Events
@@ -622,7 +629,7 @@ The server responds with an `input_audio_buffer.committed` event.
 The Voice Live API sends the following server events to communicate status, responses, and data to the client:
 
 | Event | Description |
-|-------|-------------|
+| --- | --- |
 | [error](#error) | Indicates an error occurred during processing |
 | [warning](#warning) | Indicates a warning occurred that doesn't interrupt the conversation flow |
 | [session.created](#sessioncreated) | Sent when a new session is successfully established |
@@ -632,57 +639,58 @@ The Voice Live API sends the following server events to communicate status, resp
 | [conversation.item.retrieved](#conversationitemretrieved) | Response to conversation.item.retrieve request |
 | [conversation.item.truncated](#conversationitemtruncated) | Confirms item truncation |
 | [conversation.item.deleted](#conversationitemdeleted) | Confirms item deletion |
-| [conversation.item.input_audio_transcription.completed](#conversationiteminput_audio_transcriptioncompleted) | Input audio transcription is complete |
-| [conversation.item.input_audio_transcription.delta](#conversationiteminput_audio_transcriptiondelta) | Streaming input audio transcription |
-| [conversation.item.input_audio_transcription.failed](#conversationiteminput_audio_transcriptionfailed) | Input audio transcription failed |
-| [input_audio_buffer.committed](#input_audio_buffercommitted) | Input audio buffer was for processing |
-| [input_audio_buffer.cleared](#input_audio_buffercleared) | Input audio buffer was cleared |
-| [input_audio_buffer.speech_started](#input_audio_bufferspeech_started) | Speech detected in input audio buffer (VAD) |
-| [input_audio_buffer.speech_stopped](#input_audio_bufferspeech_stopped) | Speech ended in input audio buffer (VAD) |
+| [conversation.item.input\_audio\_transcription.completed](#conversationiteminput_audio_transcriptioncompleted) | Input audio transcription is complete |
+| [conversation.item.input\_audio\_transcription.delta](#conversationiteminput_audio_transcriptiondelta) | Streaming input audio transcription |
+| [conversation.item.input\_audio\_transcription.failed](#conversationiteminput_audio_transcriptionfailed) | Input audio transcription failed |
+| [input\_audio\_buffer.committed](#input_audio_buffercommitted) | Input audio buffer was for processing |
+| [input\_audio\_buffer.cleared](#input_audio_buffercleared) | Input audio buffer was cleared |
+| [input\_audio\_buffer.speech\_started](#input_audio_bufferspeech_started) | Speech detected in input audio buffer (VAD) |
+| [input\_audio\_buffer.speech\_stopped](#input_audio_bufferspeech_stopped) | Speech ended in input audio buffer (VAD) |
 | [response.created](#responsecreated) | New response generation started |
 | [response.done](#responsedone) | Response generation is complete |
-| [response.output_item.added](#responseoutput_itemadded) | New output item added to response |
-| [response.output_item.done](#responseoutput_itemdone) | Output item is complete |
-| [response.content_part.added](#responsecontent_partadded) | New content part added to output item |
-| [response.content_part.done](#responsecontent_partdone) | Content part is complete |
+| [response.output\_item.added](#responseoutput_itemadded) | New output item added to response |
+| [response.output\_item.done](#responseoutput_itemdone) | Output item is complete |
+| [response.content\_part.added](#responsecontent_partadded) | New content part added to output item |
+| [response.content\_part.done](#responsecontent_partdone) | Content part is complete |
 | [response.text.delta](#responsetextdelta) | Streaming text content from the model |
 | [response.text.done](#responsetextdone) | Text content is complete |
-| [response.audio_transcript.delta](#responseaudio_transcriptdelta) | Streaming audio transcript |
-| [response.audio_transcript.done](#responseaudio_transcriptdone) | Audio transcript is complete |
+| [response.audio\_transcript.delta](#responseaudio_transcriptdelta) | Streaming audio transcript |
+| [response.audio\_transcript.done](#responseaudio_transcriptdone) | Audio transcript is complete |
 | [response.audio.delta](#responseaudiodelta) | Streaming audio content from the model |
 | [response.audio.done](#responseaudiodone) | Audio content is complete |
-| [response.animation_blendshapes.delta](#responseanimation_blendshapesdelta) | Streaming animation blendshapes data |
-| [response.animation_blendshapes.done](#responseanimation_blendshapesdone) | Animation blendshapes data is complete |
-| [response.audio_timestamp.delta](#responseaudio_timestampdelta) | Streaming audio timestamp information |
-| [response.audio_timestamp.done](#responseaudio_timestampdone) | Audio timestamp information is complete |
-| [response.animation_viseme.delta](#responseanimation_visemedelta) | Streaming animation viseme data |
-| [response.animation_viseme.done](#responseanimation_visemedone) | Animation viseme data is complete |
-| [response.function_call_arguments.delta](#responsefunction_call_argumentsdelta) | Streaming function call arguments |
-| [response.function_call_arguments.done](#responsefunction_call_argumentsdone) | Function call arguments are complete |
-| [mcp_list_tools.in_progress](#mcp_list_toolsin_progress) | MCP tool listing is in progress |
-| [mcp_list_tools.completed](#mcp_list_toolscompleted) | MCP tool listing is completed |
-| [mcp_list_tools.failed](#mcp_list_toolsfailed) | MCP tool listing has failed |
-| [response.mcp_call_arguments.delta](#responsemcp_call_argumentsdelta) | Streaming MCP call arguments |
-| [response.mcp_call_arguments.done](#responsemcp_call_argumentsdone) | MCP call arguments are complete |
-| [response.mcp_call.in_progress](#responsemcp_callin_progress) | MCP call is in progress |
-| [response.mcp_call.completed](#responsemcp_callcompleted) | MCP call is completed |
-| [response.mcp_call.failed](#responsemcp_callfailed) | MCP call has failed |
-| [response.foundry_agent_call_arguments.delta](#responsefoundry_agent_call_argumentsdelta) | Streaming foundry agent call arguments |
-| [response.foundry_agent_call_arguments.done](#responsefoundry_agent_call_argumentsdone) | Foundry agent call arguments are complete |
-| [response.foundry_agent_call.in_progress](#responsefoundry_agent_callin_progress) | Foundry agent call is in progress |
-| [response.foundry_agent_call.completed](#responsefoundry_agent_callcompleted) | Foundry agent call is completed |
-| [response.foundry_agent_call.failed](#responsefoundry_agent_callfailed) | Foundry agent call has failed |
-| [session.avatar.switch_to_speaking](#sessionavatarswitch_to_speaking) | Avatar transitioned to the speaking state |
-| [session.avatar.switch_to_idle](#sessionavatarswitch_to_idle) | Avatar transitioned to the idle state |
+| [response.animation\_blendshapes.delta](#responseanimation_blendshapesdelta) | Streaming animation blendshapes data |
+| [response.animation\_blendshapes.done](#responseanimation_blendshapesdone) | Animation blendshapes data is complete |
+| [response.audio\_timestamp.delta](#responseaudio_timestampdelta) | Streaming audio timestamp information |
+| [response.audio\_timestamp.done](#responseaudio_timestampdone) | Audio timestamp information is complete |
+| [response.animation\_viseme.delta](#responseanimation_visemedelta) | Streaming animation viseme data |
+| [response.animation\_viseme.done](#responseanimation_visemedone) | Animation viseme data is complete |
+| [response.function\_call\_arguments.delta](#responsefunction_call_argumentsdelta) | Streaming function call arguments |
+| [response.function\_call\_arguments.done](#responsefunction_call_argumentsdone) | Function call arguments are complete |
+| [mcp\_list\_tools.in\_progress](#mcp_list_toolsin_progress) | MCP tool listing is in progress |
+| [mcp\_list\_tools.completed](#mcp_list_toolscompleted) | MCP tool listing is completed |
+| [mcp\_list\_tools.failed](#mcp_list_toolsfailed) | MCP tool listing has failed |
+| [response.mcp\_call\_arguments.delta](#responsemcp_call_argumentsdelta) | Streaming MCP call arguments |
+| [response.mcp\_call\_arguments.done](#responsemcp_call_argumentsdone) | MCP call arguments are complete |
+| [response.mcp\_call.in\_progress](#responsemcp_callin_progress) | MCP call is in progress |
+| [response.mcp\_call.completed](#responsemcp_callcompleted) | MCP call is completed |
+| [response.mcp\_call.failed](#responsemcp_callfailed) | MCP call has failed |
+| [response.foundry\_agent\_call\_arguments.delta](#responsefoundry_agent_call_argumentsdelta) | Streaming foundry agent call arguments |
+| [response.foundry\_agent\_call\_arguments.done](#responsefoundry_agent_call_argumentsdone) | Foundry agent call arguments are complete |
+| [response.foundry\_agent\_call.in\_progress](#responsefoundry_agent_callin_progress) | Foundry agent call is in progress |
+| [response.foundry\_agent\_call.completed](#responsefoundry_agent_callcompleted) | Foundry agent call is completed |
+| [response.foundry\_agent\_call.failed](#responsefoundry_agent_callfailed) | Foundry agent call has failed |
+| [session.avatar.switch\_to\_speaking](#sessionavatarswitch_to_speaking) | Avatar transitioned to the speaking state |
+| [session.avatar.switch\_to\_idle](#sessionavatarswitch_to_idle) | Avatar transitioned to the idle state |
 | [response.video.delta](#responsevideodelta) | Streaming avatar video frame data |
-| [response.web_search_call.searching](#responseweb_search_callsearching) | Web search tool call is searching |
-| [response.web_search_call.in_progress](#responseweb_search_callin_progress) | Web search tool call is in progress |
-| [response.web_search_call.completed](#responseweb_search_callcompleted) | Web search tool call completed |
-| [response.file_search_call.searching](#responsefile_search_callsearching) | File search tool call is searching |
-| [response.file_search_call.in_progress](#responsefile_search_callin_progress) | File search tool call is in progress |
-| [response.file_search_call.completed](#responsefile_search_callcompleted) | File search tool call completed |
-| [output_audio_buffer.cleared](#output_audio_buffercleared) | Output audio buffer was cleared |
-| [response.audio_transcript.annotation.added](#responseaudio_transcriptannotationadded) | An annotation was added to an audio transcript |
+| [response.web\_search\_call.searching](#responseweb_search_callsearching) | Web search tool call is searching |
+| [response.web\_search\_call.in\_progress](#responseweb_search_callin_progress) | Web search tool call is in progress |
+| [response.web\_search\_call.completed](#responseweb_search_callcompleted) | Web search tool call completed |
+| [response.file\_search\_call.searching](#responsefile_search_callsearching) | File search tool call is searching |
+| [response.file\_search\_call.in\_progress](#responsefile_search_callin_progress) | File search tool call is in progress |
+| [response.file\_search\_call.completed](#responsefile_search_callcompleted) | File search tool call completed |
+| [output\_audio\_buffer.cleared](#output_audio_buffercleared) | Output audio buffer was cleared |
+| [response.audio\_transcript.annotation.added](#responseaudio_transcriptannotationadded) | An annotation was added to an audio transcript |
+| [response.invocation.delta](#responseinvocationdelta) | A hosted agent invocation produced a non-speech event |
 
 ### session.created
 
@@ -721,7 +729,7 @@ Sent when a new session is successfully established. This is the first event rec
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"session.created"` |
 | session | [RealtimeResponseSession](#realtimeresponsesession) | The created session object |
 
@@ -753,7 +761,7 @@ Sent when session configuration is successfully updated in response to a `sessio
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"session.updated"` |
 | session | [RealtimeResponseSession](#realtimeresponsesession) | The updated session object |
 
@@ -773,7 +781,7 @@ Indicates that an avatar WebRTC connection is being established. This event is s
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"session.avatar.connecting"` |
 
 ### conversation.item.created
@@ -805,9 +813,9 @@ Sent when a new item is added to the conversation, either through a client `conv
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"conversation.item.created"` |
-| previous_item_id | string | ID of the item after which this item was inserted |
+| previous\_item\_id | string | ID of the item after which this item was inserted |
 | item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The created conversation item |
 
 #### Example with Audio Item
@@ -860,7 +868,7 @@ Sent in response to a `conversation.item.retrieve` client event, providing the r
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"conversation.item.retrieved"` |
 | item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The retrieved conversation item |
 
@@ -884,11 +892,11 @@ This event truncates the audio and removes the server-side text transcript to en
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `conversation.item.truncated`. |
-| item_id | string | The ID of the assistant message item that was truncated. |
-| content_index | integer | The index of the content part that was truncated. |
-| audio_end_ms | integer | The duration up to which the audio was truncated, in milliseconds. |
+| item\_id | string | The ID of the assistant message item that was truncated. |
+| content\_index | integer | The index of the content part that was truncated. |
+| audio\_end\_ms | integer | The duration up to which the audio was truncated, in milliseconds. |
 
 ### conversation.item.deleted
 
@@ -906,9 +914,9 @@ Sent in response to a `conversation.item.delete` client event, confirming that t
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"conversation.item.deleted"` |
-| item_id | string | ID of the deleted item |
+| item\_id | string | ID of the deleted item |
 
 ### response.created
 
@@ -937,7 +945,7 @@ Sent when a new response generation begins. This is the first event in a respons
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.created"` |
 | response | [RealtimeResponse](#realtimeresponse) | The response object that was created |
 
@@ -991,11 +999,11 @@ Sent when response generation is complete. This event contains the final respons
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.done"` |
 | response | [RealtimeResponse](#realtimeresponse) | The completed response object |
 
-### response.output_item.added
+### response.output\_item.added
 
 Sent when a new output item is added to the response during generation.
 
@@ -1020,13 +1028,13 @@ Sent when a new output item is added to the response during generation.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.output_item.added"` |
-| response_id | string | ID of the response this item belongs to |
-| output_index | integer | Index of the item in the response's output array |
+| response\_id | string | ID of the response this item belongs to |
+| output\_index | integer | Index of the item in the response's output array |
 | item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The output item that was added |
 
-### response.output_item.done
+### response.output\_item.done
 
 Sent when an output item is complete.
 
@@ -1056,13 +1064,13 @@ Sent when an output item is complete.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.output_item.done"` |
-| response_id | string | ID of the response this item belongs to |
-| output_index | integer | Index of the item in the response's output array |
+| response\_id | string | ID of the response this item belongs to |
+| output\_index | integer | Index of the item in the response's output array |
 | item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The completed output item |
 
-### response.content_part.added
+### response.content\_part.added
 
 The server `response.content_part.added` event is returned when a new content part is added to an assistant message item during response generation.
 
@@ -1085,15 +1093,15 @@ The server `response.content_part.added` event is returned when a new content pa
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.content_part.added"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item this content part belongs to |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of this content part in the item |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item this content part belongs to |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of this content part in the item |
 | part | [RealtimeContentPart](#realtimecontentpart) | The content part that was added |
 
-### response.content_part.done
+### response.content\_part.done
 
 The server `response.content_part.done` event is returned when a content part is done streaming in an assistant message item.
 
@@ -1118,12 +1126,12 @@ This event is also returned when a response is interrupted, incomplete, or cance
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.content_part.done"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item this content part belongs to |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of this content part in the item |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item this content part belongs to |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of this content part in the item |
 | part | [RealtimeContentPart](#realtimecontentpart) | The completed content part |
 
 ### response.text.delta
@@ -1146,12 +1154,12 @@ Streaming text content from the model. Sent incrementally as the model generates
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.text.delta"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 | delta | string | Incremental text content |
 
 ### response.text.done
@@ -1174,12 +1182,12 @@ Sent when text content generation is complete.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.text.done"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 | text | string | The complete text content |
 
 ### response.audio.delta
@@ -1202,12 +1210,12 @@ Streaming audio content from the model. Audio is provided as base64-encoded data
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.audio.delta"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 | delta | string | Base64-encoded audio data chunk |
 
 ### response.audio.done
@@ -1229,14 +1237,14 @@ Sent when audio content generation is complete.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.audio.done"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 
-### response.audio_transcript.delta
+### response.audio\_transcript.delta
 
 Streaming transcript of the generated audio content.
 
@@ -1256,15 +1264,15 @@ Streaming transcript of the generated audio content.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.audio_transcript.delta"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 | delta | string | Incremental transcript text |
 
-### response.audio_transcript.done
+### response.audio\_transcript.done
 
 Sent when audio transcript generation is complete.
 
@@ -1284,15 +1292,15 @@ Sent when audio transcript generation is complete.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"response.audio_transcript.done"` |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 | transcript | string | The complete transcript text |
 
-### conversation.item.input_audio_transcription.completed
+### conversation.item.input\_audio\_transcription.completed
 
 The server `conversation.item.input_audio_transcription.completed` event is the result of audio transcription for speech written to the audio buffer.
 
@@ -1314,15 +1322,15 @@ Realtime API models accept audio natively, and thus input transcription is a sep
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `conversation.item.input_audio_transcription.completed`. |
-| item_id | string | The ID of the user message item containing the audio. |
-| content_index | integer | The index of the content part containing the audio. |
+| item\_id | string | The ID of the user message item containing the audio. |
+| content\_index | integer | The index of the content part containing the audio. |
 | transcript | string | The transcribed text. |
 | logprobs | array of [LogProbProperties](#logprobproperties) | Optional. The log probabilities of the transcription tokens. |
 | phrases | array of [TranscriptionPhrase](#transcriptionphrase) | Optional. The transcription phrases with timing information. |
 
-### conversation.item.input_audio_transcription.delta
+### conversation.item.input\_audio\_transcription.delta
 
 The server `conversation.item.input_audio_transcription.delta` event is returned when input audio transcription is configured, and a transcription request for a user message is in progress. This event provides partial transcription results as they become available.
 
@@ -1340,13 +1348,13 @@ The server `conversation.item.input_audio_transcription.delta` event is returned
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `conversation.item.input_audio_transcription.delta`. |
-| item_id | string | The ID of the user message item. |
-| content_index | integer | The index of the content part containing the audio. |
+| item\_id | string | The ID of the user message item. |
+| content\_index | integer | The index of the content part containing the audio. |
 | delta | string | The incremental transcription text. |
 
-### conversation.item.input_audio_transcription.failed
+### conversation.item.input\_audio\_transcription.failed
 
 The server `conversation.item.input_audio_transcription.failed` event is returned when input audio transcription is configured, and a transcription request for a user message failed. This event is separate from other `error` events so that the client can identify the related item.
 
@@ -1368,22 +1376,22 @@ The server `conversation.item.input_audio_transcription.failed` event is returne
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `conversation.item.input_audio_transcription.failed`. |
-| item_id | string | The ID of the user message item. |
-| content_index | integer | The index of the content part containing the audio. |
-| error | object | Details of the transcription error.<br><br>See nested properties in the next table.|
+| item\_id | string | The ID of the user message item. |
+| content\_index | integer | The index of the content part containing the audio. |
+| error | object | Details of the transcription error.<br>See nested properties in the next table. |
 
 #### Error properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The type of error. |
 | code | string | Error code, if any. |
 | message | string | A human-readable error message. |
 | param | string | Parameter related to the error, if any. |
 
-### response.animation_blendshapes.delta
+### response.animation\_blendshapes.delta
 
 The server `response.animation_blendshapes.delta` event is returned when the model generates animation blendshapes data as part of a response. This event provides incremental blendshapes data as it becomes available.
 
@@ -1407,16 +1415,16 @@ The server `response.animation_blendshapes.delta` event is returned when the mod
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.animation_blendshapes.delta`. |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
-| frame_index | integer | Index of the first frame in this batch of frames |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
+| frame\_index | integer | Index of the first frame in this batch of frames |
 | frames | array of array of float | Array of blendshape frames, each frame is an array of blendshape values |
 
-### response.animation_blendshapes.done
+### response.animation\_blendshapes.done
 
 The server `response.animation_blendshapes.done` event is returned when the model has finished generating animation blendshapes data as part of a response.
 
@@ -1434,13 +1442,13 @@ The server `response.animation_blendshapes.done` event is returned when the mode
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.animation_blendshapes.done`. |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
 
-### response.audio_timestamp.delta
+### response.audio\_timestamp.delta
 
 The server `response.audio_timestamp.delta` event is returned when the model generates audio timestamp data as part of a response. This event provides incremental timestamp data for output audio and text alignment as it becomes available.
 
@@ -1463,18 +1471,18 @@ The server `response.audio_timestamp.delta` event is returned when the model gen
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.audio_timestamp.delta`. |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
-| audio_offset_ms | integer | Audio offset in milliseconds from the start of the audio |
-| audio_duration_ms | integer | Duration of the audio segment in milliseconds |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
+| audio\_offset\_ms | integer | Audio offset in milliseconds from the start of the audio |
+| audio\_duration\_ms | integer | Duration of the audio segment in milliseconds |
 | text | string | The text segment corresponding to this audio timestamp |
-| timestamp_type | string | The type of timestamp, currently only "word" is supported |
+| timestamp\_type | string | The type of timestamp, currently only "word" is supported |
 
-### response.audio_timestamp.done
+### response.audio\_timestamp.done
 
 Sent when audio timestamp generation is complete.
 
@@ -1493,14 +1501,14 @@ Sent when audio timestamp generation is complete.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.audio_timestamp.done`. |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 
-### response.animation_viseme.delta
+### response.animation\_viseme.delta
 
 The server `response.animation_viseme.delta` event is returned when the model generates animation viseme data as part of a response. This event provides incremental viseme data as it becomes available.
 
@@ -1521,16 +1529,16 @@ The server `response.animation_viseme.delta` event is returned when the model ge
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.animation_viseme.delta`. |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
-| audio_offset_ms | integer | Audio offset in milliseconds from the start of the audio |
-| viseme_id | integer | The viseme ID corresponding to the mouth shape for animation |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
+| audio\_offset\_ms | integer | Audio offset in milliseconds from the start of the audio |
+| viseme\_id | integer | The viseme ID corresponding to the mouth shape for animation |
 
-### response.animation_viseme.done
+### response.animation\_viseme.done
 
 The server `response.animation_viseme.done` event is returned when the model has finished generating animation viseme data as part of a response.
 
@@ -1549,12 +1557,12 @@ The server `response.animation_viseme.done` event is returned when the model has
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.animation_viseme.done`. |
-| response_id | string | ID of the response |
-| item_id | string | ID of the item |
-| output_index | integer | Index of the item in the response |
-| content_index | integer | Index of the content part |
+| response\_id | string | ID of the response |
+| item\_id | string | ID of the item |
+| output\_index | integer | Index of the item in the response |
+| content\_index | integer | Index of the content part |
 
 ### error
 
@@ -1577,19 +1585,19 @@ The server `error` event is returned when an error occurs, which could be a clie
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `error`. |
-| error | object | Details of the error.<br><br>See nested properties in the next table.|
+| error | object | Details of the error.<br>See nested properties in the next table. |
 
 #### Error properties
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of error. For example, "invalid_request_error" and "server_error" are error types. |
+| --- | --- | --- |
+| type | string | The type of error. For example, "invalid\_request\_error" and "server\_error" are error types. |
 | code | string | Error code, if any. |
 | message | string | A human-readable error message. |
 | param | string | Parameter related to the error, if any. |
-| event_id | string | The ID of the client event that caused the error, if applicable. |
+| event\_id | string | The ID of the client event that caused the error, if applicable. |
 
 ### warning
 
@@ -1611,19 +1619,19 @@ The server `warning` event is returned when a warning occurs that doesn't interr
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `warning`. |
 | warning | object | Details of the warning. See nested properties in the next table. |
 
 #### Warning properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | message | string | A human-readable warning message. |
 | code | string | Optional. Warning code, if any. |
 | param | string | Optional. Parameter related to the warning, if any. |
 
-### input_audio_buffer.cleared
+### input\_audio\_buffer.cleared
 
 The server `input_audio_buffer.cleared` event is returned when the client clears the input audio buffer with a `input_audio_buffer.clear` event.
 
@@ -1638,10 +1646,10 @@ The server `input_audio_buffer.cleared` event is returned when the client clears
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `input_audio_buffer.cleared`. |
 
-### input_audio_buffer.committed
+### input\_audio\_buffer.committed
 
 The server `input_audio_buffer.committed` event is returned when an input audio buffer is committed, either by the client or automatically in server VAD mode. The `item_id` property is the ID of the user message item created. Thus a `conversation.item.created` event is also sent to the client.
 
@@ -1658,12 +1666,12 @@ The server `input_audio_buffer.committed` event is returned when an input audio 
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `input_audio_buffer.committed`. |
-| previous_item_id | string | The ID of the preceding item after which the new item is inserted. |
-| item_id | string | The ID of the user message item created. |
+| previous\_item\_id | string | The ID of the preceding item after which the new item is inserted. |
+| item\_id | string | The ID of the user message item created. |
 
-### input_audio_buffer.speech_started
+### input\_audio\_buffer.speech\_started
 
 The server `input_audio_buffer.speech_started` event is returned in `server_vad` mode when speech is detected in the audio buffer. This event can happen any time audio is added to the buffer (unless speech is already detected).
 
@@ -1685,12 +1693,12 @@ The client should expect to receive a `input_audio_buffer.speech_stopped` event 
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `input_audio_buffer.speech_started`. |
-| audio_start_ms | integer | Milliseconds from the start of all audio written to the buffer during the session when speech was first detected. This property corresponds to the beginning of audio sent to the model, and thus includes the `prefix_padding_ms` configured in the session. |
-| item_id | string | The ID of the user message item created when speech stops. |
+| audio\_start\_ms | integer | Milliseconds from the start of all audio written to the buffer during the session when speech was first detected. This property corresponds to the beginning of audio sent to the model, and thus includes the `prefix_padding_ms` configured in the session. |
+| item\_id | string | The ID of the user message item created when speech stops. |
 
-### input_audio_buffer.speech_stopped
+### input\_audio\_buffer.speech\_stopped
 
 The server `input_audio_buffer.speech_stopped` event is returned in `server_vad` mode when the server detects the end of speech in the audio buffer.
 
@@ -1709,12 +1717,12 @@ The server also sends a `conversation.item.created` event with the user message 
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `input_audio_buffer.speech_stopped`. |
-| audio_end_ms | integer | Milliseconds since the session started when speech stopped. This property corresponds to the end of audio sent to the model, and thus includes the `min_silence_duration_ms` configured in the session. |
-| item_id | string | The ID of the user message item created. |
+| audio\_end\_ms | integer | Milliseconds since the session started when speech stopped. This property corresponds to the end of audio sent to the model, and thus includes the `min_silence_duration_ms` configured in the session. |
+| item\_id | string | The ID of the user message item created. |
 
-### rate_limits.updated
+### rate\_limits.updated
 
 The server `rate_limits.updated` event is emitted at the beginning of a response to indicate the updated rate limits.
 
@@ -1739,9 +1747,9 @@ When a response is created, some tokens are reserved for the output tokens. The 
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `rate_limits.updated`. |
-| rate_limits | array of [RealtimeRateLimitsItem](#realtimeratelimitsitem) | The list of rate limit information. |
+| rate\_limits | array of [RealtimeRateLimitsItem](#realtimeratelimitsitem) | The list of rate limit information. |
 
 ### response.audio.delta
 
@@ -1763,12 +1771,12 @@ The server `response.audio.delta` event is returned when the model-generated aud
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.audio.delta`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the item. |
+| output\_index | integer | The index of the output item in the response. |
+| content\_index | integer | The index of the content part in the item's content array. |
 | delta | string | Base64-encoded audio data delta. |
 
 ### response.audio.done
@@ -1792,14 +1800,14 @@ This event is also returned when a response is interrupted, incomplete, or cance
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.audio.done`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the item. |
+| output\_index | integer | The index of the output item in the response. |
+| content\_index | integer | The index of the content part in the item's content array. |
 
-### response.audio_transcript.delta
+### response.audio\_transcript.delta
 
 The server `response.audio_transcript.delta` event is returned when the model-generated transcription of audio output is updated.
 
@@ -1819,15 +1827,15 @@ The server `response.audio_transcript.delta` event is returned when the model-ge
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.audio_transcript.delta`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the item. |
+| output\_index | integer | The index of the output item in the response. |
+| content\_index | integer | The index of the content part in the item's content array. |
 | delta | string | The transcript delta. |
 
-### response.audio_transcript.done
+### response.audio\_transcript.done
 
 The server `response.audio_transcript.done` event is returned when the model-generated transcription of audio output is done streaming.
 
@@ -1849,15 +1857,15 @@ This event is also returned when a response is interrupted, incomplete, or cance
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.audio_transcript.done`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the item. |
+| output\_index | integer | The index of the output item in the response. |
+| content\_index | integer | The index of the content part in the item's content array. |
 | transcript | string | The final transcript of the audio. |
 
-### response.function_call_arguments.delta
+### response.function\_call\_arguments.delta
 
 The server `response.function_call_arguments.delta` event is returned when the model-generated function call arguments are updated.
 
@@ -1877,15 +1885,15 @@ The server `response.function_call_arguments.delta` event is returned when the m
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.function_call_arguments.delta`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the function call item. |
-| output_index | integer | The index of the output item in the response. |
-| call_id | string | The ID of the function call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the function call item. |
+| output\_index | integer | The index of the output item in the response. |
+| call\_id | string | The ID of the function call. |
 | delta | string | The arguments delta as a JSON string. |
 
-### response.function_call_arguments.done
+### response.function\_call\_arguments.done
 
 The server `response.function_call_arguments.done` event is returned when the model-generated function call arguments are done streaming.
 
@@ -1907,15 +1915,15 @@ This event is also returned when a response is interrupted, incomplete, or cance
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.function_call_arguments.done`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the function call item. |
-| output_index | integer | The index of the output item in the response. |
-| call_id | string | The ID of the function call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the function call item. |
+| output\_index | integer | The index of the output item in the response. |
+| call\_id | string | The ID of the function call. |
 | arguments | string | The final arguments as a JSON string. |
 
-### mcp_list_tools.in_progress
+### mcp\_list\_tools.in\_progress
 
 The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from an MCP server.
 
@@ -1931,11 +1939,11 @@ The server `mcp_list_tools.in_progress` event is returned when the service start
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `mcp_list_tools.in_progress`. |
-| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
+| item\_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
 
-### mcp_list_tools.completed
+### mcp\_list\_tools.completed
 
 The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from an MCP server.
 
@@ -1951,11 +1959,11 @@ The server `mcp_list_tools.completed` event is returned when the service complet
 ##### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `mcp_list_tools.completed`. |
-| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
+| item\_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
 
-### mcp_list_tools.failed
+### mcp\_list\_tools.failed
 
 The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from an MCP server.
 
@@ -1971,11 +1979,11 @@ The server `mcp_list_tools.failed` event is returned when the service fails to l
 ##### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `mcp_list_tools.failed`. |
-| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
+| item\_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
 
-### response.mcp_call_arguments.delta
+### response.mcp\_call\_arguments.delta
 
 The server `response.mcp_call_arguments.delta` event is returned when the model-generated MCP tool call arguments are updated.
 
@@ -1994,14 +2002,14 @@ The server `response.mcp_call_arguments.delta` event is returned when the model-
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.mcp_call_arguments.delta`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 | delta | string | The arguments delta as a JSON string. |
 
-### response.mcp_call_arguments.done
+### response.mcp\_call\_arguments.done
 
 The server `response.mcp_call_arguments.done` event is returned when the model-generated MCP tool call arguments are done streaming.
 
@@ -2020,14 +2028,14 @@ The server `response.mcp_call_arguments.done` event is returned when the model-g
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.mcp_call_arguments.done`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 | arguments | string | The final arguments as a JSON string. |
 
-### response.mcp_call.in_progress
+### response.mcp\_call.in\_progress
 
 The server `response.mcp_call.in_progress` event is returned when an MCP tool call starts processing.
 
@@ -2044,12 +2052,12 @@ The server `response.mcp_call.in_progress` event is returned when an MCP tool ca
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.mcp_call.in_progress`. |
-| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| item\_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 
-### response.mcp_call.completed
+### response.mcp\_call.completed
 
 The server `response.mcp_call.completed` event is returned when an MCP tool call completes successfully.
 
@@ -2066,12 +2074,12 @@ The server `response.mcp_call.completed` event is returned when an MCP tool call
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.mcp_call.completed`. |
-| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| item\_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 
-### response.mcp_call.failed
+### response.mcp\_call.failed
 
 The server `response.mcp_call.failed` event is returned when an MCP tool call fails.
 
@@ -2088,12 +2096,12 @@ The server `response.mcp_call.failed` event is returned when an MCP tool call fa
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.mcp_call.failed`. |
-| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| item\_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 
-### response.foundry_agent_call_arguments.delta
+### response.foundry\_agent\_call\_arguments.delta
 
 The server `response.foundry_agent_call_arguments.delta` event is returned when the model-generated foundry agent call arguments are updated.
 
@@ -2112,14 +2120,14 @@ The server `response.foundry_agent_call_arguments.delta` event is returned when 
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.foundry_agent_call_arguments.delta`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 | delta | string | The arguments delta as a JSON string. |
 
-### response.foundry_agent_call_arguments.done
+### response.foundry\_agent\_call\_arguments.done
 
 The server `response.foundry_agent_call_arguments.done` event is returned when the model-generated foundry agent call arguments are done streaming.
 
@@ -2138,14 +2146,14 @@ The server `response.foundry_agent_call_arguments.done` event is returned when t
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.foundry_agent_call_arguments.done`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 | arguments | string | The final arguments as a JSON string. |
 
-### response.foundry_agent_call.in_progress
+### response.foundry\_agent\_call.in\_progress
 
 The server `response.foundry_agent_call.in_progress` event is returned when a foundry agent call starts processing.
 
@@ -2162,13 +2170,13 @@ The server `response.foundry_agent_call.in_progress` event is returned when a fo
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.foundry_agent_call.in_progress`. |
-| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
-| agent_response_id | string | The response ID from the foundry agent. |
-| output_index | integer | The index of the output item in the response. |
+| item\_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| agent\_response\_id | string | The response ID from the foundry agent. |
+| output\_index | integer | The index of the output item in the response. |
 
-### response.foundry_agent_call.completed
+### response.foundry\_agent\_call.completed
 
 The server `response.foundry_agent_call.completed` event is returned when a foundry agent call completes successfully.
 
@@ -2186,12 +2194,12 @@ The server `response.foundry_agent_call.completed` event is returned when a foun
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.foundry_agent_call.completed`. |
-| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| item\_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 
-### response.foundry_agent_call.failed
+### response.foundry\_agent\_call.failed
 
 The server `response.foundry_agent_call.failed` event is returned when a foundry agent call fails.
 
@@ -2208,12 +2216,12 @@ The server `response.foundry_agent_call.failed` event is returned when a foundry
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.foundry_agent_call.failed`. |
-| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
-| output_index | integer | The index of the output item in the response. |
+| item\_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output\_index | integer | The index of the output item in the response. |
 
-### response.output_item.added
+### response.output\_item.added
 
 The server `response.output_item.added` event is returned when a new item is created during response generation.
 
@@ -2230,13 +2238,13 @@ The server `response.output_item.added` event is returned when a new item is cre
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.output_item.added`. |
-| response_id | string | The ID of the response to which the item belongs. |
-| output_index | integer | The index of the output item in the response. |
+| response\_id | string | The ID of the response to which the item belongs. |
+| output\_index | integer | The index of the output item in the response. |
 | item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The item that was added. |
 
-### response.output_item.done
+### response.output\_item.done
 
 The server `response.output_item.done` event is returned when an item is done streaming.
 
@@ -2255,10 +2263,10 @@ This event is also returned when a response is interrupted, incomplete, or cance
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.output_item.done`. |
-| response_id | string | The ID of the response to which the item belongs. |
-| output_index | integer | The index of the output item in the response. |
+| response\_id | string | The ID of the response to which the item belongs. |
+| output\_index | integer | The index of the output item in the response. |
 | item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The item that is done streaming. |
 
 ### response.text.delta
@@ -2281,12 +2289,12 @@ The server `response.text.delta` event is returned when the model-generated text
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.text.delta`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the item. |
+| output\_index | integer | The index of the output item in the response. |
+| content\_index | integer | The index of the content part in the item's content array. |
 | delta | string | The text delta. |
 
 ### response.text.done
@@ -2311,15 +2319,15 @@ This event is also returned when a response is interrupted, incomplete, or cance
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.text.done`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the item. |
+| output\_index | integer | The index of the output item in the response. |
+| content\_index | integer | The index of the content part in the item's content array. |
 | text | string | The final text content. |
 
-### session.avatar.switch_to_speaking
+### session.avatar.switch\_to\_speaking
 
 Returned when the avatar transitions to the speaking state. Use this event to coordinate UI changes such as showing a speaking indicator.
 
@@ -2335,11 +2343,11 @@ Returned when the avatar transitions to the speaking state. Use this event to co
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `session.avatar.switch_to_speaking`. |
-| turn_id | string | Optional. The ID of the turn associated with the avatar state change. |
+| turn\_id | string | Optional. The ID of the turn associated with the avatar state change. |
 
-### session.avatar.switch_to_idle
+### session.avatar.switch\_to\_idle
 
 Returned when the avatar transitions to the idle state.
 
@@ -2355,9 +2363,9 @@ Returned when the avatar transitions to the idle state.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `session.avatar.switch_to_idle`. |
-| turn_id | string | Optional. The ID of the turn associated with the avatar state change. |
+| turn\_id | string | Optional. The ID of the turn associated with the avatar state change. |
 
 ### response.video.delta
 
@@ -2377,13 +2385,13 @@ Returned when avatar video frame data is streamed to the client. The frame paylo
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.video.delta`. |
-| output_index | integer | The index of the output item in the response. |
+| output\_index | integer | The index of the output item in the response. |
 | codec | string | The codec used for the video data (for example, `h264`). |
 | delta | string | The base64-encoded video frame data. |
 
-### response.web_search_call.searching
+### response.web\_search\_call.searching
 
 Returned when a web search tool call enters the searching state.
 
@@ -2402,14 +2410,14 @@ Returned when a web search tool call enters the searching state.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.web_search_call.searching`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [web search call item](#realtimeconversationwebsearchcallitem). |
-| output_index | integer | The index of the output item in the response. |
-| sequence_number | integer | The sequence number of the web search call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [web search call item](#realtimeconversationwebsearchcallitem). |
+| output\_index | integer | The index of the output item in the response. |
+| sequence\_number | integer | The sequence number of the web search call. |
 
-### response.web_search_call.in_progress
+### response.web\_search\_call.in\_progress
 
 Returned when a web search tool call is in progress.
 
@@ -2428,14 +2436,14 @@ Returned when a web search tool call is in progress.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.web_search_call.in_progress`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [web search call item](#realtimeconversationwebsearchcallitem). |
-| output_index | integer | The index of the output item in the response. |
-| sequence_number | integer | The sequence number of the web search call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [web search call item](#realtimeconversationwebsearchcallitem). |
+| output\_index | integer | The index of the output item in the response. |
+| sequence\_number | integer | The sequence number of the web search call. |
 
-### response.web_search_call.completed
+### response.web\_search\_call.completed
 
 Returned when a web search tool call has completed.
 
@@ -2454,14 +2462,14 @@ Returned when a web search tool call has completed.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.web_search_call.completed`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [web search call item](#realtimeconversationwebsearchcallitem). |
-| output_index | integer | The index of the output item in the response. |
-| sequence_number | integer | The sequence number of the web search call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [web search call item](#realtimeconversationwebsearchcallitem). |
+| output\_index | integer | The index of the output item in the response. |
+| sequence\_number | integer | The sequence number of the web search call. |
 
-### response.file_search_call.searching
+### response.file\_search\_call.searching
 
 Returned when a file search tool call enters the searching state.
 
@@ -2480,14 +2488,14 @@ Returned when a file search tool call enters the searching state.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.file_search_call.searching`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [file search call item](#realtimeconversationfilesearchcallitem). |
-| output_index | integer | The index of the output item in the response. |
-| sequence_number | integer | The sequence number of the file search call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [file search call item](#realtimeconversationfilesearchcallitem). |
+| output\_index | integer | The index of the output item in the response. |
+| sequence\_number | integer | The sequence number of the file search call. |
 
-### response.file_search_call.in_progress
+### response.file\_search\_call.in\_progress
 
 Returned when a file search tool call is in progress.
 
@@ -2506,14 +2514,14 @@ Returned when a file search tool call is in progress.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.file_search_call.in_progress`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [file search call item](#realtimeconversationfilesearchcallitem). |
-| output_index | integer | The index of the output item in the response. |
-| sequence_number | integer | The sequence number of the file search call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [file search call item](#realtimeconversationfilesearchcallitem). |
+| output\_index | integer | The index of the output item in the response. |
+| sequence\_number | integer | The sequence number of the file search call. |
 
-### response.file_search_call.completed
+### response.file\_search\_call.completed
 
 Returned when a file search tool call has completed.
 
@@ -2532,14 +2540,14 @@ Returned when a file search tool call has completed.
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.file_search_call.completed`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the [file search call item](#realtimeconversationfilesearchcallitem). |
-| output_index | integer | The index of the output item in the response. |
-| sequence_number | integer | The sequence number of the file search call. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the [file search call item](#realtimeconversationfilesearchcallitem). |
+| output\_index | integer | The index of the output item in the response. |
+| sequence\_number | integer | The sequence number of the file search call. |
 
-### output_audio_buffer.cleared
+### output\_audio\_buffer.cleared
 
 Returned when the output audio buffer is cleared in response to a client [`output_audio_buffer.clear`](#output_audio_bufferclear) event. In the current preview, this event is only emitted in avatar mode.
 
@@ -2554,10 +2562,10 @@ Returned when the output audio buffer is cleared in response to a client [`outpu
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `output_audio_buffer.cleared`. |
 
-### response.audio_transcript.annotation.added
+### response.audio\_transcript.annotation.added
 
 Returned when an annotation (for example, a citation produced by a web or file search tool) is added to an audio transcript content part.
 
@@ -2578,14 +2586,28 @@ Returned when an annotation (for example, a citation produced by a web or file s
 #### Properties
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | The event type must be `response.audio_transcript.annotation.added`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
-| annotation_index | integer | The index of the annotation. |
+| response\_id | string | The ID of the response. |
+| item\_id | string | The ID of the item. |
+| output\_index | integer | The index of the output item in the response. |
+| content\_index | integer | The index of the content part in the item's content array. |
+| annotation\_index | integer | The index of the annotation. |
 | annotation | object | The annotation object. The schema depends on the annotation source (for example, web search citation). |
+
+### response.invocation.delta
+
+Returned when a hosted agent invocation produces a non-speech server-sent event (SSE). The `delta` object contains the raw event data passed through from the agent.
+
+To supply input to the hosted agent, use `invoke_input` in [RealtimeResponseOptions](#realtimeresponseoptions).
+
+#### Properties
+
+| Field | Type | Description |
+| --- | --- | --- |
+| type | string | Must be `"response.invocation.delta"`. |
+| event\_id | string | Optional. The event ID. |
+| delta | object | Required. The raw event data from the hosted agent invocation. |
 
 ## Components
 
@@ -2618,11 +2640,11 @@ Audio format used for output audio with specific sampling rates.
 Configuration for input audio transcription.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `mai-transcribe`.<br>Supported with **all other models** and **agents**: `azure-speech` and `mai-transcribe` |
-| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
-| custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
-| phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
+| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
+| custom\_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
+| phrase\_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
 | prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
 
 #### RealtimeInputAudioNoiseReductionSettings
@@ -2637,7 +2659,7 @@ This can be:
 OpenAI noise reduction configuration with explicit type field, only available for `gpt-realtime` and `gpt-realtime-mini` models.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | `near_field` or `far_field` |
 
 #### RealtimeAzureDeepNoiseSuppression
@@ -2645,7 +2667,7 @@ OpenAI noise reduction configuration with explicit type field, only available fo
 Configuration for input audio noise reduction.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"azure_deep_noise_suppression"` |
 
 #### RealtimeInputAudioEchoCancellationSettings
@@ -2653,9 +2675,9 @@ Configuration for input audio noise reduction.
 Echo cancellation configuration for server-side audio processing.
 
 | Field | Type | Required | Default | Description |
-|-------|------|----------|---------|-------------|
+| --- | --- | --- | --- | --- |
 | type | string | Yes | — | Must be `"server_echo_cancellation"` |
-| reference_source | [EchoCancellationReferenceSource](#echocancellationreferencesource) | No | `"server"` | Source of the echo reference signal. `"server"` uses the internal TTS loopback (existing behavior). `"client"` uses channel 1 of the stereo input stream as the reference, bypassing the internal loopback. **Preview.** Requires the `client_ec_reference` feature flag. |
+| reference\_source | [EchoCancellationReferenceSource](#echocancellationreferencesource) | No | `"server"` | Source of the echo reference signal. `"server"` uses the internal TTS loopback (existing behavior). `"client"` uses channel 1 of the stereo input stream as the reference, bypassing the internal loopback. **Preview.** Requires the `client_ec_reference` feature flag. |
 | channels | integer | No | `1` | Number of audio channels in the input stream. `1` = mono (existing behavior). `2` = interleaved stereo PCM16 where channel 0 is the microphone and channel 1 is the echo reference. Must be `1` or `2`. **Preview.** Requires `reference_source: "client"` and `input_audio_format: "pcm16"`. |
 
 > [!NOTE]
@@ -2664,7 +2686,7 @@ Echo cancellation configuration for server-side audio processing.
 #### Valid combinations for client-side echo cancellation reference
 
 | `reference_source` | `channels` | Valid | Behavior / Error |
-|--------------------|------------|-------|------------------|
+| --- | --- | --- | --- |
 | `"server"` (default) | `1` (default) | Yes | Existing behavior with internal TTS loopback used as reference. No stereo input required. |
 | `"server"` | `2` | No | Error `invalid_ec_channels_requires_client`. Stereo input is only meaningful with client-supplied EC reference. |
 | `"client"` | `1` | No | Error `invalid_ec_reference_channels`. Client reference audio must be provided via the stereo channel. |
@@ -2687,14 +2709,14 @@ Echo cancellation configuration for server-side audio processing.
 ```
 
 > [!TIP]
-> Stereo input roughly doubles input bandwidth. At 24 kHz PCM16, expect approximately 94 KB/s of raw audio before base64 encoding (~125 KB/s after encoding). The reference channel is stripped before billing measurement and has no impact on audio billing.
+> Stereo input roughly doubles input bandwidth. At 24 kHz PCM16, expect approximately 94 KB/s of raw audio before base64 encoding (\~125 KB/s after encoding). The reference channel is stripped before billing measurement and has no impact on audio billing.
 
 #### EchoCancellationReferenceSource
 
 Source of the echo cancellation reference signal.
 
 | Value | Description |
-|-------|-------------|
+| --- | --- |
 | `"server"` | Default. The server uses its internal TTS loopback as the reference signal. |
 | `"client"` | The server uses channel 1 of the stereo input stream as the reference signal. The client is responsible for supplying the actual speaker-playback audio as the second channel. |
 ### Voice Configuration
@@ -2707,13 +2729,14 @@ This can be:
 
 - An [RealtimeOpenAIVoice](#realtimeopenaivoice) object
 - An [RealtimeAzureVoice](#realtimeazurevoice) object
+- A [RealtimeAzureRealtimeNativeVoice](#realtimeazurerealtimenativevoice) object
 
 #### RealtimeOpenAIVoice
 
 OpenAI voice configuration with explicit type field.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"openai"` |
 | name | string | OpenAI voice name: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`, `marin`, `cedar` |
 
@@ -2726,14 +2749,14 @@ Base for Azure voice configurations. This is a discriminated union with differen
 Azure standard voice configuration.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"azure-standard"` |
 | name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| custom_lexicon_url | string | Optional. URL to custom lexicon |
-| custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| custom\_lexicon\_url | string | Optional. URL to custom lexicon |
+| custom\_text\_normalization\_url | string | Optional. URL to custom text normalization |
+| prefer\_locales | string[] | Optional. Preferred locales<br>Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent.<br>If set the prefer\_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br>Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment for the voice output. Follows the same rules as the `pitch` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`x-low`, `low`, `medium`, `high`, `x-high`, `default`), a relative change (for example `+10%`, `-5%`, `+50Hz`, `-2st`), or an absolute frequency (for example `200Hz`). |
 | rate | string | Optional. Speaking rate adjustment for the voice output. Follows the same rules as the `rate` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`x-slow`, `slow`, `medium`, `fast`, `x-fast`, `default`), a relative percentage (for example `+20%`, `-10%`), or a non-negative multiplier (for example `0.5`, `1.5`). |
@@ -2744,15 +2767,15 @@ Azure standard voice configuration.
 Azure custom voice configuration (preferred for custom voices).
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"azure-custom"` |
 | name | string | Voice name (can't be empty) |
-| endpoint_id | string | Endpoint ID (can't be empty) |
+| endpoint\_id | string | Endpoint ID (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| custom_lexicon_url | string | Optional. URL to custom lexicon |
-| custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| custom\_lexicon\_url | string | Optional. URL to custom lexicon |
+| custom\_text\_normalization\_url | string | Optional. URL to custom text normalization |
+| prefer\_locales | string[] | Optional. Preferred locales<br>Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent.<br>If set the prefer\_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br>Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment for the voice output. Follows the same rules as the `pitch` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`x-low`, `low`, `medium`, `high`, `x-high`, `default`), a relative change (for example `+10%`, `-5%`, `+50Hz`, `-2st`), or an absolute frequency (for example `200Hz`). |
 | rate | string | Optional. Speaking rate adjustment for the voice output. Follows the same rules as the `rate` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`x-slow`, `slow`, `medium`, `fast`, `x-fast`, `default`), a relative percentage (for example `+20%`, `-10%`), or a non-negative multiplier (for example `0.5`, `1.5`). |
@@ -2775,27 +2798,27 @@ Example:
 Azure personal voice configuration.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"azure-personal"` |
 | name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | model | string | Underlying base model: `DragonLatestNeural`, `DragonHDOmniLatestNeural` |
-| custom_lexicon_url | string | Optional. URL to custom lexicon |
-| custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| custom\_lexicon\_url | string | Optional. URL to custom lexicon |
+| custom\_text\_normalization\_url | string | Optional. URL to custom text normalization |
+| prefer\_locales | string[] | Optional. Preferred locales<br>Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent.<br>If set the prefer\_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br>Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | pitch | string | Optional. Pitch adjustment for the voice output. Follows the same rules as the `pitch` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`x-low`, `low`, `medium`, `high`, `x-high`, `default`), a relative change (for example `+10%`, `-5%`, `+50Hz`, `-2st`), or an absolute frequency (for example `200Hz`). |
 | rate | string | Optional. Speaking rate adjustment for the voice output. Follows the same rules as the `rate` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`x-slow`, `slow`, `medium`, `fast`, `x-fast`, `default`), a relative percentage (for example `+20%`, `-10%`), or a non-negative multiplier (for example `0.5`, `1.5`). |
 | volume | string | Optional. Volume adjustment for the voice output. Follows the same rules as the `volume` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`silent`, `x-soft`, `soft`, `medium`, `loud`, `x-loud`, `default`), an absolute number from 0.0 to 100.0, or a relative change (for example `+10`, `-6dB`). |
 
 ##### RealtimeAzureRealtimeNativeVoice
 
-Voice configuration for the `azure-realtime` model. The `azure-realtime` model accepts only `azure-realtime-native` voices, and `azure-realtime-native` voices aren't accepted by other models.
+Voice configuration for the `azure-realtime` model. The `azure-realtime-native` voice type isn't accepted by other models.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"azure-realtime-native"` |
-| name | string | Voice name. One of `aarti`, `andrew`, `ava` (default), `denise`, `elsa`, `florian`, `francisca`, `meera`, `ximena`, `xiaoxiao`, `yunxi`. If not specified, `ava` is used. |
+| name | string | Required. Voice name. Known values: `aarti`, `andrew`, `ava`, `denise`, `diya`, `elsa`, `florian`, `francisca`, `meera`, `ximena`, `xiaoxiao`, `yunxi`. |
 
 Example:
 
@@ -2820,83 +2843,73 @@ Configuration for turn detection. This is a discriminated union supporting multi
 Base VAD-based turn detection.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"server_vad"` |
-| threshold | float | Optional. Activation threshold in the range `[0.01, 1.0)` (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 400) |
-| silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
-| speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
-| end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
-| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
-| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
+| threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
+| prefix\_padding\_ms | integer | Optional. Audio padding before speech starts (default: 400) |
+| silence\_duration\_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
+| speech\_duration\_ms | integer | Optional. Minimum speech duration (default: 200) |
+| end\_of\_utterance\_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
+| create\_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt\_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
+| auto\_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeOpenAISemanticVAD
 
 OpenAI semantic VAD configuration which uses a model to determine when the user has finished speaking. Only available for `gpt-realtime` and `gpt-realtime-mini` models.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"semantic_vad"` |
-| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` lets the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
-| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
+| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br>The following values are allowed:<br>- `auto` (default) is equivalent to `medium`,<br>- `low` lets the user take their time to speak,<br>- `high` will chunk the audio as soon as possible.<br>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
+| create\_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt\_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 
 ##### RealtimeAzureSemanticVAD
 
 Azure semantic VAD, which determines when the user starts and speaking using a semantic speech model, providing more robust detection in noisy environments.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"azure_semantic_vad"` |
-| threshold | float | Optional. Activation threshold in the range `[0.01, 1.0)` (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
-| silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
-| end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
-| remove_filler_words | boolean | Optional. Remove filler words (default: false) |
+| threshold | float | Optional. Activation threshold (default: 0.5) |
+| prefix\_padding\_ms | integer | Optional. Audio padding before speech (default: 420) |
+| silence\_duration\_ms | integer | Optional. Silence duration for speech end (default: 500) |
+| end\_of\_utterance\_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
+| speech\_duration\_ms | integer | Optional. Minimum speech duration (default: 80) |
+| remove\_filler\_words | boolean | Optional. Remove filler words (default: false) |
 | languages | string[] | Optional. Supports English. Other languages are ignored (default: none). |
-| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
-| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
+| create\_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt\_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
+| auto\_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeAzureSemanticVADMultilingual
 
 Azure semantic VAD (default variant).
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
-| threshold | float | Optional. Activation threshold in the range `[0.01, 1.0)` (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
-| silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
-| end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
-| remove_filler_words | boolean | Optional. Remove filler words (default: false) |
+| threshold | float | Optional. Activation threshold (default: 0.5) |
+| prefix\_padding\_ms | integer | Optional. Audio padding before speech (default: 420) |
+| silence\_duration\_ms | integer | Optional. Silence duration for speech end (default: 500) |
+| end\_of\_utterance\_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
+| speech\_duration\_ms | integer | Optional. Minimum speech duration (default: 80) |
+| remove\_filler\_words | boolean | Optional. Remove filler words (default: false) |
 | languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages are ignored (default: none). |
-| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
-| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
-
-##### SmartEndOfTurnDetection
-
-Audio-based end-of-turn (EOU) detection. Operates directly on the input audio stream rather than text. Use `threshold_level` and `timeout_ms` to tune detection.
-
-| Field | Type | Description |
-|-------|------|-------------|
-| model | string | Must be `"smart_end_of_turn_detection"` |
-| threshold_level | string | Optional. Threshold level setting. One of `low`, `medium`, `high`, or `default`. |
-| timeout_ms | integer | Optional. Maximum time in milliseconds to wait for more user speech before triggering end-of-turn. |
+| create\_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt\_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
+| auto\_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ### RealtimeEOUDetection
 
 Azure End-of-Utterance (EOU) could indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| model | string | Could be `semantic_detection_v1` supporting English or `semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi |
-| threshold_level | string | Optional. Detection threshold level (`low`, `medium`, `high` and `default`), the default equals `medium` setting. With a lower setting the probability the sentence is complete will be higher. |
-| timeout_ms | number | Optional. Maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. |
+| --- | --- | --- |
+| model | string | One of `semantic_detection_v1`, `semantic_detection_v1_en`, or `semantic_detection_v1_multilingual`. |
+| threshold\_level | string | Optional. Detection threshold level (`low`, `medium`, `high` and `default`), the default equals `medium` setting. With a lower setting the probability the sentence is complete will be higher. |
+| timeout\_ms | number | Optional. Maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. |
 
 ### Avatar Configuration
 
@@ -2905,24 +2918,24 @@ Azure End-of-Utterance (EOU) could indicate when the end-user stopped speaking w
 Configuration for avatar streaming and behavior.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Optional. Avatar type. Allowed values: `video-avatar`, `photo-avatar`. Default is `video-avatar` |
-| ice_servers | [RealtimeIceServer](#realtimeiceserver)[] | Optional. ICE servers for WebRTC |
+| ice\_servers | [RealtimeIceServer](#realtimeiceserver)[] | Optional. ICE servers for WebRTC |
 | character | string | Character name or ID for the avatar |
 | style | string | Optional. Avatar style (emotional tone, speaking style) |
 | customized | boolean | Whether the avatar is customized |
 | model | string | Optional. Base model name for the photo avatar, required if type is `photo-avatar`, valid value is `vasa-1` |
 | video | [RealtimeVideoParams](#realtimevideoparams) | Optional. Video configuration |
 | scene | [RealtimeAvatarScene](#realtimeavatarscene) | Optional. Configuration for the avatar's zoom level, position, rotation and movement amplitude in the video frame |
-| output_protocol | string | Optional. Output protocol for avatar streaming. Allowed values: `websocket` and `webrtc`. Default is `webrtc` |
-| output_audit_audio | boolean | Optional. When enabled, forwards audit audio via WebSocket for review/debugging purposes, even when avatar output is delivered via WebRTC. Default is `false` |
+| output\_protocol | string | Optional. Output protocol for avatar streaming. Allowed values: `websocket` and `webrtc`. Default is `webrtc` |
+| output\_audit\_audio | boolean | Optional. When enabled, forwards audit audio via WebSocket for review/debugging purposes, even when avatar output is delivered via WebRTC. Default is `false` |
 
 #### RealtimeIceServer
 
 ICE server configuration for WebRTC connection negotiation.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | urls | string[] | ICE server URLs (TURN or STUN endpoints) |
 | username | string | Optional. Username for authentication |
 | credential | string | Optional. Credential for authentication |
@@ -2932,29 +2945,29 @@ ICE server configuration for WebRTC connection negotiation.
 Video streaming parameters for avatar.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | bitrate | integer | Optional. Bitrate in bits per second (default: 2000000) |
 | codec | string | Optional. Video codec, currently only `h264` (default: `h264`) |
 | crop | [RealtimeVideoCrop](#realtimevideocrop) | Optional. Cropping settings |
 | resolution | [RealtimeVideoResolution](#realtimevideoresolution) | Optional. Resolution settings |
 | background | [RealtimeVideoBackground](#realtimevideobackground) | Optional. Background settings |
-| gop_size | integer | Optional. Group of Pictures size (default: 10, range: 1–2000) |
+| gop\_size | integer | Optional. Group of Pictures size (default: 10, range: 1–2000) |
 
 #### RealtimeVideoCrop
 
 Video crop rectangle definition.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| top_left | integer[] | Top-left corner [x, y], non-negative integers |
-| bottom_right | integer[] | Bottom-right corner [x, y], non-negative integers |
+| --- | --- | --- |
+| top\_left | integer[] | Top-left corner [x, y], non-negative integers |
+| bottom\_right | integer[] | Bottom-right corner [x, y], non-negative integers |
 
 #### RealtimeVideoResolution
 
 Video resolution specification.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | width | integer | Width in pixels (must be > 0) |
 | height | integer | Height in pixels (must be > 0) |
 
@@ -2963,22 +2976,25 @@ Video resolution specification.
 Video background configuration. Only one of `image_url` or `color` can be set.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| image_url | string | Optional. URL to a background image |
+| --- | --- | --- |
+| image\_url | string | Optional. URL to a background image |
 | color | string | Optional. Background color value |
 
 #### RealtimeAvatarScene
 
 Configuration for avatar's zoom level, position, rotation and movement amplitude in the video frame.
 
+> [!NOTE]
+> [TO VERIFY] Confirm the defaults for `zoom` and `amplitude`. Their declared default is `0`, which falls outside their documented ranges.
+
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | zoom | number | Optional. Zoom level of the avatar. Range is (0, +∞). Values less than 1 zoom out, values greater than 1 zoom in. Default is 0 |
-| position_x | number | Optional. Horizontal position of the avatar. Range is [-1, 1], as a proportion of frame width. Negative values move left, positive values move right. Default is 0 |
-| position_y | number | Optional. Vertical position of the avatar. Range is [-1, 1], as a proportion of frame height. Negative values move up, positive values move down. Default is 0 |
-| rotation_x | number | Optional. Rotation around the X-axis (pitch). Range is [-π, π] in radians. Negative values rotate up, positive values rotate down. Default is 0 |
-| rotation_y | number | Optional. Rotation around the Y-axis (yaw). Range is [-π, π] in radians. Negative values rotate left, positive values rotate right. Default is 0 |
-| rotation_z | number | Optional. Rotation around the Z-axis (roll). Range is [-π, π] in radians. Negative values rotate anticlockwise, positive values rotate clockwise. Default is 0 |
+| position\_x | number | Optional. Horizontal position of the avatar. Range is [-1, 1], as a proportion of frame width. Negative values move left, positive values move right. Default is 0 |
+| position\_y | number | Optional. Vertical position of the avatar. Range is [-1, 1], as a proportion of frame height. Negative values move up, positive values move down. Default is 0 |
+| rotation\_x | number | Optional. Rotation around the X-axis (pitch). Range is [-π, π] in radians. Negative values rotate up, positive values rotate down. Default is 0 |
+| rotation\_y | number | Optional. Rotation around the Y-axis (yaw). Range is [-π, π] in radians. Negative values rotate left, positive values rotate right. Default is 0 |
+| rotation\_z | number | Optional. Rotation around the Z-axis (roll). Range is [-π, π] in radians. Negative values rotate anticlockwise, positive values rotate clockwise. Default is 0 |
 | amplitude | number | Optional. Amplitude of the avatar movement. Range is (0, 1]. Values in (0, 1) mean reduced amplitude, 1 means full amplitude. Default is 0 |
 
 ### Animation Configuration
@@ -2988,8 +3004,8 @@ Configuration for avatar's zoom level, position, rotation and movement amplitude
 Configuration for animation outputs including blendshapes and visemes.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| model_name | string | Optional. Animation model name (default: `"default"`) |
+| --- | --- | --- |
+| model\_name | string | Optional. Animation model name (default: `"default"`) |
 | outputs | [RealtimeAnimationOutputType](#realtimeanimationoutputtype)[] | Optional. Output types (default: `["blendshapes"]`) |
 
 #### RealtimeAnimationOutputType
@@ -3007,28 +3023,28 @@ Types of animation data to output.
 Session configuration object used in `session.update` events.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | model | string | Optional. Model name to use |
-| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported output modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio output modalities. To enable only text output, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
+| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported output modalities for the session.<br>For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio output modalities. To enable only text output, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
 | animation | [RealtimeAnimation](#realtimeanimation) | Optional. Animation configuration |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice configuration |
 | instructions | string | Optional. System instructions for the model. The instructions could guide the output audio if OpenAI voices are used but may not apply to Azure voices. |
-| input_audio_sampling_rate | integer | Optional. Input audio sampling rate in Hz (default: 24000 for `pcm16`, 8000 for `g711_ulaw` and `g711_alaw`) |
-| input_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | Optional. Input audio format (default: `pcm16`) |
-| output_audio_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Output audio format (default: `pcm16`) |
-| input_audio_noise_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.<br><br>This property is nullable.|
-| input_audio_echo_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation. This can be set to null to turn off. This service side echo cancellation can help improve the quality of the input audio by reducing the impact of echo and reverberation.<br><br>This property is nullable. |
-| input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The configuration for input audio transcription. The configuration is null (off) by default. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through the `/audio/transcriptions` endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. For additional guidance to the transcription service, the client can optionally set the language and prompt for transcription.<br><br>This property is nullable. |
-| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. |
+| input\_audio\_sampling\_rate | integer | Optional. Input audio sampling rate in Hz (default: 24000 for `pcm16`, 8000 for `g711_ulaw` and `g711_alaw`) |
+| input\_audio\_format | [RealtimeAudioFormat](#realtimeaudioformat) | Optional. Input audio format (default: `pcm16`) |
+| output\_audio\_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Output audio format (default: `pcm16`) |
+| input\_audio\_noise\_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.<br>This property is nullable. |
+| input\_audio\_echo\_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation. This can be set to null to turn off. This service side echo cancellation can help improve the quality of the input audio by reducing the impact of echo and reverberation.<br>This property is nullable. |
+| input\_audio\_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The configuration for input audio transcription. The configuration is null (off) by default. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through the `/audio/transcriptions` endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. For additional guidance to the transcription service, the client can optionally set the language and prompt for transcription.<br>This property is nullable. |
+| turn\_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
-| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
-| parallel_tool_calls | boolean | Optional. Whether the model may issue tool calls in parallel. Defaults to `true`. Set to `false` to require tool calls to be issued sequentially. |
+| tool\_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
+| parallel\_tool\_calls | boolean | Optional. Whether the model may issue tool calls in parallel. Defaults to `true`. Set to `false` to require tool calls to be issued sequentially. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
-| max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| max\_response\_output\_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br>Defaults to `"inf"`. |
 | interim-response | [InterimResponseConfig](#interimresponseconfig) | Optional. Configuration for interim response generation during latency or tool calls. |
-| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](../../ai-foundry/openai/how-to/reasoning.md#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
+| reasoning\_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](../../ai-foundry/openai/how-to/reasoning.md#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
-| output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
+| output\_audio\_timestamp\_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
 | metadata | map | Optional. Set of up to 16 key-value pairs that can be attached to the session. This is useful for storing additional information about the session in a structured format, such as tracking IDs, user context, or application-specific labels. These key-value pairs are also included in Microsoft Foundry resource logs for tracing and diagnostics. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. |
 
 #### RealtimeModality
@@ -3069,7 +3085,7 @@ We support two types of tools: function calling and MCP tools which allow you co
 Tool definition for function calling.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"function"` |
 | name | string | Function name |
 | description | string | Function description and usage guidelines |
@@ -3089,30 +3105,30 @@ This can be:
 MCP tool configuration.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"mcp"` |
-| server_label | string | Required. The label of the MCP server. |
-| server_url | string | Required. The server URL of the MCP server. |
-| allowed_tools | string[] | Optional. The list of allowed tool names. If not specified, all tools are allowed. |
+| server\_label | string | Required. The label of the MCP server. |
+| server\_url | string | Required. The server URL of the MCP server. |
+| allowed\_tools | string[] | Optional. The list of allowed tool names. If not specified, all tools are allowed. |
 | headers | object | Optional. Additional headers to include in MCP requests. |
 | authorization | string | Optional. Authorization token for MCP requests. |
-| require_approval | string or dictionary | Optional. <br/>If set to a string, The value must be `never` or `always`. <br/>If set to a dictionary, it must be in format `{"never": ["<tool_name_1>", "<tool_name_2>"], "always": ["<tool_name_3>"]}`. <br/>Default value is `always`. <br/> When set to `always`, the tool execution requires approval, [mcp_approval_request](#realtimeconversationmcpapprovalrequestitem) will be sent to client when MCP argument done, and will only be executed when [mcp_approval_response](#realtimemcpapprovalresponseitem) with `approve=true` is received. <br/>When set to `never`, the tool will be executed automatically without approval. |
+| require\_approval | string or dictionary | Optional.<br>If set to a string, The value must be `never` or `always`.<br>If set to a dictionary, it must be in format `{"never": ["<tool_name_1>", "<tool_name_2>"], "always": ["<tool_name_3>"]}`.<br>Default value is `always`.<br>When set to `always`, the tool execution requires approval, [mcp\_approval\_request](#realtimeconversationmcpapprovalrequestitem) will be sent to client when MCP argument done, and will only be executed when [mcp\_approval\_response](#realtimemcpapprovalresponseitem) with `approve=true` is received.<br>When set to `never`, the tool will be executed automatically without approval. |
 
 #### FoundryAgentTool
 
 Tool definition for integrating a Foundry agent as a tool. This enables a chat-supervisor pattern where a realtime-based chat agent handles basic interactions while delegating complex tasks to a more intelligent Foundry agent.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"foundry_agent"` |
-| agent_name | string | Required. The name of the Foundry agent to call. |
-| agent_version | string | Optional. The version of the Foundry agent to call. |
-| project_name | string | Required. The name of the Foundry project containing the agent. |
-| client_id | string | Optional. The client ID associated with the Foundry agent. |
+| agent\_name | string | Required. The name of the Foundry agent to call. |
+| agent\_version | string | Optional. The version of the Foundry agent to call. |
+| project\_name | string | Required. The name of the Foundry project containing the agent. |
+| client\_id | string | Optional. The client ID associated with the Foundry agent. |
 | description | string | Optional. An optional description for the Foundry agent tool. If provided, it's used instead of the agent's description in Foundry portal. |
-| foundry_resource_override | string | Optional. Override for the Foundry resource used to execute the agent. |
-| agent_context_type | string | Optional. The context type to use when invoking the Foundry agent. Possible values: `no_context`, `agent_context`. Default is `agent_context`.<br/><br/>`no_context`: Only the current user input is sent, no context maintained.<br/><br/>`agent_context`: Agent maintains its own context (thread), only current input sent per call. |
-| return_agent_response_directly | boolean | Optional. Whether to return the agent's response directly in the Voice Live response. Default is `true`. When set to `false`, the response is sent to the chat agent to rephrase. |
+| foundry\_resource\_override | string | Optional. Override for the Foundry resource used to execute the agent. |
+| agent\_context\_type | string | Optional. The context type to use when invoking the Foundry agent. Possible values: `no_context`, `agent_context`. Default is `agent_context`.<br>`no_context`: Only the current user input is sent, no context maintained.<br>`agent_context`: Agent maintains its own context (thread), only current input sent per call. |
+| return\_agent\_response\_directly | boolean | Optional. Whether to return the agent's response directly in the Voice Live response. Default is `true`. When set to `false`, the response is sent to the chat agent to rephrase. |
 
 Example:
 ```json
@@ -3145,10 +3161,10 @@ Configuration for interim response generation. This is a union type that can be 
 Configuration for static interim response generation. Randomly selects from configured texts when any trigger condition is met.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"static-interim-response"`. |
 | triggers | [InterimResponseTrigger](#interimresponsetrigger)[] | Optional. List of triggers that can fire the interim response. Any trigger can activate the interim response (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
-| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
+| latency\_threshold\_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
 | texts | string[] | Optional. List of interim response text options to randomly select from. |
 
 Example:
@@ -3174,13 +3190,13 @@ Example:
 Configuration for LLM-based interim response generation. Uses LLM to generate context-aware interim responses when any trigger condition is met.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"llm-interim-response"`. |
 | triggers | [InterimResponseTrigger](#interimresponsetrigger)[] | Optional. List of triggers that can fire the interim response. Any trigger can activate the interim response (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
-| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
+| latency\_threshold\_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
 | model | string | Optional. The model to use for LLM-based interim response generation. Default is `gpt-4.1-mini`. The default model might change without a new API version. |
 | instructions | string | Optional. Custom instructions for generating interim responses. If not provided, a default prompt is used. |
-| max_completion_tokens | integer | Optional. Maximum number of tokens to generate for the interim response. Default is 50. Minimum value is 1. |
+| max\_completion\_tokens | integer | Optional. Maximum number of tokens to generate for the interim response. Default is 50. Minimum value is 1. |
 
 Example:
 ```json
@@ -3215,7 +3231,7 @@ This is a union type that can be one of the following:
 User message item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"message"` |
 | object | string | Must be `"conversation.item"` |
@@ -3228,7 +3244,7 @@ User message item.
 Assistant message item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"message"` |
 | object | string | Must be `"conversation.item"` |
@@ -3241,7 +3257,7 @@ Assistant message item.
 System message item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"message"` |
 | object | string | Must be `"conversation.item"` |
@@ -3254,13 +3270,13 @@ System message item.
 Function call request item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"function_call"` |
 | object | string | Must be `"conversation.item"` |
 | name | string | The name of the function to call. |
 | arguments | string | The arguments for the function call as a JSON string. |
-| call_id | string | The unique ID of the function call. |
+| call\_id | string | The unique ID of the function call. |
 | status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. |
 
 #### RealtimeConversationFunctionCallOutputItem
@@ -3268,13 +3284,13 @@ Function call request item.
 Function call response item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"function_call_output"` |
 | object | string | Must be `"conversation.item"` |
 | name | string | The name of the function that was called. |
 | output | string | The output of the function call. |
-| call_id | string | The unique ID of the function call. |
+| call\_id | string | The unique ID of the function call. |
 | status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. |
 
 #### RealtimeConversationMCPListToolsItem
@@ -3282,22 +3298,22 @@ Function call response item.
 MCP list tools response item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"mcp_list_tools"` |
-| server_label | string | The label of the MCP server. |
+| server\_label | string | The label of the MCP server. |
 
 #### RealtimeConversationMCPCallItem
 
 MCP call response item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"mcp_call"` |
-| server_label | string | The label of the MCP server. |
+| server\_label | string | The label of the MCP server. |
 | name | string | The name of the tool to call. |
-| approval_request_id | string | The approval request ID for the MCP call. |
+| approval\_request\_id | string | The approval request ID for the MCP call. |
 | arguments | string | The arguments for the MCP call. |
 | output | string | The output of the MCP call. |
 | error | object | The error details if the MCP call failed. |
@@ -3307,10 +3323,10 @@ MCP call response item.
 MCP approval request item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"mcp_approval_request"` |
-| server_label | string | The label of the MCP server. |
+| server\_label | string | The label of the MCP server. |
 | name | string | The name of the tool to call. |
 | arguments | string | The arguments for the MCP call. |
 
@@ -3319,13 +3335,13 @@ MCP approval request item.
 Foundry agent call response item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the item. |
 | type | string | Must be `"foundry_agent_call"` |
 | name | string | The name of the Foundry agent. |
-| call_id | string | The ID of the call. |
+| call\_id | string | The ID of the call. |
 | arguments | string | The arguments for the foundry agent call. |
-| agent_response_id | string | Optional. The response ID from the foundry agent. |
+| agent\_response\_id | string | Optional. The response ID from the foundry agent. |
 | output | string | Optional. The output of the foundry agent call. |
 | error | object | Optional. The error details if the foundry agent call failed. |
 
@@ -3334,7 +3350,7 @@ Foundry agent call response item.
 Web search call response item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the web search tool call. |
 | type | string | Must be `"web_search_call"` |
 | status | string | The status of the web search tool call. One of `in_progress`, `searching`, `completed`, `failed`. |
@@ -3344,7 +3360,7 @@ Web search call response item.
 File search call response item.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | The unique ID of the file search tool call. |
 | type | string | Must be `"file_search_call"` |
 | queries | string[] | Optional. The queries used for the file search. |
@@ -3356,8 +3372,8 @@ File search call response item.
 A single file search result entry.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| file_id | string | Optional. The unique ID of the file. |
+| --- | --- | --- |
+| file\_id | string | Optional. The unique ID of the file. |
 | filename | string | Optional. The name of the file. |
 | score | number | Optional. The relevance score of the file search result. |
 | text | string | Optional. The text content of the file that matched the query. |
@@ -3368,7 +3384,7 @@ A single file search result entry.
 A web search action recorded as part of a web search call.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"search"`. |
 | query | string | Optional. The search query. |
 | sources | array of [ActionSearchSource](#actionsearchsource) | Optional. The sources used in the search. |
@@ -3378,7 +3394,7 @@ A web search action recorded as part of a web search call.
 A source URL referenced by a web search action.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"url"`. |
 | url | string | The URL of the source. |
 
@@ -3387,7 +3403,7 @@ A source URL referenced by a web search action.
 An open-page action performed by the model during a web search.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"open_page"`. |
 | url | string | The URL opened by the model. |
 
@@ -3396,7 +3412,7 @@ An open-page action performed by the model during a web search.
 A find-in-page action performed by the model during a web search.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"find"`. |
 | pattern | string | The pattern or text to search for within the page. |
 | url | string | The URL of the page searched for the pattern. |
@@ -3406,9 +3422,9 @@ A find-in-page action performed by the model during a web search.
 A transcribed phrase with timing information, returned in [`conversation.item.input_audio_transcription.completed`](#conversationiteminput_audio_transcriptioncompleted).
 
 | Field | Type | Description |
-|-------|------|-------------|
-| offset_milliseconds | integer | Offset from the start of the audio in milliseconds. |
-| duration_milliseconds | integer | Duration of the phrase in milliseconds. |
+| --- | --- | --- |
+| offset\_milliseconds | integer | Offset from the start of the audio in milliseconds. |
+| duration\_milliseconds | integer | Duration of the phrase in milliseconds. |
 | text | string | The transcribed text of the phrase. |
 | words | array of [TranscriptionWord](#transcriptionword) | Optional. The individual words in the phrase with timing information. |
 | locale | string | Optional. The locale of the transcription (for example, `en-US`). |
@@ -3419,17 +3435,17 @@ A transcribed phrase with timing information, returned in [`conversation.item.in
 A time-stamped word in a transcription.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | text | string | The transcribed word text. |
-| offset_milliseconds | integer | Offset from the start of the audio in milliseconds. |
-| duration_milliseconds | integer | Duration of the word in milliseconds. |
+| offset\_milliseconds | integer | Offset from the start of the audio in milliseconds. |
+| duration\_milliseconds | integer | Duration of the word in milliseconds. |
 
 #### LogProbProperties
 
 Log-probability information for a transcription token.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | token | string | The token text. |
 | logprob | number | The natural-log probability of the token. |
 | bytes | integer[] | Optional. The UTF-8 byte representation of the token. |
@@ -3452,7 +3468,7 @@ Content part within a message.
 Text content part.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be  `"input_text"` |
 | text | string | The text content |
 
@@ -3461,7 +3477,7 @@ Text content part.
 Text content part.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"text"` |
 | text | string | The text content |
 
@@ -3470,7 +3486,7 @@ Text content part.
 Audio content part.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"input_audio"` |
 | audio | string | Optional. Base64-encoded audio data |
 | transcript | string | Optional. Audio transcript |
@@ -3480,7 +3496,7 @@ Audio content part.
 Audio content part.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"audio"` |
 | audio | string | Base64-encoded audio data |
 | transcript | string | Optional. Audio transcript |
@@ -3490,9 +3506,9 @@ Audio content part.
 Input image content part. Use it in a user message to attach an image alongside text or audio.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Must be `"input_image"` |
-| image_url | string (URI) | Optional. URL of the image. Starting in `2026-06-01-preview`, this field is named `image_url`. Earlier API versions expose the same field as `url`. |
+| image\_url | string (URI) | Optional. URL of the image. Starting in `2026-06-01-preview`, this field is named `image_url`. Earlier API versions expose the same field as `url`. |
 | detail | string | Optional. Image detail level. |
 
 ### Response Objects
@@ -3502,19 +3518,19 @@ Input image content part. Use it in a user message to attach an image alongside 
 Response object representing a model inference response.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | id | string | Optional. Response ID |
 | object | string | Optional. Always `"realtime.response"` |
 | status | [RealtimeResponseStatus](#realtimeresponsestatus) | Optional. Response status |
-| status_details | [RealtimeResponseStatusDetails](#realtimeresponsestatusdetails) | Optional. Status details |
+| status\_details | [RealtimeResponseStatusDetails](#realtimeresponsestatusdetails) | Optional. Status details |
 | output | [RealtimeConversationResponseItem](#realtimeconversationresponseitem)[] | Optional. Output items |
 | usage | [RealtimeUsage](#realtimeusage) | Optional. Token usage statistics |
-| conversation_id | string | Optional. Associated conversation ID |
+| conversation\_id | string | Optional. Associated conversation ID |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice used for response |
 | modalities | string[] | Optional. Output modalities used |
-| output_audio_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Audio format used |
+| output\_audio\_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Audio format used |
 | temperature | number | Optional. Temperature used |
-| max_response_output_tokens | integer or "inf" | Optional. Max tokens used |
+| max\_response\_output\_tokens | integer or "inf" | Optional. Max tokens used |
 
 #### RealtimeResponseStatus
 
@@ -3532,23 +3548,23 @@ Response status values.
 Token usage statistics.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| total_tokens | integer | Total tokens used |
-| input_tokens | integer | Input tokens used |
-| output_tokens | integer | Output tokens generated |
-| input_token_details | [TokenDetails](#tokendetails) | Breakdown of input tokens |
-| output_token_details | [TokenDetails](#tokendetails) | Breakdown of output tokens |
+| --- | --- | --- |
+| total\_tokens | integer | Total tokens used |
+| input\_tokens | integer | Input tokens used |
+| output\_tokens | integer | Output tokens generated |
+| input\_token\_details | [TokenDetails](#tokendetails) | Breakdown of input tokens |
+| output\_token\_details | [TokenDetails](#tokendetails) | Breakdown of output tokens |
 
 #### TokenDetails
 
 Detailed token usage breakdown.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| cached_tokens | integer | Optional. Cached tokens used |
-| text_tokens | integer | Optional. Text tokens used |
-| audio_tokens | integer | Optional. Audio tokens used |
-| reasoning_tokens | integer | Optional. Reasoning tokens generated in the output. Applies to output token details only. |
+| --- | --- | --- |
+| cached\_tokens | integer | Optional. Cached tokens used |
+| text\_tokens | integer | Optional. Text tokens used |
+| audio\_tokens | integer | Optional. Audio tokens used |
+| reasoning\_tokens | integer | Optional. Reasoning tokens generated in the output. Applies to output token details only. |
 
 ### Error Handling
 
@@ -3557,12 +3573,12 @@ Detailed token usage breakdown.
 Error information object.
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | string | Error type (e.g., `"invalid_request_error"`, `"server_error"`) |
 | code | string | Optional. Specific error code |
 | message | string | Human-readable error description |
 | param | string | Optional. Parameter related to the error |
-| event_id | string | Optional. ID of the client event that caused the error |
+| event\_id | string | Optional. ID of the client event that caused the error |
 
 ### RealtimeConversationRequestItem
 
@@ -3575,9 +3591,9 @@ This is a union type that can be one of the following:
 A system message item.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `message` |
-| role | string | The role of the message.<br><br>Allowed values: `system` |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `message` |
+| role | string | The role of the message.<br>Allowed values: `system` |
 | content | array of [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) | The content of the message. |
 | id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
@@ -3586,9 +3602,9 @@ A system message item.
 A user message item.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `message` |
-| role | string | The role of the message.<br><br>Allowed values: `user` |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `message` |
+| role | string | The role of the message.<br>Allowed values: `user` |
 | content | array of [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) or [RealtimeInputAudioContentPart](#realtimeinputaudiocontentpart) | The content of the message. |
 | id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
@@ -3597,9 +3613,9 @@ A user message item.
 An assistant message item.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `message` |
-| role | string | The role of the message.<br><br>Allowed values: `assistant` |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `message` |
+| role | string | The role of the message.<br>Allowed values: `assistant` |
 | content | array of [RealtimeOutputTextContentPart](#realtimeoutputtextcontentpart) | The content of the message. |
 
 #### RealtimeFunctionCallItem
@@ -3607,11 +3623,11 @@ An assistant message item.
 A function call item.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `function_call` |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `function_call` |
 | name | string | The name of the function to call. |
 | arguments | string | The arguments of the function call as a JSON string. |
-| call_id | string | The ID of the function call item. |
+| call\_id | string | The ID of the function call item. |
 | id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 #### RealtimeFunctionCallOutputItem
@@ -3619,9 +3635,9 @@ A function call item.
 A function call output item.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `function_call_output` |
-| call_id | string | The ID of the function call item. |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `function_call_output` |
+| call\_id | string | The ID of the function call item. |
 | output | string | The output of the function call, this is a free-form string with the function result, also could be empty. |
 | id | string | The unique ID of the item. If the client doesn't provide an ID, the server generates one. |
 
@@ -3630,10 +3646,10 @@ A function call output item.
 An MCP approval response item.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `mcp_approval_response` |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `mcp_approval_response` |
 | approve | boolean | Whether the MCP request is approved. |
-| approval_request_id | string | The ID of the MCP approval request. |
+| approval\_request\_id | string | The ID of the MCP approval request. |
 | id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 ### RealtimeFunctionTool
@@ -3641,8 +3657,8 @@ An MCP approval response item.
 The definition of a function tool as used by the realtime endpoint.
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the tool.<br><br>Allowed values: `function` |
+| --- | --- | --- |
+| type | string | The type of the tool.<br>Allowed values: `function` |
 | name | string | The name of the function. |
 | description | string | The description of the function, including usage guidelines. For example, "Use this function to get the current time." |
 | parameters | object | The parameters of the function in the form of a JSON object. |
@@ -3658,45 +3674,46 @@ The definition of a function tool as used by the realtime endpoint.
 ### RealtimeResponseAudioContentPart
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the content part.<br><br>Allowed values: `audio` |
-| transcript | string | The transcript of the audio.<br><br>This property is nullable. |
+| --- | --- | --- |
+| type | string | The type of the content part.<br>Allowed values: `audio` |
+| transcript | string | The transcript of the audio.<br>This property is nullable. |
 
 ### RealtimeResponseFunctionCallItem
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `function_call` |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `function_call` |
 | name | string | The name of the function call item. |
-| call_id | string | The ID of the function call item. |
+| call\_id | string | The ID of the function call item. |
 | arguments | string | The arguments of the function call item. |
 | status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. |
 
 ### RealtimeResponseFunctionCallOutputItem
 
 | Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `function_call_output` |
-| call_id | string | The ID of the function call item. |
+| --- | --- | --- |
+| type | string | The type of the item.<br>Allowed values: `function_call_output` |
+| call\_id | string | The ID of the function call item. |
 | output | string | The output of the function call item. |
 
 ### RealtimeResponseOptions
 
 | Field | Type | Description |
-|-------|------|-------------|
-| modalities | array | The output modalities for the response.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
-| instructions | string | The instructions (the system message) to guide the model's responses.|
-| voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
+| --- | --- | --- |
+| modalities | array | The output modalities for the response.<br>Allowed values: `text`, `audio`<br>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
+| instructions | string | The instructions (the system message) to guide the model's responses. |
+| voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br>Once the voice is used in the session for the model's audio response, it can't be changed. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
-| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
+| tool\_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
-| max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| max\_response\_output\_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br>Defaults to `"inf"`. |
 | interim-response | [InterimResponseConfig](#interimresponseconfig) | Optional. Configuration for interim response generation during latency or tool calls. |
-| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
-| conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
-| metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
-| interim_response | [InterimResponseConfig](#interimresponseconfig) | Optional. Configuration for interim response generation during latency or tool calls. Overrides the session-level setting for this response. |
-| pre_generated_assistant_message | [RealtimeAssistantMessageItem](#realtimeconversationassistantmessageitem) | Optional. A pre-generated assistant message to use for generating the audio response instead of having the model generate the text. When provided, the server generates an audio response for the predefined text, bypassing model inference for text generation. The message is added to the conversation context history. The message must have the `role` set to `"assistant"` and include `content` with a single text content part. |
+| reasoning\_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
+| conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation.<br>Defaults to `"auto"` |
+| metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br>For example: `metadata: { topic: "classification" }` |
+| interim\_response | [InterimResponseConfig](#interimresponseconfig) | Optional. Configuration for interim response generation during latency or tool calls. Overrides the session-level setting for this response. |
+| pre\_generated\_assistant\_message | [RealtimeAssistantMessageItem](#realtimeconversationassistantmessageitem) | Optional. A pre-generated assistant message to use for generating the audio response instead of having the model generate the text. When provided, the server generates an audio response for the predefined text, bypassing model inference for text generation. The message is added to the conversation context history. The message must have the `role` set to `"assistant"` and include `content` with a single text content part. |
+| invoke\_input | object | Optional. Input data for a hosted agent invocation. Non-speech events from the invocation are returned through [response.invocation.delta](#responseinvocationdelta). |
 
 ### RealtimeResponseSession
 
@@ -3705,40 +3722,41 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 - [`session.updated`](#sessionupdated)
 
 | Field | Type | Description |
-|-------|------|-------------|
-| object | string | The session object.<br><br>Allowed values: `realtime.session` |
+| --- | --- | --- |
+| object | string | The session object.<br>Allowed values: `realtime.session` |
 | id | string | The unique ID of the session. |
+| expires\_at | integer | Optional. Session expiration time as a Unix timestamp in seconds. This value is set by the server and can't be changed with `session.update`. |
 | model | string | The model used for the session. |
-| modalities | array | The output modalities for the session.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
-| instructions | string | The instructions (the system message) to guide the model's text and audio responses.<br><br>Here are some example instructions to help guide content and format of text and audio responses:<br>`"instructions": "be succinct"`<br>`"instructions": "act friendly"`<br>`"instructions": "here are examples of good responses"`<br><br>Here are some example instructions to help guide audio behavior:<br>`"instructions": "talk quickly"`<br>`"instructions": "inject emotion into your voice"`<br>`"instructions": "laugh frequently"`<br><br>While the model might not always follow these instructions, they provide guidance on the desired behavior. |
-| voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
-| input_audio_sampling_rate | integer | The sampling rate for the input audio. |
-| input_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the input audio. |
-| output_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the output audio. |
-| input_audio_noise_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction.<br><br>This property is nullable. |
-| input_audio_echo_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation.<br><br>This property is nullable. |
-| input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The settings for audio input transcription.<br><br>This property is nullable. |
-| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session.<br><br>This property is nullable. |
+| modalities | array | The output modalities for the session.<br>Allowed values: `text`, `audio`<br>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
+| instructions | string | The instructions (the system message) to guide the model's text and audio responses.<br>Here are some example instructions to help guide content and format of text and audio responses:<br>`"instructions": "be succinct"`<br>`"instructions": "act friendly"`<br>`"instructions": "here are examples of good responses"`<br>Here are some example instructions to help guide audio behavior:<br>`"instructions": "talk quickly"`<br>`"instructions": "inject emotion into your voice"`<br>`"instructions": "laugh frequently"`<br>While the model might not always follow these instructions, they provide guidance on the desired behavior. |
+| voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br>Once the voice is used in the session for the model's audio response, it can't be changed. |
+| input\_audio\_sampling\_rate | integer | The sampling rate for the input audio. |
+| input\_audio\_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the input audio. |
+| output\_audio\_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the output audio. |
+| input\_audio\_noise\_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction.<br>This property is nullable. |
+| input\_audio\_echo\_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation.<br>This property is nullable. |
+| input\_audio\_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The settings for audio input transcription.<br>This property is nullable. |
+| turn\_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session.<br>This property is nullable. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
-| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
+| tool\_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
-| max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`. |
+| max\_response\_output\_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`. |
 | interim-response | [InterimResponseConfig](#interimresponseconfig) | Configuration for interim response generation during latency or tool calls. |
 
 ### RealtimeResponseStatusDetails
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | type | [RealtimeResponseStatus](#realtimeresponsestatus) | The status of the response. |
 
 #### RealtimeRateLimitsItem
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | name | string | The rate limit property name that this item includes information about. |
 | limit | integer | The maximum configured limit for this rate limit property. |
 | remaining | integer | The remaining quota available against the configured limit for this rate limit property. |
-| reset_seconds | number | The remaining time, in seconds, until this rate limit property is reset. |
+| reset\_seconds | number | The remaining time, in seconds, until this rate limit property is reset. |
 
 ## Related Resources
 

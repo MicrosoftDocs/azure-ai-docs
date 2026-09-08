@@ -67,9 +67,11 @@ Start with server-side traces. Foundry logs traces for common agent and workflow
 - Foundry automatically logs server-side traces for Prompt agents, Host agents, and workflows in the Foundry portal. After tracing is enabled in your Foundry project, you have access to out-of-the-box traces for the past 90 days.
 - Foundry also supports easy [integration](trace-agent-framework.md) with top agent frameworks.
 
-### Client-side traces with the Microsoft Foundry SDK (Python)
+### Client-side traces with the Microsoft Foundry SDK
 
 Install OpenTelemetry and the Azure SDK tracing plugin by using the following steps:
+
+# [Python](#tab/python)
 
 ```bash
 pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracing-opentelemetry
@@ -77,12 +79,43 @@ pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracin
 
 Reference: [azure-ai-projects](/python/api/overview/azure/ai-projects-readme), [azure-core-tracing-opentelemetry](/python/api/overview/azure/core-tracing-opentelemetry-readme)
 
+# [C#](#tab/csharp)
+
+```dotnetcli
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.Identity
+dotnet add package Azure.Monitor.OpenTelemetry.Exporter
+dotnet add package OpenTelemetry.Exporter.Console
+```
+
+Enable GenAI tracing before you create the project client or run agent
+operations:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+AppContext.SetSwitch("Azure.Experimental.EnableGenAITracing", true);
+
+var projectEndpoint = Environment.GetEnvironmentVariable(
+   "FOUNDRY_PROJECT_ENDPOINT");
+AIProjectClient projectClient = new(
+   endpoint: new Uri(projectEndpoint!),
+   tokenProvider: new DefaultAzureCredential());
+```
+
+Reference: [`AIProjectClient`](/dotnet/api/azure.ai.projects.aiprojectclient), [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential)
+
+---
+
 > [!IMPORTANT]
 > To use a project's endpoint in your application, you need to configure Microsoft Entra ID. If you don't configure Microsoft Entra ID, use the Application Insights connection string.
 
 After running your agent, you can [view and analyze traces in Foundry portal](#view-traces-in-the-foundry-portal).
 
-For detailed instructions and SDK-specific code examples, see [Tracing with azure-ai-projects (Python SDK)](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects#tracing) and [Telemetry samples for agents](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/telemetry).
+For end-to-end Python and .NET examples that export traces to Azure Monitor or
+the console, see [Configure client-side tracing](trace-agent-client-side.md).
 
 ### Trace locally with the Microsoft Foundry Toolkit for Visual Studio Code extension
 
@@ -149,7 +182,7 @@ Foundry stores traces in the Application Insights resource connected to your pro
 |---|---|---|
 | You don't see any traces in the Foundry portal | Tracing isn't connected, there is no recent traffic, or ingestion is delayed | Confirm the Application Insights connection, generate new agent traffic, and refresh after a few minutes. |
 | You see authorization errors when you query or view telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
-| Client-side traces don't appear | Instrumentation isn't installed or configured | Recheck your package installation and follow the SDK guidance linked in [Client-side traces with the Microsoft Foundry SDK (Python)](#client-side-traces-with-the-microsoft-foundry-sdk-python). |
+| Client-side traces don't appear | Instrumentation isn't installed or configured | Recheck your package installation and follow the SDK guidance linked in [Client-side traces with the Microsoft Foundry SDK](#client-side-traces-with-the-microsoft-foundry-sdk). |
 | Sensitive content appears in traces | Prompts, tool arguments, or outputs contain sensitive data | Redact sensitive data before it enters telemetry and follow the guidance in [Security and privacy](#security-and-privacy). |
 
 ## Related content

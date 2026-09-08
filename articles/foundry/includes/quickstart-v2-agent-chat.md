@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/05/2025
-ms.custom: include, update-code5
+ms.custom: include, update-code6
 ---
 
 Use the previously created agent named "MyAgent" to interact by asking a question and a related follow-up. The conversation maintains history across these interactions. 

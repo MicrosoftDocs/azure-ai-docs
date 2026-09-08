@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/20/2026
+ms.date: 09/07/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -237,6 +237,8 @@ The following table shows which tools each model supports. For the image generat
 
 ### Agent receives rate-limit (429) errors
 
+- If the error code is `session_quota_exceeded`, stop sessions that don't need active compute, delete sessions whose state is no longer needed, or [request a limit increase](#request-a-limit-increase).
+- If the error code is `regional_session_quota_exceeded`, retry with exponential backoff or use another region. If the error persists create an Azure support request.
 - Implement exponential backoff with jitter in your application retry logic.
 - For sustained high-throughput workloads, consider provisioned throughput deployments.
 - Review [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for your deployment's tokens-per-minute and requests-per-minute caps.
@@ -269,18 +271,27 @@ Foundry Agent Service endpoints are regional, and data is stored in the same reg
 
 ## Default service limits
 
+Agent Service applies a per-subscription limit to concurrent hosted agent sessions in each region. This limit includes sessions across all Foundry accounts and projects in the subscription and region. A session counts toward the quota while its compute is being provisioned or is running. An idle or stopped session retains its persisted state but doesn't count toward the quota. Resuming it requires available quota.
+
+| Concurrent hosted agent sessions | Regions |
+| --- | --- |
+| 2,000 | Canada Central, East US 2, Japan East, North Central US, South Africa North, Southeast Asia, and Sweden Central |
+| 1,000 | All other regions where hosted agents are available |
+
+These values are the default limits. To request a higher concurrent session limit, [create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request). In the request, specify the subscription, region, and expected number of concurrent sessions. Limit increases depend on the available regional capacity.
+
 The following table lists default limits enforced by the Agent Service. These limits apply to all Foundry projects regardless of subscription type or region.
 
 | Limit name | Limit value |
 | --- | --- |
 | Maximum number of files per agent/thread | 10,000 |
-| Maximum file size for agents | 512 MB |
+| Maximum file size that can be uploaded for prompt agents | 512 MB |
 | Maximum size for all uploaded files for agents | 300 GB |
 | Maximum file size in tokens for attaching to a vector store | 2,000,000 tokens |
 | Maximum number of messages per thread | 100,000 |
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
-| Maximum number of valid agent revisions per agent | 1,000 |
+| Maximum number of versions per agent | 1,000 |
 
 The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Rate limiting for model calls is applied at the model deployment level; see [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits.
 
@@ -296,17 +307,29 @@ When you exceed a limit, the Agent Service returns an error. Handle these errors
 | Message content too large | 400 | `content_size_exceeded` | Use file search for large content |
 | Too many tools | 400 | `tool_limit_exceeded` | Remove unused tools |
 | Rate limit exceeded | 429 | `rate_limit_exceeded` | Implement exponential backoff |
-| Too many valid agent versions | 400 | `UserError` | Delete older versions, then create a new version. This error is terminal—retrying the same create call without deleting versions keeps failing. |
+| Concurrent session quota exceeded | 429 | `session_quota_exceeded` | Stop sessions that don't need active compute, delete sessions whose state is no longer needed, or [request a limit increase](#request-a-limit-increase) |
+| Regional session capacity exceeded | 429 | `regional_session_quota_exceeded` | Retry with exponential backoff or use another region |
+| Delegated subnet has no available IP addresses | 429 | `subnet_exhausted` | Stop sessions that don't need active compute, or configure a larger subnet |
+| Too many agent versions | 400 | `UserError` | Delete older versions, then create a new version. This error is terminal—retrying the same create call without deleting versions keeps failing. |
 
 For example:
 
 - **File exceeds the maximum size.** Uploading the file fails. Split the content into smaller files or reduce file size before you upload.
 - **Vector store token limit.** Attaching a file to a vector store fails if the file exceeds the token limit. Reduce the file content or split it into multiple files.
-- **Thread message cap.** Adding messages can fail after a thread reaches the message limit. Create a new thread for a new conversation session, or archive and rotate threads as part of your application design.
+- **Thread message cap.** Adding messages can fail after a thread reaches the message limit. Create a new thread for a new conversation, or archive and rotate threads as part of your application design.
 - **Message content size.** Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap.** Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 - **Rate limit exceeded.** API calls to the model deployment are throttled. Implement exponential backoff with jitter.
-- **Valid agent version cap.** Creating a version fails once an agent reaches 1,000 valid revisions. The service returns HTTP 400 with the message `Maximum number of agent versions (1000) exceeded. Please delete older versions before creating new ones.` This error is terminal, not a transient one, so don't retry the same call. Delete versions you no longer need to free capacity immediately, then create the new version.
+- **Concurrent session quota exceeded.** Creating or resuming a hosted agent
+  session fails when the subscription reaches its concurrent session limit in
+  the region. Delete unused sessions or request a limit increase.
+- **Regional session capacity exceeded.** Creating or resuming a hosted agent
+  session fails when the region has insufficient capacity. Retry with
+  exponential backoff or use another region.
+- **Concurrent session quota exceeded.** Creating or resuming a hosted agent session fails when the subscription reaches its concurrent session limit in the region. Stop sessions that don't need active compute, delete sessions whose persisted state is no longer needed, or request a limit increase.
+- **Regional session capacity exceeded.** Creating or resuming a hosted agent session fails when the region has insufficient capacity. Retry with exponential backoff or use another region.
+- **Delegated subnet has no available IP addresses.** Creating or resuming a hosted agent session fails when the delegated subnet is out of addresses. Stop sessions that don't need active compute, or configure a larger subnet before retrying.
+- **Agent version cap.** Creating a version fails once an agent reaches 1,000 versions. The service returns HTTP 400 with the message `Maximum number of agent versions (1000) exceeded. Please delete older versions before creating new ones.` This error is terminal, not a transient one, so don't retry the same call. Delete versions you no longer need to free capacity immediately, then create the new version.
 
 For file search scenarios, see [Vector stores for file search](vector-stores.md) for guidance on managing vector store growth.
 
@@ -316,9 +339,9 @@ Use the following practices to reduce limit-related failures:
 
 - **Keep files small and focused.** Prefer multiple smaller documents over a single large document.
 - **Avoid very large messages.** Put long content in uploaded files and query it by using file search.
-- **Plan for long conversations.** Treat threads as session state and rotate to new threads when conversations become very long.
+- **Plan for long conversations.** Treat threads as conversation history and rotate to new threads when conversations become very long.
 - **Register only required tools.** Remove unused tools from agent definitions.
-- **Manage agent versions.** Each agent allows up to 1,000 valid revisions. Delete or rotate versions you no longer need as part of your deploy pipeline so active agents stay well under the cap, and don't retry create calls that fail with the version-cap error until you free capacity.
+- **Manage agent versions.** Each agent allows up to 1,000 versions. Delete or rotate versions you no longer need as part of your deployment pipeline to stay well under the cap, and don't retry create calls that fail with the version-cap error until you free capacity.
 - **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../observability/how-to/how-to-monitor-agents-dashboard.md) to identify growth before you hit limits.
 
 ## Model quotas and rate limits
@@ -337,6 +360,7 @@ To view or request more model quota, see [Manage and increase quotas for resourc
 The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
 
 - **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../how-to/quota.md).
+- **Hosted agent session quotas.** To request a higher concurrent session limit, [create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request). Specify the subscription, region, and expected number of concurrent sessions.
 - **Agent Service limits.** The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints by using the best practices described earlier.
 
 ## Related content

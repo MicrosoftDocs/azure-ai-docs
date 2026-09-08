@@ -4,7 +4,7 @@ description: "Use the Responses API as a single interface to call any model in M
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 05/01/2026
+ms.date: 09/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
@@ -135,7 +135,7 @@ The following table shows a sample output. Actual latency and response text vary
 | gpt-5-mini | same | 0.67 s | It retrieves external knowledge to augment a model's genera... |
 | Deepseek-V3.2 | same | 1.14 s | It augments model generation by first retrieving relevant do... |
 
-See the first row: `model-router` didn't target a specific model, but the `Responded` column shows that it selected `gpt-4.1-nano`. For the named models that follow, the two columns match; The code is identical in every case.
+See the first row: `model-router` didn't target a specific model, but the `Responded` column shows that it selected `gpt-4.1-nano`. For the named models that follow, the two columns match. The code is identical in every case.
 
 > [!TIP]
 > The `response.model` field always returns the model that handled the request. Use it for logging, cost attribution, or debugging routing decisions.
@@ -165,7 +165,7 @@ Every `responses.create()` call, whether routed through `model-router` or target
 - **Prompt caching**—Model router supports prompt caching. When model router delegates a request to a model that supports prompt caching, cached tokens are used automatically. Combined with model router's right-fit model selection, you get an extra efficiency lift: the optimal model for the task *and* reduced token costs on repeated prompt prefixes — no configuration needed.
 - **Content filtering**—Configurable content safety applied to inputs and outputs without extra API parameters.
 - **Role-based access control**—Azure role-based access control governs who can call which deployments. No separate API key management.
-- **Observability and tracing**—Every request is logged with the selected model, latency, and token usage. Integrate with Azure Monitor or your existing observability stack.
+- **Model identification**—The response includes `response.model`, which identifies the model that handled the request. To inspect preview routing attempts, status, and reported latency for Chat Completions requests, see [Monitor model router](monitor-model-router.md).
 - **Data residency and compliance**—Traffic stays within your Azure region. No data leaves your tenant boundary.
 - **Rate limiting and quotas**—Per-deployment token-per-minute limits protect your workloads from noisy neighbors.
 

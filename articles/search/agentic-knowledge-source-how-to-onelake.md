@@ -4,7 +4,7 @@ description: Learn how to create an indexed OneLake knowledge source that define
 ms.service: azure-ai-search
 ms.custom: [ignite-2025, doc-kit-assisted]
 ms.topic: how-to
-ms.date: 08/14/2026
+ms.date: 09/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -478,6 +478,10 @@ Content-Type: application/json
 
 > [!NOTE]
 > To enforce document-level permissions with `ingestionPermissionOptions`, use the 2026-08-01-preview API version. The 2026-04-01 API version doesn't support this feature.
+
+### Use automatic per-language analyzers (preview)
+
+[!INCLUDE [Configure automatic per-language analyzers](includes/how-tos/knowledge-source-language-analyzers.md)]
 
 ## Check ingestion status
 

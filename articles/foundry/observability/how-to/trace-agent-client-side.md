@@ -231,14 +231,20 @@ Reference: [`AIProjectClient`](/python/api/azure-ai-projects/azure.ai.projects.a
 ```csharp
 using Azure.AI.Projects;
 using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using Azure.Monitor.OpenTelemetry.Exporter;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using OpenAI.Responses;
 
-var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME");
+var projectEndpoint = Environment.GetEnvironmentVariable(
+    "FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException(
+        "FOUNDRY_PROJECT_ENDPOINT isn't set.");
+var modelName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL_NAME isn't set.");
 
 // Enable GenAI tracing
 AppContext.SetSwitch("Azure.Experimental.EnableGenAITracing", true);
@@ -270,15 +276,32 @@ using (tracerProvider)
     {
         Instructions = "You are a helpful assistant."
     };
-    AgentVersion agent = await projectClient.Agents.CreateAgentVersionAsync(
-        agentName: "myAgent",
-        options: new(agentDefinition));
-    Console.WriteLine(
-        $"Agent created (id: {agent.Id}, name: {agent.Name})");
+    ProjectsAgentVersion agent = await projectClient.AgentAdministrationClient
+        .CreateAgentVersionAsync(
+            agentName: $"agent-tracing-{Guid.NewGuid():N}",
+            options: new(agentDefinition));
+    try
+    {
+        Console.WriteLine(
+            $"Agent created (id: {agent.Id}, name: {agent.Name})");
 
-    // Clean up
-    projectClient.Agents.DeleteAgentVersion(
-        agentName: agent.Name, agentVersion: agent.Version);
+        // Call the agent to emit GenAI spans
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
+            .GetProjectResponsesClientForAgent(agent.Name);
+#pragma warning disable OPENAI001
+        ResponseItem request = ResponseItem.CreateUserMessageItem(
+            "What is the largest city in France?");
+        ResponseResult response = await responseClient.CreateResponseAsync(
+            [request]);
+#pragma warning restore OPENAI001
+        Console.WriteLine($"Response: {response.GetOutputText()}");
+    }
+    finally
+    {
+        await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
+            agentName: agent.Name,
+            agentVersion: agent.Version);
+    }
 }
 ```
 
@@ -401,13 +424,27 @@ Reference: [`AIProjectInstrumentor`](https://github.com/Azure/azure-sdk-for-pyth
 
 ```csharp
 using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using OpenAI.Responses;
+
+var projectEndpoint = Environment.GetEnvironmentVariable(
+    "FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException(
+        "FOUNDRY_PROJECT_ENDPOINT isn't set.");
+var modelName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL_NAME isn't set.");
 
 // Enable GenAI tracing
 AppContext.SetSwitch("Azure.Experimental.EnableGenAITracing", true);
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Configure OpenTelemetry with console exporter
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
@@ -419,7 +456,32 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 using (tracerProvider)
 {
-    // Agent operations emit traces to the console
+    DeclarativeAgentDefinition agentDefinition = new(model: modelName)
+    {
+        Instructions = "You are a helpful assistant."
+    };
+    ProjectsAgentVersion agent = await projectClient.AgentAdministrationClient
+        .CreateAgentVersionAsync(
+            agentName: $"agent-tracing-{Guid.NewGuid():N}",
+            options: new(agentDefinition));
+    try
+    {
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
+            .GetProjectResponsesClientForAgent(agent.Name);
+#pragma warning disable OPENAI001
+        ResponseItem request = ResponseItem.CreateUserMessageItem(
+            "What is the largest city in France?");
+        ResponseResult response = await responseClient.CreateResponseAsync(
+            [request]);
+#pragma warning restore OPENAI001
+        Console.WriteLine($"Response: {response.GetOutputText()}");
+    }
+    finally
+    {
+        await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
+            agentName: agent.Name,
+            agentVersion: agent.Version);
+    }
 }
 ```
 
@@ -623,12 +685,11 @@ The C# SDK doesn't include a tracing decorator. Use the standard .NET `ActivityS
 ```csharp
 using System.Diagnostics;
 
-// Define a custom activity source
-private static readonly ActivitySource s_source = new("MyApp.CustomFunctions");
+using ActivitySource source = new("MyApp.CustomFunctions");
 
 string FetchWeather(string location)
 {
-    using var activity = s_source.StartActivity("FetchWeather");
+    using var activity = source.StartActivity("FetchWeather");
     activity?.SetTag("input.location", location);
 
     var result = $"Weather in {location}: sunny, 72°F";
@@ -673,7 +734,9 @@ AIProjectInstrumentor().instrument(
 
 When both a parameter and its corresponding environment variable are set, the parameter value takes priority.
 
-## Add custom attributes to spans (Python)
+## Add custom attributes to spans
+
+# [Python](#tab/custom-attributes-python)
 
 Create a custom `SpanProcessor` to inject metadata like session IDs into every span:
 
@@ -699,6 +762,38 @@ from opentelemetry.sdk.trace import TracerProvider
 provider = cast(TracerProvider, trace.get_tracer_provider())
 provider.add_span_processor(CustomAttributeSpanProcessor())
 ```
+
+# [C#](#tab/custom-attributes-csharp)
+
+Create a `CustomAttributeProcessor.cs` file with a processor that adds
+attributes when each activity starts:
+
+```csharp
+using System.Diagnostics;
+using OpenTelemetry;
+
+sealed class CustomAttributeProcessor : BaseProcessor<Activity>
+{
+    public override void OnStart(Activity activity)
+    {
+        activity.SetTag("session.id", "user-session-abc");
+    }
+}
+```
+
+Register the processor in `Program.cs` when you build the tracer provider:
+
+```csharp
+var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("Azure.AI.Projects.*")
+    .AddProcessor(new CustomAttributeProcessor())
+    .AddConsoleExporter()
+    .Build();
+```
+
+Reference: [`BaseProcessor<T>`](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry/BaseProcessor.cs)
+
+---
 
 ## Control tracing behavior with environment variables
 

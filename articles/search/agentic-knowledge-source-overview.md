@@ -3,7 +3,7 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 08/14/2026
+ms.date: 09/01/2026
 ai-usage: ai-assisted
 ---
 
@@ -95,9 +95,13 @@ Don't configure `assetStore` and `ingestionPermissionOptions` on the same knowle
 
 ### Restrict ingestion to a private network (preview)
 
-Starting with the `2026-08-01-preview` API version, [blob](agentic-knowledge-source-how-to-blob.md#restrict-ingestion-to-a-private-network-preview), [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#protect-azure-dependencies-during-ingestion), and [indexed Azure SQL](agentic-knowledge-source-how-to-azure-sql.md#restrict-ingestion-to-a-private-network) knowledge sources support private indexer execution. For blob and Azure SQL, approved shared private links can protect the source connection and Azure dependencies. SharePoint Online isn't a shared private link target, so private mode applies only to its protected Azure dependencies.
+[Blob](agentic-knowledge-source-how-to-blob.md#restrict-ingestion-to-a-private-network-preview), [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#protect-azure-dependencies-during-ingestion), and [indexed Azure SQL](agentic-knowledge-source-how-to-azure-sql.md#restrict-ingestion-to-a-private-network) knowledge sources support private indexer execution. For blob and Azure SQL, approved shared private links can protect the source connection and Azure dependencies. SharePoint Online isn't a shared private link target, so private mode applies only to its protected Azure dependencies.
 
 Currently, private synchronization isn't supported for [indexed OneLake knowledge sources](agentic-knowledge-source-how-to-onelake.md#limitations).
+
+### Use automatic per-language analyzers (preview)
+
+[Blob](agentic-knowledge-source-how-to-blob.md#use-automatic-per-language-analyzers-preview), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md#use-automatic-per-language-analyzers-preview), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#use-automatic-per-language-analyzers) knowledge sources support automatic per-language analyzers for multilingual content. When enabled, Azure AI Search detects each source document's language and automatically applies a matching Microsoft language analyzer. You don't specify an analyzer in the knowledge source definition or in a query.
 
 ## Using knowledge sources
 

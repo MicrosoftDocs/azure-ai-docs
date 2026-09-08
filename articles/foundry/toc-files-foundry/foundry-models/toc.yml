@@ -85,6 +85,9 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Monitor model router
+      displayName: Monitor model router in Microsoft Foundry
+      href: ../../openai/how-to/monitor-model-router.md
     - name: Evaluate model router
       displayName: Evaluate model router for your workload
       href: ../../openai/how-to/evaluate-model-router.md
@@ -157,6 +160,9 @@ items:
     - name: Overview
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
+    - name: Overview (government)
+      displayName: Provisioned throughput for Foundry Models in Azure Government
+      href: ../../openai/concepts/provisioned-throughput-gov.md
     - name: Quickstart
       displayName: Create a provisioned throughput deployment
       href: ../../openai/provisioned-quickstart.md
