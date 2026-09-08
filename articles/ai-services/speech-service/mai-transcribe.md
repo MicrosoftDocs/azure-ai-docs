@@ -33,7 +33,7 @@ The following models are supported:
 > - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > - [A Microsoft Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
 > - The Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
-> - An audio file (less than 300 MB in size) in one of these formats: WAV, MP3, or FLAC. For the maximum audio duration, see the `audio` parameter in the [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe) REST reference. If you enable speaker diarization, see the note on recording length in the next section.
+> - An audio file in one of these formats: WAV, MP3, or FLAC. For the maximum file size and audio duration, see the `audio` parameter in the [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe) REST reference. If you enable speaker diarization, see the note on recording length in the next section.
 
 
 ## Use a MAI-Transcribe model
