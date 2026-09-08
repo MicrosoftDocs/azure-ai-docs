@@ -64,7 +64,7 @@ The following table summarizes Document Intelligence API version support:
 | v3.0 (2022-08-31) | GA — retiring | March 30, 2029 (announced March 30, 2026) |
 | v2.1 | GA — retiring | September 15, 2027 (announced September 15, 2024) |
 
-To avoid production disruption, migrate to v4.0 before the retirement dates above. For migration guidance, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
+To avoid production disruption, migrate to v4.0 before the retirement dates in the preceding table. For migration guidance, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
 
 ## Document analysis models
 
