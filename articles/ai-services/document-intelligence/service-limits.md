@@ -6,9 +6,10 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 04/30/2026
+ms.date: 09/08/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
+ai-usage: ai-assisted
 ---
 
 
@@ -106,6 +107,8 @@ Document Intelligence billing is calculated monthly based on the model type and 
 | Adjustable | No | Yes <sup>2</sup> |
 | **List operations Per Second limit** | 1 | 10 (default value) |
 | Adjustable | No | Yes <sup>2</sup> |
+| **Maximum number of Document Intelligence resources per region** | 20 | 20 |
+| Adjustable | No | No |
 | **Max document size** | 4 MB | 500 MB |
 | Adjustable | No | No |
 | **Max number of pages (Analysis)** | 2 | 2000 |
