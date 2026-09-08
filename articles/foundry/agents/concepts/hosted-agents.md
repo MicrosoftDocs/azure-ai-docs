@@ -146,7 +146,7 @@ A session ID identifies a logical session with persisted state, including $HOME 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: You can configure the idle timeout per agent version from 5 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
+- **Session lifetime**: You can configure the idle timeout per agent version from 2 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -227,7 +227,7 @@ Each session has a persistent `$HOME`. The platform preserves its contents when 
 
 Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand and keeps its compute active while requests continue. Each request resets the idle timer. When the configured idle timeout elapses after the most recent request, the platform deprovisions the sandbox compute and persists the session state.
 
-The idle timeout can be 5 through 60 minutes and defaults to 15 minutes. The platform permanently deletes a session after 30 days of inactivity. There's no replica count to configure and no warm pool to size.
+The idle timeout can be 2 through 60 minutes and defaults to 15 minutes. The platform permanently deletes a session after 30 days of inactivity. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
