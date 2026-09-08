@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Configure a cache for speech container diarization
 
-Real-time speech to text containers require a customer-operated Redis-compatible cache for speaker diarization in connected and disconnected modes, including for audio shorter than four hours. By default, the cache retains four hours of diarization data. Audio can run beyond four hours, but the oldest cached data begins to be discarded, which might degrade diarization quality.
+Only real-time speech to text containers require a customer-operated Redis-compatible cache for speaker diarization in connected and disconnected modes, including for audio shorter than four hours. Fast transcription containers don't require a cache for diarization. By default, the cache retains four hours of real-time diarization data. Audio can run beyond four hours, but the oldest cached data begins to be discarded, which might degrade diarization quality.
 
 For example, if a speaker appears in hour 1 and again after hour 5, the earlier speaker information might no longer be available. Speaker association or labeling quality might then degrade. When diarization is required, segment audio into inputs of four hours or less. This article shows you how to configure the required cache and validate diarization results.
 
