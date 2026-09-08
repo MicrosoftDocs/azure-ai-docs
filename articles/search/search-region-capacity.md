@@ -1,16 +1,16 @@
 ---
-title: How to handle high demanded regions in Azure AI Search
+title: How to handle capacity constraints in Azure AI Search high-demand regions
 description: Learn how to handle high demanded regions that effects your Azure AI Search service.
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: angiesi
-ms.date: 07/21/2026
+ms.date: 09/08/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ai-usage: ai-assisted
 ---
 
-# How to handle regional high demand in Azure AI Search
+# How to manage Azure AI Search deployments in high-demand regions
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
