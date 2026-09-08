@@ -1,6 +1,6 @@
 ---
-title: How to handle regional capacity constraints in Azure AI Search
-description: Learn how to handle a regional capacity constraint that effects your Azure AI Search service.
+title: How to handle high demanded regions in Azure AI Search
+description: Learn how to handle high demanded regions that effects your Azure AI Search service.
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: angiesi
@@ -10,15 +10,15 @@ ms.topic: concept-article
 ai-usage: ai-assisted
 ---
 
-# How to handle regional capacity constraints in Azure AI Search
+# How to handle regional high demanded regionss in Azure AI Search
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to capacity constraints. It also provides evaluation criteria for selecting an alternative region.
+This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to high demand. It also provides evaluation criteria for selecting an alternative region.
 
-## Capacity constraint options
+## Alternatives
 
-When a preferred Azure region is unavailable due to capacity constraints, you have two options:
+When a preferred Azure region is unavailable due to high demand, you have two options:
 
 - Deploy to an alternative region. 
 - Retry deployment during off-peak hours.
@@ -27,7 +27,7 @@ When a preferred Azure region is unavailable due to capacity constraints, you ha
 Azure AI Search is available across many Azure regions with consistent APIs, SDKs, SLAs, and compliance certifications. For most workloads, the operational difference between regions within the same geography is negligible. See the following section, *Criteria for selecting an alternative region*, for a full evaluation framework.
 
 **Retrying the service during off-peak hours is also a viable consideration.**
-Capacity constraints are sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, might succeed when peak-hour attempts fail. This option isn't guaranteed and isn't a substitute for evaluating an alternative region. If retries don't succeed within a reasonable window, proceed with an alternative region.
+High demand are sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, might succeed when peak-hour attempts fail. This option isn't guaranteed and isn't a substitute for evaluating an alternative region. If retries don't succeed within a reasonable window, proceed with an alternative region.
 
 Retry during off-peak hours when:
 
