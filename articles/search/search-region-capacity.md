@@ -10,7 +10,7 @@ ms.topic: concept-article
 ai-usage: ai-assisted
 ---
 
-# How to handle regional high demanded regionss in Azure AI Search
+# How to handle regional high demand in Azure AI Search
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
