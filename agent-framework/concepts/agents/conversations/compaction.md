@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 09/08/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -362,6 +363,10 @@ SummarizationCompactionStrategy summarization = new(
 - Requires a `SupportsChatGetResponse` client.
 - Bounds the summarizer prompt and transcript to 8,000 estimated tokens by default. It selects complete message groups, so a group is never split to fit the budget.
 - Set `max_summary_input_tokens=None` to disable the summarizer input bound, or pass `tokenizer=` when you need model-specific token counting. If no complete group fits, summarization is skipped and the existing history remains unchanged.
+- Includes function and MCP tool names, arguments, results, exceptions, call IDs, and approval decisions in the summarizer transcript so the summary can preserve the tool trajectory.
+
+> [!IMPORTANT]
+> Trust the summarizer client as much as the primary model. Tool arguments and results can contain sensitive data, and `SummarizationStrategy` sends those details to the summarizer.
 
 ```python
 from agent_framework import SummarizationStrategy
