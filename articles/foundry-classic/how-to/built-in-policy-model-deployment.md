@@ -1,8 +1,8 @@
 ---
 title: "Control AI model deployment with built-in policies (classic)"
 description: "Learn how to use built-in Azure policies to control what managed Foundry Tools (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Microsoft Foundry portal. (classic)"
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to #Don't change

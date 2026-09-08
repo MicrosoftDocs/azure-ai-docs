@@ -9,6 +9,7 @@ ms.date: 04/10/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
+ms.custom: dev-focus
 ---
 
 # Add client-side tracing to Foundry agents (preview)
@@ -31,7 +32,7 @@ In this article, you learn how to:
 - A [Foundry project](../../how-to/create-projects.md) with an [Application Insights resource connected](trace-agent-setup.md#connect-application-insights-to-your-foundry-project).
 - An AI model deployed to the project. Note the deployment name.
 - [Azure CLI](/cli/azure/install-azure-cli) installed. Sign in by running `az login`.
-- Contributor or higher role on the Foundry project. To view traces, you also need [Log Analytics Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the connected Application Insights resource. For more information, see [Role-based access control in Foundry](../../concepts/rbac-foundry.md).
+- Contributor or higher role on the Foundry project. To view traces, you also need [Log Analytics Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the connected Application Insights resource. If those Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). For more information, see [Role-based access control in Foundry](../../concepts/rbac-foundry.md).
 - The following environment variables set with your own values:
 
   | Variable | Description |
@@ -50,6 +51,11 @@ In this article, you learn how to:
 
 - .NET 8.0 or later.
 - The `Azure.AI.Projects` NuGet package.
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+- Node.js 20 LTS or later.
+- The `@azure/ai-projects` package version 2.4.0 or later.
 
 ---
 
@@ -82,6 +88,20 @@ dotnet add package OpenTelemetry.Exporter.Console
 ```
 
 For ASP.NET Core applications, `Azure.Monitor.OpenTelemetry.AspNetCore` is the preferred package. The `Azure.Monitor.OpenTelemetry.Exporter` package shown here works for all .NET application types.
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+Install the Microsoft Foundry SDK, OpenTelemetry, and the Azure Monitor exporter:
+
+```bash
+npm install @azure/ai-projects @azure/identity @azure/monitor-opentelemetry @opentelemetry/api dotenv
+```
+
+For console-only export, you also need the OpenTelemetry SDK packages:
+
+```bash
+npm install @opentelemetry/sdk-trace-node @opentelemetry/sdk-trace-base
+```
 
 ---
 
@@ -121,6 +141,31 @@ If both the `AppContext` switch and the environment variable are set, the `AppCo
 
 > [!NOTE]
 > In C#, all tracing-related environment variables accept `true` (case-insensitive) or `1` as equivalent enabling values.
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+Pass `experimental: true` in `tracingOptions` when you create the
+`AIProjectClient`. Unlike the Python and C# SDKs, the JavaScript/TypeScript
+SDK enables tracing per client instance instead of through a separate
+instrumentation call:
+
+```javascript
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+  {
+    tracingOptions: {
+      experimental: true,
+    },
+  },
+);
+```
+
+You can also set the `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING` environment
+variable to `true` instead of passing the option. The `tracingOptions`
+property takes precedence over the environment variable. See [Export
+traces to Azure Monitor](#export-traces-to-azure-monitor) for a complete
+example.
 
 ---
 
@@ -186,14 +231,20 @@ Reference: [`AIProjectClient`](/python/api/azure-ai-projects/azure.ai.projects.a
 ```csharp
 using Azure.AI.Projects;
 using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using Azure.Monitor.OpenTelemetry.Exporter;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using OpenAI.Responses;
 
-var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME");
+var projectEndpoint = Environment.GetEnvironmentVariable(
+    "FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException(
+        "FOUNDRY_PROJECT_ENDPOINT isn't set.");
+var modelName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL_NAME isn't set.");
 
 // Enable GenAI tracing
 AppContext.SetSwitch("Azure.Experimental.EnableGenAITracing", true);
@@ -225,19 +276,112 @@ using (tracerProvider)
     {
         Instructions = "You are a helpful assistant."
     };
-    AgentVersion agent = await projectClient.Agents.CreateAgentVersionAsync(
-        agentName: "myAgent",
-        options: new(agentDefinition));
-    Console.WriteLine(
-        $"Agent created (id: {agent.Id}, name: {agent.Name})");
+    ProjectsAgentVersion agent = await projectClient.AgentAdministrationClient
+        .CreateAgentVersionAsync(
+            agentName: $"agent-tracing-{Guid.NewGuid():N}",
+            options: new(agentDefinition));
+    try
+    {
+        Console.WriteLine(
+            $"Agent created (id: {agent.Id}, name: {agent.Name})");
 
-    // Clean up
-    projectClient.Agents.DeleteAgentVersion(
-        agentName: agent.Name, agentVersion: agent.Version);
+        // Call the agent to emit GenAI spans
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
+            .GetProjectResponsesClientForAgent(agent.Name);
+#pragma warning disable OPENAI001
+        ResponseItem request = ResponseItem.CreateUserMessageItem(
+            "What is the largest city in France?");
+        ResponseResult response = await responseClient.CreateResponseAsync(
+            [request]);
+#pragma warning restore OPENAI001
+        Console.WriteLine($"Response: {response.GetOutputText()}");
+    }
+    finally
+    {
+        await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
+            agentName: agent.Name,
+            agentVersion: agent.Version);
+    }
 }
 ```
 
 Reference: [`AIProjectClient`](/dotnet/api/azure.ai.projects.aiprojectclient), [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential), [`Sdk.CreateTracerProviderBuilder`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry)
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import {
+  useAzureMonitor,
+  shutdownAzureMonitor,
+} from "@azure/monitor-opentelemetry";
+import { context, trace } from "@opentelemetry/api";
+import "dotenv/config";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "";
+const modelName = process.env["FOUNDRY_MODEL_NAME"] || "";
+
+// Enable tracing when you create the client. To capture prompt and
+// completion content, set contentRecording to true (off by default).
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+  {
+    tracingOptions: { contentRecording: false, experimental: true },
+  },
+);
+const openAIClient = project.getOpenAIClient();
+
+// Get the Application Insights connection string from the project
+const connectionString =
+  await project.telemetry.getApplicationInsightsConnectionString();
+
+// Configure Azure Monitor tracing
+useAzureMonitor({
+  azureMonitorExporterOptions: { connectionString },
+});
+
+const tracer = trace.getTracer("AgentTracingSample");
+const span = tracer.startSpan("agent-tracing-scenario");
+const ctx = trace.setSpan(context.active(), span);
+
+await context.with(ctx, async () => {
+  // Create an agent
+  const agent = await project.agents.createVersion("MyAgent", {
+    kind: "prompt",
+    model: modelName,
+    instructions: "You are a helpful assistant.",
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name})`);
+
+  // Create a conversation and get a response
+  const conversation = await openAIClient.conversations.create({});
+  const response = await openAIClient.responses.create(
+    {
+      conversation: conversation.id,
+      input: "What is the largest city in France?",
+    },
+    {
+      body: {
+        agent_reference: { name: agent.name, type: "agent_reference" },
+      },
+    },
+  );
+  console.log(`Response: ${response.output_text}`);
+
+  // Clean up
+  await openAIClient.conversations.delete(conversation.id);
+  await project.agents.deleteVersion(agent.name, agent.version);
+});
+
+span.end();
+
+// Shut down Azure Monitor to flush all pending traces before exit
+await shutdownAzureMonitor();
+```
+
+Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient), [telemetry.getApplicationInsightsConnectionString](/javascript/api/@azure/ai-projects/aiprojectclient)
 
 ---
 
@@ -280,13 +424,27 @@ Reference: [`AIProjectInstrumentor`](https://github.com/Azure/azure-sdk-for-pyth
 
 ```csharp
 using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using OpenAI.Responses;
+
+var projectEndpoint = Environment.GetEnvironmentVariable(
+    "FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException(
+        "FOUNDRY_PROJECT_ENDPOINT isn't set.");
+var modelName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL_NAME isn't set.");
 
 // Enable GenAI tracing
 AppContext.SetSwitch("Azure.Experimental.EnableGenAITracing", true);
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Configure OpenTelemetry with console exporter
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
@@ -298,9 +456,88 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 using (tracerProvider)
 {
-    // Agent operations emit traces to the console
+    DeclarativeAgentDefinition agentDefinition = new(model: modelName)
+    {
+        Instructions = "You are a helpful assistant."
+    };
+    ProjectsAgentVersion agent = await projectClient.AgentAdministrationClient
+        .CreateAgentVersionAsync(
+            agentName: $"agent-tracing-{Guid.NewGuid():N}",
+            options: new(agentDefinition));
+    try
+    {
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
+            .GetProjectResponsesClientForAgent(agent.Name);
+#pragma warning disable OPENAI001
+        ResponseItem request = ResponseItem.CreateUserMessageItem(
+            "What is the largest city in France?");
+        ResponseResult response = await responseClient.CreateResponseAsync(
+            [request]);
+#pragma warning restore OPENAI001
+        Console.WriteLine($"Response: {response.GetOutputText()}");
+    }
+    finally
+    {
+        await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
+            agentName: agent.Name,
+            agentVersion: agent.Version);
+    }
 }
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import { context, trace } from "@opentelemetry/api";
+import { NodeTracerProvider } from "@opentelemetry/sdk-trace-node";
+import {
+  ConsoleSpanExporter,
+  SimpleSpanProcessor,
+} from "@opentelemetry/sdk-trace-base";
+import "dotenv/config";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "";
+const modelName = process.env["FOUNDRY_MODEL_NAME"] || "";
+
+// Set up console tracing
+const provider = new NodeTracerProvider({
+  spanProcessors: [new SimpleSpanProcessor(new ConsoleSpanExporter())],
+});
+provider.register();
+
+const tracer = trace.getTracer("AgentTracingConsoleSample");
+
+// Enable tracing when you create the client
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+  {
+    tracingOptions: { contentRecording: false, experimental: true },
+  },
+);
+const openAIClient = project.getOpenAIClient();
+
+const span = tracer.startSpan("agent-tracing-console-scenario");
+const ctx = trace.setSpan(context.active(), span);
+
+await context.with(ctx, async () => {
+  // Agent operations emit traces to the console
+  const agent = await project.agents.createVersion("MyAgent", {
+    kind: "prompt",
+    model: modelName,
+    instructions: "You are a helpful assistant.",
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name})`);
+  await project.agents.deleteVersion(agent.name, agent.version);
+});
+
+span.end();
+await provider.shutdown();
+```
+
+Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient)
 
 ---
 
@@ -334,6 +571,25 @@ AppContext.SetSwitch("Azure.Experimental.TraceGenAIMessageContent", true);
 ```
 
 Or set the `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` environment variable to `true`. If both the `AppContext` switch and the environment variable are set, the `AppContext` switch takes priority.
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+Set `contentRecording: true` in `tracingOptions` when you create the
+`AIProjectClient`:
+
+```typescript
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+  {
+    tracingOptions: { contentRecording: true, experimental: true },
+  },
+);
+```
+
+You can also set the `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`
+environment variable to `true` instead of passing the option. The
+`tracingOptions` property takes precedence over the environment variable.
 
 ---
 
@@ -429,12 +685,11 @@ The C# SDK doesn't include a tracing decorator. Use the standard .NET `ActivityS
 ```csharp
 using System.Diagnostics;
 
-// Define a custom activity source
-private static readonly ActivitySource s_source = new("MyApp.CustomFunctions");
+using ActivitySource source = new("MyApp.CustomFunctions");
 
 string FetchWeather(string location)
 {
-    using var activity = s_source.StartActivity("FetchWeather");
+    using var activity = source.StartActivity("FetchWeather");
     activity?.SetTag("input.location", location);
 
     var result = $"Weather in {location}: sunny, 72°F";
@@ -479,7 +734,9 @@ AIProjectInstrumentor().instrument(
 
 When both a parameter and its corresponding environment variable are set, the parameter value takes priority.
 
-## Add custom attributes to spans (Python)
+## Add custom attributes to spans
+
+# [Python](#tab/custom-attributes-python)
 
 Create a custom `SpanProcessor` to inject metadata like session IDs into every span:
 
@@ -505,6 +762,38 @@ from opentelemetry.sdk.trace import TracerProvider
 provider = cast(TracerProvider, trace.get_tracer_provider())
 provider.add_span_processor(CustomAttributeSpanProcessor())
 ```
+
+# [C#](#tab/custom-attributes-csharp)
+
+Create a `CustomAttributeProcessor.cs` file with a processor that adds
+attributes when each activity starts:
+
+```csharp
+using System.Diagnostics;
+using OpenTelemetry;
+
+sealed class CustomAttributeProcessor : BaseProcessor<Activity>
+{
+    public override void OnStart(Activity activity)
+    {
+        activity.SetTag("session.id", "user-session-abc");
+    }
+}
+```
+
+Register the processor in `Program.cs` when you build the tracer provider:
+
+```csharp
+var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("Azure.AI.Projects.*")
+    .AddProcessor(new CustomAttributeProcessor())
+    .AddConsoleExporter()
+    .Build();
+```
+
+Reference: [`BaseProcessor<T>`](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry/BaseProcessor.cs)
+
+---
 
 ## Control tracing behavior with environment variables
 
@@ -539,7 +828,7 @@ Client-side tracing can capture sensitive information. Follow these practices to
 | --- | --- |
 | Tracing doesn't produce any spans | Verify `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING` is set to `true` **before** calling `AIProjectInstrumentor().instrument()` (Python) or before creating the tracer provider (C#). |
 | Message content doesn't appear in spans | Set `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` to `true`. |
-| Traces don't appear in Azure Monitor | Verify the Application Insights connection string is correct and the resource is accessible. Check that your account has the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
+| Traces don't appear in Azure Monitor | Verify the Application Insights connection string is correct and the resource is accessible. Check that your account has the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If the tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also assign [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader). |
 | Client-side and server-side spans aren't correlated | (Python) Verify trace context propagation is enabled and that OpenAI clients are obtained via `get_openai_client()` **after** instrumentation. |
 | Traces appear with a delay | Traces typically take 2-5 minutes to appear in the Foundry portal and Azure Monitor. Wait and refresh. |
 

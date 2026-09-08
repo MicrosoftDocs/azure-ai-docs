@@ -1,38 +1,108 @@
 ---
 title: Azure OpenAI C# support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
-description: Azure OpenAI C# support
+description: Azure OpenAI C# support.
+author: alvinashcraft
 manager: mcleans
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 08/31/2025
+ms.date: 07/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-[Source code](https://github.com/openai/openai-dotnet) | [Package (NuGet)](https://www.nuget.org/packages/OpenAI) 
- 
-## Azure OpenAI API version support
+[Source code](https://github.com/openai/openai-dotnet) | [Package](https://www.nuget.org/packages/OpenAI) | [API surface](https://github.com/openai/openai-dotnet/blob/main/api/OpenAI.netstandard2.0.cs)
 
-- v1 Generally Available (GA) API now allows access to both GA and Preview operations. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
+The examples were tested with `OpenAI` 2.12.0, `Azure.Identity` 1.21.0, and .NET 8. The OpenAI package also targets .NET Standard 2.0 and later .NET versions.
 
-## Installation
+## Install the packages
+
+Install the OpenAI and Azure Identity packages:
 
 ```dotnetcli
 dotnet add package OpenAI
-```
-
-## Authentication
-
-# [Microsoft Entra ID](#tab/dotnet-secure)
-
-A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ). To use the library:
-
-```dotnetcli
 dotnet add package Azure.Identity
 ```
 
-Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet&preserve-view=true):
+The commands add both package references to your project.
+
+## Create a response with Microsoft Entra ID
+
+Use `DefaultAzureCredential` and `BearerTokenPolicy` to authenticate without storing an API key.
+
+```csharp
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
+
+var endpoint = new Uri(
+    "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/");
+var tokenPolicy = new BearerTokenPolicy(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+var openAIClient = new ResponsesClient(
+    tokenPolicy,
+    new ResponsesClientOptions { Endpoint = endpoint });
+
+var response = await openAIClient.CreateResponseAsync(
+    "gpt-5-mini",
+    "Explain the purpose of an API in one sentence.");
+Console.WriteLine(response.Value.GetOutputText());
+```
+
+The following output is representative. The exact wording might vary:
+
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
+
+Reference: [`ResponsesClient`](https://github.com/openai/openai-dotnet/blob/main/README.md#how-to-work-with-azure-openai)
+
+## Create a response with an API key
+
+API keys aren't recommended for production use. Store the key in the `AZURE_OPENAI_API_KEY` environment variable instead of placing it in source code.
+
+```bash
+export AZURE_OPENAI_API_KEY="<your-api-key>"
+```
+
+Then create the client and request:
+
+```csharp
+using OpenAI.Responses;
+using System.ClientModel;
+
+#pragma warning disable OPENAI001
+
+var endpoint = new Uri(
+    "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_API_KEY is required.");
+var openAIClient = new ResponsesClient(
+    new ApiKeyCredential(apiKey),
+    new ResponsesClientOptions { Endpoint = endpoint });
+
+var response = await openAIClient.CreateResponseAsync(
+    "gpt-5-mini",
+    "Explain the purpose of an API in one sentence.");
+Console.WriteLine(response.Value.GetOutputText());
+```
+
+The following output is representative. The exact wording might vary:
+
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
+```
+
+Reference: [`CreateResponseAsync`](https://github.com/openai/openai-dotnet/blob/main/examples/Responses/Example01_SimpleResponseAsync.cs)
+
+## Use Chat Completions
+
+For new applications, use the Responses API. Use Chat Completions when you need its message-based interface or are maintaining an existing application.
 
 ```csharp
 using Azure.Identity;
@@ -42,266 +112,81 @@ using System.ClientModel.Primitives;
 
 #pragma warning disable OPENAI001
 
-BearerTokenPolicy tokenPolicy = new(
+var endpoint = new Uri(
+    "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/");
+var tokenPolicy = new BearerTokenPolicy(
     new DefaultAzureCredential(),
     "https://ai.azure.com/.default");
-
-ChatClient client = new(
-    model: "gpt-4.1-nano",
+var openAIClient = new ChatClient(
+    model: "gpt-5-mini",
     authenticationPolicy: tokenPolicy,
-    options: new OpenAIClientOptions() { 
-    
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-   }
-);
+    options: new OpenAIClientOptions { Endpoint = endpoint });
 
-ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson.");
-
-Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
+var completion = await openAIClient.CompleteChatAsync([
+    new SystemChatMessage("You are a helpful assistant."),
+    new UserChatMessage("Explain the purpose of an API.")
+]);
+Console.WriteLine(completion.Value.Content[0].Text);
 ```
 
-For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=dotnet)" QuickStart article. 
+The following output is representative. The exact wording might vary:
 
-# [API Key](#tab/dotnet-key)
-
-```csharp
-using OpenAI;
-using OpenAI.Chat;
-using System.ClientModel;
-
-string keyFromEnvironment = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
-
-ChatClient client = new(
-    model: "gpt-4.1-nano",
-    credential: new ApiKeyCredential(keyFromEnvironment),
-    options: new OpenAIClientOptions() { 
-    
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-   }
-);
-
-ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson.");
-
-Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
-
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
 ```
 
----
+Reference: [`ChatClient`](https://github.com/openai/openai-dotnet/tree/main/examples/Chat)
 
-## Chat
+## Stream a response
 
-Example of chat completions request to a [reasoning model](../../how-to/reasoning.md).
-
-```csharp
-using OpenAI;
-using OpenAI.Chat;
-using System.ClientModel.Primitives;
-
-#pragma warning disable OPENAI001 //currently required for token based authentication
-
-BearerTokenPolicy tokenPolicy = new(
-    new DefaultAzureCredential(),
-    "https://ai.azure.com/.default");
-
-ChatClient client = new(
-    model: "o4-mini",
-    authenticationPolicy: tokenPolicy,
-    options: new OpenAIClientOptions()
-    {
-
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-    }
-);
-
-ChatCompletionOptions options = new ChatCompletionOptions
-{
-    ReasoningEffortLevel = ChatReasoningEffortLevel.Low,
-    MaxOutputTokenCount = 100000
-};
-
-ChatCompletion completion = client.CompleteChat(
-         new DeveloperChatMessage("You are a helpful assistant"),
-         new UserChatMessage("Tell me about the bitter lesson")
-    );
-
-Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
-
-```
-
-## Embeddings
+Call `CreateResponseStreamingAsync` and process text delta updates as the model generates them:
 
 ```csharp
-using OpenAI;
-using OpenAI.Embeddings;
-using System.ClientModel;
-
-string apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")
-    ?? throw new InvalidOperationException("AZURE_OPENAI_API_KEY environment variable is not set");
-
-EmbeddingClient client = new(
-    "text-embedding-3-large",
-    credential: new ApiKeyCredential(apiKey),
-    options: new OpenAIClientOptions()
-    {
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-    }
-);
-
-string input = "This is a test";
-
-OpenAIEmbedding embedding = client.GenerateEmbedding(input);
-ReadOnlyMemory<float> vector = embedding.ToFloats();
-Console.WriteLine($"Embeddings: [{string.Join(", ", vector.ToArray())}]");
-```
-
-## Responses API
-
-```csharp
-using OpenAI;
 using OpenAI.Responses;
-using System.ClientModel.Primitives;
-using Azure.Identity;
-
-#pragma warning disable OPENAI001 //currently required for token based authentication
-
-BearerTokenPolicy tokenPolicy = new(
-    new DefaultAzureCredential(),
-    "https://ai.azure.com/.default");
-
-OpenAIResponseClient client = new(
-    model: "o4-mini",
-    authenticationPolicy: tokenPolicy,
-    options: new OpenAIClientOptions()
-    {
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-    }
-);
-
-OpenAIResponse response = await client.CreateResponseAsync(
-    userInputText: "What's the optimal strategy to win at poker?",
-    new ResponseCreationOptions()
-    {
-        ReasoningOptions = new ResponseReasoningOptions()
-        {
-            ReasoningEffortLevel = ResponseReasoningEffortLevel.High,
-        },
-    });
-
-Console.WriteLine(response.GetOutputText());
-
-```
-
-### Streaming
-
-```csharp
-using OpenAI;
-using OpenAI.Responses;
-using System.ClientModel.Primitives;
-using Azure.Identity;
-
-#pragma warning disable OPENAI001 //currently required for token based authentication
-
-BearerTokenPolicy tokenPolicy = new(
-    new DefaultAzureCredential(),
-    "https://ai.azure.com/.default");
+using System.ClientModel;
 
 #pragma warning disable OPENAI001
 
-OpenAIResponseClient client = new(
-    model: "o4-mini",
-    authenticationPolicy: tokenPolicy,
-    options: new OpenAIClientOptions()
-    {
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-    }
-);
+var endpoint = new Uri(
+    "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_API_KEY is required.");
+var openAIClient = new ResponsesClient(
+    new ApiKeyCredential(apiKey),
+    new ResponsesClientOptions { Endpoint = endpoint });
 
-await foreach (StreamingResponseUpdate update
-    in client.CreateResponseStreamingAsync(
-        userInputText: "What's the optimal strategy to win at poker?",
-        new ResponseCreationOptions()
-        {
-            ReasoningOptions = new ResponseReasoningOptions()
-            {
-                ReasoningEffortLevel = ResponseReasoningEffortLevel.High,
-            },
-        }))
+// Stream text as the model generates it.
+var updates = openAIClient.CreateResponseStreamingAsync(
+    "gpt-5-mini",
+    "Explain the purpose of an API in one sentence.");
+await foreach (var update in updates)
 {
-    if (update is StreamingResponseOutputItemAddedUpdate itemUpdate
-        && itemUpdate.Item is ReasoningResponseItem reasoningItem)
-    {
-        Console.WriteLine($"[Reasoning] ({reasoningItem.Status})");
-    }
-    else if (update is StreamingResponseOutputTextDeltaUpdate delta)
+    if (update is StreamingResponseOutputTextDeltaUpdate delta)
     {
         Console.Write(delta.Delta);
     }
 }
 ```
 
-### MCP Server
+The following streamed output is representative. The exact wording might vary:
 
-```csharp
-using OpenAI;
-using OpenAI.Responses;
-using System.ClientModel.Primitives;
-using Azure.Identity;
-
-#pragma warning disable OPENAI001 //currently required for token based authentication
-
-BearerTokenPolicy tokenPolicy = new(
-    new DefaultAzureCredential(),
-    "https://ai.azure.com/.default");
-
-OpenAIResponseClient client = new(
-    model: "o4-mini",
-    authenticationPolicy: tokenPolicy,
-    options: new OpenAIClientOptions()
-    {
-        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
-    }
-);
-
-ResponseCreationOptions options = new();
-options.Tools.Add(ResponseTool.CreateMcpTool(
-    serverLabel: "microsoft_learn",
-    serverUri: new Uri("https://learn.microsoft.com/api/mcp"),
-    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
-));
-
-OpenAIResponse response = (OpenAIResponse)client.CreateResponse([
-    ResponseItem.CreateUserMessageItem([
-        ResponseContentPart.CreateInputTextPart("Search for information about Azure Functions")
-    ])
-], options);
-
-Console.WriteLine(response.GetOutputText());
+```output
+An API allows software applications to communicate and exchange data through a defined set of rules.
 ```
 
-## Error handling
+Reference: [`CreateResponseStreamingAsync`](https://github.com/openai/openai-dotnet/blob/main/examples/Responses/Example02_SimpleResponseStreamingAsync.cs)
 
-### Error codes
+## Handle errors and retries
 
-| Status Code | Error Type |
-|----|---|
-| 400         | `Bad Request Error`          |
-| 401         | `Authentication Error`      |
-| 403         | `Permission Denied Error`    |
-| 404         | `Not Found Error`            |
-| 422         | `Unprocessable Entity Error` |
-| 429         | `Rate Limit Error`           |
-| 500         | `Internal Server Error`      |
-| 503         | `Service Unavailable`       |
-| 504         | `Gateway Timeout` |
+The client automatically retries HTTP 408, 429, 500, 502, 503, and 504 responses with exponential backoff. Configure the retry policy through the client options when you need different behavior. Catch `ClientResultException` to inspect the HTTP status and error details for a failed request.
 
-### Retries
+For diagnostics, retain the `ClientResult<T>` returned by an operation and inspect its raw response headers. Failed operations expose status information through `ClientResultException`.
 
-The client classes will automatically retry the following errors up to three more times using exponential backoff:
+Reference: [Error handling and client result details](https://github.com/openai/openai-dotnet#how-to-handle-errors)
 
-- 408 Request Timeout
-- 429 Too Many Requests
-- 500 Internal Server Error
-- 502 Bad Gateway
-- 503 Service Unavailable
-- 504 Gateway Timeout
+## More SDK examples
 
+- [Use the Responses API](../../how-to/responses.md)
+- [Generate embeddings](../../how-to/embeddings.md)
+- [Analyze images](../../how-to/gpt-with-vision.md)
+- [Fine-tune a model](../../how-to/fine-tuning.md)

@@ -100,7 +100,7 @@ Use this reference table as a checklist for security design decisions.
 |---|---|---|
 | Identity and access | Define admin, project manager, and project user personas. Map each persona to least-privilege roles and Microsoft Entra ID groups. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
 | Networking | Choose the network model per environment. Use managed virtual network for a more secure, straightforward setup. Use bring-your-own (BYO) virtual network for advanced network control and custom routing requirements. Validate private DNS and endpoint approval flow before production. | [Configure managed virtual network](../how-to/managed-virtual-network.md), [Configure private link for Foundry](../how-to/configure-private-link.md), and [Network-secured setup (BYO virtual network)](../agents/how-to/virtual-networks.md) |
-| Data protection and keys | Decide whether Microsoft-managed keys meet policy requirements or whether customer-managed keys are required. | [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md) |
+| Data protection and keys | Decide whether Microsoft-managed keys meet policy requirements or whether customer-managed keys are required. | [Customer-managed keys in Foundry](../concepts/customer-managed-keys.md) |
 | Authentication model | Prefer Microsoft Entra ID and RBAC for people and services. Use API keys only where role granularity isn't required. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
 
 ## Plan model, region, and capacity strategy
@@ -186,9 +186,9 @@ Foundry separates access across:
 - **Data plane RBAC actions** for development workloads.
 
 > [!IMPORTANT]
-> Management roles such as Owner or Contributor are not sufficient for all
-development scenarios. For example, a user can manage resources but still need
-data plane roles to chat with an agent in Foundry.
+> Management roles such as Owner or Contributor aren't sufficient for all
+> development scenarios. For example, a user can manage resources but still need
+> data plane roles to chat with an agent in Foundry.
 
 For role mapping guidance and required role combinations, see
 [Role-based access control in Foundry](../concepts/rbac-foundry.md).

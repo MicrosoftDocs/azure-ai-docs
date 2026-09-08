@@ -5,7 +5,7 @@ description: "This document details some example use cases and tips for using Do
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 10/15/2025
 ---

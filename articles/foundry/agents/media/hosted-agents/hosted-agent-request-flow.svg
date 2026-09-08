@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="rf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="600" fill="#FFFFFF"/>
+  <text x="400" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#111827">How a request flows through a hosted agent</text>
+
+  <!-- participants -->
+  <rect x="15" y="52" width="150" height="44" rx="8" fill="#E8F0FE" stroke="#4285F4" stroke-width="2"/>
+  <text x="90" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Client</text>
+  <rect x="235" y="52" width="150" height="44" rx="8" fill="#D6E4FF" stroke="#1A56DB" stroke-width="2"/>
+  <text x="310" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Agent endpoint</text>
+  <rect x="455" y="52" width="170" height="44" rx="8" fill="#DEF7EC" stroke="#057A55" stroke-width="2"/>
+  <text x="540" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Your code in sandbox</text>
+  <rect x="645" y="52" width="150" height="44" rx="8" fill="#FDF6B2" stroke="#C27803" stroke-width="2"/>
+  <text x="720" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Models and Toolbox</text>
+
+  <line x1="90" y1="96" x2="90" y2="440" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="310" y1="96" x2="310" y2="440" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="540" y1="96" x2="540" y2="440" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="720" y1="96" x2="720" y2="440" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="5,5"/>
+
+  <text x="200" y="120" text-anchor="middle" font-size="14" fill="#111827">request + session ID</text>
+  <line x1="90" y1="128" x2="310" y2="128" stroke="#4B5563" stroke-width="2" marker-end="url(#rf-arrow)"/>
+
+  <rect x="176" y="142" width="268" height="28" rx="6" fill="#FFFFFF" stroke="#1A56DB" stroke-width="1.5"/>
+  <text x="310" y="161" text-anchor="middle" font-size="14" fill="#374151">authenticate with Microsoft Entra ID</text>
+
+  <text x="425" y="190" text-anchor="middle" font-size="14" fill="#111827">provision sandbox, restore state</text>
+  <line x1="310" y1="198" x2="540" y2="198" stroke="#4B5563" stroke-width="2" marker-end="url(#rf-arrow)"/>
+
+  <rect x="475" y="212" width="300" height="144" rx="8" fill="none" stroke="#057A55" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="487" y="230" font-size="14" font-weight="700" fill="#057A55">loop: model and tool calls</text>
+
+  <text x="630" y="256" text-anchor="middle" font-size="14" fill="#111827">call model</text>
+  <line x1="540" y1="264" x2="720" y2="264" stroke="#4B5563" stroke-width="2" marker-end="url(#rf-arrow)"/>
+  <text x="630" y="286" text-anchor="middle" font-size="14" fill="#6B7280">completion</text>
+  <line x1="720" y1="294" x2="540" y2="294" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#rf-arrow)"/>
+  <text x="630" y="316" text-anchor="middle" font-size="14" fill="#111827">call tool over MCP</text>
+  <line x1="540" y1="324" x2="720" y2="324" stroke="#4B5563" stroke-width="2" marker-end="url(#rf-arrow)"/>
+  <text x="630" y="346" text-anchor="middle" font-size="14" fill="#6B7280">tool result</text>
+  <line x1="720" y1="354" x2="540" y2="354" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#rf-arrow)"/>
+
+  <text x="425" y="384" text-anchor="middle" font-size="14" fill="#111827">response</text>
+  <line x1="540" y1="392" x2="310" y2="392" stroke="#4B5563" stroke-width="2" marker-end="url(#rf-arrow)"/>
+
+  <text x="200" y="414" text-anchor="middle" font-size="14" fill="#111827">response to client</text>
+  <line x1="310" y1="422" x2="90" y2="422" stroke="#4B5563" stroke-width="2" marker-end="url(#rf-arrow)"/>
+
+  <rect x="24" y="458" width="752" height="54" rx="9" fill="#FEF3C7" stroke="#C27803" stroke-width="2"/>
+  <text x="400" y="481" text-anchor="middle" font-size="14" font-weight="700" fill="#92400E">After 15 minutes with no requests</text>
+  <text x="400" y="502" text-anchor="middle" font-size="14" fill="#374151">compute is deprovisioned, and $HOME and /files are persisted</text>
+
+  <rect x="24" y="522" width="752" height="54" rx="9" fill="#DEF7EC" stroke="#057A55" stroke-width="2"/>
+  <text x="400" y="545" text-anchor="middle" font-size="14" font-weight="700" fill="#057A55">On the next request</text>
+  <text x="400" y="566" text-anchor="middle" font-size="14" fill="#374151">new compute starts, and your files are restored where you left them</text>
+</svg>

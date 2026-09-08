@@ -1,11 +1,11 @@
 ---
 title: Enrich your project with active learning
 description: In this tutorial, learn how to enrich your Custom question answering projects with active learning
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 # Enrich your project with active learning

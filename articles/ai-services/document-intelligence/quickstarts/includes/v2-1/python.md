@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: includes
-ms.date: 11/18/2025
+ms.date: 05/24/2026
 ms.author: lajanuar
 ---
 

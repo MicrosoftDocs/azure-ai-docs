@@ -6,8 +6,9 @@ ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 06/10/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Setup
@@ -94,15 +95,22 @@ client = ChatCompletionsClient(
 # [OpenAI SDK](#tab/openai)
 
 ```python
-completion = client.chat.completions.create(
+response = client.chat.completions.create(
     model="DeepSeek-V3.1",  # Required: your deployment name
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "What is Azure AI?"}
+        {"role": "user", "content": "How many languages are in the world?"}
     ]
 )
 
-print(completion.choices[0].message.content)
+print(response.choices[0].message.content)
+```
+
+**Output is as follows:**
+
+```console
+Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
+
 ```
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
@@ -113,12 +121,18 @@ from azure.ai.inference.models import SystemMessage, UserMessage
 response = client.complete(
     messages=[
         SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="What is Azure AI?"),
+        UserMessage(content="How many languages are in the world?"),
     ],
     model="DeepSeek-V3.1"  # Optional for single-model endpoints
 )
 
 print(response.choices[0].message.content)
+```
+
+**Output is as follows:**
+
+```console
+Response: <think>Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer...</think>As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
 ```
 
 ---
@@ -162,6 +176,104 @@ for update in response:
 ```
 
 ---
+
+## Responses
+
+The Responses API is OpenAI's stateful interface that returns a structured `output` array containing message, tool call, and reasoning items.
+
+# [OpenAI SDK](#tab/openai)
+
+```python
+response = client.responses.create(
+    model="DeepSeek-V3.1",  # Required: your deployment name
+    input="How many languages are in the world?",
+    max_output_tokens=2000,
+)
+
+print(response.output_text)
+```
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+The Azure AI Inference SDK doesn't expose the Responses API. To call it, use the OpenAI SDK.
+
+---
+
+### Reasoning
+
+> [!NOTE]
+> This information on reasoning content doesn't apply to Azure OpenAI models. Azure OpenAI reasoning models use the [reasoning summaries feature](../../openai/how-to/reasoning.md#reasoning-summary).
+
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind them. The Responses API surfaces this as a structured `reasoning` output item whose `summary[].text` contains the model's thinking, alongside the final answer.
+
+# [OpenAI SDK](#tab/openai)
+
+```python
+response = client.responses.create(
+    model="DeepSeek-R1-0528",  # Required: your deployment name
+    input="How many languages are in the world?",
+    max_output_tokens=2000,
+)
+
+# Walk response.output for items of type "reasoning" and join summary[].text.
+parts = []
+for item in getattr(response, "output", None) or []:
+    if getattr(item, "type", None) != "reasoning":
+        continue
+    for s in getattr(item, "summary", None) or []:
+        text = getattr(s, "text", None)
+        if text:
+            parts.append(text)
+reasoning_summary = "\n".join(parts).strip()
+
+print("Thinking:", reasoning_summary)
+print("Answer:", response.output_text)
+```
+
+**Output is as follows:**
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer...
+Answer: There are approximately 7,000 languages spoken around the world today.
+```
+
+[!INCLUDE [reasoning-tokens-known-issue](reasoning-tokens-known-issue.md)]
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+The Azure AI Inference SDK doesn't expose the Responses API. To get reasoning content, call the chat completions API instead. The reasoning is included in the message content wrapped in `<think>` and `</think>` tags, which you can extract with a regex match.
+
+```python
+import re
+from azure.ai.inference.models import SystemMessage, UserMessage
+
+response = client.complete(
+    messages=[
+        SystemMessage(content="You are a helpful assistant."),
+        UserMessage(content="How many languages are in the world?"),
+    ],
+    model="DeepSeek-R1-0528"  # Optional for single-model endpoints
+)
+
+content = response.choices[0].message.content
+match = re.match(r"<think>(.*?)</think>(.*)", content, re.DOTALL)
+if match:
+    print("Thinking:", match.group(1).strip())
+    print("Answer: ", match.group(2).strip())
+else:
+    print("Response:", content)
+```
+
+**Output is as follows:**
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer...
+Answer:  There are approximately 7,000 languages spoken around the world today.
+```
+
+---
+
+When you make multi-turn conversations, avoid sending the reasoning content in the chat history because reasoning tends to generate long explanations.
 
 ## Embeddings
 

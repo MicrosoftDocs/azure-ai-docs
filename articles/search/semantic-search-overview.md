@@ -6,11 +6,13 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 04/24/2026
+ms.date: 08/05/2026
 ai-usage: ai-assisted
 ---
 
 # Semantic ranking in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 In Azure AI Search, *semantic ranker* is a feature that measurably improves search relevance by using Microsoft's language understanding models to rerank search results. Semantic ranker is also built into [agentic retrieval](agentic-retrieval-overview.md). This article is a high-level introduction to help you understand the behaviors and benefits of semantic ranker.
 
@@ -28,7 +30,7 @@ Semantic ranker is a collection of query-side capabilities that improve the qual
 
 Secondary ranking and "answers" apply to the query response. Query rewrite is part of the query request.
 
-Here are the capabilities of the semantic reranker.
+Semantic ranker has the following capabilities:
 
 | Capability | Description |
 |---------|-------------|
@@ -57,16 +59,16 @@ Semantic ranking has three steps:
 
 In semantic ranking, the query subsystem passes search results as an input to summarization and ranking models. Because the ranking models have input size constraints and are processing intensive, search results must be sized and structured (summarized) for efficient handling.
 
-1. The semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
+1. The semantic ranker starts with a [BM25-ranked result](index-similarity-and-scoring.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
 
-1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
+1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keywords", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
 
 1. The system trims excessively long strings to ensure the overall length meets the input requirements of the summarization step. This trimming exercise is why it's important to add fields to your semantic configuration in priority order. If you have very large documents with text-heavy fields, the system ignores anything after the maximum limit.
 
    | Semantic field | Token limit |
    |-----------|-------------|
    | "title"   | 128 tokens |
-   | "keywords | 128 tokens |
+   | "keywords" | 128 tokens |
    | "content" | remaining tokens |
 
 1. The summarization output is a summary string for each document, composed of the most relevant information from each field. The system sends summary strings to the ranker for scoring, and to machine reading comprehension models for captions and answers.

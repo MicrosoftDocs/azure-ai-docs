@@ -24,6 +24,8 @@ Language identification (LID) use cases include:
 
 For speech recognition, the initial latency is higher with language identification. You should only include this optional feature as needed.
 
+For a cross-workload configuration checklist that also covers diarization, see [Configure language identification and diarization for speech transcription](configure-language-identification-diarization.md).
+
 ## Set configuration options
 
 Whether you use language identification with [speech to text](#use-speech-to-text) or with [speech translation](#run-speech-translation), there are some common concepts and configuration options.
@@ -1079,3 +1081,4 @@ For more information about containers, see the [language identification speech c
 - [Try the speech to text quickstart](get-started-speech-to-text.md)
 - [Improve recognition accuracy with custom speech](custom-speech-overview.md)
 - [Use batch transcription](batch-transcription.md)
+- [Configure language identification and diarization for transcription](configure-language-identification-diarization.md)

@@ -6,10 +6,13 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 08/21/2026
+ai-usage: ai-assisted
 ---
 
 # Security filters for trimming results in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 For search solutions that can't use the [built-in access control list (ACL) support](search-document-level-access-overview.md)  for document-level authorization, Azure AI Search supports creating a filter that trims search results based on a string containing a group or user identity.
 
@@ -64,13 +67,13 @@ In the search index, within the fields collection, you need one field that conta
 
 1. Set the field's `filterable` attribute set to `true`.
 
-1. Set the field's `retrievable` attribute to `false` so that it isn't returned as part of the search request.
+1. Set the field's `retrievable` attribute to `false` so that it isn't returned as part of the search response.
 
 1. Indexes require a document key. The "file_id" field satisfies that requirement. 
 
 1. Indexes should also contain searchable and retrievable content. The "file_name" and "file_description" fields represent that in this example.
 
-   The following index schema satisfies the field requirements. Documents that you index on Azure AI Search should have values for all of these fields, including the "group_ids". For the document with `file_name` "secured_file_b", only users that belong to group IDs "group_id1" or "group_id2" have read access to the file.
+    The following index schema satisfies the field requirements. Documents that you index on Azure AI Search should have values for all of these fields, including the `group_ids`. A query returns the document with `file_name` `secured_file_b` when its security filter includes `group_id1` or `group_id2`.
 
    ```https
    POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2026-04-01
@@ -84,6 +87,9 @@ In the search index, within the fields collection, you need one field that conta
         ]
     }
    ```
+
+> [!NOTE]
+> Setting `retrievable` to `false` prevents `group_ids` from being returned as part of a document in search results. It isn't a content-obfuscation or field-level security mechanism. In this pattern, document-level authorization is enforced by applying the security filter to every query. Don't rely on `retrievable` alone to protect sensitive information from all query features or response formats.
 
 ## Push data into your index using the REST API
 

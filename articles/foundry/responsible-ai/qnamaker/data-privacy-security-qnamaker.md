@@ -5,9 +5,8 @@ description: "This document details issues for data, privacy, and security for Q
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.subservice: azure-ai-qna-maker
 ms.date: 02/25/2021
 ---
 

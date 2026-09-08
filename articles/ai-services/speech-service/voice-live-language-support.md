@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 04/28/2026
+ms.date: 09/06/2026
 ms.custom: languages, references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
@@ -23,11 +23,11 @@ The Voice Live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used Voice Live speech input is processed either with one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`), by `azure speech to text` models, or by `mai-transcribe-1`.
+Depending on the model you use, the Voice Live API processes speech input by using one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`), `azure speech to text` models, or `mai-transcribe`.
 
 ### Azure speech to text supported languages
 
-Azure speech to text is used for all configuration where a non-multimodal model is being used and for speech input transcriptions with `phi4-mm-realtime`.
+Voice Live uses Azure speech-to-text by default with non-multimodal models and for speech input transcriptions with `phi4-mm-realtime`.
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
 
 There are three options for Voice Live language processing:
@@ -79,19 +79,20 @@ To configure a single or multiple languages not supported by the multimodal mode
 }
 ```
 
-### MAI Transcribe-1 supported languages (preview)
+### MAI Transcribe supported languages (preview)
 
-MAI Transcribe-1 (`mai-transcribe-1`) is an alternative transcription model that can be paired with any text-based chat model.
+MAI Transcribe (`mai-transcribe`) is an alternative transcription model that you can pair with any text-based chat model.
+If you configure `mai-transcribe` in voice live, the default used model is `mai-transcribe-1.5`.
 
 [!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
-To configure MAI Transcribe-1, set `model` to `mai-transcribe-1` in the `session.update` message. You can optionally specify a language code in `language` to force recognition in a single language.
+To configure MAI Transcribe, set `model` to `mai-transcribe` in the `session.update` message. You can optionally specify a language code in `language` to force recognition in a single language.
 
 ```json
 {
     "session": {
         "input_audio_transcription": {
-            "model": "mai-transcribe-1",
+            "model": "mai-transcribe",
             "language": "en"
         }
     }

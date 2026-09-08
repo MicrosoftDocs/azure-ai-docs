@@ -2,12 +2,13 @@
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 12/6/2025
+ms.date: 08/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: structured-outputs
+ai-usage: ai-assisted
 
-ms.custom: classic-and-new
+ms.custom: classic-and-new, doc-kit-assisted
 ---
 
 ## Getting started
@@ -165,3 +166,66 @@ foreach (JsonElement stepElement in structuredJson.RootElement.GetProperty("step
 ```
 
 ---
+
+## Use structured outputs with the Responses API
+
+The .NET Responses API supports JSON Schema request configuration. It returns the structured result as JSON text rather than automatically deserializing it to a .NET type.
+
+Create a file named `calendar-event-schema.json` with the schema:
+
+```json
+{
+    "type": "object",
+    "properties": {
+        "name": { "type": "string" },
+        "date": { "type": "string" },
+        "participants": {
+            "type": "array",
+            "items": { "type": "string" }
+        }
+    },
+    "required": ["name", "date", "participants"],
+    "additionalProperties": false
+}
+```
+
+Pass the schema to `ResponseTextFormat.CreateJsonSchemaFormat`, and read the JSON from `GetOutputText`:
+
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+// Create a client that uses Microsoft Entra ID.
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+ResponsesClient openAIClient = new(
+    authenticationPolicy: new BearerTokenPolicy(
+        new DefaultAzureCredential(), "https://ai.azure.com/.default"),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Configure and send the structured-output request.
+BinaryData calendarEventSchema = BinaryData.FromString(
+    File.ReadAllText("calendar-event-schema.json"));
+CreateResponseOptions options = new()
+{
+    Model = "gpt-5-mini",
+    InputItems = { ResponseItem.CreateUserMessageItem(
+        "Extract event information from: Alice and Bob are going to a science fair on Friday.") },
+    TextOptions = new ResponseTextOptions
+    {
+        TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
+            "CalendarEventResponse", calendarEventSchema,
+            jsonSchemaIsStrict: true)
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+Output:
+
+```output
+{"name":"Science Fair","date":"Friday","participants":["Alice","Bob"]}
+```

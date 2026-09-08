@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # OData $select syntax in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, the **$select** parameter specifies which fields to include in search results. This article describes the OData syntax of **$select** and provides examples.
 
 Field path construction and constants are described in the [OData language overview in Azure AI Search](query-odata-filter-orderby-syntax.md). For more information about search result composition, see [How to work with search results in Azure AI Search](search-pagination-page-layout.md).

@@ -5,8 +5,9 @@ author: challenp
 ms.author: challenp
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/03/2026
+ms.date: 09/02/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 When you deploy a model in Microsoft Foundry in Azure Government, you choose a deployment type that determines:
@@ -32,6 +33,9 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 | [Data Zone Provisioned](#data-zone-provisioned) | `DataZoneProvisionedManaged` | Within data zone | Reserved PTU | USGov Data zone + predictable throughput |
 | [Standard](#standard) | `Standard` | Single region | Pay-per-token | Regional compliance, low volume |
 | [Regional Provisioned](#regional-provisioned) | `ProvisionedManaged` | Single region | Reserved PTU | Regional compliance + throughput |
+
+> [!NOTE]
+> Payment options and PTU quota behavior vary by model. For Azure Government-specific eligibility and billing requirements, see [Provisioned throughput in Azure Government](../../openai/concepts/provisioned-throughput-gov.md).
 
 > [!NOTE]
 > Not all models support all deployment types. Check [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-gov.md) for model availability by deployment type and region.
@@ -98,7 +102,7 @@ Standard deployments are suited for low-to-medium volume workloads with high bur
 
 - SKU name in code: `ProvisionedManaged`
 
-Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTUs), which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTUs to deploy, and provides different amounts of throughput per PTU. Minimum PTU requirements vary by model. For current minimums and available capacity, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
+Regional provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTUs), which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTUs to deploy, and provides different amounts of throughput per PTU. Minimum PTU requirements vary by model. For current minimums and available capacity, see [Provisioned throughput in Azure Government](../../openai/concepts/provisioned-throughput-gov.md).
 
 ## Troubleshooting deployment issues
 
@@ -107,7 +111,7 @@ Common issues when creating or using deployments:
 | Issue | Cause | Resolution |
 |-------|-------|------------|
 | Deployment type unavailable | Model doesn't support the selected type | Check [model availability by deployment type](../concepts/models-sold-directly-by-azure-gov.md) |
-| Quota exceeded | Subscription limit reached for tokens per minute | Request quota increase at [Azure Government AOAI Quota](https://aka.ms/AOAIGovQuota) or use a different region |
+| Quota exceeded | Subscription limit reached for TPM or PTUs | Use the [Azure Government quota request form](https://aka.ms/AOAIGovQuota) to request standard or fungible PTU quota, or use a different region |
 | Region unavailable | Model not deployed in selected region | Select a region from the model's availability list |
 | Provisioned capacity unavailable | No PTU capacity in region | Try a different region or use DataZone Provisioned for broader availability |
 
@@ -124,7 +128,7 @@ Not all features of Abuse Monitoring are enabled for Azure OpenAI deployments in
 - [Foundry Models sold by Azure in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
 - [Model region availability by deployment type  in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
 - [Azure OpenAI in Azure Government quotas and limits](../../openai/quotas-limits-gov.md)
-- [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
+- [Provisioned throughput in Azure Government](../../openai/concepts/provisioned-throughput-gov.md)
 - [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
 - [Data privacy and security for Foundry Models](../../../foundry-classic/how-to/concept-data-privacy.md)
 - [High availability and disaster recovery](../../../foundry-classic/how-to/high-availability-resiliency.md)

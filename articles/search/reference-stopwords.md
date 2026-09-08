@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Stopwords reference (Microsoft analyzers)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 When text is indexed into Azure AI Search, analyzers process the text so it can be efficiently stored in a search index. During this [lexical analysis](tutorial-create-custom-analyzer.md#how-analyzers-work) process, [language analyzers](index-add-language-analyzers.md) removes stopwords specific to that language. Stopwords are non-essential words such as "the" or "an" that can be removed without compromising the lexical integrity of your content. 
 
 Stopword removal applies to all supported [Lucene and Microsoft analyzers](index-add-language-analyzers.md#supported-language-analyzers) used in Azure AI Search.

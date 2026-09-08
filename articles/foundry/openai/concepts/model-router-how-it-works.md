@@ -27,11 +27,13 @@ This article explains the capabilities, routing modes, and best practices that p
 - Familiarity with LLMs and the [Chat Completions API](/azure/ai-foundry/openai/how-to/chatgpt)
 - Understanding of the [model router overview](model-router.md)
 
-## Why Model router
+## Model router as an optimization layer
 
-Choosing the right model for every prompt is hard to do manually. Model router is a purpose-built ML model trained on hundreds of thousands of examples across diverse scenarios — from simple prompts to complex agentic workflows. It automatically matches each prompt to the best-suited model, optimizing for quality, cost, and latency.
+Choosing the right model for every prompt is difficult to do manually. Traditional optimization often requires teams to compare individual models, integrate each candidate, and maintain custom routing logic. Model router encapsulates per-request model selection in one deployment, which reduces the model-navigation work required to test a multimodel architecture.
 
-Rather than relying on static rules or manual selection, model router learns from data and adapts as models evolve.
+Model router is a purpose-built ML model trained on hundreds of thousands of examples across diverse scenarios, from simple prompts to complex agentic workflows. Rather than relying on static rules or manual selection, it matches each prompt to the best-suited eligible model based on the configured routing mode and model subset.
+
+Managed routing doesn't remove the need for evaluation. Compare model router with a meaningful workload baseline, and reevaluate after you change a routing mode or model subset. For evaluation guidance, see [Evaluate model router for your workload](../how-to/evaluate-model-router.md).
 
 ## How requests are routed
 

@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools analyzers,
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 01/29/2026
+ms.date: 07/22/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
@@ -14,6 +14,7 @@ ms.custom:
 ---
 
 # What is a Content Understanding analyzer?
+
 
 An **analyzer** in Azure Content Understanding in Foundry Tools is a configurable processing unit that defines how your content is analyzed and what information is extracted.
 
@@ -26,6 +27,9 @@ An analyzer defines:
 
 Analyzers are the core building blocks of Content Understanding. They combine content extraction, AI-powered analysis, and structured data output into a single, reusable configuration. You can use prebuilt analyzers for common scenarios or create custom analyzers tailored to your specific needs.
 
+Unless otherwise noted, examples in this article use the GA API version `2025-11-01`. Features that are labeled as preview require `2026-06-01-preview`.
+
+
 ### Analyzer types
 
 Content Understanding provides several types of analyzers:
@@ -36,6 +40,9 @@ Content Understanding provides several types of analyzers:
 - **Custom analyzers**: Analyzers you create by extending base analyzers with custom field schemas and configurations to meet your specific requirements.
 
 For more information and a complete list of available domain-specific analyzers, see [Prebuilt analyzers](prebuilt-analyzers.md).
+
+> [!NOTE]
+> Document analyzers built with API version `2026-06-01-preview` can also use [agentic mode](agentic-mode.md) for scenarios that require reasoning over evidence to build an answer, such as calculations and validation. The initial preview supports one input file per analysis request.
 
 ## Analyzer configuration structure
 
@@ -139,6 +146,33 @@ The `config` object contains all processing options that control how content is 
 ### Config object properties
 
 #### General options
+
+##### `workflow`
+- **Request values:** `"default"`, `"agentic"`
+- **Default:** `"default"`
+- **Description:** Selects the workflow when you create a document analyzer. Use `"default"`, or omit the property, to let the service select a workflow based on the analyzer configuration. Use `"agentic"` to enable [agentic mode](agentic-mode.md) for enhanced reasoning over complex documents.
+- **Response value:** The service resolves the request value when it creates the analyzer. Create or update responses and `GET` responses return a versioned workflow family value in `config.workflow`.
+- **Cost impact:** The resolved workflow family determines the contextualization rate. Values that start with `standard` use the standard contextualization rate. All other families, including `advanced`, `agentic`, and future service-supported workflow families, use the advanced contextualization rate. Agentic mode can also consume more model tokens and take longer than nonagentic analysis.
+- **Supported by:** Document analyzers with API version `2026-06-01-preview`. The initial agentic mode preview supports one input file per analysis request.
+- **Example:**
+  ```json
+  {
+    "config": {
+      "workflow": "agentic"
+    }
+  }
+  ```
+
+The following table shows how the service resolves `workflow` for custom analyzers:
+
+| Analyzer creation scenario | Request value | Returned `config.workflow` | Contextualization rate |
+|---|---|---|---|
+| API version `2025-11-01` or earlier | Not available | `standard.2025-11-01` when retrieved with the preview API | Standard |
+| Preview API without labeled data | `"default"` or omitted | `standard.2026-06-01-preview` | Standard |
+| Preview API with labeled data | `"default"` or omitted | `advanced.2026-06-01-preview` | Advanced |
+| Preview API with agentic mode | `"agentic"` | `agentic.2026-06-01-preview` | Advanced |
+
+Prebuilt analyzers return a service-assigned, versioned `standard` or `advanced` workflow value. The workflow family identifies the applicable contextualization rate.
 
 ##### `returnDetails`
 - **Default:** false (varies by analyzer)
@@ -244,7 +278,7 @@ The `config` object contains all processing options that control how content is 
   - For understanding extraction accuracy.
   - For debugging extraction issues.
   - For highlighting source text in user interfaces.
-- **Supported by:** Document analyzers (invoice, receipt, ID documents, tax forms)
+- **Supported by:** Document analyzers, for all document field types (`extract`, `classify`, and `generate` methods).
 
 #### Audio and video options
 
@@ -260,17 +294,6 @@ The `config` object contains all processing options that control how content is 
 
 >[!NOTE] 
 >For a complete list of supported languages and locales, see [Language and region support](../language-region-support.md).
-
-##### `disableFaceBlurring`
-- **Default:** false
-- **Description:** Controls whether faces in images and videos are blurred for privacy protection.
-- **When to use:**
-  - Set to `true` when face visibility is required for analysis.
-  - Set to `false` when de-identification of individuals in shared content is desired.
-- **Supported by:** `prebuilt-image`, `prebuilt-video`
-
-> [!IMPORTANT]
-> The Face capabilities feature in Content Understanding is a Limited Access service and registration is required for access. Face grouping and identification feature in Content Understanding is limited based on eligibility and usage criteria. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see the [Responsible AI investments and safeguards for facial recognition](../../cognitive-services-limited-access.md).
 
 #### Classification options
 
@@ -377,7 +400,7 @@ Field schemas transform unstructured content into structured, queryable data. Th
           }
         },
         "description": "List of items on the invoice, typically in a table format",
-        "method": "generative"
+        "method": "generate"
       }
     }
   }
@@ -403,6 +426,7 @@ Each field in the `fields` object has the following properties:
 #### `type`
 - **Supported values:** `"string"`, `"number"`, `"boolean"`, `"date"`, `"object"`, `"array"`
 - **Description:** Data type of the field value. Choose the type that best matches your data semantics for optimal extraction.
+- **Automatic normalization:** For supported typed fields, Content Understanding automatically normalizes the returned value to a canonical format (for example, a consistent date format).
 
 #### `description`
 - **Description:** Clear explanation of what the field contains and where to find it. The AI model processes this description as a mini-prompt to guide field extraction, so specificity and clarity directly improve extraction accuracy.
@@ -414,7 +438,7 @@ For information about writing effective field descriptions, see [Best practices 
 - **Description:** Extraction method to use for this field. When you don't specify a method, the system automatically determines the best method based on the field type and description.
 - **Method types:**
   - `"generate"` - Values are generated freely based on the content by using AI models (best for complex or variable fields requiring interpretation)
-  - `"extract"` - Values are extracted as they appear in the content (best for literal text extraction from specific locations). Extract requires `enableSourceGroundingAndConfidence` to be set to true for this field.
+  - `"extract"` - Values are extracted as they appear in the content (best for literal text extraction from specific locations). Extract requires `estimateSourceAndConfidence` to be set to `true` for this field.
   - `"classify"` - Values are classified against a predefined set of categories (best when using `enum` with a fixed set of possible values)
 
 ##### `estimateSourceAndConfidence`
@@ -425,7 +449,7 @@ For information about writing effective field descriptions, see [Best practices 
   - For understanding extraction accuracy.
   - For debugging extraction issues.
   - For highlighting source text in user interfaces.
-- **Supported by:** Document analyzers (invoice, receipt, ID documents, tax forms)
+- **Supported by:** Document analyzers, for all document field types (`extract`, `classify`, and `generate` methods).
 
 #### `items` (for array types)
 - **Description:** Defines the structure of items in the array
@@ -526,7 +550,7 @@ Here's a comprehensive example of a custom invoice analyzer configuration that d
           }
         },
         "description": "List of items or services on the invoice, typically in a table format",
-        "method": "generative"
+        "method": "generate"
       },
       "Subtotal": {
         "type": "number",
@@ -535,16 +559,16 @@ Here's a comprehensive example of a custom invoice analyzer configuration that d
       },
       "Tax": {
         "type": "number",
-        "description": "Tax amount",
+        "description": "Tax amount"
       },
       "Total": {
         "type": "number",
-        "description": "Total amount due (Subtotal + Tax)",
+        "description": "Total amount due (Subtotal + Tax)"
       },
       "PaymentTerms": {
         "type": "string",
-        "description": "Payment terms and conditions (e.g., 'Net 30', 'Due upon receipt')",
-        "method": "generative"
+        "description": "Payment terms and conditions (for example, 'Net 30', 'Due upon receipt')",
+        "method": "generate"
       }
     }
   },
@@ -582,7 +606,7 @@ Replace the following placeholders:
 
 ### Request body
 
-The analyzer configuration file should be a JSON object containing the properties described in this reference. For a complete example, see the [Create Custom Analyzer tutorial](..\tutorial\create-custom-analyzer.md).
+The analyzer configuration file should be a JSON object containing the properties described in this reference. For a complete example, see the [Create a custom analyzer tutorial](../tutorial/create-custom-analyzer.md).
 
 ### Response
 
@@ -633,14 +657,12 @@ Different content types support different configuration options. Here's a quick 
 - ✅ `contentCategories`
 - ✅ `enableSegment`
 - ✅ `omitContent`
-- ✅ `disableFaceBlurring`
 
 ### Image analyzers
 **Base analyzer:** `prebuilt-image`
 
 **Supported configuration options:**
 - ✅ `returnDetails`
-- ✅ `disableFaceBlurring`
 
 ## Content filter results in the analyze response
 
@@ -710,5 +732,6 @@ If you need to reduce or disable a filter category in a way that isn't permitted
 * Explore [analyzer templates](analyzer-templates.md) to get started quickly.
 * Create your own analyzer by following the [custom analyzer tutorial](../tutorial/create-custom-analyzer.md). 
 * Understand [best practices](best-practices.md) for optimal extraction results.
+* Learn about [agentic mode](agentic-mode.md) for complex, reasoning-heavy document scenarios.
 * Review [document elements](../document/elements.md) and [video elements](../video/elements.md) for details on extracted content.
 * Get started by creating and testing analyzers in [Foundry](../quickstart/use-ai-foundry.md).

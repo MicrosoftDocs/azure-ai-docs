@@ -17,6 +17,7 @@ ms.author: pafarley
 | Azerbaijani | `az-AZ` |
 | Basque | `eu-ES` |
 | Bengali | `bn-IN` |
+| Bhojpuri | `bho-IN` |
 | Bosnian | `bs-BA` |
 | Bulgarian | `bg-BG` |
 | Burmese | `my-MM` |

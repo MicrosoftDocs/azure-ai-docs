@@ -6,12 +6,16 @@ ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: reference
-ms.date: 04/22/2026
+ms.date: 08/08/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Document Layout skill
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 The **Document Layout** skill uses the [layout model](/azure/ai-services/document-intelligence/concept-layout) from Azure Document Intelligence in Foundry Tools to analyze a document, detect its structure and characteristics, and produce a syntactical representation in Markdown or text format. This skill supports text and image extraction, the latter of which includes location metadata that preserves image position within a document. Image proximity to related content is beneficial in retrieval-augmented generation (RAG) and [multimodal search](multimodal-search-overview.md) scenarios.
 
@@ -40,7 +44,7 @@ Supported regions vary by modality and how the skill connects to the Azure Docum
 |----------|-------------|
 | [**Import data** wizard](search-import-data-portal.md) | Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in one of the following regions: East US, West Europe 2, or North Central US. | 
 | Programmatic, using a [Microsoft Foundry resource key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create an Azure AI Search service and Microsoft Foundry resource in the same region. The region must support both [Azure AI Search and Azure Document Intelligence](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
-| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | No same-region requirement. Create an Azure AI Search service and Microsoft Foundry resource in any region where [each service is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
+| Programmatic, using [Microsoft Entra ID authentication](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | No same-region requirement. Create an Azure AI Search service and Microsoft Foundry resource in any region where [each service is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 
 ## Supported file formats
 
@@ -118,6 +122,8 @@ Alternatively, it can be defined as:
 The file reference object can be generated in one of following ways:
 
 + Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to true. This setting creates a path `/document/file_data` that's an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Azure Blob storage.
+
+  `allowSkillsetToReadFileData` makes the downloaded file data available to the skill. It doesn't increase the [blob indexer limits](search-limits-quotas-capacity.md#indexer-limits) or the Document Intelligence limits described in [Data limits](#data-limits).
 
 + Having a custom skill returning a JSON object definition that provides `$type`, `data`, or `url` and `sastoken`. The `$type` parameter must be set to `file`, and  `data` must be the base 64-encoded byte array of the file content. The `url` parameter must be a valid URL with access for downloading the file at that location.
 

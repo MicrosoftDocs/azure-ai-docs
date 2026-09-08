@@ -8,15 +8,18 @@ author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 08/29/2025
+ms.date: 08/31/2026
 ms.topic: how-to
 ms.custom: prompt
 ms.collection: ce-skilling-ai-copilot 
+ai-usage: ai-assisted
 ---
 
-# Get started with RAG using a prompt flow sample (preview)
+# Get started with RAG using a prompt flow sample
 
-In this article, you learn how to use retrieval-augmented generation (RAG) by creating a prompt flow. A prompt is an input—a text command or question—provided to an AI model to generate desired output such as content or answers. The process of crafting effective and efficient prompts is called prompt design or prompt engineering. [Prompt flow](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/harness-the-power-of-large-language-models-with-azure-machine-learning-prompt-fl/3828459) is the interactive editor in Azure Machine Learning for prompt engineering projects. To get started, you can create a prompt flow sample that uses RAG from the samples gallery in Azure Machine Learning. You can use this sample to learn how to use Vector Index in a prompt flow. 
+[!INCLUDE [prompt-flow-retirement](includes/prompt-flow-retirement.md)]
+
+In this article, you learn how to use retrieval-augmented generation (RAG) by creating a prompt flow. [Prompt flow](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/harness-the-power-of-large-language-models-with-azure-machine-learning-prompt-fl/3828459) is the interactive editor in Azure Machine Learning for prompt engineering. To get started, create a prompt flow sample that uses RAG from the samples gallery, and use it to learn how Vector Index works in a prompt flow.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -25,11 +28,14 @@ In this article, you learn how to use retrieval-augmented generation (RAG) by cr
 
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Access to Azure OpenAI.
+* An Azure Machine Learning workspace. If you don't have one, [create a workspace](quickstart-create-resources.md) before you begin.
+
+* Access to Azure OpenAI in Microsoft Foundry Models.
 
 * Prompt flow enabled in your Azure Machine Learning workspace.
 
-To enable prompt flow in your Azure Machine Learning workspace, turn on **Build AI solutions with Prompt flow** in the **Manage preview features** panel.
+> [!NOTE]
+> To enable prompt flow, turn on **Build AI solutions with Prompt flow** in the **Manage preview features** pane of your Azure Machine Learning workspace.
 
 
 ## Create a prompt flow using the samples gallery
@@ -51,7 +57,7 @@ To enable prompt flow in your Azure Machine Learning workspace, turn on **Build 
 :::image type="content" source="./media/how-to-use-retrieval-augmented-generation/flow.png" alt-text="Screenshot showing the prompt flow sample.":::
 
 
-## Next steps
+## Related content
 
 [Use Azure Machine Learning pipelines with no code to construct RAG pipelines (preview)](how-to-use-pipelines-prompt-flow.md)
 

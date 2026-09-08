@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An overview of the named entity recognition feature in Azure Language, which helps you extract categories of entities in text.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 03/30/2026
 ms.author: lajanuar

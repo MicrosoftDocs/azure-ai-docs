@@ -12,6 +12,8 @@ ms.date: 04/24/2026
 
 # Rewrite queries with semantic ranker in Azure AI Search (Preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Query rewriting is the process of transforming a user's query into a more effective one, adding more terms and refining search results. The search service sends the search query (or a variation of it) to a generative model that generates alternative queries. 
@@ -42,12 +44,12 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 
 ## Make a search request with query rewrites
 
-In this REST API example, use [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to formulate the request.
+In this REST API example, use [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to formulate the request.
 
 1. Paste the following request into a web client as a template. 
 
     ```http
-    POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
+    POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-08-01-preview
     {
         "search": "newer hotel near the water with a great restaurant",
         "semanticConfiguration":"en-semantic-config",
@@ -198,7 +200,7 @@ Here's an example of a query that includes a vector query with query rewrites. M
 - The "text" value is the same as the "search" value. These values must be identical for query rewriting to work.
 
 ```http
-POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-08-01-preview
 {
     "search": "newer hotel near the water with a great restaurant",
     "vectorQueries": [

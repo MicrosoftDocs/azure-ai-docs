@@ -7,13 +7,23 @@ ms.date: 05/20/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As an AI developer running agents outside Foundry, I want to register them in Foundry so that I can use Foundry's trace view and evaluation experiences without migrating my runtime.
 ---
 
 # Register external agents for observability and evaluation (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+> [!IMPORTANT]
+> When you use external agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. 
+>
+> If you use external agents with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs.  
+>
+> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it is important to review their data practices.  It is your responsibility to manage whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned. 
+>
+>  You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../observability/concepts/trace-data.md). 
+
 Microsoft Foundry Agent Service lets you register agents that run outside Foundry, on any cloud, on-premises, or other host, so you can use Foundry's trace view and evaluation experiences. Foundry stores only registration metadata for these agents. It doesn't host, proxy, or invoke the runtime.
 
 External agents differ from [Control Plane custom agents](../../control-plane/register-custom-agent.md), which route traffic through an AI Gateway. With external agents, your agent keeps its existing endpoint and shares only OpenTelemetry telemetry. No AI Gateway is required.
@@ -93,7 +103,7 @@ use_microsoft_opentelemetry(
 )
 ```
 
-Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable on the host where the agent runs. Use the connection string from the Application Insights resource linked to your Foundry project. To find the connection string, open the [Foundry portal](https://ai.azure.com), navigate to your project, and select **Management** > **Connected resources**. Select the Application Insights resource to view its connection string. Alternatively, open the Application Insights resource directly in the Azure portal and copy the connection string from the **Overview** page.
+Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable on the host where the agent runs. Use the connection string from the Application Insights resource linked to your Foundry project. To find the connection string, open the [Foundry portal](https://ai.azure.com), navigate to your project, and select **Manage** > **Project details** > **Connected resources**. Select the Application Insights resource to view its connection string. Alternatively, open the Application Insights resource directly in the Azure portal and copy the connection string from the **Overview** page.
 
 After configuration, subsequent OpenTelemetry spans from your agent framework automatically flow to Application Insights. Each span must set the `gen_ai.agent.id` attribute to the value you choose as `otel_agent_id` during registration.
 
@@ -119,7 +129,7 @@ After the agent emits spans to Application Insights, register it in Foundry so t
 ### Install the SDK
 
 ```bash
-pip install azure-ai-projects>=2.2.0 azure-identity>=1.17.0
+pip install azure-ai-projects>=2.3.0 azure-identity>=1.17.0
 ```
 
 ### Create the registration
@@ -178,6 +188,63 @@ Resolved otel_agent_id: travel-planner-agent-v1
 
 The `create_version()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
 
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+Set the `FOUNDRY_PROJECT_ENDPOINT` environment variable to your project endpoint. Find this value on the project's **Overview** page in the Foundry portal.
+
+Install the required packages:
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const agentName = "travel-planner-agent";
+// Set explicitly when the running agent emits a gen_ai.agent.id value
+// that differs from the Foundry agent name.
+const otelAgentId = "travel-planner-agent-v1";
+
+// Register the externally hosted agent. External agents are a preview
+// feature, so the `ExternalAgents=V1Preview` opt-in is required.
+const agent = await project.agents.createVersion(
+  agentName,
+  {
+    kind: "external",
+    otel_agent_id: otelAgentId,
+  },
+  {
+    foundryFeatures: "ExternalAgents=V1Preview",
+    description: "Travel planning agent hosted externally.",
+  },
+);
+
+console.log(`Registered external agent: ${agent.name}`);
+console.log(`Resolved otel_agent_id: ${otelAgentId}`);
+```
+
+```output
+Registered external agent: travel-planner-agent
+Resolved otel_agent_id: travel-planner-agent-v1
+```
+
+> [!NOTE]
+> The `otel_agent_id` field is optional and defaults to the agent `name`. Set it explicitly only when the running agent already emits a stable `gen_ai.agent.id` value that differs from the Foundry agent name.
+
+The `createVersion()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
 ---
 
 ## Verify traces in the Foundry portal
@@ -207,15 +274,37 @@ After traces flow into Application Insights, you can run evaluations directly ov
 
 To get the agent's ID for traces, use the following:
 
+### [Foundry portal](#tab/portal)
+
+Open the external agent in the Foundry portal to view its traces. To retrieve the resolved `otel_agent_id` in code, use one of the SDK tabs.
+
+### [Python SDK](#tab/python)
+
 ```python
 # Retrieve the registered agent and its resolved otel_agent_id.
 agent = project.agents.get(agent_name="travel-planner-agent")
 otel_agent_id = agent.versions.latest.definition.otel_agent_id
 ```
 
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+// Retrieve the registered agent and its resolved otel_agent_id.
+const agent = await project.agents.get("travel-planner-agent");
+const definition = agent.versions.latest.definition;
+if (definition.kind !== "external") {
+  throw new Error(
+    `Expected an external agent definition, got "${definition.kind}".`,
+  );
+}
+const otelAgentId = definition.otel_agent_id;
+```
+
+---
+
 ### Create and run the evaluation
 
-Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. For the full walkthrough, including how to create an eval group, configure testing criteria, and interpret results, see [Trace evaluation (preview)](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
+Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. For the full walkthrough, including how to create an eval group, configure testing criteria, and interpret results, see [Trace evaluation (preview)](../../observability/how-to/cloud-evaluation-deployed-interactions.md#evaluate-traces-preview).
 
 ## Manage external agents
 
@@ -223,19 +312,54 @@ Use the same SDK methods to list, retrieve, and delete external agents.
 
 ### List external agents
 
+### [Foundry portal](#tab/portal)
+
+In the Foundry portal, select **Build** > **Agents** to view registered external agents.
+
+### [Python SDK](#tab/python)
+
 ```python
 agents = project.agents.list(kind="external")
 for a in agents:
     print(a.name)
 ```
 
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+const agents = project.agents.list({ kind: "external" });
+for await (const agent of agents) {
+  console.log(agent.name);
+}
+```
+
+---
+
 ### Delete an external agent
+
+### [Foundry portal](#tab/portal)
+
+Use one of the SDK tabs to delete an external agent registration. Deleting the registration doesn't affect the externally hosted agent.
+
+### [Python SDK](#tab/python)
 
 ```python
 # Delete the registration. This does not affect the running agent.
 # force=True removes all internal revisions of the agent atomically.
 project.agents.delete(agent_name="travel-planner-agent", force=True)
 ```
+
+### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+// Delete the registration. This does not affect the running agent.
+// force: true removes all internal revisions of the agent atomically.
+await project.agents.delete("travel-planner-agent", { force: true });
+```
+
+---
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 Deleting the registration removes the agent from the Foundry portal and stops traces from appearing in the Foundry agent trace view. The spans remain in Application Insights, and the running agent is not affected.
 
@@ -255,13 +379,21 @@ For more troubleshooting guidance, see [Troubleshoot evaluation and observabilit
 
 ### Troubleshoot registration errors
 
-If `create_version()` fails, check the following items:
+If `create_version()` (Python) or `createVersion()` (JavaScript/TypeScript) fails, check the following items:
 
 > [!div class="checklist"]
-> * You constructed `AIProjectClient` with `allow_preview=True`. Without this flag, external agent requests are rejected.
+> * You constructed `AIProjectClient` with `allow_preview=True` (Python), or you passed `foundryFeatures: "ExternalAgents=V1Preview"` on the `createVersion` call (JavaScript/TypeScript). Without this opt-in, external agent requests are rejected.
 > * Your identity has the **Foundry User** role (or higher) on the project.
-> * The `agent_name` value uses only alphanumeric characters, hyphens, and underscores.
+> * The agent name value uses only alphanumeric characters, hyphens, and underscores.
 > * No existing agent with the same name and a different kind already exists. Use `project.agents.get()` to check.
+
+## Current limitations
+
+The following Foundry features aren't currently supported for external agents:
+
+- [Human evaluation](../../observability/how-to/human-evaluation.md) — Manual review workflows aren't available for externally registered agents.
+- [Convert agent traces into evaluation datasets](../../observability/how-to/traces-to-dataset.md) — Trace-to-dataset conversion isn't supported for external agents.
+- [AI red teaming](../../concepts/ai-red-teaming-agent.md) — Red teaming scans can't target external agents.
 
 ## Related content
 
@@ -272,4 +404,4 @@ If `create_version()` fails, check the following items:
 - [Register and manage custom agents (Control Plane)](../../control-plane/register-custom-agent.md)
 - [Built-in evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md)
 - [Azure Monitor OpenTelemetry overview](/azure/azure-monitor/app/opentelemetry-enable)
-- [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md#prerequisites)
+- [Run cloud evaluations](../../observability/how-to/cloud-evaluation.md)

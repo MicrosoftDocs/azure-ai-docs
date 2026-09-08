@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn how to migrate your applications from Translator Text API v3.0 to the latest generally available release, API version 2026-06-06.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: concept-article
 ms.date: 06/02/2026
 ms.author: lajanuar

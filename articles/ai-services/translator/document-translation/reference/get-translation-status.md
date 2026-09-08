@@ -5,7 +5,7 @@ description: The get translation status method returns the status for a document
 manager: mcleans
 ms.author: lajanuar
 author: laujan
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ---

@@ -3,7 +3,7 @@
  description: Language playground layout and page orientation
  #services: cognitive-services
  author: laujan
- ms.service: azure-ai-language
+ ms.service: azure-language-foundry-tools
  ms.topic: include
  ms.date: 01/07/2026
  ms.author: lajanuar

@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Index nested Markdown blobs from Azure Storage using REST
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search can index Markdown documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read Markdown data.
 
 This tutorial shows you how to index Markdown files using the `oneToMany` Markdown parsing mode and the [Search Service REST APIs](/rest/api/searchservice/).

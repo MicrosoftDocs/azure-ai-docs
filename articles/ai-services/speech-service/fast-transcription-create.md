@@ -30,6 +30,9 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 [!INCLUDE [transcription-features](includes/transcription-features.md)]
 
+> [!TIP]
+> For guidance on choosing candidate locales, using the multilingual model, enabling diarization, and verifying `locale` and `speaker` in the response, see [Configure language identification and diarization for speech transcription](configure-language-identification-diarization.md).
+
 
 ::: zone pivot="ai-foundry"
 

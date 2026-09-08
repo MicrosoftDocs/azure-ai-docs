@@ -558,6 +558,192 @@ translationRecognizer, err := speech.NewTranslationRecognizerFromAutoDetectSourc
 
 For a complete code sample, see [language identification](../../../language-identification.md?pivots=programming-language-go#run-speech-translation).
 
+## Using live interpreter for real-time speech-to-speech translation with personal voice
+
+Live Interpreter continuously identifies the language being spoken without requiring you to set an input language. It delivers low-latency speech-to-speech translation in a natural voice that preserves the speaker's style and tone. 
+
+To use the Live Interpreter API, first [apply for personal voice access](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, make sure that it's in one of the regions that support Live Interpreter. See the [Speech service regions table](../../../regions.md?tabs=speech-translation) for current regional availability.
+
+After personal voice access permission is granted, you can enable Live Interpreter with the following code:
+
+```go
+// Replace YourResourceName with your Speech resource name
+endpoint := "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/universal/v2"
+
+// Store your Speech resource key securely, for example, in an environment variable
+speechKey := os.Getenv("SPEECH_KEY")
+speechTranslationConfig, err := speech.NewSpeechTranslationConfigFromEndpointWithSubscription(endpoint, speechKey)
+if err != nil {
+    fmt.Println("Error creating translation config:", err)
+    return
+}
+defer speechTranslationConfig.Close()
+
+// Translation target language and enable personal voice
+speechTranslationConfig.AddTargetLanguage("zh-Hans")
+speechTranslationConfig.SetVoiceName("personal-voice")
+
+// You don't need to define any candidate languages to detect.
+autoDetectSourceLanguageConfig, err := speech.NewAutoDetectSourceLanguageConfigFromOpenRange()
+if err != nil {
+    fmt.Println("Error creating auto detect config:", err)
+    return
+}
+defer autoDetectSourceLanguageConfig.Close()
+```
+
+Below is a more detailed example:
+
+```go
+// Live Interpreter: real-time speech-to-speech translation with personal voice.
+package main
+
+import (
+    "fmt"
+    "os"
+    "sync"
+
+    "github.com/Microsoft/cognitive-services-speech-sdk-go/audio"
+    "github.com/Microsoft/cognitive-services-speech-sdk-go/common"
+    "github.com/Microsoft/cognitive-services-speech-sdk-go/speech"
+)
+
+func main() {
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // Set your test WAV file here.
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    audioFile := "<TEST_FILE>"
+
+    // Translation target language.
+    targetLanguage := "zh-Hans"
+
+    // Live Interpreter requires the universal v2 endpoint, created with FromEndpoint. Replace
+    // YourResourceName with your Speech resource name. You can also use the regional form:
+    //   wss://<region>.stt.speech.microsoft.com/speech/universal/v2
+    endpoint := "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/universal/v2"
+
+    // Store your key securely (for example in an environment variable); never hardcode it in source.
+    speechKey := os.Getenv("SPEECH_KEY")
+
+    speechTranslationConfig, err := speech.NewSpeechTranslationConfigFromEndpointWithSubscription(endpoint, speechKey)
+    if err != nil {
+        fmt.Println("Error creating translation config:", err)
+        return
+    }
+    defer speechTranslationConfig.Close()
+
+    // Set the translation target language and enable personal voice.
+    if err := speechTranslationConfig.AddTargetLanguage(targetLanguage); err != nil {
+        fmt.Println("Error adding target language:", err)
+        return
+    }
+    if err := speechTranslationConfig.SetVoiceName("personal-voice"); err != nil {
+        fmt.Println("Error setting voice name:", err)
+        return
+    }
+
+    // You don't need to define any candidate languages to detect.
+    autoDetectSourceLanguageConfig, err := speech.NewAutoDetectSourceLanguageConfigFromOpenRange()
+    if err != nil {
+        fmt.Println("Error creating auto detect config:", err)
+        return
+    }
+    defer autoDetectSourceLanguageConfig.Close()
+
+    audioConfig, err := audio.NewAudioConfigFromWavFileInput(audioFile)
+    if err != nil {
+        fmt.Println("Error creating audio config:", err)
+        return
+    }
+    defer audioConfig.Close()
+
+    recognizer, err := speech.NewTranslationRecognizerFromAutoDetectSourceLangConfig(
+        speechTranslationConfig, autoDetectSourceLanguageConfig, audioConfig)
+    if err != nil {
+        fmt.Println("Error creating translation recognizer:", err)
+        return
+    }
+    defer recognizer.Close()
+
+    stopTranslation := make(chan struct{})
+    var stopOnce sync.Once
+    signalStop := func() { stopOnce.Do(func() { close(stopTranslation) }) }
+
+    // Index of the output audio files.
+    audioIndex := 0
+
+    recognizer.Recognizing(func(event speech.TranslationRecognitionEventArgs) {
+        defer event.Close()
+        lid := event.Result.Properties.GetProperty(common.SpeechServiceConnectionAutoDetectSourceLanguageResult, "")
+        fmt.Printf("RECOGNIZING in '%s': Text=%s\n", lid, event.Result.Text)
+        for lang, translation := range event.Result.GetTranslations() {
+            fmt.Printf("    TRANSLATING into '%s': %s\n", lang, translation)
+        }
+    })
+
+    recognizer.Recognized(func(event speech.TranslationRecognitionEventArgs) {
+        defer event.Close()
+        switch event.Result.Reason {
+        case common.TranslatedSpeech:
+            lid := event.Result.Properties.GetProperty(common.SpeechServiceConnectionAutoDetectSourceLanguageResult, "")
+            fmt.Printf("RECOGNIZED in '%s': Text=%s\n", lid, event.Result.Text)
+            for lang, translation := range event.Result.GetTranslations() {
+                fmt.Printf("    TRANSLATED into '%s': %s\n", lang, translation)
+            }
+        case common.RecognizedSpeech:
+            fmt.Printf("RECOGNIZED: Text=%s\n", event.Result.Text)
+            fmt.Println("    Speech not translated.")
+        case common.NoMatch:
+            fmt.Println("NOMATCH: Speech could not be recognized.")
+        }
+    })
+
+    recognizer.Synthesizing(func(event speech.TranslationSynthesisEventArgs) {
+        defer event.Close()
+        audioData := event.Result.GetAudioData()
+        fmt.Printf("Audio synthesized: %d byte(s)\n", len(audioData))
+        if len(audioData) > 0 {
+            audioIndex++
+            outputFile := fmt.Sprintf("YourAudioFile-%d.wav", audioIndex)
+            if err := os.WriteFile(outputFile, audioData, 0644); err != nil {
+                fmt.Println("Error writing audio:", err)
+            }
+        }
+    })
+
+    recognizer.Canceled(func(event speech.TranslationRecognitionCanceledEventArgs) {
+        defer event.Close()
+        // For file input, translation ends with Reason=EndOfStream — that is normal completion.
+        fmt.Printf("CANCELED: Reason=%v\n", event.Reason)
+        if event.Reason == common.Error {
+            fmt.Printf("CANCELED: ErrorCode=%v\n", event.ErrorCode)
+            fmt.Printf("CANCELED: ErrorDetails=%s\n", event.ErrorDetails)
+            fmt.Println("CANCELED: Did you set the resource key and enable personal voice access?")
+        }
+        signalStop()
+    })
+
+    recognizer.SessionStopped(func(event speech.SessionEventArgs) {
+        defer event.Close()
+        fmt.Println("Session stopped.")
+        signalStop()
+    })
+
+    fmt.Println("Start translation...")
+    if err := <-recognizer.StartContinuousRecognitionAsync(); err != nil {
+        fmt.Println("Error starting continuous recognition:", err)
+        return
+    }
+
+    // Wait for completion (end-of-stream cancellation or session stop).
+    <-stopTranslation
+
+    if err := <-recognizer.StopContinuousRecognitionAsync(); err != nil {
+        fmt.Println("Error stopping continuous recognition:", err)
+    }
+}
+```
+
 ## Clean up resources
 
 [!INCLUDE [Delete resource](../../common/delete-resource.md)]

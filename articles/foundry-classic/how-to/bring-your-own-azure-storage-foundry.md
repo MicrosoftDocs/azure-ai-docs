@@ -3,8 +3,8 @@ title: "Connect to your own storage (classic)"
 ms.reviewer: andyaviles
 description: "Learn how to bring your own storage to Microsoft Foundry for agents, evaluations, datasets, and other capabilities. (classic)"
 # customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own storage instead of Microsoft-managed storage.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.custom:

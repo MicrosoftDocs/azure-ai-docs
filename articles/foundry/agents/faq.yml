@@ -8,13 +8,14 @@ metadata:
   ms.service: microsoft-foundry
   ms.subservice: foundry-agent-service
   ms.topic: faq
-  ms.date: 03/11/2026
+  ms.date: 08/21/2026
   ms.author: aahi
   author: aahill
   ms.custom:
   - references_regions
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
+  ai-usage: ai-assisted
 title: Foundry Agent Service frequently asked questions
 summary: |
   Find answers to common questions about Foundry Agent Service.
@@ -86,6 +87,8 @@ sections:
         answer: |
           * Basic setup supports Microsoft-managed keys only.  
           * Standard setup supports customer-managed keys (CMKs).
+
+          For coverage details across Foundry capabilities, see [Customer-managed key encryption in Microsoft Foundry](../concepts/customer-managed-keys.md).
       - question: |
           Does Microsoft use my data for training models? 
         answer: |
@@ -113,7 +116,7 @@ sections:
       - question: |
           Where can I learn about tools like Code Interpreter and File Search?
         answer: |
-          Start with [Tools overview](./concepts/tool-catalog.md), then see the tool-specific guidance:
+          Start with [Toolbox overview](./concepts/toolbox-overview.md), then see the tool-specific guidance:
       - question: |
           How do I bring my own storage, Azure Cosmos DB, or Azure AI Search for agent data?
         answer: |
@@ -200,5 +203,5 @@ additionalContent: |
   - [What is Foundry Agent Service?](overview.md)
   - [Set up your environment](environment-setup.md)
   - [Quickstart: Create a new agent](../quickstarts/get-started-code.md)
-  - [Tools overview](./concepts/tool-catalog.md)
+  - [Toolbox overview](./concepts/toolbox-overview.md)
   - [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md)

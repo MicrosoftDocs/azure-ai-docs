@@ -6,9 +6,13 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 01/19/2026
+ms.date: 08/25/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
+
+> [!NOTE]
+> These steps require the Azure CLI version 2.80.0 or later and the **Contributor** or **Owner** role on the resource group. Run `az version` to check your version and `az upgrade` if you need a newer one. Run `az login` to sign in before you start. For supported regions, see [Region support](../reference/region-support.md).
 
 1. Create a resource group or use an existing one. For example, create `my-foundry-rg` in `eastus`:
 
@@ -16,30 +20,37 @@ ms.custom: include
    az group create --name my-foundry-rg --location eastus
    ```
 
-1. Create the Foundry resource. For example, create `my-foundry-resource` in the `my-foundry-rg` resource group:
+   Verify that the resource group exists:
+
+   ```azurecli
+   az group show --name my-foundry-rg --query properties.provisioningState --output tsv
+   ```
+
+   The output shows `Succeeded`.
+
+1. Create the Foundry resource with project management enabled. For example, create `my-foundry-resource` in the `my-foundry-rg` resource group:
 
    ```azurecli
    az cognitiveservices account create \
        --name my-foundry-resource \
        --resource-group my-foundry-rg \
        --kind AIServices \
-       --sku s0 \
+       --sku S0 \
        --location eastus \
-      --allow-project-management
+       --custom-domain my-foundry-resource \
+       --assign-identity \
+       --allow-project-management true
    ```
 
-   The `--allow-project-management` flag enables project creation within this resource.
+   Use these values:
 
-1. Create a custom subdomain for the resource. The custom domain name must be globally unique. If `my-foundry-resource` is taken, try a more unique name.
+   | Parameter | Purpose |
+   |---|---|
+   | `--assign-identity` | Creates the managed identity that project management requires. Without it, project creation fails with an error that a managed identity must be enabled on the resource. |
+   | `--allow-project-management` | Enables project management. You can't change this setting after you create the resource. |
+   | `--custom-domain` | Must be globally unique. If `my-foundry-resource` is taken, the command fails with `CustomDomainInUse`. Choose a different name and run the command again. |
 
-   ```azurecli
-   az cognitiveservices account update \
-       --name my-foundry-resource \
-       --resource-group my-foundry-rg \
-       --custom-domain my-foundry-resource
-   ```
-
-1. Create the project. For example, create `my-foundry-project` in the `my-foundry-resource`:
+1. Create a project. For example, create `my-foundry-project` in the `my-foundry-resource`:
 
    ```azurecli
    az cognitiveservices account project create \
@@ -49,15 +60,27 @@ ms.custom: include
        --location eastus
    ```
 
+1. Verify that the resource is provisioned:
+
+   ```azurecli
+   az cognitiveservices account show \
+       --name my-foundry-resource \
+       --resource-group my-foundry-rg \
+       --query properties.provisioningState --output tsv
+   ```
+
+   The output should show `Succeeded`. If the output shows a different state, check your permissions, region availability, and resource quotas. For more help, see [Create a multi-service resource](../../ai-services/multi-service-resource.md).
+
 1. Verify the project was created:
 
    ```azurecli
    az cognitiveservices account project show \
        --name my-foundry-resource \
        --resource-group my-foundry-rg \
-       --project-name my-foundry-project
+       --project-name my-foundry-project \
+       --query properties.provisioningState --output tsv
    ```
 
-   The output displays the project properties, including its resource ID.
+   The output should show `Succeeded`. If the command fails with a message that a managed identity must be enabled, confirm that you created the resource with `--assign-identity`.
 
-Reference: [az cognitiveservices account](/cli/azure/cognitiveservices/account)
+Reference: [az cognitiveservices account project](/cli/azure/cognitiveservices/account/project)

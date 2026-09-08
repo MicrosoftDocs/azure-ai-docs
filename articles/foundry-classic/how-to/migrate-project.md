@@ -52,7 +52,7 @@ Previously, Foundry project's capabilities required the management of multiple A
 
 New capabilities include:
 
-- **Access to [Foundry API](/rest/api/aifoundry/aiproject/)** which is designed to build and evaluate API-first agentic applications that compose Agents, Evaluations, Models Indexes, Data in a unified experience, and with a consistent contract across model providers.
+- **Access to [Foundry API](https://ai.azure.com/api-reference/)** which is designed to build and evaluate API-first agentic applications that compose Agents, Evaluations, Models Indexes, Data in a unified experience, and with a consistent contract across model providers.
 
 - **[Microsoft Foundry SDK](./develop/sdk-overview.md)** wraps the Foundry API making it easy to integrate capabilities into code whether your application is built in Python, C#, JavaScript/TypeScript or Java.
 
@@ -219,7 +219,7 @@ To move from the preview of Agent service to Agent service in general availabili
 
     This snippet authenticates to your Foundry project using the Azure Identity library and creates a project client instance. The `endpoint` is your Foundry project endpoint; the `DefaultAzureCredential` uses your Azure credentials for authentication.
 
-    Reference: [AIProjectClient](/rest/api/aifoundry/), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects)
+    Reference: [AIProjectClient](https://ai.azure.com/api-reference), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects)
 
 1. Update your script to reflect any class structure changes between the preview and stable SDK packages.
 

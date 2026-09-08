@@ -6,8 +6,9 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/08/2026
+ms.date: 08/27/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -15,6 +16,7 @@ ms.custom: include
 [!INCLUDE [azure-subscription](azure-subscription.md)]
 
 - [!INCLUDE [rbac-create](rbac-create.md)]
+- [Azure CLI](/cli/azure/install-azure-cli). Run `az login`, and then run `az account show` to verify your active subscription.
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 
 ## Create a basic Foundry configuration
@@ -22,6 +24,23 @@ ms.custom: include
 # [AzAPI Provider](#tab/azapi)
 
 1. Create a directory to test and run the sample Terraform code. Make this directory your current directory.
+
+1. Create a file named `versions.tf` and add the required provider sources.
+
+    ```terraform
+    terraform {
+        required_providers {
+            azapi = {
+                source  = "Azure/azapi"
+                version = "~> 2.5"
+            }
+            random = {
+                source  = "hashicorp/random"
+                version = "~> 3.6"
+            }
+        }
+    }
+    ```
 
 1. Create a file named `providers.tf` and add the following code.
 
@@ -52,6 +71,15 @@ ms.custom: include
     :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/variables.tf"::: 
 
 ---
+
+Set the required variables in your current shell. Replace `eastus` if you want to deploy to another supported region.
+
+```console
+export TF_VAR_subscription_id=$(az account show --query id --output tsv)
+export TF_VAR_location=eastus
+```
+
+Run `test -n "$TF_VAR_subscription_id" && echo "Subscription configured."` to verify that the subscription variable is set.
 
 **References:**
 - [AzAPI provider documentation](/azure/developer/terraform/overview-azapi-provider)

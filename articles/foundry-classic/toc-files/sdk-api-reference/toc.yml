@@ -8,7 +8,7 @@ items:
   - name: Python
     href: https://azure.github.io/azure-sdk-for-python/cognitiveservices.html#azure-ai-projects
   - name: REST API
-    href: /rest/api/aifoundry/aiproject
+    href: https://ai.azure.com/api-reference
 - name: Azure AI Agents
   items:
     - name: C#
@@ -20,7 +20,7 @@ items:
     - name: Python
       href: https://azure.github.io/azure-sdk-for-python/cognitiveservices.html#azure-ai-agents
     - name: REST API
-      href: /rest/api/aifoundry/aiagents 
+      href: /rest/api/microsoft-foundry/aiproject
     - name: Data monitoring reference
       href: ../../agents/reference/monitor-service.md
 - name: Azure AI Evaluation SDK
@@ -65,8 +65,6 @@ items:
          items:
           - name: v1 Preview API
             href: ../../openai/reference-preview-latest.md
-          - name: 2025-04-01-preview - Authoring 
-            href: ../../openai/authoring-reference-preview.md
           - name: 2025-04-01-preview - Inference 
             href: ../../openai/reference-preview.md
   - name: Assistants API Reference
@@ -74,13 +72,13 @@ items:
       - name: REST
         items:
         - name: Assistants
-          href: ../../openai/reference-preview.md#list---assistants
+          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
         - name: Threads
-          href: ../../openai/reference-preview.md#create---thread
+          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
         - name: Messages
-          href: ../../openai/reference-preview.md#list---messages
+          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
         - name: Runs
-          href: ../../openai/reference-preview.md#create---thread-and-run
+          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
       - name: SDK 
         items:
         - name: C#

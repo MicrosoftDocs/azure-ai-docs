@@ -5,10 +5,11 @@ description: Text Analytics for health containers uses a common configuration fr
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 08/12/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-health
 ---
 # Configure Text Analytics for health docker containers
@@ -78,4 +79,4 @@ The exact syntax of the host mount location varies depending on the host operati
 ## Next steps
 
 * Review [How to install and run containers](use-containers.md)
-* Use more [Azure AI containers](../../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

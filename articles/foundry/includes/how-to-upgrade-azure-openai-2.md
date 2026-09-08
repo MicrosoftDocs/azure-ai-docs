@@ -6,8 +6,9 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 08/19/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Limitations
@@ -16,6 +17,7 @@ ms.custom: include
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [additional DNS zone configurations](#private-network-configuration) next to your existing Azure OpenAI DNS Zone before all Foundry capabilities can be used.
+* Resources with existing private endpoints can't be upgraded from Azure OpenAI to Foundry through the Foundry portal or the Azure portal. Delete the private endpoints before you upgrade, and recreate them afterward. Alternatively, manage the upgrade using Azure Bicep or Terraform.
 
 ## Support level post-upgrade
 
@@ -104,7 +106,7 @@ Run the template by using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/
 You can upgrade your Azure OpenAI resource by using either the AzAPI or AzureRM Terraform providers.
 
 > [!IMPORTANT]
-> When using the [AzureRM resource provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account.html), make sure you use a version greater than 4.57.0 of your Terraform CLI client for a non-destructive resource update.
+> When you use the [AzureRM provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account.html), use version 4.56.0 or later for a non-destructive resource update between the `OpenAI` and `AIServices` resource kinds.
 
 Start from your existing Azure OpenAI configuration and update the following properties:
 

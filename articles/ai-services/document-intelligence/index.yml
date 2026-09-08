@@ -10,7 +10,7 @@ metadata:
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
-  ms.date: 11/18/2025
+  ms.date: 06/17/2026
   monikerRange: '<=doc-intel-4.0.0'
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://learn.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits
@@ -27,10 +27,14 @@ landingContent:
             url: overview.md
           - text: Document Intelligence FAQ
             url: faq.yml
+          - text: Version lifecycle and retirement
+            url: overview.md#version-support-and-retirement
       - linkListType: whats-new
         links:
           - text: What's new in Azure Document Intelligence?
             url: whats-new.md
+          - text: "Retirement notice: v3.0 API retires March 30, 2029"
+            url: versioning/migration-guide-overview.md
 
   #Card 2
    - title: Document Intelligence models

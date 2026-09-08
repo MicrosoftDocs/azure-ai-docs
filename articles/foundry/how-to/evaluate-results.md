@@ -33,7 +33,7 @@ In this article, you learn how to:
   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 - A completed evaluation run.
     - To run evaluations in the portal, see [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
-    - To run evaluations from the SDK, see [Run evaluations from the SDK](./develop/cloud-evaluation.md) or [Evaluate your AI agents](../observability/how-to/evaluate-agent.md).
+    - To run evaluations from the SDK, see [Run evaluations from the SDK](../observability/how-to/cloud-evaluation.md) or [Evaluate your AI agents](../observability/how-to/evaluate-agent.md).
 
 ## See your evaluation results
 
@@ -110,6 +110,6 @@ To learn more, see [Built in evaluators](../concepts/built-in-evaluators.md).
 ## Related content
 
 - [Run evaluations from the Microsoft Foundry portal](./evaluate-generative-ai-app.md)
-- [Run batch evaluations from the SDK](./develop/cloud-evaluation.md)
+- [Run batch evaluations from the SDK](../observability/how-to/cloud-evaluation.md)
 - [Built-in evaluators](../concepts/built-in-evaluators.md)
 - [Improve model performance with fine-tuning](../openai/how-to/fine-tuning.md)

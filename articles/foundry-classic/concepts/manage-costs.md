@@ -184,7 +184,6 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
 ## Related content
 
 - [Foundry management center](management-center.md)
-- [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - [Microsoft Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).

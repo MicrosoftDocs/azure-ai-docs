@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how conversation PII redaction in Azure Language detects and redacts sensitive data in turn-based conversational inputs.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 08/12/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---

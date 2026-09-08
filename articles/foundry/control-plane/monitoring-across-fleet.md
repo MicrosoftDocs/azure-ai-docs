@@ -1,8 +1,8 @@
 ---
 title: "Monitor AI agent fleet health and performance - Microsoft Foundry"
 description: "Track agent health, compliance, performance trends, and cost efficiency across your AI fleet by using Microsoft Foundry Control Plane monitoring."
-author: sonalim-0
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: sonalimalik
 ms.date: 05/12/2026
 ms.topic: how-to
@@ -72,19 +72,15 @@ Follow these steps for each project where you want to configure monitoring:
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. On the toolbar, select **Operate**.
+1. On the toolbar, select **Manage**.
 
-1. On the left pane, select **Admin**.
-
-1. Under **All projects**, in the search box, enter your project name.
-
-1. Select the project.
+1. On the left pane, select **Project details**.
 
 1. Select the **Connected resources** tab.
 
 1. Verify that there's an associated resource for the category **AppInsights**.
 
-    :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the administration portal that shows how to verify if a project has an associated Application Insights resource." lightbox="media/register-custom-agent/verify-app-insights.png":::
+    :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the Project details pane that shows how to verify if a project has an associated Application Insights resource." lightbox="media/register-custom-agent/verify-app-insights.png":::
 
 1. If there's no associated resource, add one by selecting **Add connection** and then selecting **Application Insights**.
 

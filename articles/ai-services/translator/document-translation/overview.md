@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Translator document translation for batch and single-file translation while preserving document structure and formatting.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 08/07/2026
 ms.author: lajanuar
 ms.custom: references_regions, pilot-ai-workflow-jan-2026
 recommendations: false
@@ -115,7 +115,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+|**Client libraries (SDKs)**|Use the [Document translation client libraries](document-sdk-overview.md) for [.NET/C#](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), [JavaScript/TypeScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
 
 ### [Synchronous](#tab/sync)
 
@@ -126,7 +126,7 @@ Use synchronous document translation to translate a single file and return the t
 |**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **new Foundry** is not selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
 |**REST API**|Integrate synchronous document translation into your applications by using the [REST API](reference/translate-document.md).|
-|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
+|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [Document translation client libraries](document-sdk-overview.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../containers/translate-document-parameters.md).|
 
 ---
@@ -141,27 +141,25 @@ The following tables list the document and glossary file formats supported by ea
 
 The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document translation service. The list includes common file extensions and content types.
 
-| File type | File extension | Description |
-| --- | --- | --- |
-| Adobe PDF | `pdf` | Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout. |
-| Comma-Separated Values | `csv` | A comma-delimited raw-data file used by spreadsheet programs. |
-| DITA | `dita` | An XML-based open standard for authoring and publishing. |
-| HTML | `html`, `htm` | Hyper Text Markup Language. |
-| Image (2025-12-01-preview) | `.jpeg`, `.png`, `.bmp`, `.webp` | Files that store digital image data. |
-| Markdown | `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd` | A lightweight markup language for creating formatted text. |
-| M&#8203;HTML | `mhtml`, `mht` | A web page archive format used to combine HTML code and its companion resources. |
-| Microsoft Excel | `xls`, `xlsx` | A spreadsheet file for data analysis and documentation. |
-| Microsoft Outlook | `msg` | An email message created or saved within Microsoft Outlook. |
-| Microsoft PowerPoint | `ppt`, `pptx` | A presentation file used to display content in a slideshow format. |
-| Microsoft Word | `doc`, `docx` | A text document file. |
-| OpenDocument Presentation | `odp` | An open-source presentation file. |
-| OpenDocument Spreadsheet | `ods` | An open-source spreadsheet file. |
-| OpenDocument Text | `odt` | An open-source text document file. |
-| Rich text format | `rtf` | A text document containing formatting. |
-| Tab separated values/TAB | `tsv`/`tab` | A tab-delimited raw-data file used by spreadsheet programs. |
-| Text | `txt` | An unformatted text document. |
-| XLIFF | `xlf`, `xliff 2.0` | A parallel document format used in translation and localization. |
-| XML | `xml` | A markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. |
+| File type| File extension|Description|
+|---|---|---|
+|Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
+|Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
+|HTML|`html`, `htm`|Hyper Text Markup Language.|
+|Image (2025-12-01-preview)|`.jpeg`, `.png`, `.bmp`, `.webp`|Files that store digital image data.|
+|OpenDocument Presentation|`odp`|An open-source presentation file.|
+|OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
+|OpenDocument Text|`odt`|An open-source text document file.|
+|Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
+|M&#8203;HTML|`mhtml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
+|Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
+|Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook. Unicode-format .msg files only. ANSI-format .msg files are not supported.|
+|Microsoft PowerPoint|`ppt`, `pptx`| A presentation file used to display content in a slideshow format.|
+|Microsoft Word|`doc`, `docx`| A text document file.|
+|Rich text format|`rtf`|A text document containing formatting.|
+|Tab separated values/TAB|`tsv`/`tab`| A tab-delimited raw-data file used by spreadsheet programs.|
+|Text|`txt`| An unformatted text document.|
+|XLIFF|`xlf`|A parallel document format used in translation and localization.|
 
 ### Batch Legacy file types
 
@@ -218,18 +216,7 @@ For detailed information about Translator request limits, see [Document translat
 
 ## Document translation data residency
 
-Document translation data residency depends on the Azure region where your Translator resource was created:
-
-✔️ Feature: **Document translation**</br>
-✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
-
-|Resource created region| Request processing data center |
-|----------------------------------|-----------------------|
-|**Global**|Closest available data center.|
-|**Americas**|East US 2 &bull; West US 2|
-|**Asia Pacific**| Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland)**| France Central &bull; West Europe|
-|**Switzerland**|Switzerland North &bull; Switzerland West|
+The region where you create the Translator resource determines where document content is processed and temporarily stored. For processing locations, custom endpoint requirements, and managed identity considerations, see [Region support for Azure Translator](../region-support.md).
 
 ## Troubleshooting
 

@@ -5,7 +5,7 @@ author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 07/29/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -80,7 +80,7 @@ The following is a sample request body. The format is the same as the chat compl
 > When uploading images, there's a limit of 10 images per chat request.
 
 > [!NOTE]
-> Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP.
+> Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP. Image URLs must be publicly accessible: private endpoints, VNet-restricted, and firewall-restricted URLs are not supported even if they are on a storage account within same or peered VNet. The Vision service fetches images from Microsoft's managed infrastructure, not from within VNet, so the request will be unaware of the Private Endpoint present in VNET.
 
 ```json
 {

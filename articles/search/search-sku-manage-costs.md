@@ -11,6 +11,8 @@ ms.date: 06/02/2026
 
 # Plan and manage costs of an Azure AI Search service
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search is available in two pricing models:
 
 - **Dedicated**: Provisioned capacity with fixed pricing. You select a service tier and you're billed per hour based on Search Units (SUs). Best for steady, predictable, high-utilization workloads.

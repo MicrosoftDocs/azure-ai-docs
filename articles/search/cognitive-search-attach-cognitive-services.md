@@ -13,6 +13,8 @@ ms.custom:
 
 # Attach a billable resource to a skillset in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you're using built-in skills for [AI enrichment](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents for free, up to 20 transactions per index per day. For larger or more frequent workloads, you should attach a billable Microsoft Foundry resource to your [skillset](/rest/api/searchservice/skillsets/create).
 
 Azure AI Search uses dedicated, internally hosted resources to execute built-in skills backed by Foundry Tools and requires a Foundry resource solely for billing purposes. The exception is the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), which uses your resource for both billing and processing.

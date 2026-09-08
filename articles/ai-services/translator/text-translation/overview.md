@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Integrate the Azure Translator text translation API into your applications, websites, tools, and workflows for multilingual experiences.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
 ms.date: 06/02/2026
 ms.author: lajanuar
@@ -83,39 +83,9 @@ For required headers and endpoint-specific examples, see [Authentication and aut
 
 ## Endpoints and data residency
 
-Requests are typically processed in the nearest available datacenter when you use the global endpoint. To constrain processing geography, use a regional endpoint.
-
-Endpoint selection affects latency, geography, and regulatory posture. Use the global endpoint for broad availability and automatic routing, or use a regional endpoint when your architecture requires processing to remain within a specific geography.
-
-| Service endpoint | Request processing data center |
-| --- | --- |
-| **Global (recommended):**<br>**`api.cognitive.microsofttranslator.com`** | Closest available data center. |
-| **Americas:**<br>**`api-nam.cognitive.microsofttranslator.com`** | East US 2, West US 2 |
-| **Asia Pacific:**<br>**`api-apc.cognitive.microsofttranslator.com`** | Japan East, Southeast Asia |
-| **Europe (except Switzerland):**<br>**`api-eur.cognitive.microsofttranslator.com`** | France Central, West Europe |
-| **Switzerland:**<br>See [Switzerland service endpoints](#switzerland-service-endpoints). | Switzerland North, Switzerland West |
-
-### Switzerland service endpoints
-
-If your Translator resource is deployed in `Switzerland North` or `Switzerland West`, you can keep text translation processing in Switzerland by using the resource-specific custom endpoint.
-
-This configuration is useful for workloads with stricter geographic processing requirements. Ensure your Translator resource region and request endpoint remain aligned so requests are routed within Switzerland.
-
-Example request:
-
-```bash
-curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.0/translate?to=fr" \
-  -H "Ocp-Apim-Subscription-Key: ${TRANSLATOR_KEY}" \
-  -H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
-  -H "Content-Type: application/json" \
-  -d "[{\"Text\":\"Hello\"}]"
-```
-
-Custom Translator is not currently available in Switzerland.
+Text translation supports global, geography, and resource-specific endpoints. Endpoint selection determines where Translator processes NMT requests. For endpoint URLs, processing locations, and Foundry LLM deployment differences, see [Region support for Azure Translator](../region-support.md).
 
 ## LLM processing, limits, and pricing
-
-When you deploy an LLM, your deployment configuration (global, data zone, or regional) determines where LLM translation data is processed.
 
 For mixed NMT and LLM deployments, treat model routing, limits, and cost as part of your runtime design. Throughput and payload sizing differ between NMT and LLM paths, so baseline both latency and cost before scaling traffic.
 

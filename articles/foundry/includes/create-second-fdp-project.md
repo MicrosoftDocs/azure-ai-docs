@@ -46,9 +46,8 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     # [Foundry portal](#tab/foundry)
         
-    1. Select **Operate** in the upper-right navigation.
-    1. Select **Admin** in the left pane.
-    1. Select the Parent resource you want to add a project to.
+    1. Select **Manage** in the upper-right navigation.
+    1. Select **Resource details** in the left pane.
     1. Select **Add project**.
           
     # [Python SDK](#tab/python)

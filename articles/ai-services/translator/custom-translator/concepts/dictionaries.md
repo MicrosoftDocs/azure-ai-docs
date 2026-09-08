@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: How to create an aligned document that specifies a list of phrases or sentences (and their translations) that you always want Microsoft Translator to translate the same way. Dictionaries are sometimes also called glossaries or term bases.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: concept-article

@@ -3,7 +3,7 @@ title: "Personally Identifiable Information (PII) Filter"
 description: "Learn about the Personally Identifiable Information (PII) filter for identifying and flagging known personal information in large language model outputs."
 author: ssalgadodev
 ms.author: ssalgado
-ms.date: 02/18/2026
+ms.date: 07/31/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

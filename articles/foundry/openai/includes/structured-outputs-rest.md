@@ -2,10 +2,12 @@
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 12/6/2025
+ms.date: 08/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: structured-outputs
+ai-usage: ai-assisted
+ms.custom: classic-and-new, doc-kit-assisted
 ---
 
 ## Getting started
@@ -82,6 +84,50 @@ Output:
   "system_fingerprint": "fp_1c2eaec9fe"
 }
 
+```
+
+## Use structured outputs with the Responses API
+
+For the Responses API, define the JSON Schema under `text.format`. Set `type`, `name`, `schema`, and `strict` as sibling properties of `format`. Before you run the request, set `AZURE_OPENAI_AUTH_TOKEN` to a Microsoft Entra ID access token.
+
+```bash
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/responses \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-5-mini",
+    "input": "Extract the event information from: Alice and Bob are going to a science fair on Friday.",
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "CalendarEventResponse",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "date": {"type": "string"},
+            "participants": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          },
+          "required": ["name", "date", "participants"],
+          "additionalProperties": false
+        },
+        "strict": true
+      }
+    }
+  }'
+```
+
+The `output_text` content contains:
+
+```json
+{
+  "name": "Science Fair",
+  "date": "Friday",
+  "participants": ["Alice", "Bob"]
+}
 ```
 
 ## Function calling with structured outputs

@@ -8,12 +8,17 @@ ms.custom:
   - ignite-2023
   - dev-focus
 ms.topic: quickstart
-ms.date: 01/14/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-sdks-rest
 ---
 
 # Quickstart: Vector search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+> [!NOTE]
+> For embedding models in vector search workflows, Azure AI Search supports `text-embedding-ada-002`, `text-embedding-3-small`, and `text-embedding-3-large` from Azure OpenAI. For AI-enriched workflows using chat completion models, see [Model retirement schedules](/azure/foundry/openai/concepts/model-retirement-schedule) to check deprecation status of GPT-4 family models.
 
 ::: zone pivot="csharp"
 

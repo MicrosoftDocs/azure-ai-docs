@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how CLU handles entity slot-filling across multi-turn conversations.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/05/2025
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -67,4 +67,4 @@ To get started implementing entity slot filling in your applications, see [Build
 ## Related content
 
 * [Build multi-turn model](../how-to/build-multi-turn-model.md)
-* [Build a fine-tuning schema](../how-to/build-schema.md)
+* [Build a fine-tuning schema](../how-to/build-train-deploy-model.md#build-your-fine-tuning-schema)

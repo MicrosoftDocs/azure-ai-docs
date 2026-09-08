@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Index and enrich encrypted blobs for full-text search in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn how to use [Azure AI Search](search-what-is-azure-search.md) to index documents that were encrypted with a customer-managed key in [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction).
 
 Normally, an indexer can't extract content from blobs that were encrypted using [client-side encryption](/azure/storage/blobs/client-side-encryption) in the Azure Blob Storage client library. This is because the indexer doesn't have access to the customer-managed encryption key in [Azure Key Vault](/azure/key-vault/general/overview). However, using the [DecryptBlobFile custom skill](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Utils/DecryptBlobFile) and the [Document Extraction skill](cognitive-search-skill-document-extraction.md), you can provide controlled access to the key to decrypt the files and then extract content from them. This unlocks the ability to index and enrich these documents without compromising the encryption status of your stored documents.

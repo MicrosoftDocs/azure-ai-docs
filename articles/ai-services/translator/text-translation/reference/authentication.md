@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "There are several ways to authenticate a request and authorize access to Azure Translator resource In this article, learn about each method, and how to make a request."
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar

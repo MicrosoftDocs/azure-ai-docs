@@ -5,7 +5,7 @@ description: "Design patterns and best practices for disclosure."
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 11/21/2025
 ---

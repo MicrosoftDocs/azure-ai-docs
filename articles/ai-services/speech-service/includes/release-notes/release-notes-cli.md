@@ -2,9 +2,18 @@
 author: PatrickFarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 04/09/2026
+ms.date: 07/21/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
+
+### Speech CLI 1.51.0: 2026-July release
+Updated to use Speech SDK 1.51.0.
+#### New features
+* Added support for the authorize-copy workflow with custom speech recognition models.
+* Enabled AAD/Entra token authentication for CSR and batch commands.
+#### Bug fixes
+* None.
 
 ### Speech CLI 1.49.0: 2026-April release
 Updated to use Speech SDK 1.49.0

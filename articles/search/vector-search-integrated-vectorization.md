@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Integrated vector embedding in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Integrated vectorization is an extension of the indexing and query pipelines in Azure AI Search. It adds the following capabilities:
 
 + Vector encoding during indexer-driven indexing

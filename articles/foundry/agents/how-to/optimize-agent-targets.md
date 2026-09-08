@@ -3,7 +3,7 @@ title: "Optimize agent instructions, skills, tools, and models in Foundry Agent 
 description: "Run instruction tuning, skill discovery, tool optimization, or model selection using the agent optimizer to automatically improve your hosted agent's performance in Foundry Agent Service."
 author: aahill
 ms.author: aahi
-ms.date: 05/18/2026
+ms.date: 08/25/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -15,16 +15,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
-The agent optimizer supports four optimization targets: **instruction tuning** (rewrites your agent's system prompt), **skill improvement** (refines reusable capabilities), **tool optimization** (improves tool descriptions and parameters), and **model selection** (evaluates across multiple model deployments). The optimizer automatically determines which targets to improve based on your agent's baseline configuration.
+The agent optimizer improves four aspects of your hosted agent: **instructions**, **skills**, **tools**, and **model selection**. It automatically detects which of these targets to optimize from your agent's baseline configuration.
 
-| Scenario | What the optimizer does |
-| ---------- | ----------------------- |
-| Improve overall response quality | Instruction tuning |
-| Reduce incorrect information | Instruction tuning |
-| Improve repeatable behaviors (escalation, debugging patterns) | Skill improvement |
-| Agent has structured procedures that need refinement | Skill improvement |
-| Find the best quality/cost model trade-off | Model selection |
-| First optimization, not sure what to expect | All applicable targets run automatically |
+This article shows how to run an optimization, configure and monitor the run, and deploy the results. For what each target does and when it activates, see [Optimization targets](../concepts/agent-optimizer-overview.md#optimization-targets). To set up the baseline inputs, see [Make your agent optimizer-ready](make-agent-optimizer-ready.md). For a quick reference on what the optimizer changes, see [What each target changes](#what-each-target-changes).
 
 ## Prerequisites
 
@@ -33,330 +26,254 @@ The agent optimizer supports four optimization targets: **instruction tuning** (
 - A model deployed for evaluation (for example, `gpt-4.1-mini`) and an optimization model from the [supported list](../concepts/agent-optimizer-overview.md#models) (for example, `gpt-5.1`)
 - Your agent is [optimizer-ready](make-agent-optimizer-ready.md) (calls `load_config()`)
 
-## Which agent gets optimized
+## Run an optimization
 
-The optimizer needs to know which deployed hosted agent to target. It resolves the agent name using the following priority order:
-
-| Priority | Source | Example |
-| -------- | ------ | ------- |
-| 1 (highest) | `--agent` CLI flag | `azd ai agent optimize --agent my-support-agent` |
-| 2 | `agent.name` field in `eval.yaml` | `agent:\n  name: my-support-agent` |
-| 3 (default) | `name` field in `agent.yaml` | `name: my-support-agent` |
-
-In most cases, you don't need to specify the agent name explicitly. The CLI reads it from your project's `agent.yaml` file. Use the `--agent` flag when you have multiple agents in your project or want to override the default:
-
-```bash
-azd ai agent optimize --agent my-support-agent
-```
-
-> [!NOTE]
-> The agent name must match a deployed hosted agent in your Foundry project. Run `azd ai agent invoke "test"` to verify your agent responds before starting optimization.
-
-## Optimize instructions
-
-The optimizer rewrites and refines your agent's system prompt to improve performance on your evaluation dataset. Instruction tuning activates automatically when your baseline config includes an `instructions.md` file.
-
-### How it works
-
-1. **Baseline evaluation.** Your agent runs with its current instructions against every task in the dataset. The evaluator scores each response against the task's criteria.
-1. **Instruction generation.** The optimizer analyzes the baseline scores and generates alternative system prompts designed to improve weak areas while maintaining strong areas.
-1. **Candidate evaluation.** The optimizer injects each candidate instruction set into your agent through the `OPTIMIZATION_CANDIDATE_ID` environment variable and evaluates it against the same dataset.
-1. **Ranking.** The optimizer ranks candidates by composite score and marks the best candidate with ★.
-
-### Run instruction optimization
+Start an optimization run with a single command:
 
 ```bash
 azd ai agent optimize
 ```
 
-With a custom config:
+The optimizer evaluates your baseline, generates candidates, evaluates them, and ranks the results. For the full evaluate-and-improve cycle, see [How the agent optimizer works](../concepts/agent-optimizer-overview.md#how-the-agent-optimizer-works). Which targets run depends on your baseline configuration—instruction tuning, skill improvement, and tool optimization activate automatically when the matching baseline files are present. See [Optimization targets](../concepts/agent-optimizer-overview.md#optimization-targets).
 
-```yaml
-# eval.yaml
-agent:
-  name: my-agent
-
-dataset_file: ./eval.jsonl
-
-evaluators:
-  - builtin.task_adherence
-
-options:
-  eval_model: gpt-4.1-mini
-  optimization_model: gpt-5.1
-  max_iterations: 5
-```
+To control the run with a config file, pass an `eval.yaml` that references your dataset, evaluators, and options:
 
 ```bash
 azd ai agent optimize --config eval.yaml
 ```
 
-### What gets changed
+For the full `eval.yaml` schema, see [Configure the optimization run](#configure-the-optimization-run).
 
-The optimizer rewrites the system prompt. Your code stays the same because `load_config()` returns the new instructions automatically. Common improvements include:
+### Target a specific agent
 
-- Adding explicit constraints that the original prompt implied but didn't state
-- Restructuring instructions for clarity
-- Adding output format specifications
-- Strengthening safety and scope boundaries
+How the CLI resolves the agent depends on whether you run the command from an `azd` project:
 
-### Example: Before and after
+| Context | Agent resolution | Example |
+| ------- | ---------------- | ------- |
+| In an `azd` project | The CLI detects the hosted-agent service from `azure.yaml` and resolves its deployed agent name from the current `azd` environment. Use `--agent` to select an `azure.yaml` service when the project contains multiple agents. | `azd ai agent optimize --agent support-service` |
+| Outside an `azd` project | The `--agent` value or positional argument is the deployed Foundry agent name. | `azd ai agent optimize --agent my-support-agent` |
+| With `--config` | The `agent.name` field in `eval.yaml` supplies the deployed agent name. An explicit `--agent` value overrides it. | `agent:\n  name: my-support-agent` |
 
-**Before** (your default instructions):
+The deployed agent name must match a hosted agent in the target Foundry project.
 
+> [!NOTE]
+> Run `azd ai agent invoke "test"` to verify your agent responds before starting optimization.
+
+### Optimize an existing agent without AZD project files
+
+You can optimize an existing hosted agent without running `azd ai agent init` and without creating `azure.yaml` or a `.azure` environment directory. In this standalone flow, provide the Foundry project endpoint and deployed agent name explicitly.
+
+1. Ensure the deployed agent is [optimizer-ready](make-agent-optimizer-ready.md). In a local working directory, create the instruction file, dataset, evaluators, and `eval.yaml` described in [Configure the optimization run](#configure-the-optimization-run).
+
+   Run the command from this working directory. Without an `azd` project, relative paths in `eval.yaml` resolve from the current working directory.
+
+   For this standalone flow, omit `agent.config`. The CLI asks for the baseline instruction when you run the command:
+
+   ```yaml
+   # eval.yaml
+   agent:
+     name: my-support-agent
+     kind: hosted
+     model: gpt-4.1-mini
+   dataset:
+     local_uri: ./eval.jsonl
+   evaluators:
+     - builtin.task_adherence
+   options:
+     eval_model: gpt-4.1-mini
+     optimization_model: gpt-5.1
+     max_candidates: 2
+   ```
+
+1. Authenticate:
+
+   ```bash
+   az login
+   azd auth login
+   ```
+
+1. Copy the project endpoint from the Foundry project's **Overview** page. Use the project endpoint URL, not the Azure resource ID.
+
+1. Save the endpoint in your user-level `azd` config so subsequent commands can resolve the same project from any directory:
+
+   ```bash
+   azd ai project set "<project-endpoint>"
+   azd ai project show
+   ```
+
+   This step writes the default endpoint to `~/.azd/config.json`. For the full resolution order and commands to inspect or clear the saved context, see [Set the Foundry project context for azd commands](cli-project-context.md).
+
+1. Run the optimization with the deployed agent name:
+
+   ```bash
+   azd ai agent optimize --agent "<deployed-agent-name>" --config eval.yaml
+   ```
+
+   When prompted for the agent instruction, provide it inline or select a file such as `.agent_configs/baseline/instructions.md`.
+
+   > [!NOTE]
+   > In the current preview, a standalone run doesn't expand `agent.config` from `eval.yaml`. Run the command interactively so you can provide the baseline instruction. Don't use `--no-prompt` for this flow. Loading file-based skill and tool baselines also requires an `azd` project.
+
+   For a one-off command that shouldn't change your user-level config, pass `--project-endpoint`:
+
+   ```bash
+   azd ai agent optimize \
+     --project-endpoint "<project-endpoint>" \
+     --agent "<deployed-agent-name>" \
+     --config eval.yaml
+   ```
+
+   You can also set the endpoint for the current shell:
+
+   ```bash
+   export FOUNDRY_PROJECT_ENDPOINT="<project-endpoint>"
+   azd ai agent optimize --agent "<deployed-agent-name>" --config eval.yaml
+   ```
+
+1. Save the operation ID from the command output. Because this flow has no `azd` environment, the CLI doesn't persist the last operation ID locally. Pass the operation ID to follow-up commands:
+
+   ```bash
+   azd ai agent optimize status <operation-id> --watch
+
+   azd ai agent optimize list
+
+   azd ai agent optimize cancel <operation-id>
+   ```
+
+   These commands use the endpoint saved by `azd ai project set`. If you used the one-off `--project-endpoint` form instead, pass the flag again to each follow-up command.
+
+> [!IMPORTANT]
+> `azd ai agent optimize apply` requires an `azd` project because it writes candidate files under `.agent_configs/` and updates the agent service in `azure.yaml`. If you don't want to create AZD project files, review and deploy the winning candidate from the Foundry portal.
+
+## Configure the optimization run
+
+Configure optimization runs through an `eval.yaml` file that ties together your dataset, evaluators, and run options. The command `azd ai agent eval generate` writes this file for you, or you can create it by hand. The optimizer auto-detects `eval.yaml` in your project root, or you can pass it explicitly with `--config eval.yaml`.
+
+```yaml
+# eval.yaml
+name: my-optimization              # Optional label for the run
+agent:
+  name: my-agent                   # Deployed hosted agent name
+  kind: hosted
+  version: "1"                     # Agent version (optional)
+  model: gpt-4.1-mini              # Baseline model deployment
+  config: .agent_configs/baseline/metadata.yaml
+dataset:
+  local_uri: ./eval.jsonl          # A local JSONL file...
+  # name: my-foundry-dataset       # ...OR a registered Foundry dataset
+  # version: "1"
+# validation_dataset:              # Optional held-out dataset
+#   name: my-validation-dataset
+#   version: "1"
+evaluators:
+  - builtin.task_adherence         # A built-in evaluator...
+  # - name: my-custom-evaluator    # ...or a custom evaluator
+  #   version: "1"
+  #   local_uri: ./my_evaluator.json
+options:
+  eval_model: gpt-4.1-mini         # Scores responses
+  optimization_model: gpt-5.1      # Generates candidates
+  max_candidates: 4
+  optimization_config:
+    model_search_space:            # Optional: compare model deployments
+      - gpt-4.1
 ```
-You are a helpful assistant.
+
+| Field | Required | Description |
+| ----- | -------- | ----------- |
+| `name` | No | Label for the optimization run. |
+| `agent.name` | Yes | Name of the deployed hosted agent to optimize. |
+| `agent.kind` | Yes | Agent kind. Use `hosted`. |
+| `agent.version` | No | Agent version to target. |
+| `agent.model` | Yes | Baseline model deployment name. |
+| `agent.config` | Conditional | Path to the baseline `metadata.yaml` in an `azd` project. For a standalone project with no AZD files, omit this field and provide the instruction interactively. |
+| `dataset` | Yes | The dataset to evaluate against, as a local JSONL file (`local_uri`) or a registered Foundry dataset (`name` and `version`). See [Create a custom dataset](create-optimizer-dataset.md#create-a-custom-dataset-advanced). |
+| `validation_dataset` | No | A held-out dataset used to validate results. |
+| `evaluators` | Yes | Evaluators applied to every task. See [Customize evaluators](create-optimizer-dataset.md#customize-evaluators-advanced). |
+| `options.eval_model` | Yes | Deployed chat model that scores responses. See [Choose the eval and optimization models](#choose-the-eval-and-optimization-models). |
+| `options.optimization_model` | Yes | Deployed model that generates candidates. Must be on the [supported list](../concepts/agent-optimizer-overview.md#models). |
+| `options.max_candidates` | No | Number of candidates to generate (default 5). See [Set the number of candidates](#set-the-number-of-candidates). |
+| `options.optimization_config.model_search_space` | No | Model deployments to compare during model selection. See [Evaluate multiple models](#evaluate-multiple-models). |
+
+Author the dataset and evaluators separately; see [Create an evaluation dataset and evaluators](create-optimizer-dataset.md). The following sections describe the run options.
+
+### Choose the eval and optimization models
+
+The optimizer uses two models: an *eval model* that scores agent responses against criteria, and an *optimization model* that generates candidate configurations. Set them in `eval.yaml` or use CLI flags.
+
+```yaml
+options:
+  eval_model: gpt-4.1-mini
+  optimization_model: gpt-5.1
 ```
 
-**After** (optimized):
-
-```
-You are a helpful coding assistant. Follow these guidelines:
-1. Always include working code examples
-2. Explain your reasoning step by step
-3. If a question is outside your expertise, say so clearly
-4. Use markdown formatting for code blocks
-5. Handle edge cases in code examples
+```bash
+azd ai agent optimize --eval-model gpt-4.1-mini --optimize-model gpt-5.1
 ```
 
-### Max iterations
+Any chat-completion model deployed in your project works as the eval model. The optimization model must be from the supported list. For roles and supported models, see [Models](../concepts/agent-optimizer-overview.md#models).
 
-The `max_iterations` option controls how many candidate instruction sets are generated. Each iteration produces one candidate.
+> [!IMPORTANT]
+> The `optimization_model` field is required. If you don't specify it and don't pass `--optimize-model`, the optimization API returns an error. Always verify that both models are deployed in your project before you run optimization.
 
-| Max iterations | Candidates | Time | Best for |
+### Set the number of candidates
+
+The `max_candidates` option sets the expected number of candidate configurations for the run. The optimizer typically returns after it reaches that count, unless the run stops early because of an error or another stopping condition.
+
+| Max candidates | Candidates | Time | Best for |
 | ---------------- | ----------- | ------ | ---------- |
-| 4 (default) | 4 | 5 to 10 min | Quick experiments |
-| 5 | 5 | 10 to 15 min | Good balance |
-| 10 | 10 | 20 to 30 min | Thorough exploration |
+| 2 | 2 | 5 to 10 min | Quick experiments |
+| 5 (default) | 5 | 20 to 30 min | Good balance |
+| 10 | 10 | 30 to 60 min | Thorough exploration |
 
-Higher values explore more variations but take longer. The optimizer learns from earlier iterations, so later candidates tend to score higher.
+Higher values explore more variations but take longer. The optimizer learns from earlier candidates, so later candidates tend to score higher.
 
 > [!NOTE]
 > Times are approximate for a dataset of 3 to 10 tasks. Larger datasets or slower eval models increase run duration.
 
-### Eval model
+### Evaluate multiple models
 
-The eval model scores agent responses against criteria. Any chat-completion model deployed in your Foundry project works.
-
-```bash
-azd ai agent optimize --eval-model gpt-4.1-mini
-```
-
-> [!IMPORTANT]
-> If the eval model isn't deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
-
-### Optimization model (reflection)
-
-The optimization model (also called "reflection model") generates candidate configurations — improved instructions, skills, and tool descriptions. It analyzes baseline results and produces improved variants. It must be deployed in your Foundry project.
-
-Supported models: `gpt-5`, `gpt-5.1`, `gpt-5.3`.
-
-Specify the optimization model in your config file or via CLI:
-
-```yaml
-options:
-  optimization_model: gpt-5.1
-```
-
-Or via CLI flag:
-
-```bash
-azd ai agent optimize --optimize-model gpt-5.1
-```
-
-> [!IMPORTANT]
-> The `optimization_model` field is required. If you don't specify it and don't pass `--optimize-model`, the optimization API returns an error.
-
-For more details on how these models are used, see [Models](../concepts/agent-optimizer-overview.md#models).
-
-## Optimize skills
-
-The optimizer improves existing skills your agent uses. It refines skill descriptions, implementations, and activation criteria. Skill optimization activates automatically when your baseline config includes a `skills/` directory.
-
-### How it works
-
-1. **Baseline evaluation.** Same as instruction tuning. The optimizer evaluates your agent against the dataset.
-1. **Skill improvement.** The optimizer analyzes weak areas and refines skill definitions. A skill is a named capability with:
-   - **Name**: For example, `"step_by_step_reasoning"`
-   - **Description**: What the skill does and when to use it
-   - **Body**: Implementation details or procedure
-1. **Injection.** The agent loads improved skills through `load_config()`, which makes them available to your agent's instruction set.
-
-    ```python
-    # load_config() returns skills from .agent_configs/baseline/skills/
-    config = load_config()
-    full_prompt = config.compose_instructions()
-    # Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
-    ```
-
-1. **Evaluation.** The optimizer evaluates the agent with improved skills against the dataset.
-
-### Run skill optimization
-
-Ensure your baseline config has a `skills/` directory with at least one skill, then run:
-
-```bash
-azd ai agent optimize
-```
-
-With a config file:
+To compare model deployments in a single run, list them under `optimization_config.model_search_space`. The optimizer evaluates your agent with each model against the same dataset and ranks the results by score and token cost.
 
 ```yaml
 # eval.yaml
-agent:
-  name: my-agent
-
-dataset_file: ./eval.jsonl
-
-evaluators:
-  - builtin.task_adherence
-
 options:
-  eval_model: gpt-4.1-mini
-  optimization_model: gpt-5.1
-  max_iterations: 5
-```
-
-```bash
-azd ai agent optimize --config eval.yaml
-```
-
-### Skill file downloads
-
-For candidates that include skill files, the config loader can download them through the resolver API. Skills use the open [Agent Skills](https://agentskills.io) format and are stored in a local directory.
-
-```python
-from azure.ai.agentserver.optimization import load_config, load_skills_from_dir
-from pathlib import Path
-
-config = load_config()
-
-if config.skills:
-    print(f"Skills loaded from optimization config:")
-    for skill in config.skills:
-        print(f"  - {skill.name}: {skill.description}")
-elif config.skills_dir:
-    # Load skills from local directory
-    skills = load_skills_from_dir(Path(config.skills_dir))
-    config.skills.extend(skills)
-    for skill in skills:
-        print(f"  - {skill.name}: {skill.description}")
-```
-
-Learn more about the Agent Skills format at [agentskills.io](https://agentskills.io).
-
-## Optimize tools
-
-The optimizer improves tool descriptions and parameters in your `tools.json` file to help the model call tools more accurately. Tool optimization activates automatically when your baseline config includes a `tools.json` file.
-
-### How it works
-
-1. **Baseline evaluation.** The optimizer evaluates your agent against the dataset, including any tool calls it makes.
-1. **Tool analysis.** The optimizer identifies tool calls that fail or produce suboptimal results and analyzes the root cause—unclear descriptions, missing parameters, or ambiguous naming.
-1. **Description refinement.** The optimizer generates improved tool definitions with clearer descriptions, better parameter documentation, and more precise function names.
-1. **Evaluation.** The optimizer evaluates the agent with improved tool definitions against the dataset.
-
-### Run tool optimization
-
-Ensure your baseline config has a `tools.json` file, then run:
-
-```bash
-azd ai agent optimize
-```
-
-### What gets changed
-
-The optimizer refines your `tools.json` definitions. Common improvements include:
-
-- Clearer function descriptions that help the model know when to call a tool
-- More specific parameter descriptions that reduce inaccurate arguments
-- Added constraints (enums, required fields) that prevent invalid inputs
-
-Your tool implementation code stays the same. Only the definitions the model sees change.
-
-## Optimize model selection
-
-The optimizer evaluates your agent across multiple model deployments to find the best quality-to-cost trade-off. Each model runs against the same dataset, so you can compare results directly. Model optimization activates when you specify model candidates in `optimization_config`.
-
-### Configure model candidates
-
-Specify the models to evaluate in your `eval.yaml`:
-
-```yaml
-# eval.yaml
-agent:
-  name: my-agent
-
-dataset_file: ./eval.jsonl
-
-evaluators:
-  - builtin.task_adherence
-
-options:
-  eval_model: gpt-4.1-mini
-  optimization_model: gpt-5.1
-  max_iterations: 5
   optimization_config:
-    model:
+    model_search_space:
       - gpt-4.1
       - gpt-4.1-mini
       - gpt-4o
 ```
 
-Each model listed under `optimization_config.model` must be deployed in your Foundry project.
+Each model listed under `model_search_space` must be deployed in your Foundry project.
 
-### Run model optimization
+> [!NOTE]
+> If the list includes your agent's current model deployment, the optimizer automatically removes it from the candidates because the baseline already represents that model. If no models remain after this removal, you receive a validation error.
+
+Model selection runs alongside the targets that activate automatically from your baseline. A single run can produce candidates that combine improved instructions, skills, and tool descriptions with different model options - you don't configure the combination yourself.
+
+## Monitor a running job
+
+An optimization run is asynchronous. Use these commands when a job is long-running or you want to check its progress:
 
 ```bash
-azd ai agent optimize --config eval.yaml
+# Check status and stream progress
+azd ai agent optimize status <operation-id> --watch
+
+# List recent optimization jobs
+azd ai agent optimize list
+
+# Cancel a running job
+azd ai agent optimize cancel <operation-id>
 ```
 
-The optimizer evaluates your agent with each specified model deployment and ranks the results by score and token cost.
+Capture the operation ID, portal URL, scores, and candidate IDs from the run output. You can also monitor the job in the [Foundry portal](https://ai.azure.com) using the URL shown when the run starts.
 
-### Combine with other targets
-
-When your baseline includes instructions, skills, and model candidates, the optimizer runs all targets together in a single run:
-
-```yaml
-# eval.yaml — all targets active
-agent:
-  name: my-agent
-
-dataset_file: ./eval.jsonl
-
-evaluators:
-  - builtin.task_adherence
-  - builtin.intent_resolution
-
-options:
-  eval_model: gpt-4.1-mini
-  optimization_model: gpt-5.1
-  max_iterations: 5
-  optimization_config:
-    model:
-      - gpt-4.1
-      - gpt-5
-```
-
-This produces candidates that combine improved instructions with different model options, giving you the full picture of what works best.
-
----
+If you started the job [without AZD project files](#optimize-an-existing-agent-without-azd-project-files), always pass the operation ID to `status` and `cancel`. The commands use the user-level endpoint saved by `azd ai project set`; otherwise, include `--project-endpoint`.
 
 ## Interpret results
 
-After optimization completes, review the results table. For detailed scoring guidance, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
-
-Key thresholds:
-
-| Improvement | Interpretation |
-| ------------- | --------------- |
-| Less than 0.03 | Noise. Not meaningful. |
-| 0.03 to 0.10 | Moderate. Worth deploying. |
-| 0.10 to 0.20 | Significant improvement. |
-| Greater than 0.20 | Major improvement. |
-
-> [!TIP]
-> To view optimization results in more detail, open the [Azure AI Foundry portal](https://ai.azure.com). Navigate to your project, select **Agents**, choose your agent, and then select the **Optimize** tab. The portal shows score comparisons, score-versus-token charts, and a **Deploy best candidate** button.
+After optimization completes, review the results table. An asterisk (`*`) marks the best candidate. For the results table columns, scoring details, score-improvement thresholds, and the portal view, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
 
 ## Deploy the winner
 
@@ -379,23 +296,82 @@ azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
 > [!WARNING]
-> Direct deploy updates the agent service without changing your local files. Use the `apply` → `deploy` workflow for production.
+> Direct deploy updates the agent service without changing your local files. Use the `apply` -> `deploy` workflow for production.
+>
+> In the current preview, direct deploy resolves the optimization job from an `azd` environment. For a standalone optimization that has no AZD environment, deploy the candidate from the Foundry portal.
 
 If all candidates score lower than the baseline, don't deploy any candidate. The baseline configuration remains active.
+
+## What each target changes
+
+The optimizer automatically activates the targets that apply to your baseline. This section is a reference for what a run changes. Use the following table to anticipate what optimization does for your agent:
+
+| Scenario | Target |
+| ---------- | ------ |
+| Improve overall response quality | Instruction tuning |
+| Reduce incorrect information | Instruction tuning |
+| Improve repeatable behaviors (escalation, debugging patterns) | Skill improvement |
+| Refine structured procedures | Skill improvement |
+| Find the best quality/cost model trade-off | Model selection |
+| First optimization, not sure what to expect | All applicable targets run automatically |
+
+Your code stays the same across all targets because `load_config()` returns the optimized values automatically. Only the configuration the model sees changes.
+
+### Instructions
+
+The optimizer rewrites the system prompt. Common improvements include:
+
+- Adding explicit constraints that the original prompt implied but didn't state
+- Restructuring instructions for clarity
+- Adding output format specifications
+- Strengthening safety and scope boundaries
+
+For example, a minimal baseline prompt like `You are a helpful assistant.` might become:
+
+```
+You are a helpful coding assistant. Follow these guidelines:
+1. Always include working code examples
+2. Explain your reasoning step by step
+3. If a question is outside your expertise, say so clearly
+4. Use markdown formatting for code blocks
+5. Handle edge cases in code examples
+```
+
+### Skills
+
+The optimizer refines each skill's description, body, and activation criteria while keeping the skill's purpose intact. The agent loads improved skills through `load_config()`, which appends them to the instruction set. Skills use the open [Agent Skills](https://agentskills.io) format. For how your agent loads skills, see [Make your agent optimizer-ready](make-agent-optimizer-ready.md#load-and-use-the-config).
+
+### Tools
+
+The optimizer refines your `tools.json` definitions. Common improvements include:
+
+- Clearer function descriptions that help the model know when to call a tool
+- More specific parameter descriptions that reduce inaccurate arguments
+- Added constraints (enums, required fields) that prevent invalid inputs
+
+Your tool implementation code stays the same. Only the definitions the model sees change.
+
+### Models
+
+The optimizer ranks each candidate model by composite score and token cost, so you can choose the best quality-to-cost trade-off. To configure the candidates, see [Evaluate multiple models](#evaluate-multiple-models).
 
 ## Troubleshooting
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| All scores are 0.00 | Eval model not deployed | Deploy the eval model in your Foundry project, or use `--eval-model` to specify one that exists |
-| `optimize` returns 403 | Subscription not on allow list | Contact your Microsoft representative to request access |
-| `"agent.yaml does not declare any protocols"` | Invalid `agent.yaml` format | Use flat format: `kind: hosted` at top level with `protocols:` list |
+| `optimize` returns 400 | Subscription not on allow list | Contact your Microsoft representative to request access |
+| `could not resolve project endpoint` | No project endpoint is available from an `azd` environment or user-level config | Run `azd ai project set <project-endpoint>`, pass `--project-endpoint <project-endpoint>`, or set `FOUNDRY_PROJECT_ENDPOINT` |
+| `agent name is required` | The command is running outside an `azd` project and no deployed agent name was provided | Pass `--agent <deployed-agent-name>` or provide the agent name as a positional argument |
+| `operation ID is required` | A standalone run has no `azd` environment in which to persist the last operation ID | Copy the operation ID from the optimization output and pass it to `status` or `cancel` |
+| `instruction is required for optimization` in a standalone folder | A standalone run doesn't expand `agent.config` from `eval.yaml` in the current preview | Run without `--no-prompt`, then provide the baseline instruction inline or select the instruction file |
+| `optimize apply` can't resolve an agent service | `apply` requires an `azure.yaml` hosted-agent service in an `azd` project | Deploy the candidate from the Foundry portal, or initialize an `azd` project before using `apply` |
+| Protocol validation error | Invalid `azure.yaml` agent service | Ensure the `azure.ai.agent` service includes `kind: hosted` and a `protocols:` list |
 | Job stuck at "running" | Service issue | Cancel with `azd ai agent optimize cancel <id>` and retry |
 | No candidate IDs in output | Job still running | Wait for completion or use `--watch` |
 
 ## Related content
 
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
-- [Create a custom evaluation dataset](create-optimizer-dataset.md)
 - [Make your agent optimizer-ready](make-agent-optimizer-ready.md)
+- [Create an evaluation dataset and evaluators](create-optimizer-dataset.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)

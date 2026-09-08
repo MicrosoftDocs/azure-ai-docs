@@ -11,6 +11,8 @@ ms.date: 01/16/2026
 
 # Assign narrow data types to vector fields in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 An easy way to reduce vector size is to store embeddings in a smaller data format. Most embedding models output 32-bit floating point numbers. However, if you quantize your vectors or use an embedding model that natively supports quantization, the output might be float16, int16, or int8, which are significantly smaller than float32. You can accommodate these smaller vector sizes by assigning a narrow data type to a vector field. In the vector index, narrow data types consume less storage.
 
 You assign data types to fields in an index definition. Use the Azure portal, the [Search Service REST APIs](/rest/api/searchservice/indexes/create), or an Azure SDK package that provides the feature.

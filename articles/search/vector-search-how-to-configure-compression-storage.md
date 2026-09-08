@@ -11,6 +11,8 @@ ms.date: 01/16/2026
 
 # Choose an approach for optimizing vector storage and processing
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Embeddings, or the numerical representation of heterogeneous content, are the basis of vector search workloads. However, the sizes of embeddings make them hard to scale and expensive to process. Significant research and productization have produced multiple solutions for improving scale and reducing processing times. Azure AI Search taps into a number of these capabilities for faster and cheaper vector workloads.
 
 This article covers all of the optimization techniques in Azure AI Search that can help you reduce vector size and query processing times.

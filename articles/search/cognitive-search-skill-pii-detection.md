@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Personally Identifiable Information (PII) Detection cognitive skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **PII Detection** skill extracts personal information from an input text and gives you the option of masking it. This skill uses the [detection models](/azure/ai-services/language-service/personally-identifiable-information/overview) provided in [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 > [!NOTE]

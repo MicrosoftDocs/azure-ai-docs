@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 08/19/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -51,7 +51,7 @@ print(json.dumps(status.as_dict(), indent=2))
 ```http
 ### Check knowledge source ingestion status
 GET {{search-url}}/knowledgesources/{{knowledge-source-name}}/status?api-version={{api-version}}
-api-key: {{api-key}}
+Authorization: Bearer {{token}}
 Content-Type: application/json 
 ```
 

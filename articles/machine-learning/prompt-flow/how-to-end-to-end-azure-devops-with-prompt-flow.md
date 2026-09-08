@@ -9,13 +9,14 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
 ms.reviewer: sooryar
-ms.date: 10/18/2024
+ms.date: 08/28/2026
 ms.custom:
   - cli-v2
   - sdk-v2
   - ignite-2023
   - build-2024
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # GenAIOps with prompt flow and Azure DevOps
@@ -88,14 +89,14 @@ The GenAIOps Prompt Flow template formalizes this structured methodology by usin
 
 ## Create a GenAIOps prompt flow
 
-The rest of this article shows you how to use GenAIOps with prompt flow by following the end-to-end sample in the [GenAIOps with prompt flow template repository](https://github.com/microsoft/genaiops-promptflow-template), which help you build LLM-infused applications using prompt flow and Azure DevOps. The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
+The rest of this article shows you how to use GenAIOps with prompt flow by following the end-to-end sample in the [GenAIOps with prompt flow template repository](https://github.com/microsoft/genaiops-promptflow-template). The sample helps you build LLM-infused applications using prompt flow and Azure DevOps. The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
 
 ### Prerequisites
 
 - An Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Machine Learning workspace.
 - [Git version 2.27 or newer](https://git-scm.com/downloads) running on your local machine.
-- An [Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) where you have the ability to create a project, an Azure Repos source control repository, and Azure Pipelines pipelines. An Azure DevOps organization helps you collaborate, plan and track your work, code, and issues, and set up CI and CD.
+- An [Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) where you can create a project, an Azure Repos source control repository, and Azure Pipelines pipelines. An Azure DevOps organization helps you collaborate, plan and track your work, code, and issues, and set up CI and CD.
 - An understanding of [how to integrate GenAIOps with prompt flow](how-to-integrate-with-llm-app-devops.md).
 
 >[!NOTE]
@@ -109,7 +110,7 @@ To create the connection, follow the instructions at [Set up connections for pro
 
 ### Set up a compute session
 
-Prompt flow uses a compute session to execute the flow. [Create and start the compute session](/azure/ai-studio/how-to/create-manage-compute-session) before you execute the prompt flow.
+Prompt flow uses a compute session to execute the flow. [Create and start the compute session](how-to-manage-compute-session.md) before you execute the prompt flow.
 
 ### Set up the Azure Repos repository
 
@@ -124,6 +125,9 @@ An Azure service principal is a security identity that applications, services, a
 Create a service principal by following the instructions at [Create an Azure service principal](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#create-azure-service-principal). You use this service principal to configure the Azure DevOps Services connection and to allow Azure DevOps Services to authenticate and connect to Azure services. The prompt flow experiment and evaluation jobs both run under the identity of the service principal.
 
 The setup provides the service principal with **Owner** permissions so the CD pipeline can automatically provide the newly provisioned Azure Machine Learning endpoint with access to the Azure Machine Learning workspace for reading connection information. The pipeline also adds the endpoint to the key vault policy associated with the Azure Machine Learning workspace with `get` and `list` secret permissions. You can change the **Owner** permissions to **Contributor** level permissions by changing the pipeline YAML code to remove the step related to permissions.
+
+> [!IMPORTANT]
+> The template uses broad permissions to automate its sample deployment. For production, scope the service principal to the resources it needs and assign the least privileged roles that support your pipeline operations.
 
 ### Create a new Azure DevOps project
 
@@ -164,18 +168,18 @@ The outputs should look similar to the examples at [Example prompt run, evaluati
 
 ### Use local execution
 
-To use [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#local-execution) capabilities, follow these steps.
+To use [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#local-execution) capabilities, follow these steps:
 
-1. Clone the repository as follows:
+1. Clone the repository.
 
    ```bash
    git clone https://github.com/microsoft/genaiops-promptflow-template.git
    ```
 
-1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the example repo use the AzureOpenAI connection named `aoai` and API version `2024-02-01`.
+1. Create an *.env* file at the top folder level. Add lines for each connection, and update the values for the placeholders. The examples in the repository use an Azure OpenAI connection named `aoai`. Set `api_version` to a version supported by your Azure OpenAI deployment and the Prompt Flow connection.
 
    ```bash
-   aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-02-01"}
+   aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "<supported API version>"}
    <connection2>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "<api type>","api_version": "<api_version>"}
    ```
 1. Prepare the local conda or virtual environment to install the dependencies.
@@ -184,7 +188,7 @@ To use [local execution](https://github.com/microsoft/genaiops-promptflow-templa
    python -m pip install promptflow promptflow-tools promptflow-sdk jinja2 promptflow[azure] openai promptflow-sdk[builtins] python-dotenv
    ```
 
-1. Bring or write your flows into the template based on instructions at [How to onboard new flows](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/how_to_onboard_new_flows.md).
+1. Bring or write your flows into the template based on instructions at [How to onboard new flows](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/how_to_onboard_new_flows.md).
 
 1. Write Python scripts in the *local_execution* folder similar to the provided examples.
 

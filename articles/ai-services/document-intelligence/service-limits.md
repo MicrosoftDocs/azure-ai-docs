@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 11/18/2025
+ms.date: 04/30/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---

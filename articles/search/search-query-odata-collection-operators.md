@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # OData collection operators in Azure AI Search - `any` and `all`
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 When writing an [OData filter expression](query-odata-filter-orderby-syntax.md) to use with Azure AI Search, it's often useful to filter on collection fields. You can achieve this using the `any` and `all` operators.
 
 ## Syntax

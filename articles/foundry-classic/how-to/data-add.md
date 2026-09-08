@@ -12,8 +12,8 @@ ms.custom:
   - dev-focus
 ms.topic: how-to
 ms.date: 02/02/2026
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 ---
 

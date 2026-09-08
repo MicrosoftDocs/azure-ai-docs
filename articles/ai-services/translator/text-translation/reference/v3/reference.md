@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Reference documentation for the Translator V3.0. Version 3.0 of the Translator provides a modern JSON-based Web API.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 # Azure Translator in Foundry Tools v3.0
@@ -24,36 +25,7 @@ Version 3.0 of the Translator provides a modern JSON-based Web API. It improves 
 
 ## Base URLs
 
-Requests to Translator are, in most cases, handled by the datacenter that's closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
-
-To force the request to be handled within a specific geography, use the desired geographical endpoint. All requests are processed among the datacenters within the geography.
-
-✔️ Feature: **Translator Text** </br>
-
-| Service endpoint | Request processing data center |
-|------------------|--------------------------|
-|**Global (recommended):**</br>**`api.cognitive.microsofttranslator.com`**|Closest available data center.|
-|**Americas:**</br>**`api-nam.cognitive.microsofttranslator.com`**|East US 2 &bull; West US 2|
-|**Asia Pacific:**</br>**`api-apc.cognitive.microsofttranslator.com`**|Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland):**</br>**`api-eur.cognitive.microsofttranslator.com`**|France Central &bull; West Europe|
-|**Switzerland:**</br> For more information, *see* [Switzerland service endpoints](#switzerland-service-endpoints).|Switzerland North &bull; Switzerland West|
-
-#### Switzerland service endpoints
-
-Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
-
-For example: If you create a Translator resource in Azure portal with `Resource region` as `Switzerland North` and your resource name is `my-swiss-n`, then your custom endpoint is `https://my-swiss-n.cognitiveservices.azure.com`. And a sample request to translate is:
-
-```curl
-// Pass secret key and region using headers to a custom endpoint
-curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.0/translate?to=fr" \
--H "Ocp-Apim-Subscription-Key: xxx" \
--H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
--H "Content-Type: application/json" \
--d "[{'Text':'Hello'}]" -v
-```
-
-Custom Translator isn't currently available in Switzerland.
+The global base URL is `https://api.cognitive.microsofttranslator.com`. Text translation also supports geography and resource-specific endpoints. For all endpoint URLs and their request processing locations, see [Region support for Azure Translator](../../../region-support.md).
 
 ## Virtual Network support
 

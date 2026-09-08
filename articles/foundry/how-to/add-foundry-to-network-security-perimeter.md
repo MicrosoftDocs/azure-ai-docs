@@ -1,10 +1,10 @@
 ---
 title: "Add Microsoft Foundry to a network security perimeter"
 description: "Quickly learn how to associate a Microsoft Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management."
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: meerakurup
-ms.date: 05/12/2026
+ms.date: 08/17/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
@@ -25,9 +25,6 @@ Use a network security perimeter (NSP) to restrict data-plane access to your Mic
 
 This article gives only the Foundry-specific pointers you need. All procedural detail for creating perimeters, defining access rules, enabling logging, and using APIs lives in existing Azure networking documentation. Follow the links in each section for the authoritative steps.
 
-> [!IMPORTANT]
-> Network security perimeter support for Microsoft Foundry is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Review the [limitations and considerations](#review-limitations-and-considerations) before you start.
-
 :::image type="content" source="../media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram that shows a Foundry resource inside a network security perimeter boundary, with inbound rules filtering external traffic and outbound rules controlling egress to external services." lightbox="../media/how-to/network/network-security-perimeter-diagram.png":::
 
 The diagram shows a Foundry resource inside an NSP boundary. Inbound access rules filter traffic from external sources, and outbound access rules control egress to services outside the perimeter.
@@ -36,10 +33,10 @@ The diagram shows a Foundry resource inside an NSP boundary. Inbound access rule
 
 ## Validate before enforcement
 
-1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
+1. Stay in Transition mode initially; review access logs for denies affecting required traffic.
 1. Add or refine inbound and outbound rules.
 1. Switch to Enforced mode.
 1. Open [!INCLUDE [foundry-link](../includes/foundry-link.md)] and perform a model deployment or chat test. Success indicates required traffic is permitted.
-1. If blocked, revert to Learning mode or add rules and retry.
+1. If blocked, revert to Transition mode or add rules and retry.
 
 [!INCLUDE [add-foundry-to-network-security-perimeter 2](../includes/how-to-add-foundry-to-network-security-perimeter-2.md)]

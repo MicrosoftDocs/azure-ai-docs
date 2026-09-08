@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure Translator container transliterate text operation.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/03/2026
 ms.author: lajanuar
 ---
 

@@ -5,7 +5,7 @@ description: "This document details issues for data, privacy, and security for a
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted
@@ -30,6 +30,8 @@ Speech to text processes the following types of data:
 The text translation service is used only to convert text from one language to another. No input/output data is retained by Speech service after the completion of a translation request. See [What is the Translator service](/azure/cognitive-services/translator/translator-info-overview) for more information about the text translation service.
 
 If users need transcribed/translated text in an audio format, the feature sends the output text to [text to speech](/azure/cognitive-services/speech-service/text-to-speech). Again, no data is persisted in the text to speech data processing.
+
+[!INCLUDE [Biometric data privacy note](../../includes/biometric-data-privacy-note.md)]
 
 ## How does speech to text process data?
 
@@ -65,7 +67,7 @@ With speech containers, customers deploy Speech services APIs to their own envir
 
 ### Security for customers' data in speech container
 
-The security of customer data is a shared responsibility. Details on the security model of Azure AI containers, like the speech container can be found in [Foundry Tools container security](/azure/cognitive-services/cognitive-services-container-support?tabs=luis#azure-cognitive-services-container-security).
+The security of customer data is a shared responsibility. Details on the security model of Azure AI containers, like the speech container can be found in [Foundry Tools container security](/azure/cognitive-services/cognitive-services-container-support?context=/azure/foundry-classic/context/context#azure-cognitive-services-container-security).
 
 You are responsible for securing and maintaining the equipment and infrastructure required to operate speech containers located on your premises, such as your edge device and network.
 

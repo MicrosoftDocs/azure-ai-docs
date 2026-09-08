@@ -53,8 +53,6 @@ items:
     href: ../../how-to/hub-connections-add.md
   - name: Create a hub project
     href: ../../how-to/hub-create-projects.md
-  - name: "Quickstart: Get started with Microsoft Foundry using a hub"
-    href: ../../quickstarts/hub-get-started-code.md
 - name: Manage projects
   items:
   - name: Create a project
@@ -67,8 +65,6 @@ items:
   href: ../../concepts/management-center.md
 - name: Consolidated view
   href: ../../concepts/ai-foundry-consolidated-view.md
-- name: Status dashboard
-  href: ../../foundry-status-dashboard-documentation.md  
 - name: Connect to other services
   items:
   - name: Create a connection

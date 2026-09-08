@@ -12,14 +12,14 @@ ms.date: 02/14/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 ai-usage: ai-assisted
+# customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK (classic)
 
-**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/cloud-evaluation.md)
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/observability/how-to/cloud-evaluation.md)
 
 [!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
@@ -265,5 +265,5 @@ After you register your custom evaluator, you can view it in your [evaluator cat
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
-- [REST API Reference Documentation](/rest/api/aifoundry)
+- [REST API Reference Documentation](/rest/api/microsoft-foundry/)
 

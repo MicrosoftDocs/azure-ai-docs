@@ -49,7 +49,7 @@ To mitigate the risks and limitations of fine-tuning models on Azure OpenAI, we 
 #### [Speech models](#tab/speech)
 
 - **Show and tell when designing prompts.** With natural language models and speech models, make it clear to the model what kind of outputs you expect through instructions, examples, or a combination of the two. If you want the model to rank a list of items in alphabetical order or to classify a paragraph by sentiment, show the model that is what you want.
-   - **Prompts for the Whisper model in Azure OpenAI service** can help improve model outputs. The following best practices will help you create prompts that best fit your scenario and needs.
+   - **Prompts for the transcription model in Azure OpenAI service** can help improve model outputs. The following best practices will help you create prompts that best fit your scenario and needs.
      - Consider including a prompt to instruct the model to correct specific words or acronyms that the model often misrecognizes in the audio.   
      - To preserve the context of a file that was split into segments, you might prompt the model with the transcript of the preceding segment. This prompt will make the transcript more accurate, because the model will use the relevant information from the previous audio. The model will only consider the final 224 tokens of the prompt and ignore anything earlier.  
      - The model might skip punctuation in the transcript. Consider using a simple prompt that instructs the model to include punctuation.  
@@ -90,7 +90,7 @@ For additional information on how to evaluate and integrate these models respons
 
 #### [Audio / speech models](#tab/speech)
 
-The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
+The OpenAI transcription model is also available within Azure Speech services, enhancing the experience with advanced features like multilingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, real-time streaming, or processing multiple audio files per request. For more information on how to evaluate and integrate the transcription model responsibly, see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
 
 ---
 

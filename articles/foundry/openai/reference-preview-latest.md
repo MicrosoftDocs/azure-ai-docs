@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference"
-description: "Learn how to use Azure OpenAI's latest v1 preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response."
+title: "Azure OpenAI image, audio, and video REST API reference (v1 preview)"
+description: "Reference for the Azure OpenAI image, audio (speech), and video generation REST API operations in the v1 preview release."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -15,6 +15,6 @@ ms.custom:
 - doc-kit-assisted
 ---
 
-# Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference
+# Azure OpenAI image, audio, and video REST API reference (v1 preview)
 
 [!INCLUDE [reference-preview-latest content](includes/reference-preview-latest-content.md)]

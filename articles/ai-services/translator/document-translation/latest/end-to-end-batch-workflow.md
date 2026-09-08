@@ -1,11 +1,11 @@
-﻿---
+---
 title: "End-to-end Batch Translation Workflow"
 titleSuffix: Foundry Tools
 description: Learn how to manage the full lifecycle of an asynchronous batch translation job, from submitting a job to monitoring status, retrieving results, and canceling jobs.
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted

@@ -75,13 +75,21 @@ The installed skill includes specialized sub-skills for those areas. You don't
 usually need to name the sub-skill directly. Ask for the outcome you want, and
 the coding agent uses the skill instructions to route the task.
 
-
-
 ## Installation
+
+### Install just the Foundry skill
+
+If your host already has MCP server configuration and you only need the skill content, install the `microsoft-foundry` skill directly:
+
+```bash
+npx skills add https://github.com/microsoft/azure-skills --skill microsoft-foundry
+```
+
+The skill-only path downloads the Foundry workflow guidance. Use the Azure Skills Plugin when you want the skill, Azure MCP Server configuration, and Foundry MCP Server configuration installed together.
 
 ### [VS Code](#tab/vscode)
 
-The [Foundry Toolkit extension for VS Code](https://aka.ms/foundrytk) comes with the Foundry Skill. To install the extension, see [Work with the Microsoft Foundry for Visual Studio Code extension](get-started-projects-vs-code.md).
+The [Foundry Toolkit extension for VS Code](https://aka.ms/foundrytk) includes the Foundry Skill. To install the extension, see [Work with the Microsoft Foundry for Visual Studio Code extension](get-started-projects-visual-studio-code.md).
 
 After installation, reload Visual Studio Code if prompted. Open Copilot Chat,
 switch to agent mode, and confirm that Foundry skills are available. When
@@ -94,7 +102,7 @@ and [Get started with Foundry MCP Server](../../mcp/get-started.md).
 
 ### [Coding agents such as Copilot CLI and Claude Code](#tab/coding-agents)
 
-The [Azure Skills Plugin](https://github.com/microsoft/azure-skills) bundles a curated set of Azure skills—including the Foundry Skill, Azure MCP Server configuration, and Foundry MCP Server—into a single install. Together, they give coding agents an optimized experience for building with Foundry and other Azure services.
+The [Azure Skills Plugin](https://github.com/microsoft/azure-skills) bundles a curated set of Azure skills, including the Foundry Skill, Azure MCP Server configuration, and Foundry MCP Server, into a single install. Together, they give coding agents an optimized experience for building with Foundry and other Azure services.
 
 #### [Copilot CLI](#tab/copilot-cli)
 Run the plugin commands inside Copilot CLI.
@@ -144,19 +152,6 @@ Run the plugin commands inside Claude Code.
    installation.
 
 ---
-
-#### [Install just the Foundry Skill](#tab/foundry-skill-alone)
-
-If your host already has MCP server configuration and you only need the skill
-content, install the `microsoft-foundry` skill directly:
-
-```bash
-npx skills add https://github.com/microsoft/azure-skills --skill microsoft-foundry
-```
-
-The skill-only path downloads the Foundry workflow guidance. Use the Azure
-Skills Plugin when you want the skill, Azure MCP Server configuration, and
-Foundry MCP Server configuration installed together.
 
 ## Verify the setup
 
@@ -252,11 +247,10 @@ recommendations.
 
 | File or folder | How the skill uses it |
 | --- | --- |
-| `azure.yaml` | Finds `azd` services, agent project folders, deployment host settings, and environment bindings. |
+| `azure.yaml` | Finds `azd` services, agent project folders, deployment host settings, environment bindings, and local agent configuration for create, deploy, invoke, and evaluation workflows. |
 | `.azure/<environment>/.env` | Resolves authenticated `azd` environment values such as subscription, resource group, project endpoint, agent name, registry, and Application Insights connection string. |
 | `.foundry/agent-metadata.yaml` | Stores Foundry-specific overlay state such as evaluation suite references, dataset references, local cache paths, result summaries, and non-`azd` overrides. |
 | `.foundry/agent-metadata.<env>.yaml` | Stores environment-specific overlay state for a target such as production or CI. |
-| `agent.yaml` | Provides local agent configuration for create, deploy, invoke, and evaluation workflows. |
 | `eval.yaml` | Defines local evaluation intent, such as dataset file, evaluator names, pass threshold, sample count, trace lookback, and generation instructions. |
 
 For deployment and evaluation workflows, prefer `.foundry/agent-metadata.yaml`

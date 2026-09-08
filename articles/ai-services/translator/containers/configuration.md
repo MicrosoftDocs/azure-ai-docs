@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: The Azure Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 07/31/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 recommendations: false
 ---
 
@@ -157,4 +158,4 @@ Use bind mounts to read and write data to and from the container. You can specif
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about Azure containers](../../cognitive-services-container-support.md)
+> [Learn more about Foundry Tools containers](../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

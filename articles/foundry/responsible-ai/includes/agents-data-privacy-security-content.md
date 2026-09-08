@@ -72,6 +72,14 @@ To use Agent Service, you must create an Azure OpenAI Service resource in which 
 
 To reduce the risk of harmful use of Agent Service, the Service includes [content filtering](/azure/ai-foundry/openai/concepts/content-filter) support. The outputs processed by Agent Service will be filtered in accordance with any content filtering that has been applied to the model deployment used by your agent.
 
+## How is data processed when publishing agents to Microsoft 365 Copilot and Microsoft Teams? 
+
+When you publish agents to Microsoft 365 and Teams, certain data associated with publishing and using the agent in Microsoft 365 and Teams is processed and stored by those services and is subject to the terms, compliance commitments, data residency commitments, and data handling practices applicable to Microsoft 365 and Teams.
+
+This data can include data necessary to publish the agent, such as the agent's name, icon, and description, as well as data contained in responses provided by the agent when users in your organization submit queries to the agent from Microsoft 365 and Teams.
+
+Before you publish an agent to Microsoft 365 and Teams, evaluate whether the resulting data flows and processing are consistent with your organization's compliance, data residency, and governance requirements.
+
 ## See also 
 
 * [Terms of Use for Grounding with Bing Search in Azure AI Agent Service](https://www.microsoft.com/bing/apis/grounding-legal) 

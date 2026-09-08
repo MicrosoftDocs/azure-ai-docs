@@ -5,14 +5,14 @@ manager: mcleans
 description: Get started with the Content Understanding Java SDK to extract structured data from documents, images, audio, and video files.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
-ms.date: 03/06/2026
+ms.date: 08/24/2026
 ms.author: lahlouchu
 ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
 
-[Client library](https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding) | [SDK source](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding)
+[Client library](https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding) | [SDK source](https://aka.ms/cu-sdk-java)
 
 This quickstart shows you how to use the Content Understanding Java SDK to extract structured data using prebuilt analyzers from document, image, audio, and video files. To learn more about prebuilt analyzers and other features, see the documentation of [Prebuilt Analyzers](../../concepts/prebuilt-analyzers.md).
 
@@ -43,7 +43,7 @@ This quickstart shows you how to use the Content Understanding Java SDK to extra
     <dependency>
         <groupId>com.azure</groupId>
         <artifactId>azure-ai-contentunderstanding</artifactId>
-        <version>1.0.0-beta.1</version>
+        <version>1.1.0-beta.3</version>
     </dependency>
     ```
 

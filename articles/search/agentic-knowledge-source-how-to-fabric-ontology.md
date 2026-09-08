@@ -1,6 +1,6 @@
 ---
 title: Create a Fabric Ontology Knowledge Source
-description: Learn how to create a Fabric Ontology knowledge source, which connects a Microsoft Fabric ontology to an agentic retrieval pipeline in Azure AI Search for ontology-backed answers.
+description: Learn how to create a Fabric Ontology knowledge source in Azure AI Search for ontology-backed answers from Microsoft Fabric.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
@@ -10,10 +10,12 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a Fabric Ontology knowledge source (preview)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > When you connect to Fabric IQ, you might incur costs, and data might be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -27,9 +29,9 @@ Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live d
 
 ### Usage support
 
-| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-05-01-preview&preserve-view=true) |
-|--|--|--|--|--|--|--|
-| ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-08-01-preview&preserve-view=true) |
+| -- | -- | -- | -- | -- | -- | -- |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -39,11 +41,13 @@ Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live d
 
 + Your search service and workspace must be in the same Microsoft Entra ID tenant.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
 
 ::: zone-end
 
@@ -51,11 +55,15 @@ Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live d
 
 + The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ The [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) version of the Search Service REST API.
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
 
@@ -100,12 +108,12 @@ Run the following code to create a Fabric Ontology knowledge source.
 ::: zone pivot="csharp"
 
 ```csharp
-using Azure;
+using Azure.Identity;
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
 
-Uri searchEndpoint = new Uri("<search-service-url>");
-AzureKeyCredential credential = new AzureKeyCredential("<api-key>");
+Uri searchEndpoint = new Uri("<search-endpoint>");
+DefaultAzureCredential credential = new DefaultAzureCredential();
 var indexClient = new SearchIndexClient(searchEndpoint, credential);
 
 var fabricOntology = new FabricOntologyKnowledgeSource(
@@ -125,7 +133,7 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(fabricOntology);
 ::: zone pivot="python"
 
 ```python
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import (
     FabricOntologyKnowledgeSource,
@@ -133,8 +141,8 @@ from azure.search.documents.indexes.models import (
 )
 
 index_client = SearchIndexClient(
-    endpoint="<search-service-url>",
-    credential=AzureKeyCredential("<api-key>")
+    endpoint="<search-endpoint>",
+    credential=DefaultAzureCredential()
 )
 
 knowledge_source = FabricOntologyKnowledgeSource(
@@ -157,8 +165,8 @@ index_client.create_or_update_knowledge_source(knowledge_source)
 
 ```http
 ### Create a Fabric Ontology knowledge source
-PUT {{search-url}}/knowledgesources/my-fabric-ontology-ks?api-version=2026-05-01-preview
-api-key: {{api-key}}
+PUT {{search-endpoint}}/knowledgesources/my-fabric-ontology-ks?api-version=2026-08-01-preview
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -172,23 +180,9 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 ::: zone-end
-
-### Source-specific properties
-
-The following properties apply to Fabric Ontology knowledge sources.
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `fabricOntology` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `fabricOntologyParameters` | Parameters specific to the Fabric Ontology knowledge source: `workspaceId` and `ontologyId`. | Object | No | Yes |
-| `workspaceId` | The [ID of the Microsoft Fabric workspace](/fabric/data-factory/migrate-pipelines-how-to-find-your-fabric-workspace-id) that contains the ontology item. Must be a valid GUID. | String | Yes | Yes |
-| `ontologyId` | The ID of the ontology item to query. Must be a valid GUID. | String | Yes | Yes |
 
 ## Assign to a knowledge base
 
@@ -207,7 +201,7 @@ Fabric Ontology knowledge sources use an on-behalf-of (OBO) token flow. You pass
 
 Standard Azure AI Search authentication is also required on the retrieve request. The `x-ms-query-source-authorization` token is passed separately and doesn't replace service authentication.
 
-For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
+For instructions on passing the token, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
 ### Fabric Ontology–specific response fields
 
@@ -238,7 +232,7 @@ The following example shows a retrieve response containing a Fabric Ontology kno
       }
     },
     {
-      // ... Additional activity records omitted for brevity 
+      // ... Additional activity records omitted for brevity
     }
   ],
   "references": [

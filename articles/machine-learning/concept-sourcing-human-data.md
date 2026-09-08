@@ -7,29 +7,30 @@ ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.reviewer: nhudo
 ms.topic: concept-article 
-ms.date: 03/17/2025
+ms.date: 08/31/2026
 ms.custom: responsible-ml 
+ai-usage: ai-assisted
 ---
-# What is "human data" and why is it important to source responsibly?
+# What is human data and why is responsible sourcing important?
 
-[!INCLUDE [SDK/cli v2](includes/machine-learning-dev-v2.md)]
+[!INCLUDE [SDK/CLI v2](includes/machine-learning-dev-v2.md)]
 
-Human data is data collected directly from, or about, people. Human data might include personal data such as names, age, images, or voice clips and sensitive data such as genetic data, biometric data, gender identity, religious beliefs, or political affiliations. 
+Human data is data collected directly from, or about, people. Human data might include personal data such as names, age, images, or voice clips, and sensitive data such as genetic data, biometric data, gender identity, religious beliefs, or political affiliations. 
 
-Collecting this data can be important to building AI systems that work for all users. But certain practices should be avoided, especially ones that can cause physical and psychological harm to data contributors.
+Collecting this data can be important to building AI systems that work for all users. But avoid certain practices, especially ones that can cause physical and psychological harm to data contributors.
 
-The best practices in this article will help you conduct manual data collection projects from volunteers where everyone involved is treated with respect, and potential harms—especially those faced by vulnerable groups—are anticipated and mitigated. This means that:
+The best practices in this article help you conduct manual data collection projects from volunteers where everyone involved is treated with respect, and potential harms, especially those faced by vulnerable groups, are anticipated and mitigated. This approach means that:
 
 - People contributing data aren't coerced or exploited in any way, and they have control over what personal data is collected.
 - People collecting and labeling data have adequate training.
 
-These practices can also help ensure more-balanced and higher-quality datasets and better stewardship of human data.
+These practices can also help ensure more balanced and higher-quality datasets and better stewardship of human data.
 
-These are emerging practices, and we're continually learning. The best practices in the next section are a starting point as you begin your own responsible human data collections. These best practices are provided for informational purposes only and shouldn't be treated as legal advice. All human data collections should undergo specific privacy and legal reviews.
+These practices are emerging, and we're continually learning. The best practices in the next section are a starting point as you begin your own responsible human data collections. These best practices are provided for informational purposes only and shouldn't be treated as legal advice. All human data collections should undergo specific privacy and legal reviews.
 
 ## General best practices
 
-We suggest the following best practices for manually collecting human data directly from people.
+Follow these best practices when you manually collect human data directly from people.
 
 :::row:::
         :::column span="":::
@@ -49,8 +50,8 @@ We suggest the following best practices for manually collecting human data direc
 
     :::column span="":::
         - Participants should understand and consent to data collection and how their data will be used.
-        - Data should only be stored, processed, and used for purposes that are part of the original documented informed consent.
-        - Consent documentation should be properly stored and associated with the collected data.
+        - Store, process, and use data only for purposes that are part of the original documented informed consent.
+        - Properly store consent documentation and associate it with the collected data.
     :::column-end:::
 :::row-end:::
 
@@ -62,7 +63,7 @@ We suggest the following best practices for manually collecting human data direc
     :::column-end:::
 
     :::column span="":::
-        - Data contributors should not be pressured or coerced into data collections and should be fairly compensated for their time and data.
+        - Don't pressure or coerce data contributors into data collections. Fairly compensate them for their time and data.
         - Inappropriate compensation can be exploitative or coercive.
     :::column-end:::
 
@@ -76,7 +77,7 @@ We suggest the following best practices for manually collecting human data direc
     :::column-end:::
 
     :::column span="":::
-        - Demographic information that is not self-reported by data contributors but assigned by data collectors may 1) result in inaccurate metadata and 2) be disrespectful to data contributors.
+        - If data collectors assign demographic information instead of data contributors self-reporting it, it can 1) result in inaccurate metadata and 2) be disrespectful to data contributors.
     :::column-end:::
 
 :::row-end:::
@@ -115,8 +116,8 @@ We suggest the following best practices for manually collecting human data direc
     :::column-end:::
 
     :::column span="":::
-        - Data collections with unqualified suppliers may result in low quality data, poor data management, unprofessional practices, and potentially harmful outcomes for data contributors and data collectors (including violations of human rights).
-        - Annotation or labeling work (e.g., audio transcription, image tagging) with unqualified suppliers may result in low quality or biased datasets, insecure data management, unprofessional practices, and potentially harmful outcomes for data contributors (including violations of human rights).
+        - Data collections with unqualified suppliers might result in low-quality data, poor data management, unprofessional practices, and potentially harmful outcomes for data contributors and data collectors (including violations of human rights).
+        - Annotation or labeling work (for example, audio transcription, image tagging) with unqualified suppliers might result in low-quality or biased datasets, insecure data management, unprofessional practices, and potentially harmful outcomes for data contributors (including violations of human rights).
     :::column-end:::
 
 :::row-end:::
@@ -129,7 +130,7 @@ We suggest the following best practices for manually collecting human data direc
     :::column-end:::
 
     :::column span="":::
-        - A contract which lacks requirements for responsible data collection work may result in low-quality or poorly collected data.     
+        - A contract that lacks requirements for responsible data collection work might result in low-quality or poorly collected data.     
     :::column-end:::
 
 :::row-end:::
@@ -142,7 +143,7 @@ We suggest the following best practices for manually collecting human data direc
     :::column-end:::
 
     :::column span="":::
-        - When applicable, collecting data in areas of high geopolitical risk and/or unfamiliar geographies may result in unusable or low-quality data and may impact the safety of involved parties.
+        - When applicable, collecting data in areas of high geopolitical risk and/or unfamiliar geographies might result in unusable or low-quality data and might impact the safety of involved parties.
     :::column-end:::
 
 :::row-end:::
@@ -163,18 +164,18 @@ We suggest the following best practices for manually collecting human data direc
 -----
 
 
->[!NOTE]
->This article focuses on recommendations for human data, including personal data and sensitive data such as biometric data, health data, racial or ethnic data, data collected manually from the general public or company employees, as well as metadata relating to human characteristics, such as age, ancestry, and gender identity, that may be created via annotation or labeling. 
+> [!NOTE]
+> This article focuses on recommendations for human data, including personal data and sensitive data such as biometric data, health data, racial or ethnic data, data collected manually from the general public or company employees, as well as metadata relating to human characteristics, such as age, ancestry, and gender identity, that might be created through annotation or labeling.
 
-[Download the full recommendations here](https://bit.ly/3FK8m8A)
+[Download the full recommendations](https://download.microsoft.com/download/9/c/5/9c577a22-e7d8-449e-a846-f36e64355159/Responsibly%20sourcing%20human%20data%20from%20data%20contributors%20for%20AI%20development%20recommendations.pdf).
 
 ## Best practices for collecting age, ancestry, and gender identity
 
-In order for AI systems to work well for everyone, the datasets used for training and evaluation should reflect the diversity of people who will use or be affected by those systems. In many cases, age, ancestry, and gender identity can help approximate the range of factors that might affect how well a product performs for various people; however, collecting this information requires special consideration.
+For AI systems to work well for everyone, the datasets used for training and evaluation should reflect the diversity of people who use or are affected by those systems. In many cases, age, ancestry, and gender identity can help approximate the range of factors that might affect how well a product performs for various people. However, collecting this information requires special consideration.
 
-If you do collect this data, always let data contributors self-identify (choose their own responses) instead of having data collectors make assumptions, which might be incorrect. Also include a "prefer not to answer" option for each question. These practices will show respect for the data contributors and yield more balanced and higher-quality data.
+If you collect this data, always let data contributors self-identify (choose their own responses) instead of having data collectors make assumptions, which might be incorrect. Also include a "prefer not to answer" option for each question. These practices show respect for the data contributors and yield more balanced and higher-quality data.
  
-These best practices have been developed based on three years of research with intended stakeholders and collaboration with many teams at Microsoft: [fairness and inclusiveness working groups](https://www.microsoft.com/ai/our-approach?activetab=pivot1:primaryr5), [Global Diversity & Inclusion](https://www.microsoft.com/diversity/default.aspx), [Global Readiness](https://www.microsoft.com/security/blog/2014/09/29/microsoft-global-readiness-diverse-cultures-multiple-languages-one-world/), [Office of Responsible AI](https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6), and others.   
+Microsoft developed these best practices based on three years of research with intended stakeholders and collaboration with many teams at Microsoft: [fairness and inclusiveness working groups](https://www.microsoft.com/ai/our-approach?activetab=pivot1:primaryr5), [Global Diversity & Inclusion](https://www.microsoft.com/diversity/default.aspx), [Global Readiness](https://www.microsoft.com/security/blog/2014/09/29/microsoft-global-readiness-diverse-cultures-multiple-languages-one-world/), [Office of Responsible AI](https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6), and others.   
 
 To enable people to self-identify, consider using the following survey questions. 
 
@@ -184,7 +185,7 @@ To enable people to self-identify, consider using the following survey questions
 
 *Select your age range*
 
-[*Include appropriate age ranges as defined by project purpose, geographical region, and guidance from domain experts*]
+*Include appropriate age ranges as defined by project purpose, geographical region, and guidance from domain experts.*
 
 - \# to # 
 - \# to # 
@@ -194,16 +195,16 @@ To enable people to self-identify, consider using the following survey questions
 
 ### Ancestry
 
-**Please select the categories that best describe your ancestry**
+**Select the categories that best describe your ancestry**
 
-*May select multiple*
+*You can select multiple options*
 
-[*Include appropriate categories as defined by project purpose, geographical region, and guidance from domain experts*]
+*Include appropriate categories as defined by project purpose, geographical region, and guidance from domain experts.*
 
 - Ancestry group 
 - Ancestry group 
 - Ancestry group 
-- Multiple (multiracial, mixed Ancestry) 
+- Multiple (multiracial, mixed ancestry) 
 - Not listed, I describe myself as: _________________ 
 - Prefer not to answer 
 
@@ -212,9 +213,9 @@ To enable people to self-identify, consider using the following survey questions
 
 **How do you identify?**
 
-*May select multiple*
+*You can select multiple options*
 
-[*Include appropriate gender identities as defined by project purpose, geographical region, and guidance from domain experts*]
+*Include appropriate gender identities as defined by project purpose, geographical region, and guidance from domain experts.*
 
 - Gender identity 
 - Gender identity 
@@ -223,19 +224,20 @@ To enable people to self-identify, consider using the following survey questions
 - Prefer not to answer 
 
 
->[!CAUTION] 
->In some parts of the world, there are laws that criminalize specific gender categories, so it may be dangerous for data contributors to answer this question honestly. Always give people a way to opt out. And work with regional experts and attorneys to conduct a careful review of the laws and cultural norms of each place where you plan to collect data, and if needed, avoid asking this question entirely. 
+> [!CAUTION]
+> In some parts of the world, laws criminalize specific gender categories. It might be dangerous for data contributors to answer this question honestly. Always give people a way to opt out. Work with regional experts and attorneys to conduct a careful review of the laws and cultural norms of each place where you plan to collect data. If needed, avoid asking this question entirely.
 
 [Download the full guidance here.](https://bit.ly/3woCOAz)
 
 ## Next steps
-For more information on how to work with your data: 
 
-- [Secure data access in Azure Machine Learning](concept-data.md)
-- [Data ingestion options for Azure Machine Learning workflows](concept-data-ingestion.md)
-- [Optimize data processing with Azure Machine Learning](concept-optimize-data-processing.md)
+For more information on how to work with your data, see:
 
-Follow these how-to guides to work with your data after you've collected it:
+- [Data concepts in Azure Machine Learning](concept-data.md)
+- [Create data assets](how-to-create-data-assets.md)
+- [Access data in an Azure Machine Learning job](how-to-read-write-data-v2.md)
+
+To work with your data after you collect it, follow these how-to guides:
 
 - [Set up image labeling](how-to-create-image-labeling-projects.md)
 - [Label images and text](how-to-label-data.md)

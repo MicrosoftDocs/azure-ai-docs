@@ -5,7 +5,7 @@ description: "This article explains why custom neural voice is available as Limi
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted
@@ -31,6 +31,10 @@ Custom neural voice is made available to customers under the terms governing the
 - **Voice talent and approved use cases**. Customers must warrant that they have obtained explicit written permission from voice talent prior to creating a voice model, and must share the [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent) with the voice talent in advance. Customer may use each custom voice model only for use cases approved during registration. 
 - **Implementation requirements**. As outlined in our [Code of conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context), in addition to other requirements, customers must not use any custom voice model for prohibited uses and must also agree that when deploying each custom voice model, they will [disclose the synthetic nature](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines) of the service to users and support a feedback channel that allows users of the service to report issues and share details with Microsoft. 
 - **Microsoft's additional processing and use of voice talent data**. Before a customer can train a custom voice model, Microsoft will require the customer to upload a recorded audio file to the Speech Studio with a pre-defined statement from the voice talent acknowledging that the customer will use the talent's voice to create a synthetic voice. As a technical safeguard intended to help prevent misuse of this service, Microsoft reserves the right to use Microsoft's speaker recognition biometric identification technology on this recorded acknowledgement statement and verify it against the training audio data to confirm that the voices are from the same speaker. Microsoft will also continue to retain this recorded acknowledgement statement file and the custom voice model to protect the security and integrity of our services. **Customer is responsible for ensuring all necessary permissions are obtained from voice talent for these purposes**.
+
+[!INCLUDE [Biometric data privacy note](../../includes/biometric-data-privacy-note.md)]
+
+
 
 #### [Custom text to speech avatar](#tab/avatar)
 

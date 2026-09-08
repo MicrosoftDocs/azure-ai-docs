@@ -12,6 +12,7 @@ ai-usage: ai-assisted
 ---
 
 # Guidance for integration and responsible use of Face
+
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 To help customers responsibly develop and integrate biometric solutions using Face, we are offering guidance for responsible use based on Microsoft’s AI principles of fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability.
@@ -49,7 +50,9 @@ When getting ready to integrate and responsibly use AI-powered products or featu
 
 * **Feedback**: Seek out feedback from a diverse sampling of the community during the development and evaluation process (for example, historically marginalized groups, people with disabilities, and service workers).  
 
-* **User Study**: Any consent or disclosure recommendations should be framed in a user study. Evaluate the first and continuous-use experience with a representative sample of the community to validate that the design choices lead to effective disclosure. Conduct user research with 10-20 community members (affected stakeholders) to evaluate their comprehension of the information and to determine if their expectations are met.  
+* **User study**: Any consent or disclosure recommendations should be framed in a user study. Evaluate the first and continuous-use experience with a representative sample of the community to validate that the design choices lead to effective disclosure. Conduct user research with 10-20 community members (affected stakeholders) to evaluate their comprehension of the information and to determine if their expectations are met.
+
+[!INCLUDE [Biometric data privacy note](../includes/biometric-data-privacy-note.md)]
 
 ## Suggestions for touchless access control scenarios
 

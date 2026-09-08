@@ -5,7 +5,7 @@ description: Learn how to use Voice Live API for real-time voice agents with Azu
 manager: mcleans
 ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 9/26/2025
+ms.date: 07/28/2026
 author: PatrickFarley
 ms.author: pafarley
 zone_pivot_groups: voice-live-quickstart

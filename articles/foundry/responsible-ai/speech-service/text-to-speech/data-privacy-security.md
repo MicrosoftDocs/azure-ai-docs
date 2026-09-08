@@ -5,7 +5,7 @@ description: "This document details issues for data, privacy, and security for t
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
 ---
@@ -16,6 +16,8 @@ ms.date: 02/25/2026
 This article provides details regarding how data provided by you is processed, used, and stored by Azure Speech in Foundry Tools text to speech. As an important reminder, you're responsible for your use and the implementation of this technology and are required to obtain all necessary permissions, including, if applicable, from voice and avatar talent (and, if applicable, users of your personal voice integration(s)) for the processing of their voice, image, likeness and/or other data to develop synthetic voices and/or avatars.
 
 You're also responsible for obtaining any licenses, permissions, or other rights necessary for the content you input to the text to speech service to generate audio, image, and/or video output. Some jurisdictions may impose special legal requirements for the collection, processing, and storage of certain categories of data, such as biometric data, and mandate disclosing the use of synthetic voices, images, and/or videos to users. Before using text to speech to process and store data of any kind and, if applicable, to create custom neural voice, personal voice, or custom avatar models, you must ensure that you're in compliance with all legal requirements that may apply to you.
+
+[!INCLUDE [Biometric data privacy note](../../includes/biometric-data-privacy-note.md)]
 
 ## What data do text to speech services process?
 
@@ -110,7 +112,7 @@ You can also use your custom voice model to generate audio content through a no-
 
 ## Data processing for custom neural voice lite (Preview)
 
-Custom neural voice lite is a project type in public preview that allows you to record 20-50 voice samples on Speech Studio and create a lightweight custom neural voice model for demonstration and evaluation purposes. Both the recording script and the testing script are pre-defined by Microsoft. A synthetic voice model you create using custom neural voice lite may be deployed and used more broadly only if you apply for and receive full access to custom neural voice (subject to applicable terms).
+Custom neural voice lite is a project type in preview that allows you to record 20-50 voice samples on Speech Studio and create a lightweight custom neural voice model for demonstration and evaluation purposes. Both the recording script and the testing script are pre-defined by Microsoft. A synthetic voice model you create using custom neural voice lite may be deployed and used more broadly only if you apply for and receive full access to custom neural voice (subject to applicable terms).
 
 The synthetic voice and related audio recording you submit via Speech Studio will automatically be deleted within 90 days unless you gain full access to custom neural voice and choose to deploy the synthetic voice, in which case you'll control the duration of its retention. If the voice talent would like to have the synthetic voice and the related audio recordings deleted before 90 days, they can delete them on the portal directly, or contact their enterprise to do so.
 

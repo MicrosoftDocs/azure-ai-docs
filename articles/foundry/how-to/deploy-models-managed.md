@@ -19,7 +19,7 @@ zone_pivot_groups: azure-ai-managed-compute-deployment
 # Deploy open-source models with managed compute (Preview)
 
 > [!NOTE]
-> Managed compute in Foundry is currently in public preview and [registration is required](https://forms.cloud.microsoft/r/8Jnx1LALLA) to use it.
+> Managed compute in Foundry is currently in preview.
 > This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Managed compute deployment (preview) in Microsoft Foundry hosts open-source models on dedicated GPU capacity. Microsoft owns the GPU topology, runtime, container image, and security patching. You choose the model, deployment template, accelerator family, and scaling behavior that fit your workload.
@@ -142,7 +142,7 @@ Managed compute quota is granted per accelerator family per region through the F
 
 To request more quota:
 
-1. Select **Operate** in the upper-right navigation, then **Quota** in the left pane.
+1. Select **Manage** in the upper-right navigation, and then select **Quota** in the left pane.
 1. Select the **Managed compute** tab. The table lists current allocations grouped by accelerator family and region.
 1. Select **Request quota** in the upper-right corner.
 1. In the request form, choose the accelerator family (A100, H100, or MI300X), the target region, and the requested quota. Submit the request.

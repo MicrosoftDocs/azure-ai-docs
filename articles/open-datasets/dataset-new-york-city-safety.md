@@ -4,7 +4,7 @@ description: Learn how to use the New York City Safety dataset in Azure Open Dat
 ms.service: azure-open-datasets
 ms.custom: devx-track-python
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 06/29/2026
 ---
 
 # New York City Safety Data
@@ -297,6 +297,33 @@ display(spark.sql('SELECT * FROM source LIMIT 10'))
 ```
 
 <!-- nbend -->
+
+---
+
+### Azure SQL Database
+
+[Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) can query this dataset directly by using [data virtualization](/azure/azure-sql/database/data-virtualization-overview?view=azuresql&tabs=sas&preserve-view=true). Use `OPENROWSET` to read the Parquet files over HTTPS.
+
+#### Query in place
+
+```sql
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'abs://citydatacontainer@azureopendatastorage.blob.core.windows.net/Safety/Release/city=NewYorkCity/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
+
+#### Persist into a table (optional)
+
+```sql
+SELECT *
+INTO dbo.NewYorkCitySafety_Local
+FROM OPENROWSET(
+    BULK 'abs://citydatacontainer@azureopendatastorage.blob.core.windows.net/Safety/Release/city=NewYorkCity/*.parquet',
+    FORMAT = 'PARQUET'
+) AS [src];
+```
 
 ---
 

@@ -5,7 +5,7 @@ description: "This Transparency Note discusses Text to speech and the key consid
 author: PatrickFarley
 manager: mcleans
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted

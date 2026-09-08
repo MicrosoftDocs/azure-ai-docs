@@ -10,7 +10,7 @@ ms.date: 1/21/2025
 ms.custom: classic-and-new
 ---
 
-[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Library source code](https://github.com/openai/openai-node?azure-portal=true) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
+[Reference documentation](https://developers.openai.com/api/reference/resources/responses) | [Library source code](https://github.com/openai/openai-node?azure-portal=true) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 [!INCLUDE [Audio completions introduction](audio-completions-intro.md)]
 

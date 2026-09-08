@@ -9,6 +9,8 @@ ms.update-cycle: 365-days
 
 # Productivity tools and accelerators for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Microsoft engineers build productivity tools that aren't part of the Azure AI Search service and aren't covered by service-level agreements (SLAs). You can download, modify, and build these tools to create an app that helps you develop or maintain a search solution.
 
 ## Accelerators

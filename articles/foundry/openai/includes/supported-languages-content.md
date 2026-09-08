@@ -4,17 +4,25 @@ description: Include file
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/13/2026
-ms.custom: include, classic-and-new
+ms.date: 07/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
+
+<!-- markdownlint-disable MD044 -->
 
 ## Prerequisites
 
-- An Azure OpenAI model deployed
-- One of the following authentication methods:
-	- Microsoft Entra ID (recommended).
-	- An API key.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/) if you don't have one.
+- An Azure OpenAI resource with a `gpt-5-mini` model deployment.
+- Your Azure OpenAI resource endpoint, such as `https://YOUR-RESOURCE-NAME.openai.azure.com`.
+- For Microsoft Entra ID authentication, an identity that has permission to run inference. For role options, see [Configure Microsoft Entra ID authentication](../../foundry-models/how-to/configure-entra-id.md).
+- For API key authentication, an Azure OpenAI resource key. Microsoft Entra ID is recommended for production applications.
+- A supported language runtime and package manager for the language you select.
+
+The `model` value in every request is your Azure model deployment name. The examples use `gpt-5-mini`; replace it if your deployment has a different name.
 
 ::: zone pivot="programming-language-dotnet"
 
@@ -48,9 +56,10 @@ ms.custom: include, classic-and-new
 
 ## Troubleshooting
 
-- If you get a `401` or `403` error, confirm you authenticated with the intended identity or key, and that it has access to the Azure OpenAI resource.
-- If you get a `404` error, confirm the endpoint uses the `...openai.azure.com/openai/v1/` path and that you used a valid model deployment name.
-- If requests fail unexpectedly, check for proxy and firewall restrictions, and retry with a smaller prompt to rule out payload-size issues.
+- For a `401` or `403` response, confirm that the intended identity or API key can access the Azure OpenAI resource.
+- For a `404` response, confirm that the base URL ends in `/openai/v1/` and that `model` contains a valid deployment name.
+- For a package or type error, update the SDK and compare the installed version with the version tested on this page.
+- For a model parameter error, check whether the deployed model supports the parameter. Parameter support can differ between model families.
 
 ## Related content
 

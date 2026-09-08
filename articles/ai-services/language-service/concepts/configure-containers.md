@@ -7,9 +7,9 @@ manager: mcleans
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 12/05/2025
+ms.date: 06/21/2026
 ms.author: lajanuar
 ---
 # Configure Language docker containers
@@ -80,4 +80,4 @@ The exact syntax of the host mount location varies depending on the host operati
 
 ## Next steps
 
-* Use more [Azure AI containers](../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

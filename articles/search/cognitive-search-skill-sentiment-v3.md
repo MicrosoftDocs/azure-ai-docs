@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Sentiment cognitive skill (v3)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Sentiment** skill (v3) evaluates unstructured text and for each record, provides sentiment labels (such as "negative", "neutral" and "positive") based on the highest confidence score found by the service at a sentence and document-level. This skill uses the machine learning models provided by version 3 of [Language Service](/azure/ai-services/language-service/overview) in Foundry Tools. It also exposes [opinion mining capabilities](/azure/ai-services/language-service/sentiment-opinion-mining/overview), which provides more granular information about the opinions related to attributes of products or services in text.
 
 > [!NOTE]

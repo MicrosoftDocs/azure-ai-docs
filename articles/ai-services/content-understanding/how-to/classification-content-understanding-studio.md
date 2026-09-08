@@ -1,11 +1,11 @@
 ---
 title: Classify and route your data using Content Understanding
 titleSuffix: Foundry Tools
-description: Learn how to create classification workflows to categorize and route your data using Content Understanding Studio or the REST API.
+description: Learn how to create classification workflows to categorize and route your data using Content Understanding Studio, the REST API, or the Azure SDKs for Python, C#, JavaScript, TypeScript, and Java.
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 01/29/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
@@ -13,6 +13,9 @@ ms.custom:
   - ignite-2024-understanding-release
   - references_regions
   - ignite-2025
+  - build-2026
+  - dev-focus
+zone_pivot_groups: programming-languages-content-understanding
 ---
 
 # Classify and route your data using Content Understanding
@@ -32,19 +35,23 @@ To get started, make sure you have the following resources and permissions:
 * A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal, created in a [supported region](/azure/ai-services/content-understanding/language-region-support).
   * This resource is listed under **Foundry** > **Foundry** in the portal.
 * [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
-* [cURL](https://everything.curl.dev/install/index.html) installed for your dev environment (for the REST API tab).
+* [cURL](https://everything.curl.dev/install/index.html) installed for your dev environment (if you use the REST API).
+* Language-specific requirements for the SDK samples:
+  * **Python**: Python 3.9+ and the `azure-ai-contentunderstanding`, `azure-identity`, and `python-dotenv` packages. The `to_llm_input` helper used in the Python samples is available only in the prerelease SDK (`azure-ai-contentunderstanding` 1.2.0b2 or later). Install it by running `pip install --pre azure-ai-contentunderstanding`.
+  * **C#**: .NET 8.0+ and the `Azure.AI.ContentUnderstanding` and `Azure.Identity` NuGet packages.
+  * **JavaScript / TypeScript**: Node.js 20 LTS or later and the `@azure/ai-content-understanding`, `@azure/identity`, `@azure/core-auth`, and `dotenv` packages.
+  * **Java**: JDK 11+, Maven or Gradle, and the `azure-ai-contentunderstanding` and `azure-identity` dependencies.
+* Set the environment variables `CONTENTUNDERSTANDING_ENDPOINT` and (optionally) `CONTENTUNDERSTANDING_KEY` before running any SDK sample. If `CONTENTUNDERSTANDING_KEY` isn't set, the samples fall back to `DefaultAzureCredential`.
 
 ## Step 1: Create a basic classifier
 
 A basic classifier categorizes documents into custom content categories. You define the categories with names and descriptions, and the service uses those definitions to classify your input files. The `enableSegment` parameter controls whether the classifier splits multi-document files into segments or treats the entire file as a single document.
 
-# [Content Understanding Studio](#tab/studio)
+The following sections show how to create a basic classifier using Content Understanding Studio and how to create one programmatically with the REST API or an Azure SDK.
 
-### Sign in to Content Understanding Studio
+### Create a classifier in Content Understanding Studio
 
 Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in with your credentials. If you're familiar with the classic Azure Document Intelligence in Foundry Tools Studio experience, Content Understanding extends the same content and field extraction across all modalities—document, image, video, and audio. Select the option to try the new Content Understanding experience to access multimodal capabilities.
-
-### Create a classifier project
 
 1. **Start with a new project**: Select **Create project** on the home page.
 
@@ -60,114 +67,45 @@ Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and si
 
 1. **Build your classification analyzer**: When you're satisfied with the output, select the **Build analyzer** button at the top of the page. Give the analyzer a name and select **Save**.
 
-# [REST API](#tab/rest-api)
+### Create a classifier programmatically
 
-Before running any of the following cURL commands, replace `{endpoint}` and `{key}` with the corresponding values from your Foundry instance in the Azure portal.
+Select your language or the REST API tab to see the steps for creating a basic classifier.
 
-### Define the classifier
+::: zone pivot="programming-language-rest"
 
-Define `contentCategories` within the analyzer configuration. Each category has a name and description that the service uses to classify your input files.
+[!INCLUDE [REST API create classifier](./includes/rest-create-classifier.md)]
 
-Create a JSON file named `classifier.json` with the following content:
+::: zone-end
 
-```json
-{
-  "baseAnalyzerId": "prebuilt-document",
-  "description": "Custom classifier for document categorization",
-  "config": {
-    "returnDetails": true,
-    "enableSegment": true,
-    "contentCategories": {
-      "Loan application": {
-        "description": "Documents submitted by individuals or businesses to request funding, typically including personal or business details, financial history, loan amount, purpose, and supporting documentation."
-      },
-      "Invoice": {
-        "description": "Billing documents issued by sellers or service providers to request payment for goods or services, detailing items, prices, taxes, totals, and payment terms."
-      },
-      "Bank_Statement": {
-        "description": "Official statements issued by banks that summarize account activity over a period, including deposits, withdrawals, fees, and balances."
-      }
-    }
-  },
-  "models": {"completion": "gpt-4.1"}
-}
-```
+::: zone pivot="programming-language-python"
 
-The key fields in this definition are:
+[!INCLUDE [Python SDK create classifier](./includes/python-create-classifier.md)]
 
-| Field | Description |
-|---|---|
-| `baseAnalyzerId` | The prebuilt analyzer to extend. Use `prebuilt-document` for document classification. |
-| `contentCategories` | A dictionary of up to 200 category names and descriptions. |
-| `enableSegment` | When `true`, automatically splits and classifies different document types within a single file. When `false`, treats the entire file as a single document. |
+::: zone-end
 
-### Create the classifier
+::: zone pivot="programming-language-csharp"
 
-Use a `PUT` request to create the classifier analyzer.
+[!INCLUDE [.NET SDK create classifier](./includes/csharp-create-classifier.md)]
 
-```bash
-curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{classifierId}?api-version=2025-11-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d @classifier.json
-```
+::: zone-end
 
-The `201 Created` response includes an `Operation-Location` header with a URL that you can use to track the status of the asynchronous creation operation.
+::: zone pivot="programming-language-java"
 
-```
-201 Created
-Operation-Location: {endpoint}/contentunderstanding/analyzers/{classifierId}/operations/{operationId}?api-version=2025-11-01
-```
+[!INCLUDE [Java SDK create classifier](./includes/java-create-classifier.md)]
 
-When the operation finishes, an HTTP GET on the operation location URL returns `"status": "succeeded"`.
+::: zone-end
 
-```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{classifierId}/operations/{operationId}?api-version=2025-11-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}"
-```
+::: zone pivot="programming-language-javascript"
 
-**Reference**: [Content Analyzers - Create or Replace](/rest/api/contentunderstanding/content-analyzers/create-or-replace?view=rest-contentunderstanding-2025-11-01&preserve-view=true)
+[!INCLUDE [JavaScript SDK create classifier](./includes/javascript-create-classifier.md)]
 
-### Classify a document
+::: zone-end
 
-Submit a document for classification using the `:analyze` endpoint. Replace `{classifierId}` with the name of the classifier you created.
+::: zone pivot="programming-language-typescript"
 
-```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{classifierId}:analyze?api-version=2025-11-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d '{
-        "inputs": [
-          {
-            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/mixed_financial_docs.pdf"
-          }
-        ]
-      }'
-```
+[!INCLUDE [TypeScript SDK create classifier](./includes/typescript-create-classifier.md)]
 
-The response includes an `Operation-Location` header. Use that URL to retrieve the analysis results.
-
-### Get classification results
-
-```bash
-curl -i -X GET "{Operation-Location}" \
-  -H "Ocp-Apim-Subscription-Key: {key}"
-```
-
-A successful response returns `"status": "Succeeded"` with classification results in the `result` object. Each segment includes a `category`, `startPageNumber`, and `endPageNumber`.
-
-**Reference**: [Analyzer Results - Get](/rest/api/contentunderstanding/content-analyzers/get-result?view=rest-contentunderstanding-2025-11-01&preserve-view=true)
-
-### Clean up
-
-Delete the classifier when you're done.
-
-```bash
-curl -i -X DELETE "{endpoint}/contentunderstanding/analyzers/{classifierId}?api-version=2025-11-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}"
-```
-
----
+::: zone-end
 
 ## Step 2: Classify and route with custom analyzers
 
@@ -238,7 +176,7 @@ Create a JSON file named `loan-analyzer.json` with the following content:
       }
     }
   },
-  "models": {"completion": "gpt-4.1"}
+  "models": {"completion": "gpt-5.2"}
 }
 ```
 
@@ -269,7 +207,7 @@ Create a JSON file named `enhanced-classifier.json` with the following content. 
     "returnDetails": true,
     "enableSegment": true,
     "contentCategories": {
-      "Loan application": {
+      "Loan_Application": {
         "description": "Documents submitted by individuals or businesses to request funding, typically including personal or business details, financial history, loan amount, purpose, and supporting documentation.",
         "analyzerId": "{loanAnalyzerId}"
       },
@@ -281,7 +219,7 @@ Create a JSON file named `enhanced-classifier.json` with the following content. 
       }
     }
   },
-  "models": {"completion": "gpt-4.1"}
+  "models": {"completion": "gpt-5.2"}
 }
 ```
 
@@ -344,6 +282,174 @@ curl -i -X DELETE "{endpoint}/contentunderstanding/analyzers/{loanAnalyzerId}?ap
 
 > [!TIP]
 > For a complete end-to-end Python notebook, see the [classifier sample on GitHub](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/classifier.ipynb).
+
+## Step 3: Enable sub-page segmentation (preview)
+
+You can complete steps 1 and 2 by using the GA API version `2025-11-01`. This step requires using `2026-06-01-preview`.
+
+The `2026-06-01-preview` API version adds *sub-page* (in-page) segmentation and richer per-segment metadata. Use this feature when a single page contains content from more than one document type, for example a scanned page that mixes a credit card and an identity card, or a medical record where a patient demographics section is followed by a referral order on the same page.
+
+> [!IMPORTANT]
+> Sub-page segmentation is in public preview. Preview capabilities are provided without a service-level agreement and aren't recommended for production workloads.
+
+# [Content Understanding Studio](#tab/studio)
+
+To enable sub-page segmentation on a classifier in Content Understanding Studio:
+
+1. Open your classifier project and go to the **Routing rules** tab.
+1. Confirm that **Enable segment** is turned on, and then select the settings (gear) icon next to it.
+
+    :::image type="content" source="../media/quickstarts/classify-enable-segment-toggle.png" alt-text="Screenshot of the Routing rules tab in Content Understanding Studio with the Enable segment toggle highlighted." lightbox="../media/quickstarts/classify-enable-segment-toggle.png":::
+
+1. In the **Segment Settings** dialog, keep **Auto segment content** selected and select the **Allow in-page segments** checkbox.
+
+    :::image type="content" source="../media/quickstarts/classify-allow-in-page-segments.png" alt-text="Screenshot of the Segment Settings dialog with the Allow in-page segments checkbox highlighted." lightbox="../media/quickstarts/classify-allow-in-page-segments.png":::
+
+    The **Segment Settings** dialog offers two segmentation modes:
+
+    * **Auto segment content**: Content Understanding automatically groups consecutive pages that belong to the same document into a single segment, so one segment can span 1-N pages. Select **Allow in-page segments** to also allow splits in the middle of a page when a page contains content from more than one document type.
+    * **Segment by page**: Content Understanding creates one segment for every single page in the document, regardless of content.
+
+1. Select **Close**. The classifier now splits pages that contain more than one document type into separate in-page segments when you run analysis or build the analyzer.
+
+# [REST API](#tab/rest-api)
+
+### New API fields
+
+| Field | Type | Description |
+|---|---|---|
+| `ContentAnalyzerConfig.allowInPageSegments` | `boolean` | When `true`, segments can cover a portion of a page instead of full pages. |
+| `DocumentContentSegment.segmentId` | `string` | Identifier for the segment, such as `segment1`. |
+| `DocumentContentSegment.span` | `Span` | `offset` and `length` of the segment within the parent content text. |
+| `DocumentContentSegment.confidence` | `float32` | Value in `[0–1]`. Confidence score for segmentation and category classification. |
+| `DocumentContentSegment.source` | `SourceExpression` | Bounding position of the segment on the page. Pass this value as a `range` to a sub-analyzer for targeted field extraction. |
+
+### Define a classifier with sub-page segmentation
+
+Set both `enableSegment` and `allowInPageSegments` to `true` in the analyzer configuration. The existing `segmentPerPage` flag defaults to `false` and must remain `false` (or be omitted) when `allowInPageSegments` is `true` - the two options are mutually exclusive. Create a JSON file named `sub-page-classifier.json`:
+
+```json
+{
+  "baseAnalyzerId": "prebuilt-document",
+  "description": "Classifier with sub-page segmentation (preview)",
+  "config": {
+    "returnDetails": true,
+    "enableSegment": true,
+    "allowInPageSegments": true,
+    "contentCategories": {
+      "Credit_card": {
+        "description": "Credit card information."
+      },
+      "Identity_card": {
+        "description": "Identity card information."
+      },
+      "Passport": {
+        "description": "Passport document."
+      },
+      "Other": {
+        "description": "Use the Other category only if a segment does not clearly fit into any of the specified categories, and ensure this is a last resort."
+      }
+    }
+  },
+  "models": {"completion": "gpt-5.2"}
+}
+```
+
+Create the classifier against the preview API version:
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{classifierId}?api-version=2026-06-01-preview" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @sub-page-classifier.json
+```
+
+### Analyze a document with sub-page segmentation
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{classifierId}:analyze?api-version=2026-06-01-preview" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "inputs": [
+          {
+            "url": "https://<your-storage-account>.blob.core.windows.net/samples/mixed_id_documents.pdf"
+          }
+        ]
+      }'
+```
+
+### Expected response shape
+
+The result includes a `segments` array on the document content. Each segment carries a `category`, page range, `span`, `confidence`, and `source`. The `source` value is a polygon expression of the form `D(pageNumber, x1, y1, x2, y2, x3, y3, x4, y4)`, where the coordinates are in the analyzer's `unit` (such as `inch`) and describe the segment's bounding box on the page.
+
+The following excerpt is from an analyze result for a single page that contains both a credit card and an identity card:
+
+```json
+"segments": [
+    {
+        "span": {
+            "offset": 0,
+            "length": 301
+        },
+        "segmentId": "segment1",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "category": "Credit_card",
+        "confidence": 0.98,
+        "source": "D(1,1.32,1.49,3.13,1.49,3.13,3.86,1.32,3.86)"
+    },
+    {
+        "span": {
+            "offset": 301,
+            "length": 798
+        },
+        "segmentId": "segment2",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "category": "Identity_card",
+        "confidence": 0.99,
+        "source": "D(1,1.16,4.95,3.82,4.95,3.82,8.52,1.16,8.52)"
+    }
+]
+```
+
+### Route sub-page segments to a sub-analyzer
+
+To extract fields from each in-page segment, set `analyzerId` on the corresponding category. The classifier automatically forwards each segment's `source` as the `range` for the sub-analyzer, so a credit card segment is analyzed by a credit-card analyzer and a passport segment is analyzed by an ID-document analyzer. Update your classifier to reference prebuilt or custom analyzers per category:
+
+```json
+{
+  "baseAnalyzerId": "prebuilt-document",
+  "description": "Classifier with sub-page segmentation and per-category routing (preview)",
+  "config": {
+    "returnDetails": true,
+    "enableSegment": true,
+    "allowInPageSegments": true,
+    "contentCategories": {
+      "Credit_card": {
+        "description": "Credit card information.",
+        "analyzerId": "prebuilt-creditCard"
+      },
+      "Passport": {
+        "description": "Passport document.",
+        "analyzerId": "prebuilt-idDocument.passport"
+      },
+      "Identity_card": {
+        "description": "Identity card information."
+      },
+      "Other": {
+        "description": "Use the Other category only if a segment does not clearly fit into any of the specified categories."
+      }
+    }
+  },
+  "models": {"completion": "gpt-5.2"}
+}
+```
+
+---
+
+For more information about how sub-page segmentation is computed and when to use it, see [Classification enhancements (2026-06-01 preview)](../concepts/classifier.md#classification-enhancements-2026-06-01-preview).
 
 ## Next steps
 

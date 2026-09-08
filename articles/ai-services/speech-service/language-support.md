@@ -6,9 +6,10 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 12/19/2025
+ms.date: 08/13/2026
 ms.author: pafarley
 ms.custom: references_regions, build-2024
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the languages that Azure Speech supports so that I can decide how to use the features in my application.
 ---
 
@@ -34,7 +35,7 @@ Choose a feature:
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription).
+The following table summarizes locale support for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), [batch transcription](speech-to-text.md#batch-transcription), and [post-stream refinement](how-to-recognize-speech.md). The table lists post-stream refinement support separately for generally available monolingual recognition and multilingual recognition in public preview.
 
 **In this section**
 - [Speech to text locales](#speech-to-text-locales)
@@ -83,6 +84,17 @@ Voices with names that include `MultilingualNeural`, `DragonHDLatestNeural`, or 
 `MultilingualNeural` voices represent an earlier generation of multilingual technology. They offer high naturalness but don't have the same level of contextual awareness as HD voices.
 
 The locale prefix indicates the voice's primary locale. For example, for the voice `en‑US‑AndrewMultilingualNeural`, the locale prefix is `en‑US`, which is the first segment of the voice name.
+
+> [!TIP]
+> To synthesize text in a specific language, use a voice from that locale and match your SSML locale to the same language (for example, `es-ES-*` voice with `xml:lang="es-ES"`).
+>
+> If output doesn't match your target language, check these common causes:
+>
+> - The selected voice is for a different locale.
+> - The SSML `xml:lang` value conflicts with the selected voice locale.
+> - Your flow uses text to speech only, but you expected translation behavior.
+>
+> For implementation steps, see [Get started with text to speech](get-started-text-to-speech.md) and [Speech Synthesis Markup Language (SSML) overview](speech-synthesis-markup.md).
 
 
 
@@ -148,7 +160,7 @@ The following table distinguishes locales that function as both cross-lingual so
 
 ## Visemes
 
-This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
+This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element).
 
 [!INCLUDE [Language support include](includes/language-support/viseme.md)]
 
@@ -158,8 +170,6 @@ This table lists all the locales supported for [viseme](speech-synthesis-markup-
 The table in this section summarizes the 33 supported locales for pronunciation assessment. Each language is available in all [speech-to-text regions](regions.md#regions). The latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency, and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is `en-US`.
 
 If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and you're uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario.
-
-If you're interested in languages not listed in the following table, fill out [this intake form](https://aka.ms/speechpa/intake) for further assistance.
 
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 

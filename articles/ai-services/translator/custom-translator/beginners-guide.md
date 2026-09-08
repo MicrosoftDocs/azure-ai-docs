@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: A user guide for understanding the end-to-end customized machine translation process.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.author: lajanuar
 ms.date: 06/02/2026
 ms.topic: overview

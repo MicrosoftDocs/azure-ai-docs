@@ -13,6 +13,8 @@ ms.update-cycle: 365-days
 
 # Manage your Azure AI Search service using REST APIs
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Learn how to create and configure an Azure AI Search service using the [Management REST APIs](/rest/api/searchmanagement/). Only the Management REST APIs are guaranteed to provide early access to [preview features](/rest/api/searchmanagement/management-api-versions).
 
 The Management REST API is available in stable and preview versions. Be sure to set a preview API version if you're accessing preview features.

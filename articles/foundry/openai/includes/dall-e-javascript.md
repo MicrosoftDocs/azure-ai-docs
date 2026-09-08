@@ -15,7 +15,7 @@ ms.custom: classic-and-new
 
 Use this guide to get started generating images with the Azure OpenAI SDK for JavaScript.
 
-[Reference documentation](https://platform.openai.com/docs/api-reference/images/create) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
+[Reference documentation](https://developers.openai.com/api/docs/guides/images-vision) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 ### Prerequisites
 

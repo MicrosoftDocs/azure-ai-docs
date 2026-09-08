@@ -6,7 +6,7 @@ ms.service: azure-document-intelligence-foundry-tools
 author: laujan
 manager: mcleans
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 08/15/2026
 ms.author: lajanuar
 ms.custom: sfi-ropc-nochange
 ---
@@ -31,11 +31,11 @@ Support for containers is currently available with Document Intelligence version
 
 :::moniker range=">=doc-intel-3.0.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
+**This content applies to:** 🟩 **v3.0 (GA)** 🟩 **v3.1 (GA)** 🟩 **v4.0 (GA)**
 
 ## What are disconnected containers?
 
-[Azure containers](../../cognitive-services-container-support.md) gives you the flexibility to run some Document Intelligence services locally in containers. Connected containers run locally in your environment and send usage information to the cloud for billing. Disconnected containers are intended for scenarios where no connectivity with the cloud is needed for the containers to run.
+[Foundry Tools containers](../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context) gives you the flexibility to run some Document Intelligence services locally in containers. Connected containers run locally in your environment and send usage information to the cloud for billing. Disconnected containers are intended for scenarios where no connectivity with the cloud is needed for the containers to run.
 
 Azure Document Intelligence in Foundry Tools containers allow you to use Document Intelligence APIs with the benefits of containerization. Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Document Intelligence features for a fixed fee, at a predictable total cost, based on the needs of your workload.
 

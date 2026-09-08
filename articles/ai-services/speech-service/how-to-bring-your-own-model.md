@@ -3,7 +3,7 @@ title: Bring Your Own Model (BYOM) with Voice Live API
 description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure Speech in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 11/09/2025
+ms.date: 09/06/2026
 ms.topic: how-to
 ms.service: azure-speech-foundry-tools
 ms.custom: ai-speech, voice-live, byom
@@ -43,7 +43,7 @@ az cognitiveservices account identity assign --name ${foundry_resource} --resour
 identity_principal_id=$(az cognitiveservices account show --name ${foundry_resource} --resource-group ${resource_group} --subscription ${subscription_id} --query "identity.principalId" -o tsv)
 
 # Assign the Foundry User role to the system identity of the foundry resource
-az role assignment create --assignee-object-id ${identity_principal_id} --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --scope /subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource}
+az role assignment create --assignee-object-id ${identity_principal_id} --role "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" --scope /subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource}
 ```
 
 [!INCLUDE [role-rename-note-code](../../foundry/includes/role-rename-note-code.md)]
@@ -79,7 +79,7 @@ identity_principal_id=$(az cognitiveservices account show \
 # system identity on the model Foundry resource
 az role assignment create \
     --assignee-object-id ${identity_principal_id} \
-    --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
+    --role "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" \
     --scope /subscriptions/${subscription_id_for_model}/resourceGroups/${resource_group_for_model}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource_for_model}
 ```
 
@@ -90,7 +90,7 @@ The Voice Live API supports three BYOM integration modes:
 | Mode                                | Description                                                                                           | Example Models                          |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                        | `gpt-realtime`, `gpt-realtime-mini`     |
-| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`     |
+| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `grok-4`                     |
 | `byom-foundry-anthropic-messages`   | Anthropic Claude models deployed in Azure Foundry, using the Messages API (preview)                   | `claude-sonnet-4.6`, `claude-haiku-4.5` |
 
 > [!NOTE]

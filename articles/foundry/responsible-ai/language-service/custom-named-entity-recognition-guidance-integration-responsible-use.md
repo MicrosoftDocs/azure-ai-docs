@@ -5,7 +5,7 @@ description: "Guidance for integration and responsible use with custom named ent
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: best-practice
 ms.date: 04/01/2026
 ---

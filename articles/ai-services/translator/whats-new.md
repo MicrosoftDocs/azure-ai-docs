@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about the latest changes to the Azure Translator API.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 05/05/2026
+ms.date: 08/07/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
@@ -21,6 +22,28 @@ Bookmark this page to stay up to date with release notes, feature enhancements, 
 Azure Translator in Foundry Tools is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages.
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+
+## August 2026
+
+### Document translation client library releases (GA)
+
+The following document translation client libraries are now generally available. Both libraries use Document translation API version **2026-03-01** by default and support asynchronous batch translation and synchronous single-document translation.
+
+* [.NET/C# package 3.0.0](https://www.nuget.org/packages/Azure.AI.Translation.Document/3.0.0)
+* [JavaScript package 1.0.0](https://www.npmjs.com/package/@azure/ai-translation-document/v/1.0.0)
+
+For installation, authentication, and sample guidance, see [Document translation SDKs](document-translation/document-sdk-overview.md).
+
+## July 2026
+
+### Document translation client libraries 2.0.0 (GA)
+
+Version 2.0.0 of the Document translation client libraries is now generally available for Python and Java. Both libraries use Document translation API version **2026-03-01** by default and support asynchronous batch translation and synchronous single-document translation.
+
+* [Python package 2.0.0](https://pypi.org/project/azure-ai-translation-document/2.0.0/)
+* [Java package 2.0.0](https://central.sonatype.com/artifact/com.azure/azure-ai-translation-document/2.0.0)
+
+For installation, authentication, and sample guidance, see [Document translation SDKs](document-translation/document-sdk-overview.md).
 
 ## June 2026
 
@@ -62,7 +85,7 @@ Azure Translator Document Translation API version `2026-03-01` introduces expand
 
 * The batch API now enables you to [submit image files for translation](document-translation/reference/start-batch-translation.md#translate-image-files).
 * This update eliminates the requirement to preprocess images by converting them to PDF format or using scanned PDF translation pipelines
-* For pricing details, *see* [Azure Translator pricing ](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)
+* For pricing details, *see* [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 
 ## November 2025
 

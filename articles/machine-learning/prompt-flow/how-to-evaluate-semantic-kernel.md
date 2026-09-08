@@ -12,32 +12,36 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 10/14/2024
+ms.date: 08/28/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Evaluate Semantic Kernel with prompt flow
 
 [!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
-This article describes the seamless integration between prompt flow and [Semantic Kernel](/semantic-kernel/overview/), and demonstrates how to evaluate Semantic Kernel plugins and planners by using prompt flow. In the rapidly evolving landscape of AI orchestration, a comprehensive evaluation of your plugins and planners is important for optimal performance.
+This article describes the integration between prompt flow and [Semantic Kernel](/semantic-kernel/overview/), and demonstrates how to evaluate Semantic Kernel plugins and orchestration code by using prompt flow.
 
-Semantic Kernel is an open-source SDK that lets you easily combine Foundry Tools with programming languages like C# and Python to create AI apps that combine the best of both worlds. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and [planners](/semantic-kernel/ai-orchestration/planners), which are powerful tools that use AI capabilities to optimize operations, thus driving efficiency and accuracy in planning.
+Semantic Kernel is an open-source SDK that you can use to combine AI services with programming languages like C# and Python. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and automatic function calling to orchestrate operations.
 
-As you build and add more plugins to planners, the error potential increases, so it's important to make sure they work as intended. Testing plugins and planners used to be a manual, time-consuming process. Now you can use prompt flow to automate this process.
+As you add plugins and function calls, test that they work as intended. You can use prompt flow to automate this process for an existing application.
+
+> [!IMPORTANT]
+> Semantic Kernel's Stepwise and Handlebars planners are deprecated and removed from current packages. The planner-based workflow shown in this article is for evaluating a legacy implementation. For current Semantic Kernel applications, use [automatic function calling](/semantic-kernel/concepts/planning#using-automatic-function-calling).
 
 The integration of Semantic Kernel with prompt flow allows you to:
 
 - Harness the powerful AI orchestration capabilities of Semantic Kernel to enhance the efficiency and effectiveness of your prompt flows.
-- Use prompt flow evaluation and experiment management to comprehensively assess the quality of your Semantic Kernel plugins and planners.
+- Use prompt flow evaluation and experiment management to assess the quality of your Semantic Kernel plugins and orchestration code.
 
 ## Prerequisites
 
-- Before you start developing the flow, you must add the [Semantic Kernel package](/semantic-kernel/get-started/quick-start-guide/?toc=%2Fsemantic-kernel%2Ftoc.json&tabs=python) to your *requirements.txt* for the executor to install. For more information, see [Manage prompt flow compute session](how-to-manage-compute-session.md).
+- Before you start developing the flow, add the [Semantic Kernel package](/semantic-kernel/get-started/quick-start-guide/?toc=%2Fsemantic-kernel%2Ftoc.json&tabs=python) to your *requirements.txt* so the executor can install it. For more information, see [Manage prompt flow compute session](how-to-manage-compute-session.md).
 
-- To use Semantic Kernel to consume Azure OpenAI or OpenAI resources in a prompt flow, you must create a custom connection.
+- To use Semantic Kernel to consume Azure OpenAI or OpenAI resources in a prompt flow, create a custom connection.
 
-  1. Obtain the keys you specified for the resources in environment variables or an *.env* file.
+  1. Put the keys you specified for the resources in environment variables or an *.env* file.
 
   1. Select **Create** from the **Connection** tab on the Azure Machine Learning studio **Prompt flow** page, and select **Custom** provider.
 
@@ -53,7 +57,7 @@ Similar to the [integration of LangChain with prompt flow](how-to-integrate-with
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/prompt-flow-end-result.png" alt-text="Diagram of prompt flow with Semantic Kernel." border="false":::
 
-For this example, you create a flow with a Semantic Kernel planner that solves math problems.
+For this legacy example, you create a flow with a Semantic Kernel planner that solves math problems. For a current implementation, replace the planner with automatic function calling and evaluate its outputs by using the same batch-testing approach.
 
 1. From the **Prompt flow** page, select **Create**.
 1. On the **Create a new flow** screen, select **Create** in the **Standard flow** tile.
@@ -71,20 +75,20 @@ For this example, you create a flow with a Semantic Kernel planner that solves m
 
    :::image type="content" source="./media/how-to-evaluate-semantic-kernel/semantic-kernel-flow.png" alt-text="Screenshot of creating a flow with semantic kernel planner." lightbox = "./media/how-to-evaluate-semantic-kernel/semantic-kernel-flow.png":::
 
-## Batch test your plugins and planners
+## Batch test your plugins and orchestration
 
-Instead of manually testing each different scenario, you can automatically run large batches of tests using prompt flow and benchmark data.
+Instead of manually testing each different scenario, you can automatically run large batches of tests by using prompt flow and benchmark data.
 
-Use batches with prompt flow to run batch tests on your planner that uses the math plugin. By defining several word problems, you can quickly test any changes to your plugins or planners so you can catch regressions early.
+Use batches with prompt flow to run batch tests on your orchestration code that uses the math plugin. By defining several word problems, you can quickly test changes to your plugins or function calls so you catch regressions early.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/using-batch-runs-with-prompt-flow.png" alt-text="Diagram showing batch runs with prompt flow for Semantic Kernel." border="false":::
 
-Once your flow passes a single test run, you can create a batch test in prompt flow.
+After your flow passes a single test run, you can create a batch test in prompt flow.
 
 1. Create your benchmark data in a *.jsonl* file as a list of JSON objects that contain the input and the correct ground truth.
 1. In the prompt flow, select **Evaluate** from the top menu.
 1. Complete the **Basic settings**, upload your data file, and complete the **Batch run settings**.
-1. For this test, skip the optional **Evaluation settings** and select **Review + submit**, then select **Submit** to submit the batch run.
+1. For this test, skip the optional **Evaluation settings** and select **Review + submit**, and then select **Submit** to submit the batch run.
 
    :::image type="content" source="./media/how-to-evaluate-semantic-kernel/semantic-kernel-test-data.png" alt-text="Screenshot of data of batch runs with prompt flow for Semantic Kernel." lightbox = "./media/how-to-evaluate-semantic-kernel/semantic-kernel-test-data.png":::
 
@@ -102,24 +106,24 @@ Once your flow passes a single test run, you can create a batch test in prompt f
 
 ## Evaluate accuracy
 
-After you complete a batch run, you need an easy way to determine the adequacy of the test results. You can then use this information to develop accuracy scores, which can be incrementally improved.
+After you complete a batch run, you need an easy way to determine the adequacy of the test results. Use this information to develop accuracy scores that you can incrementally improve.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/evaluation-batch-run-with-prompt-flow.png" alt-text="Diagram of evaluating batch run with prompt flow." border="false":::
 
-Evaluation flows in prompt flow enable this functionality. Using the sample evaluation flows, you can assess various metrics such as *classification accuracy*, *perceived intelligence*, and *groundedness*. You can also develop your own custom evaluators if needed.
+Evaluation flows in prompt flow enable this functionality. By using the sample evaluation flows, you can assess various metrics such as *classification accuracy*, *perceived intelligence*, and *groundedness*. You can also develop your own custom evaluators if needed.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/evaluation-sample-flows.png" alt-text="Screenshot showing evaluation flow samples." lightbox = "./media/how-to-evaluate-semantic-kernel/evaluation-sample-flows.png":::
 
 You can quickly create an evaluation run based on a completed batch run.
 
 1. Open your previously completed batch run, and select **Evaluate** from the top menu.
-1. On the **New evaluation** screen, select an evaluator to use, select **Next** and configure the input mapping, and then select **Submit**.
+1. On **New evaluation**, select an evaluator to use, select **Next**, and configure the input mapping. Then, select **Submit**.
 
    :::image type="content" source="./media/how-to-evaluate-semantic-kernel/evaluation-setting.png" alt-text="Screenshot showing evaluation settings." lightbox = "./media/how-to-evaluate-semantic-kernel/evaluation-setting.png":::
 
-After the evaluator runs, it returns a summary of results and metrics. You can use runs that yield less than ideal results as motivation for immediate improvement.
+After the evaluator runs, it returns a summary of results and metrics. Use runs that yield less than ideal results as motivation for immediate improvement.
 
-To view results, select **Details** at the top of the evaluator flow run page. On the **Details** page, select the **Outputs** tab to view evaluation output.
+To view results, select **Details** at the top of the evaluator flow run page. On **Details**, select the **Outputs** tab to view evaluation output.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/evaluation-result.png" alt-text="Screenshot showing evaluation result." lightbox = "./media/how-to-evaluate-semantic-kernel/evaluation-result.png":::
 
@@ -127,19 +131,19 @@ You can check the aggregated metric in the **Metrics** tab.
 
 ## Experiment for quality improvement
 
-If you find that your plugins and planners aren't performing as well as they should, you can take steps to make them better. The following high-level recommendations can improve the effectiveness of your plugins and planners.
+If your plugins and orchestration code don't perform as expected, take steps to improve them. The following high-level recommendations can help:
 
-- Use a more advanced model like GPT-4 instead of GPT-3.5-turbo.
-- Improve your plugin descriptions so they're easier for the planner to use.
-- Inject more help to the planner when you send the user request.
+- Use a current model that supports function calling and is available in your Azure OpenAI deployment.
+- Improve your plugin descriptions so they're easier for the model to use.
+- Provide clear instructions and representative context in the user request.
 
-A combination of these three actions can turn a failing planner into a winning one. By the end of the enhancement and evaluation process, you should have a planner that can correctly answer all of the benchmark data.
+A combination of these actions can improve orchestration results. Use the enhancement and evaluation process to validate results against your benchmark data.
 
-Throughout the process of enhancing your plugins and planners in prompt flow, you can use the runs to monitor your experimental progress. Each iteration allows you to submit a batch run with an evaluation run at the same time.
+Throughout the process of enhancing your plugins and orchestration code in prompt flow, use the runs to monitor your experimental progress. Each iteration allows you to submit a batch run with an evaluation run at the same time.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/batch-evaluation.png" alt-text="Screenshot of batch run with evaluation." lightbox = "./media/how-to-evaluate-semantic-kernel/batch-evaluation.png":::
 
-This capability enables you to conveniently compare the results of various runs, helping you identify which modifications are beneficial. To compare, select the runs you want to analyze, then select **Visualize outputs**.
+This capability enables you to conveniently compare the results of various runs, helping you identify which modifications are beneficial. To compare, select the runs you want to analyze, and then select **Visualize outputs**.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/compare.png" alt-text="Screenshot of compare runs." lightbox = "./media/how-to-evaluate-semantic-kernel/compare.png":::
 
@@ -151,5 +155,5 @@ The **Visualize outputs** screen shows a detailed table with a line-by-line comp
 
 - [Semantic Kernel documentation](/semantic-kernel/)
 - [What is a Plugin?](/semantic-kernel/ai-orchestration/plugins)
-- [What is a Planner?](/semantic-kernel/ai-orchestration/planners/evaluate-and-deploy-planners/)
+- [Planning with automatic function calling](/semantic-kernel/concepts/planning)
 - [Deploy a flow as a managed online endpoint for real-time inference](how-to-deploy-for-real-time-inference.md)

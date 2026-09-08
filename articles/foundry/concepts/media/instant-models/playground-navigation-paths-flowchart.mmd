@@ -1,0 +1,11 @@
+flowchart LR
+    A[Home] --> B[Playground]
+    B --> B
+    A --> C[Catalog]
+
+    D[Model] --> B
+    C --> D
+    A --> D
+
+    classDef purple fill:#d8b4fe,stroke:#8b5cf6,stroke-width:1.5px,color:#2e1065;
+    class A,B,C,D purple;

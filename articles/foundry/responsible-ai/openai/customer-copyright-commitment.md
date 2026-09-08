@@ -6,7 +6,6 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
-ms.reviewer: nitinme
 ms.topic: concept-article
 ms.date: 05/21/2024
 ai-usage: ai-assisted

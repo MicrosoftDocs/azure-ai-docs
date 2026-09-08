@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Migrate semantic ranking code from previous versions
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If your semantic ranking code was written against early preview APIs, this article identifies the code changes necessary for migrating to newer API versions. Breaking changes for semantic ranker are limited to query logic in recent APIs, but if your code was written against the initial preview version, you might need to change your semantic configuration as well.
 
 ## Breaking changes
@@ -47,6 +49,7 @@ Check your code for the REST API version or SDK package version to confirm which
 | Preview | [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Available on free tiers. |
 | Stable | [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Separates billing consent for semantic ranker and agentic retrieval. `semanticSearch` now only controls semantic ranker billing. Before upgrading, if you have `semanticSearch=standard`, you must also set `knowledgeRetrieval=standard`. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md). |
 | Preview | [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | No change. |
+| Preview | [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | No change. |
 
 ## Change logs for Azure SDKs
 

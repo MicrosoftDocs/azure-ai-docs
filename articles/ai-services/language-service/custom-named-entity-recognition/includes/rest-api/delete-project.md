@@ -1,9 +1,9 @@
 ---
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 04/20/2026
 ms.author: lajanuar
 ---
 When you no longer need your project, you can delete it with the following **DELETE** request. Replace the placeholder values with your own values.   

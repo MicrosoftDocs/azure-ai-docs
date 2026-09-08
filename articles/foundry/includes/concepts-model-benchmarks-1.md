@@ -2,11 +2,12 @@
 title: Include file
 description: Include file
 author: lgayhardt
-ms.reviewer: changliu2
+ai-usage: ai-assisted
+ms.reviewer: none
 ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 08/28/2026
 ms.custom: include
 ---
 
