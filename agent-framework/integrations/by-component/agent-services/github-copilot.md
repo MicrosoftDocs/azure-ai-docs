@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: dmytrostruk
 ms.topic: tutorial
 ms.author: dmytrostruk
-ms.date: 09/07/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -18,6 +18,7 @@ ai-usage: ai-assisted
     | Getting Started / Installation| ✅ |   ✅   | ✅ | Python and Go use package/module install.  |
     | Configuration                 | ❌ |   ✅   | ❌ | Python-specific environment variable table.|
     | Bring your own key (BYOK)     | ❌ |   ✅   | ❌ | Python forwards Copilot SDK provider configuration. |
+    | Workspace file hooks          | ❌ |   ✅   | ❌ | Python requires explicit opt-in.            |
     | Create an Agent               | ✅ |   ✅   | ✅ |                                            |
     | Function Tools                | ✅ |   ✅   | ✅ |                                            |
     | Context Providers             | ❌ |   ✅   | ❌ | Python-specific content in this page.      |
@@ -322,6 +323,23 @@ async def explicit_config_example():
 
 > [!TIP]
 > `default_options` (and per-run `options`) forwards any parameter accepted by the Copilot SDK's `create_session` — for example `reasoning_effort`, `context_tier`, `enable_citations`, `provider` (bring-your-own-key), or `skill_directories` — not just the keys shown here. Unknown parameter names raise a `TypeError`, so typos are caught rather than silently ignored.
+
+### Control workspace file hooks
+
+By default, `GitHubCopilotAgent` doesn't load file hooks from the working directory's
+`.github/hooks/` folder. Opt in only when you trust the working
+directory and intend its hooks to affect the session:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/github_copilot/github_copilot_with_file_hooks.py" range="26,46-58":::
+
+> [!WARNING]
+> File hooks run commands as the user that runs your application. They aren't
+> gated by `on_permission_request` or other tool-approval callbacks.
+
+If the working directory defines hooks and you omit `enable_file_hooks`, the
+agent defaults it to `False` and logs a warning once through the
+`agent_framework.github_copilot` logger. Explicitly setting
+`enable_file_hooks=False` disables hooks without that warning.
 
 ### Bring your own key (BYOK)
 
