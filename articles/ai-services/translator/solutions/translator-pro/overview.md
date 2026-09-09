@@ -7,15 +7,22 @@ ai-usage: ai-assisted
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 08/14/2026
+ms.date: 09/15/2026
 ms.custom: FY25Q1-Linter
 ---
 
 # What is Microsoft Translator Pro?
 
+> [!IMPORTANT]
+> Microsoft Translator Pro entered its retirement period on September 15, 2026. Existing customers can continue using the application in maintenance mode until September 15, 2027. Microsoft is no longer onboarding new customers to Microsoft Translator Pro.
+>
+> During the maintenance period, the application receives critical security, compliance, reliability, and service-continuity updates as applicable. No new product capabilities are planned. On September 15, 2027, Microsoft Translator Pro is retired and is no longer available or supported.
+>
+> This retirement applies only to the Microsoft Translator Pro client application. It doesn't retire [Azure Translator in Foundry Tools](../../overview.md), [Azure Speech in Foundry Tools](../../../speech-service/overview.md), or the Azure resources used by those services. Existing customers should plan their transition before September 15, 2027. To build a custom enterprise translation experience, use Translator and Speech services to meet your organization's security and deployment requirements.
+
 Microsoft Translator Pro is an advanced mobile application that enables real-time, seamless speech-to-speech translation. The app is designed specifically for enterprises seeking to eliminate language barriers within the workplace. Translator Pro delivers a dedicated and native experience that fully integrates into the enterprise ecosystem.
 
-Microsoft Translator Pro is a paid mobile application available on both the Azure public and US government cloud platforms. To utilize the application, enterprise users must authenticate their identities and configure translator resources within the Azure public or US Government cloud environment.
+During the maintenance period, Microsoft Translator Pro remains available to existing customers on both the Azure public and US government cloud platforms. To use the application, enterprise users must authenticate their identities and configure Translator resources within the Azure public or US Government cloud environment.
 
 ## Specifications and service limits
 
@@ -25,7 +32,7 @@ Microsoft Translator Pro is a paid mobile application available on both the Azur
 
 * This app operates as a paid offering, necessitating payment before use.
 
-* The app is available for download to enterprises that meet certain criteria in selected countries/regions. For more information, *see* [Country or Region availability](#country-or-region-availability).
+* Existing customers can download the app in selected countries/regions. For more information, see [Country or Region availability](#country-or-region-availability).
 
 * Offline translation is limited to a select number of languages. For more information, *see* [Language support](language-support.md).
 
@@ -51,7 +58,7 @@ Microsoft Translator Pro is a paid mobile application available on both the Azur
 
 ## Country or Region availability
 
-Microsoft Translator Pro is available for download in the following countries/regions from the `iOS` app store:
+Existing customers can download Microsoft Translator Pro from the iOS App Store in the following countries/regions:
 
 | Country/Region |
 | --- |
