@@ -139,5 +139,5 @@ On close, the service stops accepting new work, drains active delegation and out
 ## Related content
 
 - [Delegate work in GPT-Live](gpt-live-delegation.md)
-- [Use GPT-Live via WebRTC](gpt-live-webrtc.md)
+- [Use GPT-Live via WebRTC](gpt-live-web-rtc.md)
 - [GPT-Live event API reference](../gpt-live-reference.md)

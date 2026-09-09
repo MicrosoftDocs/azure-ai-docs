@@ -357,7 +357,7 @@ items:
         displayName: "Quickstart: Get started with GPT-Live"
         href: ../../openai/how-to/gpt-live.md
       - name: Use GPT-Live via WebRTC
-        href: ../../openai/how-to/gpt-live-webrtc.md
+        href: ../../openai/how-to/gpt-live-web-rtc.md
       - name: Delegate work in GPT-Live
         href: ../../openai/how-to/gpt-live-delegation.md
     - name: Audio generation
