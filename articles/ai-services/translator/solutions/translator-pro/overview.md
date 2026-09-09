@@ -46,7 +46,7 @@ During the maintenance period, Microsoft Translator Pro remains available to exi
 
 * **Customized phrasebook**. Administrators can upload a list of commonly used phrases specific to their organization. These phrases can then be quickly accessed and translated during conversations, ensuring communication remains efficient and accurate.
 
-* **International availability**. The app is now accessible in selected regions outside of the United States. For more information, *see* [Region availability](#region-availability).
+* **International availability**. The app is now accessible in selected regions outside of the United States. For more information, *see* [Region availability](#region-avalability).
 
 * **US Government cloud availability**. US Government agencies can now operate the app within selected regions of the US Government cloud. For more information, *see* [Region availability](#region-availability).
 
@@ -56,7 +56,7 @@ During the maintenance period, Microsoft Translator Pro remains available to exi
 
 * **Enterprise-grade security**. Microsoft Translator Pro ensures exceptional translation quality paired with robust security features. Recognizing that privacy and security are paramount for your organization, administrators can sign in to the app using organizational credentials. Your organization's conversational data remains entirely protected within your Azure tenant. Not Microsoft or any third parties can access your data.
 
-## Region availability
+## App store availability
 
 Existing customers can download Microsoft Translator Pro from the iOS App Store in the following regions:
 
