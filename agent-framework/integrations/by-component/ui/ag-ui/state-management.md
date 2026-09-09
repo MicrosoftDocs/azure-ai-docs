@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -15,6 +16,7 @@ ms.service: agent-framework
   | Section                    | C# | Python | Go | Notes |
   |----------------------------|:--:|:------:|:--:|-------|
   | Read client state          | ✅ |   ✅   | ❌ | Not documented for Go |
+  | Send client state          | ❌ |   ✅   | ❌ | Python uses an explicit state carrier |
   | State snapshots and deltas | ✅ |   ✅   | ❌ | Go zone demonstrates generic data middleware |
   | Predictive state           | ✅ |   ✅   | ❌ | Explicit SDK-specific mappings |
 -->
@@ -451,6 +453,36 @@ Incremental state updates using JSON Patch format, emitted as the LLM streams to
 
 > [!NOTE]
 > State delta events stream in real-time as the LLM generates the tool arguments, providing optimistic UI updates. The final state snapshot is emitted when the tool completes execution.
+
+## Send client state
+
+Use `state_carrier()` to send shared state from a Python `AGUIChatClient`.
+Place the carrier in its own user message and send it with the user prompt. The
+client moves the most recent carrier into the AG-UI request's `state` field and
+doesn't send the carrier as a chat message.
+
+```python
+from agent_framework import Message
+from agent_framework_ag_ui import state_carrier
+
+messages = [
+    Message(role="user", contents=["Update the sales dashboard."]),
+    Message(
+        role="user",
+        contents=[state_carrier({"selected_tab": "sales"})],
+    ),
+]
+
+await agent.run(messages, session=thread)
+```
+
+Ordinary `application/json` content remains a document input. It becomes state
+only when you create it with `state_carrier()`.
+
+> [!IMPORTANT]
+> `allow_legacy_state_carrier=True` temporarily recognizes the deprecated
+> implicit JSON-carrier convention and emits a deprecation warning. Migrate to
+> `state_carrier()` instead of enabling this option for new code.
 
 ## Client Implementation
 
