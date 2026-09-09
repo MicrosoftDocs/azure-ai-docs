@@ -74,7 +74,7 @@ Welcome! This article highlights key updates for Microsoft Foundry in August 202
   - [Build with runtime components in Foundry Agent Service](/azure/foundry/agents/concepts/runtime-components)
   - [Quickstart: Build your first autopilot](/azure/foundry/agents/how-to/agent-365)
   - [Run a hosted agent locally](/azure/foundry/agents/how-to/run-hosted-agent-locally)
-  - [Automate agents with routines (preview)](/azure/foundry/agents/how-to/use-routines)
+  - [Automate agents with routines](/azure/foundry/agents/how-to/use-routines)
   - [Quickstart: Deploy your first hosted agent](/azure/foundry/agents/quickstarts/quickstart-hosted-agent)
   - [Create and manage a toolbox in Microsoft Foundry](/azure/foundry/agents/how-to/tools/toolbox)
   - [Connect agents to Microsoft Fabric with Fabric IQ (preview)](/azure/foundry/agents/how-to/tools/fabric-iq)
