@@ -250,7 +250,7 @@ print(f"Columns:\n{df.dtypes}")
 
 #### Create a data asset to aid sharing and reproducibility
 
-You might have your MLTable file currently saved on disk, which makes it hard to share with team members. When you create a data asset in Azure Machine Learning, your MLTable is uploaded to cloud storage and "bookmarked." Your team members can then access the MLTable with a friendly name. Also, the data asset is versioned.
+You might save your MLTable file on disk, which can make sharing with team members difficult. When you create a data asset in Azure Machine Learning, you upload your MLTable to cloud storage and "bookmark" it. Your team members can access the MLTable by using a friendly name. Also, the data asset is versioned.
 
 # [CLI](#tab/cli)
 
@@ -552,7 +552,7 @@ This clone repo folder hosts the examples relevant to Azure Machine Learning Tab
 ```bash
 cd azureml-examples/sdk/python/using-mltable
 ```
-The examples below describe how to work with [delimited text files](#use-delimited-files) and [parquet files](#use-parquet-files), and how to [create a data asset](#create-a-data-asset-to-aid-sharing-and-reproducibility).
+The following examples describe how to work with [delimited text files](#use-delimited-files) and [parquet files](#use-parquet-files), and how to [create a data asset](#create-a-data-asset-to-aid-sharing-and-reproducibility).
 
 
 ### Use delimited files
