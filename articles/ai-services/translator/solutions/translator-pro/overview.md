@@ -32,7 +32,7 @@ During the maintenance period, Microsoft Translator Pro remains available to exi
 
 * This app operates as a paid offering, necessitating payment before use.
 
-* Existing customers can download the app in selected countries/regions. For more information, see [Country or Region availability](#country-or-region-availability).
+* Existing customers can download the app in selected geopolitical regions. For more information, see [Region availability](#country-or-region-availability).
 
 * Offline translation is limited to a select number of languages. For more information, *see* [Language support](language-support.md).
 
@@ -46,7 +46,7 @@ During the maintenance period, Microsoft Translator Pro remains available to exi
 
 * **Customized phrasebook**. Administrators can upload a list of commonly used phrases specific to their organization. These phrases can then be quickly accessed and translated during conversations, ensuring communication remains efficient and accurate.
 
-* **International availability**. The app is now accessible in selected countries/regions outside of the United States. For more information, *see* [Country or Region availability](#country-or-region-availability).
+* **International availability**. The app is now accessible in selected geopolitical regions outside of the United States. For more information, *see* [Region availability](#country-or-region-availability).
 
 * **US Government cloud availability**. US Government agencies can now operate the app within selected regions of the US Government cloud. For more information, *see* [Region availability](#region-availability).
 
