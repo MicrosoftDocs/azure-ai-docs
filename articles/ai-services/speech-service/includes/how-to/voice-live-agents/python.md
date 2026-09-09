@@ -41,7 +41,7 @@ Use these concepts to understand how Voice Live and Foundry Agent Service work t
 
 ### Agent configuration contract
 
-Set `agent_config` in your session setup to identify the target agent and project. At minimum, include `agent_name` and `project_name`. Add `agent_version` when you want to pin behavior to a specific version.
+Pass `agent_name` and `project_name` as keyword arguments to `connect()` to identify the target agent and project. Add `agent_version` when you want to pin behavior to a specific version.
 
 ### Authentication model for agent mode
 
@@ -61,13 +61,17 @@ Pin your agent to a specific version to enable controlled deployments. This lets
 
 Set the `AGENT_VERSION` environment variable or pass the `agent_version` parameter when initializing the assistant:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="252-275,299-305,502-538" highlight="8,19,29,37,66":::
+In `main()`, read `AGENT_VERSION` from the environment and pass it to the `BasicVoiceAssistant(...)` constructor:
 
-In this sample, the version configuration is applied in three places:
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="3,15,484-493,509,513-523" highlight="8,19":::
 
-- In `main()`, `AGENT_VERSION` is read from the environment.
-- In the `BasicVoiceAssistant(...)` call, `agent_version` is passed into the class constructor.
-- In `BasicVoiceAssistant.__init__`, the value is added to `self.agent_config`, and then sent to Voice Live via `connect(..., agent_config=self.agent_config)`.
+The constructor stores the value on the assistant:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="269":::
+
+The `start()` method passes the stored value to `connect()`:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="295-307" highlight="7":::
 
 The `agent_version` value corresponds to the version string returned when you create or update an agent using the Foundry Agent SDK. If not specified, Voice Live connects to the latest version of the agent.
 
@@ -83,13 +87,17 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="260-275,509-540,299-305" highlight="2-3,14-15,18-19,28-29,47,48":::
+In `main()`, read both environment variables and pass their values to the `BasicVoiceAssistant(...)` constructor:
 
-This configuration is resolved in `main()` and then applied when the assistant is created:
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="3,15,484-493,509,513-523" highlight="11-12,22-23":::
 
-- `FOUNDRY_RESOURCE_OVERRIDE` and `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID` are read from environment variables.
-- Both values are passed to `BasicVoiceAssistant(...)`.
-- In `BasicVoiceAssistant.__init__`, the values are added to `self.agent_config`, which is sent in `connect(..., agent_config=self.agent_config)`.
+The constructor stores both values on the assistant:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="271-272":::
+
+The `start()` method passes them to `connect()` as `foundry_resource_override` and `authentication_identity_client_id`:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="295-307" highlight="9-10":::
 
 > [!IMPORTANT]
 > Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Foundry User` role on the target agent resource.
@@ -98,7 +106,13 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Send a proactive message to initiate conversations as soon as the session is ready. This sample checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and triggers a response.
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="280,389-424" highlight="1,15-32":::
+Initialize the greeting flag in `BasicVoiceAssistant.__init__`:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="277":::
+
+Handle the `SESSION_UPDATED` event in `_handle_event()`:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="390-425" highlight="16-32":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -119,7 +133,13 @@ For more information, see [Improve tool calling and latency wait times with inte
 
 The `voice-live-agents-quickstart.py` created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="18-32,334-357" highlight="9-10,20-26,33":::
+Import the session and interim response types:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="18-32" highlight="9-10":::
+
+Configure and send the session options in `_setup_session()`:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="334-364" highlight="6-11,18,29":::
 
 In this sample, the interim response setup is applied inside `BasicVoiceAssistant._setup_session()`:
 
@@ -131,7 +151,7 @@ In this sample, the interim response setup is applied inside `BasicVoiceAssistan
 
 When users interrupt agent audio, conversation text can drift from what users actually heard. Auto truncation helps keep session context aligned with delivered audio, which improves follow-up response quality after barge-in and keeps voice conversation history logging more accurate.
 
-This sample currently shows interruption handling with `response.cancel()` during speech start, but it doesn't configure `auto_truncate` in `turn_detection`.
+This sample doesn't configure `auto_truncate` in `turn_detection`.
 
 > [!NOTE]
 > In Foundry Agent Service, thread messages and tracing agent threads are based on text content in the thread. Without auto truncation, those records can differ from the exact portion of audio the user actually heard before interruption.
@@ -144,7 +164,7 @@ Reconnect to a previous conversation by specifying the conversation ID. This pre
 
 Voice Live returns session metadata in the `SESSION_UPDATED` event when a session connects successfully:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="390-399":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="390-400":::
 
 In this event handler, session and agent metadata is logged when the session is ready.
 
@@ -152,13 +172,17 @@ The sample code automatically writes session details to a conversation log file 
 
 To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversation_id` parameter):
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="260,272,509":::
+In `main()`, read `CONVERSATION_ID` and pass it to the `BasicVoiceAssistant(...)` constructor:
 
-In this sample, conversation reconnect is applied in three places:
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="3,15,484-493,509,513-523" highlight="10,21":::
 
-- In `main()`, `CONVERSATION_ID` is read from the environment.
-- In the `BasicVoiceAssistant(...)` call, `conversation_id` is passed into the class constructor.
-- In `BasicVoiceAssistant.__init__`, the value is assigned into `self.agent_config` as `conversation_id`.
+The constructor stores the conversation ID:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="270":::
+
+The `start()` method passes it to `connect()` as `conversation_id`:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="295-307" highlight="8":::
 
 When a valid `conversation_id` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges in its responses.
 
@@ -173,9 +197,13 @@ Log key session metadata, including the session ID, to a timestamped conversatio
 - Correlate user-reported behavior with session metadata.
 - Track runs over time by preserving per-session log files.
 
-The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
+The following code creates the log filename and defines the helper that appends entries:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="43-49,393-399,494-499" highlight="4,9-14":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="3,5,7,41,46,49-52,476-481" highlight="6,9,12-15":::
+
+In `_handle_event()`, call the helper when `SESSION_UPDATED` is received:
+
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="390-400" highlight="5-10":::
 
 In this sample, session metadata logging is applied in three places:
 
