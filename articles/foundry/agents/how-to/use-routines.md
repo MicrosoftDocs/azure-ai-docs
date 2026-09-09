@@ -79,7 +79,7 @@ This article shows you how to create, manage, and monitor routines by using the 
 
 :::zone pivot="programming-language-javascript"
 
-- Install the `@azure/ai-projects` npm package. Routine operations are in preview:
+- Install the `@azure/ai-projects` npm package:
 
   ```bash
   npm install @azure/ai-projects @azure/identity
@@ -99,7 +99,7 @@ This article shows you how to create, manage, and monitor routines by using the 
 :::zone pivot="azd"
 
 - Install the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd` 1.23.13 or later).
-- Install the routines extension (preview):
+- Install the routines extension:
 
   ```bash
   azd extension install azure.ai.routines
