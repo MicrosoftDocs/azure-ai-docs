@@ -58,7 +58,7 @@ docker pull docker.io/batchkit/speech-batch-kit:latest
 
 ## Endpoint configuration
 
-The batch client takes a yaml configuration file that specifies the on-premises container endpoints. The following example can be written to `/mnt/my_nfs/config.yaml`, which is used in the following examples.
+The batch client takes a YAML configuration file that specifies the on-premises container endpoints. The following example can be written to `/mnt/my_nfs/config.yaml`, which is used in the following examples.
 
 ```yaml
 MyContainer1:
@@ -78,7 +78,7 @@ MyContainer3:
   rtf: 4
 ```
 
-This yaml example specifies three speech containers on three hosts. The first host is specified by a IPv4 address, the second is running on the same VM as the batch-client, and the third container is specified by the DNS hostname of another VM. The `concurrency` value specifies the maximum concurrent file transcriptions that can run on the same container. The `rtf` (Real-Time Factor) value is optional and can be used to tune performance.
+This YAML example specifies three speech containers on three hosts. The first host is specified by a IPv4 address, the second is running on the same VM as the batch-client, and the third container is specified by the DNS hostname of another VM. The `concurrency` value specifies the maximum concurrent file transcriptions that can run on the same container. The `rtf` (Real-Time Factor) value is optional and can be used to tune performance.
 
 The batch client can dynamically detect if an endpoint becomes unavailable (for example, due to a container restart or networking issue), and when it becomes available again. Transcription requests aren't sent to containers that are unavailable, and the client continues using other available containers. You can add, remove, or edit endpoints at any time without interrupting the progress of your batch.
 

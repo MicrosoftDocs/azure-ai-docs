@@ -58,7 +58,7 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 
 [!INCLUDE [Container shared configuration fluentd settings](../../includes/cognitive-services-containers-configuration-shared-settings-fluentd.md)]
 
-## Http proxy credentials settings
+## HTTP proxy credentials settings
 
 [!INCLUDE [Container shared configuration proxy settings](../../includes/cognitive-services-containers-configuration-shared-settings-http-proxy.md)]
 

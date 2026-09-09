@@ -71,7 +71,7 @@ This setting can be found in the following place:
 
 ## Real-time diarization cache settings
 
-For generally available real-time diarization, use speech-to-text container version 5.1.0 or later. Connected and disconnected speech-to-text containers require a customer-operated Redis-compatible cache whenever you enable real-time diarization, including for audio shorter than four hours. Fast transcription containers don't require this cache. Configure both settings for proper real-time diarization functionality. For setup and validation, see [Configure a cache for speech container diarization](speech-container-stt-diarization-cache.md).
+For generally available real-time diarization, use speech-to-text container version 5.1.0 or later. Connected and disconnected speech-to-text containers require a customer-operated Redis-compatible cache whenever you enable real-time diarization, including for audio shorter than four hours. Fast transcription containers don't require this cache. Configure both settings for proper real-time diarization functionality. For setup and validation, see [Configure a cache for speech container diarization](speech-container-speech-to-text-diarization-cache.md).
 
 By default, the cache retains four hours of diarization data. For audio beyond four hours, the oldest cached data begins to be discarded, which might reduce speaker association or labeling quality. This retention behavior doesn't end the diarization session or prevent longer audio from running.
 

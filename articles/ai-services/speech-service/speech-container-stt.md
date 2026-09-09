@@ -82,7 +82,7 @@ docker pull mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-
 Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the container. 
 
 > [!NOTE]
-> If you enable real-time diarization, configure `InClusterRedisCacheEnabled=true` and `InClusterRedisCacheEndpoint=<host-or-ip>:<port>` before you start the container. For setup and validation, see [Configure a cache for speech container diarization](speech-container-stt-diarization-cache.md).
+> If you enable real-time diarization, configure `InClusterRedisCacheEnabled=true` and `InClusterRedisCacheEndpoint=<host-or-ip>:<port>` before you start the container. For setup and validation, see [Configure a cache for speech container diarization](speech-container-speech-to-text-diarization-cache.md).
 
 # [Speech to text](#tab/container)
 
@@ -182,7 +182,7 @@ Use speech-to-text container version 5.1.0 or later for generally available real
 
 By default, the cache retains four hours of diarization data. For audio beyond four hours, the oldest cached data begins to be discarded, which might reduce speaker association or labeling quality. When diarization is required, segment audio into inputs of four hours or less.
 
-To configure the required cache, test cache connectivity, and validate speaker labels, see [Configure a cache for speech container diarization](speech-container-stt-diarization-cache.md).
+To configure the required cache, test cache connectivity, and validate speaker labels, see [Configure a cache for speech container diarization](speech-container-speech-to-text-diarization-cache.md).
 
 ## Use the container
 
