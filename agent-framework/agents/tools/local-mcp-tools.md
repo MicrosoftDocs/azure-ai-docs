@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 07/30/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Using MCP tools with Agents
@@ -232,6 +233,26 @@ if __name__ == "__main__":
 For authenticated HTTP endpoints, use `header_provider` so credentials are added only to same-origin requests. During a tool call, the provider receives the values from `function_invocation_kwargs`. For ambient requests such as the initialize handshake, tool or prompt discovery, and background pings, it receives an empty dictionary.
 
 If the server requires authentication during connection, capture or refresh the required credential in the provider instead of depending only on per-run values. A provider that raises `KeyError` because a per-run value is unavailable lets an ambient request continue without that header; this pattern works only when the server permits unauthenticated initialization and discovery. Other provider errors are surfaced.
+
+### Control Host payload retention
+
+When a Host transport, such as AG-UI, consumes an MCP tool result, Agent
+Framework retains the complete JSON-safe result separately from the parsed
+model-facing value. This allows the Host to receive fields such as
+`structuredContent` without adding Host-only data to model history.
+
+Each MCP transport limits a retained Host payload to 1 MiB by default.
+Oversized payloads are omitted from the Host channel, while the parsed result
+still reaches the model. Set a different positive byte limit on the transport,
+or use `None` only when the downstream Host applies its own bound:
+
+```python
+mcp_server = MCPStreamableHTTPTool(
+    name="Microsoft Learn MCP",
+    url="https://learn.microsoft.com/api/mcp",
+    max_host_payload_size_bytes=256 * 1024,
+)
+```
 
 ### MCPWebsocketTool - WebSocket MCP Servers
 

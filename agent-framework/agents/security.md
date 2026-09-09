@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 06/23/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Agent Security with FIDES
@@ -148,6 +149,27 @@ agent = Agent(
 That is the whole opt-in. After reading the malicious issue from the previous section, the agent is free to call `read_file(".env")` — but the result is labeled `private`, so the follow-up `post_comment(...)` is refused (it caps at `public`). And any attempt to call `write_file(...)` driven by the untrusted issue body is refused outright by `accepts_untrusted=False`. With `approval_on_violation=True`, both refusals surface as human-approval prompts.
 
 The rest of this page explains every option that appears above, plus the ones you might want to reach for next.
+
+### Keep security state scoped to a session
+
+`SecureAgentConfig` stores labels, hidden variables, audit records, and pending
+approvals in the active `AgentSession`. Reuse or restore the same session to
+continue that security state. Use a different session to isolate another user
+or conversation.
+
+```python
+session = agent.create_session()
+await agent.run("Review issue 42.", session=session)
+
+for entry in config.get_audit_log(session):
+    print(entry)
+```
+
+Pass the same session to `get_audit_log()`, `get_variable_store()`, and
+`list_variables()`. After `SecureAgentConfig` runs as a context provider,
+calling these accessors without a session raises `ValueError`. This requirement
+prevents state from one session from being read as though it belonged to
+another.
 
 ## Labels on content
 

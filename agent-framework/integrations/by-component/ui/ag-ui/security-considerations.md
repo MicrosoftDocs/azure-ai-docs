@@ -4,7 +4,7 @@ description: Essential security guidelines for building secure AG-UI application
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -171,6 +171,19 @@ AG-UI thread IDs identify conversation continuations. Clients can provide a thre
 - Don't treat a thread ID as proof of identity or ownership.
 - Verify that the authenticated caller can access persisted data associated with the thread.
 - Scope storage by an authenticated user, tenant, workspace, or another application-owned boundary.
+
+For Python endpoints, configure `snapshot_scope_resolver` with a trusted
+application boundary. Agent Framework derives the internal `AgentSession` ID
+from that scope and the client `threadId`. The client-visible `threadId` remains
+unchanged, while context-provider and other session state for equal thread IDs
+stays isolated across scopes.
+
+:::code language="python" source="~/../agent-framework-code/python/samples/05-end-to-end/ag_ui_single_agent/backend/server.py" range="101-112":::
+
+`legacy_session_id_from_thread_id=True` restores the previous unscoped internal
+session ID only for migration. This option is deprecated and disables Snapshot
+Scope isolation for context-provider state. Migrate persisted provider state to
+scoped session IDs, and then remove the option.
 
 ### Sensitive Data Filtering
 

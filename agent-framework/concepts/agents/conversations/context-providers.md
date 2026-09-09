@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -82,6 +83,12 @@ await agent.run("Remember that I prefer vegetarian food.", session=session)
 ### File-backed memory across sessions
 
 Use `FileMemoryProvider` when the model should decide what to store and recall through `file_memory_*` tools. In Python, omitting `scope` derives the working folder from the current session ID, so separate sessions don't share memory files. Pass a stable `scope`, such as a user identifier, to share the same memory files across sessions, and choose an `AgentFileStore` implementation for the backing storage.
+
+Treat `scope` as one opaque namespace key, not as a file-system path. For
+example, `tenants/alice` maps to one encoded folder instead of nested
+directories. Use a flat, canonical, lowercase value when you want the folder
+name to remain readable, and authorize externally supplied scopes in your
+application.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/file_memory_provider.py" id="create_file_memory_provider":::
 
