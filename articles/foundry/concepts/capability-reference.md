@@ -68,7 +68,7 @@ Foundry Agent Service and the agent development lifecycle.
 | [Agent development lifecycle](../agents/concepts/development-lifecycle.md) | End-to-end build, test, deploy, and iterate workflow for agents. |
 | [Agent identity](../agents/concepts/agent-identity.md) | Give agents a Microsoft Entra identity for authenticated access to resources. |
 | [Workflows](../agents/concepts/workflow.md) | Coordinate multiple agents and steps into a single orchestrated process. |
-| [Routines](../agents/concepts/routines.md) (preview) | Package repeatable agent procedures for reuse. |
+| [Routines](../agents/concepts/routines.md) | Package repeatable agent procedures for reuse. |
 | [Agent-to-agent (A2A)](../agents/how-to/tools/agent-to-agent.md) | Let agents call other agents across services and vendors. |
 | [Responses API](../agents/quickstarts/responses-api.md) | Stateful API for model and agent interactions. |
 | [Voice agents](../agents/how-to/build-voice-agent.md) | Add speech input and output to agents. |
