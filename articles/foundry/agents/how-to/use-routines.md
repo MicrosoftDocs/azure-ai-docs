@@ -1,11 +1,11 @@
 ﻿---
-title: "Automate agents with routines (preview)"
+title: "Automate agents with routines"
 description: "Create, manage, and monitor routines that trigger agents on a schedule, at a specific time, or in response to an external event."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/27/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -17,17 +17,14 @@ ai-usage: ai-assisted
 zone_pivot_groups: foundry-routines-config
 ---
 
-# Automate agents with routines (preview)
+# Automate agents with routines
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-A *routine* is a named automation rule that triggers an agent on a schedule, at a specific time, or in response to an external event. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
+A *routine* is a named automation rule that triggers an agent on a schedule, at a specific time, or in response to an external event. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Microsoft Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
 
 This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, the Python SDK, .NET SDK, JavaScript SDK, or the Azure Developer CLI.
 
 > [!NOTE]
-> Routines are in preview. Send the `Foundry-Features: Routines=V1Preview` header on every REST call. All routine operations are on the data plane under your project endpoint.
-
+> All routine operations are on the data plane under your project endpoint.
 
 ## Prerequisites
 
@@ -35,22 +32,25 @@ This article shows you how to create, manage, and monitor routines by using the 
 - **Foundry User** role or higher on the project scope.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-- An agent that authenticates through its configured identity. Routines can't invoke an agent that requires an end-user identity to be passed at run time. A routine runs unattended, so there's no signed-in user to delegate. Use routines only with agents that authenticate through their own configured identity, not on-behalf-of the caller.
+- A prompt agent or hosted agent. Workflow agents aren't supported. By default, a routine invokes the agent by using the agent identity. If the agent has tools that require delegated user access, explicitly select the routine creator's identity when you create the routine.
 
-Routines are available in a subset of regions in preview. Confirm that your Foundry project is provisioned in one of the supported regions before you create a routine:
+> [!NOTE]
+> Routines are available in all Foundry regions except the following. Confirm that your Foundry project isn't provisioned in one of these regions before you create a routine:
 >
-> - East US
-> - East US 2
-> - West US
-> - West US 2
-> - West Central US
-> - North Central US
-> - Sweden Central
-> - Japan East
+> - UK West
+> - Switzerland West
+> - Japan West
+> - UAE North
+> - Norway East
+
+> [!NOTE]
+> Routines work with projects secured by a virtual network. Because a routine uses the project's existing agent invocation path, it inherits the project's network configuration and doesn't require extra networking setup. For more information, see [Set up private networking for Foundry Agent Service](virtual-networks.md).
+>
+> Routines don't support customer-managed key (CMK) encryption. Don't use routines for workloads that require CMK protection.
 
 :::zone pivot="programming-language-python"
 
-- Install the `azure-ai-projects` SDK, version 2.3.0 or later:
+- Install the `azure-ai-projects` SDK, version 2.4.0 or later:
 
   ```bash
   pip install "azure-ai-projects>=2.4.0"
@@ -142,10 +142,10 @@ Routines support the following trigger types:
 
 | Trigger type | Description |
 |---|---|
-| `schedule` | Recurring trigger defined by a cron expression. |
+| `schedule` | Recurring trigger defined by a cron expression. Minimum interval is five minutes. |
 | `timer` | One-shot trigger that fires at a specific future date/time or after a duration. |
 | `github_issue` | Event-based trigger that fires when an issue is opened or closed in a watched GitHub repository. |
-| `custom` | Event-based trigger from an external provider. In the preview, the `teams` provider fires when a new message is posted to a watched Microsoft Teams channel. |
+| `custom` | Event-based trigger from an external provider. The `teams` provider fires when a new message is posted to a watched Microsoft Teams channel. |
 
 ## Supported action types
 
@@ -158,9 +158,45 @@ Each routine specifies exactly one action that runs when the routine fires. Two 
 
 For required and optional fields of each action type, see [Action fields](#action-fields).
 
+## Choose a dispatch identity
+
+**Every routine uses the agent identity by default.** This default applies to schedule, timer, GitHub issue, and Teams event routines. The agent's permissions determine which resources its tools can access.
+
+If the agent has tools that require delegated user access, explicitly opt in to **creator identity** when you create the routine. Creator identity means only the Microsoft Entra identity of the person or service principal that creates the routine. It isn't the identity of the agent creator, agent publisher, connection creator, a later routine editor, or another end user.
+
+Add the following top-level `authorization` object to the create request. Omitting this object, or setting `identity` to `"agent"`, uses the default agent identity.
+
+```json
+{
+  "authorization": {
+    "identity": "creator"
+  },
+  "triggers": {
+    "...": {
+      "type": "..."
+    }
+  },
+  "action": {
+    "type": "invoke_agent_responses_api",
+    "agent_name": "<your-agent-name>"
+  }
+}
+```
+
+The `authorization` setting is accepted only when you create a routine. An update ignores it. To switch an existing routine between agent and creator identity, delete and recreate the routine with the required `authorization.identity` value.
+
+Creator identity has these constraints:
+
+- The routine delegates only the routine creator's identity. You can't supply an arbitrary user identity at dispatch time.
+- The creator must have access to every delegated resource the agent's tools use. If that access or consent is removed, those tool calls fail.
+- Recreating the routine as a different principal changes the routine creator identity.
+- Authentication for an event trigger's connector connection is separate from the identity used to dispatch the agent. The `authorization` object doesn't change the connection identity.
+
+The current SDK and Azure Developer CLI routine models use the default agent identity. Use the REST create request to select creator identity.
+
 ## Create a routine
 
-A routine definition specifies a trigger (when to fire) and an action (which agent to run and through which API). The preview supports exactly one trigger entry.
+A routine definition specifies a trigger (when to fire) and an action (which agent to run and through which API). A routine supports exactly one trigger entry.
 
 ### Schedule trigger
 
@@ -202,7 +238,6 @@ TOKEN=$(az account get-access-token \
 curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "description": "Runs a daily summary agent on weekday mornings.",
     "enabled": true,
@@ -228,7 +263,6 @@ To use the Invocations API action instead, replace the `action` object with the 
 curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "description": "Runs a daily summary agent on weekday mornings.",
     "enabled": true,
@@ -386,7 +420,7 @@ console.log(`Routine created: ${routine.name}, enabled=${routine.enabled}`);
 
 :::zone pivot="azd"
 
-Inline `azd ai routine create --trigger schedule` isn't supported in preview. Create the routine from a YAML manifest instead:
+Inline `azd ai routine create --trigger schedule` isn't currently supported. Create the routine from a YAML manifest instead:
 
 ```yaml
 # routine.yaml
@@ -436,14 +470,13 @@ The **Run at** value is interpreted in your browser's local time zone. A one-tim
 curl -sS -X PUT "$PROJECT_ENDPOINT/routines/once-on-release-day" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "description": "Runs the agent once on release day.",
     "enabled": true,
     "triggers": {
       "release-day": {
         "type": "timer",
-        "at": "2026-09-01T09:00:00Z"
+        "at": "2030-09-01T09:00:00Z"
       }
     },
     "action": {
@@ -454,7 +487,7 @@ curl -sS -X PUT "$PROJECT_ENDPOINT/routines/once-on-release-day" \
   }'
 ```
 
-Set `at` to an ISO 8601 timestamp with an explicit UTC offset, for example, `"2026-06-01T09:00:00Z"`.
+Set `at` to an ISO 8601 timestamp with an explicit UTC offset, for example, `"2030-09-01T09:00:00Z"`.
 
 :::zone-end
 
@@ -496,7 +529,7 @@ var routineOptions = new ProjectsRoutineOptions(
     enabled: true);
 
 routineOptions.Triggers.Add("release-day", new TimerRoutineTrigger(
-    at: DateTimeOffset.Parse("2026-09-01T09:00:00Z")
+    at: DateTimeOffset.Parse("2030-09-01T09:00:00Z")
 ));
 
 ProjectsRoutine routine = await routinesClient.CreateOrUpdateAsync(
@@ -515,7 +548,7 @@ const routine = await project.beta.routines.createOrUpdate("once-on-release-day"
   triggers: {
     "release-day": {
       type: "timer",
-      at: new Date("2026-09-01T09:00:00Z"),
+      at: new Date("2030-09-01T09:00:00Z"),
     },
   },
   action: {
@@ -535,7 +568,7 @@ Create a one-shot timer routine inline:
 ```bash
 azd ai routine create once-on-release-day \
   --trigger timer \
-  --at 2026-09-01T09:00:00Z \
+  --at 2030-09-01T09:00:00Z \
   --action agent-response \
   --agent-name <your-agent-name>
 ```
@@ -551,7 +584,7 @@ triggers:
   release-day:
     type: timer
     time_zone: UTC
-    at: 2026-09-01T09:00:00Z
+    at: 2030-09-01T09:00:00Z
 action:
   type: invoke_agent_responses_api
   agent_name: <your-agent-name>
@@ -568,9 +601,9 @@ azd ai routine create --file routine.yaml
 
 An event-based trigger runs an agent when an external event occurs, such as a GitHub issue being opened or a message being posted to a Microsoft Teams channel. Event-based triggers rely on a connector connection that Foundry provisions in your account's connector namespace and uses to authenticate to the external system. The trigger references this connection by ID. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
-An event-based routine runs under the identity of the routine creator. The connection uses the routine creator's identity to authenticate with the external system, such as GitHub or Microsoft Teams, so the routine watches and acts on that system with that person's access. If the routine creator loses access to the connected resource, the routine stops firing.
+The connector connection authenticates with the external system independently of the routine's [dispatch identity](#choose-a-dispatch-identity). If the connection owner loses access to the connected resource, the trigger stops firing. Selecting creator identity for dispatch doesn't change the connector connection identity.
 
-The preview supports two event-based triggers: the `github_issue` trigger and the `custom` trigger with the `teams` provider.
+Routines support two event-based triggers: the `github_issue` trigger and the `custom` trigger with the `teams` provider.
 
 > [!IMPORTANT]
 > Non-Microsoft tools including third-party MCP servers available in the Foundry Tools Catalog ("Third-Party Tools") are Non-Microsoft Products under your agreement governing use of Azure. When you connect to a Third-Party Tool, you do so at your own risk. You're responsible for any terms and charges for Third-Party Tools. Microsoft has no responsibility to you or others in relation to your use of Third-Party Tools. Carefully review and track the Third-Party Tools you add to your MCP client.
@@ -677,7 +710,6 @@ For the complete connector reference, see [Add managed MCP servers powered by co
 curl -sS -X PUT "$PROJECT_ENDPOINT/routines/on-issue-opened" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "description": "Triages a GitHub issue when it is opened in the watched repository.",
     "enabled": true,
@@ -856,13 +888,13 @@ azd ai routine create on-issue-opened --file routine.yaml
 ```
 
 > [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
+> The agent referenced by `agent_name` must be a prompt agent or hosted agent. Workflow agents aren't supported.
 
 :::zone-end
 
 #### Teams message trigger
 
-A `custom` trigger fires on an event from an external provider. In the preview, the `teams` provider supports the `on_new_channel_message` event, which fires when a new message is posted to a watched Microsoft Teams channel. When the trigger fires, Foundry forwards the Teams message payload to the agent as its input, so the agent can respond to the message.
+A `custom` trigger fires on an event from an external provider. The `teams` provider supports the `on_new_channel_message` event, which fires when a new message is posted to a watched Microsoft Teams channel. When the trigger fires, Foundry forwards the Teams message payload to the agent as its input, so the agent can respond to the message.
 
 The trigger requires a Microsoft Teams connector connection. Foundry provisions the connection in your account's connector namespace and uses it to authenticate to Teams. The `connection_id` in the trigger's `parameters` references this connection. For more about connector connections, see [Add managed MCP servers powered by connector namespaces](tools/connectors.md).
 
@@ -956,7 +988,6 @@ For the complete connector reference, see [Add managed MCP servers powered by co
 curl -sS -X PUT "$PROJECT_ENDPOINT/routines/teams-new-message" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "description": "Invokes an agent when a new message is posted to a Teams channel.",
     "enabled": true,
@@ -1083,7 +1114,7 @@ azd ai routine create teams-new-message --file routine.yaml
 ```
 
 > [!NOTE]
-> The agent referenced by `agent_name` must have a configured agent identity. The service rejects prompt-only agents when they're bound to a routine action.
+> The agent referenced by `agent_name` must be a prompt agent or hosted agent. Workflow agents aren't supported.
 
 :::zone-end
 
@@ -1100,7 +1131,7 @@ Invokes the agent through the Responses API.
 | `type` | string | Yes | Must be `"invoke_agent_responses_api"`. |
 | `agent_name` | string | Conditional | The project-scoped agent name. Specify exactly one of `agent_name` or `agent_endpoint_id`. Maximum 256 characters. |
 | `agent_endpoint_id` | string | Conditional | The legacy hosted-agent endpoint ID. Specify exactly one of `agent_name` or `agent_endpoint_id`. |
-| `input` | JSON value | No | The input passed to the agent. For a `github_issue` trigger, the GitHub issue payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
+| `input` | JSON value | No | The input passed to the agent. For `github_issue` and `custom` Teams triggers, the event payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
 | `conversation` | string | No | An existing conversation to continue during the dispatch. Maximum 256 characters. |
 
 ### Invocations API action (`invoke_agent_invocations_api`)
@@ -1112,8 +1143,16 @@ Invokes the agent through the Invocations API.
 | `type` | string | Yes | Must be `"invoke_agent_invocations_api"`. |
 | `agent_name` | string | Conditional | The project-scoped agent name. Specify exactly one of `agent_name` or `agent_endpoint_id`. Maximum 256 characters. |
 | `agent_endpoint_id` | string | Conditional | The legacy hosted-agent endpoint ID. Specify exactly one of `agent_name` or `agent_endpoint_id`. |
-| `input` | JSON value | No | The input passed to the agent. For a `github_issue` trigger, the GitHub issue payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
+| `input` | JSON value | No | The input passed to the agent. For `github_issue` and `custom` Teams triggers, the event payload overwrites this value when an event fires, so it applies only to manual test dispatches. |
 | `session_id` | string | No | An existing hosted-agent session to continue during the dispatch. Maximum 256 characters. |
+
+### Dispatch authorization
+
+Dispatch authorization is a top-level routine creation field, not an action field.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `authorization.identity` | string | No | The identity used to invoke the agent. The default is `"agent"`. Set it to `"creator"` only when the agent's tools require delegated access from the routine creator. This field is ignored when you update an existing routine. |
 
 
 ## Enable and disable a routine
@@ -1140,16 +1179,14 @@ From the same page, you can also:
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:disable" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Foundry-Features: Routines=V1Preview"
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 **Enable a routine:**
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:enable" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Foundry-Features: Routines=V1Preview"
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 Both operations return the updated routine object.
@@ -1238,7 +1275,6 @@ Use the `dispatch_async` operation to queue the run. You can omit `payload` to r
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "payload": {
       "type": "invoke_agent_responses_api",
@@ -1253,7 +1289,6 @@ curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/my-invocations-routine:dispatch_async" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "payload": {
       "type": "invoke_agent_invocations_api",
@@ -1280,7 +1315,6 @@ Use the `dispatch_id` to find the run in the run history.
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{}'
 ```
 
@@ -1396,15 +1430,22 @@ Run history records every time a routine fires and the outcome of each attempt.
 
 ```bash
 curl -sS "$PROJECT_ENDPOINT/routines/daily-summary/runs" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Foundry-Features: Routines=V1Preview"
+  -H "Authorization: Bearer $TOKEN"
 ```
+
+The list is paginated. The response returns a `data` array and, when more results exist, a `next_link` URL. Follow `next_link` to fetch the next page. You can also set the following query parameters:
+
+| Query parameter | Description |
+|---|---|
+| `limit` | Maximum number of items to return per page. Ranges from 1 to 100. |
+| `order` | Ordering direction. Supported values are `asc` and `desc`. |
+| `after` | An opaque continuation token that identifies where to resume the list. Prefer following the `next_link` from the previous response, which embeds this value. |
 
 **Example response:**
 
 ```json
 {
-  "value": [
+  "data": [
     {
       "id": "run-abc123",
       "status": "FINISHED",
@@ -1416,7 +1457,8 @@ curl -sS "$PROJECT_ENDPOINT/routines/daily-summary/runs" \
       "dispatch_id": "disp-abc123",
       "response_id": "resp-xyz456"
     }
-  ]
+  ],
+  "next_link": "https://<account>.services.ai.azure.com/api/projects/<project>/routines/daily-summary/runs?after=run-abc123&limit=1"
 }
 ```
 
@@ -1470,7 +1512,7 @@ for await (const run of project.beta.routines.listRuns("daily-summary")) {
 
 :::zone pivot="azd"
 
-Listing run history through `azd ai routine` isn't supported in preview. Use the Foundry portal, REST API, or an SDK to retrieve runs.
+Listing run history through `azd ai routine` isn't currently supported. Use the Foundry portal, REST API, or an SDK to retrieve runs.
 
 :::zone-end
 
@@ -1488,16 +1530,16 @@ The **Routines** page shows all routines in your project. Select any routine to 
 
 ```bash
 curl -sS "$PROJECT_ENDPOINT/routines" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Foundry-Features: Routines=V1Preview"
+  -H "Authorization: Bearer $TOKEN"
 ```
+
+The list is paginated. The response returns a `data` array and, when more results exist, a `next_link` URL. Follow `next_link` to fetch the next page. You can also set the `limit` (1–100), `order` (`asc` or `desc`), and `after` (opaque continuation token) query parameters. Prefer following `next_link`, which embeds the `after` value for you.
 
 **Retrieve a specific routine:**
 
 ```bash
 curl -sS "$PROJECT_ENDPOINT/routines/daily-summary" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Foundry-Features: Routines=V1Preview"
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 :::zone-end
@@ -1555,7 +1597,7 @@ Retrieve a single routine:
 azd ai routine show once-on-release-day
 ```
 
-Listing all routines through `azd ai routine` isn't supported in preview. Use the Foundry portal, REST API, or an SDK.
+Listing all routines through `azd ai routine` isn't currently supported. Use the Foundry portal, REST API, or an SDK.
 
 :::zone-end
 
@@ -1580,7 +1622,6 @@ Reissue the `PUT` request with the updated body. Include all fields. Omitted fie
 curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
   -d '{
     "description": "Updated: runs at 08:00 UTC on weekdays.",
     "enabled": true,
@@ -1679,7 +1720,7 @@ Apply changes from a YAML manifest:
 azd ai routine update once-on-release-day --file routine.yaml
 ```
 
-The `--description` flag isn't supported for timer routines in preview. Edit the manifest and reapply it by using `--file` instead.
+The `--description` flag isn't currently supported for timer routines. Edit the manifest and reapply it by using `--file` instead.
 
 :::zone-end
 
@@ -1698,8 +1739,7 @@ When you delete a routine, you remove it and stop all future trigger deliveries.
 
 ```bash
 curl -sS -X DELETE "$PROJECT_ENDPOINT/routines/daily-summary" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Foundry-Features: Routines=V1Preview"
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 A successful response returns HTTP 204 No Content.
@@ -1756,7 +1796,7 @@ azd ai routine delete once-on-release-day
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"timer"`. |
-| `at` | string | No | A future ISO 8601 timestamp with an explicit UTC offset, for example, `"2026-06-01T09:00:00Z"`. SDKs use a timezone-aware date-time value. Set `at` explicitly for a usable one-time timer. |
+| `at` | string | No | A future ISO 8601 timestamp with an explicit UTC offset, for example, `"2030-09-01T09:00:00Z"`. SDKs use a timezone-aware date-time value. Set `at` explicitly for a usable one-time timer. |
 
 ### GitHub issue trigger fields
 
@@ -1773,7 +1813,7 @@ azd ai routine delete once-on-release-day
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"custom"`. |
-| `provider` | string | Yes | The external provider that emits the event. In the preview, use `"teams"`. |
+| `provider` | string | Yes | The external provider that emits the event. Use `"teams"` for Microsoft Teams. |
 | `event_name` | string | Yes | The provider event that fires the routine. For the `teams` provider, use `"on_new_channel_message"`. |
 | `parameters` | object | Yes | Provider-specific settings that scope the trigger. |
 
@@ -1815,8 +1855,9 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 | Issue | Resolution |
 |---|---|
-| The routine can't invoke the agent because of its identity configuration. | Use an agent that authenticates through its configured identity. Don't use an agent that requires an end-user identity at run time. For an event-based routine, also confirm that the routine creator still has access to the connected resource. |
-| The routine feature isn't available in the project. | Confirm that the project is in a [supported preview region](#prerequisites). If **Routines** doesn't appear in the Foundry portal, the feature isn't enabled for the region or subscription. |
+| A tool call fails because it requires delegated user access. | The default agent identity doesn't provide the routine creator's delegated access. Delete and recreate the routine with `authorization.identity` set to `"creator"`, and confirm that the routine creator has access to the tool's resource. |
+| An event trigger stops firing after an identity or permission change. | Confirm that the connector connection is still connected and that its owner can access the configured repository, team, or channel. Connector authentication is separate from routine dispatch identity. |
+| The routine feature isn't available in the project. | Confirm that the project is in a [supported region](#prerequisites). If **Routines** doesn't appear in the Foundry portal, the feature isn't enabled for the region or subscription. |
 | The scheduled routine is rejected or fires at an unexpected time. | Use a five-field cron expression with an interval of at least five minutes. Set `time_zone` to the intended IANA or Windows time zone identifier. |
 | A GitHub or Teams event doesn't fire the routine. | Complete connector consent, confirm that the connection is connected, and verify that the authenticated identity can access the configured repository, team, and channel. |
 | The downstream agent call times out. | Inspect the run history for the last dispatch error. Each attempt has a 30-second downstream timeout and follows the documented [retry policy](#retry-and-timeout-defaults). |
@@ -1834,13 +1875,16 @@ For full setup instructions, usage examples, and how reminders differ from routi
 
 ## Known issues and limitations
 
-This preview has the following known issues and limitations:
+Routines have the following known issues and limitations:
 
 - **One trigger and one action per routine.** Each routine supports exactly one entry in the `triggers` map and one action. To run multiple agents or multiple schedules, create separate routines.
-- **Trigger types.** The supported triggers are `timer` (one-shot), `schedule` (cron-based recurring), and `github_issue` (event-based). The agent-scheduled [reminder tool](tools/reminder-tool.md) is available only for hosted agents.
-- **Action types.** The only action is invoking one Foundry agent through the Responses API or Invocations API.
+- **Agent types.** Routines support prompt agents and hosted agents. They don't support workflow agents. The agent-scheduled [reminder tool](tools/reminder-tool.md) is available only for hosted agents.
+- **Routine and trigger types.** Routines can be one-shot (`timer`), recurring (`schedule`), or event-based. Supported event triggers are `github_issue` and `custom` with the `teams` provider. Other routine and trigger types aren't supported.
+- **Action types.** The only action is invoking one Foundry agent. Use `invoke_agent_responses_api` with a prompt agent or a hosted agent that exposes the Responses protocol. Use `invoke_agent_invocations_api` with a hosted agent that exposes the Invocations protocol.
+- **Dispatch identity.** Every routine uses agent identity by default. Creator identity is an explicit create-time opt-in for agent tools that require delegated user access. It always represents the principal that creates the routine, not the agent creator or another user. You can't change the dispatch identity by updating the routine.
+- **Network and encryption.** Routines support projects secured by a virtual network and inherit the project's network configuration. Routines don't support customer-managed key (CMK) encryption.
 - **Schedule minimum interval.** A `schedule` trigger fires at most once every five minutes. Cron expressions that resolve to a shorter interval are rejected.
-- **Regional availability.** Routines are available only in the regions listed under [Prerequisites](#prerequisites). If you don't see **Routines** in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
+- **Regional availability.** Routines aren't available in UK West, Switzerland West, Japan West, UAE North, or Norway East. If you don't see **Routines** in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
 - **Use `:dispatch_async` for manual dispatch.** Only the `POST .../routines/{routineName}:dispatch_async` route is part of the public contract. The legacy `:dispatch` route isn't supported for customer use.
 - **Acknowledgment isn't completion.** A `:dispatch_async` response acknowledges that the run was enqueued, not that the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to observe final delivery.
 - **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults). The routine run is marked failed if all attempts time out.
