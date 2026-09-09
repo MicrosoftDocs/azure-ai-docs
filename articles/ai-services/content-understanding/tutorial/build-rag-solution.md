@@ -313,10 +313,8 @@ In the following example, we define a schema for extracting basic information fr
 ## Content and field extraction
 
 **Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. While content extraction provides the baseline for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights.
-[Learn more]() about content extraction capabilities for each modality.
 
 **Field extraction** builds on content extraction by using AI to generate further metadata that enriches the knowledge base. This step allows you to define custom fields tailored to your specific use case, enabling more precise retrieval and enhanced search relevance. Field extraction complements content extraction by adding depth and context, making the data more actionable for RAG scenarios.
-[Learn more]() about field extraction capabilities for each modality.
 
 With the analyzers created for each modality, we can now process files to extract structured content and AI-generated metadata based on the defined schemas. This section demonstrates how to use the analyzers to analyze multimodal data and provides a sample of the results returned by the APIs. These results showcase the transformation of raw data into actionable insights, forming the foundation for indexing, retrieval, and RAG workflows.
 

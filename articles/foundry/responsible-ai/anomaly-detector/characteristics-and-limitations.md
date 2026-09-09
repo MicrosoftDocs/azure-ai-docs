@@ -51,7 +51,7 @@ Several factors need to be balanced to get the best accuracy to meet business re
 
 ### Sensitivity
 
-The **sensitivity** parameter (check [API reference](https://aka.ms/anomaly-detector-rest-api-ref) for more parameter descriptions) is the key to tuning the detection results. In general, a high sensitivity value means the model is more sensitive to outliers and is likely to identify more anomalies. A low sensitivity value usually means the model will tolerate minor outliers.
+The **sensitivity** parameter is the key to tuning the detection results. In general, a high sensitivity value means the model is more sensitive to outliers and is likely to identify more anomalies. A low sensitivity value usually means the model will tolerate minor outliers.
 
 ### Choose the right mode
 
