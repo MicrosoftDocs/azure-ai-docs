@@ -185,7 +185,7 @@ For more information, see [Run training jobs](how-to-train-model.md).
 
 ## Deploy models
 
-To bring a model into production, you deploy the model. The Azure Machine Learning managed endpoints abstract the required infrastructure for both batch and real-time (online) model scoring (inferencing).
+To bring a model into production, deploy the model. The Azure Machine Learning managed endpoints abstract the required infrastructure for both batch and real-time (online) model scoring (inferencing).
 
 ### Real-time and batch scoring (inferencing)
 
