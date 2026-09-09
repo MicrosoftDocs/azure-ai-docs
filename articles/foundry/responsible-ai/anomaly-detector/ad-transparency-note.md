@@ -45,7 +45,7 @@ The Anomaly Detector RESTful API takes time series data as its input, the key pa
 
 ### System Behavior
 
-Using Anomaly Detector doesn't require prior experience in machine learning. The [RESTful API](https://aka.ms/ad-api) enables you to easily integrate the service into your applications and processes. Anomaly Detector API can be deployed using the cloud or the intelligent edge with containers.
+Using Anomaly Detector doesn't require prior experience in machine learning. The RESTful API enables you to easily integrate the service into your applications and processes. Anomaly Detector API can be deployed using the cloud or the intelligent edge with containers.
 
 Anomaly Detector v1.1 supports two different features:
 
