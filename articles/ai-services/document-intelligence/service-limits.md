@@ -121,7 +121,7 @@ The following table compares model usage quotas for the Free (F0) and Standard (
 | Adjustable | No | Yes <sup>2</sup> |
 | **List operations Per Second limit** | 1 | 10 (default value) |
 | Adjustable | No | Yes <sup>2</sup> |
-| **Maximum number of Document Intelligence resources per region** | 20 | 20 |
+| **Maximum number of Document Intelligence resources per region** | 1 | 20 |
 | Adjustable | No | No |
 | **Max document size** | 4 MB | 500 MB |
 | Adjustable | No | No |
