@@ -14,15 +14,19 @@ ms.custom: FY25Q1-Linter
 # What is Microsoft Translator Pro?
 
 > [!IMPORTANT]
-> Microsoft Translator Pro entered its retirement period on September 15, 2026. Existing customers can continue using the application in maintenance mode until September 15, 2027. Microsoft is no longer onboarding new customers to Microsoft Translator Pro.
+> Microsoft Translator Pro begins retirement on September 15, 2026. The following conditions apply:
 >
-> During the maintenance period, the application receives critical security, compliance, reliability, and service-continuity updates as applicable. No new product capabilities are planned. On September 15, 2027, Microsoft Translator Pro is retired and is no longer available or supported.
+> * Existing customers retain access to Microsoft Translator Pro in maintenance mode through September 15, 2027.
+> * Microsoft doesn't onboard new customers to Microsoft Translator Pro during retirement.
+> * During the maintenance period, Microsoft provides critical security, compliance, reliability, and service-continuity updates as applicable. Microsoft doesn't introduce new product capabilities.
+> * Effective September 15, 2027, Microsoft Translator Pro is fully retired and is no longer available or supported.
+> * The retirement applies solely to the Microsoft Translator Pro client application. It doesn't affect [Azure Translator in Foundry Tools](../../overview.md), [Azure Speech in Foundry Tools](../../../speech-service/overview.md), or the Azure resources used by those services.
 >
-> This retirement applies only to the Microsoft Translator Pro client application. It doesn't retire [Azure Translator in Foundry Tools](../../overview.md), [Azure Speech in Foundry Tools](../../../speech-service/overview.md), or the Azure resources used by those services. Existing customers should plan their transition before September 15, 2027. To build a custom enterprise translation experience, use Translator and Speech services to meet your organization's security and deployment requirements.
+> Existing customers should complete their transition from Microsoft Translator Pro before September 15, 2027. Organizations that require custom enterprise translation experiences can use Translator and Speech services to build applications that align with their security, organizational, and deployment requirements.
 
-Microsoft Translator Pro is an advanced mobile application that enables real-time, seamless speech-to-speech translation. The app is designed specifically for enterprises seeking to eliminate language barriers within the workplace. Translator Pro delivers a dedicated and native experience that fully integrates into the enterprise ecosystem.
+Microsoft Translator Pro is an enterprise mobile application that provides real-time speech-to-speech translation. The application integrates with an organization's Azure environment and requires enterprise users to authenticate with their organizational identities and use configured Translator resources.
 
-During the maintenance period, Microsoft Translator Pro remains available to existing customers on both the Azure public and US government cloud platforms. To use the application, enterprise users must authenticate their identities and configure Translator resources within the Azure public or US Government cloud environment.
+During retirement, Microsoft Translator Pro remains available in maintenance mode only to existing customers in the Azure public and Azure Government cloud environments. The application doesn't support access across these cloud environments.
 
 ## Specifications and service limits
 
@@ -46,7 +50,7 @@ During the maintenance period, Microsoft Translator Pro remains available to exi
 
 * **Customized phrasebook**. Administrators can upload a list of commonly used phrases specific to their organization. These phrases can then be quickly accessed and translated during conversations, ensuring communication remains efficient and accurate.
 
-* **International availability**. The app is now accessible in selected regions outside of the United States. For more information, *see* [Region availability](#region-avalability).
+* **International availability**. The app is now accessible in selected regions outside of the United States. For more information, *see* [Region availability](#region-availability).
 
 * **US Government cloud availability**. US Government agencies can now operate the app within selected regions of the US Government cloud. For more information, *see* [Region availability](#region-availability).
 
