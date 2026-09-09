@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [preview-feature](../includes/preview-feature.md)]
 
-This article shows how to connect to GPT-Live over WebSocket, configure a session, stream audio, and read the events GPT-Live returns. For an overview of GPT-Live and its capabilities, see [What is GPT-Live?](../concepts/gpt-live.md).
+This article shows how to connect to GPT-Live over WebSocket, configure a session, stream audio, and read the events GPT-Live returns. For an overview of GPT-Live and its capabilities, see [What is GPT-Live?](../concepts/gpt-live.md)
 
 ## Prerequisites
 
@@ -60,19 +60,19 @@ ws.on("message", (data) => {
 });
 ```
 
-Do not repeat `model` inside the initial `session.update`; the model comes from the WebSocket URL.
+Don't repeat `model` inside the initial `session.update`; the model comes from the WebSocket URL.
 
 ## Session configuration
 
-The initial `session.update` is a strict configuration object; unknown fields are rejected.
+The initial `session.update` is a strict configuration object; it rejects unknown fields.
 
 | Field | Notes |
 |---|---|
 | `instructions` | System instructions. Immutable after initialization. |
 | `audio.output.voice` | Output voice. Defaults to `marin`. Immutable after initialization. |
-| `delegation` | Either `{ type: "client" }` or `{ type: "responses", responses: {...} }`. Omitted or `null` selects client delegation. See [Delegate work in GPT-Live](gpt-live-delegation.md). |
+| `delegation` | Either `{ type: "client" }` or `{ type: "responses", responses: {...} }`. Omitting this field or setting it to `null` selects client delegation. See [Delegate work in GPT-Live](gpt-live-delegation.md). |
 
-After startup, later `session.update` calls are sparse: omitted fields keep their current values, and a successful update produces `session.updated` with the complete public session resource. Only errors echo `event_id`.
+After startup, later `session.update` calls are sparse: omitted fields keep their current values. A successful update produces `session.updated` with the complete public session resource. Only errors echo `event_id`.
 
 ## Stream audio
 
