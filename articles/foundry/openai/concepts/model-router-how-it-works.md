@@ -4,7 +4,7 @@ description: "Learn how model router analyzes prompts, scores candidate models, 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 04/22/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
@@ -44,6 +44,16 @@ When a prompt arrives, model router processes it through three steps:
 2. Select the best model. Based on the analysis, the router estimates which model in the pool delivers the best result for this specific prompt. It also factors in any routing mode configured. These can be Balanced, Cost, or Quality modes.
 
 3. Route and respond. The prompt is forwarded to the selected model. The entire routing decision adds minimal overhead — a negligible fraction of the LLM inference time.
+
+By default, model router repeats this selection process for each request. For stateless Chat Completions conversations, separate turns might therefore use different underlying models.
+
+## How session affinity changes model selection
+
+Session affinity is an optional Chat Completions preview that lets an application identify requests from the same conversation. On the first successful request for a session ID, model router associates the serving model with that ID. On a later request with the same ID, model router attempts the associated model first when it remains eligible.
+
+The association doesn't override policy, safety, capability, quota, availability, or fallback requirements. If the associated model is ineligible or another model serves through fallback, model router updates the association after the successful response. The association expires after 30 minutes without a successful create or update.
+
+Keeping related requests on the same model can improve behavioral continuity and the opportunity for prompt-cache reuse. Session affinity doesn't inspect provider cache signals, compare the benefit of staying with switching, or guarantee cache hits. For configuration steps, see [Keep Chat Completions requests on the same model](../how-to/model-router.md#keep-chat-completions-requests-on-the-same-model-preview).
 
 ## Key design deliverables
 

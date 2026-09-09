@@ -6,12 +6,16 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/01/2026
+ms.date: 09/09/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
 
 ## September 2026
+
+### Session affinity for Chat Completions (preview)
+
+Chat Completions applications can now supply an opaque session ID to ask model router to attempt the same eligible model across related conversation turns. Session affinity preserves existing eligibility and fallback behavior and reports whether a request initialized, retained, or switched the model association. For setup and verification guidance, see [Use model router](../../openai/how-to/model-router.md#keep-chat-completions-requests-on-the-same-model-preview).
 
 ### Per-request routing metadata (preview)
 

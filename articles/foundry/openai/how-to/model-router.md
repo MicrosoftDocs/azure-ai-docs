@@ -4,7 +4,7 @@ description: "Learn how to use the model router in Azure OpenAI to select the be
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 09/01/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
