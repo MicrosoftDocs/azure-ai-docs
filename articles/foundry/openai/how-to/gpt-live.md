@@ -23,7 +23,7 @@ This article shows how to connect to GPT-Live over WebSocket, configure a sessio
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal).
-- An API key or Microsoft Entra ID credentials for authentication. For production applications, we recommend using [Microsoft Entra ID](../../../foundry-classic/openai/how-to/managed-identity.md) for enhanced security.
+- An API key or Microsoft Entra ID credentials for authentication. For production applications, use [Microsoft Entra ID](../../../foundry-classic/openai/how-to/managed-identity.md) for enhanced security.
 - A deployment of a GPT-Live model (`gpt-live-1` or `gpt-live-1-mini`).
 
 ## Connect over WebSocket
