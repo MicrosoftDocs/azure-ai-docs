@@ -8,7 +8,7 @@
 
 ## Overview
 
-**gpt-live-1** is a bidirectional (full-duplex) voice model that lets applications listen and speak simultaneously, eliminating rigid turn-taking boundaries. It processes input continuously while generating output, enabling natural back-and-forth conversation without interruptions.
+**gpt-live-1** is a bidirectional (full-duplex) voice model that applications can use to listen and speak at the same time. This capability eliminates rigid turn-taking boundaries. The model processes input continuously while generating output, so you can have a natural back-and-forth conversation without interruptions.
 
 When a request needs search, deeper reasoning, or more complex work, the model can delegate to a configured Responses API model while the live interaction continues.
 
@@ -35,11 +35,11 @@ The models also support speech translation across all source and target language
 
 - This product is strictly confidential.
 - Use is limited to low-volume, non-production testing.
-- Do not expose generated audio to end users or anyone outside the immediate alpha-testing organization.
-- Traffic to the gpt-live model is not billed, but calls delegated to backend text models are billed.
-- There is no scheduled date for general availability.
+- Don't expose generated audio to end users or anyone outside the immediate alpha-testing organization.
+- Traffic to the gpt-live model isn't billed, but calls delegated to backend text models are billed.
+- There's no scheduled date for general availability.
 - The model and API shapes will change significantly before general availability.
-- Service reliability and latency will not meet production-service standards.
+- Service reliability and latency won't meet production-service standards.
 
 ### Early-access requirements
 
@@ -82,7 +82,7 @@ Clients can connect over **WebSocket**, **WebRTC**, or **SIP**. A trusted backen
 
 ## Quickstart: WebSocket
 
-A trusted WebSocket supplies configuration as its first event. The model is selected in the URL; do not repeat `model` in the initial `session.update`. Wait for `session.started` before treating the session as ready.
+A trusted WebSocket supplies configuration as its first event. The URL selects the model; don't repeat `model` in the initial `session.update`. Wait for `session.started` before treating the session as ready.
 
 ```javascript
 import WebSocket from "ws";
@@ -197,11 +197,11 @@ dataChannel.addEventListener("message", ({ data }) => {
 });
 ```
 
-> **Note:** Do not set `Content-Type` manually when using `FormData`; the client must include the multipart boundary. Do not send `input_audio.append` on the WebRTC data channel and do not expect `output_audio.delta` there.
+> **Note:** Don't set `Content-Type` manually when using `FormData`; the client must include the multipart boundary. Don't send `input_audio.append` on the WebRTC data channel and don't expect `output_audio.delta` there.
 
 ### Sideband WebSocket
 
-A trusted application server attaches a sideband WebSocket at the existing session URL; there is no separate `/sideband` path. Sideband receives the same JSON server events as the primary data channel, and its commands enter the same session stream. The alpha selector must exactly match the session.
+A trusted application server attaches a sideband WebSocket at the existing session URL; there's no separate `/sideband` path. Sideband receives the same JSON server events as the primary data channel, and its commands enter the same session stream. The alpha selector must exactly match the session.
 
 ```http
 GET /v1/live/sess_123 HTTP/1.1
@@ -261,7 +261,7 @@ Initial configuration is a strict Live API session object — unknown fields are
 
 | Field | Notes |
 |---|---|
-| `model` | Required when a transport is created. WebSocket uses the query-string value. |
+| `model` | Required when you create a transport. WebSocket uses the query-string value. |
 | `instructions` | System instructions. Immutable after initialization. |
 | `audio.output.voice` | Output voice. Defaults to `marin`. Immutable after initialization. |
 | `delegation` | Either `{ type: "client" }` or `{ type: "responses", responses: {...} }`. Omitted or `null` selects client delegation. |
@@ -270,7 +270,7 @@ Initial configuration is a strict Live API session object — unknown fields are
 
 ### Updating a live session
 
-After startup, `session.update.session` is sparse — omitted fields retain their values. Delegation is replaced as one complete object; nested delegation fields are not patched independently. Set `delegation` to `null` to reset to client delegation. `model` and `include` are not update fields.
+After startup, `session.update.session` is sparse — omitted fields retain their values. Delegation is replaced as one complete object; nested delegation fields aren't patched independently. Set `delegation` to `null` to reset to client delegation. `model` and `include` aren't update fields.
 
 ```json
 {
@@ -289,13 +289,13 @@ After startup, `session.update.session` is sparse — omitted fields retain thei
 }
 ```
 
-A successful update produces `session.updated` with the complete public session resource. Successful acknowledgments do not echo `event_id`; only errors use `event_id` for correlation.
+A successful update produces `session.updated` with the complete public session resource. Successful acknowledgments don't echo `event_id`; only errors use `event_id` for correlation.
 
 ---
 
 ## Delegation: Client
 
-With client delegation, `delegation.created` contains the unit of work and a client-targeted item ID. Use that `id` as `delegation_item_id` when returning context. Each append contains exactly one `input_text` part and is limited to 500 tokens. Repeated appends continue the same delegation stream; they do not create independently addressable context items.
+With client delegation, `delegation.created` contains the unit of work and a client-targeted item ID. Use that `id` as `delegation_item_id` when returning context. Each append contains exactly one `input_text` part and is limited to 500 tokens. Repeated appends continue the same delegation stream; they don't create independently addressable context items.
 
 ```json
 // Server: the gpt-live model delegates work to the application.
@@ -339,7 +339,7 @@ With client delegation, `delegation.created` contains the unit of work and a cli
 
 ## Delegation: Responses
 
-With Responses delegation, `delegation.created` identifies the semantic delegation item, `target: "responses"`, and the `response_id` that binds it to the Responses lifecycle. The service emits `delegation.created` immediately before the matching top-level `response.created` event. Do not send `response.create` into the Live API stream.
+With Responses delegation, `delegation.created` identifies the semantic delegation item, `target: "responses"`, and the `response_id` that binds it to the Responses lifecycle. The service emits `delegation.created` immediately before the matching top-level `response.created` event. Don't send `response.create` into the Live API stream.
 
 ```json
 {
@@ -367,11 +367,11 @@ With Responses delegation, `delegation.created` identifies the semantic delegati
 }
 ```
 
-Responses events are passed through at the top level without a `channel.event` wrapper. Dispatch on the complete event type string and tolerate new `response.*` lifecycle events. Delegated output text is also injected into the Live API and can surface as normal transcript, turn, and audio output.
+Responses events pass through at the top level without a `channel.event` wrapper. Dispatch on the complete event type string and tolerate new `response.*` lifecycle events. Delegated output text is also injected into the Live API and can surface as normal transcript, turn, and audio output.
 
 ### Complete a client-actionable function call
 
-When `response.function_call_arguments.done` identifies an actionable call, send one `delegation.function_call_output.create` event for that `call_id`. Unknown and already-resolved IDs are rejected; parallel calls require one result event per call.
+When `response.function_call_arguments.done` identifies an actionable call, send one `delegation.function_call_output.create` event for that `call_id`. Unknown and already resolved IDs are rejected. Parallel calls require one result event per call.
 
 ```json
 // Server
@@ -408,13 +408,13 @@ When `response.function_call_arguments.done` identifies an actionable call, send
 }
 ```
 
-The acknowledgment means the result was accepted, not that the Responses delegation has completed. Continue reading `response.*` events until the lifecycle reaches a terminal event such as `response.completed` or an error.
+The acknowledgment means the result was accepted, not that the Responses delegation completed. Continue reading `response.*` events until the lifecycle reaches a terminal event such as `response.completed` or an error.
 
 ---
 
 ## Append general session context
 
-Use `session.context.append` to add general text context to the active Live API session. `content` contains exactly one `input_text` part and is limited to 500 tokens. Do not supply an item `id`, `status`, or timing field.
+Use `session.context.append` to add general text context to the active Live API session. `content` contains exactly one `input_text` part and is limited to 500 tokens. Don't supply an item `id`, `status`, or timing field.
 
 ```json
 {
@@ -439,7 +439,7 @@ Use `session.context.append` to add general text context to the active Live API 
 
 ### Audio output
 
-On WebSocket, `output_audio.delta` carries base64-encoded raw mono 24 kHz signed PCM16 little-endian audio with a server-assigned half-open time range. There is no `output_audio.done` event. A gap between output-audio ranges represents omitted silence; the logical timeline is not compressed when silence is removed.
+On WebSocket, `output_audio.delta` carries base64-encoded raw mono 24 kHz signed PCM16 little-endian audio with a server-assigned half-open time range. There is no `output_audio.done` event. A gap between output-audio ranges represents omitted silence; the logical timeline isn't compressed when silence is removed.
 
 ```json
 {
@@ -450,11 +450,11 @@ On WebSocket, `output_audio.delta` carries base64-encoded raw mono 24 kHz signed
 }
 ```
 
-On WebRTC, input and output media are synchronized through RTP and do not carry JSON timing fields. Precise RTP-to-JSON correlation and preservation of logical gaps in outbound RTP timestamps remain follow-up work.
+On WebRTC, input and output media synchronize through RTP and don't carry JSON timing fields. Precise RTP-to-JSON correlation and preservation of logical gaps in outbound RTP timestamps remain follow-up work.
 
 ### Transcript items and projected turns
 
-`input_transcript.added` and `output_transcript.added` emit complete timed transcript fragments. Fragment boundaries reflect cadence, not semantic turn boundaries. `turn.created`, `turn.delta`, and `turn.done` provide a heuristic grouping of those fragments for applications that want a user/assistant turn view. Turn events are a projection — they are not context items and do not change session state.
+`input_transcript.added` and `output_transcript.added` emit complete timed transcript fragments. Fragment boundaries reflect cadence, not semantic turn boundaries. `turn.created`, `turn.delta`, and `turn.done` provide a heuristic grouping of those fragments for applications that want a user/assistant turn view. Turn events are a projection — they're not context items and don't change session state.
 
 ```json
 {
@@ -568,7 +568,7 @@ On close, the service asks the session to stop, drains active delegation and out
 
 ## Error handling
 
-All Live API and normalized Responses errors use one error envelope. `error.event_id` is present only when the error can be correlated to a client event; `param` is omitted when no specific field caused the failure. A startup error prevents `session.started`. A command error does not necessarily close an already started session.
+All Live API and normalized Responses errors use one error envelope. The `error.event_id` property is present only when the error can be correlated to a client event. The `param` property is omitted when no specific field caused the failure. A startup error prevents `session.started`. A command error doesn't necessarily close an already started session.
 
 ```json
 {
@@ -676,7 +676,7 @@ All Live API and normalized Responses errors use one error envelope. `error.even
 
 ### `output_audio.delta`
 
-Carries base64-encoded raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. `start_ms` and `end_ms` use the server timeline, so a gap between ranges represents omitted silence. There is no `output_audio.done` event.
+Carries base64-encoded raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. `start_ms` and `end_ms` use the server timeline, so a gap between ranges represents omitted silence. There's no `output_audio.done` event.
 
 ```json
 {
@@ -785,7 +785,7 @@ Transcript fragment boundaries reflect cadence, not semantic turn boundaries.
 
 ### `turn.done`
 
-Turn events are a projection over transcript fragments. They are not context items and do not change session state.
+Turn events are a projection over transcript fragments. They aren't context items and don't change session state.
 
 ```json
 {
@@ -868,7 +868,7 @@ For client delegation, the item ID becomes the `delegation_item_id` used by late
 
 ### `session.update`
 
-The first WebSocket event supplies startup configuration. The model comes from the WebSocket URL and must not be repeated in the session object. Later updates are sparse; omitted fields retain their values, and replacing delegation requires a complete delegation object.
+The first WebSocket event supplies startup configuration. The model comes from the WebSocket URL and you shouldn't repeat it in the session object. Later updates are sparse; omitted fields retain their values, and replacing delegation requires a complete delegation object.
 
 ```json
 {
@@ -888,7 +888,7 @@ The first WebSocket event supplies startup configuration. The model comes from t
 
 ### `input_audio.append`
 
-Appends audio to a WebSocket session. The `audio` field contains base64-encoded raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. Do not send a WAV header or another container format. The decoded payload must be non-empty and contain an even number of bytes. The server does not acknowledge raw audio events.
+Appends audio to a WebSocket session. The `audio` field contains base64-encoded raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. Don't send a WAV header or another container format. The decoded payload must be non-empty and contain an even number of bytes. The server doesn't acknowledge raw audio events.
 
 ```json
 {
@@ -951,7 +951,7 @@ Returns the result for one client-actionable function call from a Responses-back
 
 ### `session.close`
 
-Requests graceful shutdown. Continue reading until `session.closed`, then expect the transport to close.
+Requests a graceful shutdown. Continue reading until `session.closed`, then expect the transport to close.
 
 ```json
 {
