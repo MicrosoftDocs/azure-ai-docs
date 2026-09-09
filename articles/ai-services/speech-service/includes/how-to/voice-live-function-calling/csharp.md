@@ -201,8 +201,6 @@ public sealed class FunctionCallingClient
     private AudioProcessor? _audioProcessor;
     private bool _sessionReady;
     private bool _conversationStarted;
-    private bool _activeResponse;
-    private bool _responseApiDone;
     private Dictionary<string, object>? _pendingFunctionCall;
 
     private readonly Dictionary<string, Func<JsonElement, Dictionary<string, object>>> _availableFunctions;
@@ -355,23 +353,10 @@ public sealed class FunctionCallingClient
             case SessionUpdateInputAudioBufferSpeechStarted:
                 Console.WriteLine("Listening...");
                 _audioProcessor!.SkipPendingAudio();
-                if (_activeResponse && !_responseApiDone)
-                {
-                    try { await _connection!.CancelResponseAsync(); }
-                    catch (Exception ex) when (ex.Message.Contains("no active response"))
-                    {
-                        _logger.LogDebug("Cancel ignored -- response already completed");
-                    }
-                }
                 break;
 
             case SessionUpdateInputAudioBufferSpeechStopped:
                 Console.WriteLine("Processing...");
-                break;
-
-            case SessionUpdateResponseCreated:
-                _activeResponse = true;
-                _responseApiDone = false;
                 break;
 
             case SessionUpdateResponseAudioDelta audioDelta:
@@ -379,8 +364,6 @@ public sealed class FunctionCallingClient
                 break;
 
             case SessionUpdateResponseDone:
-                _activeResponse = false;
-                _responseApiDone = true;
                 if (_pendingFunctionCall?.ContainsKey("arguments") == true)
                 {
                     await ExecuteFunctionCallAsync(_pendingFunctionCall);

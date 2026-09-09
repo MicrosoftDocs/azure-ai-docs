@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: reference
 ms.author: westey
-ms.date: 08/31/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -17,14 +17,16 @@ ai-usage: ai-assisted
   |--------------------------|:--:|:------:|:--:|--------------------------------|
   | RAG overview             | ✅ |   ✅   | ✅ | Shared                         |
   | TextSearchProvider       | ✅ |   ❌   | ❌ | .NET-specific                  |
-  | VectorStore search tools | ❌ |   ✅   | ❌ | Python Semantic Kernel bridge  |
+  | Vector store search tools | ❌ |   ✅   | ❌ | Python native Agent Framework APIs |
   | Go availability          | ✅ |   ✅   | ✅ | Go zone is status only         |
   | Service integrations     | ✅ |   ✅   | ✅ | Shared links                   |
 -->
 
 # RAG
 
-Microsoft Agent Framework supports adding Retrieval Augmented Generation (RAG) capabilities to agents easily by adding AI Context Providers to the agent.
+Microsoft Agent Framework supports Retrieval Augmented Generation (RAG)
+through context providers that add retrieved content before model invocation
+and search tools that let the model retrieve grounding data on demand.
 
 For conversation/session patterns alongside retrieval, see [Conversations & Memory overview](../concepts/agents/conversations/index.md).
 For service-specific setup, see [Azure AI Search](../integrations/by-component/context-providers/azure-ai-search.md), [Microsoft Foundry](../integrations/by-component/context-providers/microsoft-foundry.md#use-file-search-rag), and [Neo4j](../integrations/by-component/context-providers/neo4j.md#graphrag-from-an-existing-knowledge-graph).
@@ -117,217 +119,56 @@ The `TextSearchProvider` class supports the following options via the `TextSearc
 ::: zone-end
 ::: zone pivot="programming-language-python"
 
-Agent Framework supports using Semantic Kernel's VectorStore collections to provide RAG capabilities to agents. This is achieved through the bridge functionality that converts Semantic Kernel search functions into Agent Framework tools.
+Agent Framework provides native vector-store contracts and
+`create_vector_search_tool()`. The helper turns any
+`SupportsVectorSearch` implementation into a function tool, so the model can
+retrieve grounding data before it answers.
 
-### Creating a Search Tool from VectorStore
+### Create a native vector search tool
 
-The `create_search_function` method from a Semantic Kernel VectorStore collection returns a `KernelFunction` that can be converted to an Agent Framework tool using `.as_agent_framework_tool()`.
-Use the [vector store implementations documentation](/semantic-kernel/concepts/vector-store-connectors)
-to learn how to set up different vector store collections.
+First, define your vector-store model, create a collection, and load its
+records. The following sample uses `InMemoryCollection` with
+`OpenAIEmbeddingClient`, but you can supply any native Agent Framework
+collection that implements `SupportsVectorSearch`. It then exposes optional
+category and rating filters to the model, maps each result to grounding text,
+and instructs the agent to search before it answers:
 
-```python
-from semantic_kernel.connectors.ai.open_ai import OpenAITextEmbedding
-from semantic_kernel.connectors.azure_ai_search import AzureAISearchCollection
-from semantic_kernel.functions import KernelParameterMetadata
-from agent_framework import Agent
-from agent_framework.openai import OpenAIChatClient
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/vector_stores/in_memory_search_tool.py" range="3-20,116-179":::
 
-# Define your data model
-class SupportArticle:
-    article_id: str
-    title: str
-    content: str
-    category: str
-    # ... other fields
+The full sample defines the `Hotel` model and loads the source records before
+the shown collection setup. Set `OPENAI_API_KEY` before you run it.
 
-# Create an Azure AI Search collection
-collection = AzureAISearchCollection[str, SupportArticle](
-    record_type=SupportArticle,
-    embedding_generator=OpenAITextEmbedding()
-)
+### Customize search behavior
 
-async with collection:
-    await collection.ensure_collection_exists()
-    # Load your knowledge base articles into the collection
-    # await collection.upsert(articles)
+Configure `create_vector_search_tool()` with the following options:
 
-    # Create a search function from the collection
-    search_function = collection.create_search_function(
-        function_name="search_knowledge_base",
-        description="Search the knowledge base for support articles and product information.",
-        search_type="keyword_hybrid",
-        parameters=[
-            KernelParameterMetadata(
-                name="query",
-                description="The search query to find relevant information.",
-                type="str",
-                is_required=True,
-                type_object=str,
-            ),
-            KernelParameterMetadata(
-                name="top",
-                description="Number of results to return.",
-                type="int",
-                default_value=3,
-                type_object=int,
-            ),
-        ],
-        string_mapper=lambda x: f"[{x.record.category}] {x.record.title}: {x.record.content}",
-    )
+| Option | Purpose |
+|---|---|
+| `name` | Sets the function name exposed to the model. Use a unique name when you add multiple search tools. |
+| `description` | Explains when and why the model should use the tool. |
+| `approval_mode` | Sets tool approval to `always_require` or `never_require`. |
+| `search_type` | Selects `vector` or `keyword_hybrid` search. The collection must support the selected mode. |
+| `top` and `skip` | Set fixed paging values or use typed `Param` values that the model supplies. |
+| `filter` | Applies a portable `Filter` or `FilterGroup`. A filter can contain typed `Param` values exposed in the tool schema. |
+| `result_mapper` | Converts each `SearchResponse` into text or multimodal `Content` for the model. |
 
-    # Convert the search function to an Agent Framework tool
-    search_tool = search_function.as_agent_framework_tool()
+The generated tool always includes a `query` string. Any `Param` values in the
+filter, `top`, or `skip` settings become additional validated tool arguments.
+Use `Literal` and numeric constraints to keep model-supplied values within the
+range your application accepts.
 
-    # Create an agent with the search tool
-    agent = Agent(
-        client=OpenAIChatClient(model="gpt-4o"),
-        instructions="You are a helpful support specialist. Use the search tool to find relevant information before answering questions. Always cite your sources.",
-        tools=search_tool
-    )
+You can create multiple tools for different collections or search modes. Give
+each tool a distinct `name` and `description` so the model can select the
+appropriate knowledge source.
 
-    # Use the agent with RAG capabilities
-    response = await agent.run("How do I return a product?")
-    print(response.text)
-```
+### Choose a native vector store
 
-> [!IMPORTANT]
-> This feature requires `semantic-kernel` version 1.38 or higher.
-
-### Customizing Search Behavior
-
-You can customize the search function with various options:
-
-```python
-# Create a search function with filtering and custom formatting
-search_function = collection.create_search_function(
-    function_name="search_support_articles",
-    description="Search for support articles in specific categories.",
-    search_type="keyword_hybrid",
-    # Apply filters to restrict search scope
-    filter=lambda x: x.is_published == True,
-    parameters=[
-        KernelParameterMetadata(
-            name="query",
-            description="What to search for in the knowledge base.",
-            type="str",
-            is_required=True,
-            type_object=str,
-        ),
-        KernelParameterMetadata(
-            name="category",
-            description="Filter by category: returns, shipping, products, or billing.",
-            type="str",
-            type_object=str,
-        ),
-        KernelParameterMetadata(
-            name="top",
-            description="Maximum number of results to return.",
-            type="int",
-            default_value=5,
-            type_object=int,
-        ),
-    ],
-    # Customize how results are formatted for the agent
-    string_mapper=lambda x: f"Article: {x.record.title}\nCategory: {x.record.category}\nContent: {x.record.content}\nSource: {x.record.article_id}",
-)
-```
-
-For the full details on the parameters available for `create_search_function`, see the [Semantic Kernel documentation](/semantic-kernel/concepts/vector-store-connectors/).
-
-### Using Multiple Search Functions
-
-You can provide multiple search tools to an agent for different knowledge domains:
-
-```python
-# Create search functions for different knowledge bases
-product_search = product_collection.create_search_function(
-    function_name="search_products",
-    description="Search for product information and specifications.",
-    search_type="semantic_hybrid",
-    string_mapper=lambda x: f"{x.record.name}: {x.record.description}",
-).as_agent_framework_tool()
-
-policy_search = policy_collection.create_search_function(
-    function_name="search_policies",
-    description="Search for company policies and procedures.",
-    search_type="keyword_hybrid",
-    string_mapper=lambda x: f"Policy: {x.record.title}\n{x.record.content}",
-).as_agent_framework_tool()
-
-# Create an agent with multiple search tools
-agent = Agent(
-    client=chat_client,
-    instructions="You are a support agent. Use the appropriate search tool to find information before answering. Cite your sources.",
-    tools=[product_search, policy_search]
-)
-```
-
-You can also create multiple search functions from the same collection with different descriptions and parameters to provide specialized search capabilities:
-
-```python
-# Create multiple search functions from the same collection
-# Generic search for broad queries
-general_search = support_collection.create_search_function(
-    function_name="search_all_articles",
-    description="Search all support articles for general information.",
-    search_type="semantic_hybrid",
-    parameters=[
-        KernelParameterMetadata(
-            name="query",
-            description="The search query.",
-            type="str",
-            is_required=True,
-            type_object=str,
-        ),
-    ],
-    string_mapper=lambda x: f"{x.record.title}: {x.record.content}",
-).as_agent_framework_tool()
-
-# Detailed lookup for specific article IDs
-detail_lookup = support_collection.create_search_function(
-    function_name="get_article_details",
-    description="Get detailed information for a specific article by its ID.",
-    search_type="keyword",
-    top=1,
-    parameters=[
-        KernelParameterMetadata(
-            name="article_id",
-            description="The specific article ID to retrieve.",
-            type="str",
-            is_required=True,
-            type_object=str,
-        ),
-    ],
-    string_mapper=lambda x: f"Title: {x.record.title}\nFull Content: {x.record.content}\nLast Updated: {x.record.updated_date}",
-).as_agent_framework_tool()
-
-# Create an agent with both search functions
-agent = Agent(
-    client=chat_client,
-    instructions="You are a support agent. Use search_all_articles for general queries and get_article_details when you need full details about a specific article.",
-    tools=[general_search, detail_lookup]
-)
-```
-
-This approach allows the agent to choose the most appropriate search strategy based on the user's query.
-
-### Supported vector store implementations
-
-This pattern works with any Semantic Kernel VectorStore implementation,
-including:
-
-- Azure AI Search (`AzureAISearchCollection`)
-- Qdrant (`QdrantCollection`)
-- Pinecone (`PineconeCollection`)
-- Redis (`RedisCollection`)
-- Weaviate (`WeaviateCollection`)
-- In-Memory (`InMemoryVectorStoreCollection`)
-- And more
-
-Each implementation provides the same `create_search_function` method that can
-be bridged to Agent Framework tools. Choose the vector database that best fits
-your needs. See the
-[full list of implementations](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors).
+Native Python implementations are available for in-memory search, Azure AI
+Search, PostgreSQL with pgvector, Qdrant, and Redis. Their search modes,
+package lifecycle, installation commands, and limitations differ. See
+[Vector store integrations](../integrations/by-component/vector-stores/index.md)
+to select and configure an implementation. That page also identifies databases
+that currently have only a separate Semantic Kernel connector.
 
 ::: zone-end
 

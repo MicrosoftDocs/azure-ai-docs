@@ -14,7 +14,7 @@ items:
       href: ../../agents/concepts/agent-365-integration.md
     - name: Grant Agent 365 observability permissions
       href: ../../agents/how-to/grant-agent-365-permissions.md
-  - name: Routines (preview)
+  - name: Routines
     href: ../../agents/concepts/routines.md
   - name: Workflows
     href: ../../agents/concepts/workflow.md

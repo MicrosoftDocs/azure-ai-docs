@@ -54,11 +54,11 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| `DeepSeek-V4-Pro` | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
-| `DeepSeek-V4-Flash-0731` <br> **Preview** | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
-| `DeepSeek-V4-Flash` | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
-| `DeepSeek-V3.2-Speciale` | chat-completion <br /> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
-| `DeepSeek-V3.2` | chat-completion <br /> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+| `DeepSeek-V4-Pro` | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| `DeepSeek-V4-Flash-0731` <br> **Preview** | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| `DeepSeek-V4-Flash` | chat-completion <br /> (with reasoning content) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| `DeepSeek-V3.2-Speciale` | chat-completion <br /> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| `DeepSeek-V3.2` | chat-completion <br /> (with reasoning content) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
 ## Meta models sold by Azure
 

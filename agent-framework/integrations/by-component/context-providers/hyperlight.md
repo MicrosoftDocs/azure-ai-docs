@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 <!--
   Language parity table - keep in sync when adding/removing sections.
@@ -244,7 +245,9 @@ pip install agent-framework-hyperlight --pre
 `agent-framework-hyperlight` ships separately from `agent-framework-core`, so you only take on the sandbox runtime when you need it.
 
 > [!NOTE]
-> The package depends on Hyperlight sandbox components. If the backend is not published for your current platform yet, `execute_code` fails when it tries to create the sandbox.
+> The Hyperlight sandbox backend is available on x86-64 Linux and AMD64
+> Windows, including Python 3.14. It requires the corresponding host
+> virtualization support. Other platforms fail when the sandbox is created.
 
 ## Use `HyperlightCodeActProvider`
 
@@ -392,9 +395,9 @@ For workloads that compute totals across a dataset by repeatedly looking up data
 
 ## Current limitations
 
-This package is still alpha, and a few constraints are worth planning around:
+This package is still in beta. Plan around the following constraints:
 
-1. Platform support follows the published Hyperlight backend packages. Today that means supported Linux and Windows environments; unsupported platforms will fail when creating the sandbox.
+1. Platform support follows the published Hyperlight backend wheels: x86-64 Linux with KVM and AMD64 Windows with WHP. Python 3.14 is supported.
 2. The current integration executes Python guest code.
 3. In-memory interpreter state does not persist across separate `execute_code` calls. Use mounted files and `/output` artifacts when data needs to survive across calls.
 4. Approval applies to the `execute_code` invocation as a whole, not to each individual `call_tool(...)` inside the same code block.
