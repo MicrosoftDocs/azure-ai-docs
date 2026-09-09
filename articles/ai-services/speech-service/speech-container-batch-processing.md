@@ -58,7 +58,7 @@ docker pull docker.io/batchkit/speech-batch-kit:latest
 
 ## Endpoint configuration
 
-The batch client takes a YAML configuration file that specifies the on-premises container endpoints. The following example can be written to `/mnt/my_nfs/config.yaml`, which is used in the following examples.
+The batch client uses a YAML configuration file that specifies the on-premises container endpoints. Write the following example to `/mnt/my_nfs/config.yaml`, which is used in the following examples.
 
 ```yaml
 MyContainer1:
