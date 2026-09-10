@@ -7,6 +7,7 @@ ms.date: 03/05/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 The following models are supported for fine-tuning:
@@ -27,7 +28,7 @@ The following models are supported for fine-tuning:
 
 <sup>*</sup> GPT-5 support for reinforcement fine-tuning is generally available, but access is gated and available by invitation only. Contact your Microsoft account team if you're interested in enrollment.
 
-Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+For Azure OpenAI models, you can also fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
 > [!NOTE]
 > Open-source models (Ministral-3B, Qwen-32B, Llama-3.3-70B-Instruct, gpt-oss-20b) are only supported on Foundry resources and in the new Foundry UI. 

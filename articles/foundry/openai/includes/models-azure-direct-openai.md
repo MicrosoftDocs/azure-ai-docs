@@ -26,11 +26,11 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [GPT-chat-latest (preview)](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-chat-latest) | **NEW** `gpt-chat-latest` **Preview** |
 | [GPT-5.5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-55) | `gpt-5.5` |
 | [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
-| [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) | `gpt-5.3-chat`, `gpt-5.3-codex` |
-| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview** |
-| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini` |
+| [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) | `gpt-5.3-codex` |
+| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | `gpt-5.2-codex`, `gpt-5.2` |
+| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-mini` |
 | [Sora](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models) | **NEW** sora-2 |
-| [GPT-5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-5) | `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-chat` **Preview** |
+| [GPT-5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-5) | `gpt-5`, `gpt-5-mini`, `gpt-5-nano` |
 | [gpt-oss](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-oss) | open-weight reasoning models |
 | [codex-mini](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models) | Fine-tuned version of `o4-mini`. |  
 | [GPT-4.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series) | `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano` |
@@ -47,6 +47,16 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 The **Context Window** column lists the total number of tokens that a model can process in a request. When a row lists separate **Input** and **Output** values, these values are individual limits. They aren't additive allowances that you can always use together. Input tokens, generated output tokens, and reasoning tokens share the available context budget. More input leaves fewer tokens for generation.
 
 The **Max Output Tokens** column sets an upper limit, not a guaranteed output size. An API parameter such as `max_output_tokens` doesn't reserve tokens when the request has less context budget available.
+
+### Short context and long context
+
+For Azure OpenAI models with short-context and long-context pricing categories, *context* refers to the number of input tokens in an individual request. It doesn't refer to the model's maximum context window or the combined number of input and output tokens.
+
+These categories describe the request's input length, not different model context-window sizes. A model with a large context window can still receive a short-context request.
+
+Generated output tokens don't determine whether a request is classified as short context or long context. Output tokens are still subject to the model's applicable pricing.
+
+For model-specific thresholds, rates, and billing details, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 ## GPT-chat-latest
 
@@ -82,7 +92,7 @@ For model availability across all regions, grouped by deployment category, see [
 Keep the following in mind when you deploy and call the `gpt-6-astra` model:
 
 - Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-6-astra` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
-- Standard pay-as-you-go deployments of the GPT-6 model family and later models use separate rates for short-context and long-context requests. Each GPT-6 model handles both types of requests. For GPT-6 models, prompts with more than 272,000 input tokens use long-context pricing for the full request, not only for tokens beyond the threshold. Later models might use different thresholds. For current rates, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+- For the distinction between short-context and long-context requests, see [Short context and long context](#short-context-and-long-context). For GPT-6 pricing details, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
 - Tool calling requires the Responses API. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
 - The model doesn't support the `none` reasoning effort level.
 - The model doesn't support custom `temperature` or `top_p` values or log probabilities (`logprobs`).
@@ -104,7 +114,7 @@ For model availability across all regions, grouped by deployment category, see [
 > Keep the following in mind when you deploy and call the `gpt-5.6` models:
 >
 > - Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-5.6` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
-> - Standard pay-as-you-go deployments of the GPT-5.6 model family and later models use separate rates for short-context and long-context requests. Each GPT-5.6 model handles both types of requests. For GPT-5.6, prompts with more than 272,000 input tokens use long-context pricing for the full request, not only for tokens beyond the threshold. Later models might use different thresholds. For current rates, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+> - For the distinction between short-context and long-context requests, see [Short context and long context](#short-context-and-long-context). For GPT-5.6 pricing details, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
 > - These models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For more information, see [Tool calling with reasoning models](../how-to/reasoning.md#tool-calling-with-reasoning-models).
 
 ## GPT-5.5
@@ -158,7 +168,7 @@ For model availability across all regions, grouped by deployment category, see [
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.3-codex` (2026-02-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md). <br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | August 2025 |
-| `gpt-5.3-chat` (2026-03-03)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
+| `gpt-5.3-chat` (2026-03-03)<br>**Retired June 29, 2026** | Historical specifications. <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
 
 ## GPT-5.2
 
@@ -170,11 +180,10 @@ For model availability across all regions, grouped by deployment category, see [
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.2-codex` (2026-01-14) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md). <br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md) | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | |
 | `gpt-5.2` (2025-12-11) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | August 2025 |
-| `gpt-5.2-chat` (2025-12-11)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
-| `gpt-5.2-chat` (2026-02-10)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
+| `gpt-5.2-chat` (2025-12-11)<br>**Retired May 13, 2026** | Historical specifications. <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
+| `gpt-5.2-chat` (2026-02-10)<br>**Retired June 29, 2026** | Historical specifications. <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
 
-> [!CAUTION]
-> We don't recommend using preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
+Retired models aren't available for use or new deployments. See the [model retirement schedule](../concepts/model-retirement-schedule.md) for replacement guidance.
 
 <!-- > [!IMPORTANT]
 > - `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur.
@@ -192,18 +201,13 @@ For model availability across all regions, grouped by deployment category, see [
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.1` (2025-11-13) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024  |
-| `gpt-5.1-chat` (2025-11-13) <br>**Preview** |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | September 30, 2024 |
+| `gpt-5.1-chat` (2025-11-13) <br>**Retired June 29, 2026** | Historical specifications. <br> - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | September 30, 2024 |
 | `gpt-5.1-codex` (2025-11-13) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs.  <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
 | `gpt-5.1-codex-mini` (2025-11-13) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
 | `gpt-5.1-codex-max` (2025-12-04) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs.<br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
 
-> [!CAUTION]
-> We don't recommend using preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
-
 > [!IMPORTANT]
 > - `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur.
->
-> - `gpt-5.1-chat` adds built-in reasoning capabilities. Like other [reasoning models](../how-to/reasoning.md) it does not support parameters like `temperature`. If you upgrade from using `gpt-5-chat` (which is not a reasoning model) to `gpt-5.1-chat` make sure you remove any custom parameters like `temperature` from your code which are not supported by reasoning models.
 >
 > - `gpt-5.1-codex-max` adds support for setting `reasoning_effort` to `xhigh`. Reasoning effort `none` is not supported with `gpt-5.1-codex-max`. 
 
@@ -218,20 +222,12 @@ For model availability across all regions, grouped by deployment category, see [
 | `gpt-5` (2025-08-07) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024  |
 | `gpt-5-mini` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000   | 128,000  | May 31, 2024 |
 | `gpt-5-nano` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | May 31, 2024 |
-| `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
-| `gpt-5-chat` (2025-10-03)<br>**Preview**<sup>1</sup> | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
+| `gpt-5-chat` (2025-08-07)<br>**Retired June 29, 2026** | Historical specifications. <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
+| `gpt-5-chat` (2025-10-03)<br>**Retired May 13, 2026** | Historical specifications. <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
 | `gpt-5-codex` (2025-09-11) | - [Responses API](../how-to/responses.md) only. <br> - **Input**: Text/Image <br> - **Output**: Text only  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | - |
 | `gpt-5-pro` (2025-10-06) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024 |
 
-> [!NOTE]
-> <sup>1</sup> `gpt-5-chat` version `2025-10-03` introduces a significant enhancement focused on emotional intelligence and mental health capabilities. This upgrade integrates specialized datasets and refined response strategies to improve the model's ability to do the following:
-> - **Understand and interpret emotional context** more accurately, enabling nuanced and empathetic interactions.
-> - **Provide supportive, responsible responses** in conversations related to mental health, ensuring sensitivity and adherence to best practices.
->
-> These improvements aim to make GPT-5-chat more context-aware, human-centric, and reliable in scenarios where emotional tone and well-being considerations are critical.
-
-> [!CAUTION]
-> We don't recommend using preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
+Retired models aren't available for use or new deployments. See the [model retirement schedule](../concepts/model-retirement-schedule.md) for replacement guidance.
 
 ## gpt-oss
 
@@ -328,10 +324,10 @@ For model availability across all regions, grouped by deployment category, see [
 | `o3` (2025-04-16) | - *New* reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
 | `o3-mini` (2025-01-31) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text-only processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
 | `o1` (2024-12-17) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
-|`o1-preview`<sup>1</sup> (2024-09-12) | Older preview version. | Input: 128,000  <br> Output: 32,768 | October 2023 |
+|`o1-preview`<sup>1</sup> (2024-09-12)<br>**Retired July 28, 2025** | Historical specifications. | Input: 128,000  <br> Output: 32,768 | October 2023 |
 | `o1-mini`<sup>2</sup> (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks that require speed and lower resource consumption. <br> - Global Standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
 
-<sup>1</sup> `o1-preview` is available only for customers who were granted access as part of the original limited access.
+<sup>1</sup> `o1-preview` is retired and isn't available for use or new deployments. See [Retired models](../concepts/retired-models.md).
 
 <sup>2</sup> `o1-mini` is currently available to all customers for Global Standard deployment. Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
@@ -347,7 +343,9 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## GPT-4 and GPT-4 Turbo models
 
-You can use these models only with the Chat Completions API. To learn how Azure OpenAI handles model version upgrades, see [Model versions](../../../foundry-classic/openai/concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-4 deployments, see [Working with models](../how-to/working-with-models.md).
+The listed models support the Chat Completions API. GPT-4o versions `2024-05-13`, `2024-08-06`, and `2024-11-20`, and GPT-4o-mini version `2024-07-18`, also support the [Responses API](../how-to/responses.md).
+
+To learn how Azure OpenAI handles model version upgrades, see [Model versions](../../../foundry-classic/openai/concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-4 deployments, see [Working with models](../how-to/working-with-models.md).
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
@@ -407,9 +405,11 @@ The image generation models generate images from text prompts that the user prov
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-|  Model ID  | Max request (characters) |
+For `gpt-image-1`, the prompt limit below applies to the image-generation create endpoint with API version `2025-04-01-preview`. See the [image-generation API reference](../reference-preview.md#image-generations---create).
+
+|  Model ID  | Max prompt length (characters) |
 |  --- | :---: |
-| `gpt-image-1` | 4,000 |
+| `gpt-image-1` | 32,000 |
 | `gpt-image-1-mini` | 4,000 |
 | `gpt-image-1.5` | 4,000 |
 | `gpt-image-2` | 4,000 |
@@ -501,9 +501,11 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 
 ## Assistants (preview)
 
-For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) if they're supported in the following regions.
+For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following table lists model-region combinations for standard deployment, including historical entries. Columns marked **Retired** describe historical availability, not models available for use or new deployments. See [Retired models](../concepts/retired-models.md) for retirement details.
 
-| Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613  | gpt-35-turbo, 0613   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613   |
+For information on provisioned throughput unit availability, see [Provisioned throughput models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned). The nonretired models and regions listed here can be used with both Assistants v1 and v2. You can use [Global Standard models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) if they're supported in the following regions.
+
+| Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613<br>**Retired**   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613<br>**Retired**  | gpt-35-turbo, 0613<br>**Retired**   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613<br>**Retired**   |
 |:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
 | australiaeast    | -                      | -                      | -                           | ✅                | ✅                        | -                       | -                           | ✅                    | ✅                       | ✅                       | ✅                       | ✅                           |
 | eastus           | ✅                       | ✅                       | ✅                            | -               | -                       | ✅                        |  ✅                            | -                   | ✅                       | -                      | ✅                       | ✅                           |
