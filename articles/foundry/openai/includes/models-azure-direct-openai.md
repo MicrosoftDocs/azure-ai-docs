@@ -95,7 +95,7 @@ For model availability across all regions, grouped by deployment category, see [
 Keep the following in mind when you deploy and call the `gpt-6-astra` model:
 
 - Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-6-astra` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
-- For the distinction between short-context and long-context requests, see [Short context and long context](#short-context-and-long-context). For GPT-6 pricing details, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
+- Standard pay-as-you-go deployments of GPT-6 models use separate pricing categories for short-context and long-context requests. Each GPT-6 model handles both request types. The number of input tokens determines the category, as explained in [Short context and long context](#short-context-and-long-context). For GPT-6 thresholds, rates, and how pricing applies to the request, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
 - Tool calling requires the Responses API. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
 - The model doesn't support the `none` reasoning effort level.
 - The model doesn't support custom `temperature` or `top_p` values or log probabilities (`logprobs`).
@@ -117,7 +117,7 @@ For model availability across all regions, grouped by deployment category, see [
 > Keep the following in mind when you deploy and call the `gpt-5.6` models:
 >
 > - Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-5.6` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
-> - For the distinction between short-context and long-context requests, see [Short context and long context](#short-context-and-long-context). For GPT-5.6 pricing details, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
+> - Standard pay-as-you-go deployments of GPT-5.6 models use separate pricing categories for short-context and long-context requests. Each GPT-5.6 model handles both request types. The number of input tokens determines the category, as explained in [Short context and long context](#short-context-and-long-context). For GPT-5.6 thresholds, rates, and how pricing applies to the request, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
 > - These models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For more information, see [Tool calling with reasoning models](../how-to/reasoning.md#tool-calling-with-reasoning-models).
 
 ## GPT-5.5
