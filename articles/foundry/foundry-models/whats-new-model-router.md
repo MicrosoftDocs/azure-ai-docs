@@ -4,7 +4,7 @@ description: "Learn about the latest model router releases in Microsoft Foundry 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 09/01/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: whats-new
