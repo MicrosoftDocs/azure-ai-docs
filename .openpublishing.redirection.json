@@ -1,6 +1,36 @@
 {
   "redirections": [
     {
+      "source_path": "articles/foundry-classic/openai/how-to/assistant.md",
+      "redirect_url": "/previous-versions/azure/foundry-classic/openai/how-to/assistant",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/concepts/assistants.md",
+      "redirect_url": "/previous-versions/azure/foundry-classic/openai/concepts/assistants",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/code-interpreter.md",
+      "redirect_url": "/previous-versions/azure/foundry-classic/openai/how-to/code-interpreter",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/assistant-functions.md",
+      "redirect_url": "/previous-versions/azure/foundry-classic/openai/how-to/assistant-functions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/assistants-logic-apps.md",
+      "redirect_url": "/previous-versions/azure/foundry-classic/openai/how-to/assistants-logic-apps",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/file-search.md",
+      "redirect_url": "/previous-versions/azure/foundry-classic/openai/how-to/file-search",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/personalizer/context/context.yml",
       "redirect_url": "/previous-versions/azure/ai-services/personalizer",
       "redirect_document_id": false
