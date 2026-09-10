@@ -1,10 +1,10 @@
 ---
 title: "Monitor model router in Microsoft Foundry"
-description: "Learn how to inspect preview per-request routing metadata for model router, including routing attempts, status, and latency, in Microsoft Foundry."
+description: "Learn how to inspect preview model router metadata for routing attempts, fallback, latency, and Chat Completions session affinity in Microsoft Foundry."
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 09/01/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -103,6 +103,71 @@ After the Chat Completions request returns `response`, inspect the serving model
 Ordered attempts can reveal automatic fallback for an individual request. In the example response, the failed attempt followed by a successful attempt is evidence of fallback for that request. Requests don't always include multiple attempts, so don't expect fallback on every request.
 
 For complete application setup and runnable examples, see the [Foundry Model Router samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/foundry-models/model-router).
+
+## Interpret session affinity metadata
+
+When you enable the Chat Completions session affinity preview, `model_router_details` can include a `session_affinity` object. The following response fragment shows a request that retained its associated model:
+
+```json
+{
+   "model": "example-model-a",
+   "model_selection_details": {
+      "model_router_details": {
+         "mode": "balanced",
+         "session_affinity": {
+            "mode": "sticky",
+            "source": "session_id_payload",
+            "decision": "retain"
+         }
+      }
+   }
+}
+```
+
+Interpret the fields as follows:
+
+| Field | Value | Meaning |
+| --- | --- | --- |
+| `mode` | `sticky` | Model router attempts the associated eligible model first. |
+| `source` | `session_id_payload` or `session_id_header` | The request body or header supplied the session ID. The response doesn't return the identifier. |
+| `decision` | `initialize` | No previous association was available, and the initially selected model served the response. |
+| `decision` | `retain` | The associated model served the response. |
+| `decision` | `switch` | A different model served because of eligibility or fallback. |
+
+When `decision` is `switch`, inspect `routing_trace` and the top-level `model` field together. The following fragment shows an associated model that returned a retryable response before fallback selected another model:
+
+```json
+{
+   "model": "example-model-b",
+   "model_selection_details": {
+      "model_router_details": {
+         "mode": "balanced",
+         "session_affinity": {
+            "mode": "sticky",
+            "source": "session_id_payload",
+            "decision": "switch"
+         },
+         "routing_trace": [
+            {
+               "latency_ms": 51,
+               "attempts": [
+                  {
+                     "model": "example-model-a",
+                     "result": { "status": 429 }
+                  },
+                  {
+                     "model": "example-model-b",
+                     "result": { "status": 200 }
+                  }
+               ]
+            }
+         ]
+      }
+   }
+}
+```
+
+If affinity lookup or persistence isn't available, inference continues through normal routing and the response omits the complete `session_affinity` object. Don't infer an affinity decision when the object or `decision` field is absent.
 
 ## Interpret the results
 

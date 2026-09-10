@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/09/2026
+ms.date: 09/10/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -360,6 +360,19 @@ codeact = HyperlightCodeActProvider(
 To surface text from `execute_code`, end the code with `print(...)`; Hyperlight does not return the value of the last expression automatically.
 
 When filesystem access is enabled, write larger artifacts to `/output/<filename>` instead. Returned files are attached to the tool result, while files under `/input` are available for reading inside the sandbox.
+
+For Python, output attachment collection defaults to 20 files, 5 MiB per file,
+and 20 MiB of cumulative raw file data for each invocation. Oversized or
+directory-heavy output returns a structured execution error with no partial
+attachments while preserving sandbox standard output.
+
+Trusted applications can raise the always-finite limits with positive integers
+through `max_output_files`, `max_output_file_bytes`, and
+`max_output_total_bytes` on `HyperlightExecuteCodeTool` or
+`HyperlightCodeActProvider`. Higher limits increase host memory use because
+files are encoded as inline base64. For portable behavior, write attachment
+files directly under `/output`; nested attachments fail closed on platforms
+without secure directory-relative file opening.
 
 ## Compare CodeAct and direct tool calling
 

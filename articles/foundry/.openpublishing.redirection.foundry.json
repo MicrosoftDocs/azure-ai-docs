@@ -782,12 +782,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-studio/concepts/evaluation-approach-gen-ai.md",
-      "redirect_url": "/azure/foundry/concepts/evaluation-approach-gen-ai",
+      "redirect_url": "/azure/foundry/concepts/observability",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-studio/concepts/evaluation-metrics-built-in.md",
-      "redirect_url": "/azure/foundry/concepts/evaluation-metrics-built-in",
+      "redirect_url": "/azure/foundry/concepts/built-in-evaluators",
       "redirect_document_id": false
     },
     {
@@ -1337,7 +1337,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/concepts/evaluation-metrics-built-in.md",
-      "redirect_url": "/azure/ai-foundry/concepts/observability",
+      "redirect_url": "/azure/ai-foundry/concepts/built-in-evaluators",
       "redirect_document_id": false
     },
     {
