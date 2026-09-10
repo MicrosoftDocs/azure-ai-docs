@@ -266,7 +266,7 @@ A prompt that passes the policy returns `HTTP 200` with the agent's response. If
 
 1. The policy is configured to filter the relevant content category and severity.
 
-The guardrail applies to streaming requests too. With `"stream": true`, a violating prompt is rejected with the same `HTTP 400` before any event is emitted.
+The guardrail applies to streaming requests too. By using `"stream": true`, a violating prompt is rejected with the same `HTTP 400` before any event is emitted.
 
 ## Network egress controls (preview)
 
