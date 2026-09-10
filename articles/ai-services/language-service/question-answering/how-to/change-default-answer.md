@@ -21,7 +21,7 @@ The default answer for a project is meant to be returned when an answer isn't fo
 
 ### Client application integration
 
-For a client application, uou can choose from the following scenarios:
+For a client application, you can choose from the following scenarios:
 
 * Use your project's setting
 * Use different text in the client application to distinguish when an answer is returned but doesn't meet the score threshold. This text can either be static text stored in code, or can be stored in the client application's settings list.
