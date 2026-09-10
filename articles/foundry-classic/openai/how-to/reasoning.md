@@ -919,8 +919,10 @@ print(response.model_dump_json(indent=2))
 ### Region availability
 
 | Model | Region | Limited access |
-|---|---|---|
+| --- | --- | --- |
 | `gpt-6-astra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
+| `gpt-6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
+| `gpt-6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-terra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
@@ -954,23 +956,23 @@ print(response.model_dump_json(indent=2))
 
 # [GPT-6 reasoning models](#tab/gpt-6)
 
-| **Feature** | **gpt-6-astra**, **2026-09-03** |
-| --- | --- |
-| **[Structured outputs](./structured-outputs.md)** | ✅ |
-| **Context window** | 1,050,000 tokens |
-| **Maximum input tokens** | 922,000 tokens |
-| **Maximum output tokens** | 128,000 tokens |
-| **Input modalities** | Text and images |
-| **Output modalities** | Text |
-| Chat Completions API | ✅ (without tools) |
-| Responses API | ✅ |
-| Streaming | ✅ |
-| Functions/tools | ✅ (Responses API only) |
-| **[Reasoning effort](#reasoning-effort)** | ✅ (`none` isn't supported) |
-| Verbosity | ✅ |
-| `logprobs` | - |
-| `temperature` | - |
-| `top_p` | - |
+| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-17** | **gpt-6-luna**, **2026-09-17** |    
+| --- | --- | --- | --- |
+| **[Structured outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
+| **Context window** | 1,050,000 tokens | 1,050,000 tokens | 1,050,000 tokens |
+| **Maximum input tokens** | 922,000 tokens | 922,000 tokens | 922,000 tokens |
+| **Maximum output tokens** | 128,000 tokens | 128,000 tokens | 128,000 tokens |
+| **Input modalities** | Text and images | Text and images | Text and images |
+| **Output modalities** | Text | Text | Text |
+| Chat Completions API | ✅ (without tools) | ✅ (without tools) | ✅ (without tools) |
+| Responses API | ✅ | ✅ | ✅ |
+| Streaming | ✅ | ✅ | ✅ |
+| Functions/tools | ✅ (Responses API only) | ✅ (Responses API only) | ✅ (Responses API only) |
+| **[Reasoning effort](#reasoning-effort)** | ✅ (`none` isn't supported) | ✅ | ✅ |
+| Verbosity | ✅ | ✅ | ✅ |
+| `logprobs` | - | - | - |
+| `temperature` | - | - | - |
+| `top_p` | - | - | - |
 
 Azure OpenAI doesn't currently support mid-conversation reasoning effort changes (`configuration_update`) or mid-turn steering (`response.steer`) for GPT-6 Astra.
 
