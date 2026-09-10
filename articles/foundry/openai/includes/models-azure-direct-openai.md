@@ -405,7 +405,7 @@ The image generation models generate images from text prompts that the user prov
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-For `gpt-image-1`, the prompt limit below applies to the image-generation create endpoint with API version `2025-04-01-preview`. See the [image-generation API reference](../reference-preview.md#image-generations---create).
+For `gpt-image-1`, the following prompt limit applies to the image-generation create endpoint with API version `2025-04-01-preview`. See the [image-generation API reference](../reference-preview.md#image-generations---create).
 
 |  Model ID  | Max prompt length (characters) |
 |  --- | :---: |
