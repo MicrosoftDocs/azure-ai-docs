@@ -261,12 +261,7 @@ When `source_integrity` is declared, it overrides the otherwise-default rule of 
 
 If a tool declares neither per-item labels nor `source_integrity`, FIDES falls back to the combined label of its inputs. This is the right default for pure transformation tools — a `summarize(text)` that processes an untrusted blob produces an untrusted summary without any extra annotation.
 
-When tool arguments contain hidden variable references, FIDES resolves them
-recursively and evaluates the destination policy against their stored integrity
-and confidentiality labels. This process prevents blind forwarding from
-bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing
-the hidden content to the main model. Argument labels don't replace labels
-declared on the tool result.
+When tool arguments contain hidden variable references, FIDES resolves them recursively and evaluates the destination policy against their stored integrity and confidentiality labels. This process prevents blind forwarding from bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing the hidden content to the main model. Argument labels don't replace labels declared on the tool result.
 
 ## Annotating sink tools
 
