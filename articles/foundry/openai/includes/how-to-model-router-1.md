@@ -119,9 +119,29 @@ Session affinity can improve the opportunity for prompt-cache reuse when consecu
 
 ### Configure session affinity
 
-Run the complete Python sample to configure session affinity, send two related conversation turns, and inspect the affinity decision. The sample creates the client with the preview feature header and uses an opaque, application-owned session ID that doesn't contain secrets or personal information:
+After your application reads the endpoint, API key, and deployment name, create the client with the preview feature header. Then create an opaque, application-owned session ID that doesn't contain secrets or personal information:
 
-:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-session-affinity.py":::
+:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-session-affinity.py" id="session_affinity_enable":::
+
+Use the same session ID for every turn in one conversation. Use a different session ID for an unrelated conversation.
+
+You can alternatively provide the application-owned identifier in the `x-ms-session-id` request header. When a request contains valid identifiers in both locations, `routing_config.session_affinity.session_id` takes precedence. A session ID must contain 1 through 256 Unicode code points, including at least one non-whitespace character. Model router ignores an invalid body identifier and tries a valid header identifier. If neither identifier is valid, Chat Completions uses normal routing.
+
+### Send related conversation turns
+
+Send the first request, append its response and the next user message to the conversation history, and send the next request with the same session affinity configuration:
+
+:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-session-affinity.py" id="session_affinity_turns":::
+
+Model router creates or updates a model association only after a successful request. The association expires after 30 minutes without a successful create or update.
+
+### Verify the affinity decision
+
+Inspect `model_selection_details.model_router_details.session_affinity` to determine how model router applied affinity:
+
+:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-session-affinity.py" id="session_affinity_extract":::
+
+A typical run produces output similar to the following example:
 
 ```output
 --- First turn ---
@@ -140,20 +160,6 @@ Affinity decision: retain
 Response:
 <second-response>
 ```
-
-Use the same session ID for every turn in one conversation. Use a different session ID for an unrelated conversation.
-
-You can alternatively provide the application-owned identifier in the `x-ms-session-id` request header. When a request contains valid identifiers in both locations, `routing_config.session_affinity.session_id` takes precedence. A session ID must contain 1 through 256 Unicode code points, including at least one non-whitespace character. Model router ignores an invalid body identifier and tries a valid header identifier. If neither identifier is valid, Chat Completions uses normal routing.
-
-### Send related conversation turns
-
-The sample sends the first request, appends its response and the next user message to the conversation history, and sends the next request with the same session affinity configuration.
-
-Model router creates or updates a model association only after a successful request. The association expires after 30 minutes without a successful create or update.
-
-### Verify the affinity decision
-
-The sample inspects `model_selection_details.model_router_details.session_affinity` to determine how model router applied affinity.
 
 The first successful request typically returns `initialize`. A later request returns `retain` when the associated model serves the response. It returns `switch` when eligibility or fallback causes another model to serve the response. Policy, safety, capability, quota, availability, and fallback requirements take precedence over affinity.
 
