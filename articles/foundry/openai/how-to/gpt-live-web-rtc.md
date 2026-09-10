@@ -26,7 +26,7 @@ For server-to-server integrations, see [Use GPT-Live for real-time voice](gpt-li
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal).
 - A deployment of a GPT-Live model (`gpt-live-1` or `gpt-live-1-mini`).
-- An ephemeral client token minted by your trusted backend. The example below uses a placeholder `token` value.
+- An ephemeral client token minted by your trusted backend. The following example uses a placeholder `token` value.
 
 ## Create a unified WebRTC session
 
