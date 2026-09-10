@@ -74,6 +74,8 @@ items:
       href: ../../agents/concepts/hosted-agent-contract.md
     - name: Long-running agent resilience (preview)
       href: ../../agents/concepts/long-running-agent-resilience.md
+    - name: Durable state store (preview)
+      href: ../../agents/concepts/agent-state-store.md
     - name: Long-running agent API reference (preview)
       href: ../../agents/concepts/long-running-agent-reference.md
   - name: Quickstarts

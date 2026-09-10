@@ -345,3 +345,4 @@ Streaming exceptions: `EventStreamClosedError`/`EventStreamClosedException`, `Ev
 - [Steer an in-flight agent turn](../how-to/steer-hosted-agent.md)
 - [Stream long-running agent output with reconnect](../how-to/stream-with-reconnect.md)
 - [Manage state for long-running agents](../how-to/manage-task-state.md)
+- [Durable state store for hosted agents](agent-state-store.md)
