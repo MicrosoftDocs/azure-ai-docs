@@ -10,7 +10,7 @@ ms.custom: language-service-question-answering
 ---
 # Change default answer for custom question answering
 
-The default answer for a project is meant to be returned when an answer is not found. If you're using a client application, it may also have a separate default answer, indicating no answer met the score threshold.
+The default answer for a project is meant to be returned when an answer isn't found. If you're using a client application, it might also have a separate default answer that indicates no answer met the score threshold.
 
 ## Default answer
 
