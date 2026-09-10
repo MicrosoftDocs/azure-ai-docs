@@ -4,7 +4,7 @@ description: Essential security guidelines for building secure AG-UI application
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/09/2026
+ms.date: 09/10/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -178,12 +178,22 @@ from that scope and the client `threadId`. The client-visible `threadId` remains
 unchanged, while context-provider and other session state for equal thread IDs
 stays isolated across scopes.
 
+Resolve the scope from authenticated and authorized request context on every
+request. The resolver must return a nonempty string; `None`, an empty string, or
+another type fails with an HTTP 500 configuration error before the endpoint
+accesses snapshots, approval state, or context providers. Resolver failures
+don't fall back to unscoped operation, and valid scope strings are used without
+trimming or normalization. An endpoint without a resolver is intentionally
+unscoped and must not share session-keyed state across authorization
+boundaries.
+
 :::code language="python" source="~/../agent-framework-code/python/samples/05-end-to-end/ag_ui_single_agent/backend/server.py" range="101-112":::
 
 `legacy_session_id_from_thread_id=True` restores the previous unscoped internal
 session ID only for migration. This option is deprecated and disables Snapshot
-Scope isolation for context-provider state. Migrate persisted provider state to
-scoped session IDs, and then remove the option.
+Scope isolation for context-provider state, so it isn't safe for shared
+multi-tenant deployments even when a trusted resolver is configured. Migrate
+persisted provider state to scoped session IDs, and then remove the option.
 
 ### Sensitive Data Filtering
 
