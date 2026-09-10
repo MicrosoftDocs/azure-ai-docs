@@ -48,7 +48,7 @@ When you omit `rai_config`, the agent runs without a content safety guardrail. W
 Always use the full ARM resource ID for `rai_policy_name`, not the bare policy name.
 
 > [!WARNING]
-> Don't rely on deploy-time validation to catch a bad policy ID. On many subscriptions an agent that references a policy that doesn't exist is created successfully and reports `active`, but **no content filtering is applied** - the guardrail fails open and harmful prompts reach the agent. Confirm the policy exists on the account, then run [Test the guardrail at runtime](#test-the-guardrail-at-runtime) before you rely on the agent's content safety.
+> Don't rely on deploy-time validation to catch a bad policy ID. On many subscriptions an agent that references a policy that doesn't exist is created successfully and reports `active`, but **no content filtering is applied** - the guardrail fails open and harmful prompts reach the agent. Confirm the policy exists on the account, then [test the guardrail](#test-content-safety-filtering) before you rely on the agent's content safety.
 
 `rai_config` is the shape the Foundry API accepts, so the Python SDK and REST examples in this article set it directly. The Azure Developer CLI doesn't expose `rai_config` in `azure.yaml`; it uses a `policies` list instead and maps it to `rai_config` when it deploys.
 
