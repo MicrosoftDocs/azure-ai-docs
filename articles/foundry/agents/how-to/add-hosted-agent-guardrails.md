@@ -284,7 +284,7 @@ Deploy in **Audit** mode first, review the egress decisions, refine your rules, 
 
 ### Add egress rules by using the Azure Developer CLI
 
-The Azure Developer CLI doesn't provide dedicated commands to create or update an RAI policy. Instead, add the RAI policy ARM resource to your `azd` project's Bicep infrastructure. The `azd provision` command deploys the resource through ARM.
+Add the RAI policy ARM resource to your `azd` project's Bicep infrastructure. The `azd provision` command deploys the resource through ARM.
 
 1. Add the following Bicep to the resource-group-scoped infrastructure for the resource group that contains your Foundry resource:
 
@@ -551,6 +551,5 @@ The following capabilities aren't available yet and are planned for future updat
 - [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md) — create the RAI policy you reference here.
 - [Networking options for Foundry Agent Service](../concepts/networking-options.md) — how egress controls fit with virtual network and private networking options.
 - [Deploy a hosted agent](deploy-hosted-agent.md) — the full deployment workflow for hosted agents.
-
 
 
