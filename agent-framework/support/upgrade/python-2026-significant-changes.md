@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/09/2026
+ms.date: 09/10/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,28 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Lab installs separately, and Foundry supports Projects 2.6
+
+**PR:** [#8188](https://github.com/microsoft/agent-framework/pull/8188)
+
+`agent-framework` and `agent-framework-core[all]` no longer install the
+experimental `agent-framework-lab` package. Install each Lab module explicitly:
+
+```bash
+pip install "agent-framework-lab[gaia]"
+pip install "agent-framework-lab[tau2]"
+pip install "agent-framework-lab[lightning]"
+```
+
+Lab now resolves its experimental dependencies independently from released
+Agent Framework packages. The `agent-framework-foundry` package supports
+`azure-ai-projects>=2.2.0,<2.7.0` and uses an OpenAI 3-compatible
+`agent-framework-openai` version. This separation lets Foundry applications use
+Azure AI Projects 2.4 through 2.6 without overriding Lab's OpenAI 2-compatible
+dependency constraints.
+
+---
 
 ### 🔴 GitHub Copilot workspace file hooks are opt-in
 
