@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 09/04/2026
 ms.reviewer: meerakurup
 ms.author: sgilley 
 author: sdgilley 
@@ -149,11 +149,11 @@ Five operations are required to fully manage managed compute deployments on a Fo
 | `Microsoft.CognitiveServices/accounts/managedComputeDeployments/read` | Read or list managed compute deployments on a Foundry account. |
 | `Microsoft.CognitiveServices/accounts/managedComputeDeployments/write` | Create or update a managed compute deployment. |
 | `Microsoft.CognitiveServices/accounts/managedComputeDeployments/delete` | Delete a managed compute deployment. |
-| `Microsoft.CognitiveServices/locations/managedComputeCapacities/read` | List available accelerator capacity by region. |
+| `Microsoft.CognitiveServices/managedComputeCapacities/read` | List available accelerator capacity by region. |
 | `Microsoft.CognitiveServices/locations/usages/read` | Read accelerator usage and quota consumption. |
 
 > [!IMPORTANT]
-> A root-level operation `Microsoft.CognitiveServices/capacities/read` does **not** exist. Custom roles that grant capacity reads must use the location-scoped `locations/managedComputeCapacities/read` operation (or `managedComputeCapacities/read` if scoped at the root of the provider). A wildcard such as `Microsoft.CognitiveServices/locations/*/read` matches `locations/usages/read` but does **not** match `locations/managedComputeCapacities/read`. List the operation explicitly when authoring a custom role.
+> The provider registers `managedComputeCapacities/read` at its root as `Microsoft.CognitiveServices/managedComputeCapacities/read`, not under `locations/`. A root-level operation `Microsoft.CognitiveServices/capacities/read` doesn't exist. A wildcard such as `Microsoft.CognitiveServices/locations/*/read` matches `locations/usages/read` but doesn't match the capacities operation. List `Microsoft.CognitiveServices/managedComputeCapacities/read` explicitly when you author a custom role.
 
 #### Role-to-permission mapping
 
@@ -186,7 +186,7 @@ The following table summarizes how each role's CRUD coverage compares across the
 | Foundry User | Read + capacities + usages | Read + capacities + usages | Same |
 
 > [!NOTE]
-> If you author a custom role that uses a `locations/*/read` wildcard to grant capacity reads for standard deployments, that wildcard does not cover `managedComputeCapacities/read`. Add `Microsoft.CognitiveServices/locations/managedComputeCapacities/read` to the custom role explicitly to grant capacity reads on the managed compute control plane.
+> If you author a custom role that uses a `locations/*/read` wildcard to grant capacity reads for standard deployments, that wildcard doesn't cover `managedComputeCapacities/read`. Add `Microsoft.CognitiveServices/managedComputeCapacities/read` to the custom role explicitly to grant capacity reads on the managed compute control plane.
 
 #### Recommended role assignments
 
