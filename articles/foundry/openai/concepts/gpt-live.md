@@ -59,6 +59,10 @@ GPT-Live supports three transports:
 - **WebRTC**: Browser or native clients connect with low-latency, negotiated media tracks. See [Use GPT-Live via WebRTC](../how-to/gpt-live-web-rtc.md).
 - **SIP**: SIP is a supported connection transport. Detailed GPT-Live SIP procedures aren't included yet.
 
+## Limits
+
+The GPT-Live API limits the number of concurrent sessions per subscription based on your tier. For the per-tier values, see [GPT-Live concurrent session limits](../quotas-limits.md#gpt-live-concurrent-session-limits).
+
 ## Related content
 
 - [Use GPT-Live for real-time voice](../how-to/gpt-live.md)

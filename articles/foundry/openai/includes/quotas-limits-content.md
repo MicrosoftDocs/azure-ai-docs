@@ -225,6 +225,19 @@ The following section provides you with a quick guide to the default quotas and 
 |----------------|-------------------|---------------------------------|
 | `gpt-oss-120b` | 5 M               | 5 K                             |
 
+## GPT-Live concurrent session limits
+
+Rate limits for the GPT-Live API are expressed as the maximum number of concurrent sessions per subscription, based on your tier.
+
+| Tier | Maximum concurrent sessions |
+|--|--|
+| Default (nontiered) | 10 |
+| Tier 1 | 25 |
+| Tier 2 | 50 |
+| Tier 3 | 200 |
+| Tier 4 | 300 |
+| Tier 5 | 500 |
+
 ## Usage tiers
 
 Global Standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer's inference requests. Similarly, Data Zone Standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
