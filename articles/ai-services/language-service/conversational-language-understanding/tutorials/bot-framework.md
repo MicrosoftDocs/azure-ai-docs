@@ -11,7 +11,7 @@ ms.date: 09/10/2026
 ---
 # Integrate conversational language understanding with Bot Framework
 
-A dialog is the interaction that occurs between user queries and an application. Dialog management is the process that defines the automatic behavior that should occur for different customer interactions. This tutorial will explain how to integrate your own conversational language understanding (CLU) project for a flight booking project in the Bot Framework SDK that includes three intents: **Book Flight**, **Get Weather**, and **None**.
+A dialog is the interaction that occurs between user queries and an application. Dialog management is the process that defines the automatic behavior for different customer interactions. This tutorial explains how to integrate your own conversational language understanding (CLU) project for a flight booking project in the Bot Framework SDK that includes three intents: **Book Flight**, **Get Weather**, and **None**.
 
 
 ## Prerequisites
