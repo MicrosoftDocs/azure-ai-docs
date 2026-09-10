@@ -1380,8 +1380,6 @@ Input and output limits share the available context budget and aren't additive. 
 | `temperature` | - |
 | `top_p` | - |
 
-Azure OpenAI doesn't currently support mid-conversation reasoning effort changes (`configuration_update`) or mid-turn steering (`response.steer`) for GPT-6 Astra.
-
 # [GPT-5 reasoning models](#tab/gpt-5)
 
 | **Feature**  | **gpt-5.6-sol**, **2026-06-25** | **gpt-5.6-terra**, **2026-06-25** | **gpt-5.6-luna**, **2026-06-25** | **gpt-5.5**, **2026-04-24** |**gpt-5.4-nano**, **2026-03-17** | **gpt-5.4-mini**, **2026-03-17** | **gpt-5.4-pro**  | **gpt-5.4**, **2026-03-05** | **gpt-5.3-codex**, **2026-02-24** | **gpt-5.2-codex**, **2026-01-14**  | **gpt-5.2**, **2025-12-11** | **gpt-5.1-codex-max**, **2025-12-04** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |

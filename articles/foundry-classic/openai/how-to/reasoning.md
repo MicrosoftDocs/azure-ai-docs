@@ -972,8 +972,6 @@ print(response.model_dump_json(indent=2))
 | `temperature` | - |
 | `top_p` | - |
 
-Azure OpenAI doesn't currently support mid-conversation reasoning effort changes (`configuration_update`) or mid-turn steering (`response.steer`) for GPT-6 Astra.
-
 Tool calling requires the Responses API. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
 
 # [GPT-5 reasoning models](#tab/gpt-5)

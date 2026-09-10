@@ -99,7 +99,6 @@ Keep the following in mind when you deploy and call the `gpt-6-astra` model:
 - Tool calling requires the Responses API. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
 - The model doesn't support the `none` reasoning effort level.
 - The model doesn't support custom `temperature` or `top_p` values or log probabilities (`logprobs`).
-- Azure OpenAI doesn't currently support mid-conversation reasoning effort changes (`configuration_update`) or mid-turn steering (`response.steer`) for GPT-6 Astra.
 
 ## GPT-5.6
 
