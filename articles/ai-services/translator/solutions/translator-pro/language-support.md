@@ -13,7 +13,9 @@ ai-usage: ai-assisted
 
 # Microsoft Translator Pro language support
 
-    **Microsoft Translator Pro begins retirement on September 15, 2026. Existing customers can continue using the application in maintenance mode until September 15, 2027, but Microsoft is no longer onboarding new customers. [Review the retirement details and recommended action](overview.md).**
+```markdown
+**Microsoft Translator Pro begins retirement on September 15, 2026. Existing customers can continue using the application in maintenance mode until September 15, 2027, but Microsoft is no longer onboarding new customers. [Review the retirement details and recommended action](overview.md).**
+```
 
 Microsoft Translator Pro provides real-time multilingual speech-to-speech support. Our language support capabilities enable users to converse naturally and empower global communication. The following table lists the available language and locale support.
 
