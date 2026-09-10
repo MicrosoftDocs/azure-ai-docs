@@ -14,7 +14,7 @@ ms.custom: FY25Q1-Linter
 # What is Microsoft Translator Pro?
 
 > [!IMPORTANT]
-> Microsoft Translator Pro begins retirement on September 15, 2026. The following conditions apply:
+> **Microsoft Translator Pro begins retirement on September 15, 2026**. The following conditions apply:
 >
 > * Existing customers retain access to Microsoft Translator Pro in maintenance mode through September 15, 2027.
 > * Microsoft doesn't onboard new customers to Microsoft Translator Pro during retirement.
