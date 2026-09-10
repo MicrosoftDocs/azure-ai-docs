@@ -41,7 +41,7 @@ If your agent uses the `invocations` protocol, attaching a policy isn't enough o
     pip install "azure-ai-projects>=2.2.0"
     ```
 
-    To configure moderation for the `invocations` protocol, use version `[TO VERIFY]` or later.
+    The `invocations_moderation` setting isn't available in the released Python SDK yet. To configure moderation for the `invocations` protocol, use the Azure Developer CLI or the REST API.
 
 ## How guardrails apply to hosted agents
 
@@ -371,7 +371,7 @@ These checks cover structure, not meaning. `azd` can't tell whether your paths a
 ### Add moderation with the Python SDK
 
 > [!NOTE]
-> `invocations_moderation` requires `azure-ai-projects` version `[TO VERIFY]` or later. On earlier versions, use the Azure Developer CLI or the REST API.
+> `invocations_moderation` isn't available in the released `azure-ai-projects` package yet. To configure moderation for the `invocations` protocol today, use the [Azure Developer CLI](#add-moderation-with-the-azure-developer-cli) or the [REST API](#add-moderation-with-the-rest-api). The following example shows the syntax to use after the models ship.
 
 Pass a `RaiInvocationModeration` object to the `invocations_moderation` parameter of `RaiConfig`.
 
