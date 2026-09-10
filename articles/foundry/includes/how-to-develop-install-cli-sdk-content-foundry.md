@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.reviewer: dantaylo
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/18/2026
+ms.date: 09/03/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -74,7 +74,7 @@ Studio Code extension.
 
 # [Python](#tab/python)
 
-Install [Python 3.10 or later](https://www.python.org/downloads/). Python 3.9 is the minimum
+Install [Python 3.10 or later](https://www.python.org/downloads/). Python 3.10 is the minimum
 supported version. Create a virtual environment for your project instead of installing packages
 globally.
 
@@ -159,7 +159,7 @@ design and deploy hosted agents from a guided canvas.
 | Issue | Resolution |
 | --- | --- |
 | Command not found after installation | Close and reopen your terminal. If you use Visual Studio Code, restart it so that PATH changes take effect. |
-| Python isn't found | Use `python3` instead of `python` on macOS or Linux, or install Python 3.9 or later. |
+| Python isn't found | Use `python3` instead of `python` on macOS or Linux, or install Python 3.10 or later. |
 | Permission denied during Python package installation | On macOS or Linux, don't use `sudo pip install`. Use a virtual environment instead. |
 
 ## Related content
