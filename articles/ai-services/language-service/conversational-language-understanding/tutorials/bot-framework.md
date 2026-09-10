@@ -164,4 +164,3 @@ dotnet run
 If the top intent returned from CLU resolves to "_Book flight_". Your bot will ask additional questions until it has enough information stored to create a travel booking. At that point it returns this booking information back to your user.
 
 That's it!
-
