@@ -263,10 +263,10 @@ If a tool declares neither per-item labels nor `source_integrity`, FIDES falls b
 
 When tool arguments contain hidden variable references, FIDES resolves them
 recursively and evaluates the destination policy against their stored integrity
-and confidentiality labels. This prevents blind forwarding from bypassing
-`accepts_untrusted` or `max_allowed_confidentiality` without exposing the hidden
-content to the main model. Argument labels don't replace labels declared on the
-tool result.
+and confidentiality labels. This process prevents blind forwarding from
+bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing
+the hidden content to the main model. Argument labels don't replace labels
+declared on the tool result.
 
 ## Annotating sink tools
 

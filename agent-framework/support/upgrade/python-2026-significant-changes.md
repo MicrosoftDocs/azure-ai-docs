@@ -26,7 +26,7 @@ This document tracks significant Python changes across all 2026 releases, so ple
 **PR:** [#8188](https://github.com/microsoft/agent-framework/pull/8188)
 
 `agent-framework` and `agent-framework-core[all]` no longer install the
-experimental `agent-framework-lab` package. Install each Lab module explicitly:
+experimental `agent-framework-lab` package. Install each Lab module explicitly.
 
 ```bash
 pip install "agent-framework-lab[gaia]"
