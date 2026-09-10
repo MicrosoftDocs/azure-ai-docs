@@ -81,6 +81,8 @@ ai-usage: ai-assisted
 | gpt-image-1.5                  | GlobalStandard    | 30          | -           |
 | gpt-image-2                    | DataZoneStandard  | 6          | -           |
 | gpt-image-2                    | GlobalStandard    | 18          | -           |
+| gpt-image-2.5-flare            | GlobalStandard    | 5           | -           |
+| gpt-image-2.5-sunburst         | GlobalStandard    | 5           | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
 | model-router                   | DataZoneStandard  | 1,000       | 1,000,000   |
 | model-router                   | GlobalStandard    | 4,000       | 4,000,000   |
