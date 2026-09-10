@@ -7,13 +7,11 @@ ms.author: lajanuar
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 06/30/2026
+ms.date: 09/10/2026
 ---
 # Integrate conversational language understanding with Bot Framework
 
-A dialog is the interaction that occurs between user queries and an application. Dialog management is the process that defines the automatic behavior that should occur for different customer interactions. While conversational language understanding can classify intents and extract information through entities, the [Bot Framework SDK](/azure/bot-service/bot-service-overview) allows you to configure the applied logic for the responses returned from it.
-
-This tutorial will explain how to integrate your own conversational language understanding (CLU) project for a flight booking project in the Bot Framework SDK that includes three intents: **Book Flight**, **Get Weather**, and **None**.
+A dialog is the interaction that occurs between user queries and an application. Dialog management is the process that defines the automatic behavior that should occur for different customer interactions. This tutorial will explain how to integrate your own conversational language understanding (CLU) project for a flight booking project in the Bot Framework SDK that includes three intents: **Book Flight**, **Get Weather**, and **None**.
 
 
 ## Prerequisites
